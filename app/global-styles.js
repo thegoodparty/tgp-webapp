@@ -1,10 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
   html,
   body {
-    height: 100%;
+    min-height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   body {
@@ -12,20 +18,50 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  
+  a {
+   text-decoration: none;
+   color: #484848;
+  }
+  
+  a: hover {
+   color: #117CB6;
+  }
+  
+  .bold600 {
+    font-weight: 600;
+  }
+  
+  .bold500 {
+    font-weight: 500;
+  }
+  
+  .blue {
+    color: #117CB6;
+  }
+  
+  .text-right {
+    text-align: right;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-left {
+    text-align: left;
+  }
+  
+  .pointer {
+    cursor: pointer;
+  },
+  .spacing05 {
+    letter-spacing: 0.5px;
   }
 
-  #app {
-    background-color: #fafafa;
-    min-height: 100%;
-    min-width: 100%;
-  }
-
-  p,
-  label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
-    line-height: 1.5em;
-  }
+  
 `;
 
 export default GlobalStyle;

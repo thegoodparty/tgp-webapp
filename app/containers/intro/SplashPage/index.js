@@ -1,7 +1,6 @@
-/*
- * HomePage
+/**
  *
- * This is the first thing users see of our App, at the '/' route
+ * SplashPage
  *
  */
 
@@ -11,21 +10,21 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 
-import HomePageWrapper from 'components/HomePageWrapper';
+import SplashWrapper from 'components/intro/SplashWrapper';
 
-function HomePage() {
+function SplashPage() {
   return (
     <div>
       <Helmet>
-        <title>The Good Party</title>
-        <meta name="description" content="The Good Party" />
+        <title>Splash | TGP</title>
+        <meta name="description" content="Description of Splash" />
       </Helmet>
-      <HomePageWrapper />
+      <SplashWrapper />
     </div>
   );
 }
 
-HomePage.propTypes = {
+SplashPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -43,4 +42,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(HomePage);
+)(SplashPage);

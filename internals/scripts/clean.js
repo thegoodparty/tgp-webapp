@@ -18,7 +18,6 @@ shell.mv(
   'app/containers/LanguageProvider/tests',
   'internals/templates/containers/LanguageProvider',
 );
-shell.cp('app/tests/i18n.test.js', 'internals/templates/tests/i18n.test.js');
 
 // Cleanup components/
 shell.rm('-rf', 'app/components/*');
