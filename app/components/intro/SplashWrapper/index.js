@@ -15,7 +15,7 @@ import heartImg from 'images/heart.svg';
 import peopleImg from 'images/icons/people.svg';
 import writeinImg from 'images/icons/writein.svg';
 
-import { H1, Body14 } from 'components/shared/typogrophy';
+import { H1, Body14, Body12 } from 'components/shared/typogrophy';
 import { NextButton } from 'components/shared/buttons';
 
 const GrayPage = styled.div`
@@ -84,6 +84,11 @@ const ButtonWrppaer = styled.div`
   margin-top: 20px;
 `;
 
+const SeeHow = styled(Body12)`
+  color: ${({ theme }) => theme.colors.blue};
+  font-weight: 500;
+`;
+
 const wrapperStyles = {
   display: 'flex',
   flexDirection: 'column',
@@ -137,7 +142,9 @@ function SplashWrapper() {
         </Card>
         <Link to="/intro/three-steps">
           <ButtonWrppaer>
-            <NextButton label="SEE HOW" active />
+            <NextButton active>
+              <SeeHow>SEE HOW</SeeHow>
+            </NextButton>
           </ButtonWrppaer>
         </Link>
       </Wrapper>

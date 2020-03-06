@@ -3,15 +3,12 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import tgpTheme from 'theme/index';
 
 const StyledButton = styled(Button)`
   && {
     border-radius: 30px;
     padding: 12px 18px;
-    font-family: ${tgpTheme.typography.fontFamily};
-    letter-spacing: 0.2px;
-    border: solid 1.5px;
+    border: solid 2px;
     justify-content: flex-end;
     align-self: flex-end;
   }
