@@ -11,55 +11,55 @@ const api = {
   //
 
   allPresidential: {
-    url: base + 'presidential/all',
+    url: `${base}presidential/all`,
     method: 'GET',
   },
   districtIncumbents: {
-    url: base + 'incumbent/find-by-district',
+    url: `${base}incumbent/find-by-district`,
     method: 'GET',
   },
   districtCandidates: {
-    url: base + 'race-candidate/find-by-district',
+    url: `${base}race-candidate/find-by-district`,
     method: 'GET',
   },
   //
   // CONTENT
   //
   content: {
-    url: base + 'content/all-content',
+    url: `${base}content/all-content`,
     method: 'GET',
   },
   findPresidentialCandidate: {
-    url: base + 'presidential/find',
+    url: `${base}presidential/find`,
     method: 'GET',
   },
   //
   // ENTRANCE
   //
   register: {
-    url: base + 'entrance/register',
+    url: `${base}entrance/register`,
     method: 'POST',
   },
 
   resendEmail: {
-    url: base + 'entrance/resend-verify-email',
+    url: `${base}entrance/resend-verify-email`,
     method: 'GET',
   },
 
   confirmEmail: {
-    url: base + 'entrance/confirm-email',
+    url: `${base}entrance/confirm-email`,
     method: 'PUT',
   },
 
   zipToDistrict: {
-    url: base + 'entrance/zip-to-district',
+    url: `${base}entrance/zip-to-district`,
     method: 'GET',
   },
   //
   // USER
   //
   updateAddress: {
-    url: base + 'user/update-address',
+    url: `${base}user/update-address`,
     method: 'PUT',
     withAuth: true,
   },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-testing-library';
-import { IntlProvider } from 'react-intl';
 
+import ThemeWrapper from 'theme/ThemeWrapper';
 import HomePage from '../index';
 
 describe('<HomePage />', () => {
@@ -9,9 +9,9 @@ describe('<HomePage />', () => {
     const {
       container: { firstChild },
     } = render(
-      <IntlProvider locale="en">
+      <ThemeWrapper>
         <HomePage />
-      </IntlProvider>,
+      </ThemeWrapper>,
     );
     expect(firstChild).toMatchSnapshot();
   });

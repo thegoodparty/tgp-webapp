@@ -7,11 +7,11 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import heartImg from 'images/heart.svg';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
-import Wrapper from '../shared/Wrapper';
+import heartImg from 'images/heart.svg';
+import Wrapper from 'components/shared/Wrapper';
 
 const Logo = styled.img`
   width: 63px;

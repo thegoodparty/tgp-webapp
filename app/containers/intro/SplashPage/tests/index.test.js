@@ -8,9 +8,11 @@
 
 import React from 'react';
 import { render } from 'react-testing-library';
+import ThemeWrapper from 'theme/ThemeWrapper';
+
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { SplashPage } from '../index';
+import SplashPage from '../index';
 
 describe('<SplashPage />', () => {
   it('Expect to not log errors in console', () => {
@@ -20,19 +22,19 @@ describe('<SplashPage />', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('Expect to have additional unit tests specified', () => {
-    expect(true).toEqual(false);
-  });
-
   /**
    * Unskip this test to use it
    *
    * @see {@link https://jestjs.io/docs/en/api#testskipname-fn}
    */
-  it.skip('Should render and match the snapshot', () => {
+  it('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<SplashPage />);
+    } = render(
+      <ThemeWrapper>
+        <SplashPage />
+      </ThemeWrapper>,
+    );
     expect(firstChild).toMatchSnapshot();
   });
 });
