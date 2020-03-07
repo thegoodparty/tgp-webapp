@@ -18,10 +18,15 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectZipFinderPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import districtActions from './actions';
 
-export function ZipFinderPage() {
+export function ZipFinderPage({ loadZipCallback }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
+
+  const childProps = {
+    loadZipCallback,
+  };
 
   return (
     <div>
@@ -29,13 +34,13 @@ export function ZipFinderPage() {
         <title>ZipFinderPage</title>
         <meta name="description" content="Description of ZipFinderPage" />
       </Helmet>
-      <ZipFinderWrapper />
+      <ZipFinderWrapper {...childProps} />
     </div>
   );
 }
 
 ZipFinderPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  loadZipCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -44,7 +49,9 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    loadZipCallback: zip => {
+      dispatch(districtActions.loadZipAction(zip, true));
+    },
   };
 }
 

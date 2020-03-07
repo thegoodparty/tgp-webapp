@@ -27,7 +27,7 @@ const BlueButton = ({ fullWidth = false, onClick, children }) => (
 );
 
 BlueButton.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
   fullWidth: PropTypes.bool,
   onClick: PropTypes.func,
 };
