@@ -12,12 +12,11 @@ import TopQuestions from 'components/shared/TopQuestions';
 import Ama from 'components/shared/Ama';
 import articlesHelper from 'helpers/articlesHelper';
 import BlueButton from 'components/shared/buttons/BlueButton';
+import GrayWrapper from 'components/shared/GrayWrapper';
 import GoodPartyStats from '../GoodPartyStats';
 import VsList from '../VsList';
 
-const GrayPage = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayBg};
-`;
+
 
 const Description = styled(Body)`
   margin-top: 10px;
@@ -36,7 +35,7 @@ const ElectionWrapper = ({ electionType, candidates = {}, content }) => {
   }
 
   return (
-    <GrayPage>
+    <GrayWrapper>
       {candidates ? (
         <>
           <Nav />
@@ -74,7 +73,7 @@ const ElectionWrapper = ({ electionType, candidates = {}, content }) => {
           <LoadingAnimation />
         </Wrapper>
       )}
-    </GrayPage>
+    </GrayWrapper>
   );
 };
 

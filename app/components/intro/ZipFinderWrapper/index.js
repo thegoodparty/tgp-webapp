@@ -11,11 +11,8 @@ import Input from '@material-ui/core/Input';
 import { H2, Body, Body11, Body13, Body12 } from 'components/shared/typogrophy';
 import NextButton from 'components/shared/buttons/NextButton';
 import Wrapper from 'components/shared/Wrapper';
+import GrayWrapper from 'components/shared/GrayWrapper';
 import Nav from 'containers/Nav';
-
-const GrayPage = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayBg};
-`;
 
 const StyledH2 = styled(H2)`
   padding: 40px 0 24px;
@@ -90,7 +87,7 @@ function ZipFinderWrapper({ loadZipCallback }) {
     }
   };
   return (
-    <GrayPage>
+    <GrayWrapper>
       <Nav />
       <Wrapper>
         <StyledH2>Enter your zip to see your relevant elections</StyledH2>
@@ -121,7 +118,7 @@ function ZipFinderWrapper({ loadZipCallback }) {
           </NextButton>
         </ButtonWrapper>
       </Wrapper>
-    </GrayPage>
+    </GrayWrapper>
   );
 }
 

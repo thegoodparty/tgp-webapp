@@ -17,10 +17,7 @@ import writeinImg from 'images/icons/writein.svg';
 
 import { H1, Body14, Body12 } from 'components/shared/typogrophy';
 import { NextButton } from 'components/shared/buttons';
-
-const GrayPage = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayBg};
-`;
+import GrayWrapper from 'components/shared/GrayWrapper';
 
 const Logo = styled.img`
   width: 63px;
@@ -98,7 +95,7 @@ const wrapperStyles = {
 
 function SplashWrapper() {
   return (
-    <GrayPage>
+    <GrayWrapper>
       <Wrapper style={wrapperStyles}>
         <Centered>
           <Logo src={heartImg} />
@@ -148,7 +145,7 @@ function SplashWrapper() {
           </ButtonWrppaer>
         </Link>
       </Wrapper>
-    </GrayPage>
+    </GrayWrapper>
   );
 }
 

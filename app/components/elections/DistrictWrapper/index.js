@@ -8,6 +8,7 @@ import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/Nav';
 import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
+import GrayWrapper from 'components/shared/GrayWrapper';
 import Ama from 'components/shared/Ama';
 import GoodPartyStats from '../GoodPartyStats';
 import VsCard from '../VsCard';
@@ -26,13 +27,7 @@ const NotDistrict = styled(Body11)`
   font-weight: 500;
 `;
 
-const GrayPage = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayBg};
-`;
 
-// const navigateTo = route => {
-//   push(route);
-// };
 
 const DistrictWrapper = ({
   district = {},
@@ -94,7 +89,7 @@ const DistrictWrapper = ({
   }
 
   return (
-    <GrayPage>
+    <GrayWrapper>
       {district && presidential ? (
         <>
           <Nav />
@@ -144,7 +139,7 @@ const DistrictWrapper = ({
           <LoadingAnimation />
         </Wrapper>
       )}
-    </GrayPage>
+    </GrayWrapper>
   );
 };
 
