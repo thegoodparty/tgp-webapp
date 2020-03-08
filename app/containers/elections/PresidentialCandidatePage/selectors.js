@@ -5,8 +5,7 @@ import { initialState } from './reducer';
  * Direct selector to the presidentialCandidatePage state domain
  */
 
-const selectPresidentialCandidatePageDomain = state =>
-  state.presidentialCandidatePage || initialState;
+const selectCandidateDomain = state => state.candidate || initialState;
 
 /**
  * Other specific selectors
@@ -16,11 +15,11 @@ const selectPresidentialCandidatePageDomain = state =>
  * Default selector used by PresidentialCandidatePage
  */
 
-const makeSelectPresidentialCandidatePage = () =>
+const makeSelectCandidate = () =>
   createSelector(
-    selectPresidentialCandidatePageDomain,
+    selectCandidateDomain,
     substate => substate,
   );
 
-export default makeSelectPresidentialCandidatePage;
-export { selectPresidentialCandidatePageDomain };
+export default makeSelectCandidate;
+export { selectCandidateDomain };

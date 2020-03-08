@@ -15,14 +15,14 @@ import PresidentialCandidateWrapper from 'components/elections/PresidentialCandi
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectPresidentialCandidatePage from './selectors';
+import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
 
 export function PresidentialCandidatePage({ id, candidateState, dispatch }) {
-  useInjectReducer({ key: 'presidentialCandidatePage', reducer });
-  useInjectSaga({ key: 'presidentialCandidatePage', saga });
+  useInjectReducer({ key: 'candidate', reducer });
+  useInjectSaga({ key: 'candidate', saga });
 
   const { candidate, presidentialRank } = candidateState;
 
@@ -63,7 +63,7 @@ PresidentialCandidatePage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  candidateState: makeSelectPresidentialCandidatePage(),
+  candidateState: makeSelectCandidate(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {

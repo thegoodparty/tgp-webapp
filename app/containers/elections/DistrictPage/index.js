@@ -37,7 +37,6 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
     districtCandidates,
   } = districtState;
 
-
   useEffect(() => {
     if (!zipWithDistricts) {
       const zipCookie = getCookie('zip');

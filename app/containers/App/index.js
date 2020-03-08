@@ -17,6 +17,7 @@ import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import PresidentialElectionPage from 'containers/elections/PresidentialElectionPage/Loadable';
 import PresidentialCandidatePage from 'containers/elections/PresidentialCandidatePage/Loadable';
+import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentialCandidatesPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
@@ -47,6 +48,11 @@ export default function App() {
           exact
           path="/elections/presidential-candidate/:name/:id"
           component={PresidentialCandidatePage}
+        />
+        <Route
+          exact
+          path="/elections/rank-presidential-candidates"
+          component={RankPresidentialCandidatesPage}
         />
         <Route component={NotFoundPage} />
       </Switch>
