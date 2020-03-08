@@ -39,6 +39,7 @@ function* loadCookieZip() {
 
 function* loadPresidential() {
   try {
+    console.log('pres')
     const api = tgpApi.allPresidential;
     const response = yield call(requestHelper, api, null);
     yield put(actions.loadAllPresidentialActionSuccess(response.presidential));

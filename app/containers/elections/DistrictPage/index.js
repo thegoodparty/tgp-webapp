@@ -37,7 +37,6 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
     districtCandidates,
   } = districtState;
 
-  console.log('content', content);
 
   useEffect(() => {
     if (!zipWithDistricts) {
