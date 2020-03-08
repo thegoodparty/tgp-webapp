@@ -1,0 +1,153 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import Wrapper from 'components/shared/Wrapper';
+import LoadingAnimation from 'components/shared/LoadingAnimation';
+import MobileHeader from 'components/shared/navigation/MobileHeader';
+import Nav from 'containers/Nav';
+import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
+import TopQuestions from 'components/shared/TopQuestions';
+import Ama from 'components/shared/Ama';
+import GoodPartyStats from '../GoodPartyStats';
+import VsCard from '../VsCard';
+
+
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: ${props => props.justifyContent || 'normal'};
+`;
+const Spacer = styled.div`
+  margin-top: 16px;
+`;
+const NotDistrict = styled(Body11)`
+  color: ${({ theme }) => theme.colors.blue};
+  font-weight: 500;
+`;
+
+const GrayPage = styled.div`
+  background-color: ${({ theme }) => theme.colors.grayBg};
+`;
+
+// const navigateTo = route => {
+//   push(route);
+// };
+
+const DistrictWrapper = ({
+  district = {},
+  presidential = {},
+  districtIncumbents = {},
+  districtCandidates = {},
+  content,
+}) => {
+  const { primaryCity, stateLong, stateShort, zip, cds } = district;
+  const shortState = stateShort ? stateShort.toUpperCase() : '';
+  let districtNumber;
+  if (cds && cds.length > 0) {
+    districtNumber = cds[0].code;
+  }
+  let senateInc = { good: [], notGood: [] };
+  let houseInc = { good: [], notGood: [] };
+  const { houseIncumbent, senateIncumbents } = districtIncumbents;
+  if (houseIncumbent) {
+    if (houseIncumbent.isGood) {
+      houseInc.good.push(houseIncumbent);
+    } else {
+      houseInc.notGood.push(houseIncumbent);
+    }
+  }
+
+  if (senateIncumbents) {
+    senateInc = senateIncumbents;
+  }
+
+  let houseCandidatesAndIncumbents;
+  const { houseCandidates, senateCandidates } = districtCandidates;
+  if (houseCandidates) {
+    houseCandidatesAndIncumbents = {
+      good: houseInc.good.concat(houseCandidates.good),
+      notGood: houseInc.notGood.concat(houseCandidates.notGood),
+    };
+  }
+
+  let senateCandidatesAndIncumbents;
+  if (senateCandidates) {
+    senateCandidatesAndIncumbents = {
+      good: senateInc.good.concat(senateCandidates.good),
+      notGood: senateInc.notGood.concat(senateCandidates.notGood),
+    };
+  }
+
+  let articles = [];
+  if (content && content.faqArticles) {
+    const allArticles = content.faqArticles;
+    articles = allArticles.filter(article => article.page === 'district');
+  }
+
+  return (
+    <GrayPage>
+      {district && presidential ? (
+        <>
+          <Nav />
+          <Wrapper>
+            <MobileHeader />
+            <Row>
+              <H1>{primaryCity},</H1>
+              &nbsp;
+              <H3>
+                {shortState} {zip}
+              </H3>
+            </Row>
+            <Row justifyContent="space-between">
+              <Body>
+                {stateLong} District {districtNumber} ({shortState}-
+                {districtNumber})
+              </Body>
+              <Link to="/">
+                <NotDistrict>Not Your District?</NotDistrict>
+              </Link>
+            </Row>
+            <Spacer>
+              <Body>
+                You have <strong>3</strong> relevant Federal elections to
+                consider. Click on the cards below for details:
+              </Body>
+            </Spacer>
+            <Link to="/elections/presidential-election">
+              <VsCard title="Presidential Election" candidates={presidential} />
+            </Link>
+            <VsCard
+              title={`Senator - ${stateLong}`}
+              candidates={senateCandidatesAndIncumbents || []}
+            />
+            <VsCard
+              title={`House Representative ${shortState}-${districtNumber}`}
+              candidates={houseCandidatesAndIncumbents || []}
+            />
+            <GoodPartyStats />
+            <TopQuestions articles={articles} />
+          </Wrapper>
+          <Ama />
+        </>
+      ) : (
+        <Wrapper>
+          <MobileHeader />
+          <LoadingAnimation />
+        </Wrapper>
+      )}
+    </GrayPage>
+  );
+};
+
+DistrictWrapper.propTypes = {
+  district: PropTypes.object,
+  presidential: PropTypes.object,
+  districtIncumbents: PropTypes.object,
+  districtCandidates: PropTypes.object,
+  content: PropTypes.object,
+};
+
+export default DistrictWrapper;
