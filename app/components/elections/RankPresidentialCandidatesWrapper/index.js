@@ -218,10 +218,6 @@ const RankPresidentialCandidatesWrapper = ({
     }
   };
 
-  const navigateToCandidate = candidate => {
-    const route = presidentialCandidateRoute(candidate);
-    // Router.push(route);
-  };
 
   const CandCard = (candidate, id) => {
     return (

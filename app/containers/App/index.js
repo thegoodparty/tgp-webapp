@@ -18,6 +18,7 @@ import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import PresidentialElectionPage from 'containers/elections/PresidentialElectionPage/Loadable';
 import PresidentialCandidatePage from 'containers/elections/PresidentialCandidatePage/Loadable';
 import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentialCandidatesPage/Loadable';
+import RegisterPage from 'containers/you/RegisterPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
@@ -54,6 +55,7 @@ export default function App() {
           path="/elections/rank-presidential-candidates"
           component={RankPresidentialCandidatesPage}
         />
+        <Route exact path="/you/register" component={RegisterPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -7,6 +7,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import Nav from 'containers/Nav';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,13 +24,17 @@ const Img = styled.img`
 `;
 export default function NotFound() {
   return (
-    <Wrapper>
-      <Img
-        src="https://assets.thegoodparty.org/heart.svg"
-        alt="The Good Party"
-      />
-      <h1>404</h1>
-      <h2>The Party is Good. The developers may not be.</h2>
-    </Wrapper>
+    <>
+      <Nav />
+      <Wrapper>
+        <Img
+          src="https://assets.thegoodparty.org/heart.svg"
+          alt="The Good Party"
+        />
+        <h1>404</h1>
+        <h2>The Party is Good.</h2>
+        <h2>The developers may not be.</h2>
+      </Wrapper>
+    </>
   );
 }
