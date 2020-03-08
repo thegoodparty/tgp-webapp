@@ -19,7 +19,15 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
 
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import reducer from './reducer';
+import saga from './saga';
+
 export default function App() {
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'global', saga });
+
   return (
     <div>
       <Switch>

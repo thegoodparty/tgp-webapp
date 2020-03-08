@@ -17,12 +17,16 @@ import { useInjectReducer } from 'utils/injectReducer';
 import saga from 'containers/intro/ZipFinderPage/saga';
 import reducer from 'containers/intro/ZipFinderPage/reducer';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
+import globalActions from 'containers/App/actions';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import DistrictWrapper from 'components/elections/DistrictWrapper';
-import { makeSelectLocation } from '../../App/selectors';
-import { getCookie } from '../../../helpers/cookieHelper';
+import {
+  makeSelectContent,
+  makeSelectLocation,
+} from 'containers/App/selectors';
+import { getCookie } from 'helpers/cookieHelper';
 
-export function DistrictPage({ districtState, zip, dispatch }) {
+export function DistrictPage({ content, districtState, zip, dispatch }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
 
@@ -32,6 +36,8 @@ export function DistrictPage({ districtState, zip, dispatch }) {
     districtIncumbents,
     districtCandidates,
   } = districtState;
+
+  console.log('content', content);
 
   useEffect(() => {
     if (!zipWithDistricts) {
@@ -46,9 +52,9 @@ export function DistrictPage({ districtState, zip, dispatch }) {
     if (!presidential) {
       dispatch(districtActions.loadAllPresidentialAction());
     }
-    // if (!content) {
-    //   dispatch(contentActions.loadContentAction());
-    // }
+    if (!content) {
+      dispatch(globalActions.loadContentAction());
+    }
   }, []);
 
   useEffect(() => {
@@ -82,7 +88,7 @@ export function DistrictPage({ districtState, zip, dispatch }) {
     presidential,
     districtIncumbents,
     districtCandidates,
-    // content,
+    content,
   };
 
   return (
@@ -98,6 +104,7 @@ export function DistrictPage({ districtState, zip, dispatch }) {
 
 DistrictPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  content: PropTypes.object,
   districtState: PropTypes.object,
   zip: PropTypes.string,
 };
@@ -110,6 +117,7 @@ function mapDispatchToProps(dispatch, ownProps) {
 }
 
 const mapStateToProps = createStructuredSelector({
+  content: makeSelectContent(),
   districtState: makeSelectZipFinderPage(),
   search: makeSelectLocation(),
 });

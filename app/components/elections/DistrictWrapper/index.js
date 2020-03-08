@@ -12,8 +12,6 @@ import Ama from 'components/shared/Ama';
 import GoodPartyStats from '../GoodPartyStats';
 import VsCard from '../VsCard';
 
-
-
 const Row = styled.div`
   display: flex;
   flex-direction: row;
@@ -82,9 +80,17 @@ const DistrictWrapper = ({
   }
 
   let articles = [];
+  console.log('tjere');
   if (content && content.faqArticles) {
+    console.log('here');
     const allArticles = content.faqArticles;
-    articles = allArticles.filter(article => article.page === 'district');
+    articles = allArticles.filter(article => {
+      if (!article.pages) {
+        return false;
+      }
+      return article.pages.includes('district');
+    });
+    console.log(articles);
   }
 
   return (
