@@ -1,10 +1,16 @@
 import React, { userState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import styled from 'styled-components';
-import Router from 'next/router';
-import { ASSETS_BASE } from '~/api/ENV';
+import { push } from 'connected-react-router';
+
+import WhiteLogoImg from 'images/white-logo.svg';
+import LogoCapsImg from 'images/logo-caps.svg';
+import ShareIcon from 'images/icons/share.svg';
+
+// import { ASSETS_BASE } from 'pi/ENV';
 import { Body13 } from '../typogrophy';
 
 const Wrapper = styled.div`
@@ -57,7 +63,7 @@ export default function MobileHeader({
   whiteBackButton = false,
 }) {
   const goBack = () => {
-    Router.back();
+    // Router.back();
   };
   return (
     <>
@@ -77,16 +83,16 @@ export default function MobileHeader({
               {!isGood && 'NOT'} GOOD ENOUGH
             </GoodNoGood>
           ) : (
-            <Link href="/">
+            <Link to="/">
               {whiteBackButton ? (
-                <Logo src={`${ASSETS_BASE}/white-logo.svg`} />
+                <Logo src={WhiteLogoImg} alt="The Good Party" />
               ) : (
-                <Logo src={`${ASSETS_BASE}/logo-caps.svg`} />
+                <Logo src={LogoCapsImg} alt="The Good Party" />
               )}
             </Link>
           )}
           {showShare ? (
-            <img src={`${ASSETS_BASE}/icons/share.svg`} />
+            <img src={ShareIcon} alt="Share" />
           ) : (
             <BackIconWrapperHidden>
               <BackIcon />
@@ -97,3 +103,10 @@ export default function MobileHeader({
     </>
   );
 }
+
+MobileHeader.propTypes = {
+  showGood: PropTypes.bool,
+  isGood: PropTypes.bool,
+  showShare: PropTypes.bool,
+  whiteBackButton: PropTypes.bool,
+};

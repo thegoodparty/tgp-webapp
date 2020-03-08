@@ -16,7 +16,8 @@ function* loadZip(action) {
     const zipWithDistricts = yield call(requestHelper, api, payload);
     yield put(actions.loadZipActionSuccess(zipWithDistricts));
     if (redirect) {
-      push(`/elections/district/${zip}`);
+      console.log('here');
+      yield put(push(`/elections/district/${zip}`));
     }
     setCookie('zip', JSON.stringify(zipWithDistricts));
   } catch (error) {

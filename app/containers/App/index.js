@@ -14,6 +14,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import SplashPage from 'containers/intro/SplashPage/Loadable';
 import ThreeStepsPage from 'containers/intro/ThreeStepsPage/Loadable';
 import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
+import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
@@ -26,6 +27,7 @@ export default function App() {
         <Route exact path="/intro/splash" component={SplashPage} />
         <Route exact path="/intro/three-steps" component={ThreeStepsPage} />
         <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
+        <Route exact path="/elections/district/:zip" component={DistrictPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
