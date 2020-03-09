@@ -24,6 +24,7 @@ import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentia
 import RegisterPage from 'containers/you/RegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
+import SharePage from 'containers/you/SharePage/Loadable';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
@@ -72,6 +73,7 @@ export default function App() {
           path="/email-confirmation"
           component={EmailConfirmationPage}
         />
+        <Route exact path="/you/share" component={SharePage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

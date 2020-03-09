@@ -33,7 +33,7 @@ export default function NotFound() {
         />
         <h1>404</h1>
         <h2>The Party is Good.</h2>
-        <h2>The developers may not be.</h2>
+        <h2>This page may not be...</h2>
       </Wrapper>
     </>
   );
