@@ -22,6 +22,7 @@
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
+    "aws-eb:prod": "npm run build && npm run start:prod",
     "start": "npm run build && npm run start:prod",
     "start-dev": "cross-env NODE_ENV=development API_ENV=local node server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
