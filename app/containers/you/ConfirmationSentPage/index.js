@@ -16,10 +16,10 @@ import ConfirmationSentWrapper from 'components/you/ConfirmationSentWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/RegisterPage/selectors';
-import reducer from 'containers/you/RegisterPage/reducer';
-import saga from 'containers/you/RegisterPage//saga';
-import userActions from 'containers/you/RegisterPage/actions';
+import makeSelectUser from 'containers/you/YouPage/selectors';
+import reducer from 'containers/you/YouPage/reducer';
+import saga from 'containers/you/YouPage/saga';
+import userActions from 'containers/you/YouPage/actions';
 import { getCookie } from 'helpers/cookieHelper';
 
 export function ConfirmationSentPage({

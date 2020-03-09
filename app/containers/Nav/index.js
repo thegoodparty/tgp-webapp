@@ -11,8 +11,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import NavWrapper from 'components/shared/navigation/NavWrapper';
-import makeSelectUser from 'containers/you/RegisterPage/selectors';
-import userActions from 'containers/you/RegisterPage/actions';
+import makeSelectUser from 'containers/you/YouPage/selectors';
+import userActions from 'containers/you/YouPage/actions';
 import { makeSelectLocation } from '../App/selectors';
 
 export function Nav({ userState, dispatch, locationState }) {

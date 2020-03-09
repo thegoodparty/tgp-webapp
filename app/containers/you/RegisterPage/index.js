@@ -15,10 +15,10 @@ import RegisterWrapper from 'components/you/RegisterWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import userActions from './actions';
+import makeSelectUser from '../YouPage/selectors';
+import reducer from '../YouPage/reducer';
+import saga from '../YouPage/saga';
+import userActions from '../YouPage/actions';
 
 export function RegisterPage({ userState, registerCallback }) {
   useInjectReducer({ key: 'user', reducer });

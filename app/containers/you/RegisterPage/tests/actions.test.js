@@ -1,5 +1,5 @@
-import { defaultAction } from '../actions';
-import { DEFAULT_ACTION } from '../constants';
+import { defaultAction } from '../../YouPage/actions';
+import { DEFAULT_ACTION } from '../../YouPage/constants';
 
 describe('RegisterPage actions', () => {
   describe('Default Action', () => {

@@ -1,5 +1,5 @@
 // import produce from 'immer';
-import registerPageReducer from '../reducer';
+import registerPageReducer from '../../YouPage/reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */

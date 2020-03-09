@@ -161,7 +161,6 @@ const RankPresidentialCandidatesWrapper = ({
         const newChoices = { ...choices };
         const newChoicesOrder = [...choicesOrder];
         while (newChoicesOrder.length > 0 && idPop !== id) {
-          debugger;
           idPop = newChoicesOrder.pop();
           delete newChoices[idPop];
         }
@@ -217,7 +216,6 @@ const RankPresidentialCandidatesWrapper = ({
       handleRankingCallback(choicesOrder);
     }
   };
-
 
   const CandCard = (candidate, id) => {
     return (
