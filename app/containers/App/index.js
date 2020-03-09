@@ -23,6 +23,7 @@ import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentia
 
 import RegisterPage from 'containers/you/RegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
+import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
@@ -65,6 +66,11 @@ export default function App() {
           exact
           path="/you/confirmation-sent"
           component={ConfirmationSentPage}
+        />
+        <Route
+          exact
+          path="/email-confirmation"
+          component={EmailConfirmationPage}
         />
         <Route component={NotFoundPage} />
       </Switch>
