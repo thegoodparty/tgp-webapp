@@ -107,7 +107,7 @@ function* confirmEmail(action) {
     const { user } = response;
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(user, access_token));
-    Router.push('/you/share');
+    yield put(push('/you/share'));
     setCookie('user', JSON.stringify(user));
     setCookie('token', access_token);
   } catch (error) {
