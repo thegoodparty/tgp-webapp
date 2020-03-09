@@ -43,6 +43,10 @@ const loadUserFromCookieAction = () => ({
   type: types.LOAD_USER_FROM_COOKIE,
 });
 
+const signoutAction = () => ({
+  type: types.SIGN_OUT,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -52,4 +56,5 @@ export default {
   confirmEmailActionSuccess,
   confirmEmailActionError,
   loadUserFromCookieAction,
+  signoutAction
 };

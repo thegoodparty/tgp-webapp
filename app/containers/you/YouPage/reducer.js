@@ -1,6 +1,6 @@
 import produce from 'immer';
 import types from './constants';
-import { getCookie } from 'helpers/cookieHelper';
+import { deleteCookies, getCookie } from 'helpers/cookieHelper';
 
 export const initialState = {
   user: false,
@@ -56,6 +56,12 @@ const userReducer = (state = initialState, action) =>
         if (token) {
           draft.token = token;
         }
+        break;
+
+      case types.SIGN_OUT:
+        deleteCookies();
+        draft.user = false;
+        draft.token = false;
         break;
     }
   });

@@ -19,7 +19,7 @@ export const setCookie = (name, value, days = 14) => {
   document.cookie = `${name}=${value || ''}${expires}; path=/`;
 };
 
-export const cleanCookies = () => {
+export const deleteCookies = () => {
   document.cookie.split(';').forEach(c => {
     document.cookie = c
       .replace(/^ +/, '')

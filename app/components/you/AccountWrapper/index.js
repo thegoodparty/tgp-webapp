@@ -51,9 +51,10 @@ const AllElections = styled.div`
 const BottomLink = styled(Body)`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.blue};
+  cursor: pointer;
 `;
 
-const AccountWrapper = ({ user }) => {
+const AccountWrapper = ({ user, signoutCallback }) => {
   let { presidentialRank } = user;
   const { name, feedback } = user;
   if (typeof presidentialRank === 'string') {
@@ -99,7 +100,9 @@ const AccountWrapper = ({ user }) => {
         </H3>
         <BottomLink>Invite Friends</BottomLink>
         <BottomLink>Creators of the World, Unite!</BottomLink>
-        <BottomLink style={{ marginTop: '48px' }}>Sign Out</BottomLink>
+        <BottomLink style={{ marginTop: '48px' }} onClick={signoutCallback}>
+          Sign Out
+        </BottomLink>
       </Wrapper>
     </div>
   );
@@ -107,6 +110,7 @@ const AccountWrapper = ({ user }) => {
 
 AccountWrapper.propTypes = {
   user: PropTypes.object,
+  signoutCallback: PropTypes.func,
 };
 
 export default AccountWrapper;
