@@ -86,7 +86,7 @@ function HomePageWrapper() {
           <div>
             <Logo src={heartImg} />
           </div>
-          <H1>99% of Congress  has been corrupted  by money &amp; power</H1>
+          <H1>99% of Congress  has been corrupted  by money &amp; power.</H1>
           <RedBlue>
             So, choosing <Red>Red</Red> or <Blue>Blue</Blue> is{' '}
             <Black>NOT</Black> <LightGray>Good</LightGray>{' '}
