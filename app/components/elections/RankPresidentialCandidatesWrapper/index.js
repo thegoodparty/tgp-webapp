@@ -149,9 +149,7 @@ const RankPresidentialCandidatesWrapper = ({
         const newChoices = { ...choices };
         const newChoicesOrder = [...choicesOrder];
         newChoices[id] = choicesOrder.length + 1;
-        console.log('newChoices', newChoices);
         await setChoices(newChoices);
-        console.log('choices after', choices);
         newChoicesOrder.push(id);
         await setChoicesOrder(newChoicesOrder);
         saveRankingCallback(newChoicesOrder);

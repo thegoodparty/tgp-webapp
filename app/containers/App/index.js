@@ -27,6 +27,8 @@ import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable
 import SharePage from 'containers/you/SharePage/Loadable';
 import YouPage from 'containers/you/YouPage/Loadable';
 
+import PartyPage from 'containers/party/PartyPage/Loadable';
+
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
@@ -47,6 +49,7 @@ export default function App() {
         <Route exact path="/intro/splash" component={SplashPage} />
         <Route exact path="/intro/three-steps" component={ThreeStepsPage} />
         <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
+
         <Route exact path="/elections/district/:zip" component={DistrictPage} />
         <Route
           exact
@@ -63,6 +66,7 @@ export default function App() {
           path="/elections/rank-presidential-candidates"
           component={RankPresidentialCandidatesPage}
         />
+
         <Route exact path="/you/register" component={RegisterPage} />
         <Route
           exact
@@ -76,6 +80,9 @@ export default function App() {
         />
         <Route exact path="/you/share" component={SharePage} />
         <Route exact path="/you" component={YouPage} />
+
+        <Route exact path="/party" component={PartyPage} />
+
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
