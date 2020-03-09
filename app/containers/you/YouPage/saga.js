@@ -89,7 +89,6 @@ function* getEmailFromStateOrCookie() {
   } else {
     let cookieUser = getCookie('user');
     if (cookieUser) {
-      console.log('cookieUser', cookieUser);
       return JSON.parse(cookieUser).email;
     }
   }
@@ -104,7 +103,6 @@ function* confirmEmail(action) {
       email,
       token,
     };
-    console.log('payload', payload);
     const response = yield call(requestHelper, api, payload);
     const { user } = response;
     const access_token = response.token;

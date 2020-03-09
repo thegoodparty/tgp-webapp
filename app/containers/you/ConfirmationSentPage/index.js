@@ -45,7 +45,6 @@ export function ConfirmationSentPage({
     }
   }, []);
   const childProps = { email, emailSendCallback };
-  console.log(childProps);
   return (
     <div>
       <Helmet>

@@ -16,7 +16,6 @@ function* loadZip(action) {
     const zipWithDistricts = yield call(requestHelper, api, payload);
     yield put(actions.loadZipActionSuccess(zipWithDistricts));
     if (redirect) {
-      console.log('here');
       yield put(push(`/elections/district/${zip}`));
     }
     setCookie('zip', JSON.stringify(zipWithDistricts));
@@ -39,7 +38,6 @@ function* loadCookieZip() {
 
 function* loadPresidential() {
   try {
-    console.log('pres')
     const api = tgpApi.allPresidential;
     const response = yield call(requestHelper, api, null);
     yield put(actions.loadAllPresidentialActionSuccess(response.presidential));

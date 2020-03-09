@@ -33,8 +33,6 @@ export function Nav({ userState, dispatch, locationState }) {
     user,
   };
 
-  console.log('user', stateUser);
-
   return <NavWrapper {...childProps} />;
 }
 

@@ -75,9 +75,7 @@ const DistrictWrapper = ({
   }
 
   let articles = [];
-  console.log('tjere');
   if (content && content.faqArticles) {
-    console.log('here');
     const allArticles = content.faqArticles;
     articles = allArticles.filter(article => {
       if (!article.pages) {
@@ -85,7 +83,6 @@ const DistrictWrapper = ({
       }
       return article.pages.includes('district');
     });
-    console.log(articles);
   }
 
   return (

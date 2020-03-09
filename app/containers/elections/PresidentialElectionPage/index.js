@@ -28,7 +28,6 @@ export function PresidentialElectionPage({ content, districtState, dispatch }) {
   const { presidential } = districtState;
   useEffect(() => {
     if (!presidential) {
-      console.log('loading pres.');
       dispatch(districtActions.loadAllPresidentialAction());
     }
     if (!content) {

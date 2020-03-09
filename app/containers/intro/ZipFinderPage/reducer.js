@@ -29,7 +29,6 @@ const zipFinderPageReducer = (state = initialState, action) =>
         draft.zipWithDistricts = action.zipWithDistricts;
         draft.loading = false;
         draft.error = false;
-        console.log('reducer', action.zipWithDistricts);
         break;
 
       case types.LOAD_ZIP_ERROR:
