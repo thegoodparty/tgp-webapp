@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -70,6 +71,10 @@ const PartyWrapper = ({ content }) => {
       <Ama />
     </div>
   );
+};
+
+PartyWrapper.propTypes = {
+  content: PropTypes.object,
 };
 
 export default PartyWrapper;

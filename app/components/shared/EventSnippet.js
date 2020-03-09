@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { Body, Body12 } from 'components/shared/typogrophy/index';
 import { formatDateWithTimezone } from 'helpers/dateHelper';
@@ -73,6 +74,10 @@ const EventSnippet = ({ event }) => {
       </ButtonWrapper>
     </Wrapper>
   );
+};
+
+EventSnippet.propTypes = {
+  event: PropTypes.object,
 };
 
 export default EventSnippet;
