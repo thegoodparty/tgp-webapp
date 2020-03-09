@@ -152,7 +152,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
                 <Error>
                   {error.message}{' '}
                   <Login>
-                    <Link href="/login">Login</Link>
+                    <Link to="/login">Login</Link>
                   </Login>
                 </Error>
               )}

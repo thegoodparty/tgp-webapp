@@ -11,14 +11,19 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+
 import SplashPage from 'containers/intro/SplashPage/Loadable';
 import ThreeStepsPage from 'containers/intro/ThreeStepsPage/Loadable';
 import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
+
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import PresidentialElectionPage from 'containers/elections/PresidentialElectionPage/Loadable';
 import PresidentialCandidatePage from 'containers/elections/PresidentialCandidatePage/Loadable';
 import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentialCandidatesPage/Loadable';
+
 import RegisterPage from 'containers/you/RegisterPage/Loadable';
+import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
+
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
@@ -56,6 +61,11 @@ export default function App() {
           component={RankPresidentialCandidatesPage}
         />
         <Route exact path="/you/register" component={RegisterPage} />
+        <Route
+          exact
+          path="/you/confirmation-sent"
+          component={ConfirmationSentPage}
+        />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
