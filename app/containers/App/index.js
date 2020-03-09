@@ -25,6 +25,7 @@ import RegisterPage from 'containers/you/RegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
 import SharePage from 'containers/you/SharePage/Loadable';
+import YouPage from 'containers/you/YouPage/Loadable';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
@@ -74,6 +75,7 @@ export default function App() {
           component={EmailConfirmationPage}
         />
         <Route exact path="/you/share" component={SharePage} />
+        <Route exact path="/you" component={YouPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
