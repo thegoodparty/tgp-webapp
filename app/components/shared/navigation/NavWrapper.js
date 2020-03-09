@@ -16,7 +16,6 @@ import YouIcon from 'images/icons/you.svg';
 import YouIconGray from 'images/icons/you-gray.svg';
 
 import DesktopHeader from './DesktopHeader';
-// import userActions from '~/redux/user/actions';
 
 const useStyles = makeStyles(theme => ({
   appbar: {
@@ -40,11 +39,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavWrapper = ({ pathname, userState, dispatch }) => {
+const NavWrapper = ({ pathname, user }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [user, setUser] = React.useState(false);
-  // const stateUser = userState.user;
 
   useEffect(() => {
     const electionRoute = pathname.includes('elections');
@@ -55,14 +52,6 @@ const NavWrapper = ({ pathname, userState, dispatch }) => {
       setValue(2);
     }
   }, [pathname]);
-  //
-  // useEffect(() => {
-  //   if (!stateUser) {
-  //     dispatch(userActions.loadUserFromCookieAction());
-  //   } else {
-  //     setUser(stateUser);
-  //   }
-  // }, [stateUser]);
 
   const icon = (iconOn, iconGray, val) => {
     const src = value === val ? iconOn : iconGray;
@@ -113,6 +102,7 @@ const NavWrapper = ({ pathname, userState, dispatch }) => {
 
 NavWrapper.propTypes = {
   pathname: PropTypes.string,
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 
 export default NavWrapper;

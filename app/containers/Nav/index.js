@@ -4,30 +4,49 @@
  *
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
 import NavWrapper from 'components/shared/navigation/NavWrapper';
-import makeSelectZipFinderPage from '../intro/ZipFinderPage/selectors';
+import makeSelectUser from 'containers/you/RegisterPage/selectors';
+import userActions from 'containers/you/RegisterPage/actions';
+import { makeSelectLocation } from '../App/selectors';
 
-export function Nav({ dispatch, pathname }) {
+export function Nav({ userState, dispatch, locationState }) {
+  const [user, setUser] = React.useState(0);
+  const stateUser = userState.user;
+  const { pathname } = locationState;
+
+  useEffect(() => {
+    if (!stateUser) {
+      dispatch(userActions.loadUserFromCookieAction());
+    } else {
+      setUser(stateUser);
+    }
+  }, [stateUser]);
+
   const childProps = {
     pathname,
+    user,
   };
-  console.log(pathname)
+
+  console.log('user', stateUser);
 
   return <NavWrapper {...childProps} />;
 }
 
 Nav.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  pathname: PropTypes.string,
+  locationState: PropTypes.string,
+  userState: PropTypes.object,
 };
 
-const mapStateToProps = state => ({
-  pathname: state.router.location.pathname,
+const mapStateToProps = createStructuredSelector({
+  locationState: makeSelectLocation(),
+  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
