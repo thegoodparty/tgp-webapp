@@ -1,10 +1,11 @@
-import React, { userState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import styled from 'styled-components';
-import { push } from 'connected-react-router';
+import { goBack } from 'connected-react-router';
+import { connect } from 'react-redux';
 
 import WhiteLogoImg from 'images/white-logo.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
@@ -22,8 +23,10 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 40%;
+  width: 100%;
   height: auto;
+  align-self: center;
+  justify-self: center;
 `;
 
 const BackIconWrapper = styled.div`
@@ -56,14 +59,15 @@ const GoodNoGood = styled(Body13)`
   }
 `;
 
-export default function MobileHeader({
+function MobileHeader({
   showGood = false,
   isGood = false,
   showShare = false,
   whiteBackButton = false,
+  goBack,
 }) {
-  const goBack = () => {
-    // Router.back();
+  const routeBack = () => {
+    goBack();
   };
   return (
     <>
@@ -73,7 +77,7 @@ export default function MobileHeader({
       <Hidden mdUp>
         <Wrapper>
           <BackIconWrapper
-            onClick={goBack}
+            onClick={routeBack}
             className={whiteBackButton ? 'white' : ''}
           >
             <BackIcon />
@@ -83,7 +87,7 @@ export default function MobileHeader({
               {!isGood && 'NOT'} GOOD ENOUGH
             </GoodNoGood>
           ) : (
-            <Link to="/">
+            <Link to="/" className="text-center">
               {whiteBackButton ? (
                 <Logo src={WhiteLogoImg} alt="The Good Party" />
               ) : (
@@ -110,3 +114,8 @@ MobileHeader.propTypes = {
   showShare: PropTypes.bool,
   whiteBackButton: PropTypes.bool,
 };
+
+export default connect(
+  null,
+  { goBack },
+)(MobileHeader);

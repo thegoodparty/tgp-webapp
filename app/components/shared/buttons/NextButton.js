@@ -26,7 +26,7 @@ const NextButton = ({ children, active = false }) => (
 );
 
 NextButton.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   active: PropTypes.bool,
 };
 

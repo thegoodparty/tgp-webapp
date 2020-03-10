@@ -47,6 +47,11 @@ const signoutAction = () => ({
   type: types.SIGN_OUT,
 });
 
+const loginAction = email => ({
+  type: types.LOGIN,
+  email,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -56,5 +61,6 @@ export default {
   confirmEmailActionSuccess,
   confirmEmailActionError,
   loadUserFromCookieAction,
-  signoutAction
+  signoutAction,
+  loginAction,
 };

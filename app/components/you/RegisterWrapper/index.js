@@ -20,6 +20,7 @@ const Img = styled.img`
 const Input = styled(TextField)`
   && {
     margin-bottom: 48px;
+    margin-top: 40px;
 
     .MuiInputBase-input {
       line-height: 22px;

@@ -115,9 +115,24 @@ function* confirmEmail(action) {
   }
 }
 
+function* login(action) {
+  try {
+    const { email } = action;
+    const api = tgpApi.login;
+    const payload = {
+      email,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(push('/login/confirm'));
+  } catch (error) {
+    yield put(push('/login/confirm'));
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
   const resendAction = yield takeLatest(types.RESEND_EMAIL, resendEmail);
   const confirmAction = yield takeLatest(types.CONFIRM_EMAIL, confirmEmail);
+  const loginAction = yield takeLatest(types.LOGIN, login);
 }

@@ -7,6 +7,7 @@ export const initialState = {
   token: false,
   loading: false,
   error: false,
+  loginEmail: false,
 };
 
 const userReducer = (state = initialState, action) =>
@@ -62,6 +63,10 @@ const userReducer = (state = initialState, action) =>
         deleteCookies();
         draft.user = false;
         draft.token = false;
+        break;
+
+      case types.LOGIN:
+        draft.loginEmail = action.email;
         break;
     }
   });

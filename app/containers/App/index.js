@@ -26,6 +26,7 @@ import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
 import SharePage from 'containers/you/SharePage/Loadable';
 import YouPage from 'containers/you/YouPage/Loadable';
+import LoginPage from 'containers/you/LoginPage/Loadable';
 
 import PartyPage from 'containers/party/PartyPage/Loadable';
 
@@ -80,6 +81,7 @@ export default function App() {
         />
         <Route exact path="/you/share" component={SharePage} />
         <Route exact path="/you" component={YouPage} />
+        <Route exact path="/login" component={LoginPage} />
 
         <Route exact path="/party" component={PartyPage} />
 

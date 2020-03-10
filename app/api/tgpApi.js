@@ -55,6 +55,11 @@ const api = {
     url: `${base}entrance/zip-to-district`,
     method: 'GET',
   },
+
+  login: {
+    url: `${base}entrance/login`,
+    method: 'PUT',
+  },
   //
   // USER
   //

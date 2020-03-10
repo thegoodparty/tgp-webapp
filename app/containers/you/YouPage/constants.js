@@ -12,6 +12,8 @@ const LOAD_USER_FROM_COOKIE = '@@tgp/user/LOAD_USER_FROM_COOKIE';
 
 const SIGN_OUT = '@@tgp/user/SIGN_OUT';
 
+const LOGIN = '@@tgp/user/LOGIN';
+
 export default {
   REGISTER,
   REGISTER_SUCCESS,
@@ -21,5 +23,6 @@ export default {
   CONFIRM_EMAIL_SUCCESS,
   CONFIRM_EMAIL_ERROR,
   LOAD_USER_FROM_COOKIE,
-  SIGN_OUT
+  SIGN_OUT,
+  LOGIN,
 };
