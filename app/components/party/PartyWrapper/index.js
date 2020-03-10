@@ -11,6 +11,7 @@ import EventSnippet from 'components/shared/EventSnippet';
 import articlesHelper from 'helpers/articlesHelper';
 import TopQuestions from 'components/shared/TopQuestions';
 import Ama from 'components/shared/Ama';
+import contentfulHelper from 'helpers/contentfulHelper';
 
 const EventsWrapper = styled.div`
   margin-top: 50px;
@@ -27,11 +28,44 @@ const StyledBody13 = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
+const CmsContentWrapper = styled.div`
+  margin-top: 28px;
+  h3 {
+    margin-top: 28px;
+    margin-bottom: 8px;
+    color: ${({ theme }) => theme.colors.gray4};
+    font-size: 19px;
+    line-height: 25px;
+    font-weight: 600;
+    margin: 0;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 26px;
+      line-height: 32px;
+    }
+  }
+  p {
+    color: ${({ theme }) => theme.colors.gray4};
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0.1px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+`;
+
 const PartyWrapper = ({ content }) => {
   const events = content ? content.events : [];
   let articles = [];
   if (content && content.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'party');
+  }
+  let mainContent = '';
+  if (content && content.partyPage) {
+    console.log('here', content.partyPage.content);
+    mainContent = contentfulHelper(content.partyPage.content);
+    console.log(mainContent);
   }
   return (
     <div>
@@ -39,22 +73,8 @@ const PartyWrapper = ({ content }) => {
       <Wrapper style={{ backgroundColor: '#FFF' }}>
         <MobileHeader />
         <IntroCarousel showButton={false} />
-        <H3 style={{ marginTop: '56px', marginBottom: '8px' }}>
-          What is the Good Party?
-        </H3>
-        <Body>
-          The Good Party is a free, open-source platform and tech that helps
-          people organize to use the write-in vote to replace corrupt
-          politicians who are beholden to big money and special interests, with
-          good independent citizen candidates who will serve the people.
-        </Body>
+        {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
 
-        <H3 style={{ marginTop: '28px', marginBottom: '8px' }}>How it works</H3>
-        <Body>
-          We pre-organize to see where we have enough support for a win; then we
-          select and vet a good candidate; finally we all invoke our
-          constitutional right and <strong>write-in, for the win!</strong>
-        </Body>
         {events.length > 0 && (
           <EventsWrapper>
             <Row>
