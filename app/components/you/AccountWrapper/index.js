@@ -100,7 +100,10 @@ const AccountWrapper = ({ user, signoutCallback }) => {
         </H3>
         <BottomLink>Invite Friends</BottomLink>
         <BottomLink>Creators of the World, Unite!</BottomLink>
-        <BottomLink style={{ marginTop: '48px' }} onClick={signoutCallback}>
+        <BottomLink
+          style={{ marginTop: '48px', marginBottom: '24px' }}
+          onClick={signoutCallback}
+        >
           Sign Out
         </BottomLink>
       </Wrapper>

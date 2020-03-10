@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/Nav';
-import { Body, Body13, H2, H3 } from 'components/shared/typogrophy/index';
+import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 
 import TextField from '@material-ui/core/TextField';
@@ -36,7 +36,7 @@ const SubmitWrapper = styled.div`
   margin-top: 30px;
 `;
 
-const PartyWrapper = ({ loginCallback }) => {
+const LoginWrapper = ({ loginCallback }) => {
   const [email, setEmail] = useState('');
   const onChangeEmail = event => {
     setEmail(event.target.value);
@@ -74,7 +74,6 @@ const PartyWrapper = ({ loginCallback }) => {
             size="medium"
             fullWidth
             type="email"
-            helperText="We will never share or sell your information for any reason"
             onChange={onChangeEmail}
           />
           <SubmitWrapper onClick={handleSubmit}>
@@ -86,8 +85,8 @@ const PartyWrapper = ({ loginCallback }) => {
   );
 };
 
-PartyWrapper.propTypes = {
+LoginWrapper.propTypes = {
   loginCallback: PropTypes.func,
 };
 
-export default PartyWrapper;
+export default LoginWrapper;

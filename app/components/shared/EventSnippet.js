@@ -70,7 +70,9 @@ const EventSnippet = ({ event }) => {
         <Photo src={avatarPhoto} />
       </Row>
       <ButtonWrapper>
-        <OutlinedButton fullWidth active label="I'M INTERESTED" />
+        <OutlinedButton fullWidth active>
+          I'M INTERESTED
+        </OutlinedButton>
       </ButtonWrapper>
     </Wrapper>
   );
