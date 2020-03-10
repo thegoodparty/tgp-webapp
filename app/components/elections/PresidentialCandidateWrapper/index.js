@@ -107,6 +107,7 @@ const PresidentialCandidateWrapper = ({ candidate, presidentialRank = [] }) => {
     largeDonorPerHour,
     isIncumbent,
   } = candidate;
+  const isSmallChallenger = totalRaised < 10000000;
 
   const color = isGood ? 'green' : 'red';
   const perc = isGood ? percHelper(smallDonorPerc) : percHelper(largeDonorPerc);
@@ -154,7 +155,7 @@ const PresidentialCandidateWrapper = ({ candidate, presidentialRank = [] }) => {
                 <LargeNum className={color}>{perc}%</LargeNum>
                 <StyledBody9>
                   {isGood
-                    ? 'FROM SMALL INDIVIDUAL DONORS &lt; $200'
+                    ? 'FROM SMALL INDIVIDUAL DONORS < $200'
                     : 'FROM BIG MONEY SOURCES'}
                 </StyledBody9>
                 <LargeNum className={color}>{perHour}/hr</LargeNum>
@@ -177,31 +178,57 @@ const PresidentialCandidateWrapper = ({ candidate, presidentialRank = [] }) => {
             <Body13 style={{ marginTop: '16px' }}>
               According to Federal Election Commission filings for the 2020
               election cycle,{' '}
-              <strong>
-                {name} has raised the majority ({perc}%) of{' '}
-                {moneyHelper(totalRaised)} in Total Funds Raised from{' '}
-                {isGood ? 'Small Individual Donors' : 'Big Money Backers'}
-              </strong>
-              {isGood
-                ? ', donating less than $200/each.'
-                : ', like Political Action Committees, Corporate Lobbyists and Large Individual Donors.'}
+              {isSmallChallenger ? (
+                <strong>
+                  {name} has raised just {moneyHelper(totalRaised)} in Total
+                  Funds.
+                </strong>
+              ) : (
+                <strong>
+                  {name} has raised the majority ({perc}%) of{' '}
+                  {moneyHelper(totalRaised)} in Total Funds Raised from{' '}
+                  {isGood ? 'Small Individual Donors' : 'Big Money Backers'}
+                </strong>
+              )}
+              {!isSmallChallenger && (
+                <>
+                  {isGood
+                    ? ', donating less than $200/each.'
+                    : ', like Political Action Committees, Corporate Lobbyists and Large Individual Donors.'}
+                </>
+              )}
               <br />
               <br />
               This means that{' '}
               {isGood ? (
                 <>
-                  <strong>
-                    {lastName()} and his campaign are mostly being supported by
-                    large numbers of ordinary people who are banding together to
-                    give
-                    {perHour}/hr for every hour the incumbent has been in
-                    office.
-                  </strong>{' '}
-                  This makes it more likely that, if {isIncumbent && 're-'}
-                  elected, {lastName()} is going to be working hard on behalf of
-                  the ordinary people who got him elected, rather than for the
-                  Big Money Backers who are majority bankrolling other
-                  candidates.
+                  {lastName()} and his campaign are
+                  {isSmallChallenger ? (
+                    <>
+                      <strong>
+                        n pure sweat equity, as they have only raised about{' '}
+                        {perHour}
+                        /hr for every hour the incumbent has been in office.
+                      </strong>{' '}
+                      Such a lack of funding sets up the kind of unfair battle
+                      that relatively unknown candidates like Hawkins must
+                      overcome in order to get elected against the major party
+                      incumbents that Big Money Backers are bankrolling.
+                    </>
+                  ) : (
+                    <>
+                      <strong>
+                        mostly being supported by large numbers of ordinary
+                        people who are banding together to give about {perHour}
+                        /hr for every hour the incumbent has been in office.
+                      </strong>{' '}
+                      This makes it more likely that, if {isIncumbent && 're-'}
+                      elected, {lastName()} is going to be working hard on
+                      behalf of the ordinary people who got him elected, rather
+                      than for the Big Money Backers who are majority
+                      bankrolling other candidates.
+                    </>
+                  )}
                 </>
               ) : (
                 <>
