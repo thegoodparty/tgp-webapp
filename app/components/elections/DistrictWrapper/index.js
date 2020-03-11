@@ -145,7 +145,7 @@ DistrictWrapper.propTypes = {
   presidential: PropTypes.object,
   districtIncumbents: PropTypes.object,
   districtCandidates: PropTypes.object,
-  content: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default DistrictWrapper;

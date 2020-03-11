@@ -1,5 +1,3 @@
-console.log(window.location.host);
-
 let ENV; // local, dev, qa, prod
 const host = window.location.host;
 if (host === 'localhost:4000') {

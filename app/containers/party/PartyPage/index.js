@@ -40,7 +40,7 @@ export function PartyPage({ content, dispatch }) {
 
 PartyPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  content: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {

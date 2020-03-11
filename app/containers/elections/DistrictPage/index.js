@@ -102,7 +102,7 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
 
 DistrictPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  content: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
   zip: PropTypes.string,
 };

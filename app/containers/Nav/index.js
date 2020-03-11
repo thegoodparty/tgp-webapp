@@ -38,7 +38,7 @@ export function Nav({ userState, dispatch, locationState }) {
 
 Nav.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  locationState: PropTypes.string,
+  locationState: PropTypes.object,
   userState: PropTypes.object,
 };
 

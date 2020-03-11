@@ -80,7 +80,7 @@ const ElectionWrapper = ({ electionType, candidates = {}, content }) => {
 ElectionWrapper.propTypes = {
   electionType: PropTypes.string,
   candidates: PropTypes.object,
-  content: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ElectionWrapper;

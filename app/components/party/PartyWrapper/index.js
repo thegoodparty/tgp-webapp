@@ -65,7 +65,7 @@ const PartyWrapper = ({ content }) => {
 };
 
 PartyWrapper.propTypes = {
-  content: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default PartyWrapper;
