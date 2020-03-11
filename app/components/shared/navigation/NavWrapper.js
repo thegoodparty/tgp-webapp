@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavWrapper = ({ pathname, user }) => {
+const NavWrapper = ({ pathname, user, navigateCallback }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -61,18 +61,22 @@ const NavWrapper = ({ pathname, user }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     if (newValue === 0) {
-      push('/party');
+      navigateCallback('/party', user);
     } else if (newValue === 1) {
-      push('/elections');
+      navigateCallback('/elections', user);
     } else if (newValue === 2) {
-      push('/you');
+      navigateCallback('/you', user);
     }
   };
 
   return (
     <>
       <Hidden smDown>
-        <DesktopHeader user={user} pathname={pathname} />
+        <DesktopHeader
+          user={user}
+          pathname={pathname}
+          navigateCallback={navigateCallback}
+        />
       </Hidden>
       <Hidden mdUp>
         <BottomNavigation
@@ -103,6 +107,7 @@ const NavWrapper = ({ pathname, user }) => {
 NavWrapper.propTypes = {
   pathname: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  navigateCallback: PropTypes.func,
 };
 
 export default NavWrapper;

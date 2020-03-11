@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 
 import ThreeStepsWrapper from 'components/intro/ThreeStepsWrapper';
+import { getCookie } from 'helpers/cookieHelper';
 
 export function ThreeStepsPage({ handleNextStep }) {
   const childProps = {
@@ -35,14 +36,17 @@ ThreeStepsPage.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     handleNextStep: () => {
-      /*
+      let zipWithDistricts;
+      const zipCookie = getCookie('zip');
+      if (zipCookie) {
+        zipWithDistricts = JSON.parse(zipCookie);
+      }
+
       if (zipWithDistricts) {
-      Router.push(`/elections/district/${zipWithDistricts.zip}`);
-    } else {
-      Router.push('/zip-finder');
-    }
-       */
-      dispatch(push('/intro/zip-finder'));
+        dispatch(push(`/elections/district/${zipWithDistricts.zip}`));
+      } else {
+        dispatch(push('/intro/zip-finder'));
+      }
     },
   };
 }

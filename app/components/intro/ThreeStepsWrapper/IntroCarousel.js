@@ -74,14 +74,6 @@ const IntroCarousel = ({
     slideChangeCallback(value);
   };
 
-  // const handleNextStep = () => {
-  //   if (zipWithDistricts) {
-  //     Router.push(`/elections/district/${zipWithDistricts.zip}`);
-  //   } else {
-  //     Router.push('/zip-finder');
-  //   }
-  // };
-
   const slides = [
     <SliderWrapper>
       <SlideTitle>

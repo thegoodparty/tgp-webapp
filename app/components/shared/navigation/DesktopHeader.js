@@ -30,7 +30,6 @@ const ContentWrapper = styled.div`
 const Logo = styled.img`
   width: 150px;
   height: auto;
-  margin-left: 16px;
   cursor: pointer;
 `;
 
@@ -72,34 +71,45 @@ const UserInitials = styled(Body14)`
   text-transform: uppercase;
 `;
 
-const DesktopHeader = ({ pathname, user }) => {
+const DesktopHeader = ({ pathname, user, navigateCallback }) => {
   const youRoute = !electionRoute && pathname.includes('you');
   const electionRoute = pathname.includes('elections');
-  // const partyRoute = !electionRoute && pathname.includes('party');
+  const partyRoute = !electionRoute && pathname.includes('party');
   const hideLinks = pathname.includes('zip-finder');
+
+  const handleNavigate = screen => {
+    navigateCallback(screen, user);
+  };
 
   return (
     <Wrapper>
       <ContentWrapper>
-        <Link to="/party">
-          <Logo src={LogoCaps} />
-        </Link>
+        <TopLink className={partyRoute ? 'showBorder' : ''}>
+          <Logo src={LogoCaps} onClick={() => handleNavigate('/party')} />
+        </TopLink>
         {!hideLinks && (
           <>
-            <Link to="/">
-              <TopLink className={electionRoute ? 'showBorder' : ''}>
-                ELECTIONS
+            <TopLink
+              className={electionRoute ? 'showBorder' : ''}
+              onClick={() => handleNavigate('/elections')}
+            >
+              ELECTIONS
+            </TopLink>
+            {user && user.name ? (
+              <InitialWrapper
+                className={youRoute ? 'showBorder' : ''}
+                onClick={() => handleNavigate('/you')}
+              >
+                <UserInitials>{getInitials(user.name)}</UserInitials>
+              </InitialWrapper>
+            ) : (
+              <TopLink
+                className={youRoute ? 'showBorder' : ''}
+                onClick={() => handleNavigate('/you')}
+              >
+                YOU
               </TopLink>
-            </Link>
-            <Link to="/you">
-              {user && user.name ? (
-                <InitialWrapper className={youRoute ? 'showBorder' : ''}>
-                  <UserInitials>{getInitials(user.name)}</UserInitials>
-                </InitialWrapper>
-              ) : (
-                <TopLink className={youRoute ? 'showBorder' : ''}>YOU</TopLink>
-              )}
-            </Link>
+            )}
           </>
         )}
       </ContentWrapper>
@@ -110,6 +120,7 @@ const DesktopHeader = ({ pathname, user }) => {
 DesktopHeader.propTypes = {
   pathname: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  navigateCallback: PropTypes.func,
 };
 
 export default DesktopHeader;
