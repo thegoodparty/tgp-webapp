@@ -14,6 +14,8 @@ const SIGN_OUT = '@@tgp/user/SIGN_OUT';
 
 const LOGIN = '@@tgp/user/LOGIN';
 
+const UPDATE_PRESIDENTIAL_RANK = '@@tgp/user/UPDATE_PRESIDENTIAL_RANK';
+
 export default {
   REGISTER,
   REGISTER_SUCCESS,
@@ -25,4 +27,5 @@ export default {
   LOAD_USER_FROM_COOKIE,
   SIGN_OUT,
   LOGIN,
+  UPDATE_PRESIDENTIAL_RANK,
 };

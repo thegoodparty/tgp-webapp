@@ -11,13 +11,21 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
 
-import NavWrapper from 'components/shared/navigation/NavWrapper';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectUser from 'containers/you/YouPage/selectors';
+import reducer from 'containers/you/YouPage/reducer';
+import saga from 'containers/you/YouPage/saga';
+
+import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectLocation } from '../App/selectors';
 import { getCookie } from '../../helpers/cookieHelper';
 
 export function Nav({ userState, dispatch, locationState, navigateCallback }) {
+  useInjectReducer({ key: 'user', reducer });
+  useInjectSaga({ key: 'user', saga });
+
   const [user, setUser] = React.useState(null);
   const stateUser = userState.user;
   const { pathname } = locationState;

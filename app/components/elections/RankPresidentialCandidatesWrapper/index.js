@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
@@ -116,6 +117,7 @@ const RankPresidentialCandidatesWrapper = ({
   handleRankingCallback,
   saveRankingCallback,
   presidentialRank = [],
+  user,
 }) => {
   const [choices, setChoices] = useState({});
   const [choicesOrder, setChoicesOrder] = useState([]);
@@ -171,13 +173,12 @@ const RankPresidentialCandidatesWrapper = ({
   const cookieOrderToChoicesHash = () => {
     if (!presidentialRank || presidentialRank.length === 0) {
       return {};
-    } else {
-      const newChoices = {};
-      presidentialRank.map((order, i) => {
-        newChoices[order] = i + 1;
-      });
-      return newChoices;
     }
+    const newChoices = {};
+    presidentialRank.map((order, i) => {
+      newChoices[order] = i + 1;
+    });
+    return newChoices;
   };
 
   const areAllGoodSelected = () => {
@@ -211,7 +212,7 @@ const RankPresidentialCandidatesWrapper = ({
       setSubmitWithoutGood(true);
     } else {
       saveRankingCallback(choicesOrder);
-      handleRankingCallback(choicesOrder);
+      handleRankingCallback(choicesOrder, user);
     }
   };
 
@@ -324,6 +325,14 @@ const RankPresidentialCandidatesWrapper = ({
       )}
     </GreyWrapper>
   );
+};
+
+RankPresidentialCandidatesWrapper.propTypes = {
+  candidates: PropTypes.array,
+  handleRankingCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
+  presidentialRank: PropTypes.array,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default RankPresidentialCandidatesWrapper;

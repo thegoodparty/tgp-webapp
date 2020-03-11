@@ -52,6 +52,11 @@ const loginAction = email => ({
   email,
 });
 
+const updatePresidentialRankAction = rank => ({
+  type: types.UPDATE_PRESIDENTIAL_RANK,
+  rank,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -63,4 +68,5 @@ export default {
   loadUserFromCookieAction,
   signoutAction,
   loginAction,
+  updatePresidentialRankAction,
 };

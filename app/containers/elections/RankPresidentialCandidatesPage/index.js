@@ -20,10 +20,12 @@ import candidateReducer from 'containers/elections/PresidentialCandidatePage/red
 import candidateSaga from 'containers/elections/PresidentialCandidatePage/saga';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 import candidateActions from 'containers/elections/PresidentialCandidatePage/actions';
+import userActions from 'containers/you/YouPage/actions';
 
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import makeSelectCandidate from 'containers/elections/PresidentialCandidatePage/selectors';
 import RankPresidentialCandidatesWrapper from 'components/elections/RankPresidentialCandidatesWrapper';
+import makeSelectUser from '../../you/YouPage/selectors';
 
 export function RankPresidentialCandidatesPage({
   districtState,
@@ -31,6 +33,7 @@ export function RankPresidentialCandidatesPage({
   handleRankingCallback,
   saveRankingCallback,
   dispatch,
+  userState,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -41,7 +44,16 @@ export function RankPresidentialCandidatesPage({
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
   const { presidential } = districtState;
-  const { presidentialRank } = candidateState;
+  const { user } = userState;
+
+  let presidentialRank;
+  if (user && user.presidentialRank) {
+    if (typeof user.presidentialRank === 'string') {
+      presidentialRank = JSON.parse(user.presidentialRank);
+    }
+  } else if (candidateState && candidateState.presidentialRank) {
+    presidentialRank = candidateState.presidentialRank;
+  }
 
   useEffect(() => {
     if (!presidential) {
@@ -57,6 +69,7 @@ export function RankPresidentialCandidatesPage({
     handleRankingCallback,
     saveRankingCallback,
     presidentialRank,
+    user,
   };
 
   return (
@@ -79,21 +92,28 @@ RankPresidentialCandidatesPage.propTypes = {
   candidateState: PropTypes.object,
   handleRankingCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
+  userState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    handleRankingCallback: rankingOrder => {
+    handleRankingCallback: (rankingOrder, user) => {
       dispatch(
         candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
       );
-      dispatch(push('/you/register'));
+      if (user) {
+        dispatch(push('/you/share'));
+        // TODO: save choices to user here
+      } else {
+        dispatch(push('/you/register'));
+      }
     },
     saveRankingCallback: rankingOrder => {
       dispatch(
         candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
       );
+      dispatch(userActions.updatePresidentialRankAction(rankingOrder));
     },
   };
 }
@@ -101,6 +121,7 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   districtState: makeSelectZipFinderPage(),
   candidateState: makeSelectCandidate(),
+  userState: makeSelectUser(),
 });
 
 const withConnect = connect(

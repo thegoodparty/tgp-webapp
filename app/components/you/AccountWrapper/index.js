@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/Nav';
 import { H1, Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
 import { fullFirstLastInitials, getInitials } from 'helpers/userHelper';
+import { numberNth } from 'helpers/numberHelper';
 
 const Centered = styled.div`
   display: flex;
@@ -56,10 +58,22 @@ const BottomLink = styled(Body)`
 
 const AccountWrapper = ({ user, signoutCallback }) => {
   let { presidentialRank } = user;
-  const { name, feedback } = user;
+  const { name, feedback, zipCode } = user;
+  const { zip, stateLong, stateShort, approxPctArr, primaryCity } = zipCode;
   if (typeof presidentialRank === 'string') {
     presidentialRank = JSON.parse(presidentialRank);
   }
+  const shortState = stateShort ? stateShort.toUpperCase() : '';
+  let districtId = '';
+  if (approxPctArr) {
+    let pctArr = JSON.parse(approxPctArr);
+    if (pctArr.length > 0) {
+      districtId = pctArr[0].districtId;
+    }
+  }
+
+  const electionLink = `/elections/district/${zip}`;
+
   return (
     <div>
       <Nav />
@@ -69,7 +83,7 @@ const AccountWrapper = ({ user, signoutCallback }) => {
           <UserInitials>{getInitials(name)}</UserInitials>
           <H2>{fullFirstLastInitials(name)}</H2>
           <Body13 style={{ marginTop: '5px', marginBottom: '9px' }}>
-            Mendocino, CA-2
+            {primaryCity}, {shortState}-{districtId}
           </Body13>
           <Body13>{feedback}</Body13>
         </Centered>
@@ -81,12 +95,17 @@ const AccountWrapper = ({ user, signoutCallback }) => {
           </ElectionData>
         </Election>
         <Election>
-          House: <ElectionData>California</ElectionData>
+          Senate: <ElectionData>{stateLong}</ElectionData>
         </Election>
         <Election>
-          House: <ElectionData>2nd District (CA-2)</ElectionData>
+          House:{' '}
+          <ElectionData>
+            {numberNth(districtId)} District ({shortState}-{districtId})
+          </ElectionData>
         </Election>
-        <AllElections>See All Elections</AllElections>
+        <Link to={electionLink}>
+          <AllElections>See All Elections</AllElections>
+        </Link>
 
         <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>Your Crew</H3>
         <Body13>
@@ -98,7 +117,9 @@ const AccountWrapper = ({ user, signoutCallback }) => {
         <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
           What can you do to help?
         </H3>
-        <BottomLink>Invite Friends</BottomLink>
+        <Link to="/you/share">
+          <BottomLink>Invite Friends</BottomLink>
+        </Link>
         <BottomLink>Creators of the World, Unite!</BottomLink>
         <BottomLink
           style={{ marginTop: '48px', marginBottom: '24px' }}

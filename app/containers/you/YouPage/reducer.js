@@ -68,6 +68,16 @@ const userReducer = (state = initialState, action) =>
       case types.LOGIN:
         draft.loginEmail = action.email;
         break;
+
+      case types.UPDATE_PRESIDENTIAL_RANK:
+        if (!state.user) {
+          break;
+        } else {
+          const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
+          copyUser.presidentialRank = JSON.stringify(action.rank);
+          draft.user = copyUser;
+          break;
+        }
     }
   });
 
