@@ -15,4 +15,11 @@ const articlesHelper = (articles, page) => {
   });
 };
 
+export const slugify = text => {
+  return text
+    .toLowerCase()
+    .replace(/[^\w ]+/g, '')
+    .replace(/ +/g, '-');
+};
+
 export default articlesHelper;

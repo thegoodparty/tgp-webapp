@@ -63,9 +63,7 @@ const PartyWrapper = ({ content }) => {
   }
   let mainContent = '';
   if (content && content.partyPage) {
-    console.log('here', content.partyPage.content);
     mainContent = contentfulHelper(content.partyPage.content);
-    console.log(mainContent);
   }
   return (
     <div>

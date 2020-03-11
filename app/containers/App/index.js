@@ -30,6 +30,7 @@ import LoginPage from 'containers/you/LoginPage/Loadable';
 import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
 
 import PartyPage from 'containers/party/PartyPage/Loadable';
+import FaqListPage from 'containers/party/FaqListPage/Loadable';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
@@ -52,7 +53,11 @@ export default function App() {
         <Route exact path="/intro/three-steps" component={ThreeStepsPage} />
         <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
 
-        <Route exact path="/elections/district/:zip" component={DistrictPage} />
+        <Route
+          exact
+          path="/elections/district/:zip"
+          component={DistrictPage}
+        />
         <Route
           exact
           path="/elections/presidential-election"
@@ -86,6 +91,7 @@ export default function App() {
         <Route exact path="/login/confirm" component={LoginConfirmPage} />
 
         <Route exact path="/party" component={PartyPage} />
+        <Route exact path="/party/faqs" component={FaqListPage} />
 
         <Route component={NotFoundPage} />
       </Switch>

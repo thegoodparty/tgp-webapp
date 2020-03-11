@@ -1,4 +1,6 @@
 // returns only articles that match the page.
+import { slugify } from './articlesHelper';
+
 export const partyResolver = partyLetter => {
   if (partyLetter === 'D') {
     return 'DEMOCRAT';
@@ -14,9 +16,7 @@ export const partyResolver = partyLetter => {
   }
 };
 
-const slugify = text => {
-  return text.replace(/[^\w ]+/g, '').replace(/ +/g, '-');
-};
+
 
 export const presidentialCandidateRoute = candidate => {
   if (!candidate) {

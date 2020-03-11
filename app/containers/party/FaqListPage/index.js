@@ -1,6 +1,6 @@
 /**
  *
- * PartyPage
+ * FaqListPage
  *
  */
 
@@ -14,9 +14,9 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectContent } from 'containers/App/selectors';
 import globalActions from 'containers/App/actions';
 
-import PartyWrapper from 'components/party/PartyWrapper';
+import FaqListWrapper from 'components/party/FaqListWrapper';
 
-export function PartyPage({ content, dispatch }) {
+export function FaqListPage({ content, dispatch }) {
   useEffect(() => {
     if (!content) {
       dispatch(globalActions.loadContentAction());
@@ -26,19 +26,18 @@ export function PartyPage({ content, dispatch }) {
   const childProps = {
     content,
   };
-
   return (
     <div>
       <Helmet>
-        <title>Party | The Good Party</title>
-        <meta name="description" content="Party | The Good Party" />
+        <title>FAQs | The Good Party</title>
+        <meta name="description" content="Frequently Asked Questions" />
       </Helmet>
-      <PartyWrapper {...childProps} />
+      <FaqListWrapper {...childProps} />
     </div>
   );
 }
 
-PartyPage.propTypes = {
+FaqListPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   content: PropTypes.object,
 };
@@ -61,4 +60,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(PartyPage);
+)(FaqListPage);

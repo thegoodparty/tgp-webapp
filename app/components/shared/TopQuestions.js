@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { H3, Body, Body13 } from 'components/shared/typogrophy';
+import { slugify } from 'helpers/articlesHelper';
 
 const Wrapper = styled.div`
   margin-top: 50px;
@@ -32,12 +33,6 @@ const ArticleTitle = styled(Body)`
   }
 `;
 
-const slugify = text => {
-  return text
-    .toLowerCase()
-    .replace(/[^\w ]+/g, '')
-    .replace(/ +/g, '-');
-};
 
 const TopQuestions = ({ articles }) => {
   return (
@@ -49,7 +44,7 @@ const TopQuestions = ({ articles }) => {
       {articles &&
         articles.map((article, index) => (
           <Link
-            to={`/faq/${slugify(article.title)}/${article.id}`}
+            to={`/party/faq/${slugify(article.title)}/${article.id}`}
             key={article.id}
           >
             <ArticleTitle className={index === 0 ? 'first' : ''}>
