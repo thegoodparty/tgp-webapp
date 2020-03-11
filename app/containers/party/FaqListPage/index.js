@@ -39,7 +39,7 @@ export function FaqListPage({ content, dispatch }) {
 
 FaqListPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  content: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {

@@ -11,7 +11,7 @@ import EventSnippet from 'components/shared/EventSnippet';
 import articlesHelper from 'helpers/articlesHelper';
 import TopQuestions from 'components/shared/TopQuestions';
 import Ama from 'components/shared/Ama';
-import contentfulHelper from 'helpers/contentfulHelper';
+import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 
 const EventsWrapper = styled.div`
   margin-top: 50px;
@@ -28,33 +28,6 @@ const StyledBody13 = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
-const CmsContentWrapper = styled.div`
-  margin-top: 28px;
-  h3 {
-    margin-top: 28px;
-    margin-bottom: 8px;
-    color: ${({ theme }) => theme.colors.gray4};
-    font-size: 19px;
-    line-height: 25px;
-    font-weight: 600;
-    margin: 0;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 26px;
-      line-height: 32px;
-    }
-  }
-  p {
-    color: ${({ theme }) => theme.colors.gray4};
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0.1px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 20px;
-      line-height: 26px;
-    }
-  }
-`;
-
 const PartyWrapper = ({ content }) => {
   const events = content ? content.events : [];
   let articles = [];
@@ -68,7 +41,7 @@ const PartyWrapper = ({ content }) => {
   return (
     <div>
       <Nav />
-      <Wrapper style={{ backgroundColor: '#FFF' }}>
+      <Wrapper white>
         <MobileHeader />
         <IntroCarousel showButton={false} />
         {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}

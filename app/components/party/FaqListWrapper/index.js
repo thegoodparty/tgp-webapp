@@ -16,6 +16,7 @@ const ArticleWrapper = styled.div`
   justify-content: space-between;
   padding: 18px 0;
   cursor: pointer;
+  border-bottom: solid 1px ${({ theme }) => theme.colors.grayE};
   &:hover .article-title {
     color: ${({ theme }) => theme.colors.blue};
   }
@@ -27,7 +28,7 @@ const FaqListWrapper = ({ content }) => {
   return (
     <div>
       <Nav />
-      <Wrapper style={{ backgroundColor: '#FFF' }}>
+      <Wrapper white>
         <MobileHeader />
         <H2 style={{ marginBottom: '24px' }}>Frequently Asked Q’s</H2>
         {articles &&

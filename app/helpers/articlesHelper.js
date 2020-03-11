@@ -1,3 +1,4 @@
+const articleHash = {};
 // returns only articles that match the page.
 const articlesHelper = (articles, page) => {
   return articles.filter(article => {
@@ -20,6 +21,15 @@ export const slugify = text => {
     .toLowerCase()
     .replace(/[^\w ]+/g, '')
     .replace(/ +/g, '-');
+};
+
+export const getArticleById = (articles, id) => {
+  if (articleHash !== {}) {
+    articles.forEach(article => {
+      articleHash[article.id] = article;
+    });
+  }
+  return articleHash[id];
 };
 
 export default articlesHelper;

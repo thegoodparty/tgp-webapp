@@ -66,7 +66,7 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
   return (
     <div>
       <Nav />
-      <Wrapper style={{ backgroundColor: '#FFF' }}>
+      <Wrapper white>
         <MobileHeader />
         <H2 style={{ marginBottom: '28px' }}>A code was sent to {email}</H2>
         <form noValidate onSubmit={handleSubmitForm}>

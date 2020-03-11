@@ -1,0 +1,82 @@
+/**
+ *
+ * FaqArticlePage
+ *
+ */
+
+import React, { memo, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import { compose } from 'redux';
+import { push } from 'connected-react-router';
+
+import { createStructuredSelector } from 'reselect';
+
+import { makeSelectContent } from 'containers/App/selectors';
+import globalActions from 'containers/App/actions';
+
+import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
+import { getArticleById } from '../../../helpers/articlesHelper';
+
+export function FaqArticlePage({ id, content, dispatch }) {
+  const [article, setArticle] = useState(null);
+  useEffect(() => {
+    if (!id) {
+      dispatch(push('/party/faqs'));
+    }
+    if (!content) {
+      dispatch(globalActions.loadContentAction());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (content) {
+      setArticle(getArticleById(content.faqArticles, id));
+    }
+  }, [content]);
+
+  const childProps = {
+    article,
+  };
+
+  return (
+    <div>
+      <Helmet>
+        <title>{article ? article.title : 'FAQ Article'}</title>
+        <meta
+          name="description"
+          content={article ? article.title : 'FAQ Article'}
+        />
+      </Helmet>
+      <FaqArticleWrapper {...childProps} />
+    </div>
+  );
+}
+
+FaqArticlePage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+};
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    dispatch,
+    id: ownProps.match.params.id,
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  content: makeSelectContent(),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(FaqArticlePage);

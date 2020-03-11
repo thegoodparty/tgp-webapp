@@ -60,7 +60,7 @@ const LoginWrapper = ({ loginCallback }) => {
   return (
     <div>
       <Nav />
-      <Wrapper style={{ backgroundColor: '#FFF' }}>
+      <Wrapper white>
         <MobileHeader />
         <H2>Sign in to your account</H2>
         <Body13 style={{ marginTop: '16px', marginBottom: '28px' }}>

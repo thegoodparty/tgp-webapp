@@ -33,13 +33,14 @@ const ArticleTitle = styled(Body)`
   }
 `;
 
-
 const TopQuestions = ({ articles }) => {
   return (
     <Wrapper>
       <Row>
         <H3>Top Questions</H3>
-        <SeeFaq className="blue">See FAQ</SeeFaq>
+        <Link to="/party/faqs">
+          <SeeFaq className="blue">See FAQ</SeeFaq>
+        </Link>
       </Row>
       {articles &&
         articles.map((article, index) => (

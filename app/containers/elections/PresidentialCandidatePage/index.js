@@ -40,8 +40,6 @@ export function PresidentialCandidatePage({ id, candidateState, dispatch }) {
     presidentialRank,
   };
 
-  console.log(childProps);
-
   return (
     <div>
       <Helmet>
