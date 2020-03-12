@@ -1,6 +1,6 @@
 /**
  *
- * Tests for AccountWrapper
+ * Tests for ProfileWrapper
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,12 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import AccountWrapper from '../index';
+import ProfileWrapper from '../index';
 
-describe('<AccountWrapper />', () => {
+describe('<ProfileWrapper />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<AccountWrapper />);
+    render(<ProfileWrapper />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +31,7 @@ describe('<AccountWrapper />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<AccountWrapper />);
+    } = render(<ProfileWrapper />);
     expect(firstChild).toMatchSnapshot();
   });
 });

@@ -10,6 +10,11 @@ import { H1, Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
 import { fullFirstLastInitials, getInitials } from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
 
+const EditProfile = styled(Body13)`
+  color: ${({ theme }) => theme.colors.blue};
+  text-align: right;
+`;
+
 const Centered = styled.div`
   display: flex;
   align-items: center;
@@ -56,7 +61,7 @@ const BottomLink = styled(Body)`
   cursor: pointer;
 `;
 
-const AccountWrapper = ({ user, signoutCallback }) => {
+const ProfileWrapper = ({ user, signoutCallback }) => {
   let { presidentialRank } = user;
   const { name, feedback, zipCode } = user;
   const { zip, stateLong, stateShort, approxPctArr, primaryCity } = zipCode;
@@ -79,6 +84,9 @@ const AccountWrapper = ({ user, signoutCallback }) => {
       <Nav />
       <Wrapper white>
         <MobileHeader />
+        <Link to="/you/edit">
+          <EditProfile>Edit Profile</EditProfile>
+        </Link>
         <Centered>
           <UserInitials>{getInitials(name)}</UserInitials>
           <H2>{fullFirstLastInitials(name)}</H2>
@@ -132,9 +140,9 @@ const AccountWrapper = ({ user, signoutCallback }) => {
   );
 };
 
-AccountWrapper.propTypes = {
-  user: PropTypes.object,
+ProfileWrapper.propTypes = {
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   signoutCallback: PropTypes.func,
 };
 
-export default AccountWrapper;
+export default ProfileWrapper;

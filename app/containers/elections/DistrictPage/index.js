@@ -30,7 +30,7 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
 
-  let { zipWithDistricts } = districtState;
+  const { zipWithDistricts } = districtState;
   const {
     presidential,
     districtIncumbents,
@@ -39,13 +39,7 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
 
   useEffect(() => {
     if (!zipWithDistricts) {
-      const zipCookie = getCookie('zip');
-      if (zipCookie) {
-        zipWithDistricts = JSON.parse(zipCookie);
-        dispatch(districtActions.loadCookieZipAction());
-      } else {
-        dispatch(districtActions.loadZipAction(zip));
-      }
+      dispatch(districtActions.loadZipAction(zip));
     }
     if (!presidential) {
       dispatch(districtActions.loadAllPresidentialAction());
@@ -53,7 +47,7 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
     if (!content) {
       dispatch(globalActions.loadContentAction());
     }
-  }, []);
+  }, [zip]);
 
   useEffect(() => {
     if (zipWithDistricts) {
@@ -79,7 +73,7 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
         );
       }
     }
-  }, [zipWithDistricts]);
+  }, [zipWithDistricts, zip]);
 
   const childProps = {
     district: zipWithDistricts,

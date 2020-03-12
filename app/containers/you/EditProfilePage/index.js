@@ -1,15 +1,14 @@
 /**
  *
- * YouPage
+ * EditProfilePage
  *
  */
 
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -19,44 +18,36 @@ import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
-import YouWrapper from 'components/you/YouWrapper';
-import ProfileWrapper from 'components/you/ProfileWrapper/Loadable';
+import EditProfileWrapper from 'components/you/EditProfileWrapper';
 
-export function YouPage({ userState, dispatch, signoutCallback }) {
+export function EditProfilePage({ userState }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
   const { user } = userState;
 
-  const accountProps = {
+  const childProps = {
     user,
-    signoutCallback,
   };
 
   return (
     <div>
       <Helmet>
-        <title>You | The Good Party</title>
-        <meta name="description" content="You | The Good Party" />
+        <title>Edit Profile | The Good Party</title>
+        <meta name="description" content="Edit Profile | The Good Party" />
       </Helmet>
-      {user ? <ProfileWrapper {...accountProps} /> : <YouWrapper />}
+      <EditProfileWrapper {...childProps} />
     </div>
   );
 }
 
-YouPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+EditProfilePage.propTypes = {
   userState: PropTypes.object,
-  signoutCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    signoutCallback: () => {
-      dispatch(userActions.signoutAction());
-      dispatch(push('/'));
-    },
   };
 }
 
@@ -69,4 +60,7 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(YouPage);
+export default compose(
+  withConnect,
+  memo,
+)(EditProfilePage);

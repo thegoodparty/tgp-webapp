@@ -28,6 +28,7 @@ import SharePage from 'containers/you/SharePage/Loadable';
 import YouPage from 'containers/you/YouPage/Loadable';
 import LoginPage from 'containers/you/LoginPage/Loadable';
 import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
+import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
 
 import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';
@@ -84,6 +85,7 @@ export default function App() {
         />
         <Route exact path="/you/share" component={SharePage} />
         <Route exact path="/you" component={YouPage} />
+        <Route exact path="/you/edit" component={EditProfilePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/login/confirm" component={LoginConfirmPage} />
 
