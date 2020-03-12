@@ -14,6 +14,16 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+// force https
+if (process.env.NODE_ENV === 'production') {
+  app.all('*', function(req, res, next) {
+    if (req.headers['x-forwarded-proto'] === 'https') {
+      return next();
+    }
+    res.redirect(`https://${req.hostname}${req.url}`); // express 4.x
+  });
+}
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
