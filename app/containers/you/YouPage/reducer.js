@@ -8,6 +8,7 @@ export const initialState = {
   loading: false,
   error: false,
   loginEmail: false,
+  zipCode: false,
 };
 
 const userReducer = (state = initialState, action) =>
@@ -38,6 +39,7 @@ const userReducer = (state = initialState, action) =>
 
       case types.CONFIRM_EMAIL_SUCCESS:
         draft.user = action.user;
+        draft.zipCode = action.user.zipCode;
         draft.token = action.token;
         draft.loading = false;
         draft.error = false;

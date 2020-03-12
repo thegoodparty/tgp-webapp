@@ -27,6 +27,7 @@ export function Nav({ userState, dispatch, locationState, navigateCallback }) {
   useInjectSaga({ key: 'user', saga });
 
   const [user, setUser] = React.useState(null);
+  const [zipCode, setZipCode] = React.useState(null);
   const stateUser = userState.user;
   const { pathname } = locationState;
 
@@ -35,12 +36,14 @@ export function Nav({ userState, dispatch, locationState, navigateCallback }) {
       dispatch(userActions.loadUserFromCookieAction());
     } else {
       setUser(stateUser);
+      setZipCode(stateUser.zipCode);
     }
   }, [stateUser]);
 
   const childProps = {
     pathname,
     user,
+    zipCode,
     navigateCallback,
   };
 
@@ -59,14 +62,17 @@ const mapStateToProps = createStructuredSelector({
   userState: makeSelectUser(),
 });
 
+/* eslint-disable prefer-destructuring */
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    navigateCallback: (screen, user) => {
+    navigateCallback: (screen, user, zipCode) => {
       console.log(user);
       if (screen === '/elections') {
         let zip;
-        if (user && user.zipCode) {
+        if (zipCode) {
+          zip = zipCode.zip;
+        } else if (user && user.zipCode) {
           zip = user.zipCode.zip;
         } else {
           let cookieZip = getCookie('zip');

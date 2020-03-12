@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 
 import heartImg from 'images/heart.svg';
 import Wrapper from 'components/shared/Wrapper';
+import { Body13 } from 'components/shared/typogrophy';
 
 const Logo = styled.img`
   width: 63px;
@@ -20,6 +21,12 @@ const Logo = styled.img`
     width: 100px;
     height: auto;
   }
+`;
+
+const LoginLink = styled(Body13)`
+  text-align: right;
+  padding: 1rem;
+  color: ${({ theme }) => theme.colors.blue};
 `;
 
 const H1 = styled.h1`
@@ -83,6 +90,9 @@ function HomePageWrapper() {
     <div>
       <Wrapper white style={wrapperStyles}>
         <div>
+          <LoginLink>
+            <Link to="/login">Login</Link>
+          </LoginLink>
           <div>
             <Logo src={heartImg} />
           </div>

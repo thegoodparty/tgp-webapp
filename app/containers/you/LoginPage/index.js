@@ -30,7 +30,7 @@ export function LoginPage({ userState, dispatch, loginCallback }) {
     if (user) {
       dispatch(push('/you'));
     }
-  }, []);
+  }, [userState]);
 
   const childProps = {
     loginCallback,

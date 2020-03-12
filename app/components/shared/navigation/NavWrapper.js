@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavWrapper = ({ pathname, user, navigateCallback }) => {
+const NavWrapper = ({ pathname, user, zipCode, navigateCallback }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -61,11 +61,11 @@ const NavWrapper = ({ pathname, user, navigateCallback }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     if (newValue === 0) {
-      navigateCallback('/party', user);
+      navigateCallback('/party', user, zipCode);
     } else if (newValue === 1) {
-      navigateCallback('/elections', user);
+      navigateCallback('/elections', user, zipCode);
     } else if (newValue === 2) {
-      navigateCallback('/you', user);
+      navigateCallback('/you', user, zipCode);
     }
   };
 
@@ -107,6 +107,7 @@ const NavWrapper = ({ pathname, user, navigateCallback }) => {
 NavWrapper.propTypes = {
   pathname: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  zipCode: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   navigateCallback: PropTypes.func,
 };
 
