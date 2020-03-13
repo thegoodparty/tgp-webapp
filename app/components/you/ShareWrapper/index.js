@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Wrapper from 'components/shared/Wrapper';
@@ -9,6 +10,7 @@ import { Body, Body13, H2, H3 } from 'components/shared/typogrophy/index';
 import BlueButton from 'components/shared/buttons/BlueButton';
 import ShareImage from 'images/share.png';
 import LinkIcon from 'images/icons/link.svg';
+import contentfulHelper from 'helpers/contentfulHelper';
 
 const Img = styled.img`
   width: 50%;
@@ -42,9 +44,15 @@ const Copied = styled(Body13)`
   color: ${({ theme }) => theme.colors.red};
 `;
 
-const ShareWrapper = () => {
+const ShareWrapper = ({ content }) => {
   const [copied, setCopied] = useState(false);
   const canShare = typeof navigator !== 'undefined' && navigator.share;
+  let header = '';
+  let body = '';
+  if (content && content.sharePage) {
+    header = content.sharePage.header; // eslint-disable-line prefer-destructuring
+    body = contentfulHelper(content.sharePage.content);
+  }
 
   const nativeShare = () => {
     navigator
@@ -62,14 +70,9 @@ const ShareWrapper = () => {
         <MobileHeader />
         <InnerWrapper>
           <Img src={ShareImage} alt="Share" />
-          <H2>PLEASE SHARE WITH ALL YOUR FRIENDS!</H2>
+          <H2>{header}</H2>
           <Body13 style={{ marginTop: '20px', marginBottom: '25px' }}>
-            Good people, telling other good people is the best way for our plan
-            to spread quickly.
-            <br />
-            <br />
-            If we do that, then nothing can stop us from disrupting this corrupt
-            political system for Good!
+            {body}
           </Body13>
           {canShare && (
             <BlueButton fullWidth onClick={nativeShare}>
@@ -77,7 +80,13 @@ const ShareWrapper = () => {
             </BlueButton>
           )}
           <div className="text-center">
-            <StyledH3>thegoodparty.org</StyledH3>
+            <CopyToClipboard
+              text="https://www.thegoodparty.org"
+              onCopy={() => setCopied(true)}
+            >
+              <StyledH3>thegoodparty.org</StyledH3>
+            </CopyToClipboard>
+
             <CopyToClipboard
               text="https://www.thegoodparty.org"
               onCopy={() => setCopied(true)}
@@ -92,6 +101,10 @@ const ShareWrapper = () => {
       </Wrapper>
     </div>
   );
+};
+
+ShareWrapper.propTypes = {
+  content: PropTypes.object,
 };
 
 export default ShareWrapper;
