@@ -37,34 +37,8 @@ const H1 = styled.h1`
   margin: 24px 0;
 `;
 
-const RedBlue = styled.div`
-  color: ${({ theme }) => theme.colors.gray2};
-  font-size: 27px;
-  line-height: 35px;
-  margin-bottom: 40px;
-`;
-
-const Red = styled.span`
-  color: ${({ theme }) => theme.colors.red};
-  font-weight: 700;
-`;
-
-const Blue = styled.span`
-  color: ${({ theme }) => theme.colors.blue};
-  font-weight: 700;
-`;
-
-const Black = styled.span`
-  color: #000;
-  font-weight: 700;
-`;
-
-const LightGray = styled.span`
-  color: #999;
-  font-weight: 700;
-`;
-
 const ButtonWrapper = styled.div`
+  margin-top: 2rem;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 2rem;
@@ -96,9 +70,9 @@ function HomePageWrapper() {
           <div>
             <Logo src={heartImg} />
           </div>
-          <H1>99% of Congress has been corrupted by Big Money donors</H1>
+          <H1>99% of Congress has been corrupted  by Big Money donors</H1>
           <H2>
-            Imagine a free crowd- voting app that returns the{' '}
+            Imagine a free crowd-voting app that returns the{' '}
             <strong>Power to the People!</strong>
           </H2>
           <ButtonWrapper>
@@ -114,6 +88,6 @@ function HomePageWrapper() {
   );
 }
 
-HomePageWrapper.propTypes = {};
+// HomePageWrapper.propTypes = {};
 
 export default HomePageWrapper;
