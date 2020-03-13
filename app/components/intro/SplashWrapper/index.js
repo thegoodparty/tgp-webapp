@@ -103,26 +103,23 @@ function SplashWrapper() {
           <SubTitle>WRITE-IN, FOR THE WIN!</SubTitle>
         </Centered>
         <Card>
-          <Icon src={peopleImg} />
+          <Icon src={heartImg} className="heart" />
           <TextWrapper>
-            <SmallTitle>Pre-organize Support</SmallTitle>
+            <SmallTitle>Show Good Candidates</SmallTitle>
             <Body14>
-              We count all the votes we need to win{' '}
-              <i>
-                <strong>before</strong>
-              </i>{' '}
-              we take any action, so no wasted energy or votes!
+              We find and vet, good indie and citizen candidates who big money
+              and corrupt partisans don’t like.
             </Body14>
           </TextWrapper>
         </Card>
 
         <Card>
-          <Icon src={heartImg} className="heart" />
+          <Icon src={peopleImg} />
           <TextWrapper>
-            <SmallTitle>Choose a Good Candidate</SmallTitle>
+            <SmallTitle>Count Needed Votes</SmallTitle>
             <Body14>
-              We find and vet, good indy and citizen candidates who have not
-              been corrupted by big money.
+              We count all the votes we need to win before we take any action,
+              so no wasted energy or actual votes!
             </Body14>
           </TextWrapper>
         </Card>
@@ -130,9 +127,9 @@ function SplashWrapper() {
         <Card>
           <Icon src={writeinImg} />
           <TextWrapper>
-            <SmallTitle>Write-in, for the Win!</SmallTitle>
+            <SmallTitle>Vote or Write-in, FTW!</SmallTitle>
             <Body14>
-              Only where we have enough support to win, we flash mob to vote and{' '}
+              Only where we have enough support to win, we flash-mob to vote or
               <i>write-in, for the win!</i>
             </Body14>
           </TextWrapper>

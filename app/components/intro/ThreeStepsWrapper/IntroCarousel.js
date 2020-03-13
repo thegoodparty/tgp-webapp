@@ -12,7 +12,29 @@ import slide3 from 'images/slider3.jpg';
 const CarouselWrapper = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
+
+const LeftArrow = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 100;
+`;
+
+const RightArrow = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 50%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 100;
+`;
+
 const SliderWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -78,7 +100,7 @@ const IntroCarousel = ({
     <SliderWrapper>
       <SlideTitle>
         <Circled>1</Circled>
-        <span>PRE-ORGANIZE SUPPORT</span>
+        <span>SHOW GOOD CANDIDATES</span>
       </SlideTitle>
       <SliderImg
         style={{
@@ -89,7 +111,7 @@ const IntroCarousel = ({
     <SliderWrapper>
       <SlideTitle>
         <Circled>2</Circled>
-        <span>PRE-ORGANIZE SUPPORT</span>
+        <span>COUNT NEEDED VOTES</span>
       </SlideTitle>
       <SliderImg
         style={{
@@ -100,7 +122,7 @@ const IntroCarousel = ({
     <SliderWrapper>
       <SlideTitle>
         <Circled>3</Circled>
-        <span>PRE-ORGANIZE SUPPORT</span>
+        <span>VOTE OR WRITE IN, FTW!</span>
       </SlideTitle>
       <SliderImg
         style={{
@@ -117,6 +139,10 @@ const IntroCarousel = ({
         onChange={onChange}
         value={slideNum}
         slides={slides}
+        arrowLeft={<LeftArrow />}
+        arrowRight={<RightArrow />}
+        addArrowClickHandler
+        stopAutoPlayOnHover
       />
 
       {Dots && (

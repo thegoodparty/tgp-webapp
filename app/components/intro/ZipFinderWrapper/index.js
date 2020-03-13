@@ -98,7 +98,7 @@ function ZipFinderWrapper({ loadZipCallback }) {
             onChange={onChangeText}
             maxLength={5}
             autoFocus
-            type="numeric"
+            type="tel"
             placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;"
           />
         </Form>

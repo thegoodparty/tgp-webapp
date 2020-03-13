@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 
 import heartImg from 'images/heart.svg';
 import Wrapper from 'components/shared/Wrapper';
-import { Body13 } from 'components/shared/typogrophy';
+import { Body13, H2 } from 'components/shared/typogrophy';
 
 const Logo = styled.img`
   width: 63px;
@@ -96,12 +96,11 @@ function HomePageWrapper() {
           <div>
             <Logo src={heartImg} />
           </div>
-          <H1>99% of Congress  has been corrupted  by money &amp; power</H1>
-          <RedBlue>
-            So, choosing <Red>Red</Red> or <Blue>Blue</Blue> is{' '}
-            <Black>NOT</Black> <LightGray>Good</LightGray>{' '}
-            <Black>Enough!</Black>
-          </RedBlue>
+          <H1>99% of Congress has been corrupted by Big Money donors</H1>
+          <H2>
+            Imagine a free crowd- voting app that returns the{' '}
+            <strong>Power to the People!</strong>
+          </H2>
           <ButtonWrapper>
             <Link to="/intro/splash">
               <BlueButton variant="contained" color="primary" size="large">
