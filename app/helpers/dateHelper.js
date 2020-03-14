@@ -79,7 +79,7 @@ export const dateISOStringHelper = (orgDate, timezone, addHours = 0) => {
   try {
     const newDate = new Date(orgDate);
     const utcDate = new Date(newDate.toISOString());
-    let hoursDelta = timeZoneToHours(timezone);
+    const hoursDelta = timeZoneToHours(timezone);
 
     utcDate.setHours(utcDate.getHours() - hoursDelta + addHours);
     return utcDate;

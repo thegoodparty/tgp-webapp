@@ -128,7 +128,9 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
         <Link to="/you/share">
           <BottomLink>Invite Friends</BottomLink>
         </Link>
-        <BottomLink>Creators of the World, Unite!</BottomLink>
+        <a href="https://creators.thegodparty.org" target="_blank">
+          <BottomLink>Creators of the World, Unite!</BottomLink>
+        </a>
         <BottomLink
           style={{ marginTop: '48px', marginBottom: '24px' }}
           onClick={signoutCallback}

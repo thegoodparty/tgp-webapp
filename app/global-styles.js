@@ -23,11 +23,11 @@ const GlobalStyle = createGlobalStyle`
   
   a {
    text-decoration: none;
-   color: #484848;
+   color: #117CB6;
   }
   
   a: hover {
-   color: #117CB6;
+   color: #21A8DD;
   }
   
   .bold600 {

@@ -30,6 +30,7 @@ const StyledBody13 = styled(Body13)`
 
 const PartyWrapper = ({ content }) => {
   const events = content ? content.events : [];
+  console.log(events);
   let articles = [];
   if (content && content.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'party');
@@ -53,7 +54,7 @@ const PartyWrapper = ({ content }) => {
               <StyledBody13>See All</StyledBody13>
             </Row>
             {events.map(event => (
-              <EventSnippet event={event} />
+              <EventSnippet event={event} key={event.id} />
             ))}
           </EventsWrapper>
         )}

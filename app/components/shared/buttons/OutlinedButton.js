@@ -11,6 +11,10 @@ const StyledButton = styled(Button)`
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     border: solid 1.5px;
+
+    &:hover {
+      border: solid 1.5px;
+    }
   }
 
   &.white {
@@ -48,7 +52,7 @@ const OutlinedButton = ({
 };
 
 OutlinedButton.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   active: PropTypes.bool,
   fullWidth: PropTypes.bool,
   white: PropTypes.bool,

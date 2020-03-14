@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import CloseIcon from '@material-ui/icons/Close';
+
+import addToCalendarLib from 'lib/add-to-calendar';
 
 import { Body, Body12 } from 'components/shared/typogrophy/index';
-import { formatDateWithTimezone } from 'helpers/dateHelper';
+import {
+  formatDateWithTimezone,
+  dateISOStringHelper,
+} from 'helpers/dateHelper';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
 
 const Wrapper = styled.div`
@@ -38,7 +44,25 @@ const ButtonWrapper = styled.div`
   margin-top: 16px;
 `;
 
+const LinksWrapper = styled(Body12)`
+  margin-top: 16px;
+  a {
+    display: block;
+    padding: 12px;
+    border-bottom: solid 1px ${({ theme }) => theme.colors.gray9};
+    text-align: center;
+  }
+`;
+
+const Close = styled.div`
+  padding: 12px;
+  text-align: right;
+  color: ${({ theme }) => theme.colors.red};
+  cursor: pointer;
+`;
+
 const EventSnippet = ({ event }) => {
+  const [links, setLinks] = useState({});
   const {
     id,
     title,
@@ -48,7 +72,38 @@ const EventSnippet = ({ event }) => {
     presenter,
     presenterTitle,
     avatarPhoto,
+    eventDuration,
   } = event;
+
+  const addMe = () => {
+    const start = dateISOStringHelper(dateAndTime, timeZone);
+    const end = dateISOStringHelper(dateAndTime, timeZone, eventDuration);
+    console.log(start, end);
+    encodeURI();
+    const calenderEvent = {
+      title: title.replace(/&/g, ' and '),
+      start,
+      end,
+      address: 'https://www.thegoodparty.org',
+      description: description.replace(/&/g, ' and '),
+    };
+    const calenderLinks = addToCalendarLib.generateCalendars({
+      ...calenderEvent,
+    });
+    setLinks(calenderLinks);
+  };
+  const linksMarkup = () => {
+    let textLinks = '';
+    Object.keys(links).map(link => {
+      textLinks += links[link];
+    });
+    return { __html: textLinks };
+  };
+
+  const closeLinks = () => {
+    setLinks([]);
+  };
+
   return (
     <Wrapper key={id}>
       <Row>
@@ -69,11 +124,22 @@ const EventSnippet = ({ event }) => {
         </div>
         <Photo src={avatarPhoto} />
       </Row>
-      <ButtonWrapper>
+      <ButtonWrapper onClick={addMe}>
         <OutlinedButton fullWidth active>
           I'M INTERESTED
         </OutlinedButton>
       </ButtonWrapper>
+      {Object.keys(links).length > 0 && (
+        <LinksWrapper>
+          <Close onClick={closeLinks}>
+            <CloseIcon />
+          </Close>
+
+          {Object.keys(links).length > 0 && (
+            <div dangerouslySetInnerHTML={linksMarkup()} />
+          )}
+        </LinksWrapper>
+      )}
     </Wrapper>
   );
 };
