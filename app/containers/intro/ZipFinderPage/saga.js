@@ -98,13 +98,14 @@ function* gelocationToDistrict(action) {
         setCookie('geoAddress', JSON.stringify({ ...response }));
       } else {
         // error message here
+        yield put(actions.geolocationToDistrictActionError({ message: 'err' }));
       }
     } else {
-      console.log('error1', address);
+      yield put(actions.geolocationToDistrictActionError({ message: 'err' }));
     }
   } catch (err) {
-    console.log('error2 catch', JSON.stringify(err));
     console.log(err);
+    yield put(actions.geolocationToDistrictActionError(err));
   }
 }
 

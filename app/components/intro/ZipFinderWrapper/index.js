@@ -122,7 +122,10 @@ function ZipFinderWrapper({
           <Location>I’m Home, Use my Current Location</Location>
         </LocationWrapper>
         {findGeoLocation && (
-          <GeoLocator currentLocationCallback={currentLocationCallback} geoError={geoError} />
+          <GeoLocator
+            currentLocationCallback={currentLocationCallback}
+            geoError={geoError}
+          />
         )}
         <ButtonWrapper onClick={handleNextStep}>
           <NextButton active={valid}>

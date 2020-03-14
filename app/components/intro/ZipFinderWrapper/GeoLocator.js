@@ -13,6 +13,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const Wrapper = styled.div`
   padding: 16px 0;
 `;
+const Error = styled.div`
+  color: ${({ theme }) => theme.colors.red};
+  font-weight: 700;
+`;
 
 function GeoLocator({ currentLocationCallback, coords, geoError }) {
   const [loading, setLoading] = useState(true);
@@ -21,14 +25,17 @@ function GeoLocator({ currentLocationCallback, coords, geoError }) {
       currentLocationCallback(coords);
       setLoading(false);
     }
-  });
+  }, [coords]);
 
   return (
     <Wrapper>
       {loading ? (
         <CircularProgress />
       ) : (
-        <div>{geoError && 'Error occurred while using your Geo Location'}</div>
+        <Error>
+          {geoError &&
+            'Error occurred while using your Geo Location. Please enter your zip code above.'}
+        </Error>
       )}
     </Wrapper>
   );
