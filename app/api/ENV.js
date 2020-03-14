@@ -9,4 +9,7 @@ if (host === 'localhost:4000') {
 } else {
   ENV = 'prod';
 }
+
+export const GOOGLE_API_KEY = 'AIzaSyCPNVlxUzEl7uJaCmaxEVQFhsQP1jSS_pI';
+
 export default ENV;

@@ -3,6 +3,7 @@ import { push } from 'connected-react-router';
 
 import requestHelper from 'helpers/requestHelper';
 import { getCookie, setCookie } from 'helpers/cookieHelper';
+import { GOOGLE_API_KEY } from 'api/ENV';
 
 import tgpApi from 'api/tgpApi';
 import types from './constants';
@@ -73,6 +74,40 @@ function* loadDistrictCandidates(action) {
   }
 }
 
+function* gelocationToDistrict(action) {
+  try {
+    const { coords } = action;
+    const lngLatStr = `${coords.latitude},${coords.longitude}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${GOOGLE_API_KEY}&location_type=RANGE_INTERPOLATED&result_type=street_address&latlng=${lngLatStr}`;
+
+    const api = {
+      url,
+      method: 'GET',
+    };
+    const address = yield call(requestHelper, api, null);
+
+    if (address && address.status === 'OK') {
+      const formattedAddress = address.results[0].formatted_address;
+      const api2 = tgpApi.fullAddressToDistrict;
+      const payload2 = { address: JSON.stringify(formattedAddress) };
+      const response = yield call(requestHelper, api2, payload2);
+      const { district, normalizedAddress, zip, state } = response;
+      if (district && normalizedAddress && zip && state) {
+        yield put(push(`/elections/district/${zip}`));
+        yield put(actions.geolocationToDistrictActionSuccess(response));
+        setCookie('geoAddress', JSON.stringify({ ...response }));
+      } else {
+        // error message here
+      }
+    } else {
+      console.log('error1', address);
+    }
+  } catch (err) {
+    console.log('error2 catch', JSON.stringify(err));
+    console.log(err);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const zipAction = yield takeLatest(types.LOAD_ZIP, loadZip);
@@ -87,4 +122,8 @@ export default function* saga() {
   );
 
   yield takeLatest(types.LOAD_COOKIE_ZIP, loadCookieZip);
+  const geoLocationAction = yield takeLatest(
+    types.GEOLOCATION_TO_DISTRICT,
+    gelocationToDistrict,
+  );
 }

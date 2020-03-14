@@ -35,6 +35,7 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
     presidential,
     districtIncumbents,
     districtCandidates,
+    geoLocation,
   } = districtState;
 
   useEffect(() => {
@@ -75,8 +76,33 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
     }
   }, [zipWithDistricts, zip]);
 
+  useEffect(() => {
+    if (geoLocation) {
+      const { state, district } = geoLocation;
+      const shortState = state ? state.toUpperCase() : '';
+      const districtNumber = district ? district.code : null;
+
+      if (shortState && districtNumber) {
+        dispatch(
+          districtActions.loadDistrictIncumbentsAction(
+            shortState,
+            districtNumber,
+          ),
+        );
+
+        dispatch(
+          districtActions.loadDistrictCandidatesAction(
+            shortState,
+            districtNumber,
+          ),
+        );
+      }
+    }
+  }, [geoLocation]);
+
   const childProps = {
     district: zipWithDistricts,
+    geoLocation,
     presidential,
     districtIncumbents,
     districtCandidates,

@@ -8,6 +8,7 @@ import types from './constants';
 
 export const initialState = {
   zipWithDistricts: false,
+  geoLocation: false,
   presidential: false,
   districtIncumbents: false,
   districtCandidates: false,
@@ -71,6 +72,18 @@ const zipFinderPageReducer = (state = initialState, action) =>
 
       case types.LOAD_DISTRICT_CANDIDATES_ERROR:
         draft.districtCandidates = false;
+        break;
+
+      case types.GEOLOCATION_TO_DISTRICT:
+        draft.geoLocation = false;
+        break;
+
+      case types.GEOLOCATION_TO_DISTRICT_SUCCESS:
+        // draft.geoLocation = action.geoLocation;
+        break;
+
+      case types.GEOLOCATION_TO_DISTRICT_ERROR:
+        draft.geoLocation = false;
         break;
     }
   });

@@ -13,6 +13,7 @@ import NextButton from 'components/shared/buttons/NextButton';
 import Wrapper from 'components/shared/Wrapper';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import Nav from 'containers/Nav';
+import GeoLocator from './GeoLocator';
 
 const StyledH2 = styled(H2)`
   padding: 40px 0 24px;
@@ -61,9 +62,10 @@ const Next = styled(Body12)`
   }
 `;
 
-function ZipFinderWrapper({ loadZipCallback }) {
+function ZipFinderWrapper({ loadZipCallback, currentLocationCallback }) {
   const [zip, setZip] = useState('');
   const [valid, setValid] = useState(false);
+  const [findGeoLocation, setFindGeoLocation] = useState(false);
 
   const onChangeText = event => {
     const text = event.target.value;
@@ -86,6 +88,9 @@ function ZipFinderWrapper({ loadZipCallback }) {
       loadZipCallback(zip);
     }
   };
+  const getLocation = () => {
+    setFindGeoLocation(true);
+  };
   return (
     <GrayWrapper>
       <Nav />
@@ -105,13 +110,16 @@ function ZipFinderWrapper({ loadZipCallback }) {
         <Body11>
           We only use this information to find your voting district
         </Body11>
-        <LocationWrapper>
+        <LocationWrapper onClick={getLocation}>
           <img
             src="https://assets.thegoodparty.org/icons/location-user.svg"
             alt="location"
           />
           <Location>I’m Home, Use my Current Location</Location>
         </LocationWrapper>
+        {findGeoLocation && (
+          <GeoLocator currentLocationCallback={currentLocationCallback} />
+        )}
         <ButtonWrapper onClick={handleNextStep}>
           <NextButton active={valid}>
             <Next className={valid ? 'active' : ''}>SEE DISTRICT</Next>
@@ -124,6 +132,7 @@ function ZipFinderWrapper({ loadZipCallback }) {
 
 ZipFinderWrapper.propTypes = {
   loadZipCallback: PropTypes.func,
+  currentLocationCallback: PropTypes.func,
 };
 
 export default ZipFinderWrapper;

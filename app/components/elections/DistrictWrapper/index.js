@@ -27,21 +27,38 @@ const NotDistrict = styled(Body11)`
   font-weight: 500;
 `;
 
-
-
 const DistrictWrapper = ({
   district = {},
+  geoLocation = false,
   presidential = {},
   districtIncumbents = {},
   districtCandidates = {},
   content,
 }) => {
-  const { primaryCity, stateLong, stateShort, zip, cds } = district;
-  const shortState = stateShort ? stateShort.toUpperCase() : '';
+  let primaryCity;
+  let stateLong;
+  let zip;
+  let shortState;
   let districtNumber;
-  if (cds && cds.length > 0) {
-    districtNumber = cds[0].code;
+
+  if (geoLocation) {
+    const { normalizedAddess, district } = geoLocation;
+    primaryCity = normalizedAddess.city;
+    stateLong = geoLocation.state;
+    shortState = geoLocation.state.toUpperCase();
+    districtNumber = district.code;
+  } else {
+    const { stateShort, cds } = district;
+    primaryCity = district.primaryCity;
+    stateLong = district.stateLong;
+    zip = district.zip;
+
+    shortState = stateShort ? stateShort.toUpperCase() : '';
+    if (cds && cds.length > 0) {
+      districtNumber = cds[0].code;
+    }
   }
+
   let senateInc = { good: [], notGood: [] };
   let houseInc = { good: [], notGood: [] };
   const { houseIncumbent, senateIncumbents } = districtIncumbents;
@@ -141,7 +158,9 @@ const DistrictWrapper = ({
 };
 
 DistrictWrapper.propTypes = {
-  district: PropTypes.object,
+  district: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  geoLocation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+
   presidential: PropTypes.object,
   districtIncumbents: PropTypes.object,
   districtCandidates: PropTypes.object,

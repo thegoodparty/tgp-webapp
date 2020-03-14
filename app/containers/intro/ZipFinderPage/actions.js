@@ -67,6 +67,21 @@ const loadDistrictCandidatesActionError = error => ({
   error,
 });
 
+const geolocationToDistrictAction = coords => ({
+  type: types.GEOLOCATION_TO_DISTRICT,
+  coords,
+});
+
+const geolocationToDistrictActionSuccess = geoLocation => ({
+  type: types.GEOLOCATION_TO_DISTRICT_SUCCESS,
+  geoLocation,
+});
+
+const geolocationToDistrictActionError = error => ({
+  type: types.GEOLOCATION_TO_DISTRICT_ERROR,
+  error,
+});
+
 export default {
   loadZipAction,
   loadZipActionSuccess,
@@ -81,4 +96,7 @@ export default {
   loadDistrictCandidatesAction,
   loadDistrictCandidatesActionSuccess,
   loadDistrictCandidatesActionError,
+  geolocationToDistrictAction,
+  geolocationToDistrictActionSuccess,
+  geolocationToDistrictActionError,
 };

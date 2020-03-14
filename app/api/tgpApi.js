@@ -22,6 +22,10 @@ const api = {
     url: `${base}race-candidate/find-by-district`,
     method: 'GET',
   },
+  fullAddressToDistrict: {
+    url: `${base}entrance/address-to-district`,
+    method: 'GET',
+  },
   //
   // CONTENT
   //
