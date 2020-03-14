@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   padding: 16px 0;
 `;
 
-function GeoLocator({ currentLocationCallback, coords }) {
+function GeoLocator({ currentLocationCallback, coords, geoError }) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (coords) {
@@ -24,13 +24,20 @@ function GeoLocator({ currentLocationCallback, coords }) {
   });
 
   return (
-    <Wrapper>{loading ? <CircularProgress /> : <div>Found you!</div>}</Wrapper>
+    <Wrapper>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <div>{geoError && 'Error occurred while using your Geo Location'}</div>
+      )}
+    </Wrapper>
   );
 }
 
 GeoLocator.propTypes = {
   currentLocationCallback: PropTypes.func,
   coords: PropTypes.object,
+  geoError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default geolocated({

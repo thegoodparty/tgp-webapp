@@ -20,13 +20,20 @@ import reducer from './reducer';
 import saga from './saga';
 import districtActions from './actions';
 
-export function ZipFinderPage({ loadZipCallback, currentLocationCallback }) {
+export function ZipFinderPage({
+  loadZipCallback,
+  currentLocationCallback,
+  districtState,
+}) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
+
+  const { geoError } = districtState;
 
   const childProps = {
     loadZipCallback,
     currentLocationCallback,
+    geoError,
   };
 
   return (
@@ -43,10 +50,11 @@ export function ZipFinderPage({ loadZipCallback, currentLocationCallback }) {
 ZipFinderPage.propTypes = {
   loadZipCallback: PropTypes.func,
   currentLocationCallback: PropTypes.func,
+  districtState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  zipFinderPage: makeSelectZipFinderPage(),
+  districtState: makeSelectZipFinderPage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -55,7 +63,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(districtActions.loadZipAction(zip, true));
     },
     currentLocationCallback: coords => {
-      dispatch(districtActions.geolocationToDistrictAction(coords))
+      dispatch(districtActions.geolocationToDistrictAction(coords));
     },
   };
 }

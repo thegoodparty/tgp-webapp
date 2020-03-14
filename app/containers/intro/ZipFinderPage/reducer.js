@@ -14,6 +14,7 @@ export const initialState = {
   districtCandidates: false,
   loading: false,
   error: false,
+  geoError: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -76,14 +77,17 @@ const zipFinderPageReducer = (state = initialState, action) =>
 
       case types.GEOLOCATION_TO_DISTRICT:
         draft.geoLocation = false;
+        draft.geoError = false;
         break;
 
       case types.GEOLOCATION_TO_DISTRICT_SUCCESS:
-        // draft.geoLocation = action.geoLocation;
+        draft.geoLocation = action.geoLocation;
+        draft.geoError = false;
         break;
 
       case types.GEOLOCATION_TO_DISTRICT_ERROR:
         draft.geoLocation = false;
+        draft.geoError = action.error;
         break;
     }
   });

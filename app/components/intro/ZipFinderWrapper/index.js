@@ -62,7 +62,11 @@ const Next = styled(Body12)`
   }
 `;
 
-function ZipFinderWrapper({ loadZipCallback, currentLocationCallback }) {
+function ZipFinderWrapper({
+  loadZipCallback,
+  currentLocationCallback,
+  geoError,
+}) {
   const [zip, setZip] = useState('');
   const [valid, setValid] = useState(false);
   const [findGeoLocation, setFindGeoLocation] = useState(false);
@@ -118,7 +122,7 @@ function ZipFinderWrapper({ loadZipCallback, currentLocationCallback }) {
           <Location>I’m Home, Use my Current Location</Location>
         </LocationWrapper>
         {findGeoLocation && (
-          <GeoLocator currentLocationCallback={currentLocationCallback} />
+          <GeoLocator currentLocationCallback={currentLocationCallback} geoError={geoError} />
         )}
         <ButtonWrapper onClick={handleNextStep}>
           <NextButton active={valid}>
@@ -133,6 +137,7 @@ function ZipFinderWrapper({ loadZipCallback, currentLocationCallback }) {
 ZipFinderWrapper.propTypes = {
   loadZipCallback: PropTypes.func,
   currentLocationCallback: PropTypes.func,
+  geoError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ZipFinderWrapper;
