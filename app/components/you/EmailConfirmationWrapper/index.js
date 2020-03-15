@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { H1, H3 } from 'components/shared/typogrophy/index';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import tgpTheme from 'theme/index';

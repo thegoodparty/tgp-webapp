@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
-import { Body, Body13, H2, H3 } from 'components/shared/typogrophy/index';
+import Nav from 'containers/shared/Nav';
+import { Body13, H3 } from 'components/shared/typogrophy/index';
 import IntroCarousel from 'components/intro/ThreeStepsWrapper/IntroCarousel';
 import EventSnippet from 'components/shared/EventSnippet';
 import articlesHelper from 'helpers/articlesHelper';
 import TopQuestions from 'components/shared/TopQuestions';
-import Ama from 'components/shared/Ama';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
+import AmaContainer from 'containers/shared/AmaContainer';
 
 const EventsWrapper = styled.div`
   margin-top: 50px;
@@ -60,7 +60,7 @@ const PartyWrapper = ({ content }) => {
         )}
         <TopQuestions articles={articles} />
       </Wrapper>
-      <Ama />
+      <AmaContainer />
     </div>
   );
 };

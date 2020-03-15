@@ -19,8 +19,8 @@ import saga from 'containers/you/YouPage/saga';
 
 import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
-import { makeSelectLocation } from '../App/selectors';
-import { getCookie } from '../../helpers/cookieHelper';
+import { makeSelectLocation } from 'containers/App/selectors';
+import { getCookie } from 'helpers/cookieHelper';
 
 export function Nav({ userState, dispatch, locationState, navigateCallback }) {
   useInjectReducer({ key: 'user', reducer });

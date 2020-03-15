@@ -6,7 +6,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { slugify } from 'helpers/articlesHelper';
 import { Body, H2 } from 'components/shared/typogrophy';
 

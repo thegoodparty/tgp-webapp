@@ -34,7 +34,7 @@ import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';
 import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
 
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
 

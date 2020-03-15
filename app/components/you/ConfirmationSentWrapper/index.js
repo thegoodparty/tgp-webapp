@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { Body13, H1, H3 } from 'components/shared/typogrophy/index';
 import EmailConfirmationImage from 'images/email-confirmation.svg';
 import tgpTheme from 'theme/index';

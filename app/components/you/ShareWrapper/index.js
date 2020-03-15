@@ -5,7 +5,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { Body, Body13, H2, H3 } from 'components/shared/typogrophy/index';
 import BlueButton from 'components/shared/buttons/BlueButton';
 import ShareImage from 'images/share.png';

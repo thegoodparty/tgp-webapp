@@ -72,5 +72,11 @@ const api = {
     method: 'PUT',
     withAuth: true,
   },
+
+  // General
+  sendAma: {
+    url: `${base}notifications/email-ama`,
+    method: 'POST',
+  },
 };
 export default api;

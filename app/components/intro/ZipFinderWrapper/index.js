@@ -12,7 +12,7 @@ import { H2, Body, Body11, Body13, Body12 } from 'components/shared/typogrophy';
 import NextButton from 'components/shared/buttons/NextButton';
 import Wrapper from 'components/shared/Wrapper';
 import GrayWrapper from 'components/shared/GrayWrapper';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import GeoLocator from './GeoLocator';
 
 const StyledH2 = styled(H2)`

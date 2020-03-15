@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { Body, H2, H1 } from 'components/shared/typogrophy';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';

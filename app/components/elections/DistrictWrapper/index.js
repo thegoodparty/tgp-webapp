@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
+import AmaContainer from 'containers/shared/AmaContainer';
 import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import GrayWrapper from 'components/shared/GrayWrapper';
-import Ama from 'components/shared/Ama';
 import GoodPartyStats from '../GoodPartyStats';
 import VsCard from '../VsCard';
 
@@ -145,7 +145,7 @@ const DistrictWrapper = ({
             <GoodPartyStats />
             <TopQuestions articles={articles} />
           </Wrapper>
-          <Ama />
+          <AmaContainer />
         </>
       ) : (
         <Wrapper>
@@ -165,7 +165,6 @@ DistrictWrapper.propTypes = {
   districtIncumbents: PropTypes.object,
   districtCandidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-
 };
 
 export default DistrictWrapper;

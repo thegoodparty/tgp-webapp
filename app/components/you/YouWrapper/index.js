@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { H3 } from 'components/shared/typogrophy/index';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
 import CapitalImage from 'images/capital.svg';

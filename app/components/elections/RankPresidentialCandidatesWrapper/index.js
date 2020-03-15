@@ -8,7 +8,7 @@ import Wrapper from 'components/shared/Wrapper';
 import GreyWrapper from 'components/shared/GrayWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { Body, Body12, Body9, H1, H3 } from 'components/shared/typogrophy';
 import Card from 'components/shared/Card';
 import CandidateAvatar from 'components/shared/CandidateAvatar';

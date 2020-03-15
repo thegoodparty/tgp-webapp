@@ -6,17 +6,15 @@ import styled from 'styled-components';
 import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { Body, H1 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
-import Ama from 'components/shared/Ama';
+import AmaContainer from 'containers/shared/AmaContainer';
 import articlesHelper from 'helpers/articlesHelper';
 import BlueButton from 'components/shared/buttons/BlueButton';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import GoodPartyStats from '../GoodPartyStats';
 import VsList from '../VsList';
-
-
 
 const Description = styled(Body)`
   margin-top: 10px;
@@ -65,7 +63,7 @@ const ElectionWrapper = ({ electionType, candidates = {}, content }) => {
             <GoodPartyStats />
             <TopQuestions articles={articles} />
           </Wrapper>
-          <Ama />
+          <AmaContainer />
         </>
       ) : (
         <Wrapper>

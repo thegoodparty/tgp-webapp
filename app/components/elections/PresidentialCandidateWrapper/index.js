@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/Nav';
+import Nav from 'containers/shared/Nav';
 import { H1, Body13, Body, Body9 } from 'components/shared/typogrophy';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
