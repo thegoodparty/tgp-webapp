@@ -7,7 +7,7 @@ import { Body, H3 } from 'components/shared/typogrophy';
 import { OutlinedButton } from './buttons';
 
 const Wrapper = styled.div`
-  margin: 38px auto 3.5rem;
+  margin: 38px auto 4.5rem;
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 0;
@@ -17,6 +17,11 @@ const Wrapper = styled.div`
 const Title = styled(H3)`
   padding: 0 16px;
 `;
+
+const ButtonWrapper = styled.div`
+  padding: 0 16px;
+`;
+
 const StyledTextField = styled(TextField)`
   && {
     background-color: ;#FFF;
@@ -56,14 +61,15 @@ const Ama = ({ sendAmaCallback }) => {
           placeholder="Ask questions and help improve the FAQ"
           onChange={onChangeMessage}
         />
-
-        <OutlinedButton
-          fullWidth
-          active={message !== ''}
-          onClick={handleSubmit}
-        >
-          Send
-        </OutlinedButton>
+        <ButtonWrapper>
+          <OutlinedButton
+            fullWidth
+            active={message !== ''}
+            onClick={handleSubmit}
+          >
+            Send
+          </OutlinedButton>
+        </ButtonWrapper>
       </form>
     </Wrapper>
   );
