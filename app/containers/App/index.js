@@ -37,6 +37,7 @@ import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
+import SnackbarContainer from 'containers/shared/SnackbarContainer';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -96,6 +97,7 @@ export default function App() {
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
+      <SnackbarContainer />
     </div>
   );
 }

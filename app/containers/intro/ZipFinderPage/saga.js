@@ -5,6 +5,7 @@ import requestHelper from 'helpers/requestHelper';
 import { getCookie, setCookie } from 'helpers/cookieHelper';
 import { GOOGLE_API_KEY } from 'api/ENV';
 
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
@@ -98,6 +99,11 @@ function* gelocationToDistrict(action) {
         setCookie('geoAddress', JSON.stringify({ ...response }));
       } else {
         // error message here
+        yield put(
+          snackbarActions.showSnakbarAction(
+            'An Error occurred while looking for your geoLocation',
+          ),
+        );
         yield put(actions.geolocationToDistrictActionError({ message: 'err' }));
       }
     } else {

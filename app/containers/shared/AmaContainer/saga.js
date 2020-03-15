@@ -2,6 +2,8 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+
 import types from './constants';
 
 function* sendAma(action) {
@@ -18,6 +20,7 @@ function* sendAma(action) {
       )}`,
       '_blank',
     );
+    yield put(snackbarActions.showSnakbarAction('Thank you for reaching out.'));
   } catch (error) {
     console.log(error);
   }

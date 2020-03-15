@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import amaContainerReducer from '../reducer';
+import snackbarContainerReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe('amaContainerReducer', () => {
+describe('snackbarContainerReducer', () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,7 +13,7 @@ describe('amaContainerReducer', () => {
 
   it('returns the initial state', () => {
     const expectedResult = state;
-    expect(amaContainerReducer(undefined, {})).toEqual(expectedResult);
+    expect(snackbarContainerReducer(undefined, {})).toEqual(expectedResult);
   });
 
   /**
