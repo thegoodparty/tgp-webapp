@@ -72,7 +72,10 @@ function ZipFinderWrapper({
   const [findGeoLocation, setFindGeoLocation] = useState(false);
   const inputRef = useRef();
   useEffect(() => {
-    inputRef.current.focus();
+    console.log(inputRef.current);
+    setTimeout(() => {
+      inputRef.current.focus();
+    }, 200);
   }, [inputRef]);
 
   const onChangeText = event => {
