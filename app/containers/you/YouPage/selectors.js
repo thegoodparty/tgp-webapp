@@ -21,5 +21,17 @@ const makeSelectUser = () =>
     substate => substate,
   );
 
+const makeSelectToken = () =>
+  createSelector(
+    selectUserDomain,
+    substate => substate.token,
+  );
+
+const makeSelectUserObj = () =>
+  createSelector(
+    selectUserDomain,
+    substate => substate.user,
+  );
+
 export default makeSelectUser;
-export { selectUserDomain };
+export { selectUserDomain, makeSelectToken, makeSelectUserObj };

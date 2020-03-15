@@ -1,7 +1,8 @@
-import { call } from 'redux-saga/effects';
+import { call, select } from 'redux-saga/effects';
+
+import { makeSelectToken } from 'containers/you/YouPage/selectors';
 import { headersOptions } from './httpHeaderHelper';
 import fetchHelper from './fetchHelper';
-// import { selectToken } from '../redux/user/selectors';
 
 export default function* requestHelper(api, data) {
   let { url } = api;
@@ -21,7 +22,7 @@ export default function* requestHelper(api, data) {
   }
   let token;
   if (withAuth) {
-    // token = yield select(selectToken);
+    token = yield select(makeSelectToken());
   }
 
   const requestOptions = headersOptions(body, api.method, token);

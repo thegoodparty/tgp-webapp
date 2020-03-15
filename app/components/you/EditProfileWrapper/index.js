@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import BackIcon from '@material-ui/icons/ChevronLeft';
+import Hidden from '@material-ui/core/Hidden';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -19,6 +21,7 @@ import LoadingAnimation from 'components/shared/LoadingAnimation';
 import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import TextField from '@material-ui/core/TextField';
 import LockIcon from '@material-ui/icons/Lock';
+import { BlueButton } from '../../shared/buttons';
 
 const Row = styled.div`
   display: flex;
@@ -109,7 +112,7 @@ const Verified = styled.div`
   color: ${({ theme }) => theme.colors.green};
 `;
 
-const EditProfileWrapper = ({ user, signoutCallback }) => {
+const EditProfileWrapper = ({ user, updateProfileCallback }) => {
   const { name, feedback, zipCode, email, isEmailVerified } = user;
   const [newName, setNewName] = useState(name);
   const [newFeedback, setNewFeedback] = useState(feedback);
@@ -142,16 +145,30 @@ const EditProfileWrapper = ({ user, signoutCallback }) => {
   };
 
   const handleSubmit = () => {
-    // if (validateEmail()) {
-    //   loginCallback(email);
-    // }
+    if (canSave()) {
+      const updatedFields = {};
+      if (newName !== name) {
+        updatedFields.name = newName;
+      }
+      if (newFeedback !== feedback) {
+        updatedFields.feedback = newFeedback;
+      }
+      updateProfileCallback(updatedFields);
+    }
   };
+
+  const canSave = () => newName !== name || newFeedback !== feedback;
 
   return (
     <div>
       <Nav />
       <Wrapper white>
         <MobileHeader />
+        <Hidden smDown>
+          <Link to="/you">
+            <BackIcon style={{ fontSize: '34px' }} />
+          </Link>
+        </Hidden>
         <Row>
           <H1>Edit Profile</H1>
           <UserInitials>
@@ -179,8 +196,11 @@ const EditProfileWrapper = ({ user, signoutCallback }) => {
             fullWidth
             onChange={onChangeFeedback}
           />
+          <BlueButton fullWidth disabled={!canSave()} onClick={handleSubmit}>
+            Save
+          </BlueButton>
         </Form>
-        <Row>
+        <Row style={{ marginTop: '48px' }}>
           <Body11>Your Home Location</Body11>
           <StyledBody14>Edit</StyledBody14>
         </Row>
@@ -210,7 +230,7 @@ const EditProfileWrapper = ({ user, signoutCallback }) => {
 
 EditProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  signoutCallback: PropTypes.func,
+  updateProfileCallback: PropTypes.func,
 };
 
 export default EditProfileWrapper;

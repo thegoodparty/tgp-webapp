@@ -15,21 +15,32 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const BlueButton = ({ fullWidth = false, onClick, children }) => (
+const BlueButton = ({
+  fullWidth = false,
+  onClick,
+  children,
+  disabled = false,
+}) => (
   <StyledButton
     color="primary"
     fullWidth={fullWidth}
     onClick={onClick}
     variant="contained"
+    disabled={disabled}
   >
     {children}
   </StyledButton>
 );
 
 BlueButton.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.string,
+  ]),
   fullWidth: PropTypes.bool,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 export default BlueButton;

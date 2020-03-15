@@ -80,6 +80,15 @@ const userReducer = (state = initialState, action) =>
           draft.user = copyUser;
           break;
         }
+      case types.UPDATE_USER:
+        const { updatedFields } = action;
+        if (updatedFields.name) {
+          draft.user.name = updatedFields.name;
+        }
+        if (updatedFields.feedback) {
+          draft.user.feedback = updatedFields.feedback;
+        }
+        break;
     }
   });
 

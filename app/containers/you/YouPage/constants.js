@@ -16,6 +16,8 @@ const LOGIN = '@@tgp/user/LOGIN';
 
 const UPDATE_PRESIDENTIAL_RANK = '@@tgp/user/UPDATE_PRESIDENTIAL_RANK';
 
+const UPDATE_USER = '@@tgp/user/UPDATE_USER';
+
 export default {
   REGISTER,
   REGISTER_SUCCESS,
@@ -28,4 +30,5 @@ export default {
   SIGN_OUT,
   LOGIN,
   UPDATE_PRESIDENTIAL_RANK,
+  UPDATE_USER,
 };

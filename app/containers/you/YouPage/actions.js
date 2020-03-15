@@ -57,6 +57,11 @@ const updatePresidentialRankAction = rank => ({
   rank,
 });
 
+const updateUserAction = updatedFields => ({
+  type: types.UPDATE_USER,
+  updatedFields,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -69,4 +74,5 @@ export default {
   signoutAction,
   loginAction,
   updatePresidentialRankAction,
+  updateUserAction,
 };

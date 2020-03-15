@@ -12,16 +12,13 @@ import { compose } from 'redux';
 
 import SnackbarWrapper from 'components/shared/SnackbarWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectSnackbarContainer from './selectors';
 import reducer from './reducer';
-import saga from './saga';
 import snackbarActions from './actions';
 
 export function SnackbarContainer({ snackbarState, closeCallback }) {
   useInjectReducer({ key: 'snackbarContainer', reducer });
-  // useInjectSaga({ key: 'snackbarContainer', saga });
 
   const { message, severity, isOpen } = snackbarState;
   const childProps = {
@@ -30,8 +27,6 @@ export function SnackbarContainer({ snackbarState, closeCallback }) {
     isOpen,
     closeCallback,
   };
-
-  console.log(snackbarState);
 
   return <SnackbarWrapper {...childProps} />;
 }

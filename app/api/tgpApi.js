@@ -73,6 +73,12 @@ const api = {
     withAuth: true,
   },
 
+  updateUser: {
+    url: `${base}user/update-user`,
+    method: 'PUT',
+    withAuth: true,
+  },
+
   // General
   sendAma: {
     url: `${base}notifications/email-ama`,

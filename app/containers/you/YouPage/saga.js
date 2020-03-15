@@ -10,7 +10,7 @@ import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
 
-import selectUser from './selectors';
+import selectUser, { makeSelectUserObj } from './selectors';
 import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 function* register(action) {
@@ -133,10 +133,31 @@ function* login(action) {
   }
 }
 
+function* updateUser(action) {
+  try {
+    const { updatedFields } = action;
+    const api = tgpApi.updateUser;
+    const payload = {
+      ...updatedFields,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Your Profile is updated'));
+    const user = yield select(makeSelectUserObj());
+    console.log('user', user);
+    setCookie('user', JSON.stringify(user));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error updating your profile', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
   const resendAction = yield takeLatest(types.RESEND_EMAIL, resendEmail);
   const confirmAction = yield takeLatest(types.CONFIRM_EMAIL, confirmEmail);
   const loginAction = yield takeLatest(types.LOGIN, login);
+  const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
 }

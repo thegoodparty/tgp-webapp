@@ -20,7 +20,7 @@ import { createStructuredSelector } from 'reselect';
 
 import EditProfileWrapper from 'components/you/EditProfileWrapper';
 
-export function EditProfilePage({ userState }) {
+export function EditProfilePage({ userState, updateProfileCallback }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -28,6 +28,7 @@ export function EditProfilePage({ userState }) {
 
   const childProps = {
     user,
+    updateProfileCallback,
   };
 
   return (
@@ -43,11 +44,15 @@ export function EditProfilePage({ userState }) {
 
 EditProfilePage.propTypes = {
   userState: PropTypes.object,
+  updateProfileCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    updateProfileCallback: updatedFields => {
+      dispatch(userActions.updateUserAction(updatedFields));
+    },
   };
 }
 
