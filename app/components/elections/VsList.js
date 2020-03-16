@@ -9,6 +9,7 @@ import {
   partyResolver,
   presidentialCandidateRoute,
 } from 'helpers/electionsHelper';
+import { OutlinedButton } from '../shared/buttons';
 
 const Row = styled.div`
   display: flex;
@@ -67,13 +68,13 @@ const Line = styled.div`
   margin-top: 20px;
 `;
 
-const Why = styled(Body9)`
+const FiltersWRapper = styled.div`
   position: absolute;
   top: 0;
   background-color: ${({ theme }) => theme.colors.grayBg};
   padding: 10px 0;
-  width: 40px;
-  left: -20px;
+  width: 100px;
+  left: -50px;
   text-align: center;
 `;
 
@@ -85,6 +86,10 @@ const Vs = styled(Body11)`
   width: 20px;
   left: -10px;
   text-align: center;
+`;
+
+const StyledBody9 = styled(Body9)`
+  color: ${({ theme }) => theme.colors.blue};
 `;
 
 const noCandidateImage = 'https://assets.thegoodparty.org/no-candidate.svg';
@@ -116,7 +121,11 @@ const VsList = ({ candidates = {} }) => {
         ))}
       </Side>
       <Middle>
-        <Why>WHY?</Why>
+        <FiltersWRapper>
+          <OutlinedButton active>
+            <StyledBody9>FILTERS</StyledBody9>
+          </OutlinedButton>
+        </FiltersWRapper>
         <Line />
         <Vs>VS</Vs>
       </Middle>

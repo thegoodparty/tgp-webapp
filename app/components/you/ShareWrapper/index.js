@@ -79,7 +79,7 @@ const ShareWrapper = ({ content }) => {
               <StyledBody>SHARE</StyledBody>
             </BlueButton>
           )}
-          <div className="text-center">
+          <div className="text-center pointer">
             <CopyToClipboard
               text="https://www.thegoodparty.org"
               onCopy={() => setCopied(true)}

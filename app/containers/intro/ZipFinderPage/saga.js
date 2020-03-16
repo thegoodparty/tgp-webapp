@@ -102,6 +102,7 @@ function* gelocationToDistrict(action) {
         yield put(
           snackbarActions.showSnakbarAction(
             'An Error occurred while looking for your geoLocation',
+            'error',
           ),
         );
         yield put(actions.geolocationToDistrictActionError({ message: 'err' }));

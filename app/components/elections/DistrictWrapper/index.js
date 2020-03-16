@@ -68,8 +68,8 @@ const DistrictWrapper = ({
   const [cdsWithPerc, setCdsWithPerc] = useState([]);
 
   if (geoLocation) {
-    const { normalizedAddess, district } = geoLocation;
-    primaryCity = normalizedAddess.city;
+    const { normalizedAddress, district } = geoLocation;
+    primaryCity = normalizedAddress.city;
     stateLong = geoLocation.state;
     shortState = geoLocation.state.toUpperCase();
     districtNumber = district.code;
