@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Hidden from '@material-ui/core/Hidden';
@@ -163,6 +164,12 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
       </Wrapper>
     </div>
   );
+};
+
+RegisterWrapper.propTypes = {
+  registerCallback: PropTypes.func,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
 };
 
 export default RegisterWrapper;

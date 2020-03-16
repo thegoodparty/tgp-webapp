@@ -15,8 +15,7 @@ import {
   H3,
   Body,
 } from 'components/shared/typogrophy/index';
-import { fullFirstLastInitials, getInitials } from 'helpers/userHelper';
-import { numberNth } from 'helpers/numberHelper';
+import { getInitials } from 'helpers/userHelper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import TextField from '@material-ui/core/TextField';
@@ -131,7 +130,7 @@ const AddPhone = styled(Body)`
 `;
 
 const EditProfileWrapper = ({ user, updateProfileCallback }) => {
-  const { name, feedback, zipCode, isEmailVerified } = user;
+  const { name, feedback, zipCode, isEmailVerified, congDistrict } = user;
   const initialPhone = user.phone ? formatToPhone(user.phone) : false;
   const initialEmail = user.email;
   const [phone, setPhone] = useState(initialPhone);
@@ -167,7 +166,15 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
 
   let districtName = '';
   if (cds && cds.length > 0) {
-    districtName = cds[0].name;
+    if (congDistrict) {
+      cds.forEach(district => {
+        if (district.id === congDistrict) {
+          districtName = district.name;
+        }
+      });
+    } else {
+      districtName = cds[0].name;
+    }
   }
 
   const onChangeName = event => {

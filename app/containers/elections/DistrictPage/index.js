@@ -4,12 +4,13 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -24,11 +25,23 @@ import {
   makeSelectContent,
   makeSelectLocation,
 } from 'containers/App/selectors';
-import { getCookie } from 'helpers/cookieHelper';
+import makeSelectUser from 'containers/you/YouPage/selectors';
+import userActions from 'containers/you/YouPage/actions';
 
-export function DistrictPage({ content, districtState, zip, dispatch }) {
+export function DistrictPage({
+  content,
+  districtState,
+  zip,
+  cd,
+  dispatch,
+  changeDistrictCallback,
+  userState,
+}) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
+
+  const [cdIndex, setCdIndex] = useState(0);
+  const { user } = userState;
 
   const { zipWithDistricts } = districtState;
   const {
@@ -55,8 +68,23 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
       const { stateShort, cds } = zipWithDistricts;
       const shortState = stateShort ? stateShort.toUpperCase() : '';
       let districtNumber;
-      if (cds && cds.length > 0) {
-        districtNumber = cds[0].code;
+      console.log('user', user);
+
+      if (typeof cd !== 'undefined') {
+        setCdIndex(parseInt(cd, 10));
+      } else if (user && user.congDistrict && cds.length > 0) {
+        // no cd was given in url, and the user already set their cd, show that one.
+        cds.forEach((district, index) => {
+          if (district.id === user.congDistrict) {
+            setCdIndex(index);
+          }
+        });
+      }
+
+      if (cds.length < cdIndex) {
+        dispatch(push(`/elections/district/${zip}`));
+      } else if (cds && cds.length > cdIndex) {
+        districtNumber = cds[cdIndex].code;
       }
       if (shortState && districtNumber) {
         dispatch(
@@ -74,7 +102,7 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
         );
       }
     }
-  }, [zipWithDistricts, zip]);
+  }, [zipWithDistricts, zip, cd, user]);
 
   useEffect(() => {
     if (geoLocation) {
@@ -102,11 +130,14 @@ export function DistrictPage({ content, districtState, zip, dispatch }) {
 
   const childProps = {
     district: zipWithDistricts,
+    cdIndex,
     geoLocation,
     presidential,
     districtIncumbents,
     districtCandidates,
     content,
+    changeDistrictCallback,
+    user,
   };
 
   return (
@@ -125,12 +156,23 @@ DistrictPage.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
   zip: PropTypes.string,
+  cd: PropTypes.string,
+  changeDistrictCallback: PropTypes.func,
+  userState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
     zip: ownProps.match.params.zip,
+    cd: ownProps.match.params.cd,
+    changeDistrictCallback: (districtId, districtIndex, zip, user) => {
+      console.log(districtId, districtIndex);
+      dispatch(push(`/elections/district/${zip}/${districtIndex}`));
+      if (user) {
+        dispatch(userActions.updateUserAction({ districtId }));
+      }
+    },
   };
 }
 
@@ -138,6 +180,7 @@ const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
   districtState: makeSelectZipFinderPage(),
   search: makeSelectLocation(),
+  userState: makeSelectUser(),
 });
 
 const withConnect = connect(

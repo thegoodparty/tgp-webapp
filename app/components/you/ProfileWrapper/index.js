@@ -63,18 +63,21 @@ const BottomLink = styled(Body)`
 
 const ProfileWrapper = ({ user, signoutCallback }) => {
   let { presidentialRank } = user;
-  const { name, feedback, zipCode } = user;
-  const { zip, stateLong, stateShort, approxPctArr, primaryCity } = zipCode;
+  const { name, feedback, zipCode, congDistrict } = user;
+  const { zip, stateLong, stateShort, primaryCity, cds } = zipCode;
   if (typeof presidentialRank === 'string') {
     presidentialRank = JSON.parse(presidentialRank);
   }
   const shortState = stateShort ? stateShort.toUpperCase() : '';
-  let districtId = '';
-  if (approxPctArr) {
-    let pctArr = JSON.parse(approxPctArr);
-    if (pctArr.length > 0) {
-      districtId = pctArr[0].districtId;
-    }
+  let userDistrict = {};
+  if (congDistrict) {
+    cds.forEach(district => {
+      if (district.id === congDistrict) {
+        userDistrict = district;
+      }
+    });
+  } else {
+    userDistrict = cds[0]; // eslint-disable-line
   }
 
   const electionLink = `/elections/district/${zip}`;
@@ -91,7 +94,7 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
           <UserInitials>{getInitials(name)}</UserInitials>
           <H2>{fullFirstLastInitials(name)}</H2>
           <Body13 style={{ marginTop: '5px', marginBottom: '9px' }}>
-            {primaryCity}, {shortState}-{districtId}
+            {primaryCity}, {shortState}-{userDistrict.code}
           </Body13>
           <Body13>{feedback}</Body13>
         </Centered>
@@ -108,7 +111,8 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
         <Election>
           House:{' '}
           <ElectionData>
-            {numberNth(districtId)} District ({shortState}-{districtId})
+            {numberNth(userDistrict.code)} District ({shortState}-
+            {userDistrict.code})
           </ElectionData>
         </Election>
         <Link to={electionLink}>

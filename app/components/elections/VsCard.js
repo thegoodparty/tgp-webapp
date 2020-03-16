@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Card from 'components/shared/Card';
 import { H3, Body9, Body11 } from 'components/shared/typogrophy';
@@ -88,7 +89,7 @@ const VsCard = ({ title, candidates = [] }) => {
   if (candidates.length === 0 || (!good && !notGood)) {
     return (
       <Card>
-        <LoadingAnimation />
+        <CircularProgress />
       </Card>
     );
   }

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Collapse from '@material-ui/core/Collapse';
+
 import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -22,24 +24,48 @@ const Row = styled.div`
 const Spacer = styled.div`
   margin-top: 16px;
 `;
+
 const NotDistrict = styled(Body11)`
   color: ${({ theme }) => theme.colors.blue};
   font-weight: 500;
+  cursor: pointer;
+`;
+
+const CdWrapper = styled.div`
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fff;
+  border: solid 1px #fff;
+  cursor: pointer;
+  transition: border 0.4s;
+
+  &:hover,
+  &.active {
+    border: solid 1px ${({ theme }) => theme.colors.blue};
+    .active {
+      color: ${({ theme }) => theme.colors.blue};
+  }
 `;
 
 const DistrictWrapper = ({
   district = {},
   geoLocation = false,
+  cdIndex,
   presidential = {},
   districtIncumbents = {},
   districtCandidates = {},
   content,
+  changeDistrictCallback,
+  user,
 }) => {
   let primaryCity;
   let stateLong;
   let zip;
   let shortState;
   let districtNumber;
+
+  const [showCds, setShowCds] = useState(false);
+  const [cdsWithPerc, setCdsWithPerc] = useState([]);
 
   if (geoLocation) {
     const { normalizedAddess, district } = geoLocation;
@@ -55,7 +81,7 @@ const DistrictWrapper = ({
 
     shortState = stateShort ? stateShort.toUpperCase() : '';
     if (cds && cds.length > 0) {
-      districtNumber = cds[0].code;
+      districtNumber = cds[cdIndex].code;
     }
   }
 
@@ -102,6 +128,25 @@ const DistrictWrapper = ({
     });
   }
 
+  const { cds, approxPctArr } = district;
+  useEffect(() => {
+    const cdWithPerc = [];
+
+    const approxArr = approxPctArr ? JSON.parse(approxPctArr) : [];
+    approxArr.forEach(approxDist => {
+      cds.forEach(cd => {
+        if (approxDist.districtId === cd.id) {
+          cdWithPerc.push({ ...cd, pct: approxDist.pct });
+        }
+      });
+    });
+    setCdsWithPerc(cdWithPerc);
+  }, [cds]);
+
+  const toggleShowCds = () => {
+    setShowCds(prev => !prev);
+  };
+
   return (
     <GrayWrapper>
       {district && presidential ? (
@@ -121,10 +166,28 @@ const DistrictWrapper = ({
                 {stateLong} District {districtNumber} ({shortState}-
                 {districtNumber})
               </Body>
-              <Link to="/">
-                <NotDistrict>Not Your District?</NotDistrict>
-              </Link>
+              {cdsWithPerc.length > 1 && (
+                <NotDistrict onClick={toggleShowCds}>
+                  {showCds ? 'Select Your District' : 'Not Your District?'}
+                </NotDistrict>
+              )}
             </Row>
+            <Collapse in={showCds} timeout={600}>
+              {cdsWithPerc.map((cd, index) => (
+                <CdWrapper
+                  className={index === cdIndex && 'active'}
+                  key={cd.id}
+                  onClick={() => changeDistrictCallback(cd.id, index, zip, user)}
+                >
+                  <Body className={index === cdIndex && 'active'}>
+                    {cd.name}
+                  </Body>
+                  <Body11>
+                    {cd.pct}% of {zip} zip code population live in {cd.name}
+                  </Body11>
+                </CdWrapper>
+              ))}
+            </Collapse>
             <Spacer>
               <Body>
                 You have <strong>3</strong> relevant Federal elections to
@@ -165,6 +228,9 @@ DistrictWrapper.propTypes = {
   districtIncumbents: PropTypes.object,
   districtCandidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  cdIndex: PropTypes.number,
+  changeDistrictCallback: PropTypes.func,
 };
 
 export default DistrictWrapper;

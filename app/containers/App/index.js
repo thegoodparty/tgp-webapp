@@ -59,6 +59,11 @@ export default function App() {
         <Route exact path="/elections/district/:zip" component={DistrictPage} />
         <Route
           exact
+          path="/elections/district/:zip/:cd"
+          component={DistrictPage}
+        />
+        <Route
+          exact
           path="/elections/presidential-election"
           component={PresidentialElectionPage}
         />

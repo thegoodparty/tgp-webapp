@@ -136,12 +136,17 @@ function* login(action) {
 function* updateUser(action) {
   try {
     const { updatedFields } = action;
-    const api = tgpApi.updateUser;
+    let api;
+    if (updatedFields.districtId) {
+      api = tgpApi.updateAddress;
+    } else {
+      api = tgpApi.updateUser;
+    }
     const payload = {
       ...updatedFields,
     };
     const response = yield call(requestHelper, api, payload);
-    const { user } = response;;
+    const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
 
     setCookie('user', JSON.stringify(user));
