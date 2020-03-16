@@ -22,6 +22,7 @@ import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import TextField from '@material-ui/core/TextField';
 import LockIcon from '@material-ui/icons/Lock';
 import { BlueButton } from '../../shared/buttons';
+import { formatToPhone } from '../../../helpers/phoneHelper';
 
 const Row = styled.div`
   display: flex;
@@ -112,10 +113,33 @@ const Verified = styled.div`
   color: ${({ theme }) => theme.colors.green};
 `;
 
+const PhoneWrapper = styled.div`
+  margin: 20px 0 36px;
+`;
+
+const AddPhoneLabel = styled(Body11)`
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 500;
+`;
+
+const AddPhone = styled(Body)`
+  color: ${({ theme }) => theme.colors.blue};
+  margin-top: 10px;
+  padding-bottom: 16px;
+  border-bottom: solid 1px ${({ theme }) => theme.colors.gray9};
+  cursor: pointer;
+`;
+
 const EditProfileWrapper = ({ user, updateProfileCallback }) => {
-  const { name, feedback, zipCode, email, isEmailVerified } = user;
+  const { name, feedback, zipCode, isEmailVerified } = user;
+  const initialPhone = user.phone ? formatToPhone(user.phone) : false;
+  const initialEmail = user.email;
+  const [phone, setPhone] = useState(initialPhone);
+  const [email, setEmail] = useState(initialEmail);
+  const [digitsPhone, setDigitsPhone] = useState(false);
   const [newName, setNewName] = useState(name);
   const [newFeedback, setNewFeedback] = useState(feedback);
+  const [editPhone, setEditPhone] = useState(false);
   if (!user) {
     return (
       <div>
@@ -124,6 +148,20 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
       </div>
     );
   }
+
+  // phone
+  const phoneReg = /^(\([0-9]{3}\))\s[0-9]{3}\s-\s[0-9]{4}$/;
+  const onChangePhone = event => {
+    const formattedPhone = formatToPhone(event.target.value);
+    setPhone(formattedPhone);
+    const validPhone = phoneReg.test(formattedPhone);
+
+    if (validPhone) {
+      setDigitsPhone(formattedPhone.replace(/\D/g, '').substring(0, 10));
+    } else {
+      setDigitsPhone(false);
+    }
+  };
 
   const { stateLong, cds } = zipCode;
 
@@ -134,6 +172,10 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
 
   const onChangeName = event => {
     setNewName(event.target.value);
+  };
+
+  const onChangeEmail = event => {
+    setEmail(event.target.value);
   };
   const onChangeFeedback = event => {
     setNewFeedback(event.target.value);
@@ -157,7 +199,32 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
     }
   };
 
+  const handleSubmitPhoneEmailForm = e => {
+    e.preventDefault();
+    handlePhoneEmailSubmit();
+  };
+
+  const handlePhoneEmailSubmit = () => {
+    const updatedFields = {};
+    if (digitsPhone !== phone) {
+      updatedFields.phone = digitsPhone;
+    }
+    if (email !== initialEmail && validateEmail()) {
+      updatedFields.email = email;
+    }
+    updateProfileCallback(updatedFields);
+  };
+
+  const validateEmail = () => {
+    const validEmail = /\S+@\S+\.\S+/;
+    return validEmail.test(email);
+  };
+
   const canSave = () => newName !== name || newFeedback !== feedback;
+
+  const canSavePhoneEmail = () =>
+    (digitsPhone && phone !== initialPhone) ||
+    (validateEmail() && email !== initialEmail);
 
   return (
     <div>
@@ -202,7 +269,9 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
         </Form>
         <Row style={{ marginTop: '48px' }}>
           <Body11>Your Home Location</Body11>
-          <StyledBody14>Edit</StyledBody14>
+          <Link to="/intro/zip-finder">
+            <StyledBody14>Edit</StyledBody14>
+          </Link>
         </Row>
         <Address>{stateLong}</Address>
         <Address>{districtName}</Address>
@@ -213,15 +282,46 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
           </Private>
           <Body11>Not shown anywhere, only used for login and contact</Body11>
           <br />
-          <Input
-            value={email}
-            disabled
-            label="Email"
-            size="medium"
-            fullWidth
-            style={{ marginBottom: '16px' }}
-          />
-          {isEmailVerified && <Verified>VERIFIED</Verified>}
+          {!phone && !editPhone && (
+            <PhoneWrapper>
+              <AddPhoneLabel>Phone Number</AddPhoneLabel>
+              <AddPhone onClick={() => setEditPhone(true)}>Add Phone</AddPhone>
+            </PhoneWrapper>
+          )}
+          <form noValidate onSubmit={handleSubmitPhoneEmailForm}>
+            {(phone || editPhone) && (
+              <PhoneWrapper>
+                <Input
+                  value={phone}
+                  label="Phone"
+                  size="medium"
+                  autoFocus={editPhone}
+                  fullWidth
+                  onChange={onChangePhone}
+                  style={{ marginBottom: '24px' }}
+                />
+              </PhoneWrapper>
+            )}
+            <Input
+              value={email}
+              onChange={onChangeEmail}
+              label="Email"
+              size="medium"
+              fullWidth
+              style={{ marginBottom: '16px' }}
+            />
+            {isEmailVerified && email === initialEmail && (
+              <Verified>VERIFIED</Verified>
+            )}
+            <BlueButton
+              fullWidth
+              disabled={!canSavePhoneEmail()}
+              onClick={handlePhoneEmailSubmit}
+              style={{ margin: '24px 0' }}
+            >
+              Save
+            </BlueButton>
+          </form>
         </PrivateWrapper>
       </Wrapper>
     </div>

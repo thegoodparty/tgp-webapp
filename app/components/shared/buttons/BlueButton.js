@@ -20,6 +20,7 @@ const BlueButton = ({
   onClick,
   children,
   disabled = false,
+  style = {},
 }) => (
   <StyledButton
     color="primary"
@@ -27,6 +28,7 @@ const BlueButton = ({
     onClick={onClick}
     variant="contained"
     disabled={disabled}
+    style={style}
   >
     {children}
   </StyledButton>

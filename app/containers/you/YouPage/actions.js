@@ -62,6 +62,11 @@ const updateUserAction = updatedFields => ({
   updatedFields,
 });
 
+const updateUserActionSuccess = user => ({
+  type: types.UPDATE_USER_SUCCESS,
+  user,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -75,4 +80,5 @@ export default {
   loginAction,
   updatePresidentialRankAction,
   updateUserAction,
+  updateUserActionSuccess,
 };

@@ -140,11 +140,12 @@ function* updateUser(action) {
     const payload = {
       ...updatedFields,
     };
-    yield call(requestHelper, api, payload);
-    yield put(snackbarActions.showSnakbarAction('Your Profile is updated'));
-    const user = yield select(makeSelectUserObj());
-    console.log('user', user);
+    const response = yield call(requestHelper, api, payload);
+    const { user } = response;;
+    yield put(actions.updateUserActionSuccess(user));
+
     setCookie('user', JSON.stringify(user));
+    yield put(snackbarActions.showSnakbarAction('Your Profile is updated'));
   } catch (error) {
     console.log(error);
     yield put(

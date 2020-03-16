@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from '@material-ui/core/Input';
@@ -66,17 +66,11 @@ function ZipFinderWrapper({
   loadZipCallback,
   currentLocationCallback,
   geoError,
+  user,
 }) {
   const [zip, setZip] = useState('');
   const [valid, setValid] = useState(false);
   const [findGeoLocation, setFindGeoLocation] = useState(false);
-  const inputRef = useRef();
-  useEffect(() => {
-    console.log(inputRef.current);
-    setTimeout(() => {
-      inputRef.current.focus();
-    }, 200);
-  }, [inputRef]);
 
   const onChangeText = event => {
     const text = event.target.value;
@@ -96,7 +90,7 @@ function ZipFinderWrapper({
 
   const handleNextStep = () => {
     if (valid) {
-      loadZipCallback(zip);
+      loadZipCallback(zip, user);
     }
   };
   const getLocation = () => {
@@ -115,7 +109,6 @@ function ZipFinderWrapper({
             maxLength={5}
             autoFocus
             inputProps={{ autoFocus: true }}
-            inputRef={inputRef}
             type="tel"
             placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;"
           />
@@ -150,6 +143,7 @@ ZipFinderWrapper.propTypes = {
   loadZipCallback: PropTypes.func,
   currentLocationCallback: PropTypes.func,
   geoError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ZipFinderWrapper;
