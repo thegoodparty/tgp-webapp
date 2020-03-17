@@ -67,6 +67,21 @@ const loadDistrictCandidatesActionError = error => ({
   error,
 });
 
+const loadSenateCandidatesAction = state => ({
+  type: types.LOAD_SENATE_CANDIDATES,
+  state,
+});
+
+const loadSenateCandidatesActionSuccess = senateCandidates => ({
+  type: types.LOAD_SENATE_CANDIDATES_SUCCESS,
+  senateCandidates,
+});
+
+const loadSenateCandidatesActionError = error => ({
+  type: types.LOAD_SENATE_CANDIDATES_ERROR,
+  error,
+});
+
 const geolocationToDistrictAction = coords => ({
   type: types.GEOLOCATION_TO_DISTRICT,
   coords,
@@ -105,4 +120,7 @@ export default {
   geolocationToDistrictActionSuccess,
   geolocationToDistrictActionError,
   changeFiltersAction,
+  loadSenateCandidatesAction,
+  loadSenateCandidatesActionSuccess,
+  loadSenateCandidatesActionError,
 };

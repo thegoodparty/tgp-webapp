@@ -14,6 +14,9 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'LP') {
     return 'LIBERTARIAN';
   }
+  if (partyLetter === 'I') {
+    return 'INDEPENDENT';
+  }
   return '';
 };
 

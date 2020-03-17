@@ -3,10 +3,11 @@
  * ZipFinderPage reducer
  *
  */
+
 import produce from 'immer';
-import types from './constants';
 import { defaultFilters } from 'helpers/electionsHelper';
-import { setCookie } from '../../../helpers/cookieHelper';
+import { setCookie } from 'helpers/cookieHelper';
+import types from './constants';
 
 export const initialState = {
   zipWithDistricts: false,
@@ -14,6 +15,7 @@ export const initialState = {
   presidential: false,
   districtIncumbents: false,
   districtCandidates: false,
+  senateCandidates: false,
   loading: false,
   error: false,
   geoError: false,
@@ -76,6 +78,18 @@ const zipFinderPageReducer = (state = initialState, action) =>
 
       case types.LOAD_DISTRICT_CANDIDATES_ERROR:
         draft.districtCandidates = false;
+        break;
+
+      case types.LOAD_SENATE_CANDIDATES:
+        draft.senateCandidates = false;
+        break;
+
+      case types.LOAD_SENATE_CANDIDATES_SUCCESS:
+        draft.senateCandidates = action.senateCandidates;
+        break;
+
+      case types.LOAD_SENATE_CANDIDATES_ERROR:
+        draft.senateCandidates = false;
         break;
 
       case types.GEOLOCATION_TO_DISTRICT:

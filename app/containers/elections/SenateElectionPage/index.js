@@ -1,58 +1,63 @@
 /**
  *
- * PresidentialElectionPage
+ * SenateElectionPage
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import reducer from 'containers/intro/ZipFinderPage/reducer';
+
 import saga from 'containers/intro/ZipFinderPage/saga';
-
+import reducer from 'containers/intro/ZipFinderPage/reducer';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
-import globalActions from 'containers/App/actions';
+import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
-import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
-import { makeSelectContent, makeSelectLocation } from 'containers/App/selectors';
+import { CHAMBER_ENUM, filterCandidates } from 'helpers/electionsHelper';
+import globalActions from 'containers/App/actions';
 import {
-  CHAMBER_ENUM,
-  filterCandidates,
-} from '../../../helpers/electionsHelper';
+  makeSelectContent,
+  makeSelectLocation,
+} from 'containers/App/selectors';
 
-export function PresidentialElectionPage({
-  content,
-  districtState,
+export function SenateElectionPage({
   dispatch,
+  districtState,
+  shortState,
+  content,
   changeFiltersCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
 
   const [candidates, setCandidates] = useState([]);
-  const { presidential, filters } = districtState;
+  const { senateCandidates, filters } = districtState;
+
   useEffect(() => {
-    if (!presidential) {
-      dispatch(districtActions.loadAllPresidentialAction());
+    if (!senateCandidates) {
+      dispatch(districtActions.loadSenateCandidatesAction(shortState));
     }
     if (!content) {
       dispatch(globalActions.loadContentAction());
     }
   }, []);
+
   useEffect(() => {
     const filtered = filterCandidates(
-      presidential || [],
+      senateCandidates || [],
       filters,
-      CHAMBER_ENUM.PRESIDENTIAL,
+      CHAMBER_ENUM.SENATE,
     );
     setCandidates(filtered);
-  }, [presidential, filters]);
+  }, [senateCandidates, filters]);
+
 
   const childProps = {
     candidates,
@@ -61,13 +66,14 @@ export function PresidentialElectionPage({
     changeFiltersCallback,
     filters,
   };
+
   return (
     <div>
       <Helmet>
-        <title>Presidential Election | The Good Party</title>
+        <title>{shortState.toUpperCase()} Senate Election</title>
         <meta
           name="description"
-          content="Presidential Election | The Good Party"
+          content={`${shortState.toUpperCase()} Senate Election`}
         />
       </Helmet>
       <ElectionWrapper {...childProps} />
@@ -75,34 +81,32 @@ export function PresidentialElectionPage({
   );
 }
 
-PresidentialElectionPage.propTypes = {
+SenateElectionPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  shortState: PropTypes.string,
   districtState: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   changeFiltersCallback: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
-  districtState: makeSelectZipFinderPage(),
-  search: makeSelectLocation(),
-});
-
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
+    shortState: ownProps.match.params.shortState,
     changeFiltersCallback: filters => {
       dispatch(districtActions.changeFiltersAction(filters));
     },
   };
 }
 
+const mapStateToProps = createStructuredSelector({
+  districtState: makeSelectZipFinderPage(),
+  content: makeSelectContent(),
+});
+
 const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
 
-export default compose(
-  withConnect,
-  memo,
-)(PresidentialElectionPage);
+export default compose(withConnect)(SenateElectionPage);

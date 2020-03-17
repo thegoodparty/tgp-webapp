@@ -177,7 +177,9 @@ const DistrictWrapper = ({
                 <CdWrapper
                   className={index === cdIndex && 'active'}
                   key={cd.id}
-                  onClick={() => changeDistrictCallback(cd.id, index, zip, user)}
+                  onClick={() =>
+                    changeDistrictCallback(cd.id, index, zip, user)
+                  }
                 >
                   <Body className={index === cdIndex && 'active'}>
                     {cd.name}
@@ -197,10 +199,12 @@ const DistrictWrapper = ({
             <Link to="/elections/presidential-election">
               <VsCard title="Presidential Election" candidates={presidential} />
             </Link>
-            <VsCard
-              title={`Senator - ${stateLong}`}
-              candidates={senateCandidatesAndIncumbents || []}
-            />
+            <Link to={`/elections/senate-election/${shortState.toLowerCase()}`}>
+              <VsCard
+                title={`Senator - ${stateLong}`}
+                candidates={senateCandidatesAndIncumbents || []}
+              />
+            </Link>
             <VsCard
               title={`House Representative ${shortState}-${districtNumber}`}
               candidates={houseCandidatesAndIncumbents || []}

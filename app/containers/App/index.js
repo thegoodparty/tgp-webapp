@@ -18,6 +18,7 @@ import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import PresidentialElectionPage from 'containers/elections/PresidentialElectionPage/Loadable';
+import SenateElectionPage from 'containers/elections/SenateElectionPage/Loadable';
 import PresidentialCandidatePage from 'containers/elections/PresidentialCandidatePage/Loadable';
 import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentialCandidatesPage/Loadable';
 
@@ -66,6 +67,11 @@ export default function App() {
           exact
           path="/elections/presidential-election"
           component={PresidentialElectionPage}
+        />
+        <Route
+          exact
+          path="/elections/senate-election/:shortState"
+          component={SenateElectionPage}
         />
         <Route
           exact

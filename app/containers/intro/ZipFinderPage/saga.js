@@ -75,6 +75,21 @@ function* loadDistrictCandidates(action) {
   }
 }
 
+function* loadSenateCandidates(action) {
+  try {
+    const { state } = action;
+    const api = tgpApi.senateCandidates;
+    const payload = { state };
+    const response = yield call(requestHelper, api, payload);
+    yield put(
+      actions.loadSenateCandidatesActionSuccess(response.senateCandidates),
+    );
+  } catch (error) {
+    console.log(error);
+    yield put(actions.loadDistrictCandidatesActionError(error));
+  }
+}
+
 function* gelocationToDistrict(action) {
   try {
     const { coords } = action;
@@ -127,6 +142,10 @@ export default function* saga() {
   const candidatesAction = yield takeLatest(
     types.LOAD_DISTRICT_CANDIDATES,
     loadDistrictCandidates,
+  );
+  const senateAction = yield takeLatest(
+    types.LOAD_SENATE_CANDIDATES,
+    loadSenateCandidates,
   );
 
   yield takeLatest(types.LOAD_COOKIE_ZIP, loadCookieZip);

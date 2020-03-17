@@ -29,7 +29,6 @@ import makeSelectUser from 'containers/you/YouPage/selectors';
 import userActions from 'containers/you/YouPage/actions';
 import {
   CHAMBER_ENUM,
-  defaultFilters,
   filterCandidates,
 } from '../../../helpers/electionsHelper';
 
@@ -91,20 +90,22 @@ export function DistrictPage({
       } else if (cds && cds.length > cdIndex) {
         districtNumber = cds[cdIndex].code;
       }
-      if (shortState && districtNumber) {
-        dispatch(
-          districtActions.loadDistrictIncumbentsAction(
-            shortState,
-            districtNumber,
-          ),
-        );
+      if (!districtIncumbents || !districtCandidates) {
+        if (shortState && districtNumber) {
+          dispatch(
+            districtActions.loadDistrictIncumbentsAction(
+              shortState,
+              districtNumber,
+            ),
+          );
 
-        dispatch(
-          districtActions.loadDistrictCandidatesAction(
-            shortState,
-            districtNumber,
-          ),
-        );
+          dispatch(
+            districtActions.loadDistrictCandidatesAction(
+              shortState,
+              districtNumber,
+            ),
+          );
+        }
       }
     }
   }, [zipWithDistricts, zip, cd, user]);
