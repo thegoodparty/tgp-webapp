@@ -110,7 +110,12 @@ export const isCandidateGood = (candidate, filters, chamber) => {
   const { combinedRaised, smallContributions } = candidate;
   const totalRaised = combinedRaised || 1;
   const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
-
+  if (
+    totalRaised < chamberThresholds[chamber].totalThreshold &&
+    !filters.smallFunding
+  ) {
+    return null;
+  }
   if (
     totalRaised < chamberThresholds[chamber].totalThreshold &&
     filters.smallFunding
