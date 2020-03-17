@@ -62,7 +62,7 @@ export function SenateElectionPage({
   const childProps = {
     candidates,
     content,
-    electionType: 'Presidential',
+    electionType: 'Senate',
     changeFiltersCallback,
     filters,
   };
