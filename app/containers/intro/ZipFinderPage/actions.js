@@ -82,6 +82,11 @@ const geolocationToDistrictActionError = error => ({
   error,
 });
 
+const changeFiltersAction = filters => ({
+  type: types.CHANGE_FILTERS,
+  filters,
+});
+
 export default {
   loadZipAction,
   loadZipActionSuccess,
@@ -99,4 +104,5 @@ export default {
   geolocationToDistrictAction,
   geolocationToDistrictActionSuccess,
   geolocationToDistrictActionError,
+  changeFiltersAction,
 };

@@ -5,6 +5,8 @@
  */
 import produce from 'immer';
 import types from './constants';
+import { defaultFilters } from 'helpers/electionsHelper';
+import { setCookie } from '../../../helpers/cookieHelper';
 
 export const initialState = {
   zipWithDistricts: false,
@@ -15,6 +17,7 @@ export const initialState = {
   loading: false,
   error: false,
   geoError: false,
+  filters: defaultFilters,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -88,6 +91,11 @@ const zipFinderPageReducer = (state = initialState, action) =>
       case types.GEOLOCATION_TO_DISTRICT_ERROR:
         draft.geoLocation = false;
         draft.geoError = action.error;
+        break;
+
+      case types.CHANGE_FILTERS:
+        setCookie('filters', JSON.stringify(action.filters));
+        draft.filters = action.filters;
         break;
     }
   });

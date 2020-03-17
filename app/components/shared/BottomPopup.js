@@ -5,10 +5,13 @@ import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
 
 const Wrapper = styled.div`
-  padding: 0 16px;
+  padding: 0;
   position: fixed;
   bottom: -300px;
   width: 100%;
+  max-height: 95vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: ${({ theme }) => theme.breakpoints.contentMax};
   }
@@ -29,6 +32,7 @@ const InnerWrapper = styled.div`
 const useStyles = makeStyles(theme => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
+    padding: 0,
   },
 }));
 

@@ -111,9 +111,13 @@ function* confirmEmail(action) {
     yield put(push('/you/share'));
     setCookie('user', JSON.stringify(user));
     setCookie('token', access_token);
-    yield put(
-      snackbarActions.showSnakbarAction('Your account has been verified'),
-    );
+    if (token.length === 6) {
+      yield put(snackbarActions.showSnakbarAction(`Welcome back ${user.name}`));
+    } else {
+      yield put(
+        snackbarActions.showSnakbarAction('Your account has been verified'),
+      );
+    }
   } catch (error) {
     yield put(actions.confirmEmailActionError(error.response));
   }

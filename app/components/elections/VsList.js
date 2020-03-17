@@ -10,6 +10,7 @@ import {
   presidentialCandidateRoute,
 } from 'helpers/electionsHelper';
 import { OutlinedButton } from '../shared/buttons';
+import LoadingAnimation from '../shared/LoadingAnimation';
 
 const Row = styled.div`
   display: flex;
@@ -38,6 +39,18 @@ const Middle = styled.div`
   }
 `;
 
+const NotGoodTitle = styled(Body9)`
+  color: ${({ theme }) => theme.colors.red};
+  letter-spacing: 0.5px;
+  font-weight: 500;
+`;
+
+const GoodTitle = styled(Body9)`
+  color: ${({ theme }) => theme.colors.green};
+  letter-spacing: 0.5px;
+  font-weight: 500;
+`;
+
 const CandidateWrapper = styled.div`
   margin-top: 17px;
   margin-bottom: 30px;
@@ -46,6 +59,12 @@ const CandidateWrapper = styled.div`
   &.right {
     display: flex;
     align-items: flex-end;
+    flex-direction: column;
+  }
+
+  &.center {
+    display: flex;
+    align-items: center;
     flex-direction: column;
   }
 `;
@@ -73,8 +92,8 @@ const FiltersWRapper = styled.div`
   top: 0;
   background-color: ${({ theme }) => theme.colors.grayBg};
   padding: 10px 0;
-  width: 100px;
-  left: -50px;
+  width: 120px;
+  left: -60px;
   text-align: center;
 `;
 
@@ -92,69 +111,112 @@ const StyledBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
+const UnknownWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.grayC};
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 48px;
+`;
+
+const UnknownTitle = styled(Body9)`
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  text-align: center;
+`;
+
 const noCandidateImage = 'https://assets.thegoodparty.org/no-candidate.svg';
 
-const VsList = ({ candidates = {} }) => {
-  if (!candidates || (!candidates.good && !candidates.notGood)) {
-    return;
+const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
+  const { good, notGood, unknown } = candidates;
+  if (!candidates || (!good && !notGood && !unknown)) {
+    return <LoadingAnimation />;
   }
 
   return (
-    <Row>
-      <Side>
-        <Body9>NOT GOOD ENOUGH</Body9>
-        {candidates.notGood.map(candidate => (
-          <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
-            <CandidateWrapper>
-              <CandidateAvatar
-                size="responsive"
-                src={candidate.image || noCandidateImage}
-              />
-              <Name>{candidate.name}</Name>
-              <Role>
-                {partyResolver(candidate.party)}
-                <br />
-                {candidate.isIncumbent && 'INCUMBENT'}
-              </Role>
-            </CandidateWrapper>
-          </Link>
-        ))}
-      </Side>
-      <Middle>
-        <FiltersWRapper>
-          <OutlinedButton active>
-            <StyledBody9>FILTERS</StyledBody9>
-          </OutlinedButton>
-        </FiltersWRapper>
-        <Line />
-        <Vs>VS</Vs>
-      </Middle>
-      <Side className="right">
-        <Body9>GOOD ENOUGH</Body9>
-        {candidates.good.map(candidate => (
-          <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
-            <CandidateWrapper className="right">
-              <CandidateAvatar
-                size="responsive"
-                src={candidate.image || noCandidateImage}
-                good
-              />
-              <Name>{candidate.name}</Name>
-              <Role>
-                {partyResolver(candidate.party)}
-                <br />
-                {candidate.isIncumbent && 'INCUMBENT'}
-              </Role>
-            </CandidateWrapper>
-          </Link>
-        ))}
-      </Side>
-    </Row>
+    <div>
+      <Row>
+        <Side>
+          <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
+          {notGood.map(candidate => (
+            <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
+              <CandidateWrapper>
+                <CandidateAvatar
+                  size="responsive"
+                  src={candidate.image || noCandidateImage}
+                />
+                <Name>{candidate.name}</Name>
+                <Role>
+                  {partyResolver(candidate.party)}
+                  <br />
+                  {candidate.isIncumbent && 'INCUMBENT'}
+                </Role>
+              </CandidateWrapper>
+            </Link>
+          ))}
+        </Side>
+        <Middle>
+          <FiltersWRapper>
+            <OutlinedButton active fullWidth onClick={openFiltersCallback}>
+              <StyledBody9>FILTERS</StyledBody9>
+            </OutlinedButton>
+          </FiltersWRapper>
+          <Line />
+          <Vs>VS</Vs>
+        </Middle>
+        <Side className="right">
+          <GoodTitle>GOOD ENOUGH</GoodTitle>
+          {good.map(candidate => (
+            <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
+              <CandidateWrapper className="right">
+                <CandidateAvatar
+                  size="responsive"
+                  src={candidate.image || noCandidateImage}
+                  good
+                />
+                <Name>{candidate.name}</Name>
+                <Role>
+                  {partyResolver(candidate.party)}
+                  <br />
+                  {candidate.isIncumbent && 'INCUMBENT'}
+                </Role>
+              </CandidateWrapper>
+            </Link>
+          ))}
+        </Side>
+      </Row>
+      {unknown && unknown.length > 0 && (
+        <UnknownWrapper>
+          <UnknownTitle>UNKNOWN</UnknownTitle>
+          {unknown.map(candidate => (
+            <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
+              <CandidateWrapper className="center">
+                <CandidateAvatar
+                  size="responsive"
+                  src={candidate.image || noCandidateImage}
+                  good
+                />
+                <Name>{candidate.name}</Name>
+                <Role>
+                  {partyResolver(candidate.party)}
+                  <br />
+                  {candidate.isIncumbent && 'INCUMBENT'}
+                </Role>
+              </CandidateWrapper>
+            </Link>
+          ))}
+        </UnknownWrapper>
+      )}
+    </div>
   );
 };
 
 VsList.propTypes = {
-  candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  candidates: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.bool,
+  ]),
+  openFiltersCallback: PropTypes.func,
 };
 
 export default VsList;

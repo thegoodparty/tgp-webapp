@@ -27,6 +27,11 @@ import {
 } from 'containers/App/selectors';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 import userActions from 'containers/you/YouPage/actions';
+import {
+  CHAMBER_ENUM,
+  defaultFilters,
+  filterCandidates,
+} from '../../../helpers/electionsHelper';
 
 export function DistrictPage({
   content,
@@ -41,9 +46,10 @@ export function DistrictPage({
   useInjectSaga({ key: 'zipFinderPage', saga });
 
   const [cdIndex, setCdIndex] = useState(0);
+  const [presidentialCandidates, setPresidentialCandidates] = useState([]);
   const { user } = userState;
 
-  const { zipWithDistricts } = districtState;
+  const { zipWithDistricts, filters } = districtState;
   const {
     presidential,
     districtIncumbents,
@@ -68,7 +74,6 @@ export function DistrictPage({
       const { stateShort, cds } = zipWithDistricts;
       const shortState = stateShort ? stateShort.toUpperCase() : '';
       let districtNumber;
-      console.log('user', user);
 
       if (typeof cd !== 'undefined') {
         setCdIndex(parseInt(cd, 10));
@@ -128,11 +133,20 @@ export function DistrictPage({
     }
   }, [geoLocation]);
 
+  useEffect(() => {
+    const filtered = filterCandidates(
+      presidential || [],
+      filters,
+      CHAMBER_ENUM.PRESIDENTIAL,
+    );
+    setPresidentialCandidates(filtered);
+  }, [presidential, filters]);
+
   const childProps = {
     district: zipWithDistricts,
     cdIndex,
     geoLocation,
-    presidential,
+    presidential: presidentialCandidates,
     districtIncumbents,
     districtCandidates,
     content,

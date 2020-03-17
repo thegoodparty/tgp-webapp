@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,6 +15,8 @@ import BlueButton from 'components/shared/buttons/BlueButton';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import GoodPartyStats from '../GoodPartyStats';
 import VsList from '../VsList';
+import FiltersPopup from './FiltersPopup';
+import BottomPopup from '../../shared/BottomPopup';
 
 const Description = styled(Body)`
   margin-top: 10px;
@@ -26,7 +28,24 @@ const ButtonWrapper = styled.div`
   margin: 16px auto 24px;
 `;
 
-const ElectionWrapper = ({ electionType, candidates = {}, content }) => {
+const ElectionWrapper = ({
+  electionType,
+  candidates = {},
+  content,
+  changeFiltersCallback,
+  filters,
+}) => {
+  const [showFilters, setShowFilters] = useState(false);
+
+  const openFiltersCallback = () => {
+    console.log('here');
+    setShowFilters(true);
+  };
+
+  const hideFilters = () => {
+    setShowFilters(false);
+  };
+
   let articles = [];
   if (content && content.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
@@ -58,12 +77,21 @@ const ElectionWrapper = ({ electionType, candidates = {}, content }) => {
                 </BlueButton>
               </Link>
             </ButtonWrapper>
-            <VsList candidates={candidates} />
+            <VsList
+              candidates={candidates}
+              openFiltersCallback={openFiltersCallback}
+            />
 
             <GoodPartyStats />
             <TopQuestions articles={articles} />
           </Wrapper>
           <AmaContainer />
+          <BottomPopup open={showFilters} handleClose={hideFilters}>
+            <FiltersPopup
+              changeFiltersCallback={changeFiltersCallback}
+              filters={filters}
+            />
+          </BottomPopup>
         </>
       ) : (
         <Wrapper>
@@ -79,6 +107,8 @@ ElectionWrapper.propTypes = {
   electionType: PropTypes.string,
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  changeFiltersCallback: PropTypes.func,
+  filters: PropTypes.object,
 };
 
 export default ElectionWrapper;

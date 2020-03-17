@@ -75,7 +75,11 @@ const RankButton = styled(Body9)`
   }
 `;
 
-const PresidentialCandidateWrapper = ({ candidate, presidentialRank = [] }) => {
+const PresidentialCandidateWrapper = ({
+  candidate,
+  presidentialRank = [],
+  isGood,
+}) => {
   const [candidateInfo, setCandidateInfo] = useState('');
   const [rank, setRank] = useState(false);
 
@@ -98,7 +102,6 @@ const PresidentialCandidateWrapper = ({ candidate, presidentialRank = [] }) => {
   const {
     name,
     image,
-    isGood,
     party,
     totalRaised,
     smallDonorPerc,
@@ -264,6 +267,12 @@ const PresidentialCandidateWrapper = ({ candidate, presidentialRank = [] }) => {
       )}
     </GrayWrapper>
   );
+};
+
+PresidentialCandidateWrapper.propTypes = {
+  candidate: PropTypes.object,
+  presidentialRank: PropTypes.array,
+  isGood: PropTypes.bool,
 };
 
 export default PresidentialCandidateWrapper;

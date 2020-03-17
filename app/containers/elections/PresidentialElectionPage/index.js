@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -21,11 +21,22 @@ import globalActions from 'containers/App/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
 import { makeSelectContent, makeSelectLocation } from '../../App/selectors';
+import {
+  CHAMBER_ENUM,
+  filterCandidates,
+} from '../../../helpers/electionsHelper';
 
-export function PresidentialElectionPage({ content, districtState, dispatch }) {
+export function PresidentialElectionPage({
+  content,
+  districtState,
+  dispatch,
+  changeFiltersCallback,
+}) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
-  const { presidential } = districtState;
+
+  const [candidates, setCandidates] = useState([]);
+  const { presidential, filters } = districtState;
   useEffect(() => {
     if (!presidential) {
       dispatch(districtActions.loadAllPresidentialAction());
@@ -34,11 +45,21 @@ export function PresidentialElectionPage({ content, districtState, dispatch }) {
       dispatch(globalActions.loadContentAction());
     }
   }, []);
+  useEffect(() => {
+    const filtered = filterCandidates(
+      presidential || [],
+      filters,
+      CHAMBER_ENUM.PRESIDENTIAL,
+    );
+    setCandidates(filtered);
+  }, [presidential, filters]);
 
   const childProps = {
-    candidates: presidential,
+    candidates,
     content,
     electionType: 'Presidential',
+    changeFiltersCallback,
+    filters,
   };
   return (
     <div>
@@ -58,6 +79,7 @@ PresidentialElectionPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
+  changeFiltersCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -69,6 +91,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    changeFiltersCallback: filters => {
+      dispatch(districtActions.changeFiltersAction(filters));
+    },
   };
 }
 
