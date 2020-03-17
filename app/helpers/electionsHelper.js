@@ -80,7 +80,7 @@ export const filterCandidates = (
   candidates.forEach(candidate => {
     const isGood = isCandidateGood(candidate, filters, chamber);
 
-    if (typeof isGood === 'undefined') {
+    if (isGood === null) {
       unknown.push({
         ...candidate,
         unknown: true,
@@ -105,24 +105,46 @@ export const filterCandidates = (
 };
 
 export const isCandidateGood = (candidate, filters, chamber) => {
-  let isGood;
+  let isGood = false;
+  let isNotGood = false;
   const { combinedRaised, smallContributions } = candidate;
   const totalRaised = combinedRaised || 1;
   const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
-  if (filters.smallFunding && largeDonorPerc && largeDonorPerc < 0.5) {
-    isGood = true;
-  } else if (
-    filters.smallDonors &&
-    totalRaised &&
-    totalRaised < chamberThresholds[chamber].totalThreshold
+
+  if (
+    totalRaised < chamberThresholds[chamber].totalThreshold &&
+    filters.smallFunding
   ) {
     isGood = true;
-  } else if (
-    filters.mostlyBigDonors &&
-    largeDonorPerc &&
-    largeDonorPerc >= 0.5
-  ) {
-    isGood = false;
+  } else if (largeDonorPerc <= 0.5 && filters.smallDonors) {
+    isGood = true;
+  } else if (filters.mostlyBigDonors && largeDonorPerc > 0.5) {
+    isNotGood = true;
   }
-  return isGood;
+
+  if (isGood) {
+    return true;
+  }
+  if (isNotGood) {
+    return false;
+  }
+  return null;
+
+  // if (filters.smallFunding && largeDonorPerc && largeDonorPerc < 0.5) {
+  //   isGood = true;
+  // } else if (
+  //   filters.smallDonors &&
+  //   totalRaised &&
+  //   totalRaised < chamberThresholds[chamber].totalThreshold
+  // ) {
+  //   isGood = true;
+  // } else if (
+  //   filters.mostlyBigDonors &&
+  //   largeDonorPerc &&
+  //   largeDonorPerc >= 0.5
+  // ) {
+  //   isGood = false;
+  // }
+//    return isGood;
+
 };
