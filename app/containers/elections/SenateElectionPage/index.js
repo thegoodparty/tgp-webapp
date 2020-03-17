@@ -44,6 +44,14 @@ export function SenateElectionPage({
     if (!senateCandidates) {
       dispatch(districtActions.loadSenateCandidatesAction(shortState));
     }
+    // if the state changed
+    if (
+      senateCandidates &&
+      senateCandidates.length > 0 &&
+      senateCandidates[0].state.toUpperCase() !== shortState
+    ) {
+      dispatch(districtActions.loadSenateCandidatesAction(shortState));
+    }
     if (!content) {
       dispatch(globalActions.loadContentAction());
     }
@@ -57,7 +65,6 @@ export function SenateElectionPage({
     );
     setCandidates(filtered);
   }, [senateCandidates, filters]);
-
 
   const childProps = {
     candidates,
