@@ -53,13 +53,13 @@ export const CHAMBER_ENUM = {
 
 const chamberThresholds = {
   [CHAMBER_ENUM.PRESIDENTIAL]: {
-    totalThreshold: 10000000,
+    totalThreshold: 20000000,
   },
   [CHAMBER_ENUM.SENATE]: {
     totalThreshold: 2000000,
   },
   [CHAMBER_ENUM.HOUSE]: {
-    totalThreshold: 500000,
+    totalThreshold: 250000,
   },
 };
 
