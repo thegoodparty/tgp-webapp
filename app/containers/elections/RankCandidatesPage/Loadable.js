@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for RankPresidentialCandidatesPage
+ * Asynchronously loads the component for RankCandidatesPage
  *
  */
 

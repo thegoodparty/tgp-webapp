@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from 'components/shared/Card';
 import { H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import LoadingAnimation from 'components/shared/LoadingAnimation';
+import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { useWindowSize } from 'customHooks/useWindowSize';
 import theme from 'theme';
 import { partyResolver } from 'helpers/electionsHelper';
@@ -80,7 +80,6 @@ const Vs = styled(Body11)`
   text-align: center;
 `;
 
-const noCandidateImage = 'https://assets.thegoodparty.org/no-candidate.svg';
 
 const VsCard = ({ title, candidates = [] }) => {
   const { good, notGood } = candidates;

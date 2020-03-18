@@ -21,7 +21,7 @@ import PresidentialElectionPage from 'containers/elections/PresidentialElectionP
 import SenateElectionPage from 'containers/elections/SenateElectionPage/Loadable';
 import HouseElectionPage from 'containers/elections/HouseElectionPage/Loadable';
 import CandidatePage from 'containers/elections/CandidatePage/Loadable';
-import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentialCandidatesPage/Loadable';
+import RankCandidatesPage from 'containers/elections/RankCandidatesPage/Loadable';
 
 import RegisterPage from 'containers/you/RegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
@@ -86,8 +86,18 @@ export default function App() {
         />
         <Route
           exact
-          path="/elections/rank-presidential-candidates"
-          component={RankPresidentialCandidatesPage}
+          path="/elections/rank-candidates/:chamber"
+          component={RankCandidatesPage}
+        />
+        <Route
+          exact
+          path="/elections/rank-candidates/:chamber/:state"
+          component={RankCandidatesPage}
+        />
+        <Route
+          exact
+          path="/elections/rank-candidates/:chamber/:state/:district"
+          component={RankCandidatesPage}
         />
 
         <Route exact path="/you/register" component={RegisterPage} />

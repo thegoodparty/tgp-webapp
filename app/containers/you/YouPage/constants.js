@@ -15,6 +15,8 @@ const SIGN_OUT = '@@tgp/user/SIGN_OUT';
 const LOGIN = '@@tgp/user/LOGIN';
 
 const UPDATE_PRESIDENTIAL_RANK = '@@tgp/user/UPDATE_PRESIDENTIAL_RANK';
+const UPDATE_SENATE_RANK = '@@tgp/user/UPDATE_SENATE_RANK';
+const UPDATE_HOUSE_RANK = '@@tgp/user/UPDATE_HOUSE_RANK';
 
 const UPDATE_USER = '@@tgp/user/UPDATE_USER';
 const UPDATE_USER_SUCCESS = '@@tgp/user/UPDATE_USER_SUCCESS';
@@ -31,6 +33,8 @@ export default {
   SIGN_OUT,
   LOGIN,
   UPDATE_PRESIDENTIAL_RANK,
+  UPDATE_SENATE_RANK,
+  UPDATE_HOUSE_RANK,
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
 };

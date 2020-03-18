@@ -75,8 +75,16 @@ export function CandidatePage({
   return (
     <div>
       <Helmet>
-        <title>CandidatePage</title>
-        <meta name="description" content="Description of CandidatePage" />
+        <title>
+          {candidate ? candidate.name : ''} | {chamberName}{' '}
+          {candidate && candidate.isIncumbent ? 'incumbent' : 'candidate'}
+        </title>
+        <meta
+          name="description"
+          content={`${candidate ? candidate.name : ''} | ${chamberName} ${
+            candidate && candidate.isIncumbent ? 'incumbent' : 'candidate'
+          }`}
+        />
       </Helmet>
       <CandidateWrapper {...childProps} />
     </div>

@@ -29,11 +29,13 @@ const ButtonWrapper = styled.div`
 `;
 
 const ElectionWrapper = ({
-  electionType,
+  chamber,
   candidates = {},
   content,
   changeFiltersCallback,
   filters,
+  state,
+  districtNumber,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
 
@@ -51,6 +53,20 @@ const ElectionWrapper = ({
     articles = articlesHelper(content.faqArticles, 'election');
   }
 
+  const rankPage = () => {
+    console.log(chamber)
+    if (chamber === 'Presidential') {
+      return '/elections/rank-candidates/presidential';
+    }
+    if (chamber === 'Senate') {
+      return `/elections/rank-candidates/senate/${state}`;
+    }
+    if (chamber === 'House') {
+      return `/elections/rank-candidates/house/${state}/${districtNumber}`;
+    }
+    return '/elections/rank-candidates/presidential';
+  };
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -59,14 +75,14 @@ const ElectionWrapper = ({
           <Wrapper>
             <MobileHeader />
 
-            <H1>{electionType} Elections</H1>
+            <H1>{chamber} Elections</H1>
             <Description>
               If we count enough support, we will use the{' '}
               <strong>write-in vote</strong> to bypass the corrupt partisan
               system and get our best candidate elected!{' '}
             </Description>
             <ButtonWrapper>
-              <Link to="/elections/rank-presidential-candidates">
+              <Link to={rankPage()}>
                 <BlueButton
                   variant="contained"
                   color="primary"
@@ -104,7 +120,9 @@ const ElectionWrapper = ({
 };
 
 ElectionWrapper.propTypes = {
-  electionType: PropTypes.string,
+  chamber: PropTypes.string,
+  state: PropTypes.string,
+  districtNumber: PropTypes.string,
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   changeFiltersCallback: PropTypes.func,

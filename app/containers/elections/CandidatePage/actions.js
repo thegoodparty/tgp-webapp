@@ -22,6 +22,16 @@ const saveRankPresidentialCandidateAction = presidentialRank => ({
   presidentialRank,
 });
 
+const saveRankSenateCandidateAction = senateRank => ({
+  type: types.SAVE_RANK_SENATE_CANDIDATE,
+  senateRank,
+});
+
+const saveRankHouseCandidateAction = houseRank => ({
+  type: types.SAVE_RANK_HOUSE_CANDIDATE,
+  houseRank,
+});
+
 const loadRankingFromCookieAction = () => ({
   type: types.LOAD_RANKING_FROM_COOKIE,
 });
@@ -31,5 +41,7 @@ export default {
   loadCandidateActionSuccess,
   loadCandidateActionError,
   saveRankPresidentialCandidateAction,
+  saveRankSenateCandidateAction,
+  saveRankHouseCandidateAction,
   loadRankingFromCookieAction,
 };

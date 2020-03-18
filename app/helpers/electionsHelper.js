@@ -83,26 +83,28 @@ export const filterCandidates = (
   const good = [];
   const notGood = [];
   const unknown = [];
-  candidates.forEach(candidate => {
-    const isGood = isCandidateGood(candidate, filters, chamber);
+  if (candidates) {
+    candidates.forEach(candidate => {
+      const isGood = isCandidateGood(candidate, filters, chamber);
 
-    if (isGood === null) {
-      unknown.push({
-        ...candidate,
-        unknown: true,
-      });
-    } else if (isGood) {
-      good.push({
-        ...candidate,
-        isGood,
-      });
-    } else {
-      notGood.push({
-        ...candidate,
-        isGood,
-      });
-    }
-  });
+      if (isGood === null) {
+        unknown.push({
+          ...candidate,
+          unknown: true,
+        });
+      } else if (isGood) {
+        good.push({
+          ...candidate,
+          isGood,
+        });
+      } else {
+        notGood.push({
+          ...candidate,
+          isGood,
+        });
+      }
+    });
+  }
   return {
     good,
     notGood,
@@ -159,4 +161,16 @@ export const candidateCalculatedFields = orgCandidate => {
   candidate.smallDonorPerHour = smallDonorPerHour;
 
   return candidate;
+};
+
+export const getRankFromUserOrState = (user, candidateState, rankType) => {
+  let rank;
+  if (user && user[rankType]) {
+    if (typeof user[rankType] === 'string') {
+      rank = JSON.parse(user[rankType]);
+    }
+  } else if (candidateState && candidateState[rankType]) {
+    rank = candidateState[rankType];
+  }
+  return rank;
 };

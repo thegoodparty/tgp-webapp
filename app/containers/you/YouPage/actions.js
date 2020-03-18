@@ -57,6 +57,16 @@ const updatePresidentialRankAction = rank => ({
   rank,
 });
 
+const updateSenateRankAction = rank => ({
+  type: types.UPDATE_SENATE_RANK,
+  rank,
+});
+
+const updateHouseRankAction = rank => ({
+  type: types.UPDATE_HOUSE_RANK,
+  rank,
+});
+
 const updateUserAction = updatedFields => ({
   type: types.UPDATE_USER,
   updatedFields,
@@ -79,6 +89,8 @@ export default {
   signoutAction,
   loginAction,
   updatePresidentialRankAction,
+  updateSenateRankAction,
+  updateHouseRankAction,
   updateUserAction,
   updateUserActionSuccess,
 };

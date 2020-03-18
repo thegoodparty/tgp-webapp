@@ -19,12 +19,12 @@ import saga from 'containers/intro/ZipFinderPage/saga';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 import globalActions from 'containers/App/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
-import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
-import { makeSelectContent, makeSelectLocation } from 'containers/App/selectors';
+import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import {
-  CHAMBER_ENUM,
-  filterCandidates,
-} from '../../../helpers/electionsHelper';
+  makeSelectContent,
+  makeSelectLocation,
+} from 'containers/App/selectors';
+import { CHAMBER_ENUM, filterCandidates } from 'helpers/electionsHelper';
 
 export function PresidentialElectionPage({
   content,
@@ -57,7 +57,7 @@ export function PresidentialElectionPage({
   const childProps = {
     candidates,
     content,
-    electionType: 'Presidential',
+    chamber: 'Presidential',
     changeFiltersCallback,
     filters,
   };

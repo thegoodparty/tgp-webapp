@@ -13,6 +13,7 @@ import { partyResolver, rankText } from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
 import { percHelper } from 'helpers/numberHelper';
 import contentfulHelper from 'helpers/contentfulHelper';
+import noCandidateImage from 'components/shared/noCandidateImageUrl';
 
 const Row = styled.div`
   display: flex;
@@ -75,7 +76,6 @@ const RankButton = styled(Body9)`
   }
 `;
 
-const noCandidateImage = 'https://assets.thegoodparty.org/no-candidate.svg';
 
 const CandidateWrapper = ({ candidate, chamberRank = [], isGood }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
@@ -107,6 +107,7 @@ const CandidateWrapper = ({ candidate, chamberRank = [], isGood }) => {
     smallDonorPerHour,
     largeDonorPerHour,
     isIncumbent,
+    chamber,
   } = candidate;
   const isSmallChallenger = totalRaised < 10000000;
 
@@ -170,7 +171,9 @@ const CandidateWrapper = ({ candidate, chamberRank = [], isGood }) => {
                   good={isGood}
                   size="xl"
                 />
-                <Link to="/elections/rank-presidential-candidates">
+                <Link
+                  to={`/elections/rank-candidates/${chamber || 'presidential'}`}
+                >
                   <RankButton className={rank ? 'blue' : ''}>
                     {rank ? `${rankText(rank)} CHOICE` : 'RANK CANDIDATES'}
                   </RankButton>

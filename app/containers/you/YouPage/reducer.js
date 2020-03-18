@@ -80,6 +80,27 @@ const userReducer = (state = initialState, action) =>
           draft.user = copyUser;
           break;
         }
+
+      case types.UPDATE_SENATE_RANK:
+        if (!state.user) {
+          break;
+        } else {
+          const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
+          copyUser.senateRank = JSON.stringify(action.rank);
+          draft.user = copyUser;
+          break;
+        }
+
+      case types.UPDATE_HOUSE_RANK:
+        if (!state.user) {
+          break;
+        } else {
+          const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
+          copyUser.houseRank = JSON.stringify(action.rank);
+          draft.user = copyUser;
+          break;
+        }
+
       case types.UPDATE_USER_SUCCESS:
         draft.user = action.user;
         break;

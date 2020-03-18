@@ -1,6 +1,6 @@
 /**
  *
- * Tests for RankPresidentialCandidatesWrapper
+ * Tests for RankCandidatesWrapper
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,12 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import RankPresidentialCandidatesWrapper from '../index';
+import RankCandidatesWrapper from '../index';
 
-describe('<RankPresidentialCandidatesWrapper />', () => {
+describe('<RankCandidatesWrapper />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<RankPresidentialCandidatesWrapper />);
+    render(<RankCandidatesWrapper />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +31,7 @@ describe('<RankPresidentialCandidatesWrapper />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<RankPresidentialCandidatesWrapper />);
+    } = render(<RankCandidatesWrapper />);
     expect(firstChild).toMatchSnapshot();
   });
 });

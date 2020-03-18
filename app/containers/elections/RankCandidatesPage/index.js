@@ -1,10 +1,10 @@
 /**
  *
- * RankPresidentialCandidatesPage
+ * RankCandidatesPage
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
@@ -24,12 +24,20 @@ import userActions from 'containers/you/YouPage/actions';
 
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
-import RankPresidentialCandidatesWrapper from 'components/elections/RankPresidentialCandidatesWrapper';
+import RankCandidatesWrapper from 'components/elections/RankCandidatesWrapper';
 import makeSelectUser from '../../you/YouPage/selectors';
+import {
+  CHAMBER_ENUM,
+  filterCandidates,
+  getRankFromUserOrState,
+} from '../../../helpers/electionsHelper';
 
-export function RankPresidentialCandidatesPage({
+export function RankCandidatesPage({
   districtState,
   candidateState,
+  chamber,
+  state,
+  district,
   handleRankingCallback,
   saveRankingCallback,
   dispatch,
@@ -43,32 +51,55 @@ export function RankPresidentialCandidatesPage({
   });
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
-  const { presidential } = districtState;
+  let candidates;
+  let chamberEnum = 0;
+
+  const { filters } = districtState;
   const { user } = userState;
 
-  let presidentialRank;
-  if (user && user.presidentialRank) {
-    if (typeof user.presidentialRank === 'string') {
-      presidentialRank = JSON.parse(user.presidentialRank);
-    }
-  } else if (candidateState && candidateState.presidentialRank) {
-    presidentialRank = candidateState.presidentialRank;
+  let chamberRank;
+
+  if (chamber === 'presidential') {
+    candidates = districtState.presidential;
+    chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
+    chamberRank = getRankFromUserOrState(
+      user,
+      candidateState,
+      'presidentialRank',
+    );
+  } else if (chamber === 'senate') {
+    candidates = districtState.senateCandidates;
+    chamberEnum = CHAMBER_ENUM.SENATE;
+    chamberRank = getRankFromUserOrState(user, candidateState, 'senateRank');
+  } else {
+    candidates = districtState.houseCandidates;
+    chamberEnum = CHAMBER_ENUM.HOUSE;
+    chamberRank = getRankFromUserOrState(user, candidateState, 'houseRank');
   }
 
   useEffect(() => {
-    if (!presidential) {
-      dispatch(districtActions.loadAllPresidentialAction());
+    if (!candidates) {
+      if (chamber === 'presidential') {
+        dispatch(districtActions.loadAllPresidentialAction());
+      } else if (chamber === 'senate') {
+        dispatch(districtActions.loadSenateCandidatesAction(state));
+      } else {
+        dispatch(districtActions.loadHouseCandidatesAction(state, district));
+      }
     }
-    if (!presidentialRank) {
+    if (!chamberRank) {
       dispatch(candidateActions.loadRankingFromCookieAction());
     }
   }, []);
 
+  const filtered = filterCandidates(candidates, filters, chamberEnum);
+
   const childProps = {
-    candidates: presidential,
+    candidates: filtered,
     handleRankingCallback,
     saveRankingCallback,
-    presidentialRank,
+    chamberRank,
+    chamber,
     user,
   };
 
@@ -81,13 +112,16 @@ export function RankPresidentialCandidatesPage({
           content="Rank Presidential Candidates | The Good Party"
         />
       </Helmet>
-      <RankPresidentialCandidatesWrapper {...childProps} />
+      <RankCandidatesWrapper {...childProps} />
     </div>
   );
 }
 
-RankPresidentialCandidatesPage.propTypes = {
+RankCandidatesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  chamber: PropTypes.string.isRequired,
+  state: PropTypes.string,
+  district: PropTypes.string,
   districtState: PropTypes.object,
   candidateState: PropTypes.object,
   handleRankingCallback: PropTypes.func,
@@ -95,9 +129,12 @@ RankPresidentialCandidatesPage.propTypes = {
   userState: PropTypes.object,
 };
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
+    chamber: ownProps.match.params.chamber,
+    state: ownProps.match.params.state,
+    district: ownProps.match.params.district,
     handleRankingCallback: (rankingOrder, user) => {
       dispatch(
         candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
@@ -109,11 +146,19 @@ function mapDispatchToProps(dispatch) {
         dispatch(push('/you/register'));
       }
     },
-    saveRankingCallback: rankingOrder => {
-      dispatch(
-        candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
-      );
-      dispatch(userActions.updatePresidentialRankAction(rankingOrder));
+    saveRankingCallback: (rankingOrder, chamber) => {
+      if (chamber === 'presidential') {
+        dispatch(
+          candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
+        );
+        dispatch(userActions.updatePresidentialRankAction(rankingOrder));
+      } else if (chamber === 'senate') {
+        dispatch(candidateActions.saveRankSenateCandidateAction(rankingOrder));
+        dispatch(userActions.updateSenateRankAction(rankingOrder));
+      } else if (chamber === 'house') {
+        dispatch(candidateActions.saveRankHouseCandidateAction(rankingOrder));
+        dispatch(userActions.updateHouseRankAction(rankingOrder));
+      }
     },
   };
 }
@@ -132,4 +177,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(RankPresidentialCandidatesPage);
+)(RankCandidatesPage);

@@ -8,6 +8,8 @@ export const initialState = {
   loading: false,
   error: false,
   presidentialRank: false,
+  senateRank: false,
+  houseRank: false,
 };
 
 const districtReducer = (state = initialState, action) =>
@@ -32,14 +34,35 @@ const districtReducer = (state = initialState, action) =>
         break;
 
       case types.SAVE_RANK_PRESIDENTIAL_CANDIDATE:
-        setCookie('presidentialRank', JSON.stringify(action.presidentialRank));
+        setCookie(
+          'presidentialRank',
+          JSON.stringify(action.presidentialRank || []),
+        );
         draft.presidentialRank = action.presidentialRank;
+        break;
+
+      case types.SAVE_RANK_SENATE_CANDIDATE:
+        setCookie('senateRank', JSON.stringify(action.senateRank || []));
+        draft.senateRank = action.senateRank;
+        break;
+
+      case types.SAVE_RANK_HOUSE_CANDIDATE:
+        setCookie('houseRank', JSON.stringify(action.houseRank || []));
+        draft.houseRank = action.houseRank;
         break;
 
       case types.LOAD_RANKING_FROM_COOKIE:
         if (!state.presidentialRank) {
           const cookie = getCookie('presidentialRank');
           draft.presidentialRank = JSON.parse(cookie);
+        }
+        if (!state.senateRank) {
+          const cookie = getCookie('senateRank');
+          draft.senateRank = JSON.parse(cookie);
+        }
+        if (!state.houseRank) {
+          const cookie = getCookie('houseRank');
+          draft.houseRank = JSON.parse(cookie);
         }
         break;
     }

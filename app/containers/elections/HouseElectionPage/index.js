@@ -71,9 +71,11 @@ export function HouseElectionPage({
   const childProps = {
     candidates,
     content,
-    electionType: 'House',
+    chamber: 'House',
     changeFiltersCallback,
     filters,
+    state,
+    districtNumber,
   };
   return (
     <div>

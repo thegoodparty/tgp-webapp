@@ -18,6 +18,8 @@ import {
   candidateRoute,
 } from 'helpers/electionsHelper';
 import BottomPopup from 'components/shared/BottomPopup';
+import noCandidateImage from 'components/shared/noCandidateImageUrl';
+import { upperFirst } from 'helpers/stringHelper';
 
 const Reset = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
@@ -112,11 +114,12 @@ const PopupButton = styled(Body12)`
   }
 `;
 
-const RankPresidentialCandidatesWrapper = ({
+const RankCandidatesWrapper = ({
   candidates = [],
   handleRankingCallback,
   saveRankingCallback,
-  presidentialRank = [],
+  chamberRank = [],
+  chamber,
   user,
 }) => {
   const [choices, setChoices] = useState({});
@@ -139,12 +142,12 @@ const RankPresidentialCandidatesWrapper = ({
       setSkipGoodPopup(true);
     }
     setChoices(initialChoices);
-    setChoicesOrder(presidentialRank || []);
-  }, [candidates, presidentialRank]);
+    setChoicesOrder(chamberRank || []);
+  }, [candidates, chamberRank]);
 
   const selectCandidate = async id => {
     if (
-      choicesOrder.length <
+      choicesOrder.length <=
       candidates.good.length + candidates.notGood.length
     ) {
       if (!choices[id]) {
@@ -154,7 +157,7 @@ const RankPresidentialCandidatesWrapper = ({
         await setChoices(newChoices);
         newChoicesOrder.push(id);
         await setChoicesOrder(newChoicesOrder);
-        saveRankingCallback(newChoicesOrder);
+        saveRankingCallback(newChoicesOrder, chamber);
       } else {
         // deselect and remove all previous choices.
         let idPop;
@@ -171,18 +174,19 @@ const RankPresidentialCandidatesWrapper = ({
   };
 
   const cookieOrderToChoicesHash = () => {
-    if (!presidentialRank || presidentialRank.length === 0) {
+    if (!chamberRank || chamberRank.length === 0) {
       return {};
     }
     const newChoices = {};
-    presidentialRank.map((order, i) => {
+    chamberRank.map((order, i) => {
       newChoices[order] = i + 1;
     });
     return newChoices;
   };
 
   const areAllGoodSelected = () => {
-    if (!candidates.good) {
+    console.log(candidates);
+    if (!candidates.good || candidates.good.length === 0) {
       return false;
     }
     for (let i = 0; i < candidates.good.length; i++) {
@@ -197,7 +201,7 @@ const RankPresidentialCandidatesWrapper = ({
   const reset = () => {
     setChoices({});
     setChoicesOrder([]);
-    saveRankingCallback([]);
+    saveRankingCallback([], chamber);
   };
 
   const handleKeepRanking = () => {
@@ -211,7 +215,7 @@ const RankPresidentialCandidatesWrapper = ({
     if (!submitWithoutGood && !areAllGoodSelected()) {
       setSubmitWithoutGood(true);
     } else {
-      saveRankingCallback(choicesOrder);
+      saveRankingCallback(choicesOrder, chamber);
       handleRankingCallback(choicesOrder, user);
     }
   };
@@ -221,7 +225,10 @@ const RankPresidentialCandidatesWrapper = ({
       <Card style={{ cursor: 'default' }} key={id}>
         <Row>
           <Link to={candidateRoute(candidate)}>
-            <CandidateAvatar src={candidate.image} good={candidate.isGood} />
+            <CandidateAvatar
+              src={candidate.image || noCandidateImage}
+              good={candidate.isGood}
+            />
           </Link>
           <CardRight>
             <Grid container spacing={0} alignItems="center">
@@ -262,7 +269,7 @@ const RankPresidentialCandidatesWrapper = ({
           <Nav />
           <Wrapper>
             <MobileHeader />
-            <H1>Rank Choice of Presidential Candidates</H1>
+            <H1>Rank Choice of {upperFirst(chamber)} Candidates</H1>
             <Body style={{ marginTop: '8px' }}>
               Rank candidates you would be willing to do a{' '}
               <strong>write-in vote</strong> for if we could guarantee a win.
@@ -272,12 +279,12 @@ const RankPresidentialCandidatesWrapper = ({
             </Reset>
             {candidates.good.map(candidate => (
               <React.Fragment key={candidate.id}>
-                {candidate.isGood && CandCard(candidate, candidate.id)}
+                {CandCard(candidate, candidate.id)}
               </React.Fragment>
             ))}
             {candidates.notGood.map(candidate => (
               <React.Fragment key={candidate.id}>
-                {!candidate.isGood && CandCard(candidate, candidate.id)}
+                {CandCard(candidate, candidate.id)}
               </React.Fragment>
             ))}
           </Wrapper>
@@ -327,12 +334,13 @@ const RankPresidentialCandidatesWrapper = ({
   );
 };
 
-RankPresidentialCandidatesWrapper.propTypes = {
+RankCandidatesWrapper.propTypes = {
   candidates: PropTypes.array,
   handleRankingCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
-  presidentialRank: PropTypes.array,
+  chamberRank: PropTypes.array,
+  chamber: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
-export default RankPresidentialCandidatesWrapper;
+export default RankCandidatesWrapper;

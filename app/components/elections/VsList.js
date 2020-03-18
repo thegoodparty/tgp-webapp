@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import {
-  partyResolver,
-  candidateRoute,
-} from 'helpers/electionsHelper';
+import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
+import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
 
@@ -123,8 +121,6 @@ const UnknownTitle = styled(Body9)`
   font-weight: 500;
   text-align: center;
 `;
-
-const noCandidateImage = 'https://assets.thegoodparty.org/no-candidate.svg';
 
 const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
   const { good, notGood, unknown } = candidates;
