@@ -35,35 +35,19 @@ const loadAllPresidentialActionError = error => ({
   error,
 });
 
-const loadDistrictIncumbentsAction = (state, districtNum) => ({
-  type: types.LOAD_DISTRICT_INCUMBENTS,
+const loadHouseCandidatesAction = (state, districtNum) => ({
+  type: types.LOAD_HOUSE_CANDIDATES,
   state,
   districtNum,
 });
 
-const loadDistrictIncumbentsActionSuccess = districtIncumbents => ({
-  type: types.LOAD_DISTRICT_INCUMBENTS_SUCCESS,
-  districtIncumbents,
+const loadHouseCandidatesActionSuccess = houseCandidates => ({
+  type: types.LOAD_HOUSE_CANDIDATES_SUCCESS,
+  houseCandidates,
 });
 
-const loadDistrictIncumbentsActionError = error => ({
-  type: types.LOAD_DISTRICT_INCUMBENTS_ERROR,
-  error,
-});
-
-const loadDistrictCandidatesAction = (state, districtNum) => ({
-  type: types.LOAD_DISTRICT_CANDIDATES,
-  state,
-  districtNum,
-});
-
-const loadDistrictCandidatesActionSuccess = districtCandidates => ({
-  type: types.LOAD_DISTRICT_CANDIDATES_SUCCESS,
-  districtCandidates,
-});
-
-const loadDistrictCandidatesActionError = error => ({
-  type: types.LOAD_DISTRICT_CANDIDATES_ERROR,
+const loadHouseCandidatesActionError = error => ({
+  type: types.LOAD_HOUSE_CANDIDATES_ERROR,
   error,
 });
 
@@ -110,12 +94,9 @@ export default {
   loadAllPresidentialAction,
   loadAllPresidentialActionSuccess,
   loadAllPresidentialActionError,
-  loadDistrictIncumbentsAction,
-  loadDistrictIncumbentsActionSuccess,
-  loadDistrictIncumbentsActionError,
-  loadDistrictCandidatesAction,
-  loadDistrictCandidatesActionSuccess,
-  loadDistrictCandidatesActionError,
+  loadHouseCandidatesAction,
+  loadHouseCandidatesActionSuccess,
+  loadHouseCandidatesActionError,
   geolocationToDistrictAction,
   geolocationToDistrictActionSuccess,
   geolocationToDistrictActionError,

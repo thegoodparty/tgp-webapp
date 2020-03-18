@@ -49,29 +49,18 @@ function* loadPresidential() {
   }
 }
 
-function* loadDistrictIncumbents(action) {
+function* loadHouseCandidates(action) {
   try {
     const { state, districtNum } = action;
-    const api = tgpApi.districtIncumbents;
+    const api = tgpApi.houseCandidates;
     const payload = { state, district: districtNum };
     const response = yield call(requestHelper, api, payload);
-    yield put(actions.loadDistrictIncumbentsActionSuccess(response));
+    yield put(
+      actions.loadHouseCandidatesActionSuccess(response.houseCandidates),
+    );
   } catch (error) {
     console.log(error);
-    yield put(actions.loadDistrictIncumbentsActionError(error));
-  }
-}
-
-function* loadDistrictCandidates(action) {
-  try {
-    const { state, districtNum } = action;
-    const api = tgpApi.districtCandidates;
-    const payload = { state, district: districtNum };
-    const response = yield call(requestHelper, api, payload);
-    yield put(actions.loadDistrictCandidatesActionSuccess(response));
-  } catch (error) {
-    console.log(error);
-    yield put(actions.loadDistrictCandidatesActionError(error));
+    yield put(actions.loadHouseCandidatesActionError(error));
   }
 }
 
@@ -135,14 +124,11 @@ function* gelocationToDistrict(action) {
 export default function* saga() {
   const zipAction = yield takeLatest(types.LOAD_ZIP, loadZip);
   yield takeLatest(types.LOAD_ALL_PRESIDENTIAL, loadPresidential);
-  const incumbentsAction = yield takeLatest(
-    types.LOAD_DISTRICT_INCUMBENTS,
-    loadDistrictIncumbents,
+  const houseAction = yield takeLatest(
+    types.LOAD_HOUSE_CANDIDATES,
+    loadHouseCandidates,
   );
-  const candidatesAction = yield takeLatest(
-    types.LOAD_DISTRICT_CANDIDATES,
-    loadDistrictCandidates,
-  );
+
   const senateAction = yield takeLatest(
     types.LOAD_SENATE_CANDIDATES,
     loadSenateCandidates,

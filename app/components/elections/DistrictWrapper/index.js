@@ -52,8 +52,8 @@ const DistrictWrapper = ({
   geoLocation = false,
   cdIndex,
   presidential = {},
-  districtIncumbents = {},
-  districtCandidates = {},
+  senateCandidates = {},
+  houseCandidates = {},
   content,
   changeDistrictCallback,
   user,
@@ -85,37 +85,37 @@ const DistrictWrapper = ({
     }
   }
 
-  let senateInc = { good: [], notGood: [] };
-  let houseInc = { good: [], notGood: [] };
-  const { houseIncumbent, senateIncumbents } = districtIncumbents;
-  if (houseIncumbent) {
-    if (houseIncumbent.isGood) {
-      houseInc.good.push(houseIncumbent);
-    } else {
-      houseInc.notGood.push(houseIncumbent);
-    }
-  }
-
-  if (senateIncumbents) {
-    senateInc = senateIncumbents;
-  }
-
-  let houseCandidatesAndIncumbents;
-  const { houseCandidates, senateCandidates } = districtCandidates;
-  if (houseCandidates) {
-    houseCandidatesAndIncumbents = {
-      good: houseInc.good.concat(houseCandidates.good),
-      notGood: houseInc.notGood.concat(houseCandidates.notGood),
-    };
-  }
-
-  let senateCandidatesAndIncumbents;
-  if (senateCandidates) {
-    senateCandidatesAndIncumbents = {
-      good: senateInc.good.concat(senateCandidates.good),
-      notGood: senateInc.notGood.concat(senateCandidates.notGood),
-    };
-  }
+  // let senateInc = { good: [], notGood: [] };
+  // let houseInc = { good: [], notGood: [] };
+  // const { houseIncumbent, senateIncumbents } = districtIncumbents;
+  // if (houseIncumbent) {
+  //   if (houseIncumbent.isGood) {
+  //     houseInc.good.push(houseIncumbent);
+  //   } else {
+  //     houseInc.notGood.push(houseIncumbent);
+  //   }
+  // }
+  //
+  // if (senateIncumbents) {
+  //   senateInc = senateIncumbents;
+  // }
+  //
+  // let houseCandidatesAndIncumbents;
+  // const { houseCandidates, senateCandidates } = districtCandidates;
+  // if (houseCandidates) {
+  //   houseCandidatesAndIncumbents = {
+  //     good: houseInc.good.concat(houseCandidates.good),
+  //     notGood: houseInc.notGood.concat(houseCandidates.notGood),
+  //   };
+  // }
+  //
+  // let senateCandidatesAndIncumbents;
+  // if (senateCandidates) {
+  //   senateCandidatesAndIncumbents = {
+  //     good: senateInc.good.concat(senateCandidates.good),
+  //     notGood: senateInc.notGood.concat(senateCandidates.notGood),
+  //   };
+  // }
 
   let articles = [];
   if (content && content.faqArticles) {
@@ -202,13 +202,17 @@ const DistrictWrapper = ({
             <Link to={`/elections/senate-election/${shortState.toLowerCase()}`}>
               <VsCard
                 title={`Senator - ${stateLong}`}
-                candidates={senateCandidatesAndIncumbents || []}
+                candidates={senateCandidates}
               />
             </Link>
-            <VsCard
-              title={`House Representative ${shortState}-${districtNumber}`}
-              candidates={houseCandidatesAndIncumbents || []}
-            />
+            <Link
+              to={`/elections/house-election/${shortState.toLowerCase()}-${districtNumber}`}
+            >
+              <VsCard
+                title={`House Representative ${shortState}-${districtNumber}`}
+                candidates={houseCandidates}
+              />
+            </Link>
             <GoodPartyStats />
             <TopQuestions articles={articles} />
           </Wrapper>
@@ -229,8 +233,8 @@ DistrictWrapper.propTypes = {
   geoLocation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 
   presidential: PropTypes.object,
-  districtIncumbents: PropTypes.object,
-  districtCandidates: PropTypes.object,
+  senateCandidates: PropTypes.object,
+  houseCandidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   cdIndex: PropTypes.number,

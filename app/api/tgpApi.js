@@ -18,12 +18,12 @@ const api = {
     url: `${base}incumbent/find-by-district`,
     method: 'GET',
   },
-  districtCandidates: {
-    url: `${base}race-candidate/find-by-district`,
+  houseCandidates: {
+    url: `${base}race-candidate/house-by-district`,
     method: 'GET',
   },
   senateCandidates: {
-    url: `${base}race-candidate/find-by-state`,
+    url: `${base}race-candidate/senate-by-state`,
     method: 'GET',
   },
   fullAddressToDistrict: {

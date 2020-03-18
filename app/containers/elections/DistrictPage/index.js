@@ -46,13 +46,15 @@ export function DistrictPage({
 
   const [cdIndex, setCdIndex] = useState(0);
   const [presidentialCandidates, setPresidentialCandidates] = useState([]);
+  const [filteredHouse, setFilteredHouse] = useState([]);
+  const [filteredSenate, setFilteredSenate] = useState([]);
   const { user } = userState;
 
   const { zipWithDistricts, filters } = districtState;
   const {
     presidential,
-    districtIncumbents,
-    districtCandidates,
+    houseCandidates,
+    senateCandidates,
     geoLocation,
   } = districtState;
 
@@ -90,22 +92,15 @@ export function DistrictPage({
       } else if (cds && cds.length > cdIndex) {
         districtNumber = cds[cdIndex].code;
       }
-      if (!districtIncumbents || !districtCandidates) {
-        if (shortState && districtNumber) {
-          dispatch(
-            districtActions.loadDistrictIncumbentsAction(
-              shortState,
-              districtNumber,
-            ),
-          );
 
-          dispatch(
-            districtActions.loadDistrictCandidatesAction(
-              shortState,
-              districtNumber,
-            ),
-          );
-        }
+      if (!houseCandidates && shortState && districtNumber) {
+        dispatch(
+          districtActions.loadHouseCandidatesAction(shortState, districtNumber),
+        );
+      }
+
+      if (!senateCandidates && shortState) {
+        dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
     }
   }, [zipWithDistricts, zip, cd, user]);
@@ -116,20 +111,14 @@ export function DistrictPage({
       const shortState = state ? state.toUpperCase() : '';
       const districtNumber = district ? district.code : null;
 
-      if (shortState && districtNumber) {
+      if (!houseCandidates && shortState && districtNumber) {
         dispatch(
-          districtActions.loadDistrictIncumbentsAction(
-            shortState,
-            districtNumber,
-          ),
+          districtActions.loadHouseCandidatesAction(shortState, districtNumber),
         );
+      }
 
-        dispatch(
-          districtActions.loadDistrictCandidatesAction(
-            shortState,
-            districtNumber,
-          ),
-        );
+      if (!senateCandidates && shortState) {
+        dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
     }
   }, [geoLocation]);
@@ -143,13 +132,34 @@ export function DistrictPage({
     setPresidentialCandidates(filtered);
   }, [presidential, filters]);
 
+  useEffect(() => {
+    const filtered = filterCandidates(
+      senateCandidates || [],
+      filters,
+      CHAMBER_ENUM.SENATE,
+    );
+    setFilteredSenate(filtered);
+  }, [senateCandidates, filters]);
+
+  useEffect(() => {
+    const filtered = filterCandidates(
+      houseCandidates || [],
+      filters,
+      CHAMBER_ENUM.HOUSE,
+    );
+    setFilteredHouse(filtered);
+  }, [houseCandidates, filters]);
+
+  console.log('house', filteredHouse);
+  console.log('senate', filteredSenate);
+
   const childProps = {
     district: zipWithDistricts,
     cdIndex,
     geoLocation,
     presidential: presidentialCandidates,
-    districtIncumbents,
-    districtCandidates,
+    houseCandidates: filteredHouse,
+    senateCandidates: filteredSenate,
     content,
     changeDistrictCallback,
     user,

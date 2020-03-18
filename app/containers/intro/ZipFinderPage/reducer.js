@@ -13,7 +13,7 @@ export const initialState = {
   zipWithDistricts: false,
   geoLocation: false,
   presidential: false,
-  districtIncumbents: false,
+  houseCandidates: false,
   districtCandidates: false,
   senateCandidates: false,
   loading: false,
@@ -56,28 +56,16 @@ const zipFinderPageReducer = (state = initialState, action) =>
         draft.presidential = false;
         break;
 
-      case types.LOAD_DISTRICT_INCUMBENTS:
-        draft.districtIncumbents = false;
+      case types.LOAD_HOUSE_CANDIDATES:
+        draft.houseCandidates = false;
         break;
 
-      case types.LOAD_DISTRICT_INCUMBENTS_SUCCESS:
-        draft.districtIncumbents = action.districtIncumbents;
+      case types.LOAD_HOUSE_CANDIDATES_SUCCESS:
+        draft.houseCandidates = action.houseCandidates;
         break;
 
-      case types.LOAD_DISTRICT_INCUMBENTS_ERROR:
-        draft.districtIncumbents = false;
-        break;
-
-      case types.LOAD_DISTRICT_CANDIDATES:
-        draft.districtCandidates = false;
-        break;
-
-      case types.LOAD_DISTRICT_CANDIDATES_SUCCESS:
-        draft.districtCandidates = action.districtCandidates;
-        break;
-
-      case types.LOAD_DISTRICT_CANDIDATES_ERROR:
-        draft.districtCandidates = false;
+      case types.LOAD_HOUSE_CANDIDATES_ERROR:
+        draft.houseCandidates = false;
         break;
 
       case types.LOAD_SENATE_CANDIDATES:

@@ -161,7 +161,7 @@ const VsCard = ({ title, candidates = [] }) => {
                   >
                     <CandidateAvatar
                       size="responsive"
-                      src={candidate.image}
+                      src={candidate.image || noCandidateImage}
                       good
                     />
                   </AvatarAbsolute>

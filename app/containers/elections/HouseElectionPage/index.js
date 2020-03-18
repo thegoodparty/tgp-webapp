@@ -1,6 +1,6 @@
 /**
  *
- * SenateElectionPage
+ * HouseElectionPage
  *
  */
 
@@ -24,30 +24,35 @@ import { CHAMBER_ENUM, filterCandidates } from 'helpers/electionsHelper';
 import globalActions from 'containers/App/actions';
 import { makeSelectContent } from 'containers/App/selectors';
 
-export function SenateElectionPage({
+export function HouseElectionPage({
   dispatch,
   districtState,
-  shortState,
+  stateDistrict,
   content,
   changeFiltersCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
+  const [state, districtNumber] = stateDistrict.split('-');
 
   const [candidates, setCandidates] = useState([]);
-  const { senateCandidates, filters } = districtState;
+  const { houseCandidates, filters } = districtState;
 
   useEffect(() => {
-    if (!senateCandidates) {
-      dispatch(districtActions.loadSenateCandidatesAction(shortState));
+    if (!houseCandidates) {
+      dispatch(
+        districtActions.loadHouseCandidatesAction(state, districtNumber),
+      );
     }
     // if the state changed
     if (
-      senateCandidates &&
-      senateCandidates.length > 0 &&
-      senateCandidates[0].state.toUpperCase() !== shortState
+      houseCandidates &&
+      houseCandidates.length > 0 &&
+      houseCandidates[0].state !== state
     ) {
-      dispatch(districtActions.loadSenateCandidatesAction(shortState));
+      dispatch(
+        districtActions.loadHouseCandidatesAction(state, districtNumber),
+      );
     }
     if (!content) {
       dispatch(globalActions.loadContentAction());
@@ -56,28 +61,29 @@ export function SenateElectionPage({
 
   useEffect(() => {
     const filtered = filterCandidates(
-      senateCandidates || [],
+      houseCandidates || [],
       filters,
-      CHAMBER_ENUM.SENATE,
+      CHAMBER_ENUM.HOUSE,
     );
     setCandidates(filtered);
-  }, [senateCandidates, filters]);
+  }, [houseCandidates, filters]);
 
   const childProps = {
     candidates,
     content,
-    electionType: 'Senate',
+    electionType: 'House',
     changeFiltersCallback,
     filters,
   };
-
   return (
     <div>
       <Helmet>
-        <title>{shortState.toUpperCase()} Senate Election</title>
+        <title>
+          {state.toUpperCase()}-${districtNumber} House Election
+        </title>
         <meta
           name="description"
-          content={`${shortState.toUpperCase()} Senate Election`}
+          content={`${state.toUpperCase()}-${districtNumber} House Election`}
         />
       </Helmet>
       <ElectionWrapper {...childProps} />
@@ -85,9 +91,9 @@ export function SenateElectionPage({
   );
 }
 
-SenateElectionPage.propTypes = {
+HouseElectionPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  shortState: PropTypes.string,
+  stateDistrict: PropTypes.string,
   districtState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   changeFiltersCallback: PropTypes.func,
@@ -96,7 +102,7 @@ SenateElectionPage.propTypes = {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
-    shortState: ownProps.match.params.shortState,
+    stateDistrict: ownProps.match.params.stateDistrict,
     changeFiltersCallback: filters => {
       dispatch(districtActions.changeFiltersAction(filters));
     },
@@ -113,4 +119,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(SenateElectionPage);
+export default compose(withConnect)(HouseElectionPage);
