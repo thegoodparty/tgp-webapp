@@ -12,7 +12,7 @@ const selectCandidateDomain = state => state.candidate || initialState;
  */
 
 /**
- * Default selector used by PresidentialCandidatePage
+ * Default selector used by CandidatePage
  */
 
 const makeSelectCandidate = () =>

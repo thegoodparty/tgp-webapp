@@ -37,8 +37,8 @@ const api = {
     url: `${base}content/all-content`,
     method: 'GET',
   },
-  findPresidentialCandidate: {
-    url: `${base}presidential/find`,
+  findCandidate: {
+    url: `${base}candidates/find`,
     method: 'GET',
   },
   //

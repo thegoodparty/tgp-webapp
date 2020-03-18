@@ -7,7 +7,7 @@ import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
   partyResolver,
-  presidentialCandidateRoute,
+  candidateRoute,
 } from 'helpers/electionsHelper';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
@@ -138,7 +138,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
         <Side>
           <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
           {notGood.map(candidate => (
-            <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
+            <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper>
                 <CandidateAvatar
                   size="responsive"
@@ -166,7 +166,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
         <Side className="right">
           <GoodTitle>GOOD ENOUGH</GoodTitle>
           {good.map(candidate => (
-            <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
+            <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper className="right">
                 <CandidateAvatar
                   size="responsive"
@@ -188,7 +188,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
         <UnknownWrapper>
           <UnknownTitle>UNKNOWN</UnknownTitle>
           {unknown.map(candidate => (
-            <Link to={presidentialCandidateRoute(candidate)} key={candidate.id}>
+            <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper className="center">
                 <CandidateAvatar
                   size="responsive"

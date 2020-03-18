@@ -16,14 +16,14 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/intro/ZipFinderPage/reducer';
 import saga from 'containers/intro/ZipFinderPage/saga';
-import candidateReducer from 'containers/elections/PresidentialCandidatePage/reducer';
-import candidateSaga from 'containers/elections/PresidentialCandidatePage/saga';
+import candidateReducer from 'containers/elections/CandidatePage/reducer';
+import candidateSaga from 'containers/elections/CandidatePage/saga';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
-import candidateActions from 'containers/elections/PresidentialCandidatePage/actions';
+import candidateActions from 'containers/elections/CandidatePage/actions';
 import userActions from 'containers/you/YouPage/actions';
 
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
-import makeSelectCandidate from 'containers/elections/PresidentialCandidatePage/selectors';
+import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
 import RankPresidentialCandidatesWrapper from 'components/elections/RankPresidentialCandidatesWrapper';
 import makeSelectUser from '../../you/YouPage/selectors';
 

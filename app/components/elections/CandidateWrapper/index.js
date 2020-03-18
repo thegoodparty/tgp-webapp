@@ -75,11 +75,9 @@ const RankButton = styled(Body9)`
   }
 `;
 
-const PresidentialCandidateWrapper = ({
-  candidate,
-  presidentialRank = [],
-  isGood,
-}) => {
+const noCandidateImage = 'https://assets.thegoodparty.org/no-candidate.svg';
+
+const CandidateWrapper = ({ candidate, chamberRank = [], isGood }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
   const [rank, setRank] = useState(false);
 
@@ -91,13 +89,13 @@ const PresidentialCandidateWrapper = ({
   }, [candidate]);
 
   useEffect(() => {
-    if (candidate && presidentialRank && presidentialRank.length > 0) {
-      const savedRank = presidentialRank.indexOf(candidate.id) + 1;
+    if (candidate && chamberRank && chamberRank.length > 0) {
+      const savedRank = chamberRank.indexOf(candidate.id) + 1;
       if (savedRank) {
         setRank(savedRank);
       }
     }
-  }, [presidentialRank, candidate]);
+  }, [chamberRank, candidate]);
 
   const {
     name,
@@ -167,7 +165,11 @@ const PresidentialCandidateWrapper = ({
                 </StyledBody9>
               </div>
               <div>
-                <CandidateAvatar src={image} good={isGood} size="xl" />
+                <CandidateAvatar
+                  src={image || noCandidateImage}
+                  good={isGood}
+                  size="xl"
+                />
                 <Link to="/elections/rank-presidential-candidates">
                   <RankButton className={rank ? 'blue' : ''}>
                     {rank ? `${rankText(rank)} CHOICE` : 'RANK CANDIDATES'}
@@ -269,10 +271,10 @@ const PresidentialCandidateWrapper = ({
   );
 };
 
-PresidentialCandidateWrapper.propTypes = {
+CandidateWrapper.propTypes = {
   candidate: PropTypes.object,
-  presidentialRank: PropTypes.array,
+  chamberRank: PropTypes.array,
   isGood: PropTypes.bool,
 };
 
-export default PresidentialCandidateWrapper;
+export default CandidateWrapper;

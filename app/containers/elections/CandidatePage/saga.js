@@ -7,21 +7,21 @@ import actions from './actions';
 
 function* loadPresidentialCandidate(action) {
   try {
-    const api = tgpApi.findPresidentialCandidate;
-    const { id } = action;
-    const payload = { id };
+    const api = tgpApi.findCandidate;
+    const { id, chamber, isIncumbent } = action;
+    const payload = { id, chamber, isIncumbent };
     const candidate = yield call(requestHelper, api, payload);
-    yield put(actions.loadPresidentialCandidateActionSuccess(candidate));
+    yield put(actions.loadCandidateActionSuccess(candidate));
   } catch (error) {
     console.log(error);
-    yield put(actions.loadPresidentialCandidateActionError(error));
+    yield put(actions.loadCandidateActionError(error));
   }
 }
 
 // Individual exports for testing
 export default function* saga() {
   const findAction = yield takeLatest(
-    types.LOAD_PRESIDENTIAL_CANDIDATE,
+    types.LOAD_CANDIDATE,
     loadPresidentialCandidate,
   );
 }

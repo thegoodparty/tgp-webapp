@@ -20,13 +20,16 @@ export const partyResolver = partyLetter => {
   return '';
 };
 
-export const presidentialCandidateRoute = candidate => {
+export const candidateRoute = candidate => {
   if (!candidate) {
     return '/';
   }
-  return `/elections/presidential-candidate/${slugify(candidate.name)}/${
-    candidate.id
-  }`;
+  const { isIncumbent, chamber } = candidate;
+  const chamberLower = chamber ? chamber.toLowerCase() : 'presidential';
+  const name = slugify(candidate.name);
+  return `/elections/candidate/${chamberLower}${
+    isIncumbent ? '-i' : ''
+  }/${name}/${candidate.id}`;
 };
 
 export const rankText = number => {
@@ -110,8 +113,8 @@ export const filterCandidates = (
 export const isCandidateGood = (candidate, filters, chamber) => {
   let isGood = false;
   let isNotGood = false;
-  const { combinedRaised, smallContributions } = candidate;
-  const totalRaised = combinedRaised || 1;
+  const { combinedRaised, smallContributions, raised } = candidate;
+  const totalRaised = combinedRaised || raised;
   const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
   if (
     totalRaised < chamberThresholds[chamber].totalThreshold &&
@@ -137,22 +140,23 @@ export const isCandidateGood = (candidate, filters, chamber) => {
     return false;
   }
   return null;
+};
 
-  // if (filters.smallFunding && largeDonorPerc && largeDonorPerc < 0.5) {
-  //   isGood = true;
-  // } else if (
-  //   filters.smallDonors &&
-  //   totalRaised &&
-  //   totalRaised < chamberThresholds[chamber].totalThreshold
-  // ) {
-  //   isGood = true;
-  // } else if (
-  //   filters.mostlyBigDonors &&
-  //   largeDonorPerc &&
-  //   largeDonorPerc >= 0.5
-  // ) {
-  //   isGood = false;
-  // }
-//    return isGood;
+export const candidateCalculatedFields = orgCandidate => {
+  const candidate = { ...orgCandidate };
+  const { combinedRaised, raised, smallContributions } = candidate;
+  const totalRaised = combinedRaised || raised;
+  const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
+  const smallDonorPerc = 1 - largeDonorPerc;
+  const hours = 10000;
+  const largeDonorPerHour = (totalRaised * largeDonorPerc) / hours;
+  const smallDonorPerHour = (totalRaised * smallDonorPerc) / hours;
 
+  candidate.totalRaised = totalRaised;
+  candidate.largeDonorPerc = largeDonorPerc;
+  candidate.largeDonorPerHour = largeDonorPerHour;
+  candidate.smallDonorPerc = smallDonorPerc;
+  candidate.smallDonorPerHour = smallDonorPerHour;
+
+  return candidate;
 };

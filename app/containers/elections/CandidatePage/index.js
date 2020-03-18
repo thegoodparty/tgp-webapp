@@ -1,6 +1,6 @@
 /**
  *
- * PresidentialCandidatePage
+ * CandidatePage
  *
  */
 
@@ -11,7 +11,13 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import PresidentialCandidateWrapper from 'components/elections/PresidentialCandidateWrapper';
+import CandidateWrapper from 'components/elections/CandidateWrapper';
+import {
+  candidateCalculatedFields,
+  CHAMBER_ENUM,
+  isCandidateGood,
+} from 'helpers/electionsHelper';
+import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -19,11 +25,10 @@ import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
-import { isCandidateGood } from '../../../helpers/electionsHelper';
-import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
 
-export function PresidentialCandidatePage({
+export function CandidatePage({
   id,
+  chamber,
   candidateState,
   districtState,
   dispatch,
@@ -34,38 +39,54 @@ export function PresidentialCandidatePage({
   const { candidate, presidentialRank } = candidateState;
   const { filters } = districtState;
 
+  const [chamberName, incumbent] = chamber.split('-');
+  const isIncumbent = incumbent === 'i';
+
   useEffect(() => {
     if (id) {
-      dispatch(candidateActions.loadPresidentialCandidateAction(id));
+      dispatch(
+        candidateActions.loadCandidateAction(id, chamberName, isIncumbent),
+      );
     }
     if (!presidentialRank) {
       dispatch(candidateActions.loadRankingFromCookieAction());
     }
   }, []);
 
+  let chamberEnum;
+  if (chamberName === 'presidential') {
+    chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
+  } else if (chamberName === 'senate') {
+    chamberEnum = CHAMBER_ENUM.SENATE;
+  } else if (chamberName === 'house') {
+    chamberEnum = CHAMBER_ENUM.HOUSE;
+  } else {
+    chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
+  }
+
+  const candidateWithFields = candidateCalculatedFields(candidate);
+
   const childProps = {
-    candidate,
-    presidentialRank,
-    isGood: isCandidateGood(candidate, filters, 0),
+    candidate: candidateWithFields,
+    chamberRank: presidentialRank,
+    isGood: isCandidateGood(candidate, filters, chamberEnum),
   };
 
   return (
     <div>
       <Helmet>
-        <title>PresidentialCandidatePage</title>
-        <meta
-          name="description"
-          content="Description of PresidentialCandidatePage"
-        />
+        <title>CandidatePage</title>
+        <meta name="description" content="Description of CandidatePage" />
       </Helmet>
-      <PresidentialCandidateWrapper {...childProps} />
+      <CandidateWrapper {...childProps} />
     </div>
   );
 }
 
-PresidentialCandidatePage.propTypes = {
+CandidatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  chamber: PropTypes.string.isRequired,
   candidateState: PropTypes.object,
   districtState: PropTypes.object,
 };
@@ -79,6 +100,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
     id: ownProps.match.params.id,
+    chamber: ownProps.match.params.chamber,
   };
 }
 
@@ -90,4 +112,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(PresidentialCandidatePage);
+)(CandidatePage);

@@ -15,7 +15,7 @@ import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
   partyResolver,
   rankText,
-  presidentialCandidateRoute,
+  candidateRoute,
 } from 'helpers/electionsHelper';
 import BottomPopup from 'components/shared/BottomPopup';
 
@@ -220,13 +220,13 @@ const RankPresidentialCandidatesWrapper = ({
     return (
       <Card style={{ cursor: 'default' }} key={id}>
         <Row>
-          <Link to={presidentialCandidateRoute(candidate)}>
+          <Link to={candidateRoute(candidate)}>
             <CandidateAvatar src={candidate.image} good={candidate.isGood} />
           </Link>
           <CardRight>
             <Grid container spacing={0} alignItems="center">
               <Grid item xs={12} md={6}>
-                <Link to={presidentialCandidateRoute(candidate)}>
+                <Link to={candidateRoute(candidate)}>
                   <StyledH3 className="pointer">{candidate.name}</StyledH3>
                   <Body9 className="pointer">
                     {partyResolver(candidate.party)}

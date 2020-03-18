@@ -4,7 +4,7 @@ import { push } from 'connected-react-router';
 import requestHelper from 'helpers/requestHelper';
 import { getCookie, setCookie } from 'helpers/cookieHelper';
 import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
-import selectCandidate from 'containers/elections/PresidentialCandidatePage/selectors';
+import selectCandidate from 'containers/elections/CandidatePage/selectors';
 
 import tgpApi from 'api/tgpApi';
 import types from './constants';

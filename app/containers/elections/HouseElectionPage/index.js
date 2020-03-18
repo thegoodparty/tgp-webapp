@@ -79,7 +79,7 @@ export function HouseElectionPage({
     <div>
       <Helmet>
         <title>
-          {state.toUpperCase()}-${districtNumber} House Election
+          {state.toUpperCase()}-{districtNumber} House Election
         </title>
         <meta
           name="description"

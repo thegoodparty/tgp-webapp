@@ -13,19 +13,19 @@ export const initialState = {
 const districtReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case types.LOAD_PRESIDENTIAL_CANDIDATE:
+      case types.LOAD_CANDIDATE:
         draft.candidate = false;
         draft.loading = true;
         draft.error = false;
         break;
 
-      case types.LOAD_PRESIDENTIAL_CANDIDATE_SUCCESS:
+      case types.LOAD_CANDIDATE_SUCCESS:
         draft.candidate = action.candidate;
         draft.loading = false;
         draft.error = false;
         break;
 
-      case types.LOAD_PRESIDENTIAL_CANDIDATE_ERROR:
+      case types.LOAD_CANDIDATE_ERROR:
         draft.candidate = false;
         draft.loading = false;
         draft.error = action.error;

@@ -20,7 +20,7 @@ import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import PresidentialElectionPage from 'containers/elections/PresidentialElectionPage/Loadable';
 import SenateElectionPage from 'containers/elections/SenateElectionPage/Loadable';
 import HouseElectionPage from 'containers/elections/HouseElectionPage/Loadable';
-import PresidentialCandidatePage from 'containers/elections/PresidentialCandidatePage/Loadable';
+import CandidatePage from 'containers/elections/CandidatePage/Loadable';
 import RankPresidentialCandidatesPage from 'containers/elections/RankPresidentialCandidatesPage/Loadable';
 
 import RegisterPage from 'containers/you/RegisterPage/Loadable';
@@ -81,8 +81,8 @@ export default function App() {
         />
         <Route
           exact
-          path="/elections/presidential-candidate/:name/:id"
-          component={PresidentialCandidatePage}
+          path="/elections/candidate/:chamber/:name/:id"
+          component={CandidatePage}
         />
         <Route
           exact
