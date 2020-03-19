@@ -290,8 +290,7 @@ const CandidateWrapper = ({
                     {isGood ? (
                       <span>
                         FROM SMALL INDIV
-                        <SmallBr />
-                        DONORS &lt; $200
+                        <SmallBr /> DONORS &lt; $200
                       </span>
                     ) : (
                       'FROM BIG MONEY SOURCES'
@@ -304,8 +303,7 @@ const CandidateWrapper = ({
                   <ColoredBody13 className={color}>{perHour}/hr</ColoredBody13>
                   <StyledBody9>
                     BIG MONEY
-                    <SmallBr />
-                    FUNDING RATE
+                    <SmallBr /> FUNDING RATE
                   </StyledBody9>
                 </Fund>
               )}
@@ -396,8 +394,8 @@ const CandidateWrapper = ({
                   This means that{' '}
                   <strong>
                     Big Money backers are bankrolling {lastName()}
-                    ’s {isIncumbent && 're-'}election at a rate of {perHour}/hr
-                    for every hour Trump has been in office.
+                    ’s {isIncumbent && 're-'}election at a rate of {perHour}
+                    /hr for every hour Trump has been in office.
                   </strong>{' '}
                   Of course, Big Money Backers usually expect a big return on
                   their investments, which means, if {isIncumbent && 're-'}

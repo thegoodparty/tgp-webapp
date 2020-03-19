@@ -54,7 +54,7 @@ const ElectionWrapper = ({
   }
 
   const rankPage = () => {
-    console.log(chamber)
+    console.log(chamber);
     if (chamber === 'Presidential') {
       return '/elections/rank-candidates/presidential';
     }
@@ -77,9 +77,8 @@ const ElectionWrapper = ({
 
             <H1>{chamber} Elections</H1>
             <Description>
-              If we count enough support, we will use the{' '}
-              <strong>write-in vote</strong> to bypass the corrupt partisan
-              system and get our best candidate elected!{' '}
+              We recommend candidates who are not beholden to Big Money, but you
+              can set your own Filters and Rank Your Choices.
             </Description>
             <ButtonWrapper>
               <Link to={rankPage()}>
@@ -89,7 +88,7 @@ const ElectionWrapper = ({
                   size="large"
                   fullWidth
                 >
-                  RANK CANDIDATES
+                  RANK YOUR CHOICES
                 </BlueButton>
               </Link>
             </ButtonWrapper>

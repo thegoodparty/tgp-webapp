@@ -271,8 +271,8 @@ const RankCandidatesWrapper = ({
             <MobileHeader />
             <H1>Rank Choice of {upperFirst(chamber)} Candidates</H1>
             <Body style={{ marginTop: '8px' }}>
-              Rank candidates you would be willing to do a{' '}
-              <strong>write-in vote</strong> for if we could guarantee a win.
+              Rank candidates you would be willing to cast your vote for if we
+              could guarantee a win.
             </Body>
             <Reset onClick={reset}>
               RESET CHOICES <Submit onClick={handleSubmit}>DONE</Submit>

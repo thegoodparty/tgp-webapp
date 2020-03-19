@@ -62,10 +62,10 @@ const FiltersPopup = ({
           inputProps={{ 'aria-label': 'Mostly Founded by Small Donors' }}
         />
         <div>
-          <Label>Mostly Founded by Small Donors</Label>
+          <Label>Mostly Funded by Small Donors (&lt;$200)</Label>
           <Body13>
             A candidate who has raised a majority of their funding (&gt;50%)
-            from Small Individual Donors (&lt;$200)
+            from Small Individual Donors(&lt;$200)
           </Body13>
         </div>
       </Row>
