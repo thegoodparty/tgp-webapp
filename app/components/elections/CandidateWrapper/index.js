@@ -205,8 +205,8 @@ const CandidateWrapper = ({
 
   const comparedIncumbent = {
     name: 'Donald Trump',
-    raised: 232093000,
-    bigFundsPerc: 81,
+    raised: 232093160,
+    bigFundsPerc: 56,
   };
   comparedIncumbent.xTimes = (comparedIncumbent.raised / totalRaised).toFixed(
     2,
