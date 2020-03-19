@@ -7,7 +7,6 @@ import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
 import {
-  H1,
   H3,
   Body13,
   Body,
@@ -71,6 +70,9 @@ const RankButton = styled(Body9)`
 
 const StyledBody12 = styled(Body12)`
   color: ${({ theme }) => theme.colors.blue};
+  &.white {
+    color: #fff;
+  }
 `;
 
 const ReportError = styled(Body9)`
@@ -254,7 +256,7 @@ const CandidateWrapper = ({
                   'presidential'}`}
               >
                 <RankButton className={rank ? 'blue' : ''}>
-                  <StyledBody12>
+                  <StyledBody12 className={rank ? 'white' : ''}>
                     {rank ? `${rankText(rank)} CHOICE` : 'RANK YOUR CHOICES'}
                   </StyledBody12>
                 </RankButton>
