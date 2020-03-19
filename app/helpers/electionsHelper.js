@@ -174,3 +174,18 @@ export const getRankFromUserOrState = (user, candidateState, rankType) => {
   }
   return rank;
 };
+
+export const isSmallCandidate = (totalRaised, chamber) => {
+  let threshold = chamberThresholds[CHAMBER_ENUM.PRESIDENTIAL].totalThreshold;
+  if (chamber === 'presidential') {
+    threshold = chamberThresholds[CHAMBER_ENUM.PRESIDENTIAL].totalThreshold;
+  }
+  if (chamber === 'senate') {
+    threshold = chamberThresholds[CHAMBER_ENUM.SENATE].totalThreshold;
+  }
+  if (chamber === 'house') {
+    threshold = chamberThresholds[CHAMBER_ENUM.HOUSE].totalThreshold;
+  }
+
+  return totalRaised < threshold;
+};

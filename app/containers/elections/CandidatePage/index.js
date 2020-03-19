@@ -69,6 +69,7 @@ export function CandidatePage({
   const childProps = {
     candidate: candidateWithFields,
     chamberRank: presidentialRank,
+    chamberName,
     isGood: isCandidateGood(candidate, filters, chamberEnum),
   };
 

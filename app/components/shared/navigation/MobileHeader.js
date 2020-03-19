@@ -69,6 +69,19 @@ function MobileHeader({
   const routeBack = () => {
     goBack();
   };
+
+  const canShare = typeof navigator !== 'undefined' && navigator.share;
+
+  const nativeShare = () => {
+    navigator
+      .share({
+        title: 'The Good Party',
+        text: 'Check out The Good Party!',
+        url: 'https://www.thegoodparty.org',
+      })
+      .then(() => console.log('Successful share'));
+  };
+
   return (
     <>
       <Hidden smDown>
@@ -95,8 +108,8 @@ function MobileHeader({
               )}
             </Link>
           )}
-          {showShare ? (
-            <img src={ShareIcon} alt="Share" />
+          {showShare && canShare ? (
+            <img src={ShareIcon} alt="Share" onClick={nativeShare} />
           ) : (
             <BackIconWrapperHidden>
               <BackIcon />

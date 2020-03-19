@@ -64,10 +64,10 @@ const CandidateAvatar = ({ src, size = 'large', good = false }) => {
     wrapperSizeSmall = '56px';
     wrapperSizeLarge = '80px';
   } else if (size === 'xl') {
-    avatarSizeSmall = '124px';
-    avatarSizeLarge = '150px';
-    wrapperSizeSmall = '130px';
-    wrapperSizeLarge = '160px';
+    avatarSizeSmall = '90px';
+    avatarSizeLarge = '130px';
+    wrapperSizeSmall = '96px';
+    wrapperSizeLarge = '140px';
   }
 
   return (

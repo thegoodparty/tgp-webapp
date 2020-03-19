@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
    color: #21A8DD;
   }
   
+  .bold700 {
+    font-weight: 700;
+  }
+  
   .bold600 {
     font-weight: 600;
   }
