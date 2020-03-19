@@ -10,6 +10,7 @@ import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { useWindowSize } from 'customHooks/useWindowSize';
 import theme from 'theme';
 import { partyResolver } from 'helpers/electionsHelper';
+import { numberFormatter } from '../../helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -80,10 +81,50 @@ const Vs = styled(Body11)`
   text-align: center;
 `;
 
+const ProgressBarWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 18px;
+`;
 
-const VsCard = ({ title, candidates = [] }) => {
+const BarBg = styled.div`
+  margin: 10px 0;
+  width: 80%;
+  position: relative;
+  height: 5px;
+  background-color: ${({ theme }) => theme.colors.grayC};
+  border-radius: 3px;
+  overflow: hidden;
+`;
+
+const Bar = styled.div`
+  position: absolute;
+  height: 5px;
+  border-radius: 3px;
+  background-color: ${({ theme }) => theme.colors.blue};
+  left: 0;
+  top: 0;
+`;
+
+const BarBody11 = styled(Body11)`
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const BarBody9 = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const VsCard = ({
+  title,
+  candidates = [],
+  peopleSoFar = 530435,
+  votesNeeded = 65853514,
+}) => {
   const { good, notGood } = candidates;
   const [width, height] = useWindowSize();
+
+  const progress = (peopleSoFar * 100) / votesNeeded;
 
   if (candidates.length === 0 || (!good && !notGood)) {
     return (
@@ -181,6 +222,15 @@ const VsCard = ({ title, candidates = [] }) => {
           )}
         </Sider>
       </Row>
+      <ProgressBarWrapper>
+        <BarBody11>
+          {numberFormatter(peopleSoFar)} Good Party People so far
+        </BarBody11>
+        <BarBg>
+          <Bar style={{ width: `${progress}%` }} />
+        </BarBg>
+        <BarBody9>{numberFormatter(votesNeeded)} VOTES NEEDED TO WIN!</BarBody9>
+      </ProgressBarWrapper>
     </Card>
   );
 };
