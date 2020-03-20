@@ -65,7 +65,7 @@ const chamberThresholds = {
     totalThreshold: 2000000,
   },
   [CHAMBER_ENUM.HOUSE]: {
-    totalThreshold: 250000,
+    totalThreshold: 500000,
   },
 };
 
