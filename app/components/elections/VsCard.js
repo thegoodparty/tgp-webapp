@@ -147,13 +147,17 @@ const VsCard = ({
       });
     } else {
       good.push({
-        id: 'whatever',
+        id: 'noneyet',
         name: 'NONE YET',
         party: 'VETTING CHALLENGERS',
         image: noCandidateImage,
         isGood: true,
       });
     }
+  }
+
+  if (candidates.length === 0 && good.length === 1 && good[0] === 'noneyet') {
+    return <div />;
   }
 
   const avatarSpace = width > theme.breakpoints.mdPx ? 55 : 40;
