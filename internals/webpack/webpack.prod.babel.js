@@ -119,7 +119,7 @@ module.exports = require('./webpack.base.babel')({
     }),
 
     new WebpackPwaManifest({
-      name: 'The Good Party',
+      name: 'Good Party',
       short_name: 'TGP',
       description:
         "Power and money have corrupted both major U.S. Political parties.We're working on a truly Good alternative!",
