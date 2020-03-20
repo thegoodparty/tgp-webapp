@@ -123,7 +123,7 @@ const VsCard = ({
   peopleSoFar = 530435,
   votesNeeded = 65853514,
 }) => {
-  const { good, notGood } = candidates;
+  const { good, notGood, unknown } = candidates;
   const [width, height] = useWindowSize();
 
   const progress = (peopleSoFar * 100) / votesNeeded;
@@ -136,14 +136,24 @@ const VsCard = ({
     );
   }
 
-  if (candidates.good.length === 0) {
-    good.push({
-      id: 'whatever',
-      name: 'NONE YET',
-      party: 'VETTING CHALLENGERS',
-      image: noCandidateImage,
-      isGood: true,
-    });
+  if (good.length === 0) {
+    if (unknown.length > 0) {
+      good.push({
+        id: 'whatever',
+        name: `VETTING ${unknown.length} CHALLENGERS`,
+        party: 'VETTING CHALLENGERS',
+        image: noCandidateImage,
+        isGood: true,
+      });
+    } else {
+      good.push({
+        id: 'whatever',
+        name: 'NONE YET',
+        party: 'VETTING CHALLENGERS',
+        image: noCandidateImage,
+        isGood: true,
+      });
+    }
   }
 
   const avatarSpace = width > theme.breakpoints.mdPx ? 55 : 40;

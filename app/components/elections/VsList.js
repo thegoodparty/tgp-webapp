@@ -182,7 +182,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
       </Row>
       {unknown && unknown.length > 0 && (
         <UnknownWrapper>
-          <UnknownTitle>UNKNOWN</UnknownTitle>
+          <UnknownTitle>GOODNESS UNKNOWN</UnknownTitle>
           {unknown.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper className="center">

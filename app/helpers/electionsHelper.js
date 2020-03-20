@@ -71,7 +71,7 @@ const chamberThresholds = {
 
 export const defaultFilters = {
   smallDonors: true,
-  smallFunding: true,
+  smallFunding: false,
   mostlyBigDonors: true,
 };
 
@@ -122,6 +122,9 @@ export const isCandidateGood = (candidate, filters, chamber) => {
     totalRaised < chamberThresholds[chamber].totalThreshold &&
     !filters.smallFunding
   ) {
+    if (chamber === CHAMBER_ENUM.PRESIDENTIAL) {
+      return true;
+    }
     return null;
   }
   if (
