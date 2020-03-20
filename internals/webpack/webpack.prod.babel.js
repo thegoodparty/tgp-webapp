@@ -119,20 +119,21 @@ module.exports = require('./webpack.base.babel')({
     }),
 
     new WebpackPwaManifest({
-      name: 'React Boilerplate',
-      short_name: 'React BP',
-      description: 'My React Boilerplate-based project!',
-      background_color: '#fafafa',
-      theme_color: '#b1624d',
+      name: 'The Good Party',
+      short_name: 'TGP',
+      description:
+        "Power and money have corrupted both major U.S. Political parties.We're working on a truly Good alternative!",
+      background_color: '#ffffff',
+      theme_color: '#117CB6',
       inject: true,
       ios: true,
       icons: [
         {
-          src: path.resolve('app/images/icon-512x512.png'),
+          src: path.resolve('app/images/favicons/favicon-512x512.png'),
           sizes: [72, 96, 128, 144, 192, 384, 512],
         },
         {
-          src: path.resolve('app/images/icon-512x512.png'),
+          src: path.resolve('app/images/favicons/favicon-512x512.png'),
           sizes: [120, 152, 167, 180],
           ios: true,
         },
