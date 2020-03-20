@@ -57,7 +57,7 @@ const DistrictWrapper = ({
   content,
   changeDistrictCallback,
   user,
-  userCounts
+  userCounts,
 }) => {
   let primaryCity;
   let stateLong;
@@ -136,6 +136,14 @@ const DistrictWrapper = ({
     setShowCds(prev => !prev);
   };
 
+  let electionCount = 1;
+  if (senateCandidates && Object.keys(senateCandidates).length > 0) {
+    electionCount++;
+  }
+  if (houseCandidates && Object.keys(houseCandidates).length > 0) {
+    electionCount++;
+  }
+
   return (
     <GrayWrapper>
       {district && presidential ? (
@@ -181,8 +189,8 @@ const DistrictWrapper = ({
             </Collapse>
             <Spacer>
               <Body>
-                You have <strong>3</strong> relevant Federal elections to
-                consider. Click on the cards below for details:
+                You have <strong>{electionCount}</strong> relevant Federal
+                elections to consider. Click on the cards below for details:
               </Body>
             </Spacer>
             <Link to="/elections/presidential-election">
@@ -230,9 +238,9 @@ DistrictWrapper.propTypes = {
   district: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   geoLocation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 
-  presidential: PropTypes.object,
-  senateCandidates: PropTypes.object,
-  houseCandidates: PropTypes.object,
+  presidential: PropTypes.array,
+  senateCandidates: PropTypes.array,
+  houseCandidates: PropTypes.array,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),

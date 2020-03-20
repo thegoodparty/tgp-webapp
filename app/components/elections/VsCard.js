@@ -127,7 +127,7 @@ const Green = styled.span`
 
 const VsCard = ({
   title,
-  candidates = [],
+  candidates = {},
   peopleSoFar = 530435,
   votesNeeded = 65853514,
 }) => {
@@ -136,7 +136,7 @@ const VsCard = ({
 
   const progress = (peopleSoFar * 100) / votesNeeded;
 
-  if (candidates.length === 0 || (!good && !notGood)) {
+  if (!good && !notGood) {
     return (
       <Card>
         <CircularProgress />
@@ -164,7 +164,14 @@ const VsCard = ({
     }
   }
 
-  if (candidates.length === 0 && good.length === 1 && good[0].id === 'noneyet') {
+  if (
+    notGood &&
+    notGood.length === 0 &&
+    unknown &&
+    unknown.length === 0 &&
+    good.length === 1 &&
+    good[0].id === 'noneyet'
+  ) {
     return <div />;
   }
 
