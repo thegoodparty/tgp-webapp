@@ -164,7 +164,7 @@ const VsCard = ({
     }
   }
 
-  if (candidates.length === 0 && good.length === 1 && good[0] === 'noneyet') {
+  if (candidates.length === 0 && good.length === 1 && good[0].id === 'noneyet') {
     return <div />;
   }
 
