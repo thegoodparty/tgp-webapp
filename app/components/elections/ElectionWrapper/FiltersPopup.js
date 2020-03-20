@@ -64,8 +64,9 @@ const FiltersPopup = ({
         <div>
           <Label>Mostly Funded by Small Donors (&lt;$200)</Label>
           <Body13>
-            A candidate who has raised a majority of their funding (&gt;50%)
-            from Small Individual Donors(&lt;$200)
+            Major candidates who have raised lots of funding, but have ensured
+            that most of their funding (&gt;50%) is coming from Small Individual
+            Donors(&lt;$200).
           </Body13>
         </div>
       </Row>
@@ -80,10 +81,11 @@ const FiltersPopup = ({
           inputProps={{ 'aria-label': 'Relatively Small Amount of Funding' }}
         />
         <div>
-          <Label>Relatively Small Amount of Funding</Label>
+          <Label>Good Party Approved Candidates</Label>
           <Body13>
-            A candidate who has raised a relatively small amount of money, when
-            compared to the incumbent.
+            Relatively lessor known candidates who have raised &lt;50% of the
+            funding of the incumbent, but have been vetted and approved by The
+            Good Party.
           </Body13>
         </div>
       </Row>
@@ -98,9 +100,10 @@ const FiltersPopup = ({
         <div>
           <Label>Mostly Funded by Big Money Donors</Label>
           <Body13>
-            A candidate who has raised a lot of funding, with a majority
-            (&gt;50%) coming from Big Money sources, like Corporate Lobbyists,
-            Political Action Committees (PACs), and Other Big Money Donors.
+            Major candidates who have raised lots of funding, but have a
+            majority (&gt;50%) coming from Big Money sources, like Corporate
+            Lobbyists, Political Action Committees (PACs), and other Big Money
+            Donors.
           </Body13>
         </div>
       </Row>
