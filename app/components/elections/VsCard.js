@@ -117,6 +117,14 @@ const BarBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
+const Red = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+`;
+
+const Green = styled.span`
+  color: ${({ theme }) => theme.colors.green};
+`;
+
 const VsCard = ({
   title,
   candidates = [],
@@ -166,7 +174,9 @@ const VsCard = ({
       <H3>{title}</H3>
       <Row>
         <Sider>
-          <Body9>NOT GOOD ENOUGH</Body9>
+          <Body9>
+            <Red>NOT GOOD ENOUGH</Red>
+          </Body9>
           <AvatarsWrapper>
             {notGood.map((candidate, index) => (
               <React.Fragment key={`notGood-${candidate.id}`}>
@@ -204,7 +214,9 @@ const VsCard = ({
           <Vs>VS</Vs>
         </Middler>
         <Sider className="right">
-          <Body9>GOOD ENOUGH</Body9>
+          <Body9>
+            <Green>GOOD ENOUGH</Green>
+          </Body9>
           <AvatarsWrapper>
             {good.map((candidate, index) => (
               <React.Fragment key={`good-${candidate.id}`}>
