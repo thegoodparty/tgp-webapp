@@ -7,6 +7,9 @@ export const percHelper = num => {
 };
 
 export const numberNth = number => {
+  if (!number) {
+    return '';
+  }
   let num = number;
   if (typeof number === 'string') {
     num = parseInt(number, 10);

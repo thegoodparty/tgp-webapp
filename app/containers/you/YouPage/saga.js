@@ -23,7 +23,7 @@ function* register(action) {
       name,
       zip,
       feedback: comments,
-      presidentialRank,
+      presidentialRank: presidentialRank || '[]',
     };
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);

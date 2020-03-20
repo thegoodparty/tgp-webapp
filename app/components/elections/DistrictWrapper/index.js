@@ -57,6 +57,7 @@ const DistrictWrapper = ({
   content,
   changeDistrictCallback,
   user,
+  userCounts
 }) => {
   let primaryCity;
   let stateLong;
@@ -66,6 +67,7 @@ const DistrictWrapper = ({
 
   const [showCds, setShowCds] = useState(false);
   const [cdsWithPerc, setCdsWithPerc] = useState([]);
+  const [thresholds, setThresholds] = useState({});
 
   if (geoLocation) {
     const { normalizedAddress, district } = geoLocation;
@@ -85,38 +87,6 @@ const DistrictWrapper = ({
     }
   }
 
-  // let senateInc = { good: [], notGood: [] };
-  // let houseInc = { good: [], notGood: [] };
-  // const { houseIncumbent, senateIncumbents } = districtIncumbents;
-  // if (houseIncumbent) {
-  //   if (houseIncumbent.isGood) {
-  //     houseInc.good.push(houseIncumbent);
-  //   } else {
-  //     houseInc.notGood.push(houseIncumbent);
-  //   }
-  // }
-  //
-  // if (senateIncumbents) {
-  //   senateInc = senateIncumbents;
-  // }
-  //
-  // let houseCandidatesAndIncumbents;
-  // const { houseCandidates, senateCandidates } = districtCandidates;
-  // if (houseCandidates) {
-  //   houseCandidatesAndIncumbents = {
-  //     good: houseInc.good.concat(houseCandidates.good),
-  //     notGood: houseInc.notGood.concat(houseCandidates.notGood),
-  //   };
-  // }
-  //
-  // let senateCandidatesAndIncumbents;
-  // if (senateCandidates) {
-  //   senateCandidatesAndIncumbents = {
-  //     good: senateInc.good.concat(senateCandidates.good),
-  //     notGood: senateInc.notGood.concat(senateCandidates.notGood),
-  //   };
-  // }
-
   let articles = [];
   if (content && content.faqArticles) {
     const allArticles = content.faqArticles;
@@ -128,7 +98,7 @@ const DistrictWrapper = ({
     });
   }
 
-  const { cds, approxPctArr } = district;
+  const { cds, approxPctArr, senateThresholds } = district;
   useEffect(() => {
     const cdWithPerc = [];
 
@@ -141,6 +111,25 @@ const DistrictWrapper = ({
       });
     });
     setCdsWithPerc(cdWithPerc);
+    if (cds) {
+      const houseThreshold =
+        Math.max(
+          cds[cdIndex].writeInThreshold,
+          cds[cdIndex].writeInThresholdWithPresident,
+        ) + 1;
+      const senateThreshold =
+        Math.max(
+          senateThresholds.writeInThreshold,
+          senateThresholds.writeInThresholdWithPresident,
+        ) + 1;
+
+      const presidentialThreshold = 65853514;
+      setThresholds({
+        presidentialThreshold,
+        senateThreshold,
+        houseThreshold,
+      });
+    }
   }, [cds]);
 
   const toggleShowCds = () => {
@@ -197,12 +186,19 @@ const DistrictWrapper = ({
               </Body>
             </Spacer>
             <Link to="/elections/presidential-election">
-              <VsCard title="Presidential Election" candidates={presidential} />
+              <VsCard
+                title="Presidential Election"
+                candidates={presidential}
+                votesNeeded={thresholds.presidentialThreshold}
+                peopleSoFar={userCounts ? userCounts.totalUsers : 0}
+              />
             </Link>
             <Link to={`/elections/senate-election/${shortState.toLowerCase()}`}>
               <VsCard
                 title={`Senator - ${stateLong}`}
                 candidates={senateCandidates}
+                votesNeeded={thresholds.senateThreshold}
+                peopleSoFar={userCounts ? userCounts.stateUsers : 0}
               />
             </Link>
             <Link
@@ -211,6 +207,8 @@ const DistrictWrapper = ({
               <VsCard
                 title={`House Representative ${shortState}-${districtNumber}`}
                 candidates={houseCandidates}
+                votesNeeded={thresholds.houseThreshold}
+                peopleSoFar={userCounts ? userCounts.districtUsers : 0}
               />
             </Link>
             <GoodPartyStats />
@@ -237,6 +235,7 @@ DistrictWrapper.propTypes = {
   houseCandidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   cdIndex: PropTypes.number,
   changeDistrictCallback: PropTypes.func,
 };

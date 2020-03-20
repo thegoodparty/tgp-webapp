@@ -20,6 +20,7 @@ export const initialState = {
   error: false,
   geoError: false,
   filters: defaultFilters,
+  userCounts: false
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -98,6 +99,14 @@ const zipFinderPageReducer = (state = initialState, action) =>
       case types.CHANGE_FILTERS:
         setCookie('filters', JSON.stringify(action.filters));
         draft.filters = action.filters;
+        break;
+
+      case types.USERSS_COUNT:
+        draft.userCounts = false;
+        break;
+
+      case types.USERS_COUNTS_SUCCESS:
+        draft.userCounts = action.userCounts;
         break;
     }
   });

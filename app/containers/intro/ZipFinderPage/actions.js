@@ -86,6 +86,17 @@ const changeFiltersAction = filters => ({
   filters,
 });
 
+const userCountsAction = (shortState, districtNumber) => ({
+  type: types.USERS_COUNTS,
+  shortState,
+  districtNumber,
+});
+
+const userCountsActionSuccess = userCounts => ({
+  type: types.USERS_COUNTS_SUCCESS,
+  userCounts,
+});
+
 export default {
   loadZipAction,
   loadZipActionSuccess,
@@ -104,4 +115,6 @@ export default {
   loadSenateCandidatesAction,
   loadSenateCandidatesActionSuccess,
   loadSenateCandidatesActionError,
+  userCountsAction,
+  userCountsActionSuccess,
 };

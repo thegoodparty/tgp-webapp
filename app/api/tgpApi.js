@@ -30,6 +30,10 @@ const api = {
     url: `${base}entrance/address-to-district`,
     method: 'GET',
   },
+  userCounts: {
+    url: `${base}counts/user-counts`,
+    method: 'GET',
+  },
   //
   // CONTENT
   //

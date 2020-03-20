@@ -71,15 +71,18 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   let userDistrict = {};
   if (congDistrict) {
+    console.log('here1', congDistrict);
     cds.forEach(district => {
       if (district.id === congDistrict) {
         userDistrict = district;
       }
     });
-  } else {
+    if (!userDistrict.code) {
+      userDistrict = cds[0];
+    }
+  } else if (cds && cds.length > 0) {
     userDistrict = cds[0]; // eslint-disable-line
   }
-
   const electionLink = `/elections/district/${zip}`;
 
   return (

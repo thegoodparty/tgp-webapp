@@ -105,6 +105,8 @@ const Bar = styled.div`
   background-color: ${({ theme }) => theme.colors.blue};
   left: 0;
   top: 0;
+  width: 0;
+  transition: width 0.5s;
 `;
 
 const BarBody11 = styled(Body11)`
@@ -238,6 +240,8 @@ const VsCard = ({
 VsCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.array,
+  peopleSoFar: PropTypes.number,
+  votesNeeded: PropTypes.number,
 };
 
 export default VsCard;

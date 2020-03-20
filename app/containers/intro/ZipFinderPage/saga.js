@@ -79,6 +79,18 @@ function* loadSenateCandidates(action) {
   }
 }
 
+function* userCounts(action) {
+  try {
+    const { shortState, districtNumber } = action;
+    const api = tgpApi.userCounts;
+    const payload = { shortState, districtNumber };
+    const counts = yield call(requestHelper, api, payload);
+    yield put(actions.userCountsActionSuccess(counts));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* gelocationToDistrict(action) {
   try {
     const { coords } = action;
@@ -139,4 +151,6 @@ export default function* saga() {
     types.GEOLOCATION_TO_DISTRICT,
     gelocationToDistrict,
   );
+
+  const countsAction = yield takeLatest(types.USERS_COUNTS, userCounts);
 }

@@ -56,6 +56,7 @@ export function DistrictPage({
     houseCandidates,
     senateCandidates,
     geoLocation,
+    userCounts,
   } = districtState;
 
   useEffect(() => {
@@ -102,6 +103,7 @@ export function DistrictPage({
       if (!senateCandidates && shortState) {
         dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
+      dispatch(districtActions.userCountsAction(shortState, districtNumber));
     }
   }, [zipWithDistricts, zip, cd, user]);
 
@@ -150,9 +152,6 @@ export function DistrictPage({
     setFilteredHouse(filtered);
   }, [houseCandidates, filters]);
 
-  console.log('house', filteredHouse);
-  console.log('senate', filteredSenate);
-
   const childProps = {
     district: zipWithDistricts,
     cdIndex,
@@ -163,6 +162,7 @@ export function DistrictPage({
     content,
     changeDistrictCallback,
     user,
+    userCounts,
   };
 
   return (
