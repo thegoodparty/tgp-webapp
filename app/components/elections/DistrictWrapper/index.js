@@ -137,7 +137,10 @@ const DistrictWrapper = ({
   };
 
   let electionCount = 1;
-  if (senateCandidates && Object.keys(senateCandidates).length > 0) {
+  if (
+    (senateCandidates && Object.keys(senateCandidates).length > 0) ||
+    (senateCandidates && senateCandidates.length === 0)
+  ) {
     electionCount++;
   }
   if (houseCandidates && Object.keys(houseCandidates).length > 0) {
