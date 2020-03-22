@@ -37,6 +37,11 @@ const H1 = styled.h1`
   margin: 24px 0;
 `;
 
+const StyledH2 = styled(H2)`
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.darkBlue};
+`;
+
 const ButtonWrapper = styled.div`
   margin-top: 2rem;
   text-align: center;
@@ -71,10 +76,10 @@ function HomePageWrapper() {
             <Logo src={heartImg} />
           </div>
           <H1>99% of Congress has been corrupted  by Big Money donors</H1>
-          <H2>
+          <StyledH2>
             Imagine a free crowd-voting app that returns the{' '}
             <strong>Power to the People!</strong>
-          </H2>
+          </StyledH2>
           <ButtonWrapper>
             <Link to="/intro/splash">
               <BlueButton variant="contained" color="primary" size="large">
