@@ -112,6 +112,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             required
             placeholder="John Smith"
             size="medium"
+            name="name"
             fullWidth
             onChange={onChangeName}
           />
@@ -123,6 +124,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             size="medium"
             fullWidth
             type="email"
+            name="email"
             helperText="We will never share or sell your information for any reason"
             onChange={onChangeEmail}
           />
