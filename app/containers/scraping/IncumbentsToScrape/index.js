@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -41,7 +41,7 @@ export function IncumbentsToScrape({ scrapeState, dispatch }) {
           incumbents.map(incumbent => (
             <div key={incumbent}>
               <a
-                href={`https://www.opensecrets.org/members-of-congress/summary?cid=${incumbent}`}
+                href={`https://www.opensecrets.org/members-of-congress/summary?cycle=2020&type=C&cid=${incumbent}`}
               >
                 {incumbent}
               </a>
