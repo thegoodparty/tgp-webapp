@@ -138,12 +138,21 @@ const DistrictWrapper = ({
 
   let electionCount = 1;
   if (
-    (senateCandidates && Object.keys(senateCandidates).length > 0) ||
-    (senateCandidates && senateCandidates.length > 0)
+    senateCandidates &&
+    senateCandidates.good &&
+    senateCandidates.good.length === 0 &&
+    senateCandidates.notGood.length === 0 &&
+    senateCandidates.unknown.length === 0
   ) {
     electionCount++;
   }
-  if (houseCandidates && Object.keys(houseCandidates).length > 0) {
+  if (
+    houseCandidates &&
+    houseCandidates.good &&
+    houseCandidates.good.length === 0 &&
+    houseCandidates.notGood.length === 0 &&
+    houseCandidates.unknown.length === 0
+  ) {
     electionCount++;
   }
 
