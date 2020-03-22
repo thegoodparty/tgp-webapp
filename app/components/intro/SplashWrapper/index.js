@@ -90,7 +90,7 @@ const wrapperStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-around',
-  padding: '0 26px 4rem 12px',
+  padding: '0 40px 4rem',
 };
 
 function SplashWrapper() {
