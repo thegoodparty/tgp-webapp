@@ -10,20 +10,24 @@ import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
 
-import selectUser, { makeSelectUserObj } from './selectors';
+import selectUser from './selectors';
 import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 function* register(action) {
   try {
     const { email, name, comments } = action;
     const zip = yield getZipFromStateOrCookie();
-    const presidentialRank = yield getPresidentialRankFromStateOrCookie();
+    const presidentialRank = yield getRankFromStateOrCookie('presidentialRank');
+    const senateRank = yield getRankFromStateOrCookie('senateRank');
+    const houseRank = yield getRankFromStateOrCookie('houseRank');
     const payload = {
       email,
       name,
       zip,
       feedback: comments,
       presidentialRank: presidentialRank || '[]',
+      senateRank: senateRank || '[]',
+      houseRank: houseRank || '[]',
     };
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
@@ -33,6 +37,11 @@ function* register(action) {
     setCookie('user', JSON.stringify(user));
   } catch (error) {
     console.log(error);
+    if (error.response && error.response.exists) {
+      yield put(
+        snackbarActions.showSnakbarAction(error.response.message, 'error'),
+      );
+    }
     yield put(actions.registerActionError(error));
   }
 }
@@ -52,12 +61,12 @@ function* getZipFromStateOrCookie() {
   return zip;
 }
 
-function* getPresidentialRankFromStateOrCookie() {
+function* getRankFromStateOrCookie(chamber) {
   const candidateState = yield select(selectCandidate);
-  if (candidateState && candidateState.presidentialRank) {
-    return JSON.stringify(candidateState.presidentialRank);
+  if (candidateState && candidateState[chamber]) {
+    return JSON.stringify(candidateState[chamber]);
   }
-  const cookieRank = getCookie('presidentialRank');
+  const cookieRank = getCookie(chamber);
   if (cookieRank) {
     return cookieRank;
   }

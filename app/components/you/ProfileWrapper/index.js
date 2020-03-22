@@ -64,7 +64,7 @@ const BottomLink = styled(Body)`
 const ProfileWrapper = ({ user, signoutCallback }) => {
   let { presidentialRank } = user;
   const { name, feedback, zipCode, congDistrict } = user;
-  const { zip, stateLong, stateShort, primaryCity, cds } = zipCode;
+  const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
   if (typeof presidentialRank === 'string') {
     presidentialRank = JSON.parse(presidentialRank);
   }
@@ -95,9 +95,11 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
         <Centered>
           <UserInitials>{getInitials(name)}</UserInitials>
           <H2>{fullFirstLastInitials(name)}</H2>
-          <Body13 style={{ marginTop: '5px', marginBottom: '9px' }}>
-            {primaryCity}, {shortState}-{userDistrict.code}
-          </Body13>
+          {shortState && (
+            <Body13 style={{ marginTop: '5px', marginBottom: '9px' }}>
+              {primaryCity}, {shortState}-{userDistrict.code}
+            </Body13>
+          )}
           <Body13>{feedback}</Body13>
         </Centered>
         <H3>Your Elections</H3>
@@ -107,16 +109,20 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
             {presidentialRank ? presidentialRank.length : 'No'} Choices Ranked
           </ElectionData>
         </Election>
-        <Election>
-          Senate: <ElectionData>{stateLong}</ElectionData>
-        </Election>
-        <Election>
-          House:{' '}
-          <ElectionData>
-            {numberNth(userDistrict.code)} District ({shortState}-
-            {userDistrict.code})
-          </ElectionData>
-        </Election>
+        {stateLong && (
+          <Election>
+            Senate: <ElectionData>{stateLong}</ElectionData>
+          </Election>
+        )}
+        {userDistrict.code && (
+          <Election>
+            House:{' '}
+            <ElectionData>
+              {numberNth(userDistrict.code)} District ({shortState}-
+              {userDistrict.code})
+            </ElectionData>
+          </Election>
+        )}
         <Link to={electionLink}>
           <AllElections>See All Elections</AllElections>
         </Link>

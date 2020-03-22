@@ -320,7 +320,7 @@ const RankCandidatesWrapper = ({
               <PopupButton onClick={handleKeepRanking} className="blue">
                 RANK CHOICES
               </PopupButton>
-              <PopupButton onClick={handleSubmit}>THAT'S OK</PopupButton>
+              <PopupButton onClick={handleSubmit}>THAT&apos;S OK</PopupButton>
             </RowBetween>
           </BottomPopup>
         </>
@@ -335,7 +335,7 @@ const RankCandidatesWrapper = ({
 };
 
 RankCandidatesWrapper.propTypes = {
-  candidates: PropTypes.array,
+  candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   handleRankingCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
   chamberRank: PropTypes.array,

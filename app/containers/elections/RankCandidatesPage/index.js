@@ -136,9 +136,6 @@ function mapDispatchToProps(dispatch, ownProps) {
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
     handleRankingCallback: (rankingOrder, user, chamber) => {
-      dispatch(
-        candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
-      );
       if (user) {
         dispatch(userActions.saveUserRankingAction(rankingOrder, chamber));
       } else {

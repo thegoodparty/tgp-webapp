@@ -45,8 +45,8 @@ export function ZipFinderPage({
   return (
     <div>
       <Helmet>
-        <title>ZipFinderPage</title>
-        <meta name="description" content="Description of ZipFinderPage" />
+        <title>Zip Finder</title>
+        <meta name="description" content="Zip Finder" />
       </Helmet>
       <ZipFinderWrapper {...childProps} />
     </div>

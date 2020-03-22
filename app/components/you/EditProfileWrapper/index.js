@@ -162,7 +162,7 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
     }
   };
 
-  const { stateLong, cds } = zipCode;
+  const { stateLong, cds, primaryCity } = zipCode;
 
   let districtName = '';
   if (cds && cds.length > 0) {
@@ -281,7 +281,10 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
           </Link>
         </Row>
         <Address>{stateLong}</Address>
-        <Address>{districtName}</Address>
+        <Address>
+          {primaryCity}
+          {districtName && `, ${districtName}`}
+        </Address>
         <PrivateWrapper>
           <Private>
             <H3>Private Info&nbsp;</H3>
