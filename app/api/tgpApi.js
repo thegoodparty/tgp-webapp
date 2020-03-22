@@ -87,6 +87,16 @@ const api = {
     withAuth: true,
   },
 
+  /*
+   * SCRAPE
+   */
+
+  scrapeIncumbents: {
+    url: `${base}incumbent/to-scrape`,
+    method: 'GET',
+    withAuth: true,
+  },
+
   // General
   sendAma: {
     url: `${base}notifications/email-ama`,

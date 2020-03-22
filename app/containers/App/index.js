@@ -36,6 +36,8 @@ import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';
 import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
 
+import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
+
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
@@ -120,6 +122,8 @@ export default function App() {
         <Route exact path="/party" component={PartyPage} />
         <Route exact path="/party/faqs" component={FaqListPage} />
         <Route exact path="/party/faq/:title/:id" component={FaqArticlePage} />
+
+        <Route exact path="/scrape/incumbents" component={IncumbentsToScrape} />
 
         <Route component={NotFoundPage} />
       </Switch>
