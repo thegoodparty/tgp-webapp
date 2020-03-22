@@ -45,9 +45,9 @@ export function DistrictPage({
   useInjectSaga({ key: 'zipFinderPage', saga });
 
   const [cdIndex, setCdIndex] = useState(0);
-  const [presidentialCandidates, setPresidentialCandidates] = useState([]);
-  const [filteredHouse, setFilteredHouse] = useState([]);
-  const [filteredSenate, setFilteredSenate] = useState([]);
+  const [presidentialCandidates, setPresidentialCandidates] = useState({});
+  const [filteredHouse, setFilteredHouse] = useState({});
+  const [filteredSenate, setFilteredSenate] = useState({});
   const { user } = userState;
 
   const { zipWithDistricts, filters } = districtState;

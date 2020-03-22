@@ -87,6 +87,12 @@ const api = {
     withAuth: true,
   },
 
+  updateUserRanking: {
+    url: `${base}user/update-user-ranking`,
+    method: 'PUT',
+    withAuth: true,
+  },
+
   /*
    * SCRAPE
    */

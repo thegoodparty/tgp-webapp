@@ -24,6 +24,7 @@ function* loadZip(action) {
   } catch (error) {
     console.log(error);
     yield put(actions.loadZipActionError(error));
+    yield put(snackbarActions.showSnakbarAction('Invalid Zip Code', 'error'));
   }
 }
 

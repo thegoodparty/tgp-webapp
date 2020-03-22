@@ -250,9 +250,9 @@ DistrictWrapper.propTypes = {
   district: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   geoLocation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 
-  presidential: PropTypes.array,
-  senateCandidates: PropTypes.array,
-  houseCandidates: PropTypes.array,
+  presidential: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  senateCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  houseCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),

@@ -163,6 +163,37 @@ function* updateUser(action) {
   }
 }
 
+function* saveUserRanking(action) {
+  try {
+    const { ranking, chamber } = action;
+    const api = tgpApi.updateUserRanking;
+    const updatedFields = {};
+    const chamberRanking = JSON.stringify(ranking);
+    if (chamber === 'presidential') {
+      updatedFields.presidentialRank = chamberRanking;
+    } else if (chamber === 'senate') {
+      updatedFields.senateRank = chamberRanking;
+    } else if (chamber === 'house') {
+      updatedFields.houseRank = chamberRanking;
+    }
+    const payload = {
+      ...updatedFields,
+    };
+    const response = yield call(requestHelper, api, payload);
+    const { user } = response;
+    yield put(actions.updateUserActionSuccess(user));
+
+    setCookie('user', JSON.stringify(user));
+    yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
+    yield put(push('/you/share'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error saving your ranking', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
@@ -170,4 +201,8 @@ export default function* saga() {
   const confirmAction = yield takeLatest(types.CONFIRM_EMAIL, confirmEmail);
   const loginAction = yield takeLatest(types.LOGIN, login);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
+  const saveUserRankingAction = yield takeLatest(
+    types.SAVE_USER_RANKING,
+    saveUserRanking,
+  );
 }

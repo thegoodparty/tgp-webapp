@@ -8,7 +8,6 @@ function* loadIncumbents() {
   try {
     const api = tgpApi.scrapeIncumbents;
     const incumbents = yield call(requestHelper, api, null);
-    console.log(incumbents);
     yield put(actions.loadIncumbentsActionSuccess(incumbents));
   } catch (error) {
     console.log(error);

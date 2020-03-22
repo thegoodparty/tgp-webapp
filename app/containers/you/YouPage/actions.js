@@ -77,6 +77,12 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
+const saveUserRankingAction = (ranking, chamber) => ({
+  type: types.SAVE_USER_RANKING,
+  ranking,
+  chamber,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -93,4 +99,5 @@ export default {
   updateHouseRankAction,
   updateUserAction,
   updateUserActionSuccess,
+  saveUserRankingAction,
 };

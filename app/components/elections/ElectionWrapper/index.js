@@ -40,7 +40,6 @@ const ElectionWrapper = ({
   const [showFilters, setShowFilters] = useState(false);
 
   const openFiltersCallback = () => {
-    console.log('here');
     setShowFilters(true);
   };
 

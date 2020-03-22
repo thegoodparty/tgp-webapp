@@ -65,6 +65,7 @@ const userReducer = (state = initialState, action) =>
         deleteCookies();
         draft.user = false;
         draft.token = false;
+        window.location.replace('/')
         break;
 
       case types.LOGIN:

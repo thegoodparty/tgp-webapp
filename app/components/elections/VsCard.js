@@ -272,7 +272,7 @@ const VsCard = ({
 
 VsCard.propTypes = {
   title: PropTypes.string,
-  candidates: PropTypes.array,
+  candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   peopleSoFar: PropTypes.number,
   votesNeeded: PropTypes.number,
 };

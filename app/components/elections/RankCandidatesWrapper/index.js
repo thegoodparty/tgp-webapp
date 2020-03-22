@@ -216,7 +216,7 @@ const RankCandidatesWrapper = ({
       setSubmitWithoutGood(true);
     } else {
       saveRankingCallback(choicesOrder, chamber);
-      handleRankingCallback(choicesOrder, user);
+      handleRankingCallback(choicesOrder, user, chamber);
     }
   };
 

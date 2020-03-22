@@ -71,7 +71,6 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   let userDistrict = {};
   if (congDistrict) {
-    console.log('here1', congDistrict);
     cds.forEach(district => {
       if (district.id === congDistrict) {
         userDistrict = district;

@@ -135,13 +135,12 @@ function mapDispatchToProps(dispatch, ownProps) {
     chamber: ownProps.match.params.chamber,
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
-    handleRankingCallback: (rankingOrder, user) => {
+    handleRankingCallback: (rankingOrder, user, chamber) => {
       dispatch(
         candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
       );
       if (user) {
-        dispatch(push('/you/share'));
-        // TODO: save choices to user here
+        dispatch(userActions.saveUserRankingAction(rankingOrder, chamber));
       } else {
         dispatch(push('/you/register'));
       }

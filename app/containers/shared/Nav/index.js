@@ -67,7 +67,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     navigateCallback: (screen, user, zipCode) => {
-      console.log(user);
       if (screen === '/elections') {
         let zip;
         if (zipCode) {

@@ -9,7 +9,7 @@ export const getCookie = name => {
   return false;
 };
 
-export const setCookie = (name, value, days = 14) => {
+export const setCookie = (name, value, days = 120) => {
   let expires = '';
   if (days) {
     const date = new Date();
