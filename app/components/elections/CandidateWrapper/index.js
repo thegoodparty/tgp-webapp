@@ -155,6 +155,9 @@ const CandidateWrapper = ({
         { name: 'twitter', url: twitter, icon: TwitterIcon },
         { name: 'website', url: website, icon: WebsiteIcon },
       ]);
+    } else {
+      setCandidateInfo('');
+      setSocialAccounts([]);
     }
   }, [candidate]);
 
@@ -179,6 +182,7 @@ const CandidateWrapper = ({
     isIncumbent,
     outsideReportDate,
     openSecretsId,
+    uuid,
   } = candidate;
 
   const isSmallChallenger = isSmallCandidate(totalRaised, chamberName);
@@ -221,6 +225,11 @@ const CandidateWrapper = ({
   let openSecretLink = 'https://www.opensecrets.org/';
   if (chamberName === 'presidential') {
     openSecretLink += `2020-presidential-race/candidate?id=${openSecretsId}`;
+  } else if (isIncumbent) {
+    openSecretLink += `members-of-congress/summary?cycle=2020&type=C&cid=${openSecretsId}`;
+  } else if (uuid) {
+    const stateDistrict = uuid.split('_')[1];
+    openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
   }
   return (
     <GrayWrapper>
@@ -381,16 +390,6 @@ const CandidateWrapper = ({
                 </>
               ) : (
                 <>
-                  According to Federal Election Commission (FEC) filings for the
-                  this election cycle, as of {outsideReportDate},{' '}
-                  <strong>
-                    {name} has raised {moneyHelper(totalRaised)} with a majority
-                    ({perc}%) of funds coming from Big Money Sources
-                  </strong>
-                  , like Political Action Committees (PACs), Corporate Lobbyists
-                  and Large Donors.
-                  <br />
-                  <br />
                   This means that{' '}
                   <strong>
                     Big Money backers are bankrolling {lastName()}
@@ -405,17 +404,19 @@ const CandidateWrapper = ({
               )}
             </Body13>
 
-            {/*      ****    */}
             <a href={openSecretLink} target="_blank">
               <OpenSecretsLink>
                 FEC DATA COURTESY OF OPENSECRETS.ORG
               </OpenSecretsLink>
             </a>
-
-            <Body className="bold600" style={{ marginTop: '48px' }}>
-              Candidate Policy Positions:
-            </Body>
-            <Body13>{candidateInfo}</Body13>
+            {candidateInfo && (
+              <>
+                <Body className="bold600" style={{ marginTop: '48px' }}>
+                  Candidate Policy Positions:
+                </Body>
+                <Body13>{candidateInfo}</Body13>
+              </>
+            )}
           </Wrapper>
         </>
       ) : (

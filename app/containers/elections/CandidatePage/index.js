@@ -51,7 +51,7 @@ export function CandidatePage({
     if (!presidentialRank) {
       dispatch(candidateActions.loadRankingFromCookieAction());
     }
-  }, []);
+  }, [id, chamber]);
 
   let chamberEnum;
   if (chamberName === 'presidential') {
