@@ -111,25 +111,29 @@ const DistrictWrapper = ({
       });
     });
     setCdsWithPerc(cdWithPerc);
-    if (cds) {
-      const houseThreshold =
+    let houseThreshold;
+    let senateThreshold;
+    if (cds && cds[cdIndex]) {
+      houseThreshold =
         Math.max(
           cds[cdIndex].writeInThreshold,
           cds[cdIndex].writeInThresholdWithPresident,
         ) + 1;
-      const senateThreshold =
+    }
+    if (senateThresholds) {
+      senateThreshold =
         Math.max(
           senateThresholds.writeInThreshold,
           senateThresholds.writeInThresholdWithPresident,
         ) + 1;
-
-      const presidentialThreshold = 65853514;
-      setThresholds({
-        presidentialThreshold,
-        senateThreshold,
-        houseThreshold,
-      });
     }
+
+    const presidentialThreshold = 65853514;
+    setThresholds({
+      presidentialThreshold,
+      senateThreshold,
+      houseThreshold,
+    });
   }, [cds]);
 
   const toggleShowCds = () => {
@@ -175,29 +179,33 @@ const DistrictWrapper = ({
                 {stateLong} District {districtNumber} ({shortState}-
                 {districtNumber})
               </Body>
-              {cdsWithPerc.length > 1 && (
-                <NotDistrict onClick={toggleShowCds}>
-                  {showCds ? 'Select Your District' : 'Not Your District?'}
-                </NotDistrict>
-              )}
+              <NotDistrict onClick={toggleShowCds}>
+                {showCds ? 'Select Your District' : 'Not Your District?'}
+              </NotDistrict>
             </Row>
             <Collapse in={showCds} timeout={600}>
-              {cdsWithPerc.map((cd, index) => (
-                <CdWrapper
-                  className={index === cdIndex && 'active'}
-                  key={cd.id}
-                  onClick={() =>
-                    changeDistrictCallback(cd.id, index, zip, user)
-                  }
-                >
-                  <Body className={index === cdIndex && 'active'}>
-                    {cd.name}
-                  </Body>
-                  <Body11>
-                    {cd.pct}% of {zip} zip code population live in {cd.name}
-                  </Body11>
-                </CdWrapper>
-              ))}
+              {cdsWithPerc.length > 1 &&
+                cdsWithPerc.map((cd, index) => (
+                  <CdWrapper
+                    className={index === cdIndex && 'active'}
+                    key={cd.id}
+                    onClick={() =>
+                      changeDistrictCallback(cd.id, index, zip, user)
+                    }
+                  >
+                    <Body className={index === cdIndex && 'active'}>
+                      {cd.name}
+                    </Body>
+                    <Body11>
+                      {cd.pct}% of {zip} zip code population live in {cd.name}
+                    </Body11>
+                  </CdWrapper>
+                ))}
+              <CdWrapper>
+                <Link to="/intro/zip-finder">
+                  <Body>Change your Zip Code</Body>
+                </Link>
+              </CdWrapper>
             </Collapse>
             <Spacer>
               <Body>

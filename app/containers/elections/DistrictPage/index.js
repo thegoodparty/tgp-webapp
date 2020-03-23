@@ -88,13 +88,13 @@ export function DistrictPage({
         });
       }
 
-      if (cds.length < cdIndex) {
+      if (cds.length < cd) {
         dispatch(push(`/elections/district/${zip}`));
-      } else if (cds && cds.length > cdIndex) {
-        districtNumber = cds[cdIndex].code;
+      } else if (cds && cds.length > cd) {
+        districtNumber = cds[cd].code;
       }
 
-      if (!houseCandidates && shortState && districtNumber) {
+      if (shortState && districtNumber) {
         dispatch(
           districtActions.loadHouseCandidatesAction(shortState, districtNumber),
         );
@@ -192,7 +192,6 @@ function mapDispatchToProps(dispatch, ownProps) {
     zip: ownProps.match.params.zip,
     cd: ownProps.match.params.cd,
     changeDistrictCallback: (districtId, districtIndex, zip, user) => {
-      console.log(districtId, districtIndex);
       dispatch(push(`/elections/district/${zip}/${districtIndex}`));
       if (user) {
         dispatch(userActions.updateUserAction({ districtId }));
