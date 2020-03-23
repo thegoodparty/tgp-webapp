@@ -76,22 +76,24 @@ export function DistrictPage({
       const { stateShort, cds } = zipWithDistricts;
       const shortState = stateShort ? stateShort.toUpperCase() : '';
       let districtNumber;
-
+      let tempCd = 0;
       if (typeof cd !== 'undefined') {
         setCdIndex(parseInt(cd, 10));
+        tempCd = parseInt(cd, 10);
       } else if (user && user.congDistrict && cds.length > 0) {
         // no cd was given in url, and the user already set their cd, show that one.
         cds.forEach((district, index) => {
           if (district.id === user.congDistrict) {
             setCdIndex(index);
+            tempCd = index;
           }
         });
       }
 
       if (cds.length < cd) {
         dispatch(push(`/elections/district/${zip}`));
-      } else if (cds && cds.length > cd) {
-        districtNumber = cds[cd].code;
+      } else if (cds && cds.length > tempCd) {
+        districtNumber = cds[tempCd].code;
       }
 
       if (shortState && districtNumber) {
