@@ -18,10 +18,32 @@ function* loadPresidentialCandidate(action) {
   }
 }
 
+function* loadDistrictIncumbent(action) {
+  try {
+    const api = tgpApi.districtIncumbent;
+    const { state, district } = action;
+    const payload = {};
+    if (state) {
+      payload.state = state;
+    }
+    if (district) {
+      payload.district = district;
+    }
+    const response = yield call(requestHelper, api, payload);
+    yield put(actions.loadDistrictIncumbentActionSuccess(response.incumbent));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const findAction = yield takeLatest(
     types.LOAD_CANDIDATE,
     loadPresidentialCandidate,
+  );
+  const incumbentAction = yield takeLatest(
+    types.LOAD_DISTRICT_INCUMBENT,
+    loadDistrictIncumbent,
   );
 }

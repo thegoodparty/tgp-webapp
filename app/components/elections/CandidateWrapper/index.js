@@ -139,10 +139,12 @@ const CandidateWrapper = ({
   chamberRank = [],
   chamberName,
   isGood,
+  incumbent,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
   const [rank, setRank] = useState(false);
   const [socialAccounts, setSocialAccounts] = useState([]);
+  const [comparedIncumbent, setComparedIncumbent] = useState({});
 
   useEffect(() => {
     if (candidate && candidate.info) {
@@ -160,6 +162,33 @@ const CandidateWrapper = ({
       setSocialAccounts([]);
     }
   }, [candidate]);
+
+  useEffect(() => {
+    if (incumbent) {
+      const raised = incumbent.raised || incumbent.combinedRaised;
+      let bigFundsPerc = (raised - incumbent.smallContributions) / raised;
+      bigFundsPerc = parseFloat(bigFundsPerc.toPrecision(2));
+      const compared = {
+        name: incumbent.name,
+        raised,
+        bigFundsPerc,
+      };
+      compared.xTimes = (compared.raised / totalRaised).toFixed(2);
+      compared.relativePerc = ((totalRaised * 100) / compared.raised).toFixed(
+        2,
+      );
+
+      compared.xTimes = parseFloat(
+        (compared.raised / totalRaised).toPrecision(2),
+      );
+      compared.relativePerc = parseFloat(
+        ((totalRaised * 100) / compared.raised).toPrecision(2),
+      );
+      setComparedIncumbent(compared);
+    } else {
+      setComparedIncumbent({});
+    }
+  }, [incumbent]);
 
   useEffect(() => {
     if (candidate && chamberRank && chamberRank.length > 0) {
@@ -208,19 +237,6 @@ const CandidateWrapper = ({
       </ColoredText>
     );
   };
-
-  const comparedIncumbent = {
-    name: 'Donald Trump',
-    raised: 232093160,
-    bigFundsPerc: 56,
-  };
-  comparedIncumbent.xTimes = (comparedIncumbent.raised / totalRaised).toFixed(
-    2,
-  );
-  comparedIncumbent.relativePerc = (
-    (totalRaised * 100) /
-    comparedIncumbent.raised
-  ).toFixed(2);
 
   let openSecretLink = 'https://www.opensecrets.org/';
   if (chamberName === 'presidential') {
@@ -326,14 +342,18 @@ const CandidateWrapper = ({
               {isSmallChallenger ? (
                 <strong>
                   {name} has raised just {moneyHelper(totalRaised)} in Total
-                  Funds,or {comparedIncumbent.relativePerc}% of the funding of
-                  the Big Money incumbent in this race.
+                  Funds, or{' '}
+                  <ColoredText className={color}>
+                    {comparedIncumbent.relativePerc}%
+                  </ColoredText>{' '}
+                  of the funding of the Big Money incumbent in this race.
                 </strong>
               ) : (
                 <>
                   <strong>
                     {name} has raised {moneyHelper(totalRaised)} with a majority
-                    ({perc}%) of funds coming from{' '}
+                    (<ColoredText className={color}>{perc}%</ColoredText>) of
+                    funds coming from{' '}
                     {isGood ? 'Small Individual Donors' : 'Big Money Sources'}
                   </strong>
                   {isGood
@@ -355,7 +375,7 @@ const CandidateWrapper = ({
                         {moneyHelper(comparedIncumbent.raised)} or{' '}
                         {comparedIncumbent.xTimes}x times more money, than{' '}
                         {name}, with a majority (
-                        {comparedIncumbent.bigFundsPerc}%) of in Total Funds
+                        {comparedIncumbent.bigFundsPerc}% ) of in Total Funds
                         coming from Big Money sources
                       </strong>
                       , like Political Action Committees (PACs), Corporate
@@ -393,8 +413,9 @@ const CandidateWrapper = ({
                   This means that{' '}
                   <strong>
                     Big Money backers are bankrolling {lastName()}
-                    ’s {isIncumbent && 're-'}election at a rate of {perHour}
-                    /hr for every hour Trump has been in office.
+                    ’s {isIncumbent && 're-'}election at a rate of{' '}
+                    <ColoredText className={color}>{perHour}/hr</ColoredText>{' '}
+                    for every hour Trump has been in office.
                   </strong>{' '}
                   Of course, Big Money Backers usually expect a big return on
                   their investments, which means, if {isIncumbent && 're-'}
@@ -431,9 +452,10 @@ const CandidateWrapper = ({
 
 CandidateWrapper.propTypes = {
   candidate: PropTypes.object,
-  chamberRank: PropTypes.array,
+  chamberRank: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   chamberName: PropTypes.string,
   isGood: PropTypes.bool,
+  incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default CandidateWrapper;

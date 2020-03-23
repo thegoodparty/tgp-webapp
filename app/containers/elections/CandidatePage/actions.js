@@ -36,6 +36,17 @@ const loadRankingFromCookieAction = () => ({
   type: types.LOAD_RANKING_FROM_COOKIE,
 });
 
+const loadDistrictIncumbentAction = (state, district) => ({
+  type: types.LOAD_DISTRICT_INCUMBENT,
+  state,
+  district,
+});
+
+const loadDistrictIncumbentActionSuccess = incumbent => ({
+  type: types.LOAD_DISTRICT_INCUMBENT_SUCCESS,
+  incumbent,
+});
+
 export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
@@ -44,4 +55,6 @@ export default {
   saveRankSenateCandidateAction,
   saveRankHouseCandidateAction,
   loadRankingFromCookieAction,
+  loadDistrictIncumbentAction,
+  loadDistrictIncumbentActionSuccess,
 };

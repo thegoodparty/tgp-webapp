@@ -14,7 +14,7 @@ const api = {
     url: `${base}presidential/all`,
     method: 'GET',
   },
-  districtIncumbents: {
+  districtIncumbent: {
     url: `${base}incumbent/find-by-district`,
     method: 'GET',
   },

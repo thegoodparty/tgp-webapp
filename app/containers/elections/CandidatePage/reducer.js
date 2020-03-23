@@ -10,6 +10,7 @@ export const initialState = {
   presidentialRank: false,
   senateRank: false,
   houseRank: false,
+  incumbent: false,
 };
 
 const districtReducer = (state = initialState, action) =>
@@ -49,6 +50,14 @@ const districtReducer = (state = initialState, action) =>
       case types.SAVE_RANK_HOUSE_CANDIDATE:
         setCookie('houseRank', JSON.stringify(action.houseRank || []));
         draft.houseRank = action.houseRank;
+        break;
+
+      case types.LOAD_DISTRICT_INCUMBENT:
+        draft.incumbent = false;
+        break;
+
+      case types.LOAD_DISTRICT_INCUMBENT_SUCCESS:
+        draft.incumbent = action.incumbent;
         break;
 
       case types.LOAD_RANKING_FROM_COOKIE:

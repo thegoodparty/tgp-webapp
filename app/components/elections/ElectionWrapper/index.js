@@ -53,7 +53,6 @@ const ElectionWrapper = ({
   }
 
   const rankPage = () => {
-    console.log(chamber);
     if (chamber === 'Presidential') {
       return '/elections/rank-candidates/presidential';
     }

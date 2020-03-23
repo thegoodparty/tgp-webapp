@@ -36,11 +36,13 @@ export function CandidatePage({
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
-  const { candidate, presidentialRank } = candidateState;
+  const { candidate, presidentialRank, incumbent } = candidateState;
   const { filters } = districtState;
 
-  const [chamberName, incumbent] = chamber.split('-');
-  const isIncumbent = incumbent === 'i';
+  const [chamberName, chamberIncumbent] = chamber.split('-');
+  const isIncumbent = chamberIncumbent === 'i';
+
+  const { state, district } = candidate || {};
 
   useEffect(() => {
     if (id) {
@@ -53,6 +55,12 @@ export function CandidatePage({
     }
   }, [id, chamber]);
 
+  useEffect(() => {
+    if (!isIncumbent) {
+      dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
+    }
+  }, [candidate]);
+
   let chamberEnum;
   if (chamberName === 'presidential') {
     chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
@@ -63,7 +71,6 @@ export function CandidatePage({
   } else {
     chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
   }
-
   const candidateWithFields = candidateCalculatedFields(candidate);
 
   const childProps = {
@@ -71,6 +78,7 @@ export function CandidatePage({
     chamberRank: presidentialRank,
     chamberName,
     isGood: isCandidateGood(candidate, filters, chamberEnum),
+    incumbent,
   };
 
   return (
