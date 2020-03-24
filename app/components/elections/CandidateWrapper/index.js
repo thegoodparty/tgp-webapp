@@ -286,7 +286,11 @@ const CandidateWrapper = ({
                   </StyledBody12>
                 </RankButton>
               </Link>
-              <a href="mailto:ask@thegoodparty.org">
+              <a
+                href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
+                  window.location.href
+                }`}
+              >
                 <ReportError>Report an error</ReportError>
               </a>
             </TopRow>
