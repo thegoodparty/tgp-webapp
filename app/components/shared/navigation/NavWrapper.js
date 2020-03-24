@@ -66,6 +66,7 @@ const NavWrapper = ({
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    alert(newValue);
     if (newValue === 0) {
       navigateCallback('/party', user, zipCode);
     } else if (newValue === 1) {
