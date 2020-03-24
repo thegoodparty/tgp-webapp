@@ -223,7 +223,10 @@ const RankCandidatesWrapper = ({
       <Card style={{ cursor: 'default' }} key={id}>
         <Row>
           <Link to={candidateRoute(candidate)}>
-            <CandidateAvatar src={candidate.image} good={candidate.isGood} />
+            <CandidateAvatar
+              src={candidate.image}
+              good={candidate.isGood || candidate.unknown}
+            />
           </Link>
           <CardRight>
             <Grid container spacing={0} alignItems="center">
@@ -273,6 +276,11 @@ const RankCandidatesWrapper = ({
               RESET CHOICES <Submit onClick={handleSubmit}>DONE</Submit>
             </Reset>
             {candidates.good.map(candidate => (
+              <React.Fragment key={candidate.id}>
+                {CandCard(candidate, candidate.id)}
+              </React.Fragment>
+            ))}
+            {candidates.unknown.map(candidate => (
               <React.Fragment key={candidate.id}>
                 {CandCard(candidate, candidate.id)}
               </React.Fragment>

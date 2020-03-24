@@ -190,7 +190,11 @@ const CandidateWrapper = ({
       const savedRank = chamberRank.indexOf(candidate.id) + 1;
       if (savedRank) {
         setRank(savedRank);
+      } else {
+        setRank(false);
       }
+    } else {
+      setRank(false);
     }
   }, [chamberRank, candidate]);
 
@@ -263,7 +267,7 @@ const CandidateWrapper = ({
               {socialAccounts.length > 0 && (
                 <SocialLinks>
                   {socialAccounts.map(social => (
-                    <a href={social.url} target="_blank">
+                    <a href={social.url} target="_blank" key={social.url}>
                       <IconWrapper>
                         <img src={social.icon} alt={social.name} />
                         <SocialLabel>{social.name}</SocialLabel>

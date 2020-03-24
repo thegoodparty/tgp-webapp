@@ -27,8 +27,15 @@ import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
+import makeSelectUser from '../../you/YouPage/selectors';
 
-export function CandidatePage({ id, chamber, candidateState, dispatch }) {
+export function CandidatePage({
+  id,
+  chamber,
+  candidateState,
+  dispatch,
+  userState,
+}) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
@@ -77,9 +84,33 @@ export function CandidatePage({ id, chamber, candidateState, dispatch }) {
     incumbentRaised = incumbentRaised / 2;
   }
 
+  let chamberRank;
+  const { user } = userState;
+  if (user) {
+    if (chamberName === 'presidential') {
+      chamberRank = user.presidentialRank;
+    } else if (chamberName === 'senate') {
+      chamberRank = user.senateRank;
+    } else if (chamberName === 'house') {
+      chamberRank = user.houseRank;
+    }
+  } else {
+    const { presidentialRank, senateRank, houseRank } = candidateState;
+    if (chamberName === 'presidential') {
+      chamberRank = presidentialRank;
+    } else if (chamberName === 'senate') {
+      chamberRank = senateRank;
+    } else if (chamberName === 'house') {
+      chamberRank = houseRank;
+    }
+  }
+  if (typeof chamberRank === 'string') {
+    chamberRank = JSON.parse(chamberRank);
+  }
+
   const childProps = {
     candidate: candidateWithFields,
-    chamberRank: presidentialRank,
+    chamberRank,
     chamberName,
     isGood: isCandidateGood(candidate, filters, chamberEnum, incumbentRaised),
     incumbent,
@@ -109,10 +140,12 @@ CandidatePage.propTypes = {
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
   candidateState: PropTypes.object,
+  userState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
+  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
