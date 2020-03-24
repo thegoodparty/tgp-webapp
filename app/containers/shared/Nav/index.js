@@ -51,7 +51,7 @@ export function Nav({
     user,
     zipCode,
     navigateCallback,
-    hideMobileNav
+    hideMobileNav,
   };
 
   return <NavWrapper {...childProps} />;
@@ -90,7 +90,8 @@ function mapDispatchToProps(dispatch) {
           let cookieZip = getCookie('zip');
           alert('elections5');
           if (cookieZip) {
-            alert('elections6');
+            alert('elections6 ' + cookieZip);
+            alert('elections6b ' + typeof cookieZip);
             cookieZip = JSON.parse(cookieZip);
             alert('elections7');
             zip = cookieZip.zip;
