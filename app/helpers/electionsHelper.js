@@ -171,13 +171,43 @@ export const isCandidateGood = (
   return null;
 };
 
+const calcHours = candidate => {
+  const { isIncumbent, chamber, outsideReportDate, reportDate } = candidate;
+  if (!isIncumbent) {
+    return 1;
+  }
+  const date = reportDate || outsideReportDate;
+  let dateInOffice = '01/20/2016';
+  if (chamber === 'Senate') {
+    dateInOffice = '01/03/2014';
+  } else if (chamber === 'House') {
+    dateInOffice = '01/03/2018';
+  }
+  const hoursPerMonth = 2000 / 12;
+  const months = monthsDiff(dateInOffice, date);
+  return months * hoursPerMonth;
+};
+
+function yearsDiff(d1, d2) {
+  const date1 = new Date(d1);
+  const date2 = new Date(d2);
+  return date2.getFullYear() - date1.getFullYear();
+}
+
+function monthsDiff(d1, d2) {
+  const date1 = new Date(d1);
+  const date2 = new Date(d2);
+  const years = yearsDiff(d1, d2);
+  return years * 12 + (date2.getMonth() - date1.getMonth());
+}
+
 export const candidateCalculatedFields = orgCandidate => {
   const candidate = { ...orgCandidate };
   const { combinedRaised, raised, smallContributions } = candidate;
   const totalRaised = combinedRaised || raised;
   const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
   const smallDonorPerc = 1 - largeDonorPerc;
-  const hours = 10000;
+  const hours = calcHours(candidate);
   const largeDonorPerHour = (totalRaised * largeDonorPerc) / hours;
   const smallDonorPerHour = (totalRaised * smallDonorPerc) / hours;
 
