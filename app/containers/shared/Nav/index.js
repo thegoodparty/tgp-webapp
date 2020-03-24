@@ -76,38 +76,24 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     navigateCallback: (screen, user, zipCode) => {
       if (screen === '/elections') {
-        alert('elections');
         let zip;
         if (zipCode) {
-          alert('elections1');
           zip = zipCode.zip;
         } else if (user && user.zipCode) {
-          alert('elections2');
           zip = user.zipCode.zip;
-          alert('election3');
         } else {
-          alert('elections4');
           let cookieZip = getCookie('zip');
-          alert('elections5');
           if (cookieZip) {
             alert('elections6 ' + cookieZip);
-            alert('elections6b ' + typeof cookieZip);
             cookieZip = JSON.parse(cookieZip);
-            alert('elections7');
             zip = cookieZip.zip;
-            alert('election8');
           }
-          alert('elections9');
         }
-        alert('elections10');
         if (zip) {
-          alert('found 11zip');
           dispatch(push(`/elections/district/${zip}`));
         } else {
-          alert('12 no zip');
           dispatch(push('/intro/zip-finder'));
         }
-        alert('elections13');
       } else {
         dispatch(push(screen));
       }
