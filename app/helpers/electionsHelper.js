@@ -59,7 +59,7 @@ export const CHAMBER_ENUM = {
 
 const chamberThresholds = {
   [CHAMBER_ENUM.PRESIDENTIAL]: {
-    totalThreshold: 40000000,
+    totalThreshold: 50000000,
   },
   [CHAMBER_ENUM.SENATE]: {
     totalThreshold: 2000000,
@@ -69,9 +69,12 @@ const chamberThresholds = {
   },
 };
 
+export const presidentialThreshold =
+  chamberThresholds[CHAMBER_ENUM.PRESIDENTIAL].totalThreshold;
+
 export const defaultFilters = {
   smallDonors: true,
-  smallFunding: false,
+  smallFunding: true,
   mostlyBigDonors: true,
 };
 
@@ -83,9 +86,20 @@ export const filterCandidates = (
   const good = [];
   const notGood = [];
   const unknown = [];
+  let incumbentRaised;
+  if (chamber === CHAMBER_ENUM.PRESIDENTIAL) {
+    incumbentRaised = presidentialThreshold;
+  } else {
+    incumbentRaised = findIncumbentRaised(candidates);
+  }
   if (candidates) {
     candidates.forEach(candidate => {
-      const isGood = isCandidateGood(candidate, filters, chamber);
+      const isGood = isCandidateGood(
+        candidate,
+        filters,
+        chamber,
+        incumbentRaised,
+      );
 
       if (isGood === null) {
         unknown.push({
@@ -112,27 +126,37 @@ export const filterCandidates = (
   };
 };
 
-export const isCandidateGood = (candidate, filters, chamber) => {
+export const isCandidateGood = (
+  candidate,
+  filters,
+  chamber,
+  incumbentRaised,
+) => {
   let isGood = false;
   let isNotGood = false;
-  const { combinedRaised, smallContributions, raised } = candidate;
+  const {
+    combinedRaised,
+    smallContributions,
+    raised,
+    isApproved,
+    isCertified,
+  } = candidate;
   const totalRaised = combinedRaised || raised;
   const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
-  if (
-    totalRaised < chamberThresholds[chamber].totalThreshold &&
-    !filters.smallFunding
-  ) {
-    if (chamber === CHAMBER_ENUM.PRESIDENTIAL) {
+
+  if (isCertified) {
+    return true;
+  }
+
+  if (totalRaised < incumbentRaised) {
+    // small funding
+    if (filters.smallFunding && isApproved) {
       return true;
     }
     return null;
   }
-  if (
-    totalRaised < chamberThresholds[chamber].totalThreshold &&
-    filters.smallFunding
-  ) {
-    isGood = true;
-  } else if (largeDonorPerc <= 0.5 && filters.smallDonors) {
+  // large funding
+  if (largeDonorPerc <= 0.5 && filters.smallDonors) {
     isGood = true;
   } else if (filters.mostlyBigDonors && largeDonorPerc > 0.5) {
     isNotGood = true;
@@ -178,17 +202,11 @@ export const getRankFromUserOrState = (user, candidateState, rankType) => {
   return rank;
 };
 
-export const isSmallCandidate = (totalRaised, chamber) => {
-  let threshold = chamberThresholds[CHAMBER_ENUM.PRESIDENTIAL].totalThreshold;
-  if (chamber === 'presidential') {
-    threshold = chamberThresholds[CHAMBER_ENUM.PRESIDENTIAL].totalThreshold;
+const findIncumbentRaised = candidates => {
+  for (let i = 0; i < candidates.length; i++) {
+    if (candidates[i].isIncumbent) {
+      return candidates[i].raised * 0.5;
+    }
   }
-  if (chamber === 'senate') {
-    threshold = chamberThresholds[CHAMBER_ENUM.SENATE].totalThreshold;
-  }
-  if (chamber === 'house') {
-    threshold = chamberThresholds[CHAMBER_ENUM.HOUSE].totalThreshold;
-  }
-
-  return totalRaised < threshold;
+  return 1;
 };

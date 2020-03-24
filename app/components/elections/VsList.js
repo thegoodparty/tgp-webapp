@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
-import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
 
@@ -138,7 +137,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
               <CandidateWrapper>
                 <CandidateAvatar
                   size="responsive"
-                  src={candidate.image || noCandidateImage}
+                  src={candidate.image}
                 />
                 <Name>{candidate.name}</Name>
                 <Role>
@@ -166,7 +165,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
               <CandidateWrapper className="right">
                 <CandidateAvatar
                   size="responsive"
-                  src={candidate.image || noCandidateImage}
+                  src={candidate.image}
                   good
                 />
                 <Name>{candidate.name}</Name>
@@ -188,7 +187,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
               <CandidateWrapper className="center">
                 <CandidateAvatar
                   size="responsive"
-                  src={candidate.image || noCandidateImage}
+                  src={candidate.image}
                   good
                 />
                 <Name>{candidate.name}</Name>

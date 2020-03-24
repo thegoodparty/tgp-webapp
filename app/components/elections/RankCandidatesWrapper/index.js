@@ -18,7 +18,6 @@ import {
   candidateRoute,
 } from 'helpers/electionsHelper';
 import BottomPopup from 'components/shared/BottomPopup';
-import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { upperFirst } from 'helpers/stringHelper';
 
 const Reset = styled(Body9)`
@@ -185,7 +184,6 @@ const RankCandidatesWrapper = ({
   };
 
   const areAllGoodSelected = () => {
-    console.log(candidates);
     if (!candidates.good || candidates.good.length === 0) {
       return false;
     }
@@ -225,10 +223,7 @@ const RankCandidatesWrapper = ({
       <Card style={{ cursor: 'default' }} key={id}>
         <Row>
           <Link to={candidateRoute(candidate)}>
-            <CandidateAvatar
-              src={candidate.image || noCandidateImage}
-              good={candidate.isGood}
-            />
+            <CandidateAvatar src={candidate.image} good={candidate.isGood} />
           </Link>
           <CardRight>
             <Grid container spacing={0} alignItems="center">

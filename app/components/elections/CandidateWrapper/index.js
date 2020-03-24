@@ -16,15 +16,10 @@ import {
 } from 'components/shared/typogrophy';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import {
-  isSmallCandidate,
-  partyResolver,
-  rankText,
-} from 'helpers/electionsHelper';
+import { partyResolver, rankText } from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
 import { percHelper } from 'helpers/numberHelper';
 import contentfulHelper from 'helpers/contentfulHelper';
-import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
 import TwitterIcon from 'images/icons/twitter-icon.svg';
@@ -214,11 +209,16 @@ const CandidateWrapper = ({
     uuid,
   } = candidate;
 
-  const isSmallChallenger = isSmallCandidate(totalRaised, chamberName);
+  const isUnkown = isGood === null;
+  const isGoodOrUnkwown = isGood || isUnkown;
 
-  const color = isGood ? 'green' : 'red';
-  const perc = isGood ? percHelper(smallDonorPerc) : percHelper(largeDonorPerc);
-  const perHour = isGood
+  const isSmallChallenger = isUnkown; // isSmallCandidate(totalRaised, chamberName);
+
+  const color = isGoodOrUnkwown ? 'green' : 'red';
+  const perc = isGoodOrUnkwown
+    ? percHelper(smallDonorPerc)
+    : percHelper(largeDonorPerc);
+  const perHour = isGoodOrUnkwown
     ? moneyHelper(smallDonorPerHour)
     : moneyHelper(largeDonorPerHour);
 
@@ -233,7 +233,7 @@ const CandidateWrapper = ({
   const coloredGood = () => {
     return (
       <ColoredText className={color}>
-        {!isGood && 'Not'} Good Enough
+        {!isGoodOrUnkwown && 'Not'} Good Enough
       </ColoredText>
     );
   };
@@ -255,11 +255,7 @@ const CandidateWrapper = ({
           <Wrapper>
             <MobileHeader showGoodisGood={isGood} showShare />
             <TopRow>
-              <CandidateAvatar
-                src={image || noCandidateImage}
-                good={isGood}
-                size="xl"
-              />
+              <CandidateAvatar src={image} good={isGoodOrUnkwown} size="xl" />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
               <Body11 style={{ marginTop: '5px' }}>
                 {partyResolver(party)} {isIncumbent && '(INCUMBENT)'}
@@ -312,7 +308,7 @@ const CandidateWrapper = ({
                 <Fund>
                   <ColoredBody13 className={color}>{perc}%</ColoredBody13>
                   <StyledBody9>
-                    {isGood ? (
+                    {isGoodOrUnkwown ? (
                       <span>
                         FROM SMALL INDIV
                         <SmallBr /> DONORS &lt; $200
@@ -323,7 +319,7 @@ const CandidateWrapper = ({
                   </StyledBody9>
                 </Fund>
               )}
-              {!isGood && (
+              {!isGoodOrUnkwown && (
                 <Fund>
                   <ColoredBody13 className={color}>{perHour}/hr</ColoredBody13>
                   <StyledBody9>
@@ -354,9 +350,11 @@ const CandidateWrapper = ({
                     {name} has raised {moneyHelper(totalRaised)} with a majority
                     (<ColoredText className={color}>{perc}%</ColoredText>) of
                     funds coming from{' '}
-                    {isGood ? 'Small Individual Donors' : 'Big Money Sources'}
+                    {isGoodOrUnkwown
+                      ? 'Small Individual Donors'
+                      : 'Big Money Sources'}
                   </strong>
-                  {isGood
+                  {isGoodOrUnkwown
                     ? ', donating less than $200/each'
                     : ', like Political Action Committees (PACs), Corporate Lobbyists and Large Donors.'}
                 </>
@@ -365,7 +363,7 @@ const CandidateWrapper = ({
             <br />
             <br />
             <Body13>
-              {isGood ? (
+              {isGoodOrUnkwown ? (
                 <>
                   {isSmallChallenger ? (
                     <>

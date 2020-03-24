@@ -148,7 +148,9 @@ const VsCard = ({
     if (unknown.length > 0) {
       good.push({
         id: 'whatever',
-        name: `VETTING ${unknown.length} CHALLENGERS`,
+        name: `VETTING ${unknown.length} CHALLENGER${
+          unknown.length > 1 ? 'S' : ''
+        }`,
         party: 'VETTING CHALLENGERS',
         image: noCandidateImage,
         isGood: true,
@@ -197,7 +199,7 @@ const VsCard = ({
                   >
                     <CandidateAvatar
                       size="responsive"
-                      src={candidate.image || noCandidateImage}
+                      src={candidate.image}
                     />
                   </AvatarAbsolute>
                 )}
@@ -236,7 +238,7 @@ const VsCard = ({
                   >
                     <CandidateAvatar
                       size="responsive"
-                      src={candidate.image || noCandidateImage}
+                      src={candidate.image}
                       good
                     />
                   </AvatarAbsolute>

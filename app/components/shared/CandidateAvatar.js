@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import noCandidateImage from './noCandidateImageUrl';
 
 const Wrapper = styled.div`
   width: ${props => props.wrapperSizeSmall};
   height: ${props => props.wrapperSizeSmall};
   border-radius: 50%;
-  border: solid 1px ${({ theme }) => theme.colors.orange};
+  border: solid 1px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +18,10 @@ const Wrapper = styled.div`
 
   &.green {
     border: solid 1px ${({ theme }) => theme.colors.green};
+  }
+
+  &.red {
+    border: solid 1px ${({ theme }) => theme.colors.orange};
   }
 `;
 
@@ -43,7 +48,7 @@ const RedOverlay = styled.div`
   border-radius: 50%;
 `;
 
-const CandidateAvatar = ({ src, size = 'large', good = false }) => {
+const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
   let avatarSizeSmall;
   let avatarSizeLarge;
   let wrapperSizeSmall;
@@ -69,12 +74,15 @@ const CandidateAvatar = ({ src, size = 'large', good = false }) => {
     wrapperSizeSmall = '96px';
     wrapperSizeLarge = '140px';
   }
+  if (!src) {
+    src = noCandidateImage;
+  }
 
   return (
     <Wrapper
       wrapperSizeSmall={wrapperSizeSmall}
       wrapperSizeLarge={wrapperSizeLarge}
-      className={good ? 'green' : ''}
+      className={good ? 'green' : 'red'}
     >
       <Avatar
         src={src}

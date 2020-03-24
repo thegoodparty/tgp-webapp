@@ -15,7 +15,9 @@ import CandidateWrapper from 'components/elections/CandidateWrapper';
 import {
   candidateCalculatedFields,
   CHAMBER_ENUM,
+  defaultFilters,
   isCandidateGood,
+  presidentialThreshold,
 } from 'helpers/electionsHelper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 
@@ -26,19 +28,12 @@ import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
 
-export function CandidatePage({
-  id,
-  chamber,
-  candidateState,
-  districtState,
-  dispatch,
-}) {
+export function CandidatePage({ id, chamber, candidateState, dispatch }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
   const { candidate, presidentialRank, incumbent } = candidateState;
-  const { filters } = districtState;
-
+  const filters = defaultFilters;
   const [chamberName, chamberIncumbent] = chamber.split('-');
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -72,12 +67,21 @@ export function CandidatePage({
     chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
   }
   const candidateWithFields = candidateCalculatedFields(candidate);
+  let incumbentRaised;
+  if (chamberName === 'presidential') {
+    incumbentRaised = presidentialThreshold;
+  } else {
+    incumbentRaised = incumbent
+      ? incumbent.raised || incumbent.combinedRaised
+      : 1;
+    incumbentRaised = incumbentRaised / 2;
+  }
 
   const childProps = {
     candidate: candidateWithFields,
     chamberRank: presidentialRank,
     chamberName,
-    isGood: isCandidateGood(candidate, filters, chamberEnum),
+    isGood: isCandidateGood(candidate, filters, chamberEnum, incumbentRaised),
     incumbent,
   };
 
@@ -105,12 +109,10 @@ CandidatePage.propTypes = {
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
   candidateState: PropTypes.object,
-  districtState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
-  districtState: makeSelectZipFinderPage(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {

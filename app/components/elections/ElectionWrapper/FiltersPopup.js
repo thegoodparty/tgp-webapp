@@ -84,7 +84,7 @@ const FiltersPopup = ({
           <Label>Good Party Approved Candidates</Label>
           <Body13>
             Relatively lessor known candidates who have raised &lt;50% of the
-            funding of the incumbent, but have been vetted and approved by The
+            funding of the incumbent, and have been vetted and approved by The
             Good Party.
           </Body13>
         </div>
