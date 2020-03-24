@@ -76,6 +76,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     navigateCallback: (screen, user, zipCode) => {
       if (screen === '/elections') {
+        alert('elections');
         let zip;
         if (zipCode) {
           zip = zipCode.zip;
@@ -89,8 +90,10 @@ function mapDispatchToProps(dispatch) {
           }
         }
         if (zip) {
+          alert('found zip');
           dispatch(push(`/elections/district/${zip}`));
         } else {
+          alert('no zip');
           dispatch(push('/intro/zip-finder'));
         }
       } else {
