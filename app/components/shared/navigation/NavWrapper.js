@@ -66,10 +66,10 @@ const NavWrapper = ({
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    alert(newValue);
+    alert(newValue + typeof newValue);
     if (newValue === 0) {
       navigateCallback('/party', user, zipCode);
-    } else if (newValue === 1) {
+    } else if (newValue == 1) {
       alert('nav elec' + zipCode.zip);
       navigateCallback('/elections', user, zipCode);
     } else if (newValue === 2) {
