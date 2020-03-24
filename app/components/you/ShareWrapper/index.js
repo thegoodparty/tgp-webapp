@@ -76,7 +76,7 @@ const ShareWrapper = ({ content }) => {
           </Body13>
           {canShare && (
             <BlueButton fullWidth onClick={nativeShare}>
-              <StyledBody>SHARE</StyledBody>
+              <StyledBody>Text to Friends</StyledBody>
             </BlueButton>
           )}
           <div className="text-center pointer">
