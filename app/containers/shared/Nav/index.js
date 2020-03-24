@@ -22,7 +22,13 @@ import userActions from 'containers/you/YouPage/actions';
 import { makeSelectLocation } from 'containers/App/selectors';
 import { getCookie } from 'helpers/cookieHelper';
 
-export function Nav({ userState, dispatch, locationState, navigateCallback }) {
+export function Nav({
+  userState,
+  dispatch,
+  locationState,
+  navigateCallback,
+  hideMobileNav = false,
+}) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -45,6 +51,7 @@ export function Nav({ userState, dispatch, locationState, navigateCallback }) {
     user,
     zipCode,
     navigateCallback,
+    hideMobileNav
   };
 
   return <NavWrapper {...childProps} />;
@@ -55,6 +62,7 @@ Nav.propTypes = {
   locationState: PropTypes.object,
   userState: PropTypes.object,
   navigateCallback: PropTypes.func,
+  hideMobileNav: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({

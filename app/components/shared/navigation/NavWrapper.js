@@ -39,7 +39,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavWrapper = ({ pathname, user, zipCode, navigateCallback }) => {
+const NavWrapper = ({
+  pathname,
+  user,
+  zipCode,
+  navigateCallback,
+  hideMobileNav,
+}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -63,6 +69,7 @@ const NavWrapper = ({ pathname, user, zipCode, navigateCallback }) => {
     if (newValue === 0) {
       navigateCallback('/party', user, zipCode);
     } else if (newValue === 1) {
+      alert('nav elec' + zipCode.zip);
       navigateCallback('/elections', user, zipCode);
     } else if (newValue === 2) {
       navigateCallback('/you', user, zipCode);
@@ -78,28 +85,30 @@ const NavWrapper = ({ pathname, user, zipCode, navigateCallback }) => {
           navigateCallback={navigateCallback}
         />
       </Hidden>
-      <Hidden mdUp>
-        <BottomNavigation
-          value={value}
-          onChange={handleChange}
-          showLabels
-          className={classes.bottomNav}
-        >
-          <BottomNavigationAction
-            label="PARTY"
-            icon={icon(PartyIcon, PartyIconGray, 0)}
-            className={classes.bottomNavItem}
-          />
-          <BottomNavigationAction
-            label="ELECTIONS"
-            icon={icon(ElectionIcon, ElectionIconGray, 1)}
-          />
-          <BottomNavigationAction
-            label="YOU"
-            icon={icon(YouIcon, YouIconGray, 2)}
-          />
-        </BottomNavigation>
-      </Hidden>
+      {!hideMobileNav && (
+        <Hidden mdUp>
+          <BottomNavigation
+            value={value}
+            onChange={handleChange}
+            showLabels
+            className={classes.bottomNav}
+          >
+            <BottomNavigationAction
+              label="PARTY"
+              icon={icon(PartyIcon, PartyIconGray, 0)}
+              className={classes.bottomNavItem}
+            />
+            <BottomNavigationAction
+              label="ELECTIONS"
+              icon={icon(ElectionIcon, ElectionIconGray, 1)}
+            />
+            <BottomNavigationAction
+              label="YOU"
+              icon={icon(YouIcon, YouIconGray, 2)}
+            />
+          </BottomNavigation>
+        </Hidden>
+      )}
     </>
   );
 };
@@ -109,6 +118,7 @@ NavWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   zipCode: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   navigateCallback: PropTypes.func,
+  hideMobileNav: PropTypes.bool,
 };
 
 export default NavWrapper;

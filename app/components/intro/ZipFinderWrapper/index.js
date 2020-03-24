@@ -98,7 +98,7 @@ function ZipFinderWrapper({
   };
   return (
     <GrayWrapper>
-      <Nav />
+      <Nav hideMobileNav={user ? false : true} />
       <Wrapper>
         <StyledH2>Enter your zip to see your relevant elections</StyledH2>
         <Body className="bold600">Enter Home Zip Code</Body>
