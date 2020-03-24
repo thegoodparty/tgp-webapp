@@ -84,7 +84,6 @@ function mapDispatchToProps(dispatch) {
         } else {
           let cookieZip = getCookie('zip');
           if (cookieZip) {
-            alert('elections6 ' + cookieZip);
             cookieZip = JSON.parse(cookieZip);
             zip = cookieZip.zip;
           }
