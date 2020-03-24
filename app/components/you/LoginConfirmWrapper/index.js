@@ -76,6 +76,7 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
             required
             size="medium"
             fullWidth
+            type="tel"
             onChange={onChangeCode}
           />
           <Link to="/login">
