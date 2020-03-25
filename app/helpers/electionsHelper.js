@@ -187,7 +187,6 @@ const calcHours = candidate => {
     dateInOffice = '01/03/2018';
   }
   const months = monthsDiff(dateInOffice, date);
-  console.log(months, hoursPerMonth);
   return months * hoursPerMonth;
 };
 

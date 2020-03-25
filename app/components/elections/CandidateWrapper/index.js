@@ -400,12 +400,12 @@ const CandidateWrapper = ({
                       large numbers of ordinary people, who are banding
                       together, each giving a little, to help {name} compete
                       with the Big Money pouring into this race. <br /> <br />
-                      In contrast, the incumbent in this race,{' '}
+                      In contrast to {name}, the incumbent in this race,{' '}
                       <strong>
                         {comparedIncumbent.name}, has raised{' '}
                         {moneyHelper(comparedIncumbent.raised)}, or{' '}
-                        {comparedIncumbent.xTimes}x times more money, than{' '}
-                        {name}, with a majority (
+                        {comparedIncumbent.xTimes}x times more money, with a
+                        majority (
                         <ColoredText className="red">
                           {percHelper(comparedIncumbent.bigFundsPerc, true)}%
                         </ColoredText>
