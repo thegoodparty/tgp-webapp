@@ -209,12 +209,13 @@ const CandidateWrapper = ({
     outsideReportDate,
     openSecretsId,
     uuid,
+    isApproved,
   } = candidate;
 
   const isUnkown = isGood === null;
   const isGoodOrUnkwown = isGood || isUnkown;
 
-  const isSmallChallenger = isUnkown; // isSmallCandidate(totalRaised, chamberName);
+  const isSmallChallenger = isUnkown || isApproved; // isSmallCandidate(totalRaised, chamberName);
 
   const color = isGoodOrUnkwown ? 'green' : 'red';
   const perc = isGoodOrUnkwown
