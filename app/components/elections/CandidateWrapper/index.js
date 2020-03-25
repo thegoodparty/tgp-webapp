@@ -470,7 +470,7 @@ const CandidateWrapper = ({
                 FEC DATA COURTESY OF OPENSECRETS.ORG
               </OpenSecretsLink>
             </a>
-            {candidateInfo && candidateInfo !== '' && (
+            {candidateInfo && candidateInfo !== 'null' && (
               <InfoWrapper>
                 <Body className="bold600" style={{ marginTop: '48px' }}>
                   Candidate Policy Positions:
