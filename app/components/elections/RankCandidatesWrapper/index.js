@@ -246,7 +246,7 @@ const RankCandidatesWrapper = ({
                   }}
                 >
                   {choices[candidate.id] ? (
-                    <>{rankText(choices[candidate.id])}</>
+                    <>YOUR {rankText(choices[candidate.id])}</>
                   ) : (
                     <>{rankText(choicesOrder.length + 1)}</>
                   )}{' '}

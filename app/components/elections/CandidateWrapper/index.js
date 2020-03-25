@@ -281,7 +281,7 @@ const CandidateWrapper = ({
               >
                 <RankButton className={rank ? 'blue' : ''}>
                   <StyledBody12 className={rank ? 'white' : ''}>
-                    {rank ? `${rankText(rank)} CHOICE` : 'RANK YOUR CHOICES'}
+                    {rank ? `YOUR ${rankText(rank)} CHOICE` : 'RANK YOUR CHOICES'}
                   </StyledBody12>
                 </RankButton>
               </Link>
