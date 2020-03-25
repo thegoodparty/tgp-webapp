@@ -424,7 +424,7 @@ const CandidateWrapper = ({
                     Big Money backers are bankrolling {lastName()}
                     ’s {isIncumbent && 're-'}election at a rate of{' '}
                     <ColoredText className={color}>{perHour}/hr</ColoredText>{' '}
-                    for every hour {lastName()} has been in office.
+                    for every hour {isIncumbent ? lastName() : 'the incumbent'} has been in office.
                   </strong>{' '}
                   Of course, Big Money Backers usually expect a big return on
                   their investments, which means, if {isIncumbent && 're-'}
