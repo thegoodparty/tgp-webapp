@@ -129,6 +129,14 @@ const ColoredText = styled.span`
   }
 `;
 
+const InfoWrapper = styled.div`
+  .survey-question {
+    font-weight: 700;
+    margin-top: 36px;
+    margin-bottom: 0;
+  }
+`;
+
 const CandidateWrapper = ({
   candidate,
   chamberRank = [],
@@ -143,9 +151,25 @@ const CandidateWrapper = ({
 
   useEffect(() => {
     if (candidate && candidate.info) {
-      const info = JSON.parse(candidate.info);
-      const bio = contentfulHelper(info.bio);
-      const { facebook, twitter, website } = info;
+      let info;
+      let facebook;
+      let twitter;
+      let website;
+      let bio;
+      if (chamberName === 'Presidential') {
+        info = JSON.parse(candidate.info);
+        facebook = info.facebook;
+        twitter = info.twitter;
+        website = info.website;
+        bio = info ? contentfulHelper(info.bio) : '';
+      } else {
+        info = candidate.info;
+        facebook = candidate.facebook;
+        twitter = candidate.twitter;
+        website = candidate.website;
+        bio = decodeURI(info);
+      }
+      console.log('bio', bio, typeof bio);
       setCandidateInfo(bio);
       setSocialAccounts([
         { name: 'facebook', url: facebook, icon: FacebookIcon },
@@ -265,13 +289,17 @@ const CandidateWrapper = ({
               </Body11>
               {socialAccounts.length > 0 && (
                 <SocialLinks>
-                  {socialAccounts.map(social => (
-                    <a href={social.url} target="_blank" key={social.url}>
-                      <IconWrapper>
-                        <img src={social.icon} alt={social.name} />
-                        <SocialLabel>{social.name}</SocialLabel>
-                      </IconWrapper>
-                    </a>
+                  {socialAccounts.map((social, index) => (
+                    <React.Fragment key={`${index}-${social.url}`}>
+                      {social.url && social.url !== '' && (
+                        <a href={social.url} target="_blank">
+                          <IconWrapper>
+                            <img src={social.icon} alt={social.name} />
+                            <SocialLabel>{social.name}</SocialLabel>
+                          </IconWrapper>
+                        </a>
+                      )}
+                    </React.Fragment>
                   ))}
                 </SocialLinks>
               )}
@@ -281,7 +309,9 @@ const CandidateWrapper = ({
               >
                 <RankButton className={rank ? 'blue' : ''}>
                   <StyledBody12 className={rank ? 'white' : ''}>
-                    {rank ? `YOUR ${rankText(rank)} CHOICE` : 'RANK YOUR CHOICES'}
+                    {rank
+                      ? `YOUR ${rankText(rank)} CHOICE`
+                      : 'RANK YOUR CHOICES'}
                   </StyledBody12>
                 </RankButton>
               </Link>
@@ -424,7 +454,8 @@ const CandidateWrapper = ({
                     Big Money backers are bankrolling {lastName()}
                     ’s {isIncumbent && 're-'}election at a rate of{' '}
                     <ColoredText className={color}>{perHour}/hr</ColoredText>{' '}
-                    for every hour {isIncumbent ? lastName() : 'the incumbent'} has been in office.
+                    for every hour {isIncumbent ? lastName() : 'the incumbent'}{' '}
+                    has been in office.
                   </strong>{' '}
                   Of course, Big Money Backers usually expect a big return on
                   their investments, which means, if {isIncumbent && 're-'}
@@ -439,13 +470,17 @@ const CandidateWrapper = ({
                 FEC DATA COURTESY OF OPENSECRETS.ORG
               </OpenSecretsLink>
             </a>
-            {candidateInfo && (
-              <>
+            {candidateInfo && candidateInfo !== '' && (
+              <InfoWrapper>
                 <Body className="bold600" style={{ marginTop: '48px' }}>
                   Candidate Policy Positions:
                 </Body>
-                <Body13>{candidateInfo}</Body13>
-              </>
+                {chamberName === 'Presidential' ? (
+                  <Body13>{candidateInfo}</Body13>
+                ) : (
+                  <Body13 dangerouslySetInnerHTML={{ __html: candidateInfo }} />
+                )}
+              </InfoWrapper>
             )}
           </Wrapper>
         </>
