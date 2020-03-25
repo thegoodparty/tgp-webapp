@@ -37,6 +37,7 @@ import FaqListPage from 'containers/party/FaqListPage/Loadable';
 import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
 
 import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
+import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loadable';
 
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 
@@ -124,6 +125,11 @@ export default function App() {
         <Route exact path="/party/faq/:title/:id" component={FaqArticlePage} />
 
         <Route exact path="/scrape/incumbents" component={IncumbentsToScrape} />
+        <Route
+          exact
+          path="/scrape/candidates"
+          component={AllCandidatesToScrape}
+        />
 
         <Route component={NotFoundPage} />
       </Switch>

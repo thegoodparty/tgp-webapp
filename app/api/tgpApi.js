@@ -100,7 +100,11 @@ const api = {
   scrapeIncumbents: {
     url: `${base}incumbent/to-scrape`,
     method: 'GET',
-    withAuth: true,
+  },
+
+  scrapeAllCandidates: {
+    url: `${base}race-candidate/all`,
+    method: 'GET',
   },
 
   // General
