@@ -18,7 +18,7 @@ import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { partyResolver, rankText } from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
-import { percHelper } from 'helpers/numberHelper';
+import { percHelper, toPrecision } from 'helpers/numberHelper';
 import contentfulHelper from 'helpers/contentfulHelper';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
@@ -162,7 +162,7 @@ const CandidateWrapper = ({
     if (incumbent) {
       const raised = incumbent.raised || incumbent.combinedRaised;
       let bigFundsPerc = (raised - incumbent.smallContributions) / raised;
-      bigFundsPerc = parseFloat(bigFundsPerc.toPrecision(2));
+      bigFundsPerc = toPrecision(bigFundsPerc);
       const compared = {
         name: incumbent.name,
         raised,
@@ -173,11 +173,9 @@ const CandidateWrapper = ({
         2,
       );
 
-      compared.xTimes = parseFloat(
-        (compared.raised / totalRaised).toPrecision(2),
-      );
-      compared.relativePerc = parseFloat(
-        ((totalRaised * 100) / compared.raised).toPrecision(2),
+      compared.xTimes = toPrecision(compared.raised / totalRaised);
+      compared.relativePerc = toPrecision(
+        (totalRaised * 100) / compared.raised,
       );
       setComparedIncumbent(compared);
     } else {
@@ -220,8 +218,8 @@ const CandidateWrapper = ({
 
   const color = isGoodOrUnkwown ? 'green' : 'red';
   const perc = isGoodOrUnkwown
-    ? percHelper(smallDonorPerc)
-    : percHelper(largeDonorPerc);
+    ? percHelper(smallDonorPerc, true)
+    : percHelper(largeDonorPerc, true);
   const perHour = isGoodOrUnkwown
     ? moneyHelper(smallDonorPerHour)
     : moneyHelper(largeDonorPerHour);
@@ -381,8 +379,10 @@ const CandidateWrapper = ({
                         {moneyHelper(comparedIncumbent.raised)} or{' '}
                         {comparedIncumbent.xTimes}x times more money, than{' '}
                         {name}, with a majority (
-                        {comparedIncumbent.bigFundsPerc}% ) of in Total Funds
-                        coming from Big Money sources
+                        <ColoredText className="red">
+                          {percHelper(comparedIncumbent.bigFundsPerc, true)}%
+                        </ColoredText>
+                        ) of in Total Funds coming from Big Money sources
                       </strong>
                       , like Political Action Committees (PACs), Corporate
                       Lobbyists and Large Donors.
@@ -406,8 +406,10 @@ const CandidateWrapper = ({
                         {moneyHelper(comparedIncumbent.raised)}, or{' '}
                         {comparedIncumbent.xTimes}x times more money, than{' '}
                         {name}, with a majority (
-                        {comparedIncumbent.bigFundsPerc}%) of funds coming from
-                        Big Money sources
+                        <ColoredText className="red">
+                          {percHelper(comparedIncumbent.bigFundsPerc, true)}%
+                        </ColoredText>
+                        ) of funds coming from Big Money sources
                       </strong>
                       , like Political Action Committees (PACs), Corporate
                       Lobbyists and Large Donors.

@@ -171,9 +171,12 @@ export const isCandidateGood = (
   return null;
 };
 
+const hoursPerMonth = 2000 / 12;
+
 const calcHours = candidate => {
   const { isIncumbent, chamber, outsideReportDate, reportDate } = candidate;
-  if (!isIncumbent) {
+  // presidential has chamber undeifned
+  if (!isIncumbent && typeof chamber !== 'undefined') {
     return 1;
   }
   const date = reportDate || outsideReportDate;
@@ -183,8 +186,8 @@ const calcHours = candidate => {
   } else if (chamber === 'House') {
     dateInOffice = '01/03/2018';
   }
-  const hoursPerMonth = 2000 / 12;
   const months = monthsDiff(dateInOffice, date);
+  console.log(months, hoursPerMonth);
   return months * hoursPerMonth;
 };
 

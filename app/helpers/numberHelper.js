@@ -1,7 +1,10 @@
-export const percHelper = num => {
+export const percHelper = (num, significant = false) => {
   if (!num) return num;
   if (typeof num !== 'number') {
     num = parseFloat(num);
+  }
+  if (significant) {
+    return toPrecision(num * 100);
   }
   return (num * 100).toFixed(2);
 };
@@ -38,4 +41,11 @@ export const numberFormatter = num => {
     .replace(/./g, (c, i, a) =>
       i && c !== '.' && (a.length - i) % 3 === 0 ? `,${c}` : c,
     )}`;
+};
+
+export const toPrecision = num => {
+  if (!num) {
+    return num;
+  }
+  return parseFloat(num.toPrecision(2));
 };
