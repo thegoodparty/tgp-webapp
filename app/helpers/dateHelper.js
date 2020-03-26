@@ -25,12 +25,14 @@ export const formatDateWithTimezone = (orgDate, timeZone) => {
     return '';
   }
   try {
-    let hoursDelta = timeZoneToHours(timeZone);
+    console.log(orgDate, timeZone);
+    const hoursDelta = timeZoneToHours(timeZone);
+    console.log('hoursDelta', hoursDelta)
     const date = new Date(orgDate);
     const noTimeZoneDate = new Date(date.getTime() - hoursDelta * ONE_HOUR);
     return dateTimeUsHelper(noTimeZoneDate).toString();
   } catch (err) {
-    return '';
+    return orgDate;
   }
 };
 
