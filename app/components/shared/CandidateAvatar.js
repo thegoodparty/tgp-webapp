@@ -79,7 +79,11 @@ const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
     wrapperSizeSmall = '96px';
     wrapperSizeLarge = '140px';
   }
-  if (!src) {
+  if (
+    !src ||
+    src ===
+      'https://cdn.ballotpedia.org/images/thumb/f/fb/Silhouette_Placeholder_Image.png/150px-Silhouette_Placeholder_Image.png'
+  ) {
     src = noCandidateImage;
   }
 

@@ -140,25 +140,27 @@ const DistrictWrapper = ({
     setShowCds(prev => !prev);
   };
 
-  let electionCount = 1;
+  let electionCount = 3;
   if (
     senateCandidates &&
     senateCandidates.good &&
-    senateCandidates.good.length === 0 &&
+    senateCandidates.good.length < 2 &&
     senateCandidates.notGood.length === 0 &&
     senateCandidates.unknown.length === 0
   ) {
-    electionCount++;
+    electionCount--;
   }
   if (
     houseCandidates &&
     houseCandidates.good &&
-    houseCandidates.good.length === 0 &&
+    houseCandidates.good.length < 2 &&
     houseCandidates.notGood.length === 0 &&
     houseCandidates.unknown.length === 0
   ) {
-    electionCount++;
+    electionCount--;
   }
+  console.log('senate', senateCandidates);
+  console.log('house', houseCandidates);
 
   return (
     <GrayWrapper>
