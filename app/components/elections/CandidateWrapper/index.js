@@ -137,6 +137,11 @@ const InfoWrapper = styled.div`
   }
 `;
 
+const ChamberLink = styled(Body11)`
+  margin-top: 5px;
+  text-transform: capitalize;
+`;
+
 const CandidateWrapper = ({
   candidate,
   chamberRank = [],
@@ -156,7 +161,7 @@ const CandidateWrapper = ({
       let twitter;
       let website;
       let bio;
-      if (chamberName === 'Presidential') {
+      if (chamberName === 'presidential') {
         info = JSON.parse(candidate.info);
         facebook = info.facebook;
         twitter = info.twitter;
@@ -167,7 +172,7 @@ const CandidateWrapper = ({
         facebook = candidate.facebook;
         twitter = candidate.twitter;
         website = candidate.website;
-        bio = decodeURI(info);
+        bio = info ? decodeURI(info) : null;
       }
       console.log('bio', bio, typeof bio);
       setCandidateInfo(bio);
@@ -235,6 +240,8 @@ const CandidateWrapper = ({
     openSecretsId,
     uuid,
     isApproved,
+    state,
+    district,
   } = candidate;
 
   const isUnkown = isGood === null;
@@ -281,6 +288,43 @@ const CandidateWrapper = ({
     outsideReportDate ||
     (incumbent && incumbent.reportDate) ||
     '02/12/2020';
+
+  const chamberLink = () => {
+    const incumbentText = isIncumbent ? 'Incumbent' : 'Candidate';
+    console.log('chamberName', chamberName);
+    if (chamberName === 'presidential') {
+      return (
+        <ChamberLink>
+          <Link to="/elections/presidential-election">
+            Presidential {incumbentText}
+          </Link>
+        </ChamberLink>
+      );
+    }
+    if (chamberName === 'senate') {
+      if (state) {
+        return (
+          <ChamberLink>
+            <Link to={`/elections/senate-election/${state}`}>
+              {incumbentText} for {state.toUpperCase()}
+            </Link>
+          </ChamberLink>
+        );
+      }
+    }
+    if (chamberName === 'house') {
+      if (state && district) {
+        return (
+          <ChamberLink>
+            <Link to={`/elections/house-election/${state}-${district}`}>
+              {incumbentText} for {state.toUpperCase()}-{district}
+            </Link>
+          </ChamberLink>
+        );
+      }
+    }
+  };
+
   return (
     <GrayWrapper>
       {candidate ? (
@@ -291,9 +335,10 @@ const CandidateWrapper = ({
             <TopRow>
               <CandidateAvatar src={image} good={isGoodOrUnkwown} size="xl" />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
-              <Body11 style={{ marginTop: '5px' }}>
-                {partyResolver(party)} {isIncumbent && '(INCUMBENT)'}
+              <Body11 style={{ marginTop: '5px' }} className="bold500">
+                {partyResolver(party)}
               </Body11>
+              {chamberLink()}
               {socialAccounts.length > 0 && (
                 <SocialLinks>
                   {socialAccounts.map((social, index) => (
@@ -440,9 +485,9 @@ const CandidateWrapper = ({
                       <br />
                       Such a difference in funding creates a nearly impossible
                       hurdle that relatively less known, indie or grass-roots
-                      candidates like Adia Winfrey must overcome against a major
-                      party incumbent that Big Money Backers are bankrolling.
-                      This is why we created The Good Party to help them.
+                      candidates like {name} must overcome against a major party
+                      incumbent that Big Money Backers are bankrolling. This is
+                      why we created The Good Party to help them.
                     </>
                   ) : (
                     <>
@@ -489,18 +534,41 @@ const CandidateWrapper = ({
                 FEC DATA COURTESY OF OPENSECRETS.ORG
               </OpenSecretsLink>
             </a>
-            {candidateInfo && candidateInfo !== 'null' && (
-              <InfoWrapper>
-                <Body className="bold600" style={{ marginTop: '48px' }}>
-                  Candidate Policy Positions:
-                </Body>
-                {chamberName === 'Presidential' ? (
-                  <Body13>{candidateInfo}</Body13>
-                ) : (
-                  <Body13 dangerouslySetInnerHTML={{ __html: candidateInfo }} />
-                )}
-              </InfoWrapper>
-            )}
+
+            <InfoWrapper>
+              <Body className="bold600" style={{ marginTop: '48px' }}>
+                Candidate Policy Positions:
+              </Body>
+              {chamberName === 'Presidential' ? (
+                <Body13>{candidateInfo}</Body13>
+              ) : (
+                <div>
+                  {candidateInfo && candidateInfo !== 'null' ? (
+                    <>
+                      <Body11 style={{ margin: '16px 0' }}>
+                        The following policy positions for {name} were compiled
+                        by [Ballotpedia] from the candidate's survey, official
+                        campaign website, editorials, speeches, and interviews.
+                      </Body11>
+                      <Body13
+                        dangerouslySetInnerHTML={{ __html: candidateInfo }}
+                      />
+                    </>
+                  ) : (
+                    <Body13 style={{ padding: '16px 0' }}>
+                      No data found for {name} Ballotpedia
+                      <a
+                        href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
+                          window.location.href
+                        }`}
+                      >
+                        <ReportError>Report an error</ReportError>
+                      </a>
+                    </Body13>
+                  )}
+                </div>
+              )}
+            </InfoWrapper>
           </Wrapper>
         </>
       ) : (
