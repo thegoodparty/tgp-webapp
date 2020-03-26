@@ -85,7 +85,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
     <Wrapper>
       <ContentWrapper>
         <TopLink className={partyRoute ? 'showBorder' : ''}>
-          <Logo src={LogoCaps} onClick={() => handleNavigate('/party')} />
+          <Logo src={LogoCaps} onClick={() => handleNavigate('/')} />
         </TopLink>
         {!hideLinks && (
           <>
