@@ -465,7 +465,7 @@ const CandidateWrapper = ({
                     <>
                       <strong>
                         {comparedIncumbent.isFakeIncumbent
-                          ? 'The Big Money candidate'
+                          ? 'The Big Money Candidate'
                           : `The incumbent ${comparedIncumbent.name}`}
                         , has raised {moneyHelper(comparedIncumbent.raised)} or{' '}
                         {comparedIncumbent.xTimes}x times more money, than{' '}
