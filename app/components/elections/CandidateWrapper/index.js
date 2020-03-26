@@ -485,8 +485,8 @@ const CandidateWrapper = ({
                       {comparedIncumbent.isFakeIncumbent
                         ? 'Big Money Candidate'
                         : 'Incumbent'}{' '}
-                      that Big Money Backers are bankrolling. This is why we
-                      created The Good Party to help them.
+                      that Big Money Backers are bankrolling. The reason we
+                      created The Good Party is to help such candidates.
                     </>
                   ) : (
                     <>
