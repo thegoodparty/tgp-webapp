@@ -166,7 +166,7 @@ const CandidateWrapper = ({
       let website;
       let bio = '';
       if (chamberName === 'presidential') {
-        info = JSON.parse(candidate.info);
+        info = candidate.info ? JSON.parse(candidate.info) : '';
         if (info) {
           facebook = info.facebook;
           twitter = info.twitter;
