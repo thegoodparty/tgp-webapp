@@ -330,6 +330,10 @@ const CandidateWrapper = ({
     }
   };
 
+  const ballotpediaLink = candidate.source
+    ? candidate.source
+    : 'https://ballotpedia.org/';
+
   return (
     <GrayWrapper>
       {candidate ? (
@@ -549,9 +553,12 @@ const CandidateWrapper = ({
                     <>
                       <Body11 style={{ margin: '16px 0' }}>
                         The following policy positions for {name} were compiled
-                        by [Ballotpedia] from the candidate&apos;s survey,
-                        official campaign website, editorials, speeches, and
-                        interviews.
+                        by{' '}
+                        <a href={ballotpediaLink} target="_blank">
+                          Ballotpedia
+                        </a>{' '}
+                        from the candidate&apos;s survey, official campaign
+                        website, editorials, speeches, and interviews.
                       </Body11>
                       <Body13
                         dangerouslySetInnerHTML={{ __html: candidateInfo }}
@@ -575,7 +582,7 @@ const CandidateWrapper = ({
                 </div>
               )}
             </InfoWrapper>
-            <a href="https://ballotpedia.org/" target="_blank">
+            <a href={ballotpediaLink} target="_blank">
               <OpenSecretsLink>
                 CANDIDATE DATA COURTESY OF BALLOTPEDIA <br /> &nbsp;
               </OpenSecretsLink>
