@@ -23,6 +23,10 @@ const Wrapper = styled.div`
   &.red {
     border: solid 1px ${({ theme }) => theme.colors.orange};
   }
+
+  &.gray {
+    border: solid 1px ${({ theme }) => theme.colors.gray9};
+  }
 `;
 
 const Avatar = styled.div`
@@ -49,6 +53,7 @@ const RedOverlay = styled.div`
 `;
 
 const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
+  const isUnknown = good === null;
   let avatarSizeSmall;
   let avatarSizeLarge;
   let wrapperSizeSmall;
@@ -78,11 +83,16 @@ const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
     src = noCandidateImage;
   }
 
+  let color = good ? 'green' : 'red';
+  if (isUnknown) {
+    color = 'gray';
+  }
+
   return (
     <Wrapper
       wrapperSizeSmall={wrapperSizeSmall}
       wrapperSizeLarge={wrapperSizeLarge}
-      className={good ? 'green' : 'red'}
+      className={color}
     >
       <Avatar
         src={src}
@@ -90,7 +100,7 @@ const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
         avatarSizeLarge={avatarSizeLarge}
         style={{ backgroundImage: `url(${src}` }}
       >
-        {!good && <RedOverlay />}
+        {!good && !isUnknown && <RedOverlay />}
       </Avatar>
     </Wrapper>
   );

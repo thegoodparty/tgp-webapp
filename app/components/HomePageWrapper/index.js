@@ -74,10 +74,12 @@ function HomePageWrapper() {
           <div>
             <Logo src={heartImg} />
           </div>
-          <H1>99% of Congress  has been corrupted  by Big Money donors</H1>
+          <H1>
+            Power and Money have corrupted <u>both</u> major political parties
+          </H1>
           <StyledH2>
-            Imagine a free crowd-voting app that returns the{' '}
-            <strong>Power to the People!</strong>
+            Imagine an easy, new way to vote & replace every bad politician with{' '}
+            <strong>Good!</strong>
           </StyledH2>
           <ButtonWrapper>
             <Link to="/intro/splash">

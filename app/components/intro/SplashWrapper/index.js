@@ -100,15 +100,15 @@ function SplashWrapper() {
         <Centered>
           <Logo src={heartImg} />
           <H1>THE GOOD PARTY</H1>
-          <SubTitle>WRITE-IN, FOR THE WIN!</SubTitle>
+          <SubTitle>FIXING POLITICS FOR GOOD</SubTitle>
         </Centered>
         <Card>
           <Icon src={heartImg} className="heart" />
           <TextWrapper>
             <SmallTitle>Show Good Candidates</SmallTitle>
             <Body14>
-              We find and vet, good indie and citizen candidates who big money
-              and corrupt partisans don’t like.
+              We count all the votes they need to win, <strong>before</strong>{' '}
+              taking any action, so we don’t waste your time or vote.
             </Body14>
           </TextWrapper>
         </Card>
@@ -116,7 +116,7 @@ function SplashWrapper() {
         <Card>
           <Icon src={peopleImg} />
           <TextWrapper>
-            <SmallTitle>Count Needed Votes</SmallTitle>
+            <SmallTitle>Pre-Count Needed Votes</SmallTitle>
             <Body14>
               We count all the votes we need to win before we take any action,
               so no wasted energy or actual votes!
@@ -129,7 +129,8 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle>Vote or Write-in, FTW!</SmallTitle>
             <Body14>
-              Only where we have enough support to win, we flash-mob to vote or
+              Only where we have enough votes to win for sure, we’ll help you
+              cast your vote, or
               <i>write-in, for the win!</i>
             </Body14>
           </TextWrapper>

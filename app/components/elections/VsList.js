@@ -188,7 +188,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                 <CandidateAvatar
                   size="responsive"
                   src={candidate.image}
-                  good
+                  good={null}
                 />
                 <Name>{candidate.name}</Name>
                 <Role>

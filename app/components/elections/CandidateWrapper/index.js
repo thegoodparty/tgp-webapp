@@ -164,20 +164,25 @@ const CandidateWrapper = ({
       let facebook;
       let twitter;
       let website;
-      let bio;
+      let bio = '';
       if (chamberName === 'presidential') {
-        console.log('pres');
         info = JSON.parse(candidate.info);
-        facebook = info.facebook;
-        twitter = info.twitter;
-        website = info.website;
-        bio = info ? contentfulHelper(info.bio) : '';
+        if (info) {
+          facebook = info.facebook;
+          twitter = info.twitter;
+          website = info.website;
+          bio = contentfulHelper(info.bio);
+        }
       } else {
         info = candidate.info;
         facebook = candidate.facebook;
         twitter = candidate.twitter;
         website = candidate.website;
-        bio = info ? decodeURI(info) : null;
+        try {
+          bio = info ? decodeURI(info) : null;
+        } catch (e) {
+          console.log(e);
+        }
       }
       setCandidateInfo(bio);
       setSocialAccounts([
@@ -287,7 +292,6 @@ const CandidateWrapper = ({
     const stateDistrict = uuid.split('_')[1];
     openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
   }
-  console.log('incumbent', incumbent, comparedIncumbent);
   const combinedReportDate =
     reportDate ||
     outsideReportDate ||
@@ -307,7 +311,7 @@ const CandidateWrapper = ({
         return (
           <ChamberLink>
             <Link to={`/elections/senate-election/${state}`}>
-              U.S. Senate for {shortToLongState(state.toUpperCase())}
+              U.S. Senate for {shortToLongState[state.toUpperCase()]}
             </Link>
           </ChamberLink>
         );
@@ -334,7 +338,7 @@ const CandidateWrapper = ({
           <Wrapper>
             <MobileHeader showGoodisGood={isGood} showShare />
             <TopRow>
-              <CandidateAvatar src={image} good={isGoodOrUnkwown} size="xl" />
+              <CandidateAvatar src={image} good={isGood} size="xl" />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
               <Body11 style={{ marginTop: '5px' }} className="bold500">
                 {partyResolver(party)} {isIncumbent ? 'INCUMBENT' : 'CANDIDATE'}
@@ -430,7 +434,7 @@ const CandidateWrapper = ({
             </Body13>
             <Body13>
               According to Federal Election Commission (FEC) filings for the
-              this election cycle, as of {outsideReportDate},{' '}
+              this election cycle, as of {combinedReportDate},{' '}
               {isSmallChallenger ? (
                 <strong>
                   {name} has raised just {moneyHelper(totalRaised)} in Total
@@ -573,7 +577,7 @@ const CandidateWrapper = ({
             </InfoWrapper>
             <a href="https://ballotpedia.org/" target="_blank">
               <OpenSecretsLink>
-                CANDIDATE DATA COURTESY OF OPENSECRETS.ORG <br /> &nbsp;
+                CANDIDATE DATA COURTESY OF BALLOTPEDIA <br /> &nbsp;
               </OpenSecretsLink>
             </a>
           </Wrapper>

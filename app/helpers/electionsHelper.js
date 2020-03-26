@@ -17,6 +17,9 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'I') {
     return 'INDEPENDENT';
   }
+  if (partyLetter === 'W') {
+    return 'WRITE-IN';
+  }
   return '';
 };
 
@@ -91,6 +94,7 @@ export const filterCandidates = (
     incumbentRaised = presidentialThreshold;
   } else {
     incumbentRaised = findIncumbentRaised(candidates);
+    console.log('incumbentRaised', incumbentRaised);
   }
   if (candidates) {
     candidates.forEach(candidate => {
@@ -150,7 +154,6 @@ export const isCandidateGood = (
   if (isCertified) {
     return true;
   }
-  console.log('raisedByIncumbent', raisedByIncumbent, chamber, chamberThresholds[chamber])
 
   if (totalRaised < raisedByIncumbent) {
     // small funding
@@ -239,14 +242,15 @@ export const getRankFromUserOrState = (user, candidateState, rankType) => {
 };
 
 const findIncumbentRaised = candidates => {
+  let maxRaised = 0;
   for (let i = 0; i < candidates.length; i++) {
     if (candidates[i].isIncumbent) {
       return candidates[i].raised * 0.5;
     }
+    maxRaised = Math.max(maxRaised, candidates[i].raised);
   }
-  return false;
+  return maxRaised / 2;
 };
-
 
 export const shortToLongState = {
   AL: 'Alabama',
