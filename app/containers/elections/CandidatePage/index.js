@@ -59,7 +59,11 @@ export function CandidatePage({
 
   useEffect(() => {
     if (!isIncumbent) {
-      dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
+      if(candidate.chamber === 'Senate') {
+        dispatch(candidateActions.loadDistrictIncumbentAction(state));
+      } else {
+        dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
+      }
     }
   }, [candidate]);
 
