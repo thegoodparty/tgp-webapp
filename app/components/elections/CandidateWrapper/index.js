@@ -437,11 +437,11 @@ const CandidateWrapper = ({
                       Lobbyists and Large Donors.
                       <br />
                       <br />
-                      Such a difference in funding creates an impossible hurdle
-                      that good indie or grass-roots candidate like {name} must
-                      overcome against a major party incumbent that Big Money
-                      Backers are bankrolling. This is why we created The Good
-                      Party to help them.
+                      Such a difference in funding creates a nearly impossible
+                      hurdle that relatively less known, indie or grass-roots
+                      candidates like Adia Winfrey must overcome against a major
+                      party incumbent that Big Money Backers are bankrolling.
+                      This is why we created The Good Party to help them.
                     </>
                   ) : (
                     <>
