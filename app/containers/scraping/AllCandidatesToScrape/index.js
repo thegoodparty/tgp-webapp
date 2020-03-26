@@ -61,34 +61,39 @@ export function AllCandidatesToScrape({ scrapeState, dispatch }) {
         />
       </Helmet>
       <div>
-        {candidates &&
-          candidates.map(candidate => (
-            <>
-              <div key={candidate.id}>
-                <a
-                  href={`https://ballotpedia.org/${underScoreName(
-                    candidate.name,
-                  )}`}
-                >
-                  {candidate.id}|{candidate.name}|
-                  {candidate.isIncumbent && 'incumbent'}
-                </a>
-              </div>
-              {hasMiddleName(candidate.name) && (
-                <div key={candidate.id}>
-                  <a
-                    href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                      candidate.name,
-                    )}`}
-                  >
-                    {candidate.id}|{candidate.name}|
-                    {candidate.isIncumbent && 'incumbent'}
-                  </a>
-                </div>
-              )}
-            </>
-          ))}
+        <div><a href="https://ballotpedia.org/Mike_Garcia">2073|Mike Garcia|</a></div>
+        <div><a href="https://ballotpedia.org/Christy_Smith">2074|Christy Smith|</a></div>
+        <div><a href="https://ballotpedia.org/George_Papadopoulos">2075|George Papadopoulos|</a></div>
       </div>
+      {/*<div>*/}
+        {/*{candidates &&*/}
+          {/*candidates.map(candidate => (*/}
+            {/*<>*/}
+              {/*<div key={candidate.id}>*/}
+                {/*<a*/}
+                  {/*href={`https://ballotpedia.org/${underScoreName(*/}
+                    {/*candidate.name,*/}
+                  {/*)}`}*/}
+                {/*>*/}
+                  {/*{candidate.id}|{candidate.name}|*/}
+                  {/*{candidate.isIncumbent && 'incumbent'}*/}
+                {/*</a>*/}
+              {/*</div>*/}
+              {/*{hasMiddleName(candidate.name) && (*/}
+                {/*<div key={candidate.id}>*/}
+                  {/*<a*/}
+                    {/*href={`https://ballotpedia.org/${underScoreNameNoMiddle(*/}
+                      {/*candidate.name,*/}
+                    {/*)}`}*/}
+                  {/*>*/}
+                    {/*{candidate.id}|{candidate.name}|*/}
+                    {/*{candidate.isIncumbent && 'incumbent'}*/}
+                  {/*</a>*/}
+                {/*</div>*/}
+              {/*)}*/}
+            {/*</>*/}
+          {/*))}*/}
+      {/*</div>*/}
     </div>
   );
 }
