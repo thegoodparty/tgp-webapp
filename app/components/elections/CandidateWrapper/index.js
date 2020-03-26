@@ -275,8 +275,8 @@ const CandidateWrapper = ({
     const stateDistrict = uuid.split('_')[1];
     openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
   }
-  console.log('incumbent', incumbent, comparedIncumbent)
-  const reportDate =
+  console.log('incumbent', incumbent, comparedIncumbent);
+  const combinedReportDate =
     reportDate ||
     outsideReportDate ||
     (incumbent && incumbent.reportDate) ||
@@ -333,8 +333,7 @@ const CandidateWrapper = ({
             <FollowWrapper>
               <Body className="bold600">Follow the Money</Body>
               <Body11 style={{ marginLeft: '5px' }}>
-                (FEC DATA as of{' '}
-                {reportDate})
+                (FEC DATA as of {combinedReportDate})
               </Body11>
             </FollowWrapper>
             <FundsWrapper>
