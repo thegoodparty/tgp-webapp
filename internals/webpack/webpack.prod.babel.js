@@ -127,6 +127,7 @@ module.exports = require('./webpack.base.babel')({
       theme_color: '#117CB6',
       inject: true,
       ios: true,
+      display: 'standalone',
       icons: [
         {
           src: path.resolve('app/images/favicons/favicon-512x512.png'),
