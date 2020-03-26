@@ -306,7 +306,7 @@ const CandidateWrapper = ({
         return (
           <ChamberLink>
             <Link to={`/elections/senate-election/${state}`}>
-              {incumbentText} for {state.toUpperCase()}
+              Senate {incumbentText} for {state.toUpperCase()}
             </Link>
           </ChamberLink>
         );
@@ -317,7 +317,7 @@ const CandidateWrapper = ({
         return (
           <ChamberLink>
             <Link to={`/elections/house-election/${state}-${district}`}>
-              {incumbentText} for {state.toUpperCase()}-{district}
+              House {incumbentText} for {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
         );
