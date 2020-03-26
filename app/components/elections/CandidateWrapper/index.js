@@ -200,6 +200,7 @@ const CandidateWrapper = ({
         name: incumbent.name,
         raised,
         bigFundsPerc,
+        isFakeIncumbent: incumbent.isFakeIncumbent,
       };
       compared.xTimes = (compared.raised / totalRaised).toFixed(2);
       compared.relativePerc = ((totalRaised * 100) / compared.raised).toFixed(
@@ -387,16 +388,17 @@ const CandidateWrapper = ({
                 <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
               </Fund>
               {isSmallChallenger ? (
-                <>
-                  {comparedIncumbent.relativePerc && (
-                    <Fund>
-                      <ColoredBody13 className={color}>
-                        {comparedIncumbent.relativePerc}%
-                      </ColoredBody13>
-                      <StyledBody9>FUNDING RELATIVE TO INCUMBENT</StyledBody9>
-                    </Fund>
-                  )}
-                </>
+                <Fund>
+                  <ColoredBody13 className={color}>
+                    {comparedIncumbent.relativePerc}%
+                  </ColoredBody13>
+                  <StyledBody9>
+                    FUNDING RELATIVE TO{' '}
+                    {comparedIncumbent.isFakeIncumbent
+                      ? 'BIG MONEY CANDIDATE'
+                      : 'INCUMBENT'}
+                  </StyledBody9>
+                </Fund>
               ) : (
                 <Fund>
                   <ColoredBody13 className={color}>{perc}%</ColoredBody13>
@@ -432,18 +434,11 @@ const CandidateWrapper = ({
               {isSmallChallenger ? (
                 <strong>
                   {name} has raised just {moneyHelper(totalRaised)} in Total
-                  Funds
-                  {comparedIncumbent.relativePerc ? (
-                    <>
-                      , or{' '}
-                      <ColoredText className={color}>
-                        {comparedIncumbent.relativePerc}%
-                      </ColoredText>{' '}
-                      of the funding of the Big Money incumbent in this race.
-                    </>
-                  ) : (
-                    <>.</>
-                  )}
+                  Funds , or{' '}
+                  <ColoredText className={color}>
+                    {comparedIncumbent.relativePerc}%
+                  </ColoredText>{' '}
+                  of the funding of the Big Money incumbent in this race.
                 </strong>
               ) : (
                 <>
@@ -468,10 +463,11 @@ const CandidateWrapper = ({
                 <>
                   {isSmallChallenger ? (
                     <>
-                      The incumbent{' '}
                       <strong>
-                        {comparedIncumbent.name}, has raised{' '}
-                        {moneyHelper(comparedIncumbent.raised)} or{' '}
+                        {comparedIncumbent.isFakeIncumbent
+                          ? 'The Big Money candidate'
+                          : `The incumbent ${comparedIncumbent.name}`}
+                        , has raised {moneyHelper(comparedIncumbent.raised)} or{' '}
                         {comparedIncumbent.xTimes}x times more money, than{' '}
                         {name}, with a majority (
                         <ColoredText className="red">
@@ -485,9 +481,12 @@ const CandidateWrapper = ({
                       <br />
                       Such a difference in funding creates a nearly impossible
                       hurdle that relatively less known, indie or grass-roots
-                      candidates like {name} must overcome against a major party
-                      incumbent that Big Money Backers are bankrolling. This is
-                      why we created The Good Party to help them.
+                      candidates like {name} must overcome against a major party{' '}
+                      {comparedIncumbent.isFakeIncumbent
+                        ? 'Big Money Candidate'
+                        : 'Incumbent'}{' '}
+                      that Big Money Backers are bankrolling. This is why we
+                      created The Good Party to help them.
                     </>
                   ) : (
                     <>
