@@ -231,6 +231,7 @@ const CandidateWrapper = ({
     largeDonorPerHour,
     isIncumbent,
     outsideReportDate,
+    reportDate,
     openSecretsId,
     uuid,
     isApproved,
@@ -274,6 +275,12 @@ const CandidateWrapper = ({
     const stateDistrict = uuid.split('_')[1];
     openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
   }
+  console.log('incumbent', incumbent, comparedIncumbent)
+  const reportDate =
+    reportDate ||
+    outsideReportDate ||
+    (incumbent && incumbent.reportDate) ||
+    '02/12/2020';
   return (
     <GrayWrapper>
       {candidate ? (
@@ -326,7 +333,8 @@ const CandidateWrapper = ({
             <FollowWrapper>
               <Body className="bold600">Follow the Money</Body>
               <Body11 style={{ marginLeft: '5px' }}>
-                (FEC DATA as of {outsideReportDate})
+                (FEC DATA as of{' '}
+                {reportDate})
               </Body11>
             </FollowWrapper>
             <FundsWrapper>
@@ -335,12 +343,16 @@ const CandidateWrapper = ({
                 <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
               </Fund>
               {isSmallChallenger ? (
-                <Fund>
-                  <ColoredBody13 className={color}>
-                    {comparedIncumbent.relativePerc}%
-                  </ColoredBody13>
-                  <StyledBody9>FUNDING RELATIVE TO INCUMBENT</StyledBody9>
-                </Fund>
+                <>
+                  {comparedIncumbent.relativePerc && (
+                    <Fund>
+                      <ColoredBody13 className={color}>
+                        {comparedIncumbent.relativePerc}%
+                      </ColoredBody13>
+                      <StyledBody9>FUNDING RELATIVE TO INCUMBENT</StyledBody9>
+                    </Fund>
+                  )}
+                </>
               ) : (
                 <Fund>
                   <ColoredBody13 className={color}>{perc}%</ColoredBody13>
@@ -375,11 +387,18 @@ const CandidateWrapper = ({
               {isSmallChallenger ? (
                 <strong>
                   {name} has raised just {moneyHelper(totalRaised)} in Total
-                  Funds, or{' '}
-                  <ColoredText className={color}>
-                    {comparedIncumbent.relativePerc}%
-                  </ColoredText>{' '}
-                  of the funding of the Big Money incumbent in this race.
+                  Funds
+                  {comparedIncumbent.relativePerc ? (
+                    <>
+                      , or{' '}
+                      <ColoredText className={color}>
+                        {comparedIncumbent.relativePerc}%
+                      </ColoredText>{' '}
+                      of the funding of the Big Money incumbent in this race.
+                    </>
+                  ) : (
+                    <>.</>
+                  )}
                 </strong>
               ) : (
                 <>

@@ -143,12 +143,16 @@ export const isCandidateGood = (
   } = candidate;
   const totalRaised = combinedRaised || raised;
   const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
+  const raisedByIncumbent = incumbentRaised
+    ? incumbentRaised
+    : chamberThresholds[chamber].totalThreshold;
 
   if (isCertified) {
     return true;
   }
+  console.log('raisedByIncumbent', raisedByIncumbent, chamber, chamberThresholds[chamber])
 
-  if (totalRaised < incumbentRaised) {
+  if (totalRaised < raisedByIncumbent) {
     // small funding
     if (filters.smallFunding && isApproved) {
       return true;
@@ -176,10 +180,10 @@ const hoursPerMonth = 2000 / 12;
 const calcHours = candidate => {
   const { isIncumbent, chamber, outsideReportDate, reportDate } = candidate;
   // presidential has chamber undeifned
-  if (!isIncumbent && typeof chamber !== 'undefined') {
-    return 1;
-  }
-  const date = reportDate || outsideReportDate;
+  // if (!isIncumbent && typeof chamber !== 'undefined') {
+  //   return 1;
+  // }
+  const date = reportDate || outsideReportDate || '02/12/2020';
   let dateInOffice = '01/20/2016';
   if (chamber === 'Senate') {
     dateInOffice = '01/03/2014';
@@ -240,5 +244,5 @@ const findIncumbentRaised = candidates => {
       return candidates[i].raised * 0.5;
     }
   }
-  return 1;
+  return false;
 };

@@ -80,8 +80,8 @@ export function CandidatePage({
   } else {
     incumbentRaised = incumbent
       ? incumbent.raised || incumbent.combinedRaised
-      : 1;
-    incumbentRaised = incumbentRaised / 2;
+      : false;
+    incumbentRaised = incumbentRaised ? incumbentRaised / 2 : false;
   }
 
   let chamberRank;
