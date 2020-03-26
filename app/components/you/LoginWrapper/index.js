@@ -75,6 +75,7 @@ const LoginWrapper = ({ loginCallback }) => {
             fullWidth
             type="email"
             name="email"
+            autocomplete="email"
             onChange={onChangeEmail}
           />
           <SubmitWrapper onClick={handleSubmit}>
