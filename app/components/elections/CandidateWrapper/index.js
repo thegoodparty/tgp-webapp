@@ -16,7 +16,11 @@ import {
 } from 'components/shared/typogrophy';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { partyResolver, rankText } from 'helpers/electionsHelper';
+import {
+  partyResolver,
+  rankText,
+  shortToLongState,
+} from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
 import { percHelper, toPrecision } from 'helpers/numberHelper';
 import contentfulHelper from 'helpers/contentfulHelper';
@@ -162,6 +166,7 @@ const CandidateWrapper = ({
       let website;
       let bio;
       if (chamberName === 'presidential') {
+        console.log('pres')
         info = JSON.parse(candidate.info);
         facebook = info.facebook;
         twitter = info.twitter;
@@ -174,7 +179,6 @@ const CandidateWrapper = ({
         website = candidate.website;
         bio = info ? decodeURI(info) : null;
       }
-      console.log('bio', bio, typeof bio);
       setCandidateInfo(bio);
       setSocialAccounts([
         { name: 'facebook', url: facebook, icon: FacebookIcon },
@@ -290,14 +294,10 @@ const CandidateWrapper = ({
     '02/12/2020';
 
   const chamberLink = () => {
-    const incumbentText = isIncumbent ? 'Incumbent' : 'Candidate';
-    console.log('chamberName', chamberName);
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link to="/elections/presidential-election">
-            Presidential {incumbentText}
-          </Link>
+          <Link to="/elections/presidential-election">U.S. President</Link>
         </ChamberLink>
       );
     }
@@ -306,7 +306,7 @@ const CandidateWrapper = ({
         return (
           <ChamberLink>
             <Link to={`/elections/senate-election/${state}`}>
-              Senate {incumbentText} for {state.toUpperCase()}
+              U.S. Senate for {shortToLongState(state.toUpperCase())}
             </Link>
           </ChamberLink>
         );
@@ -317,7 +317,7 @@ const CandidateWrapper = ({
         return (
           <ChamberLink>
             <Link to={`/elections/house-election/${state}-${district}`}>
-              House {incumbentText} for {state.toUpperCase()}-{district}
+              U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
         );
@@ -336,7 +336,7 @@ const CandidateWrapper = ({
               <CandidateAvatar src={image} good={isGoodOrUnkwown} size="xl" />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
               <Body11 style={{ marginTop: '5px' }} className="bold500">
-                {partyResolver(party)}
+                {partyResolver(party)} {isIncumbent ? 'INCUMBENT' : 'CANDIDATE'}
               </Body11>
               {chamberLink()}
               {socialAccounts.length > 0 && (
@@ -529,17 +529,17 @@ const CandidateWrapper = ({
               )}
             </Body13>
 
-            <a href={openSecretLink} target="_blank">
-              <OpenSecretsLink>
+            <OpenSecretsLink>
+              <a href={openSecretLink} target="_blank">
                 FEC DATA COURTESY OF OPENSECRETS.ORG
-              </OpenSecretsLink>
-            </a>
+              </a>
+            </OpenSecretsLink>
 
             <InfoWrapper>
               <Body className="bold600" style={{ marginTop: '48px' }}>
                 Candidate Policy Positions:
               </Body>
-              {chamberName === 'Presidential' ? (
+              {chamberName === 'presidential' ? (
                 <Body13>{candidateInfo}</Body13>
               ) : (
                 <div>
@@ -547,8 +547,9 @@ const CandidateWrapper = ({
                     <>
                       <Body11 style={{ margin: '16px 0' }}>
                         The following policy positions for {name} were compiled
-                        by [Ballotpedia] from the candidate's survey, official
-                        campaign website, editorials, speeches, and interviews.
+                        by [Ballotpedia] from the candidate&apos;s survey,
+                        official campaign website, editorials, speeches, and
+                        interviews.
                       </Body11>
                       <Body13
                         dangerouslySetInnerHTML={{ __html: candidateInfo }}
@@ -556,7 +557,10 @@ const CandidateWrapper = ({
                     </>
                   ) : (
                     <Body13 style={{ padding: '16px 0' }}>
-                      No data found for {name} Ballotpedia
+                      No data found for {name} on{' '}
+                      <a href="https://ballotpedia.org/" target="_blank">
+                        Ballotpedia
+                      </a>
                       <a
                         href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
                           window.location.href
@@ -569,6 +573,11 @@ const CandidateWrapper = ({
                 </div>
               )}
             </InfoWrapper>
+            <OpenSecretsLink>
+              <a href="https://ballotpedia.org/" target="_blank">
+                CANDIDATE DATA COURTESY OF OPENSECRETS.ORG <br /> &nbsp;
+              </a>
+            </OpenSecretsLink>
           </Wrapper>
         </>
       ) : (
