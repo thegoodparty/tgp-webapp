@@ -166,7 +166,7 @@ const CandidateWrapper = ({
       let website;
       let bio;
       if (chamberName === 'presidential') {
-        console.log('pres')
+        console.log('pres');
         info = JSON.parse(candidate.info);
         facebook = info.facebook;
         twitter = info.twitter;
@@ -528,12 +528,11 @@ const CandidateWrapper = ({
                 </>
               )}
             </Body13>
-
-            <OpenSecretsLink>
-              <a href={openSecretLink} target="_blank">
+            <a href={openSecretLink} target="_blank">
+              <OpenSecretsLink>
                 FEC DATA COURTESY OF OPENSECRETS.ORG
-              </a>
-            </OpenSecretsLink>
+              </OpenSecretsLink>
+            </a>
 
             <InfoWrapper>
               <Body className="bold600" style={{ marginTop: '48px' }}>
@@ -573,11 +572,11 @@ const CandidateWrapper = ({
                 </div>
               )}
             </InfoWrapper>
-            <OpenSecretsLink>
-              <a href="https://ballotpedia.org/" target="_blank">
+            <a href="https://ballotpedia.org/" target="_blank">
+              <OpenSecretsLink>
                 CANDIDATE DATA COURTESY OF OPENSECRETS.ORG <br /> &nbsp;
-              </a>
-            </OpenSecretsLink>
+              </OpenSecretsLink>
+            </a>
           </Wrapper>
         </>
       ) : (
