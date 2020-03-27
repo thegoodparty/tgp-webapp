@@ -143,7 +143,9 @@ const RankedCard = ({
         </BarBg>
         <BarBody9>{numberFormatter(votesNeeded)} VOTES NEEDED TO WIN!</BarBody9>
       </ProgressBarWrapper>
-      <YourChoices>YOUR RANKED CHOICES</YourChoices>
+      <YourChoices>
+        {rank.length > 2 ? 'YOUR RANKED CHOICES' : 'YOUR CHOICE'}
+      </YourChoices>
       {rank.map((rankedId, index) => (
         <>{candidateRow(rankedId, index)}</>
       ))}
