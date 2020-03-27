@@ -8,6 +8,8 @@ import Hidden from '@material-ui/core/Hidden';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
+import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
+
 import PartyIcon from 'images/icons/heart.svg';
 import PartyIconGray from 'images/icons/heart-gray.svg';
 import ElectionIcon from 'images/icons/elections.svg';
@@ -83,6 +85,7 @@ const NavWrapper = ({
           pathname={pathname}
           navigateCallback={navigateCallback}
         />
+        <RegisterBannerContainer />
       </Hidden>
       {!hideMobileNav && (
         <Hidden mdUp>

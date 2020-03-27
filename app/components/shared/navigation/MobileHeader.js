@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import { goBack } from 'connected-react-router';
 import { connect } from 'react-redux';
 
+import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
+
 import WhiteLogoImg from 'images/white-logo.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
 import ShareIcon from 'images/icons/share.svg';
@@ -46,9 +48,7 @@ const BackIconWrapperHidden = styled.div`
   opacity: 0;
 `;
 
-const Spacer = styled.div`
-  height: 40px;
-`;
+
 
 const GoodNoGood = styled(Body13)`
   color: ${({ theme }) => theme.colors.orange};
@@ -83,41 +83,37 @@ function MobileHeader({
   };
 
   return (
-    <>
-      <Hidden smDown>
-        <Spacer />
-      </Hidden>
-      <Hidden mdUp>
-        <Wrapper>
-          <BackIconWrapper
-            onClick={routeBack}
-            className={whiteBackButton ? 'white' : ''}
-          >
+    <Hidden mdUp>
+      <Wrapper>
+        <BackIconWrapper
+          onClick={routeBack}
+          className={whiteBackButton ? 'white' : ''}
+        >
+          <BackIcon />
+        </BackIconWrapper>
+        {showGood ? (
+          <GoodNoGood className={isGood ? 'good' : 'notgood'}>
+            {!isGood && 'NOT'} GOOD ENOUGH
+          </GoodNoGood>
+        ) : (
+          <Link to="/party" className="text-center">
+            {whiteBackButton ? (
+              <Logo src={WhiteLogoImg} alt="The Good Party" />
+            ) : (
+              <Logo src={LogoCapsImg} alt="The Good Party" />
+            )}
+          </Link>
+        )}
+        {showShare && canShare ? (
+          <img src={ShareIcon} alt="Share" onClick={nativeShare} />
+        ) : (
+          <BackIconWrapperHidden>
             <BackIcon />
-          </BackIconWrapper>
-          {showGood ? (
-            <GoodNoGood className={isGood ? 'good' : 'notgood'}>
-              {!isGood && 'NOT'} GOOD ENOUGH
-            </GoodNoGood>
-          ) : (
-            <Link to="/party" className="text-center">
-              {whiteBackButton ? (
-                <Logo src={WhiteLogoImg} alt="The Good Party" />
-              ) : (
-                <Logo src={LogoCapsImg} alt="The Good Party" />
-              )}
-            </Link>
-          )}
-          {showShare && canShare ? (
-            <img src={ShareIcon} alt="Share" onClick={nativeShare} />
-          ) : (
-            <BackIconWrapperHidden>
-              <BackIcon />
-            </BackIconWrapperHidden>
-          )}
-        </Wrapper>
-      </Hidden>
-    </>
+          </BackIconWrapperHidden>
+        )}
+      </Wrapper>
+      <RegisterBannerContainer />
+    </Hidden>
   );
 }
 

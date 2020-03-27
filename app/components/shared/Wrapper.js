@@ -10,7 +10,7 @@ const WrapperDiv = styled.div`
   padding: 0 16px 4rem;
   background-color: ${({ theme }) => theme.colors.grayBg};
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 4rem 16px 0;
+    padding: 3rem 16px 0;
   }
 
   &.white {
