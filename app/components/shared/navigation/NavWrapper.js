@@ -34,6 +34,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#FFF',
     fontWeight: 500,
     boxShadow: '0px 0px 24px rgba(0, 0, 0, 0.1)',
+    paddingBottom: '5px',
+    height: '66px',
   },
   bottomNavItem: {
     fontWeight: 500,
@@ -103,10 +105,12 @@ const NavWrapper = ({
             <BottomNavigationAction
               label="ELECTIONS"
               icon={icon(ElectionIcon, ElectionIconGray, 1)}
+              className={classes.bottomNavItem}
             />
             <BottomNavigationAction
               label="YOU"
               icon={icon(YouIcon, YouIconGray, 2)}
+              className={classes.bottomNavItem}
             />
           </BottomNavigation>
         </Hidden>
