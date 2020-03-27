@@ -217,7 +217,7 @@ const DistrictWrapper = ({
               </Body>
             </Spacer>
             <Link to="/elections/presidential-election">
-              {presidentialRank ? (
+              {presidentialRank && presidentialRank.length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
                   candidates={presidential}
@@ -235,7 +235,7 @@ const DistrictWrapper = ({
               )}
             </Link>
             <Link to={`/elections/senate-election/${shortState.toLowerCase()}`}>
-              {senateRank ? (
+              {senateRank && senateRank.length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
@@ -255,7 +255,7 @@ const DistrictWrapper = ({
             <Link
               to={`/elections/house-election/${shortState.toLowerCase()}-${districtNumber}`}
             >
-              {houseRank ? (
+              {houseRank && houseRank.length > 0 ? (
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
