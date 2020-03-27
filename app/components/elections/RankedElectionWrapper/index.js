@@ -73,6 +73,8 @@ const RankedElectionWrapper = ({
   userCounts,
   rank = [],
   votesNeeded,
+  state,
+  districtNumber,
 }) => {
   const [candidatesHash, setCandidatesHash] = useState({});
   useEffect(() => {
@@ -104,6 +106,19 @@ const RankedElectionWrapper = ({
       }
     }
     return <></>;
+  };
+
+  const rankPage = () => {
+    if (chamber === 'Presidential') {
+      return '/elections/rank-candidates/presidential';
+    }
+    if (chamber === 'Senate') {
+      return `/elections/rank-candidates/senate/${state}`;
+    }
+    if (chamber === 'House') {
+      return `/elections/rank-candidates/house/${state}/${districtNumber}`;
+    }
+    return '/elections/rank-candidates/presidential';
   };
 
   return (
@@ -142,7 +157,7 @@ const RankedElectionWrapper = ({
             <RankedChoicesRow>
               <H3>Your Ranked Choices</H3>
               <Body13>
-                <Link to={'/'}>Edit</Link>
+                <Link to={rankPage()}>Edit</Link>
               </Body13>
             </RankedChoicesRow>
             {rank.map((rankedId, index) => (
@@ -178,6 +193,8 @@ RankedElectionWrapper.propTypes = {
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rank: PropTypes.array,
   votesNeeded: PropTypes.number,
+  state: PropTypes.string,
+  districtNumber: PropTypes.string,
 };
 
 export default RankedElectionWrapper;

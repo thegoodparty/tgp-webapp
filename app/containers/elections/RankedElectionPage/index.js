@@ -143,6 +143,8 @@ export function RankedElectionPage({
     userCounts,
     rank,
     votesNeeded,
+    state,
+    districtNumber
   };
   return (
     <div>
