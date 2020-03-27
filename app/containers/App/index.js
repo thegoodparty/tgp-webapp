@@ -22,6 +22,7 @@ import SenateElectionPage from 'containers/elections/SenateElectionPage/Loadable
 import HouseElectionPage from 'containers/elections/HouseElectionPage/Loadable';
 import CandidatePage from 'containers/elections/CandidatePage/Loadable';
 import RankCandidatesPage from 'containers/elections/RankCandidatesPage/Loadable';
+import RankedElectionPage from 'containers/elections/RankedElectionPage/Loadable';
 
 import RegisterPage from 'containers/you/RegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
@@ -101,6 +102,21 @@ export default function App() {
           exact
           path="/elections/rank-candidates/:chamber/:state/:district"
           component={RankCandidatesPage}
+        />
+        <Route
+          exact
+          path="/elections/ranked-presidential-election"
+          component={RankedElectionPage}
+        />
+        <Route
+          exact
+          path="/elections/ranked-senate-election/:shortState"
+          component={RankedElectionPage}
+        />
+        <Route
+          exact
+          path="/elections/ranked-house-election/:stateDistrict"
+          component={RankedElectionPage}
         />
 
         <Route exact path="/you/register" component={RegisterPage} />

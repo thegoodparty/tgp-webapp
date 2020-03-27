@@ -32,7 +32,7 @@ import {
   CHAMBER_ENUM,
   filterCandidates,
   getRankFromUserOrState,
-} from '../../../helpers/electionsHelper';
+} from 'helpers/electionsHelper';
 import makeSelectCandidate from '../CandidatePage/selectors';
 
 export function DistrictPage({
@@ -43,6 +43,7 @@ export function DistrictPage({
   dispatch,
   changeDistrictCallback,
   userState,
+  candidateState,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -65,7 +66,6 @@ export function DistrictPage({
     senateCandidates,
     geoLocation,
     userCounts,
-    candidateState,
   } = districtState;
 
   useEffect(() => {

@@ -85,7 +85,7 @@ PresidentialElectionPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
   districtState: makeSelectZipFinderPage(),
-  search: makeSelectLocation(),
+  // search: makeSelectLocation(),
 });
 
 function mapDispatchToProps(dispatch) {

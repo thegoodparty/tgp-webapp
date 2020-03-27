@@ -55,6 +55,8 @@ export const rankText = number => {
   return number + 'TH';
 };
 
+export const presidentialVotesThreshold = 65853514;
+
 export const CHAMBER_ENUM = {
   PRESIDENTIAL: 0,
   SENATE: 1,
@@ -319,4 +321,21 @@ export const shortToLongState = {
   WV: 'West Virginia',
   WI: 'Wisconsin',
   WY: 'Wyoming',
+};
+
+export const mapCandidateToHash = candidates => {
+  const candHash = {};
+  if (candidates && candidates.good) {
+    candidates.good.forEach(cand => {
+      candHash[cand.id] = { ...cand, isGood: true };
+    });
+    candidates.unknown.forEach(cand => {
+      candHash[cand.id] = { ...cand, isGood: null };
+    });
+    candidates.notGood.forEach(cand => {
+      candHash[cand.id] = { ...cand, isGood: false };
+    });
+  }
+
+  return candHash;
 };

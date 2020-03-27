@@ -10,7 +10,7 @@ import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { useWindowSize } from 'customHooks/useWindowSize';
 import theme from 'theme';
 import { partyResolver } from 'helpers/electionsHelper';
-import { numberFormatter } from '../../helpers/numberHelper';
+import SupportersProgressBar from './SupportersProgressBar';
 
 const Row = styled.div`
   display: flex;
@@ -81,42 +81,6 @@ const Vs = styled(Body11)`
   text-align: center;
 `;
 
-const ProgressBarWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 18px;
-`;
-
-const BarBg = styled.div`
-  margin: 10px 0;
-  width: 80%;
-  position: relative;
-  height: 5px;
-  background-color: ${({ theme }) => theme.colors.grayC};
-  border-radius: 3px;
-  overflow: hidden;
-`;
-
-const Bar = styled.div`
-  position: absolute;
-  height: 5px;
-  border-radius: 3px;
-  background-color: ${({ theme }) => theme.colors.blue};
-  left: 0;
-  top: 0;
-  width: 0;
-  transition: width 0.5s;
-`;
-
-const BarBody11 = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray7};
-`;
-
-const BarBody9 = styled(Body9)`
-  color: ${({ theme }) => theme.colors.gray7};
-`;
-
 const Red = styled.span`
   color: ${({ theme }) => theme.colors.red};
 `;
@@ -133,8 +97,6 @@ const VsCard = ({
 }) => {
   const { good, notGood, unknown } = candidates;
   const [width, height] = useWindowSize();
-
-  const progress = (peopleSoFar * 100) / votesNeeded;
 
   if (!good && !notGood) {
     return (
@@ -197,10 +159,7 @@ const VsCard = ({
                       zIndex: 5 - index,
                     }}
                   >
-                    <CandidateAvatar
-                      size="responsive"
-                      src={candidate.image}
-                    />
+                    <CandidateAvatar size="responsive" src={candidate.image} />
                   </AvatarAbsolute>
                 )}
               </React.Fragment>
@@ -259,15 +218,10 @@ const VsCard = ({
           )}
         </Sider>
       </Row>
-      <ProgressBarWrapper>
-        <BarBody11>
-          {numberFormatter(peopleSoFar)} Good Party People so far
-        </BarBody11>
-        <BarBg>
-          <Bar style={{ width: `${progress}%` }} />
-        </BarBg>
-        <BarBody9>{numberFormatter(votesNeeded)} VOTES NEEDED TO WIN!</BarBody9>
-      </ProgressBarWrapper>
+      <SupportersProgressBar
+        peopleSoFar={peopleSoFar}
+        votesNeeded={votesNeeded}
+      />
     </Card>
   );
 };

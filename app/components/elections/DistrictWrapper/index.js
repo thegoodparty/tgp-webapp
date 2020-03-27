@@ -12,6 +12,7 @@ import AmaContainer from 'containers/shared/AmaContainer';
 import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import GrayWrapper from 'components/shared/GrayWrapper';
+import { presidentialVotesThreshold } from 'helpers/electionsHelper';
 import GoodPartyStats from '../GoodPartyStats';
 import VsCard from '../VsCard';
 import RankedCard from '../RankedCard/Loadable';
@@ -132,9 +133,8 @@ const DistrictWrapper = ({
         ) + 1;
     }
 
-    const presidentialThreshold = 65853514;
     setThresholds({
-      presidentialThreshold,
+      presidentialVotesThreshold,
       senateThreshold,
       houseThreshold,
     });
@@ -216,12 +216,16 @@ const DistrictWrapper = ({
                 elections to consider. Click on the cards below for details:
               </Body>
             </Spacer>
-            <Link to="/elections/presidential-election">
+            <Link
+              to={`/elections/${
+                presidentialRank && presidentialRank.length > 0 ? 'ranked-' : ''
+              }presidential-election`}
+            >
               {presidentialRank && presidentialRank.length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
                   candidates={presidential}
-                  votesNeeded={thresholds.presidentialThreshold}
+                  votesNeeded={thresholds.presidentialVotesThreshold}
                   peopleSoFar={userCounts ? userCounts.totalUsers : 0}
                   rank={presidentialRank}
                 />
@@ -229,12 +233,16 @@ const DistrictWrapper = ({
                 <VsCard
                   title="Presidential Election"
                   candidates={presidential}
-                  votesNeeded={thresholds.presidentialThreshold}
+                  votesNeeded={thresholds.presidentialVotesThreshold}
                   peopleSoFar={userCounts ? userCounts.totalUsers : 0}
                 />
               )}
             </Link>
-            <Link to={`/elections/senate-election/${shortState.toLowerCase()}`}>
+            <Link
+              to={`/elections/${
+                senateRank && senateRank.length > 0 ? 'ranked-' : ''
+              }senate-election/${shortState.toLowerCase()}`}
+            >
               {senateRank && senateRank.length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
@@ -253,7 +261,9 @@ const DistrictWrapper = ({
               )}
             </Link>
             <Link
-              to={`/elections/house-election/${shortState.toLowerCase()}-${districtNumber}`}
+              to={`/elections/${
+                houseRank && houseRank.length > 0 ? 'ranked-' : ''
+              }house-election/${shortState.toLowerCase()}-${districtNumber}`}
             >
               {houseRank && houseRank.length > 0 ? (
                 <RankedCard
