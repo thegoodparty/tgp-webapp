@@ -147,8 +147,10 @@ const RankedCard = ({
       {rank.map((rankedId, index) => (
         <>{candidateRow(rankedId, index)}</>
       ))}
-      {rank.length > 2 && (
+      {rank.length > 2 ? (
         <MoreChoices>+ {rank.length - 2} MORE CHOICES</MoreChoices>
+      ) : (
+        <MoreChoices>SEE DETAILS</MoreChoices>
       )}
     </Card>
   );
