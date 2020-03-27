@@ -14,6 +14,7 @@ import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import candidateReducer from 'containers/elections/CandidatePage/reducer';
 
 import saga from 'containers/intro/ZipFinderPage/saga';
 import reducer from 'containers/intro/ZipFinderPage/reducer';
@@ -30,7 +31,9 @@ import userActions from 'containers/you/YouPage/actions';
 import {
   CHAMBER_ENUM,
   filterCandidates,
+  getRankFromUserOrState,
 } from '../../../helpers/electionsHelper';
+import makeSelectCandidate from '../CandidatePage/selectors';
 
 export function DistrictPage({
   content,
@@ -43,6 +46,11 @@ export function DistrictPage({
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
+
+  useInjectReducer({
+    key: 'candidate',
+    reducer: candidateReducer,
+  });
 
   const [cdIndex, setCdIndex] = useState(0);
   const [presidentialCandidates, setPresidentialCandidates] = useState({});
@@ -57,6 +65,7 @@ export function DistrictPage({
     senateCandidates,
     geoLocation,
     userCounts,
+    candidateState,
   } = districtState;
 
   useEffect(() => {
@@ -145,6 +154,16 @@ export function DistrictPage({
     setFilteredSenate(filtered);
   }, [senateCandidates, filters]);
 
+  const presidentialRank = getRankFromUserOrState(
+    user,
+    candidateState,
+    'presidentialRank',
+  );
+
+  const senateRank = getRankFromUserOrState(user, candidateState, 'senateRank');
+
+  const houseRank = getRankFromUserOrState(user, candidateState, 'houseRank');
+
   useEffect(() => {
     const filtered = filterCandidates(
       houseCandidates || [],
@@ -165,6 +184,9 @@ export function DistrictPage({
     changeDistrictCallback,
     user,
     userCounts,
+    presidentialRank,
+    senateRank,
+    houseRank,
   };
 
   return (
@@ -186,6 +208,7 @@ DistrictPage.propTypes = {
   cd: PropTypes.string,
   changeDistrictCallback: PropTypes.func,
   userState: PropTypes.object,
+  candidateState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -207,6 +230,7 @@ const mapStateToProps = createStructuredSelector({
   districtState: makeSelectZipFinderPage(),
   search: makeSelectLocation(),
   userState: makeSelectUser(),
+  candidateState: makeSelectCandidate(),
 });
 
 const withConnect = connect(

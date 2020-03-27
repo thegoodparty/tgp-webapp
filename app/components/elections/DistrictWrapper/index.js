@@ -14,6 +14,7 @@ import TopQuestions from 'components/shared/TopQuestions';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import GoodPartyStats from '../GoodPartyStats';
 import VsCard from '../VsCard';
+import RankedCard from '../RankedCard/Loadable';
 
 const Row = styled.div`
   display: flex;
@@ -58,6 +59,9 @@ const DistrictWrapper = ({
   changeDistrictCallback,
   user,
   userCounts,
+  presidentialRank,
+  senateRank,
+  houseRank,
 }) => {
   let primaryCity;
   let stateLong;
@@ -159,9 +163,6 @@ const DistrictWrapper = ({
   ) {
     electionCount--;
   }
-  console.log('senate', senateCandidates);
-  console.log('house', houseCandidates);
-
   return (
     <GrayWrapper>
       {district && presidential ? (
@@ -216,30 +217,60 @@ const DistrictWrapper = ({
               </Body>
             </Spacer>
             <Link to="/elections/presidential-election">
-              <VsCard
-                title="Presidential Election"
-                candidates={presidential}
-                votesNeeded={thresholds.presidentialThreshold}
-                peopleSoFar={userCounts ? userCounts.totalUsers : 0}
-              />
+              {presidentialRank ? (
+                <RankedCard
+                  title="Presidential Election"
+                  candidates={presidential}
+                  votesNeeded={thresholds.presidentialThreshold}
+                  peopleSoFar={userCounts ? userCounts.totalUsers : 0}
+                  rank={presidentialRank}
+                />
+              ) : (
+                <VsCard
+                  title="Presidential Election"
+                  candidates={presidential}
+                  votesNeeded={thresholds.presidentialThreshold}
+                  peopleSoFar={userCounts ? userCounts.totalUsers : 0}
+                />
+              )}
             </Link>
             <Link to={`/elections/senate-election/${shortState.toLowerCase()}`}>
-              <VsCard
-                title={`Senator - ${stateLong}`}
-                candidates={senateCandidates}
-                votesNeeded={thresholds.senateThreshold}
-                peopleSoFar={userCounts ? userCounts.stateUsers : 0}
-              />
+              {senateRank ? (
+                <RankedCard
+                  title={`Senator - ${stateLong}`}
+                  candidates={senateCandidates}
+                  votesNeeded={thresholds.senateThreshold}
+                  peopleSoFar={userCounts ? userCounts.stateUsers : 0}
+                  rank={senateRank}
+                />
+              ) : (
+                <VsCard
+                  title={`Senator - ${stateLong}`}
+                  candidates={senateCandidates}
+                  votesNeeded={thresholds.senateThreshold}
+                  peopleSoFar={userCounts ? userCounts.stateUsers : 0}
+                />
+              )}
             </Link>
             <Link
               to={`/elections/house-election/${shortState.toLowerCase()}-${districtNumber}`}
             >
-              <VsCard
-                title={`House Representative ${shortState}-${districtNumber}`}
-                candidates={houseCandidates}
-                votesNeeded={thresholds.houseThreshold}
-                peopleSoFar={userCounts ? userCounts.districtUsers : 0}
-              />
+              {houseRank ? (
+                <RankedCard
+                  title={`House Representative ${shortState}-${districtNumber}`}
+                  candidates={houseCandidates}
+                  votesNeeded={thresholds.houseThreshold}
+                  peopleSoFar={userCounts ? userCounts.districtUsers : 0}
+                  rank={houseRank}
+                />
+              ) : (
+                <VsCard
+                  title={`House Representative ${shortState}-${districtNumber}`}
+                  candidates={houseCandidates}
+                  votesNeeded={thresholds.houseThreshold}
+                  peopleSoFar={userCounts ? userCounts.districtUsers : 0}
+                />
+              )}
             </Link>
             <GoodPartyStats />
             <TopQuestions articles={articles} />
@@ -268,6 +299,9 @@ DistrictWrapper.propTypes = {
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   cdIndex: PropTypes.number,
   changeDistrictCallback: PropTypes.func,
+  presidentialRank: PropTypes.array,
+  senateRank: PropTypes.array,
+  houseRank: PropTypes.array,
 };
 
 export default DistrictWrapper;

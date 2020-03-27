@@ -1,5 +1,6 @@
 // returns only articles that match the page.
 import { slugify } from './articlesHelper';
+import { getCookie } from './cookieHelper';
 
 export const partyResolver = partyLetter => {
   if (partyLetter === 'D') {
@@ -157,7 +158,7 @@ export const isCandidateGood = (
 
   if (totalRaised < raisedByIncumbent) {
     // small funding
-    console.log('small funding', candidate.name)
+    console.log('small funding', candidate.name);
     if (filters.smallFunding && isApproved) {
       return true;
     }
@@ -238,6 +239,11 @@ export const getRankFromUserOrState = (user, candidateState, rankType) => {
     }
   } else if (candidateState && candidateState[rankType]) {
     rank = candidateState[rankType];
+  } else {
+    const cookie = getCookie(rankType);
+    if (cookie) {
+      rank = JSON.parse(cookie);
+    }
   }
   return rank;
 };
