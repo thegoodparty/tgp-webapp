@@ -194,7 +194,7 @@ function* saveUserRanking(action) {
 
     setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
-    yield put(push('/you/share'));
+    // yield put(push('/you/share'));
   } catch (error) {
     console.log(error);
     yield put(

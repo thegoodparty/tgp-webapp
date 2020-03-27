@@ -120,6 +120,8 @@ const RankCandidatesWrapper = ({
   chamberRank = [],
   chamber,
   user,
+  state,
+  district,
 }) => {
   const [choices, setChoices] = useState({});
   const [choicesOrder, setChoicesOrder] = useState([]);
@@ -147,7 +149,7 @@ const RankCandidatesWrapper = ({
   const selectCandidate = async id => {
     if (
       choicesOrder.length <=
-      candidates.good.length + candidates.notGood.length
+      candidates.good.length + candidates.notGood.length+ candidates.unknown.length
     ) {
       if (!choices[id]) {
         const newChoices = { ...choices };
@@ -214,7 +216,7 @@ const RankCandidatesWrapper = ({
       setSubmitWithoutGood(true);
     } else {
       saveRankingCallback(choicesOrder, chamber);
-      handleRankingCallback(choicesOrder, user, chamber);
+      handleRankingCallback(choicesOrder, user, chamber, state, district);
     }
   };
 
@@ -343,6 +345,8 @@ RankCandidatesWrapper.propTypes = {
   saveRankingCallback: PropTypes.func,
   chamberRank: PropTypes.array,
   chamber: PropTypes.string,
+  state: PropTypes.string,
+  district: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 

@@ -101,6 +101,8 @@ export function RankCandidatesPage({
     chamberRank,
     chamber,
     user,
+    state,
+    district,
   };
 
   return (
@@ -135,11 +137,16 @@ function mapDispatchToProps(dispatch, ownProps) {
     chamber: ownProps.match.params.chamber,
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
-    handleRankingCallback: (rankingOrder, user, chamber) => {
+    handleRankingCallback: (rankingOrder, user, chamber, state, district) => {
       if (user) {
         dispatch(userActions.saveUserRankingAction(rankingOrder, chamber));
-      } else {
-        dispatch(push('/you/register'));
+      }
+      if (chamber === 'presidential') {
+        dispatch(push('/elections/ranked-presidential-election'));
+      } else if (chamber === 'senate') {
+        dispatch(push(`/elections/ranked-senate-election/${state}`));
+      } else if (chamber === 'house') {
+        dispatch(push(`/elections/ranked-house-election/${state}-${district}`));
       }
     },
     saveRankingCallback: (rankingOrder, chamber) => {
