@@ -73,17 +73,32 @@ export function AllCandidatesToScrape({
         {candidates &&
           candidates.map(candidate => (
             <>
-              <div key={candidate.id}>
-                <a
-                  href={`https://ballotpedia.org/${underScoreName(
-                    candidate.name,
-                  )}`}
-                >
-                  {candidate.id}|{candidate.name}|
-                  {candidate.isIncumbent && 'incumbent'}
-                </a>
-              </div>
-              {hasMiddleName(candidate.name) && (
+              {!onlyNoData ? (
+                <>
+                  <div key={candidate.id}>
+                    <a
+                      href={`https://ballotpedia.org/${underScoreName(
+                        candidate.name,
+                      )}`}
+                    >
+                      {candidate.id}|{candidate.name}|
+                      {candidate.isIncumbent && 'incumbent'}
+                    </a>
+                  </div>
+                  {hasMiddleName(candidate.name) && (
+                    <div key={candidate.id}>
+                      <a
+                        href={`https://ballotpedia.org/${underScoreNameNoMiddle(
+                          candidate.name,
+                        )}`}
+                      >
+                        {candidate.id}|{candidate.name}|
+                        {candidate.isIncumbent && 'incumbent'}
+                      </a>
+                    </div>
+                  )}
+                </>
+              ) : (
                 <div key={candidate.id}>
                   <a
                     href={`https://ballotpedia.org/${underScoreNameNoMiddle(
