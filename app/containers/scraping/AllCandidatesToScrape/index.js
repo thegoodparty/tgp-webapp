@@ -70,6 +70,10 @@ export function AllCandidatesToScrape({
         />
       </Helmet>
       <div>
+        <h1>
+          Candidates {onlyNoData ? ' without data ' : ''}count:{' '}
+          {candidates && candidates.length}
+        </h1>
         {candidates &&
           candidates.map(candidate => (
             <>
