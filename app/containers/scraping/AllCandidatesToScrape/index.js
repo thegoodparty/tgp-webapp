@@ -11,6 +11,9 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import { makeSelectLocation } from 'containers/App/selectors';
+import queryHelper from 'helpers/queryHelper';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectAllCandidatesToScrape from './selectors';
@@ -18,17 +21,23 @@ import reducer from './reducer';
 import saga from './saga';
 import scrapeAction from './actions';
 
-export function AllCandidatesToScrape({ scrapeState, dispatch }) {
+export function AllCandidatesToScrape({
+  scrapeState,
+  locationState,
+  dispatch,
+}) {
   useInjectReducer({ key: 'allCandidatesToScrape', reducer });
   useInjectSaga({ key: 'allCandidatesToScrape', saga });
 
   const { candidates } = scrapeState;
-
+  const { search } = locationState;
+  const onlyNoData = queryHelper(search, 'onlyNoData');
+  console.log('onlyNoData', onlyNoData);
   useEffect(() => {
     if (!candidates) {
-      dispatch(scrapeAction.loadAllCandidatesAction());
+      dispatch(scrapeAction.loadAllCandidatesAction(onlyNoData || false));
     }
-  }, [candidates]);
+  }, [candidates, onlyNoData]);
 
   const underScoreName = name => {
     const nameArr = name.split(' ');
@@ -96,10 +105,12 @@ export function AllCandidatesToScrape({ scrapeState, dispatch }) {
 AllCandidatesToScrape.propTypes = {
   dispatch: PropTypes.func.isRequired,
   scrapeState: PropTypes.object,
+  locationState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   scrapeState: makeSelectAllCandidatesToScrape(),
+  locationState: makeSelectLocation(),
 });
 
 function mapDispatchToProps(dispatch) {

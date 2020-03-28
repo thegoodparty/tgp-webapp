@@ -4,10 +4,13 @@ import requestHelper from 'helpers/requestHelper';
 import types from './constants';
 import actions from './actions';
 
-function* loadAllCandidates() {
+function* loadAllCandidates({ onlyNoData }) {
   try {
     const api = tgpApi.scrapeAllCandidates;
-    const response = yield call(requestHelper, api, null);
+    const payload = {
+      onlyNoData,
+    };
+    const response = yield call(requestHelper, api, payload);
     yield put(actions.loadAllCandidatesActionSuccess(response.allCandidates));
   } catch (error) {
     console.log(error);
@@ -17,5 +20,5 @@ function* loadAllCandidates() {
 
 // Individual exports for testing
 export default function* saga() {
-  yield takeLatest(types.LOAD_ALL_CANDIDATES, loadAllCandidates);
+  const action = yield takeLatest(types.LOAD_ALL_CANDIDATES, loadAllCandidates);
 }
