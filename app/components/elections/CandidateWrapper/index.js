@@ -235,6 +235,11 @@ const CandidateWrapper = ({
     }
   }, [chamberRank, candidate]);
 
+  const campaignWebsite =
+    candidate && candidate.campaignWebsite
+      ? decodeURI(candidate.campaignWebsite)
+      : null;
+
   const {
     name,
     image,
@@ -582,6 +587,15 @@ const CandidateWrapper = ({
                 </div>
               )}
             </InfoWrapper>
+            {campaignWebsite && campaignWebsite !== 'null' && (
+              <div>
+                <hr />
+                <Body className="bold600" style={{ margin: '48px 0 16px' }}>
+                  Campaign Website
+                </Body>
+                <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite}} />
+              </div>
+            )}
             <a href={ballotpediaLink} target="_blank">
               <OpenSecretsLink>
                 CANDIDATE DATA COURTESY OF BALLOTPEDIA <br /> &nbsp;
