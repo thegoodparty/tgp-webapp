@@ -52,7 +52,13 @@ export function AllCandidatesToScrape({
 
   const underScoreNameNoMiddle = name => {
     const nameArr = name.split(' ');
-    const firstLastOnly = `${nameArr[0]} ${nameArr[nameArr.length - 1]}`;
+    let last = nameArr[nameArr.length - 1].toLowerCase();
+    console.log(last);
+    if (last === 'jr' || last === 'jr.') {
+      last = nameArr[nameArr.length - 2];
+      console.log('found jr', last);
+    }
+    const firstLastOnly = `${nameArr[0]} ${last}`;
     return underScoreName(firstLastOnly);
   };
 
