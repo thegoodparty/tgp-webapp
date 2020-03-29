@@ -20,6 +20,7 @@ import makeSelectAllCandidatesToScrape from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import scrapeAction from './actions';
+import { candidateRoute } from '../../../helpers/electionsHelper';
 
 export function AllCandidatesToScrape({
   scrapeState,
@@ -76,45 +77,58 @@ export function AllCandidatesToScrape({
         </h1>
         {candidates &&
           candidates.map(candidate => (
-            <>
-              {!onlyNoData ? (
-                <>
-                  <div key={candidate.id}>
+            <div>
+              <>
+                {!onlyNoData ? (
+                  <>
+                    <span key={candidate.id}>
+                      <a
+                        className="ballotpedia"
+                        href={`https://ballotpedia.org/${underScoreName(
+                          candidate.name,
+                        )}`}
+                      >
+                        {candidate.id}|{candidate.name}|
+                        {candidate.isIncumbent && 'incumbent'}|
+                        {candidate.chamber}
+                      </a>
+                    </span>
+                    {hasMiddleName(candidate.name) && (
+                      <span key={candidate.id}>
+                        <a
+                          className="ballotpedia"
+                          href={`https://ballotpedia.org/${underScoreNameNoMiddle(
+                            candidate.name,
+                          )}`}
+                        >
+                          {candidate.id}|{candidate.name}|
+                          {candidate.isIncumbent && 'incumbent'}|
+                          {candidate.chamber}
+                        </a>
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <span key={candidate.id}>
                     <a
-                      href={`https://ballotpedia.org/${underScoreName(
+                      className="ballotpedia"
+                      href={`https://ballotpedia.org/${underScoreNameNoMiddle(
                         candidate.name,
                       )}`}
                     >
                       {candidate.id}|{candidate.name}|
                       {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
                     </a>
-                  </div>
-                  {hasMiddleName(candidate.name) && (
-                    <div key={candidate.id}>
-                      <a
-                        href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                          candidate.name,
-                        )}`}
-                      >
-                        {candidate.id}|{candidate.name}|
-                        {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
-                      </a>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div key={candidate.id}>
-                  <a
-                    href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                      candidate.name,
-                    )}`}
-                  >
-                    {candidate.id}|{candidate.name}|
-                    {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
-                  </a>
-                </div>
-              )}
-            </>
+                  </span>
+                )}
+              </>
+              <span style={{ padding: '0 20px' }}>
+                {candidate.state} - {candidate.district}
+              </span>
+              <a href={candidateRoute(candidate)}>
+                {candidateRoute(candidate)}
+              </a>
+            </div>
           ))}
       </div>
     </div>
