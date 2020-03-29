@@ -86,7 +86,7 @@ export function AllCandidatesToScrape({
                       )}`}
                     >
                       {candidate.id}|{candidate.name}|
-                      {candidate.isIncumbent && 'incumbent'}
+                      {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
                     </a>
                   </div>
                   {hasMiddleName(candidate.name) && (
@@ -97,7 +97,7 @@ export function AllCandidatesToScrape({
                         )}`}
                       >
                         {candidate.id}|{candidate.name}|
-                        {candidate.isIncumbent && 'incumbent'}
+                        {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
                       </a>
                     </div>
                   )}
@@ -110,7 +110,7 @@ export function AllCandidatesToScrape({
                     )}`}
                   >
                     {candidate.id}|{candidate.name}|
-                    {candidate.isIncumbent && 'incumbent'}
+                    {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
                   </a>
                 </div>
               )}
