@@ -75,10 +75,6 @@ const ChoiceButton = styled(Body9)`
   margin-top: 12px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.blue};
-    color: #fff;
-  }
 
   &.selected {
     background-color: ${({ theme }) => theme.colors.blue};

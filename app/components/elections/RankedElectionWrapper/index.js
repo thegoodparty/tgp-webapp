@@ -21,6 +21,7 @@ import SupportersProgressBar from '../SupportersProgressBar';
 import { numberFormatter } from '../../../helpers/numberHelper';
 import RankedCandidate from '../RankedCandidate';
 import { BlueButton } from '../../shared/buttons';
+import ShareButton from '../../shared/ShareButton';
 
 const Description = styled(Body)`
   margin-top: 10px;
@@ -134,9 +135,7 @@ const RankedElectionWrapper = ({
               Spread the word and let’s grow the Good Party Supporters, so we
               can get enough votes to elect your choices below!
             </Description>
-            <H3 style={{ margin: '18px 0 12px' }}>
-              Presidential Race Progress
-            </H3>
+            <H3 style={{ margin: '18px 0 12px' }}>{chamber} Race Progress</H3>
             <Row>
               <SupportersWrapper>
                 <SupportersCount>
@@ -167,7 +166,7 @@ const RankedElectionWrapper = ({
             ))}
 
             <ButtonWrapper>
-              <BlueButton fullWidth>TELL SOME FRIENDS</BlueButton>
+              <ShareButton />
             </ButtonWrapper>
 
             <TopQuestions articles={articles} />

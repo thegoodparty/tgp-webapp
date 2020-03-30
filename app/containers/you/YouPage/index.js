@@ -32,6 +32,7 @@ export function YouPage({ userState, dispatch, signoutCallback }) {
     user,
     signoutCallback,
   };
+  console.log(user);
 
   return (
     <div>
