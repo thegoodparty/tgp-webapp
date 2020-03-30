@@ -593,7 +593,7 @@ const CandidateWrapper = ({
                 <Body className="bold600" style={{ margin: '48px 0 16px' }}>
                   Campaign Website
                 </Body>
-                <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite}} />
+                <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
               </div>
             )}
             <a href={ballotpediaLink} target="_blank">

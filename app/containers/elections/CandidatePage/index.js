@@ -28,6 +28,7 @@ import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
 import makeSelectUser from '../../you/YouPage/selectors';
+import LoadingAnimation from '../../../components/shared/LoadingAnimation';
 
 export function CandidatePage({
   id,
@@ -59,7 +60,7 @@ export function CandidatePage({
 
   useEffect(() => {
     if (!isIncumbent) {
-      if(candidate.chamber === 'Senate') {
+      if (candidate.chamber === 'Senate') {
         dispatch(candidateActions.loadDistrictIncumbentAction(state));
       } else {
         dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
@@ -120,12 +121,20 @@ export function CandidatePage({
     incumbent,
   };
 
+  const emptyCandidate = () => {
+    return (
+      Object.keys(candidate).length === 0 && candidate.constructor === Object
+    );
+  };
+
   return (
     <div>
       <Helmet>
         <title>
-          {candidate ? candidate.name : ''} | {chamberName}{' '}
-          {candidate && candidate.isIncumbent ? 'incumbent' : 'candidate'}
+          {candidate && !emptyCandidate() ? candidate.name : ''} | {chamberName}{' '}
+          {candidate && !emptyCandidate() && candidate.isIncumbent
+            ? 'incumbent'
+            : 'candidate'}
         </title>
         <meta
           name="description"

@@ -43,13 +43,10 @@ export function RegisterBannerContainer({ userState, candidateState }) {
   const count = presidentialCount + senateCount + houseCount;
 
   let showBanner = true;
-  console.log(1);
   if (user) {
-    console.log(2);
     showBanner = false;
   }
   if (count === 0) {
-    console.log(3);
     showBanner = false;
   }
 
