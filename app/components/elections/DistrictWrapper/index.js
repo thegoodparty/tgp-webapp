@@ -81,14 +81,21 @@ const DistrictWrapper = ({
     shortState = geoLocation.state.toUpperCase();
     districtNumber = district.code;
   } else {
-    const { stateShort, cds } = district;
+    const { stateShort, approxPctArr, cds } = district;
+
     primaryCity = district.primaryCity;
     stateLong = district.stateLong;
     zip = district.zip;
 
     shortState = stateShort ? stateShort.toUpperCase() : '';
+    const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];
     if (cds && cds.length > 0) {
-      districtNumber = cds[cdIndex].code;
+      const { districtId } = approxPct[cdIndex];
+      cds.forEach(dist => {
+        if (dist.id === districtId) {
+          districtNumber = dist.code;
+        }
+      });
     }
   }
 
