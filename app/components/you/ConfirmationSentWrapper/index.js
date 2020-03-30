@@ -13,11 +13,9 @@ const PageWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.blue};
 `;
 
-const Img = styled.div`
-  height: 40vh;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center;
+const Img = styled.img`
+  max-height: 40vh;
+  margin-bottom: 16px;
 `;
 const ContentWrapper = styled.div`
   color: #fff;
@@ -56,11 +54,9 @@ const ConfirmationSentWrapper = ({ email, emailSendCallback }) => {
       <Nav />
       <Wrapper style={wrapperStyles}>
         <MobileHeader whiteBackButton />
-        <Img
-          style={{
-            backgroundImage: `url(${EmailConfirmationImage})`,
-          }}
-        />
+        <div className="text-center">
+          <Img src={EmailConfirmationImage} />
+        </div>
         <ContentWrapper>
           <StyledH1>Sign-in link sent {email && <>to {email}</>}</StyledH1>
           <StyledH3>

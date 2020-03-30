@@ -83,10 +83,16 @@ function* resendEmail(action) {
     } else {
       email = yield getEmailFromStateOrCookie();
     }
+    console.log(email);
     const payload = {
-      email,
+      email: encodeURIComponent(email),
     };
     yield call(requestHelper, api, payload);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        `A confirmation email was resent to  ${email}`,
+      ),
+    );
   } catch (error) {
     console.log(error);
   }
