@@ -78,7 +78,7 @@ function HomePageWrapper() {
             Power and Money have corrupted <u>both</u> major political parties
           </H1>
           <StyledH2>
-            Imagine an easy, new way to vote & replace every bad politician with{' '}
+            Imagine an easy, new way to vote & replace every bad politician with someone{' '}
             <strong>Good!</strong>
           </StyledH2>
           <ButtonWrapper>

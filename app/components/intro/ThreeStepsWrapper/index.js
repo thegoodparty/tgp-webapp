@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -16,11 +16,11 @@ const CarouselWrapper = styled.div`
 `;
 const MainWrapper = styled.div`
   height: 100vh;
-  transition: background-color 0.5s;
 `;
 
 function ThreeStepsWrapper({ handleNextStep }) {
   const [slideNum, setSlideNum] = useState(0);
+
 
   const onChange = value => {
     setSlideNum(value);

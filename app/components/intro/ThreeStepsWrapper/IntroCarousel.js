@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Slider from 'react-slick';
@@ -24,6 +24,8 @@ const Wrapper = styled.div`
 const SliderWrapper = styled.div`
   width: 100%;
   height: 100%;
+  pointer: cursor;
+
   &:focus {
     outline: none !important;
   }
@@ -79,23 +81,28 @@ const IntroCarousel = ({
   slideChangeCallback = () => {},
   handleNextStep = () => {},
 }) => {
+  const sliderRef = useRef();
+
   const settings = {
     dots: true,
     infinite: false,
-    speed: 1000,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
     beforeChange: (oldIndex, newIndex) => {
       slideChangeCallback(newIndex);
     },
   };
 
+  const next = () => {
+    console.log(sliderRef);
+    sliderRef.current.slickNext();
+  };
+
   return (
     <Wrapper>
-      <Slider {...settings}>
-        <SliderWrapper>
+      <Slider {...settings} ref={sliderRef}>
+        <SliderWrapper onClick={next}>
           <SlideTitle>
             <Circled>1</Circled>
             <span>SHOW GOOD CANDIDATES</span>
@@ -106,7 +113,7 @@ const IntroCarousel = ({
             }}
           />
         </SliderWrapper>
-        <SliderWrapper>
+        <SliderWrapper onClick={next}>
           <SlideTitle>
             <Circled>2</Circled>
             <span>COUNT NEEDED VOTES</span>
@@ -117,7 +124,7 @@ const IntroCarousel = ({
             }}
           />
         </SliderWrapper>
-        <SliderWrapper>
+        <SliderWrapper onClick={handleNextStep}>
           <SlideTitle>
             <Circled>3</Circled>
             <span>VOTE OR WRITE IN, FTW!</span>
