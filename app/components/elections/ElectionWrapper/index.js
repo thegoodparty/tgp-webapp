@@ -103,6 +103,7 @@ const ElectionWrapper = ({
             <FiltersPopup
               changeFiltersCallback={changeFiltersCallback}
               filters={filters}
+              closeCallback={hideFilters}
             />
           </BottomPopup>
         </>
