@@ -18,8 +18,13 @@ import RegisterBannerWrapper from 'components/shared/RegisterBannerWrapper';
 import makeSelectCandidate from '../../elections/CandidatePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
 import { getRankFromUserOrState } from '../../../helpers/electionsHelper';
+import { makeSelectLocation } from '../../App/selectors';
 
-export function RegisterBannerContainer({ userState, candidateState }) {
+export function RegisterBannerContainer({
+  userState,
+  candidateState,
+  locationState,
+}) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectReducer({
     key: 'candidate',
@@ -27,6 +32,7 @@ export function RegisterBannerContainer({ userState, candidateState }) {
   });
 
   const { user } = userState;
+  const { pathname } = locationState;
 
   const presidentialRank = getRankFromUserOrState(
     user,
@@ -49,6 +55,9 @@ export function RegisterBannerContainer({ userState, candidateState }) {
   if (count === 0) {
     showBanner = false;
   }
+  if (pathname.includes('register')) {
+    showBanner = false;
+  }
 
   const childProps = {
     count,
@@ -61,6 +70,7 @@ RegisterBannerContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
   candidateState: PropTypes.object,
+  locationState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -72,6 +82,7 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
+  locationState: makeSelectLocation(),
 });
 
 const withConnect = connect(
