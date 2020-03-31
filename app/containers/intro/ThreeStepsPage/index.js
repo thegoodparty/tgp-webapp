@@ -21,8 +21,11 @@ export function ThreeStepsPage({ handleNextStep }) {
   return (
     <div>
       <Helmet>
-        <title>ThreeStepsPage</title>
-        <meta name="description" content="Description of ThreeStepsPage" />
+        <title>Three Good Steps</title>
+        <meta
+          name="description"
+          content="Three Good Steps: show good candidates, count needed votes, vote or write in, for the win!"
+        />
       </Helmet>
       <ThreeStepsWrapper {...childProps} />
     </div>

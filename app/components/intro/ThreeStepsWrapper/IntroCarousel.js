@@ -1,51 +1,44 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Carousel, { Dots } from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import { BlueButton } from 'components/shared/buttons';
 import slide1 from 'images/slider1.jpg';
 import slide2 from 'images/slider2.jpg';
 import slide3 from 'images/slider3.jpg';
 
-const CarouselWrapper = styled.div`
-  width: 100%;
+const Wrapper = styled.div`
+  width: 80%;
   height: 100%;
-  position: relative;
-`;
+  margin-left: 10%;
 
-const LeftArrow = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 50%;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 100;
-`;
-
-const RightArrow = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 50%;
-  left: 50%;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 100;
+  .slick-prev:before,
+  .slick-next:before {
+    color: #000 !important;
+  }
 `;
 
 const SliderWrapper = styled.div`
   width: 100%;
   height: 100%;
+  &:focus {
+    outline: none !important;
+  }
 `;
 
 const SliderImg = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
+
+  &:focus {
+    outline: none !important;
+  }
 `;
 
 const SlideTitle = styled.div`
@@ -77,85 +70,73 @@ const Circled = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
+  margin: 16px auto;
   text-align: center;
-  margin: 24px 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin-bottom: 2rem;
-    padding: 0 30px;
-  }
 `;
+
 const IntroCarousel = ({
   showButton = true,
   slideChangeCallback = () => {},
   handleNextStep = () => {},
 }) => {
-  const [slideNum, setSlideNum] = useState(0);
-
-  const onChange = value => {
-    setSlideNum(value);
-    slideChangeCallback(value);
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    beforeChange: (oldIndex, newIndex) => {
+      slideChangeCallback(newIndex);
+    },
   };
 
-  const slides = [
-    <SliderWrapper>
-      <SlideTitle>
-        <Circled>1</Circled>
-        <span>SHOW GOOD CANDIDATES</span>
-      </SlideTitle>
-      <SliderImg
-        style={{
-          backgroundImage: `url(${slide1})`,
-        }}
-      />
-    </SliderWrapper>,
-    <SliderWrapper>
-      <SlideTitle>
-        <Circled>2</Circled>
-        <span>COUNT NEEDED VOTES</span>
-      </SlideTitle>
-      <SliderImg
-        style={{
-          backgroundImage: `url(${slide2})`,
-        }}
-      />
-    </SliderWrapper>,
-    <SliderWrapper>
-      <SlideTitle>
-        <Circled>3</Circled>
-        <span>VOTE OR WRITE IN, FTW!</span>
-      </SlideTitle>
-      <SliderImg
-        style={{
-          backgroundImage: `url(${slide3})`,
-        }}
-      />
-    </SliderWrapper>,
-  ];
   return (
-    <CarouselWrapper>
-      <Carousel
-        autoPlay={4000}
-        animationSpeed={1000}
-        onChange={onChange}
-        value={slideNum}
-        slides={slides}
-        arrowLeft={<LeftArrow />}
-        arrowRight={<RightArrow />}
-        addArrowClickHandler
-        stopAutoPlayOnHover
-      />
-
-      {Dots && (
-        <Dots value={slideNum} onChange={onChange} number={slides.length} />
-      )}
-      {showButton && slideNum === 2 && (
-        <ButtonWrapper>
-          <BlueButton onClick={handleNextStep} fullWidth>
-            SEE YOUR ELECTIONS
-          </BlueButton>
-        </ButtonWrapper>
-      )}
-    </CarouselWrapper>
+    <Wrapper>
+      <Slider {...settings}>
+        <SliderWrapper>
+          <SlideTitle>
+            <Circled>1</Circled>
+            <span>SHOW GOOD CANDIDATES</span>
+          </SlideTitle>
+          <SliderImg
+            style={{
+              backgroundImage: `url(${slide1})`,
+            }}
+          />
+        </SliderWrapper>
+        <SliderWrapper>
+          <SlideTitle>
+            <Circled>2</Circled>
+            <span>COUNT NEEDED VOTES</span>
+          </SlideTitle>
+          <SliderImg
+            style={{
+              backgroundImage: `url(${slide2})`,
+            }}
+          />
+        </SliderWrapper>
+        <SliderWrapper>
+          <SlideTitle>
+            <Circled>3</Circled>
+            <span>VOTE OR WRITE IN, FTW!</span>
+          </SlideTitle>
+          <SliderImg
+            style={{
+              backgroundImage: `url(${slide3})`,
+            }}
+          />
+          {showButton && (
+            <ButtonWrapper>
+              <BlueButton onClick={handleNextStep} fullWidth>
+                SEE YOUR ELECTIONS
+              </BlueButton>
+            </ButtonWrapper>
+          )}
+        </SliderWrapper>
+      </Slider>
+    </Wrapper>
   );
 };
 

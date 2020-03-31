@@ -7,12 +7,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import '@brainhubeu/react-carousel/lib/style.css';
+
+import Wrapper from 'components/shared/Wrapper';
 import IntroCarousel from './IntroCarousel';
-import Wrapper from '../../shared/Wrapper';
 
 const CarouselWrapper = styled.div`
   padding: 4vh 0 0;
+`;
+const MainWrapper = styled.div`
+  height: 100vh;
+  transition: background-color 0.5s;
 `;
 
 function ThreeStepsWrapper({ handleNextStep }) {
@@ -43,7 +47,7 @@ function ThreeStepsWrapper({ handleNextStep }) {
     };
   };
   return (
-    <div style={wrapperStyles()}>
+    <MainWrapper style={wrapperStyles()}>
       <Wrapper style={wrapperStyles()}>
         <CarouselWrapper>
           <IntroCarousel
@@ -52,7 +56,7 @@ function ThreeStepsWrapper({ handleNextStep }) {
           />
         </CarouselWrapper>
       </Wrapper>
-    </div>
+    </MainWrapper>
   );
 }
 
