@@ -91,6 +91,7 @@ const wrapperStyles = {
   flexDirection: 'column',
   justifyContent: 'space-around',
   padding: '0 40px 4rem',
+  height: '100vh',
 };
 
 function SplashWrapper() {
