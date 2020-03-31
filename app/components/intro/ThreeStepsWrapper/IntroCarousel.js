@@ -95,7 +95,6 @@ const IntroCarousel = ({
   };
 
   const next = () => {
-    console.log(sliderRef);
     sliderRef.current.slickNext();
   };
 

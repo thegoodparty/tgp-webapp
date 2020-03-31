@@ -83,9 +83,7 @@ const DistrictWrapper = ({
   } else {
     const { stateShort, approxPctArr, cds } = district;
 
-    primaryCity = district.primaryCity;
-    stateLong = district.stateLong;
-    zip = district.zip;
+    ({ primaryCity, stateLong, zip } = district);
 
     shortState = stateShort ? stateShort.toUpperCase() : '';
     const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];

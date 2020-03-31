@@ -82,36 +82,8 @@ export function DistrictPage({
 
   useEffect(() => {
     if (zipWithDistricts) {
-      // const { stateShort, cds, approxPctArr } = zipWithDistricts;
-      const { stateShort, approxPctArr } = zipWithDistricts;
-      const cds = [
-        {
-          id: 6,
-          name: 'Los Angeles, CA-28',
-          ocdDivisionId: 'ocd-division/country:us/state:ca/cd:28',
-          code: 28,
-          writeInThreshold: 393325,
-          writeInThresholdWithPresident: 210884,
-        },
-        {
-          id: 12,
-          name: 'Los Angeles, CA-30',
-          ocdDivisionId: 'ocd-division/country:us/state:ca/cd:30',
-          code: 30,
-          writeInThreshold: 383147,
-          writeInThresholdWithPresident: 211735,
-        },
-        {
-          id: 7,
-          name: 'Los Angeles, CA-33',
-          ocdDivisionId: 'ocd-division/country:us/state:ca/cd:33',
-          code: 33,
-          writeInThreshold: 438183,
-          writeInThresholdWithPresident: 219398,
-        },
+      const { stateShort, cds, approxPctArr } = zipWithDistricts;
 
-
-      ];
       const shortState = stateShort ? stateShort.toUpperCase() : '';
       let districtNumber;
       let tempCd = 0;
@@ -149,7 +121,9 @@ export function DistrictPage({
       if (!senateCandidates && shortState) {
         dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
-      dispatch(districtActions.userCountsAction(shortState, districtNumber));
+      if (districtNumber) {
+        dispatch(districtActions.userCountsAction(shortState, districtNumber));
+      }
     }
   }, [zipWithDistricts, zip, cd, user]);
 
