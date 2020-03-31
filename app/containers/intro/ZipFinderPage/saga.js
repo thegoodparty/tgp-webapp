@@ -84,7 +84,14 @@ function* userCounts(action) {
   try {
     const { shortState, districtNumber } = action;
     const api = tgpApi.userCounts;
-    const payload = { shortState, districtNumber };
+    const payload = {};
+    if (shortState) {
+      payload.shortState = shortState;
+    }
+    if (districtNumber) {
+      payload.districtNumber = districtNumber;
+    }
+
     const counts = yield call(requestHelper, api, payload);
     yield put(actions.userCountsActionSuccess(counts));
   } catch (error) {

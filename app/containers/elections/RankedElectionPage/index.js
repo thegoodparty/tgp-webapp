@@ -150,11 +150,14 @@ export function RankedElectionPage({
     <div>
       <Helmet>
         <title>
-          Ranked {chamber} Election {state.toUpperCase()}-{districtNumber}
+          Ranked {chamber} Election {state ? state.toUpperCase() : ''} -{' '}
+          {districtNumber ? districtNumber : ''}
         </title>
         <meta
           name="description"
-          content={`Ranked ${chamber} Election ${state.toUpperCase()}-${districtNumber}`}
+          content={`Ranked ${chamber} Election ${
+            state ? state.toUpperCase() : ''
+          }-${districtNumber}`}
         />
       </Helmet>
       <RankedElectionWrapper {...childProps} />
