@@ -23,13 +23,16 @@ import ElectionWrapper from 'components/elections/ElectionWrapper';
 import { CHAMBER_ENUM, filterCandidates } from 'helpers/electionsHelper';
 import globalActions from 'containers/App/actions';
 import { makeSelectContent } from 'containers/App/selectors';
+import makeSelectUser from '../../you/YouPage/selectors';
 
 export function HouseElectionPage({
   dispatch,
   districtState,
+  userState,
   stateDistrict,
   content,
   changeFiltersCallback,
+  rankingLinkCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -68,14 +71,28 @@ export function HouseElectionPage({
     setCandidates(filtered);
   }, [houseCandidates, filters]);
 
+  const { user } = userState;
+  let userDistrict;
+  let userShortState;
+  let rankingAllowed = true;
+  if (user) {
+    userDistrict = user.districtNumber + '';
+    userShortState = user.shortState;
+    if (state !== userShortState || districtNumber !== userDistrict) {
+      rankingAllowed = false;
+    }
+  }
+
   const childProps = {
     candidates,
     content,
     chamber: 'House',
-    changeFiltersCallback,
     filters,
     state,
     districtNumber,
+    rankingAllowed,
+    changeFiltersCallback,
+    rankingLinkCallback,
   };
   return (
     <div>
@@ -99,6 +116,8 @@ HouseElectionPage.propTypes = {
   districtState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   changeFiltersCallback: PropTypes.func,
+  rankingLinkCallback: PropTypes.func,
+  userState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -108,12 +127,16 @@ function mapDispatchToProps(dispatch, ownProps) {
     changeFiltersCallback: filters => {
       dispatch(districtActions.changeFiltersAction(filters));
     },
+    rankingLinkCallback: link => {
+      dispatch(push(link));
+    },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   districtState: makeSelectZipFinderPage(),
   content: makeSelectContent(),
+  userState: makeSelectUser(),
 });
 
 const withConnect = connect(

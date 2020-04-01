@@ -50,7 +50,7 @@ const BottomPopup = ({ open, handleClose, children }) => {
 BottomPopup.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.array]),
 };
 
 export default BottomPopup;

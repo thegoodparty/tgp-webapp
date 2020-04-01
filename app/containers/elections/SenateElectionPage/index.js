@@ -23,12 +23,15 @@ import ElectionWrapper from 'components/elections/ElectionWrapper';
 import { CHAMBER_ENUM, filterCandidates } from 'helpers/electionsHelper';
 import globalActions from 'containers/App/actions';
 import { makeSelectContent } from 'containers/App/selectors';
+import makeSelectUser from '../../you/YouPage/selectors';
 
 export function SenateElectionPage({
   dispatch,
   districtState,
   shortState,
   content,
+  userState,
+  rankingLinkCallback,
   changeFiltersCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
@@ -63,6 +66,16 @@ export function SenateElectionPage({
     setCandidates(filtered);
   }, [senateCandidates, filters]);
 
+  const { user } = userState;
+  let userShortState;
+  let rankingAllowed = true;
+  if (user) {
+    userShortState = user.shortState;
+    if (shortState !== userShortState) {
+      rankingAllowed = false;
+    }
+  }
+
   const childProps = {
     candidates,
     content,
@@ -70,6 +83,8 @@ export function SenateElectionPage({
     changeFiltersCallback,
     filters,
     state: shortState,
+    rankingAllowed,
+    rankingLinkCallback,
   };
 
   return (
@@ -92,6 +107,8 @@ SenateElectionPage.propTypes = {
   districtState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   changeFiltersCallback: PropTypes.func,
+  rankingLinkCallback: PropTypes.func,
+  userState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -101,12 +118,16 @@ function mapDispatchToProps(dispatch, ownProps) {
     changeFiltersCallback: filters => {
       dispatch(districtActions.changeFiltersAction(filters));
     },
+    rankingLinkCallback: link => {
+      dispatch(push(link));
+    },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   districtState: makeSelectZipFinderPage(),
   content: makeSelectContent(),
+  userState: makeSelectUser(),
 });
 
 const withConnect = connect(

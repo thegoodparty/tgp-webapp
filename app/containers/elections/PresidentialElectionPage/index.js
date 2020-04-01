@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -31,6 +32,7 @@ export function PresidentialElectionPage({
   districtState,
   dispatch,
   changeFiltersCallback,
+  rankingLinkCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -60,6 +62,8 @@ export function PresidentialElectionPage({
     chamber: 'Presidential',
     changeFiltersCallback,
     filters,
+    rankingAllowed: true,
+    rankingLinkCallback,
   };
   return (
     <div>
@@ -80,6 +84,7 @@ PresidentialElectionPage.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
   changeFiltersCallback: PropTypes.func,
+  rankingLinkCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -93,6 +98,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     changeFiltersCallback: filters => {
       dispatch(districtActions.changeFiltersAction(filters));
+    },
+    rankingLinkCallback: link => {
+      dispatch(push(link));
     },
   };
 }

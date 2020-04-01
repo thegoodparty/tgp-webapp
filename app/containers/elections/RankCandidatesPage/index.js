@@ -122,8 +122,6 @@ export function RankCandidatesPage({
 
   const filtered = filterCandidates(candidates, filters, chamberEnum);
 
-  console.log('chamber rank final', chamberRank);
-
   const childProps = {
     candidates: filtered,
     handleRankingCallback,
