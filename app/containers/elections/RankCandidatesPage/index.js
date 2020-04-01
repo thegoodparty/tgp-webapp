@@ -51,33 +51,23 @@ export function RankCandidatesPage({
   });
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
+  const [chamberRank, setChamberRank] = useState([]);
+
   let candidates;
   let chamberEnum = 0;
-
-  const { filters } = districtState;
-  const { user } = userState;
-
-  let chamberRank;
-
   if (chamber === 'presidential') {
     candidates = districtState.presidential;
     chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
-    chamberRank = getRankFromUserOrState(
-      user,
-      candidateState,
-      'presidentialRank',
-    );
   } else if (chamber === 'senate') {
     candidates = districtState.senateCandidates;
     chamberEnum = CHAMBER_ENUM.SENATE;
-    chamberRank = getRankFromUserOrState(user, candidateState, 'senateRank');
-    chamberRank = chamberRank ? chamberRank[state] : [];
   } else {
     candidates = districtState.houseCandidates;
     chamberEnum = CHAMBER_ENUM.HOUSE;
-    chamberRank = getRankFromUserOrState(user, candidateState, 'houseRank');
-    chamberRank = chamberRank ? chamberRank[state + district] : [];
   }
+
+  const { filters } = districtState;
+  const { user } = userState;
 
   useEffect(() => {
     if (!candidates) {
@@ -94,7 +84,45 @@ export function RankCandidatesPage({
     }
   }, []);
 
+  useEffect(() => {
+    let tempChamberRank;
+
+    if (chamber === 'presidential') {
+      candidates = districtState.presidential;
+      chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
+      tempChamberRank = getRankFromUserOrState(
+        user,
+        candidateState,
+        'presidentialRank',
+      );
+    } else if (chamber === 'senate') {
+      candidates = districtState.senateCandidates;
+      chamberEnum = CHAMBER_ENUM.SENATE;
+      tempChamberRank = getRankFromUserOrState(
+        user,
+        candidateState,
+        'senateRank',
+      );
+      tempChamberRank = tempChamberRank ? tempChamberRank[state] : [];
+    } else {
+      candidates = districtState.houseCandidates;
+      chamberEnum = CHAMBER_ENUM.HOUSE;
+      tempChamberRank = getRankFromUserOrState(
+        user,
+        candidateState,
+        'houseRank',
+      );
+      console.log('tempChamberRank before', tempChamberRank);
+      tempChamberRank = tempChamberRank
+        ? tempChamberRank[state + district]
+        : [];
+    }
+    setChamberRank(tempChamberRank);
+  }, [candidateState, user]);
+
   const filtered = filterCandidates(candidates, filters, chamberEnum);
+
+  console.log('chamber rank final', chamberRank);
 
   const childProps = {
     candidates: filtered,
@@ -141,14 +169,24 @@ function mapDispatchToProps(dispatch, ownProps) {
     district: ownProps.match.params.district,
     handleRankingCallback: (rankingOrder, user, chamber, state, district) => {
       if (user) {
-        dispatch(userActions.saveUserRankingAction(rankingOrder, chamber));
+        dispatch(
+          userActions.saveUserRankingAction(
+            rankingOrder,
+            chamber,
+            state,
+            district,
+          ),
+        );
       }
+      const rankingLink = rankingOrder.length > 0 ? 'ranked-' : '';
       if (chamber === 'presidential') {
-        dispatch(push('/elections/ranked-presidential-election'));
+        dispatch(push(`/elections/${rankingLink}presidential-election`));
       } else if (chamber === 'senate') {
-        dispatch(push(`/elections/ranked-senate-election/${state}`));
+        dispatch(push(`/elections/${rankingLink}senate-election/${state}`));
       } else if (chamber === 'house') {
-        dispatch(push(`/elections/ranked-house-election/${state}-${district}`));
+        dispatch(
+          push(`/elections/${rankingLink}house-election/${state}-${district}`),
+        );
       }
     },
     saveRankingCallback: (rankingOrder, chamber, state, district) => {

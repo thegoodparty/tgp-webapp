@@ -57,14 +57,17 @@ const updatePresidentialRankAction = rank => ({
   rank,
 });
 
-const updateSenateRankAction = rank => ({
+const updateSenateRankAction = (rank, state) => ({
   type: types.UPDATE_SENATE_RANK,
   rank,
+  state,
 });
 
-const updateHouseRankAction = rank => ({
+const updateHouseRankAction = (rank, state, district) => ({
   type: types.UPDATE_HOUSE_RANK,
   rank,
+  state,
+  district,
 });
 
 const updateUserAction = updatedFields => ({
@@ -77,10 +80,12 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (ranking, chamber) => ({
+const saveUserRankingAction = (ranking, chamber, state, district) => ({
   type: types.SAVE_USER_RANKING,
   ranking,
   chamber,
+  state,
+  district,
 });
 
 export default {

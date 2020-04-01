@@ -180,16 +180,16 @@ function* updateUser(action) {
 
 function* saveUserRanking(action) {
   try {
-    const { ranking, chamber } = action;
+    const { ranking, chamber, state, district } = action;
     const api = tgpApi.updateUserRanking;
     const updatedFields = {};
-    const chamberRanking = JSON.stringify(ranking);
     if (chamber === 'presidential') {
-      updatedFields.presidentialRank = chamberRanking;
+      updatedFields.presidentialRank = JSON.stringify(ranking);
     } else if (chamber === 'senate') {
+      const chamberRanking = JSON.stringify({ [state]: ranking });
       updatedFields.senateRank = chamberRanking;
     } else if (chamber === 'house') {
-      updatedFields.houseRank = chamberRanking;
+      updatedFields.houseRank = JSON.stringify({ [state + district]: ranking });
     }
     const payload = {
       ...updatedFields,

@@ -65,7 +65,7 @@ const userReducer = (state = initialState, action) =>
         deleteCookies();
         draft.user = false;
         draft.token = false;
-        window.location.replace('/')
+        window.location.replace('/');
         break;
 
       case types.LOGIN:
@@ -87,7 +87,9 @@ const userReducer = (state = initialState, action) =>
           break;
         } else {
           const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
-          copyUser.senateRank = JSON.stringify(action.rank);
+          const senateState = action.state || '';
+          const newRank = { [senateState]: action.rank || [] };
+          copyUser.senateRank = JSON.stringify(newRank);
           draft.user = copyUser;
           break;
         }
@@ -97,7 +99,12 @@ const userReducer = (state = initialState, action) =>
           break;
         } else {
           const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
-          copyUser.houseRank = JSON.stringify(action.rank);
+          const houseState = action.state || '';
+          const district = action.district || '';
+          const newRank2 = {
+            [`${houseState}${district}`]: action.rank || [],
+          };
+          copyUser.houseRank = JSON.stringify(newRank2);
           draft.user = copyUser;
           break;
         }

@@ -97,7 +97,6 @@ export const filterCandidates = (
     incumbentRaised = presidentialThreshold;
   } else {
     incumbentRaised = findIncumbentRaised(candidates);
-    console.log('incumbentRaised', incumbentRaised);
   }
   if (candidates) {
     candidates.forEach(candidate => {
@@ -160,7 +159,6 @@ export const isCandidateGood = (
 
   if (totalRaised < raisedByIncumbent) {
     // small funding
-    console.log('small funding', candidate.name);
     if (filters.smallFunding && isApproved) {
       return true;
     }
