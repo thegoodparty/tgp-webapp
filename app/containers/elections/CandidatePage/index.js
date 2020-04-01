@@ -29,6 +29,7 @@ import saga from './saga';
 import candidateActions from './actions';
 import makeSelectUser from '../../you/YouPage/selectors';
 import LoadingAnimation from '../../../components/shared/LoadingAnimation';
+import { getRankFromUserOrState } from '../../../helpers/electionsHelper';
 
 export function CandidatePage({
   id,
@@ -91,26 +92,18 @@ export function CandidatePage({
 
   let chamberRank;
   const { user } = userState;
-  if (user) {
-    if (chamberName === 'presidential') {
-      chamberRank = user.presidentialRank;
-    } else if (chamberName === 'senate') {
-      chamberRank = user.senateRank;
-    } else if (chamberName === 'house') {
-      chamberRank = user.houseRank;
-    }
-  } else {
-    const { presidentialRank, senateRank, houseRank } = candidateState;
-    if (chamberName === 'presidential') {
-      chamberRank = presidentialRank;
-    } else if (chamberName === 'senate') {
-      chamberRank = senateRank;
-    } else if (chamberName === 'house') {
-      chamberRank = houseRank;
-    }
-  }
-  if (typeof chamberRank === 'string') {
-    chamberRank = JSON.parse(chamberRank);
+  if (chamberName === 'presidential') {
+    chamberRank = getRankFromUserOrState(
+      user,
+      candidateState,
+      'presidentialRank',
+    );
+  } else if (chamberName === 'senate') {
+    chamberRank = getRankFromUserOrState(user, candidateState, 'senateRank');
+    chamberRank = chamberRank ? chamberRank[state] : [];
+  } else if (chamberName === 'house') {
+    chamberRank = getRankFromUserOrState(user, candidateState, 'houseRank');
+    chamberRank = chamberRank ? chamberRank[state + district] : [];
   }
 
   const childProps = {

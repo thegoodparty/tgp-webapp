@@ -57,6 +57,7 @@ export function DistrictPage({
   const [presidentialCandidates, setPresidentialCandidates] = useState({});
   const [filteredHouse, setFilteredHouse] = useState({});
   const [filteredSenate, setFilteredSenate] = useState({});
+  const [districtNum, setDistrictNum] = useState(0);
   const { user } = userState;
 
   const { zipWithDistricts, filters } = districtState;
@@ -108,6 +109,7 @@ export function DistrictPage({
         cds.forEach(district => {
           if (district.id === approxPct[tempCd].districtId) {
             districtNumber = district.code;
+            setDistrictNum(districtNumber);
           }
         });
       }
@@ -163,15 +165,18 @@ export function DistrictPage({
     setFilteredSenate(filtered);
   }, [senateCandidates, filters]);
 
+  const { stateShort } = zipWithDistricts;
   const presidentialRank = getRankFromUserOrState(
     user,
     candidateState,
     'presidentialRank',
   );
 
-  const senateRank = getRankFromUserOrState(user, candidateState, 'senateRank');
+  let senateRank = getRankFromUserOrState(user, candidateState, 'senateRank');
+  senateRank = senateRank ? senateRank[stateShort] : [];
 
-  const houseRank = getRankFromUserOrState(user, candidateState, 'houseRank');
+  let houseRank = getRankFromUserOrState(user, candidateState, 'houseRank');
+  houseRank = houseRank ? houseRank[stateShort + districtNum] : [];
 
   useEffect(() => {
     const filtered = filterCandidates(

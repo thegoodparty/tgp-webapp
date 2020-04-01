@@ -22,14 +22,17 @@ const saveRankPresidentialCandidateAction = presidentialRank => ({
   presidentialRank,
 });
 
-const saveRankSenateCandidateAction = senateRank => ({
+const saveRankSenateCandidateAction = (senateRank, state) => ({
   type: types.SAVE_RANK_SENATE_CANDIDATE,
   senateRank,
+  state,
 });
 
-const saveRankHouseCandidateAction = houseRank => ({
+const saveRankHouseCandidateAction = (houseRank, state, district) => ({
   type: types.SAVE_RANK_HOUSE_CANDIDATE,
   houseRank,
+  state,
+  district,
 });
 
 const loadRankingFromCookieAction = () => ({

@@ -126,7 +126,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             type="email"
             name="email"
             helperText="We will never share or sell your information for any reason"
-            autocomplete="email"
+            autoComplete="email"
             onChange={onChangeEmail}
           />
 

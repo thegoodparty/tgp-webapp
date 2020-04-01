@@ -43,13 +43,20 @@ const districtReducer = (state = initialState, action) =>
         break;
 
       case types.SAVE_RANK_SENATE_CANDIDATE:
-        setCookie('senateRank', JSON.stringify(action.senateRank || []));
-        draft.senateRank = action.senateRank;
+        const senateState = action.state || '';
+        const newRank = { [senateState]: action.senateRank || [] };
+        setCookie('senateRank', JSON.stringify(newRank));
+        draft.senateRank = newRank;
         break;
 
       case types.SAVE_RANK_HOUSE_CANDIDATE:
-        setCookie('houseRank', JSON.stringify(action.houseRank || []));
-        draft.houseRank = action.houseRank;
+        const houseState = action.state || '';
+        const district = action.district || '';
+        const newRank2 = {
+          [`${houseState}${district}`]: action.houseRank || [],
+        };
+        setCookie('houseRank', JSON.stringify(newRank2));
+        draft.houseRank = newRank2;
         break;
 
       case types.LOAD_DISTRICT_INCUMBENT:

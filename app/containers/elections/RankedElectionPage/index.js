@@ -75,8 +75,9 @@ export function RankedElectionPage({
     stateCandidates = districtState.senateCandidates;
     chamberEnum = CHAMBER_ENUM.SENATE;
     chamber = 'Senate';
-    rank = getRankFromUserOrState(user, candidateState, 'senateRank');
     state = shortState;
+    rank = getRankFromUserOrState(user, candidateState, 'senateRank');
+    rank = rank ? rank[state] : [];
     if (zipWithDistricts) {
       const { senateThresholds } = zipWithDistricts;
       if (senateThresholds) {
@@ -91,8 +92,9 @@ export function RankedElectionPage({
     stateCandidates = districtState.houseCandidates;
     chamberEnum = CHAMBER_ENUM.HOUSE;
     chamber = 'House';
-    rank = getRankFromUserOrState(user, candidateState, 'houseRank');
     [state, districtNumber] = stateDistrict.split('-');
+    rank = getRankFromUserOrState(user, candidateState, 'houseRank');
+    rank = rank ? rank[state + districtNumber] : [];
     if (zipWithDistricts) {
       const { cds } = zipWithDistricts;
       if (cds && cds[0]) {

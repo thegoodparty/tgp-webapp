@@ -71,10 +71,12 @@ export function RankCandidatesPage({
     candidates = districtState.senateCandidates;
     chamberEnum = CHAMBER_ENUM.SENATE;
     chamberRank = getRankFromUserOrState(user, candidateState, 'senateRank');
+    chamberRank = chamberRank ? chamberRank[state] : [];
   } else {
     candidates = districtState.houseCandidates;
     chamberEnum = CHAMBER_ENUM.HOUSE;
     chamberRank = getRankFromUserOrState(user, candidateState, 'houseRank');
+    chamberRank = chamberRank ? chamberRank[state + district] : [];
   }
 
   useEffect(() => {
@@ -149,18 +151,28 @@ function mapDispatchToProps(dispatch, ownProps) {
         dispatch(push(`/elections/ranked-house-election/${state}-${district}`));
       }
     },
-    saveRankingCallback: (rankingOrder, chamber) => {
+    saveRankingCallback: (rankingOrder, chamber, state, district) => {
       if (chamber === 'presidential') {
         dispatch(
           candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
         );
         dispatch(userActions.updatePresidentialRankAction(rankingOrder));
       } else if (chamber === 'senate') {
-        dispatch(candidateActions.saveRankSenateCandidateAction(rankingOrder));
-        dispatch(userActions.updateSenateRankAction(rankingOrder));
+        dispatch(
+          candidateActions.saveRankSenateCandidateAction(rankingOrder, state),
+        );
+        dispatch(userActions.updateSenateRankAction(rankingOrder, state));
       } else if (chamber === 'house') {
-        dispatch(candidateActions.saveRankHouseCandidateAction(rankingOrder));
-        dispatch(userActions.updateHouseRankAction(rankingOrder));
+        dispatch(
+          candidateActions.saveRankHouseCandidateAction(
+            rankingOrder,
+            state,
+            district,
+          ),
+        );
+        dispatch(
+          userActions.updateHouseRankAction(rankingOrder, state, district),
+        );
       }
     },
   };

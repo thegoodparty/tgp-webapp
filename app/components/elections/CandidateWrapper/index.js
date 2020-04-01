@@ -339,6 +339,15 @@ const CandidateWrapper = ({
     ? candidate.source
     : 'https://ballotpedia.org/';
 
+  const rankPageLink = () => {
+    if (chamberName === 'presidential') {
+      return '/elections/rank-candidates/presidential';
+    }
+    if (chamberName === 'senate') {
+      return `/elections/rank-candidates/senate/${state}`;
+    }
+    return `/elections/rank-candidates/house/${state}/${district}`;
+  };
   return (
     <GrayWrapper>
       {candidate ? (
@@ -369,10 +378,7 @@ const CandidateWrapper = ({
                   ))}
                 </SocialLinks>
               )}
-              <Link
-                to={`/elections/rank-candidates/${chamberName ||
-                  'presidential'}`}
-              >
+              <Link to={rankPageLink()}>
                 <RankButton className={rank ? 'blue' : ''}>
                   <StyledBody12 className={rank ? 'white' : ''}>
                     {rank

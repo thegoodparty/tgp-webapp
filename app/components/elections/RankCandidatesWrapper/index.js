@@ -145,7 +145,9 @@ const RankCandidatesWrapper = ({
   const selectCandidate = async id => {
     if (
       choicesOrder.length <=
-      candidates.good.length + candidates.notGood.length+ candidates.unknown.length
+      candidates.good.length +
+        candidates.notGood.length +
+        candidates.unknown.length
     ) {
       if (!choices[id]) {
         const newChoices = { ...choices };
@@ -154,7 +156,7 @@ const RankCandidatesWrapper = ({
         await setChoices(newChoices);
         newChoicesOrder.push(id);
         await setChoicesOrder(newChoicesOrder);
-        saveRankingCallback(newChoicesOrder, chamber);
+        saveRankingCallback(newChoicesOrder, chamber, state, district);
       } else {
         // deselect and remove all previous choices.
         let idPop;
@@ -197,7 +199,7 @@ const RankCandidatesWrapper = ({
   const reset = () => {
     setChoices({});
     setChoicesOrder([]);
-    saveRankingCallback([], chamber);
+    saveRankingCallback([], chamber, state, district);
   };
 
   const handleKeepRanking = () => {
@@ -211,7 +213,7 @@ const RankCandidatesWrapper = ({
     if (!submitWithoutGood && !areAllGoodSelected()) {
       setSubmitWithoutGood(true);
     } else {
-      saveRankingCallback(choicesOrder, chamber);
+      saveRankingCallback(choicesOrder, chamber, state, district);
       handleRankingCallback(choicesOrder, user, chamber, state, district);
     }
   };
