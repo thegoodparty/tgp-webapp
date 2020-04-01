@@ -34,6 +34,7 @@ import {
   getRankFromUserOrState,
 } from 'helpers/electionsHelper';
 import makeSelectCandidate from '../CandidatePage/selectors';
+import candidateActions from '../CandidatePage/actions';
 
 export function DistrictPage({
   content,
@@ -42,6 +43,8 @@ export function DistrictPage({
   cd,
   dispatch,
   changeDistrictCallback,
+  deleteRankingCallback,
+  changeZipCallback,
   userState,
   candidateState,
 }) {
@@ -196,6 +199,8 @@ export function DistrictPage({
     senateCandidates: filteredSenate,
     content,
     changeDistrictCallback,
+    deleteRankingCallback,
+    changeZipCallback,
     user,
     userCounts,
     presidentialRank,
@@ -221,6 +226,8 @@ DistrictPage.propTypes = {
   zip: PropTypes.string,
   cd: PropTypes.string,
   changeDistrictCallback: PropTypes.func,
+  deleteRankingCallback: PropTypes.func,
+  changeZipCallback: PropTypes.func,
   userState: PropTypes.object,
   candidateState: PropTypes.object,
 };
@@ -235,6 +242,16 @@ function mapDispatchToProps(dispatch, ownProps) {
       if (user) {
         dispatch(userActions.updateUserAction({ districtId }));
       }
+    },
+    deleteRankingCallback: (state, district) => {
+      dispatch(
+        candidateActions.saveRankHouseCandidateAction([], state, district),
+      );
+      dispatch(userActions.updateHouseRankAction([], state, district));
+      dispatch(userActions.saveUserRankingAction([], 'house', state, district));
+    },
+    changeZipCallback: () => {
+      dispatch(push('/intro/zip-finder'));
     },
   };
 }

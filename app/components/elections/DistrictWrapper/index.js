@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Collapse from '@material-ui/core/Collapse';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import WarningIcon from '@material-ui/icons/Warning';
 
 import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
@@ -49,6 +56,10 @@ const CdWrapper = styled.div`
   }
 `;
 
+const AlertWrapper = styled.div`
+  border: solid 1px red;
+`;
+
 const DistrictWrapper = ({
   district = {},
   geoLocation = false,
@@ -58,6 +69,8 @@ const DistrictWrapper = ({
   houseCandidates = {},
   content,
   changeDistrictCallback,
+  deleteRankingCallback,
+  changeZipCallback,
   user,
   userCounts,
   presidentialRank,
@@ -73,6 +86,10 @@ const DistrictWrapper = ({
   const [showCds, setShowCds] = useState(false);
   const [cdsWithPerc, setCdsWithPerc] = useState([]);
   const [thresholds, setThresholds] = useState({});
+  const [showRankAlert, setShowRankAlert] = React.useState(false);
+  const [selectedCid, setSelectedCid] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(false);
+  const [changeZipSelected, setChangeZipSelected] = React.useState(false);
 
   if (geoLocation) {
     const { normalizedAddress, district } = geoLocation;
@@ -168,6 +185,42 @@ const DistrictWrapper = ({
   ) {
     electionCount--;
   }
+
+  const handleDistrictChange = (cdId, index) => {
+    if (user && houseRank) {
+      setSelectedCid(cdId);
+      setSelectedIndex(index);
+      setShowRankAlert(true);
+    } else {
+      changeDistrictCallback(cdId, index, zip, user);
+    }
+  };
+
+  const handleCloseAlert = () => {
+    setShowRankAlert(false);
+    setSelectedCid(false);
+    setSelectedIndex(false);
+    setChangeZipSelected(false);
+  };
+
+  const handleZipChange = () => {
+    if (user && houseRank) {
+      setChangeZipSelected(true);
+      setShowRankAlert(true);
+    } else {
+      changeZipCallback();
+    }
+  };
+
+  const handleDeleteRanking = () => {
+    deleteRankingCallback(shortState, districtNumber);
+    changeDistrictCallback(selectedCid, selectedIndex, zip, user);
+    if (changeZipSelected) {
+      changeZipCallback();
+    }
+    handleCloseAlert();
+  };
+
   return (
     <GrayWrapper>
       {district && presidential ? (
@@ -198,7 +251,7 @@ const DistrictWrapper = ({
                     className={index === cdIndex && 'active'}
                     key={cd.id}
                     onClick={() =>
-                      changeDistrictCallback(cd.id, index, zip, user)
+                      handleDistrictChange(cd.id, index, zip, user)
                     }
                   >
                     <Body className={index === cdIndex && 'active'}>
@@ -209,10 +262,8 @@ const DistrictWrapper = ({
                     </Body11>
                   </CdWrapper>
                 ))}
-              <CdWrapper>
-                <Link to="/intro/zip-finder">
-                  <Body>Change your Zip Code</Body>
-                </Link>
+              <CdWrapper onClick={handleZipChange}>
+                <Body>Change your Zip Code</Body>
               </CdWrapper>
             </Collapse>
             <Spacer>
@@ -298,6 +349,31 @@ const DistrictWrapper = ({
           <LoadingAnimation />
         </Wrapper>
       )}
+      <Dialog
+        onClose={handleCloseAlert}
+        aria-labelledby="Ranking not Allowed"
+        open={showRankAlert}
+      >
+        <AlertWrapper>
+          <DialogTitle id="alert-dialog-title">
+            <WarningIcon /> District Change
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              If you proceed, your previous district&apos;s ranked choices will
+              be discarded.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseAlert} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleDeleteRanking} color="primary" autoFocus>
+              Proceed
+            </Button>
+          </DialogActions>
+        </AlertWrapper>
+      </Dialog>
     </GrayWrapper>
   );
 };
@@ -305,7 +381,6 @@ const DistrictWrapper = ({
 DistrictWrapper.propTypes = {
   district: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   geoLocation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-
   presidential: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   senateCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   houseCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
@@ -314,6 +389,8 @@ DistrictWrapper.propTypes = {
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   cdIndex: PropTypes.number,
   changeDistrictCallback: PropTypes.func,
+  deleteRankingCallback: PropTypes.func,
+  changeZipCallback: PropTypes.func,
   presidentialRank: PropTypes.array,
   senateRank: PropTypes.array,
   houseRank: PropTypes.array,

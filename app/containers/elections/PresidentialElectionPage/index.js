@@ -21,10 +21,7 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 import globalActions from 'containers/App/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
-import {
-  makeSelectContent,
-  makeSelectLocation,
-} from 'containers/App/selectors';
+import { makeSelectContent } from 'containers/App/selectors';
 import { CHAMBER_ENUM, filterCandidates } from 'helpers/electionsHelper';
 
 export function PresidentialElectionPage({
