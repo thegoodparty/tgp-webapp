@@ -68,12 +68,12 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     loadZipCallback: (zip, user) => {
-      if (user) {
-        dispatch(userActions.updateUserAction({ zip }));
-        dispatch(push('/you'));
-      } else {
-        dispatch(districtActions.loadZipAction(zip, true));
-      }
+      // if (user) {
+      //   dispatch(userActions.updateUserAction({ zip }));
+      //   dispatch(push('/you'));
+      // } else {
+      dispatch(districtActions.loadZipAction(zip, true));
+      // }
     },
     currentLocationCallback: coords => {
       dispatch(districtActions.geolocationToDistrictAction(coords));

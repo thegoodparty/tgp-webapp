@@ -141,7 +141,7 @@ const RankedElectionWrapper = ({
                 <SupportersCount>
                   {numberFormatter(chamberCount)}
                 </SupportersCount>
-                <SuppoetersBody>Good Party Supporters</SuppoetersBody>
+                <SuppoetersBody>Good Party Supporters so far</SuppoetersBody>
                 <SupportersProgressBar
                   votesNeeded={votesNeeded}
                   peopleSoFar={chamberCount}
@@ -153,10 +153,13 @@ const RankedElectionWrapper = ({
                 <img src={UsMapImage} alt="" />
               </MapWrapper>
             </Row>
+            <ButtonWrapper>
+              <ShareButton />
+            </ButtonWrapper>
             <RankedChoicesRow>
               <H3>Your Ranked Choices</H3>
               <Body13>
-                <Link to={rankPage()}>Edit</Link>
+                <Link to={rankPage()}>Edit Ranking</Link>
               </Body13>
             </RankedChoicesRow>
             {rank.map((rankedId, index) => (
@@ -164,10 +167,6 @@ const RankedElectionWrapper = ({
                 {candidateRow(rankedId, index)}
               </React.Fragment>
             ))}
-
-            <ButtonWrapper>
-              <ShareButton />
-            </ButtonWrapper>
 
             <TopQuestions articles={articles} />
           </Wrapper>
