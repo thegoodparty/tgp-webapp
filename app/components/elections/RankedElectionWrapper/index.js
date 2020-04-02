@@ -31,7 +31,7 @@ const Description = styled(Body)`
 const Row = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const RankedChoicesRow = styled.div`
@@ -59,6 +59,10 @@ const MapWrapper = styled.div`
   img {
     width: 100%;
     height: auto;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    flex: 3;
   }
 `;
 
@@ -153,7 +157,7 @@ const RankedElectionWrapper = ({
               Spread the word and let’s grow the Good Party Supporters, so we
               can get enough votes to elect your choices below!
             </Description>
-            <H3 style={{ margin: '32px 0 0' }}>{progressTitle}</H3>
+            <H3 style={{ margin: '32px 0 12px' }}>{progressTitle}</H3>
             <Row>
               <SupportersWrapper>
                 <SupportersCount>
