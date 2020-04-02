@@ -126,7 +126,7 @@ export function RankedElectionPage({
   }, []);
 
   useEffect(() => {
-    dispatch(districtActions.userCountsAction(shortState, districtNumber));
+    dispatch(districtActions.userCountsAction(state, districtNumber));
   }, [shortState, districtNumber]);
 
   useEffect(() => {

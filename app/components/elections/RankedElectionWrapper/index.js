@@ -16,9 +16,10 @@ import UsMapImage from 'images/us-map.svg';
 import {
   mapCandidateToHash,
   presidentialVotesThreshold,
+  shortToLongState,
 } from 'helpers/electionsHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
-import { numberFormatter } from '../../../helpers/numberHelper';
+import { numberFormatter, numberNth } from '../../../helpers/numberHelper';
 import RankedCandidate from '../RankedCandidate';
 import { BlueButton } from '../../shared/buttons';
 import ShareButton from '../../shared/ShareButton';
@@ -122,6 +123,23 @@ const RankedElectionWrapper = ({
     return '/elections/rank-candidates/presidential';
   };
 
+  let title = chamber;
+  let progressTitle = 'Good Party Progress';
+  if (chamber === 'Presidential') {
+    title = 'Presidential';
+    progressTitle += ' - President';
+  } else if (chamber === 'Senate') {
+    title = 'U.S House of Representatives';
+    progressTitle += ` - ${state.toUpperCase()} Senate`;
+  } else if (chamber === 'House' && state) {
+    const upperState = state.toUpperCase();
+    title = `${shortToLongState[upperState]} ${numberNth(
+      districtNumber,
+    )} District (${upperState}-${districtNumber})`;
+
+    progressTitle += ` - ${upperState}-${districtNumber}`;
+  }
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -130,12 +148,12 @@ const RankedElectionWrapper = ({
           <Wrapper>
             <MobileHeader showShare />
 
-            <H1>{chamber} Elections</H1>
+            <H1>{title} Election</H1>
             <Description>
               Spread the word and let’s grow the Good Party Supporters, so we
               can get enough votes to elect your choices below!
             </Description>
-            <H3 style={{ margin: '18px 0 12px' }}>{chamber} Race Progress</H3>
+            <H3 style={{ margin: '32px 0 0' }}>{progressTitle}</H3>
             <Row>
               <SupportersWrapper>
                 <SupportersCount>
