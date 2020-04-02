@@ -32,6 +32,7 @@ const OutlinedButton = ({
   white = false,
   className = '',
   onClick,
+  style = {},
 }) => {
   let buttonClass = className;
   if (white) {
@@ -45,6 +46,7 @@ const OutlinedButton = ({
       className={buttonClass}
       onClick={onClick}
       disabled={!active}
+      style={style}
     >
       {children}
     </StyledButton>
@@ -58,6 +60,7 @@ OutlinedButton.propTypes = {
   white: PropTypes.bool,
   className: PropTypes.string,
   onClick: PropTypes.func,
+  style: PropTypes.object,
 };
 
 export default OutlinedButton;

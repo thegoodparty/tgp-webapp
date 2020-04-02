@@ -1,6 +1,6 @@
 /**
  *
- * RegisterPage
+ * SocialRegisterPage
  *
  */
 
@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import RegisterWrapper from 'components/you/RegisterWrapper';
+import SocialRegisterWrapper from 'components/you/SocialRegisterWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -21,11 +21,11 @@ import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
 import { push } from 'connected-react-router';
 
-export function RegisterPage({ userState, registerCallback, dispatch }) {
+export function SocialRegisterPage({ userState, dispatch }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
-  const { loading, error, user } = userState;
+  const { user } = userState;
 
   useEffect(() => {
     if (user) {
@@ -33,11 +33,7 @@ export function RegisterPage({ userState, registerCallback, dispatch }) {
     }
   }, []);
 
-  const childPros = {
-    registerCallback,
-    loading,
-    error,
-  };
+  const childPros = {};
 
   return (
     <div>
@@ -45,14 +41,13 @@ export function RegisterPage({ userState, registerCallback, dispatch }) {
         <title>Register to the Good Party</title>
         <meta name="description" content="Register to the Good Party" />
       </Helmet>
-      <RegisterWrapper {...childPros} />
+      <SocialRegisterWrapper {...childPros} />
     </div>
   );
 }
 
-RegisterPage.propTypes = {
+SocialRegisterPage.propTypes = {
   userState: PropTypes.object,
-  registerCallback: PropTypes.func,
   dispatch: PropTypes.func,
 };
 
@@ -63,9 +58,6 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    registerCallback: (email, name, comments) => {
-      dispatch(userActions.registerAction(email, name, comments));
-    },
   };
 }
 
@@ -77,4 +69,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(RegisterPage);
+)(SocialRegisterPage);

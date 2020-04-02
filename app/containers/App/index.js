@@ -25,6 +25,7 @@ import RankCandidatesPage from 'containers/elections/RankCandidatesPage/Loadable
 import RankedElectionPage from 'containers/elections/RankedElectionPage/Loadable';
 
 import RegisterPage from 'containers/you/RegisterPage/Loadable';
+import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
 import SharePage from 'containers/you/SharePage/Loadable';
@@ -118,8 +119,8 @@ export default function App() {
           path="/elections/ranked-house-election/:stateDistrict"
           component={RankedElectionPage}
         />
-
-        <Route exact path="/you/register" component={RegisterPage} />
+        <Route exact path="/you/register" component={SocialRegisterPage} />
+        <Route exact path="/you/register-email" component={RegisterPage} />
         <Route
           exact
           path="/you/confirmation-sent"

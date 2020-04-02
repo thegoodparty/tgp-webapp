@@ -11,13 +11,6 @@ import Nav from 'containers/shared/Nav';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 
-import ThankYouImage from 'images/thank-you.png';
-
-const Img = styled.img`
-  width: 230px;
-  height: auto;
-  margin-bottom: 20px;
-`;
 const Input = styled(TextField)`
   && {
     margin-bottom: 48px;
@@ -97,13 +90,10 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
       <Nav />
       <Wrapper white>
         <MobileHeader />
-        <Hidden smDown>
-          <Img src={ThankYouImage} />
-        </Hidden>
-        <H2>Thank you for your support!</H2>
+        <H2>Join The Good Party</H2>
         <Body13 style={{ marginTop: '16px', marginBottom: '28px' }}>
-          Please enter your contact information so we can count your support,
-          and so we can notify you when we make enough progress!
+          Please enter your info, so we can count your support and notify you as
+          we make progress.
         </Body13>
         <form noValidate onSubmit={handleSubmitForm}>
           <Input
