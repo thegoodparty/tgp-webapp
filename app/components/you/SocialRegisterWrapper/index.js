@@ -84,14 +84,10 @@ const StyledBody13 = styled(Body13)`
   font-weight: 500;
 `;
 
-function SocialRegisterWrapper() {
-  const handleSocialLogin = user => {
-    console.log(user);
-  };
-
-  const handleSocialLoginFailure = err => {
-    console.error(err);
-  };
+function SocialRegisterWrapper({
+  socialLoginCallback,
+  socialLoginFailureCallback,
+}) {
   return (
     <GrayWrapper>
       <Nav />
@@ -113,8 +109,8 @@ function SocialRegisterWrapper() {
                 channel="facebook"
                 provider="facebook"
                 appId={globals.facebookAppId}
-                onLoginSuccess={handleSocialLogin}
-                onLoginFailure={handleSocialLoginFailure}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
               >
                 Continue with Facebook
               </SocialButton>
@@ -122,8 +118,8 @@ function SocialRegisterWrapper() {
                 channel="google"
                 provider="google"
                 appId={globals.googleAppId}
-                onLoginSuccess={handleSocialLogin}
-                onLoginFailure={handleSocialLoginFailure}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
               >
                 Continue with GOOGLE
               </SocialButton>
@@ -152,6 +148,9 @@ function SocialRegisterWrapper() {
   );
 }
 
-SocialRegisterWrapper.propTypes = {};
+SocialRegisterWrapper.propTypes = {
+  socialLoginCallback: PropTypes.func,
+  socialLoginFailureCallback: PropTypes.func,
+};
 
 export default SocialRegisterWrapper;

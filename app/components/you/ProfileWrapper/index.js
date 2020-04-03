@@ -9,6 +9,7 @@ import Nav from 'containers/shared/Nav';
 import { H1, Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
 import { fullFirstLastInitials, getInitials } from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
+import UserAvatar from '../../shared/UserAvatar';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -20,25 +21,6 @@ const Centered = styled.div`
   align-items: center;
   flex-direction: column;
   margin-bottom: 24px;
-`;
-
-const UserInitials = styled(H1)`
-  cursor: pointer;
-  height: 80px;
-  width: 80px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.lighterBlue};
-  text-transform: uppercase;
-  margin-bottom: 12px;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    height: 120px;
-    width: 120px;
-  }
 `;
 
 const Election = styled(Body)`
@@ -93,8 +75,8 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
           <EditProfile>Edit Profile</EditProfile>
         </Link>
         <Centered>
-          <UserInitials>{getInitials(name)}</UserInitials>
-          <H2>{fullFirstLastInitials(name)}</H2>
+          <UserAvatar user={user} size="large" />
+          <H2 style={{ marginTop: '30px' }}>{fullFirstLastInitials(name)}</H2>
           {shortState && (
             <Body13 style={{ marginTop: '5px', marginBottom: '9px' }}>
               {primaryCity}, {shortState}-{userDistrict.code}

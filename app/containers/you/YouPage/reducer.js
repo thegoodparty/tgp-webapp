@@ -15,18 +15,21 @@ const userReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case types.REGISTER:
+      case types.SOCIAL_REGISTER:
         draft.user = false;
         draft.loading = true;
         draft.error = false;
         break;
 
       case types.REGISTER_SUCCESS:
+      case types.SOCIAL_REGISTER_SUCCESS:
         draft.user = action.user;
         draft.loading = false;
         draft.error = false;
         break;
 
       case types.REGISTER_ERROR:
+      case types.SOCIAL_REGISTER_ERROR:
         draft.user = false;
         draft.loading = false;
         draft.error = action.error;

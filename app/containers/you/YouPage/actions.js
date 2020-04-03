@@ -17,6 +17,21 @@ const registerActionError = error => ({
   error,
 });
 
+const socialRegisterAction = user => ({
+  type: types.SOCIAL_REGISTER,
+  user,
+});
+
+const socialRegisterActionSuccess = user => ({
+  type: types.SOCIAL_REGISTER_SUCCESS,
+  user,
+});
+
+const socialRegisterActionError = error => ({
+  type: types.SOCIAL_REGISTER_ERROR,
+  error,
+});
+
 const resendEmailAction = email => ({
   type: types.RESEND_EMAIL,
   email,
@@ -92,6 +107,9 @@ export default {
   registerAction,
   registerActionSuccess,
   registerActionError,
+  socialRegisterAction,
+  socialRegisterActionSuccess,
+  socialRegisterActionError,
   resendEmailAction,
   confirmEmailAction,
   confirmEmailActionSuccess,

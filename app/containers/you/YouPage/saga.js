@@ -46,6 +46,66 @@ function* register(action) {
   }
 }
 
+function* socialRegister(action) {
+  try {
+    /* eslint-disable no-underscore-dangle */
+    const { user } = action;
+    const profile = user._profile;
+    const provider = user._provider;
+    const { name, email, id, profilePicURL } = profile;
+    const zip = yield getZipFromStateOrCookie();
+    const presidentialRank = yield getRankFromStateOrCookie('presidentialRank');
+    const senateRank = yield getRankFromStateOrCookie('senateRank');
+    const houseRank = yield getRankFromStateOrCookie('houseRank');
+    // for facebook - get a larger image
+    let socialPic = profilePicURL;
+    if (user._provider === 'facebook') {
+      try {
+        const largeImage = yield call(window.FB.api, '/me/picture?width=500');
+        if (largeImage) {
+          socialPic = largeImage;
+        }
+      } catch (e) {
+        console.log('fb API error');
+      }
+    } else if (user._provider === 'google') {
+      // for gogole removing the "=s96-c" at the end of the string returns a large image.
+      try {
+        const largeImg = profilePicURL.substring(0, profilePicURL.indexOf('='));
+        if (largeImg) {
+          socialPic = largeImg;
+        }
+      } catch (e) {
+        console.log('large image error');
+      }
+    }
+    const payload = {
+      socialId: id,
+      socialProvider: provider,
+      socialPic,
+      name,
+      email,
+      zip,
+      presidentialRank: presidentialRank || '[]',
+      senateRank: senateRank || '[]',
+      houseRank: houseRank || '[]',
+    };
+    const api = tgpApi.register;
+    const response = yield call(requestHelper, api, payload);
+    const responseUser = response.user;
+    yield put(actions.registerActionSuccess(responseUser));
+    yield put(push('/you/confirmation-sent'));
+    setCookie('user', JSON.stringify(responseUser));
+  } catch (error) {
+    if (error.response && error.response.exists) {
+      yield put(
+        snackbarActions.showSnakbarAction(error.response.message, 'error'),
+      );
+    }
+    yield put(actions.registerActionError(error));
+  }
+}
+
 function* getZipFromStateOrCookie() {
   const districtState = yield select(selectDistrict);
   let zip = false;
@@ -212,6 +272,10 @@ function* saveUserRanking(action) {
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
+  const socialRegisterAction = yield takeLatest(
+    types.SOCIAL_REGISTER,
+    socialRegister,
+  );
   const resendAction = yield takeLatest(types.RESEND_EMAIL, resendEmail);
   const confirmAction = yield takeLatest(types.CONFIRM_EMAIL, confirmEmail);
   const loginAction = yield takeLatest(types.LOGIN, login);

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { getInitials } from 'helpers/userHelper';
 import LogoCaps from 'images/logo-caps.svg';
 import { Body14, Body9 } from '../typogrophy';
+import UserAvatar from '../UserAvatar';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -47,28 +48,14 @@ const TopLink = styled(Body9)`
   }
 `;
 
-const InitialWrapper = styled(Body14)`
+const AvatarWrapper = styled(Body14)`
   height: 58px;
-  display: flex;
-  align-items: center;
+  cursor: pointer;
 
   &:hover,
   &.showBorder {
     border-bottom: solid 2px ${({ theme }) => theme.colors.lightBlue};
   }
-`;
-
-const UserInitials = styled(Body14)`
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.lighterBlue};
-  text-transform: uppercase;
 `;
 
 const DesktopHeader = ({ pathname, user, navigateCallback }) => {
@@ -80,7 +67,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
   const handleNavigate = screen => {
     navigateCallback(screen, user);
   };
-
+  console.log('user', user)
   return (
     <Wrapper>
       <ContentWrapper>
@@ -96,12 +83,15 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
               ELECTIONS
             </TopLink>
             {user && user.name ? (
-              <InitialWrapper
+              <AvatarWrapper
                 className={youRoute ? 'showBorder' : ''}
                 onClick={() => handleNavigate('/you')}
               >
-                <UserInitials>{getInitials(user.name)}</UserInitials>
-              </InitialWrapper>
+                <UserAvatar
+                  user={user}
+                  onClick={() => handleNavigate('/you')}
+                />
+              </AvatarWrapper>
             ) : (
               <TopLink
                 className={youRoute ? 'showBorder' : ''}

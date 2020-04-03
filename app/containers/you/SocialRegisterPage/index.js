@@ -19,9 +19,15 @@ import makeSelectUser from 'containers/you/YouPage/selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-react-router';
 
-export function SocialRegisterPage({ userState, dispatch }) {
+export function SocialRegisterPage({
+  userState,
+  dispatch,
+  socialLoginCallback,
+  socialLoginFailureCallback,
+}) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -33,7 +39,10 @@ export function SocialRegisterPage({ userState, dispatch }) {
     }
   }, []);
 
-  const childPros = {};
+  const childPros = {
+    socialLoginCallback,
+    socialLoginFailureCallback,
+  };
 
   return (
     <div>
@@ -49,6 +58,8 @@ export function SocialRegisterPage({ userState, dispatch }) {
 SocialRegisterPage.propTypes = {
   userState: PropTypes.object,
   dispatch: PropTypes.func,
+  socialLoginCallback: PropTypes.func,
+  socialLoginFailureCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -58,6 +69,13 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    socialLoginCallback: user => {
+      console.log('page', user);
+      dispatch(userActions.socialRegisterAction(user));
+    },
+    socialLoginFailureCallback: err => {
+      dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    },
   };
 }
 
