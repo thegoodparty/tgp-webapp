@@ -59,7 +59,7 @@ function* socialRegister(action) {
     const houseRank = yield getRankFromStateOrCookie('houseRank');
     // for facebook - get a larger image
     let socialPic = profilePicURL;
-    if (user._provider === 'facebook') {
+    if (provider === 'facebook') {
       try {
         const largeImage = yield call(window.FB.api, '/me/picture?width=500');
         if (largeImage) {
@@ -68,7 +68,7 @@ function* socialRegister(action) {
       } catch (e) {
         console.log('fb API error');
       }
-    } else if (user._provider === 'google') {
+    } else if (provider === 'google') {
       // for gogole removing the "=s96-c" at the end of the string returns a large image.
       try {
         const largeImg = profilePicURL.substring(0, profilePicURL.indexOf('='));
@@ -212,6 +212,46 @@ function* login(action) {
   }
 }
 
+function* socialLogin(action) {
+  try {
+    /* eslint-disable no-underscore-dangle */
+    const { user } = action;
+    const profile = user._profile;
+    const provider = user._provider;
+    const { email, profilePicURL } = profile;
+    let socialPic = profilePicURL;
+    if (provider === 'facebook') {
+      try {
+        const largeImage = yield call(window.FB.api, '/me/picture?width=500');
+        if (largeImage) {
+          socialPic = largeImage;
+        }
+      } catch (e) {
+        console.log('fb API error');
+      }
+    } else if (provider === 'google') {
+      // for gogole removing the "=s96-c" at the end of the string returns a large image.
+      try {
+        const largeImg = profilePicURL.substring(0, profilePicURL.indexOf('='));
+        if (largeImg) {
+          socialPic = largeImg;
+        }
+      } catch (e) {
+        console.log('large image error');
+      }
+    }
+    const api = tgpApi.login;
+    const payload = {
+      email,
+      socialPic,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(push('/login/confirm'));
+  } catch (error) {
+    yield put(push('/login/confirm'));
+  }
+}
+
 function* updateUser(action) {
   try {
     const { updatedFields } = action;
@@ -279,6 +319,7 @@ export default function* saga() {
   const resendAction = yield takeLatest(types.RESEND_EMAIL, resendEmail);
   const confirmAction = yield takeLatest(types.CONFIRM_EMAIL, confirmEmail);
   const loginAction = yield takeLatest(types.LOGIN, login);
+  const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const saveUserRankingAction = yield takeLatest(
     types.SAVE_USER_RANKING,

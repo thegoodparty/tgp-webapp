@@ -70,7 +70,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     socialLoginCallback: user => {
-      console.log('page', user);
       dispatch(userActions.socialRegisterAction(user));
     },
     socialLoginFailureCallback: err => {

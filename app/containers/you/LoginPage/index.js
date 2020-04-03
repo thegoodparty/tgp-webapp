@@ -20,8 +20,15 @@ import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
 import LoginWrapper from 'components/you/LoginWrapper';
+import snackbarActions from '../../shared/SnackbarContainer/actions';
 
-export function LoginPage({ userState, dispatch, loginCallback }) {
+export function LoginPage({
+  userState,
+  dispatch,
+  loginCallback,
+  socialLoginCallback,
+  socialLoginFailureCallback,
+}) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -34,13 +41,15 @@ export function LoginPage({ userState, dispatch, loginCallback }) {
 
   const childProps = {
     loginCallback,
+    socialLoginCallback,
+    socialLoginFailureCallback,
   };
 
   return (
     <div>
       <Helmet>
-        <title>LoginPage</title>
-        <meta name="description" content="Description of LoginPage" />
+        <title>Sign into your account | TGP</title>
+        <meta name="description" content="Sign into your account | TGP" />
       </Helmet>
       <LoginWrapper {...childProps} />
     </div>
@@ -51,6 +60,8 @@ LoginPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
   loginCallback: PropTypes.func,
+  socialLoginCallback: PropTypes.func,
+  socialLoginFailureCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -58,6 +69,13 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     loginCallback: email => {
       dispatch(userActions.loginAction(email));
+    },
+    socialLoginCallback: user => {
+      console.log('page', user);
+      dispatch(userActions.socialLoginAction(user));
+    },
+    socialLoginFailureCallback: err => {
+      dispatch(snackbarActions.showSnakbarAction('Sign in error', 'error'));
     },
   };
 }

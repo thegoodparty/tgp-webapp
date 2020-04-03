@@ -22,15 +22,7 @@ const socialRegisterAction = user => ({
   user,
 });
 
-const socialRegisterActionSuccess = user => ({
-  type: types.SOCIAL_REGISTER_SUCCESS,
-  user,
-});
 
-const socialRegisterActionError = error => ({
-  type: types.SOCIAL_REGISTER_ERROR,
-  error,
-});
 
 const resendEmailAction = email => ({
   type: types.RESEND_EMAIL,
@@ -65,6 +57,11 @@ const signoutAction = () => ({
 const loginAction = email => ({
   type: types.LOGIN,
   email,
+});
+
+const socialLoginAction = user => ({
+  type: types.SOCIAL_LOGIN,
+  user,
 });
 
 const updatePresidentialRankAction = rank => ({
@@ -108,8 +105,6 @@ export default {
   registerActionSuccess,
   registerActionError,
   socialRegisterAction,
-  socialRegisterActionSuccess,
-  socialRegisterActionError,
   resendEmailAction,
   confirmEmailAction,
   confirmEmailActionSuccess,
@@ -117,6 +112,7 @@ export default {
   loadUserFromCookieAction,
   signoutAction,
   loginAction,
+  socialLoginAction,
   updatePresidentialRankAction,
   updateSenateRankAction,
   updateHouseRankAction,

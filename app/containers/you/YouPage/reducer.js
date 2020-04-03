@@ -75,6 +75,11 @@ const userReducer = (state = initialState, action) =>
         draft.loginEmail = action.email;
         break;
 
+      case types.SOCIAL_LOGIN:
+        /* eslint-disable no-underscore-dangle */
+        draft.loginEmail = action.user._profile.email;
+        break;
+
       case types.UPDATE_PRESIDENTIAL_RANK:
         if (!state.user) {
           break;
