@@ -8,24 +8,18 @@ import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
 import { Body13, H2, H1 } from 'components/shared/typogrophy/index';
-import NextButton from 'components/shared/buttons/NextButton';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import heartImg from 'images/heart.svg';
 
 import TextField from '@material-ui/core/TextField';
-import globals from 'globals';
+import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
 
 const Heart = styled.img`
   width: 64px;
   height: auto;
   margin-bottom: 12px;
-`;
-
-const StyledH2 = styled(H2)`
-  margin-top: 12px;
-  font-weight: 500;
 `;
 
 const VerticalWrapper = styled.div`
