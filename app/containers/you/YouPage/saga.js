@@ -59,12 +59,14 @@ function* socialRegister(action) {
     const houseRank = yield getRankFromStateOrCookie('houseRank');
     // for facebook - get a larger image
     let socialPic = profilePicURL;
+    let idToken;
     if (provider === 'facebook') {
       try {
         const largeImage = yield call(window.FB.api, '/me/picture?width=500');
         if (largeImage) {
           socialPic = largeImage;
         }
+        idToken = user._token.accessToken;
       } catch (e) {
         console.log('fb API error');
       }
@@ -75,6 +77,7 @@ function* socialRegister(action) {
         if (largeImg) {
           socialPic = largeImg;
         }
+        ({ idToken } = user._token);
       } catch (e) {
         console.log('large image error');
       }
@@ -89,12 +92,13 @@ function* socialRegister(action) {
       presidentialRank: presidentialRank || '[]',
       senateRank: senateRank || '[]',
       houseRank: houseRank || '[]',
+      socialToken: idToken,
     };
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
     const responseUser = response.user;
     yield put(actions.registerActionSuccess(responseUser));
-    yield put(push('/you/confirmation-sent'));
+    yield put(push('/you/share'));
     setCookie('user', JSON.stringify(responseUser));
   } catch (error) {
     if (error.response && error.response.exists) {
@@ -254,7 +258,7 @@ function* socialLogin(action) {
     const accessToken = response.token;
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
-    // yield put(push('/you/share'));
+    yield put(push('/you/share'));
     setCookie('user', JSON.stringify(responseUser));
     setCookie('token', accessToken);
 
