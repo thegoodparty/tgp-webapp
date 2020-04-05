@@ -25,11 +25,16 @@ const Wrapper = ({ children, style, white }) => {
       vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-      window.addEventListener('resize', () => {
-        // We execute the same script as before
+      const handleWindowResize = () => {
         vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-      });
+      };
+
+      window.addEventListener('resize', handleWindowResize);
+
+      return function unmount() {
+        window.removeEventListener('resize', handleWindowResize);
+      };
     }
   }, []);
   return (

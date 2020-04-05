@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useWindowSize } from 'customHooks/useWindowSize';
+import theme from 'theme';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -24,12 +26,17 @@ function SnackbarWrapper({ message, severity, isOpen, closeCallback }) {
 
     closeCallback();
   };
+  const [width, height] = useWindowSize();
+  let vertical = 'top';
+  if (width > theme.breakpoints.mdPx) {
+    vertical = 'bottom';
+  }
   return (
     <Snackbar
       open={isOpen}
       autoHideDuration={4000}
       onClose={handleClose}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      anchorOrigin={{ vertical, horizontal: 'center' }}
     >
       <Alert onClose={handleClose} severity={severity}>
         {message}

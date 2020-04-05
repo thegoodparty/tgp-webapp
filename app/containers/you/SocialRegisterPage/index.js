@@ -37,6 +37,7 @@ export function SocialRegisterPage({
     if (user) {
       dispatch(push('/you'));
     }
+    dispatch(snackbarActions.showSnakbarAction('bl abl'));
   }, []);
 
   const childPros = {
