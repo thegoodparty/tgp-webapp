@@ -71,7 +71,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(userActions.loginAction(email));
     },
     socialLoginCallback: user => {
-      console.log('page', user);
       dispatch(userActions.socialLoginAction(user));
     },
     socialLoginFailureCallback: err => {

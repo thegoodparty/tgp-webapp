@@ -67,7 +67,6 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
   const handleNavigate = screen => {
     navigateCallback(screen, user);
   };
-  console.log('user', user)
   return (
     <Wrapper>
       <ContentWrapper>

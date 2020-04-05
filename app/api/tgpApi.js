@@ -72,6 +72,11 @@ const api = {
     url: `${base}entrance/login`,
     method: 'PUT',
   },
+
+  socialLogin: {
+    url: `${base}entrance/social-login`,
+    method: 'PUT',
+  },
   //
   // USER
   //

@@ -220,12 +220,14 @@ function* socialLogin(action) {
     const provider = user._provider;
     const { email, profilePicURL } = profile;
     let socialPic = profilePicURL;
+    let idToken;
     if (provider === 'facebook') {
       try {
         const largeImage = yield call(window.FB.api, '/me/picture?width=500');
         if (largeImage) {
           socialPic = largeImage;
         }
+        idToken = user._token.accessToken;
       } catch (e) {
         console.log('fb API error');
       }
@@ -236,19 +238,37 @@ function* socialLogin(action) {
         if (largeImg) {
           socialPic = largeImg;
         }
+        ({ idToken } = user._token);
       } catch (e) {
         console.log('large image error');
       }
     }
-    const api = tgpApi.login;
+    const api = tgpApi.socialLogin;
     const payload = {
       email,
       socialPic,
+      socialProvider: provider,
+      socialToken: idToken,
     };
-    yield call(requestHelper, api, payload);
-    yield put(push('/login/confirm'));
+    const response = yield call(requestHelper, api, payload);
+    const accessToken = response.token;
+    const responseUser = response.user;
+    yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
+    // yield put(push('/you/share'));
+    setCookie('user', JSON.stringify(responseUser));
+    setCookie('token', accessToken);
+
+    yield put(
+      snackbarActions.showSnakbarAction(`Welcome back ${responseUser.name}`),
+    );
   } catch (error) {
-    yield put(push('/login/confirm'));
+    if (error.response && error.response.noUser) {
+      yield put(
+        snackbarActions.showSnakbarAction(error.response.message, 'error'),
+      );
+    } else {
+      yield put(snackbarActions.showSnakbarAction('Error Signing in', 'error'));
+    }
   }
 }
 

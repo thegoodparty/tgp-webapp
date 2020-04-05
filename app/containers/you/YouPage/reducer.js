@@ -1,6 +1,7 @@
 import produce from 'immer';
-import types from './constants';
 import { deleteCookies, getCookie } from 'helpers/cookieHelper';
+
+import types from './constants';
 
 export const initialState = {
   user: false,
@@ -22,14 +23,12 @@ const userReducer = (state = initialState, action) =>
         break;
 
       case types.REGISTER_SUCCESS:
-      case types.SOCIAL_REGISTER_SUCCESS:
         draft.user = action.user;
         draft.loading = false;
         draft.error = false;
         break;
 
       case types.REGISTER_ERROR:
-      case types.SOCIAL_REGISTER_ERROR:
         draft.user = false;
         draft.loading = false;
         draft.error = action.error;
