@@ -162,7 +162,7 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
     }
   };
 
-  const { stateLong, cds, primaryCity } = zipCode;
+  const { stateLong, cds, primaryCity } = zipCode || {};
 
   let districtName = '';
   if (cds && cds.length > 0) {
