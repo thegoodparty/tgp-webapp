@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import RegisterWrapper from 'components/you/RegisterWrapper';
+import RegisterWrapper from 'components/you/EmailRegisterWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -63,8 +63,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    registerCallback: (email, name, comments) => {
-      dispatch(userActions.registerAction(email, name, comments));
+    registerCallback: (email, name) => {
+      dispatch(userActions.registerAction(email, name));
     },
   };
 }

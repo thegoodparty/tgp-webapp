@@ -1,10 +1,9 @@
 import types from './constants';
 
-const registerAction = (email, name, comments) => ({
+const registerAction = (email, name) => ({
   type: types.REGISTER,
   email,
   name,
-  comments,
 });
 
 const registerActionSuccess = user => ({
@@ -21,8 +20,6 @@ const socialRegisterAction = user => ({
   type: types.SOCIAL_REGISTER,
   user,
 });
-
-
 
 const resendEmailAction = email => ({
   type: types.RESEND_EMAIL,

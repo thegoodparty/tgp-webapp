@@ -18,7 +18,7 @@ import GrayWrapper from 'components/shared/GrayWrapper';
 import EmailIcon from 'images/icons/email-icon.svg';
 
 import SocialButton from './SocialButton';
-import { H1, H2, Body13 } from '../../shared/typogrophy';
+import { H1, H2, Body13, Body11 } from '../../shared/typogrophy';
 import { OutlinedButton } from '../../shared/buttons';
 import globals from '../../../globals';
 
@@ -137,9 +137,15 @@ function SocialRegisterWrapper({
                   </EmailInner>
                 </Link>
               </OutlinedButton>
-              <Body13 style={{ margin: '24px 0' }}>
+              <Body13 style={{ marginTop: '24px' }}>
                 Have an account? <Link to="/login">Sign In</Link>
               </Body13>
+              <Body11 style={{ margin: '24px 0' }}>
+                By signing up, you agree to the{' '}
+                <a href="/terms" className="blue">
+                  Terms of Service.
+                </a>
+              </Body11>
             </VerticalWrapper>
           </Grid>
         </Grid>

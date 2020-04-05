@@ -55,7 +55,6 @@ const Login = styled.span`
 const RegisterWrapper = ({ registerCallback, loading, error }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [comments, setComments] = useState('');
 
   const onChangeName = event => {
     setName(event.target.value);
@@ -63,10 +62,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
 
   const onChangeEmail = event => {
     setEmail(event.target.value);
-  };
-
-  const onChangeComments = event => {
-    setComments(event.target.value);
   };
 
   const validateEmail = () => {
@@ -81,7 +76,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
 
   const handleSubmit = () => {
     if (validateEmail()) {
-      registerCallback(email, name, comments);
+      registerCallback(email, name);
     }
   };
 
@@ -120,24 +115,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             onChange={onChangeEmail}
           />
 
-          <Input
-            value={comments}
-            label="Please share any good ideas or comments:"
-            size="medium"
-            fullWidth
-            multiline
-            rows={2}
-            rowsMax={8}
-            onChange={onChangeComments}
-            helperText={
-              <span>
-                By signing up, you agree to the{' '}
-                <a href="/terms" className="blue">
-                  Terms of Service.
-                </a>
-              </span>
-            }
-          />
           {!loading && (
             <SubmitWrapper onClick={handleSubmit}>
               <NextButton active={validateEmail() && name !== ''}>

@@ -15,7 +15,7 @@ import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 function* register(action) {
   try {
-    const { email, name, comments } = action;
+    const { email, name } = action;
     const zip = yield getZipFromStateOrCookie();
     const presidentialRank = yield getRankFromStateOrCookie('presidentialRank');
     const senateRank = yield getRankFromStateOrCookie('senateRank');
@@ -24,7 +24,6 @@ function* register(action) {
       email,
       name,
       zip,
-      feedback: comments,
       presidentialRank: presidentialRank || '[]',
       senateRank: senateRank || '[]',
       houseRank: houseRank || '[]',

@@ -24,7 +24,7 @@ import CandidatePage from 'containers/elections/CandidatePage/Loadable';
 import RankCandidatesPage from 'containers/elections/RankCandidatesPage/Loadable';
 import RankedElectionPage from 'containers/elections/RankedElectionPage/Loadable';
 
-import RegisterPage from 'containers/you/RegisterPage/Loadable';
+import RegisterPage from 'containers/you/EmailRegisterPage/Loadable';
 import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
