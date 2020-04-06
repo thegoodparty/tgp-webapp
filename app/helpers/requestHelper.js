@@ -19,7 +19,9 @@ export default function* requestHelper(api, data) {
     url = url.slice(0, -1);
   }
   let body = null;
-  if ((method === 'POST' || method === 'PUT') && data) {
+  if (data instanceof FormData) {
+    body = data;
+  } else if ((method === 'POST' || method === 'PUT') && data) {
     body = JSON.stringify(data);
   }
   let token;

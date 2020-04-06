@@ -28,6 +28,7 @@ import RegisterPage from 'containers/you/EmailRegisterPage/Loadable';
 import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
+import RegisterStep2Page from 'containers/you/RegisterStep2Page/Loadable';
 import SharePage from 'containers/you/SharePage/Loadable';
 import YouPage from 'containers/you/YouPage/Loadable';
 import LoginPage from 'containers/you/LoginPage/Loadable';
@@ -131,6 +132,7 @@ export default function App() {
           path="/email-confirmation"
           component={EmailConfirmationPage}
         />
+        <Route exact path="/you/register-step2" component={RegisterStep2Page} />
         <Route exact path="/you/share" component={SharePage} />
         <Route exact path="/you" component={YouPage} />
         <Route exact path="/you/edit" component={EditProfilePage} />

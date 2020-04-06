@@ -186,7 +186,7 @@ function* confirmEmail(action) {
     const { user } = response;
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(user, access_token));
-    yield put(push('/you/share'));
+    yield put(push('/you/register-step2'));
     setCookie('user', JSON.stringify(user));
     setCookie('token', access_token);
     if (token.length === 6) {
@@ -257,7 +257,7 @@ function* socialLogin(action) {
     const accessToken = response.token;
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
-    yield put(push('/you/share'));
+    yield put(push('/you/register-step2'));
     setCookie('user', JSON.stringify(responseUser));
     setCookie('token', accessToken);
 
@@ -297,6 +297,37 @@ function* updateUser(action) {
     console.log(error);
     yield put(
       snackbarActions.showSnakbarAction('Error updating your profile', 'error'),
+    );
+  }
+}
+
+function* uploadAvatar(action) {
+  try {
+    const { fileName, fileData } = action;
+    const api = tgpApi.uploadAvatar;
+    const file = fileName && fileName.length > 0 ? fileName[0].name : false;
+    const fileExt = file ? file.split('.').pop() : '';
+
+    const data = new FormData();
+    data.append('avatar', fileData);
+    data.append('fileExt', fileExt);
+
+    const response = yield call(requestHelper, api, data);
+    const { user } = response;
+    yield put(actions.updateUserActionSuccess(user));
+
+    setCookie('user', JSON.stringify(user));
+    yield put(
+      snackbarActions.showSnakbarAction('Your Profile photo is updated'),
+    );
+    yield put(push('/you/share'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error updating your profile photo',
+        'error',
+      ),
     );
   }
 }
@@ -344,6 +375,7 @@ export default function* saga() {
   const loginAction = yield takeLatest(types.LOGIN, login);
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
+  const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
   const saveUserRankingAction = yield takeLatest(
     types.SAVE_USER_RANKING,
     saveUserRanking,

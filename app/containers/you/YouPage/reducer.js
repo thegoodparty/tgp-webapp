@@ -116,7 +116,11 @@ const userReducer = (state = initialState, action) =>
           break;
         }
 
+      case types.UPLOAD_AVATAR:
+        draft.loading = true;
+
       case types.UPDATE_USER_SUCCESS:
+        draft.loading = false;
         draft.user = action.user;
         break;
     }

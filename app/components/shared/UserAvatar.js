@@ -5,7 +5,7 @@ import { getInitials } from 'helpers/userHelper';
 import { Body14, H1 } from './typogrophy';
 
 const Wrapper = styled(Body14)`
-  height: 58px;
+  min-height: 58px;
   display: flex;
   align-items: center;
 `;

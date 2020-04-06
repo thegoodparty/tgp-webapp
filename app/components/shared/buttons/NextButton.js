@@ -14,12 +14,13 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const NextButton = ({ children, active = false }) => (
+const NextButton = ({ children, active = false, onClick = () => {} }) => (
   <StyledButton
     variant="outlined"
     color="primary"
     endIcon={<ChevronRightIcon style={{ marginLeft: '30px' }} />}
     disabled={!active}
+    onClick={onClick}
   >
     {children}
   </StyledButton>
@@ -28,6 +29,7 @@ const NextButton = ({ children, active = false }) => (
 NextButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   active: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default NextButton;

@@ -26,6 +26,8 @@ const SAVE_USER_RANKING = '@@tgp/user/SAVE_USER_RANKING';
 const UPDATE_USER = '@@tgp/user/UPDATE_USER';
 const UPDATE_USER_SUCCESS = '@@tgp/user/UPDATE_USER_SUCCESS';
 
+const UPLOAD_AVATAR = '@@tgp/user/UPLOAD_AVATAR';
+
 export default {
   REGISTER,
   REGISTER_SUCCESS,
@@ -44,5 +46,6 @@ export default {
   UPDATE_HOUSE_RANK,
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
-  SAVE_USER_RANKING
+  SAVE_USER_RANKING,
+  UPLOAD_AVATAR,
 };

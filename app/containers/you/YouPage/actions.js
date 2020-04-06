@@ -97,6 +97,12 @@ const saveUserRankingAction = (ranking, chamber, state, district) => ({
   district,
 });
 
+const uploadAvatarAction = (fileName, fileData) => ({
+  type: types.UPLOAD_AVATAR,
+  fileName,
+  fileData,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -116,4 +122,5 @@ export default {
   updateUserAction,
   updateUserActionSuccess,
   saveUserRankingAction,
+  uploadAvatarAction,
 };

@@ -98,6 +98,12 @@ const api = {
     withAuth: true,
   },
 
+  uploadAvatar: {
+    url: `${base}user/upload-avatar`,
+    method: 'PUT',
+    withAuth: true,
+  },
+
   /*
    * SCRAPE
    */
