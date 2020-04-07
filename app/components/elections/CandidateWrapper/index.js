@@ -152,6 +152,7 @@ const CandidateWrapper = ({
   chamberName,
   isGood,
   incumbent,
+  user,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
   const [rank, setRank] = useState(false);
@@ -354,7 +355,7 @@ const CandidateWrapper = ({
         <>
           <Nav />
           <Wrapper>
-            <MobileHeader showGoodisGood={isGood} showShare />
+            <MobileHeader showGoodisGood={isGood} showShare user={user} />
             <TopRow>
               <CandidateAvatar src={image} good={isGood} size="xl" />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
@@ -625,6 +626,7 @@ CandidateWrapper.propTypes = {
   chamberName: PropTypes.string,
   isGood: PropTypes.bool,
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default CandidateWrapper;

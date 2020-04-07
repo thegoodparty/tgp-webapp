@@ -4,27 +4,28 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+import { useInjectReducer } from 'utils/injectReducer';
+import makeSelectUser from 'containers/you/YouPage/selectors';
+import reducer from 'containers/you/YouPage/reducer';
 import { makeSelectContent } from 'containers/App/selectors';
-import globalActions from 'containers/App/actions';
 
 import ShareWrapper from 'components/you/ShareWrapper';
 
-export function SharePage({ content, dispatch }) {
-  useEffect(() => {
-    if (!content) {
-      dispatch(globalActions.loadContentAction());
-    }
-  }, []);
+export function SharePage({ content, userState}) {
+  useInjectReducer({ key: 'user', reducer });
+
+  const { user } = userState;
 
   const childProps = {
     content,
+    user,
   };
   return (
     <div>
@@ -41,18 +42,18 @@ export function SharePage({ content, dispatch }) {
 }
 
 SharePage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  userState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
+  userState: makeSelectUser(),
 });
 
 const withConnect = connect(

@@ -21,7 +21,6 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import { CHAMBER_ENUM, filterCandidates } from 'helpers/electionsHelper';
-import globalActions from 'containers/App/actions';
 import { makeSelectContent } from 'containers/App/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
 
@@ -51,9 +50,6 @@ export function SenateElectionPage({
       senateCandidates[0].state.toUpperCase() !== shortState
     ) {
       dispatch(districtActions.loadSenateCandidatesAction(shortState));
-    }
-    if (!content) {
-      dispatch(globalActions.loadContentAction());
     }
   }, []);
 

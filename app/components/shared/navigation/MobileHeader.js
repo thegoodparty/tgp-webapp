@@ -13,7 +13,6 @@ import WhiteLogoImg from 'images/white-logo.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
 import ShareIcon from 'images/icons/share.svg';
 
-// import { ASSETS_BASE } from 'pi/ENV';
 import { Body13 } from '../typogrophy';
 
 const Wrapper = styled.div`
@@ -48,8 +47,6 @@ const BackIconWrapperHidden = styled.div`
   opacity: 0;
 `;
 
-
-
 const GoodNoGood = styled(Body13)`
   color: ${({ theme }) => theme.colors.orange};
   font-weight: 500;
@@ -64,7 +61,7 @@ function MobileHeader({
   isGood = false,
   showShare = false,
   whiteBackButton = false,
-  goBack,
+  user,
 }) {
   const routeBack = () => {
     goBack();
@@ -72,12 +69,17 @@ function MobileHeader({
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
 
+  const url =
+    user && user.uuid
+      ? `https://www.thegoodparty.org?u=${user.uuid}`
+      : 'https://www.thegoodparty.org';
+
   const nativeShare = () => {
     navigator
       .share({
         title: 'The Good Party',
         text: 'Check out The Good Party!',
-        url: 'https://www.thegoodparty.org',
+        url,
       })
       .then(() => console.log('Successful share'));
   };
@@ -122,6 +124,7 @@ MobileHeader.propTypes = {
   isGood: PropTypes.bool,
   showShare: PropTypes.bool,
   whiteBackButton: PropTypes.bool,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default connect(

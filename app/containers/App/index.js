@@ -7,8 +7,12 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
 import HomePage from 'containers/HomePage/Loadable';
 
@@ -51,10 +55,23 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
+import globalActions from './actions';
+import { makeSelectLocation } from './selectors';
+import queryHelper from '../../helpers/queryHelper';
+import { setCookie } from '../../helpers/cookieHelper';
 
-export default function App() {
+function App({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
+
+  useEffect(() => {
+    dispatch(globalActions.loadContentAction());
+    const { search } = locationState;
+    const uuid = queryHelper(search, 'u');
+    if (uuid) {
+      setCookie('referrer', uuid);
+    }
+  }, []);
 
   return (
     <div>
@@ -157,3 +174,25 @@ export default function App() {
     </div>
   );
 }
+
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  locationState: PropTypes.object,
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  locationState: makeSelectLocation(),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(withConnect)(App);

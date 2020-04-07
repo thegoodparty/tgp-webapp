@@ -112,6 +112,7 @@ export function CandidatePage({
     chamberName,
     isGood: isCandidateGood(candidate, filters, chamberEnum, incumbentRaised),
     incumbent,
+    user,
   };
 
   const emptyCandidate = () => {

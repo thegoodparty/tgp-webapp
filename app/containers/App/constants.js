@@ -2,6 +2,7 @@ const LOAD_CONTENT = '@@tgp/global/LOAD_CONTENT';
 const LOAD_CONTENT_SUCCESS = '@@tgp/global/LOAD_CONTENT_SUCCESS';
 const LOAD_CONTENT_ERROR = '@@tgp/global/LOAD_CONTENT_ERROR';
 
+
 export default {
   LOAD_CONTENT,
   LOAD_CONTENT_SUCCESS,

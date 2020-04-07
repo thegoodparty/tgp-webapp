@@ -44,7 +44,7 @@ const Copied = styled(Body13)`
   color: ${({ theme }) => theme.colors.red};
 `;
 
-const ShareWrapper = ({ content }) => {
+const ShareWrapper = ({ content, user }) => {
   const [copied, setCopied] = useState(false);
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   let header = '';
@@ -53,13 +53,17 @@ const ShareWrapper = ({ content }) => {
     header = content.sharePage.header; // eslint-disable-line prefer-destructuring
     body = contentfulHelper(content.sharePage.content);
   }
+  const url =
+    user && user.uuid
+      ? `https://www.thegoodparty.org?u=${user.uuid}`
+      : 'https://www.thegoodparty.org';
 
   const nativeShare = () => {
     navigator
       .share({
         title: 'The Good Party',
         text: 'Check out The Good Party!',
-        url: 'https://www.thegoodparty.org',
+        url,
       })
       .then(() => console.log('Successful share'));
   };
@@ -80,17 +84,11 @@ const ShareWrapper = ({ content }) => {
             </BlueButton>
           )}
           <div className="text-center pointer">
-            <CopyToClipboard
-              text="https://www.thegoodparty.org"
-              onCopy={() => setCopied(true)}
-            >
+            <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
               <StyledH3>thegoodparty.org</StyledH3>
             </CopyToClipboard>
 
-            <CopyToClipboard
-              text="https://www.thegoodparty.org"
-              onCopy={() => setCopied(true)}
-            >
+            <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
               <CopyText>
                 <img src={LinkIcon} alt="Copy Link" /> Copy Link
               </CopyText>
@@ -104,7 +102,8 @@ const ShareWrapper = ({ content }) => {
 };
 
 ShareWrapper.propTypes = {
-  content: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ShareWrapper;

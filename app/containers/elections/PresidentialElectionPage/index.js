@@ -18,7 +18,6 @@ import reducer from 'containers/intro/ZipFinderPage/reducer';
 import saga from 'containers/intro/ZipFinderPage/saga';
 
 import districtActions from 'containers/intro/ZipFinderPage/actions';
-import globalActions from 'containers/App/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
@@ -39,9 +38,6 @@ export function PresidentialElectionPage({
   useEffect(() => {
     if (!presidential) {
       dispatch(districtActions.loadAllPresidentialAction());
-    }
-    if (!content) {
-      dispatch(globalActions.loadContentAction());
     }
   }, []);
   useEffect(() => {

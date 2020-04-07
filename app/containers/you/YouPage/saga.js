@@ -28,6 +28,10 @@ function* register(action) {
       senateRank: senateRank || '[]',
       houseRank: houseRank || '[]',
     };
+    const referrer = getCookie('referrer');
+    if (referrer) {
+      payload.referrer = referrer;
+    }
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
     const { user } = response;
@@ -81,6 +85,7 @@ function* socialRegister(action) {
         console.log('large image error');
       }
     }
+
     const payload = {
       socialId: id,
       socialProvider: provider,
@@ -93,6 +98,11 @@ function* socialRegister(action) {
       houseRank: houseRank || '[]',
       socialToken: idToken,
     };
+    const referrer = getCookie('referrer');
+    if (referrer) {
+      payload.referrer = referrer;
+    }
+
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
     const responseUser = response.user;

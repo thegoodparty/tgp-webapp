@@ -14,7 +14,6 @@ import { push } from 'connected-react-router';
 import { createStructuredSelector } from 'reselect';
 
 import { makeSelectContent } from 'containers/App/selectors';
-import globalActions from 'containers/App/actions';
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from '../../../helpers/articlesHelper';
@@ -24,9 +23,6 @@ export function FaqArticlePage({ id, content, dispatch }) {
   useEffect(() => {
     if (!id) {
       dispatch(push('/party/faqs'));
-    }
-    if (!content) {
-      dispatch(globalActions.loadContentAction());
     }
   }, []);
 

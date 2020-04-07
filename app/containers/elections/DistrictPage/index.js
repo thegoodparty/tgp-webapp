@@ -19,7 +19,6 @@ import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import saga from 'containers/intro/ZipFinderPage/saga';
 import reducer from 'containers/intro/ZipFinderPage/reducer';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
-import globalActions from 'containers/App/actions';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import DistrictWrapper from 'components/elections/DistrictWrapper';
 import {
@@ -78,9 +77,6 @@ export function DistrictPage({
     }
     if (!presidential) {
       dispatch(districtActions.loadAllPresidentialAction());
-    }
-    if (!content) {
-      dispatch(globalActions.loadContentAction());
     }
   }, [zip]);
 

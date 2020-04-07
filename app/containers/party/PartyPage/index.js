@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -12,17 +12,10 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import { makeSelectContent } from 'containers/App/selectors';
-import globalActions from 'containers/App/actions';
 
 import PartyWrapper from 'components/party/PartyWrapper';
 
-export function PartyPage({ content, dispatch }) {
-  useEffect(() => {
-    if (!content) {
-      dispatch(globalActions.loadContentAction());
-    }
-  }, []);
-
+export function PartyPage({ content }) {
   const childProps = {
     content,
   };

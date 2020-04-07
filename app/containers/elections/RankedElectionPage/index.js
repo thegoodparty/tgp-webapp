@@ -26,13 +26,12 @@ import {
   CHAMBER_ENUM,
   filterCandidates,
   getRankFromUserOrState,
+  presidentialVotesThreshold,
 } from 'helpers/electionsHelper';
 import RankedElectionWrapper from 'components/elections/RankedElectionWrapper';
-import globalActions from 'containers/App/actions';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
 import makeSelectUser from 'containers/you/YouPage/selectors';
-import { presidentialVotesThreshold } from '../../../helpers/electionsHelper';
 
 export function RankedElectionPage({
   districtState,
@@ -118,10 +117,6 @@ export function RankedElectionPage({
           districtActions.loadHouseCandidatesAction(state, districtNumber),
         );
       }
-    }
-
-    if (!content) {
-      dispatch(globalActions.loadContentAction());
     }
   }, []);
 
