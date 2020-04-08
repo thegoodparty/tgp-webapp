@@ -27,6 +27,7 @@ export function YouPage({ userState, dispatch, signoutCallback }) {
   useInjectSaga({ key: 'user', saga });
 
   const { user } = userState;
+  console.log('user', user);
 
   const accountProps = {
     user,

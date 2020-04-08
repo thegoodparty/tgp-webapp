@@ -107,7 +107,7 @@ function* socialRegister(action) {
     const response = yield call(requestHelper, api, payload);
     const responseUser = response.user;
     yield put(actions.registerActionSuccess(responseUser));
-    yield put(push('/you/share'));
+    yield put(push('/you/register-step2'));
     setCookie('user', JSON.stringify(responseUser));
   } catch (error) {
     if (error.response && error.response.exists) {
@@ -267,7 +267,7 @@ function* socialLogin(action) {
     const accessToken = response.token;
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
-    yield put(push('/you/register-step2'));
+    yield put(push('/you'));
     setCookie('user', JSON.stringify(responseUser));
     setCookie('token', accessToken);
 
