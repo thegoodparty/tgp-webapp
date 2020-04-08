@@ -12,7 +12,7 @@ import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
 import WhiteLogoImg from 'images/white-logo.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
 import ShareIcon from 'images/icons/share.svg';
-
+import { uuidUrl } from 'helpers/userHelper';
 import { Body13 } from '../typogrophy';
 
 const Wrapper = styled.div`
@@ -68,11 +68,7 @@ function MobileHeader({
   };
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
-
-  const url =
-    user && user.uuid
-      ? `https://www.thegoodparty.org?u=${user.uuid}`
-      : 'https://www.thegoodparty.org';
+  const url = uuidUrl(user);
 
   const nativeShare = () => {
     navigator

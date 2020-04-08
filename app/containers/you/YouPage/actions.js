@@ -103,6 +103,10 @@ const uploadAvatarAction = (fileName, fileData) => ({
   fileData,
 });
 
+const generateUuidAction = () => ({
+  type: types.GENERATE_UUID,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -123,4 +127,5 @@ export default {
   updateUserActionSuccess,
   saveUserRankingAction,
   uploadAvatarAction,
+  generateUuidAction,
 };

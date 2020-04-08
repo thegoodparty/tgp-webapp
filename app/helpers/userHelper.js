@@ -1,5 +1,7 @@
+import { getCookie } from './cookieHelper';
+
 export const getInitials = name => {
-  if(!name){
+  if (!name) {
     return name;
   }
   let initials = name.match(/\b\w/g) || [];
@@ -19,4 +21,17 @@ export const fullFirstLastInitials = name => {
     return names[0];
   }
   return '';
+};
+
+export const uuidUrl = (user, url = 'https://www.thegoodparty.org') => {
+  let returnUrl = url;
+  if (user && user.uuid) {
+    returnUrl = `${url}?u=${user.uuid}`;
+  } else {
+    const uuidCookie = getCookie('guuid');
+    if (uuidCookie) {
+      returnUrl = `${url}?u=${uuidCookie}`;
+    }
+  }
+  return returnUrl;
 };

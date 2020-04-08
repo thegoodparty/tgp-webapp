@@ -40,6 +40,7 @@ export function Nav({
   useEffect(() => {
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());
+      dispatch(userActions.generateUuidAction());
     } else {
       setUser(stateUser);
       setZipCode(stateUser.zipCode);

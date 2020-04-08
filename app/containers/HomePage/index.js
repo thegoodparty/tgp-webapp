@@ -32,6 +32,7 @@ function HomePage({ userState, dispatch }) {
       dispatch(push('/party'));
     } else {
       dispatch(userActions.loadUserFromCookieAction());
+      dispatch(userActions.generateUuidAction());
     }
     console.log('homepage', user);
   }, [userState]);

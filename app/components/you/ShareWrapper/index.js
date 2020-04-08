@@ -11,6 +11,7 @@ import BlueButton from 'components/shared/buttons/BlueButton';
 import ShareImage from 'images/share.png';
 import LinkIcon from 'images/icons/link.svg';
 import contentfulHelper from 'helpers/contentfulHelper';
+import { uuidUrl } from 'helpers/userHelper';
 
 const Img = styled.img`
   width: 50%;
@@ -53,10 +54,7 @@ const ShareWrapper = ({ content, user }) => {
     header = content.sharePage.header; // eslint-disable-line prefer-destructuring
     body = contentfulHelper(content.sharePage.content);
   }
-  const url =
-    user && user.uuid
-      ? `https://www.thegoodparty.org?u=${user.uuid}`
-      : 'https://www.thegoodparty.org';
+  const url = uuidUrl(user);
 
   const nativeShare = () => {
     navigator

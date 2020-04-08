@@ -32,6 +32,10 @@ function* register(action) {
     if (referrer) {
       payload.referrer = referrer;
     }
+    const guestUuid = getCookie('guuid');
+    if (guestUuid) {
+      payload.guestUuid = guestUuid;
+    }
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
     const { user } = response;
@@ -101,6 +105,10 @@ function* socialRegister(action) {
     const referrer = getCookie('referrer');
     if (referrer) {
       payload.referrer = referrer;
+    }
+    const guestUuid = getCookie('guuid');
+    if (guestUuid) {
+      payload.guestUuid = guestUuid;
     }
 
     const api = tgpApi.register;
@@ -373,6 +381,17 @@ function* saveUserRanking(action) {
   }
 }
 
+function* generateUuid() {
+  const user = getCookie('user');
+  const guestUuid = getCookie('guuid');
+  if (!user && !guestUuid) {
+    const uuid = Math.random()
+      .toString(36)
+      .substring(2, 12);
+    setCookie('guuid', uuid);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
@@ -390,4 +409,5 @@ export default function* saga() {
     types.SAVE_USER_RANKING,
     saveUserRanking,
   );
+  yield takeLatest(types.GENERATE_UUID, generateUuid);
 }
