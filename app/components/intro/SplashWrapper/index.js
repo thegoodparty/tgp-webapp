@@ -108,8 +108,8 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle>Show Good Candidates</SmallTitle>
             <Body14>
-              We count all the votes they need to win, <strong>before</strong>{' '}
-              taking any action, so we don’t waste your time or vote.
+              We find and vet, good grass-roots candidates who are challenging
+              Big Money incumbents and the corrupt two-party system.
             </Body14>
           </TextWrapper>
         </Card>
@@ -119,8 +119,11 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle>Pre-Count Needed Votes</SmallTitle>
             <Body14>
-              We count all the votes we need to win before we take any action,
-              so no wasted energy or actual votes!
+              We count all the votes they need to win{' '}
+              <strong>
+                <i>before</i>
+              </strong>{' '}
+              we take any action, so we don’t waste any votes.
             </Body14>
           </TextWrapper>
         </Card>
@@ -130,8 +133,8 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle>Vote or Write-in, FTW!</SmallTitle>
             <Body14>
-              Only where we have enough votes to win for sure, we’ll help you
-              cast your vote, or
+              Only where we have enough votes to win, we’ll help you cast your
+              vote, or
               <i>write-in, for the win!</i>
             </Body14>
           </TextWrapper>

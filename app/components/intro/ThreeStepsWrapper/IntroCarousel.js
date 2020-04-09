@@ -115,7 +115,7 @@ const IntroCarousel = ({
         <SliderWrapper onClick={next}>
           <SlideTitle>
             <Circled>2</Circled>
-            <span>COUNT NEEDED VOTES</span>
+            <span>PRE-COUNT NEEDED VOTES</span>
           </SlideTitle>
           <SliderImg
             style={{

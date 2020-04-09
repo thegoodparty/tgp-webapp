@@ -100,7 +100,9 @@ function ZipFinderWrapper({
     <GrayWrapper>
       <Nav hideMobileNav={user ? false : true} />
       <Wrapper>
-        <StyledH2>Enter your zip to see your relevant elections</StyledH2>
+        <StyledH2>
+          Enter your zip to see elections where your vote can do Good!
+        </StyledH2>
         <Body className="bold600">Enter Home Zip Code</Body>
         <Form noValidate onSubmit={handleSubmitForm}>
           <StyledInput
