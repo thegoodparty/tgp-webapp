@@ -10,6 +10,7 @@ export const initialState = {
   error: false,
   loginEmail: false,
   zipCode: false,
+  crew: false,
 };
 
 const userReducer = (state = initialState, action) =>
@@ -122,6 +123,14 @@ const userReducer = (state = initialState, action) =>
       case types.UPDATE_USER_SUCCESS:
         draft.loading = false;
         draft.user = action.user;
+        break;
+
+      case types.CREW:
+        draft.crew = false;
+        break;
+
+      case types.CREW_SUCCESS:
+        draft.crew = action.crew;
         break;
     }
   });

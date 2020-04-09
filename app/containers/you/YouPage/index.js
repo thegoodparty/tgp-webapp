@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -26,11 +26,17 @@ export function YouPage({ userState, dispatch, signoutCallback }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
-  const { user } = userState;
-  console.log('user', user);
+  const { user, crew } = userState;
 
+  useEffect(() => {
+    if (user && !crew) {
+      dispatch(userActions.crewAction());
+    }
+  }, []);
+  console.log(crew);
   const accountProps = {
     user,
+    crew,
     signoutCallback,
   };
 

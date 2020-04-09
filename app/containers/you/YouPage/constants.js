@@ -30,6 +30,9 @@ const UPLOAD_AVATAR = '@@tgp/user/UPLOAD_AVATAR';
 
 const GENERATE_UUID = '@@tgp/user/GENERATE_UUID';
 
+const CREW = '@@tgp/user/CREW';
+const CREW_SUCCESS = '@@tgp/user/CREW_SUCCESS';
+
 export default {
   REGISTER,
   REGISTER_SUCCESS,
@@ -51,4 +54,6 @@ export default {
   SAVE_USER_RANKING,
   UPLOAD_AVATAR,
   GENERATE_UUID,
+  CREW,
+  CREW_SUCCESS,
 };

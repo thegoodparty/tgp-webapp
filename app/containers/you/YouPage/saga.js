@@ -183,11 +183,10 @@ function* getEmailFromStateOrCookie() {
   const userState = yield select(selectUser);
   if (userState && userState.user) {
     return userState.user.email;
-  } else {
-    let cookieUser = getCookie('user');
-    if (cookieUser) {
-      return JSON.parse(cookieUser).email;
-    }
+  }
+  const cookieUser = getCookie('user');
+  if (cookieUser) {
+    return JSON.parse(cookieUser).email;
   }
   return null;
 }
@@ -392,6 +391,16 @@ function* generateUuid() {
   }
 }
 
+function* crew() {
+  try {
+    const api = tgpApi.crew;
+    const response = yield call(requestHelper, api, null);
+    yield put(actions.crewActionSuccess(response.crew));
+  } catch (error) {
+    console.log('crew error', error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
@@ -410,4 +419,5 @@ export default function* saga() {
     saveUserRanking,
   );
   yield takeLatest(types.GENERATE_UUID, generateUuid);
+  yield takeLatest(types.CREW, crew);
 }

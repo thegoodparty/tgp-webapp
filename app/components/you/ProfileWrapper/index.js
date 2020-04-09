@@ -7,7 +7,11 @@ import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
 import { H1, Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
-import { fullFirstLastInitials, getInitials } from 'helpers/userHelper';
+import {
+  fullFirstLastInitials,
+  getInitials,
+  uuidUrl,
+} from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from '../../shared/UserAvatar';
 
@@ -43,7 +47,43 @@ const BottomLink = styled(Body)`
   cursor: pointer;
 `;
 
-const ProfileWrapper = ({ user, signoutCallback }) => {
+const CrewWrapper = styled.div`
+  margin-top: 17px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const CrewMember = styled(Body13)`
+  text-align: center;
+`;
+
+const Filler = styled(Body13)`
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.gray9};
+  border-radius: 50%;
+  border: solid 1px ${({ theme }) => theme.colors.gray9};
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 80px;
+    width: 80px;
+  }
+`;
+
+const UnderCrew = styled(Body)`
+  margin-top: 18px;
+  color: ${({ theme }) => theme.colors.blue};
+`;
+
+const InviteUrl = styled(Body)`
+  color: ${({ theme }) => theme.colors.blue};
+`;
+
+const ProfileWrapper = ({ user, crew, signoutCallback }) => {
   let { presidentialRank } = user;
   const { name, feedback, zipCode, congDistrict } = user;
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
@@ -65,6 +105,26 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
     userDistrict = cds[0]; // eslint-disable-line
   }
   const electionLink = `/elections/district/${zip}`;
+
+  const displayCrew = [];
+  if (crew) {
+    crew.forEach((crewMember, index) => {
+      if (index < 3) {
+        displayCrew.push(crewMember);
+      }
+    });
+  }
+
+  let crewFillers = [];
+  if (crew && crew.length < 3) {
+    const fillerCount = 3 - crew.length;
+    crewFillers = Array.from(
+      Array(fillerCount),
+      (_, x) => x + 1 + 3 - fillerCount,
+    );
+  }
+
+  const url = uuidUrl(user);
 
   return (
     <div>
@@ -110,12 +170,38 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
         </Link>
 
         <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>Your Crew</H3>
-        <Body13>
-          Coming Soon
-          <br />
-          We’ll be looking for Good Party Captains to lead their crew to the
-          polls when it’s time.
-        </Body13>
+        <CrewWrapper>
+          <CrewMember>
+            <UserAvatar user={user} size="medium" />
+            <div style={{ marginTop: '10px' }}>You</div>
+          </CrewMember>
+
+          {displayCrew.map(crewMember => (
+            <CrewMember>
+              <UserAvatar user={crewMember} size="medium" />
+              <div style={{ marginTop: '10px' }}>{crewMember.name}</div>
+            </CrewMember>
+          ))}
+          {crewFillers.map(filler => (
+            <Filler>{filler}</Filler>
+          ))}
+        </CrewWrapper>
+        {displayCrew.length > 0 ? (
+          <UnderCrew>
+            If each person <strong>invites 3 or more people</strong> to join,
+            The Good Party will be unstoppable!
+          </UnderCrew>
+        ) : (
+          <UnderCrew>
+            If each person <strong>invites 3 or more people</strong>, we will
+            win!
+          </UnderCrew>
+        )}
+        <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
+          Your Unique Invite Link
+        </H3>
+        <InviteUrl>{url}</InviteUrl>
+
         <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
           What can you do to help?
         </H3>
@@ -138,6 +224,7 @@ const ProfileWrapper = ({ user, signoutCallback }) => {
 
 ProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  crew: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   signoutCallback: PropTypes.func,
 };
 

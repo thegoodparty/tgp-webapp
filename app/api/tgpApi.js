@@ -104,6 +104,12 @@ const api = {
     withAuth: true,
   },
 
+  crew: {
+    url: `${base}user/crew`,
+    method: 'GET',
+    withAuth: true,
+  },
+
   /*
    * SCRAPE
    */

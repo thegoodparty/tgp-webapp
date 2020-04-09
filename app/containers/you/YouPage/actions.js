@@ -107,6 +107,15 @@ const generateUuidAction = () => ({
   type: types.GENERATE_UUID,
 });
 
+const crewAction = () => ({
+  type: types.CREW,
+});
+
+const crewActionSuccess = crew => ({
+  type: types.CREW_SUCCESS,
+  crew,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -128,4 +137,6 @@ export default {
   saveUserRankingAction,
   uploadAvatarAction,
   generateUuidAction,
+  crewAction,
+  crewActionSuccess
 };
