@@ -32,6 +32,7 @@ const Logo = styled.img`
 
 const BackIconWrapper = styled.div`
   color: ${({ theme }) => theme.colors.blue};
+  cursor: pointer;
   & > svg {
     font-size: 30px;
   }
@@ -57,6 +58,7 @@ const GoodNoGood = styled(Body13)`
 `;
 
 function MobileHeader({
+  dispatch,
   showGood = false,
   isGood = false,
   showShare = false,
@@ -64,7 +66,8 @@ function MobileHeader({
   user,
 }) {
   const routeBack = () => {
-    goBack();
+    console.log('goback');
+    dispatch(goBack());
   };
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
@@ -116,6 +119,7 @@ function MobileHeader({
 }
 
 MobileHeader.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   showGood: PropTypes.bool,
   isGood: PropTypes.bool,
   showShare: PropTypes.bool,
@@ -123,7 +127,13 @@ MobileHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
 export default connect(
   null,
-  { goBack },
+  mapDispatchToProps,
 )(MobileHeader);
