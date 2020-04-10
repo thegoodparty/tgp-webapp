@@ -32,7 +32,7 @@ export function YouPage({ userState, dispatch, signoutCallback }) {
     if (user && !crew) {
       dispatch(userActions.crewAction());
     }
-  }, []);
+  }, [user]);
   console.log(crew);
   const accountProps = {
     user,

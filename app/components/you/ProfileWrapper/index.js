@@ -104,7 +104,12 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
   } else if (cds && cds.length > 0) {
     userDistrict = cds[0]; // eslint-disable-line
   }
-  const electionLink = `/elections/district/${zip}`;
+  let electionLink;
+  if (zip) {
+    electionLink = `/elections/district/${zip}`;
+  } else {
+    electionLink = `/intro/zip-finder`;
+  }
 
   const displayCrew = [];
   if (crew && crew.length > 0) {
