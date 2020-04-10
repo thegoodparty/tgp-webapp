@@ -182,13 +182,13 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
           </CrewMember>
 
           {displayCrew.map(crewMember => (
-            <CrewMember>
+            <CrewMember key={crewMember.uuid}>
               <UserAvatar user={crewMember} size="medium" />
               <div style={{ marginTop: '10px' }}>{crewMember.name}</div>
             </CrewMember>
           ))}
           {crewFillers.map(filler => (
-            <Filler>{filler}</Filler>
+            <Filler key={filler}>{filler}</Filler>
           ))}
         </CrewWrapper>
 

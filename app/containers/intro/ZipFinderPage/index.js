@@ -68,8 +68,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     loadZipCallback: (zip, user) => {
-      // if (user) {
-      //   dispatch(userActions.updateUserAction({ zip }));
+      if (user) {
+        dispatch(userActions.updateUserAction({ zip }));
+      }
       //   dispatch(push('/you'));
       // } else {
       dispatch(districtActions.loadZipAction(zip, true));

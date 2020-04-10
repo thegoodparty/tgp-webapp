@@ -33,7 +33,6 @@ export function YouPage({ userState, dispatch, signoutCallback }) {
       dispatch(userActions.crewAction());
     }
   }, [user]);
-  console.log(crew);
   const accountProps = {
     user,
     crew,
