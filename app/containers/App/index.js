@@ -13,6 +13,9 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import history from 'utils/history';
+import ReactGA from 'react-ga';
+import ENV from 'api/ENV';
 
 import HomePage from 'containers/HomePage/Loadable';
 
@@ -60,11 +63,21 @@ import { makeSelectLocation } from './selectors';
 import queryHelper from '../../helpers/queryHelper';
 import { setCookie } from '../../helpers/cookieHelper';
 
+if (ENV === 'prod') {
+  history.listen(location => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  });
+}
+
 function App({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
 
   useEffect(() => {
+    if (ENV === 'prod') {
+      ReactGA.pageview(window.location.pathname);
+    }
     dispatch(globalActions.loadContentAction());
     const { search } = locationState;
     const uuid = queryHelper(search, 'u');

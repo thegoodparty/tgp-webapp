@@ -11,5 +11,6 @@ if (host === 'localhost:4000') {
 }
 
 export const GOOGLE_API_KEY = 'AIzaSyCPNVlxUzEl7uJaCmaxEVQFhsQP1jSS_pI';
+export const GA_ID = 'UA-146762622-1';
 
 export default ENV;

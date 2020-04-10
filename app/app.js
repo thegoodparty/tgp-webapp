@@ -19,6 +19,8 @@ import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 import theme from 'theme';
+import ReactGA from 'react-ga';
+import ENV, { GA_ID } from 'api/ENV';
 
 // Import root app
 import App from 'containers/App';
@@ -33,6 +35,10 @@ import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
+
+if (ENV === 'prod') {
+  ReactGA.initialize(GA_ID);
+}
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
