@@ -78,7 +78,7 @@ const UnderCrew = styled(Body)`
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.blue};
 `;
-
+//
 const InviteUrl = styled(Body)`
   color: ${({ theme }) => theme.colors.blue};
 `;
@@ -92,7 +92,7 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
   }
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   let userDistrict = {};
-  if (congDistrict) {
+  if (congDistrict && cds && cds.length > 0) {
     cds.forEach(district => {
       if (district.id === congDistrict) {
         userDistrict = district;
@@ -107,7 +107,7 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
   const electionLink = `/elections/district/${zip}`;
 
   const displayCrew = [];
-  if (crew) {
+  if (crew && crew.length > 0) {
     crew.forEach((crewMember, index) => {
       if (index < 3) {
         displayCrew.push(crewMember);
@@ -186,17 +186,10 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
             <Filler>{filler}</Filler>
           ))}
         </CrewWrapper>
-        {displayCrew.length > 0 ? (
-          <UnderCrew>
-            If each person <strong>invites 3 or more people</strong> to join,
-            The Good Party will be unstoppable!
-          </UnderCrew>
-        ) : (
-          <UnderCrew>
-            If each person <strong>invites 3 or more people</strong>, we will
-            win!
-          </UnderCrew>
-        )}
+
+        <UnderCrew>
+          If each person <strong>invites 3 or more people</strong>, we will win!
+        </UnderCrew>
         <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
           Your Unique Invite Link
         </H3>
