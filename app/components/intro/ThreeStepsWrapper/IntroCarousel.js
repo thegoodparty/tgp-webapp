@@ -6,9 +6,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { BlueButton } from 'components/shared/buttons';
-import slide1 from 'images/slider1.jpg';
-import slide2 from 'images/slider2.jpg';
-import slide3 from 'images/slider3.jpg';
+import slide1 from 'images/slide1.jpg';
+import slide2 from 'images/slide2.jpg';
+import slide3 from 'images/slide3.jpg';
 
 const Wrapper = styled.div`
   width: 80%;

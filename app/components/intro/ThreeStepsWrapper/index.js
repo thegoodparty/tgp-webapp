@@ -29,7 +29,7 @@ function ThreeStepsWrapper({ handleNextStep }) {
   const wrapperStyles = () => {
     if (slideNum === 0) {
       return {
-        backgroundColor: '#fafafa',
+        backgroundColor: '#ffffff',
       };
     }
     if (slideNum === 1) {
@@ -43,7 +43,7 @@ function ThreeStepsWrapper({ handleNextStep }) {
       };
     }
     return {
-      backgroundColor: '#fafafa',
+      backgroundColor: '#fff',
     };
   };
   return (
