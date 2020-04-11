@@ -142,8 +142,8 @@ function SocialRegisterWrapper({
               </Body13>
               <Body11 style={{ margin: '24px 0' }}>
                 By signing up, you agree to the{' '}
-                <a href="/terms" className="blue">
-                  Terms of Service.
+                <a href="/privacy" className="blue">
+                  Privacy Policy &amp; Terms of Service.
                 </a>
               </Body11>
             </VerticalWrapper>
