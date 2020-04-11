@@ -19,8 +19,13 @@ import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
 import EditProfileWrapper from 'components/you/EditProfileWrapper';
+import LoadingAnimation from '../../../components/shared/LoadingAnimation';
 
-export function EditProfilePage({ userState, updateProfileCallback }) {
+export function EditProfilePage({
+  userState,
+  updateProfileCallback,
+  updatePhotoCallback,
+}) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -29,6 +34,7 @@ export function EditProfilePage({ userState, updateProfileCallback }) {
   const childProps = {
     user,
     updateProfileCallback,
+    updatePhotoCallback,
   };
 
   return (
@@ -37,7 +43,7 @@ export function EditProfilePage({ userState, updateProfileCallback }) {
         <title>Edit Profile | The Good Party</title>
         <meta name="description" content="Edit Profile | The Good Party" />
       </Helmet>
-      <EditProfileWrapper {...childProps} />
+      {user ? <EditProfileWrapper {...childProps} /> : <LoadingAnimation />}
     </div>
   );
 }
@@ -45,6 +51,7 @@ export function EditProfilePage({ userState, updateProfileCallback }) {
 EditProfilePage.propTypes = {
   userState: PropTypes.object,
   updateProfileCallback: PropTypes.func,
+  updatePhotoCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -52,6 +59,17 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     updateProfileCallback: updatedFields => {
       dispatch(userActions.updateUserAction(updatedFields));
+    },
+    updatePhotoCallback: photo => {
+      if (photo && photo.pictureFile && photo.pictureData) {
+        dispatch(
+          userActions.uploadAvatarAction(
+            photo.pictureFile,
+            photo.pictureData,
+            false,
+          ),
+        );
+      }
     },
   };
 }

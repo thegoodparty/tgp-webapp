@@ -17,7 +17,6 @@ import TextField from '@material-ui/core/TextField';
 import UserAvatar from 'components/shared/UserAvatar';
 import AvatarUpload from 'components/shared/AvatarUpload/Loadable';
 import { NextButton } from 'components/shared/buttons';
-import LoadingAnimation from '../../shared/LoadingAnimation';
 
 const Heart = styled.img`
   width: 64px;

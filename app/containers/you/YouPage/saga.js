@@ -320,7 +320,7 @@ function* updateUser(action) {
 
 function* uploadAvatar(action) {
   try {
-    const { fileName, fileData } = action;
+    const { fileName, fileData, withRedirect } = action;
     const api = tgpApi.uploadAvatar;
     const file = fileName && fileName.length > 0 ? fileName[0].name : false;
     const fileExt = file ? file.split('.').pop() : '';
@@ -337,7 +337,9 @@ function* uploadAvatar(action) {
     yield put(
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
-    yield put(push('/you/share'));
+    if (withRedirect) {
+      yield put(push('/you/share'));
+    }
   } catch (error) {
     console.log(error);
     yield put(

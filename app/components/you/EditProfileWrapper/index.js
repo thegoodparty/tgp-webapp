@@ -20,8 +20,10 @@ import LoadingAnimation from 'components/shared/LoadingAnimation';
 import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import TextField from '@material-ui/core/TextField';
 import LockIcon from '@material-ui/icons/Lock';
+import { formatToPhone } from 'helpers/phoneHelper';
+import AvatarUpload from 'components/shared/AvatarUpload/Loadable';
 import { BlueButton } from '../../shared/buttons';
-import { formatToPhone } from '../../../helpers/phoneHelper';
+import UserAvatar from '../../shared/UserAvatar';
 
 const Row = styled.div`
   display: flex;
@@ -129,7 +131,11 @@ const AddPhone = styled(Body)`
   cursor: pointer;
 `;
 
-const EditProfileWrapper = ({ user, updateProfileCallback }) => {
+const EditProfileWrapper = ({
+  user,
+  updateProfileCallback,
+  updatePhotoCallback,
+}) => {
   const { name, feedback, zipCode, isEmailVerified, congDistrict } = user;
   const initialPhone = user.phone ? formatToPhone(user.phone) : false;
   const initialEmail = user.email;
@@ -139,6 +145,8 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
   const [newName, setNewName] = useState(name);
   const [newFeedback, setNewFeedback] = useState(feedback);
   const [editPhone, setEditPhone] = useState(false);
+  const [showUploadPhoto, setShowUploadPhoto] = useState(false);
+
   if (!user) {
     return (
       <div>
@@ -233,6 +241,18 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
     (digitsPhone && phone !== initialPhone) ||
     (validateEmail() && email !== initialEmail);
 
+  const uploadPhoto = () => {
+    setShowUploadPhoto(true);
+  };
+
+  const closeUploadPhotoCallback = () => {
+    setShowUploadPhoto(false);
+  };
+
+  const selectImageCallback = photo => {
+    updatePhotoCallback(photo);
+  };
+
   return (
     <div>
       <Nav />
@@ -245,8 +265,9 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
         </Hidden>
         <Row>
           <H1>Edit Profile</H1>
-          <UserInitials>
-            {getInitials(name)}
+
+          <UserInitials onClick={uploadPhoto}>
+            <UserAvatar user={user} size="large" />
             <Camera>
               <CameraAltOutlinedIcon style={{ fontSize: '18px' }} />
             </Camera>
@@ -334,6 +355,12 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
           </form>
         </PrivateWrapper>
       </Wrapper>
+      {showUploadPhoto && (
+        <AvatarUpload
+          closeCallback={closeUploadPhotoCallback}
+          selectImageCallback={selectImageCallback}
+        />
+      )}
     </div>
   );
 };
@@ -341,6 +368,7 @@ const EditProfileWrapper = ({ user, updateProfileCallback }) => {
 EditProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateProfileCallback: PropTypes.func,
+  updatePhotoCallback: PropTypes.func,
 };
 
 export default EditProfileWrapper;

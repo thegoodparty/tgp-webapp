@@ -97,10 +97,11 @@ const saveUserRankingAction = (ranking, chamber, state, district) => ({
   district,
 });
 
-const uploadAvatarAction = (fileName, fileData) => ({
+const uploadAvatarAction = (fileName, fileData, withRedirect = true) => ({
   type: types.UPLOAD_AVATAR,
   fileName,
   fileData,
+  withRedirect,
 });
 
 const generateUuidAction = () => ({
@@ -138,5 +139,5 @@ export default {
   uploadAvatarAction,
   generateUuidAction,
   crewAction,
-  crewActionSuccess
+  crewActionSuccess,
 };
