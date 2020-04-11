@@ -19,6 +19,7 @@ const ShareButton = ({
   title = 'The Good Party',
   text = 'Check out The Good Party!',
   url,
+  customElement,
 }) => {
   const [copied, setCopied] = useState(false);
   const canShare = typeof navigator !== 'undefined' && navigator.share;
@@ -34,18 +35,28 @@ const ShareButton = ({
   return (
     <>
       {canShare ? (
-        <BlueButton fullWidth onClick={nativeShare}>
-          <StyledBody>TELL SOME FRIENDS</StyledBody>
-        </BlueButton>
+        <>
+          {customElement ? (
+            <div onClick={nativeShare}>{customElement}</div>
+          ) : (
+            <BlueButton fullWidth onClick={nativeShare}>
+              <StyledBody>TELL SOME FRIENDS</StyledBody>
+            </BlueButton>
+          )}
+        </>
       ) : (
         <div>
           <CopyToClipboard
-            text={window.location.href}
+            text={url || window.location.href}
             onCopy={() => setCopied(true)}
           >
-            <BlueButton fullWidth>
-              <StyledBody>TELL SOME FRIENDS</StyledBody>
-            </BlueButton>
+            {customElement ? (
+              <div>{customElement}</div>
+            ) : (
+              <BlueButton fullWidth>
+                <StyledBody>TELL SOME FRIENDS</StyledBody>
+              </BlueButton>
+            )}
           </CopyToClipboard>
           {copied && <Copied>Copied to clipboard</Copied>}
         </div>
@@ -58,6 +69,7 @@ ShareButton.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   url: PropTypes.string,
+  customElement: PropTypes.object,
 };
 
 export default ShareButton;

@@ -14,6 +14,7 @@ import {
 } from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from '../../shared/UserAvatar';
+import ShareButton from '../../shared/ShareButton';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -191,24 +192,32 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
             <Filler key={filler}>{filler}</Filler>
           ))}
         </CrewWrapper>
+        <ShareButton
+          url={url}
+          customElement={
+            <UnderCrew>
+              If each person <strong>invites 3 or more people</strong>, we will
+              win!
+            </UnderCrew>
+          }
+        />
 
-        <UnderCrew>
-          If each person <strong>invites 3 or more people</strong>, we will win!
-        </UnderCrew>
         <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
           Your Unique Invite Link
         </H3>
-        <InviteUrl>{url}</InviteUrl>
+        <ShareButton url={url} customElement={<InviteUrl>{url}</InviteUrl>} />
 
         <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
           What can you do to help?
         </H3>
-        <Link to="/you/share">
-          <BottomLink>Invite Friends</BottomLink>
-        </Link>
-        <a href="https://creators.thegodparty.org" target="_blank">
-          <BottomLink>Creators of the World, Unite!</BottomLink>
-        </a>
+        <ShareButton
+          url={url}
+          customElement={<BottomLink>Invite Friends</BottomLink>}
+        />
+
+        <Body style={{ marginTop: '12px' }}>
+          Creators of the World, Unite! (Coming Soon)
+        </Body>
         <BottomLink
           style={{ marginTop: '48px', marginBottom: '24px' }}
           onClick={signoutCallback}
