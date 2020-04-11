@@ -17,7 +17,7 @@ import history from 'utils/history';
 import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
 
-import HomePage from 'containers/HomePage/Loadable';
+import HomePage from 'containers/intro/HomePage/Loadable';
 
 import SplashPage from 'containers/intro/SplashPage/Loadable';
 import ThreeStepsPage from 'containers/intro/ThreeStepsPage/Loadable';
@@ -49,6 +49,8 @@ import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
 import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
 import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loadable';
 
+import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
+import ResearchPage from 'containers/shared/ResearchPage/Loadable';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 
 import GlobalStyle from 'global-styles';
@@ -179,6 +181,9 @@ function App({ locationState, dispatch }) {
           path="/scrape/candidates"
           component={AllCandidatesToScrape}
         />
+
+        <Route exact path="/privacy" component={PrivacyPage} />
+        <Route exact path="/research" component={ResearchPage} />
 
         <Route component={NotFoundPage} />
       </Switch>

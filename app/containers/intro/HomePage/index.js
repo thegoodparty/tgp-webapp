@@ -20,7 +20,7 @@ import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
-import HomePageWrapper from 'components/HomePageWrapper';
+import HomePageWrapper from 'components/intro/HomePageWrapper';
 
 function HomePage({ userState, dispatch }) {
   useInjectReducer({ key: 'user', reducer });
