@@ -66,7 +66,6 @@ function MobileHeader({
   user,
 }) {
   const routeBack = () => {
-    console.log('goback');
     dispatch(goBack());
   };
 

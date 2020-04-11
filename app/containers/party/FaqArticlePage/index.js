@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import { push } from 'connected-react-router';
+import { goBack } from 'connected-react-router';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -18,7 +18,7 @@ import { makeSelectContent } from 'containers/App/selectors';
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from '../../../helpers/articlesHelper';
 
-export function FaqArticlePage({ id, content, dispatch }) {
+export function FaqArticlePage({ id, content, dispatch, backButtonCallback }) {
   const [article, setArticle] = useState(null);
   useEffect(() => {
     if (!id) {
@@ -34,6 +34,7 @@ export function FaqArticlePage({ id, content, dispatch }) {
 
   const childProps = {
     article,
+    backButtonCallback,
   };
 
   return (
@@ -52,6 +53,7 @@ export function FaqArticlePage({ id, content, dispatch }) {
 
 FaqArticlePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  backButtonCallback: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
@@ -60,6 +62,9 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
     id: ownProps.match.params.id,
+    backButtonCallback: () => {
+      dispatch(goBack());
+    },
   };
 }
 
