@@ -15,15 +15,14 @@ import {
   H3,
   Body,
 } from 'components/shared/typogrophy/index';
-import { getInitials } from 'helpers/userHelper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import TextField from '@material-ui/core/TextField';
 import LockIcon from '@material-ui/icons/Lock';
 import { formatToPhone } from 'helpers/phoneHelper';
 import AvatarUpload from 'components/shared/AvatarUpload/Loadable';
-import { BlueButton } from '../../shared/buttons';
-import UserAvatar from '../../shared/UserAvatar';
+import { BlueButton } from 'components/shared/buttons';
+import UserAvatar from 'components/shared/UserAvatar';
 
 const Row = styled.div`
   display: flex;

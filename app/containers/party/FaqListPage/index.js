@@ -10,15 +10,16 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { goBack } from 'connected-react-router';
 
 import { makeSelectContent } from 'containers/App/selectors';
 
 import FaqListWrapper from 'components/party/FaqListWrapper';
 
-export function FaqListPage({ content }) {
-
+export function FaqListPage({ content, backButtonCallback }) {
   const childProps = {
     content,
+    backButtonCallback,
   };
   return (
     <div>
@@ -33,12 +34,16 @@ export function FaqListPage({ content }) {
 
 FaqListPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  backButtonCallback: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    backButtonCallback: () => {
+      dispatch(goBack());
+    },
   };
 }
 

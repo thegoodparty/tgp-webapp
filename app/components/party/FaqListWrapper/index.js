@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import BackIcon from '@material-ui/icons/ChevronLeft';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -22,7 +23,17 @@ const ArticleWrapper = styled.div`
   }
 `;
 
-const FaqListWrapper = ({ content }) => {
+const BackIconWrapper = styled.div`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: block;
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.blue};
+    margin-bottom: 24px;
+  }
+`;
+
+const FaqListWrapper = ({ content, backButtonCallback }) => {
   const articles = content.faqArticles || [];
 
   return (
@@ -30,6 +41,9 @@ const FaqListWrapper = ({ content }) => {
       <Nav />
       <Wrapper white>
         <MobileHeader />
+        <BackIconWrapper onClick={backButtonCallback}>
+          <BackIcon style={{ fontSize: '34px' }} />
+        </BackIconWrapper>
         <H2 style={{ marginBottom: '24px' }}>Frequently Asked Q’s</H2>
         {articles &&
           articles.map(article => (
@@ -54,6 +68,7 @@ const FaqListWrapper = ({ content }) => {
 
 FaqListWrapper.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  backButtonCallback: PropTypes.func,
 };
 
 export default FaqListWrapper;
