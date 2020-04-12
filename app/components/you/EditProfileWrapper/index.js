@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import Hidden from '@material-ui/core/Hidden';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
+import WarningIcon from '@material-ui/icons/Warning';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -130,10 +137,15 @@ const AddPhone = styled(Body)`
   cursor: pointer;
 `;
 
+const AlertWrapper = styled.div`
+  border: solid 1px red;
+`;
+
 const EditProfileWrapper = ({
   user,
   updateProfileCallback,
   updatePhotoCallback,
+  deleteRankingCallback,
 }) => {
   const { name, feedback, zipCode, isEmailVerified, congDistrict } = user;
   const initialPhone = user.phone ? formatToPhone(user.phone) : false;
@@ -145,6 +157,7 @@ const EditProfileWrapper = ({
   const [newFeedback, setNewFeedback] = useState(feedback);
   const [editPhone, setEditPhone] = useState(false);
   const [showUploadPhoto, setShowUploadPhoto] = useState(false);
+  const [showRankAlert, setShowRankAlert] = useState(false);
 
   if (!user) {
     return (
@@ -252,6 +265,19 @@ const EditProfileWrapper = ({
     updatePhotoCallback(photo);
   };
 
+  const handleChangeAddress = () => {
+    setShowRankAlert(true);
+  };
+
+  const handleCloseAlert = () => {
+    setShowRankAlert(false);
+  };
+
+  const handleDeleteRanking = () => {
+    deleteRankingCallback(user);
+    handleCloseAlert();
+  };
+
   return (
     <div>
       <Nav />
@@ -296,9 +322,7 @@ const EditProfileWrapper = ({
         </Form>
         <Row style={{ marginTop: '48px' }}>
           <Body11>Your Home Location</Body11>
-          <Link to="/intro/zip-finder">
-            <StyledBody14>Edit</StyledBody14>
-          </Link>
+          <StyledBody14 onClick={handleChangeAddress}>Edit</StyledBody14>
         </Row>
         <Address>{stateLong}</Address>
         <Address>
@@ -353,6 +377,31 @@ const EditProfileWrapper = ({
             </BlueButton>
           </form>
         </PrivateWrapper>
+        <Dialog
+          onClose={handleCloseAlert}
+          aria-labelledby="Ranking not Allowed"
+          open={showRankAlert}
+        >
+          <AlertWrapper>
+            <DialogTitle id="alert-dialog-title">
+              <WarningIcon /> District Change
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                If you proceed, your previous district&apos;s ranked choices
+                will be discarded.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseAlert} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={handleDeleteRanking} color="primary" autoFocus>
+                Proceed
+              </Button>
+            </DialogActions>
+          </AlertWrapper>
+        </Dialog>
       </Wrapper>
       {showUploadPhoto && (
         <AvatarUpload
@@ -368,6 +417,7 @@ EditProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateProfileCallback: PropTypes.func,
   updatePhotoCallback: PropTypes.func,
+  deleteRankingCallback: PropTypes.func,
 };
 
 export default EditProfileWrapper;

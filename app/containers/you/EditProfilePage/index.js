@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
+import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -20,11 +21,13 @@ import { createStructuredSelector } from 'reselect';
 
 import EditProfileWrapper from 'components/you/EditProfileWrapper';
 import LoadingAnimation from '../../../components/shared/LoadingAnimation';
+import candidateActions from '../../elections/CandidatePage/actions';
 
 export function EditProfilePage({
   userState,
   updateProfileCallback,
   updatePhotoCallback,
+  deleteRankingCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -35,6 +38,7 @@ export function EditProfilePage({
     user,
     updateProfileCallback,
     updatePhotoCallback,
+    deleteRankingCallback,
   };
 
   return (
@@ -52,6 +56,7 @@ EditProfilePage.propTypes = {
   userState: PropTypes.object,
   updateProfileCallback: PropTypes.func,
   updatePhotoCallback: PropTypes.func,
+  deleteRankingCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -69,6 +74,30 @@ function mapDispatchToProps(dispatch) {
             false,
           ),
         );
+      }
+    },
+    deleteRankingCallback: user => {
+      if (user && user.shortState && user.districtNumber) {
+        const { shortState, districtNumber } = user;
+        dispatch(
+          candidateActions.saveRankHouseCandidateAction(
+            [],
+            shortState,
+            districtNumber,
+          ),
+        );
+        dispatch(
+          userActions.updateHouseRankAction([], shortState, districtNumber),
+        );
+        dispatch(
+          userActions.saveUserRankingAction(
+            [],
+            'house',
+            shortState,
+            districtNumber,
+          ),
+        );
+        dispatch(push('/intro/zip-finder'));
       }
     },
   };
