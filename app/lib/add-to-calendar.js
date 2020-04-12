@@ -333,7 +333,7 @@
       google: calendarGenerators.google(event),
       yahoo: calendarGenerators.yahoo(event),
       off365: calendarGenerators.off365(event),
-      ical: calendarGenerators.ical(event),
+      // ical: calendarGenerators.ical(event),
       outlook: calendarGenerators.outlook(event),
     };
   };
