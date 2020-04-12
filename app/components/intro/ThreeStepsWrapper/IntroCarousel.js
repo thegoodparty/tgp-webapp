@@ -14,10 +14,14 @@ const Wrapper = styled.div`
   width: 80%;
   height: 100%;
   margin-left: 10%;
+  position: relative;
 
   .slick-prev:before,
   .slick-next:before {
     color: #000 !important;
+  }
+  .slick-next.slick-disabled:before {
+    opacity: 1;
   }
 `;
 
@@ -72,8 +76,23 @@ const Circled = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  margin: 16px auto;
+  margin: 16px auto 24px;
   text-align: center;
+`;
+
+const NextOverlay = styled.span`
+  position: absolute;
+  z-index: 2000;
+  top: 50%;
+  right: -25px;
+  width: 20px;
+  transform: translate(0, -50%);
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
 `;
 
 const IntroCarousel = ({
@@ -82,6 +101,7 @@ const IntroCarousel = ({
   handleNextStep = () => {},
 }) => {
   const sliderRef = useRef();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
     dots: true,
@@ -91,6 +111,7 @@ const IntroCarousel = ({
     slidesToScroll: 1,
     beforeChange: (oldIndex, newIndex) => {
       slideChangeCallback(newIndex);
+      setCurrentSlide(newIndex);
     },
   };
 
@@ -142,6 +163,7 @@ const IntroCarousel = ({
           )}
         </SliderWrapper>
       </Slider>
+      {currentSlide === 2 && <NextOverlay onClick={handleNextStep} />}
     </Wrapper>
   );
 };
