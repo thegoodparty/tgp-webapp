@@ -67,7 +67,6 @@ export function DistrictPage({
     presidential,
     houseCandidates,
     senateCandidates,
-    geoLocation,
     userCounts,
   } = districtState;
 
@@ -128,23 +127,6 @@ export function DistrictPage({
     }
   }, [zipWithDistricts, zip, cd, user]);
 
-  useEffect(() => {
-    if (geoLocation) {
-      const { state, district } = geoLocation;
-      const shortState = state ? state.toUpperCase() : '';
-      const districtNumber = district ? district.code : null;
-
-      if (!houseCandidates && shortState && districtNumber) {
-        dispatch(
-          districtActions.loadHouseCandidatesAction(shortState, districtNumber),
-        );
-      }
-
-      if (!senateCandidates && shortState) {
-        dispatch(districtActions.loadSenateCandidatesAction(shortState));
-      }
-    }
-  }, [geoLocation]);
 
   useEffect(() => {
     const filtered = filterCandidates(
@@ -189,7 +171,6 @@ export function DistrictPage({
   const childProps = {
     district: zipWithDistricts,
     cdIndex,
-    geoLocation,
     presidential: presidentialCandidates,
     houseCandidates: filteredHouse,
     senateCandidates: filteredSenate,

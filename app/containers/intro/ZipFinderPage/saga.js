@@ -116,8 +116,8 @@ function* gelocationToDistrict(action) {
       const api2 = tgpApi.fullAddressToDistrict;
       const payload2 = { address: JSON.stringify(formattedAddress) };
       const response = yield call(requestHelper, api2, payload2);
-      const { district, normalizedAddress, zip, state } = response;
-      if (district && normalizedAddress && zip && state) {
+      const { zip } = response;
+      if (zip) {
         yield put(push(`/elections/district/${zip}`));
         yield put(actions.geolocationToDistrictActionSuccess(response));
         setCookie('geoAddress', JSON.stringify({ ...response }));

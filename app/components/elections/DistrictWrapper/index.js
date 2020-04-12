@@ -62,7 +62,6 @@ const AlertWrapper = styled.div`
 
 const DistrictWrapper = ({
   district = {},
-  geoLocation = false,
   cdIndex,
   presidential = {},
   senateCandidates = {},
@@ -77,10 +76,6 @@ const DistrictWrapper = ({
   senateRank,
   houseRank,
 }) => {
-  let primaryCity;
-  let stateLong;
-  let zip;
-  let shortState;
   let districtNumber;
 
   const [showCds, setShowCds] = useState(false);
@@ -91,27 +86,25 @@ const DistrictWrapper = ({
   const [selectedIndex, setSelectedIndex] = React.useState(false);
   const [changeZipSelected, setChangeZipSelected] = React.useState(false);
 
-  if (geoLocation) {
-    const { normalizedAddress, district } = geoLocation;
-    primaryCity = normalizedAddress.city;
-    stateLong = geoLocation.state;
-    shortState = geoLocation.state.toUpperCase();
-    districtNumber = district.code;
-  } else {
-    const { stateShort, approxPctArr, cds } = district;
+  const {
+    stateShort,
+    approxPctArr,
+    cds,
+    primaryCity,
+    stateLong,
+    zip,
+    senateThresholds,
+  } = district;
 
-    ({ primaryCity, stateLong, zip } = district);
-
-    shortState = stateShort ? stateShort.toUpperCase() : '';
-    const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];
-    if (cds && cds.length > 0) {
-      const { districtId } = approxPct[cdIndex];
-      cds.forEach(dist => {
-        if (dist.id === districtId) {
-          districtNumber = dist.code;
-        }
-      });
-    }
+  const shortState = stateShort ? stateShort.toUpperCase() : '';
+  const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];
+  if (cds && cds.length > 0) {
+    const { districtId } = approxPct[cdIndex];
+    cds.forEach(dist => {
+      if (dist.id === districtId) {
+        districtNumber = dist.code;
+      }
+    });
   }
 
   let articles = [];
@@ -125,7 +118,6 @@ const DistrictWrapper = ({
     });
   }
 
-  const { cds, approxPctArr, senateThresholds } = district;
   useEffect(() => {
     const cdWithPerc = [];
 
