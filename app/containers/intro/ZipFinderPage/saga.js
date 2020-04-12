@@ -103,7 +103,7 @@ function* gelocationToDistrict(action) {
   try {
     const { coords } = action;
     const lngLatStr = `${coords.latitude},${coords.longitude}`;
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${GOOGLE_API_KEY}&location_type=RANGE_INTERPOLATED&result_type=street_address&latlng=${lngLatStr}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?key=${GOOGLE_API_KEY}&latlng=${lngLatStr}`;
 
     const api = {
       url,
