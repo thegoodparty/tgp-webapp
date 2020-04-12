@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
 
 const Wrapper = styled.div`
   padding: 0;
@@ -29,6 +30,14 @@ const InnerWrapper = styled.div`
   border-top-left-radius: 16px;
 `;
 
+const CloseWrapper = styled.div`
+  text-align: right;
+  cursor: pointer;
+  position: fixed;
+  margin-top: 16px;
+  right: 16px;
+`;
+
 const useStyles = makeStyles(theme => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -41,6 +50,9 @@ const BottomPopup = ({ open, handleClose, children }) => {
   return (
     <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
       <Wrapper className={open ? 'open' : 'close'}>
+        <CloseWrapper onClick={handleClose}>
+          <CloseIcon />
+        </CloseWrapper>
         <InnerWrapper>{children}</InnerWrapper>
       </Wrapper>
     </Backdrop>
@@ -50,7 +62,11 @@ const BottomPopup = ({ open, handleClose, children }) => {
 BottomPopup.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string, PropTypes.array]),
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.array,
+  ]),
 };
 
 export default BottomPopup;

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
-import CloseIcon from '@material-ui/icons/Close';
 
 import { H1, Body, H3, Body13 } from 'components/shared/typogrophy';
 import { defaultFilters } from 'helpers/electionsHelper';
@@ -32,15 +31,11 @@ const Label = styled(Body)`
   padding-top: 9px;
 `;
 
-const CloseWrapper = styled.div`
-  text-align: right;
-  cursor: pointer;
-`;
+
 
 const FiltersPopup = ({
   filters = defaultFilters,
   changeFiltersCallback = () => {},
-  closeCallback = () => {},
 }) => {
   const { smallDonors, smallFunding, mostlyBigDonors } = filters;
 
@@ -54,9 +49,7 @@ const FiltersPopup = ({
   };
   return (
     <Wrapper onClick={e => e.stopPropagation()}>
-      <CloseWrapper onClick={closeCallback}>
-        <CloseIcon />
-      </CloseWrapper>
+
       <H1>Filter Candidates</H1>
       <Body style={{ marginTop: '10px', marginBottom: '32px' }}>
         Choose how to filter candidates into Good Enough or Not Good Enough:
@@ -124,7 +117,6 @@ const FiltersPopup = ({
 FiltersPopup.propTypes = {
   filters: PropTypes.object,
   changeFiltersCallback: PropTypes.func,
-  closeCallback: PropTypes.func,
 };
 
 export default FiltersPopup;
