@@ -342,7 +342,7 @@ function* uploadAvatar(action) {
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
     if (withRedirect) {
-      yield put(push('/you/share'));
+      yield put(push('/you'));
     }
   } catch (error) {
     console.log(error);

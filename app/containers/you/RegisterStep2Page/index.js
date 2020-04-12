@@ -69,7 +69,7 @@ function mapDispatchToProps(dispatch) {
           userActions.uploadAvatarAction(photo.pictureFile, photo.pictureData),
         );
       }
-      dispatch(push('/you/share'));
+      dispatch(push('/you'));
     },
   };
 }

@@ -143,7 +143,7 @@ const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
       <Nav />
       <Wrapper>
         <MobileHeader />
-        <Link to="/you/share">
+        <Link to="/you">
           <Skip>Skip</Skip>
         </Link>
         <Grid container spacing={3}>
