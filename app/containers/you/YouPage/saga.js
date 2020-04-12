@@ -193,7 +193,7 @@ function* getEmailFromStateOrCookie() {
 
 function* confirmEmail(action) {
   try {
-    const { email, token } = action;
+    const { email, token, fromLogin } = action;
     const api = tgpApi.confirmEmail;
     const payload = {
       email,
@@ -203,7 +203,11 @@ function* confirmEmail(action) {
     const { user } = response;
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(user, access_token));
-    yield put(push('/you/register-step2'));
+    if (fromLogin) {
+      yield put(push('/you'));
+    } else {
+      yield put(push('/you/register-step2'));
+    }
     setCookie('user', JSON.stringify(user));
     setCookie('token', access_token);
     if (token.length === 6) {

@@ -61,7 +61,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     confirmLoginCallback: (email, code) => {
-      dispatch(userActions.confirmEmailAction(email, code));
+      dispatch(userActions.confirmEmailAction(email, code, true));
     },
   };
 }

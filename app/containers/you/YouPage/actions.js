@@ -26,10 +26,11 @@ const resendEmailAction = email => ({
   email,
 });
 
-const confirmEmailAction = (email, token) => ({
+const confirmEmailAction = (email, token, fromLogin = false) => ({
   type: types.CONFIRM_EMAIL,
   email,
   token,
+  fromLogin,
 });
 
 const confirmEmailActionSuccess = (user, token) => ({
