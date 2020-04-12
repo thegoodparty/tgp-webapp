@@ -47,9 +47,13 @@ const Ama = ({ sendAmaCallback }) => {
   const handleSubmit = () => {
     if (message !== '') {
       sendAmaCallback(message);
-      setMessage('');
     }
   };
+
+  const mail = () =>
+    `mailto:ask@thegoodparty.org?subject=Good%20Party%20Question&body=${encodeURI(
+      message,
+    )}`;
   return (
     <Wrapper>
       <Title>Ask us Anything</Title>
@@ -62,13 +66,15 @@ const Ama = ({ sendAmaCallback }) => {
           onChange={onChangeMessage}
         />
         <ButtonWrapper>
-          <OutlinedButton
-            fullWidth
-            active={message !== ''}
-            onClick={handleSubmit}
-          >
-            Send
-          </OutlinedButton>
+          <a href={mail()}>
+            <OutlinedButton
+              fullWidth
+              active={message !== ''}
+              onClick={handleSubmit}
+            >
+              Send
+            </OutlinedButton>
+          </a>
         </ButtonWrapper>
       </form>
     </Wrapper>

@@ -14,12 +14,6 @@ function* sendAma(action) {
       message,
     };
     yield call(requestHelper, api, payload);
-    window.open(
-      `mailto:ask@thegoodparty.org?subject=Good%20Party%20Question&body=${encodeURI(
-        message,
-      )}`,
-      '_blank',
-    );
     yield put(snackbarActions.showSnakbarAction('Thank you for reaching out.'));
   } catch (error) {
     console.log(error);
