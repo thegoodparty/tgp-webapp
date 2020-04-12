@@ -1,3 +1,4 @@
+//https://github.com/KelvinCampelo/add-to-calendar-buttons
 (function(exports) {
   /* --------------
      config
@@ -202,7 +203,10 @@
         'SUMMARY:' + (event.title || ''),
         'DESCRIPTION:' + (event.description || ''),
         'LOCATION:' + (event.address || ''),
-        'UID:' + (event.id || '') + '-' + document.URL,
+        'UID:' +
+          (event.id || parseInt(Math.random() * 1000000000, 10)) +
+          '-' +
+          document.URL,
         'END:VEVENT',
         'END:VCALENDAR',
       ].join('\n');
