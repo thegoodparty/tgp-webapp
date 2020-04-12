@@ -82,7 +82,7 @@ const ButtonWrapper = styled.div`
 
 const NextOverlay = styled.span`
   position: absolute;
-  z-index: 2000;
+  z-index: 100;
   top: 50%;
   right: -25px;
   width: 20px;
@@ -93,6 +93,19 @@ const NextOverlay = styled.span`
   color: transparent;
   border: none;
   outline: none;
+`;
+
+const DotsOverlay = styled.span`
+  position: absolute;
+  bottom: -25px;
+  display: block;
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  z-index: 100;
 `;
 
 const IntroCarousel = ({
@@ -164,6 +177,7 @@ const IntroCarousel = ({
         </SliderWrapper>
       </Slider>
       {currentSlide === 2 && <NextOverlay onClick={handleNextStep} />}
+      <DotsOverlay />
     </Wrapper>
   );
 };
