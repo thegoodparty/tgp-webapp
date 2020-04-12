@@ -97,7 +97,7 @@ const FundsWrapper = styled.div`
 
 const Fund = styled.div`
   text-align: center;
-  margin: 0 12px;
+  margin: 0 10px;
 `;
 
 const ColoredBody13 = styled(Body13)`
