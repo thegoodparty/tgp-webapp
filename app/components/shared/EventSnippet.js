@@ -73,7 +73,10 @@ const EventSnippet = ({ event }) => {
     presenterTitle,
     avatarPhoto,
     eventDuration,
+    location,
   } = event;
+
+  console.log(event);
 
   const addMe = () => {
     const start = dateISOStringHelper(dateAndTime, timeZone);
@@ -83,7 +86,7 @@ const EventSnippet = ({ event }) => {
       title: title.replace(/&/g, ' and '),
       start,
       end,
-      address: 'https://www.thegoodparty.org',
+      address: location,
       description: description.replace(/&/g, ' and '),
     };
     const calenderLinks = addToCalendarLib.generateCalendars({
@@ -114,6 +117,7 @@ const EventSnippet = ({ event }) => {
             </StyledBody12>
           )}
           {description && <StyledBody12>{description}</StyledBody12>}
+          <StyledBody12>{location}</StyledBody12>
           {presenter && (
             <StyledBody12>
               <span className="bold500 spacing05">{presenter}</span>{' '}
@@ -125,7 +129,7 @@ const EventSnippet = ({ event }) => {
       </Row>
       <ButtonWrapper onClick={addMe}>
         <OutlinedButton fullWidth active>
-          I'M INTERESTED
+          I&apos;M INTERESTED
         </OutlinedButton>
       </ButtonWrapper>
       {Object.keys(links).length > 0 && (
