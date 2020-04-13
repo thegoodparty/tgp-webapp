@@ -76,8 +76,6 @@ const EventSnippet = ({ event }) => {
     location,
   } = event;
 
-  console.log(event);
-
   const addMe = () => {
     const start = dateISOStringHelper(dateAndTime, timeZone);
     const end = dateISOStringHelper(dateAndTime, timeZone, eventDuration);

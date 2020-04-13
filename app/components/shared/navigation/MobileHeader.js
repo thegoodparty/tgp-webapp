@@ -6,6 +6,7 @@ import BackIcon from '@material-ui/icons/ChevronLeft';
 import styled from 'styled-components';
 import { goBack } from 'connected-react-router';
 import { connect } from 'react-redux';
+import history from 'utils/history';
 
 import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
 
@@ -81,16 +82,21 @@ function MobileHeader({
       })
       .then(() => console.log('Successful share'));
   };
+  const showBack = history && history.length > 1;
 
   return (
     <Hidden mdUp>
       <Wrapper>
-        <BackIconWrapper
-          onClick={routeBack}
-          className={whiteBackButton ? 'white' : ''}
-        >
-          <BackIcon />
-        </BackIconWrapper>
+        {showBack ? (
+          <BackIconWrapper
+            onClick={routeBack}
+            className={whiteBackButton ? 'white' : ''}
+          >
+            <BackIcon />
+          </BackIconWrapper>
+        ) : (
+          <div>&nbsp;</div>
+        )}
         {showGood ? (
           <GoodNoGood className={isGood ? 'good' : 'notgood'}>
             {!isGood && 'NOT'} GOOD ENOUGH
