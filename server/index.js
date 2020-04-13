@@ -27,10 +27,17 @@ if (process.env.NODE_ENV === 'production') {
 // force www
 const baseUrl = base();
 if (baseUrl === 'https://www.thegoodparty.org') {
-  app.use(function(req, res, next) {
+  console.log('live site');
+  app.all('*', function(req, res, next) {
+    console.log('live site2 req.host', req.host);
     if (req.host.indexOf('www.') !== 0) {
+      console.log(
+        'live site3 redirect to',
+        `${req.protocol}://www.${req.host}${req.originalUrl}`,
+      );
       res.redirect(301, `${req.protocol}://www.${req.host}${req.originalUrl}`);
     } else {
+      console.log('live site 4 no redirect', req.host);
       next();
     }
   });
