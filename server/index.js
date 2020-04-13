@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // force www
-if (base === 'https://www.thegoodparty.org') {
+if (base() === 'https://www.thegoodparty.org') {
   app.use(function(req, res, next) {
     if (req.host.indexOf('www.') !== 0) {
       res.redirect(301, `${req.protocol}://www.${req.host}${req.originalUrl}`);
