@@ -147,6 +147,14 @@ const EditProfileWrapper = ({
   updatePhotoCallback,
   deleteRankingCallback,
 }) => {
+  if (!user) {
+    return (
+      <div>
+        <Nav />
+        <LoadingAnimation />
+      </div>
+    );
+  }
   const { name, feedback, zipCode, isEmailVerified, congDistrict } = user;
   const initialPhone = user.phone ? formatToPhone(user.phone) : false;
   const initialEmail = user.email;
@@ -158,16 +166,6 @@ const EditProfileWrapper = ({
   const [editPhone, setEditPhone] = useState(false);
   const [showUploadPhoto, setShowUploadPhoto] = useState(false);
   const [showRankAlert, setShowRankAlert] = useState(false);
-
-  if (!user) {
-    return (
-      <div>
-        <Nav />
-        <LoadingAnimation />
-      </div>
-    );
-  }
-  console.log(user);
 
   // phone
   const phoneReg = /^(\([0-9]{3}\))\s[0-9]{3}\s-\s[0-9]{4}$/;
