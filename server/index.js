@@ -19,7 +19,7 @@ const baseUrl = base();
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next) {
     if (baseUrl === 'https://www.thegoodparty.org') {
-      if (req.host.indexOf('www.') !== 0) {
+      if (req.hostname.indexOf('www.') !== 0) {
         res.redirect(301, `https://www.${req.hostname}${req.url}`);
       }
     }
