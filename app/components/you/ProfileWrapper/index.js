@@ -37,6 +37,12 @@ const ElectionData = styled.span`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
+const NoElection = styled(Body13)`
+  margin-left: 6px;
+  color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
+`;
+
 const AllElections = styled.div`
   margin-top: 16px;
   color: ${({ theme }) => theme.colors.blue};
@@ -84,12 +90,24 @@ const InviteUrl = styled(Body)`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
-const ProfileWrapper = ({ user, crew, signoutCallback }) => {
-  let { presidentialRank } = user;
+const ProfileWrapper = ({
+  user,
+  crew,
+  houseCandidates,
+  senateCandidates,
+  signoutCallback,
+}) => {
+  let { presidentialRank, senateRank, houseRank } = user;
   const { name, feedback, zipCode, congDistrict } = user;
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
   if (typeof presidentialRank === 'string') {
     presidentialRank = JSON.parse(presidentialRank);
+  }
+  if (typeof senateRank === 'string') {
+    senateRank = JSON.parse(senateRank);
+  }
+  if (typeof houseRank === 'string') {
+    houseRank = JSON.parse(houseRank);
   }
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   let userDistrict = {};
@@ -129,6 +147,20 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
       (_, x) => x + 1 + 3 - fillerCount,
     );
   }
+  const showHouse = houseCandidates && houseCandidates.length > 0;
+  const showSenate = senateCandidates && senateCandidates.length > 0;
+  let senateRankCount = 0;
+  if (senateRank && senateRank[shortState.toLocaleLowerCase()]) {
+    senateRankCount = senateRank[shortState.toLocaleLowerCase()].length;
+  }
+  let houseRankCount = 0;
+  if (
+    houseRank &&
+    houseRank[shortState.toLocaleLowerCase() + userDistrict.code]
+  ) {
+    houseRankCount =
+      houseRank[shortState.toLocaleLowerCase() + userDistrict.code].length;
+  }
 
   const url = uuidUrl(user);
 
@@ -150,25 +182,68 @@ const ProfileWrapper = ({ user, crew, signoutCallback }) => {
           )}
           <Body13>{feedback}</Body13>
         </Centered>
-        <H3>Your Elections</H3>
+        <H3>
+          Your Elections for {shortState}, {zip}
+        </H3>
         <Election>
           Presidential:{' '}
-          <ElectionData>
-            {presidentialRank ? presidentialRank.length : 'No'} Choices Ranked
-          </ElectionData>
+          <Link
+            to={`/elections/${
+              presidentialRank.length > 0 ? 'ranked-' : ''
+            }presidential-election`}
+          >
+            <ElectionData>
+              {presidentialRank
+                ? `${presidentialRank.length} Choices Ranked`
+                : 'Rank Choices'}
+            </ElectionData>
+          </Link>
         </Election>
         {stateLong && (
           <Election>
-            Senate: <ElectionData>{stateLong}</ElectionData>
+            Senate {stateLong}:
+            {showSenate ? (
+              <Link
+                to={`/elections/${
+                  senateRankCount > 0 ? 'ranked-' : ''
+                }senate-election/${shortState.toLowerCase()}`}
+              >
+                <ElectionData>
+                  {senateRank
+                    ? `${senateRankCount} Choice${
+                        senateRankCount > 1 ? 's' : ''
+                      } Ranked`
+                    : 'Rank Choices'}
+                </ElectionData>
+              </Link>
+            ) : (
+              <NoElection>No Race in 2020</NoElection>
+            )}
           </Election>
         )}
         {userDistrict.code && (
           <Election>
-            House:{' '}
-            <ElectionData>
-              {numberNth(userDistrict.code)} District ({shortState}-
-              {userDistrict.code})
-            </ElectionData>
+            House: {numberNth(userDistrict.code)} District ({shortState}-
+            {userDistrict.code})
+            {showHouse ? (
+              <Link
+                to={`/elections/${
+                  houseRankCount > 0 ? 'ranked-' : ''
+                }house-election/${shortState.toLowerCase()}-${
+                  userDistrict.code
+                }`}
+              >
+                <ElectionData>
+                  {houseRank && houseRankCount > 0
+                    ? `${houseRankCount} Choice${
+                        houseRankCount > 1 ? 's' : ''
+                      } Ranked`
+                    : 'Rank Choices'}
+                </ElectionData>
+              </Link>
+            ) : (
+              <NoElection>No Race in 2020</NoElection>
+            )}
           </Election>
         )}
         <Link to={electionLink}>
@@ -233,6 +308,8 @@ ProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   crew: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   signoutCallback: PropTypes.func,
+  houseCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ProfileWrapper;

@@ -14,7 +14,6 @@ export const initialState = {
   geoLocation: false,
   presidential: false,
   houseCandidates: false,
-  districtCandidates: false,
   senateCandidates: false,
   loading: false,
   error: false,
