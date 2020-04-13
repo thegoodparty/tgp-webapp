@@ -10,7 +10,7 @@ const ProgressBarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 4px;
 
   &.left {
     align-items: flex-start;
