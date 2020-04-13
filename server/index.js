@@ -1,5 +1,5 @@
 /* eslint consistent-return:0 import/order:0 */
-
+import { base } from './base';
 const express = require('express');
 const logger = require('./logger');
 
@@ -14,7 +14,7 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-force https
+// force https
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next) {
     if (req.headers['x-forwarded-proto'] === 'https') {
@@ -25,13 +25,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // force www
-app.use(function(req, res, next) {
-  if (req.host.indexOf('www.') !== 0) {
-    res.redirect(301, `${req.protocol}://www.${req.host}${req.originalUrl}`);
-  } else {
-    next();
-  }
-});
+if (base === 'https://www.thegoodparty.org') {
+  app.use(function(req, res, next) {
+    if (req.host.indexOf('www.') !== 0) {
+      res.redirect(301, `${req.protocol}://www.${req.host}${req.originalUrl}`);
+    } else {
+      next();
+    }
+  });
+}
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
