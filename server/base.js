@@ -1,1 +1,6 @@
-export const base = 'https://www.thegoodparty.org';
+/**
+ * Front-end middleware
+ */
+module.exports = () => {
+  return 'https://dev.thegoodparty.org';
+};
