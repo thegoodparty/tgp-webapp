@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: tgp-site-error
+    environment: tgp-site
   develop:
     environment: tgp-site-dev
 environment-defaults:
