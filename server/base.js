@@ -1,1 +1,1 @@
-export const base = 'https://dev.thegoodparty.org';
+export const base = 'https://www.thegoodparty.org';
