@@ -1,5 +1,5 @@
 /* eslint consistent-return:0 import/order:0 */
-import { base } from './base';
+const base = require('./base');
 const express = require('express');
 const logger = require('./logger');
 
