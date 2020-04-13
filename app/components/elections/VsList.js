@@ -138,6 +138,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                 <CandidateAvatar
                   size="responsive"
                   src={candidate.image}
+                  name={candidate.name}
                 />
                 <Name>{candidate.name}</Name>
                 <Role>
@@ -166,6 +167,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                 <CandidateAvatar
                   size="responsive"
                   src={candidate.image}
+                  name={candidate.name}
                   good
                 />
                 <Name>{candidate.name}</Name>
@@ -177,6 +179,13 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
               </CandidateWrapper>
             </Link>
           ))}
+          {good.length === 0 && (
+            <CandidateWrapper className="right">
+              <CandidateAvatar size="responsive" src="blank" good />
+              <Name>NONE YET</Name>
+              <Role>VETTING CHALLENGERS</Role>
+            </CandidateWrapper>
+          )}
         </Side>
       </Row>
       {unknown && unknown.length > 0 && (
@@ -189,6 +198,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                   size="responsive"
                   src={candidate.image}
                   good={null}
+                  name={candidate.name}
                 />
                 <Name>{candidate.name}</Name>
                 <Role>

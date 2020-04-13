@@ -357,7 +357,7 @@ const CandidateWrapper = ({
           <Wrapper>
             <MobileHeader showGoodisGood={isGood} showShare user={user} />
             <TopRow>
-              <CandidateAvatar src={image} good={isGood} size="xl" />
+              <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
               <Body11 style={{ marginTop: '5px' }} className="bold500">
                 {partyResolver(party)} {isIncumbent ? 'INCUMBENT' : 'CANDIDATE'}

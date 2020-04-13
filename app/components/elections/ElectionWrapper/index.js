@@ -14,7 +14,6 @@ import AmaContainer from 'containers/shared/AmaContainer';
 import articlesHelper from 'helpers/articlesHelper';
 import BlueButton from 'components/shared/buttons/BlueButton';
 import GrayWrapper from 'components/shared/GrayWrapper';
-import GoodPartyStats from '../GoodPartyStats';
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
 import BottomPopup from '../../shared/BottomPopup';
@@ -109,8 +108,8 @@ const ElectionWrapper = ({
 
             <H1>{chamber} Elections</H1>
             <Description>
-              We recommend candidates who are not beholden to Big Money, but you
-              can set your own Filters and Rank Your Choices.
+              Choose the candidates you would be willing to cast your vote for,
+              if The Good Party could guarantee enough votes for them to win.
             </Description>
             <ButtonWrapper>
               <BlueButton
@@ -128,7 +127,6 @@ const ElectionWrapper = ({
               openFiltersCallback={openFiltersCallback}
             />
 
-            <GoodPartyStats />
             <TopQuestions articles={articles} />
           </Wrapper>
           <AmaContainer />

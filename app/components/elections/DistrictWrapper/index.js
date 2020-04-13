@@ -20,7 +20,6 @@ import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import { presidentialVotesThreshold } from 'helpers/electionsHelper';
-import GoodPartyStats from '../GoodPartyStats';
 import VsCard from '../VsCard';
 import RankedCard from '../RankedCard/Loadable';
 
@@ -229,8 +228,10 @@ const DistrictWrapper = ({
             </Row>
             <Row justifyContent="space-between">
               <Body>
-                {stateLong} District {districtNumber} ({shortState}-
-                {districtNumber})
+                Congressional District:{' '}
+                <strong>
+                  {shortState}-{districtNumber}
+                </strong>
               </Body>
               <NotDistrict onClick={toggleShowCds}>
                 {showCds ? 'Select Your District' : 'Not Your District?'}
@@ -261,7 +262,7 @@ const DistrictWrapper = ({
             <Spacer>
               <Body>
                 You have <strong>{electionCount}</strong> relevant Federal
-                elections to consider. Click on the cards below for details:
+                elections. Check to see if your vote can elect someone Good!
               </Body>
             </Spacer>
             <Link
@@ -330,7 +331,6 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <GoodPartyStats />
             <TopQuestions articles={articles} />
           </Wrapper>
           <AmaContainer />

@@ -114,15 +114,15 @@ const VsCard = ({
           unknown.length > 1 ? 'S' : ''
         }`,
         party: 'VETTING CHALLENGERS',
-        image: noCandidateImage,
+        image: null,
         isGood: true,
       });
     } else {
       good.push({
         id: 'noneyet',
         name: 'NONE YET',
-        party: 'VETTING CHALLENGERS',
-        image: noCandidateImage,
+        party: 'VC',
+        image: null,
         isGood: true,
       });
     }
@@ -159,7 +159,11 @@ const VsCard = ({
                       zIndex: 5 - index,
                     }}
                   >
-                    <CandidateAvatar size="responsive" src={candidate.image} />
+                    <CandidateAvatar
+                      size="responsive"
+                      src={candidate.image}
+                      name={candidate.name}
+                    />
                   </AvatarAbsolute>
                 )}
               </React.Fragment>
@@ -198,6 +202,7 @@ const VsCard = ({
                     <CandidateAvatar
                       size="responsive"
                       src={candidate.image}
+                      name={candidate.name}
                       good
                     />
                   </AvatarAbsolute>

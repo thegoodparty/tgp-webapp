@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import noCandidateImage from './noCandidateImageUrl';
+import { H3 } from './typogrophy';
+import { getInitials } from '../../helpers/userHelper';
 
 const Wrapper = styled.div`
+  position: relative;
   width: ${props => props.wrapperSizeSmall};
   height: ${props => props.wrapperSizeSmall};
   border-radius: 50%;
@@ -52,7 +55,24 @@ const RedOverlay = styled.div`
   border-radius: 50%;
 `;
 
-const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
+const Initials = styled(H3)`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const CandidateAvatar = ({
+  src = noCandidateImage,
+  size = 'large',
+  good,
+  name,
+}) => {
   const isUnknown = good === null;
   let avatarSizeSmall;
   let avatarSizeLarge;
@@ -80,16 +100,19 @@ const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
     wrapperSizeLarge = '140px';
   }
   if (
-    !src ||
     src ===
-      'https://cdn.ballotpedia.org/images/thumb/f/fb/Silhouette_Placeholder_Image.png/150px-Silhouette_Placeholder_Image.png'
+    'https://cdn.ballotpedia.org/images/thumb/f/fb/Silhouette_Placeholder_Image.png/150px-Silhouette_Placeholder_Image.png'
   ) {
-    src = noCandidateImage;
+    src = '';
   }
 
   let color = good ? 'green' : 'red';
   if (isUnknown) {
     color = 'gray';
+  }
+  let initials = '';
+  if (name && name !== 'NONE YET') {
+    initials = getInitials(name);
   }
 
   return (
@@ -98,6 +121,7 @@ const CandidateAvatar = ({ src = noCandidateImage, size = 'large', good }) => {
       wrapperSizeLarge={wrapperSizeLarge}
       className={color}
     >
+      <Initials>{initials}</Initials>
       <Avatar
         src={src}
         avatarSizeSmall={avatarSizeSmall}

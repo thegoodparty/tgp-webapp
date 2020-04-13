@@ -21,6 +21,9 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'W') {
     return 'WRITE-IN';
   }
+  if (partyLetter === 'VC') {
+    return 'VETTING CHALLENGERS';
+  }
   return '';
 };
 

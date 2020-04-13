@@ -57,7 +57,8 @@ const SupportersProgressBar = ({
     <ProgressBarWrapper className={alignLeft ? 'left' : ''}>
       {showSupporters && (
         <BarBody11>
-          {numberFormatter(peopleSoFar)} Good Party People so far
+          {numberFormatter(peopleSoFar)} Good Party Voter
+          {peopleSoFar !== 1 ? 's' : ''} so far
         </BarBody11>
       )}
       <BarBg>

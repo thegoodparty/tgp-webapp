@@ -47,6 +47,7 @@ const RankedCandidate = ({ candidate, index, withLink = true }) => {
           size="responsive"
           src={candidate.image}
           good={candidate.isGood}
+          name={candidate.name}
         />
         <CandName>
           <BlueBody13>{candidate.name}</BlueBody13>

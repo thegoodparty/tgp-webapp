@@ -47,7 +47,7 @@ export function EditProfilePage({
         <title>Edit Profile | The Good Party</title>
         <meta name="description" content="Edit Profile | The Good Party" />
       </Helmet>
-      {user ? <EditProfileWrapper {...childProps} /> : <LoadingAnimation />}
+      <EditProfileWrapper {...childProps} />
     </div>
   );
 }

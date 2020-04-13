@@ -74,7 +74,9 @@ export function HouseElectionPage({
   if (user) {
     userDistrict = user.districtNumber + '';
     userShortState = user.shortState;
-    if (state !== userShortState || districtNumber !== userDistrict) {
+    if (user.districtNumber === null) {
+      rankingAllowed = true;
+    } else if (state !== userShortState || districtNumber !== userDistrict) {
       rankingAllowed = false;
     }
   }

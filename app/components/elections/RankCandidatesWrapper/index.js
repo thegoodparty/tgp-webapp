@@ -226,6 +226,7 @@ const RankCandidatesWrapper = ({
             <CandidateAvatar
               src={candidate.image}
               good={candidate.isGood || candidate.unknown}
+               name={candidate.name}
             />
           </Link>
           <CardRight>
