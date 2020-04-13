@@ -42,7 +42,8 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
-    "deploy-dev": "git checkout develop  && eb deploy"
+    "deploy-dev": "git checkout develop  && eb deploy",
+    "deploy-prod": "git checkout master  && eb deploy"
   },
   "browserslist": [
     "last 2 versions",
