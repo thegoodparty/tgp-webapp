@@ -19,7 +19,10 @@ const baseUrl = base();
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next) {
     if (baseUrl === 'https://www.thegoodparty.org') {
-      if (req.host.indexOf('www.') !== 0) {
+      console.log('req.hostname', req.hostname);
+      console.log('req.url', req.url);
+      if (req.hostname.indexOf('www.') !== 0) {
+        console.log('redirecting', `https://www.${req.hostname}${req.url}`);
         res.redirect(301, `https://www.${req.hostname}${req.url}`);
       }
     }
@@ -29,7 +32,6 @@ if (process.env.NODE_ENV === 'production') {
     res.redirect(`https://${req.hostname}${req.url}`); // express 4.x
   });
 }
-
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
