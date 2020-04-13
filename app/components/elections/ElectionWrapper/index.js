@@ -17,6 +17,8 @@ import GrayWrapper from 'components/shared/GrayWrapper';
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
 import BottomPopup from '../../shared/BottomPopup';
+import { shortToLongState } from '../../../helpers/electionsHelper';
+import { numberNth } from '../../../helpers/numberHelper';
 
 const Description = styled(Body)`
   margin-top: 10px;
@@ -98,6 +100,17 @@ const ElectionWrapper = ({
     setShowRankAlert(false);
   };
 
+  let title = `${chamber} Elections`;
+  if (chamber === 'Senate' && state) {
+    const stateLong = shortToLongState[state.toUpperCase()];
+    title = `${stateLong} ${chamber} Election`;
+  } else if (chamber === 'House' && state && districtNumber) {
+    const stateLong = shortToLongState[state.toUpperCase()];
+    title = `${stateLong}'s ${numberNth(
+      districtNumber,
+    )} District ${chamber} Election`;
+  }
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -106,7 +119,7 @@ const ElectionWrapper = ({
           <Wrapper>
             <MobileHeader />
 
-            <H1>{chamber} Elections</H1>
+            <H1>{title}</H1>
             <Description>
               Choose the candidates you would be willing to cast your vote for,
               if The Good Party could guarantee enough votes for them to win.

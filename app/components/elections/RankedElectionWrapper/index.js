@@ -133,7 +133,8 @@ const RankedElectionWrapper = ({
     title = 'Presidential';
     progressTitle += ' - President';
   } else if (chamber === 'Senate') {
-    title = 'U.S House of Representatives';
+      const upperState = state.toUpperCase();
+    title = `${shortToLongState[upperState]} Senate`
     progressTitle += ` - ${state.toUpperCase()} Senate`;
   } else if (chamber === 'House' && state) {
     const upperState = state.toUpperCase();
@@ -141,7 +142,7 @@ const RankedElectionWrapper = ({
       districtNumber,
     )} District (${upperState}-${districtNumber})`;
 
-    progressTitle += ` - ${upperState}-${districtNumber}`;
+    progressTitle += ` ${upperState}-${districtNumber}`;
   }
 
   return (
