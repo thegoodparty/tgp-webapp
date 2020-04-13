@@ -15,8 +15,14 @@ const { resolve } = require('path');
 const app = express();
 
 // force https
+const baseUrl = base();
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next) {
+    if (baseUrl === 'https://www.thegoodparty.org') {
+      if (req.host.indexOf('www.') !== 0) {
+        res.redirect(301, `https://www.${req.hostname}${req.url}`);
+      }
+    }
     if (req.headers['x-forwarded-proto'] === 'https') {
       return next();
     }
@@ -24,24 +30,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// force www
-const baseUrl = base();
-if (baseUrl === 'https://www.thegoodparty.org') {
-  console.log('live site');
-  app.all('*', function(req, res, next) {
-    console.log('live site2 req.host', req.host);
-    if (req.host.indexOf('www.') !== 0) {
-      console.log(
-        'live site3 redirect to',
-        `${req.protocol}://www.${req.host}${req.originalUrl}`,
-      );
-      res.redirect(301, `${req.protocol}://www.${req.host}${req.originalUrl}`);
-    } else {
-      console.log('live site 4 no redirect', req.host);
-      next();
-    }
-  });
-}
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
