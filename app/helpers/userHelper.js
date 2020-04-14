@@ -23,7 +23,7 @@ export const fullFirstLastInitials = name => {
   return '';
 };
 
-export const uuidUrl = (user, url = 'https://www.thegoodparty.org') => {
+export const uuidUrl = (user, url = 'https://thegoodparty.org') => {
   let returnUrl = url;
   if (user && user.uuid) {
     returnUrl = `${url}?u=${user.uuid}`;
