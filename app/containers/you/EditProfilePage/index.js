@@ -97,8 +97,8 @@ function mapDispatchToProps(dispatch) {
             districtNumber,
           ),
         );
-        dispatch(push('/intro/zip-finder'));
       }
+      dispatch(push('/intro/zip-finder'));
     },
   };
 }
