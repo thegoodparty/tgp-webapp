@@ -1,7 +1,7 @@
 import { getCookie } from './cookieHelper';
 
 export const fullStoryIdentify = user => {
-  if (!FS) {
+  if (typeof FS === 'undefined') {
     return;
   }
   if (user) {
