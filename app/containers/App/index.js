@@ -55,14 +55,16 @@ import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import GlobalStyle from 'global-styles';
 import SnackbarContainer from 'containers/shared/SnackbarContainer';
 
+import queryHelper from 'helpers/queryHelper';
+import { setCookie } from 'helpers/cookieHelper';
+import { fullStoryIdentify } from 'helpers/fullStoryHelper';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectLocation } from './selectors';
-import queryHelper from '../../helpers/queryHelper';
-import { setCookie } from '../../helpers/cookieHelper';
 
 if (ENV === 'prod') {
   history.listen(location => {
@@ -85,6 +87,7 @@ function App({ locationState, dispatch }) {
     if (uuid) {
       setCookie('referrer', uuid);
     }
+    fullStoryIdentify();
   }, []);
 
   return (
