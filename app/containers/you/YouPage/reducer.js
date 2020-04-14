@@ -1,5 +1,6 @@
 import produce from 'immer';
 import { deleteCookies, getCookie } from 'helpers/cookieHelper';
+import { fullStoryIdentify } from 'helpers/fullStoryHelper';
 
 import types from './constants';
 
@@ -27,6 +28,7 @@ const userReducer = (state = initialState, action) =>
         draft.user = action.user;
         draft.loading = false;
         draft.error = false;
+        fullStoryIdentify(action.user);
         break;
 
       case types.REGISTER_ERROR:
@@ -46,6 +48,7 @@ const userReducer = (state = initialState, action) =>
         draft.token = action.token;
         draft.loading = false;
         draft.error = false;
+        fullStoryIdentify(action.user);
         break;
 
       case types.CONFIRM_EMAIL_ERROR:
