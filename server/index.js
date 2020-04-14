@@ -18,13 +18,10 @@ const app = express();
 const baseUrl = base();
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next) {
-    if (baseUrl === 'https://www.thegoodparty.org') {
+    if (baseUrl === 'https://thegoodparty.org') {
       const str = 'www.';
       if (req.host.indexOf(str) === 0) {
-        res.redirect(
-          301,
-          `https://${req.hostname.slice(str.length)}${req.url}`,
-        );
+        res.redirect(301, `https://thegoodparty.org${req.url}`);
       }
     }
     if (req.headers['x-forwarded-proto'] === 'https') {
