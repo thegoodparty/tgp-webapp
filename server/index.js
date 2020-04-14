@@ -14,13 +14,14 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-// force https
+// force non-www
 const baseUrl = base();
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next) {
-    if (baseUrl === 'https://www.thegoodparty.org') {
-      if (req.hostname.indexOf('www.') !== 0) {
-        res.redirect(301, `https://www.${req.hostname}${req.url}`);
+    if (baseUrl === 'https://thegoodparty.org') {
+      const str = 'www.';
+      if (req.host.indexOf(str) === 0) {
+        res.redirect(301, `https://thegoodparty.org${req.url}`);
       }
     }
     if (req.headers['x-forwarded-proto'] === 'https') {
