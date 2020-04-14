@@ -79,6 +79,8 @@ const EventSnippet = ({ event }) => {
   const addMe = () => {
     const start = dateISOStringHelper(dateAndTime, timeZone);
     const end = dateISOStringHelper(dateAndTime, timeZone, eventDuration);
+
+
     encodeURI();
     const calenderEvent = {
       title: title.replace(/&/g, ' and '),

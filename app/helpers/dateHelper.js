@@ -27,9 +27,13 @@ export const formatDateWithTimezone = (orgDate, timeZone) => {
   try {
     console.log(orgDate, timeZone);
     const hoursDelta = timeZoneToHours(timeZone);
-    console.log('hoursDelta', hoursDelta)
+    console.log('hoursDelta', hoursDelta);
     const date = new Date(orgDate);
-    const noTimeZoneDate = new Date(date.getTime() - hoursDelta * ONE_HOUR);
+    const now = new Date();
+    const myOffset = now.getTimezoneOffset() / 60;
+    const noTimeZoneDate = new Date(
+      date.getTime() - (hoursDelta + myOffset) * ONE_HOUR,
+    );
     return dateTimeUsHelper(noTimeZoneDate).toString();
   } catch (err) {
     return orgDate;
@@ -92,15 +96,26 @@ export const dateISOStringHelper = (orgDate, timezone, addHours = 0) => {
 };
 
 const timeZoneToHours = timezone => {
+  // is daylight saving?
+  const now = new Date();
+  const jan = new Date(now.getFullYear(), 0, 1);
+  const jul = new Date(now.getFullYear(), 6, 1);
+  const isDstObserved =
+    now.getTimezoneOffset() <
+    Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+
+  const timeOffest = isDstObserved ? 1 : 0;
   if (!timezone) {
     return 0;
   }
   if (timezone === 'PST') {
-    return -8;
-  } else if (timezone === 'EST') {
-    return -5;
-  } else if (timezone == 'CST') {
-    return -6;
+    return -8 + timeOffest;
+  }
+  if (timezone === 'EST') {
+    return -5 + timeOffest;
+  }
+  if (timezone === 'CST') {
+    return -6 + timeOffest;
   }
   return 0;
 };
