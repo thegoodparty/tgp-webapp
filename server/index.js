@@ -14,13 +14,17 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-// force https
+// force non-www
 const baseUrl = base();
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function(req, res, next) {
     if (baseUrl === 'https://www.thegoodparty.org') {
-      if (req.hostname.indexOf('www.') !== 0) {
-        res.redirect(301, `https://www.${req.hostname}${req.url}`);
+      const str = 'www.';
+      if (req.host.indexOf(str) === 0) {
+        res.redirect(
+          301,
+          `https://${req.hostname.slice(str.length)}${req.url}`,
+        );
       }
     }
     if (req.headers['x-forwarded-proto'] === 'https') {
@@ -29,7 +33,6 @@ if (process.env.NODE_ENV === 'production') {
     res.redirect(`https://${req.hostname}${req.url}`); // express 4.x
   });
 }
-
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
