@@ -114,9 +114,13 @@ function* socialRegister(action) {
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
     const responseUser = response.user;
-    yield put(actions.registerActionSuccess(responseUser));
+
+    const access_token = response.token;
+    yield put(actions.confirmEmailActionSuccess(responseUser, access_token));
+
     yield put(push('/you/register-step2'));
     setCookie('user', JSON.stringify(responseUser));
+    setCookie('token', access_token);
   } catch (error) {
     if (error.response && error.response.exists) {
       yield put(
@@ -298,24 +302,31 @@ function* socialLogin(action) {
 
 function* updateUser(action) {
   try {
+    console.log('update user1');
     const { updatedFields } = action;
     let api;
+    console.log('update user2');
     if (updatedFields.districtId) {
       api = tgpApi.updateAddress;
     } else {
       api = tgpApi.updateUser;
     }
+    console.log('update user3', api);
     const payload = {
       ...updatedFields,
     };
+    console.log(payload);
+
     const response = yield call(requestHelper, api, payload);
+    console.log('update user4', response);
     const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
 
     setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your Profile is updated'));
   } catch (error) {
-    console.log(error);
+    console.log('Error updading user', error);
+    console.log('Error updading user', JSON.stringify(error));
     yield put(
       snackbarActions.showSnakbarAction('Error updating your profile', 'error'),
     );
