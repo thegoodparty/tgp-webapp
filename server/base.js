@@ -2,5 +2,5 @@
  * Front-end middleware
  */
 module.exports = () => {
-  return 'https://www.thegoodparty.org';
+  return 'https://thegoodparty.org';
 };
