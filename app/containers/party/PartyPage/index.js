@@ -11,13 +11,14 @@ import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectContent } from 'containers/App/selectors';
+import { makeSelectAppVersion, makeSelectContent } from 'containers/App/selectors';
 
 import PartyWrapper from 'components/party/PartyWrapper';
 
-export function PartyPage({ content }) {
+export function PartyPage({ content, appVersion }) {
   const childProps = {
     content,
+    appVersion
   };
 
   return (
@@ -34,6 +35,7 @@ export function PartyPage({ content }) {
 PartyPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  appVersion: PropTypes.string,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -44,6 +46,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
+  appVersion: makeSelectAppVersion(),
 });
 
 const withConnect = connect(

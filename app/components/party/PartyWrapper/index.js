@@ -6,7 +6,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
-import { Body13, H3 } from 'components/shared/typogrophy/index';
+import { Body13, Body9, H3 } from 'components/shared/typogrophy/index';
 import IntroCarousel from 'components/intro/ThreeStepsWrapper/CarouselLoadable';
 import EventSnippet from 'components/shared/EventSnippet';
 import articlesHelper from 'helpers/articlesHelper';
@@ -25,17 +25,22 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const StyledBody13 = styled(Body13)`
-  color: ${({ theme }) => theme.colors.blue};
-`;
-
 const LearnMore = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
   text-align: right;
   cursor: pointer;
 `;
 
-const PartyWrapper = ({ content }) => {
+const AppVersion = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray9};
+  text-align: center;
+  margin-bottom: 80px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-bottom: 20px;
+  }
+`;
+
+const PartyWrapper = ({ content, appVersion }) => {
   const [showCarousel, setShowCarousel] = useState(false);
   const [slideCarousel, setSlideCarousel] = useState(false);
   const events = content ? content.events : [];
@@ -61,6 +66,14 @@ const PartyWrapper = ({ content }) => {
       setShowCarousel(true);
     }
   };
+  let productionVersion = false;
+  if (
+    content.appVersion &&
+    content.appVersion.version &&
+    content.appVersion.version !== appVersion
+  ) {
+    productionVersion = content.appVersion.version;
+  }
   return (
     <div>
       <Nav />
@@ -92,12 +105,23 @@ const PartyWrapper = ({ content }) => {
         <TopQuestions articles={articles} />
       </Wrapper>
       <AmaContainer />
+      <AppVersion>
+        The Good Party V.{appVersion}{' '}
+        {productionVersion ? (
+          <div style={{ marginTop: '8px' }}>
+            Latest version: {productionVersion}
+          </div>
+        ) : (
+          ''
+        )}
+      </AppVersion>
     </div>
   );
 };
 
 PartyWrapper.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  appVersion: PropTypes.string,
 };
 
 export default PartyWrapper;

@@ -16,4 +16,10 @@ const makeSelectContent = () =>
     globalState => globalState.content,
   );
 
-export { makeSelectLocation, makeSelectContent };
+const makeSelectAppVersion = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.appVersion,
+  );
+
+export { makeSelectLocation, makeSelectContent, makeSelectAppVersion };
