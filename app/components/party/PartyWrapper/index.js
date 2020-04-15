@@ -13,6 +13,7 @@ import articlesHelper from 'helpers/articlesHelper';
 import TopQuestions from 'components/shared/TopQuestions';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import AmaContainer from 'containers/shared/AmaContainer';
+import ENV from 'api/ENV';
 
 const EventsWrapper = styled.div`
   margin-top: 50px;
@@ -34,10 +35,7 @@ const LearnMore = styled(Body13)`
 const AppVersion = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray9};
   text-align: center;
-  margin-bottom: 80px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin-bottom: 20px;
-  }
+  padding-bottom: 20px;
 `;
 
 const PartyWrapper = ({ content, appVersion }) => {
@@ -75,7 +73,7 @@ const PartyWrapper = ({ content, appVersion }) => {
     productionVersion = content.appVersion.version;
   }
   return (
-    <div>
+    <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
       <Wrapper white>
         <MobileHeader />
@@ -106,7 +104,7 @@ const PartyWrapper = ({ content, appVersion }) => {
       </Wrapper>
       <AmaContainer />
       <AppVersion>
-        The Good Party V.{appVersion}{' '}
+        The Good Party V.{appVersion} {ENV !== 'prod' && ENV}
         {productionVersion ? (
           <div style={{ marginTop: '8px' }}>
             Latest version: {productionVersion}

@@ -35,3 +35,29 @@ export const uuidUrl = (user, url = 'https://thegoodparty.org') => {
   }
   return returnUrl;
 };
+
+export const userDistrict = user => {
+  if (!user) {
+    return null;
+  }
+  const { districtNumber, zipCode, congDistrict } = user;
+
+  if (districtNumber) {
+    return districtNumber;
+  }
+
+  if (!zipCode) {
+    return null;
+  }
+
+  const { cds } = zipCode;
+  if (cds && cds.length > 0) {
+    cds.forEach(district => {
+      if (district.id === congDistrict) {
+        return district.code;
+      }
+    });
+    return cds[0].code;
+  }
+  return null;
+};

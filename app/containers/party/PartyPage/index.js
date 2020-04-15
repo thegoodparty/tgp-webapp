@@ -11,14 +11,17 @@ import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectAppVersion, makeSelectContent } from 'containers/App/selectors';
+import {
+  makeSelectAppVersion,
+  makeSelectContent,
+} from 'containers/App/selectors';
 
 import PartyWrapper from 'components/party/PartyWrapper';
 
 export function PartyPage({ content, appVersion }) {
   const childProps = {
     content,
-    appVersion
+    appVersion,
   };
 
   return (

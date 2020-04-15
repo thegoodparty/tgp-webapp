@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-import { Body, H3 } from 'components/shared/typogrophy';
+import { H3 } from 'components/shared/typogrophy';
 import { OutlinedButton } from './buttons';
 
 const Wrapper = styled.div`
-  margin: 38px auto 4.5rem;
+  margin: 38px auto 2rem;
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 0;
@@ -24,9 +24,8 @@ const ButtonWrapper = styled.div`
 
 const StyledTextField = styled(TextField)`
   && {
-    background-color: ;#FFF;
+    background-color: #fff;
     padding: 10px 24px;
-    // border: 0.5px solid #F0F0F0;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
     margin: 12px 0;
   }
@@ -62,7 +61,7 @@ const Ama = ({ sendAmaCallback }) => {
           multiline
           rows="4"
           fullWidth
-          placeholder="Ask questions and help improve the FAQ"
+          placeholder="Please ask or suggest anything to help us improve!"
           onChange={onChangeMessage}
         />
         <ButtonWrapper>

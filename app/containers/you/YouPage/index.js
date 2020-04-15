@@ -25,12 +25,16 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 import YouWrapper from 'components/you/YouWrapper';
 import ProfileWrapper from 'components/you/ProfileWrapper/Loadable';
 import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
+import { userDistrict } from '../../../helpers/userHelper';
+import { makeSelectContent } from '../../App/selectors';
+import articlesHelper from '../../../helpers/articlesHelper';
 
 export function YouPage({
   userState,
   districtState,
   dispatch,
   signoutCallback,
+  content,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -46,7 +50,8 @@ export function YouPage({
       dispatch(userActions.crewAction());
     }
     if (user) {
-      const { shortState, districtNumber } = user;
+      const { shortState } = user;
+      const districtNumber = userDistrict(user);
       if (shortState && districtNumber) {
         dispatch(
           districtActions.loadHouseCandidatesAction(shortState, districtNumber),
@@ -58,12 +63,23 @@ export function YouPage({
       }
     }
   }, [user]);
+
+  let articles = [];
+  if (content && content.faqArticles) {
+    articles = articlesHelper(content.faqArticles, 'party');
+  }
+
   const accountProps = {
+    articles,
     user,
     crew,
     signoutCallback,
     houseCandidates,
     senateCandidates,
+  };
+
+  const youProps = {
+    articles,
   };
 
   return (
@@ -72,7 +88,11 @@ export function YouPage({
         <title>You | The Good Party</title>
         <meta name="description" content="You | The Good Party" />
       </Helmet>
-      {user ? <ProfileWrapper {...accountProps} /> : <YouWrapper />}
+      {user ? (
+        <ProfileWrapper {...accountProps} />
+      ) : (
+        <YouWrapper {...youProps} />
+      )}
     </div>
   );
 }
@@ -82,6 +102,7 @@ YouPage.propTypes = {
   userState: PropTypes.object,
   signoutCallback: PropTypes.func,
   districtState: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {
@@ -97,6 +118,7 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   userState: makeSelectUser(),
   districtState: makeSelectZipFinderPage(),
+  content: makeSelectContent(),
 });
 
 const withConnect = connect(

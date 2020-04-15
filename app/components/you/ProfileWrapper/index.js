@@ -3,18 +3,23 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import heartImg from 'images/heart.svg';
+import { AmaContainer } from 'containers/shared/AmaContainer';
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
-import { H1, Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
 import {
-  fullFirstLastInitials,
-  getInitials,
-  uuidUrl,
-} from 'helpers/userHelper';
+  Body,
+  H2,
+  Body13,
+  H3,
+  Body12,
+} from 'components/shared/typogrophy/index';
+import { fullFirstLastInitials, uuidUrl } from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
-import UserAvatar from '../../shared/UserAvatar';
-import ShareButton from '../../shared/ShareButton';
+import UserAvatar from 'components/shared/UserAvatar';
+import ShareButton from 'components/shared/ShareButton';
+import TopQuestions from 'components/shared/TopQuestions';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -96,6 +101,7 @@ const ProfileWrapper = ({
   houseCandidates,
   senateCandidates,
   signoutCallback,
+  articles,
 }) => {
   let { presidentialRank, senateRank, houseRank } = user;
   const { name, feedback, zipCode, congDistrict } = user;
@@ -250,7 +256,11 @@ const ProfileWrapper = ({
           <AllElections>See All Elections</AllElections>
         </Link>
 
-        <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>Your Crew</H3>
+        <H3 style={{ marginTop: '48px', marginBottom: '4px' }}>Your Crew</H3>
+        <Body13 style={{ marginBottom: '8px' }}>
+          invite people to grow your crew
+        </Body13>
+
         <CrewWrapper>
           <CrewMember>
             <UserAvatar user={user} size="medium" />
@@ -271,8 +281,8 @@ const ProfileWrapper = ({
           url={url}
           customElement={
             <UnderCrew>
-              If each person <strong>invites 3 or more people</strong>, we will
-              win!
+              <strong>Invite 3 or more friends to join,</strong> and watch how
+              quickly The Good Party spreads!
             </UnderCrew>
           }
         />
@@ -289,9 +299,13 @@ const ProfileWrapper = ({
           url={url}
           customElement={<BottomLink>Invite Friends</BottomLink>}
         />
+        <a href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion">
+          <BottomLink>Give Feedback or Suggestions</BottomLink>
+        </a>
 
         <Body style={{ marginTop: '12px' }}>
-          Creators of the World, Unite! (Coming Soon)
+          Creators of the World, Unite! help create{' '}
+          <img src={heartImg} alt="tpg" /> (Coming Soon)
         </Body>
         <BottomLink
           style={{ marginTop: '48px', marginBottom: '24px' }}
@@ -299,6 +313,8 @@ const ProfileWrapper = ({
         >
           Sign Out
         </BottomLink>
+        <TopQuestions articles={articles} />
+        <AmaContainer />
       </Wrapper>
     </div>
   );
@@ -308,6 +324,7 @@ ProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   crew: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   signoutCallback: PropTypes.func,
+  articles: PropTypes.array,
   houseCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };

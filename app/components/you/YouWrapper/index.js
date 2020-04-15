@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -8,6 +9,8 @@ import Nav from 'containers/shared/Nav';
 import { H3 } from 'components/shared/typogrophy/index';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
 import CapitalImage from 'images/capital.svg';
+import TopQuestions from 'components/shared/TopQuestions';
+import { AmaContainer } from 'containers/shared/AmaContainer';
 
 const InnerWrapper = styled.div`
   display: flex;
@@ -60,8 +63,8 @@ const ButtonWrapper = styled(Link)`
   width: 100%;
 `;
 
-const YouWrapper = () => (
-  <div>
+const YouWrapper = ({ articles }) => (
+  <div style={{ backgroundColor: '#FFF' }}>
     <Nav />
     <Wrapper white>
       <MobileHeader />
@@ -81,8 +84,14 @@ const YouWrapper = () => (
           </OutlinedButton>
         </ButtonWrapper>
       </InnerWrapper>
+      <TopQuestions articles={articles} />
+      <AmaContainer />
     </Wrapper>
   </div>
 );
+
+YouWrapper.propTypes = {
+  articles: PropTypes.array,
+};
 
 export default YouWrapper;
