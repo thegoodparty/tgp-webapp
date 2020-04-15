@@ -47,6 +47,16 @@ const UserInitials = styled(Body14)`
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.lighterBlue};
   text-transform: uppercase;
+
+  &.medium {
+    height: 50px;
+    width: 50px;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      height: 80px;
+      width: 80px;
+    }
+  }
 `;
 
 const LargeUserInitials = styled(H1)`

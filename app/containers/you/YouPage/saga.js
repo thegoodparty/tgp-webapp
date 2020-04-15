@@ -302,23 +302,18 @@ function* socialLogin(action) {
 
 function* updateUser(action) {
   try {
-    console.log('update user1');
     const { updatedFields } = action;
     let api;
-    console.log('update user2');
     if (updatedFields.districtId) {
       api = tgpApi.updateAddress;
     } else {
       api = tgpApi.updateUser;
     }
-    console.log('update user3', api);
     const payload = {
       ...updatedFields,
     };
-    console.log(payload);
 
     const response = yield call(requestHelper, api, payload);
-    console.log('update user4', response);
     const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
 
@@ -326,7 +321,6 @@ function* updateUser(action) {
     yield put(snackbarActions.showSnakbarAction('Your Profile is updated'));
   } catch (error) {
     console.log('Error updading user', error);
-    console.log('Error updading user', JSON.stringify(error));
     yield put(
       snackbarActions.showSnakbarAction('Error updating your profile', 'error'),
     );
