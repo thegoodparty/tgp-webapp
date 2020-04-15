@@ -15,6 +15,9 @@ const Wrapper = styled.div`
   &.withNav {
     margin-bottom: 4rem;
   }
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-bottom: 0;
+  }
 `;
 const InnerWrapper = styled(Body9)`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
@@ -29,30 +32,27 @@ const InnerWrapper = styled(Body9)`
 `;
 
 function Footer() {
-  const [withMobileNav, setWithMobileNav] = useState(false);
+  const [withMobileNav, setWithMobileNav] = useState(true);
   useEffect(() => {
-    // window.addEventListener('popstate', () => {
-    //   console.log('popstate')
-    //   const { pathname } = window.location;
-    //   if (pathname === '/' || pathname === '/intro/splash') {
-    //     setWithMobileNav(true);
-    //   }
-    //   setWithMobileNav(false);
-    // });
-    history.listen((location, action) => {
-      console.log(location, action);
-      const { pathname } = location;
-      if (
-        pathname === '/' ||
-        pathname === '/intro/splash' ||
-        pathname === '/intro/zip-finder'
-      ) {
-        setWithMobileNav(false);
-      } else {
-        setWithMobileNav(true);
-      }
+    history.listen(location => {
+      updateMobileNav(location);
     });
+    updateMobileNav(window.location);
   }, []);
+
+  const updateMobileNav = location => {
+    const { pathname } = location;
+    if (
+      pathname === '/' ||
+      pathname === '/intro/splash' ||
+      pathname === '/intro/three-steps' ||
+      pathname === '/intro/zip-finder'
+    ) {
+      setWithMobileNav(false);
+    } else {
+      setWithMobileNav(true);
+    }
+  };
 
   console.log('withMob', withMobileNav);
 
