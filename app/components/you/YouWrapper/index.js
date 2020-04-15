@@ -64,7 +64,7 @@ const ButtonWrapper = styled(Link)`
 `;
 
 const YouWrapper = ({ articles }) => (
-  <div>
+  <div style={{ backgroundColor: '#FFF' }}>
     <Nav />
     <Wrapper white>
       <MobileHeader />

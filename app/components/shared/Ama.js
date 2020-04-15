@@ -24,9 +24,8 @@ const ButtonWrapper = styled.div`
 
 const StyledTextField = styled(TextField)`
   && {
-    background-color: ;#FFF;
+    background-color: #fff;
     padding: 10px 24px;
-    // border: 0.5px solid #F0F0F0;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
     margin: 12px 0;
   }
