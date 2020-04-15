@@ -25,16 +25,14 @@ export const formatDateWithTimezone = (orgDate, timeZone) => {
     return '';
   }
   try {
-    console.log(orgDate, timeZone);
     const hoursDelta = timeZoneToHours(timeZone);
-    console.log('hoursDelta', hoursDelta);
     const date = new Date(orgDate);
     const now = new Date();
     const myOffset = now.getTimezoneOffset() / 60;
     const noTimeZoneDate = new Date(
       date.getTime() - (hoursDelta + myOffset) * ONE_HOUR,
     );
-    return dateTimeUsHelper(noTimeZoneDate).toString();
+    return `${dateTimeUsHelper(noTimeZoneDate).toString()} ${timeZone}`;
   } catch (err) {
     return orgDate;
   }
@@ -51,6 +49,7 @@ export const dateTimeUsHelper = orgDate => {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      weekday: 'short',
     }).format(date);
 
     // show minutes only it is not 0 (4PM and 4:30PM)
@@ -78,19 +77,18 @@ export const dateTimeUsHelper = orgDate => {
 };
 
 // returns date in format yyyy-MM-dd'T'HH:mm:ss.SSS'Z' (for calendar)
-export const dateISOStringHelper = (orgDate, timezone, addHours = 0) => {
+export const dateISOStringHelper = (orgDate, addHours = 0) => {
   if (!orgDate) {
     return orgDate;
   }
   try {
     const newDate = new Date(orgDate);
     const utcDate = new Date(newDate.toISOString());
-    const hoursDelta = timeZoneToHours(timezone);
+    const hoursDelta = 0;
 
     utcDate.setHours(utcDate.getHours() - hoursDelta + addHours);
     return utcDate;
   } catch (err) {
-    console.log(err);
     return orgDate;
   }
 };

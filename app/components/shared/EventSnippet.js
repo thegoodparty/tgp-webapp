@@ -77,8 +77,8 @@ const EventSnippet = ({ event }) => {
   } = event;
 
   const addMe = () => {
-    const start = dateISOStringHelper(dateAndTime, timeZone);
-    const end = dateISOStringHelper(dateAndTime, timeZone, eventDuration);
+    const start = dateISOStringHelper(dateAndTime);
+    const end = dateISOStringHelper(dateAndTime, eventDuration);
 
     encodeURI();
     const calenderEvent = {
