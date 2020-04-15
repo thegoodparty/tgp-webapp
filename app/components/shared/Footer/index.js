@@ -11,24 +11,28 @@ import styled from 'styled-components';
 import { Body9 } from '../typogrophy';
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray9};
-  &.withNav {
-    margin-bottom: 4rem;
-  }
+  background-color: ${({ theme }) => theme.colors.grayE};
+  padding: 16px;
+
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 0;
+  }
+
+  &.withNav {
+    margin-bottom: 4rem;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      margin-bottom: 0;
+    }
   }
 `;
 const InnerWrapper = styled(Body9)`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
-  margin: 0 auto;
-  padding: 16px;
-  color: #000;
+  margin: auto auto;
+  padding: 8px;
+  color: ${({ theme }) => theme.colors.gray9};
   text-align: center;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 16px;
-  }
+  border: solid 1px ${({ theme }) => theme.colors.gray9};
 `;
 
 function Footer() {
@@ -54,14 +58,12 @@ function Footer() {
     }
   };
 
-  console.log('withMob', withMobileNav);
-
   return (
     <Wrapper className={withMobileNav ? 'withNav' : ''}>
       <InnerWrapper>
-        Paid for by The Good Party.
+        PAID FOR BY THE GOOD PARTY
         <br />
-        Not authorized by any candidate or candidate’s committee
+        NOT AUThorized by any candidate or candidates committee.
       </InnerWrapper>
     </Wrapper>
   );
