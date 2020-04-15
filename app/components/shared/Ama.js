@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
-import { Body, H3 } from 'components/shared/typogrophy';
+import { H3 } from 'components/shared/typogrophy';
 import { OutlinedButton } from './buttons';
 
 const Wrapper = styled.div`
-  margin: 38px auto 4.5rem;
+  margin: 38px auto 2rem;
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 0;

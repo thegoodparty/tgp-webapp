@@ -65,7 +65,7 @@ const wrapperStyles = {
 };
 function HomePageWrapper() {
   return (
-    <div>
+    <div style={{ backgroundColor: '#FFF' }}>
       <Wrapper white style={wrapperStyles}>
         <div>
           <LoginLink>
@@ -78,8 +78,8 @@ function HomePageWrapper() {
             Power and Money have corrupted <u>both</u> major political parties
           </H1>
           <StyledH2>
-            Imagine an easy, new way to vote & replace every bad politician with someone{' '}
-            <strong>Good!</strong>
+            Imagine an easy, new way to vote & replace every bad politician with
+            someone <strong>Good!</strong>
           </StyledH2>
           <ButtonWrapper>
             <Link to="/intro/splash">

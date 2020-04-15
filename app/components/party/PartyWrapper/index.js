@@ -35,10 +35,7 @@ const LearnMore = styled(Body13)`
 const AppVersion = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray9};
   text-align: center;
-  margin-bottom: 80px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin-bottom: 20px;
-  }
+  padding-bottom: 20px;
 `;
 
 const PartyWrapper = ({ content, appVersion }) => {
@@ -76,7 +73,7 @@ const PartyWrapper = ({ content, appVersion }) => {
     productionVersion = content.appVersion.version;
   }
   return (
-    <div>
+    <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
       <Wrapper white>
         <MobileHeader />
