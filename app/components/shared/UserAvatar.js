@@ -79,29 +79,27 @@ const LargeUserInitials = styled(H1)`
   }
 `;
 
-const UserAvatar = ({ user, size = 'small' }) => {
-  return (
-    <>
-      {user && (
-        <Wrapper>
-          {user.avatar ? (
-            <Avatar src={user.avatar} className={size} />
-          ) : (
-            <>
-              {size === 'small' || size === 'medium' ? (
-                <UserInitials className={size}>
-                  {getInitials(user.name)}
-                </UserInitials>
-              ) : (
-                <LargeUserInitials>{getInitials(user.name)}</LargeUserInitials>
-              )}
-            </>
-          )}
-        </Wrapper>
-      )}
-    </>
-  );
-};
+const UserAvatar = ({ user, size = 'small' }) => (
+  <>
+    {user && (
+      <Wrapper>
+        {user.avatar ? (
+          <Avatar src={user.avatar} className={size} />
+        ) : (
+          <>
+            {size === 'small' || size === 'medium' ? (
+              <UserInitials className={size}>
+                {getInitials(user.name)}
+              </UserInitials>
+            ) : (
+              <LargeUserInitials>{getInitials(user.name)}</LargeUserInitials>
+            )}
+          </>
+        )}
+      </Wrapper>
+    )}
+  </>
+);
 
 UserAvatar.propTypes = {
   user: PropTypes.object,

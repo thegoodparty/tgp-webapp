@@ -63,7 +63,7 @@ function Footer() {
       <InnerWrapper>
         PAID FOR BY THE GOOD PARTY
         <br />
-        NOT AUThorized by any candidate or candidates committee.
+        NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATES COMMITTEE.
       </InnerWrapper>
     </Wrapper>
   );

@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -19,41 +19,11 @@ const MainWrapper = styled.div`
 `;
 
 function ThreeStepsWrapper({ handleNextStep }) {
-  const [slideNum, setSlideNum] = useState(0);
-
-
-  const onChange = value => {
-    setSlideNum(value);
-  };
-
-  const wrapperStyles = () => {
-    if (slideNum === 0) {
-      return {
-        backgroundColor: '#ffffff',
-      };
-    }
-    if (slideNum === 1) {
-      return {
-        backgroundColor: '#f8fbfb',
-      };
-    }
-    if (slideNum === 2) {
-      return {
-        backgroundColor: '#f2f9fb',
-      };
-    }
-    return {
-      backgroundColor: '#fff',
-    };
-  };
   return (
-    <MainWrapper style={wrapperStyles()}>
-      <Wrapper style={wrapperStyles()}>
+    <MainWrapper style={{ backgroundColor: '#fff' }}>
+      <Wrapper style={{ backgroundColor: '#fff' }}>
         <CarouselWrapper>
-          <IntroCarousel
-            handleNextStep={handleNextStep}
-            slideChangeCallback={onChange}
-          />
+          <IntroCarousel handleNextStep={handleNextStep} />
         </CarouselWrapper>
       </Wrapper>
     </MainWrapper>

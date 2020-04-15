@@ -29,6 +29,20 @@ const SliderWrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer: cursor;
+  padding: 24px;
+
+  &:focus {
+    outline: none !important;
+  }
+`;
+
+const SliderInnerWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  pointer: cursor;
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 24px 0;
 
   &:focus {
     outline: none !important;
@@ -80,21 +94,6 @@ const ButtonWrapper = styled.div`
   text-align: center;
 `;
 
-const NextOverlay = styled.span`
-  position: absolute;
-  z-index: 100;
-  top: 50%;
-  right: -25px;
-  width: 20px;
-  transform: translate(0, -50%);
-  height: 20px;
-  padding: 0;
-  cursor: pointer;
-  color: transparent;
-  border: none;
-  outline: none;
-`;
-
 const DotsOverlay = styled.span`
   position: absolute;
   bottom: -25px;
@@ -108,13 +107,8 @@ const DotsOverlay = styled.span`
   z-index: 100;
 `;
 
-const IntroCarousel = ({
-  showButton = true,
-  slideChangeCallback = () => {},
-  handleNextStep = () => {},
-}) => {
+const IntroCarousel = ({ showButton = true, handleNextStep = () => {} }) => {
   const sliderRef = useRef();
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
     dots: true,
@@ -122,10 +116,8 @@ const IntroCarousel = ({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    beforeChange: (oldIndex, newIndex) => {
-      slideChangeCallback(newIndex);
-      setCurrentSlide(newIndex);
-    },
+    centerMode: true,
+    arrows: false,
   };
 
   const next = () => {
@@ -136,47 +128,53 @@ const IntroCarousel = ({
     <Wrapper>
       <Slider {...settings} ref={sliderRef}>
         <SliderWrapper onClick={next}>
-          <SlideTitle>
-            <Circled>1</Circled>
-            <span>SHOW GOOD CANDIDATES</span>
-          </SlideTitle>
-          <SliderImg
-            style={{
-              backgroundImage: `url(${slide1})`,
-            }}
-          />
+          <SliderInnerWrapper>
+            <SlideTitle>
+              <Circled>1</Circled>
+              <span>SHOW GOOD CANDIDATES</span>
+            </SlideTitle>
+            <SliderImg
+              style={{
+                backgroundImage: `url(${slide1})`,
+              }}
+            />
+          </SliderInnerWrapper>
         </SliderWrapper>
         <SliderWrapper onClick={next}>
-          <SlideTitle>
-            <Circled>2</Circled>
-            <span>PRE-COUNT NEEDED VOTES</span>
-          </SlideTitle>
-          <SliderImg
-            style={{
-              backgroundImage: `url(${slide2})`,
-            }}
-          />
+          <SliderInnerWrapper style={{ backgroundColor: '#f8fbfb' }}>
+            <SlideTitle>
+              <Circled>2</Circled>
+              <span>PRE-COUNT NEEDED VOTES</span>
+            </SlideTitle>
+            <SliderImg
+              style={{
+                backgroundImage: `url(${slide2})`,
+              }}
+            />
+          </SliderInnerWrapper>
         </SliderWrapper>
+
         <SliderWrapper onClick={handleNextStep}>
-          <SlideTitle>
-            <Circled>3</Circled>
-            <span>VOTE OR WRITE IN, FTW!</span>
-          </SlideTitle>
-          <SliderImg
-            style={{
-              backgroundImage: `url(${slide3})`,
-            }}
-          />
-          {showButton && (
-            <ButtonWrapper>
-              <BlueButton onClick={handleNextStep} fullWidth>
-                SEE YOUR ELECTIONS
-              </BlueButton>
-            </ButtonWrapper>
-          )}
+          <SliderInnerWrapper style={{ backgroundColor: '#F3FAFC' }}>
+            <SlideTitle>
+              <Circled>3</Circled>
+              <span>VOTE OR WRITE IN, FTW!</span>
+            </SlideTitle>
+            <SliderImg
+              style={{
+                backgroundImage: `url(${slide3})`,
+              }}
+            />
+            {showButton && (
+              <ButtonWrapper>
+                <BlueButton onClick={handleNextStep} fullWidth>
+                  SEE YOUR ELECTIONS
+                </BlueButton>
+              </ButtonWrapper>
+            )}
+          </SliderInnerWrapper>
         </SliderWrapper>
       </Slider>
-      {currentSlide === 2 && <NextOverlay onClick={handleNextStep} />}
       <DotsOverlay />
     </Wrapper>
   );
@@ -184,7 +182,6 @@ const IntroCarousel = ({
 
 IntroCarousel.propTypes = {
   showButton: PropTypes.bool,
-  slideChangeCallback: PropTypes.func,
   handleNextStep: PropTypes.func,
 };
 
