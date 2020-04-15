@@ -62,7 +62,7 @@ const Ama = ({ sendAmaCallback }) => {
           multiline
           rows="4"
           fullWidth
-          placeholder="Ask questions and help improve the FAQ"
+          placeholder="Please ask or suggest anything to help us improve!"
           onChange={onChangeMessage}
         />
         <ButtonWrapper>

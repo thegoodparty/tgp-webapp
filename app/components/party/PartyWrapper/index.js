@@ -13,6 +13,7 @@ import articlesHelper from 'helpers/articlesHelper';
 import TopQuestions from 'components/shared/TopQuestions';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import AmaContainer from 'containers/shared/AmaContainer';
+import ENV from 'api/ENV';
 
 const EventsWrapper = styled.div`
   margin-top: 50px;
@@ -106,7 +107,7 @@ const PartyWrapper = ({ content, appVersion }) => {
       </Wrapper>
       <AmaContainer />
       <AppVersion>
-        The Good Party V.{appVersion}{' '}
+        The Good Party V.{appVersion} {ENV !== 'prod' && ENV}
         {productionVersion ? (
           <div style={{ marginTop: '8px' }}>
             Latest version: {productionVersion}

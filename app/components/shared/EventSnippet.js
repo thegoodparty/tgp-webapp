@@ -80,7 +80,6 @@ const EventSnippet = ({ event }) => {
     const start = dateISOStringHelper(dateAndTime, timeZone);
     const end = dateISOStringHelper(dateAndTime, timeZone, eventDuration);
 
-
     encodeURI();
     const calenderEvent = {
       title: title.replace(/&/g, ' and '),
@@ -106,6 +105,11 @@ const EventSnippet = ({ event }) => {
     setLinks([]);
   };
 
+  const isLocationLink =
+    location.indexOf('http') === 0 || location.indexOf('ama') === 0;
+  const locationLink =
+    location.indexOf('ama') === 0 ? `http://${location}` : location;
+
   return (
     <Wrapper key={id}>
       <Row>
@@ -117,7 +121,16 @@ const EventSnippet = ({ event }) => {
             </StyledBody12>
           )}
           {description && <StyledBody12>{description}</StyledBody12>}
-          <StyledBody12>{location}</StyledBody12>
+          <StyledBody12>
+            <strong>Location: </strong>
+            {isLocationLink ? (
+              <a href={locationLink} target="_blank">
+                {location}
+              </a>
+            ) : (
+              <>{location}</>
+            )}
+          </StyledBody12>
           {presenter && (
             <StyledBody12>
               <span className="bold500 spacing05">{presenter}</span>{' '}

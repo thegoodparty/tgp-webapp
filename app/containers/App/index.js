@@ -55,6 +55,8 @@ import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import GlobalStyle from 'global-styles';
 import SnackbarContainer from 'containers/shared/SnackbarContainer';
 
+import Footer from 'components/shared/Footer';
+
 import queryHelper from 'helpers/queryHelper';
 import { setCookie } from 'helpers/cookieHelper';
 import { fullStoryIdentify } from 'helpers/fullStoryHelper';
@@ -190,6 +192,7 @@ function App({ locationState, dispatch }) {
       </Switch>
       <GlobalStyle />
       <SnackbarContainer />
+      <Footer />
     </div>
   );
 }
