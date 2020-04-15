@@ -51,10 +51,12 @@ const UserInitials = styled(Body14)`
   &.medium {
     height: 50px;
     width: 50px;
+    font-size: 18px;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
       height: 80px;
       width: 80px;
+      font-size: 24px;
     }
   }
 `;
@@ -87,7 +89,9 @@ const UserAvatar = ({ user, size = 'small' }) => {
           ) : (
             <>
               {size === 'small' || size === 'medium' ? (
-                <UserInitials>{getInitials(user.name)}</UserInitials>
+                <UserInitials className={size}>
+                  {getInitials(user.name)}
+                </UserInitials>
               ) : (
                 <LargeUserInitials>{getInitials(user.name)}</LargeUserInitials>
               )}
@@ -101,6 +105,7 @@ const UserAvatar = ({ user, size = 'small' }) => {
 
 UserAvatar.propTypes = {
   user: PropTypes.object,
+  size: PropTypes.string,
 };
 
 export default UserAvatar;
