@@ -1,4 +1,4 @@
 /**
  * Front-end middleware
  */
-module.exports = () => 'https://dev.thegoodparty.org';
+module.exports = () => 'https://thegoodparty.org';
