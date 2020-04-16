@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const WrapperDiv = styled.div`
-  min-height: calc(100vh - 56px);
-  min-height: calc(var(--vh, 1vh) * 100 - 56px);
+  min-height: calc(100vh - 80px);
+  min-height: calc(var(--vh, 1vh) * 100 - 80px);
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
   padding: 0 16px 0;

@@ -40,7 +40,7 @@ export function RankedElectionPage({
   dispatch,
   candidateState,
   userState,
-  stateDistrict,
+  district,
   shortState,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
@@ -91,7 +91,8 @@ export function RankedElectionPage({
     stateCandidates = districtState.houseCandidates;
     chamberEnum = CHAMBER_ENUM.HOUSE;
     chamber = 'House';
-    [state, districtNumber] = stateDistrict.split('-');
+    state = shortState;
+    districtNumber = district;
     rank = getRankFromUserOrState(user, candidateState, 'houseRank');
     rank = rank ? rank[state + districtNumber] : [];
     if (zipWithDistricts) {
@@ -167,14 +168,14 @@ RankedElectionPage.propTypes = {
   userState: PropTypes.object,
   candidateState: PropTypes.object,
   shortState: PropTypes.string,
-  stateDistrict: PropTypes.string,
+  district: PropTypes.string,
 };
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
-    stateDistrict: ownProps.match.params.stateDistrict,
-    shortState: ownProps.match.params.shortState,
+    district: ownProps.match.params.district,
+    shortState: ownProps.match.params.state,
   };
 }
 

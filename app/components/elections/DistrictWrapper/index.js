@@ -267,8 +267,10 @@ const DistrictWrapper = ({
             </Spacer>
             <Link
               to={`/elections/${
-                presidentialRank && presidentialRank.length > 0 ? 'ranked-' : ''
-              }presidential-election`}
+                presidentialRank && presidentialRank.length > 0
+                  ? 'ranked-presidential-election'
+                  : 'presidential'
+              }`}
             >
               {presidentialRank && presidentialRank.length > 0 ? (
                 <RankedCard
@@ -289,8 +291,10 @@ const DistrictWrapper = ({
             </Link>
             <Link
               to={`/elections/${
-                senateRank && senateRank.length > 0 ? 'ranked-' : ''
-              }senate-election/${shortState.toLowerCase()}`}
+                senateRank && senateRank.length > 0
+                  ? 'ranked-senate-election'
+                  : 'senate'
+              }/${shortState.toLowerCase()}`}
             >
               {senateRank && senateRank.length > 0 ? (
                 <RankedCard
@@ -311,8 +315,10 @@ const DistrictWrapper = ({
             </Link>
             <Link
               to={`/elections/${
-                houseRank && houseRank.length > 0 ? 'ranked-' : ''
-              }house-election/${shortState.toLowerCase()}-${districtNumber}`}
+                houseRank && houseRank.length > 0
+                  ? 'ranked-house-election'
+                  : 'house'
+              }/${shortState.toLowerCase()}/${districtNumber}`}
             >
               {houseRank && houseRank.length > 0 ? (
                 <RankedCard

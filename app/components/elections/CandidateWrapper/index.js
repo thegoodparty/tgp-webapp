@@ -308,7 +308,7 @@ const CandidateWrapper = ({
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link to="/elections/presidential-election">U.S. President</Link>
+          <Link to="/elections/presidential">U.S. President</Link>
         </ChamberLink>
       );
     }

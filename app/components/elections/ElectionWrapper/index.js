@@ -47,6 +47,7 @@ const CloseWrapper = styled.div`
 
 const ElectionWrapper = ({
   chamber,
+  displayChamber,
   candidates = {},
   content,
   filters,
@@ -75,15 +76,15 @@ const ElectionWrapper = ({
 
   const handleRankButtonClick = () => {
     if (rankingAllowed) {
-      if (chamber === 'Presidential') {
+      if (chamber === 'presidential') {
         rankingLinkCallback('/elections/rank-candidates/presidential');
         return;
       }
-      if (chamber === 'Senate') {
+      if (chamber === 'senate') {
         rankingLinkCallback(`/elections/rank-candidates/senate/${state}`);
         return;
       }
-      if (chamber === 'House') {
+      if (chamber === 'house') {
         rankingLinkCallback(
           `/elections/rank-candidates/house/${state}/${districtNumber}`,
         );
@@ -100,15 +101,15 @@ const ElectionWrapper = ({
     setShowRankAlert(false);
   };
 
-  let title = `${chamber} Elections`;
-  if (chamber === 'Senate' && state) {
+  let title = `${displayChamber} Elections`;
+  if (chamber === 'senate' && state) {
     const stateLong = shortToLongState[state.toUpperCase()];
-    title = `${stateLong} ${chamber} Election`;
-  } else if (chamber === 'House' && state && districtNumber) {
+    title = `${stateLong} ${displayChamber} Election`;
+  } else if (chamber === 'house' && state && districtNumber) {
     const stateLong = shortToLongState[state.toUpperCase()];
     title = `${stateLong}'s ${numberNth(
       districtNumber,
-    )} District ${chamber} Election`;
+    )} District ${displayChamber} Election`;
   }
 
   return (
@@ -177,6 +178,7 @@ const ElectionWrapper = ({
 
 ElectionWrapper.propTypes = {
   chamber: PropTypes.string,
+  displayChamber: PropTypes.string,
   state: PropTypes.string,
   districtNumber: PropTypes.string,
   candidates: PropTypes.object,

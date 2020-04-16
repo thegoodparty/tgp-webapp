@@ -43,8 +43,22 @@ export function RegisterBannerContainer({
   const houseRank = getRankFromUserOrState(user, candidateState, 'houseRank');
 
   const presidentialCount = presidentialRank ? presidentialRank.length : 0;
-  const senateCount = senateRank ? senateRank.length : 0;
-  const houseCount = houseRank ? houseRank.length : 0;
+
+  let senateCount = 0;
+  if (senateRank) {
+    const senateState = Object.keys(senateRank)[0];
+    if (senateState && senateRank[senateState]) {
+      senateCount = senateRank[senateState].length;
+    }
+  }
+
+  let houseCount = 0;
+  if (houseRank) {
+    const houseDistrict = Object.keys(houseRank)[0];
+    if (houseDistrict && houseRank[houseDistrict]) {
+      houseCount = houseRank[houseDistrict].length;
+    }
+  }
 
   const count = presidentialCount + senateCount + houseCount;
 

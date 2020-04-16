@@ -24,9 +24,7 @@ import ThreeStepsPage from 'containers/intro/ThreeStepsPage/Loadable';
 import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
-import PresidentialElectionPage from 'containers/elections/PresidentialElectionPage/Loadable';
-import SenateElectionPage from 'containers/elections/SenateElectionPage/Loadable';
-import HouseElectionPage from 'containers/elections/HouseElectionPage/Loadable';
+import ElectionPage from 'containers/elections/ElectionPage/Loadable';
 import CandidatePage from 'containers/elections/CandidatePage/Loadable';
 import RankCandidatesPage from 'containers/elections/RankCandidatesPage/Loadable';
 import RankedElectionPage from 'containers/elections/RankedElectionPage/Loadable';
@@ -108,24 +106,10 @@ function App({ locationState, dispatch }) {
         />
         <Route
           exact
-          path="/elections/presidential-election"
-          component={PresidentialElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/senate-election/:shortState"
-          component={SenateElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/house-election/:stateDistrict"
-          component={HouseElectionPage}
-        />
-        <Route
-          exact
           path="/elections/candidate/:chamber/:name/:id"
           component={CandidatePage}
         />
+
         <Route
           exact
           path="/elections/rank-candidates/:chamber"
@@ -148,14 +132,26 @@ function App({ locationState, dispatch }) {
         />
         <Route
           exact
-          path="/elections/ranked-senate-election/:shortState"
+          path="/elections/ranked-senate-election/:state"
           component={RankedElectionPage}
         />
         <Route
           exact
-          path="/elections/ranked-house-election/:stateDistrict"
+          path="/elections/ranked-house-election/:state/:district"
           component={RankedElectionPage}
         />
+        <Route exact path="/elections/:chamber" component={ElectionPage} />
+        <Route
+          exact
+          path="/elections/:chamber/:state"
+          component={ElectionPage}
+        />
+        <Route
+          exact
+          path="/elections/:chamber/:state/:district"
+          component={ElectionPage}
+        />
+
         <Route exact path="/you/register" component={SocialRegisterPage} />
         <Route exact path="/you/register-email" component={RegisterPage} />
         <Route

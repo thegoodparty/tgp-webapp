@@ -195,8 +195,10 @@ const ProfileWrapper = ({
           Presidential:{' '}
           <Link
             to={`/elections/${
-              presidentialRank.length > 0 ? 'ranked-' : ''
-            }presidential-election`}
+              presidentialRank.length > 0
+                ? 'ranked-presidential-election'
+                : 'presidential'
+            }`}
           >
             <ElectionData>
               {presidentialRank
@@ -211,8 +213,8 @@ const ProfileWrapper = ({
             {showSenate ? (
               <Link
                 to={`/elections/${
-                  senateRankCount > 0 ? 'ranked-' : ''
-                }senate-election/${shortState.toLowerCase()}`}
+                  senateRankCount > 0 ? 'ranked-senate-election' : 'senate'
+                }/${shortState.toLowerCase()}`}
               >
                 <ElectionData>
                   {senateRank
@@ -234,10 +236,8 @@ const ProfileWrapper = ({
             {showHouse ? (
               <Link
                 to={`/elections/${
-                  houseRankCount > 0 ? 'ranked-' : ''
-                }house-election/${shortState.toLowerCase()}-${
-                  userDistrict.code
-                }`}
+                  houseRankCount > 0 ? 'ranked-house-election' : 'house'
+                }/${shortState.toLowerCase()}/${userDistrict.code}`}
               >
                 <ElectionData>
                   {houseRank && houseRankCount > 0

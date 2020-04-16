@@ -77,6 +77,17 @@ const Role = styled(Body9)`
   opacity: 0.8;
 `;
 
+const ChoiceButton = styled(Body9)`
+  color: ${({ theme }) => theme.colors.blue};
+  border-radius: 20px;
+  border: solid 2px ${({ theme }) => theme.colors.blue};
+  padding: 7px 12px;
+  display: inline-block;
+  margin-top: 8px;
+  pointer: cursor;
+  font-weight: 700;
+`;
+
 const Line = styled.div`
   width: 1px;
   border: solid 0.5px #cdcdcd;
@@ -127,6 +138,11 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
     return <LoadingAnimation />;
   }
 
+  const choiceButton = candidate => {
+    console.log('choice button', candidate);
+    return <ChoiceButton>1ST CHOICE</ChoiceButton>
+  }
+
   return (
     <div>
       <Row>
@@ -146,6 +162,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
           ))}
@@ -176,6 +193,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
           ))}
@@ -206,6 +224,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
           ))}
