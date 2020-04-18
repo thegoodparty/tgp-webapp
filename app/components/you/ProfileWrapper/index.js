@@ -193,13 +193,7 @@ const ProfileWrapper = ({
         </H3>
         <Election>
           Presidential:{' '}
-          <Link
-            to={`/elections/${
-              presidentialRank.length > 0
-                ? 'ranked-presidential-election'
-                : 'presidential'
-            }`}
-          >
+          <Link to="/elections/presidential">
             <ElectionData>
               {presidentialRank
                 ? `${presidentialRank.length} Choices Ranked`
@@ -211,11 +205,7 @@ const ProfileWrapper = ({
           <Election>
             Senate {stateLong}:
             {showSenate ? (
-              <Link
-                to={`/elections/${
-                  senateRankCount > 0 ? 'ranked-senate-election' : 'senate'
-                }/${shortState.toLowerCase()}`}
-              >
+              <Link to={`/elections/senate/${shortState.toLowerCase()}`}>
                 <ElectionData>
                   {senateRank
                     ? `${senateRankCount} Choice${
@@ -235,9 +225,9 @@ const ProfileWrapper = ({
             {userDistrict.code})
             {showHouse ? (
               <Link
-                to={`/elections/${
-                  houseRankCount > 0 ? 'ranked-house-election' : 'house'
-                }/${shortState.toLowerCase()}/${userDistrict.code}`}
+                to={`/elections/house/${shortState.toLowerCase()}/${
+                  userDistrict.code
+                }`}
               >
                 <ElectionData>
                   {houseRank && houseRankCount > 0

@@ -316,7 +316,7 @@ const CandidateWrapper = ({
       if (state) {
         return (
           <ChamberLink>
-            <Link to={`/elections/senate-election/${state}`}>
+            <Link to={`/elections/senate/${state}`}>
               U.S. Senate for {shortToLongState[state.toUpperCase()]}
             </Link>
           </ChamberLink>
@@ -327,7 +327,7 @@ const CandidateWrapper = ({
       if (state && district) {
         return (
           <ChamberLink>
-            <Link to={`/elections/house-election/${state}-${district}`}>
+            <Link to={`/elections/house/${state}/${district}`}>
               U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
@@ -342,12 +342,12 @@ const CandidateWrapper = ({
 
   const rankPageLink = () => {
     if (chamberName === 'presidential') {
-      return '/elections/rank-candidates/presidential';
+      return '/elections/presidential';
     }
     if (chamberName === 'senate') {
-      return `/elections/rank-candidates/senate/${state}`;
+      return `/elections/senate/${state}`;
     }
-    return `/elections/rank-candidates/house/${state}/${district}`;
+    return `/elections/house/${state}/${district}`;
   };
   return (
     <GrayWrapper>
