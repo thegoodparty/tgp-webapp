@@ -26,8 +26,6 @@ import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import ElectionPage from 'containers/elections/ElectionPage/Loadable';
 import CandidatePage from 'containers/elections/CandidatePage/Loadable';
-import RankCandidatesPage from 'containers/elections/RankCandidatesPage/Loadable';
-import RankedElectionPage from 'containers/elections/RankedElectionPage/Loadable';
 
 import RegisterPage from 'containers/you/EmailRegisterPage/Loadable';
 import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
@@ -110,36 +108,6 @@ function App({ locationState, dispatch }) {
           component={CandidatePage}
         />
 
-        <Route
-          exact
-          path="/elections/rank-candidates/:chamber"
-          component={RankCandidatesPage}
-        />
-        <Route
-          exact
-          path="/elections/rank-candidates/:chamber/:state"
-          component={RankCandidatesPage}
-        />
-        <Route
-          exact
-          path="/elections/rank-candidates/:chamber/:state/:district"
-          component={RankCandidatesPage}
-        />
-        <Route
-          exact
-          path="/elections/ranked-presidential-election"
-          component={RankedElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/ranked-senate-election/:state"
-          component={RankedElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/ranked-house-election/:state/:district"
-          component={RankedElectionPage}
-        />
         <Route exact path="/elections/:chamber" component={ElectionPage} />
         <Route
           exact
