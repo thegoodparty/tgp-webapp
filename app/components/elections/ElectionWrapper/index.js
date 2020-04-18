@@ -1,33 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
 
+import heartImg from 'images/heart.svg';
+import UsMapImage from 'images/us-map.svg';
 import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
-import { Body, H1, H2, H3 } from 'components/shared/typogrophy';
+import { Body, H1, H3 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
 import articlesHelper from 'helpers/articlesHelper';
-import BlueButton from 'components/shared/buttons/BlueButton';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
 import BottomPopup from '../../shared/BottomPopup';
 import { shortToLongState } from '../../../helpers/electionsHelper';
-import { numberNth } from '../../../helpers/numberHelper';
+import { numberFormatter, numberNth } from '../../../helpers/numberHelper';
+import SupportersProgressBar from '../SupportersProgressBar';
+import ChoiceModal from './ChoiceModal';
 
 const Description = styled(Body)`
-  margin-top: 10px;
-`;
-
-const ButtonWrapper = styled.div`
-  text-align: center;
-  max-width: 400px;
-  margin: 16px auto 24px;
+  margin: 10px 0 22px;
 `;
 
 const AlertWrapper = styled.div`
@@ -45,21 +42,141 @@ const CloseWrapper = styled.div`
   right: 1rem;
 `;
 
+const Row = styled.div`
+  margin-top: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+`;
+
+const SupportersWrapper = styled.div`
+  flex: 6;
+`;
+
+const SupportersRow = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const SupportersCount = styled(H1)`
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const HeartImg = styled.img`
+  height: auto;
+  width: 36px;
+  margin-right: 8px;
+`;
+
+const SuppoetersBody = styled(Body)`
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const MapWrapper = styled.div`
+  flex: 4;
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    flex: 3;
+  }
+`;
+
 const ElectionWrapper = ({
   chamber,
+  user,
   displayChamber,
+  chamberRank = [],
   candidates = {},
+  userCounts,
   content,
   filters,
   state,
   districtNumber,
   rankingAllowed,
   changeFiltersCallback,
-
-  rankingLinkCallback,
+  saveRankingCallback,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
+  const [choices, setChoices] = useState({});
+  const [choicesOrder, setChoicesOrder] = useState([]);
+  const [showChoiceModal, setShowChoiceModal] = useState(false);
+  const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
+
+  useEffect(() => {
+    const initialChoices = cookieOrderToChoicesHash();
+    setChoices(initialChoices);
+    setChoicesOrder(chamberRank || []);
+  }, [candidates]);
+
+  const cookieOrderToChoicesHash = () => {
+    if (!chamberRank || chamberRank.length === 0) {
+      return {};
+    }
+    const newChoices = {};
+    chamberRank.map((order, i) => {
+      newChoices[order] = i + 1;
+    });
+    return newChoices;
+  };
+
+  const selectCandidate = async id => {
+    if (
+      choicesOrder.length <=
+      candidates.good.length +
+        candidates.notGood.length +
+        candidates.unknown.length
+    ) {
+      if (!choices[id]) {
+        const newChoices = { ...choices };
+        const newChoicesOrder = [...choicesOrder];
+        newChoices[id] = choicesOrder.length + 1;
+        await setChoices(newChoices);
+        newChoicesOrder.push(id);
+        await setChoicesOrder(newChoicesOrder);
+        saveRankingCallback(
+          user,
+          newChoicesOrder,
+          chamber,
+          state,
+          districtNumber,
+        );
+      }
+    }
+  };
+
+  const deSelectCandidate = async id => {
+    if (
+      choicesOrder.length <=
+      candidates.good.length +
+        candidates.notGood.length +
+        candidates.unknown.length
+    ) {
+      if (choices[id]) {
+        // deselect and remove all previous choices.
+        let idPop;
+        const newChoices = { ...choices };
+        const newChoicesOrder = [...choicesOrder];
+        while (newChoicesOrder.length > 0 && idPop !== id) {
+          idPop = newChoicesOrder.pop();
+          delete newChoices[idPop];
+        }
+        await setChoices(newChoices);
+        await setChoicesOrder(newChoicesOrder);
+        saveRankingCallback(
+          user,
+          newChoicesOrder,
+          chamber,
+          state,
+          districtNumber,
+        );
+      }
+    }
+  };
 
   const openFiltersCallback = () => {
     setShowFilters(true);
@@ -73,29 +190,6 @@ const ElectionWrapper = ({
   if (content && content.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
   }
-
-  const handleRankButtonClick = () => {
-    if (rankingAllowed) {
-      if (chamber === 'presidential') {
-        rankingLinkCallback('/elections/rank-candidates/presidential');
-        return;
-      }
-      if (chamber === 'senate') {
-        rankingLinkCallback(`/elections/rank-candidates/senate/${state}`);
-        return;
-      }
-      if (chamber === 'house') {
-        rankingLinkCallback(
-          `/elections/rank-candidates/house/${state}/${districtNumber}`,
-        );
-        return;
-      }
-      rankingLinkCallback('/elections/rank-candidates/presidential');
-      return;
-    }
-    // ranking not allowed
-    setShowRankAlert(true);
-  };
 
   const handleCloseAlert = () => {
     setShowRankAlert(false);
@@ -112,6 +206,39 @@ const ElectionWrapper = ({
     )} District ${displayChamber} Election`;
   }
 
+  let chamberCount = 0;
+  let votesNeeded = 0;
+  if (userCounts) {
+    if (chamber === 'presidential') {
+      chamberCount = userCounts.totalUsers;
+    } else if (chamber === 'senate') {
+      chamberCount = userCounts.stateUsers;
+    } else if (chamber === 'house') {
+      chamberCount = userCounts.districtUsers;
+    }
+    votesNeeded = userCounts.threshold;
+  }
+
+  const handleChoiceCallback = async candidate => {
+    if (rankingAllowed) {
+      setChoiceModalCandidate(candidate);
+      setShowChoiceModal(true);
+      await selectCandidate(candidate.id);
+    } else {
+      // ranking not allowed
+      setShowRankAlert(true);
+    }
+  };
+
+  const handleDeselectCandidate = async candidate => {
+    await deSelectCandidate(candidate.id);
+  };
+
+  const onCloseChoiceModal = () => {
+    setShowChoiceModal(false);
+    setChoiceModalCandidate(false);
+  };
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -125,22 +252,36 @@ const ElectionWrapper = ({
               Choose the candidates you would be willing to cast your vote for,
               if The Good Party could guarantee enough votes for them to win.
             </Description>
-            <ButtonWrapper>
-              <BlueButton
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth
-                onClick={handleRankButtonClick}
-              >
-                RANK YOUR CHOICES
-              </BlueButton>
-            </ButtonWrapper>
+
             <VsList
               candidates={candidates}
               openFiltersCallback={openFiltersCallback}
+              choices={choices}
+              choicesOrder={choicesOrder}
+              handleChoiceCallback={handleChoiceCallback}
+              handleDeselectCandidate={handleDeselectCandidate}
             />
 
+            <Row>
+              <SupportersWrapper>
+                <SupportersRow>
+                  <HeartImg src={heartImg} alt="tgp" />
+                  <SupportersCount>
+                    {numberFormatter(chamberCount)}
+                  </SupportersCount>
+                </SupportersRow>
+                <SuppoetersBody>Good Party Supporters so far</SuppoetersBody>
+                <SupportersProgressBar
+                  votesNeeded={votesNeeded}
+                  peopleSoFar={chamberCount}
+                  showSupporters={false}
+                  alignLeft
+                />
+              </SupportersWrapper>
+              <MapWrapper>
+                <img src={UsMapImage} alt="" />
+              </MapWrapper>
+            </Row>
             <TopQuestions articles={articles} />
           </Wrapper>
           <AmaContainer />
@@ -172,21 +313,32 @@ const ElectionWrapper = ({
           </H3>
         </AlertWrapper>
       </Dialog>
+      <ChoiceModal
+        open={showChoiceModal}
+        closeCallback={onCloseChoiceModal}
+        candidate={choiceModalCandidate}
+        votesNeeded={votesNeeded}
+        chamberCount={chamberCount}
+        user={user}
+      />
     </GrayWrapper>
   );
 };
 
 ElectionWrapper.propTypes = {
   chamber: PropTypes.string,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   displayChamber: PropTypes.string,
+  chamberRank: PropTypes.array,
   state: PropTypes.string,
   districtNumber: PropTypes.string,
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  changeFiltersCallback: PropTypes.func,
-  rankingLinkCallback: PropTypes.func,
   filters: PropTypes.object,
   rankingAllowed: PropTypes.bool,
+  userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  changeFiltersCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
 };
 
 export default ElectionWrapper;

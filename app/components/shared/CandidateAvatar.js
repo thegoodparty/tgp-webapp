@@ -138,6 +138,7 @@ CandidateAvatar.propTypes = {
   src: PropTypes.string,
   size: PropTypes.string,
   good: PropTypes.bool,
+  name: PropTypes.string,
 };
 
 export default CandidateAvatar;

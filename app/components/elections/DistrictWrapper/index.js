@@ -265,13 +265,7 @@ const DistrictWrapper = ({
                 elections. Check to see if your vote can elect someone Good!
               </Body>
             </Spacer>
-            <Link
-              to={`/elections/${
-                presidentialRank && presidentialRank.length > 0
-                  ? 'ranked-presidential-election'
-                  : 'presidential'
-              }`}
-            >
+            <Link to="/elections/presidential">
               {presidentialRank && presidentialRank.length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
@@ -289,13 +283,7 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link
-              to={`/elections/${
-                senateRank && senateRank.length > 0
-                  ? 'ranked-senate-election'
-                  : 'senate'
-              }/${shortState.toLowerCase()}`}
-            >
+            <Link to={`/elections/senate/${shortState.toLowerCase()}`}>
               {senateRank && senateRank.length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
@@ -314,11 +302,7 @@ const DistrictWrapper = ({
               )}
             </Link>
             <Link
-              to={`/elections/${
-                houseRank && houseRank.length > 0
-                  ? 'ranked-house-election'
-                  : 'house'
-              }/${shortState.toLowerCase()}/${districtNumber}`}
+              to={`/elections/house/${shortState.toLowerCase()}/${districtNumber}`}
             >
               {houseRank && houseRank.length > 0 ? (
                 <RankedCard

@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CheckIcon from '@material-ui/icons/Check';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
+import { numberNth } from '../../helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -86,6 +89,51 @@ const ChoiceButton = styled(Body9)`
   margin-top: 8px;
   pointer: cursor;
   font-weight: 700;
+  text-transform: uppercase;
+  transition: background-color 0.3s, color 0.3s;
+
+  &: hover {
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.blue};
+  }
+`;
+
+const ChosenCandWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const ChosenCand = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
+  margin-left: 4px;
+  text-transform: uppercase;
+`;
+
+const CheckMark = styled(CheckIcon)`
+  color: ${({ theme }) => theme.colors.lightBlue};
+  && {
+    font-size: 9px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 12px;
+    }
+  }
+`;
+
+const CloseIconWrapper = styled.div`
+  padding: 8px 10px 10px 6px;
+`;
+
+const CloseIcon = styled(HighlightOffIcon)`
+  color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
+  && {
+    font-size: 9px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 12px;
+    }
+  }
 `;
 
 const Line = styled.div`
@@ -132,16 +180,49 @@ const UnknownTitle = styled(Body9)`
   text-align: center;
 `;
 
-const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
+const VsList = ({
+  candidates = {},
+  openFiltersCallback = () => {},
+  choices = {},
+  choicesOrder = [],
+  handleChoiceCallback,
+  handleDeselectCandidate,
+}) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
     return <LoadingAnimation />;
   }
 
   const choiceButton = candidate => {
-    console.log('choice button', candidate);
-    return <ChoiceButton>1ST CHOICE</ChoiceButton>
-  }
+    if (choices[candidate.id]) {
+      return (
+        <ChosenCandWrapper>
+          <CheckMark />{' '}
+          <ChosenCand>{numberNth(choices[candidate.id])} CHOICE </ChosenCand>
+          <CloseIconWrapper onClick={e => handleDeselect(candidate, e)}>
+            <CloseIcon />
+          </CloseIconWrapper>
+        </ChosenCandWrapper>
+      );
+    }
+    return (
+      <ChoiceButton onClick={e => handleChoice(candidate, e)}>
+        {numberNth(choicesOrder.length + 1)} CHOICE
+      </ChoiceButton>
+    );
+  };
+
+  const handleChoice = (candidate, e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    handleChoiceCallback(candidate);
+  };
+
+  const handleDeselect = (candidate, e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    handleDeselectCandidate(candidate);
+  };
 
   return (
     <div>
@@ -240,7 +321,11 @@ VsList.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
+  choices: PropTypes.object,
+  choicesOrder: PropTypes.array,
   openFiltersCallback: PropTypes.func,
+  handleChoiceCallback: PropTypes.func,
+  handleDeselectCandidate: PropTypes.func,
 };
 
 export default VsList;

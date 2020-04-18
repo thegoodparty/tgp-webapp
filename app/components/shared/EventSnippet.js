@@ -105,7 +105,10 @@ const EventSnippet = ({ event }) => {
     setLinks([]);
   };
 
-  const isLocationLink = location.indexOf('http') === 0;
+  const isLocationLink =
+    location.indexOf('http') === 0 || location.indexOf('ama') === 0;
+  const locationLink =
+    location.indexOf('ama') === 0 ? `http://${location}` : location;
 
   return (
     <Wrapper key={id}>
@@ -121,7 +124,7 @@ const EventSnippet = ({ event }) => {
           <StyledBody12>
             <strong>Location: </strong>
             {isLocationLink ? (
-              <a href={location} target="_blank">
+              <a href={locationLink} target="_blank">
                 {location}
               </a>
             ) : (

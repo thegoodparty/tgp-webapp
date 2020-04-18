@@ -37,6 +37,8 @@ import candidateSaga from 'containers/elections/CandidatePage/saga';
 import candidateActions from 'containers/elections/CandidatePage/actions';
 import makeSelectCandidate from '../CandidatePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
+import { presidentialVotesThreshold } from '../../../helpers/electionsHelper';
+import userActions from '../../you/YouPage/actions';
 
 export function ElectionPage({
   content,
@@ -49,6 +51,7 @@ export function ElectionPage({
   dispatch,
   changeFiltersCallback,
   rankingLinkCallback,
+  saveRankingCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -59,6 +62,9 @@ export function ElectionPage({
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
   const [chamberRank, setChamberRank] = useState([]);
+
+  const { filters, userCounts } = districtState;
+  const { user } = userState;
 
   let candidates;
   let chamberEnum = 0;
@@ -72,9 +78,6 @@ export function ElectionPage({
     candidates = districtState.houseCandidates;
     chamberEnum = CHAMBER_ENUM.HOUSE;
   }
-
-  const { filters } = districtState;
-  const { user } = userState;
 
   useEffect(() => {
     if (!candidates) {
@@ -90,6 +93,10 @@ export function ElectionPage({
       dispatch(candidateActions.loadRankingFromCookieAction());
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(districtActions.userCountsAction(state, district));
+  }, [state, district]);
 
   useEffect(() => {
     let tempChamberRank;
@@ -131,8 +138,8 @@ export function ElectionPage({
   let rankingAllowed = true;
   if (chamber === 'senate') {
     if (user) {
-      userShortState = user.shortState;
-      if (shortState !== userShortState) {
+      const userShortState = user.shortState;
+      if (state !== userShortState) {
         rankingAllowed = false;
       }
     }
@@ -141,7 +148,17 @@ export function ElectionPage({
       const userDistrict = user.districtNumber + '';
       const userShortState = user.shortState;
       if (user.districtNumber === null) {
-        rankingAllowed = true;
+        // if district not set - take the first district in cds array.
+        if (user.zipCode && user.zipCode.cds && user.zipCode.cds.length > 0) {
+          if (
+            state !== userShortState ||
+            district !== user.zipCode.cds[0].code
+          ) {
+            rankingAllowed = false;
+          } else {
+            rankingAllowed = true;
+          }
+        }
       } else if (state !== userShortState || district !== userDistrict) {
         rankingAllowed = false;
       }
@@ -151,15 +168,18 @@ export function ElectionPage({
 
   const childProps = {
     candidates: filtered,
+    user,
     content,
     chamber,
     displayChamber,
+    chamberRank,
     state,
     districtNumber: district,
-    changeFiltersCallback,
     filters,
     rankingAllowed,
-    rankingLinkCallback,
+    userCounts,
+    changeFiltersCallback,
+    saveRankingCallback,
   };
   return (
     <div>
@@ -182,10 +202,10 @@ ElectionPage.propTypes = {
   district: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
-  changeFiltersCallback: PropTypes.func,
-  rankingLinkCallback: PropTypes.func,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
+  changeFiltersCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -204,8 +224,57 @@ function mapDispatchToProps(dispatch, ownProps) {
     changeFiltersCallback: filters => {
       dispatch(districtActions.changeFiltersAction(filters));
     },
-    rankingLinkCallback: link => {
-      dispatch(push(link));
+    handleRankingCallback: (rankingOrder, user, chamber, state, district) => {
+      if (user) {
+        dispatch(
+          userActions.saveUserRankingAction(
+            rankingOrder,
+            chamber,
+            state,
+            district,
+          ),
+        );
+      }
+
+      const rankingLink =
+        rankingOrder.length > 0 ? `ranked-${chamber}-election` : chamber;
+      if (chamber === 'presidential') {
+        dispatch(push(`/elections/${rankingLink}`));
+      } else if (chamber === 'senate') {
+        dispatch(push(`/elections/${rankingLink}/${state}`));
+      } else if (chamber === 'house') {
+        dispatch(push(`/elections/${rankingLink}/${state}/${district}`));
+      }
+    },
+    saveRankingCallback: (user, rankingOrder, chamber, state, district) => {
+      if (user) {
+        dispatch(
+          userActions.saveUserRankingAction(
+            rankingOrder,
+            chamber,
+            state,
+            district,
+          ),
+        );
+      }
+
+      if (chamber === 'presidential') {
+        dispatch(
+          candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
+        );
+      } else if (chamber === 'senate') {
+        dispatch(
+          candidateActions.saveRankSenateCandidateAction(rankingOrder, state),
+        );
+      } else if (chamber === 'house') {
+        dispatch(
+          candidateActions.saveRankHouseCandidateAction(
+            rankingOrder,
+            state,
+            district,
+          ),
+        );
+      }
     },
   };
 }
