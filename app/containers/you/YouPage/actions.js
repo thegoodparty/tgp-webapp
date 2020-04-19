@@ -48,8 +48,9 @@ const loadUserFromCookieAction = () => ({
   type: types.LOAD_USER_FROM_COOKIE,
 });
 
-const signoutAction = () => ({
+const signoutAction = (url = '/') => ({
   type: types.SIGN_OUT,
+  url,
 });
 
 const loginAction = email => ({

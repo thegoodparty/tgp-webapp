@@ -5,6 +5,7 @@ import userActions from 'containers/you/YouPage/actions';
 import { makeSelectToken } from 'containers/you/YouPage/selectors';
 import { headersOptions } from './httpHeaderHelper';
 import fetchHelper from './fetchHelper';
+import snackbarActions from '../containers/shared/SnackbarContainer/actions';
 
 export default function* requestHelper(api, data) {
   let { url } = api;
@@ -28,12 +29,23 @@ export default function* requestHelper(api, data) {
   if (withAuth) {
     token = yield select(makeSelectToken());
     if (!token) {
-      yield put(userActions.signoutAction());
-      yield put(push('/login'));
+      yield put(userActions.signoutAction('/login'));
       throw new Error({ message: 'missing token' });
     }
   }
 
   const requestOptions = headersOptions(body, api.method, token);
-  return yield call(fetchHelper, url, requestOptions);
+  try {
+    return yield call(fetchHelper, url, requestOptions);
+  } catch (e) {
+    if (e && e.response && e.response.err === 'Invalid token') {
+      yield put(
+        snackbarActions.showSnakbarAction('Please login again', 'error'),
+      );
+      yield put(userActions.signoutAction('/login'));
+      throw new Error({ message: 'invalid token' });
+    } else {
+      throw e;
+    }
+  }
 }
