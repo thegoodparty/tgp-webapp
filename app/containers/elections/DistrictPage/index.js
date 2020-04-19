@@ -127,7 +127,6 @@ export function DistrictPage({
     }
   }, [zipWithDistricts, zip, cd, user]);
 
-
   useEffect(() => {
     const filtered = filterCandidates(
       presidential || [],
@@ -135,7 +134,7 @@ export function DistrictPage({
       CHAMBER_ENUM.PRESIDENTIAL,
     );
     setPresidentialCandidates(filtered);
-  }, [presidential, filters]);
+  }, [presidential, filters, zipWithDistricts]);
 
   useEffect(() => {
     const filtered = filterCandidates(
@@ -144,7 +143,7 @@ export function DistrictPage({
       CHAMBER_ENUM.SENATE,
     );
     setFilteredSenate(filtered);
-  }, [senateCandidates, filters]);
+  }, [senateCandidates, filters, zipWithDistricts]);
 
   const { stateShort } = zipWithDistricts;
   const presidentialRank = getRankFromUserOrState(
@@ -166,7 +165,7 @@ export function DistrictPage({
       CHAMBER_ENUM.HOUSE,
     );
     setFilteredHouse(filtered);
-  }, [houseCandidates, filters]);
+  }, [houseCandidates, filters, zipWithDistricts]);
 
   const childProps = {
     district: zipWithDistricts,
