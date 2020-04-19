@@ -46,7 +46,17 @@ const Row = styled(Body)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 48px;
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const ButtonWrapper = styled.div`
+  padding: 0 10px;
+  width: 100%;
 `;
 
 const AvatarWrapper = styled(Body)`
@@ -86,6 +96,7 @@ const ChoiceModal = ({
   user,
   chamberCount,
   closeCallback,
+  cancelCallback,
 }) => {
   if (!candidate) {
     return <> </>;
@@ -98,6 +109,11 @@ const ChoiceModal = ({
   }
 
   const url = uuidUrl(user);
+
+  const cancelChoice = () => {
+    cancelCallback(candidate.id);
+    closeCallback();
+  };
 
   return (
     <Dialog
@@ -127,9 +143,18 @@ const ChoiceModal = ({
               <br />
               To see more details please visit this candidate’s profile page.
             </BodyText>
-            <OutlinedButton fullWidth onClick={closeCallback} active>
-              <span className="bold500">OK</span>
-            </OutlinedButton>
+            <ButtonRow>
+              <ButtonWrapper>
+                <OutlinedButton fullWidth onClick={cancelChoice} active>
+                  <span className="bold500">CANCEL</span>
+                </OutlinedButton>
+              </ButtonWrapper>
+              <ButtonWrapper>
+                <OutlinedButton fullWidth onClick={closeCallback} active>
+                  <span className="bold500">OK</span>
+                </OutlinedButton>
+              </ButtonWrapper>
+            </ButtonRow>
           </>
         ) : (
           <>
@@ -180,6 +205,7 @@ const ChoiceModal = ({
 ChoiceModal.propTypes = {
   open: PropTypes.bool,
   closeCallback: PropTypes.func,
+  cancelCallback: PropTypes.func,
   candidate: PropTypes.object,
   votesNeeded: PropTypes.number,
   chamberCount: PropTypes.number,

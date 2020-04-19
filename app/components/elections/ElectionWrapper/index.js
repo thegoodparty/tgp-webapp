@@ -43,7 +43,7 @@ const CloseWrapper = styled.div`
 `;
 
 const Row = styled.div`
-  margin-top: 48px;
+  margin: 24px 0;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -239,6 +239,10 @@ const ElectionWrapper = ({
     setChoiceModalCandidate(false);
   };
 
+  const cancelCallback = id => {
+    deSelectCandidate(id);
+  };
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -252,16 +256,6 @@ const ElectionWrapper = ({
               Choose the candidates you would be willing to cast your vote for,
               if The Good Party could guarantee enough votes for them to win.
             </Description>
-
-            <VsList
-              candidates={candidates}
-              openFiltersCallback={openFiltersCallback}
-              choices={choices}
-              choicesOrder={choicesOrder}
-              handleChoiceCallback={handleChoiceCallback}
-              handleDeselectCandidate={handleDeselectCandidate}
-            />
-
             <Row>
               <SupportersWrapper>
                 <SupportersRow>
@@ -282,6 +276,16 @@ const ElectionWrapper = ({
                 <img src={UsMapImage} alt="" />
               </MapWrapper>
             </Row>
+
+            <VsList
+              candidates={candidates}
+              openFiltersCallback={openFiltersCallback}
+              choices={choices}
+              choicesOrder={choicesOrder}
+              handleChoiceCallback={handleChoiceCallback}
+              handleDeselectCandidate={handleDeselectCandidate}
+            />
+
             <TopQuestions articles={articles} />
           </Wrapper>
           <AmaContainer />
@@ -320,6 +324,7 @@ const ElectionWrapper = ({
         votesNeeded={votesNeeded}
         chamberCount={chamberCount}
         user={user}
+        cancelCallback={cancelCallback}
       />
     </GrayWrapper>
   );
