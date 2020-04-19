@@ -118,7 +118,7 @@ export function DistrictPage({
         );
       }
 
-      if (!senateCandidates && shortState) {
+      if (shortState) {
         dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
       if (districtNumber) {
@@ -134,7 +134,7 @@ export function DistrictPage({
       CHAMBER_ENUM.PRESIDENTIAL,
     );
     setPresidentialCandidates(filtered);
-  }, [presidential, filters, zipWithDistricts]);
+  }, [presidential, filters]);
 
   useEffect(() => {
     const filtered = filterCandidates(
@@ -143,7 +143,7 @@ export function DistrictPage({
       CHAMBER_ENUM.SENATE,
     );
     setFilteredSenate(filtered);
-  }, [senateCandidates, filters, zipWithDistricts]);
+  }, [senateCandidates, filters]);
 
   const { stateShort } = zipWithDistricts;
   const presidentialRank = getRankFromUserOrState(
@@ -165,7 +165,7 @@ export function DistrictPage({
       CHAMBER_ENUM.HOUSE,
     );
     setFilteredHouse(filtered);
-  }, [houseCandidates, filters, zipWithDistricts]);
+  }, [houseCandidates, filters]);
 
   const childProps = {
     district: zipWithDistricts,
