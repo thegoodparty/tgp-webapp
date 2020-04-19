@@ -152,7 +152,7 @@ export function ElectionPage({
         if (user.zipCode && user.zipCode.cds && user.zipCode.cds.length > 0) {
           if (
             state !== userShortState ||
-            district !== user.zipCode.cds[0].code
+            district !== user.zipCode.cds[0].code + ''
           ) {
             rankingAllowed = false;
           } else {
