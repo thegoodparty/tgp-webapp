@@ -102,12 +102,13 @@ const ChosenCandWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-top: 10px;
 `;
 
 const ChosenCand = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
   display: inline-block;
-  margin-left: 4px;
+  margin: 0 6px;
   text-transform: uppercase;
 `;
 
@@ -119,10 +120,6 @@ const CheckMark = styled(CheckIcon)`
       font-size: 12px;
     }
   }
-`;
-
-const CloseIconWrapper = styled.div`
-  padding: 8px 10px 10px 6px;
 `;
 
 const CloseIcon = styled(HighlightOffIcon)`
@@ -187,6 +184,7 @@ const VsList = ({
   choicesOrder = [],
   handleChoiceCallback,
   handleDeselectCandidate,
+  rankingMode,
 }) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
@@ -196,14 +194,15 @@ const VsList = ({
   const choiceButton = candidate => {
     if (choices[candidate.id]) {
       return (
-        <ChosenCandWrapper>
+        <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
           <CheckMark />{' '}
           <ChosenCand>{numberNth(choices[candidate.id])} CHOICE </ChosenCand>
-          <CloseIconWrapper onClick={e => handleDeselect(candidate, e)}>
-            <CloseIcon />
-          </CloseIconWrapper>
+          <CloseIcon />
         </ChosenCandWrapper>
       );
+    }
+    if (!rankingMode) {
+      return <></>;
     }
     return (
       <ChoiceButton onClick={e => handleChoice(candidate, e)}>
@@ -326,6 +325,7 @@ VsList.propTypes = {
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,
+  rankingMode: PropTypes.bool,
 };
 
 export default VsList;

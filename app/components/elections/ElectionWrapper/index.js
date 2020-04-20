@@ -97,8 +97,11 @@ const ElectionWrapper = ({
   state,
   districtNumber,
   rankingAllowed,
+  rankingMode,
+  pathname,
   changeFiltersCallback,
   saveRankingCallback,
+  editModeCallback,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -176,6 +179,9 @@ const ElectionWrapper = ({
         );
       }
     }
+    if (!rankingMode) {
+      switchToEditMode();
+    }
   };
 
   const openFiltersCallback = () => {
@@ -243,6 +249,10 @@ const ElectionWrapper = ({
     deSelectCandidate(id);
   };
 
+  const switchToEditMode = () => {
+    editModeCallback(pathname);
+  };
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -284,6 +294,7 @@ const ElectionWrapper = ({
               choicesOrder={choicesOrder}
               handleChoiceCallback={handleChoiceCallback}
               handleDeselectCandidate={handleDeselectCandidate}
+              rankingMode={rankingMode}
             />
 
             <TopQuestions articles={articles} />
@@ -341,9 +352,12 @@ ElectionWrapper.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   filters: PropTypes.object,
   rankingAllowed: PropTypes.bool,
+  rankingMode: PropTypes.bool,
+  pathname: PropTypes.string,
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   changeFiltersCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
+  editModeCallback: PropTypes.func,
 };
 
 export default ElectionWrapper;

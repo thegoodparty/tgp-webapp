@@ -19,7 +19,13 @@ import AmaContainer from 'containers/shared/AmaContainer';
 import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import GrayWrapper from 'components/shared/GrayWrapper';
-import { presidentialVotesThreshold } from 'helpers/electionsHelper';
+import {
+  houseElectionLink,
+  presidentialElectionLink,
+  presidentialVotesThreshold,
+  rankingModeQuery,
+  senateElectionLink,
+} from 'helpers/electionsHelper';
 import VsCard from '../VsCard';
 import RankedCard from '../RankedCard/Loadable';
 
@@ -265,7 +271,7 @@ const DistrictWrapper = ({
                 elections. Check to see if your vote can elect someone Good!
               </Body>
             </Spacer>
-            <Link to="/elections/presidential">
+            <Link to={presidentialElectionLink(presidentialRank)}>
               {presidentialRank && presidentialRank.length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
@@ -283,7 +289,7 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link to={`/elections/senate/${shortState.toLowerCase()}`}>
+            <Link to={senateElectionLink(senateRank, shortState)}>
               {senateRank && senateRank.length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
@@ -301,9 +307,7 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link
-              to={`/elections/house/${shortState.toLowerCase()}/${districtNumber}`}
-            >
+            <Link to={houseElectionLink(houseRank, shortState, districtNumber)}>
               {houseRank && houseRank.length > 0 ? (
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}

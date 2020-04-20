@@ -20,6 +20,11 @@ import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from 'components/shared/UserAvatar';
 import ShareButton from 'components/shared/ShareButton';
 import TopQuestions from 'components/shared/TopQuestions';
+import {
+  houseElectionLink,
+  presidentialElectionLink,
+  senateElectionLink,
+} from '../../../helpers/electionsHelper';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -193,7 +198,7 @@ const ProfileWrapper = ({
         </H3>
         <Election>
           Presidential:{' '}
-          <Link to="/elections/presidential">
+          <Link to={presidentialElectionLink(presidentialRank)}>
             <ElectionData>
               {presidentialRank
                 ? `${presidentialRank.length} Choices Ranked`
@@ -205,7 +210,7 @@ const ProfileWrapper = ({
           <Election>
             Senate {stateLong}:
             {showSenate ? (
-              <Link to={`/elections/senate/${shortState.toLowerCase()}`}>
+              <Link to={senateElectionLink(senateRank, shortState)}>
                 <ElectionData>
                   {senateRank
                     ? `${senateRankCount} Choice${
@@ -225,9 +230,7 @@ const ProfileWrapper = ({
             {userDistrict.code})
             {showHouse ? (
               <Link
-                to={`/elections/house/${shortState.toLowerCase()}/${
-                  userDistrict.code
-                }`}
+                to={houseElectionLink(houseRank, shortState, userDistrict.code)}
               >
                 <ElectionData>
                   {houseRank && houseRankCount > 0

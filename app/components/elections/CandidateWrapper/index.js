@@ -17,8 +17,11 @@ import {
 import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
+  houseElectionLink,
   partyResolver,
+  presidentialElectionLink,
   rankText,
+  senateElectionLink,
   shortToLongState,
 } from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
@@ -308,7 +311,7 @@ const CandidateWrapper = ({
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link to="/elections/presidential">U.S. President</Link>
+          <Link to={rankPageLink()}>U.S. President</Link>
         </ChamberLink>
       );
     }
@@ -316,7 +319,7 @@ const CandidateWrapper = ({
       if (state) {
         return (
           <ChamberLink>
-            <Link to={`/elections/senate/${state}`}>
+            <Link to={rankPageLink()}>
               U.S. Senate for {shortToLongState[state.toUpperCase()]}
             </Link>
           </ChamberLink>
@@ -327,7 +330,7 @@ const CandidateWrapper = ({
       if (state && district) {
         return (
           <ChamberLink>
-            <Link to={`/elections/house/${state}/${district}`}>
+            <Link to={rankPageLink()}>
               U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
@@ -342,12 +345,12 @@ const CandidateWrapper = ({
 
   const rankPageLink = () => {
     if (chamberName === 'presidential') {
-      return '/elections/presidential';
+      return presidentialElectionLink(chamberRank);
     }
     if (chamberName === 'senate') {
-      return `/elections/senate/${state}`;
+      return senateElectionLink(chamberRank, state);
     }
-    return `/elections/house/${state}/${district}`;
+    return houseElectionLink(chamberRank, state, district);
   };
   return (
     <GrayWrapper>
@@ -357,7 +360,12 @@ const CandidateWrapper = ({
           <Wrapper>
             <MobileHeader showGoodisGood={isGood} showShare user={user} />
             <TopRow>
-              <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
+              <CandidateAvatar
+                src={image}
+                good={isGood}
+                name={name}
+                size="xl"
+              />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
               <Body11 style={{ marginTop: '5px' }} className="bold500">
                 {partyResolver(party)} {isIncumbent ? 'INCUMBENT' : 'CANDIDATE'}

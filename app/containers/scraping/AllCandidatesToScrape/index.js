@@ -33,7 +33,6 @@ export function AllCandidatesToScrape({
   const { candidates } = scrapeState;
   const { search } = locationState;
   const onlyNoData = queryHelper(search, 'onlyNoData');
-  console.log('onlyNoData', onlyNoData);
   useEffect(() => {
     if (!candidates) {
       dispatch(scrapeAction.loadAllCandidatesAction(onlyNoData || false));

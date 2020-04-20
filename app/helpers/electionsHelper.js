@@ -340,3 +340,35 @@ export const mapCandidateToHash = candidates => {
 
   return candHash;
 };
+
+export const rankingModeQuery = '?rankingMode=true';
+
+export const presidentialElectionLink = rank => {
+  const route = '/elections/presidential';
+  if (!rank || rank.length === 0) {
+    return route + rankingModeQuery;
+  }
+  return route;
+};
+
+export const senateElectionLink = (rank, state) => {
+  if (!state) {
+    return '';
+  }
+  const route = `/elections/senate/${state.toLowerCase()}`;
+  if (!rank || rank.length === 0) {
+    return route + rankingModeQuery;
+  }
+  return route;
+};
+
+export const houseElectionLink = (rank, state, district) => {
+  if (!state || !district) {
+    return '';
+  }
+  const route = `/elections/house/${state.toLowerCase()}/${district}`;
+  if (!rank || rank.length === 0) {
+    return route + rankingModeQuery;
+  }
+  return route;
+};

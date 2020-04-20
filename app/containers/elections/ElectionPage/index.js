@@ -31,6 +31,7 @@ import {
   CHAMBER_ENUM,
   filterCandidates,
   getRankFromUserOrState,
+  rankingModeQuery,
 } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
@@ -39,6 +40,8 @@ import makeSelectCandidate from '../CandidatePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
 import { presidentialVotesThreshold } from '../../../helpers/electionsHelper';
 import userActions from '../../you/YouPage/actions';
+import { makeSelectLocation } from '../../App/selectors';
+import queryHelper from '../../../helpers/queryHelper';
 
 export function ElectionPage({
   content,
@@ -48,10 +51,11 @@ export function ElectionPage({
   districtState,
   candidateState,
   userState,
+  locationState,
   dispatch,
   changeFiltersCallback,
-  rankingLinkCallback,
   saveRankingCallback,
+  editModeCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -166,6 +170,9 @@ export function ElectionPage({
   }
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
+  const { search, pathname } = locationState;
+  const rankingMode = queryHelper(search, 'rankingMode') === 'true';
+
   const childProps = {
     candidates: filtered,
     user,
@@ -180,6 +187,9 @@ export function ElectionPage({
     userCounts,
     changeFiltersCallback,
     saveRankingCallback,
+    rankingMode,
+    pathname,
+    editModeCallback,
   };
   return (
     <div>
@@ -204,8 +214,10 @@ ElectionPage.propTypes = {
   districtState: PropTypes.object,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
+  locationState: PropTypes.object,
   changeFiltersCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
+  editModeCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -213,6 +225,7 @@ const mapStateToProps = createStructuredSelector({
   districtState: makeSelectZipFinderPage(),
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
+  locationState: makeSelectLocation(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -275,6 +288,9 @@ function mapDispatchToProps(dispatch, ownProps) {
           ),
         );
       }
+    },
+    editModeCallback: pathname => {
+      dispatch(push(pathname + rankingModeQuery));
     },
   };
 }

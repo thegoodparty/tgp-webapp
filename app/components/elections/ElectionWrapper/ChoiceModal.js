@@ -46,6 +46,7 @@ const Row = styled(Body)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 32px;
 `;
 
 const ButtonRow = styled.div`
@@ -206,7 +207,7 @@ ChoiceModal.propTypes = {
   open: PropTypes.bool,
   closeCallback: PropTypes.func,
   cancelCallback: PropTypes.func,
-  candidate: PropTypes.object,
+  candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   votesNeeded: PropTypes.number,
   chamberCount: PropTypes.number,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
