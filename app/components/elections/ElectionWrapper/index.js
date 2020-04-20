@@ -10,7 +10,7 @@ import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
-import { Body, H1, H3 } from 'components/shared/typogrophy';
+import { Body, Body13, H1, H3 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
 import articlesHelper from 'helpers/articlesHelper';
@@ -47,6 +47,13 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+`;
+
+const EditRanking = styled(Body13)`
+  text-align: right;
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 5px 0 10px;
+  cursor: pointer;
 `;
 
 const SupportersWrapper = styled.div`
@@ -286,7 +293,9 @@ const ElectionWrapper = ({
                 <img src={UsMapImage} alt="" />
               </MapWrapper>
             </Row>
-
+            {!rankingMode && (
+              <EditRanking onClick={switchToEditMode}>Edit Ranking</EditRanking>
+            )}
             <VsList
               candidates={candidates}
               openFiltersCallback={openFiltersCallback}
