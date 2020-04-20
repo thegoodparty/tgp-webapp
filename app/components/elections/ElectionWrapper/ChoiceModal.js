@@ -13,6 +13,7 @@ import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ShareButton from '../../shared/ShareButton';
 import { uuidUrl } from '../../../helpers/userHelper';
+import { setCookie } from '../../../helpers/cookieHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -90,6 +91,8 @@ const SuppoetersBody = styled(Body)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
+const ShareWrapper = styled.div``;
+
 const ChoiceModal = ({
   candidate,
   open,
@@ -114,6 +117,10 @@ const ChoiceModal = ({
   const cancelChoice = () => {
     cancelCallback(candidate.id);
     closeCallback();
+  };
+
+  const saveShare = () => {
+    setCookie('isSharedModal', true);
   };
 
   return (
@@ -195,7 +202,9 @@ const ChoiceModal = ({
                 </AvatarWrapper>
               </div>
             </Row>
-            <ShareButton url={url} />
+            <ShareWrapper onClick={saveShare}>
+              <ShareButton url={url} />
+            </ShareWrapper>
           </>
         )}
       </Wrapper>

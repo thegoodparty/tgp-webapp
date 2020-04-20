@@ -22,6 +22,7 @@ import { shortToLongState } from '../../../helpers/electionsHelper';
 import { numberFormatter, numberNth } from '../../../helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChoiceModal from './ChoiceModal';
+import { getCookie, setCookie } from '../../../helpers/cookieHelper';
 
 const Description = styled(Body)`
   margin: 10px 0 22px;
@@ -235,8 +236,11 @@ const ElectionWrapper = ({
   const handleChoiceCallback = async candidate => {
     if (rankingAllowed) {
       setChoiceModalCandidate(candidate);
-      setShowChoiceModal(true);
-      await selectCandidate(candidate.id);
+      selectCandidate(candidate.id);
+      const isSharedModal = getCookie('isSharedModal');
+      if (isSharedModal !== 'true' || candidate.isGood === false) {
+        setShowChoiceModal(true);
+      }
     } else {
       // ranking not allowed
       setShowRankAlert(true);
