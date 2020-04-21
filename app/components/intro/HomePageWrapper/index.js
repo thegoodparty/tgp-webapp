@@ -69,6 +69,7 @@ function HomePageWrapper() {
       <Wrapper white style={wrapperStyles}>
         <div>
           <LoginLink>
+            <Link to="/you/register">Sign-Up</Link>/
             <Link to="/login">Login</Link>
           </LoginLink>
           <div>

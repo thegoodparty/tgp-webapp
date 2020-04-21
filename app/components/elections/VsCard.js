@@ -175,7 +175,7 @@ const VsCard = ({
         </Middler>
         <Sider className="right">
           <Body9>
-            <Green>GOOD ENOUGH</Green>
+            <Green>GOOD OPTIONS</Green>
           </Body9>
           <AvatarsWrapper>
             {good.map((candidate, index) => (

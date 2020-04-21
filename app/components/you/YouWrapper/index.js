@@ -70,6 +70,7 @@ const YouWrapper = ({ articles }) => (
       <MobileHeader />
       <InnerWrapper>
         <Login>
+          <Link to="/you/register">Sign-Up</Link>/
           <Link to="login">Login</Link>
         </Login>
         <Img src={CapitalImage} alt="Capital" aria-label="Capital" />

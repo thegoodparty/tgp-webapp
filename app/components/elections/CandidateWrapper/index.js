@@ -287,7 +287,7 @@ const CandidateWrapper = ({
   const coloredGood = () => {
     return (
       <ColoredText className={color}>
-        {!isGoodOrUnkwown && 'Not'} Good Enough
+        {!isGoodOrUnkwown ? 'Not Good Enough' : 'Good Option'}
       </ColoredText>
     );
   };
@@ -456,7 +456,7 @@ const CandidateWrapper = ({
               )}
             </FundsWrapper>
             <Body13 className="bold500" style={{ margin: '26px 0 16px' }}>
-              Why We Believe {lastName()} {isUnkown ? 'could be' : 'is'}{' '}
+              Why we believe {lastName()} {isUnkown ? 'could be' : 'is'}{' '}
               {coloredGood()}:
             </Body13>
             <Body13>

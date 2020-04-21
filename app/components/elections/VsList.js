@@ -39,16 +39,26 @@ const Middle = styled.div`
   }
 `;
 
-const NotGoodTitle = styled(Body9)`
+const NotGoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.red};
   letter-spacing: 0.5px;
-  font-weight: 500;
+  font-weight: 700;
 `;
 
-const GoodTitle = styled(Body9)`
+const NotGoodSubtitle = styled(Body9)`
+  color: ${({ theme }) => theme.colors.red};
+  letter-spacing: 0.5px;
+`;
+
+const GoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.green};
   letter-spacing: 0.5px;
-  font-weight: 500;
+  font-weight: 700;
+`;
+
+const GoodSubtitle = styled(Body9)`
+  color: ${({ theme }) => theme.colors.green};
+  letter-spacing: 0.5px;
 `;
 
 const CandidateWrapper = styled.div`
@@ -160,8 +170,16 @@ const Vs = styled(Body11)`
   text-align: center;
 `;
 
-const StyledBody9 = styled(Body9)`
+const FiltersButton = styled(Body9)`
+  background-color: #fff;
+  border-radius: 40px;
+  padding: 10px;
+  width: 100%;
   color: ${({ theme }) => theme.colors.blue};
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
+    0px 0px 16px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  text-align: center;
 `;
 
 const EditChoices = styled(Body13)`
@@ -235,6 +253,7 @@ const VsList = ({
       <Row>
         <Side>
           <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
+          <NotGoodSubtitle>BIG MONEY CANDIDATES</NotGoodSubtitle>
           {notGood.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper>
@@ -256,9 +275,7 @@ const VsList = ({
         </Side>
         <Middle>
           <FiltersWRapper>
-            <OutlinedButton active fullWidth onClick={openFiltersCallback}>
-              <StyledBody9>FILTERS</StyledBody9>
-            </OutlinedButton>
+            <FiltersButton onClick={openFiltersCallback}>FILTERS</FiltersButton>
             {!rankingMode && (
               <EditChoices onClick={editRankingCallback}>
                 Edit Choices
@@ -269,7 +286,8 @@ const VsList = ({
           <Vs>VS</Vs>
         </Middle>
         <Side className="right">
-          <GoodTitle>GOOD ENOUGH</GoodTitle>
+          <GoodTitle>GOOD OPTIONS</GoodTitle>
+          <GoodSubtitle>SMALL MONEY CANDIDATES</GoodSubtitle>
           {good.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper className="right">
