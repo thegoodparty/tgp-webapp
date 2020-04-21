@@ -269,7 +269,8 @@ const DistrictWrapper = ({
             <Spacer>
               <Body>
                 You have <strong>{electionCount}</strong> relevant Federal
-                elections. Check to see if your vote can elect someone Good!
+                elections. Join voting blocs to see if your vote can elect
+                someone Good.
               </Body>
             </Spacer>
             <Link to={presidentialElectionLink(presidentialRank)}>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
+import { Body9, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
 

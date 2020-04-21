@@ -267,15 +267,16 @@ const ElectionWrapper = ({
 
             <H1>{title}</H1>
             <Description>
-              Choose the candidates you would be willing to cast your vote for,
-              if The Good Party could guarantee enough votes for them to win.
+              Choose any candidate you like to join their voting bloc. We'll let
+              you know when any voting blocs you join get big enough to win!
             </Description>
             <Row>
               <SupportersWrapper>
                 <SupportersRow>
                   <HeartImg src={heartImg} alt="tgp" />
                   <SupportersCount>
-                    {numberFormatter(chamberCount)}
+                    {numberFormatter(chamberCount)}{' '}
+                    {chamberCount === 1 ? 'Person' : 'People'}
                   </SupportersCount>
                 </SupportersRow>
                 <SuppoetersBody>Good Party Supporters so far</SuppoetersBody>

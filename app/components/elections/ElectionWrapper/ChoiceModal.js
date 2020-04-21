@@ -168,8 +168,8 @@ const ChoiceModal = ({
           <>
             <H1>Good Choice!</H1>
             <BodyText>
-              Now tell some friends! Let&apos;s see if we can get enough votes
-              to win!
+              Now tell some friends! Let&apos;s see if we can grow this voting
+              bloc enough to win!
             </BodyText>
             <Row>
               <SupportersWrapper>
