@@ -77,7 +77,6 @@ function mapDispatchToProps(dispatch) {
       }
     },
     deleteRankingCallback: user => {
-      console.log('delete ranking', user);
       if (user && user.shortState && user.districtNumber) {
         const { shortState, districtNumber } = user;
         dispatch(

@@ -164,6 +164,12 @@ const StyledBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
+const EditChoices = styled(Body13)`
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 16px 0 8px;
+  cursor: pointer;
+`;
+
 const UnknownWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grayC};
   border-radius: 8px;
@@ -185,6 +191,7 @@ const VsList = ({
   handleChoiceCallback,
   handleDeselectCandidate,
   rankingMode,
+  editRankingCallback,
 }) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
@@ -252,6 +259,11 @@ const VsList = ({
             <OutlinedButton active fullWidth onClick={openFiltersCallback}>
               <StyledBody9>FILTERS</StyledBody9>
             </OutlinedButton>
+            {!rankingMode && (
+              <EditChoices onClick={editRankingCallback}>
+                Edit Choices
+              </EditChoices>
+            )}
           </FiltersWRapper>
           <Line />
           <Vs>VS</Vs>
@@ -325,6 +337,7 @@ VsList.propTypes = {
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,
+  editRankingCallback: PropTypes.func,
   rankingMode: PropTypes.bool,
 };
 

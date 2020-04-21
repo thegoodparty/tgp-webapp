@@ -50,13 +50,6 @@ const Row = styled.div`
   align-items: flex-start;
 `;
 
-const EditRanking = styled(Body13)`
-  text-align: right;
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 5px 0 10px;
-  cursor: pointer;
-`;
-
 const SupportersWrapper = styled.div`
   flex: 6;
 `;
@@ -297,9 +290,7 @@ const ElectionWrapper = ({
                 <img src={UsMapImage} alt="" />
               </MapWrapper>
             </Row>
-            {!rankingMode && (
-              <EditRanking onClick={switchToEditMode}>Edit Ranking</EditRanking>
-            )}
+
             <VsList
               candidates={candidates}
               openFiltersCallback={openFiltersCallback}
@@ -308,6 +299,7 @@ const ElectionWrapper = ({
               handleChoiceCallback={handleChoiceCallback}
               handleDeselectCandidate={handleDeselectCandidate}
               rankingMode={rankingMode}
+              editRankingCallback={switchToEditMode}
             />
 
             <TopQuestions articles={articles} />
