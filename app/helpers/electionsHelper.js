@@ -372,3 +372,15 @@ export const houseElectionLink = (rank, state, district) => {
   }
   return route;
 };
+
+export const isDistrictInCds = (districtNumber, cds) => {
+  if (!districtNumber || !cds) {
+    return false;
+  }
+  for (let i = 0; i < cds.length; i++) {
+    if (parseInt(districtNumber, 10) === parseInt(cds[i].code, 10)) {
+      return true;
+    }
+  }
+  return false;
+};

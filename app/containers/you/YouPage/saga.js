@@ -391,6 +391,23 @@ function* saveUserRanking(action) {
   }
 }
 
+function* deleteUserRanking() {
+  try {
+    const api = tgpApi.deleteUserRanking;
+    const response = yield call(requestHelper, api, null);
+    const { user } = response;
+    yield put(actions.updateUserActionSuccess(user));
+
+    setCookie('user', JSON.stringify(user));
+    yield put(snackbarActions.showSnakbarAction('Your ranking were deleted'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting your ranking', 'error'),
+    );
+  }
+}
+
 function* generateUuid() {
   const user = getCookie('user');
   const guestUuid = getCookie('guuid');
@@ -429,6 +446,7 @@ export default function* saga() {
     types.SAVE_USER_RANKING,
     saveUserRanking,
   );
+  yield takeLatest(types.DELETE_USER_RANKING, deleteUserRanking);
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   yield takeLatest(types.CREW, crew);
 }

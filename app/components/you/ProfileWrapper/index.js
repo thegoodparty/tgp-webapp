@@ -111,13 +111,13 @@ const ProfileWrapper = ({
   let { presidentialRank, senateRank, houseRank } = user;
   const { name, feedback, zipCode, congDistrict } = user;
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
-  if (typeof presidentialRank === 'string') {
+  if (typeof presidentialRank === 'string' && presidentialRank !== '') {
     presidentialRank = JSON.parse(presidentialRank);
   }
-  if (typeof senateRank === 'string') {
+  if (typeof senateRank === 'string' && senateRank !== '') {
     senateRank = JSON.parse(senateRank);
   }
-  if (typeof houseRank === 'string') {
+  if (typeof houseRank === 'string' && houseRank !== '') {
     houseRank = JSON.parse(houseRank);
   }
   const shortState = stateShort ? stateShort.toUpperCase() : '';

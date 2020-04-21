@@ -184,7 +184,8 @@ const DistrictWrapper = ({
   }
 
   const handleDistrictChange = (cdId, index) => {
-    if (user && houseRank) {
+    console.log('here1');
+    if ((user && houseRank) || (user && senateRank)) {
       setSelectedCid(cdId);
       setSelectedIndex(index);
       setShowRankAlert(true);
@@ -201,7 +202,7 @@ const DistrictWrapper = ({
   };
 
   const handleZipChange = () => {
-    if (user && houseRank) {
+    if ((user && houseRank) || (user && senateRank)) {
       setChangeZipSelected(true);
       setShowRankAlert(true);
     } else {

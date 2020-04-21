@@ -83,45 +83,9 @@ const userReducer = (state = initialState, action) =>
         draft.loginEmail = action.user._profile.email;
         break;
 
-      case types.UPDATE_PRESIDENTIAL_RANK:
-        if (!state.user) {
-          break;
-        } else {
-          const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
-          copyUser.presidentialRank = JSON.stringify(action.rank);
-          draft.user = copyUser;
-          break;
-        }
-
-      case types.UPDATE_SENATE_RANK:
-        if (!state.user) {
-          break;
-        } else {
-          const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
-          const senateState = action.state || '';
-          const newRank = { [senateState]: action.rank || [] };
-          copyUser.senateRank = JSON.stringify(newRank);
-          draft.user = copyUser;
-          break;
-        }
-
-      case types.UPDATE_HOUSE_RANK:
-        if (!state.user) {
-          break;
-        } else {
-          const copyUser = JSON.parse(JSON.stringify(state.user)); // deep copy
-          const houseState = action.state || '';
-          const district = action.district || '';
-          const newRank2 = {
-            [`${houseState}${district}`]: action.rank || [],
-          };
-          copyUser.houseRank = JSON.stringify(newRank2);
-          draft.user = copyUser;
-          break;
-        }
-
       case types.UPLOAD_AVATAR:
         draft.loading = true;
+        break;
 
       case types.UPDATE_USER_SUCCESS:
         draft.loading = false;

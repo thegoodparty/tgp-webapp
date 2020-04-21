@@ -90,8 +90,8 @@ const wrapperStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-around',
-  padding: '0 40px 4rem',
-  height: '100vh',
+  padding: '0 40px 6rem',
+  minHeight: '100vh',
 };
 
 function SplashWrapper() {

@@ -215,7 +215,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     cd: ownProps.match.params.cd,
     changeDistrictCallback: (districtId, districtIndex, zip, user) => {
       dispatch(push(`/elections/district/${zip}/${districtIndex}`));
-      if (user) {
+      if (user && districtId) {
         dispatch(userActions.updateUserAction({ districtId }));
       }
     },
@@ -223,8 +223,8 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch(
         candidateActions.saveRankHouseCandidateAction([], state, district),
       );
-      dispatch(userActions.updateHouseRankAction([], state, district));
-      dispatch(userActions.saveUserRankingAction([], 'house', state, district));
+      dispatch(candidateActions.saveRankSenateCandidateAction([], state));
+      dispatch(userActions.deleteUserRankingAction());
     },
     changeZipCallback: () => {
       dispatch(push('/intro/zip-finder'));

@@ -99,6 +99,10 @@ const saveUserRankingAction = (ranking, chamber, state, district) => ({
   district,
 });
 
+const deleteUserRankingAction = () => ({
+  type: types.DELETE_USER_RANKING,
+});
+
 const uploadAvatarAction = (fileName, fileData, withRedirect = true) => ({
   type: types.UPLOAD_AVATAR,
   fileName,
@@ -132,12 +136,10 @@ export default {
   signoutAction,
   loginAction,
   socialLoginAction,
-  updatePresidentialRankAction,
-  updateSenateRankAction,
-  updateHouseRankAction,
   updateUserAction,
   updateUserActionSuccess,
   saveUserRankingAction,
+  deleteUserRankingAction,
   uploadAvatarAction,
   generateUuidAction,
   crewAction,

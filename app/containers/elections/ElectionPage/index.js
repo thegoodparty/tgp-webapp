@@ -31,6 +31,7 @@ import {
   CHAMBER_ENUM,
   filterCandidates,
   getRankFromUserOrState,
+  isDistrictInCds,
   rankingModeQuery,
 } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
@@ -156,7 +157,7 @@ export function ElectionPage({
         if (user.zipCode && user.zipCode.cds && user.zipCode.cds.length > 0) {
           if (
             state !== userShortState ||
-            district !== user.zipCode.cds[0].code + ''
+            !isDistrictInCds(district, user.zipCode.cds)
           ) {
             rankingAllowed = false;
           } else {

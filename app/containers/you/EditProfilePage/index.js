@@ -77,6 +77,7 @@ function mapDispatchToProps(dispatch) {
       }
     },
     deleteRankingCallback: user => {
+      console.log('delete ranking', user);
       if (user && user.shortState && user.districtNumber) {
         const { shortState, districtNumber } = user;
         dispatch(
@@ -86,18 +87,16 @@ function mapDispatchToProps(dispatch) {
             districtNumber,
           ),
         );
-        dispatch(
-          userActions.updateHouseRankAction([], shortState, districtNumber),
-        );
-        dispatch(
-          userActions.saveUserRankingAction(
-            [],
-            'house',
-            shortState,
-            districtNumber,
-          ),
-        );
       }
+      if (user && user.shortState) {
+        const { shortState } = user;
+
+        dispatch(
+          candidateActions.saveRankSenateCandidateAction([], shortState),
+        );
+        dispatch(userActions.deleteUserRankingAction());
+      }
+
       dispatch(push('/intro/zip-finder'));
     },
   };
