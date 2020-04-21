@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const WrapperDiv = styled.div`
-  min-height: calc(100vh - 80px);
-  min-height: calc(var(--vh, 1vh) * 100 - 80px);
+  min-height: calc(100vh - 140px);
+  min-height: calc(var(--vh, 1vh) * 100 - 140px);
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
   padding: 0 16px 0;
   background-color: ${({ theme }) => theme.colors.grayBg};
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 3rem 16px 0;
+    min-height: calc(100vh - 120px);
+    min-height: calc(var(--vh, 1vh) * 100 - 120px);
   }
 
   &.white {
@@ -51,4 +53,3 @@ Wrapper.propTypes = {
 };
 
 export default Wrapper;
-
