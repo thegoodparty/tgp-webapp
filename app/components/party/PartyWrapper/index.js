@@ -93,7 +93,7 @@ const PartyWrapper = ({ content, appVersion }) => {
           <EventsWrapper>
             <Row>
               <H3>Upcoming Online Events</H3>
-              {/*<StyledBody13>See All</StyledBody13>*/}
+              {/*<LearnMore>See All</LearnMore>*/}
             </Row>
             {events.map(event => (
               <EventSnippet event={event} key={event.id} />
