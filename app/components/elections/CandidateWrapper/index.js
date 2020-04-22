@@ -352,6 +352,16 @@ const CandidateWrapper = ({
     }
     return houseElectionLink(chamberRank, state, district, true);
   };
+
+  const rankLabel = () => {
+    if (rank) {
+      return `YOUR ${rankText(rank)} CHOICE`;
+    }
+    if (chamberRank && chamberRank.length > 0) {
+      return 'EDIT CHOICES';
+    }
+    return 'RANK YOUR CHOICES';
+  };
   return (
     <GrayWrapper>
       {candidate ? (
@@ -390,12 +400,7 @@ const CandidateWrapper = ({
               <Link to={rankPageLink()}>
                 <RankButton className={rank ? 'blue' : ''}>
                   <StyledBody12 className={rank ? 'white' : ''}>
-                    {/*{rank*/}
-                    {/*? `YOUR ${rankText(rank)} CHOICE`*/}
-                    {/*: 'RANK YOUR CHOICES'}*/}
-                    {chamberRank && chamberRank.length > 0
-                      ? `EDIT CHOICES`
-                      : 'RANK YOUR CHOICES'}
+                    {rankLabel()}
                   </StyledBody12>
                 </RankButton>
               </Link>
