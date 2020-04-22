@@ -75,10 +75,37 @@ const SupportersRow = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
+  position: relative;
 `;
 
 const SupportersCount = styled(H1)`
   color: ${({ theme }) => theme.colors.gray7};
+  position: absolute;
+  left: 45px;
+  top: -5px;
+  animation-fill-mode: forwards;
+
+  @keyframes animate-in {
+    0% {
+      opacity: 0;
+      top: -25px;
+    }
+    100% {
+      opacity: 1;
+      top: -5px;
+    }
+  }
+
+  @keyframes animate-out {
+    0% {
+      opacity: 1;
+      top: -5px;
+    }
+    100% {
+      opacity: 0;
+      top: 15px;
+    }
+  }
 `;
 
 const HeartImg = styled.img`
@@ -99,6 +126,7 @@ const ChoiceModal = ({
   votesNeeded,
   user,
   chamberCount,
+  animateCount,
   closeCallback,
   cancelCallback,
 }) => {
@@ -175,9 +203,20 @@ const ChoiceModal = ({
               <SupportersWrapper>
                 <SupportersRow>
                   <HeartImg src={heartImg} alt="tgp" />
-                  <SupportersCount>
-                    {numberFormatter(chamberCount)}
-                  </SupportersCount>
+                  {animateCount ? (
+                    <>
+                      <SupportersCount style={{ animation: `animate-out 1s ease-in-out forwards` }}>
+                        {numberFormatter(chamberCount)}
+                      </SupportersCount>
+                      <SupportersCount style={{ animation: `animate-in 1s ease-in-out forwards` }}>
+                        {numberFormatter(chamberCount + 1)}
+                      </SupportersCount>
+                    </>
+                  ) : (
+                    <SupportersCount>
+                      {numberFormatter(chamberCount)}
+                    </SupportersCount>
+                  )}
                 </SupportersRow>
                 <SuppoetersBody>Good Party Supporters so far</SuppoetersBody>
                 <SupportersProgressBar
@@ -220,6 +259,7 @@ ChoiceModal.propTypes = {
   votesNeeded: PropTypes.number,
   chamberCount: PropTypes.number,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  animateCount: PropTypes.bool,
 };
 
 export default ChoiceModal;

@@ -26,7 +26,7 @@ export function AmaContainer({ sendAmaCallback }) {
 }
 
 AmaContainer.propTypes = {
-  sendAmaCallback: PropTypes.func.isRequired,
+  sendAmaCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {

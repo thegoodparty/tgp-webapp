@@ -103,6 +103,7 @@ const ElectionWrapper = ({
   changeFiltersCallback,
   saveRankingCallback,
   editModeCallback,
+  refreshCountCallback,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -178,6 +179,9 @@ const ElectionWrapper = ({
           state,
           districtNumber,
         );
+        if (newChoicesOrder.length <= 1) {
+          refreshCountCallback(state, districtNumber);
+        }
       }
     }
     if (!rankingMode) {
@@ -247,6 +251,7 @@ const ElectionWrapper = ({
   const onCloseChoiceModal = () => {
     setShowChoiceModal(false);
     setChoiceModalCandidate(false);
+    refreshCountCallback(state, districtNumber);
   };
 
   const cancelCallback = id => {
@@ -342,6 +347,7 @@ const ElectionWrapper = ({
         chamberCount={chamberCount}
         user={user}
         cancelCallback={cancelCallback}
+        animateCount={choicesOrder.length <= 1}
       />
     </GrayWrapper>
   );
@@ -364,6 +370,7 @@ ElectionWrapper.propTypes = {
   changeFiltersCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
   editModeCallback: PropTypes.func,
+  refreshCountCallback: PropTypes.func,
 };
 
 export default ElectionWrapper;

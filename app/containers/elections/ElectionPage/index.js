@@ -26,7 +26,10 @@ import saga from 'containers/intro/ZipFinderPage/saga';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
-import { makeSelectContent } from 'containers/App/selectors';
+import {
+  makeSelectContent,
+  makeSelectLocation,
+} from 'containers/App/selectors';
 import {
   CHAMBER_ENUM,
   filterCandidates,
@@ -37,12 +40,11 @@ import {
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import candidateActions from 'containers/elections/CandidatePage/actions';
-import makeSelectCandidate from '../CandidatePage/selectors';
-import makeSelectUser from '../../you/YouPage/selectors';
-import { presidentialVotesThreshold } from '../../../helpers/electionsHelper';
-import userActions from '../../you/YouPage/actions';
-import { makeSelectLocation } from '../../App/selectors';
-import queryHelper from '../../../helpers/queryHelper';
+import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
+import makeSelectUser from 'containers/you/YouPage/selectors';
+
+import userActions from 'containers/you/YouPage/actions';
+import queryHelper from 'helpers/queryHelper';
 
 export function ElectionPage({
   content,
@@ -57,6 +59,7 @@ export function ElectionPage({
   changeFiltersCallback,
   saveRankingCallback,
   editModeCallback,
+  refreshCountCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -191,6 +194,7 @@ export function ElectionPage({
     rankingMode,
     pathname,
     editModeCallback,
+    refreshCountCallback,
   };
   return (
     <div>
@@ -219,6 +223,7 @@ ElectionPage.propTypes = {
   changeFiltersCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
   editModeCallback: PropTypes.func,
+  refreshCountCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -292,6 +297,10 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     editModeCallback: pathname => {
       dispatch(push(pathname + rankingModeQuery));
+    },
+
+    refreshCountCallback: (state, district) => {
+      dispatch(districtActions.userCountsAction(state, district));
     },
   };
 }
