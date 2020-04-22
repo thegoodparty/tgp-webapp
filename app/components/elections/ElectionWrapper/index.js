@@ -274,8 +274,9 @@ const ElectionWrapper = ({
 
             <H1>{title}</H1>
             <Description>
-              Choose any candidate you like to join their voting bloc. We'll let
-              you know when any voting blocs you join get big enough to win!
+              Choose any candidate to join their voting bloc then tell others.
+              We&apos;ll let you know when any voting blocs you join get big
+              enough to win!
             </Description>
             <Row>
               <SupportersWrapper>
