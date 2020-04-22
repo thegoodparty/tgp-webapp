@@ -172,16 +172,18 @@ const ElectionWrapper = ({
         }
         await setChoices(newChoices);
         await setChoicesOrder(newChoicesOrder);
+        let refreshUserCount = false;
+        if (newChoicesOrder.length <= 1) {
+          refreshUserCount = true;
+        }
         saveRankingCallback(
           user,
           newChoicesOrder,
           chamber,
           state,
           districtNumber,
+          refreshUserCount,
         );
-        if (newChoicesOrder.length <= 1) {
-          refreshCountCallback(state, districtNumber);
-        }
       }
     }
     if (!rankingMode) {

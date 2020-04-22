@@ -91,12 +91,19 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (ranking, chamber, state, district) => ({
+const saveUserRankingAction = (
+  ranking,
+  chamber,
+  state,
+  district,
+  refreshUserCount,
+) => ({
   type: types.SAVE_USER_RANKING,
   ranking,
   chamber,
   state,
   district,
+  refreshUserCount,
 });
 
 const deleteUserRankingAction = () => ({

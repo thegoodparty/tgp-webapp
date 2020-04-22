@@ -6,12 +6,14 @@ import { getCookie, setCookie } from 'helpers/cookieHelper';
 import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
 import selectCandidate from 'containers/elections/CandidatePage/selectors';
 
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import districtActions from 'containers/intro/ZipFinderPage/actions';
+
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 function* register(action) {
   try {
@@ -362,7 +364,7 @@ function* uploadAvatar(action) {
 
 function* saveUserRanking(action) {
   try {
-    const { ranking, chamber, state, district } = action;
+    const { ranking, chamber, state, district, refreshUserCount } = action;
     const api = tgpApi.updateUserRanking;
     const updatedFields = {};
     if (chamber === 'presidential') {
@@ -382,7 +384,9 @@ function* saveUserRanking(action) {
 
     setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
-    // yield put(push('/you/share'));
+    if (refreshUserCount) {
+      yield put(districtActions.userCountsAction());
+    }
   } catch (error) {
     console.log(error);
     yield put(

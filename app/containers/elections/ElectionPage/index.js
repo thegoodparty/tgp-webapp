@@ -243,29 +243,15 @@ function mapDispatchToProps(dispatch, ownProps) {
     changeFiltersCallback: filters => {
       dispatch(districtActions.changeFiltersAction(filters));
     },
-    handleRankingCallback: (rankingOrder, user, chamber, state, district) => {
-      if (user) {
-        dispatch(
-          userActions.saveUserRankingAction(
-            rankingOrder,
-            chamber,
-            state,
-            district,
-          ),
-        );
-      }
 
-      const rankingLink =
-        rankingOrder.length > 0 ? `ranked-${chamber}-election` : chamber;
-      if (chamber === 'presidential') {
-        dispatch(push(`/elections/${rankingLink}`));
-      } else if (chamber === 'senate') {
-        dispatch(push(`/elections/${rankingLink}/${state}`));
-      } else if (chamber === 'house') {
-        dispatch(push(`/elections/${rankingLink}/${state}/${district}`));
-      }
-    },
-    saveRankingCallback: (user, rankingOrder, chamber, state, district) => {
+    saveRankingCallback: (
+      user,
+      rankingOrder,
+      chamber,
+      state,
+      district,
+      refreshUserCount,
+    ) => {
       if (user) {
         dispatch(
           userActions.saveUserRankingAction(
@@ -273,6 +259,7 @@ function mapDispatchToProps(dispatch, ownProps) {
             chamber,
             state,
             district,
+            refreshUserCount,
           ),
         );
       }
