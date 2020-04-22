@@ -5,7 +5,7 @@ const initialState = {
   content: false,
   loading: false,
   error: false,
-  appVersion: '1.0.12-dev',
+  appVersion: '1.0.7.7',
 };
 
 const globalReducer = (state = initialState, action) =>
