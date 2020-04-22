@@ -10,6 +10,7 @@ import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
+import { fullFirstLastInitials } from '../../../helpers/userHelper';
 
 const Input = styled(TextField)`
   && {
@@ -100,6 +101,11 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             name="name"
             fullWidth
             onChange={onChangeName}
+            helperText={`We will never show your full name on our site. ${
+              name !== '' && email !== ''
+                ? `On our site you'll be: ${fullFirstLastInitials(name)}`
+                : ''
+            }`}
           />
 
           <Input

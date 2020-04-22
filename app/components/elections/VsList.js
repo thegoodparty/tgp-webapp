@@ -41,24 +41,25 @@ const Middle = styled.div`
 
 const NotGoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.red};
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
   font-weight: 700;
 `;
 
 const NotGoodSubtitle = styled(Body9)`
   color: ${({ theme }) => theme.colors.red};
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
 `;
 
 const GoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.green};
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
   font-weight: 700;
 `;
 
 const GoodSubtitle = styled(Body9)`
   color: ${({ theme }) => theme.colors.green};
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
+  text-align: right;
 `;
 
 const CandidateWrapper = styled.div`
@@ -152,12 +153,16 @@ const Line = styled.div`
 
 const FiltersWRapper = styled.div`
   position: absolute;
-  top: 0;
+  top: 50px;
   background-color: ${({ theme }) => theme.colors.grayBg};
   padding: 10px 0;
-  width: 120px;
-  left: -60px;
+  width: 80px;
+  left: -40px;
   text-align: center;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 120px;
+    left: -60px;
+  }
 `;
 
 const Vs = styled(Body11)`
