@@ -106,7 +106,7 @@ function SplashWrapper() {
         <Card>
           <Icon src={heartImg} className="heart" />
           <TextWrapper>
-            <SmallTitle>Show Good Candidates</SmallTitle>
+            <SmallTitle>See Good Candidates</SmallTitle>
             <Body14>
               We find and vet, good grass-roots candidates who are challenging
               Big Money incumbents and the corrupt two-party system.
@@ -117,13 +117,13 @@ function SplashWrapper() {
         <Card>
           <Icon src={peopleImg} />
           <TextWrapper>
-            <SmallTitle>Pre-Count Needed Votes</SmallTitle>
+            <SmallTitle>Join Voting Blocs</SmallTitle>
             <Body14>
-              We count all the votes they need to win{' '}
+              We gather support into voting blocs that all can check{' '}
               <strong>
-                <i>before</i>
+                <i>before voting</i>
               </strong>{' '}
-              we take any action, so we don’t waste any votes.
+              , so we never waste a vote.
             </Body14>
           </TextWrapper>
         </Card>
@@ -131,10 +131,10 @@ function SplashWrapper() {
         <Card>
           <Icon src={writeinImg} />
           <TextWrapper>
-            <SmallTitle>Vote or Write-in, FTW!</SmallTitle>
+            <SmallTitle>Only Vote or Write-in, FTW!</SmallTitle>
             <Body14>
-              Only where we have enough votes to win, we’ll help you cast your
-              vote, or
+              Only when a voting bloc gets big enough to win, we activate the
+              whole bloc to vote or{' '}
               <i>write-in, for the win!</i>
             </Body14>
           </TextWrapper>

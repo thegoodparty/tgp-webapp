@@ -18,9 +18,18 @@ const WrapperDiv = styled.div`
   &.white {
     background-color: #fff;
   }
+
+  &.no-header {
+    min-height: calc(100vh - 75px);
+    min-height: calc(var(--vh, 1vh) * 100 - 75px);
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      min-height: calc(100vh - 80px);
+      min-height: calc(var(--vh, 1vh) * 100 - 80px);
+    }
+  }
 `;
 
-const Wrapper = ({ children, style, white }) => {
+const Wrapper = ({ children, style, white, noHeader = false }) => {
   useEffect(() => {
     let vh;
     if (typeof window !== 'undefined') {
@@ -39,8 +48,15 @@ const Wrapper = ({ children, style, white }) => {
       };
     }
   }, []);
+  let className = '';
+  if (white) {
+    className = 'white';
+  }
+  if (noHeader) {
+    className += ' no-header';
+  }
   return (
-    <WrapperDiv style={style} className={white ? 'white' : ''}>
+    <WrapperDiv style={style} className={className}>
       {children}
     </WrapperDiv>
   );
@@ -50,6 +66,7 @@ Wrapper.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   style: PropTypes.object,
   white: PropTypes.bool,
+  noHeader: PropTypes.bool,
 };
 
 export default Wrapper;
