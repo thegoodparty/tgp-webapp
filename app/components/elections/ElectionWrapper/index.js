@@ -173,7 +173,7 @@ const ElectionWrapper = ({
         await setChoices(newChoices);
         await setChoicesOrder(newChoicesOrder);
         let refreshUserCount = false;
-        if (newChoicesOrder.length <= 1) {
+        if (newChoicesOrder.length === 0) {
           refreshUserCount = true;
         }
         saveRankingCallback(
