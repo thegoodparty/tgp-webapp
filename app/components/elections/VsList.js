@@ -94,12 +94,12 @@ const Role = styled(Body9)`
 const ChoiceButton = styled(Body9)`
   color: ${({ theme }) => theme.colors.blue};
   border-radius: 20px;
-  border: solid 2px ${({ theme }) => theme.colors.blue};
+  border: solid 1px ${({ theme }) => theme.colors.blue};
   padding: 7px 12px;
   display: inline-block;
   margin-top: 8px;
   pointer: cursor;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   transition: background-color 0.3s, color 0.3s;
 
