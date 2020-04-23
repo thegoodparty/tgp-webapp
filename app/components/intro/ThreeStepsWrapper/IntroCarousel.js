@@ -11,10 +11,14 @@ import slide2 from 'images/slide2.jpg';
 import slide3 from 'images/slide3.jpg';
 
 const Wrapper = styled.div`
-  width: 80%;
+  width: 100%;
   height: 100%;
-  margin-left: 10%;
   position: relative;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 80%;
+    margin-left: 10%;
+  }
 
   .slick-prev:before,
   .slick-next:before {
@@ -29,7 +33,7 @@ const SliderWrapper = styled.div`
   width: 100%;
   height: 100%;
   pointer: cursor;
-  padding: 24px;
+  padding: 12px;
 
   &:focus {
     outline: none !important;
@@ -42,7 +46,7 @@ const SliderInnerWrapper = styled.div`
   pointer: cursor;
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 24px 0;
+  padding: 24px 12px;
 
   &:focus {
     outline: none !important;
@@ -117,6 +121,7 @@ const IntroCarousel = ({ showButton = true, handleNextStep = () => {} }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
+    centerPadding: '10px',
     arrows: false,
   };
 
