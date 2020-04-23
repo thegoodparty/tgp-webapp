@@ -26,13 +26,10 @@ const InnerWrapper = styled.div`
 `;
 
 const Login = styled.div`
-  position: absolute;
-  top: 40px;
-  right: 0;
   padding: 16px;
   color: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
-
+  text-align: right;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     position: static;
     text-align: right;
@@ -68,11 +65,11 @@ const YouWrapper = ({ articles }) => (
     <Nav />
     <Wrapper white>
       <MobileHeader />
+      <Login>
+        <Link to="/you/register">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="login">Login</Link>
+      </Login>
       <InnerWrapper>
-        <Login>
-          <Link to="/you/register">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
-          <Link to="login">Login</Link>
-        </Login>
         <Img src={CapitalImage} alt="Capital" aria-label="Capital" />
         <H3Title>Create a profile and get counted!</H3Title>
         <H3Body>
