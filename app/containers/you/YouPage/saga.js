@@ -385,7 +385,7 @@ function* saveUserRanking(action) {
     setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
     if (refreshUserCount) {
-      yield put(districtActions.userCountsAction());
+      yield put(districtActions.userCountsAction(state, district));
     }
   } catch (error) {
     console.log(error);

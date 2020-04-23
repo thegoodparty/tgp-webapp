@@ -284,10 +284,10 @@ const ElectionWrapper = ({
                   <HeartImg src={heartImg} alt="tgp" />
                   <SupportersCount>
                     {numberFormatter(chamberCount)}{' '}
-                    {chamberCount === 1 ? 'Person' : 'People'}
+                    {chamberCount === 1 ? 'person' : 'people'}
                   </SupportersCount>
                 </SupportersRow>
-                <SuppoetersBody>Good Party Supporters so far</SuppoetersBody>
+                <SuppoetersBody>in this voting bloc so far</SuppoetersBody>
                 <SupportersProgressBar
                   votesNeeded={votesNeeded}
                   peopleSoFar={chamberCount}
