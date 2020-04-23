@@ -180,6 +180,7 @@ const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
               <Input
                 value={comments}
                 label="I’m excited to join because..."
+                helperText="We may use this quote to inspire others to join!"
                 size="medium"
                 fullWidth
                 multiline
