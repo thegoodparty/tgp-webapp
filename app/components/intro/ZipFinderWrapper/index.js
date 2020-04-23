@@ -25,7 +25,7 @@ const ContentWrapper = styled.div`
   }
 `;
 const StyledH2 = styled(H2)`
-  padding: 40px 0 24px;
+  padding: 40px 0 6px;
 `;
 
 const LocationWrapper = styled.div`
@@ -109,9 +109,10 @@ function ZipFinderWrapper({
     <GrayWrapper>
       <Nav hideMobileNav={user ? false : true} />
       <ContentWrapper>
-        <StyledH2>
-          Enter your zip to see elections where your vote can do Good!
-        </StyledH2>
+        <StyledH2>Enter your zip code to see your Federal elections</StyledH2>
+        <Body style={{ marginBottom: '24px' }}>
+          See if your vote can be used in voting blocs to elect someone good!
+        </Body>
         <Body className="bold600">Enter Home Zip Code</Body>
         <Form noValidate onSubmit={handleSubmitForm}>
           <StyledInput
@@ -142,7 +143,7 @@ function ZipFinderWrapper({
         )}
         <ButtonWrapper onClick={handleNextStep}>
           <NextButton active={valid}>
-            <Next className={valid ? 'active' : ''}>GO</Next>
+            <Next className={valid ? 'active' : ''}>SUBMIT</Next>
           </NextButton>
         </ButtonWrapper>
       </ContentWrapper>

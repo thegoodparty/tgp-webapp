@@ -53,8 +53,8 @@ const Icon = styled.img`
   margin-right: 18px;
   align-self: center;
   &.heart {
-    width: 23px;
-    height: 21px;
+    width: 24px;
+    height: 19px;
   }
 `;
 
@@ -141,7 +141,7 @@ function SplashWrapper() {
         <Link to="/intro/three-steps">
           <ButtonWrppaer>
             <NextButton active>
-              <SeeHow>SEE HOW</SeeHow>
+              <SeeHow>GET STARTED</SeeHow>
             </NextButton>
           </ButtonWrppaer>
         </Link>
