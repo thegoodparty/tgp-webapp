@@ -11,8 +11,8 @@ const WrapperDiv = styled.div`
   background-color: ${({ theme }) => theme.colors.grayBg};
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 3rem 16px 0;
-    min-height: calc(100vh - 120px);
-    min-height: calc(var(--vh, 1vh) * 100 - 120px);
+    min-height: calc(100vh - 40px);
+    min-height: calc(var(--vh, 1vh) * 100 - 40px);
   }
 
   &.white {
@@ -20,11 +20,11 @@ const WrapperDiv = styled.div`
   }
 
   &.no-header {
-    min-height: calc(100vh - 75px);
-    min-height: calc(var(--vh, 1vh) * 100 - 75px);
+    min-height: calc(100vh);
+    min-height: calc(var(--vh, 1vh) * 100);
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      min-height: calc(100vh - 80px);
-      min-height: calc(var(--vh, 1vh) * 100 - 80px);
+      min-height: calc(100vh);
+      min-height: calc(var(--vh, 1vh) * 100);
     }
   }
 `;

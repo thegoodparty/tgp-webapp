@@ -10,11 +10,20 @@ import styled from 'styled-components';
 import Input from '@material-ui/core/Input';
 import { H2, Body, Body11, Body13, Body12 } from 'components/shared/typogrophy';
 import NextButton from 'components/shared/buttons/NextButton';
-import Wrapper from 'components/shared/Wrapper';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import Nav from 'containers/shared/Nav';
 import GeoLocator from './GeoLocator';
 
+const ContentWrapper = styled.div`
+  min-height: 100vh;
+  padding: 0 16px 0;
+  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  margin: 0 auto;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    min-height: calc(100vh - 40px);
+    padding: 3rem 16px 0;
+  }
+`;
 const StyledH2 = styled(H2)`
   padding: 40px 0 24px;
 `;
@@ -99,7 +108,7 @@ function ZipFinderWrapper({
   return (
     <GrayWrapper>
       <Nav hideMobileNav={user ? false : true} />
-      <Wrapper>
+      <ContentWrapper>
         <StyledH2>
           Enter your zip to see elections where your vote can do Good!
         </StyledH2>
@@ -136,7 +145,7 @@ function ZipFinderWrapper({
             <Next className={valid ? 'active' : ''}>GO</Next>
           </NextButton>
         </ButtonWrapper>
-      </Wrapper>
+      </ContentWrapper>
     </GrayWrapper>
   );
 }

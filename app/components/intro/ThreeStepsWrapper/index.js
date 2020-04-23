@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -21,7 +21,7 @@ const MainWrapper = styled.div`
 function ThreeStepsWrapper({ handleNextStep }) {
   return (
     <MainWrapper style={{ backgroundColor: '#fff' }}>
-      <Wrapper style={{ backgroundColor: '#fff' }}>
+      <Wrapper white noHeader>
         <CarouselWrapper>
           <IntroCarousel handleNextStep={handleNextStep} />
         </CarouselWrapper>

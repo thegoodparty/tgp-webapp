@@ -91,13 +91,12 @@ const wrapperStyles = {
   flexDirection: 'column',
   justifyContent: 'space-around',
   padding: '0 40px 6rem',
-  minHeight: '100vh',
 };
 
 function SplashWrapper() {
   return (
     <GrayWrapper>
-      <Wrapper style={wrapperStyles}>
+      <Wrapper style={wrapperStyles} noHeader>
         <Centered>
           <Logo src={heartImg} />
           <H1>THE GOOD PARTY</H1>

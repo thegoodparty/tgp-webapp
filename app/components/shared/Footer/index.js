@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import { Body9 } from '../typogrophy';
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayE};
+  background-color: #fff;
   padding: 16px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
