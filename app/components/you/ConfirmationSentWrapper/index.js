@@ -36,8 +36,7 @@ const StyledH3 = styled(H3)`
 `;
 const Resend = styled(Body13)`
   color: #fff;
-  position: absolute;
-  bottom: 7rem;
+  margin-top: 30px;
   left: 0;
   width: 100%;
   text-align: center;
