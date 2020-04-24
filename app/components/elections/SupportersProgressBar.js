@@ -34,7 +34,7 @@ const Bar = styled.div`
   background-color: ${({ theme }) => theme.colors.blue};
   left: 0;
   top: 0;
-  width: 0;
+  width: 3%;
   transition: width 0.5s;
 `;
 
@@ -52,7 +52,10 @@ const SupportersProgressBar = ({
   showSupporters = true,
   alignLeft = false,
 }) => {
-  let progress = 3 + (peopleSoFar * 100) / votesNeeded;
+  let progress = 3;
+  if (peopleSoFar && votesNeeded) {
+    progress = 3 + (peopleSoFar * 100) / votesNeeded;
+  }
   if (progress > 100) {
     progress = 100;
   }
