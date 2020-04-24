@@ -52,6 +52,7 @@ import GlobalStyle from 'global-styles';
 import SnackbarContainer from 'containers/shared/SnackbarContainer';
 
 import Footer from 'components/shared/Footer';
+import ErrorBoundary from 'containers/shared/ErrorBoundry';
 
 import queryHelper from 'helpers/queryHelper';
 import { setCookie } from 'helpers/cookieHelper';
@@ -63,6 +64,7 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectLocation } from './selectors';
+
 
 if (ENV === 'prod') {
   history.listen(location => {
@@ -90,73 +92,91 @@ function App({ locationState, dispatch }) {
 
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/intro/splash" component={SplashPage} />
-        <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
+      <ErrorBoundary>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/intro/splash" component={SplashPage} />
+          <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
 
-        <Route exact path="/elections/district/:zip" component={DistrictPage} />
-        <Route
-          exact
-          path="/elections/district/:zip/:cd"
-          component={DistrictPage}
-        />
-        <Route
-          exact
-          path="/elections/candidate/:chamber/:name/:id"
-          component={CandidatePage}
-        />
+          <Route
+            exact
+            path="/elections/district/:zip"
+            component={DistrictPage}
+          />
+          <Route
+            exact
+            path="/elections/district/:zip/:cd"
+            component={DistrictPage}
+          />
+          <Route
+            exact
+            path="/elections/candidate/:chamber/:name/:id"
+            component={CandidatePage}
+          />
 
-        <Route exact path="/elections/:chamber" component={ElectionPage} />
-        <Route
-          exact
-          path="/elections/:chamber/:state"
-          component={ElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/:chamber/:state/:district"
-          component={ElectionPage}
-        />
+          <Route exact path="/elections/:chamber" component={ElectionPage} />
+          <Route
+            exact
+            path="/elections/:chamber/:state"
+            component={ElectionPage}
+          />
+          <Route
+            exact
+            path="/elections/:chamber/:state/:district"
+            component={ElectionPage}
+          />
 
-        <Route exact path="/you/register" component={SocialRegisterPage} />
-        <Route exact path="/you/register-email" component={RegisterPage} />
-        <Route
-          exact
-          path="/you/confirmation-sent"
-          component={ConfirmationSentPage}
-        />
-        <Route
-          exact
-          path="/email-confirmation"
-          component={EmailConfirmationPage}
-        />
-        <Route exact path="/you/register-step2" component={RegisterStep2Page} />
-        <Route exact path="/you" component={YouPage} />
-        <Route exact path="/you/edit" component={EditProfilePage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/login/confirm" component={LoginConfirmPage} />
+          <Route exact path="/you/register" component={SocialRegisterPage} />
+          <Route exact path="/you/register-email" component={RegisterPage} />
+          <Route
+            exact
+            path="/you/confirmation-sent"
+            component={ConfirmationSentPage}
+          />
+          <Route
+            exact
+            path="/email-confirmation"
+            component={EmailConfirmationPage}
+          />
+          <Route
+            exact
+            path="/you/register-step2"
+            component={RegisterStep2Page}
+          />
+          <Route exact path="/you" component={YouPage} />
+          <Route exact path="/you/edit" component={EditProfilePage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/login/confirm" component={LoginConfirmPage} />
 
-        <Route exact path="/party" component={PartyPage} />
-        <Route exact path="/party/faqs" component={FaqListPage} />
-        <Route exact path="/party/faq/:title/:id" component={FaqArticlePage} />
-        <Route exact path="/party/events" component={EventsPage} />
+          <Route exact path="/party" component={PartyPage} />
+          <Route exact path="/party/faqs" component={FaqListPage} />
+          <Route
+            exact
+            path="/party/faq/:title/:id"
+            component={FaqArticlePage}
+          />
+          <Route exact path="/party/events" component={EventsPage} />
 
-        <Route exact path="/scrape/incumbents" component={IncumbentsToScrape} />
-        <Route
-          exact
-          path="/scrape/candidates"
-          component={AllCandidatesToScrape}
-        />
+          <Route
+            exact
+            path="/scrape/incumbents"
+            component={IncumbentsToScrape}
+          />
+          <Route
+            exact
+            path="/scrape/candidates"
+            component={AllCandidatesToScrape}
+          />
 
-        <Route exact path="/privacy" component={PrivacyPage} />
-        <Route exact path="/research" component={ResearchPage} />
+          <Route exact path="/privacy" component={PrivacyPage} />
+          <Route exact path="/research" component={ResearchPage} />
 
-        <Route component={NotFoundPage} />
-      </Switch>
-      <GlobalStyle />
-      <SnackbarContainer />
-      <Footer />
+          <Route component={NotFoundPage} />
+        </Switch>
+        <GlobalStyle />
+        <SnackbarContainer />
+        <Footer />
+      </ErrorBoundary>
     </div>
   );
 }
