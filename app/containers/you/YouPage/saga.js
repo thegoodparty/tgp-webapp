@@ -352,7 +352,6 @@ function* uploadAvatar(action) {
       yield put(push('/you'));
     }
   } catch (error) {
-    console.log(error);
     yield put(
       snackbarActions.showSnakbarAction(
         'Error updating your profile photo',
