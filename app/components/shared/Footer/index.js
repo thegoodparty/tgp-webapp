@@ -49,7 +49,6 @@ function Footer() {
     if (
       pathname === '/' ||
       pathname === '/intro/splash' ||
-      pathname === '/intro/three-steps' ||
       pathname === '/intro/zip-finder'
     ) {
       setWithMobileNav(false);

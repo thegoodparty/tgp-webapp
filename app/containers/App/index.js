@@ -20,7 +20,6 @@ import ENV from 'api/ENV';
 import HomePage from 'containers/intro/HomePage/Loadable';
 
 import SplashPage from 'containers/intro/SplashPage/Loadable';
-import ThreeStepsPage from 'containers/intro/ThreeStepsPage/Loadable';
 import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
@@ -93,7 +92,6 @@ function App({ locationState, dispatch }) {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/intro/splash" component={SplashPage} />
-        <Route exact path="/intro/three-steps" component={ThreeStepsPage} />
         <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
 
         <Route exact path="/elections/district/:zip" component={DistrictPage} />

@@ -138,7 +138,7 @@ function SplashWrapper() {
             </Body14>
           </TextWrapper>
         </Card>
-        <Link to="/intro/three-steps">
+        <Link to="/intro/zip-finder">
           <ButtonWrppaer>
             <NextButton active>
               <SeeHow>GET STARTED</SeeHow>
