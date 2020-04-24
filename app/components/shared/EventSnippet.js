@@ -21,7 +21,6 @@ const StyledBody12 = styled(Body12)`
 `;
 
 const Photo = styled.img`
-  margin-left: 16px;
   border-radius: 50%;
   height: 55px;
   width: 55px;
@@ -38,7 +37,7 @@ const ButtonWrapper = styled.div`
   margin-top: 16px;
 `;
 
-const EventSnippet = ({ event }) => {
+const EventSnippet = ({ event, isPastEvent = false }) => {
   const {
     id,
     title,
@@ -50,16 +49,19 @@ const EventSnippet = ({ event }) => {
     avatarPhoto,
     location,
   } = event;
-
-  const isLocationLink =
-    location.indexOf('http') === 0 || location.indexOf('ama') === 0;
-  const locationLink =
-    location.indexOf('ama') === 0 ? `http://${location}` : location;
+  let isLocationLink;
+  let locationLink;
+  if (location) {
+    isLocationLink =
+      location.indexOf('http') === 0 || location.indexOf('ama') === 0;
+    locationLink =
+      location.indexOf('ama') === 0 ? `http://${location}` : location;
+  }
 
   return (
     <Wrapper key={id}>
       <Row>
-        <div>
+        <div style={{ marginRight: '16px' }}>
           <Body className="bold600">{title}</Body>
           {dateAndTime && (
             <StyledBody12>
@@ -67,16 +69,18 @@ const EventSnippet = ({ event }) => {
             </StyledBody12>
           )}
           {description && <StyledBody12>{description}</StyledBody12>}
-          <StyledBody12>
-            <strong>Location: </strong>
-            {isLocationLink ? (
-              <a href={locationLink} target="_blank">
-                {location}
-              </a>
-            ) : (
-              <>{location}</>
-            )}
-          </StyledBody12>
+          {location && (
+            <StyledBody12>
+              <strong>Location: </strong>
+              {isLocationLink ? (
+                <a href={locationLink} target="_blank">
+                  {location}
+                </a>
+              ) : (
+                <>{location}</>
+              )}
+            </StyledBody12>
+          )}
           {presenter && (
             <StyledBody12>
               <span className="bold500 spacing05">{presenter}</span>{' '}
@@ -86,19 +90,22 @@ const EventSnippet = ({ event }) => {
         </div>
         <Photo src={avatarPhoto} />
       </Row>
-      <a href={locationLink} target="_blank">
-        <ButtonWrapper>
-          <OutlinedButton fullWidth active>
-            I&apos;M INTERESTED
-          </OutlinedButton>
-        </ButtonWrapper>
-      </a>
+      {!isPastEvent && (
+        <a href={locationLink} target="_blank">
+          <ButtonWrapper>
+            <OutlinedButton fullWidth active>
+              I&apos;M INTERESTED
+            </OutlinedButton>
+          </ButtonWrapper>
+        </a>
+      )}
     </Wrapper>
   );
 };
 
 EventSnippet.propTypes = {
   event: PropTypes.object,
+  isPastEvent: PropTypes.bool,
 };
 
 export default EventSnippet;

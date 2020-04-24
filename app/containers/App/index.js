@@ -39,6 +39,7 @@ import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
 import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';
 import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
+import EventsPage from 'containers/party/EventsPage/Loadable';
 
 import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
 import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loadable';
@@ -139,6 +140,7 @@ function App({ locationState, dispatch }) {
         <Route exact path="/party" component={PartyPage} />
         <Route exact path="/party/faqs" component={FaqListPage} />
         <Route exact path="/party/faq/:title/:id" component={FaqArticlePage} />
+        <Route exact path="/party/events" component={EventsPage} />
 
         <Route exact path="/scrape/incumbents" component={IncumbentsToScrape} />
         <Route
