@@ -181,6 +181,7 @@ export function ElectionPage({
   let countsWithCookies;
   if (!user) {
     countsWithCookies = {};
+    countsWithCookies.threshold = userCounts.threshold;
     if (chamber === 'presidential') {
       const presidentialRank = getRankFromUserOrState(
         null,

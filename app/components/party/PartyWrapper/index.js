@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Wrapper from 'components/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -28,6 +29,12 @@ const AppVersion = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray9};
   text-align: center;
   padding-bottom: 20px;
+`;
+
+const LearnMore = styled(Body13)`
+  color: ${({ theme }) => theme.colors.blue};
+  text-align: right;
+  cursor: pointer;
 `;
 
 const PartyWrapper = ({ content, appVersion }) => {
@@ -60,7 +67,9 @@ const PartyWrapper = ({ content, appVersion }) => {
           <EventsWrapper>
             <Row>
               <H3>Upcoming Online Events</H3>
-              {/*<LearnMore>See All</LearnMore>*/}
+              <Link to="/party/events">
+                <LearnMore>See All</LearnMore>
+              </Link>
             </Row>
             {events.map(event => (
               <EventSnippet event={event} key={event.id} />
