@@ -78,10 +78,10 @@ function mapDispatchToProps(dispatch) {
     navigateCallback: (screen, user, zipCode) => {
       if (screen === '/elections') {
         let zip;
-        if (zipCode) {
-          zip = zipCode.zip;
-        } else if (user && user.zipCode) {
+        if (user && user.zipCode) {
           zip = user.zipCode.zip;
+        } else if (zipCode) {
+          zip = zipCode.zip;
         } else {
           let cookieZip = getCookie('zip');
           if (cookieZip) {

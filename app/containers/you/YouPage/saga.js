@@ -6,12 +6,14 @@ import { getCookie, setCookie } from 'helpers/cookieHelper';
 import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
 import selectCandidate from 'containers/elections/CandidatePage/selectors';
 
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import districtActions from 'containers/intro/ZipFinderPage/actions';
+
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 function* register(action) {
   try {
@@ -362,7 +364,7 @@ function* uploadAvatar(action) {
 
 function* saveUserRanking(action) {
   try {
-    const { ranking, chamber, state, district } = action;
+    const { ranking, chamber, state, district, refreshUserCount } = action;
     const api = tgpApi.updateUserRanking;
     const updatedFields = {};
     if (chamber === 'presidential') {
@@ -382,11 +384,30 @@ function* saveUserRanking(action) {
 
     setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
-    // yield put(push('/you/share'));
+    if (refreshUserCount) {
+      yield put(districtActions.userCountsAction(state, district));
+    }
   } catch (error) {
     console.log(error);
     yield put(
       snackbarActions.showSnakbarAction('Error saving your ranking', 'error'),
+    );
+  }
+}
+
+function* deleteUserRanking() {
+  try {
+    const api = tgpApi.deleteUserRanking;
+    const response = yield call(requestHelper, api, null);
+    const { user } = response;
+    yield put(actions.updateUserActionSuccess(user));
+
+    setCookie('user', JSON.stringify(user));
+    yield put(snackbarActions.showSnakbarAction('Your ranking were deleted'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting your ranking', 'error'),
     );
   }
 }
@@ -429,6 +450,7 @@ export default function* saga() {
     types.SAVE_USER_RANKING,
     saveUserRanking,
   );
+  yield takeLatest(types.DELETE_USER_RANKING, deleteUserRanking);
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   yield takeLatest(types.CREW, crew);
 }

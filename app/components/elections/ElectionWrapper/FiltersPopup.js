@@ -31,8 +31,6 @@ const Label = styled(Body)`
   padding-top: 9px;
 `;
 
-
-
 const FiltersPopup = ({
   filters = defaultFilters,
   changeFiltersCallback = () => {},
@@ -49,12 +47,12 @@ const FiltersPopup = ({
   };
   return (
     <Wrapper onClick={e => e.stopPropagation()}>
-
       <H1>Filter Candidates</H1>
       <Body style={{ marginTop: '10px', marginBottom: '32px' }}>
-        Choose how to filter candidates into Good Enough or Not Good Enough:
+        Choose how to filter candidates as Good Options, Not Good Enough or
+        Unknown:
       </Body>
-      <GreenH3>Good Enough</GreenH3>
+      <GreenH3>GOOD OPTIONS</GreenH3>
       <Row
         style={{ marginTop: '18px' }}
         onClick={e => handleCheck(e, { smallDonors: !smallDonors })}
@@ -69,7 +67,7 @@ const FiltersPopup = ({
           <Body13>
             Major candidates who have raised lots of funding, but have ensured
             that most of their funding (&gt;50%) is coming from Small Individual
-            Donors(&lt;$200).
+            Donors (&lt;$200).
           </Body13>
         </div>
       </Row>
@@ -84,15 +82,15 @@ const FiltersPopup = ({
           inputProps={{ 'aria-label': 'Relatively Small Amount of Funding' }}
         />
         <div>
-          <Label>Good Party Approved Candidates</Label>
+          <Label>Good Party Approved Challengers</Label>
           <Body13>
-            Relatively lessor known candidates who have raised &lt;50% of the
-            funding of the incumbent, and have been vetted and approved by The
+            Relatively lessor known candidates who have raised little funding
+            (&lt;50% of the incumbent), but have been vetted and approved by The
             Good Party.
           </Body13>
         </div>
       </Row>
-      <RedH3>Not Good Enough</RedH3>
+      <RedH3>NOT GOOD ENOUGH</RedH3>
       <Row onClick={e => handleCheck(e, { mostlyBigDonors: !mostlyBigDonors })}>
         <Checkbox
           checked={mostlyBigDonors}

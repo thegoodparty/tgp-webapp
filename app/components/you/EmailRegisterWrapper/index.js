@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
 
 import Wrapper from 'components/shared/Wrapper';
@@ -10,6 +9,7 @@ import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
+import { fullFirstLastInitials } from '../../../helpers/userHelper';
 
 const Input = styled(TextField)`
   && {
@@ -55,6 +55,7 @@ const Login = styled.span`
 const RegisterWrapper = ({ registerCallback, loading, error }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [showName, setShowName] = useState(false);
 
   const onChangeName = event => {
     setName(event.target.value);
@@ -80,6 +81,13 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
     }
   };
 
+  const onEmailFocus = () => {
+    console.log('on Focus');
+    if (name !== '') {
+      setShowName(true);
+    }
+  };
+
   return (
     <div>
       <Nav />
@@ -100,6 +108,11 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             name="name"
             fullWidth
             onChange={onChangeName}
+            helperText={`We will never show your full name on our site. ${
+              showName
+                ? `On our site you'll be: ${fullFirstLastInitials(name)}`
+                : ''
+            }`}
           />
 
           <Input
@@ -113,6 +126,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             helperText="We will never share or sell your information for any reason"
             autoComplete="email"
             onChange={onChangeEmail}
+            onFocus={onEmailFocus}
           />
 
           {!loading && (

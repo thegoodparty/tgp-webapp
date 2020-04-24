@@ -48,8 +48,9 @@ const loadUserFromCookieAction = () => ({
   type: types.LOAD_USER_FROM_COOKIE,
 });
 
-const signoutAction = () => ({
+const signoutAction = (url = '/') => ({
   type: types.SIGN_OUT,
+  url,
 });
 
 const loginAction = email => ({
@@ -90,12 +91,23 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (ranking, chamber, state, district) => ({
+const saveUserRankingAction = (
+  ranking,
+  chamber,
+  state,
+  district,
+  refreshUserCount,
+) => ({
   type: types.SAVE_USER_RANKING,
   ranking,
   chamber,
   state,
   district,
+  refreshUserCount,
+});
+
+const deleteUserRankingAction = () => ({
+  type: types.DELETE_USER_RANKING,
 });
 
 const uploadAvatarAction = (fileName, fileData, withRedirect = true) => ({
@@ -131,12 +143,10 @@ export default {
   signoutAction,
   loginAction,
   socialLoginAction,
-  updatePresidentialRankAction,
-  updateSenateRankAction,
-  updateHouseRankAction,
   updateUserAction,
   updateUserActionSuccess,
   saveUserRankingAction,
+  deleteUserRankingAction,
   uploadAvatarAction,
   generateUuidAction,
   crewAction,

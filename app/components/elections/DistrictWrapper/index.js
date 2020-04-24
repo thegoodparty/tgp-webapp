@@ -19,7 +19,13 @@ import AmaContainer from 'containers/shared/AmaContainer';
 import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import GrayWrapper from 'components/shared/GrayWrapper';
-import { presidentialVotesThreshold } from 'helpers/electionsHelper';
+import {
+  houseElectionLink,
+  presidentialElectionLink,
+  presidentialVotesThreshold,
+  rankingModeQuery,
+  senateElectionLink,
+} from 'helpers/electionsHelper';
 import VsCard from '../VsCard';
 import RankedCard from '../RankedCard/Loadable';
 
@@ -178,7 +184,8 @@ const DistrictWrapper = ({
   }
 
   const handleDistrictChange = (cdId, index) => {
-    if (user && houseRank) {
+    console.log('here1');
+    if ((user && houseRank) || (user && senateRank)) {
       setSelectedCid(cdId);
       setSelectedIndex(index);
       setShowRankAlert(true);
@@ -195,7 +202,7 @@ const DistrictWrapper = ({
   };
 
   const handleZipChange = () => {
-    if (user && houseRank) {
+    if ((user && houseRank) || (user && senateRank)) {
       setChangeZipSelected(true);
       setShowRankAlert(true);
     } else {
@@ -262,14 +269,11 @@ const DistrictWrapper = ({
             <Spacer>
               <Body>
                 You have <strong>{electionCount}</strong> relevant Federal
-                elections. Check to see if your vote can elect someone Good!
+                elections. Join voting blocs to see if your vote can elect
+                someone Good.
               </Body>
             </Spacer>
-            <Link
-              to={`/elections/${
-                presidentialRank && presidentialRank.length > 0 ? 'ranked-' : ''
-              }presidential-election`}
-            >
+            <Link to={presidentialElectionLink(presidentialRank)}>
               {presidentialRank && presidentialRank.length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
@@ -287,11 +291,7 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link
-              to={`/elections/${
-                senateRank && senateRank.length > 0 ? 'ranked-' : ''
-              }senate-election/${shortState.toLowerCase()}`}
-            >
+            <Link to={senateElectionLink(senateRank, shortState)}>
               {senateRank && senateRank.length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
@@ -309,11 +309,7 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link
-              to={`/elections/${
-                houseRank && houseRank.length > 0 ? 'ranked-' : ''
-              }house-election/${shortState.toLowerCase()}-${districtNumber}`}
-            >
+            <Link to={houseElectionLink(houseRank, shortState, districtNumber)}>
               {houseRank && houseRank.length > 0 ? (
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}

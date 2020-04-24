@@ -73,13 +73,10 @@ const Input = styled(TextField)`
 `;
 
 const ButtonsWrapper = styled.div`
-  position: fixed;
-  bottom: 5rem;
+  position: absolute;
+  bottom: 2rem;
   left: 0;
   width: 100%;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    bottom: 2rem;
-  }
 `;
 const ButtonsInnerWrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
@@ -100,6 +97,7 @@ const ButtonsInnerWrapperExpired = styled.div`
 
 const wrapperStyles = {
   backgroundColor: tgpTheme.colors.orange,
+  position: 'relative',
 };
 
 const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
@@ -156,7 +154,9 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
                 <ButtonsWrapper>
                   <ButtonsInnerWrapperExpired>
                     <div onClick={handleSubmitExpired}>
-                      <OutlinedButton label="Resend Email" white fullWidth />
+                      <OutlinedButton label="Resend Email" white fullWidth>
+                        Resend Email
+                      </OutlinedButton>
                     </div>
                   </ButtonsInnerWrapperExpired>
                 </ButtonsWrapper>

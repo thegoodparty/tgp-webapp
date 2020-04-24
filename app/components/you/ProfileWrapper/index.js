@@ -20,6 +20,11 @@ import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from 'components/shared/UserAvatar';
 import ShareButton from 'components/shared/ShareButton';
 import TopQuestions from 'components/shared/TopQuestions';
+import {
+  houseElectionLink,
+  presidentialElectionLink,
+  senateElectionLink,
+} from '../../../helpers/electionsHelper';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -106,13 +111,13 @@ const ProfileWrapper = ({
   let { presidentialRank, senateRank, houseRank } = user;
   const { name, feedback, zipCode, congDistrict } = user;
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
-  if (typeof presidentialRank === 'string') {
+  if (typeof presidentialRank === 'string' && presidentialRank !== '') {
     presidentialRank = JSON.parse(presidentialRank);
   }
-  if (typeof senateRank === 'string') {
+  if (typeof senateRank === 'string' && senateRank !== '') {
     senateRank = JSON.parse(senateRank);
   }
-  if (typeof houseRank === 'string') {
+  if (typeof houseRank === 'string' && houseRank !== '') {
     houseRank = JSON.parse(houseRank);
   }
   const shortState = stateShort ? stateShort.toUpperCase() : '';
@@ -193,11 +198,7 @@ const ProfileWrapper = ({
         </H3>
         <Election>
           Presidential:{' '}
-          <Link
-            to={`/elections/${
-              presidentialRank.length > 0 ? 'ranked-' : ''
-            }presidential-election`}
-          >
+          <Link to={presidentialElectionLink(presidentialRank)}>
             <ElectionData>
               {presidentialRank
                 ? `${presidentialRank.length} Choices Ranked`
@@ -209,11 +210,7 @@ const ProfileWrapper = ({
           <Election>
             Senate {stateLong}:
             {showSenate ? (
-              <Link
-                to={`/elections/${
-                  senateRankCount > 0 ? 'ranked-' : ''
-                }senate-election/${shortState.toLowerCase()}`}
-              >
+              <Link to={senateElectionLink(senateRank, shortState)}>
                 <ElectionData>
                   {senateRank
                     ? `${senateRankCount} Choice${
@@ -233,11 +230,7 @@ const ProfileWrapper = ({
             {userDistrict.code})
             {showHouse ? (
               <Link
-                to={`/elections/${
-                  houseRankCount > 0 ? 'ranked-' : ''
-                }house-election/${shortState.toLowerCase()}-${
-                  userDistrict.code
-                }`}
+                to={houseElectionLink(houseRank, shortState, userDistrict.code)}
               >
                 <ElectionData>
                   {houseRank && houseRankCount > 0

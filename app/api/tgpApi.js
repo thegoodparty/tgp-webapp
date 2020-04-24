@@ -101,6 +101,12 @@ const api = {
     withAuth: true,
   },
 
+  deleteUserRanking: {
+    url: `${base}user/delete-user-ranking`,
+    method: 'PUT',
+    withAuth: true,
+  },
+
   uploadAvatar: {
     url: `${base}user/upload-avatar`,
     method: 'PUT',

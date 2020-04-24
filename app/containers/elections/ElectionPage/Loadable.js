@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for SenateElectionPage
+ * Asynchronously loads the component for ElectionPage
  *
  */
 

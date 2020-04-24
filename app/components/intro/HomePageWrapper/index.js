@@ -66,9 +66,10 @@ const wrapperStyles = {
 function HomePageWrapper() {
   return (
     <div style={{ backgroundColor: '#FFF' }}>
-      <Wrapper white style={wrapperStyles}>
+      <Wrapper white style={wrapperStyles} noHeader>
         <div>
           <LoginLink>
+            <Link to="/you/register">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
             <Link to="/login">Login</Link>
           </LoginLink>
           <div>

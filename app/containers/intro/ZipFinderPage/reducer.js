@@ -19,7 +19,7 @@ export const initialState = {
   error: false,
   geoError: false,
   filters: defaultFilters,
-  userCounts: false
+  userCounts: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */

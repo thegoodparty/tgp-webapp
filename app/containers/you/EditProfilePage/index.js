@@ -86,18 +86,16 @@ function mapDispatchToProps(dispatch) {
             districtNumber,
           ),
         );
-        dispatch(
-          userActions.updateHouseRankAction([], shortState, districtNumber),
-        );
-        dispatch(
-          userActions.saveUserRankingAction(
-            [],
-            'house',
-            shortState,
-            districtNumber,
-          ),
-        );
       }
+      if (user && user.shortState) {
+        const { shortState } = user;
+
+        dispatch(
+          candidateActions.saveRankSenateCandidateAction([], shortState),
+        );
+        dispatch(userActions.deleteUserRankingAction());
+      }
+
       dispatch(push('/intro/zip-finder'));
     },
   };

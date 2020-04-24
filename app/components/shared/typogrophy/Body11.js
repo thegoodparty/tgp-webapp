@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const BodySmall = styled.div`
+const Body11 = styled.div`
   color: ${({ theme }) => theme.colors.gray4};
   font-size: 11px;
   line-height: 15px;
@@ -11,4 +11,4 @@ const BodySmall = styled.div`
   }
 `;
 
-export default BodySmall;
+export default Body11;

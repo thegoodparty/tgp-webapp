@@ -36,6 +36,11 @@ const CloseWrapper = styled.div`
   position: fixed;
   margin-top: 16px;
   right: 16px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    right: auto;
+    left: 50%;
+    margin-left: 350px;
+  }
 `;
 
 const useStyles = makeStyles(theme => ({

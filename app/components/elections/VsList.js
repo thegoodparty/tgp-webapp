@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import CheckIcon from '@material-ui/icons/Check';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
+import { numberNth } from '../../helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -36,16 +39,27 @@ const Middle = styled.div`
   }
 `;
 
-const NotGoodTitle = styled(Body9)`
+const NotGoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.red};
-  letter-spacing: 0.5px;
-  font-weight: 500;
+  letter-spacing: 0;
+  font-weight: 700;
 `;
 
-const GoodTitle = styled(Body9)`
+const NotGoodSubtitle = styled(Body9)`
+  color: ${({ theme }) => theme.colors.red};
+  letter-spacing: 0;
+`;
+
+const GoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.green};
-  letter-spacing: 0.5px;
-  font-weight: 500;
+  letter-spacing: 0;
+  font-weight: 700;
+`;
+
+const GoodSubtitle = styled(Body9)`
+  color: ${({ theme }) => theme.colors.green};
+  letter-spacing: 0;
+  text-align: right;
 `;
 
 const CandidateWrapper = styled.div`
@@ -77,6 +91,59 @@ const Role = styled(Body9)`
   opacity: 0.8;
 `;
 
+const ChoiceButton = styled(Body9)`
+  color: ${({ theme }) => theme.colors.blue};
+  border-radius: 20px;
+  border: solid 1px ${({ theme }) => theme.colors.blue};
+  padding: 7px 12px;
+  display: inline-block;
+  margin-top: 8px;
+  pointer: cursor;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.3s, color 0.3s;
+
+  &: hover {
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.blue};
+  }
+`;
+
+const ChosenCandWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+const ChosenCand = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
+  margin: 0 6px;
+  text-transform: uppercase;
+`;
+
+const CheckMark = styled(CheckIcon)`
+  color: ${({ theme }) => theme.colors.lightBlue};
+  && {
+    font-size: 9px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 12px;
+    }
+  }
+`;
+
+const CloseIcon = styled(HighlightOffIcon)`
+  color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
+  && {
+    font-size: 9px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 12px;
+    }
+  }
+`;
+
 const Line = styled.div`
   width: 1px;
   border: solid 0.5px #cdcdcd;
@@ -86,12 +153,16 @@ const Line = styled.div`
 
 const FiltersWRapper = styled.div`
   position: absolute;
-  top: 0;
+  top: 50px;
   background-color: ${({ theme }) => theme.colors.grayBg};
   padding: 10px 0;
-  width: 120px;
-  left: -60px;
+  width: 80px;
+  left: -40px;
   text-align: center;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 120px;
+    left: -60px;
+  }
 `;
 
 const Vs = styled(Body11)`
@@ -104,8 +175,22 @@ const Vs = styled(Body11)`
   text-align: center;
 `;
 
-const StyledBody9 = styled(Body9)`
+const FiltersButton = styled(Body9)`
+  background-color: #fff;
+  border-radius: 40px;
+  padding: 10px;
+  width: 100%;
   color: ${({ theme }) => theme.colors.blue};
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
+    0px 0px 16px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  text-align: center;
+`;
+
+const EditChoices = styled(Body13)`
+  color: ${({ theme }) => theme.colors.blue};
+  padding: 16px 0 8px;
+  cursor: pointer;
 `;
 
 const UnknownWrapper = styled.div`
@@ -121,17 +206,59 @@ const UnknownTitle = styled(Body9)`
   text-align: center;
 `;
 
-const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
+const VsList = ({
+  candidates = {},
+  openFiltersCallback = () => {},
+  choices = {},
+  choicesOrder = [],
+  handleChoiceCallback,
+  handleDeselectCandidate,
+  rankingMode,
+  editRankingCallback,
+}) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
     return <LoadingAnimation />;
   }
+
+  const choiceButton = candidate => {
+    if (choices[candidate.id]) {
+      return (
+        <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
+          <CheckMark />{' '}
+          <ChosenCand>{numberNth(choices[candidate.id])} CHOICE </ChosenCand>
+          <CloseIcon />
+        </ChosenCandWrapper>
+      );
+    }
+    if (!rankingMode) {
+      return <></>;
+    }
+    return (
+      <ChoiceButton onClick={e => handleChoice(candidate, e)}>
+        {numberNth(choicesOrder.length + 1)} CHOICE
+      </ChoiceButton>
+    );
+  };
+
+  const handleChoice = (candidate, e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    handleChoiceCallback(candidate);
+  };
+
+  const handleDeselect = (candidate, e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    handleDeselectCandidate(candidate);
+  };
 
   return (
     <div>
       <Row>
         <Side>
           <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
+          <NotGoodSubtitle>BIG MONEY CANDIDATES</NotGoodSubtitle>
           {notGood.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper>
@@ -146,21 +273,26 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
           ))}
         </Side>
         <Middle>
           <FiltersWRapper>
-            <OutlinedButton active fullWidth onClick={openFiltersCallback}>
-              <StyledBody9>FILTERS</StyledBody9>
-            </OutlinedButton>
+            <FiltersButton onClick={openFiltersCallback}>FILTERS</FiltersButton>
+            {!rankingMode && (
+              <EditChoices onClick={editRankingCallback}>
+                Edit Choices
+              </EditChoices>
+            )}
           </FiltersWRapper>
           <Line />
           <Vs>VS</Vs>
         </Middle>
         <Side className="right">
-          <GoodTitle>GOOD ENOUGH</GoodTitle>
+          <GoodTitle>GOOD OPTIONS</GoodTitle>
+          <GoodSubtitle>SMALL MONEY CANDIDATES</GoodSubtitle>
           {good.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper className="right">
@@ -176,6 +308,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
           ))}
@@ -206,6 +339,7 @@ const VsList = ({ candidates = {}, openFiltersCallback = () => {} }) => {
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
           ))}
@@ -221,7 +355,13 @@ VsList.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
+  choices: PropTypes.object,
+  choicesOrder: PropTypes.array,
   openFiltersCallback: PropTypes.func,
+  handleChoiceCallback: PropTypes.func,
+  handleDeselectCandidate: PropTypes.func,
+  editRankingCallback: PropTypes.func,
+  rankingMode: PropTypes.bool,
 };
 
 export default VsList;

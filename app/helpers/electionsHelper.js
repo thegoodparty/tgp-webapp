@@ -340,3 +340,47 @@ export const mapCandidateToHash = candidates => {
 
   return candHash;
 };
+
+export const rankingModeQuery = '?rankingMode=true';
+
+export const presidentialElectionLink = (rank, forceEdit = false) => {
+  const route = '/elections/presidential';
+  if (!rank || rank.length === 0 || forceEdit) {
+    return route + rankingModeQuery;
+  }
+  return route;
+};
+
+export const senateElectionLink = (rank, state, forceEdit = false) => {
+  if (!state) {
+    return '';
+  }
+  const route = `/elections/senate/${state.toLowerCase()}`;
+  if (!rank || rank.length === 0 || forceEdit) {
+    return route + rankingModeQuery;
+  }
+  return route;
+};
+
+export const houseElectionLink = (rank, state, district, forceEdit = false) => {
+  if (!state || !district) {
+    return '';
+  }
+  const route = `/elections/house/${state.toLowerCase()}/${district}`;
+  if (!rank || rank.length === 0 || forceEdit) {
+    return route + rankingModeQuery;
+  }
+  return route;
+};
+
+export const isDistrictInCds = (districtNumber, cds) => {
+  if (!districtNumber || !cds) {
+    return false;
+  }
+  for (let i = 0; i < cds.length; i++) {
+    if (parseInt(districtNumber, 10) === parseInt(cds[i].code, 10)) {
+      return true;
+    }
+  }
+  return false;
+};

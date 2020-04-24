@@ -17,8 +17,11 @@ import {
 import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
+  houseElectionLink,
   partyResolver,
+  presidentialElectionLink,
   rankText,
+  senateElectionLink,
   shortToLongState,
 } from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
@@ -284,7 +287,7 @@ const CandidateWrapper = ({
   const coloredGood = () => {
     return (
       <ColoredText className={color}>
-        {!isGoodOrUnkwown && 'Not'} Good Enough
+        {!isGoodOrUnkwown ? 'Not Good Enough' : 'Good Option'}
       </ColoredText>
     );
   };
@@ -308,7 +311,7 @@ const CandidateWrapper = ({
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link to="/elections/presidential-election">U.S. President</Link>
+          <Link to={rankPageLink()}>U.S. President</Link>
         </ChamberLink>
       );
     }
@@ -316,7 +319,7 @@ const CandidateWrapper = ({
       if (state) {
         return (
           <ChamberLink>
-            <Link to={`/elections/senate-election/${state}`}>
+            <Link to={rankPageLink()}>
               U.S. Senate for {shortToLongState[state.toUpperCase()]}
             </Link>
           </ChamberLink>
@@ -327,7 +330,7 @@ const CandidateWrapper = ({
       if (state && district) {
         return (
           <ChamberLink>
-            <Link to={`/elections/house-election/${state}-${district}`}>
+            <Link to={rankPageLink()}>
               U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
@@ -342,12 +345,22 @@ const CandidateWrapper = ({
 
   const rankPageLink = () => {
     if (chamberName === 'presidential') {
-      return '/elections/rank-candidates/presidential';
+      return presidentialElectionLink(chamberRank, true);
     }
     if (chamberName === 'senate') {
-      return `/elections/rank-candidates/senate/${state}`;
+      return senateElectionLink(chamberRank, state, true);
     }
-    return `/elections/rank-candidates/house/${state}/${district}`;
+    return houseElectionLink(chamberRank, state, district, true);
+  };
+
+  const rankLabel = () => {
+    if (rank) {
+      return `YOUR ${rankText(rank)} CHOICE`;
+    }
+    if (chamberRank && chamberRank.length > 0) {
+      return 'EDIT CHOICES';
+    }
+    return 'RANK YOUR CHOICES';
   };
   return (
     <GrayWrapper>
@@ -357,7 +370,12 @@ const CandidateWrapper = ({
           <Wrapper>
             <MobileHeader showGoodisGood={isGood} showShare user={user} />
             <TopRow>
-              <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
+              <CandidateAvatar
+                src={image}
+                good={isGood}
+                name={name}
+                size="xl"
+              />
               <H3 style={{ marginTop: '14px' }}>{name}</H3>
               <Body11 style={{ marginTop: '5px' }} className="bold500">
                 {partyResolver(party)} {isIncumbent ? 'INCUMBENT' : 'CANDIDATE'}
@@ -382,9 +400,7 @@ const CandidateWrapper = ({
               <Link to={rankPageLink()}>
                 <RankButton className={rank ? 'blue' : ''}>
                   <StyledBody12 className={rank ? 'white' : ''}>
-                    {rank
-                      ? `YOUR ${rankText(rank)} CHOICE`
-                      : 'RANK YOUR CHOICES'}
+                    {rankLabel()}
                   </StyledBody12>
                 </RankButton>
               </Link>
@@ -445,7 +461,7 @@ const CandidateWrapper = ({
               )}
             </FundsWrapper>
             <Body13 className="bold500" style={{ margin: '26px 0 16px' }}>
-              Why We Believe {lastName()} {isUnkown ? 'could be' : 'is'}{' '}
+              Why we believe {lastName()} {isUnkown ? 'could be' : 'is'}{' '}
               {coloredGood()}:
             </Body13>
             <Body13>

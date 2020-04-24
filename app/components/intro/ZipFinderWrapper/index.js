@@ -10,13 +10,22 @@ import styled from 'styled-components';
 import Input from '@material-ui/core/Input';
 import { H2, Body, Body11, Body13, Body12 } from 'components/shared/typogrophy';
 import NextButton from 'components/shared/buttons/NextButton';
-import Wrapper from 'components/shared/Wrapper';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import Nav from 'containers/shared/Nav';
 import GeoLocator from './GeoLocator';
 
+const ContentWrapper = styled.div`
+  min-height: 100vh;
+  padding: 0 16px 0;
+  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  margin: 0 auto;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    min-height: calc(100vh - 40px);
+    padding: 3rem 16px 0;
+  }
+`;
 const StyledH2 = styled(H2)`
-  padding: 40px 0 24px;
+  padding: 40px 0 6px;
 `;
 
 const LocationWrapper = styled.div`
@@ -99,10 +108,11 @@ function ZipFinderWrapper({
   return (
     <GrayWrapper>
       <Nav hideMobileNav={user ? false : true} />
-      <Wrapper>
-        <StyledH2>
-          Enter your zip to see elections where your vote can do Good!
-        </StyledH2>
+      <ContentWrapper>
+        <StyledH2>Enter your zip code to see your Federal elections</StyledH2>
+        <Body style={{ marginBottom: '24px' }}>
+          See if your vote can be used in voting blocs to elect someone good!
+        </Body>
         <Body className="bold600">Enter Home Zip Code</Body>
         <Form noValidate onSubmit={handleSubmitForm}>
           <StyledInput
@@ -133,10 +143,10 @@ function ZipFinderWrapper({
         )}
         <ButtonWrapper onClick={handleNextStep}>
           <NextButton active={valid}>
-            <Next className={valid ? 'active' : ''}>GO</Next>
+            <Next className={valid ? 'active' : ''}>SUBMIT</Next>
           </NextButton>
         </ButtonWrapper>
-      </Wrapper>
+      </ContentWrapper>
     </GrayWrapper>
   );
 }

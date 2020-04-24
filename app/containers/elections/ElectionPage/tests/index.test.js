@@ -1,6 +1,6 @@
 /**
  *
- * Tests for ThreeStepsWrapper
+ * Tests for ElectionPage
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,13 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import ThreeStepsWrapper from '../index';
+import { ElectionPage } from '../index';
 
-describe('<ThreeStepsWrapper />', () => {
+describe('<ElectionPage />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<ThreeStepsWrapper />);
+    const dispatch = jest.fn();
+    render(<ElectionPage dispatch={dispatch} />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +32,7 @@ describe('<ThreeStepsWrapper />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<ThreeStepsWrapper />);
+    } = render(<ElectionPage />);
     expect(firstChild).toMatchSnapshot();
   });
 });

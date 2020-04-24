@@ -107,25 +107,13 @@ const VsCard = ({
   }
 
   if (good.length === 0) {
-    if (unknown.length > 0) {
-      good.push({
-        id: 'whatever',
-        name: `VETTING ${unknown.length} CHALLENGER${
-          unknown.length > 1 ? 'S' : ''
-        }`,
-        party: 'VETTING CHALLENGERS',
-        image: null,
-        isGood: true,
-      });
-    } else {
-      good.push({
-        id: 'noneyet',
-        name: 'NONE YET',
-        party: 'VC',
-        image: null,
-        isGood: true,
-      });
-    }
+    good.push({
+      id: 'noneyet',
+      name: 'NONE YET',
+      party: 'VC',
+      image: null,
+      isGood: true,
+    });
   }
 
   if (
@@ -187,7 +175,7 @@ const VsCard = ({
         </Middler>
         <Sider className="right">
           <Body9>
-            <Green>GOOD ENOUGH</Green>
+            <Green>GOOD OPTIONS</Green>
           </Body9>
           <AvatarsWrapper>
             {good.map((candidate, index) => (

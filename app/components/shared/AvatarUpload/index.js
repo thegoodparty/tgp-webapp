@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Backdrop from '@material-ui/core/Backdrop';
 import ImageUploader from 'react-images-upload';
-import { BlueButton } from '../buttons';
 
 const Wrapper = styled(Backdrop)`
   && {

@@ -20,16 +20,11 @@ import ENV from 'api/ENV';
 import HomePage from 'containers/intro/HomePage/Loadable';
 
 import SplashPage from 'containers/intro/SplashPage/Loadable';
-import ThreeStepsPage from 'containers/intro/ThreeStepsPage/Loadable';
 import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
-import PresidentialElectionPage from 'containers/elections/PresidentialElectionPage/Loadable';
-import SenateElectionPage from 'containers/elections/SenateElectionPage/Loadable';
-import HouseElectionPage from 'containers/elections/HouseElectionPage/Loadable';
+import ElectionPage from 'containers/elections/ElectionPage/Loadable';
 import CandidatePage from 'containers/elections/CandidatePage/Loadable';
-import RankCandidatesPage from 'containers/elections/RankCandidatesPage/Loadable';
-import RankedElectionPage from 'containers/elections/RankedElectionPage/Loadable';
 
 import RegisterPage from 'containers/you/EmailRegisterPage/Loadable';
 import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
@@ -97,7 +92,6 @@ function App({ locationState, dispatch }) {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/intro/splash" component={SplashPage} />
-        <Route exact path="/intro/three-steps" component={ThreeStepsPage} />
         <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
 
         <Route exact path="/elections/district/:zip" component={DistrictPage} />
@@ -108,54 +102,22 @@ function App({ locationState, dispatch }) {
         />
         <Route
           exact
-          path="/elections/presidential-election"
-          component={PresidentialElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/senate-election/:shortState"
-          component={SenateElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/house-election/:stateDistrict"
-          component={HouseElectionPage}
-        />
-        <Route
-          exact
           path="/elections/candidate/:chamber/:name/:id"
           component={CandidatePage}
         />
+
+        <Route exact path="/elections/:chamber" component={ElectionPage} />
         <Route
           exact
-          path="/elections/rank-candidates/:chamber"
-          component={RankCandidatesPage}
+          path="/elections/:chamber/:state"
+          component={ElectionPage}
         />
         <Route
           exact
-          path="/elections/rank-candidates/:chamber/:state"
-          component={RankCandidatesPage}
+          path="/elections/:chamber/:state/:district"
+          component={ElectionPage}
         />
-        <Route
-          exact
-          path="/elections/rank-candidates/:chamber/:state/:district"
-          component={RankCandidatesPage}
-        />
-        <Route
-          exact
-          path="/elections/ranked-presidential-election"
-          component={RankedElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/ranked-senate-election/:shortState"
-          component={RankedElectionPage}
-        />
-        <Route
-          exact
-          path="/elections/ranked-house-election/:stateDistrict"
-          component={RankedElectionPage}
-        />
+
         <Route exact path="/you/register" component={SocialRegisterPage} />
         <Route exact path="/you/register-email" component={RegisterPage} />
         <Route

@@ -51,8 +51,9 @@ function RegisterBannerWrapper({ count, showBanner }) {
           <Link to="/you/register">
             <ContentWrapper>
               <Body13>
-                You have ranked {count} candidates. <br />
-                <Blue>Join The Good Party</Blue> to have your choices count!
+                You have joined {count} candidate voting bloc
+                {count > 1 ? 's' : ''}. <br />
+                <Blue>Sign-in to save your choices </Blue> &amp; be counted!
               </Body13>
               <ChevronRightIcon
                 style={{ marginLeft: '30px', color: '#CDCDCD' }}

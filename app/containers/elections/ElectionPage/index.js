@@ -1,47 +1,65 @@
 /**
  *
- * RankCandidatesPage
+ * ElectionPage
+ *
+ */
+
+/**
+ *
+ * ElectionPage
  *
  */
 
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/intro/ZipFinderPage/reducer';
 import saga from 'containers/intro/ZipFinderPage/saga';
-import candidateReducer from 'containers/elections/CandidatePage/reducer';
-import candidateSaga from 'containers/elections/CandidatePage/saga';
-import districtActions from 'containers/intro/ZipFinderPage/actions';
-import candidateActions from 'containers/elections/CandidatePage/actions';
-import userActions from 'containers/you/YouPage/actions';
 
+import districtActions from 'containers/intro/ZipFinderPage/actions';
+import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
-import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
-import RankCandidatesWrapper from 'components/elections/RankCandidatesWrapper';
-import makeSelectUser from '../../you/YouPage/selectors';
+import {
+  makeSelectContent,
+  makeSelectLocation,
+} from 'containers/App/selectors';
 import {
   CHAMBER_ENUM,
   filterCandidates,
   getRankFromUserOrState,
-} from '../../../helpers/electionsHelper';
+  isDistrictInCds,
+  rankingModeQuery,
+} from 'helpers/electionsHelper';
+import candidateReducer from 'containers/elections/CandidatePage/reducer';
+import candidateSaga from 'containers/elections/CandidatePage/saga';
+import candidateActions from 'containers/elections/CandidatePage/actions';
+import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
+import makeSelectUser from 'containers/you/YouPage/selectors';
 
-export function RankCandidatesPage({
-  districtState,
-  candidateState,
+import userActions from 'containers/you/YouPage/actions';
+import queryHelper from 'helpers/queryHelper';
+
+export function ElectionPage({
+  content,
   chamber,
   state,
   district,
-  handleRankingCallback,
-  saveRankingCallback,
-  dispatch,
+  districtState,
+  candidateState,
   userState,
+  locationState,
+  dispatch,
+  changeFiltersCallback,
+  saveRankingCallback,
+  editModeCallback,
+  refreshCountCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -52,6 +70,9 @@ export function RankCandidatesPage({
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
   const [chamberRank, setChamberRank] = useState([]);
+
+  const { filters, userCounts } = districtState;
+  const { user } = userState;
 
   let candidates;
   let chamberEnum = 0;
@@ -65,9 +86,6 @@ export function RankCandidatesPage({
     candidates = districtState.houseCandidates;
     chamberEnum = CHAMBER_ENUM.HOUSE;
   }
-
-  const { filters } = districtState;
-  const { user } = userState;
 
   useEffect(() => {
     if (!candidates) {
@@ -83,6 +101,10 @@ export function RankCandidatesPage({
       dispatch(candidateActions.loadRankingFromCookieAction());
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(districtActions.userCountsAction(state, district));
+  }, [state, district]);
 
   useEffect(() => {
     let tempChamberRank;
@@ -112,7 +134,6 @@ export function RankCandidatesPage({
         candidateState,
         'houseRank',
       );
-      console.log('tempChamberRank before', tempChamberRank);
       tempChamberRank = tempChamberRank
         ? tempChamberRank[state + district]
         : [];
@@ -122,42 +143,96 @@ export function RankCandidatesPage({
 
   const filtered = filterCandidates(candidates, filters, chamberEnum);
 
+  let rankingAllowed = true;
+  if (chamber === 'senate') {
+    if (user) {
+      const userShortState = user.shortState;
+      if (state !== userShortState) {
+        rankingAllowed = false;
+      }
+    }
+  } else if (chamber === 'house') {
+    if (user) {
+      const userDistrict = user.districtNumber + '';
+      const userShortState = user.shortState;
+      if (user.districtNumber === null) {
+        // if district not set - take the first district in cds array.
+        if (user.zipCode && user.zipCode.cds && user.zipCode.cds.length > 0) {
+          if (
+            state !== userShortState ||
+            !isDistrictInCds(district, user.zipCode.cds)
+          ) {
+            rankingAllowed = false;
+          } else {
+            rankingAllowed = true;
+          }
+        }
+      } else if (state !== userShortState || district !== userDistrict) {
+        rankingAllowed = false;
+      }
+    }
+  }
+  const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
+
+  const { search, pathname } = locationState;
+  const rankingMode = queryHelper(search, 'rankingMode') === 'true';
+
   const childProps = {
     candidates: filtered,
-    handleRankingCallback,
-    saveRankingCallback,
-    chamberRank,
-    chamber,
     user,
+    content,
+    chamber,
+    displayChamber,
+    chamberRank,
     state,
-    district,
+    districtNumber: district,
+    filters,
+    rankingAllowed,
+    userCounts,
+    changeFiltersCallback,
+    saveRankingCallback,
+    rankingMode,
+    pathname,
+    editModeCallback,
+    refreshCountCallback,
   };
-
   return (
     <div>
       <Helmet>
-        <title>Rank Presidential Candidates | The Good Party</title>
+        <title>{displayChamber} Election | The Good Party</title>
         <meta
           name="description"
-          content="Rank Presidential Candidates | The Good Party"
+          content={`${chamber} Election | The Good Party`}
         />
       </Helmet>
-      <RankCandidatesWrapper {...childProps} />
+      <ElectionWrapper {...childProps} />
     </div>
   );
 }
 
-RankCandidatesPage.propTypes = {
+ElectionPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   chamber: PropTypes.string.isRequired,
   state: PropTypes.string,
   district: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
   candidateState: PropTypes.object,
-  handleRankingCallback: PropTypes.func,
-  saveRankingCallback: PropTypes.func,
   userState: PropTypes.object,
+  locationState: PropTypes.object,
+  changeFiltersCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
+  editModeCallback: PropTypes.func,
+  refreshCountCallback: PropTypes.func,
 };
+
+const mapStateToProps = createStructuredSelector({
+  content: makeSelectContent(),
+  districtState: makeSelectZipFinderPage(),
+  candidateState: makeSelectCandidate(),
+  userState: makeSelectUser(),
+  locationState: makeSelectLocation(),
+});
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
@@ -165,7 +240,18 @@ function mapDispatchToProps(dispatch, ownProps) {
     chamber: ownProps.match.params.chamber,
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
-    handleRankingCallback: (rankingOrder, user, chamber, state, district) => {
+    changeFiltersCallback: filters => {
+      dispatch(districtActions.changeFiltersAction(filters));
+    },
+
+    saveRankingCallback: (
+      user,
+      rankingOrder,
+      chamber,
+      state,
+      district,
+      refreshUserCount,
+    ) => {
       if (user) {
         dispatch(
           userActions.saveUserRankingAction(
@@ -173,31 +259,19 @@ function mapDispatchToProps(dispatch, ownProps) {
             chamber,
             state,
             district,
+            refreshUserCount,
           ),
         );
       }
-      const rankingLink = rankingOrder.length > 0 ? 'ranked-' : '';
-      if (chamber === 'presidential') {
-        dispatch(push(`/elections/${rankingLink}presidential-election`));
-      } else if (chamber === 'senate') {
-        dispatch(push(`/elections/${rankingLink}senate-election/${state}`));
-      } else if (chamber === 'house') {
-        dispatch(
-          push(`/elections/${rankingLink}house-election/${state}-${district}`),
-        );
-      }
-    },
-    saveRankingCallback: (rankingOrder, chamber, state, district) => {
+
       if (chamber === 'presidential') {
         dispatch(
           candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
         );
-        dispatch(userActions.updatePresidentialRankAction(rankingOrder));
       } else if (chamber === 'senate') {
         dispatch(
           candidateActions.saveRankSenateCandidateAction(rankingOrder, state),
         );
-        dispatch(userActions.updateSenateRankAction(rankingOrder, state));
       } else if (chamber === 'house') {
         dispatch(
           candidateActions.saveRankHouseCandidateAction(
@@ -206,19 +280,17 @@ function mapDispatchToProps(dispatch, ownProps) {
             district,
           ),
         );
-        dispatch(
-          userActions.updateHouseRankAction(rankingOrder, state, district),
-        );
       }
+    },
+    editModeCallback: pathname => {
+      dispatch(push(pathname + rankingModeQuery));
+    },
+
+    refreshCountCallback: (state, district) => {
+      dispatch(districtActions.userCountsAction(state, district));
     },
   };
 }
-
-const mapStateToProps = createStructuredSelector({
-  districtState: makeSelectZipFinderPage(),
-  candidateState: makeSelectCandidate(),
-  userState: makeSelectUser(),
-});
 
 const withConnect = connect(
   mapStateToProps,
@@ -228,4 +300,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(RankCandidatesPage);
+)(ElectionPage);
