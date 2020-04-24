@@ -177,6 +177,49 @@ export function ElectionPage({
   const { search, pathname } = locationState;
   const rankingMode = queryHelper(search, 'rankingMode') === 'true';
 
+  // if there is no user, read the cookies ranking
+  let countsWithCookies;
+  if (!user) {
+    countsWithCookies = {};
+    if (chamber === 'presidential') {
+      const presidentialRank = getRankFromUserOrState(
+        null,
+        candidateState,
+        'presidentialRank',
+      );
+      if (presidentialRank && presidentialRank.length > 0) {
+        countsWithCookies.totalUsers = userCounts.totalUsers + 1;
+      } else {
+        countsWithCookies.totalUsers = userCounts.totalUsers;
+      }
+    }
+    if (chamber === 'senate') {
+      const senateRank = getRankFromUserOrState(
+        null,
+        candidateState,
+        'senateRank',
+      );
+      if (senateRank && senateRank.length > 0) {
+        countsWithCookies.senateUsers = userCounts.senateUsers + 1;
+      } else {
+        countsWithCookies.senateUsers = userCounts.senateUsers;
+      }
+    }
+
+    if (chamber === 'house') {
+      const houseRank = getRankFromUserOrState(
+        null,
+        candidateState,
+        'houseRank',
+      );
+      if (houseRank && houseRank.length > 0) {
+        countsWithCookies.districtUsers = userCounts.districtUsers + 1;
+      } else {
+        countsWithCookies.districtUsers = userCounts.districtUsers;
+      }
+    }
+  }
+
   const childProps = {
     candidates: filtered,
     user,
@@ -188,7 +231,7 @@ export function ElectionPage({
     districtNumber: district,
     filters,
     rankingAllowed,
-    userCounts,
+    userCounts: countsWithCookies ? countsWithCookies : userCounts,
     changeFiltersCallback,
     saveRankingCallback,
     rankingMode,

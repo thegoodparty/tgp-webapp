@@ -151,6 +151,8 @@ const ChoiceModal = ({
     setCookie('isSharedModal', true);
   };
 
+  const countWithUser = user ? chamberCount : chamberCount - 1;
+
   return (
     <Dialog
       onClose={closeCallback}
@@ -205,11 +207,19 @@ const ChoiceModal = ({
                   <HeartImg src={heartImg} alt="tgp" />
                   {animateCount ? (
                     <>
-                      <SupportersCount style={{ animation: `animate-out 1s ease-in-out forwards` }}>
-                        {numberFormatter(chamberCount)}
+                      <SupportersCount
+                        style={{
+                          animation: `animate-out 1s ease-in-out forwards`,
+                        }}
+                      >
+                        {numberFormatter(countWithUser)}
                       </SupportersCount>
-                      <SupportersCount style={{ animation: `animate-in 1s ease-in-out forwards` }}>
-                        {numberFormatter(chamberCount + 1)}
+                      <SupportersCount
+                        style={{
+                          animation: `animate-in 1s ease-in-out forwards`,
+                        }}
+                      >
+                        {numberFormatter(countWithUser + 1)}
                       </SupportersCount>
                     </>
                   ) : (
