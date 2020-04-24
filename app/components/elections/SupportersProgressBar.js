@@ -52,7 +52,10 @@ const SupportersProgressBar = ({
   showSupporters = true,
   alignLeft = false,
 }) => {
-  const progress = (peopleSoFar * 100) / votesNeeded;
+  let progress = 3 + (peopleSoFar * 100) / votesNeeded;
+  if (progress > 100) {
+    progress = 100;
+  }
   return (
     <ProgressBarWrapper className={alignLeft ? 'left' : ''}>
       {showSupporters && (
@@ -74,6 +77,7 @@ SupportersProgressBar.propTypes = {
   peopleSoFar: PropTypes.number,
   votesNeeded: PropTypes.number,
   showSupporters: PropTypes.bool,
+  alignLeft: PropTypes.bool,
 };
 
 export default SupportersProgressBar;
