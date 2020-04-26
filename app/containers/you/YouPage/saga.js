@@ -45,13 +45,13 @@ function* register(action) {
     yield put(push('/you/confirmation-sent'));
     setCookie('user', JSON.stringify(user));
   } catch (error) {
-    console.log(error);
     if (error.response && error.response.exists) {
-      yield put(
-        snackbarActions.showSnakbarAction(error.response.message, 'error'),
-      );
+      // user is already in our system, try login.
+      yield put(actions.loginAction(action.email));
+    } else {
+      console.log(error);
+      yield put(actions.registerActionError(error));
     }
-    yield put(actions.registerActionError(error));
   }
 }
 
@@ -125,11 +125,11 @@ function* socialRegister(action) {
     setCookie('token', access_token);
   } catch (error) {
     if (error.response && error.response.exists) {
-      yield put(
-        snackbarActions.showSnakbarAction(error.response.message, 'error'),
-      );
+      // user is already in our system, try login.
+      yield put(actions.socialLoginAction(action.user));
+    } else {
+      yield put(actions.registerActionError(error));
     }
-    yield put(actions.registerActionError(error));
   }
 }
 
