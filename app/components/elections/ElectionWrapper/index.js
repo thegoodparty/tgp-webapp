@@ -176,6 +176,16 @@ const ElectionWrapper = ({
         if (newChoicesOrder.length === 0) {
           refreshUserCount = true;
         }
+        console.log(
+          'deselect',
+          user,
+          newChoicesOrder,
+          chamber,
+          state,
+          districtNumber,
+          refreshUserCount,
+        );
+
         saveRankingCallback(
           user,
           newChoicesOrder,

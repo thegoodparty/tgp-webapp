@@ -367,12 +367,17 @@ function* saveUserRanking(action) {
     const api = tgpApi.updateUserRanking;
     const updatedFields = {};
     if (chamber === 'presidential') {
-      updatedFields.presidentialRank = JSON.stringify(ranking);
+      updatedFields.presidentialRank =
+        ranking.length === 0 ? '' : JSON.stringify(ranking);
     } else if (chamber === 'senate') {
-      const chamberRanking = JSON.stringify({ [state]: ranking });
+      const chamberRanking =
+        ranking.length === 0 ? '' : JSON.stringify({ [state]: ranking });
       updatedFields.senateRank = chamberRanking;
     } else if (chamber === 'house') {
-      updatedFields.houseRank = JSON.stringify({ [state + district]: ranking });
+      updatedFields.houseRank =
+        ranking.length === 0
+          ? ''
+          : JSON.stringify({ [state + district]: ranking });
     }
     const payload = {
       ...updatedFields,
