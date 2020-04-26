@@ -125,9 +125,13 @@ export function AllCandidatesToScrape({
                   <span key={candidate.id}>
                     <a
                       className="ballotpedia"
-                      href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                        candidate.name,
-                      )}`}
+                      href={
+                        candidate.source
+                          ? candidate.source
+                          : `https://ballotpedia.org/${underScoreNameNoMiddle(
+                              candidate.name,
+                            )}`
+                      }
                     >
                       {candidate.id}|{candidate.name}|
                       {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
