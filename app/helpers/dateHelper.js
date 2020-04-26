@@ -19,8 +19,25 @@ export const dateUsHelper = orgDate => {
   }
 };
 
-// returns December 12, 2020 * 4 AM
+// returns December 12, 2020 * 4 AM PST
 export const formatDateWithTimezone = (orgDate, timeZone) => {
+  if (!orgDate) {
+    return '';
+  }
+  try {
+    let offset = '';
+    if (timeZone === 'PST') {
+      offset = ' UTC-07:00';
+    }
+    const date = new Date(`${orgDate.replace('T', ' ')}${offset}`);
+    return `${dateTimeUsHelper(date).toString()}`;
+  } catch (err) {
+    return orgDate;
+  }
+};
+
+// returns December 12, 2020 * 4 AM PST
+export const formatDateWithTimezoneOld = (orgDate, timeZone) => {
   if (!orgDate) {
     return '';
   }
@@ -64,7 +81,18 @@ export const dateTimeUsHelper = orgDate => {
       }).format(date);
     }
 
-    return `${justDate} \u00b7 ${time.replace(' ', '')}`;
+    const timezoneDate = new Intl.DateTimeFormat('en-US', {
+      timeZoneName: 'short',
+    }).format(date);
+    let timeZone = '';
+    if (timezoneDate) {
+      const timeZoneArr = timezoneDate.split(',');
+      if (timeZoneArr && timeZoneArr.length > 0) {
+        timeZone = timeZoneArr[1];
+      }
+    }
+
+    return `${justDate} \u00b7 ${time.replace(' ', '')} ${timeZone}`;
   } catch (err) {
     return orgDate;
   }

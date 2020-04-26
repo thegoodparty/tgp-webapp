@@ -253,6 +253,11 @@ const VsList = ({
     handleDeselectCandidate(candidate);
   };
 
+  const noneYetCandidate = {
+    id: -1,
+    isGood: true,
+  };
+
   return (
     <div>
       <Row>
@@ -316,7 +321,12 @@ const VsList = ({
             <CandidateWrapper className="right">
               <CandidateAvatar size="responsive" src="blank" good />
               <Name>NONE YET</Name>
-              <Role>VETTING CHALLENGERS</Role>
+              <Role className="text-right">
+                CHOOSE TO GET NOTIFIED
+                <br />
+                OF ANY GOOD CHALLENGERS
+              </Role>
+              {choiceButton(noneYetCandidate)}
             </CandidateWrapper>
           )}
         </Side>

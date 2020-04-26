@@ -45,13 +45,13 @@ function* register(action) {
     yield put(push('/you/confirmation-sent'));
     setCookie('user', JSON.stringify(user));
   } catch (error) {
-    console.log(error);
     if (error.response && error.response.exists) {
-      yield put(
-        snackbarActions.showSnakbarAction(error.response.message, 'error'),
-      );
+      // user is already in our system, try login.
+      yield put(actions.loginAction(action.email));
+    } else {
+      console.log(error);
+      yield put(actions.registerActionError(error));
     }
-    yield put(actions.registerActionError(error));
   }
 }
 
@@ -125,11 +125,11 @@ function* socialRegister(action) {
     setCookie('token', access_token);
   } catch (error) {
     if (error.response && error.response.exists) {
-      yield put(
-        snackbarActions.showSnakbarAction(error.response.message, 'error'),
-      );
+      // user is already in our system, try login.
+      yield put(actions.socialLoginAction(action.user));
+    } else {
+      yield put(actions.registerActionError(error));
     }
-    yield put(actions.registerActionError(error));
   }
 }
 
@@ -367,12 +367,17 @@ function* saveUserRanking(action) {
     const api = tgpApi.updateUserRanking;
     const updatedFields = {};
     if (chamber === 'presidential') {
-      updatedFields.presidentialRank = JSON.stringify(ranking);
+      updatedFields.presidentialRank =
+        ranking.length === 0 ? '' : JSON.stringify(ranking);
     } else if (chamber === 'senate') {
-      const chamberRanking = JSON.stringify({ [state]: ranking });
+      const chamberRanking =
+        ranking.length === 0 ? '' : JSON.stringify({ [state]: ranking });
       updatedFields.senateRank = chamberRanking;
     } else if (chamber === 'house') {
-      updatedFields.houseRank = JSON.stringify({ [state + district]: ranking });
+      updatedFields.houseRank =
+        ranking.length === 0
+          ? ''
+          : JSON.stringify({ [state + district]: ranking });
     }
     const payload = {
       ...updatedFields,
