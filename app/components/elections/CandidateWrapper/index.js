@@ -287,7 +287,7 @@ const CandidateWrapper = ({
   const coloredGood = () => {
     return (
       <ColoredText className={color}>
-        {!isGoodOrUnkwown ? 'Not Good Enough' : 'Good Option'}
+        {!isGoodOrUnkwown ? 'Not Good Enough' : 'a Good Option'}
       </ColoredText>
     );
   };

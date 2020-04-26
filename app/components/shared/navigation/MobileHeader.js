@@ -99,7 +99,7 @@ function MobileHeader({
         )}
         {showGood ? (
           <GoodNoGood className={isGood ? 'good' : 'notgood'}>
-            {!isGood && 'NOT'} GOOD ENOUGH
+            {!isGood ? 'NOT GOOD ENOUGH' : 'GOOD OPTION'}
           </GoodNoGood>
         ) : (
           <Link to="/party" className="text-center">
