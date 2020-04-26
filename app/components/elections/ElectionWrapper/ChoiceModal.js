@@ -172,14 +172,14 @@ const ChoiceModal = ({
               </span>
             </H1>
             <BodyText>
-              We respect your freedom to choose who you like. However, The Good
-              Party has <strong>not</strong> been set up to help Big Money
-              candidates who who have raised a majority (&gt;50%) of their
-              funding from Corporate Lobbyists, Political Action Committees
-              (PACs), and other Big Money Donors.
+              We respect your freedom to join whichever voting blocs who you
+              like. However, please be aware that this candidate has raised a
+              majority (&gt;50%) of their funding from Corporate Lobbyists,
+              Political Action Committees (PACs), and other Big Money Donors.
               <br />
               <br />
-              To see more details please visit this candidate’s profile page.
+              To see more details please visit this candidate&apos;s profile
+              page.
             </BodyText>
             <ButtonRow>
               <ButtonWrapper>
