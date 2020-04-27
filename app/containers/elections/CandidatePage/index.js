@@ -84,10 +84,14 @@ export function CandidatePage({
   if (chamberName === 'presidential') {
     incumbentRaised = presidentialThreshold;
   } else {
-    incumbentRaised = incumbent
-      ? incumbent.raised || incumbent.combinedRaised
-      : false;
-    incumbentRaised = incumbentRaised ? incumbentRaised / 2 : false;
+    if (candidate.isIncumbent) {
+      incumbentRaised = candidate.raised;
+    } else {
+      incumbentRaised = incumbent
+        ? incumbent.raised || incumbent.combinedRaised
+        : false;
+      incumbentRaised = incumbentRaised ? incumbentRaised / 2 : false;
+    }
   }
 
   let chamberRank;
