@@ -212,23 +212,26 @@ const ChoiceModal = ({
                           animation: `animate-out 1s ease-in-out forwards`,
                         }}
                       >
-                        {numberFormatter(countWithUser)}
+                        {numberFormatter(countWithUser)}{' '}
+                        {countWithUser === 1 ? 'person' : 'people'}
                       </SupportersCount>
                       <SupportersCount
                         style={{
                           animation: `animate-in 1s ease-in-out forwards`,
                         }}
                       >
-                        {numberFormatter(countWithUser + 1)}
+                        {numberFormatter(countWithUser + 1)}{' '}
+                        {countWithUser + 1 === 1 ? 'person' : 'people'}
                       </SupportersCount>
                     </>
                   ) : (
                     <SupportersCount>
-                      {numberFormatter(chamberCount)}
+                      {numberFormatter(chamberCount)}{' '}
+                      {chamberCount === 1 ? 'person' : 'people'}
                     </SupportersCount>
                   )}
                 </SupportersRow>
-                <SuppoetersBody>Good Party Supporters so far</SuppoetersBody>
+                <SuppoetersBody>in this voting bloc so far</SuppoetersBody>
                 <SupportersProgressBar
                   votesNeeded={votesNeeded}
                   peopleSoFar={chamberCount}
