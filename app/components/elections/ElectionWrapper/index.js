@@ -155,11 +155,13 @@ const ElectionWrapper = ({
   };
 
   const deSelectCandidate = async id => {
+    const noneYetCount = candidates.good.length === 0 ? 1 : 0;
     if (
       choicesOrder.length <=
       candidates.good.length +
         candidates.notGood.length +
-        candidates.unknown.length
+        candidates.unknown.length +
+        noneYetCount
     ) {
       if (choices[id]) {
         // deselect and remove all previous choices.
@@ -176,15 +178,6 @@ const ElectionWrapper = ({
         if (newChoicesOrder.length === 0) {
           refreshUserCount = true;
         }
-        console.log(
-          'deselect',
-          user,
-          newChoicesOrder,
-          chamber,
-          state,
-          districtNumber,
-          refreshUserCount,
-        );
 
         saveRankingCallback(
           user,
