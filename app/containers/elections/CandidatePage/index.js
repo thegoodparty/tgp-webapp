@@ -14,12 +14,8 @@ import { compose } from 'redux';
 import CandidateWrapper from 'components/elections/CandidateWrapper';
 import {
   candidateCalculatedFields,
-  CHAMBER_ENUM,
-  defaultFilters,
-  isCandidateGood,
-  presidentialThreshold,
+  getRankFromUserOrState,
 } from 'helpers/electionsHelper';
-import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -28,8 +24,6 @@ import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
 import makeSelectUser from '../../you/YouPage/selectors';
-import LoadingAnimation from '../../../components/shared/LoadingAnimation';
-import { getRankFromUserOrState } from '../../../helpers/electionsHelper';
 
 export function CandidatePage({
   id,
@@ -42,7 +36,6 @@ export function CandidatePage({
   useInjectSaga({ key: 'candidate', saga });
 
   const { candidate, presidentialRank, incumbent } = candidateState;
-  const filters = defaultFilters;
   const [chamberName, chamberIncumbent] = chamber.split('-');
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -69,30 +62,7 @@ export function CandidatePage({
     }
   }, [candidate]);
 
-  let chamberEnum;
-  if (chamberName === 'presidential') {
-    chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
-  } else if (chamberName === 'senate') {
-    chamberEnum = CHAMBER_ENUM.SENATE;
-  } else if (chamberName === 'house') {
-    chamberEnum = CHAMBER_ENUM.HOUSE;
-  } else {
-    chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
-  }
   const candidateWithFields = candidateCalculatedFields(candidate);
-  let incumbentRaised;
-  if (chamberName === 'presidential') {
-    incumbentRaised = presidentialThreshold;
-  } else {
-    if (candidate.isIncumbent) {
-      incumbentRaised = candidate.raised;
-    } else {
-      incumbentRaised = incumbent
-        ? incumbent.raised || incumbent.combinedRaised
-        : false;
-      incumbentRaised = incumbentRaised ? incumbentRaised / 2 : false;
-    }
-  }
 
   let chamberRank;
   const { user } = userState;
@@ -114,7 +84,6 @@ export function CandidatePage({
     candidate: candidateWithFields,
     chamberRank,
     chamberName,
-    isGood: isCandidateGood(candidate, filters, chamberEnum, incumbentRaised),
     incumbent,
     user,
   };

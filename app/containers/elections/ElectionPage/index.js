@@ -141,7 +141,7 @@ export function ElectionPage({
     setChamberRank(tempChamberRank);
   }, [candidateState, user]);
 
-  const filtered = filterCandidates(candidates, filters, chamberEnum);
+  // const filtered = filterCandidates(candidates, filters, chamberEnum);
 
   let rankingAllowed = true;
   if (chamber === 'senate') {
@@ -222,7 +222,7 @@ export function ElectionPage({
   }
 
   const childProps = {
-    candidates: filtered,
+    candidates,
     user,
     content,
     chamber,

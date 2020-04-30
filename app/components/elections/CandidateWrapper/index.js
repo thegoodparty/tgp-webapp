@@ -153,7 +153,6 @@ const CandidateWrapper = ({
   candidate,
   chamberRank = [],
   chamberName,
-  isGood,
   incumbent,
   user,
 }) => {
@@ -161,6 +160,10 @@ const CandidateWrapper = ({
   const [rank, setRank] = useState(false);
   const [socialAccounts, setSocialAccounts] = useState([]);
   const [comparedIncumbent, setComparedIncumbent] = useState({});
+  let isGood;
+  if (candidate) {
+    ({ isGood } = candidate);
+  }
 
   useEffect(() => {
     if (candidate && candidate.info) {
@@ -640,7 +643,6 @@ CandidateWrapper.propTypes = {
   candidate: PropTypes.object,
   chamberRank: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   chamberName: PropTypes.string,
-  isGood: PropTypes.bool,
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };

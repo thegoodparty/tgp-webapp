@@ -37,6 +37,10 @@ const api = {
     url: `${base}counts/user-counts`,
     method: 'GET',
   },
+  findCandidate: {
+    url: `${base}candidates/find`,
+    method: 'GET',
+  },
   //
   // CONTENT
   //
@@ -44,10 +48,7 @@ const api = {
     url: `${base}content/all-content`,
     method: 'GET',
   },
-  findCandidate: {
-    url: `${base}candidates/find`,
-    method: 'GET',
-  },
+
   //
   // ENTRANCE
   //
