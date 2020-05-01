@@ -26,7 +26,6 @@ const ArticleTitle = styled(Body)`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
   margin-top: 28px;
-  font-weight: 600;
 
   &.first: {
     margin-top: 18px;

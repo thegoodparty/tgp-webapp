@@ -27,11 +27,7 @@ import {
 } from 'containers/App/selectors';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 import userActions from 'containers/you/YouPage/actions';
-import {
-  CHAMBER_ENUM,
-  filterCandidates,
-  getRankFromUserOrState,
-} from 'helpers/electionsHelper';
+import { getRankFromUserOrState } from 'helpers/electionsHelper';
 import makeSelectCandidate from '../CandidatePage/selectors';
 import candidateActions from '../CandidatePage/actions';
 
@@ -56,13 +52,10 @@ export function DistrictPage({
   });
 
   const [cdIndex, setCdIndex] = useState(0);
-  // const [presidentialCandidates, setPresidentialCandidates] = useState({});
-  // const [filteredHouse, setFilteredHouse] = useState({});
-  // const [filteredSenate, setFilteredSenate] = useState({});
   const [districtNum, setDistrictNum] = useState(0);
   const { user } = userState;
 
-  const { zipWithDistricts, filters } = districtState;
+  const { zipWithDistricts } = districtState;
   const {
     presidential,
     houseCandidates,

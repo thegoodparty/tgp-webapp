@@ -31,8 +31,6 @@ import {
   makeSelectLocation,
 } from 'containers/App/selectors';
 import {
-  CHAMBER_ENUM,
-  filterCandidates,
   getRankFromUserOrState,
   isDistrictInCds,
   rankingModeQuery,
@@ -71,20 +69,16 @@ export function ElectionPage({
 
   const [chamberRank, setChamberRank] = useState([]);
 
-  const { filters, userCounts } = districtState;
+  const { userCounts } = districtState;
   const { user } = userState;
 
   let candidates;
-  let chamberEnum = 0;
   if (chamber === 'presidential') {
     candidates = districtState.presidential;
-    chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
   } else if (chamber === 'senate') {
     candidates = districtState.senateCandidates;
-    chamberEnum = CHAMBER_ENUM.SENATE;
   } else {
     candidates = districtState.houseCandidates;
-    chamberEnum = CHAMBER_ENUM.HOUSE;
   }
 
   useEffect(() => {
@@ -111,7 +105,6 @@ export function ElectionPage({
 
     if (chamber === 'presidential') {
       candidates = districtState.presidential;
-      chamberEnum = CHAMBER_ENUM.PRESIDENTIAL;
       tempChamberRank = getRankFromUserOrState(
         user,
         candidateState,
@@ -119,7 +112,6 @@ export function ElectionPage({
       );
     } else if (chamber === 'senate') {
       candidates = districtState.senateCandidates;
-      chamberEnum = CHAMBER_ENUM.SENATE;
       tempChamberRank = getRankFromUserOrState(
         user,
         candidateState,
@@ -128,7 +120,6 @@ export function ElectionPage({
       tempChamberRank = tempChamberRank ? tempChamberRank[state] : [];
     } else {
       candidates = districtState.houseCandidates;
-      chamberEnum = CHAMBER_ENUM.HOUSE;
       tempChamberRank = getRankFromUserOrState(
         user,
         candidateState,
@@ -140,8 +131,6 @@ export function ElectionPage({
     }
     setChamberRank(tempChamberRank);
   }, [candidateState, user]);
-
-  // const filtered = filterCandidates(candidates, filters, chamberEnum);
 
   let rankingAllowed = true;
   if (chamber === 'senate') {
@@ -230,7 +219,6 @@ export function ElectionPage({
     chamberRank,
     state,
     districtNumber: district,
-    filters,
     rankingAllowed,
     userCounts: countsWithCookies ? countsWithCookies : userCounts,
     changeFiltersCallback,

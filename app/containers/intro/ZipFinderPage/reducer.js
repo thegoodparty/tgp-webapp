@@ -5,8 +5,6 @@
  */
 
 import produce from 'immer';
-import { defaultFilters } from 'helpers/electionsHelper';
-import { setCookie } from 'helpers/cookieHelper';
 import types from './constants';
 
 export const initialState = {
@@ -18,7 +16,6 @@ export const initialState = {
   loading: false,
   error: false,
   geoError: false,
-  filters: defaultFilters,
   userCounts: false,
 };
 
@@ -93,11 +90,6 @@ const zipFinderPageReducer = (state = initialState, action) =>
       case types.GEOLOCATION_TO_DISTRICT_ERROR:
         draft.geoLocation = false;
         draft.geoError = action.error;
-        break;
-
-      case types.CHANGE_FILTERS:
-        setCookie('filters', JSON.stringify(action.filters));
-        draft.filters = action.filters;
         break;
 
       case types.USERSS_COUNT:

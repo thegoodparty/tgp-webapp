@@ -31,20 +31,7 @@ const Label = styled(Body)`
   padding-top: 9px;
 `;
 
-const FiltersPopup = ({
-  filters = defaultFilters,
-  changeFiltersCallback = () => {},
-}) => {
-  const { smallDonors, smallFunding, mostlyBigDonors } = filters;
-
-  const handleCheck = (event, filter) => {
-    event.stopPropagation();
-    const updatedFilters = {
-      ...filters,
-      ...filter,
-    };
-    changeFiltersCallback(updatedFilters);
-  };
+const FiltersPopup = () => {
   return (
     <Wrapper onClick={e => e.stopPropagation()}>
       <H1>Filter Candidates</H1>
@@ -53,12 +40,10 @@ const FiltersPopup = ({
         Unknown:
       </Body>
       <GreenH3>GOOD OPTIONS</GreenH3>
-      <Row
-        style={{ marginTop: '18px' }}
-        onClick={e => handleCheck(e, { smallDonors: !smallDonors })}
-      >
+      <Row style={{ marginTop: '18px' }}>
         <Checkbox
-          checked={smallDonors}
+          checked
+          disabled
           color="primary"
           inputProps={{ 'aria-label': 'Mostly Founded by Small Donors' }}
         />
@@ -72,12 +57,10 @@ const FiltersPopup = ({
         </div>
       </Row>
 
-      <Row
-        style={{ marginTop: '24px' }}
-        onClick={e => handleCheck(e, { smallFunding: !smallFunding })}
-      >
+      <Row style={{ marginTop: '24px' }}>
         <Checkbox
-          checked={smallFunding}
+          checked
+          disabled
           color="primary"
           inputProps={{ 'aria-label': 'Relatively Small Amount of Funding' }}
         />
@@ -91,10 +74,10 @@ const FiltersPopup = ({
         </div>
       </Row>
       <RedH3>NOT GOOD ENOUGH</RedH3>
-      <Row onClick={e => handleCheck(e, { mostlyBigDonors: !mostlyBigDonors })}>
+      <Row>
         <Checkbox
-          checked={mostlyBigDonors}
-          onChange={e => handleCheck(e, { mostlyBigDonors: !mostlyBigDonors })}
+          checked
+          disabled
           color="primary"
           inputProps={{ 'aria-label': 'Mostly Funded by Big Money Donors' }}
         />
@@ -112,9 +95,6 @@ const FiltersPopup = ({
   );
 };
 
-FiltersPopup.propTypes = {
-  filters: PropTypes.object,
-  changeFiltersCallback: PropTypes.func,
-};
+FiltersPopup.propTypes = {};
 
 export default FiltersPopup;
