@@ -118,12 +118,12 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle>Join Voting Blocs</SmallTitle>
             <Body14>
-              Join public voting blocs and invite others to see if we can get
-              the votes to win,{' '}
+              Privately join candidate voting blocs to be notified if any bloc
+              grows big enough to win,{' '}
               <strong>
                 <i>before</i>
               </strong>{' '}
-              anyone votes.
+              the election.
             </Body14>
           </TextWrapper>
         </Card>
@@ -133,8 +133,8 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle>Never Waste Your Vote</SmallTitle>
             <Body14>
-              Only when a voting bloc gets big enough to win, we activate the
-              whole bloc to vote together &amp; win!
+              We only activate a candidate bloc vote, when we’ve confirmed the
+              bloc has enough votes to win for sure.
             </Body14>
           </TextWrapper>
         </Card>

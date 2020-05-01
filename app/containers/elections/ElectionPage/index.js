@@ -54,7 +54,6 @@ export function ElectionPage({
   userState,
   locationState,
   dispatch,
-  changeFiltersCallback,
   saveRankingCallback,
   editModeCallback,
   refreshCountCallback,
@@ -221,7 +220,6 @@ export function ElectionPage({
     districtNumber: district,
     rankingAllowed,
     userCounts: countsWithCookies ? countsWithCookies : userCounts,
-    changeFiltersCallback,
     saveRankingCallback,
     rankingMode,
     pathname,
@@ -272,9 +270,6 @@ function mapDispatchToProps(dispatch, ownProps) {
     chamber: ownProps.match.params.chamber,
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
-    changeFiltersCallback: filters => {
-      dispatch(districtActions.changeFiltersAction(filters));
-    },
 
     saveRankingCallback: (
       user,

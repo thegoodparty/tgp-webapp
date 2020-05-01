@@ -16,11 +16,6 @@ const loadZipActionError = error => ({
   error,
 });
 
-const loadCookieZipAction = (redirect = false) => ({
-  type: types.LOAD_COOKIE_ZIP,
-  redirect,
-});
-
 const loadAllPresidentialAction = () => ({
   type: types.LOAD_ALL_PRESIDENTIAL,
 });
@@ -61,11 +56,6 @@ const loadSenateCandidatesActionSuccess = senateCandidates => ({
   senateCandidates,
 });
 
-const loadSenateCandidatesActionError = error => ({
-  type: types.LOAD_SENATE_CANDIDATES_ERROR,
-  error,
-});
-
 const geolocationToDistrictAction = coords => ({
   type: types.GEOLOCATION_TO_DISTRICT,
   coords,
@@ -79,11 +69,6 @@ const geolocationToDistrictActionSuccess = geoLocation => ({
 const geolocationToDistrictActionError = error => ({
   type: types.GEOLOCATION_TO_DISTRICT_ERROR,
   error,
-});
-
-const changeFiltersAction = filters => ({
-  type: types.CHANGE_FILTERS,
-  filters,
 });
 
 const userCountsAction = (shortState, districtNumber) => ({
@@ -101,7 +86,6 @@ export default {
   loadZipAction,
   loadZipActionSuccess,
   loadZipActionError,
-  loadCookieZipAction,
   loadAllPresidentialAction,
   loadAllPresidentialActionSuccess,
   loadAllPresidentialActionError,
@@ -111,10 +95,8 @@ export default {
   geolocationToDistrictAction,
   geolocationToDistrictActionSuccess,
   geolocationToDistrictActionError,
-  changeFiltersAction,
   loadSenateCandidatesAction,
   loadSenateCandidatesActionSuccess,
-  loadSenateCandidatesActionError,
   userCountsAction,
   userCountsActionSuccess,
 };
