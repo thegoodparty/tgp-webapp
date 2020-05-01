@@ -30,11 +30,26 @@ import contentfulHelper from 'helpers/contentfulHelper';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
 import TwitterIcon from 'images/icons/twitter-icon.svg';
+import GrayCheckbox from 'images/icons/checkbox-gray.svg';
+import RedCheckbox from 'images/icons/checkbox-red.svg';
+import GreenCheckbox from 'images/icons/checkbox-green.svg';
 
 const TopRow = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const CheckboxRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 16px;
+`;
+
+const CheckboxImg = styled.img`
+  margin-right: 12px;
+  margin-top: 5px;
 `;
 
 const SocialLinks = styled.div`
@@ -110,6 +125,10 @@ const ColoredBody13 = styled(Body13)`
   &.green {
     color: ${({ theme }) => theme.colors.green};
   }
+
+  &.gray {
+    color: ${({ theme }) => theme.colors.gray4};
+  }
 `;
 
 const SmallBr = styled.span`
@@ -120,8 +139,7 @@ const SmallBr = styled.span`
 `;
 
 const OpenSecretsLink = styled(Body9)`
-  margin-top: 16px;
-  text-align: right;
+  margin: 16px 0;
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
@@ -133,6 +151,9 @@ const ColoredText = styled.span`
   color: ${({ theme }) => theme.colors.red};
   &.green {
     color: ${({ theme }) => theme.colors.green};
+  }
+  &.gray {
+    color: ${({ theme }) => theme.colors.gray4};
   }
 `;
 
@@ -264,6 +285,7 @@ const CandidateWrapper = ({
     isApproved,
     state,
     district,
+    isBigMoney,
   } = candidate;
 
   const isUnkown = isGood === null;
@@ -272,6 +294,7 @@ const CandidateWrapper = ({
   const isSmallChallenger = isUnkown || isApproved; // isSmallCandidate(totalRaised, chamberName);
 
   const color = isGoodOrUnkwown ? 'green' : 'red';
+  const colorWithGray = isGoodOrUnkwown ? 'green' : isBigMoney ? 'red' : 'gray';
   const perc = isGoodOrUnkwown
     ? percHelper(smallDonorPerc, true)
     : percHelper(largeDonorPerc, true);
@@ -290,7 +313,9 @@ const CandidateWrapper = ({
   const coloredGood = () => {
     return (
       <ColoredText className={color}>
-        {!isGoodOrUnkwown ? 'Not Good Enough' : 'a Good Option'}
+        <strong>
+          {!isGoodOrUnkwown ? 'Not Good Enough' : 'a Good Option'}
+        </strong>
       </ColoredText>
     );
   };
@@ -365,6 +390,8 @@ const CandidateWrapper = ({
     }
     return 'RANK YOUR CHOICES';
   };
+
+  const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
   return (
     <GrayWrapper>
       {candidate ? (
@@ -407,14 +434,63 @@ const CandidateWrapper = ({
                   </StyledBody12>
                 </RankButton>
               </Link>
-              <a
-                href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
-                  window.location.href
-                }`}
-              >
-                <ReportError>Report an error</ReportError>
-              </a>
             </TopRow>
+
+            <Body style={{ marginTop: '32px' }}>
+              Why {lastName()} is {coloredGood()}
+            </Body>
+            {!isGoodOrUnkwown && (
+              <>
+                {isBigMoney ? (
+                  <CheckboxRow>
+                    <CheckboxImg src={RedCheckbox} />
+                    <Body13>
+                      <strong>
+                        <ColoredText>Follow the Money:</ColoredText>{' '}
+                      </strong>
+                      Candidate has raised most of funding (&gt;50%) from Big
+                      Money sources.
+                    </Body13>
+                  </CheckboxRow>
+                ) : (
+                  <CheckboxRow>
+                    <CheckboxImg src={GrayCheckbox} />
+                    <Body13>
+                      <strong>Follow the Money:</strong> Candidate has raised
+                      most of funding (&gt;50%) from Small Indiv. Donors
+                      (&lt;$200).
+                    </Body13>
+                  </CheckboxRow>
+                )}
+
+                {isApproved ? (
+                  <CheckboxRow>
+                    <CheckboxImg src={GrayCheckbox} />
+                    <Body13>
+                      <strong>Candidate Policy Positions:</strong> Candidate
+                      positions are aligned with{' '}
+                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                        The Good Party Platform.
+                      </Link>
+                    </Body13>
+                  </CheckboxRow>
+                ) : (
+                  <CheckboxRow>
+                    <CheckboxImg src={RedCheckbox} />
+                    <Body13>
+                      <strong>
+                        <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
+                      </strong>
+                      Candidate positions are not aligned with{' '}
+                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                        The Good Party Platform.
+                      </Link>
+                    </Body13>
+                  </CheckboxRow>
+                )}
+              </>
+            )}
+
             <FollowWrapper>
               <Body className="bold600">Follow the Money</Body>
               <Body11 style={{ marginLeft: '5px' }}>
@@ -440,7 +516,9 @@ const CandidateWrapper = ({
                 </Fund>
               ) : (
                 <Fund>
-                  <ColoredBody13 className={color}>{perc}%</ColoredBody13>
+                  <ColoredBody13 className={colorWithGray}>
+                    {perc}%
+                  </ColoredBody13>
                   <StyledBody9>
                     {isGoodOrUnkwown ? (
                       <span>
@@ -463,11 +541,8 @@ const CandidateWrapper = ({
                 </Fund>
               )}
             </FundsWrapper>
-            <Body13 className="bold500" style={{ margin: '26px 0 16px' }}>
-              Why we believe {lastName()} {isUnkown ? 'could be' : 'is'}{' '}
-              {coloredGood()}:
-            </Body13>
-            <Body13>
+
+            <Body13 style={{ margin: '26px 0 16px' }}>
               According to Federal Election Commission (FEC) filings for the
               this election cycle, as of {combinedReportDate},{' '}
               {isSmallChallenger ? (
@@ -482,9 +557,13 @@ const CandidateWrapper = ({
               ) : (
                 <>
                   <strong>
-                    {name} has raised {moneyHelper(totalRaised)} with a majority
-                    (<ColoredText className={color}>{perc}%</ColoredText>) of
-                    funds coming from{' '}
+                    {name} has raised {moneyHelper(totalRaised)} with{' '}
+                    <ColoredText className={color}>
+                      {moneyHelper(bigMoneyFunds)}
+                    </ColoredText>{' '}
+                    (
+                    <ColoredText className={colorWithGray}>{perc}%</ColoredText>
+                    ) of funds coming from{' '}
                     {isGoodOrUnkwown
                       ? 'Small Individual Donors'
                       : 'Big Money Sources'}
@@ -566,11 +645,20 @@ const CandidateWrapper = ({
                 </>
               )}
             </Body13>
-            <a href={openSecretLink} target="_blank">
-              <OpenSecretsLink>
-                FEC DATA COURTESY OF OPENSECRETS.ORG
-              </OpenSecretsLink>
-            </a>
+            <div className="text-center">
+              <a href={openSecretLink} target="_blank">
+                <OpenSecretsLink>
+                  FEC DATA COURTESY OF OPENSECRETS.ORG
+                </OpenSecretsLink>
+              </a>
+              <a
+                href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
+                  window.location.href
+                }`}
+              >
+                <ReportError>Report an error</ReportError>
+              </a>
+            </div>
 
             <InfoWrapper>
               <Body className="bold600" style={{ marginTop: '48px' }}>
@@ -613,6 +701,7 @@ const CandidateWrapper = ({
                 </div>
               )}
             </InfoWrapper>
+
             {campaignWebsite && campaignWebsite !== 'null' && (
               <div>
                 <hr />
