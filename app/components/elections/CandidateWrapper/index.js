@@ -528,9 +528,8 @@ const CandidateWrapper = ({
                     <Body13>
                       <strong>
                         <ColoredText className="green">
-                          Candidate Policy Positions
+                          Candidate Policy Positions:
                         </ColoredText>
-                        :
                       </strong>{' '}
                       Candidate positions are aligned with{' '}
                       <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
