@@ -94,7 +94,6 @@ const StyledBody12 = styled(Body12)`
 
 const ReportError = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
-  margin-top: 7px;
   text-transform: uppercase;
 `;
 
@@ -458,7 +457,8 @@ const CandidateWrapper = ({
                     <Body13>
                       <strong>Follow the Money:</strong> Candidate has raised
                       most of funding (&gt;50%) from Small Indiv. Donors
-                      (&lt;$200).
+                      (&lt;$200). This is good, but not enough because of
+                      candidate policy positions.
                     </Body13>
                   </CheckboxRow>
                 )}
@@ -574,7 +574,6 @@ const CandidateWrapper = ({
                 </>
               )}
             </Body13>
-            <br />
             <br />
             <Body13>
               {isGoodOrUnkwown ? (
@@ -711,11 +710,14 @@ const CandidateWrapper = ({
                 <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
               </div>
             )}
-            <a href={ballotpediaLink} target="_blank">
-              <OpenSecretsLink>
-                CANDIDATE DATA COURTESY OF BALLOTPEDIA <br /> &nbsp;
-              </OpenSecretsLink>
-            </a>
+            <div className="text-center" style={{ paddingBottom: '16px' }}>
+              <a href={ballotpediaLink} target="_blank">
+                <OpenSecretsLink>
+                  CANDIDATE DATA COURTESY OF BALLOTPEDIA
+                </OpenSecretsLink>
+              </a>
+              <ReportError>Report an error</ReportError>
+            </div>
           </Wrapper>
         </>
       ) : (
