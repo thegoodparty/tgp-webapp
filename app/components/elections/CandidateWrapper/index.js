@@ -499,7 +499,7 @@ const CandidateWrapper = ({
                     <Body13>
                       <strong>
                         <ColoredText className="green">
-                          Follow the Money big:
+                          Follow the Money:
                         </ColoredText>{' '}
                       </strong>
                       Candidate has raised most of funding (&gt;50%) from Small
@@ -508,12 +508,16 @@ const CandidateWrapper = ({
                   </CheckboxRow>
                 ) : (
                   <CheckboxRow>
-                    <CheckboxImg src={GrayCheckbox} />
+                    <CheckboxImg src={GreenCheckbox} />
                     <Body13>
-                      <strong>Follow the Money small:</strong> Candidate has
-                      raised most of funding (&gt;50%) from Small Indiv. Donors
-                      (&lt;$200). This is good, but not enough because of
-                      candidate policy positions.
+                      <strong>
+                        <ColoredText className="green">
+                          Follow the Money:
+                        </ColoredText>
+                      </strong>{' '}
+                      Candidate has raised most of funding (&gt;50%) from Small
+                      Indiv. Donors (&lt;$200). This is good, but not enough
+                      because of candidate policy positions.
                     </Body13>
                   </CheckboxRow>
                 )}
