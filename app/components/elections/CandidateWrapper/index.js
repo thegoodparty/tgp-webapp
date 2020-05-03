@@ -142,6 +142,10 @@ const OpenSecretsLink = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
+const BallotpediaNoData = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
 const StyledBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
@@ -798,48 +802,35 @@ const CandidateWrapper = ({
                 <ReportError>Report an error</ReportError>
               </a>
             </div>
-
-            <InfoWrapper>
-              <Body className="bold600" style={{ marginTop: '48px' }}>
-                Candidate Policy Positions:
-              </Body>
-              {chamberName === 'presidential' ? (
-                <Body13>{candidateInfo}</Body13>
-              ) : (
-                <div>
-                  {candidateInfo && candidateInfo !== 'null' ? (
-                    <>
-                      <Body11 style={{ margin: '16px 0' }}>
-                        The following policy positions for {name} were compiled
-                        by{' '}
-                        <a href={ballotpediaLink} target="_blank">
-                          Ballotpedia
-                        </a>{' '}
-                        from the candidate&apos;s survey, official campaign
-                        website, editorials, speeches, and interviews.
-                      </Body11>
-                      <Body13
-                        dangerouslySetInnerHTML={{ __html: candidateInfo }}
-                      />
-                    </>
-                  ) : (
-                    <Body13 style={{ padding: '16px 0' }}>
-                      No data found for {name} on{' '}
-                      <a href="https://ballotpedia.org/" target="_blank">
-                        Ballotpedia
-                      </a>
-                      <a
-                        href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
-                          window.location.href
-                        }`}
-                      >
-                        <ReportError>Report an error</ReportError>
-                      </a>
-                    </Body13>
-                  )}
-                </div>
-              )}
-            </InfoWrapper>
+            {candidateInfo && candidateInfo !== 'null' && (
+              <InfoWrapper>
+                <Body className="bold600" style={{ marginTop: '48px' }}>
+                  Candidate Policy Positions:
+                </Body>
+                {chamberName === 'presidential' ? (
+                  <Body13>{candidateInfo}</Body13>
+                ) : (
+                  <div>
+                    {candidateInfo && candidateInfo !== 'null' && (
+                      <>
+                        <Body11 style={{ margin: '16px 0' }}>
+                          The following policy positions for {name} were
+                          compiled by{' '}
+                          <a href={ballotpediaLink} target="_blank">
+                            Ballotpedia
+                          </a>{' '}
+                          from the candidate&apos;s survey, official campaign
+                          website, editorials, speeches, and interviews.
+                        </Body11>
+                        <Body13
+                          dangerouslySetInnerHTML={{ __html: candidateInfo }}
+                        />
+                      </>
+                    )}
+                  </div>
+                )}
+              </InfoWrapper>
+            )}
 
             {campaignWebsite && campaignWebsite !== 'null' && (
               <div>
@@ -850,14 +841,34 @@ const CandidateWrapper = ({
                 <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
               </div>
             )}
-            <div className="text-center" style={{ paddingBottom: '16px' }}>
-              <a href={ballotpediaLink} target="_blank">
-                <OpenSecretsLink>
-                  CANDIDATE DATA COURTESY OF BALLOTPEDIA
-                </OpenSecretsLink>
-              </a>
-              <ReportError>Report an error</ReportError>
-            </div>
+            {(campaignWebsite && campaignWebsite !== 'null') ||
+            (candidateInfo && candidateInfo !== 'null') ? (
+              <div className="text-center" style={{ paddingBottom: '16px' }}>
+                <a href={ballotpediaLink} target="_blank">
+                  <OpenSecretsLink>
+                    CANDIDATE DATA COURTESY OF BALLOTPEDIA
+                  </OpenSecretsLink>
+                </a>
+                <ReportError>Report an error</ReportError>
+              </div>
+            ) : (
+              <div className="text-center">
+                <BallotpediaNoData style={{ padding: '16px 0' }}>
+                  No data found for {name} on{' '}
+                  <a href="https://ballotpedia.org/" target="_blank">
+                    Ballotpedia
+                  </a>
+                  <br /><br />
+                  <a
+                    href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
+                      window.location.href
+                    }`}
+                  >
+                    <ReportError>Report an error</ReportError>
+                  </a>
+                </BallotpediaNoData>
+              </div>
+            )}
           </Wrapper>
         </>
       ) : (
