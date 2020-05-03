@@ -33,6 +33,7 @@ import TwitterIcon from 'images/icons/twitter-icon.svg';
 import GrayCheckbox from 'images/icons/checkbox-gray.svg';
 import RedCheckbox from 'images/icons/checkbox-red.svg';
 import GreenCheckbox from 'images/icons/checkbox-green.svg';
+import QuestionMarkGray from 'images/icons/question-mark.svg';
 
 const TopRow = styled.div`
   display: flex;
@@ -586,7 +587,7 @@ const CandidateWrapper = ({
                 </CheckboxRow>
 
                 <CheckboxRow>
-                  <CheckboxImg src={GrayCheckbox} />
+                  <CheckboxImg src={QuestionMarkGray} />
                   <Body13>
                     <strong>Candidate Policy Positions: </strong>
                     Not yet confirmed if this candidate aligns with{' '}
@@ -858,7 +859,8 @@ const CandidateWrapper = ({
                   <a href="https://ballotpedia.org/" target="_blank">
                     Ballotpedia
                   </a>
-                  <br /><br />
+                  <br />
+                  <br />
                   <a
                     href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
                       window.location.href
