@@ -333,7 +333,7 @@ const VsList = ({
       </Row>
       {unknown && unknown.length > 0 && (
         <UnknownWrapper>
-          <UnknownTitle>GOODNESS UNKNOWN</UnknownTitle>
+          <UnknownTitle>NOT YET RATED</UnknownTitle>
           {unknown.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper className="center">

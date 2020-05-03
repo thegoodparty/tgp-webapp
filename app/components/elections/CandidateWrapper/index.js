@@ -243,7 +243,7 @@ const CandidateWrapper = ({
       compared.relativePerc = toPrecision(
         (totalRaised * 100) / compared.raised,
       );
-      compared.bigMoneyFunds = totalRaised * bigFundsPerc;
+      compared.bigMoneyFunds = compared.raised * compared.bigFundsPerc;
       setComparedIncumbent(compared);
     } else {
       setComparedIncumbent({});
@@ -309,11 +309,23 @@ const CandidateWrapper = ({
   };
 
   const coloredGood = () => {
+    if (isGood) {
+      return (
+        <ColoredText className="green">
+          <strong>a Good Option</strong>
+        </ColoredText>
+      );
+    }
+    if (isUnkown) {
+      return (
+        <ColoredText className="gray">
+          <strong>Not Yet Rated</strong>
+        </ColoredText>
+      );
+    }
     return (
-      <ColoredText className={color}>
-        <strong>
-          {!isGoodOrUnkwown ? 'Not Good Enough' : 'a Good Option'}
-        </strong>
+      <ColoredText className="red">
+        <strong>Not Good Enough</strong>
       </ColoredText>
     );
   };
@@ -515,9 +527,8 @@ const CandidateWrapper = ({
                           Follow the Money:
                         </ColoredText>
                       </strong>{' '}
-                      Candidate has raised most of funding (&gt;50%) from Small
-                      Indiv. Donors (&lt;$200). This is good, but not enough
-                      because of candidate policy positions.
+                      Candidate has less than 50% of the total funding of the
+                      incumbent in this race
                     </Body13>
                   </CheckboxRow>
                 )}
@@ -554,6 +565,35 @@ const CandidateWrapper = ({
               </>
             )}
 
+            {isUnkown && (
+              <>
+                <CheckboxRow>
+                  <CheckboxImg src={GreenCheckbox} />
+                  <Body13>
+                    <strong>
+                      <ColoredText className="green">
+                        Follow the Money:
+                      </ColoredText>
+                    </strong>{' '}
+                    Candidate has raised most of funding (&gt;50%) from Small
+                    Indiv. Donors (&lt;$200). This is good, but not enough
+                    because of candidate policy positions.
+                  </Body13>
+                </CheckboxRow>
+
+                <CheckboxRow>
+                  <CheckboxImg src={GrayCheckbox} />
+                  <Body13>
+                    <strong>Candidate Policy Positions: </strong>
+                    Not yet confirmed if this candidate aligns with{' '}
+                    <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                      The Good Party Platform.
+                    </Link>
+                  </Body13>
+                </CheckboxRow>
+              </>
+            )}
+
             <FollowWrapper>
               <Body className="bold600">Follow the Money</Body>
               <Body11 style={{ marginLeft: '5px' }}>
@@ -578,7 +618,9 @@ const CandidateWrapper = ({
                   {isIncumbent || isBigMoney ? (
                     <>
                       <ColoredBody13 className="green">{perc}%</ColoredBody13>
-                      <StyledBody9>FROM SMALL INDIV DONORS &lt;200</StyledBody9>
+                      <StyledBody9>
+                        FROM SMALL INDIV DONORS &lt;$200
+                      </StyledBody9>
                     </>
                   ) : (
                     <>
@@ -586,7 +628,7 @@ const CandidateWrapper = ({
                         {comparedIncumbent.relativePerc}%
                       </ColoredBody13>
                       <StyledBody9>
-                        FUNDING RELATIVE TO FUNDING RELATIVE TO{' '}
+                        FUNDING RELATIVE TO{' '}
                         {comparedIncumbent.isFakeIncumbent
                           ? 'BIG MONEY CANDIDATE'
                           : 'INCUMBENT'}
@@ -661,25 +703,61 @@ const CandidateWrapper = ({
                 </>
               ) : (
                 <>
-                  <strong>
-                    {name} has raised {moneyHelper(totalRaised)} with{' '}
-                    <ColoredText className={color}>
-                      {moneyHelper(smallMoneyFunds)}
-                    </ColoredText>{' '}
-                    (
-                    <ColoredText className={colorWithGray}>{perc}%</ColoredText>
-                    ) of funds coming from Small Individual Donors
-                  </strong>
-                  , donating less than $200/each. <br /> <br />
-                  This means that {lastName()} is mostly being supported by
-                  large numbers of ordinary people, who are banding together,
-                  each giving a little, to help {name} compete with the Big
-                  Money pouring into this race. <br /> <br />
-                  {!isIncumbent && (
+                  {isBigMoney || isIncumbent ? (
                     <>
-                      In contrast to {name}, the incumbent in this race,{' '}
                       <strong>
-                        {comparedIncumbent.name}, has raised{' '}
+                        {name} has raised {moneyHelper(totalRaised)} with{' '}
+                        <ColoredText className={color}>
+                          {moneyHelper(smallMoneyFunds)}
+                        </ColoredText>{' '}
+                        (
+                        <ColoredText className={colorWithGray}>
+                          {perc}%
+                        </ColoredText>
+                        ) of funds coming from Small Individual Donors
+                      </strong>
+                      , donating less than $200/each. <br /> <br />
+                      This means that {lastName()} is mostly being supported by
+                      large numbers of ordinary people, who are banding
+                      together, each giving a little, to help {name} compete
+                      with the Big Money pouring into this race. <br /> <br />
+                      {!isIncumbent && (
+                        <>
+                          In contrast to {name}, the incumbent in this race,{' '}
+                          <strong>
+                            {comparedIncumbent.name}, has raised{' '}
+                            {moneyHelper(comparedIncumbent.raised)}, or{' '}
+                            {comparedIncumbent.xTimes}x times more money, with a{' '}
+                            <ColoredText className="red">
+                              {moneyHelper(comparedIncumbent.bigMoneyFunds)}
+                            </ColoredText>{' '}
+                            ({percHelper(comparedIncumbent.bigFundsPerc, true)}%
+                            ) of funds coming from Big Money sources
+                          </strong>
+                          , like Political Action Committees (PACs), Corporate
+                          Lobbyists and Large Donors.
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <strong>
+                        {name} has raised just {moneyHelper(totalRaised)} in
+                        Total Funds, or{' '}
+                        <ColoredText className="green">
+                          {comparedIncumbent.relativePerc}%
+                        </ColoredText>{' '}
+                        of the funding of the incumbent in this race
+                      </strong>
+                    </>
+                  )}
+
+                  {!isIncumbent && !isBigMoney && (
+                    <>
+                      <br />
+                      <br />
+                      <strong>
+                        The incumbent, {comparedIncumbent.name}, has raised{' '}
                         {moneyHelper(comparedIncumbent.raised)}, or{' '}
                         {comparedIncumbent.xTimes}x times more money, with a{' '}
                         <ColoredText className="red">
@@ -690,10 +768,6 @@ const CandidateWrapper = ({
                       </strong>
                       , like Political Action Committees (PACs), Corporate
                       Lobbyists and Large Donors.
-                    </>
-                  )}
-                  {!isIncumbent && !isBigMoney && (
-                    <>
                       <br />
                       <br />
                       Such a difference in funding creates a nearly impossible
