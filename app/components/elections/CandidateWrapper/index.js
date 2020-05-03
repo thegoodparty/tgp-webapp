@@ -287,7 +287,7 @@ const CandidateWrapper = ({
     reportDate,
     openSecretsId,
     uuid,
-    isApproved,
+    isAligned,
     state,
     district,
     isBigMoney,
@@ -480,7 +480,7 @@ const CandidateWrapper = ({
                   </CheckboxRow>
                 )}
 
-                {isApproved ? (
+                {isAligned === 'yes' ? (
                   <CheckboxRow>
                     <CheckboxImg src={GrayCheckbox} />
                     <Body13>
@@ -538,7 +538,7 @@ const CandidateWrapper = ({
                   </CheckboxRow>
                 )}
 
-                {isApproved ? (
+                {isAligned === 'yes' ? (
                   <CheckboxRow>
                     <CheckboxImg src={GreenCheckbox} />
                     <Body13>
