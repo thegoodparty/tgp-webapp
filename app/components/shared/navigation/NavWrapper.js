@@ -9,6 +9,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
+import AdminMenu from 'components/admin/AdminMenu/Loadable';
 
 import PartyIcon from 'images/icons/heart.svg';
 import PartyIconGray from 'images/icons/heart-gray.svg';
@@ -116,6 +117,7 @@ const NavWrapper = ({
           </BottomNavigation>
         </Hidden>
       )}
+      {user && user.isAdmin && <AdminMenu />}
     </>
   );
 };

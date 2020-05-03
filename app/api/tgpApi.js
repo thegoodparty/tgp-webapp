@@ -139,5 +139,19 @@ const api = {
     url: `${base}notifications/email-ama`,
     method: 'POST',
   },
+
+  // admin
+  admin: {
+    candidates: {
+      url: `${base}admin/candidates`,
+      method: 'GET',
+      withAuth: true,
+    },
+    updateCandidate: {
+      url: `${base}admin/candidate`,
+      method: 'PUT',
+      withAuth: true,
+    },
+  },
 };
 export default api;
