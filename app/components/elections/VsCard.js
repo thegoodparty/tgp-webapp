@@ -98,16 +98,17 @@ const VsCard = ({
   const { good, notGood, unknown } = candidates;
   const [width, height] = useWindowSize();
 
-  if (!good && !notGood) {
+  if (!good && !notGood && !unknown) {
     return (
       <Card>
         <CircularProgress />
       </Card>
     );
   }
+  const cloneGood = [...good];
 
-  if (good.length === 0) {
-    good.push({
+  if (cloneGood.length === 0) {
+    cloneGood.push({
       id: 'noneyet',
       name: 'NONE YET',
       party: 'VC',
@@ -121,8 +122,8 @@ const VsCard = ({
     notGood.length === 0 &&
     unknown &&
     unknown.length === 0 &&
-    good.length === 1 &&
-    good[0].id === 'noneyet'
+    cloneGood.length === 1 &&
+    cloneGood[0].id === 'noneyet'
   ) {
     return <div />;
   }
@@ -178,7 +179,7 @@ const VsCard = ({
             <Green>GOOD OPTIONS</Green>
           </Body9>
           <AvatarsWrapper>
-            {good.map((candidate, index) => (
+            {cloneGood.map((candidate, index) => (
               <React.Fragment key={`good-${candidate.id}`}>
                 {index < 3 && (
                   <AvatarAbsolute
@@ -198,14 +199,14 @@ const VsCard = ({
               </React.Fragment>
             ))}
           </AvatarsWrapper>
-          {good.length > 1 && <Name>{good.length} CANDIDATES</Name>}
-          {good.length === 1 && (
+          {cloneGood.length > 1 && <Name>{cloneGood.length} CANDIDATES</Name>}
+          {cloneGood.length === 1 && (
             <>
-              <Name>{good[0].name.toUpperCase()}</Name>
+              <Name>{cloneGood[0].name.toUpperCase()}</Name>
               <Role>
-                {good[0].isIncumbent
+                {cloneGood[0].isIncumbent
                   ? 'INCUMBENT'
-                  : partyResolver(good[0].party)}
+                  : partyResolver(cloneGood[0].party)}
               </Role>
             </>
           )}
