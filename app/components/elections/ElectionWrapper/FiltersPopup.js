@@ -64,23 +64,13 @@ const FiltersPopup = () => {
       <div className="text-center" style={{ marginTop: '24px' }}>
         <Body13>or</Body13>
       </div>
-      {/*<Row style={{ marginTop: '24px' }}>*/}
-      {/*<Checkbox src={checkboxImg} />*/}
-      {/*<div>*/}
-      {/*<Label>Relatively Small Amount of Funding</Label>*/}
-      {/*<Body13>*/}
-      {/*Relatively lessor known candidates who have raised less than 50% or*/}
-      {/*the funding of the incumbent.*/}
-      {/*</Body13>*/}
-      {/*</div>*/}
-      {/*</Row>*/}
       <Row style={{ marginTop: '18px' }}>
         <Checkbox src={checkboxImg} />
         <div style={{ flex: 1 }}>
           <Label>Relatively Small Amount of Funding</Label>
           <Body13>
-            Relatively lessor known candidates who have raised less than 50% or
-            the funding of the incumbent.
+            Relatively lessor known candidates who have raised less than half
+            (&lt;50%) of the funding of the incumbent in race.
           </Body13>
         </div>
       </Row>
