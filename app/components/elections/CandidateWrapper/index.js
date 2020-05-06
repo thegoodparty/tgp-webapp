@@ -803,35 +803,33 @@ const CandidateWrapper = ({
                 <ReportError>Report an error</ReportError>
               </a>
             </div>
-            {candidateInfo && candidateInfo !== 'null' && (
-              <InfoWrapper>
-                <Body className="bold600" style={{ marginTop: '48px' }}>
-                  Candidate Policy Positions:
-                </Body>
-                {chamberName === 'presidential' ? (
-                  <Body13>{candidateInfo}</Body13>
-                ) : (
-                  <div>
-                    {candidateInfo && candidateInfo !== 'null' && (
-                      <>
-                        <Body11 style={{ margin: '16px 0' }}>
-                          The following policy positions for {name} were
-                          compiled by{' '}
-                          <a href={ballotpediaLink} target="_blank">
-                            Ballotpedia
-                          </a>{' '}
-                          from the candidate&apos;s survey, official campaign
-                          website, editorials, speeches, and interviews.
-                        </Body11>
-                        <Body13
-                          dangerouslySetInnerHTML={{ __html: candidateInfo }}
-                        />
-                      </>
-                    )}
-                  </div>
-                )}
-              </InfoWrapper>
-            )}
+            <InfoWrapper>
+              <Body className="bold600" style={{ marginTop: '48px' }}>
+                Candidate Policy Positions:
+              </Body>
+              {chamberName === 'presidential' ? (
+                <Body13>{candidateInfo}</Body13>
+              ) : (
+                <div>
+                  {candidateInfo && candidateInfo !== 'null' && (
+                    <>
+                      <Body11 style={{ margin: '16px 0' }}>
+                        The following policy positions for {name} were compiled
+                        by{' '}
+                        <a href={ballotpediaLink} target="_blank">
+                          Ballotpedia
+                        </a>{' '}
+                        from the candidate&apos;s survey, official campaign
+                        website, editorials, speeches, and interviews.
+                      </Body11>
+                      <Body13
+                        dangerouslySetInnerHTML={{ __html: candidateInfo }}
+                      />
+                    </>
+                  )}
+                </div>
+              )}
+            </InfoWrapper>
 
             {campaignWebsite && campaignWebsite !== 'null' && (
               <div>
