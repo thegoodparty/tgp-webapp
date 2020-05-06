@@ -492,18 +492,39 @@ const CandidateWrapper = ({
                     </Body13>
                   </CheckboxRow>
                 ) : (
-                  <CheckboxRow>
-                    <CheckboxImg src={RedCheckbox} />
-                    <Body13>
-                      <strong>
-                        <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
-                      </strong>
-                      Candidate positions are not aligned with{' '}
-                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-                        The Good Party Platform.
-                      </Link>
-                    </Body13>
-                  </CheckboxRow>
+                  <>
+                    {isAligned === 'no' ? (
+                      <CheckboxRow>
+                        <CheckboxImg src={RedCheckbox} />
+                        <Body13>
+                          <strong>
+                            <ColoredText>
+                              Candidate Policy Positions:
+                            </ColoredText>{' '}
+                          </strong>
+                          Candidate positions are not aligned with{' '}
+                          <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                            The Good Party Platform.
+                          </Link>
+                        </Body13>
+                      </CheckboxRow>
+                    ) : (
+                      <CheckboxRow>
+                        <CheckboxImg src={QuestionMarkGray} />
+                        <Body13>
+                          <strong>
+                            <ColoredText className="gray">
+                              Candidate Policy Positions:
+                            </ColoredText>{' '}
+                          </strong>
+                          Not yet confirmed if this candidate aligns with{' '}
+                          <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                            The Good Party Platform.
+                          </Link>
+                        </Body13>
+                      </CheckboxRow>
+                    )}
+                  </>
                 )}
               </>
             )}
