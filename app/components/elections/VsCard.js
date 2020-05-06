@@ -58,6 +58,10 @@ const Name = styled(Body9)`
   margin-bottom: 4px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.blue};
+
+  &.gray {
+    color: ${({ theme }) => theme.colors.gray4};
+  }
 `;
 
 const Role = styled(Body9)`
@@ -202,7 +206,9 @@ const VsCard = ({
           {cloneGood.length > 1 && <Name>{cloneGood.length} CANDIDATES</Name>}
           {cloneGood.length === 1 && (
             <>
-              <Name>{cloneGood[0].name.toUpperCase()}</Name>
+              <Name className={(cloneGood[0].id = 'noneyet' ? 'gray' : '')}>
+                {cloneGood[0].name.toUpperCase()}
+              </Name>
               <Role>
                 {cloneGood[0].isIncumbent
                   ? 'INCUMBENT'
