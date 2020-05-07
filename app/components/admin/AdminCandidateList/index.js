@@ -96,7 +96,6 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       rowVal += '';
     }
     rowVal = rowVal.toLocaleLowerCase();
-    console.log('str', str);
     return rowVal.includes(str);
   };
 
