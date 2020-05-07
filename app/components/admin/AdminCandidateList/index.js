@@ -67,6 +67,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
           chamber: candidate.chamber,
           isGood: candidate.isGood ? 'yes' : 'no',
           isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
+          isMajor: candidate.isMajor ? 'yes' : 'no',
         };
         if (chamber !== 'presidential') {
           fields.state = candidate.state
@@ -143,6 +144,13 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     {
       Header: 'Is Big Money (yes/no)',
       accessor: 'isBigMoney',
+      filterMethod: customFilter,
+      headerStyle,
+      maxWidth: 150,
+    },
+    {
+      Header: 'Is Major (yes/no)',
+      accessor: 'isMajor',
       filterMethod: customFilter,
       headerStyle,
       maxWidth: 150,
