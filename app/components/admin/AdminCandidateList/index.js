@@ -65,7 +65,12 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
           isIncumbent: candidate.isIncumbent,
           isAligned: candidate.isAligned,
           chamber: candidate.chamber,
-          isGood: candidate.isGood ? 'yes' : 'no',
+          isGood:
+            candidate.isGood === null
+              ? 'unknown'
+              : candidate.isGood
+              ? 'yes'
+              : 'no',
           isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
           isMajor: candidate.isMajor ? 'yes' : 'no',
         };
