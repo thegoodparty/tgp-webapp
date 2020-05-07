@@ -94,7 +94,11 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       headerStyle,
       Cell: row => {
         const route = candidateRoute(row.original);
-        return <Link to={route}>{row.original.name}</Link>;
+        return (
+          <a href={route} target="_blank">
+            {row.original.name}
+          </a>
+        );
       },
     },
     {
@@ -123,9 +127,12 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
         } else if (isGood && !isBigMoney) {
           type = 'Minor';
           color = 'green';
-        } else if (!isGood && isBigMoney) {
+        } else if (isGood === false && isBigMoney) {
           type = 'Bad';
           color = 'red';
+        } else if (isGood === null && !isBigMoney) {
+          type = 'Minor';
+          color = 'green';
         } else {
           type = 'Unknown';
           color = 'gray';

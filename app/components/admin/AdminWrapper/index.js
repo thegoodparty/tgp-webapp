@@ -7,6 +7,8 @@ import StarsIcon from '@material-ui/icons/Stars';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import HomeIcon from '@material-ui/icons/Home';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CloseIcon from '@material-ui/icons/ChevronLeft';
+import OpenIcon from '@material-ui/icons/ChevronRight';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -26,6 +28,12 @@ const LeftPanel = styled.div`
   width: 250px;
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
     0px 0px 16px rgba(0, 0, 0, 0.12);
+  overflow-x: hidden;
+  transition: 0.3s width;
+
+  &.close {
+    width: 48px;
+  }
 `;
 
 const LeftMenuItem = styled(MenuItem)`
@@ -37,6 +45,11 @@ const LeftMenuItem = styled(MenuItem)`
       background-color: ${({ theme }) => theme.colors.lighterBlue};
     }
   }
+`;
+
+const CloseWrapper = styled.div`
+  width: 100%;
+  text-align: right;
 `;
 
 const Icon = styled.span`
@@ -80,6 +93,7 @@ const AdminWrapper = ({
   error,
 }) => {
   const [selectedItem, setSelectedItem] = useState(false);
+  const [leftOpen, setLeftOpen] = useState(true);
 
   const handleSelectedItem = index => {
     setSelectedItem(index);
@@ -129,13 +143,22 @@ const AdminWrapper = ({
     );
   };
 
+  const toggleLeftPanel = () => {
+    setLeftOpen(!leftOpen);
+  };
+
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
       <MobileHeader />
       {user && user.isAdmin && (
         <Wrapper>
-          <LeftPanel>
+          <LeftPanel className={leftOpen ? 'open' : 'close'}>
+            <LeftMenuItem onClick={toggleLeftPanel}>
+              <CloseWrapper>
+                {leftOpen ? <CloseIcon /> : <OpenIcon />}
+              </CloseWrapper>
+            </LeftMenuItem>
             {leftMenuItems.map((item, index) => (
               <LeftMenuItem
                 key={item.label}
