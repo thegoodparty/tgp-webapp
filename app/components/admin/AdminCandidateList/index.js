@@ -57,6 +57,29 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     if (candidates) {
       const data = [];
       candidates.map(candidate => {
+        const { isGood, isBigMoney, isIncumbent } = candidate;
+        let type;
+        let color;
+        if (!isGood && isIncumbent && isBigMoney) {
+          type = 'Bad';
+          color = 'red';
+        } else if (isGood && isBigMoney) {
+          type = 'Major';
+          color = 'green';
+        } else if (isGood && !isBigMoney) {
+          type = 'Minor';
+          color = 'green';
+        } else if (isGood === false && isBigMoney) {
+          type = 'Bad';
+          color = 'red';
+        } else if (isGood === null && !isBigMoney) {
+          type = 'Minor';
+          color = 'green';
+        } else {
+          type = 'Unknown';
+          color = 'gray';
+        }
+
         const fields = {
           id: candidate.id,
           name: candidate.name,
@@ -67,6 +90,8 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
           chamber: candidate.chamber,
           isGood: candidate.isGood,
           isBigMoney: candidate.isBigMoney,
+          ftmType: type,
+          ftmColor: color,
         };
         if (chamber !== 'presidential') {
           fields.state = candidate.state
@@ -135,31 +160,34 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     },
     {
       Header: 'FTM',
-      accessor: 'ftm',
-      filterable: false,
+      accessor: 'ftmType',
+      filterMethod: customFilter,
       headerStyle,
       maxWidth: 150,
       Cell: row => {
-        const { isGood, isBigMoney } = row.original;
-        let type;
-        let color;
-        if (isGood && isBigMoney) {
-          type = 'Major';
-          color = 'green';
-        } else if (isGood && !isBigMoney) {
-          type = 'Minor';
-          color = 'green';
-        } else if (isGood === false && isBigMoney) {
-          type = 'Bad';
-          color = 'red';
-        } else if (isGood === null && !isBigMoney) {
-          type = 'Minor';
-          color = 'green';
-        } else {
-          type = 'Unknown';
-          color = 'gray';
-        }
-        return <ColoredText className={color}>{type}</ColoredText>;
+        const { ftmType, ftmColor } = row.original;
+        // let type;
+        // let color;
+        // if (!isGood && isIncumbent && isBigMoney) {
+        //   type = 'Bad';
+        //   color = 'red';
+        // } else if (isGood && isBigMoney) {
+        //   type = 'Major';
+        //   color = 'green';
+        // } else if (isGood && !isBigMoney) {
+        //   type = 'Minor';
+        //   color = 'green';
+        // } else if (isGood === false && isBigMoney) {
+        //   type = 'Bad';
+        //   color = 'red';
+        // } else if (isGood === null && !isBigMoney) {
+        //   type = 'Minor';
+        //   color = 'green';
+        // } else {
+        //   type = 'Unknown';
+        //   color = 'gray';
+        // }
+        return <ColoredText className={ftmColor}>{ftmType}</ColoredText>;
       },
     },
     {

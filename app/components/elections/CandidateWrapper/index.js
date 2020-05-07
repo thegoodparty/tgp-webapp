@@ -553,8 +553,8 @@ const CandidateWrapper = ({
                           Follow the Money:
                         </ColoredText>
                       </strong>{' '}
-                      Candidate has less than 50% of the total funding of the
-                      incumbent in this race
+                      Candidate has raised less than 50% of the total funding of
+                      the incumbent in this race.
                     </Body13>
                   </CheckboxRow>
                 )}
@@ -601,9 +601,8 @@ const CandidateWrapper = ({
                         Follow the Money:
                       </ColoredText>
                     </strong>{' '}
-                    Candidate has raised most of funding (&gt;50%) from Small
-                    Indiv. Donors (&lt;$200). This is good, but not enough
-                    because of candidate policy positions.
+                    Candidate has raised less than 50% of the total funding of
+                    the incumbent in this race.
                   </Body13>
                 </CheckboxRow>
 
