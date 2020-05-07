@@ -57,29 +57,6 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     if (candidates) {
       const data = [];
       candidates.map(candidate => {
-        const { isGood, isBigMoney, isIncumbent } = candidate;
-        let type;
-        let color;
-        if (!isGood && isIncumbent && isBigMoney) {
-          type = 'Bad';
-          color = 'red';
-        } else if (isGood && isBigMoney) {
-          type = 'Major';
-          color = 'green';
-        } else if (isGood && !isBigMoney) {
-          type = 'Minor';
-          color = 'green';
-        } else if (isGood === false && isBigMoney) {
-          type = 'Bad';
-          color = 'red';
-        } else if (isGood === null && !isBigMoney) {
-          type = 'Minor';
-          color = 'green';
-        } else {
-          type = 'Unknown';
-          color = 'gray';
-        }
-
         const fields = {
           id: candidate.id,
           name: candidate.name,
@@ -88,10 +65,8 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
           isIncumbent: candidate.isIncumbent,
           isAligned: candidate.isAligned,
           chamber: candidate.chamber,
-          isGood: candidate.isGood,
-          isBigMoney: candidate.isBigMoney,
-          ftmType: type,
-          ftmColor: color,
+          isGood: candidate.isGood ? 'yes' : 'no',
+          isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
         };
         if (chamber !== 'presidential') {
           fields.state = candidate.state
@@ -159,36 +134,18 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       maxWidth: 130,
     },
     {
-      Header: 'FTM',
-      accessor: 'ftmType',
+      Header: 'Is Good (yes/no)',
+      accessor: 'isGood',
       filterMethod: customFilter,
       headerStyle,
       maxWidth: 150,
-      Cell: row => {
-        const { ftmType, ftmColor } = row.original;
-        // let type;
-        // let color;
-        // if (!isGood && isIncumbent && isBigMoney) {
-        //   type = 'Bad';
-        //   color = 'red';
-        // } else if (isGood && isBigMoney) {
-        //   type = 'Major';
-        //   color = 'green';
-        // } else if (isGood && !isBigMoney) {
-        //   type = 'Minor';
-        //   color = 'green';
-        // } else if (isGood === false && isBigMoney) {
-        //   type = 'Bad';
-        //   color = 'red';
-        // } else if (isGood === null && !isBigMoney) {
-        //   type = 'Minor';
-        //   color = 'green';
-        // } else {
-        //   type = 'Unknown';
-        //   color = 'gray';
-        // }
-        return <ColoredText className={ftmColor}>{ftmType}</ColoredText>;
-      },
+    },
+    {
+      Header: 'Is Big Money (yes/no)',
+      accessor: 'isBigMoney',
+      filterMethod: customFilter,
+      headerStyle,
+      maxWidth: 150,
     },
     {
       Header: 'Aligned? (yes/no/unknown)',
