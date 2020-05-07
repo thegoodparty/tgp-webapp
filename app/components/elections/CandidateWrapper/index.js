@@ -531,7 +531,7 @@ const CandidateWrapper = ({
 
             {isGood && (
               <>
-                {isBigMoney || isIncumbent ? (
+                {isBigMoney || isIncumbent || perc > 50 ? (
                   <CheckboxRow>
                     <CheckboxImg src={GreenCheckbox} />
                     <Body13>
@@ -601,8 +601,14 @@ const CandidateWrapper = ({
                         Follow the Money:
                       </ColoredText>
                     </strong>{' '}
-                    Candidate has raised less than 50% of the total funding of
-                    the incumbent in this race.
+                    {comparedIncumbent.relativePerc < 50 ? (
+                      'Candidate has raised less than 50% of the total funding of the incumbent in this race.'
+                    ) : (
+                      <>
+                        Candidate has raised most of funding (&gt;50%) from
+                        Small Indiv. Donors (&lt;$200).
+                      </>
+                    )}
                   </Body13>
                 </CheckboxRow>
 
@@ -640,7 +646,7 @@ const CandidateWrapper = ({
               </Fund>
               {isGoodOrUnkwown ? (
                 <Fund>
-                  {isIncumbent || isBigMoney ? (
+                  {isIncumbent || isBigMoney || perc > 50 ? (
                     <>
                       <ColoredBody13 className="green">{perc}%</ColoredBody13>
                       <StyledBody9>
@@ -831,6 +837,14 @@ const CandidateWrapper = ({
                 <Body13>{candidateInfo}</Body13>
               ) : (
                 <div>
+                  <Body13>
+                    The following policy positions were compiled by{' '}
+                    <a href={ballotpediaLink} target="_blank">
+                      Ballotpedia
+                    </a>{' '}
+                    from the candidate&apot;s official campaign website,
+                    editorials, speeches, and interviews.
+                  </Body13>
                   {candidateInfo && candidateInfo !== 'null' && (
                     <>
                       <Body11 style={{ margin: '16px 0' }}>
@@ -853,7 +867,6 @@ const CandidateWrapper = ({
 
             {campaignWebsite && campaignWebsite !== 'null' && (
               <div>
-                <hr />
                 <Body className="bold600" style={{ margin: '48px 0 16px' }}>
                   Campaign Website
                 </Body>
