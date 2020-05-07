@@ -81,17 +81,37 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       setTableData(data);
     }
   }, candidates);
+  let str;
+  let rowVal;
+  let columnName;
+  const customFilter = (query, row, column) => {
+    str = query.value;
+    columnName = query.id || column.Header.toLocaleLowerCase();
+    rowVal = row._original[columnName];
+    if (typeof str !== 'string') {
+      str += '';
+    }
+    str = str.toLocaleLowerCase();
+    if (typeof rowVal !== 'string') {
+      rowVal += '';
+    }
+    rowVal = rowVal.toLocaleLowerCase();
+    console.log('str', str);
+    return rowVal.includes(str);
+  };
 
   const columns = [
     {
       Header: 'Id',
       accessor: 'id',
+      filterMethod: customFilter,
       headerStyle,
       maxWidth: 80,
     },
     {
       Header: 'Name',
       headerStyle,
+      filterMethod: customFilter,
       Cell: row => {
         const route = candidateRoute(row.original);
         return (
@@ -104,19 +124,22 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     {
       Header: 'Party',
       accessor: 'party',
+      filterMethod: customFilter,
       headerStyle,
     },
     {
       Header: 'Incumbent?',
       accessor: 'incumbent',
+      filterMethod: customFilter,
       headerStyle,
       maxWidth: 130,
     },
     {
-      Header: 'FTM($)',
+      Header: 'FTM',
       accessor: 'ftm',
+      filterable: false,
       headerStyle,
-      maxWidth: 130,
+      maxWidth: 150,
       Cell: row => {
         const { isGood, isBigMoney } = row.original;
         let type;
@@ -141,9 +164,9 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       },
     },
     {
-      Header: 'Is Aligned',
+      Header: 'Aligned? (yes/no/unknown)',
       accessor: 'isAligned',
-      headerStyle,
+      filterMethod: customFilter,
       maxWidth: 180,
       Cell: row => {
         return (
@@ -202,7 +225,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
         className="-striped -highlight"
         data={tableData}
         columns={columns}
-        defaultPageSize={100}
+        defaultPageSize={25}
         showPagination
         filterable
       />
