@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Checkbox from '@material-ui/core/Checkbox';
+
+import { Link } from 'react-router-dom';
 
 import { H1, Body, H3, Body13 } from 'components/shared/typogrophy';
-import { defaultFilters } from 'helpers/electionsHelper';
+import checkboxImg from 'images/icons/checkbox-gray.svg';
 
 const Wrapper = styled.div`
   padding: 8px 2px;
@@ -16,13 +17,15 @@ const Row = styled.div`
   align-items: flex-start;
 `;
 
-const GreenH3 = styled(H3)`
-  color: ${({ theme }) => theme.colors.green};
+const Checkbox = styled.img`
+  width: 24px;
+  height: auto;
+  margin-top: 12px;
+  margin-right: 8px;
 `;
 
-const RedH3 = styled(H3)`
-  color: ${({ theme }) => theme.colors.orange};
-  margin: 36px 0 18px;
+const Green = styled.span`
+  color: ${({ theme }) => theme.colors.green};
 `;
 
 const Label = styled(Body)`
@@ -31,80 +34,60 @@ const Label = styled(Body)`
   padding-top: 9px;
 `;
 
-const FiltersPopup = ({
-  filters = defaultFilters,
-  changeFiltersCallback = () => {},
-}) => {
-  const { smallDonors, smallFunding, mostlyBigDonors } = filters;
-
-  const handleCheck = (event, filter) => {
-    event.stopPropagation();
-    const updatedFilters = {
-      ...filters,
-      ...filter,
-    };
-    changeFiltersCallback(updatedFilters);
-  };
+const FiltersPopup = () => {
   return (
     <Wrapper onClick={e => e.stopPropagation()}>
-      <H1>Filter Candidates</H1>
+      <H1>Good Criteria</H1>
       <Body style={{ marginTop: '10px', marginBottom: '32px' }}>
-        Choose how to filter candidates as Good Options, Not Good Enough or
-        Unknown:
+        To be a{' '}
+        <Green>
+          <strong>Good Option</strong>
+        </Green>
+        , candidates must pass <u>both</u> our Follow the Money criteria and
+        have Candidate Policy Positions that are aligned with{' '}
+        <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+          The Good Party Platform.
+        </Link>
       </Body>
-      <GreenH3>GOOD OPTIONS</GreenH3>
-      <Row
-        style={{ marginTop: '18px' }}
-        onClick={e => handleCheck(e, { smallDonors: !smallDonors })}
-      >
-        <Checkbox
-          checked={smallDonors}
-          color="primary"
-          inputProps={{ 'aria-label': 'Mostly Founded by Small Donors' }}
-        />
-        <div>
+      <H3>Follow the Money</H3>
+      <Row style={{ marginTop: '18px' }}>
+        <Checkbox src={checkboxImg} />
+        <div style={{ flex: 1 }}>
           <Label>Mostly Funded by Small Donors (&lt;$200)</Label>
-          <Body13>
+          <Body13 style={{ flex: 1 }}>
             Major candidates who have raised lots of funding, but have ensured
             that most of their funding (&gt;50%) is coming from Small Individual
             Donors (&lt;$200).
           </Body13>
         </div>
       </Row>
-
-      <Row
-        style={{ marginTop: '24px' }}
-        onClick={e => handleCheck(e, { smallFunding: !smallFunding })}
-      >
-        <Checkbox
-          checked={smallFunding}
-          color="primary"
-          inputProps={{ 'aria-label': 'Relatively Small Amount of Funding' }}
-        />
-        <div>
-          <Label>Good Party Approved Challengers</Label>
+      <div className="text-center" style={{ marginTop: '24px' }}>
+        <Body13>or</Body13>
+      </div>
+      <Row style={{ marginTop: '18px' }}>
+        <Checkbox src={checkboxImg} />
+        <div style={{ flex: 1 }}>
+          <Label>Relatively Small Amount of Funding</Label>
           <Body13>
-            Relatively lessor known candidates who have raised little funding
-            (&lt;50% of the incumbent), but have been vetted and approved by The
-            Good Party.
+            Relatively lessor known candidates who have raised less than half
+            (&lt;50%) of the funding of the incumbent in race.
           </Body13>
         </div>
       </Row>
-      <RedH3>NOT GOOD ENOUGH</RedH3>
-      <Row onClick={e => handleCheck(e, { mostlyBigDonors: !mostlyBigDonors })}>
-        <Checkbox
-          checked={mostlyBigDonors}
-          onChange={e => handleCheck(e, { mostlyBigDonors: !mostlyBigDonors })}
-          color="primary"
-          inputProps={{ 'aria-label': 'Mostly Funded by Big Money Donors' }}
-        />
-        <div>
-          <Label>Mostly Funded by Big Money Donors</Label>
+
+      <H3 style={{ marginTop: '24px', marginBottom: '12px' }}>
+        Candidate Policy Positions
+      </H3>
+      <Row>
+        <Checkbox src={checkboxImg} />
+        <div style={{ flex: 1 }}>
+          <Label>Aligned with Good Party Platform </Label>
           <Body13>
-            Major candidates who have raised lots of funding, but have a
-            majority (&gt;50%) coming from Big Money sources, like Corporate
-            Lobbyists, Political Action Committees (PACs), and other Big Money
-            Donors.
+            Candidates Policy Posititions have been vetted and approved as
+            compatible and well-aligned with{' '}
+            <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+              The Good Party Platform.
+            </Link>
           </Body13>
         </div>
       </Row>
@@ -112,9 +95,6 @@ const FiltersPopup = ({
   );
 };
 
-FiltersPopup.propTypes = {
-  filters: PropTypes.object,
-  changeFiltersCallback: PropTypes.func,
-};
+FiltersPopup.propTypes = {};
 
 export default FiltersPopup;

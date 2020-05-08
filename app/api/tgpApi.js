@@ -37,6 +37,10 @@ const api = {
     url: `${base}counts/user-counts`,
     method: 'GET',
   },
+  findCandidate: {
+    url: `${base}candidates/find`,
+    method: 'GET',
+  },
   //
   // CONTENT
   //
@@ -44,10 +48,7 @@ const api = {
     url: `${base}content/all-content`,
     method: 'GET',
   },
-  findCandidate: {
-    url: `${base}candidates/find`,
-    method: 'GET',
-  },
+
   //
   // ENTRANCE
   //
@@ -137,6 +138,20 @@ const api = {
   sendAma: {
     url: `${base}notifications/email-ama`,
     method: 'POST',
+  },
+
+  // admin
+  admin: {
+    candidates: {
+      url: `${base}admin/candidates`,
+      method: 'GET',
+      withAuth: true,
+    },
+    updateCandidate: {
+      url: `${base}admin/candidate`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
 };
 export default api;

@@ -30,11 +30,27 @@ import contentfulHelper from 'helpers/contentfulHelper';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
 import TwitterIcon from 'images/icons/twitter-icon.svg';
+import GrayCheckbox from 'images/icons/checkbox-gray.svg';
+import RedCheckbox from 'images/icons/checkbox-red.svg';
+import GreenCheckbox from 'images/icons/checkbox-green.svg';
+import QuestionMarkGray from 'images/icons/question-mark.svg';
 
 const TopRow = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const CheckboxRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 16px;
+`;
+
+const CheckboxImg = styled.img`
+  margin-right: 12px;
+  margin-top: 5px;
 `;
 
 const SocialLinks = styled.div`
@@ -79,7 +95,6 @@ const StyledBody12 = styled(Body12)`
 
 const ReportError = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
-  margin-top: 7px;
   text-transform: uppercase;
 `;
 
@@ -110,6 +125,10 @@ const ColoredBody13 = styled(Body13)`
   &.green {
     color: ${({ theme }) => theme.colors.green};
   }
+
+  &.gray {
+    color: ${({ theme }) => theme.colors.gray4};
+  }
 `;
 
 const SmallBr = styled.span`
@@ -120,8 +139,11 @@ const SmallBr = styled.span`
 `;
 
 const OpenSecretsLink = styled(Body9)`
-  margin-top: 16px;
-  text-align: right;
+  margin: 16px 0;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const BallotpediaNoData = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
@@ -133,6 +155,9 @@ const ColoredText = styled.span`
   color: ${({ theme }) => theme.colors.red};
   &.green {
     color: ${({ theme }) => theme.colors.green};
+  }
+  &.gray {
+    color: ${({ theme }) => theme.colors.gray4};
   }
 `;
 
@@ -153,7 +178,6 @@ const CandidateWrapper = ({
   candidate,
   chamberRank = [],
   chamberName,
-  isGood,
   incumbent,
   user,
 }) => {
@@ -161,6 +185,10 @@ const CandidateWrapper = ({
   const [rank, setRank] = useState(false);
   const [socialAccounts, setSocialAccounts] = useState([]);
   const [comparedIncumbent, setComparedIncumbent] = useState({});
+  let isGood;
+  if (candidate) {
+    ({ isGood } = candidate);
+  }
 
   useEffect(() => {
     if (candidate && candidate.info) {
@@ -220,6 +248,7 @@ const CandidateWrapper = ({
       compared.relativePerc = toPrecision(
         (totalRaised * 100) / compared.raised,
       );
+      compared.bigMoneyFunds = compared.raised * compared.bigFundsPerc;
       setComparedIncumbent(compared);
     } else {
       setComparedIncumbent({});
@@ -258,17 +287,17 @@ const CandidateWrapper = ({
     reportDate,
     openSecretsId,
     uuid,
-    isApproved,
+    isAligned,
     state,
     district,
+    isBigMoney,
   } = candidate;
 
   const isUnkown = isGood === null;
   const isGoodOrUnkwown = isGood || isUnkown;
 
-  const isSmallChallenger = isUnkown || isApproved; // isSmallCandidate(totalRaised, chamberName);
-
   const color = isGoodOrUnkwown ? 'green' : 'red';
+  const colorWithGray = isGoodOrUnkwown ? 'green' : isBigMoney ? 'red' : 'gray';
   const perc = isGoodOrUnkwown
     ? percHelper(smallDonorPerc, true)
     : percHelper(largeDonorPerc, true);
@@ -285,9 +314,23 @@ const CandidateWrapper = ({
   };
 
   const coloredGood = () => {
+    if (isGood) {
+      return (
+        <ColoredText className="green">
+          <strong>a Good Option</strong>
+        </ColoredText>
+      );
+    }
+    if (isUnkown) {
+      return (
+        <ColoredText className="gray">
+          <strong>Not Yet Rated</strong>
+        </ColoredText>
+      );
+    }
     return (
-      <ColoredText className={color}>
-        {!isGoodOrUnkwown ? 'Not Good Enough' : 'a Good Option'}
+      <ColoredText className="red">
+        <strong>Not Good Enough</strong>
       </ColoredText>
     );
   };
@@ -362,6 +405,9 @@ const CandidateWrapper = ({
     }
     return 'RANK YOUR CHOICES';
   };
+
+  const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
+  const smallMoneyFunds = totalRaised - bigMoneyFunds;
   return (
     <GrayWrapper>
       {candidate ? (
@@ -404,14 +450,181 @@ const CandidateWrapper = ({
                   </StyledBody12>
                 </RankButton>
               </Link>
-              <a
-                href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
-                  window.location.href
-                }`}
-              >
-                <ReportError>Report an error</ReportError>
-              </a>
             </TopRow>
+
+            <Body style={{ marginTop: '32px' }}>
+              Why {lastName()} is {coloredGood()}
+            </Body>
+            {!isGoodOrUnkwown && (
+              <>
+                {isBigMoney ? (
+                  <CheckboxRow>
+                    <CheckboxImg src={RedCheckbox} />
+                    <Body13>
+                      <strong>
+                        <ColoredText>Follow the Money:</ColoredText>{' '}
+                      </strong>
+                      Candidate has raised most of funding (&gt;50%) from Big
+                      Money sources.
+                    </Body13>
+                  </CheckboxRow>
+                ) : (
+                  <CheckboxRow>
+                    <CheckboxImg src={GrayCheckbox} />
+                    <Body13>
+                      <strong>Follow the Money:</strong> Candidate has raised
+                      most of funding (&gt;50%) from Small Indiv. Donors
+                      (&lt;$200). This is good, but not enough because of
+                      candidate policy positions.
+                    </Body13>
+                  </CheckboxRow>
+                )}
+
+                {isAligned === 'yes' ? (
+                  <CheckboxRow>
+                    <CheckboxImg src={GrayCheckbox} />
+                    <Body13>
+                      <strong>Candidate Policy Positions:</strong> Candidate
+                      positions are aligned with{' '}
+                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                        The Good Party Platform.
+                      </Link>
+                    </Body13>
+                  </CheckboxRow>
+                ) : (
+                  <>
+                    {isAligned === 'no' ? (
+                      <CheckboxRow>
+                        <CheckboxImg src={RedCheckbox} />
+                        <Body13>
+                          <strong>
+                            <ColoredText>
+                              Candidate Policy Positions:
+                            </ColoredText>{' '}
+                          </strong>
+                          Candidate positions are not aligned with{' '}
+                          <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                            The Good Party Platform.
+                          </Link>
+                        </Body13>
+                      </CheckboxRow>
+                    ) : (
+                      <CheckboxRow>
+                        <CheckboxImg src={QuestionMarkGray} />
+                        <Body13>
+                          <strong>
+                            <ColoredText className="gray">
+                              Candidate Policy Positions:
+                            </ColoredText>{' '}
+                          </strong>
+                          Not yet confirmed if this candidate aligns with{' '}
+                          <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                            The Good Party Platform.
+                          </Link>
+                        </Body13>
+                      </CheckboxRow>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+
+            {isGood && (
+              <>
+                {isBigMoney || isIncumbent || perc > 50 ? (
+                  <CheckboxRow>
+                    <CheckboxImg src={GreenCheckbox} />
+                    <Body13>
+                      <strong>
+                        <ColoredText className="green">
+                          Follow the Money:
+                        </ColoredText>{' '}
+                      </strong>
+                      Candidate has raised most of funding (&gt;50%) from Small
+                      Indiv. Donors (&lt;$200)
+                    </Body13>
+                  </CheckboxRow>
+                ) : (
+                  <CheckboxRow>
+                    <CheckboxImg src={GreenCheckbox} />
+                    <Body13>
+                      <strong>
+                        <ColoredText className="green">
+                          Follow the Money:
+                        </ColoredText>
+                      </strong>{' '}
+                      Candidate has raised less than 50% of the total funding of
+                      the incumbent in this race.
+                    </Body13>
+                  </CheckboxRow>
+                )}
+
+                {isAligned === 'yes' ? (
+                  <CheckboxRow>
+                    <CheckboxImg src={GreenCheckbox} />
+                    <Body13>
+                      <strong>
+                        <ColoredText className="green">
+                          Candidate Policy Positions:
+                        </ColoredText>
+                      </strong>{' '}
+                      Candidate positions are aligned with{' '}
+                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                        The Good Party Platform.
+                      </Link>
+                    </Body13>
+                  </CheckboxRow>
+                ) : (
+                  <CheckboxRow>
+                    <CheckboxImg src={RedCheckbox} />
+                    <Body13>
+                      <strong>
+                        <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
+                      </strong>
+                      Candidate positions are not aligned with{' '}
+                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                        The Good Party Platform.
+                      </Link>
+                    </Body13>
+                  </CheckboxRow>
+                )}
+              </>
+            )}
+
+            {isUnkown && (
+              <>
+                <CheckboxRow>
+                  <CheckboxImg src={GreenCheckbox} />
+                  <Body13>
+                    <strong>
+                      <ColoredText className="green">
+                        Follow the Money:
+                      </ColoredText>
+                    </strong>{' '}
+                    {comparedIncumbent.relativePerc < 50 ? (
+                      'Candidate has raised less than 50% of the total funding of the incumbent in this race.'
+                    ) : (
+                      <>
+                        Candidate has raised most of funding (&gt;50%) from
+                        Small Indiv. Donors (&lt;$200).
+                      </>
+                    )}
+                  </Body13>
+                </CheckboxRow>
+
+                <CheckboxRow>
+                  <CheckboxImg src={QuestionMarkGray} />
+                  <Body13>
+                    <strong>Candidate Policy Positions: </strong>
+                    Not yet confirmed if this candidate aligns with{' '}
+                    <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                      The Good Party Platform.
+                    </Link>
+                  </Body13>
+                </CheckboxRow>
+              </>
+            )}
+
             <FollowWrapper>
               <Body className="bold600">Follow the Money</Body>
               <Body11 style={{ marginLeft: '5px' }}>
@@ -420,37 +633,66 @@ const CandidateWrapper = ({
             </FollowWrapper>
             <FundsWrapper>
               <Fund>
-                <Body13 className="bold700">{moneyHelper(totalRaised)}</Body13>
+                <Body13 className="bold700">
+                  <ColoredText
+                    className={
+                      !isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'
+                    }
+                  >
+                    {moneyHelper(totalRaised)}
+                  </ColoredText>
+                </Body13>
                 <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
               </Fund>
-              {isSmallChallenger ? (
+              {isGoodOrUnkwown ? (
                 <Fund>
-                  <ColoredBody13 className={color}>
-                    {comparedIncumbent.relativePerc}%
-                  </ColoredBody13>
-                  <StyledBody9>
-                    FUNDING RELATIVE TO{' '}
-                    {comparedIncumbent.isFakeIncumbent
-                      ? 'BIG MONEY CANDIDATE'
-                      : 'INCUMBENT'}
-                  </StyledBody9>
+                  {isIncumbent || isBigMoney || perc > 50 ? (
+                    <>
+                      <ColoredBody13 className="green">{perc}%</ColoredBody13>
+                      <StyledBody9>
+                        FROM SMALL INDIV DONORS &lt;$200
+                      </StyledBody9>
+                    </>
+                  ) : (
+                    <>
+                      <ColoredBody13 className="green">
+                        {comparedIncumbent.relativePerc}%
+                      </ColoredBody13>
+                      <StyledBody9>
+                        FUNDING RELATIVE TO{' '}
+                        {comparedIncumbent.isFakeIncumbent
+                          ? 'BIG MONEY CANDIDATE'
+                          : 'INCUMBENT'}
+                      </StyledBody9>
+                    </>
+                  )}
                 </Fund>
               ) : (
                 <Fund>
-                  <ColoredBody13 className={color}>{perc}%</ColoredBody13>
-                  <StyledBody9>
-                    {isGoodOrUnkwown ? (
-                      <span>
-                        FROM SMALL INDIV
-                        <SmallBr /> DONORS &lt; $200
-                      </span>
-                    ) : (
-                      'FROM BIG MONEY SOURCES'
-                    )}
-                  </StyledBody9>
+                  <ColoredBody13 className={colorWithGray}>
+                    {perc}%
+                  </ColoredBody13>
+                  <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
                 </Fund>
               )}
-              {!isGoodOrUnkwown && (
+
+              {isGoodOrUnkwown ? (
+                <Fund>
+                  {isIncumbent ? (
+                    <>
+                      <ColoredBody13 className="gray">N/A</ColoredBody13>
+                      <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
+                    </>
+                  ) : (
+                    <>
+                      <ColoredBody13 className="green">
+                        {comparedIncumbent.xTimes}x
+                      </ColoredBody13>
+                      <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
+                    </>
+                  )}
+                </Fund>
+              ) : (
                 <Fund>
                   <ColoredBody13 className={color}>{perHour}/hr</ColoredBody13>
                   <StyledBody9>
@@ -460,56 +702,100 @@ const CandidateWrapper = ({
                 </Fund>
               )}
             </FundsWrapper>
-            <Body13 className="bold500" style={{ margin: '26px 0 16px' }}>
-              Why we believe {lastName()} {isUnkown ? 'could be' : 'is'}{' '}
-              {coloredGood()}:
-            </Body13>
-            <Body13>
+
+            <Body13 style={{ margin: '26px 0 16px' }}>
               According to Federal Election Commission (FEC) filings for the
               this election cycle, as of {combinedReportDate},{' '}
-              {isSmallChallenger ? (
-                <strong>
-                  {name} has raised just {moneyHelper(totalRaised)} in Total
-                  Funds , or{' '}
-                  <ColoredText className={color}>
-                    {comparedIncumbent.relativePerc}%
-                  </ColoredText>{' '}
-                  of the funding of the Big Money incumbent in this race.
-                </strong>
-              ) : (
+              {!isGoodOrUnkwown ? (
                 <>
                   <strong>
-                    {name} has raised {moneyHelper(totalRaised)} with a majority
-                    (<ColoredText className={color}>{perc}%</ColoredText>) of
-                    funds coming from{' '}
-                    {isGoodOrUnkwown
-                      ? 'Small Individual Donors'
-                      : 'Big Money Sources'}
+                    {name} has raised {moneyHelper(totalRaised)} in Total Funds
+                    , with{' '}
+                    <ColoredText className="red">
+                      {moneyHelper(bigMoneyFunds)}
+                    </ColoredText>{' '}
+                    ({perc}%) of the their funds coming from Big Money Sources
                   </strong>
-                  {isGoodOrUnkwown
-                    ? ', donating less than $200/each'
-                    : ', like Political Action Committees (PACs), Corporate Lobbyists and Large Donors.'}
+                  , like Political Action Committees (PACs), Corporate Lobbyists
+                  and Large Donors. <br />
+                  <br />
+                  This means that{' '}
+                  <strong>
+                    Big Money backers are bankrolling {lastName()}
+                    ’s {isIncumbent && 're-'}election at a rate of{' '}
+                    <ColoredText className={color}>{perHour}/hr</ColoredText>{' '}
+                    for every hour {isIncumbent ? lastName() : 'the incumbent'}{' '}
+                    has been in office.
+                  </strong>{' '}
+                  Of course, Big Money Backers usually expect a big return on
+                  their investments, which means, if {isIncumbent && 're-'}
+                  elected, {name} will have to work very hard to deliver a good
+                  return for them.
                 </>
-              )}
-            </Body13>
-            <br />
-            <br />
-            <Body13>
-              {isGoodOrUnkwown ? (
+              ) : (
                 <>
-                  {isSmallChallenger ? (
+                  {isBigMoney || isIncumbent ? (
                     <>
                       <strong>
-                        {comparedIncumbent.isFakeIncumbent
-                          ? 'The Big Money Candidate'
-                          : `The incumbent ${comparedIncumbent.name}`}
-                        , has raised {moneyHelper(comparedIncumbent.raised)} or{' '}
-                        {comparedIncumbent.xTimes}x times more money, than{' '}
-                        {name}, with a majority (
-                        <ColoredText className="red">
-                          {percHelper(comparedIncumbent.bigFundsPerc, true)}%
+                        {name} has raised {moneyHelper(totalRaised)} with{' '}
+                        <ColoredText className={color}>
+                          {moneyHelper(smallMoneyFunds)}
+                        </ColoredText>{' '}
+                        (
+                        <ColoredText className={colorWithGray}>
+                          {perc}%
                         </ColoredText>
-                        ) of in Total Funds coming from Big Money sources
+                        ) of funds coming from Small Individual Donors
+                      </strong>
+                      , donating less than $200/each. <br /> <br />
+                      This means that {lastName()} is mostly being supported by
+                      large numbers of ordinary people, who are banding
+                      together, each giving a little, to help {name} compete
+                      with the Big Money pouring into this race. <br /> <br />
+                      {!isIncumbent && (
+                        <>
+                          In contrast to {name}, the incumbent in this race,{' '}
+                          <strong>
+                            {comparedIncumbent.name}, has raised{' '}
+                            {moneyHelper(comparedIncumbent.raised)}, or{' '}
+                            {comparedIncumbent.xTimes}x times more money, with a{' '}
+                            <ColoredText className="red">
+                              {moneyHelper(comparedIncumbent.bigMoneyFunds)}
+                            </ColoredText>{' '}
+                            ({percHelper(comparedIncumbent.bigFundsPerc, true)}%
+                            ) of funds coming from Big Money sources
+                          </strong>
+                          , like Political Action Committees (PACs), Corporate
+                          Lobbyists and Large Donors.
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <strong>
+                        {name} has raised just {moneyHelper(totalRaised)} in
+                        Total Funds, or{' '}
+                        <ColoredText className="green">
+                          {comparedIncumbent.relativePerc}%
+                        </ColoredText>{' '}
+                        of the funding of the incumbent in this race
+                      </strong>
+                    </>
+                  )}
+
+                  {!isIncumbent && !isBigMoney && (
+                    <>
+                      <br />
+                      <br />
+                      <strong>
+                        The incumbent, {comparedIncumbent.name}, has raised{' '}
+                        {moneyHelper(comparedIncumbent.raised)}, or{' '}
+                        {comparedIncumbent.xTimes}x times more money, with a{' '}
+                        <ColoredText className="red">
+                          {moneyHelper(comparedIncumbent.bigMoneyFunds)}
+                        </ColoredText>{' '}
+                        ({percHelper(comparedIncumbent.bigFundsPerc, true)}% )
+                        of funds coming from Big Money sources
                       </strong>
                       , like Political Action Committees (PACs), Corporate
                       Lobbyists and Large Donors.
@@ -524,51 +810,25 @@ const CandidateWrapper = ({
                       that Big Money Backers are bankrolling. The reason we
                       created The Good Party is to help such candidates.
                     </>
-                  ) : (
-                    <>
-                      This means that {lastName()} is mostly being supported by
-                      large numbers of ordinary people, who are banding
-                      together, each giving a little, to help {name} compete
-                      with the Big Money pouring into this race. <br /> <br />
-                      In contrast to {name}, the incumbent in this race,{' '}
-                      <strong>
-                        {comparedIncumbent.name}, has raised{' '}
-                        {moneyHelper(comparedIncumbent.raised)}, or{' '}
-                        {comparedIncumbent.xTimes}x times more money, with a
-                        majority (
-                        <ColoredText className="red">
-                          {percHelper(comparedIncumbent.bigFundsPerc, true)}%
-                        </ColoredText>
-                        ) of funds coming from Big Money sources
-                      </strong>
-                      , like Political Action Committees (PACs), Corporate
-                      Lobbyists and Large Donors.
-                    </>
                   )}
-                </>
-              ) : (
-                <>
-                  This means that{' '}
-                  <strong>
-                    Big Money backers are bankrolling {lastName()}
-                    ’s {isIncumbent && 're-'}election at a rate of{' '}
-                    <ColoredText className={color}>{perHour}/hr</ColoredText>{' '}
-                    for every hour {isIncumbent ? lastName() : 'the incumbent'}{' '}
-                    has been in office.
-                  </strong>{' '}
-                  Of course, Big Money Backers usually expect a big return on
-                  their investments, which means, if {isIncumbent && 're-'}
-                  elected, {name} will have to work very hard to deliver a good
-                  return for them.
                 </>
               )}
             </Body13>
-            <a href={openSecretLink} target="_blank">
-              <OpenSecretsLink>
-                FEC DATA COURTESY OF OPENSECRETS.ORG
-              </OpenSecretsLink>
-            </a>
 
+            <div className="text-center">
+              <a href={openSecretLink} target="_blank">
+                <OpenSecretsLink>
+                  FEC DATA COURTESY OF OPENSECRETS.ORG
+                </OpenSecretsLink>
+              </a>
+              <a
+                href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
+                  window.location.href
+                }`}
+              >
+                <ReportError>Report an error</ReportError>
+              </a>
+            </div>
             <InfoWrapper>
               <Body className="bold600" style={{ marginTop: '48px' }}>
                 Candidate Policy Positions:
@@ -577,7 +837,15 @@ const CandidateWrapper = ({
                 <Body13>{candidateInfo}</Body13>
               ) : (
                 <div>
-                  {candidateInfo && candidateInfo !== 'null' ? (
+                  <Body13>
+                    The following policy positions were compiled by{' '}
+                    <a href={ballotpediaLink} target="_blank">
+                      Ballotpedia
+                    </a>{' '}
+                    from the candidate&apot;s official campaign website,
+                    editorials, speeches, and interviews.
+                  </Body13>
+                  {candidateInfo && candidateInfo !== 'null' && (
                     <>
                       <Body11 style={{ margin: '16px 0' }}>
                         The following policy positions for {name} were compiled
@@ -592,38 +860,48 @@ const CandidateWrapper = ({
                         dangerouslySetInnerHTML={{ __html: candidateInfo }}
                       />
                     </>
-                  ) : (
-                    <Body13 style={{ padding: '16px 0' }}>
-                      No data found for {name} on{' '}
-                      <a href="https://ballotpedia.org/" target="_blank">
-                        Ballotpedia
-                      </a>
-                      <a
-                        href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
-                          window.location.href
-                        }`}
-                      >
-                        <ReportError>Report an error</ReportError>
-                      </a>
-                    </Body13>
                   )}
                 </div>
               )}
             </InfoWrapper>
+
             {campaignWebsite && campaignWebsite !== 'null' && (
               <div>
-                <hr />
                 <Body className="bold600" style={{ margin: '48px 0 16px' }}>
                   Campaign Website
                 </Body>
                 <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
               </div>
             )}
-            <a href={ballotpediaLink} target="_blank">
-              <OpenSecretsLink>
-                CANDIDATE DATA COURTESY OF BALLOTPEDIA <br /> &nbsp;
-              </OpenSecretsLink>
-            </a>
+            {(campaignWebsite && campaignWebsite !== 'null') ||
+            (candidateInfo && candidateInfo !== 'null') ? (
+              <div className="text-center" style={{ paddingBottom: '16px' }}>
+                <a href={ballotpediaLink} target="_blank">
+                  <OpenSecretsLink>
+                    CANDIDATE DATA COURTESY OF BALLOTPEDIA
+                  </OpenSecretsLink>
+                </a>
+                <ReportError>Report an error</ReportError>
+              </div>
+            ) : (
+              <div className="text-center">
+                <BallotpediaNoData style={{ padding: '16px 0' }}>
+                  No data found for {name} on{' '}
+                  <a href="https://ballotpedia.org/" target="_blank">
+                    Ballotpedia
+                  </a>
+                  <br />
+                  <br />
+                  <a
+                    href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
+                      window.location.href
+                    }`}
+                  >
+                    <ReportError>Report an error</ReportError>
+                  </a>
+                </BallotpediaNoData>
+              </div>
+            )}
           </Wrapper>
         </>
       ) : (
@@ -640,7 +918,6 @@ CandidateWrapper.propTypes = {
   candidate: PropTypes.object,
   chamberRank: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   chamberName: PropTypes.string,
-  isGood: PropTypes.bool,
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };

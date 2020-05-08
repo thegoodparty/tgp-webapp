@@ -85,6 +85,10 @@ const Name = styled(Body13)`
   margin-bottom: 4px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.blue};
+
+  &.gray {
+    color: ${({ theme }) => theme.colors.gray4};
+  }
 `;
 
 const Role = styled(Body9)`
@@ -320,7 +324,7 @@ const VsList = ({
           {good.length === 0 && (
             <CandidateWrapper className="right">
               <CandidateAvatar size="responsive" src="blank" good />
-              <Name>NONE YET</Name>
+              <Name className="gray">NONE YET</Name>
               <Role className="text-right">
                 CHOOSE TO GET NOTIFIED
                 <br />
@@ -333,7 +337,7 @@ const VsList = ({
       </Row>
       {unknown && unknown.length > 0 && (
         <UnknownWrapper>
-          <UnknownTitle>GOODNESS UNKNOWN</UnknownTitle>
+          <UnknownTitle>NOT YET RATED</UnknownTitle>
           {unknown.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper className="center">

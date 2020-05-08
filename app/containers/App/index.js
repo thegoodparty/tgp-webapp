@@ -43,6 +43,9 @@ import EventsPage from 'containers/party/EventsPage/Loadable';
 
 import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
 import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loadable';
+import Races from 'containers/scraping/Races/Loadable';
+
+import AdminPage from 'containers/admin/AdminPage/Loadable';
 
 import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
 import ResearchPage from 'containers/shared/ResearchPage/Loadable';
@@ -64,7 +67,6 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectLocation } from './selectors';
-
 
 if (ENV === 'prod') {
   history.listen(location => {
@@ -167,9 +169,12 @@ function App({ locationState, dispatch }) {
             path="/scrape/candidates"
             component={AllCandidatesToScrape}
           />
+          <Route exact path="/scrape/races" component={Races} />
 
           <Route exact path="/privacy" component={PrivacyPage} />
           <Route exact path="/research" component={ResearchPage} />
+
+          <Route exact path="/admin" component={AdminPage} />
 
           <Route component={NotFoundPage} />
         </Switch>

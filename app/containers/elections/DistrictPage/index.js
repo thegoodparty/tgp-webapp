@@ -27,11 +27,7 @@ import {
 } from 'containers/App/selectors';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 import userActions from 'containers/you/YouPage/actions';
-import {
-  CHAMBER_ENUM,
-  filterCandidates,
-  getRankFromUserOrState,
-} from 'helpers/electionsHelper';
+import { getRankFromUserOrState } from 'helpers/electionsHelper';
 import makeSelectCandidate from '../CandidatePage/selectors';
 import candidateActions from '../CandidatePage/actions';
 
@@ -56,13 +52,10 @@ export function DistrictPage({
   });
 
   const [cdIndex, setCdIndex] = useState(0);
-  const [presidentialCandidates, setPresidentialCandidates] = useState({});
-  const [filteredHouse, setFilteredHouse] = useState({});
-  const [filteredSenate, setFilteredSenate] = useState({});
   const [districtNum, setDistrictNum] = useState(0);
   const { user } = userState;
 
-  const { zipWithDistricts, filters } = districtState;
+  const { zipWithDistricts } = districtState;
   const {
     presidential,
     houseCandidates,
@@ -127,24 +120,6 @@ export function DistrictPage({
     }
   }, [zipWithDistricts, zip, cd, user]);
 
-  useEffect(() => {
-    const filtered = filterCandidates(
-      presidential || [],
-      filters,
-      CHAMBER_ENUM.PRESIDENTIAL,
-    );
-    setPresidentialCandidates(filtered);
-  }, [presidential, filters]);
-
-  useEffect(() => {
-    const filtered = filterCandidates(
-      senateCandidates || [],
-      filters,
-      CHAMBER_ENUM.SENATE,
-    );
-    setFilteredSenate(filtered);
-  }, [senateCandidates, filters]);
-
   const { stateShort } = zipWithDistricts;
   const presidentialRank = getRankFromUserOrState(
     user,
@@ -158,21 +133,12 @@ export function DistrictPage({
   let houseRank = getRankFromUserOrState(user, candidateState, 'houseRank');
   houseRank = houseRank ? houseRank[stateShort + districtNum] : [];
 
-  useEffect(() => {
-    const filtered = filterCandidates(
-      houseCandidates || [],
-      filters,
-      CHAMBER_ENUM.HOUSE,
-    );
-    setFilteredHouse(filtered);
-  }, [houseCandidates, filters]);
-
   const childProps = {
     district: zipWithDistricts,
     cdIndex,
-    presidential: presidentialCandidates,
-    houseCandidates: filteredHouse,
-    senateCandidates: filteredSenate,
+    presidential,
+    houseCandidates,
+    senateCandidates,
     content,
     changeDistrictCallback,
     deleteRankingCallback,

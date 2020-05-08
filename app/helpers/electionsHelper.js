@@ -60,127 +60,10 @@ export const rankText = number => {
 
 export const presidentialVotesThreshold = 65853514;
 
-export const CHAMBER_ENUM = {
-  PRESIDENTIAL: 0,
-  SENATE: 1,
-  HOUSE: 2,
-};
-
-const chamberThresholds = {
-  [CHAMBER_ENUM.PRESIDENTIAL]: {
-    totalThreshold: 50000000,
-  },
-  [CHAMBER_ENUM.SENATE]: {
-    totalThreshold: 2000000,
-  },
-  [CHAMBER_ENUM.HOUSE]: {
-    totalThreshold: 500000,
-  },
-};
-
-export const presidentialThreshold =
-  chamberThresholds[CHAMBER_ENUM.PRESIDENTIAL].totalThreshold;
-
 export const defaultFilters = {
   smallDonors: true,
   smallFunding: true,
   mostlyBigDonors: true,
-};
-
-export const filterCandidates = (
-  candidates = [],
-  filters = defaultFilters,
-  chamber = CHAMBER_ENUM.PRESIDENTIAL,
-) => {
-  const good = [];
-  const notGood = [];
-  const unknown = [];
-  let incumbentRaised;
-  if (chamber === CHAMBER_ENUM.PRESIDENTIAL) {
-    incumbentRaised = presidentialThreshold;
-  } else {
-    incumbentRaised = findIncumbentRaised(candidates);
-  }
-  if (candidates) {
-    candidates.forEach(candidate => {
-      const isGood = isCandidateGood(
-        candidate,
-        filters,
-        chamber,
-        incumbentRaised,
-      );
-
-      if (isGood === null) {
-        unknown.push({
-          ...candidate,
-          unknown: true,
-        });
-      } else if (isGood) {
-        good.push({
-          ...candidate,
-          isGood,
-        });
-      } else {
-        notGood.push({
-          ...candidate,
-          isGood,
-        });
-      }
-    });
-  }
-  return {
-    good,
-    notGood,
-    unknown,
-  };
-};
-
-export const isCandidateGood = (
-  candidate,
-  filters,
-  chamber,
-  incumbentRaised,
-) => {
-  let isGood = false;
-  let isNotGood = false;
-  const {
-    combinedRaised,
-    smallContributions,
-    raised,
-    isApproved,
-    isCertified,
-  } = candidate;
-  const totalRaised = combinedRaised || raised;
-  const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
-  const raisedByIncumbent = incumbentRaised
-    ? incumbentRaised
-    : chamberThresholds[chamber].totalThreshold;
-
-  if (isCertified) {
-    return true;
-  }
-
-  if (totalRaised < raisedByIncumbent) {
-    // small funding
-    if (filters.smallFunding && isApproved) {
-      return true;
-    }
-    return null;
-  }
-  // large funding
-  if (largeDonorPerc <= 0.5 && filters.smallDonors) {
-    isGood = true;
-  } else if (filters.mostlyBigDonors && largeDonorPerc > 0.5) {
-    isNotGood = true;
-  }
-
-  if (isGood) {
-    return true;
-  }
-  if (isNotGood) {
-    return false;
-  }
-  return null;
 };
 
 const hoursPerMonth = 2000 / 12;
@@ -249,17 +132,6 @@ export const getRankFromUserOrState = (user, candidateState, rankType) => {
     }
   }
   return rank;
-};
-
-const findIncumbentRaised = candidates => {
-  let maxRaised = 0;
-  for (let i = 0; i < candidates.length; i++) {
-    if (candidates[i].isIncumbent) {
-      return candidates[i].raised * 0.5;
-    }
-    maxRaised = Math.max(maxRaised, candidates[i].raised);
-  }
-  return maxRaised / 2;
 };
 
 export const shortToLongState = {

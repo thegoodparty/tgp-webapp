@@ -94,13 +94,11 @@ const ElectionWrapper = ({
   candidates = {},
   userCounts,
   content,
-  filters,
   state,
   districtNumber,
   rankingAllowed,
   rankingMode,
   pathname,
-  changeFiltersCallback,
   saveRankingCallback,
   editModeCallback,
   refreshCountCallback,
@@ -318,10 +316,7 @@ const ElectionWrapper = ({
           </Wrapper>
           <AmaContainer />
           <BottomPopup open={showFilters} handleClose={hideFilters}>
-            <FiltersPopup
-              changeFiltersCallback={changeFiltersCallback}
-              filters={filters}
-            />
+            <FiltersPopup />
           </BottomPopup>
         </>
       ) : (
@@ -368,12 +363,10 @@ ElectionWrapper.propTypes = {
   districtNumber: PropTypes.string,
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  filters: PropTypes.object,
   rankingAllowed: PropTypes.bool,
   rankingMode: PropTypes.bool,
   pathname: PropTypes.string,
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  changeFiltersCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
   editModeCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
