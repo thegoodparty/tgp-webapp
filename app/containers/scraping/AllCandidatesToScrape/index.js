@@ -81,28 +81,49 @@ export function AllCandidatesToScrape({
           {candidates && candidates.length}
         </h1>
         {candidates &&
-          candidates.map(candidate => (
+          candidates.map((candidate, index) => (
             <div>
-              <>
-                {!onlyNoData ? (
+              {index < 50 && (
+                <div>
                   <>
-                    <span key={candidate.id}>
-                      <a
-                        className="ballotpedia"
-                        href={
-                          candidate.source
-                            ? candidate.source
-                            : `https://ballotpedia.org/${underScoreName(
-                                candidate.name,
-                              )}`
-                        }
-                      >
-                        {candidate.id}|{candidate.name}|
-                        {candidate.isIncumbent && 'incumbent'}|
-                        {candidate.chamber}
-                      </a>
-                    </span>
-                    {hasMiddleName(candidate.name) && (
+                    {!onlyNoData ? (
+                      <>
+                        <span key={candidate.id}>
+                          <a
+                            className="ballotpedia"
+                            href={
+                              candidate.source
+                                ? candidate.source
+                                : `https://ballotpedia.org/${underScoreName(
+                                    candidate.name,
+                                  )}`
+                            }
+                          >
+                            {candidate.id}|{candidate.name}|
+                            {candidate.isIncumbent && 'incumbent'}|
+                            {candidate.chamber}
+                          </a>
+                        </span>
+                        {hasMiddleName(candidate.name) && (
+                          <span key={candidate.id}>
+                            <a
+                              className="ballotpedia"
+                              href={
+                                candidate.source
+                                  ? candidate.source
+                                  : `https://ballotpedia.org/${underScoreNameNoMiddle(
+                                      candidate.name,
+                                    )}`
+                              }
+                            >
+                              {candidate.id}|{candidate.name}|
+                              {candidate.isIncumbent && 'incumbent'}|
+                              {candidate.chamber}
+                            </a>
+                          </span>
+                        )}
+                      </>
+                    ) : (
                       <span key={candidate.id}>
                         <a
                           className="ballotpedia"
@@ -121,30 +142,14 @@ export function AllCandidatesToScrape({
                       </span>
                     )}
                   </>
-                ) : (
-                  <span key={candidate.id}>
-                    <a
-                      className="ballotpedia"
-                      href={
-                        candidate.source
-                          ? candidate.source
-                          : `https://ballotpedia.org/${underScoreNameNoMiddle(
-                              candidate.name,
-                            )}`
-                      }
-                    >
-                      {candidate.id}|{candidate.name}|
-                      {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
-                    </a>
+                  <span style={{ padding: '0 20px' }}>
+                    {candidate.state} - {candidate.district}
                   </span>
-                )}
-              </>
-              <span style={{ padding: '0 20px' }}>
-                {candidate.state} - {candidate.district}
-              </span>
-              <a href={candidateRoute(candidate)}>
-                {candidateRoute(candidate)}
-              </a>
+                  <a href={candidateRoute(candidate)}>
+                    {candidateRoute(candidate)}
+                  </a>
+                </div>
+              )}
             </div>
           ))}
       </div>
