@@ -152,6 +152,11 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    allUsers: {
+      url: `${base}admin/users`,
+      method: 'GET',
+      withAuth: true,
+    },
   },
 };
 export default api;

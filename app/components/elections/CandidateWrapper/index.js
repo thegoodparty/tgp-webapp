@@ -842,7 +842,7 @@ const CandidateWrapper = ({
                     <a href={ballotpediaLink} target="_blank">
                       Ballotpedia
                     </a>{' '}
-                    from the candidate&apot;s official campaign website,
+                    from the candidate&apos;s official campaign website,
                     editorials, speeches, and interviews.
                   </Body13>
                   {candidateInfo && candidateInfo !== 'null' && (
