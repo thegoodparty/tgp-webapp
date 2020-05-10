@@ -25,7 +25,8 @@ export const formatDateFromUtc = orgDate => {
     return '';
   }
   try {
-    const date = new Date(orgDate);
+    const offset = new Date().getTimezoneOffset() * 1000 * 60;
+    const date = new Date(orgDate + offset);
     return `${dateTimeUsHelper(date).toString()}`;
   } catch (err) {
     return orgDate;
