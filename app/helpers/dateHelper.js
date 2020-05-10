@@ -20,30 +20,13 @@ export const dateUsHelper = orgDate => {
 };
 
 // returns December 12, 2020 * 4 AM PST
-export const formatDateWithTimezone = (orgDate, timeZone) => {
-  if (!orgDate) {
-    return '';
-  }
-  try {
-    let offset = '';
-    if (timeZone === 'PST') {
-      offset = ' UTC-07:00';
-    }
-    const date = new Date(`${orgDate.replace('T', ' ')}${offset}`);
-    return `${dateTimeUsHelper(date).toString()}`;
-  } catch (err) {
-    return orgDate;
-  }
-};
-
-// returns December 12, 2020 * 4 AM PST
-export const formatDateWithTimezoneOld = (orgDate, timeZone) => {
+export const formatDateFromUtc = orgDate => {
   if (!orgDate) {
     return '';
   }
   try {
     const date = new Date(orgDate);
-    return `${dateTimeUsHelper(date).toString()} ${timeZone}`;
+    return `${dateTimeUsHelper(date).toString()}`;
   } catch (err) {
     return orgDate;
   }
