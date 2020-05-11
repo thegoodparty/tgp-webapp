@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const WrapperDiv = styled.div`
   min-height: calc(100vh - 140px);
   min-height: calc(var(--vh, 1vh) * 100 - 140px);
-  max-width: ${({ creators, theme }) => creators ? theme.breakpoints.creatorsContent : theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
   padding: 0 16px 0;
   background-color: ${({ theme }) => theme.colors.grayBg};
@@ -28,7 +28,7 @@ const WrapperDiv = styled.div`
   }
 `;
 
-const Wrapper = ({ children, style, white, noHeader = false, creators=false }) => {
+const Wrapper = ({ children, style, white, noHeader = false}) => {
   useEffect(() => {
     let vh;
     if (typeof window !== 'undefined') {
@@ -55,7 +55,7 @@ const Wrapper = ({ children, style, white, noHeader = false, creators=false }) =
     className += ' no-header';
   }
   return (
-    <WrapperDiv style={style} className={className} creators={creators}>
+    <WrapperDiv style={style} className={className}>
       {children}
     </WrapperDiv>
   );
