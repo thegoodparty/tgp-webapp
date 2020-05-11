@@ -114,7 +114,7 @@ const ElectionWrapper = ({
     const initialChoices = cookieOrderToChoicesHash();
     setChoices(initialChoices);
     setChoicesOrder(chamberRank || []);
-  }, [candidates]);
+  }, [candidates, chamberRank]);
 
   const cookieOrderToChoicesHash = () => {
     if (!chamberRank || chamberRank.length === 0) {
