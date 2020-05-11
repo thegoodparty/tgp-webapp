@@ -3,12 +3,13 @@ import colors from './colors';
 import typography from './typography';
 import palette from './palette';
 import breakpoints from './breakpoints';
-import { creatorsBreakpoints, creatorsColors, creatorsTypography } from './creators';
+import creators from './creators';
 const theme = createMuiTheme({
-  colors: { ...colors, ...creatorsColors},
-  typography: { ...typography, ...creatorsTypography},
+  colors,
+  typography,
   palette,
-  breakpoints: {...breakpoints, ...creatorsBreakpoints},
+  breakpoints,
+  creators
 });
 
 export default theme;

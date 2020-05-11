@@ -14,12 +14,12 @@ import { Body } from "../typography";
 import LogoCaps from 'images/logo.svg';
 import SampleAvatarImg from 'images/avatar.png';
 const SectionWrapper = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
     padding: 3rem 8rem 6rem;
   }
 `;
 const Audience = styled.p`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
     font: normal bold 2rem ${({ theme }) => theme.typography.fontFamily};
   }
   text-align: center;
@@ -27,7 +27,7 @@ const Audience = styled.p`
   color: ${({ theme }) => theme.colors.blue};
 `;
 const Title = styled.h1`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
     font: normal bold 4.5rem ${({ theme }) => theme.typography.fontFamily};
     margin: 0;
   }
@@ -36,7 +36,7 @@ const Title = styled.h1`
   color: #000;
 `;
 const Unite = styled.h2`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
     font: normal bold 19.5rem/18rem ${({ theme }) => theme.typography.fontFamily};
     margin: 0;
     margin-bottom: 4rem;
@@ -65,7 +65,7 @@ const JoinButton = styled(Button)`
 }
 `;
 const CreatorsCount = styled.p`
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.creators.colors.gray};
   font: normal 600 1.5rem ${({ theme }) => theme.typography.fontFamily};
   text-transform: uppercase;
   text-align: center;
@@ -84,7 +84,7 @@ const Description = styled.p`
   margin: 0 auto;
   margin-top: 5rem;
   font: normal 500 1.6rem ${({ theme }) => theme.typography.fontFamily};
-  color: ${({ theme }) => theme.colors.gray};
+  color: ${({ theme }) => theme.creators.colors.gray};
 `;
 
 const AvatarsWrapper = styled.div`
