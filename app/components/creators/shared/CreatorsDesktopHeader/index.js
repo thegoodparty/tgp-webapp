@@ -6,11 +6,11 @@ import { getInitials } from 'helpers/userHelper';
 import LogoCaps from 'images/logo.svg';
 import { Body14, Body9 } from 'components/shared/typogrophy';
 import UserAvatar from 'components/shared/UserAvatar';
-import Body from "../typography/Body";
+import { Body } from "../typography";
 
 const Wrapper = styled.div`
   position: fixed;
-  height: 132px;
+  height: 8rem;
   top: 0;
   left: 0;
   width: 100%;
