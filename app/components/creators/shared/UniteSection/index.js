@@ -5,12 +5,11 @@
  */
 
 import React from 'react';
-import {
-  Button
-} from "@material-ui/core"
+
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Body } from "../typography";
+import { Body } from '../typography';
+import { JoinButton } from '../buttons'
 import LogoCaps from 'images/logo.svg';
 import SampleAvatarImg from 'images/avatar.png';
 const SectionWrapper = styled.div`
@@ -19,31 +18,31 @@ const SectionWrapper = styled.div`
   }
 `;
 const Audience = styled.p`
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
-    font: normal bold 2rem ${({ theme }) => theme.typography.fontFamily};
-  }
   text-align: center;
   margin: 3rem 0;
   color: ${({ theme }) => theme.colors.blue};
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+    font: normal bold 2rem normal;
+  }
 `;
 const Title = styled.h1`
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
-    font: normal bold 4.5rem ${({ theme }) => theme.typography.fontFamily};
-    margin: 0;
-  }
   text-transform: uppercase;
   text-align: center;
   color: #000;
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+    font: normal bold 4.5rem normal;
+    margin: 0;
+  }
 `;
 const Unite = styled.h2`
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
   @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
-    font: normal bold 19.5rem/18rem ${({ theme }) => theme.typography.fontFamily};
+    font: normal bold 19.5rem/18rem normal;
     margin: 0;
     margin-bottom: 4rem;
   }
-  text-transform: uppercase;
-  text-align: center;
-  color: #000;
 `
 const Logo = styled.img`
   height: auto;
@@ -52,21 +51,10 @@ const Logo = styled.img`
   top: -5px;
   position: relative;
 `;
-const JoinButton = styled(Button)`
-&& {
-  background-color: ${({ theme }) => theme.colors.blue};
-  color: #fff;
-  font: normal bold 2rem ${({ theme }) => theme.typography.fontFamily};
-  padding: 2rem 6rem;
-  text-transform: uppercase;
-  border-radius: 4rem;
-  margin-top: 5rem;
-  margin-bottom: 2rem;
-}
-`;
+
 const CreatorsCount = styled.p`
   color: ${({ theme }) => theme.creators.colors.gray};
-  font: normal 600 1.5rem ${({ theme }) => theme.typography.fontFamily};
+  font: normal 600 1.5rem normal;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 3rem;
@@ -83,7 +71,7 @@ const Description = styled.p`
   max-width: 45rem;
   margin: 0 auto;
   margin-top: 5rem;
-  font: normal 500 1.6rem ${({ theme }) => theme.typography.fontFamily};
+  font: normal 500 1.6rem normal;
   color: ${({ theme }) => theme.creators.colors.gray};
 `;
 
