@@ -1,12 +1,9 @@
-export const creatorsBreakpoints = {
-    creatorsContent: '1280px',
-};
-
-export const creatorsColors = {
-    lightGray: '#B3B3B3'
-};
-
-export const creatorsTypography = {
-    creatorsFontFamily: 'Helvetica Neue',
-};
-  
+export const creators = {
+    breakpoints: {
+        creatorsContent: '1280px'
+    },
+    colors: {
+        lightGray: '#B3B3B3'
+    },
+}
+export default creators;
