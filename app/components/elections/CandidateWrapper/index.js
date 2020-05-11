@@ -191,7 +191,7 @@ const CandidateWrapper = ({
   }
 
   useEffect(() => {
-    if (candidate && candidate.info) {
+    if (candidate) {
       let info;
       let facebook;
       let twitter;
@@ -410,7 +410,7 @@ const CandidateWrapper = ({
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
   return (
     <GrayWrapper>
-      {candidate ? (
+      {candidate && name ? (
         <>
           <Nav />
           <Wrapper>
