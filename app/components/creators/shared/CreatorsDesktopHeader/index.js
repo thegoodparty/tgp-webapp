@@ -53,7 +53,7 @@ const TopLink = styled(Link)`
     }
   }
   &.menu-item {
-    font: normal 600 1.5rem/1.5rem ${({ theme }) => theme.typography.fontFamily};
+    font: normal 600 1.5rem/1.5rem normal;
     color: ${({ theme }) => theme.creators.colors.lightGray};
     text-transform: uppercase;
     margin-left: 2.5rem;
