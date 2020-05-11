@@ -9,6 +9,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
+import UserIcon from '@material-ui/icons/Person';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -16,6 +17,7 @@ import { Body13, H1 } from 'components/shared/typogrophy/index';
 import heartImg from 'images/heart.svg';
 
 import AdminCandidateList from '../AdminCandidateList/Loadable';
+import AdminUsersList from '../AdminUsersList/Loadable';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -82,24 +84,30 @@ const leftMenuItems = [
   { icon: <StarsIcon />, label: 'Presidential Candidates' },
   { icon: <AccountBalanceIcon />, label: 'Senate Candidates' },
   { icon: <HomeIcon />, label: 'House Candidates' },
+  { icon: <UserIcon />, label: 'Users' },
 ];
 
 const AdminWrapper = ({
   user,
   candidates,
+  users,
   loadCandidatesCallback,
   updateCandidateCallback,
+  loadAllUsersCallback,
   loading,
   error,
 }) => {
   const [selectedItem, setSelectedItem] = useState(false);
-  const [leftOpen, setLeftOpen] = useState(true);
+  const [leftOpen, setLeftOpen] = useState(false);
 
   const handleSelectedItem = index => {
     setSelectedItem(index);
     if (index === 0 || index === 1 || index === 2) {
       const chamber = mapChamber(index);
       loadCandidatesCallback(chamber);
+    }
+    if (index === 3) {
+      loadAllUsersCallback();
     }
   };
 
@@ -133,13 +141,25 @@ const AdminWrapper = ({
         </MainPanelPlaceholder>
       );
     }
-    const chamber = mapChamber(selectedItem);
+    if (selectedItem < 3) {
+      const chamber = mapChamber(selectedItem);
+      return (
+        <AdminCandidateList
+          candidates={candidates}
+          updateCandidateCallback={updateCandidateCallback}
+          chamber={chamber}
+        />
+      );
+    }
+    if (selectedItem === 3) {
+      return <AdminUsersList users={users} />;
+    }
+
     return (
-      <AdminCandidateList
-        candidates={candidates}
-        updateCandidateCallback={updateCandidateCallback}
-        chamber={chamber}
-      />
+      <MainPanelPlaceholder>
+        <H1>Admin Dashboard</H1>
+        <Heart src={heartImg} />
+      </MainPanelPlaceholder>
     );
   };
 
@@ -183,6 +203,8 @@ AdminWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loadCandidatesCallback: PropTypes.func,
+  users: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  loadAllUsersCallback: PropTypes.func,
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateCandidateCallback: PropTypes.func,

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { Body, Body12 } from 'components/shared/typogrophy/index';
-import { formatDateWithTimezone } from 'helpers/dateHelper';
+import { formatDateFromUtc } from 'helpers/dateHelper';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
 
 const Wrapper = styled.div`
@@ -41,8 +41,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
   const {
     id,
     title,
-    dateAndTime,
-    timeZone,
+    utcTime,
     description,
     presenter,
     presenterTitle,
@@ -63,11 +62,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
       <Row>
         <div style={{ marginRight: '16px' }}>
           <Body className="bold600">{title}</Body>
-          {dateAndTime && (
-            <StyledBody12>
-              {formatDateWithTimezone(dateAndTime, timeZone)}
-            </StyledBody12>
-          )}
+          {utcTime && <StyledBody12>{formatDateFromUtc(utcTime)}</StyledBody12>}
           {description && <StyledBody12>{description}</StyledBody12>}
           {location && (
             <StyledBody12>

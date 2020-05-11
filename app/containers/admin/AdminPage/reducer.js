@@ -8,6 +8,7 @@ import types from './constants';
 
 export const initialState = {
   candidates: false,
+  userss: false,
   loading: false,
   error: false,
 };
@@ -31,6 +32,23 @@ const adminPageReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.errog = action.error;
         break;
+
+      case types.LOAD_ALL_USERS:
+        draft.users = false;
+        draft.loading = true;
+        draft.errog = false;
+        break;
+      case types.LOAD_ALL_USERS_SUCCESS:
+        draft.users = action.users;
+        draft.loading = false;
+        draft.errog = false;
+        break;
+      case types.LOAD_ALL_USERS_ERROR:
+        draft.users = false;
+        draft.loading = false;
+        draft.errog = action.error;
+        break;
+
       case types.UPDATE_CANDIDATE_SUCCESS:
         const updatedCandidates = [...state.candidates];
         const { candidate } = action;

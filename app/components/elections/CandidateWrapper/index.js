@@ -191,7 +191,7 @@ const CandidateWrapper = ({
   }
 
   useEffect(() => {
-    if (candidate && candidate.info) {
+    if (candidate) {
       let info;
       let facebook;
       let twitter;
@@ -410,7 +410,7 @@ const CandidateWrapper = ({
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
   return (
     <GrayWrapper>
-      {candidate ? (
+      {candidate && name ? (
         <>
           <Nav />
           <Wrapper>
@@ -842,7 +842,7 @@ const CandidateWrapper = ({
                     <a href={ballotpediaLink} target="_blank">
                       Ballotpedia
                     </a>{' '}
-                    from the candidate&apot;s official campaign website,
+                    from the candidate&apos;s official campaign website,
                     editorials, speeches, and interviews.
                   </Body13>
                   {candidateInfo && candidateInfo !== 'null' && (
