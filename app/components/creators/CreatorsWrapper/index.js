@@ -7,6 +7,7 @@ import MobileHeader from 'components/shared/navigation/MobileHeader';
 import CreatorsHeader from 'containers/creators/CreatorsHeader';
 import { H1 } from 'components/shared/typogrophy/index';
 import UniteSection from 'components/creators/shared/UniteSection';
+import ProjectsSection from 'components/creators/shared/ProjectsSection';
 
 const Spacer = styled.div`
   display: none;
@@ -23,6 +24,7 @@ const CreatorsWrapper = () => {
       <Wrapper white creators>
         <MobileHeader />
         <UniteSection />
+        <ProjectsSection />
       </Wrapper>
     </div>
   );
