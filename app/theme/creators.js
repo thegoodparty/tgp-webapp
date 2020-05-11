@@ -4,7 +4,8 @@ export const creators = {
     },
     colors: {
         lightGray: '#B3B3B3',
-        gray: '#B0B0B0'
+        gray: '#B0B0B0',
+        gray2: '#E6E6E6'
     },
 }
 export default creators;
