@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
 const WrapperDiv = styled.div`
   min-height: calc(100vh - 140px);
   min-height: calc(var(--vh, 1vh) * 100 - 140px);
