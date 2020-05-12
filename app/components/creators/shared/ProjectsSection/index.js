@@ -12,6 +12,7 @@ import { Button } from '@material-ui/core';
 import SearchList from 'images/icons/search.svg';
 import ExpandList from 'images/icons/expand.svg';
 
+import { ProjectButton } from '../buttons';
 import Project from '../Project';
 const SectionWrapper = styled.div`
   padding: 6rem 8rem;
@@ -29,18 +30,6 @@ const Title = styled.h2`
   margin: 0;
 `;
 
-const TitleButton = styled(Button)`
-&& {
-  padding: 1rem 2rem;
-  font: normal bold 1rem ${({ theme }) => theme.typography.fontFamily};
-  color: ${({ theme }) => theme.colors.blue};
-  text-transform: uppercase;
-  background-color: #fff;
-  line-height: 100%;
-  border-radius: 2rem;
-  margin-left: 1.2rem;
-}
-`;
 const TitleButtonIcon = styled.img`
   margin-right: 0.5rem;
 `;
@@ -90,8 +79,8 @@ function ProjectsSection() {
     <SectionHeader>
       <Title>Projects</Title>
       <SectionHeaderActions>
-        <TitleButton><TitleButtonIcon src={SearchList} /> Search</TitleButton>
-        <TitleButton><TitleButtonIcon src={ExpandList} /> List your project</TitleButton>
+        <ProjectButton><TitleButtonIcon src={SearchList} /> Search</ProjectButton>
+        <ProjectButton><TitleButtonIcon src={ExpandList} /> List your project</ProjectButton>
       </SectionHeaderActions>
     </SectionHeader>
     {projects.map(project => {
