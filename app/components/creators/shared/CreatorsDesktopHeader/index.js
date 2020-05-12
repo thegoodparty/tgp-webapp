@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { getInitials } from 'helpers/userHelper';
 import LogoCaps from 'images/logo.svg';
 import { Body14, Body9 } from 'components/shared/typogrophy';
 import Body from '../typography/Body';

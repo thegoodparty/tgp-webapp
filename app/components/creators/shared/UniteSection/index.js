@@ -13,6 +13,7 @@ import { JoinButton } from '../buttons'
 import LogoCaps from 'images/logo.svg';
 import SampleAvatarImg from 'images/avatar.png';
 const SectionWrapper = styled.div`
+  padding-bottom: 3rem;
   @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
     padding: 3rem 8rem 6rem;
   }
@@ -38,6 +39,8 @@ const Unite = styled.h2`
   text-transform: uppercase;
   text-align: center;
   color: #000;
+  font: normal bold 10rem/10rem normal;
+  margin: 0;
   @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
     font: normal bold 19.5rem/18rem normal;
     margin: 0;

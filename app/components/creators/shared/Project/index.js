@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SampleImage from 'images/illustration.png'
 import {
@@ -38,6 +37,7 @@ const Title = styled.h3`
   color: #000;
   margin: 0;
   margin-bottom: 1rem;
+  cursor: pointer;
 `;
 
 const Topics = styled.div`
@@ -51,6 +51,7 @@ const Topic = styled.span`
   font: normal 600 0.6rem ${({ theme }) => theme.typography.fontFamily};
   padding: 0.3rem 0.5rem;
   margin-right: 0.6rem;
+  cursor: pointer;
 `;
 
 const Summary = styled.p`
@@ -98,6 +99,7 @@ const FooterAction = styled.a`
   color: ${({ theme }) => theme.creators.colors.lightGray};
   font: normal 600 1rem/40px ${({ theme }) => theme.typography.fontFamily};
   text-transform: uppercase;
+  cursor: pointer;
 `;
 
 const FooterActionIcon = styled.img`
@@ -134,7 +136,7 @@ function Project({project, showMore = false}) {
   return (
   <ProjectWrapper>
     <ProjectBodyWrapper container>
-      <ProjectContent item xs={7}>
+      <ProjectContent item xs={12} md={7}>
         <Title>{project.title}</Title>
         <Topics>
           {project.topics.map(topic => {
@@ -149,8 +151,8 @@ function Project({project, showMore = false}) {
           })}
         </div>
       </ProjectContent>
-      <Grid item xs={5}>
-        <img src={SampleImage} />
+      <Grid item xs={12}  md={5}>
+        <img src={`http:${project.images[0]}`} width="400" height="300" />
       </Grid>
     </ProjectBodyWrapper>
     <ProjectFooter container>

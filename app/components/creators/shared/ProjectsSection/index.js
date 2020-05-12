@@ -5,10 +5,8 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Button } from '@material-ui/core';
 import SearchList from 'images/icons/search.svg';
 import ExpandList from 'images/icons/expand.svg';
 
@@ -37,43 +35,7 @@ const SectionHeaderActions = styled.div`
   display: flex;
   align-items: center;
 `;
-function ProjectsSection() {
-  const projects= [
-    {
-      "title": "Illustrations for the native iOS and Android app",
-      "summary": "We are creating a set of illustrations for the on-boarding flow of the mobile app. We are still seeking designers and copy editors. All levels welcome! Fork the Figma file to learn how you can contribute. 🙏",
-      "topics": [
-        "Design",
-        "Mobile"
-        ],
-      "links": [
-        "https://www.figma.com/file/7NuJwqxamDxrvEMi3ci9eu/Creators…",
-        "https://www.notion.so/thegoodparty/16d9a13ad3124632a1f9023…"
-      ],
-      "video": "https://www.youtube.com/watch?v=f5xLNypFrV4",
-      "images": [
-         "//images.ctfassets.net/g08ybc4r0f4b/3Uxio1F0Asvi0zJA8zSiln/bd34e45f98428ab1d4b3499827d53ddf/illustration.png"
-      ],
-      "id": "4VRegxhtEzoPg7z14QLpi7"
-    },
-    {
-      "title": "Illustrations for the native iOS and Android app",
-      "summary": "We are creating a set of illustrations for the on-boarding flow of the mobile app. We are still seeking designers and copy editors. All levels welcome! Fork the Figma file to learn how you can contribute. 🙏",
-      "topics": [
-        "Design",
-        "Mobile"
-        ],
-      "links": [
-        "https://www.figma.com/file/7NuJwqxamDxrvEMi3ci9eu/Creators…",
-        "https://www.notion.so/thegoodparty/16d9a13ad3124632a1f9023…"
-      ],
-      "video": "https://www.youtube.com/watch?v=f5xLNypFrV4",
-      "images": [
-         "//images.ctfassets.net/g08ybc4r0f4b/3Uxio1F0Asvi0zJA8zSiln/bd34e45f98428ab1d4b3499827d53ddf/illustration.png"
-      ],
-      "id": "4VRegxhtEzoPg7z14QLpi7"
-    }
-  ];
+function ProjectsSection({ projects }) {
   return (
   <SectionWrapper>
     <SectionHeader>
