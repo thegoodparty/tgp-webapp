@@ -37,19 +37,23 @@ const SectionHeaderActions = styled.div`
 `;
 function ProjectsSection({ projects }) {
   return (
-  <SectionWrapper>
-    <SectionHeader>
-      <Title>Projects</Title>
-      <SectionHeaderActions>
-        <ProjectButton><TitleButtonIcon src={SearchList} /> Search</ProjectButton>
-        <ProjectButton><TitleButtonIcon src={ExpandList} /> List your project</ProjectButton>
-      </SectionHeaderActions>
-    </SectionHeader>
-    {projects.map(project => {
-      return (<Project project={project} />);
-    })}
-    <Project showMore></Project>
-  </SectionWrapper>
+    <SectionWrapper>
+      <SectionHeader>
+        <Title>Projects</Title>
+        <SectionHeaderActions>
+          <ProjectButton>
+            <TitleButtonIcon src={SearchList} /> Search
+          </ProjectButton>
+          <ProjectButton>
+            <TitleButtonIcon src={ExpandList} /> List your project
+          </ProjectButton>
+        </SectionHeaderActions>
+      </SectionHeader>
+      {projects.map(project => {
+        return <Project project={project} key={project.id} />;
+      })}
+      <Project showMore />
+    </SectionWrapper>
   );
 }
 

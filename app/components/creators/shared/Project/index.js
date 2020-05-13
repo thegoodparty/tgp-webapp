@@ -6,10 +6,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import SampleImage from 'images/illustration.png'
-import {
-  Grid
-} from '@material-ui/core';
+import SampleImage from 'images/illustration.png';
+import { Grid } from '@material-ui/core';
 import NotionIcon from 'images/icons/notion.svg';
 import FigmaIcon from 'images/icons/figma.svg';
 import SampleAvatarImg from 'images/avatar.png';
@@ -60,7 +58,7 @@ const Summary = styled.p`
   margin-bottom: 1.5rem;
 `;
 
-const Link = styled.a`
+const OuterLink = styled.a`
   color: ${({ theme }) => theme.colors.blue};
   font: normal 500 1rem/22px ${({ theme }) => theme.typography.fontFamily};
   text-overflow: ellipsis;
@@ -93,6 +91,9 @@ const Collaborators = styled.span`
   color: ${({ theme }) => theme.creators.colors.lightGray};
   font: normal bold 1.1rem/42px ${({ theme }) => theme.typography.fontFamily};
   margin-left: 2rem;
+  & > span {
+    color: black;
+  }
 `;
 
 const FooterAction = styled.a`
@@ -117,60 +118,90 @@ const FooterActions = styled.div`
 const FooterActionsWrapper = styled(Grid)`
   && {
     display: flex;
-    align-items: center
+    align-items: center;
   }
 `;
-
+const ProjectImg = styled.img`
+  width: 400px;
+  height: 300px;
+`;
 const ShowMore = styled.a`
   color: ${({ theme }) => theme.colors.blue};
   font: normal 500 1.1rem/100% ${({ theme }) => theme.typography.fontFamily};
-`
-function Project({project, showMore = false}) {
+`;
+
+const CollaboratorContainer = styled(Grid)`
+  && {
+    display: flex;
+  }
+`;
+function Project({ project, showMore = false }) {
   const collaborators = [SampleAvatarImg, SampleAvatarImg, SampleAvatarImg];
-  if(showMore) 
-  return (
-    <ProjectWrapper className="text-center">
+  if (showMore) {
+    return (
+      <ProjectWrapper className="text-center">
         <ShowMore>Show More</ShowMore>
-    </ProjectWrapper>
-  );
+      </ProjectWrapper>
+    );
+  }
   return (
-  <ProjectWrapper>
-    <ProjectBodyWrapper container>
-      <ProjectContent item xs={12} md={7}>
-        <Title>{project.title}</Title>
-        <Topics>
-          {project.topics.map(topic => {
-            return (<Topic>{topic}</Topic>)
-          })}
-        </Topics>
-        <Summary>{project.summary}</Summary>
-        <div>
-          {project.links.map(link => {
-            const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
-            return (<Link href={link}><LinkIcon src={icon}/>{link}</Link>)
-          })}
-        </div>
-      </ProjectContent>
-      <Grid item xs={12}  md={5}>
-        <img src={`http:${project.images[0]}`} width="400" height="300" />
-      </Grid>
-    </ProjectBodyWrapper>
-    <ProjectFooter container>
-        <Grid item xs={12} sm={7} style={{display: "flex"}}>
-          {collaborators.map(collaborator => {
-            return (<CollaboratorWrapper><Collaborator src={collaborator} /></CollaboratorWrapper>)
-          })}
-          <Collaborators><span style={{color: 'black'}}>Kai Gradert</span> and <span style={{color: 'black'}}>12 others</span></Collaborators>
+    <ProjectWrapper>
+      <ProjectBodyWrapper container>
+        <ProjectContent item xs={12} md={7}>
+          <Title>{project.title}</Title>
+          <Topics>
+            {project.topics.map(topic => {
+              return <Topic>{topic}</Topic>;
+            })}
+          </Topics>
+          <Summary>{project.summary}</Summary>
+          <div>
+            {project.links.map((link, index) => {
+              const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
+              return (
+                <OuterLink href={link} key={index}>
+                  <LinkIcon src={icon} />
+                  {link}
+                </OuterLink>
+              );
+            })}
+          </div>
+        </ProjectContent>
+        <Grid item xs={12} md={5}>
+          <ProjectImg src={`http:${project.images[0]}`} />
         </Grid>
+      </ProjectBodyWrapper>
+      <ProjectFooter container>
+        <CollaboratorContainer item xs={12} sm={7}>
+          {collaborators.map((collaborator, index) => {
+            return (
+              <CollaboratorWrapper>
+                <Collaborator src={collaborator} key={index} />
+              </CollaboratorWrapper>
+            );
+          })}
+          <Collaborators>
+            <span>Kai Gradert</span> and <span>12 others</span>
+          </Collaborators>
+        </CollaboratorContainer>
         <FooterActionsWrapper item xs={12} sm={5}>
           <FooterActions>
-            <FooterAction><FooterActionIcon src={MessageIcon}/>Message creators</FooterAction>
-            <FooterAction><FooterActionIcon src={ShareIcon}/>Share</FooterAction>
-            <FooterAction><FooterActionIcon src={FavoriteIcon}/>102</FooterAction>
+            <FooterAction>
+              <FooterActionIcon src={MessageIcon} />
+              Message creators
+            </FooterAction>
+            <FooterAction>
+              <FooterActionIcon src={ShareIcon} />
+              Share
+            </FooterAction>
+            <FooterAction>
+              <FooterActionIcon src={FavoriteIcon} />
+              102
+            </FooterAction>
           </FooterActions>
         </FooterActionsWrapper>
-    </ProjectFooter>
-  </ProjectWrapper>
+      </ProjectFooter>
+    </ProjectWrapper>
   );
 }
 

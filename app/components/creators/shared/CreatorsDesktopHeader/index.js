@@ -76,7 +76,7 @@ const CreatorsDesktopHeader = () => {
     <Wrapper>
       <ContentWrapper>
         <TopLink className="logo">
-          <Logo src={LogoCaps} /> 
+          <Logo src={LogoCaps} />
           <Body>the good party</Body>
         </TopLink>
         <MenuItemsWrapper>

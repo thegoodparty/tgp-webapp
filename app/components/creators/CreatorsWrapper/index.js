@@ -6,17 +6,14 @@ import CreatorsHeaderWrapper from 'components/creators/shared/CreatorsHeaderWrap
 import UniteSection from 'components/creators/shared/UniteSection';
 import ProjectsSection from 'components/creators/shared/ProjectsSection';
 
-const CreatorsWrapper = ({ projects = []}) => {
-  const childProps = {
-    projects
-  };
+const CreatorsWrapper = ({ projects = [] }) => {
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <CreatorsHeaderWrapper />
       <Wrapper white>
         <MobileHeader />
         <UniteSection />
-        <ProjectsSection {...childProps} />
+        <ProjectsSection projects={projects} />
       </Wrapper>
     </div>
   );
