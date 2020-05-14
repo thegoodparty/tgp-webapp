@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { Modal, Fade } from '@material-ui/core';
 import LogoCaps from 'images/logo.svg';
 import { Body, Body18, Body13 } from '../../typography';
-import { JoinButton } from '../../buttons';
+import { MediumButton } from '../../buttons';
 import Heads from '../../Heads';
 import FacebookIcon from 'images/icons/facebook.svg';
 import TwitterIcon from 'images/icons/twitter.svg';
@@ -53,10 +53,9 @@ const JoinButtonWrapper = styled.div`
   margin: 2rem 0;
 `;
 
-const JoinWithButton = styled(JoinButton)`
+const JoinWithButton = styled(MediumButton)`
   && {
     margin-bottom: 1rem;
-    text-transform: uppercase;
     width: 20rem;
     text-align: left;
     &.facebook {
