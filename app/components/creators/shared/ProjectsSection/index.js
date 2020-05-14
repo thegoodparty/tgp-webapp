@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -12,6 +12,7 @@ import SearchList from 'images/icons/search.svg';
 import ExpandList from 'images/icons/expand.svg';
 
 import { ProjectButton } from '../buttons';
+import { ListProject} from '../modals'
 import Project from '../Project';
 
 const SectionWrapper = styled.div`
@@ -39,6 +40,7 @@ const SectionHeaderActions = styled.div`
 `;
 
 function ProjectsSection({ projects }) {
+  const [listProject, setListProject] = useState(false);
   return (
     <SectionWrapper>
       <SectionHeader>
@@ -47,10 +49,11 @@ function ProjectsSection({ projects }) {
           <ProjectButton>
             <TitleButtonIcon src={SearchList} alt="search icon" /> Search
           </ProjectButton>
-          <ProjectButton>
+          <ProjectButton onClick={() => setListProject(true)}>
             <TitleButtonIcon src={ExpandList} alt="expandlist icon" /> List your
             project
           </ProjectButton>
+          <ListProject open={listProject} handleClose={() => setListProject(false)} />
         </SectionHeaderActions>
       </SectionHeader>
       {projects.map(project => (
