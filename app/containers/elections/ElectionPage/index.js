@@ -39,7 +39,9 @@ import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import candidateActions from 'containers/elections/CandidatePage/actions';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
-import makeSelectUser from 'containers/you/YouPage/selectors';
+import makeSelectUser, {
+  makeSelectRanking,
+} from 'containers/you/YouPage/selectors';
 
 import userActions from 'containers/you/YouPage/actions';
 import queryHelper from 'helpers/queryHelper';
@@ -53,6 +55,7 @@ export function ElectionPage({
   candidateState,
   userState,
   locationState,
+  rankingObj,
   dispatch,
   saveRankingCallback,
   editModeCallback,
@@ -69,7 +72,7 @@ export function ElectionPage({
   const [chamberRank, setChamberRank] = useState([]);
 
   const { userCounts } = districtState;
-  const { user } = userState;
+  const { user, ranking } = userState;
 
   let candidates;
   if (chamber === 'presidential') {
@@ -94,6 +97,12 @@ export function ElectionPage({
       dispatch(candidateActions.loadRankingFromCookieAction());
     }
   }, []);
+
+  useEffect(() => {
+    if (!ranking) {
+      dispatch(userActions.userRankingAction());
+    }
+  }, [user]);
 
   useEffect(() => {
     dispatch(districtActions.userCountsAction(state, district));
@@ -209,6 +218,7 @@ export function ElectionPage({
     }
   }
 
+
   const childProps = {
     candidates,
     user,
@@ -216,6 +226,7 @@ export function ElectionPage({
     chamber,
     displayChamber,
     chamberRank,
+    ranking: rankingObj[chamber],
     state,
     districtNumber: district,
     rankingAllowed,
@@ -226,6 +237,7 @@ export function ElectionPage({
     editModeCallback,
     refreshCountCallback,
   };
+
   return (
     <div>
       <Helmet>
@@ -262,6 +274,7 @@ const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
   locationState: makeSelectLocation(),
+  rankingObj: makeSelectRanking(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -271,40 +284,14 @@ function mapDispatchToProps(dispatch, ownProps) {
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
 
-    saveRankingCallback: (
-      user,
-      rankingOrder,
-      chamber,
-      state,
-      district,
-      refreshUserCount,
-    ) => {
+    saveRankingCallback: (user, candidate, rank, chamber, refreshUserCount) => {
       if (user) {
         dispatch(
           userActions.saveUserRankingAction(
-            rankingOrder,
+            candidate,
+            rank,
             chamber,
-            state,
-            district,
             refreshUserCount,
-          ),
-        );
-      }
-
-      if (chamber === 'presidential') {
-        dispatch(
-          candidateActions.saveRankPresidentialCandidateAction(rankingOrder),
-        );
-      } else if (chamber === 'senate') {
-        dispatch(
-          candidateActions.saveRankSenateCandidateAction(rankingOrder, state),
-        );
-      } else if (chamber === 'house') {
-        dispatch(
-          candidateActions.saveRankHouseCandidateAction(
-            rankingOrder,
-            state,
-            district,
           ),
         );
       }

@@ -215,6 +215,7 @@ const VsList = ({
   openFiltersCallback = () => {},
   choices = {},
   choicesOrder = [],
+  ranking,
   handleChoiceCallback,
   handleDeselectCandidate,
   rankingMode,
@@ -224,13 +225,28 @@ const VsList = ({
   if (!candidates || (!good && !notGood && !unknown)) {
     return <LoadingAnimation />;
   }
-
+  let nextChoice = 1;
+  if (candidates) {
+    [...good, ...notGood, ...unknown].forEach(candidate => {
+      if (
+        ranking[candidate.id] &&
+        ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
+      ) {
+        nextChoice++;
+      }
+    });
+  }
   const choiceButton = candidate => {
-    if (choices[candidate.id]) {
+    if (
+      ranking[candidate.id] &&
+      ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
+    ) {
       return (
         <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
           <CheckMark />{' '}
-          <ChosenCand>{numberNth(choices[candidate.id])} CHOICE </ChosenCand>
+          <ChosenCand>
+            {numberNth(ranking[candidate.id].rank)} CHOICE{' '}
+          </ChosenCand>
           <CloseIcon />
         </ChosenCandWrapper>
       );
@@ -240,7 +256,7 @@ const VsList = ({
     }
     return (
       <ChoiceButton onClick={e => handleChoice(candidate, e)}>
-        {numberNth(choicesOrder.length + 1)} CHOICE
+        {numberNth(nextChoice)} CHOICE
       </ChoiceButton>
     );
   };
@@ -248,7 +264,7 @@ const VsList = ({
   const handleChoice = (candidate, e) => {
     e.stopPropagation();
     e.preventDefault();
-    handleChoiceCallback(candidate);
+    handleChoiceCallback(candidate, nextChoice);
   };
 
   const handleDeselect = (candidate, e) => {

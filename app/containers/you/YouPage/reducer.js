@@ -12,6 +12,7 @@ export const initialState = {
   loginEmail: false,
   zipCode: false,
   crew: false,
+  ranking: false,
 };
 
 const userReducer = (state = initialState, action) =>
@@ -98,6 +99,10 @@ const userReducer = (state = initialState, action) =>
 
       case types.CREW_SUCCESS:
         draft.crew = action.crew;
+        break;
+
+      case types.USER_RANKING_SUCCESS:
+        draft.ranking = action.ranking;
         break;
     }
   });

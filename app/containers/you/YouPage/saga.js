@@ -363,28 +363,18 @@ function* uploadAvatar(action) {
 
 function* saveUserRanking(action) {
   try {
-    const { ranking, chamber, state, district, refreshUserCount } = action;
-    const api = tgpApi.updateUserRanking;
-    const updatedFields = {};
-    if (chamber === 'presidential') {
-      updatedFields.presidentialRank =
-        ranking.length === 0 ? '' : JSON.stringify(ranking);
-    } else if (chamber === 'senate') {
-      const chamberRanking =
-        ranking.length === 0 ? '' : JSON.stringify({ [state]: ranking });
-      updatedFields.senateRank = chamberRanking;
-    } else if (chamber === 'house') {
-      updatedFields.houseRank =
-        ranking.length === 0
-          ? ''
-          : JSON.stringify({ [state + district]: ranking });
-    }
+    const { candidate, rank, chamber, refreshUserCount } = action;
+    const api = tgpApi.rankCandidate;
     const payload = {
-      ...updatedFields,
+      rank,
+      candidateId: candidate.id,
+      chamber,
+      isIncumbent: candidate.isIncumbent,
     };
     const response = yield call(requestHelper, api, payload);
     const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
+    yield put(actions.userRankingAction());
 
     setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
@@ -437,6 +427,17 @@ function* crew() {
   }
 }
 
+function* userRanking() {
+  try {
+    const api = tgpApi.userRanking;
+    const { ranking } = yield call(requestHelper, api, null);
+    console.log('ranking', ranking);
+    yield put(actions.userRankingActionSuccess(ranking));
+  } catch (error) {
+    console.log('crew error', error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
@@ -457,4 +458,5 @@ export default function* saga() {
   yield takeLatest(types.DELETE_USER_RANKING, deleteUserRanking);
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   yield takeLatest(types.CREW, crew);
+  yield takeLatest(types.USER_RANKING, userRanking);
 }

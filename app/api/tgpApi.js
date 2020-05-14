@@ -41,6 +41,7 @@ const api = {
     url: `${base}candidates/find`,
     method: 'GET',
   },
+
   //
   // CONTENT
   //
@@ -122,6 +123,12 @@ const api = {
 
   crew: {
     url: `${base}user/crew`,
+    method: 'GET',
+    withAuth: true,
+  },
+
+  userRanking: {
+    url: `${base}user/ranking`,
     method: 'GET',
     withAuth: true,
   },

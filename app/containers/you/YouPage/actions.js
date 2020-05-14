@@ -91,18 +91,11 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (
-  ranking,
-  chamber,
-  state,
-  district,
-  refreshUserCount,
-) => ({
+const saveUserRankingAction = (candidate, rank, chamber, refreshUserCount) => ({
   type: types.SAVE_USER_RANKING,
-  ranking,
+  candidate,
+  rank,
   chamber,
-  state,
-  district,
   refreshUserCount,
 });
 
@@ -130,6 +123,20 @@ const crewActionSuccess = crew => ({
   crew,
 });
 
+const userRankingAction = () => ({
+  type: types.USER_RANKING,
+});
+
+const userRankingActionSuccess = ranking => ({
+  type: types.USER_RANKING_SUCCESS,
+  ranking,
+});
+
+const userRankingActionError = error => ({
+  type: types.USER_RANKING_ERROR,
+  error,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -151,4 +158,7 @@ export default {
   generateUuidAction,
   crewAction,
   crewActionSuccess,
+  userRankingAction,
+  userRankingActionSuccess,
+  userRankingActionError,
 };

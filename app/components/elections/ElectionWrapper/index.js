@@ -91,6 +91,7 @@ const ElectionWrapper = ({
   user,
   displayChamber,
   chamberRank = [],
+  ranking,
   candidates = {},
   userCounts,
   content,
@@ -111,45 +112,42 @@ const ElectionWrapper = ({
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
 
   useEffect(() => {
-    const initialChoices = cookieOrderToChoicesHash();
-    setChoices(initialChoices);
-    setChoicesOrder(chamberRank || []);
-  }, [candidates, chamberRank]);
+    // const initialChoices = cookieOrderToChoicesHash();
+    // setChoices(initialChoices);
+    // setChoicesOrder(chamberRank || []);
+  }, [candidates]);
 
-  const cookieOrderToChoicesHash = () => {
-    if (!chamberRank || chamberRank.length === 0) {
-      return {};
-    }
-    const newChoices = {};
-    chamberRank.map((order, i) => {
-      newChoices[order] = i + 1;
-    });
-    return newChoices;
-  };
+  // const cookieOrderToChoicesHash = () => {
+  //   if (!chamberRank || chamberRank.length === 0) {
+  //     return {};
+  //   }
+  //   const newChoices = {};
+  //   chamberRank.map((order, i) => {
+  //     newChoices[order] = i + 1;
+  //   });
+  //   return newChoices;
+  // };
+  //
+  const selectCandidate = async (candidate, rank) => {
+    saveRankingCallback(user, candidate, rank, chamber);
 
-  const selectCandidate = async id => {
-    if (
-      choicesOrder.length <=
-      candidates.good.length +
-        candidates.notGood.length +
-        candidates.unknown.length
-    ) {
-      if (!choices[id]) {
-        const newChoices = { ...choices };
-        const newChoicesOrder = [...choicesOrder];
-        newChoices[id] = choicesOrder.length + 1;
-        await setChoices(newChoices);
-        newChoicesOrder.push(id);
-        await setChoicesOrder(newChoicesOrder);
-        saveRankingCallback(
-          user,
-          newChoicesOrder,
-          chamber,
-          state,
-          districtNumber,
-        );
-      }
-    }
+    // const { id } = candidate;
+    // if (
+    //   choicesOrder.length <=
+    //   candidates.good.length +
+    //     candidates.notGood.length +
+    //     candidates.unknown.length
+    // ) {
+    //   if (!choices[id]) {
+    //     const newChoices = { ...choices };
+    //     const newChoicesOrder = [...choicesOrder];
+    //     newChoices[id] = choicesOrder.length + 1;
+    //     await setChoices(newChoices);
+    //     newChoicesOrder.push(id);
+    //     await setChoicesOrder(newChoicesOrder);
+    //     saveRankingCallback(user, candidate, newChoicesOrder.length, chamber);
+    //   }
+    // }
   };
 
   const deSelectCandidate = async id => {
@@ -233,10 +231,10 @@ const ElectionWrapper = ({
     votesNeeded = userCounts.threshold;
   }
 
-  const handleChoiceCallback = async candidate => {
+  const handleChoiceCallback = async (candidate, rank) => {
     if (rankingAllowed) {
       setChoiceModalCandidate(candidate);
-      selectCandidate(candidate.id);
+      selectCandidate(candidate, rank);
       const isSharedModal = getCookie('isSharedModal');
       if (isSharedModal !== 'true' || candidate.isGood === false) {
         setShowChoiceModal(true);
@@ -265,6 +263,8 @@ const ElectionWrapper = ({
     editModeCallback(pathname);
   };
 
+  console.log('render');
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -273,7 +273,7 @@ const ElectionWrapper = ({
           <Wrapper>
             <MobileHeader />
 
-            <H1>{title}</H1>
+            {/*<H1>{title}</H1>*/}
             <Description>
               Choose any candidate to join their voting bloc then tell others.
               We&apos;ll let you know when any voting blocs you join get big
@@ -306,6 +306,7 @@ const ElectionWrapper = ({
               openFiltersCallback={openFiltersCallback}
               choices={choices}
               choicesOrder={choicesOrder}
+              ranking={ranking}
               handleChoiceCallback={handleChoiceCallback}
               handleDeselectCandidate={handleDeselectCandidate}
               rankingMode={rankingMode}
