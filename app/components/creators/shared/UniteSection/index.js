@@ -100,7 +100,7 @@ function UniteSection() {
       <Unite>Unite</Unite>
       <p class="text-center">
         <Body>
-          Let's all build <Logo src={LogoCaps} /> the good party
+          Let's all build <Logo src={LogoCaps} alt="logo"/> the good party
         </Body>
       </p>
       <div class="text-center">
@@ -108,19 +108,19 @@ function UniteSection() {
       </div>
       <CreatorsCount>640 Creators have joined so far</CreatorsCount>
       <AvatarsWrapper>
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
-        <Avatar src={SampleAvatarImg} />
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
+        <Avatar src={SampleAvatarImg} alt="avatar"/>
       </AvatarsWrapper>
       <Description>
         The Good Party is a non-profit project with a simple plan to use good

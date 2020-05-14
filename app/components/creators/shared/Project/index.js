@@ -57,13 +57,17 @@ const Summary = styled.p`
   color: #000;
   margin-bottom: 1.5rem;
 `;
-
+const OuterLinkWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const OuterLink = styled.a`
   color: ${({ theme }) => theme.colors.blue};
   font: normal 500 1rem/22px ${({ theme }) => theme.typography.fontFamily};
-  text-overflow: ellipsis;
+  flex: 1;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const LinkIcon = styled.img`
@@ -122,8 +126,8 @@ const FooterActionsWrapper = styled(Grid)`
   }
 `;
 const ProjectImg = styled.img`
-  width: 400px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
 `;
 const ShowMore = styled.a`
   color: ${({ theme }) => theme.colors.blue};
@@ -150,36 +154,36 @@ function Project({ project, showMore = false }) {
         <ProjectContent item xs={12} md={7}>
           <Title>{project.title}</Title>
           <Topics>
-            {project.topics.map(topic => {
-              return <Topic>{topic}</Topic>;
-            })}
+            {project.topics.map((topic, index) => (
+              <Topic key={index}>{topic}</Topic>
+            ))}
           </Topics>
           <Summary>{project.summary}</Summary>
           <div>
             {project.links.map((link, index) => {
               const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
               return (
-                <OuterLink href={link} key={index}>
-                  <LinkIcon src={icon} />
-                  {link}
-                </OuterLink>
+                <OuterLinkWrapper>
+                  <OuterLink href={link} key={index}>
+                    <LinkIcon src={icon}  alt="link icon"/>
+                    {link}
+                  </OuterLink>
+                </OuterLinkWrapper>
               );
             })}
           </div>
         </ProjectContent>
         <Grid item xs={12} md={5}>
-          <ProjectImg src={`http:${project.images[0]}`} />
+          <ProjectImg src={`http:${project.images[0]}`} alt="project img"/>
         </Grid>
       </ProjectBodyWrapper>
       <ProjectFooter container>
         <CollaboratorContainer item xs={12} sm={7}>
-          {collaborators.map((collaborator, index) => {
-            return (
-              <CollaboratorWrapper>
-                <Collaborator src={collaborator} key={index} />
-              </CollaboratorWrapper>
-            );
-          })}
+          {collaborators.map((collaborator, index) => (
+            <CollaboratorWrapper>
+              <Collaborator src={collaborator} key={index} alt="collaborator img"/>
+            </CollaboratorWrapper>
+          ))}
           <Collaborators>
             <span>Kai Gradert</span> and <span>12 others</span>
           </Collaborators>
@@ -187,15 +191,15 @@ function Project({ project, showMore = false }) {
         <FooterActionsWrapper item xs={12} sm={5}>
           <FooterActions>
             <FooterAction>
-              <FooterActionIcon src={MessageIcon} />
+              <FooterActionIcon src={MessageIcon} alt="message icon"/>
               Message creators
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={ShareIcon} />
+              <FooterActionIcon src={ShareIcon} alt="share icon"/>
               Share
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={FavoriteIcon} />
+              <FooterActionIcon src={FavoriteIcon} alt="favorite icon"/>
               102
             </FooterAction>
           </FooterActions>

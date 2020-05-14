@@ -1,11 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
-import {
-    Button
-} from "@material-ui/core"
+import { Button } from '@material-ui/core';
 
 const JoinButton = styled(Button)`
-    && {
+  && {
     background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
     font: normal bold 2rem normal;
@@ -14,7 +11,7 @@ const JoinButton = styled(Button)`
     border-radius: 4rem;
     margin-top: 5rem;
     margin-bottom: 2rem;
-    }
+  }
 `;
 
 export default JoinButton;

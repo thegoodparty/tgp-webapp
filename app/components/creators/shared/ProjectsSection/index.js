@@ -42,10 +42,10 @@ function ProjectsSection({ projects }) {
         <Title>Projects</Title>
         <SectionHeaderActions>
           <ProjectButton>
-            <TitleButtonIcon src={SearchList} /> Search
+            <TitleButtonIcon src={SearchList} alt="search icon"/> Search
           </ProjectButton>
           <ProjectButton>
-            <TitleButtonIcon src={ExpandList} /> List your project
+            <TitleButtonIcon src={ExpandList} alt="expandlist icon"/> List your project
           </ProjectButton>
         </SectionHeaderActions>
       </SectionHeader>
