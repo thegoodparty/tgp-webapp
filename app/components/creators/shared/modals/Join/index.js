@@ -77,7 +77,7 @@ const SocialIcon = styled.img`
 
 const FooterMessage = styled(Body13)`
   color: ${({ theme }) => theme.creators.colors.gray};
-  margin-bottom: 3rem;
+  margin: 0;
 `;
 
 function Join({ open, handleClose }) {
@@ -108,6 +108,7 @@ function Join({ open, handleClose }) {
               <SocialIcon src={EmailIcon} /> Join With Email
             </JoinWithButton>
           </JoinButtonWrapper>
+          <FooterMessage>We will never post to any of your accounts without your permission.</FooterMessage>
         </Wrapper>
       </Fade>
     </OverlayModal>
