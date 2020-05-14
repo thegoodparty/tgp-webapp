@@ -4,14 +4,17 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Body } from '../typography';
-import { JoinButton } from '../buttons';
+import { JoinNowButton } from '../buttons';
+import { Join } from '../modals';
+import Heads from '../Heads';
+
 import LogoCaps from 'images/logo.svg';
-import SampleAvatarImg from 'images/avatar.png';
+
 const SectionWrapper = styled.div`
   padding-bottom: 3rem;
   @media only screen and (min-width: ${({ theme }) =>
@@ -68,12 +71,6 @@ const CreatorsCount = styled.p`
   margin-top: 0;
 `;
 
-const Avatar = styled.img`
-  width: 32px;
-  height: 32px;
-  margin-right: 1rem;
-  margin-bottom: 0.5rem;
-`;
 const Description = styled.p`
   max-width: 45rem;
   margin: 0 auto;
@@ -82,14 +79,9 @@ const Description = styled.p`
   color: ${({ theme }) => theme.creators.colors.gray};
 `;
 
-const AvatarsWrapper = styled.div`
-  display: flex;
-  max-width: 22rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
-`;
+
 function UniteSection() {
+  const [join, setJoin] = useState(false);
   return (
     <SectionWrapper>
       <Title>Creators of the World</Title>
@@ -104,24 +96,11 @@ function UniteSection() {
         </Body>
       </p>
       <div className="text-center">
-        <JoinButton>Join Now</JoinButton>
+        <JoinNowButton onClick={() => setJoin(true)} >Join Now</JoinNowButton>
+        <Join open={join} handleClose={() => setJoin(false)}/>
       </div>
       <CreatorsCount>640 Creators have joined so far</CreatorsCount>
-      <AvatarsWrapper>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-        <Avatar src={SampleAvatarImg} alt="avatar"/>
-      </AvatarsWrapper>
+      <Heads />
       <Description>
         The Good Party is a non-profit project with a simple plan to use good
         open-source tech to take back Democracy from big-money donors and

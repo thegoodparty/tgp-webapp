@@ -3,14 +3,11 @@ import { Button } from '@material-ui/core';
 
 const JoinButton = styled(Button)`
   && {
-    background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
-    font: normal bold 2rem normal;
-    padding: 2rem 6rem;
+    font: normal 600 18px/23px normal;
+    padding: 0.5rem 2rem;
     text-transform: uppercase;
-    border-radius: 4rem;
-    margin-top: 5rem;
-    margin-bottom: 2rem;
+    border-radius: 1.5rem;
   }
 `;
 
