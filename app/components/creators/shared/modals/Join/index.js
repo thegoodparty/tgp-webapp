@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Modal } from '@material-ui/core';
+import { Modal, Fade } from '@material-ui/core';
 import LogoCaps from 'images/logo.svg';
 import { Body, Body18, Body13 } from '../../typography';
 import { JoinButton } from '../../buttons';
@@ -88,26 +88,28 @@ function Join({ open, handleClose }) {
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
     >
-      <Wrapper>
-        <Logo src={LogoCaps} alt="logo" />
-        <Title>Fixing politics for Good!</Title>
-        <Blurb>
-          Join our community of creators <br /> working together for the Good of
-          all.
-        </Blurb>
-        <Heads />
-        <JoinButtonWrapper>
-          <JoinWithButton className="twitter">
-            <SocialIcon src={TwitterIcon} /> Join With Twitter
-          </JoinWithButton>
-          <JoinWithButton className="facebook">
-            <SocialIcon src={FacebookIcon} /> Join With Facebook
-          </JoinWithButton>
-          <JoinWithButton className="email">
-            <SocialIcon src={EmailIcon} /> Join With Email
-          </JoinWithButton>
-        </JoinButtonWrapper>
-      </Wrapper>
+      <Fade in={open}>
+        <Wrapper>
+          <Logo src={LogoCaps} alt="logo" />
+          <Title>Fixing politics for Good!</Title>
+          <Blurb>
+            Join our community of creators <br /> working together for the Good of
+            all.
+          </Blurb>
+          <Heads />
+          <JoinButtonWrapper>
+            <JoinWithButton className="twitter">
+              <SocialIcon src={TwitterIcon} /> Join With Twitter
+            </JoinWithButton>
+            <JoinWithButton className="facebook">
+              <SocialIcon src={FacebookIcon} /> Join With Facebook
+            </JoinWithButton>
+            <JoinWithButton className="email">
+              <SocialIcon src={EmailIcon} /> Join With Email
+            </JoinWithButton>
+          </JoinButtonWrapper>
+        </Wrapper>
+      </Fade>
     </OverlayModal>
   );
 }
