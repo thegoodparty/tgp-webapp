@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import Wrapper from 'components/creators/shared/Wrapper';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import CreatorsHeaderWrapper from 'components/creators/shared/CreatorsHeaderWrapper';
@@ -19,6 +20,8 @@ const CreatorsWrapper = ({ projects = [] }) => {
   );
 };
 
-CreatorsWrapper.propTypes = {};
+CreatorsWrapper.propTypes = {
+  projects: PropTypes.array,
+};
 
 export default CreatorsWrapper;

@@ -5,8 +5,9 @@
  */
 
 import React from 'react';
+
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import SampleImage from 'images/illustration.png';
 import { Grid } from '@material-ui/core';
 import NotionIcon from 'images/icons/notion.svg';
 import FigmaIcon from 'images/icons/figma.svg';
@@ -139,6 +140,7 @@ const CollaboratorContainer = styled(Grid)`
     display: flex;
   }
 `;
+
 function Project({ project, showMore = false }) {
   const collaborators = [SampleAvatarImg, SampleAvatarImg, SampleAvatarImg];
   if (showMore) {
@@ -209,6 +211,9 @@ function Project({ project, showMore = false }) {
   );
 }
 
-Project.propTypes = {};
+Project.propTypes = {
+  showMore: PropTypes.bool,
+  projects: PropTypes.array,
+};
 
 export default Project;

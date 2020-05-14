@@ -98,12 +98,12 @@ function UniteSection() {
         Creators · Coders · Influencers · Makers
       </Audience>
       <Unite>Unite</Unite>
-      <p class="text-center">
+      <p className="text-center">
         <Body>
           Let's all build <Logo src={LogoCaps} alt="logo"/> the good party
         </Body>
       </p>
-      <div class="text-center">
+      <div className="text-center">
         <JoinButton>Join Now</JoinButton>
       </div>
       <CreatorsCount>640 Creators have joined so far</CreatorsCount>

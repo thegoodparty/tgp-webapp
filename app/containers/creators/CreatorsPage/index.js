@@ -40,6 +40,7 @@ export function CreatorsPage({ content }) {
 
 CreatorsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 const mapStateToProps = createStructuredSelector({

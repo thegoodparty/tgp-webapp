@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import SearchList from 'images/icons/search.svg';
@@ -12,6 +13,7 @@ import ExpandList from 'images/icons/expand.svg';
 
 import { ProjectButton } from '../buttons';
 import Project from '../Project';
+
 const SectionWrapper = styled.div`
   padding: 6rem 8rem;
   background-color: ${({ theme }) => theme.colors.blue};
@@ -35,6 +37,7 @@ const SectionHeaderActions = styled.div`
   display: flex;
   align-items: center;
 `;
+
 function ProjectsSection({ projects }) {
   return (
     <SectionWrapper>
@@ -42,21 +45,22 @@ function ProjectsSection({ projects }) {
         <Title>Projects</Title>
         <SectionHeaderActions>
           <ProjectButton>
-            <TitleButtonIcon src={SearchList} alt="search icon"/> Search
+            <TitleButtonIcon src={SearchList} alt="search icon" /> Search
           </ProjectButton>
           <ProjectButton>
-            <TitleButtonIcon src={ExpandList} alt="expandlist icon"/> List your project
+            <TitleButtonIcon src={ExpandList} alt="expandlist icon" /> List your
+            project
           </ProjectButton>
         </SectionHeaderActions>
       </SectionHeader>
-      {projects.map(project => {
-        return <Project project={project} key={project.id} />;
-      })}
+      {projects.map(project => (
+        <Project project={project} key={project.id} />
+      ))}
       <Project showMore />
     </SectionWrapper>
   );
 }
 
-ProjectsSection.propTypes = {};
+ProjectsSection.propTypes = { projects: PropTypes.array };
 
 export default ProjectsSection;
