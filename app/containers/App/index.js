@@ -45,6 +45,8 @@ import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable'
 import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loadable';
 import Races from 'containers/scraping/Races/Loadable';
 
+import CreatorsPage from 'containers/creators/CreatorsPage/Loadable';
+
 import AdminPage from 'containers/admin/AdminPage/Loadable';
 
 import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
@@ -173,6 +175,8 @@ function App({ locationState, dispatch }) {
 
           <Route exact path="/privacy" component={PrivacyPage} />
           <Route exact path="/research" component={ResearchPage} />
+
+          <Route exact path="/creators" component={CreatorsPage} />
 
           <Route exact path="/admin" component={AdminPage} />
 

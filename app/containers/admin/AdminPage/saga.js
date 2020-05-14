@@ -23,6 +23,21 @@ function* loadCandidates(action) {
   }
 }
 
+function* loadAllUsers() {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading Users'));
+    const api = tgpApi.admin.allUsers;
+    const { users } = yield call(requestHelper, api, null);
+    yield put(actions.loadAllUsersSuccess(users));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Loading Users', 'error'),
+    );
+    yield put(actions.loadAllUsersError(error));
+  }
+}
+
 function* updateCandidate(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Candidate'));
@@ -44,6 +59,7 @@ function* updateCandidate(action) {
 // Individual exports for testing
 export default function* saga() {
   const candAction = yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
+  yield takeLatest(types.LOAD_ALL_USERS, loadAllUsers);
   const updateCandAction = yield takeLatest(
     types.UPDATE_CANDIDATE,
     updateCandidate,

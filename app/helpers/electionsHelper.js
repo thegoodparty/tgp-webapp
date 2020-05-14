@@ -99,6 +99,9 @@ function monthsDiff(d1, d2) {
 }
 
 export const candidateCalculatedFields = orgCandidate => {
+  if (!orgCandidate) {
+    return {};
+  }
   const candidate = { ...orgCandidate };
   const { combinedRaised, raised, smallContributions } = candidate;
   const totalRaised = combinedRaised || raised;

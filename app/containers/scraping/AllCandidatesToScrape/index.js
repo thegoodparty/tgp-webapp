@@ -81,7 +81,7 @@ export function AllCandidatesToScrape({
           {candidates && candidates.length}
         </h1>
         {candidates &&
-          candidates.map(candidate => (
+          candidates.map((candidate, index) => (
             <div>
               <>
                 {!onlyNoData ? (

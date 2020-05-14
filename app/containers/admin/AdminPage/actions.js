@@ -27,6 +27,26 @@ function loadCandidatesError(error) {
   };
 }
 
+function loadAllUsers() {
+  return {
+    type: types.LOAD_ALL_USERS,
+  };
+}
+
+function loadAllUsersSuccess(users) {
+  return {
+    type: types.LOAD_ALL_USERS_SUCCESS,
+    users,
+  };
+}
+
+function loadAllUsersError(error) {
+  return {
+    type: types.LOAD_ALL_USERS_ERROR,
+    error,
+  };
+}
+
 function updateCandidate(id, updatedFields, chamber, isIncumbent) {
   return {
     type: types.UPDATE_CANDIDATE,
@@ -48,6 +68,10 @@ export default {
   loadCandidates,
   loadCandidatesSuccess,
   loadCandidatesError,
+
+  loadAllUsers,
+  loadAllUsersSuccess,
+  loadAllUsersError,
 
   updateCandidate,
   updateCandidateSuccess,

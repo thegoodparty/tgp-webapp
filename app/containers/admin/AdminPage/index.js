@@ -27,6 +27,7 @@ export function AdminPage({
   adminState,
   loadCandidatesCallback,
   updateCandidateCallback,
+  loadAllUsersCallback,
   userState,
   dispatch,
 }) {
@@ -40,12 +41,14 @@ export function AdminPage({
     }
   });
 
-  const { candidates, loading, error } = adminState;
+  const { candidates, users, loading, error } = adminState;
 
   const childProps = {
     candidates,
+    users,
     loadCandidatesCallback,
     updateCandidateCallback,
+    loadAllUsersCallback,
     loading,
     error,
     user,
@@ -66,6 +69,7 @@ AdminPage.propTypes = {
   adminState: PropTypes.object,
   loadCandidatesCallback: PropTypes.func,
   updateCandidateCallback: PropTypes.func,
+  loadAllUsersCallback: PropTypes.func,
   userState: PropTypes.object,
 };
 
@@ -83,6 +87,9 @@ function mapDispatchToProps(dispatch) {
       dispatch(
         adminActions.updateCandidate(id, updatedFields, chamber, isIncumbent),
       );
+    },
+    loadAllUsersCallback: () => {
+      dispatch(adminActions.loadAllUsers());
     },
   };
 }
