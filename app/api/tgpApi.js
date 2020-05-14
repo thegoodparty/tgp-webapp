@@ -102,6 +102,12 @@ const api = {
     withAuth: true,
   },
 
+  rankCandidate: {
+    url: `${base}user/rank-candidate`,
+    method: 'POST',
+    withAuth: true,
+  },
+
   deleteUserRanking: {
     url: `${base}user/delete-user-ranking`,
     method: 'PUT',
