@@ -18,12 +18,14 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectCreatorsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { makeSelectContent } from 'containers/App/selectors';
 
-export function CreatorsPage() {
+export function CreatorsPage({ content }) {
   useInjectReducer({ key: 'creatorsPage', reducer });
   useInjectSaga({ key: 'creatorsPage', saga });
-
-  const childProps = {};
+  const childProps = {
+    projects: content ? content.creatorsProjects || [] : [],
+  };
 
   return (
     <div>
@@ -38,10 +40,12 @@ export function CreatorsPage() {
 
 CreatorsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 const mapStateToProps = createStructuredSelector({
   creatorsPage: makeSelectCreatorsPage(),
+  content: makeSelectContent(),
 });
 
 function mapDispatchToProps(dispatch) {

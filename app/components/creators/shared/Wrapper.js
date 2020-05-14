@@ -16,7 +16,13 @@ const WrapperDiv = styled.div`
   }
 `;
 
-const Wrapper = ({ children, style, white, noHeader = false, creators=false }) => {
+const Wrapper = ({
+  children,
+  style,
+  white,
+  noHeader = false,
+  creators = false,
+}) => {
   let className = '';
   if (white) {
     className = 'white';
