@@ -12,7 +12,7 @@ import SearchList from 'images/icons/search.svg';
 import ExpandList from 'images/icons/expand.svg';
 
 import { ProjectButton } from '../buttons';
-import { ListProject} from '../modals'
+import { ListProject } from '../modals';
 import Project from '../Project';
 
 const SectionWrapper = styled.div`
@@ -46,14 +46,20 @@ function ProjectsSection({ projects }) {
       <SectionHeader>
         <Title>Projects</Title>
         <SectionHeaderActions>
-          <ProjectButton>
+          <ProjectButton variant="contained">
             <TitleButtonIcon src={SearchList} alt="search icon" /> Search
           </ProjectButton>
-          <ProjectButton onClick={() => setListProject(true)}>
+          <ProjectButton
+            variant="contained"
+            onClick={() => setListProject(true)}
+          >
             <TitleButtonIcon src={ExpandList} alt="expandlist icon" /> List your
             project
           </ProjectButton>
-          <ListProject open={listProject} handleClose={() => setListProject(false)} />
+          <ListProject
+            open={listProject}
+            handleClose={() => setListProject(false)}
+          />
         </SectionHeaderActions>
       </SectionHeader>
       {projects.map(project => (

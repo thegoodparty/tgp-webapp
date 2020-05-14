@@ -22,24 +22,25 @@ const Avatar = styled.img`
   height: 32px;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
+  cursor: pointer;
 `;
 
 function Heads() {
   return (
     <AvatarsWrapper>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
-      <Avatar src={SampleAvatarImg} alt="avatar"/>
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg} alt="avatar" />
     </AvatarsWrapper>
   );
 }

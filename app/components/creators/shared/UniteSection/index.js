@@ -14,6 +14,8 @@ import { Join } from '../modals';
 import Heads from '../Heads';
 
 import LogoCaps from 'images/logo.svg';
+import UniteTitle from 'images/title--unite.svg';
+import CreatorsTitle from 'images/title--creators_of_the_world.svg';
 
 const SectionWrapper = styled.div`
   padding-bottom: 3rem;
@@ -31,29 +33,7 @@ const Audience = styled.p`
     font: normal bold 2rem normal;
   }
 `;
-const Title = styled.h1`
-  text-transform: uppercase;
-  text-align: center;
-  color: #000;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
-    font: normal bold 4.5rem normal;
-    margin: 0;
-  }
-`;
-const Unite = styled.h2`
-  text-transform: uppercase;
-  text-align: center;
-  color: #000;
-  font: normal bold 10rem/10rem normal;
-  margin: 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
-    font: normal bold 19.5rem/18rem normal;
-    margin: 0;
-    margin-bottom: 4rem;
-  }
-`;
+
 const Logo = styled.img`
   height: auto;
   cursor: pointer;
@@ -79,25 +59,41 @@ const Description = styled.p`
   color: ${({ theme }) => theme.creators.colors.gray};
 `;
 
+const TitleImg = styled.img`
+  width: 100%;
+  height: 100%;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    &.unite {
+      margin-bottom: 4rem;
+    }
+  }
+`;
 
 function UniteSection() {
   const [join, setJoin] = useState(false);
   return (
     <SectionWrapper>
-      <Title>Creators of the World</Title>
+      <TitleImg src={CreatorsTitle} alt="creators" />
       <Audience>
         Designers · Videographers · Podcasters · Writers <br /> Content
         Creators · Coders · Influencers · Makers
       </Audience>
-      <Unite>Unite</Unite>
+      <TitleImg className="unite" src={UniteTitle} alt="unite" />
       <p className="text-center">
         <Body>
-          Let's all build <Logo src={LogoCaps} alt="logo"/> the good party
+          Let's all build <Logo src={LogoCaps} alt="logo" /> the good party
         </Body>
       </p>
       <div className="text-center">
-        <JoinNowButton onClick={() => setJoin(true)} >Join Now</JoinNowButton>
-        <Join open={join} handleClose={() => setJoin(false)}/>
+        <JoinNowButton
+          variant="contained"
+          color="primary"
+          onClick={() => setJoin(true)}
+        >
+          Join Now
+        </JoinNowButton>
+        <Join open={join} handleClose={() => setJoin(false)} />
       </div>
       <CreatorsCount>640 Creators have joined so far</CreatorsCount>
       <Heads />

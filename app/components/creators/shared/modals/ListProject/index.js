@@ -327,8 +327,8 @@ Mention if you are looking for collaborators."
               </Grid>
 
               <FooterWrapper>
-                <GrayButton onClick={closeModal}>Cancel</GrayButton>
-                <BlueButton onClick={toggleModal}>
+                <GrayButton variant="contained" onClick={closeModal}>Cancel</GrayButton>
+                <BlueButton variant="contained" color="primary" onClick={toggleModal}>
                   Next:Add links & Media
                 </BlueButton>
               </FooterWrapper>
@@ -394,8 +394,8 @@ Mention if you are looking for collaborators."
                 </Grid>
               </Grid>
               <FooterWrapper>
-                <GrayButton onClick={toggleModal}>Back</GrayButton>
-                <BlueButton onClick={closeModal}>Submit Project</BlueButton>
+                <GrayButton variant="contained" onClick={toggleModal}>Back</GrayButton>
+                <BlueButton variant="contained" color="primary" onClick={closeModal}>Submit Project</BlueButton>
               </FooterWrapper>
             </Wrapper>
           </Fade>
