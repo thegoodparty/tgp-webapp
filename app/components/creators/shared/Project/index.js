@@ -15,7 +15,7 @@ import MessageIcon from 'images/icons/message.svg';
 import ShareIcon from 'images/icons/share1.svg';
 import FavoriteIcon from 'images/icons/favorite.svg';
 import Collaborators from '../Collaborators';
-import { TouchProject } from '../modals';
+import { ProjectProposal } from '../modals';
 
 const ProjectWrapper = styled.div`
   border-radius: 16px;
@@ -25,7 +25,6 @@ const ProjectWrapper = styled.div`
   &.show-more {
     cursor: pointer;
   }
-  
 `;
 const ProjectBodyWrapper = styled(Grid)`
   padding-bottom: 2rem;
@@ -86,7 +85,6 @@ const ProjectFooter = styled(Grid)`
   padding-top: 2rem;
 `;
 
-
 const FooterAction = styled.a`
   color: ${({ theme }) => theme.creators.colors.lightGray};
   font: normal 600 1rem/40px ${({ theme }) => theme.typography.fontFamily};
@@ -128,8 +126,8 @@ const CollaboratorContainer = styled(Grid)`
 `;
 
 function Project({ project, showMore = false }) {
-  const [ touch, setTouch ] = useState(false);
-  
+  const [touch, setTouch] = useState(false);
+
   if (showMore) {
     return (
       <ProjectWrapper className="text-center show-more">
@@ -142,7 +140,11 @@ function Project({ project, showMore = false }) {
       <ProjectBodyWrapper container>
         <ProjectContent item xs={12} md={7}>
           <Title onClick={() => setTouch(true)}>{project.title}</Title>
-          <TouchProject project={project} open={touch} handleClose={() => setTouch(false)} />
+          <ProjectProposal
+            project={project}
+            open={touch}
+            handleClose={() => setTouch(false)}
+          />
           <Topics>
             {project.topics.map((topic, index) => (
               <Topic key={index}>{topic}</Topic>
@@ -153,9 +155,9 @@ function Project({ project, showMore = false }) {
             {project.links.map((link, index) => {
               const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
               return (
-                <OuterLinkWrapper>
-                  <OuterLink href={link} key={index} target="_blank">
-                    <LinkIcon src={icon}  alt="link icon"/>
+                <OuterLinkWrapper key={index}>
+                  <OuterLink href={link} target="_blank">
+                    <LinkIcon src={icon} alt="link icon" />
                     {link}
                   </OuterLink>
                 </OuterLinkWrapper>
@@ -164,7 +166,7 @@ function Project({ project, showMore = false }) {
           </div>
         </ProjectContent>
         <Grid item xs={12} md={5}>
-          <ProjectImg src={`http:${project.images[0]}`} alt="project img"/>
+          <ProjectImg src={`http:${project.images[0]}`} alt="project img" />
         </Grid>
       </ProjectBodyWrapper>
       <ProjectFooter container>
@@ -174,15 +176,15 @@ function Project({ project, showMore = false }) {
         <FooterActionsWrapper item xs={12} sm={5}>
           <FooterActions>
             <FooterAction>
-              <FooterActionIcon src={MessageIcon} alt="message icon"/>
+              <FooterActionIcon src={MessageIcon} alt="message icon" />
               Message creators
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={ShareIcon} alt="share icon"/>
+              <FooterActionIcon src={ShareIcon} alt="share icon" />
               Share
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={FavoriteIcon} alt="favorite icon"/>
+              <FooterActionIcon src={FavoriteIcon} alt="favorite icon" />
               102
             </FooterAction>
           </FooterActions>

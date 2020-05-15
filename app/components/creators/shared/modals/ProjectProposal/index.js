@@ -1,67 +1,17 @@
 /**
  *
- * Join
+ * ProjectProposal
  *
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Modal, Fade, TextField } from '@material-ui/core';
+import { Fade, TextField } from '@material-ui/core';
 import Collaborators from '../../Collaborators';
-import { Body, Body18, Body13 } from '../../typography';
-import { MediumButton } from '../../buttons';
-
-const Wrapper = styled.div`
-  max-width: 40rem;
-  width: 100%;
-  padding: 3rem;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  border: none;
-  text-align: center;
-`;
-const OverlayModal = styled(Modal)`
-  && {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
-const Logo = styled.img`
-  height: 97px;
-  width:  120px
-  margin-bottom: 1.5rem;
-`;
-
-const Title = styled(Body)`
-  color: #000;
-  line-height: 130%;
-  text-transform: none;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  text-align: left;
-`;
-
-const Blurb = styled(Body18)`
-  margin: 1rem 0 3rem;
-`;
-const FooterWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 2.5rem;
-`;
-
-const SocialIcon = styled.img`
-  margin-right: 0.7rem;
-`;
-
-const SendButton = styled(MediumButton)`
-  && {
-    background-color: ${({ theme }) => theme.colors.blue};
-  }
-`;
+import { Body18, Body13 } from '../../typography';
+import { BlueButton } from '../../buttons';
+import { Title, BodyWrapper, OverlayModal, FooterWrapper } from '../shared';
 
 const FooterMessage = styled(Body13)`
   color: ${({ theme }) => theme.creators.colors.gray};
@@ -80,7 +30,8 @@ const Message = styled(TextField)`
     border-radius: 4px;
   }
 `;
-function TouchProject({ open, handleClose, project }) {
+
+function ProjectProposal({ open, handleClose, project }) {
   return (
     <OverlayModal
       open={open}
@@ -89,7 +40,7 @@ function TouchProject({ open, handleClose, project }) {
       aria-describedby="simple-modal-description"
     >
       <Fade in={open}>
-        <Wrapper>
+        <BodyWrapper>
           <Title>{project.title}</Title>
           <CollaboratorsWrapper>
             <Collaborators project={project} />
@@ -101,23 +52,23 @@ function TouchProject({ open, handleClose, project }) {
             placeholder="Let them know how you can help with this project…"
           />
           <FooterWrapper>
-            <SendButton color="primary" variant="contained">
+            <BlueButton color="primary" variant="contained">
               Send
-            </SendButton>
+            </BlueButton>
             <FooterMessage>
               Your message will be emailed to Kai Gradert
             </FooterMessage>
           </FooterWrapper>
-        </Wrapper>
+        </BodyWrapper>
       </Fade>
     </OverlayModal>
   );
 }
 
-TouchProject.propTypes = {
+ProjectProposal.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
   project: PropTypes.object,
 };
 
-export default TouchProject;
+export default ProjectProposal;
