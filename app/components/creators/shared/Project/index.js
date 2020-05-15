@@ -22,6 +22,10 @@ const ProjectWrapper = styled.div`
   padding: 2rem;
   background-color: #fff;
   margin-bottom: 2rem;
+  &.show-more {
+    cursor: pointer;
+  }
+  
 `;
 const ProjectBodyWrapper = styled(Grid)`
   padding-bottom: 2rem;
@@ -128,7 +132,7 @@ function Project({ project, showMore = false }) {
   
   if (showMore) {
     return (
-      <ProjectWrapper className="text-center">
+      <ProjectWrapper className="text-center show-more">
         <ShowMore>Show More</ShowMore>
       </ProjectWrapper>
     );
@@ -150,7 +154,7 @@ function Project({ project, showMore = false }) {
               const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
               return (
                 <OuterLinkWrapper>
-                  <OuterLink href={link} key={index}>
+                  <OuterLink href={link} key={index} target="_blank">
                     <LinkIcon src={icon}  alt="link icon"/>
                     {link}
                   </OuterLink>

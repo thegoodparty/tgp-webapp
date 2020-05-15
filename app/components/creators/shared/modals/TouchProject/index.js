@@ -101,7 +101,9 @@ function TouchProject({ open, handleClose, project }) {
             placeholder="Let them know how you can help with this project…"
           />
           <FooterWrapper>
-            <SendButton>Send</SendButton>
+            <SendButton color="primary" variant="contained">
+              Send
+            </SendButton>
             <FooterMessage>
               Your message will be emailed to Kai Gradert
             </FooterMessage>

@@ -12,7 +12,6 @@ const CreatorsWrapper = ({ projects = [] }) => {
     <div style={{ backgroundColor: '#FFF' }}>
       <CreatorsHeaderWrapper />
       <Wrapper white>
-        <MobileHeader />
         <UniteSection />
         <ProjectsSection projects={projects} />
       </Wrapper>

@@ -97,13 +97,13 @@ function Join({ open, handleClose }) {
           </Blurb>
           <Heads />
           <JoinButtonWrapper>
-            <JoinWithButton className="twitter">
+            <JoinWithButton variant="contained" className="twitter">
               <SocialIcon src={TwitterIcon} /> Join With Twitter
             </JoinWithButton>
-            <JoinWithButton className="facebook">
+            <JoinWithButton variant="contained" className="facebook">
               <SocialIcon src={FacebookIcon} /> Join With Facebook
             </JoinWithButton>
-            <JoinWithButton className="email">
+            <JoinWithButton variant="contained" className="email">
               <SocialIcon src={EmailIcon} /> Join With Email
             </JoinWithButton>
           </JoinButtonWrapper>
