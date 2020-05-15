@@ -138,10 +138,10 @@ const TopicSelect = styled(MultipleSelect)`
     & > div > div {
       border: none;
       background: none;
-    }
-    & > div > div:hover {
-      border: none;
-      background: none;
+      &:hover {
+        border: none;
+        background: none;
+      }
     }
     border: 1px solid ${({ theme }) => theme.creators.colors.borderGray};
     background: ${({ theme }) => theme.creators.colors.formColor};
@@ -189,7 +189,6 @@ function ListProject({ open, handleClose }) {
   const [firstModal, toggleFirstModal] = useState(true);
   const [secondModal, toggleSecondModal] = useState(false);
   const updateProject = (value, key) => {
-    console.log('images', value);
     setState(prevState => ({
       ...prevState,
       [key]: value,
@@ -198,7 +197,9 @@ function ListProject({ open, handleClose }) {
   const updateLink = (value, index) => {
     let { links } = state;
     links[index] = value;
-    if (value === '' && links.length !== 1) links.splice(index, 1);
+    if (value === '' && links.length !== 1) {
+      links.splice(index, 1);
+    }
     setState(prevState => ({
       ...prevState,
       links,
@@ -219,7 +220,7 @@ function ListProject({ open, handleClose }) {
     }));
   };
   useEffect(() => {
-    if (open == true) {
+    if (open) {
       toggleFirstModal(true);
       toggleSecondModal(false);
     }
@@ -327,8 +328,14 @@ Mention if you are looking for collaborators."
               </Grid>
 
               <FooterWrapper>
-                <GrayButton variant="contained" onClick={closeModal}>Cancel</GrayButton>
-                <BlueButton variant="contained" color="primary" onClick={toggleModal}>
+                <GrayButton variant="contained" onClick={closeModal}>
+                  Cancel
+                </GrayButton>
+                <BlueButton
+                  variant="contained"
+                  color="primary"
+                  onClick={toggleModal}
+                >
                   Next:Add links & Media
                 </BlueButton>
               </FooterWrapper>
@@ -382,6 +389,7 @@ Mention if you are looking for collaborators."
                     </ProjectFormControlHeader>
                     {links.map((link, index) => (
                       <FormText
+                        key={index}
                         variant="outlined"
                         value={link}
                         onChange={ev => updateLink(ev.target.value, index)}
@@ -394,8 +402,16 @@ Mention if you are looking for collaborators."
                 </Grid>
               </Grid>
               <FooterWrapper>
-                <GrayButton variant="contained" onClick={toggleModal}>Back</GrayButton>
-                <BlueButton variant="contained" color="primary" onClick={closeModal}>Submit Project</BlueButton>
+                <GrayButton variant="contained" onClick={toggleModal}>
+                  Back
+                </GrayButton>
+                <BlueButton
+                  variant="contained"
+                  color="primary"
+                  onClick={closeModal}
+                >
+                  Submit Project
+                </BlueButton>
               </FooterWrapper>
             </Wrapper>
           </Fade>

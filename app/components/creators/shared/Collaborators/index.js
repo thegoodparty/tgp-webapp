@@ -35,8 +35,8 @@ function Collaborators({ project }) {
   return (
     <>
       {collaborators.map((collaborator, index) => (
-        <CollaboratorWrapper>
-          <Collaborator src={collaborator} key={index} alt="collaborator img" />
+        <CollaboratorWrapper key={index}>
+          <Collaborator src={collaborator} alt="collaborator img" />
         </CollaboratorWrapper>
       ))}
       <CollaboratorsCount>
