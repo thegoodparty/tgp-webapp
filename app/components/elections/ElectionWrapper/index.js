@@ -103,6 +103,7 @@ const ElectionWrapper = ({
   saveRankingCallback,
   editModeCallback,
   refreshCountCallback,
+  deleteCandidateRankingCallback,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -151,40 +152,41 @@ const ElectionWrapper = ({
   };
 
   const deSelectCandidate = async id => {
-    const noneYetCount = candidates.good.length === 0 ? 1 : 0;
-    if (
-      choicesOrder.length <=
-      candidates.good.length +
-        candidates.notGood.length +
-        candidates.unknown.length +
-        noneYetCount
-    ) {
-      if (choices[id]) {
-        // deselect and remove all previous choices.
-        let idPop;
-        const newChoices = { ...choices };
-        const newChoicesOrder = [...choicesOrder];
-        while (newChoicesOrder.length > 0 && idPop !== id) {
-          idPop = newChoicesOrder.pop();
-          delete newChoices[idPop];
-        }
-        await setChoices(newChoices);
-        await setChoicesOrder(newChoicesOrder);
-        let refreshUserCount = false;
-        if (newChoicesOrder.length === 0) {
-          refreshUserCount = true;
-        }
-
-        saveRankingCallback(
-          user,
-          newChoicesOrder,
-          chamber,
-          state,
-          districtNumber,
-          refreshUserCount,
-        );
-      }
-    }
+    deleteCandidateRankingCallback(id);
+    // const noneYetCount = candidates.good.length === 0 ? 1 : 0;
+    // if (
+    //   choicesOrder.length <=
+    //   candidates.good.length +
+    //     candidates.notGood.length +
+    //     candidates.unknown.length +
+    //     noneYetCount
+    // ) {
+    //   if (choices[id]) {
+    //     // deselect and remove all previous choices.
+    //     let idPop;
+    //     const newChoices = { ...choices };
+    //     const newChoicesOrder = [...choicesOrder];
+    //     while (newChoicesOrder.length > 0 && idPop !== id) {
+    //       idPop = newChoicesOrder.pop();
+    //       delete newChoices[idPop];
+    //     }
+    //     await setChoices(newChoices);
+    //     await setChoicesOrder(newChoicesOrder);
+    //     let refreshUserCount = false;
+    //     if (newChoicesOrder.length === 0) {
+    //       refreshUserCount = true;
+    //     }
+    //
+    //     saveRankingCallback(
+    //       user,
+    //       newChoicesOrder,
+    //       chamber,
+    //       state,
+    //       districtNumber,
+    //       refreshUserCount,
+    //     );
+    //   }
+    // }
     if (!rankingMode) {
       switchToEditMode();
     }
@@ -245,8 +247,9 @@ const ElectionWrapper = ({
     }
   };
 
-  const handleDeselectCandidate = async candidate => {
-    await deSelectCandidate(candidate.id);
+  const handleDeselectCandidate = async rankId => {
+    // await deSelectCandidate(candidate.id);
+    deleteCandidateRankingCallback(rankId);
   };
 
   const onCloseChoiceModal = () => {
@@ -262,8 +265,6 @@ const ElectionWrapper = ({
   const switchToEditMode = () => {
     editModeCallback(pathname);
   };
-
-  console.log('render');
 
   return (
     <GrayWrapper>
@@ -304,8 +305,6 @@ const ElectionWrapper = ({
             <VsList
               candidates={candidates}
               openFiltersCallback={openFiltersCallback}
-              choices={choices}
-              choicesOrder={choicesOrder}
               ranking={ranking}
               handleChoiceCallback={handleChoiceCallback}
               handleDeselectCandidate={handleDeselectCandidate}
@@ -349,7 +348,7 @@ const ElectionWrapper = ({
         chamberCount={chamberCount}
         user={user}
         cancelCallback={cancelCallback}
-        animateCount={choicesOrder.length <= 1}
+        animateCount={Object.keys(ranking).length <= 1}
       />
     </GrayWrapper>
   );
@@ -360,6 +359,7 @@ ElectionWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   displayChamber: PropTypes.string,
   chamberRank: PropTypes.array,
+  ranking: PropTypes.object,
   state: PropTypes.string,
   districtNumber: PropTypes.string,
   candidates: PropTypes.object,
@@ -371,6 +371,7 @@ ElectionWrapper.propTypes = {
   saveRankingCallback: PropTypes.func,
   editModeCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
+  deleteCandidateRankingCallback: PropTypes.func,
 };
 
 export default ElectionWrapper;

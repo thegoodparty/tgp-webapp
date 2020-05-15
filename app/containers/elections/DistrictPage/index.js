@@ -190,7 +190,7 @@ function mapDispatchToProps(dispatch, ownProps) {
         candidateActions.saveRankHouseCandidateAction([], state, district),
       );
       dispatch(candidateActions.saveRankSenateCandidateAction([], state));
-      dispatch(userActions.deleteUserRankingAction());
+      dispatch(userActions.deleteAllUserRankingsAction());
     },
     changeZipCallback: () => {
       dispatch(push('/intro/zip-finder'));

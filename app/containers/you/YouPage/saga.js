@@ -389,15 +389,32 @@ function* saveUserRanking(action) {
   }
 }
 
-function* deleteUserRanking() {
+function* deleteAllUserRankings() {
   try {
-    const api = tgpApi.deleteUserRanking;
+    const api = tgpApi.deleteAllUserRankings;
     const response = yield call(requestHelper, api, null);
     const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
 
     setCookie('user', JSON.stringify(user));
-    yield put(snackbarActions.showSnakbarAction('Your ranking were deleted'));
+    yield put(snackbarActions.showSnakbarAction('Your rankings were deleted'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting your ranking', 'error'),
+    );
+  }
+}
+
+function* deleteCandidateRanking(action) {
+  try {
+    const { id } = action;
+    console.log('id', id)
+    const payload = { id };
+    const api = tgpApi.deleteCandidateRanking;
+    yield call(requestHelper, api, payload);
+    yield put(actions.userRankingAction());
+    yield put(snackbarActions.showSnakbarAction('Your ranking was deleted'));
   } catch (error) {
     console.log(error);
     yield put(
@@ -455,7 +472,11 @@ export default function* saga() {
     types.SAVE_USER_RANKING,
     saveUserRanking,
   );
-  yield takeLatest(types.DELETE_USER_RANKING, deleteUserRanking);
+  yield takeLatest(types.DELETE_ALL_USER_RANKINGS, deleteAllUserRankings);
+  const deleteRanking = yield takeLatest(
+    types.DELETE_CANDIDATE_RANKING,
+    deleteCandidateRanking,
+  );
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   yield takeLatest(types.CREW, crew);
   yield takeLatest(types.USER_RANKING, userRanking);

@@ -109,7 +109,13 @@ const api = {
     withAuth: true,
   },
 
-  deleteUserRanking: {
+  deleteCandidateRanking: {
+    url: `${base}user/rank-candidate`,
+    method: 'DELETE',
+    withAuth: true,
+  },
+
+  deleteAllUserRankings: {
     url: `${base}user/delete-user-ranking`,
     method: 'PUT',
     withAuth: true,

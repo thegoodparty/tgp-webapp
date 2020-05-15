@@ -60,6 +60,7 @@ export function ElectionPage({
   saveRankingCallback,
   editModeCallback,
   refreshCountCallback,
+  deleteCandidateRankingCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -218,7 +219,6 @@ export function ElectionPage({
     }
   }
 
-
   const childProps = {
     candidates,
     user,
@@ -236,6 +236,7 @@ export function ElectionPage({
     pathname,
     editModeCallback,
     refreshCountCallback,
+    deleteCandidateRankingCallback,
   };
 
   return (
@@ -266,6 +267,7 @@ ElectionPage.propTypes = {
   saveRankingCallback: PropTypes.func,
   editModeCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
+  deleteCandidateRankingCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -296,6 +298,10 @@ function mapDispatchToProps(dispatch, ownProps) {
         );
       }
     },
+    deleteCandidateRankingCallback: id => {
+      dispatch(userActions.deleteCandidateRankingAction(id));
+    },
+
     editModeCallback: pathname => {
       dispatch(push(pathname + rankingModeQuery));
     },

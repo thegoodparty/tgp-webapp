@@ -99,8 +99,13 @@ const saveUserRankingAction = (candidate, rank, chamber, refreshUserCount) => ({
   refreshUserCount,
 });
 
-const deleteUserRankingAction = () => ({
-  type: types.DELETE_USER_RANKING,
+const deleteAllUserRankingsAction = () => ({
+  type: types.DELETE_ALL_USER_RANKINGS,
+});
+
+const deleteCandidateRankingAction = id => ({
+  type: types.DELETE_CANDIDATE_RANKING,
+  id,
 });
 
 const uploadAvatarAction = (fileName, fileData, withRedirect = true) => ({
@@ -153,7 +158,8 @@ export default {
   updateUserAction,
   updateUserActionSuccess,
   saveUserRankingAction,
-  deleteUserRankingAction,
+  deleteAllUserRankingsAction,
+  deleteCandidateRankingAction,
   uploadAvatarAction,
   generateUuidAction,
   crewAction,

@@ -213,8 +213,6 @@ const UnknownTitle = styled(Body9)`
 const VsList = ({
   candidates = {},
   openFiltersCallback = () => {},
-  choices = {},
-  choicesOrder = [],
   ranking,
   handleChoiceCallback,
   handleDeselectCandidate,
@@ -270,7 +268,12 @@ const VsList = ({
   const handleDeselect = (candidate, e) => {
     e.stopPropagation();
     e.preventDefault();
-    handleDeselectCandidate(candidate);
+    if (
+      ranking[candidate.id] &&
+      ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
+    ) {
+      handleDeselectCandidate(ranking[candidate.id].id);
+    }
   };
 
   const noneYetCandidate = {
@@ -385,8 +388,6 @@ VsList.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
-  choices: PropTypes.object,
-  choicesOrder: PropTypes.array,
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,

@@ -10,7 +10,7 @@ import snackbarActions from '../containers/shared/SnackbarContainer/actions';
 export default function* requestHelper(api, data) {
   let { url } = api;
   const { method, withAuth } = api;
-  if (method === 'GET' && data) {
+  if ((method === 'GET' || method === 'DELETE') && data) {
     url = `${url}?`;
     for (const key in data) {
       if ({}.hasOwnProperty.call(data, key)) {
