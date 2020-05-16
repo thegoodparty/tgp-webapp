@@ -10,7 +10,7 @@
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -37,7 +37,6 @@ import {
 } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
-import candidateActions from 'containers/elections/CandidatePage/actions';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
 import makeSelectUser, {
   makeSelectRanking,

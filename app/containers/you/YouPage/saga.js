@@ -2,7 +2,7 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import requestHelper from 'helpers/requestHelper';
-import { getCookie, setCookie } from 'helpers/cookieHelper';
+import { deleteCookie, getCookie, setCookie } from 'helpers/cookieHelper';
 import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
 import selectCandidate from 'containers/elections/CandidatePage/selectors';
 
@@ -19,16 +19,13 @@ function* register(action) {
   try {
     const { email, name } = action;
     const zip = yield getZipFromStateOrCookie();
-    const presidentialRank = yield getRankFromStateOrCookie('presidentialRank');
-    const senateRank = yield getRankFromStateOrCookie('senateRank');
-    const houseRank = yield getRankFromStateOrCookie('houseRank');
+    const ranking = getCookie('guestRanking') || '[]';
+
     const payload = {
       email,
       name,
       zip,
-      presidentialRank: presidentialRank || '[]',
-      senateRank: senateRank || '[]',
-      houseRank: houseRank || '[]',
+      ranking,
     };
     const referrer = getCookie('referrer');
     if (referrer) {
@@ -44,6 +41,7 @@ function* register(action) {
     yield put(actions.registerActionSuccess(user));
     yield put(push('/you/confirmation-sent'));
     setCookie('user', JSON.stringify(user));
+    deleteCookie('guestRanking');
   } catch (error) {
     if (error.response && error.response.exists) {
       // user is already in our system, try login.
@@ -455,20 +453,17 @@ function* deleteCandidateRanking(action) {
 function* deleteGuestRanking(action) {
   try {
     const { rankToDelete } = action;
-    console.log('rankToDelete', rankToDelete)
+    console.log('rankToDelete', rankToDelete);
     const { rank, chamber, id, isIncumbent } = rankToDelete;
     const rankingCookie = getCookie('guestRanking');
     if (rankingCookie) {
       const ranking = JSON.parse(rankingCookie);
       const newRanking = [];
-      console.log('chamber', chamber);
-      console.log('rank', rank);
       ranking.forEach(existingRank => {
         if (existingRank.chamber !== chamber || existingRank.rank < rank) {
           newRanking.push(existingRank);
         }
       });
-      console.log('newRAnking', newRanking);
       setCookie('guestRanking', JSON.stringify(newRanking));
       yield put(actions.userRankingActionSuccess(newRanking));
     }
@@ -508,7 +503,6 @@ function* userRanking() {
   try {
     const api = tgpApi.userRanking;
     const { ranking } = yield call(requestHelper, api, null);
-    console.log('ranking', ranking);
     yield put(actions.userRankingActionSuccess(ranking));
   } catch (error) {
     console.log('crew error', error);
