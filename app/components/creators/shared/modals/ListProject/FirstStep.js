@@ -7,7 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Fade, FormControlLabel, Checkbox, Grid } from '@material-ui/core';
+import {
+  Fade,
+  FormControlLabel,
+  Checkbox,
+  Grid,
+  Hidden,
+} from '@material-ui/core';
 import { Body18 } from '../../typography';
 import { BlueButton, GrayButton } from '../../buttons';
 import { MultipleSelect } from 'react-select-material-ui';
@@ -44,6 +50,11 @@ const TopicSelect = styled(MultipleSelect)`
   }
 `;
 
+const CollaboratorCheckControl = styled(FormControlLabel)`
+  && {
+    margin-bottom: 1.5rem;
+  }
+`;
 function FirstStep({
   open,
   toggleModal,
@@ -96,18 +107,34 @@ function FirstStep({
                   <ProjectFormLabel>Project Summary</ProjectFormLabel>
                   <ProjectFormHelperText>Required</ProjectFormHelperText>
                 </ProjectFormControlHeader>
-                <FormText
-                  multiline
-                  error={summary === ''}
-                  rows={7}
-                  variant="outlined"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  placeholder="Brief description of your project. 
-Mention if you are looking for collaborators."
-                  onChange={ev => updateProject(ev.target.value, 'summary')}
-                />
+                <Hidden xsDown>
+                  <FormText
+                    multiline
+                    error={summary === ''}
+                    rows={7}
+                    variant="outlined"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    placeholder="Brief description of your project. 
+    Mention if you are looking for collaborators."
+                    onChange={ev => updateProject(ev.target.value, 'summary')}
+                  />
+                </Hidden>
+                <Hidden smUp>
+                  <FormText
+                    multiline
+                    error={summary === ''}
+                    rows={4}
+                    variant="outlined"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    placeholder="Brief description of your project. 
+    Mention if you are looking for collaborators."
+                    onChange={ev => updateProject(ev.target.value, 'summary')}
+                  />
+                </Hidden>
               </ProjectFormControl>
             </Grid>
             <Grid item xs={12}>
@@ -131,7 +158,7 @@ Mention if you are looking for collaborators."
               </ProjectFormControl>
             </Grid>
             <Grid item xs={12} className="text-left">
-              <FormControlLabel
+              <CollaboratorCheckControl
                 control={
                   <Checkbox
                     checked={collaborator}
@@ -151,13 +178,24 @@ Mention if you are looking for collaborators."
             <GrayButton variant="contained" onClick={closeModal}>
               Cancel
             </GrayButton>
-            <BlueButton
-              variant="contained"
-              color="primary"
-              onClick={toggleModal}
-            >
-              Next:Add links & Media
-            </BlueButton>
+            <Hidden xsDown>
+              <BlueButton
+                variant="contained"
+                color="primary"
+                onClick={toggleModal}
+              >
+                Next:Add links & Media
+              </BlueButton>
+            </Hidden>
+            <Hidden smUp>
+              <BlueButton
+                variant="contained"
+                color="primary"
+                onClick={toggleModal}
+              >
+                Next
+              </BlueButton>
+            </Hidden>
           </FooterWrapper>
         </BodyWrapper>
       </Fade>

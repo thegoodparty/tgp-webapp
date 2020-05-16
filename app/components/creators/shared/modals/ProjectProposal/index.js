@@ -28,9 +28,23 @@ const Message = styled(TextField)`
     margin-top: 2.5rem;
     background: ${({ theme }) => theme.creators.colors.formColor};
     border-radius: 4px;
+    margin-bottom: 1.5rem;
   }
 `;
 
+const SubmitWrapper = styled(FooterWrapper)`
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    display: block;
+  }
+`;
+
+const SendButton = styled(BlueButton)`
+  && {
+    width: 100%;
+    margin-bottom: 0.7rem;
+  }
+`;
 function ProjectProposal({ open, handleClose, project }) {
   return (
     <OverlayModal
@@ -51,14 +65,14 @@ function ProjectProposal({ open, handleClose, project }) {
             variant="outlined"
             placeholder="Let them know how you can help with this project…"
           />
-          <FooterWrapper>
-            <BlueButton color="primary" variant="contained">
+          <SubmitWrapper>
+            <SendButton color="primary" variant="contained">
               Send
-            </BlueButton>
+            </SendButton>
             <FooterMessage>
               Your message will be emailed to Kai Gradert
             </FooterMessage>
-          </FooterWrapper>
+          </SubmitWrapper>
         </BodyWrapper>
       </Fade>
     </OverlayModal>

@@ -106,6 +106,7 @@ function SecondStep({
                       key={index}
                       variant="outlined"
                       value={link}
+                      placeHolder="Paste URL"
                       onChange={ev => updateLink(ev.target.value, index)}
                     />
                   ))}

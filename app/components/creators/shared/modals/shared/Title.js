@@ -8,6 +8,11 @@ const Title = styled(Body)`
   margin-top: 0;
   margin-bottom: 2.5rem;
   text-align: left;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export default Title;

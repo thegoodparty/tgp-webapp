@@ -5,7 +5,7 @@ import Hidden from '@material-ui/core/Hidden';
 import CreatorsDesktopHeader from '../CreatorsDesktopHeader';
 
 const Spacer = styled.div`
-  display: none;
+  height: 5rem;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 7rem;
     display: block;
@@ -15,10 +15,8 @@ const Spacer = styled.div`
 const CreatorsHeaderWrapper = ({}) => {
   return (
     <>
-      <Hidden smDown>
-        <CreatorsDesktopHeader />
-        <Spacer />
-      </Hidden>
+      <CreatorsDesktopHeader />
+      <Spacer />
     </>
   );
 };

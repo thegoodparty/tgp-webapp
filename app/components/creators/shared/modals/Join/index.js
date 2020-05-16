@@ -19,8 +19,13 @@ import { BodyWrapper, OverlayModal } from '../shared';
 
 const Logo = styled.img`
   height: 97px;
-  width:  120px
+  width: 120px;
   margin-bottom: 1.5rem;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    height: 80px;
+    width: 100px;
+  }
 `;
 
 const Title = styled(Body)`
@@ -28,10 +33,18 @@ const Title = styled(Body)`
   line-height: 130%;
   text-transform: none;
   margin-bottom: 1rem;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 1.3rem;
+  }
 `;
 
 const Blurb = styled(Body18)`
   margin: 1rem 0 3rem;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 15px;
+  }
 `;
 const JoinButtonWrapper = styled.div`
   margin: 2rem 0;
@@ -51,11 +64,20 @@ const JoinWithButton = styled(MediumButton)`
     &.email {
       background-color: ${({ theme }) => theme.colors.blue};
     }
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.breakpoints.contentMax}) {
+      font-size: 13px;
+    }
   }
 `;
 
 const SocialIcon = styled.img`
   margin-right: 0.7rem;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    width: 16px;
+    height: 18px;
+  }
 `;
 
 const FooterMessage = styled(Body13)`
@@ -74,7 +96,7 @@ function Join({ open, handleClose }) {
       <Fade in={open}>
         <BodyWrapper>
           <Logo src={LogoCaps} alt="logo" />
-          <Title>Fixing politics for Good!</Title>
+          <Title>Help fix politics for Good!</Title>
           <Blurb>
             Join our community of creators <br /> working together for the Good
             of all.

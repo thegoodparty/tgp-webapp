@@ -8,6 +8,10 @@ const BodyWrapper = styled.div`
   border-radius: 0.5rem;
   border: none;
   text-align: center;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    padding: 3rem 2rem;
+  }
 `;
 
 export default BodyWrapper;

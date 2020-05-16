@@ -1,5 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Hidden,
+} from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoCaps from 'images/logo.svg';
@@ -15,6 +24,14 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   z-index: 100;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    height: 64px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    height: 88px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -26,13 +43,46 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 132px;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    height: 64px;
+    padding: 0 2rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    height: 88px;
+    padding: 0 1rem;
+  }
 `;
+
 const MenuItemsWrapper = styled.div`
   display: flex;
 `;
+
 const Logo = styled.img`
   height: auto;
   cursor: pointer;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    width: 22px;
+    height: 18px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    width: 30px;
+    height: 24px;
+  }
+`;
+
+const LogoTitle = styled(Body)`
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 1.3rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    font-size: 1.5rem;
+  }
 `;
 
 const TopLink = styled(Link)`
@@ -60,6 +110,11 @@ const TopLink = styled(Link)`
       color: ${({ theme }) => theme.colors.blue};
     }
   }
+
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    font-size: 1.2rem;
+  }
 `;
 const AvatarWrapper = styled(Body14)`
   height: 58px;
@@ -72,18 +127,43 @@ const AvatarWrapper = styled(Body14)`
 `;
 
 const CreatorsDesktopHeader = () => {
+  const [menu, setMenu] = useState(false);
   return (
     <Wrapper>
       <ContentWrapper>
-        <TopLink className="logo" to='/'>
-          <Logo src={LogoCaps} alt="logo"/>
-          <Body>the good party</Body>
+        <TopLink className="logo" to="/">
+          <Logo src={LogoCaps} alt="logo" />
+          <LogoTitle>the good party</LogoTitle>
         </TopLink>
         <MenuItemsWrapper>
-          <TopLink className="menu-item">About</TopLink>
-          <TopLink className="menu-item active">Creators</TopLink>
-          <TopLink className="menu-item">Join</TopLink>
+          <Hidden smDown>
+            <>
+              <TopLink className="menu-item">About</TopLink>
+              <TopLink className="menu-item active">Creators</TopLink>
+              <TopLink className="menu-item">Join</TopLink>
+            </>
+          </Hidden>
+          <Hidden mdUp>
+            <TopLink className="menu-item" onClick={() => setMenu(true)}>
+              <Menu />
+            </TopLink>
+          </Hidden>
         </MenuItemsWrapper>
+        <Hidden mdUp>
+          <Drawer anchor="top" open={menu} onClose={() => setMenu(false)}>
+            <List>
+              <ListItem button onClick={() => setMenu(false)}>
+                <TopLink className="menu-item">About</TopLink>
+              </ListItem>
+              <ListItem button onClick={() => setMenu(false)}>
+                <TopLink className="menu-item active">Creators</TopLink>
+              </ListItem>
+              <ListItem button onClick={() => setMenu(false)}>
+                <TopLink className="menu-item">Join</TopLink>
+              </ListItem>
+            </List>
+          </Drawer>
+        </Hidden>
       </ContentWrapper>
     </Wrapper>
   );
