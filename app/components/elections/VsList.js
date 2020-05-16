@@ -7,7 +7,11 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
+import {
+  partyResolver,
+  candidateRoute,
+  candidateRanking,
+} from 'helpers/electionsHelper';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
 import { numberNth } from '../../helpers/numberHelper';
@@ -235,16 +239,12 @@ const VsList = ({
     });
   }
   const choiceButton = candidate => {
-    if (
-      ranking[candidate.id] &&
-      ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
-    ) {
+    const candidateRank = candidateRanking(ranking, candidate);
+    if (candidateRank) {
       return (
         <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
           <CheckMark />{' '}
-          <ChosenCand>
-            {numberNth(ranking[candidate.id].rank)} CHOICE{' '}
-          </ChosenCand>
+          <ChosenCand>{numberNth(candidateRank)} CHOICE </ChosenCand>
           <CloseIcon />
         </ChosenCandWrapper>
       );
@@ -268,10 +268,8 @@ const VsList = ({
   const handleDeselect = (candidate, e) => {
     e.stopPropagation();
     e.preventDefault();
-    if (
-      ranking[candidate.id] &&
-      ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
-    ) {
+    const candidateRank = candidateRanking(ranking, candidate);
+    if (candidateRank !== false) {
       handleDeselectCandidate(ranking[candidate.id].id);
     }
   };

@@ -23,7 +23,8 @@ import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
-import makeSelectUser from '../../you/YouPage/selectors';
+import makeSelectUser, { makeSelectRanking } from '../../you/YouPage/selectors';
+import userActions from '../../you/YouPage/actions';
 
 export function CandidatePage({
   id,
@@ -31,6 +32,7 @@ export function CandidatePage({
   candidateState,
   dispatch,
   userState,
+  rankingObj,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
@@ -64,25 +66,16 @@ export function CandidatePage({
 
   const candidateWithFields = candidateCalculatedFields(candidate);
 
-  let chamberRank;
-  const { user } = userState;
-  if (chamberName === 'presidential') {
-    chamberRank = getRankFromUserOrState(
-      user,
-      candidateState,
-      'presidentialRank',
-    );
-  } else if (chamberName === 'senate') {
-    chamberRank = getRankFromUserOrState(user, candidateState, 'senateRank');
-    chamberRank = chamberRank ? chamberRank[state] : [];
-  } else if (chamberName === 'house') {
-    chamberRank = getRankFromUserOrState(user, candidateState, 'houseRank');
-    chamberRank = chamberRank ? chamberRank[state + district] : [];
-  }
+  const { user, ranking } = userState;
+  useEffect(() => {
+    if (user && !ranking) {
+      dispatch(userActions.userRankingAction());
+    }
+  }, [user]);
 
   const childProps = {
     candidate: candidateWithFields,
-    chamberRank,
+    chamberRank: rankingObj[chamber],
     chamberName,
     incumbent,
     user,
@@ -121,11 +114,13 @@ CandidatePage.propTypes = {
   chamber: PropTypes.string.isRequired,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
+  rankingObj: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
+  rankingObj: makeSelectRanking(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {

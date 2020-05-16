@@ -70,8 +70,6 @@ export function ElectionPage({
   });
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
-  const [chamberRank, setChamberRank] = useState([]);
-
   const { userCounts } = districtState;
   const { user, ranking } = userState;
 
@@ -94,13 +92,10 @@ export function ElectionPage({
         dispatch(districtActions.loadHouseCandidatesAction(state, district));
       }
     }
-    if (!chamberRank) {
-      dispatch(candidateActions.loadRankingFromCookieAction());
-    }
   }, []);
 
   useEffect(() => {
-    if (!ranking) {
+    if (user && !ranking) {
       dispatch(userActions.userRankingAction());
     }
   }, [user]);
@@ -108,38 +103,6 @@ export function ElectionPage({
   useEffect(() => {
     dispatch(districtActions.userCountsAction(state, district));
   }, [state, district]);
-
-  useEffect(() => {
-    let tempChamberRank;
-
-    if (chamber === 'presidential') {
-      candidates = districtState.presidential;
-      tempChamberRank = getRankFromUserOrState(
-        user,
-        candidateState,
-        'presidentialRank',
-      );
-    } else if (chamber === 'senate') {
-      candidates = districtState.senateCandidates;
-      tempChamberRank = getRankFromUserOrState(
-        user,
-        candidateState,
-        'senateRank',
-      );
-      tempChamberRank = tempChamberRank ? tempChamberRank[state] : [];
-    } else {
-      candidates = districtState.houseCandidates;
-      tempChamberRank = getRankFromUserOrState(
-        user,
-        candidateState,
-        'houseRank',
-      );
-      tempChamberRank = tempChamberRank
-        ? tempChamberRank[state + district]
-        : [];
-    }
-    setChamberRank(tempChamberRank);
-  }, [candidateState, user]);
 
   let rankingAllowed = true;
   if (chamber === 'senate') {
@@ -225,7 +188,6 @@ export function ElectionPage({
     content,
     chamber,
     displayChamber,
-    chamberRank,
     ranking: rankingObj[chamber],
     state,
     districtNumber: district,
@@ -268,6 +230,7 @@ ElectionPage.propTypes = {
   editModeCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
+  rankingObj: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

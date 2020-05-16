@@ -90,7 +90,6 @@ const ElectionWrapper = ({
   chamber,
   user,
   displayChamber,
-  chamberRank = [],
   ranking,
   candidates = {},
   userCounts,
@@ -107,86 +106,15 @@ const ElectionWrapper = ({
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
-  const [choices, setChoices] = useState({});
-  const [choicesOrder, setChoicesOrder] = useState([]);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
 
-  useEffect(() => {
-    // const initialChoices = cookieOrderToChoicesHash();
-    // setChoices(initialChoices);
-    // setChoicesOrder(chamberRank || []);
-  }, [candidates]);
-
-  // const cookieOrderToChoicesHash = () => {
-  //   if (!chamberRank || chamberRank.length === 0) {
-  //     return {};
-  //   }
-  //   const newChoices = {};
-  //   chamberRank.map((order, i) => {
-  //     newChoices[order] = i + 1;
-  //   });
-  //   return newChoices;
-  // };
-  //
   const selectCandidate = async (candidate, rank) => {
     saveRankingCallback(user, candidate, rank, chamber);
-
-    // const { id } = candidate;
-    // if (
-    //   choicesOrder.length <=
-    //   candidates.good.length +
-    //     candidates.notGood.length +
-    //     candidates.unknown.length
-    // ) {
-    //   if (!choices[id]) {
-    //     const newChoices = { ...choices };
-    //     const newChoicesOrder = [...choicesOrder];
-    //     newChoices[id] = choicesOrder.length + 1;
-    //     await setChoices(newChoices);
-    //     newChoicesOrder.push(id);
-    //     await setChoicesOrder(newChoicesOrder);
-    //     saveRankingCallback(user, candidate, newChoicesOrder.length, chamber);
-    //   }
-    // }
   };
 
   const deSelectCandidate = async id => {
     deleteCandidateRankingCallback(id);
-    // const noneYetCount = candidates.good.length === 0 ? 1 : 0;
-    // if (
-    //   choicesOrder.length <=
-    //   candidates.good.length +
-    //     candidates.notGood.length +
-    //     candidates.unknown.length +
-    //     noneYetCount
-    // ) {
-    //   if (choices[id]) {
-    //     // deselect and remove all previous choices.
-    //     let idPop;
-    //     const newChoices = { ...choices };
-    //     const newChoicesOrder = [...choicesOrder];
-    //     while (newChoicesOrder.length > 0 && idPop !== id) {
-    //       idPop = newChoicesOrder.pop();
-    //       delete newChoices[idPop];
-    //     }
-    //     await setChoices(newChoices);
-    //     await setChoicesOrder(newChoicesOrder);
-    //     let refreshUserCount = false;
-    //     if (newChoicesOrder.length === 0) {
-    //       refreshUserCount = true;
-    //     }
-    //
-    //     saveRankingCallback(
-    //       user,
-    //       newChoicesOrder,
-    //       chamber,
-    //       state,
-    //       districtNumber,
-    //       refreshUserCount,
-    //     );
-    //   }
-    // }
     if (!rankingMode) {
       switchToEditMode();
     }
@@ -358,7 +286,6 @@ ElectionWrapper.propTypes = {
   chamber: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   displayChamber: PropTypes.string,
-  chamberRank: PropTypes.array,
   ranking: PropTypes.object,
   state: PropTypes.string,
   districtNumber: PropTypes.string,

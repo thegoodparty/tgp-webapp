@@ -259,3 +259,16 @@ export const isDistrictInCds = (districtNumber, cds) => {
   }
   return false;
 };
+
+export const candidateRanking = (ranking, candidate) => {
+  if (!ranking || !candidate) {
+    return false;
+  }
+  if (
+    ranking[candidate.id] &&
+    ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
+  ) {
+    return ranking[candidate.id].rank;
+  }
+  return false;
+};

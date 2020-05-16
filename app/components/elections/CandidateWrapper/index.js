@@ -34,6 +34,7 @@ import GrayCheckbox from 'images/icons/checkbox-gray.svg';
 import RedCheckbox from 'images/icons/checkbox-red.svg';
 import GreenCheckbox from 'images/icons/checkbox-green.svg';
 import QuestionMarkGray from 'images/icons/question-mark.svg';
+import { candidateRanking } from '../../../helpers/electionsHelper';
 
 const TopRow = styled.div`
   display: flex;
@@ -176,19 +177,20 @@ const ChamberLink = styled(Body11)`
 
 const CandidateWrapper = ({
   candidate,
-  chamberRank = [],
+  chamberRank,
   chamberName,
   incumbent,
   user,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
-  const [rank, setRank] = useState(false);
+  // const [rank, setRank] = useState(false);
   const [socialAccounts, setSocialAccounts] = useState([]);
   const [comparedIncumbent, setComparedIncumbent] = useState({});
   let isGood;
   if (candidate) {
     ({ isGood } = candidate);
   }
+  const rank = candidateRanking(chamberRank, candidate);
 
   useEffect(() => {
     if (candidate) {
@@ -255,18 +257,18 @@ const CandidateWrapper = ({
     }
   }, [incumbent]);
 
-  useEffect(() => {
-    if (candidate && chamberRank && chamberRank.length > 0) {
-      const savedRank = chamberRank.indexOf(candidate.id) + 1;
-      if (savedRank) {
-        setRank(savedRank);
-      } else {
-        setRank(false);
-      }
-    } else {
-      setRank(false);
-    }
-  }, [chamberRank, candidate]);
+  // useEffect(() => {
+  //   if (candidate && chamberRank && chamberRank.length > 0) {
+  //     const savedRank = chamberRank.indexOf(candidate.id) + 1;
+  //     if (savedRank) {
+  //       setRank(savedRank);
+  //     } else {
+  //       setRank(false);
+  //     }
+  //   } else {
+  //     setRank(false);
+  //   }
+  // }, [chamberRank, candidate]);
 
   const campaignWebsite =
     candidate && candidate.campaignWebsite
