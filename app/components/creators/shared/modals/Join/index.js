@@ -7,31 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Modal, Fade } from '@material-ui/core';
+import { Fade } from '@material-ui/core';
 import LogoCaps from 'images/logo.svg';
 import { Body, Body18, Body13 } from '../../typography';
-import { JoinButton } from '../../buttons';
+import { MediumButton } from '../../buttons';
 import Heads from '../../Heads';
 import FacebookIcon from 'images/icons/facebook.svg';
 import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email.svg';
-
-const Wrapper = styled.div`
-  max-width: 36rem;
-  width: 100%;
-  padding: 3rem;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  border: none;
-  text-align: center;
-`;
-const OverlayModal = styled(Modal)`
-  && {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
+import { BodyWrapper, OverlayModal } from '../shared';
 
 const Logo = styled.img`
   height: 97px;
@@ -53,10 +37,9 @@ const JoinButtonWrapper = styled.div`
   margin: 2rem 0;
 `;
 
-const JoinWithButton = styled(JoinButton)`
+const JoinWithButton = styled(MediumButton)`
   && {
     margin-bottom: 1rem;
-    text-transform: uppercase;
     width: 20rem;
     text-align: left;
     &.facebook {
@@ -89,27 +72,29 @@ function Join({ open, handleClose }) {
       aria-describedby="simple-modal-description"
     >
       <Fade in={open}>
-        <Wrapper>
+        <BodyWrapper>
           <Logo src={LogoCaps} alt="logo" />
           <Title>Fixing politics for Good!</Title>
           <Blurb>
-            Join our community of creators <br /> working together for the Good of
-            all.
+            Join our community of creators <br /> working together for the Good
+            of all.
           </Blurb>
           <Heads />
           <JoinButtonWrapper>
-            <JoinWithButton className="twitter">
+            <JoinWithButton variant="contained" className="twitter">
               <SocialIcon src={TwitterIcon} /> Join With Twitter
             </JoinWithButton>
-            <JoinWithButton className="facebook">
+            <JoinWithButton variant="contained" className="facebook">
               <SocialIcon src={FacebookIcon} /> Join With Facebook
             </JoinWithButton>
-            <JoinWithButton className="email">
+            <JoinWithButton variant="contained" className="email">
               <SocialIcon src={EmailIcon} /> Join With Email
             </JoinWithButton>
           </JoinButtonWrapper>
-          <FooterMessage>We will never post to any of your accounts without your permission.</FooterMessage>
-        </Wrapper>
+          <FooterMessage>
+            We will never post to any of your accounts without your permission.
+          </FooterMessage>
+        </BodyWrapper>
       </Fade>
     </OverlayModal>
   );

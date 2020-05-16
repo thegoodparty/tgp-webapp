@@ -4,23 +4,27 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
 import NotionIcon from 'images/icons/notion.svg';
 import FigmaIcon from 'images/icons/figma.svg';
-import SampleAvatarImg from 'images/avatar.png';
 import MessageIcon from 'images/icons/message.svg';
 import ShareIcon from 'images/icons/share1.svg';
 import FavoriteIcon from 'images/icons/favorite.svg';
+import Collaborators from '../Collaborators';
+import { ProjectProposal } from '../modals';
 
 const ProjectWrapper = styled.div`
   border-radius: 16px;
   padding: 2rem;
   background-color: #fff;
   margin-bottom: 2rem;
+  &.show-more {
+    cursor: pointer;
+  }
 `;
 const ProjectBodyWrapper = styled(Grid)`
   padding-bottom: 2rem;
@@ -80,26 +84,6 @@ const LinkIcon = styled.img`
 const ProjectFooter = styled(Grid)`
   padding-top: 2rem;
 `;
-const CollaboratorWrapper = styled.div`
-  margin-right: -10px;
-  cursor: pointer;
-  &:hover {
-    z-index: 2;
-  }
-`;
-const Collaborator = styled.img`
-  width: 2.5rem;
-  height: 2.5rem;
-`;
-
-const Collaborators = styled.span`
-  color: ${({ theme }) => theme.creators.colors.lightGray};
-  font: normal bold 1.1rem/42px ${({ theme }) => theme.typography.fontFamily};
-  margin-left: 2rem;
-  & > span {
-    color: black;
-  }
-`;
 
 const FooterAction = styled.a`
   color: ${({ theme }) => theme.creators.colors.lightGray};
@@ -142,10 +126,11 @@ const CollaboratorContainer = styled(Grid)`
 `;
 
 function Project({ project, showMore = false }) {
-  const collaborators = [SampleAvatarImg, SampleAvatarImg, SampleAvatarImg];
+  const [touch, setTouch] = useState(false);
+
   if (showMore) {
     return (
-      <ProjectWrapper className="text-center">
+      <ProjectWrapper className="text-center show-more">
         <ShowMore>Show More</ShowMore>
       </ProjectWrapper>
     );
@@ -154,7 +139,12 @@ function Project({ project, showMore = false }) {
     <ProjectWrapper>
       <ProjectBodyWrapper container>
         <ProjectContent item xs={12} md={7}>
-          <Title>{project.title}</Title>
+          <Title onClick={() => setTouch(true)}>{project.title}</Title>
+          <ProjectProposal
+            project={project}
+            open={touch}
+            handleClose={() => setTouch(false)}
+          />
           <Topics>
             {project.topics.map((topic, index) => (
               <Topic key={index}>{topic}</Topic>
@@ -165,9 +155,9 @@ function Project({ project, showMore = false }) {
             {project.links.map((link, index) => {
               const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
               return (
-                <OuterLinkWrapper>
-                  <OuterLink href={link} key={index}>
-                    <LinkIcon src={icon}  alt="link icon"/>
+                <OuterLinkWrapper key={index}>
+                  <OuterLink href={link} target="_blank">
+                    <LinkIcon src={icon} alt="link icon" />
                     {link}
                   </OuterLink>
                 </OuterLinkWrapper>
@@ -176,32 +166,25 @@ function Project({ project, showMore = false }) {
           </div>
         </ProjectContent>
         <Grid item xs={12} md={5}>
-          <ProjectImg src={`http:${project.images[0]}`} alt="project img"/>
+          <ProjectImg src={`http:${project.images[0]}`} alt="project img" />
         </Grid>
       </ProjectBodyWrapper>
       <ProjectFooter container>
         <CollaboratorContainer item xs={12} sm={7}>
-          {collaborators.map((collaborator, index) => (
-            <CollaboratorWrapper>
-              <Collaborator src={collaborator} key={index} alt="collaborator img"/>
-            </CollaboratorWrapper>
-          ))}
-          <Collaborators>
-            <span>Kai Gradert</span> and <span>12 others</span>
-          </Collaborators>
+          <Collaborators project={project} />
         </CollaboratorContainer>
         <FooterActionsWrapper item xs={12} sm={5}>
           <FooterActions>
             <FooterAction>
-              <FooterActionIcon src={MessageIcon} alt="message icon"/>
+              <FooterActionIcon src={MessageIcon} alt="message icon" />
               Message creators
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={ShareIcon} alt="share icon"/>
+              <FooterActionIcon src={ShareIcon} alt="share icon" />
               Share
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={FavoriteIcon} alt="favorite icon"/>
+              <FooterActionIcon src={FavoriteIcon} alt="favorite icon" />
               102
             </FooterAction>
           </FooterActions>
