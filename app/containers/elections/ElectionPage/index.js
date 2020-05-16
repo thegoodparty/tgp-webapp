@@ -100,6 +100,10 @@ export function ElectionPage({
     }
   }, [user]);
 
+  if (!user && !ranking) {
+    dispatch(userActions.guestRankingAction());
+  }
+
   useEffect(() => {
     dispatch(districtActions.userCountsAction(state, district));
   }, [state, district]);
@@ -259,10 +263,23 @@ function mapDispatchToProps(dispatch, ownProps) {
             refreshUserCount,
           ),
         );
+      } else {
+        dispatch(
+          userActions.saveGuestRankingAction(
+            candidate,
+            rank,
+            chamber,
+            refreshUserCount,
+          ),
+        );
       }
     },
-    deleteCandidateRankingCallback: id => {
-      dispatch(userActions.deleteCandidateRankingAction(id));
+    deleteCandidateRankingCallback: (rank, user) => {
+      if (user) {
+        dispatch(userActions.deleteCandidateRankingAction(rank.id));
+      } else {
+        dispatch(userActions.deleteGuestRankingAction(rank));
+      }
     },
 
     editModeCallback: pathname => {

@@ -37,7 +37,7 @@ export function CandidatePage({
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
-  const { candidate, presidentialRank, incumbent } = candidateState;
+  const { candidate, incumbent } = candidateState;
   const [chamberName, chamberIncumbent] = chamber.split('-');
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -48,9 +48,6 @@ export function CandidatePage({
       dispatch(
         candidateActions.loadCandidateAction(id, chamberName, isIncumbent),
       );
-    }
-    if (!presidentialRank) {
-      dispatch(candidateActions.loadRankingFromCookieAction());
     }
   }, [id, chamber]);
 
@@ -72,6 +69,9 @@ export function CandidatePage({
       dispatch(userActions.userRankingAction());
     }
   }, [user]);
+  if (!user && !ranking) {
+    dispatch(userActions.guestRankingAction());
+  }
 
   const childProps = {
     candidate: candidateWithFields,

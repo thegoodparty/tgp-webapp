@@ -264,6 +264,7 @@ export const candidateRanking = (ranking, candidate) => {
   if (!ranking || !candidate) {
     return false;
   }
+
   if (
     ranking[candidate.id] &&
     ranking[candidate.id].isIncumbent === !!candidate.isIncumbent

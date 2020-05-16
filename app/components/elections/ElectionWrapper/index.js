@@ -113,8 +113,8 @@ const ElectionWrapper = ({
     saveRankingCallback(user, candidate, rank, chamber);
   };
 
-  const deSelectCandidate = async id => {
-    deleteCandidateRankingCallback(id);
+  const deSelectCandidate = async rank => {
+    deleteCandidateRankingCallback({ ...rank, chamber }, user);
     if (!rankingMode) {
       switchToEditMode();
     }
@@ -175,9 +175,9 @@ const ElectionWrapper = ({
     }
   };
 
-  const handleDeselectCandidate = async rankId => {
+  const handleDeselectCandidate = async rank => {
     // await deSelectCandidate(candidate.id);
-    deleteCandidateRankingCallback(rankId);
+    deleteCandidateRankingCallback({ ...rank, chamber }, user);
   };
 
   const onCloseChoiceModal = () => {
@@ -187,7 +187,7 @@ const ElectionWrapper = ({
   };
 
   const cancelCallback = id => {
-    deSelectCandidate(id);
+    // deSelectCandidate(id);
   };
 
   const switchToEditMode = () => {

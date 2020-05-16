@@ -270,7 +270,7 @@ const VsList = ({
     e.preventDefault();
     const candidateRank = candidateRanking(ranking, candidate);
     if (candidateRank !== false) {
-      handleDeselectCandidate(ranking[candidate.id].id);
+      handleDeselectCandidate(ranking[candidate.id]);
     }
   };
 

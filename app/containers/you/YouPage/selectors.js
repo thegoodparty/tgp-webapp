@@ -46,7 +46,6 @@ const makeSelectRanking = () =>
       if (ranking) {
         ranking.forEach(userRank => {
           const { id, rank, candidate, isIncumbent, chamber } = userRank;
-
           rankingObj[chamber][candidate] = {
             id,
             rank,

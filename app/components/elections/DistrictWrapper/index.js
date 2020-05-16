@@ -184,7 +184,6 @@ const DistrictWrapper = ({
   }
 
   const handleDistrictChange = (cdId, index) => {
-    console.log('here1');
     if ((user && houseRank) || (user && senateRank)) {
       setSelectedCid(cdId);
       setSelectedIndex(index);

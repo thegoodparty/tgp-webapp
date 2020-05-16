@@ -132,14 +132,31 @@ const userRankingAction = () => ({
   type: types.USER_RANKING,
 });
 
+const guestRankingAction = () => ({
+  type: types.GUEST_RANKING,
+});
+
 const userRankingActionSuccess = ranking => ({
   type: types.USER_RANKING_SUCCESS,
   ranking,
 });
 
-const userRankingActionError = error => ({
-  type: types.USER_RANKING_ERROR,
-  error,
+const saveGuestRankingAction = (
+  candidate,
+  rank,
+  chamber,
+  refreshUserCount,
+) => ({
+  type: types.SAVE_GUEST_RANKING,
+  candidate,
+  rank,
+  chamber,
+  refreshUserCount,
+});
+
+const deleteGuestRankingAction = rankToDelete => ({
+  type: types.DELETE_GUEST_RANKING,
+  rankToDelete,
 });
 
 export default {
@@ -165,6 +182,8 @@ export default {
   crewAction,
   crewActionSuccess,
   userRankingAction,
+  guestRankingAction,
   userRankingActionSuccess,
-  userRankingActionError,
+  saveGuestRankingAction,
+  deleteGuestRankingAction,
 };

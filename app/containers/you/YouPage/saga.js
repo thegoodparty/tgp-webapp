@@ -372,15 +372,44 @@ function* saveUserRanking(action) {
       isIncumbent: candidate.isIncumbent,
     };
     const response = yield call(requestHelper, api, payload);
-    const { user } = response;
-    yield put(actions.updateUserActionSuccess(user));
+    // const { user } = response;
+    // yield put(actions.updateUserActionSuccess(user));
     yield put(actions.userRankingAction());
 
-    setCookie('user', JSON.stringify(user));
+    // setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
-    if (refreshUserCount) {
-      yield put(districtActions.userCountsAction(state, district));
-    }
+    // if (refreshUserCount) {
+    //   yield put(districtActions.userCountsAction(state, district));
+    // }
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error saving your ranking', 'error'),
+    );
+  }
+}
+
+function* saveGuestRanking(action) {
+  try {
+    const { candidate, rank, chamber, refreshUserCount } = action;
+    const rankingCookie = getCookie('guestRanking');
+    const ranking = rankingCookie ? JSON.parse(rankingCookie) : [];
+
+    ranking.push({
+      id: `cookie-${chamber}-${candidate.id}${
+        candidate.isIncumbent ? '-i' : ''
+      }`,
+      rank,
+      candidate: candidate.id,
+      chamber,
+      isIncumbent: !!candidate.isIncumbent,
+    });
+    setCookie('guestRanking', JSON.stringify(ranking));
+
+    yield put(actions.userRankingActionSuccess(ranking));
+    yield put(
+      snackbarActions.showSnakbarAction('Your guest ranking were saved'),
+    );
   } catch (error) {
     console.log(error);
     yield put(
@@ -409,12 +438,43 @@ function* deleteAllUserRankings() {
 function* deleteCandidateRanking(action) {
   try {
     const { id } = action;
-    console.log('id', id)
+    console.log('id', id);
     const payload = { id };
     const api = tgpApi.deleteCandidateRanking;
     yield call(requestHelper, api, payload);
     yield put(actions.userRankingAction());
     yield put(snackbarActions.showSnakbarAction('Your ranking was deleted'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting your ranking', 'error'),
+    );
+  }
+}
+
+function* deleteGuestRanking(action) {
+  try {
+    const { rankToDelete } = action;
+    console.log('rankToDelete', rankToDelete)
+    const { rank, chamber, id, isIncumbent } = rankToDelete;
+    const rankingCookie = getCookie('guestRanking');
+    if (rankingCookie) {
+      const ranking = JSON.parse(rankingCookie);
+      const newRanking = [];
+      console.log('chamber', chamber);
+      console.log('rank', rank);
+      ranking.forEach(existingRank => {
+        if (existingRank.chamber !== chamber || existingRank.rank < rank) {
+          newRanking.push(existingRank);
+        }
+      });
+      console.log('newRAnking', newRanking);
+      setCookie('guestRanking', JSON.stringify(newRanking));
+      yield put(actions.userRankingActionSuccess(newRanking));
+    }
+    yield put(
+      snackbarActions.showSnakbarAction('Your guest ranking was deleted'),
+    );
   } catch (error) {
     console.log(error);
     yield put(
@@ -455,6 +515,18 @@ function* userRanking() {
   }
 }
 
+function* guestRanking() {
+  try {
+    const rankingCookie = getCookie('guestRanking');
+    if (rankingCookie) {
+      const ranking = JSON.parse(rankingCookie);
+      yield put(actions.userRankingActionSuccess(ranking));
+    }
+  } catch (error) {
+    console.log('crew error', error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
@@ -472,6 +544,10 @@ export default function* saga() {
     types.SAVE_USER_RANKING,
     saveUserRanking,
   );
+  const saveGuestRankingAction = yield takeLatest(
+    types.SAVE_GUEST_RANKING,
+    saveGuestRanking,
+  );
   yield takeLatest(types.DELETE_ALL_USER_RANKINGS, deleteAllUserRankings);
   const deleteRanking = yield takeLatest(
     types.DELETE_CANDIDATE_RANKING,
@@ -480,4 +556,9 @@ export default function* saga() {
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   yield takeLatest(types.CREW, crew);
   yield takeLatest(types.USER_RANKING, userRanking);
+  yield takeLatest(types.GUEST_RANKING, guestRanking);
+  const deleteGuest = yield takeLatest(
+    types.DELETE_GUEST_RANKING,
+    deleteGuestRanking,
+  );
 }
