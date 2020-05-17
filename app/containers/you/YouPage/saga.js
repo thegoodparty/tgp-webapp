@@ -419,11 +419,8 @@ function* saveGuestRanking(action) {
 function* deleteAllUserRankings() {
   try {
     const api = tgpApi.deleteAllUserRankings;
-    const response = yield call(requestHelper, api, null);
-    const { user } = response;
-    yield put(actions.updateUserActionSuccess(user));
-
-    setCookie('user', JSON.stringify(user));
+    yield call(requestHelper, api, null);
+    yield put(actions.userRankingAction());
     yield put(snackbarActions.showSnakbarAction('Your rankings were deleted'));
   } catch (error) {
     console.log(error);
@@ -436,7 +433,6 @@ function* deleteAllUserRankings() {
 function* deleteCandidateRanking(action) {
   try {
     const { id } = action;
-    console.log('id', id);
     const payload = { id };
     const api = tgpApi.deleteCandidateRanking;
     yield call(requestHelper, api, payload);
@@ -453,7 +449,6 @@ function* deleteCandidateRanking(action) {
 function* deleteGuestRanking(action) {
   try {
     const { rankToDelete } = action;
-    console.log('rankToDelete', rankToDelete);
     const { rank, chamber, id, isIncumbent } = rankToDelete;
     const rankingCookie = getCookie('guestRanking');
     if (rankingCookie) {

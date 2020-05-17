@@ -274,7 +274,6 @@ const DistrictWrapper = ({
               </Body>
             </Spacer>
             <Link to={presidentialElectionLink(presidentialRank)}>
-              {console.log('presidential rank', presidentialRank)}
               {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
                 <RankedCard
                   title="Presidential Election"

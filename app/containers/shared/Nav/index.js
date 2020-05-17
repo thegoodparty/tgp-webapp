@@ -36,7 +36,6 @@ export function Nav({
   const [zipCode, setZipCode] = React.useState(null);
   const stateUser = userState.user;
   const { pathname } = locationState;
-
   useEffect(() => {
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());

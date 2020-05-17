@@ -67,7 +67,6 @@ const RankedCard = ({
       </YourChoices>
       {rank.map((rankedId, index) => (
         <React.Fragment key={rankedId}>
-          {console.log('rankedId', rankObj[rankedId])}
           {candidateRow(rankObj[rankedId], index)}
         </React.Fragment>
       ))}
