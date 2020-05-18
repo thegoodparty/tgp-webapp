@@ -15,6 +15,7 @@ import {
   Hidden,
 } from '@material-ui/core';
 import { Body18 } from '../../typography';
+import { useWindowSize } from 'customHooks/useWindowSize';
 import { BlueButton, GrayButton } from '../../buttons';
 import { MultipleSelect } from 'react-select-material-ui';
 import {
@@ -65,6 +66,7 @@ function FirstStep({
   closeModal,
   updateProject,
 }) {
+  const [width, height] = useWindowSize();
   return (
     <OverlayModal
       key="first-modal"
@@ -107,34 +109,18 @@ function FirstStep({
                   <ProjectFormLabel>Project Summary</ProjectFormLabel>
                   <ProjectFormHelperText>Required</ProjectFormHelperText>
                 </ProjectFormControlHeader>
-                <Hidden xsDown>
                   <FormText
-                    multiline
-                    error={summary === ''}
-                    rows={7}
-                    variant="outlined"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    placeholder="Brief description of your project. 
-    Mention if you are looking for collaborators."
-                    onChange={ev => updateProject(ev.target.value, 'summary')}
-                  />
-                </Hidden>
-                <Hidden smUp>
-                  <FormText
-                    multiline
-                    error={summary === ''}
-                    rows={4}
-                    variant="outlined"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    placeholder="Brief description of your project. 
-    Mention if you are looking for collaborators."
-                    onChange={ev => updateProject(ev.target.value, 'summary')}
-                  />
-                </Hidden>
+                  multiline
+                  error={summary === ''}
+                  rows={width > 768 ? 7 : 4}
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  placeholder="Brief description of your project. 
+  Mention if you are looking for collaborators."
+                  onChange={ev => updateProject(ev.target.value, 'summary')}
+                />
               </ProjectFormControl>
             </Grid>
             <Grid item xs={12}>

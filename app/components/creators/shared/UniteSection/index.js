@@ -128,7 +128,17 @@ const TitleImg = styled.img`
     }
   }
 `;
-
+const SmBr = styled.div`
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+    display: inline-block;
+  }
+`
+const SmPunct = styled.span`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+    display: inline;
+  }
+`
 function UniteSection() {
   const [join, setJoin] = useState(false);
   return (
@@ -139,22 +149,11 @@ function UniteSection() {
       <Hidden smUp>
         <TitleImg src={MultiLineCreatorsTitle} alt="creators" />
       </Hidden>
-      <Hidden xsDown>
-        <Audience>
-          Designers · Videographers · Podcasters · Writers <br /> Content
-          Creators · Coders · Influencers · Makers
-        </Audience>
-      </Hidden>
-      <Hidden smUp>
-        <Audience>
-          Designers · Videographers · Podcasters 
-          <br />
-           Writers · Content Creators 
-          <br />
-           Coders · Influencers · Makers
-        </Audience>
-      </Hidden>
-
+      <Audience>
+        Designers · Videographers · Podcasters <br /> Writers · Content
+        Creators · Coders <SmPunct> · </SmPunct> <SmBr /> Influencers · Makers
+      </Audience>
+     
       <TitleImg className="unite" src={UniteTitle} alt="unite" />
       <p className="text-center">
         <LogoTitle>
