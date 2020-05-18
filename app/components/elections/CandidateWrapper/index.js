@@ -439,12 +439,12 @@ const CandidateWrapper = ({
 
   const rankPageLink = () => {
     if (chamberName === 'presidential') {
-      return presidentialElectionLink(chamberRank, true);
+      return presidentialElectionLink();
     }
     if (chamberName === 'senate') {
-      return senateElectionLink(chamberRank, state, true);
+      return senateElectionLink(state);
     }
-    return houseElectionLink(chamberRank, state, district, true);
+    return houseElectionLink(state, district);
   };
 
   // const rankLabel = () => {

@@ -63,7 +63,6 @@ const GoodTitle = styled(Body13)`
 const GoodSubtitle = styled(Body9)`
   color: ${({ theme }) => theme.colors.green};
   letter-spacing: 0;
-  
 `;
 
 const CandidateWrapper = styled.div`
@@ -220,8 +219,6 @@ const VsList = ({
   ranking,
   handleChoiceCallback,
   handleDeselectCandidate,
-  rankingMode,
-  editRankingCallback,
 }) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
@@ -248,9 +245,6 @@ const VsList = ({
           <CloseIcon />
         </ChosenCandWrapper>
       );
-    }
-    if (!rankingMode) {
-      return <></>;
     }
     return (
       <ChoiceButton onClick={e => handleChoice(candidate, e)}>
@@ -318,12 +312,9 @@ const VsList = ({
         </Side>
         <Middle>
           <FiltersWRapper>
-            <FiltersButton onClick={openFiltersCallback}>GOOD CRITERIA</FiltersButton>
-            {!rankingMode && (
-              <EditChoices onClick={editRankingCallback}>
-                Edit Choices
-              </EditChoices>
-            )}
+            <FiltersButton onClick={openFiltersCallback}>
+              GOOD CRITERIA
+            </FiltersButton>
           </FiltersWRapper>
           <Line />
           <Vs>VS</Vs>
@@ -349,7 +340,6 @@ const VsList = ({
             </Link>
           ))}
         </Side>
-
       </Row>
       {unknown && unknown.length > 0 && (
         <UnknownWrapper>
@@ -388,8 +378,6 @@ VsList.propTypes = {
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,
-  editRankingCallback: PropTypes.func,
-  rankingMode: PropTypes.bool,
 };
 
 export default VsList;

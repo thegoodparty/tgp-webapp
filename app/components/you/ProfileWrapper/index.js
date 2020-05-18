@@ -186,7 +186,7 @@ const ProfileWrapper = ({
         </H3>
         <Election>
           Presidential:{' '}
-          <Link to={presidentialElectionLink(presidentialRank)}>
+          <Link to={presidentialElectionLink()}>
             <ElectionData>
               {presidentialRankCount === 0
                 ? 'Rank Choices'
@@ -200,7 +200,7 @@ const ProfileWrapper = ({
           <Election>
             Senate {stateLong}:
             {showSenate ? (
-              <Link to={senateElectionLink(senateRank, shortState)}>
+              <Link to={senateElectionLink(shortState)}>
                 <ElectionData>
                   {senateRank
                     ? `${senateRankCount} Choice${
@@ -220,7 +220,7 @@ const ProfileWrapper = ({
             {userDistrict.code})
             {showHouse ? (
               <Link
-                to={houseElectionLink(houseRank, shortState, userDistrict.code)}
+                to={houseElectionLink(shortState, userDistrict.code)}
               >
                 <ElectionData>
                   {houseRank && houseRankCount > 0

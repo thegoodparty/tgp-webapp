@@ -97,7 +97,6 @@ const ElectionWrapper = ({
   state,
   districtNumber,
   rankingAllowed,
-  rankingMode,
   pathname,
   saveRankingCallback,
   editModeCallback,
@@ -111,13 +110,6 @@ const ElectionWrapper = ({
 
   const selectCandidate = async (candidate, rank) => {
     saveRankingCallback(user, candidate, rank, chamber);
-  };
-
-  const deSelectCandidate = async rank => {
-    deleteCandidateRankingCallback({ ...rank, chamber }, user);
-    if (!rankingMode) {
-      switchToEditMode();
-    }
   };
 
   const openFiltersCallback = () => {
@@ -190,9 +182,6 @@ const ElectionWrapper = ({
     // deSelectCandidate(id);
   };
 
-  const switchToEditMode = () => {
-    editModeCallback(pathname);
-  };
 
   return (
     <GrayWrapper>
@@ -233,8 +222,6 @@ const ElectionWrapper = ({
               ranking={ranking}
               handleChoiceCallback={handleChoiceCallback}
               handleDeselectCandidate={handleDeselectCandidate}
-              rankingMode={rankingMode}
-              editRankingCallback={switchToEditMode}
             />
 
             <TopQuestions articles={articles} />
@@ -289,11 +276,9 @@ ElectionWrapper.propTypes = {
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rankingAllowed: PropTypes.bool,
-  rankingMode: PropTypes.bool,
   pathname: PropTypes.string,
   userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   saveRankingCallback: PropTypes.func,
-  editModeCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
 };

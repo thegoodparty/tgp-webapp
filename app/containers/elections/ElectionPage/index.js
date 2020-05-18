@@ -33,7 +33,6 @@ import {
 import {
   getRankFromUserOrState,
   isDistrictInCds,
-  rankingModeQuery,
 } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
@@ -43,7 +42,6 @@ import makeSelectUser, {
 } from 'containers/you/YouPage/selectors';
 
 import userActions from 'containers/you/YouPage/actions';
-import queryHelper from 'helpers/queryHelper';
 
 export function ElectionPage({
   content,
@@ -57,7 +55,6 @@ export function ElectionPage({
   rankingObj,
   dispatch,
   saveRankingCallback,
-  editModeCallback,
   refreshCountCallback,
   deleteCandidateRankingCallback,
 }) {
@@ -139,7 +136,6 @@ export function ElectionPage({
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
   const { search, pathname } = locationState;
-  const rankingMode = queryHelper(search, 'rankingMode') === 'true';
 
   // if there is no user, read the cookies ranking
   let countsWithCookies;
@@ -197,9 +193,7 @@ export function ElectionPage({
     rankingAllowed,
     userCounts: countsWithCookies ? countsWithCookies : userCounts,
     saveRankingCallback,
-    rankingMode,
     pathname,
-    editModeCallback,
     refreshCountCallback,
     deleteCandidateRankingCallback,
   };
@@ -230,7 +224,6 @@ ElectionPage.propTypes = {
   locationState: PropTypes.object,
   changeFiltersCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
-  editModeCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
   rankingObj: PropTypes.object,
@@ -279,10 +272,6 @@ function mapDispatchToProps(dispatch, ownProps) {
       } else {
         dispatch(userActions.deleteGuestRankingAction(rank));
       }
-    },
-
-    editModeCallback: pathname => {
-      dispatch(push(pathname + rankingModeQuery));
     },
 
     refreshCountCallback: (state, district) => {

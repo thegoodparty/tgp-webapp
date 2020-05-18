@@ -23,7 +23,6 @@ import {
   houseElectionLink,
   presidentialElectionLink,
   presidentialVotesThreshold,
-  rankingModeQuery,
   senateElectionLink,
 } from 'helpers/electionsHelper';
 import VsCard from '../VsCard';
@@ -273,7 +272,7 @@ const DistrictWrapper = ({
                 someone Good.
               </Body>
             </Spacer>
-            <Link to={presidentialElectionLink(presidentialRank)}>
+            <Link to={presidentialElectionLink()}>
               {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
@@ -291,7 +290,7 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link to={senateElectionLink(senateRank, shortState)}>
+            <Link to={senateElectionLink(shortState)}>
               {senateRank && Object.keys(senateRank).length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
@@ -309,7 +308,7 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link to={houseElectionLink(houseRank, shortState, districtNumber)}>
+            <Link to={houseElectionLink(shortState, districtNumber)}>
               {houseRank && Object.keys(houseRank).length > 0 ? (
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}
