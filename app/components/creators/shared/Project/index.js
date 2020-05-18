@@ -52,7 +52,8 @@ const ProjectContent = styled(Grid)`
 `;
 
 const Title = styled.h3`
-  font: normal bold 2rem/130% ${({ theme }) => theme.typography.fontFamily};
+  font: normal bold 2rem/130% normal;
+  font-family: unset;
   color: #000;
   margin: 0;
   margin-bottom: 1rem;
@@ -80,14 +81,16 @@ const Topic = styled.span`
   background-color: ${({ theme }) => theme.creators.colors.lightGray};
   color: #fff;
   border-radius: 0.3rem;
-  font: normal 600 0.6rem ${({ theme }) => theme.typography.fontFamily};
+  font: normal 600 0.6rem normal;
+  font-family: unset;
   padding: 0.3rem 0.5rem;
   margin-right: 0.6rem;
   cursor: pointer;
 `;
 
 const Summary = styled.p`
-  font: normal normal 1.1rem/140% ${({ theme }) => theme.typography.fontFamily};
+  font: normal normal 1.1rem/140% normal;
+  font-family: unset;
   color: #000;
   margin-bottom: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
@@ -102,7 +105,8 @@ const OuterLinkWrapper = styled.div`
 `;
 const OuterLink = styled.a`
   color: ${({ theme }) => theme.colors.blue};
-  font: normal 500 1rem/22px ${({ theme }) => theme.typography.fontFamily};
+  font: normal 500 1rem/22px normal;
+  font-family: unset;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
@@ -130,7 +134,8 @@ const ProjectFooter = styled(Grid)`
 
 const FooterAction = styled.a`
   color: ${({ theme }) => theme.creators.colors.lightGray};
-  font: normal 600 1rem/40px ${({ theme }) => theme.typography.fontFamily};
+  font: normal 600 1rem/40px normal;
+  font-family: unset;
   text-transform: uppercase;
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
@@ -187,7 +192,8 @@ const ProjectImg = styled.img`
 `;
 const ShowMore = styled.a`
   color: ${({ theme }) => theme.colors.blue};
-  font: normal 500 1.1rem/100% ${({ theme }) => theme.typography.fontFamily};
+  font: normal 500 1.1rem/100% normal;
+  font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpoints.contentMax}) {
     font-size: 13px;

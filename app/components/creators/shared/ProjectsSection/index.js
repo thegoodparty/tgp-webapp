@@ -38,7 +38,8 @@ const SectionHeader = styled.div`
   }
 `;
 const Title = styled.h2`
-  font: normal 800 4.5rem ${({ theme }) => theme.typography.fontFamily};
+  font: normal 800 4.5rem normal;
+  font-family: unset;
   color: #fff;
   text-transform: uppercase;
   margin: 0;

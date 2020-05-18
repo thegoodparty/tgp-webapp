@@ -37,6 +37,7 @@ const Audience = styled.p`
   margin: 3rem 0;
   color: ${({ theme }) => theme.colors.blue};
   font: normal bold 2rem normal;
+  font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
     font-size: 1.5rem;
@@ -87,6 +88,7 @@ const LogoTitle = styled(Body)`
 const CreatorsCount = styled.p`
   color: ${({ theme }) => theme.creators.colors.gray};
   font: normal 600 1.5rem normal;
+  font-family: unset;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -102,6 +104,7 @@ const Description = styled.p`
   margin: 0 auto;
   margin-top: 5rem;
   font: normal 500 1.6rem normal;
+  font-family: unset;
   color: ${({ theme }) => theme.creators.colors.gray};
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {

@@ -5,6 +5,7 @@ const MediumButton = styled(Button)`
   && {
     color: #fff;
     font: normal 600 18px/23px normal;
+    font-family: unset;
     padding: 0.5rem 2rem;
     text-transform: uppercase;
     border-radius: 1.5rem;
