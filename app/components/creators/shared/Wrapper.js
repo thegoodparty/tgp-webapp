@@ -10,6 +10,11 @@ const WrapperDiv = styled.div`
   &.white {
     background-color: #fff;
   }
+  &.blue {
+    padding: 0 0 16px 0;
+    background-color: ${({ theme }) => theme.colors.blue};
+    max-width: none;
+  }
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 3rem 16px 0;
     min-height: calc(100vh - 40px);
@@ -26,10 +31,14 @@ const Wrapper = ({
   white,
   noHeader = false,
   creators = false,
+  blue
 }) => {
   let className = '';
   if (white) {
     className = 'white';
+  }
+  if(blue) {
+    className = 'blue';
   }
   return (
     <WrapperDiv style={style} className={className} creators={creators}>
@@ -43,6 +52,7 @@ Wrapper.propTypes = {
   style: PropTypes.object,
   white: PropTypes.bool,
   noHeader: PropTypes.bool,
+  blue: PropTypes.bool
 };
 
 export default Wrapper;

@@ -15,6 +15,8 @@ import Project from '../Project';
 const SectionWrapper = styled.div`
   padding: 6rem 8rem;
   background-color: ${({ theme }) => theme.colors.blue};
+  max-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent};
+  margin: 0 auto;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
     padding: 4rem 4.5rem;

@@ -13,6 +13,8 @@ const CreatorsWrapper = ({ projects = [] }) => {
       <CreatorsHeaderWrapper />
       <Wrapper white>
         <UniteSection />
+      </Wrapper>
+      <Wrapper blue>
         <ProjectsSection projects={projects} />
       </Wrapper>
     </div>
