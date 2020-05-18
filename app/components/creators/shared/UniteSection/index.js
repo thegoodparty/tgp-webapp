@@ -8,29 +8,44 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Body } from '../typography';
+import { Hidden } from '@material-ui/core';
+
+import { Body, Body15 } from '../typography';
 import { JoinNowButton } from '../buttons';
 import { Join } from '../modals';
 import Heads from '../Heads';
 
 import LogoCaps from 'images/logo.svg';
 import UniteTitle from 'images/title--unite.svg';
-import CreatorsTitle from 'images/title--creators_of_the_world.svg';
+import SingleLineCreatorsTitle from 'images/title--creators_of_the_world.svg';
+import MultiLineCreatorsTitle from 'images/title--creators_of_the_world_2.svg';
 
 const SectionWrapper = styled.div`
   padding-bottom: 3rem;
-  @media only screen and (min-width: ${({ theme }) =>
+  padding: 3rem 8rem 6rem;
+  @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    padding: 3rem 8rem 6rem;
+    padding: 4rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    padding: 2rem;
   }
 `;
 const Audience = styled.p`
   text-align: center;
   margin: 3rem 0;
   color: ${({ theme }) => theme.colors.blue};
-  @media only screen and (min-width: ${({ theme }) =>
+  font: normal bold 2rem normal;
+  @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    font: normal bold 2rem normal;
+    font-size: 1.5rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 1rem;
+    line-height: 140%;
+    margin: 1.5rem 0;
   }
 `;
 
@@ -40,6 +55,33 @@ const Logo = styled.img`
   margin: 0 1.5rem;
   top: -5px;
   position: relative;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    width: 30px;
+    height: 25px;
+    top: -2px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    width: 17px;
+    height: 14px;
+    top: -3px;
+    margin: 0 0.6rem;
+  }
+`;
+
+const LogoTitle = styled(Body)`
+  margin: 4rem 0;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    font-size: 1.5rem;
+    margin: 3rem 0;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 15px;
+    margin: 2rem 0;
+  }
 `;
 
 const CreatorsCount = styled.p`
@@ -47,8 +89,12 @@ const CreatorsCount = styled.p`
   font: normal 600 1.5rem normal;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   margin-top: 0;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 13px;
+  }
 `;
 
 const Description = styled.p`
@@ -57,6 +103,19 @@ const Description = styled.p`
   margin-top: 5rem;
   font: normal 500 1.6rem normal;
   color: ${({ theme }) => theme.creators.colors.gray};
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    max-width: none;
+    margin-top: 3rem;
+    font-size: 1.3rem;
+    padding: 0 4rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+    padding: 0;
+  }
 `;
 
 const TitleImg = styled.img`
@@ -69,21 +128,37 @@ const TitleImg = styled.img`
     }
   }
 `;
-
+const SmBr = styled.div`
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+    display: inline-block;
+  }
+`
+const SmPunct = styled.span`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+    display: inline;
+  }
+`
 function UniteSection() {
   const [join, setJoin] = useState(false);
   return (
     <SectionWrapper>
-      <TitleImg src={CreatorsTitle} alt="creators" />
+      <Hidden xsDown>
+        <TitleImg src={SingleLineCreatorsTitle} alt="creators" />
+      </Hidden>
+      <Hidden smUp>
+        <TitleImg src={MultiLineCreatorsTitle} alt="creators" />
+      </Hidden>
       <Audience>
-        Designers · Videographers · Podcasters · Writers <br /> Content
-        Creators · Coders · Influencers · Makers
+        Designers · Videographers · Podcasters <br /> Writers · Content
+        Creators · Coders <SmPunct> · </SmPunct> <SmBr /> Influencers · Makers
       </Audience>
+     
       <TitleImg className="unite" src={UniteTitle} alt="unite" />
       <p className="text-center">
-        <Body>
+        <LogoTitle>
           Let's all build <Logo src={LogoCaps} alt="logo" /> the good party
-        </Body>
+        </LogoTitle>
       </p>
       <div className="text-center">
         <JoinNowButton
@@ -100,12 +175,14 @@ function UniteSection() {
       <Description>
         The Good Party is a non-profit project with a simple plan to use good
         open-source tech to take back Democracy from big-money donors and
-        crooked career politicians. We’re calling on Creators of the World to
-        join us now to help create the free tech, messaging, visuals, audio, and
-        stories that can organically reach and inspire millions of people. We’re
-        also building the tools needed to disrupt the two-party system, and get
-        good indie / grass-roots candidates elected so that we can change
-        politics for Good!
+        crooked career politicians.
+        <br />
+        <br />
+        We’re calling on Creators of the World to join us now to help create the
+        free tech, messaging, visuals, audio, and stories that can organically
+        reach and inspire millions of people. We’re also building the tools
+        needed to disrupt the two-party system, and get good indie / grass-roots
+        candidates elected so that we can change politics for Good!
         <br />
         <br />
         Help with any project you can from the list below or add your own. All

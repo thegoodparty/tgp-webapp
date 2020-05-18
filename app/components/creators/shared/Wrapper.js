@@ -14,6 +14,10 @@ const WrapperDiv = styled.div`
     padding: 3rem 16px 0;
     min-height: calc(100vh - 40px);
   }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    padding: 1rem 0 0;
+  }
 `;
 
 const Wrapper = ({

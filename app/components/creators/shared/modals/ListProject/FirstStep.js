@@ -7,8 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Fade, FormControlLabel, Checkbox, Grid } from '@material-ui/core';
+import {
+  Fade,
+  FormControlLabel,
+  Checkbox,
+  Grid,
+  Hidden,
+} from '@material-ui/core';
 import { Body18 } from '../../typography';
+import { useWindowSize } from 'customHooks/useWindowSize';
 import { BlueButton, GrayButton } from '../../buttons';
 import { MultipleSelect } from 'react-select-material-ui';
 import {
@@ -44,6 +51,11 @@ const TopicSelect = styled(MultipleSelect)`
   }
 `;
 
+const CollaboratorCheckControl = styled(FormControlLabel)`
+  && {
+    margin-bottom: 1.5rem;
+  }
+`;
 function FirstStep({
   open,
   toggleModal,
@@ -54,6 +66,7 @@ function FirstStep({
   closeModal,
   updateProject,
 }) {
+  const [width, height] = useWindowSize();
   return (
     <OverlayModal
       key="first-modal"
@@ -96,16 +109,16 @@ function FirstStep({
                   <ProjectFormLabel>Project Summary</ProjectFormLabel>
                   <ProjectFormHelperText>Required</ProjectFormHelperText>
                 </ProjectFormControlHeader>
-                <FormText
+                  <FormText
                   multiline
                   error={summary === ''}
-                  rows={7}
+                  rows={width > 768 ? 7 : 4}
                   variant="outlined"
                   InputLabelProps={{
                     shrink: true,
                   }}
                   placeholder="Brief description of your project. 
-Mention if you are looking for collaborators."
+  Mention if you are looking for collaborators."
                   onChange={ev => updateProject(ev.target.value, 'summary')}
                 />
               </ProjectFormControl>
@@ -131,7 +144,7 @@ Mention if you are looking for collaborators."
               </ProjectFormControl>
             </Grid>
             <Grid item xs={12} className="text-left">
-              <FormControlLabel
+              <CollaboratorCheckControl
                 control={
                   <Checkbox
                     checked={collaborator}
@@ -151,13 +164,24 @@ Mention if you are looking for collaborators."
             <GrayButton variant="contained" onClick={closeModal}>
               Cancel
             </GrayButton>
-            <BlueButton
-              variant="contained"
-              color="primary"
-              onClick={toggleModal}
-            >
-              Next:Add links & Media
-            </BlueButton>
+            <Hidden xsDown>
+              <BlueButton
+                variant="contained"
+                color="primary"
+                onClick={toggleModal}
+              >
+                Next:Add links & Media
+              </BlueButton>
+            </Hidden>
+            <Hidden smUp>
+              <BlueButton
+                variant="contained"
+                color="primary"
+                onClick={toggleModal}
+              >
+                Next
+              </BlueButton>
+            </Hidden>
           </FooterWrapper>
         </BodyWrapper>
       </Fade>

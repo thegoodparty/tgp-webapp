@@ -25,14 +25,30 @@ const ProjectWrapper = styled.div`
   &.show-more {
     cursor: pointer;
   }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
 `;
 const ProjectBodyWrapper = styled(Grid)`
   padding-bottom: 2rem;
   border-bottom: 1px solid ${({ theme }) => theme.creators.colors.gray2};
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    padding-bottom: 1.5rem;
+  }
 `;
 
 const ProjectContent = styled(Grid)`
-  padding-right: 2rem;
+  && {
+    padding-right: 2rem;
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.creators.breakpoints.creatorsContent}) {
+      padding-right: 0;
+      order: 1;
+    }
+  }
 `;
 
 const Title = styled.h3`
@@ -41,10 +57,23 @@ const Title = styled.h3`
   margin: 0;
   margin-bottom: 1rem;
   cursor: pointer;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    font-size: 1.7rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const Topics = styled.div`
   margin-bottom: 1.5rem;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const Topic = styled.span`
@@ -61,6 +90,11 @@ const Summary = styled.p`
   font: normal normal 1.1rem/140% ${({ theme }) => theme.typography.fontFamily};
   color: #000;
   margin-bottom: 1.5rem;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 13px;
+    margin-bottom: 1rem;
+  }
 `;
 const OuterLinkWrapper = styled.div`
   display: flex;
@@ -73,6 +107,10 @@ const OuterLink = styled.a`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 13px;
+  }
 `;
 
 const LinkIcon = styled.img`
@@ -83,6 +121,11 @@ const LinkIcon = styled.img`
 
 const ProjectFooter = styled(Grid)`
   padding-top: 2rem;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 13px;
+    padding-top: 1rem;
+  }
 `;
 
 const FooterAction = styled.a`
@@ -90,24 +133,52 @@ const FooterAction = styled.a`
   font: normal 600 1rem/40px ${({ theme }) => theme.typography.fontFamily};
   text-transform: uppercase;
   cursor: pointer;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    margin-right: 1rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    margin-right: 2rem;
+    font-size: 13px;
+    order: 2;
+    &.favorite {
+      order: 0;
+    }
+  }
 `;
 
 const FooterActionIcon = styled.img`
   margin-right: 1rem;
   position: relative;
   top: -2px;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    top: -1px;
+    margin-right: 0.5rem;
+  }
 `;
 
 const FooterActions = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 100%;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    justify-content: space-between;
+  }
 `;
 
 const FooterActionsWrapper = styled(Grid)`
   && {
     display: flex;
     align-items: center;
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.creators.breakpoints.creatorsContent}) {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid ${({ theme }) => theme.creators.colors.gray2};
+    }
   }
 `;
 const ProjectImg = styled.img`
@@ -117,14 +188,28 @@ const ProjectImg = styled.img`
 const ShowMore = styled.a`
   color: ${({ theme }) => theme.colors.blue};
   font: normal 500 1.1rem/100% ${({ theme }) => theme.typography.fontFamily};
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 13px;
+  }
 `;
 
 const CollaboratorContainer = styled(Grid)`
   && {
     display: flex;
+    align-items: center;
   }
 `;
 
+const ProjectImageWrapper = styled(Grid)`
+  && {
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.creators.breakpoints.creatorsContent}) {
+      order: 0;
+      margin-bottom: 1.5rem;
+    }
+  }
+`;
 function Project({ project, showMore = false }) {
   const [touch, setTouch] = useState(false);
 
@@ -138,7 +223,7 @@ function Project({ project, showMore = false }) {
   return (
     <ProjectWrapper>
       <ProjectBodyWrapper container>
-        <ProjectContent item xs={12} md={7}>
+        <ProjectContent item xs={12} lg={7}>
           <Title onClick={() => setTouch(true)}>{project.title}</Title>
           <ProjectProposal
             project={project}
@@ -165,25 +250,25 @@ function Project({ project, showMore = false }) {
             })}
           </div>
         </ProjectContent>
-        <Grid item xs={12} md={5}>
+        <ProjectImageWrapper item xs={12} lg={5}>
           <ProjectImg src={`http:${project.images[0]}`} alt="project img" />
-        </Grid>
+        </ProjectImageWrapper>
       </ProjectBodyWrapper>
       <ProjectFooter container>
-        <CollaboratorContainer item xs={12} sm={7}>
+        <CollaboratorContainer item xs={12} lg={7}>
           <Collaborators project={project} />
         </CollaboratorContainer>
-        <FooterActionsWrapper item xs={12} sm={5}>
+        <FooterActionsWrapper item xs={12} lg={5}>
           <FooterActions>
             <FooterAction>
               <FooterActionIcon src={MessageIcon} alt="message icon" />
-              Message creators
+              Get In Touch
             </FooterAction>
             <FooterAction>
               <FooterActionIcon src={ShareIcon} alt="share icon" />
               Share
             </FooterAction>
-            <FooterAction>
+            <FooterAction className="favorite">
               <FooterActionIcon src={FavoriteIcon} alt="favorite icon" />
               102
             </FooterAction>

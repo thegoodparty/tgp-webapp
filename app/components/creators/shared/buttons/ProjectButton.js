@@ -10,7 +10,12 @@ const ProjectButton = styled(Button)`
     background-color: #fff;
     line-height: 100%;
     border-radius: 2rem;
-    margin-left: 1.2rem;
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.breakpoints.contentMax}) {
+      font-size: 13px;
+      padding: 0.5rem 3rem;
+      width: 100%;
+    }
   }
 `;
 

@@ -9,8 +9,18 @@ const JoinNowButton = styled(Button)`
     padding: 2rem 6rem;
     text-transform: uppercase;
     border-radius: 4rem;
-    margin-top: 5rem;
     margin-bottom: 2rem;
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.creators.breakpoints.creatorsContent}) {
+      font-size: 1.6rem;
+      padding: 1rem 3rem;
+    }
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.breakpoints.contentMax}) {
+      padding: 1rem 5rem;
+      font: normal normal 15px normal;
+      margin-bottom: 1rem;
+    }
   }
 `;
 

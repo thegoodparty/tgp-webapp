@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SampleAvatarImg from 'images/avatar.png';
+import { Hidden } from '@material-ui/core';
 
 const CollaboratorWrapper = styled.div`
   margin-right: -10px;
@@ -25,8 +26,14 @@ const CollaboratorsCount = styled.span`
   color: ${({ theme }) => theme.creators.colors.lightGray};
   font: normal bold 1.1rem/42px ${({ theme }) => theme.typography.fontFamily};
   margin-left: 2rem;
+  text-align: left;
   & > span {
     color: black;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    font-size: 13px;
+    line-height: 20px;
   }
 `;
 
@@ -40,7 +47,11 @@ function Collaborators({ project }) {
         </CollaboratorWrapper>
       ))}
       <CollaboratorsCount>
-        <span>Kai Gradert</span> and <span>12 others</span>
+        <span>Kai Gradert</span>{' '}
+        <Hidden smUp>
+          <br />
+        </Hidden>
+        and <span>12 others</span>
       </CollaboratorsCount>
     </>
   );
