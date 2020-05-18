@@ -11,7 +11,7 @@ import {
 import { Menu } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import LogoCaps from 'images/logo.svg';
+import LogoCaps from 'images/logo-caps.svg';
 import { Body14, Body9 } from 'components/shared/typogrophy';
 import Body from '../typography/Body';
 
@@ -62,15 +62,17 @@ const MenuItemsWrapper = styled.div`
 const Logo = styled.img`
   height: auto;
   cursor: pointer;
+  width: 343px;
+  height: 32px;
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpoints.contentMax}) {
-    width: 22px;
-    height: 18px;
+    width: 220px;
+    height: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    width: 30px;
-    height: 24px;
+    width: 343px;
+    height: 32px;
   }
 `;
 
@@ -134,7 +136,6 @@ const CreatorsDesktopHeader = () => {
       <ContentWrapper>
         <TopLink className="logo" to="/">
           <Logo src={LogoCaps} alt="logo" />
-          <LogoTitle>the good party</LogoTitle>
         </TopLink>
         <MenuItemsWrapper>
           <Hidden smDown>
