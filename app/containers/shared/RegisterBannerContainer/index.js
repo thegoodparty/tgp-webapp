@@ -41,9 +41,6 @@ export function RegisterBannerContainer({
     }
   }, [ranking]);
 
-  if (user) {
-    return <></>;
-  }
   const { pathname } = locationState;
 
   const presidentialRank = rankingObj['presidential'];

@@ -33,6 +33,8 @@ export function CandidatePage({
   dispatch,
   userState,
   rankingObj,
+  saveRankingCallback,
+  deleteCandidateRankingCallback,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
@@ -79,6 +81,8 @@ export function CandidatePage({
     chamberName,
     incumbent,
     user,
+    saveRankingCallback,
+    deleteCandidateRankingCallback,
   };
 
   const emptyCandidate = () => {
@@ -115,6 +119,8 @@ CandidatePage.propTypes = {
   candidateState: PropTypes.object,
   userState: PropTypes.object,
   rankingObj: PropTypes.object,
+  saveRankingCallback: PropTypes.func,
+  deleteCandidateRankingCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -128,6 +134,20 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
+    saveRankingCallback: (user, candidate, rank, chamber) => {
+      if (user) {
+        dispatch(userActions.saveUserRankingAction(candidate, rank, chamber));
+      } else {
+        dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
+      }
+    },
+    deleteCandidateRankingCallback: (rank, user) => {
+      if (user) {
+        dispatch(userActions.deleteCandidateRankingAction(rank.id));
+      } else {
+        dispatch(userActions.deleteGuestRankingAction(rank));
+      }
+    },
   };
 }
 

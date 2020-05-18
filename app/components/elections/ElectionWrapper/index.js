@@ -202,22 +202,15 @@ const ElectionWrapper = ({
           <Wrapper>
             <MobileHeader />
 
-            {/*<H1>{title}</H1>*/}
-            <Description>
-              Choose any candidate to join their voting bloc then tell others.
-              We&apos;ll let you know when any voting blocs you join get big
-              enough to win!
-            </Description>
             <Row>
               <SupportersWrapper>
                 <SupportersRow>
                   <HeartImg src={heartImg} alt="tgp" />
                   <SupportersCount>
-                    {numberFormatter(chamberCount)}{' '}
-                    {chamberCount === 1 ? 'person' : 'people'}
+                    {numberFormatter(chamberCount)}
                   </SupportersCount>
                 </SupportersRow>
-                <SuppoetersBody>in this voting bloc so far</SuppoetersBody>
+                <SuppoetersBody>in top voting bloc so far</SuppoetersBody>
                 <SupportersProgressBar
                   votesNeeded={votesNeeded}
                   peopleSoFar={chamberCount}
@@ -229,6 +222,10 @@ const ElectionWrapper = ({
                 <img src={UsMapImage} alt="" />
               </MapWrapper>
             </Row>
+            <Description>
+              Join any candidate voting blocs and we&apos;ll let you know if
+              they grow big enough to win!
+            </Description>
 
             <VsList
               candidates={candidates}

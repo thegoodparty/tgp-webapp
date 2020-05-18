@@ -19,7 +19,7 @@ export const partyResolver = partyLetter => {
     return 'INDEPENDENT';
   }
   if (partyLetter === 'W') {
-    return 'WRITE-IN';
+    return 'AS A WRITE-IN';
   }
   if (partyLetter === 'VC') {
     return 'VETTING CHALLENGERS';
@@ -261,6 +261,11 @@ export const isDistrictInCds = (districtNumber, cds) => {
 };
 
 export const candidateRanking = (ranking, candidate) => {
+  const rankObj = candidateRankObj(ranking, candidate);
+  return rankObj ? rankObj.rank : false;
+};
+
+export const candidateRankObj = (ranking, candidate) => {
   if (!ranking || !candidate) {
     return false;
   }
@@ -269,7 +274,7 @@ export const candidateRanking = (ranking, candidate) => {
     ranking[candidate.id] &&
     ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
   ) {
-    return ranking[candidate.id].rank;
+    return ranking[candidate.id];
   }
   return false;
 };

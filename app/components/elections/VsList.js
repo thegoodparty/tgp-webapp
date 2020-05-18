@@ -63,7 +63,7 @@ const GoodTitle = styled(Body13)`
 const GoodSubtitle = styled(Body9)`
   color: ${({ theme }) => theme.colors.green};
   letter-spacing: 0;
-  text-align: right;
+  
 `;
 
 const CandidateWrapper = styled.div`
@@ -164,12 +164,12 @@ const FiltersWRapper = styled.div`
   top: 50px;
   background-color: ${({ theme }) => theme.colors.grayBg};
   padding: 10px 0;
-  width: 80px;
-  left: -40px;
+  width: 120px;
+  left: -60px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 120px;
-    left: -60px;
+    width: 160px;
+    left: -80px;
   }
 `;
 
@@ -283,45 +283,10 @@ const VsList = ({
     <div>
       <Row>
         <Side>
-          <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
-          <NotGoodSubtitle>BIG MONEY CANDIDATES</NotGoodSubtitle>
-          {notGood.map(candidate => (
-            <Link to={candidateRoute(candidate)} key={candidate.id}>
-              <CandidateWrapper>
-                <CandidateAvatar
-                  size="responsive"
-                  src={candidate.image}
-                  name={candidate.name}
-                />
-                <Name>{candidate.name}</Name>
-                <Role>
-                  {partyResolver(candidate.party)}
-                  <br />
-                  {candidate.isIncumbent && 'INCUMBENT'}
-                </Role>
-                {choiceButton(candidate)}
-              </CandidateWrapper>
-            </Link>
-          ))}
-        </Side>
-        <Middle>
-          <FiltersWRapper>
-            <FiltersButton onClick={openFiltersCallback}>FILTERS</FiltersButton>
-            {!rankingMode && (
-              <EditChoices onClick={editRankingCallback}>
-                Edit Choices
-              </EditChoices>
-            )}
-          </FiltersWRapper>
-          <Line />
-          <Vs>VS</Vs>
-        </Middle>
-        <Side className="right">
           <GoodTitle>GOOD OPTIONS</GoodTitle>
-          <GoodSubtitle>SMALL MONEY CANDIDATES</GoodSubtitle>
           {good.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
-              <CandidateWrapper className="right">
+              <CandidateWrapper>
                 <CandidateAvatar
                   size="responsive"
                   src={candidate.image}
@@ -339,10 +304,10 @@ const VsList = ({
             </Link>
           ))}
           {good.length === 0 && (
-            <CandidateWrapper className="right">
+            <CandidateWrapper>
               <CandidateAvatar size="responsive" src="blank" good />
               <Name className="gray">NONE YET</Name>
-              <Role className="text-right">
+              <Role>
                 CHOOSE TO GET NOTIFIED
                 <br />
                 OF ANY GOOD CHALLENGERS
@@ -351,6 +316,40 @@ const VsList = ({
             </CandidateWrapper>
           )}
         </Side>
+        <Middle>
+          <FiltersWRapper>
+            <FiltersButton onClick={openFiltersCallback}>GOOD CRITERIA</FiltersButton>
+            {!rankingMode && (
+              <EditChoices onClick={editRankingCallback}>
+                Edit Choices
+              </EditChoices>
+            )}
+          </FiltersWRapper>
+          <Line />
+          <Vs>VS</Vs>
+        </Middle>
+        <Side className="right">
+          <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
+          {notGood.map(candidate => (
+            <Link to={candidateRoute(candidate)} key={candidate.id}>
+              <CandidateWrapper className="right">
+                <CandidateAvatar
+                  size="responsive"
+                  src={candidate.image}
+                  name={candidate.name}
+                />
+                <Name>{candidate.name}</Name>
+                <Role className="text-right">
+                  {partyResolver(candidate.party)}
+                  <br />
+                  {candidate.isIncumbent && 'INCUMBENT'}
+                </Role>
+                {choiceButton(candidate)}
+              </CandidateWrapper>
+            </Link>
+          ))}
+        </Side>
+
       </Row>
       {unknown && unknown.length > 0 && (
         <UnknownWrapper>
