@@ -24,7 +24,8 @@ const Collaborator = styled.img`
 
 const CollaboratorsCount = styled.span`
   color: ${({ theme }) => theme.creators.colors.lightGray};
-  font: normal bold 1.1rem/42px ${({ theme }) => theme.typography.fontFamily};
+  font: normal bold 1.1rem/42px normal;
+  font-family: unset;
   margin-left: 2rem;
   text-align: left;
   & > span {

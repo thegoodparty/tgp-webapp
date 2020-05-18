@@ -6,6 +6,7 @@ const JoinNowButton = styled(Button)`
     background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
     font: normal bold 2rem normal;
+    font-family: unset;
     padding: 2rem 6rem;
     text-transform: uppercase;
     border-radius: 4rem;
