@@ -33,5 +33,35 @@ const makeSelectUserObj = () =>
     substate => substate.user,
   );
 
+const makeSelectRanking = () =>
+  createSelector(
+    selectUserDomain,
+    substate => {
+      const { ranking } = substate;
+      const rankingObj = {
+        presidential: {},
+        senate: {},
+        house: {},
+      };
+      if (ranking) {
+        ranking.forEach(userRank => {
+          const { id, rank, candidate, isIncumbent, chamber } = userRank;
+          rankingObj[chamber][candidate] = {
+            id,
+            rank,
+            candidateId: candidate,
+            isIncumbent,
+          };
+        });
+      }
+      return rankingObj;
+    },
+  );
+
 export default makeSelectUser;
-export { selectUserDomain, makeSelectToken, makeSelectUserObj };
+export {
+  selectUserDomain,
+  makeSelectToken,
+  makeSelectUserObj,
+  makeSelectRanking,
+};

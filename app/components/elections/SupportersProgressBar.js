@@ -49,6 +49,7 @@ const BarBody9 = styled(Body9)`
 const SupportersProgressBar = ({
   peopleSoFar,
   votesNeeded,
+  userState,
   showSupporters = true,
   alignLeft = false,
 }) => {
@@ -65,13 +66,16 @@ const SupportersProgressBar = ({
         <BarBody11>
           {numberFormatter(peopleSoFar)}{' '}
           {peopleSoFar === 1 ? 'person ' : 'people '}
-          in voting bloc so far
+          in top voting bloc so far
         </BarBody11>
       )}
       <BarBg>
         <Bar style={{ width: `${progress}%` }} />
       </BarBg>
-      <BarBody9>{numberFormatter(votesNeeded)} VOTES NEEDED TO WIN!</BarBody9>
+      <BarBody9>
+        {numberFormatter(votesNeeded)} VOTES NEEDED TO WIN
+        {userState ? ` IN ${userState.toUpperCase()}` : ''}!
+      </BarBody9>
     </ProgressBarWrapper>
   );
 };
@@ -81,6 +85,7 @@ SupportersProgressBar.propTypes = {
   votesNeeded: PropTypes.number,
   showSupporters: PropTypes.bool,
   alignLeft: PropTypes.bool,
+  userState: PropTypes.string,
 };
 
 export default SupportersProgressBar;

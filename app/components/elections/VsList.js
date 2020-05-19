@@ -7,10 +7,15 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
+import {
+  partyResolver,
+  candidateRoute,
+  candidateRanking,
+  candidateFirstName,
+} from 'helpers/electionsHelper';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
-import { numberNth } from '../../helpers/numberHelper';
+import { numberFormatter, numberNth } from '../../helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -45,10 +50,6 @@ const NotGoodTitle = styled(Body13)`
   font-weight: 700;
 `;
 
-const NotGoodSubtitle = styled(Body9)`
-  color: ${({ theme }) => theme.colors.red};
-  letter-spacing: 0;
-`;
 
 const GoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.green};
@@ -56,11 +57,6 @@ const GoodTitle = styled(Body13)`
   font-weight: 700;
 `;
 
-const GoodSubtitle = styled(Body9)`
-  color: ${({ theme }) => theme.colors.green};
-  letter-spacing: 0;
-  text-align: right;
-`;
 
 const CandidateWrapper = styled.div`
   margin-top: 17px;
@@ -95,28 +91,55 @@ const Role = styled(Body9)`
   opacity: 0.8;
 `;
 
-const ChoiceButton = styled(Body9)`
-  color: ${({ theme }) => theme.colors.blue};
-  border-radius: 20px;
-  border: solid 1px ${({ theme }) => theme.colors.blue};
-  padding: 7px 12px;
-  display: inline-block;
-  margin-top: 8px;
-  pointer: cursor;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: background-color 0.3s, color 0.3s;
+const BlocCount = styled(Body11)`
+  color: ${({ theme }) => theme.colors.gray7};
+  font-weight: 500;
+  margin-top: 4px;
+`;
 
-  &: hover {
-    color: #fff;
-    background-color: ${({ theme }) => theme.colors.blue};
+const JoinButton = styled(Body11)`
+  padding: 0.8rem 2.5rem;
+  border-radius: 40px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.blue};
+  color: #fff;
+  text-align: center;
+`;
+
+const GrowWrapper = styled.div`
+  display: inline-block;
+  min-width: 95%;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    min-width: 80%;
   }
+`;
+
+const GrowWrapperUnknown = styled.div`
+  max-width: 420px;
+`;
+
+const GrowButtonWrapper = styled.div`
+  padding: 0.8rem 2.5rem;
+  border: solid 2px ${({ theme }) => theme.colors.blue};
+  border-radius: 40px;
+  margin-top: 8px;
+  cursor: pointer;
+  text-align: center;
+`;
+const BlueBody11 = styled(Body11)`
+  color: ${({ theme }) => theme.colors.blue};
+  font-weight: 500;
+`;
+const WhyNot = styled(BlueBody11)`
+  margin-top: 8px;
 `;
 
 const ChosenCandWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-top: 10px;
 `;
 
@@ -160,12 +183,12 @@ const FiltersWRapper = styled.div`
   top: 50px;
   background-color: ${({ theme }) => theme.colors.grayBg};
   padding: 10px 0;
-  width: 80px;
-  left: -40px;
+  width: 120px;
+  left: -60px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 120px;
-    left: -60px;
+    width: 160px;
+    left: -80px;
   }
 `;
 
@@ -191,12 +214,6 @@ const FiltersButton = styled(Body9)`
   text-align: center;
 `;
 
-const EditChoices = styled(Body13)`
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 16px 0 8px;
-  cursor: pointer;
-`;
-
 const UnknownWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grayC};
   border-radius: 8px;
@@ -213,48 +230,63 @@ const UnknownTitle = styled(Body9)`
 const VsList = ({
   candidates = {},
   openFiltersCallback = () => {},
-  choices = {},
-  choicesOrder = [],
+  ranking,
   handleChoiceCallback,
   handleDeselectCandidate,
-  rankingMode,
-  editRankingCallback,
 }) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
     return <LoadingAnimation />;
   }
-
+  let nextChoice = 1;
+  if (candidates) {
+    [...good, ...notGood, ...unknown].forEach(candidate => {
+      if (
+        ranking[candidate.id] &&
+        ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
+      ) {
+        nextChoice++;
+      }
+    });
+  }
   const choiceButton = candidate => {
-    if (choices[candidate.id]) {
+    const candidateRank = candidateRanking(ranking, candidate);
+    if (candidateRank) {
       return (
-        <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
-          <CheckMark />{' '}
-          <ChosenCand>{numberNth(choices[candidate.id])} CHOICE </ChosenCand>
-          <CloseIcon />
-        </ChosenCandWrapper>
+        <GrowWrapper>
+          <GrowButtonWrapper>
+            <BlueBody11>GROW #{candidateFirstName(candidate)}Bloc</BlueBody11>
+          </GrowButtonWrapper>
+          <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
+            <CheckMark />{' '}
+            <ChosenCand>{numberNth(candidateRank)} CHOICE </ChosenCand>
+            <CloseIcon />
+          </ChosenCandWrapper>
+        </GrowWrapper>
       );
     }
-    if (!rankingMode) {
-      return <></>;
-    }
     return (
-      <ChoiceButton onClick={e => handleChoice(candidate, e)}>
-        {numberNth(choicesOrder.length + 1)} CHOICE
-      </ChoiceButton>
+      <GrowWrapper>
+        <JoinButton onClick={e => handleChoice(candidate, e)}>
+          JOIN #{candidateFirstName(candidate)}Bloc
+        </JoinButton>
+      </GrowWrapper>
     );
   };
 
   const handleChoice = (candidate, e) => {
     e.stopPropagation();
     e.preventDefault();
-    handleChoiceCallback(candidate);
+    handleChoiceCallback(candidate, nextChoice);
   };
 
   const handleDeselect = (candidate, e) => {
     e.stopPropagation();
     e.preventDefault();
-    handleDeselectCandidate(candidate);
+    const candidateRank = candidateRanking(ranking, candidate);
+    if (candidateRank !== false) {
+      handleDeselectCandidate(ranking[candidate.id]);
+    }
   };
 
   const noneYetCandidate = {
@@ -262,49 +294,22 @@ const VsList = ({
     isGood: true,
   };
 
+  const blocCountSection = candidate => (
+    <BlocCount>
+      {numberFormatter(candidate.ranking)}{' '}
+      {candidate.ranking === 1 ? 'is' : 'are'} in #
+      {candidateFirstName(candidate)}Bloc
+    </BlocCount>
+  );
+
   return (
     <div>
       <Row>
         <Side>
-          <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
-          <NotGoodSubtitle>BIG MONEY CANDIDATES</NotGoodSubtitle>
-          {notGood.map(candidate => (
-            <Link to={candidateRoute(candidate)} key={candidate.id}>
-              <CandidateWrapper>
-                <CandidateAvatar
-                  size="responsive"
-                  src={candidate.image}
-                  name={candidate.name}
-                />
-                <Name>{candidate.name}</Name>
-                <Role>
-                  {partyResolver(candidate.party)}
-                  <br />
-                  {candidate.isIncumbent && 'INCUMBENT'}
-                </Role>
-                {choiceButton(candidate)}
-              </CandidateWrapper>
-            </Link>
-          ))}
-        </Side>
-        <Middle>
-          <FiltersWRapper>
-            <FiltersButton onClick={openFiltersCallback}>FILTERS</FiltersButton>
-            {!rankingMode && (
-              <EditChoices onClick={editRankingCallback}>
-                Edit Choices
-              </EditChoices>
-            )}
-          </FiltersWRapper>
-          <Line />
-          <Vs>VS</Vs>
-        </Middle>
-        <Side className="right">
           <GoodTitle>GOOD OPTIONS</GoodTitle>
-          <GoodSubtitle>SMALL MONEY CANDIDATES</GoodSubtitle>
           {good.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
-              <CandidateWrapper className="right">
+              <CandidateWrapper>
                 <CandidateAvatar
                   size="responsive"
                   src={candidate.image}
@@ -317,15 +322,16 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {blocCountSection(candidate)}
                 {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
           ))}
           {good.length === 0 && (
-            <CandidateWrapper className="right">
+            <CandidateWrapper>
               <CandidateAvatar size="responsive" src="blank" good />
               <Name className="gray">NONE YET</Name>
-              <Role className="text-right">
+              <Role>
                 CHOOSE TO GET NOTIFIED
                 <br />
                 OF ANY GOOD CHALLENGERS
@@ -333,6 +339,36 @@ const VsList = ({
               {choiceButton(noneYetCandidate)}
             </CandidateWrapper>
           )}
+        </Side>
+        <Middle>
+          <FiltersWRapper>
+            <FiltersButton onClick={openFiltersCallback}>
+              GOOD CRITERIA
+            </FiltersButton>
+          </FiltersWRapper>
+          <Line />
+          <Vs>VS</Vs>
+        </Middle>
+        <Side className="right">
+          <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
+          {notGood.map(candidate => (
+            <Link to={candidateRoute(candidate)} key={candidate.id}>
+              <CandidateWrapper className="right">
+                <CandidateAvatar
+                  size="responsive"
+                  src={candidate.image}
+                  name={candidate.name}
+                />
+                <Name>{candidate.name}</Name>
+                <Role className="text-right">
+                  {partyResolver(candidate.party)}
+                  <br />
+                  {candidate.isIncumbent && 'INCUMBENT'}
+                </Role>
+                <WhyNot>Why not god enough?</WhyNot>
+              </CandidateWrapper>
+            </Link>
+          ))}
         </Side>
       </Row>
       {unknown && unknown.length > 0 && (
@@ -353,7 +389,10 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
-                {choiceButton(candidate)}
+                {blocCountSection(candidate)}
+                <GrowWrapperUnknown>
+                  {choiceButton(candidate)}
+                </GrowWrapperUnknown>
               </CandidateWrapper>
             </Link>
           ))}
@@ -369,13 +408,9 @@ VsList.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
-  choices: PropTypes.object,
-  choicesOrder: PropTypes.array,
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,
-  editRankingCallback: PropTypes.func,
-  rankingMode: PropTypes.bool,
 };
 
 export default VsList;

@@ -103,23 +103,19 @@ const InviteUrl = styled(Body)`
 const ProfileWrapper = ({
   user,
   crew,
-  houseCandidates,
-  senateCandidates,
+  houseCandidatesCount,
+  senateCandidatesCount,
   signoutCallback,
   articles,
+  rankingObj,
 }) => {
-  let { presidentialRank, senateRank, houseRank } = user;
+  const presidentialRank = rankingObj.presidential;
+  const senateRank = rankingObj.presidential;
+  const houseRank = rankingObj.house;
+
   const { name, feedback, zipCode, congDistrict } = user;
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
-  if (typeof presidentialRank === 'string' && presidentialRank !== '') {
-    presidentialRank = JSON.parse(presidentialRank);
-  }
-  if (typeof senateRank === 'string' && senateRank !== '') {
-    senateRank = JSON.parse(senateRank);
-  }
-  if (typeof houseRank === 'string' && houseRank !== '') {
-    houseRank = JSON.parse(houseRank);
-  }
+
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   let userDistrict = {};
   if (congDistrict && cds && cds.length > 0) {
@@ -158,20 +154,12 @@ const ProfileWrapper = ({
       (_, x) => x + 1 + 3 - fillerCount,
     );
   }
-  const showHouse = houseCandidates && houseCandidates.length > 0;
-  const showSenate = senateCandidates && senateCandidates.length > 0;
-  let senateRankCount = 0;
-  if (senateRank && senateRank[shortState.toLocaleLowerCase()]) {
-    senateRankCount = senateRank[shortState.toLocaleLowerCase()].length;
-  }
-  let houseRankCount = 0;
-  if (
-    houseRank &&
-    houseRank[shortState.toLocaleLowerCase() + userDistrict.code]
-  ) {
-    houseRankCount =
-      houseRank[shortState.toLocaleLowerCase() + userDistrict.code].length;
-  }
+  const showHouse = houseCandidatesCount > 0;
+  const showSenate = senateCandidatesCount > 0;
+
+  const presidentialRankCount = Object.keys(presidentialRank).length;
+  const senateRankCount = Object.keys(senateRank).length;
+  const houseRankCount = Object.keys(houseRank).length;
 
   const url = uuidUrl(user);
 
@@ -198,11 +186,13 @@ const ProfileWrapper = ({
         </H3>
         <Election>
           Presidential:{' '}
-          <Link to={presidentialElectionLink(presidentialRank)}>
+          <Link to={presidentialElectionLink()}>
             <ElectionData>
-              {presidentialRank
-                ? `${presidentialRank.length} Choices Ranked`
-                : 'Rank Choices'}
+              {presidentialRankCount === 0
+                ? 'Rank Choices'
+                : `${presidentialRankCount} Choice${
+                    presidentialRankCount === 1 ? '' : 's'
+                  } Ranked`}
             </ElectionData>
           </Link>
         </Election>
@@ -210,7 +200,7 @@ const ProfileWrapper = ({
           <Election>
             Senate {stateLong}:
             {showSenate ? (
-              <Link to={senateElectionLink(senateRank, shortState)}>
+              <Link to={senateElectionLink(shortState)}>
                 <ElectionData>
                   {senateRank
                     ? `${senateRankCount} Choice${
@@ -230,7 +220,7 @@ const ProfileWrapper = ({
             {userDistrict.code})
             {showHouse ? (
               <Link
-                to={houseElectionLink(houseRank, shortState, userDistrict.code)}
+                to={houseElectionLink(shortState, userDistrict.code)}
               >
                 <ElectionData>
                   {houseRank && houseRankCount > 0
@@ -318,8 +308,10 @@ ProfileWrapper.propTypes = {
   crew: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   signoutCallback: PropTypes.func,
   articles: PropTypes.array,
-  houseCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  houseCandidatesCount: PropTypes.number,
+  senateCandidatesCount: PropTypes.number,
   senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  rankingObj: PropTypes.object,
 };
 
 export default ProfileWrapper;

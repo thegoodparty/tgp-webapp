@@ -91,23 +91,21 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (
-  ranking,
-  chamber,
-  state,
-  district,
-  refreshUserCount,
-) => ({
+const saveUserRankingAction = (candidate, rank, chamber, refreshUserCount) => ({
   type: types.SAVE_USER_RANKING,
-  ranking,
+  candidate,
+  rank,
   chamber,
-  state,
-  district,
   refreshUserCount,
 });
 
-const deleteUserRankingAction = () => ({
-  type: types.DELETE_USER_RANKING,
+const deleteAllUserRankingsAction = () => ({
+  type: types.DELETE_ALL_USER_RANKINGS,
+});
+
+const deleteCandidateRankingAction = id => ({
+  type: types.DELETE_CANDIDATE_RANKING,
+  id,
 });
 
 const uploadAvatarAction = (fileName, fileData, withRedirect = true) => ({
@@ -130,6 +128,37 @@ const crewActionSuccess = crew => ({
   crew,
 });
 
+const userRankingAction = () => ({
+  type: types.USER_RANKING,
+});
+
+const guestRankingAction = () => ({
+  type: types.GUEST_RANKING,
+});
+
+const userRankingActionSuccess = ranking => ({
+  type: types.USER_RANKING_SUCCESS,
+  ranking,
+});
+
+const saveGuestRankingAction = (
+  candidate,
+  rank,
+  chamber,
+  refreshUserCount,
+) => ({
+  type: types.SAVE_GUEST_RANKING,
+  candidate,
+  rank,
+  chamber,
+  refreshUserCount,
+});
+
+const deleteGuestRankingAction = rankToDelete => ({
+  type: types.DELETE_GUEST_RANKING,
+  rankToDelete,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -146,9 +175,15 @@ export default {
   updateUserAction,
   updateUserActionSuccess,
   saveUserRankingAction,
-  deleteUserRankingAction,
+  deleteAllUserRankingsAction,
+  deleteCandidateRankingAction,
   uploadAvatarAction,
   generateUuidAction,
   crewAction,
   crewActionSuccess,
+  userRankingAction,
+  guestRankingAction,
+  userRankingActionSuccess,
+  saveGuestRankingAction,
+  deleteGuestRankingAction,
 };

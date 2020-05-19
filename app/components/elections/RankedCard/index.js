@@ -27,20 +27,21 @@ const RankedCard = ({
   peopleSoFar,
   votesNeeded,
   candidates = {},
-  rank = [],
+  rankObj = {},
 }) => {
+  const rank = Object.keys(rankObj);
   const [candidatesHash, setCandidatesHash] = useState({});
   useEffect(() => {
     const candHash = mapCandidateToHash(candidates);
     setCandidatesHash(candHash);
   }, [candidates]);
 
-  const candidateRow = (rankedId, index) => {
+  const candidateRow = (userRank, index) => {
     if (index > 1) {
       return <></>;
     }
     if (candidatesHash !== {}) {
-      const candidate = candidatesHash[rankedId];
+      const candidate = candidatesHash[userRank.candidateId];
       if (candidate) {
         return (
           <RankedCandidate
@@ -66,7 +67,7 @@ const RankedCard = ({
       </YourChoices>
       {rank.map((rankedId, index) => (
         <React.Fragment key={rankedId}>
-          {candidateRow(rankedId, index)}
+          {candidateRow(rankObj[rankedId], index)}
         </React.Fragment>
       ))}
       {rank.length > 2 ? (

@@ -23,7 +23,8 @@ import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
-import makeSelectUser from '../../you/YouPage/selectors';
+import makeSelectUser, { makeSelectRanking } from '../../you/YouPage/selectors';
+import userActions from '../../you/YouPage/actions';
 
 export function CandidatePage({
   id,
@@ -31,11 +32,14 @@ export function CandidatePage({
   candidateState,
   dispatch,
   userState,
+  rankingObj,
+  saveRankingCallback,
+  deleteCandidateRankingCallback,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
-  const { candidate, presidentialRank, incumbent } = candidateState;
+  const { candidate, incumbent } = candidateState;
   const [chamberName, chamberIncumbent] = chamber.split('-');
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -46,9 +50,6 @@ export function CandidatePage({
       dispatch(
         candidateActions.loadCandidateAction(id, chamberName, isIncumbent),
       );
-    }
-    if (!presidentialRank) {
-      dispatch(candidateActions.loadRankingFromCookieAction());
     }
   }, [id, chamber]);
 
@@ -64,28 +65,24 @@ export function CandidatePage({
 
   const candidateWithFields = candidateCalculatedFields(candidate);
 
-  let chamberRank;
-  const { user } = userState;
-  if (chamberName === 'presidential') {
-    chamberRank = getRankFromUserOrState(
-      user,
-      candidateState,
-      'presidentialRank',
-    );
-  } else if (chamberName === 'senate') {
-    chamberRank = getRankFromUserOrState(user, candidateState, 'senateRank');
-    chamberRank = chamberRank ? chamberRank[state] : [];
-  } else if (chamberName === 'house') {
-    chamberRank = getRankFromUserOrState(user, candidateState, 'houseRank');
-    chamberRank = chamberRank ? chamberRank[state + district] : [];
+  const { user, ranking } = userState;
+  useEffect(() => {
+    if (user && !ranking) {
+      dispatch(userActions.userRankingAction());
+    }
+  }, [user]);
+  if (!user && !ranking) {
+    dispatch(userActions.guestRankingAction());
   }
 
   const childProps = {
     candidate: candidateWithFields,
-    chamberRank,
+    chamberRank: rankingObj[chamber],
     chamberName,
     incumbent,
     user,
+    saveRankingCallback,
+    deleteCandidateRankingCallback,
   };
 
   const emptyCandidate = () => {
@@ -121,11 +118,15 @@ CandidatePage.propTypes = {
   chamber: PropTypes.string.isRequired,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
+  rankingObj: PropTypes.object,
+  saveRankingCallback: PropTypes.func,
+  deleteCandidateRankingCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
+  rankingObj: makeSelectRanking(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -133,6 +134,20 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
+    saveRankingCallback: (user, candidate, rank, chamber) => {
+      if (user) {
+        dispatch(userActions.saveUserRankingAction(candidate, rank, chamber));
+      } else {
+        dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
+      }
+    },
+    deleteCandidateRankingCallback: (rank, user) => {
+      if (user) {
+        dispatch(userActions.deleteCandidateRankingAction(rank.id));
+      } else {
+        dispatch(userActions.deleteGuestRankingAction(rank));
+      }
+    },
   };
 }
 

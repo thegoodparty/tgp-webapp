@@ -41,6 +41,7 @@ const api = {
     url: `${base}candidates/find`,
     method: 'GET',
   },
+
   //
   // CONTENT
   //
@@ -102,7 +103,19 @@ const api = {
     withAuth: true,
   },
 
-  deleteUserRanking: {
+  rankCandidate: {
+    url: `${base}user/rank-candidate`,
+    method: 'POST',
+    withAuth: true,
+  },
+
+  deleteCandidateRanking: {
+    url: `${base}user/rank-candidate`,
+    method: 'DELETE',
+    withAuth: true,
+  },
+
+  deleteAllUserRankings: {
     url: `${base}user/delete-user-ranking`,
     method: 'PUT',
     withAuth: true,
@@ -116,6 +129,12 @@ const api = {
 
   crew: {
     url: `${base}user/crew`,
+    method: 'GET',
+    withAuth: true,
+  },
+
+  userRanking: {
+    url: `${base}user/ranking`,
     method: 'GET',
     withAuth: true,
   },

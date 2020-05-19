@@ -23,7 +23,6 @@ import {
   houseElectionLink,
   presidentialElectionLink,
   presidentialVotesThreshold,
-  rankingModeQuery,
   senateElectionLink,
 } from 'helpers/electionsHelper';
 import VsCard from '../VsCard';
@@ -77,11 +76,12 @@ const DistrictWrapper = ({
   changeZipCallback,
   user,
   userCounts,
-  presidentialRank,
-  senateRank,
-  houseRank,
+  ranking = {},
 }) => {
   let districtNumber;
+  const presidentialRank = ranking['presidential'];
+  const senateRank = ranking['senate'];
+  const houseRank = ranking['house'];
 
   const [showCds, setShowCds] = useState(false);
   const [cdsWithPerc, setCdsWithPerc] = useState([]);
@@ -153,7 +153,7 @@ const DistrictWrapper = ({
     }
 
     setThresholds({
-      presidentialVotesThreshold,
+      presidentialVotesThreshold: presidential.votesNeeded,
       senateThreshold,
       houseThreshold,
     });
@@ -184,7 +184,6 @@ const DistrictWrapper = ({
   }
 
   const handleDistrictChange = (cdId, index) => {
-    console.log('here1');
     if ((user && houseRank) || (user && senateRank)) {
       setSelectedCid(cdId);
       setSelectedIndex(index);
@@ -273,14 +272,14 @@ const DistrictWrapper = ({
                 someone Good.
               </Body>
             </Spacer>
-            <Link to={presidentialElectionLink(presidentialRank)}>
-              {presidentialRank && presidentialRank.length > 0 ? (
+            <Link to={presidentialElectionLink()}>
+              {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
                   candidates={presidential}
                   votesNeeded={thresholds.presidentialVotesThreshold}
                   peopleSoFar={userCounts ? userCounts.totalUsers : 0}
-                  rank={presidentialRank}
+                  rankObj={presidentialRank}
                 />
               ) : (
                 <VsCard
@@ -291,14 +290,14 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link to={senateElectionLink(senateRank, shortState)}>
-              {senateRank && senateRank.length > 0 ? (
+            <Link to={senateElectionLink(shortState)}>
+              {senateRank && Object.keys(senateRank).length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
                   votesNeeded={thresholds.senateThreshold}
                   peopleSoFar={userCounts ? userCounts.stateUsers : 0}
-                  rank={senateRank}
+                  rankObj={senateRank}
                 />
               ) : (
                 <VsCard
@@ -309,14 +308,14 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link to={houseElectionLink(houseRank, shortState, districtNumber)}>
-              {houseRank && houseRank.length > 0 ? (
+            <Link to={houseElectionLink(shortState, districtNumber)}>
+              {houseRank && Object.keys(houseRank).length > 0 ? (
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
                   votesNeeded={thresholds.houseThreshold}
                   peopleSoFar={userCounts ? userCounts.districtUsers : 0}
-                  rank={houseRank}
+                  rankObj={houseRank}
                 />
               ) : (
                 <VsCard

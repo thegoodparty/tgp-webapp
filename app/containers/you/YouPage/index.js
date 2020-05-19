@@ -28,6 +28,7 @@ import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
 import { userDistrict } from '../../../helpers/userHelper';
 import { makeSelectContent } from '../../App/selectors';
 import articlesHelper from '../../../helpers/articlesHelper';
+import { makeSelectRanking } from './selectors';
 
 export function YouPage({
   userState,
@@ -35,6 +36,7 @@ export function YouPage({
   dispatch,
   signoutCallback,
   content,
+  rankingObj,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -42,7 +44,7 @@ export function YouPage({
   useInjectReducer({ key: 'zipFinderPage', reducer: districtReducer });
   useInjectSaga({ key: 'zipFinderPage', saga: districtSaga });
 
-  const { user, crew } = userState;
+  const { user, crew, ranking } = userState;
   const { houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
@@ -61,6 +63,9 @@ export function YouPage({
       if (shortState) {
         dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
+      if (!ranking) {
+        dispatch(userActions.userRankingAction());
+      }
     }
   }, [user]);
 
@@ -69,13 +74,26 @@ export function YouPage({
     articles = articlesHelper(content.faqArticles, 'party');
   }
 
+  const countCandidates = chamber => {
+    let count = 0;
+    if (chamber && typeof chamber.good !== 'undefined') {
+      count =
+        chamber.good.length + chamber.notGood.length + chamber.unknown.length;
+    }
+    return count;
+  };
+
+  const senateCandidatesCount = countCandidates(senateCandidates);
+  const houseCandidatesCount = countCandidates(houseCandidates);
+
   const accountProps = {
     articles,
     user,
     crew,
     signoutCallback,
-    houseCandidates,
-    senateCandidates,
+    houseCandidatesCount,
+    senateCandidatesCount,
+    rankingObj,
   };
 
   const youProps = {
@@ -103,6 +121,7 @@ YouPage.propTypes = {
   signoutCallback: PropTypes.func,
   districtState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  rankingObj: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -119,6 +138,7 @@ const mapStateToProps = createStructuredSelector({
   userState: makeSelectUser(),
   districtState: makeSelectZipFinderPage(),
   content: makeSelectContent(),
+  rankingObj: makeSelectRanking(),
 });
 
 const withConnect = connect(
