@@ -108,6 +108,8 @@ const ElectionWrapper = ({
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
 
+  const { topRank } = candidates;
+
   const selectCandidate = async (candidate, rank) => {
     saveRankingCallback(user, candidate, rank, chamber);
   };
@@ -140,17 +142,17 @@ const ElectionWrapper = ({
     )} District ${displayChamber} Election`;
   }
 
-  let chamberCount = 0;
+  // let chamberCount = 0;
   let votesNeeded = 0;
   if (userCounts) {
-    if (chamber === 'presidential') {
-      chamberCount = userCounts.totalUsers;
-    } else if (chamber === 'senate') {
-      chamberCount = userCounts.stateUsers;
-    } else if (chamber === 'house') {
-      chamberCount = userCounts.districtUsers;
-    }
-    votesNeeded = userCounts.threshold;
+    // if (chamber === 'presidential') {
+    //   chamberCount = userCounts.totalUsers;
+    // } else if (chamber === 'senate') {
+    //   chamberCount = userCounts.stateUsers;
+    // } else if (chamber === 'house') {
+    //   chamberCount = userCounts.districtUsers;
+    // }
+    votesNeeded = candidates.votesNeeded;
   }
 
   const handleChoiceCallback = async (candidate, rank) => {
@@ -182,7 +184,6 @@ const ElectionWrapper = ({
     // deSelectCandidate(id);
   };
 
-
   return (
     <GrayWrapper>
       {candidates ? (
@@ -196,13 +197,14 @@ const ElectionWrapper = ({
                 <SupportersRow>
                   <HeartImg src={heartImg} alt="tgp" />
                   <SupportersCount>
-                    {numberFormatter(chamberCount)}
+                    {numberFormatter(topRank)}{' '}
                   </SupportersCount>
                 </SupportersRow>
                 <SuppoetersBody>in top voting bloc so far</SuppoetersBody>
                 <SupportersProgressBar
                   votesNeeded={votesNeeded}
-                  peopleSoFar={chamberCount}
+                  peopleSoFar={topRank}
+                  userState={candidates.userState}
                   showSupporters={false}
                   alignLeft
                 />
@@ -257,7 +259,7 @@ const ElectionWrapper = ({
         closeCallback={onCloseChoiceModal}
         candidate={choiceModalCandidate}
         votesNeeded={votesNeeded}
-        chamberCount={chamberCount}
+        chamberCount={topRank}
         user={user}
         cancelCallback={cancelCallback}
         animateCount={Object.keys(ranking).length <= 1}

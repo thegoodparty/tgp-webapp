@@ -11,10 +11,11 @@ import {
   partyResolver,
   candidateRoute,
   candidateRanking,
+  candidateFirstName,
 } from 'helpers/electionsHelper';
 import { OutlinedButton } from '../shared/buttons';
 import LoadingAnimation from '../shared/LoadingAnimation';
-import { numberNth } from '../../helpers/numberHelper';
+import { numberFormatter, numberNth } from '../../helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -49,10 +50,6 @@ const NotGoodTitle = styled(Body13)`
   font-weight: 700;
 `;
 
-const NotGoodSubtitle = styled(Body9)`
-  color: ${({ theme }) => theme.colors.red};
-  letter-spacing: 0;
-`;
 
 const GoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.green};
@@ -60,10 +57,6 @@ const GoodTitle = styled(Body13)`
   font-weight: 700;
 `;
 
-const GoodSubtitle = styled(Body9)`
-  color: ${({ theme }) => theme.colors.green};
-  letter-spacing: 0;
-`;
 
 const CandidateWrapper = styled.div`
   margin-top: 17px;
@@ -98,28 +91,55 @@ const Role = styled(Body9)`
   opacity: 0.8;
 `;
 
-const ChoiceButton = styled(Body9)`
-  color: ${({ theme }) => theme.colors.blue};
-  border-radius: 20px;
-  border: solid 1px ${({ theme }) => theme.colors.blue};
-  padding: 7px 12px;
-  display: inline-block;
-  margin-top: 8px;
-  pointer: cursor;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: background-color 0.3s, color 0.3s;
+const BlocCount = styled(Body11)`
+  color: ${({ theme }) => theme.colors.gray7};
+  font-weight: 500;
+  margin-top: 4px;
+`;
 
-  &: hover {
-    color: #fff;
-    background-color: ${({ theme }) => theme.colors.blue};
+const JoinButton = styled(Body11)`
+  padding: 0.8rem 2.5rem;
+  border-radius: 40px;
+  margin-top: 8px;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.blue};
+  color: #fff;
+  text-align: center;
+`;
+
+const GrowWrapper = styled.div`
+  display: inline-block;
+  min-width: 95%;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    min-width: 80%;
   }
+`;
+
+const GrowWrapperUnknown = styled.div`
+  max-width: 420px;
+`;
+
+const GrowButtonWrapper = styled.div`
+  padding: 0.8rem 2.5rem;
+  border: solid 2px ${({ theme }) => theme.colors.blue};
+  border-radius: 40px;
+  margin-top: 8px;
+  cursor: pointer;
+  text-align: center;
+`;
+const BlueBody11 = styled(Body11)`
+  color: ${({ theme }) => theme.colors.blue};
+  font-weight: 500;
+`;
+const WhyNot = styled(BlueBody11)`
+  margin-top: 8px;
 `;
 
 const ChosenCandWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-top: 10px;
 `;
 
@@ -194,12 +214,6 @@ const FiltersButton = styled(Body9)`
   text-align: center;
 `;
 
-const EditChoices = styled(Body13)`
-  color: ${({ theme }) => theme.colors.blue};
-  padding: 16px 0 8px;
-  cursor: pointer;
-`;
-
 const UnknownWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grayC};
   border-radius: 8px;
@@ -239,17 +253,24 @@ const VsList = ({
     const candidateRank = candidateRanking(ranking, candidate);
     if (candidateRank) {
       return (
-        <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
-          <CheckMark />{' '}
-          <ChosenCand>{numberNth(candidateRank)} CHOICE </ChosenCand>
-          <CloseIcon />
-        </ChosenCandWrapper>
+        <GrowWrapper>
+          <GrowButtonWrapper>
+            <BlueBody11>GROW #{candidateFirstName(candidate)}Bloc</BlueBody11>
+          </GrowButtonWrapper>
+          <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
+            <CheckMark />{' '}
+            <ChosenCand>{numberNth(candidateRank)} CHOICE </ChosenCand>
+            <CloseIcon />
+          </ChosenCandWrapper>
+        </GrowWrapper>
       );
     }
     return (
-      <ChoiceButton onClick={e => handleChoice(candidate, e)}>
-        {numberNth(nextChoice)} CHOICE
-      </ChoiceButton>
+      <GrowWrapper>
+        <JoinButton onClick={e => handleChoice(candidate, e)}>
+          JOIN #{candidateFirstName(candidate)}Bloc
+        </JoinButton>
+      </GrowWrapper>
     );
   };
 
@@ -273,6 +294,14 @@ const VsList = ({
     isGood: true,
   };
 
+  const blocCountSection = candidate => (
+    <BlocCount>
+      {numberFormatter(candidate.ranking)}{' '}
+      {candidate.ranking === 1 ? 'is' : 'are'} in #
+      {candidateFirstName(candidate)}Bloc
+    </BlocCount>
+  );
+
   return (
     <div>
       <Row>
@@ -293,6 +322,7 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                {blocCountSection(candidate)}
                 {choiceButton(candidate)}
               </CandidateWrapper>
             </Link>
@@ -335,7 +365,7 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
-                {choiceButton(candidate)}
+                <WhyNot>Why not god enough?</WhyNot>
               </CandidateWrapper>
             </Link>
           ))}
@@ -359,7 +389,10 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
-                {choiceButton(candidate)}
+                {blocCountSection(candidate)}
+                <GrowWrapperUnknown>
+                  {choiceButton(candidate)}
+                </GrowWrapperUnknown>
               </CandidateWrapper>
             </Link>
           ))}

@@ -101,6 +101,7 @@ const VsCard = ({
 }) => {
   const { good, notGood, unknown } = candidates;
   const [width, height] = useWindowSize();
+  const { topRank } = candidates;
 
   if (!good && !notGood && !unknown) {
     return (
@@ -139,47 +140,6 @@ const VsCard = ({
       <Row>
         <Sider>
           <Body9>
-            <Red>NOT GOOD ENOUGH</Red>
-          </Body9>
-          <AvatarsWrapper>
-            {notGood.map((candidate, index) => (
-              <React.Fragment key={`notGood-${candidate.id}`}>
-                {index < 3 && (
-                  <AvatarAbsolute
-                    className={`avatar-${index}`}
-                    style={{
-                      left: avatarSpace * index + 'px',
-                      zIndex: 5 - index,
-                    }}
-                  >
-                    <CandidateAvatar
-                      size="responsive"
-                      src={candidate.image}
-                      name={candidate.name}
-                    />
-                  </AvatarAbsolute>
-                )}
-              </React.Fragment>
-            ))}
-          </AvatarsWrapper>
-          {notGood.length > 1 && <Name>{notGood.length} CANDIDATES</Name>}
-          {notGood.length === 1 && (
-            <>
-              <Name>{notGood[0].name.toUpperCase()}</Name>
-              <Role>
-                {notGood[0].isIncumbent
-                  ? 'INCUMBENT'
-                  : partyResolver(notGood[0].party)}
-              </Role>
-            </>
-          )}
-        </Sider>
-        <Middler>
-          <Line />
-          <Vs>VS</Vs>
-        </Middler>
-        <Sider className="right">
-          <Body9>
             <Green>GOOD OPTIONS</Green>
           </Body9>
           <AvatarsWrapper>
@@ -188,7 +148,7 @@ const VsCard = ({
                 {index < 3 && (
                   <AvatarAbsolute
                     style={{
-                      right: avatarSpace * index + 'px',
+                      left: avatarSpace * index + 'px',
                       zIndex: 5 - index,
                     }}
                   >
@@ -217,10 +177,52 @@ const VsCard = ({
             </>
           )}
         </Sider>
+        <Middler>
+          <Line />
+          <Vs>VS</Vs>
+        </Middler>
+        <Sider className="right">
+          <Body9>
+            <Red>NOT GOOD ENOUGH</Red>
+          </Body9>
+          <AvatarsWrapper>
+            {notGood.map((candidate, index) => (
+              <React.Fragment key={`notGood-${candidate.id}`}>
+                {index < 3 && (
+                  <AvatarAbsolute
+                    className={`avatar-${index}`}
+                    style={{
+                      right: avatarSpace * index + 'px',
+                      zIndex: 5 - index,
+                    }}
+                  >
+                    <CandidateAvatar
+                      size="responsive"
+                      src={candidate.image}
+                      name={candidate.name}
+                    />
+                  </AvatarAbsolute>
+                )}
+              </React.Fragment>
+            ))}
+          </AvatarsWrapper>
+          {notGood.length > 1 && <Name>{notGood.length} CANDIDATES</Name>}
+          {notGood.length === 1 && (
+            <>
+              <Name>{notGood[0].name.toUpperCase()}</Name>
+              <Role>
+                {notGood[0].isIncumbent
+                  ? 'INCUMBENT'
+                  : partyResolver(notGood[0].party)}
+              </Role>
+            </>
+          )}
+        </Sider>
       </Row>
       <SupportersProgressBar
-        peopleSoFar={peopleSoFar}
+        peopleSoFar={topRank}
         votesNeeded={votesNeeded}
+        userState={candidates.userState}
       />
     </Card>
   );

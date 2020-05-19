@@ -246,6 +246,14 @@ export const isDistrictInCds = (districtNumber, cds) => {
   return false;
 };
 
+export const candidateFirstName = candidate => {
+  if (!candidate) {
+    return '';
+  }
+  const nameArr = candidate.name ? candidate.name.split(' ') : [];
+  return candidate.name ? nameArr[0] : '';
+};
+
 export const candidateRanking = (ranking, candidate) => {
   const rankObj = candidateRankObj(ranking, candidate);
   return rankObj ? rankObj.rank : false;

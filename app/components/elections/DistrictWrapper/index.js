@@ -153,7 +153,7 @@ const DistrictWrapper = ({
     }
 
     setThresholds({
-      presidentialVotesThreshold,
+      presidentialVotesThreshold: presidential.votesNeeded,
       senateThreshold,
       houseThreshold,
     });

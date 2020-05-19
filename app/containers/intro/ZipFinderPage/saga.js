@@ -9,6 +9,8 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
+import { makeSelectUserObj } from '../../you/YouPage/selectors';
+import selectUser from '../../you/YouPage/selectors';
 
 function* loadZip(action) {
   try {
@@ -42,8 +44,17 @@ function* loadCookieZip() {
 function* loadPresidential() {
   try {
     const api = tgpApi.allPresidential;
-    const response = yield call(requestHelper, api, null);
-    yield put(actions.loadAllPresidentialActionSuccess(response.presidential));
+    const user = yield call(getUserFromStateOrCookie);
+    let payload = null;
+    if (user && user.shortState) {
+      payload = { userState: user.shortState };
+    }
+
+    const { presidential } = yield call(requestHelper, api, payload);
+    if (user && user.shortState) {
+      presidential.userState = user.shortState;
+    }
+    yield put(actions.loadAllPresidentialActionSuccess(presidential));
   } catch (error) {
     console.log(error);
     yield put(actions.loadAllPresidentialActionError(error));
@@ -138,6 +149,18 @@ function* gelocationToDistrict(action) {
     console.log(err);
     yield put(actions.geolocationToDistrictActionError(err));
   }
+}
+
+function* getUserFromStateOrCookie() {
+  const userState = yield select(selectUser);
+  if (userState && userState.user) {
+    return userState.user;
+  }
+  const cookieUser = getCookie('user');
+  if (cookieUser) {
+    return JSON.parse(cookieUser);
+  }
+  return null;
 }
 
 // Individual exports for testing

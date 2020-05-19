@@ -180,6 +180,7 @@ export function ElectionPage({
       }
     }
   }
+  console.log('candidates', candidates)
 
   const childProps = {
     candidates,
