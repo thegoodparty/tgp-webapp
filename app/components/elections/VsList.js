@@ -330,7 +330,7 @@ const VsList = ({
   const blocCountSection = candidate => (
     <BlocCount>
       {numberFormatter(candidate.ranking)}{' '}
-      {candidate.ranking === 1 ? 'is' : 'are'} in
+      {candidate.ranking === 1 ? 'is' : 'are'} in{' '}
       {candidateBlocName(candidate, chamber, state, districtNumber)}
     </BlocCount>
   );
