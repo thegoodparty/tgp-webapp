@@ -26,14 +26,8 @@ import saga from 'containers/intro/ZipFinderPage/saga';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
-import {
-  makeSelectContent,
-  makeSelectLocation,
-} from 'containers/App/selectors';
-import {
-  getRankFromUserOrState,
-  isDistrictInCds,
-} from 'helpers/electionsHelper';
+import { makeSelectContent } from 'containers/App/selectors';
+import { isDistrictInCds } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
@@ -51,7 +45,6 @@ export function ElectionPage({
   districtState,
   candidateState,
   userState,
-  locationState,
   rankingObj,
   dispatch,
   saveRankingCallback,
@@ -66,7 +59,6 @@ export function ElectionPage({
   });
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
-  const { userCounts } = districtState;
   const { user, ranking } = userState;
 
   let candidates;
@@ -100,10 +92,6 @@ export function ElectionPage({
     dispatch(userActions.guestRankingAction());
   }
 
-  useEffect(() => {
-    dispatch(districtActions.userCountsAction(state, district));
-  }, [state, district]);
-
   let rankingAllowed = true;
   if (chamber === 'senate') {
     if (user) {
@@ -135,52 +123,6 @@ export function ElectionPage({
   }
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
-  const { search, pathname } = locationState;
-
-  // if there is no user, read the cookies ranking
-  let countsWithCookies;
-  if (!user) {
-    countsWithCookies = {};
-    countsWithCookies.threshold = userCounts.threshold;
-    if (chamber === 'presidential') {
-      const presidentialRank = getRankFromUserOrState(
-        null,
-        candidateState,
-        'presidentialRank',
-      );
-      if (presidentialRank && presidentialRank.length > 0) {
-        countsWithCookies.totalUsers = userCounts.totalUsers + 1;
-      } else {
-        countsWithCookies.totalUsers = userCounts.totalUsers;
-      }
-    }
-    if (chamber === 'senate') {
-      const senateRank = getRankFromUserOrState(
-        null,
-        candidateState,
-        'senateRank',
-      );
-      if (senateRank && senateRank.length > 0) {
-        countsWithCookies.senateUsers = userCounts.senateUsers + 1;
-      } else {
-        countsWithCookies.senateUsers = userCounts.senateUsers;
-      }
-    }
-
-    if (chamber === 'house') {
-      const houseRank = getRankFromUserOrState(
-        null,
-        candidateState,
-        'houseRank',
-      );
-      if (houseRank && houseRank.length > 0) {
-        countsWithCookies.districtUsers = userCounts.districtUsers + 1;
-      } else {
-        countsWithCookies.districtUsers = userCounts.districtUsers;
-      }
-    }
-  }
-
   const childProps = {
     candidates,
     user,
@@ -191,9 +133,7 @@ export function ElectionPage({
     state,
     districtNumber: district,
     rankingAllowed,
-    userCounts: countsWithCookies ? countsWithCookies : userCounts,
     saveRankingCallback,
-    pathname,
     refreshCountCallback,
     deleteCandidateRankingCallback,
   };
@@ -221,7 +161,6 @@ ElectionPage.propTypes = {
   districtState: PropTypes.object,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
-  locationState: PropTypes.object,
   changeFiltersCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
@@ -234,7 +173,6 @@ const mapStateToProps = createStructuredSelector({
   districtState: makeSelectZipFinderPage(),
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
-  locationState: makeSelectLocation(),
   rankingObj: makeSelectRanking(),
 });
 
@@ -275,7 +213,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
 
     refreshCountCallback: (state, district) => {
-      dispatch(districtActions.userCountsAction(state, district));
+      // dispatch(districtActions.userCountsAction(state, district));
     },
   };
 }

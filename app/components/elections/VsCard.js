@@ -96,9 +96,8 @@ const Green = styled.span`
 const VsCard = ({
   title,
   candidates = {},
-  peopleSoFar = 530435,
   votesNeeded = 38658139,
-  showElectorsCount = false,
+  suffixText=''
 }) => {
   const { good, notGood, unknown } = candidates;
   const [width, height] = useWindowSize();
@@ -224,7 +223,7 @@ const VsCard = ({
         peopleSoFar={topRank}
         votesNeeded={votesNeeded}
         userState={candidates.userState}
-        showElectorsCount={showElectorsCount}
+        suffixText={suffixText}
       />
     </Card>
   );
@@ -233,9 +232,9 @@ const VsCard = ({
 VsCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  peopleSoFar: PropTypes.number,
   votesNeeded: PropTypes.number,
   showElectorsCount: PropTypes.bool,
+  suffixText: PropTypes.string
 };
 
 export default VsCard;

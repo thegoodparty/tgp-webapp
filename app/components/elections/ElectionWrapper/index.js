@@ -92,12 +92,10 @@ const ElectionWrapper = ({
   displayChamber,
   ranking,
   candidates = {},
-  userCounts,
   content,
   state,
   districtNumber,
   rankingAllowed,
-  pathname,
   saveRankingCallback,
   editModeCallback,
   refreshCountCallback,
@@ -144,15 +142,9 @@ const ElectionWrapper = ({
 
   // let chamberCount = 0;
   let votesNeeded = 0;
-  if (userCounts) {
-    // if (chamber === 'presidential') {
-    //   chamberCount = userCounts.totalUsers;
-    // } else if (chamber === 'senate') {
-    //   chamberCount = userCounts.stateUsers;
-    // } else if (chamber === 'house') {
-    //   chamberCount = userCounts.districtUsers;
-    // }
-    votesNeeded = candidates.votesNeeded;
+
+  if (candidates) {
+    votesNeeded = candidates.threshold;
   }
 
   const handleChoiceCallback = async (candidate, rank) => {
@@ -191,7 +183,7 @@ const ElectionWrapper = ({
           <Nav />
           <Wrapper>
             <MobileHeader />
-
+            <H1>{title}</H1>
             <Row>
               <SupportersWrapper>
                 <SupportersRow>
@@ -280,8 +272,6 @@ ElectionWrapper.propTypes = {
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rankingAllowed: PropTypes.bool,
-  pathname: PropTypes.string,
-  userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   saveRankingCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,

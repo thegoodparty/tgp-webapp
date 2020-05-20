@@ -52,7 +52,7 @@ const SupportersProgressBar = ({
   userState,
   showSupporters = true,
   alignLeft = false,
-  showElectorsCount = false,
+  suffixText,
 }) => {
   let progress = 3;
   if (peopleSoFar && votesNeeded) {
@@ -75,11 +75,7 @@ const SupportersProgressBar = ({
       </BarBg>
       <BarBody9>
         {numberFormatter(votesNeeded)} VOTES NEEDED TO WIN
-        {userState
-          ? ` IN ${userState.toUpperCase()}`
-          : showElectorsCount
-          ? ' (270 ELECTORS)'
-          : ''}
+        {userState ? ` IN ${userState.toUpperCase()}` : suffixText}
       </BarBody9>
     </ProgressBarWrapper>
   );

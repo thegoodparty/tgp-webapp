@@ -43,7 +43,7 @@ export function DistrictPage({
   changeZipCallback,
   userState,
   candidateState,
-  rankingObj
+  rankingObj,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -54,16 +54,10 @@ export function DistrictPage({
   });
 
   const [cdIndex, setCdIndex] = useState(0);
-  const [districtNum, setDistrictNum] = useState(0);
   const { user, ranking } = userState;
 
   const { zipWithDistricts } = districtState;
-  const {
-    presidential,
-    houseCandidates,
-    senateCandidates,
-    userCounts,
-  } = districtState;
+  const { presidential, houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
     if (!zipWithDistricts) {
@@ -112,7 +106,6 @@ export function DistrictPage({
         cds.forEach(district => {
           if (district.id === approxPct[tempCd].districtId) {
             districtNumber = district.code;
-            setDistrictNum(districtNumber);
           }
         });
       }
@@ -126,13 +119,8 @@ export function DistrictPage({
       if (shortState) {
         dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
-      if (districtNumber) {
-        dispatch(districtActions.userCountsAction(shortState, districtNumber));
-      }
     }
   }, [zipWithDistricts, zip, cd, user]);
-
-
 
   const childProps = {
     district: zipWithDistricts,
@@ -145,8 +133,7 @@ export function DistrictPage({
     deleteRankingCallback,
     changeZipCallback,
     user,
-    userCounts,
-    ranking: rankingObj
+    ranking: rankingObj,
   };
 
   return (

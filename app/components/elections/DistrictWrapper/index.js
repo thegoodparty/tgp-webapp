@@ -75,7 +75,6 @@ const DistrictWrapper = ({
   deleteRankingCallback,
   changeZipCallback,
   user,
-  userCounts,
   ranking = {},
 }) => {
   let districtNumber;
@@ -281,17 +280,15 @@ const DistrictWrapper = ({
                   title="Presidential Election"
                   candidates={presidential}
                   votesNeeded={thresholds.presidentialVotesThreshold}
-                  peopleSoFar={userCounts ? userCounts.totalUsers : 0}
                   rankObj={presidentialRank}
-                  showElectorsCount
+                  suffixText=" (270 ELECTORS)"
                 />
               ) : (
                 <VsCard
-                  title="Presidential Election1"
+                  title="Presidential Election"
                   candidates={presidential}
                   votesNeeded={thresholds.presidentialVotesThreshold}
-                  peopleSoFar={userCounts ? userCounts.totalUsers : 0}
-                  showElectorsCount={true}
+                  suffixText=" (270 ELECTORS)"
                 />
               )}
             </Link>
@@ -301,15 +298,15 @@ const DistrictWrapper = ({
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
                   votesNeeded={thresholds.senateThreshold}
-                  peopleSoFar={userCounts ? userCounts.stateUsers : 0}
                   rankObj={senateRank}
+                  suffixText={` ${stateShort}`}
                 />
               ) : (
                 <VsCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
                   votesNeeded={thresholds.senateThreshold}
-                  peopleSoFar={userCounts ? userCounts.stateUsers : 0}
+                  suffixText={` ${stateShort}`}
                 />
               )}
             </Link>
@@ -319,15 +316,15 @@ const DistrictWrapper = ({
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
                   votesNeeded={thresholds.houseThreshold}
-                  peopleSoFar={userCounts ? userCounts.districtUsers : 0}
                   rankObj={houseRank}
+                  suffixText={` ${shortState}-${districtNumber}`}
                 />
               ) : (
                 <VsCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
                   votesNeeded={thresholds.houseThreshold}
-                  peopleSoFar={userCounts ? userCounts.districtUsers : 0}
+                  suffixText={` ${shortState}-${districtNumber}`}
                 />
               )}
             </Link>
@@ -378,7 +375,6 @@ DistrictWrapper.propTypes = {
   houseCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   cdIndex: PropTypes.number,
   changeDistrictCallback: PropTypes.func,
   deleteRankingCallback: PropTypes.func,

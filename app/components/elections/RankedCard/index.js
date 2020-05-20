@@ -24,10 +24,10 @@ const MoreChoices = styled(Body9)`
 
 const RankedCard = ({
   title,
-  peopleSoFar,
   votesNeeded,
   candidates = {},
   rankObj = {},
+  suffixText=''
 }) => {
   const rank = Object.keys(rankObj);
   const [candidatesHash, setCandidatesHash] = useState({});
@@ -35,6 +35,7 @@ const RankedCard = ({
     const candHash = mapCandidateToHash(candidates);
     setCandidatesHash(candHash);
   }, [candidates]);
+  const { topRank } = candidates;
 
   const candidateRow = (userRank, index) => {
     if (index > 1) {
@@ -59,8 +60,9 @@ const RankedCard = ({
       <H3>{title}</H3>
 
       <SupportersProgressBar
-        peopleSoFar={peopleSoFar}
+        peopleSoFar={topRank}
         votesNeeded={votesNeeded}
+        suffixText={suffixText}
       />
       <YourChoices>
         {rank.length > 2 ? 'YOUR RANKED CHOICES' : 'YOUR CHOICE'}
@@ -82,9 +84,9 @@ const RankedCard = ({
 RankedCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  peopleSoFar: PropTypes.number,
   votesNeeded: PropTypes.number,
   rank: PropTypes.array,
+  suffixText: PropTypes.string
 };
 
 export default RankedCard;
