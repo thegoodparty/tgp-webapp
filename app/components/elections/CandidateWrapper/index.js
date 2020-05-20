@@ -509,7 +509,10 @@ const CandidateWrapper = ({
                       </RankButton>
                       <RankWrapper
                         onClick={() =>
-                          deleteCandidateRankingCallback(rankObj, user)
+                          deleteCandidateRankingCallback(
+                            { ...rankObj, chamber: chamberName },
+                            user,
+                          )
                         }
                       >
                         <CheckMark />{' '}

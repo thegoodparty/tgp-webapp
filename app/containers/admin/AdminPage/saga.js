@@ -45,7 +45,6 @@ function* updateCandidate(action) {
     const api = tgpApi.admin.updateCandidate;
     const payload = { id, updatedFields, chamber, isIncumbent };
     const { candidate } = yield call(requestHelper, api, payload);
-    console.log('candidate', candidate);
     yield put(actions.updateCandidateSuccess(candidate));
   } catch (error) {
     console.log(error);

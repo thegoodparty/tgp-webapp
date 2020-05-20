@@ -31,7 +31,7 @@ const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-const Spacer = styled.div`
+export const Spacer = styled.div`
   display: none;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 40px;
@@ -43,7 +43,7 @@ const Blue = styled.span`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
-function RegisterBannerWrapper({ count, showBanner }) {
+function RegisterBannerWrapper({ count, showBanner, blocName }) {
   return (
     <>
       {showBanner ? (
@@ -51,9 +51,12 @@ function RegisterBannerWrapper({ count, showBanner }) {
           <Link to="/you/register">
             <ContentWrapper>
               <Body13>
-                You have joined {count} candidate voting bloc
-                {count > 1 ? 's' : ''}. <br />
-                <Blue>Sign-in to save your choices </Blue> &amp; be counted!
+                You have joined #{blocName}Bloc{' '}
+                {count > 1
+                  ? ` + ${count - 1} other${count > 2 ? 's' : ''}`
+                  : ''}
+                <br />
+                <Blue>Sign-in to save your choices </Blue> and be counted!
               </Body13>
               <ChevronRightIcon
                 style={{ marginLeft: '30px', color: '#CDCDCD' }}
@@ -71,6 +74,7 @@ function RegisterBannerWrapper({ count, showBanner }) {
 RegisterBannerWrapper.propTypes = {
   count: PropTypes.number,
   showBanner: PropTypes.bool,
+  blocName: PropTypes.string,
 };
 
 export default RegisterBannerWrapper;

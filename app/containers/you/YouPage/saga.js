@@ -401,6 +401,7 @@ function* saveGuestRanking(action) {
       candidate: candidate.id,
       chamber,
       isIncumbent: !!candidate.isIncumbent,
+      candName: candidate.name,
     });
     setCookie('guestRanking', JSON.stringify(ranking));
 
@@ -449,7 +450,7 @@ function* deleteCandidateRanking(action) {
 function* deleteGuestRanking(action) {
   try {
     const { rankToDelete } = action;
-    const { rank, chamber, id, isIncumbent } = rankToDelete;
+    const { rank, chamber } = rankToDelete;
     const rankingCookie = getCookie('guestRanking');
     if (rankingCookie) {
       const ranking = JSON.parse(rankingCookie);

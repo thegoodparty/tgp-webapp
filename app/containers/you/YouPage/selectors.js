@@ -45,12 +45,20 @@ const makeSelectRanking = () =>
       };
       if (ranking) {
         ranking.forEach(userRank => {
-          const { id, rank, candidate, isIncumbent, chamber } = userRank;
+          const {
+            id,
+            rank,
+            candidate,
+            isIncumbent,
+            chamber,
+            candName, // only valid for guest ranking. Used for the register banner
+          } = userRank;
           rankingObj[chamber][candidate] = {
             id,
             rank,
             candidateId: candidate,
             isIncumbent,
+            candName,
           };
         });
       }
