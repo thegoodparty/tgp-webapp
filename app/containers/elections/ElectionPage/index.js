@@ -183,13 +183,23 @@ function mapDispatchToProps(dispatch, ownProps) {
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
 
-    saveRankingCallback: (user, candidate, rank, chamber, refreshUserCount) => {
+    saveRankingCallback: (
+      user,
+      candidate,
+      rank,
+      chamber,
+      refreshUserCount,
+      state,
+      district,
+    ) => {
       if (user) {
         dispatch(
           userActions.saveUserRankingAction(
             candidate,
             rank,
             chamber,
+            state,
+            district,
             refreshUserCount,
           ),
         );
@@ -204,9 +214,9 @@ function mapDispatchToProps(dispatch, ownProps) {
         );
       }
     },
-    deleteCandidateRankingCallback: (rank, user) => {
+    deleteCandidateRankingCallback: (rank, user, chamber, state, district) => {
       if (user) {
-        dispatch(userActions.deleteCandidateRankingAction(rank.id));
+        dispatch(userActions.deleteCandidateRankingAction(rank.id, chamber, state, district));
       } else {
         dispatch(userActions.deleteGuestRankingAction(rank));
       }

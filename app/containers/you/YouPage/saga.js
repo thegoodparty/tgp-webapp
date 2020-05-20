@@ -361,7 +361,14 @@ function* uploadAvatar(action) {
 
 function* saveUserRanking(action) {
   try {
-    const { candidate, rank, chamber, refreshUserCount } = action;
+    const {
+      candidate,
+      rank,
+      chamber,
+      state,
+      district,
+      refreshUserCount,
+    } = action;
     const api = tgpApi.rankCandidate;
     const payload = {
       rank,
@@ -369,13 +376,18 @@ function* saveUserRanking(action) {
       chamber,
       isIncumbent: candidate.isIncumbent,
     };
-    const response = yield call(requestHelper, api, payload);
-    // const { user } = response;
-    // yield put(actions.updateUserActionSuccess(user));
-    yield put(actions.userRankingAction());
+    const { ranking } = yield call(requestHelper, api, payload);
+    yield put(actions.userRankingActionSuccess(ranking));
 
-    // setCookie('user', JSON.stringify(user));
     yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
+
+    if (chamber === 'presidential') {
+      yield put(districtActions.loadAllPresidentialAction());
+    } else if (chamber === 'senate') {
+      yield put(districtActions.loadSenateCandidatesAction(state));
+    } else {
+      yield put(districtActions.loadHouseCandidatesAction(state, district));
+    }
     // if (refreshUserCount) {
     //   yield put(districtActions.userCountsAction(state, district));
     // }
@@ -433,12 +445,19 @@ function* deleteAllUserRankings() {
 
 function* deleteCandidateRanking(action) {
   try {
-    const { id } = action;
+    const { id, chamber, state, district } = action;
     const payload = { id };
     const api = tgpApi.deleteCandidateRanking;
     yield call(requestHelper, api, payload);
     yield put(actions.userRankingAction());
     yield put(snackbarActions.showSnakbarAction('Your ranking was deleted'));
+    if (chamber === 'presidential') {
+      yield put(districtActions.loadAllPresidentialAction());
+    } else if (chamber === 'senate') {
+      yield put(districtActions.loadSenateCandidatesAction(state));
+    } else {
+      yield put(districtActions.loadHouseCandidatesAction(state, district));
+    }
   } catch (error) {
     console.log(error);
     yield put(

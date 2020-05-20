@@ -113,7 +113,7 @@ const ElectionWrapper = ({
   const { topRank } = candidates;
 
   const selectCandidate = async (candidate, rank) => {
-    saveRankingCallback(user, candidate, rank, chamber);
+    saveRankingCallback(user, candidate, rank, chamber, state, districtNumber);
   };
 
   const openFiltersCallback = () => {
@@ -167,7 +167,13 @@ const ElectionWrapper = ({
 
   const handleDeselectCandidate = async rank => {
     // await deSelectCandidate(candidate.id);
-    deleteCandidateRankingCallback({ ...rank, chamber }, user);
+    deleteCandidateRankingCallback(
+      { ...rank, chamber },
+      user,
+      chamber,
+      state,
+      districtNumber,
+    );
   };
 
   const onCloseChoiceModal = () => {

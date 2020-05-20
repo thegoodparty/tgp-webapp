@@ -42,7 +42,7 @@ const zipFinderPageReducer = (state = initialState, action) =>
         break;
 
       case types.LOAD_ALL_PRESIDENTIAL:
-        draft.presidential = false;
+        // draft.presidential = false;
         break;
 
       case types.LOAD_ALL_PRESIDENTIAL_SUCCESS:
@@ -54,7 +54,7 @@ const zipFinderPageReducer = (state = initialState, action) =>
         break;
 
       case types.LOAD_HOUSE_CANDIDATES:
-        draft.houseCandidates = false;
+        // draft.houseCandidates = false;
         break;
 
       case types.LOAD_HOUSE_CANDIDATES_SUCCESS:
@@ -66,7 +66,7 @@ const zipFinderPageReducer = (state = initialState, action) =>
         break;
 
       case types.LOAD_SENATE_CANDIDATES:
-        draft.senateCandidates = false;
+        // draft.senateCandidates = false;
         break;
 
       case types.LOAD_SENATE_CANDIDATES_SUCCESS:

@@ -212,7 +212,7 @@ const ChoiceModal = ({
                           animation: `animate-out 1s ease-in-out forwards`,
                         }}
                       >
-                        {numberFormatter(countWithUser)}{' '}
+                        {numberFormatter(countWithUser - 1)}{' '}
                         {countWithUser === 1 ? 'person' : 'people'}
                       </SupportersCount>
                       <SupportersCount
@@ -220,7 +220,7 @@ const ChoiceModal = ({
                           animation: `animate-in 1s ease-in-out forwards`,
                         }}
                       >
-                        {numberFormatter(countWithUser + 1)}{' '}
+                        {numberFormatter(countWithUser)}{' '}
                         {countWithUser + 1 === 1 ? 'person' : 'people'}
                       </SupportersCount>
                     </>
