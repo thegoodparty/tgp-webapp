@@ -26,7 +26,7 @@ const RankedCard = ({
   title,
   candidates = {},
   rankObj = {},
-  suffixText=''
+  suffixText = '',
 }) => {
   const rank = Object.keys(rankObj);
   const [candidatesHash, setCandidatesHash] = useState({});
@@ -64,6 +64,7 @@ const RankedCard = ({
         peopleSoFar={topRank}
         votesNeeded={votesNeeded}
         suffixText={suffixText}
+        userState={candidates.userState}
       />
       <YourChoices>
         {rank.length > 2 ? 'YOUR RANKED CHOICES' : 'YOUR CHOICE'}
@@ -86,7 +87,7 @@ RankedCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rank: PropTypes.array,
-  suffixText: PropTypes.string
+  suffixText: PropTypes.string,
 };
 
 export default RankedCard;
