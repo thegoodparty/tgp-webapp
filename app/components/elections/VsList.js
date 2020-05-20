@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
-import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
+import { Body9, Body11, Body13, Body } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
   partyResolver,
@@ -13,9 +14,9 @@ import {
   candidateRanking,
   candidateFirstName,
 } from 'helpers/electionsHelper';
-import { OutlinedButton } from '../shared/buttons';
+import { numberFormatter, numberNth } from 'helpers/numberHelper';
+
 import LoadingAnimation from '../shared/LoadingAnimation';
-import { numberFormatter, numberNth } from '../../helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -50,13 +51,11 @@ const NotGoodTitle = styled(Body13)`
   font-weight: 700;
 `;
 
-
 const GoodTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.green};
   letter-spacing: 0;
   font-weight: 700;
 `;
-
 
 const CandidateWrapper = styled.div`
   margin-top: 17px;
@@ -221,6 +220,22 @@ const UnknownWrapper = styled.div`
   margin-top: 48px;
 `;
 
+const NominateWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.blue};
+  cursor: pointer;
+  margin-top: 32px;
+`;
+
+const NominateText = styled(Body)`
+  color: ${({ theme }) => theme.colors.blue};
+  font-weight: 600;
+  margin-left: 4px;
+`;
+
 const UnknownTitle = styled(Body9)`
   letter-spacing: 0.5px;
   font-weight: 500;
@@ -233,6 +248,8 @@ const VsList = ({
   ranking,
   handleChoiceCallback,
   handleDeselectCandidate,
+  goodBlock,
+  districtNumber,
 }) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
@@ -255,7 +272,11 @@ const VsList = ({
       return (
         <GrowWrapper>
           <GrowButtonWrapper>
-            <BlueBody11>GROW #{candidateFirstName(candidate)}Bloc</BlueBody11>
+            {candidate.id === noneYetCandidate.id ? (
+              <BlueBody11>GROW #GoodBloc{goodBlock}</BlueBody11>
+            ) : (
+              <BlueBody11>GROW #{candidateFirstName(candidate)}Bloc</BlueBody11>
+            )}
           </GrowButtonWrapper>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
             <CheckMark />{' '}
@@ -267,9 +288,15 @@ const VsList = ({
     }
     return (
       <GrowWrapper>
-        <JoinButton onClick={e => handleChoice(candidate, e)}>
-          JOIN #{candidateFirstName(candidate)}Bloc
-        </JoinButton>
+        {candidate.id === noneYetCandidate.id ? (
+          <JoinButton onClick={e => handleChoice(candidate, e)}>
+            JOIN #GoodBloc{goodBlock}
+          </JoinButton>
+        ) : (
+          <JoinButton onClick={e => handleChoice(candidate, e)}>
+            JOIN #{candidateFirstName(candidate)}Bloc
+          </JoinButton>
+        )}
       </GrowWrapper>
     );
   };
@@ -290,7 +317,7 @@ const VsList = ({
   };
 
   const noneYetCandidate = {
-    id: -1,
+    id: districtNumber ? districtNumber * -1 : -1,
     isGood: true,
   };
 
@@ -331,11 +358,12 @@ const VsList = ({
             <CandidateWrapper>
               <CandidateAvatar size="responsive" src="blank" good />
               <Name className="gray">NONE YET</Name>
-              <Role>
-                CHOOSE TO GET NOTIFIED
-                <br />
-                OF ANY GOOD CHALLENGERS
-              </Role>
+              <Role>GOOD PARTY APPROVED</Role>
+              <BlocCount>
+                {numberFormatter(candidates.goodEmptyBlock)}{' '}
+                {candidates.goodEmptyBlock === 1 ? 'is' : 'are'} in # GoodBlock
+                {goodBlock}
+              </BlocCount>
               {choiceButton(noneYetCandidate)}
             </CandidateWrapper>
           )}
@@ -371,6 +399,14 @@ const VsList = ({
           ))}
         </Side>
       </Row>
+      {good.length === 0 && (
+        <a href="https://forms.gle/kydnhUp6xqF6RUpb9" target="_blank">
+          <NominateWrapper>
+            <MailOutlineIcon />{' '}
+            <NominateText>Nominate a candidate</NominateText>
+          </NominateWrapper>
+        </a>
+      )}
       {unknown && unknown.length > 0 && (
         <UnknownWrapper>
           <UnknownTitle>NOT YET RATED</UnknownTitle>
@@ -411,6 +447,8 @@ VsList.propTypes = {
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,
+  goodBlock: PropTypes.string,
+  districtNumber: PropTypes.number,
 };
 
 export default VsList;

@@ -205,7 +205,13 @@ const ElectionWrapper = ({
                   peopleSoFar={topRank}
                   userState={candidates.userState}
                   showSupporters={false}
-                  showElectorsCount={chamber === 'presidential'}
+                  suffixText={
+                    chamber === 'presidential'
+                      ? ' (270 ELECTORS)'
+                      : ` IN ${stateUpper}${
+                          districtNumber ? districtNumber : ''
+                        }`
+                  }
                   alignLeft
                 />
               </SupportersWrapper>
@@ -238,6 +244,8 @@ const ElectionWrapper = ({
               ranking={ranking}
               handleChoiceCallback={handleChoiceCallback}
               handleDeselectCandidate={handleDeselectCandidate}
+              goodBlock={`${stateUpper}${districtNumber ? districtNumber : ''}`}
+              districtNumber={districtNumber}
             />
 
             <TopQuestions articles={articles} />
