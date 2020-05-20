@@ -62,7 +62,6 @@ const makeSelectRanking = () =>
           };
         });
       }
-      console.log('in selector', rankingObj);
 
       return rankingObj;
     },

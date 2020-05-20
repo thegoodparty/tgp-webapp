@@ -155,10 +155,7 @@ const ElectionWrapper = ({
     if (rankingAllowed) {
       setChoiceModalCandidate(candidate);
       selectCandidate(candidate, rank);
-      const isSharedModal = getCookie('isSharedModal');
-      if (isSharedModal !== 'true' || candidate.isGood === false) {
-        setShowChoiceModal(true);
-      }
+      setShowChoiceModal(true);
     } else {
       // ranking not allowed
       setShowRankAlert(true);
@@ -188,6 +185,11 @@ const ElectionWrapper = ({
 
   const stateUpper = state ? state.toUpperCase() : '';
 
+  const suffixText =
+    chamber === 'presidential'
+      ? ' (270 ELECTORS)'
+      : ` IN ${stateUpper}${districtNumber ? districtNumber : ''}`;
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -211,13 +213,7 @@ const ElectionWrapper = ({
                   peopleSoFar={topRank}
                   userState={candidates.userState}
                   showSupporters={false}
-                  suffixText={
-                    chamber === 'presidential'
-                      ? ' (270 ELECTORS)'
-                      : ` IN ${stateUpper}${
-                          districtNumber ? districtNumber : ''
-                        }`
-                  }
+                  suffixText={suffixText}
                   alignLeft
                 />
               </SupportersWrapper>
@@ -289,8 +285,9 @@ const ElectionWrapper = ({
         votesNeeded={votesNeeded}
         chamberCount={topRank}
         user={user}
-        cancelCallback={cancelCallback}
         animateCount={Object.keys(ranking).length <= 1}
+        userState={candidates.userState}
+        suffixText={suffixText}
       />
     </GrayWrapper>
   );
