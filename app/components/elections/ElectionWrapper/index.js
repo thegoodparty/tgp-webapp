@@ -283,9 +283,9 @@ const ElectionWrapper = ({
         closeCallback={onCloseChoiceModal}
         candidate={choiceModalCandidate}
         votesNeeded={votesNeeded}
-        chamberCount={topRank}
+        chamberCount={choiceModalCandidate.ranking}
         user={user}
-        animateCount={Object.keys(ranking).length <= 1}
+        animateCount
         userState={candidates.userState}
         suffixText={suffixText}
       />

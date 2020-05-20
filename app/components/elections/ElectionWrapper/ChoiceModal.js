@@ -175,7 +175,7 @@ const ChoiceModal = ({
                   }}
                 >
                   <HeartImg src={heartImg} alt="tgp" />
-                  {numberFormatter(countWithUser - 1)}{' '}
+                  {numberFormatter(countWithUser)}{' '}
                   {countWithUser === 0 ? 'person' : 'people'}
                 </SupportersCount>
                 <SupportersCount
@@ -184,7 +184,7 @@ const ChoiceModal = ({
                   }}
                 >
                   <HeartImg src={heartImg} alt="tgp" />
-                  {numberFormatter(countWithUser)}{' '}
+                  {numberFormatter(countWithUser + 1)}{' '}
                   {countWithUser === 1 ? 'person' : 'people'}
                 </SupportersCount>
               </>
