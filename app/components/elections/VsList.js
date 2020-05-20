@@ -13,6 +13,7 @@ import {
   candidateRoute,
   candidateRanking,
   candidateFirstName,
+  candidateBlocName,
 } from 'helpers/electionsHelper';
 import { numberFormatter, numberNth } from 'helpers/numberHelper';
 
@@ -249,6 +250,8 @@ const VsList = ({
   handleChoiceCallback,
   handleDeselectCandidate,
   goodBlock,
+  chamber,
+  state,
   districtNumber,
 }) => {
   const { good, notGood, unknown } = candidates;
@@ -275,7 +278,10 @@ const VsList = ({
             {candidate.id === noneYetCandidate.id ? (
               <BlueBody11>GROW #GoodBloc{goodBlock}</BlueBody11>
             ) : (
-              <BlueBody11>GROW #{candidateFirstName(candidate)}Bloc</BlueBody11>
+              <BlueBody11>
+                GROW{' '}
+                {candidateBlocName(candidate, chamber, state, districtNumber)}
+              </BlueBody11>
             )}
           </GrowButtonWrapper>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
@@ -294,7 +300,7 @@ const VsList = ({
           </JoinButton>
         ) : (
           <JoinButton onClick={e => handleChoice(candidate, e)}>
-            JOIN #{candidateFirstName(candidate)}Bloc
+            JOIN {candidateBlocName(candidate, chamber, state, districtNumber)}
           </JoinButton>
         )}
       </GrowWrapper>
@@ -324,8 +330,8 @@ const VsList = ({
   const blocCountSection = candidate => (
     <BlocCount>
       {numberFormatter(candidate.ranking)}{' '}
-      {candidate.ranking === 1 ? 'is' : 'are'} in #
-      {candidateFirstName(candidate)}Bloc
+      {candidate.ranking === 1 ? 'is' : 'are'} in
+      {candidateBlocName(candidate, chamber, state, districtNumber)}
     </BlocCount>
   );
 
@@ -449,6 +455,8 @@ VsList.propTypes = {
   handleDeselectCandidate: PropTypes.func,
   goodBlock: PropTypes.string,
   districtNumber: PropTypes.number,
+  chamber: PropTypes.string,
+  state: PropTypes.string,
 };
 
 export default VsList;

@@ -188,9 +188,9 @@ function mapDispatchToProps(dispatch, ownProps) {
       candidate,
       rank,
       chamber,
-      refreshUserCount,
       state,
       district,
+      refreshUserCount,
     ) => {
       if (user) {
         dispatch(
@@ -216,7 +216,14 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     deleteCandidateRankingCallback: (rank, user, chamber, state, district) => {
       if (user) {
-        dispatch(userActions.deleteCandidateRankingAction(rank.id, chamber, state, district));
+        dispatch(
+          userActions.deleteCandidateRankingAction(
+            rank.id,
+            chamber,
+            state,
+            district,
+          ),
+        );
       } else {
         dispatch(userActions.deleteGuestRankingAction(rank));
       }

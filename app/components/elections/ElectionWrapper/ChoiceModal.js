@@ -8,7 +8,11 @@ import { Link } from 'react-router-dom';
 import heartImg from 'images/heart.svg';
 import { Body, H1, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { candidateFirstName, partyResolver } from 'helpers/electionsHelper';
+import {
+  candidateBlocName,
+  candidateFirstName,
+  partyResolver,
+} from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ShareButton from '../../shared/ShareButton';
@@ -123,6 +127,9 @@ const ChoiceModal = ({
   userState,
   suffixText,
   closeCallback,
+  chamber,
+  state,
+  districtNumber,
 }) => {
   if (!candidate) {
     return <> </>;
@@ -160,7 +167,8 @@ const ChoiceModal = ({
             name={candidate.name}
           />
           <H1 style={{ marginTop: '18px', marginBottom: '36px' }}>
-            #{candidateFirstName(candidate)}Bloc Joined!{' '}
+            {candidateBlocName(candidate, chamber, state, districtNumber)}{' '}
+            Joined!{' '}
             <span role="img" aria-label="flex">
               💪
             </span>
@@ -197,7 +205,9 @@ const ChoiceModal = ({
             )}
           </SupportersRow>
           <SuppoetersBody13>
-            have joined the #{candidateFirstName(candidate)}Bloc so far
+            have joined the{' '}
+            {candidateBlocName(candidate, chamber, state, districtNumber)} so
+            far
           </SuppoetersBody13>
         </AvatarWrapper>
         <CenterBar>
@@ -235,6 +245,8 @@ ChoiceModal.propTypes = {
   animateCount: PropTypes.bool,
   userState: PropTypes.string,
   suffixText: PropTypes.string,
+  chamber: PropTypes.string,
+  state: PropTypes.string,
 };
 
 export default ChoiceModal;

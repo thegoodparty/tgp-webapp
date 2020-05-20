@@ -248,6 +248,8 @@ const ElectionWrapper = ({
               handleDeselectCandidate={handleDeselectCandidate}
               goodBlock={`${stateUpper}${districtNumber ? districtNumber : ''}`}
               districtNumber={districtNumber}
+              chamber={chamber}
+              state={stateUpper}
             />
 
             <TopQuestions articles={articles} />
@@ -283,11 +285,18 @@ const ElectionWrapper = ({
         closeCallback={onCloseChoiceModal}
         candidate={choiceModalCandidate}
         votesNeeded={votesNeeded}
-        chamberCount={choiceModalCandidate.ranking}
+        chamberCount={
+          choiceModalCandidate.id < 0
+            ? candidates.goodEmptyBlock
+            : choiceModalCandidate.ranking
+        }
         user={user}
         animateCount
         userState={candidates.userState}
         suffixText={suffixText}
+        districtNumber={districtNumber}
+        chamber={chamber}
+        state={stateUpper}
       />
     </GrayWrapper>
   );

@@ -254,6 +254,34 @@ export const candidateFirstName = candidate => {
   return candidate.name ? nameArr[0] : '';
 };
 
+export const candidateLastName = candidate => {
+  if (!candidate) {
+    return '';
+  }
+  const nameArr = candidate.name ? candidate.name.split(' ') : [];
+
+  return candidate.name ? nameArr[nameArr.length - 1] : '';
+};
+
+export const candidateBlocName = (candidate, chamber, state, district) => {
+  if (!candidate) {
+    return '';
+  }
+  const lastName = candidateLastName(candidate);
+  if (chamber === 'presidential') {
+    if (lastName === 'Sanders') {
+      return '#BernieBloc';
+    }
+    return `#${lastName}Bloc`;
+  }
+  if (chamber === 'senate') {
+    return `#${lastName}${state.toUpperCase()}Bloc`;
+  }
+  if (chamber === 'house') {
+    return `#${lastName}${state}${district}Bloc`;
+  }
+};
+
 export const candidateRanking = (ranking, candidate) => {
   const rankObj = candidateRankObj(ranking, candidate);
   return rankObj ? rankObj.rank : false;
