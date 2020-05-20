@@ -198,6 +198,7 @@ const ElectionWrapper = ({
                   <HeartImg src={heartImg} alt="tgp" />
                   <SupportersCount>
                     {numberFormatter(topRank)}{' '}
+                    {topRank === 1 ? 'Person' : 'People'}{' '}
                   </SupportersCount>
                 </SupportersRow>
                 <SuppoetersBody>in top voting bloc so far</SuppoetersBody>
@@ -206,6 +207,7 @@ const ElectionWrapper = ({
                   peopleSoFar={topRank}
                   userState={candidates.userState}
                   showSupporters={false}
+                  showElectorsCount={chamber === 'presidential'}
                   alignLeft
                 />
               </SupportersWrapper>

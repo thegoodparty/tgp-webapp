@@ -268,8 +268,11 @@ const DistrictWrapper = ({
             <Spacer>
               <Body>
                 You have <strong>{electionCount}</strong> relevant Federal
-                elections. Join voting blocs to see if your vote can elect
-                someone Good.
+                elections. Check candidate voting blocs to see if your vote can
+                elect someone Good.{' '}
+                <Link to="/party/faq/what-makes-a-candidate-a-good-option/5KnBx42FOEVDJNUFpoU1PX">
+                  See how we determine Good Options.
+                </Link>
               </Body>
             </Spacer>
             <Link to={presidentialElectionLink()}>
@@ -280,13 +283,15 @@ const DistrictWrapper = ({
                   votesNeeded={thresholds.presidentialVotesThreshold}
                   peopleSoFar={userCounts ? userCounts.totalUsers : 0}
                   rankObj={presidentialRank}
+                  showElectorsCount
                 />
               ) : (
                 <VsCard
-                  title="Presidential Election"
+                  title="Presidential Election1"
                   candidates={presidential}
                   votesNeeded={thresholds.presidentialVotesThreshold}
                   peopleSoFar={userCounts ? userCounts.totalUsers : 0}
+                  showElectorsCount={true}
                 />
               )}
             </Link>

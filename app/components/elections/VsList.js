@@ -365,7 +365,7 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
-                <WhyNot>Why not god enough?</WhyNot>
+                <WhyNot>Why not good enough?</WhyNot>
               </CandidateWrapper>
             </Link>
           ))}

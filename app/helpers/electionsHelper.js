@@ -58,7 +58,7 @@ export const rankText = number => {
   return number + 'TH';
 };
 
-export const presidentialVotesThreshold = 65853514;
+export const presidentialVotesThreshold = 38658139;
 
 export const defaultFilters = {
   smallDonors: true,
