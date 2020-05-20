@@ -192,6 +192,8 @@ const DistrictWrapper = ({
     handleCloseAlert();
   };
 
+  const upperState = stateShort ? stateShort.toUpperCase() : stateShort;
+
   return (
     <GrayWrapper>
       {district && presidential ? (
@@ -271,13 +273,13 @@ const DistrictWrapper = ({
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
                   rankObj={senateRank}
-                  suffixText={` ${stateShort}`}
+                  suffixText={` ${upperState}`}
                 />
               ) : (
                 <VsCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
-                  suffixText={` ${stateShort}`}
+                  suffixText={` ${upperState}`}
                 />
               )}
             </Link>
@@ -287,13 +289,13 @@ const DistrictWrapper = ({
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
                   rankObj={houseRank}
-                  suffixText={` ${shortState}-${districtNumber}`}
+                  suffixText={` ${upperState}-${districtNumber}`}
                 />
               ) : (
                 <VsCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
-                  suffixText={` ${shortState}-${districtNumber}`}
+                  suffixText={` ${upperState}-${districtNumber}`}
                 />
               )}
             </Link>
