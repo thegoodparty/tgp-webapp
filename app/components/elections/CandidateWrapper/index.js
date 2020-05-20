@@ -20,6 +20,7 @@ import {
 import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
+  candidateBlocName,
   candidateRankObj,
   houseElectionLink,
   partyResolver,
@@ -361,7 +362,6 @@ const CandidateWrapper = ({
     : moneyHelper(largeDonorPerHour);
 
   const nameArr = name ? name.split(' ') : [];
-  const firstName = name ? nameArr[0] : '';
   const lastName = name ? nameArr[nameArr.length - 1] : '';
 
   const coloredGood = () => {
@@ -459,6 +459,8 @@ const CandidateWrapper = ({
 
   const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
+
+  const blocName = candidateBlocName(candidate, chamberName, state, district);
   return (
     <GrayWrapper>
       {candidate && name ? (
@@ -500,12 +502,12 @@ const CandidateWrapper = ({
                     {numberFormatter(rankingCount)}{' '}
                     {rankingCount === 1 ? 'person' : 'people'} have joined{' '}
                     <br />
-                    <strong>#{firstName}Bloc</strong>
+                    <strong>{blocName}</strong>
                   </BlocCount>
                   {rank ? (
                     <>
                       <RankButton>
-                        <StyledBody13>GROW #{firstName}Bloc</StyledBody13>
+                        <StyledBody13>GROW {blocName}</StyledBody13>
                       </RankButton>
                       <RankWrapper
                         onClick={() =>
@@ -524,7 +526,7 @@ const CandidateWrapper = ({
                     <RankButton className="blue">
                       <Link to={rankPageLink()}>
                         <StyledBody13 className="white">
-                          JOIN #{firstName}Bloc
+                          JOIN {blocName}
                         </StyledBody13>
                       </Link>
                     </RankButton>
