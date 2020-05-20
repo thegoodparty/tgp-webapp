@@ -24,7 +24,6 @@ const MoreChoices = styled(Body9)`
 
 const RankedCard = ({
   title,
-  votesNeeded,
   candidates = {},
   rankObj = {},
   suffixText=''
@@ -36,6 +35,8 @@ const RankedCard = ({
     setCandidatesHash(candHash);
   }, [candidates]);
   const { topRank } = candidates;
+
+  const votesNeeded = candidates.threshold;
 
   const candidateRow = (userRank, index) => {
     if (index > 1) {
@@ -84,7 +85,6 @@ const RankedCard = ({
 RankedCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  votesNeeded: PropTypes.number,
   rank: PropTypes.array,
   suffixText: PropTypes.string
 };

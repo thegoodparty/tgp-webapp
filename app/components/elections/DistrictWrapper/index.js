@@ -22,7 +22,6 @@ import GrayWrapper from 'components/shared/GrayWrapper';
 import {
   houseElectionLink,
   presidentialElectionLink,
-  presidentialVotesThreshold,
   senateElectionLink,
 } from 'helpers/electionsHelper';
 import VsCard from '../VsCard';
@@ -84,7 +83,6 @@ const DistrictWrapper = ({
 
   const [showCds, setShowCds] = useState(false);
   const [cdsWithPerc, setCdsWithPerc] = useState([]);
-  const [thresholds, setThresholds] = useState({});
   const [showRankAlert, setShowRankAlert] = React.useState(false);
   const [selectedCid, setSelectedCid] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(false);
@@ -97,7 +95,6 @@ const DistrictWrapper = ({
     primaryCity,
     stateLong,
     zip,
-    senateThresholds,
   } = district;
 
   const shortState = stateShort ? stateShort.toUpperCase() : '';
@@ -134,28 +131,6 @@ const DistrictWrapper = ({
       });
     });
     setCdsWithPerc(cdWithPerc);
-    let houseThreshold;
-    let senateThreshold;
-    if (cds && cds[cdIndex]) {
-      houseThreshold =
-        Math.max(
-          cds[cdIndex].writeInThreshold,
-          cds[cdIndex].writeInThresholdWithPresident,
-        ) + 1;
-    }
-    if (senateThresholds) {
-      senateThreshold =
-        Math.max(
-          senateThresholds.writeInThreshold,
-          senateThresholds.writeInThresholdWithPresident,
-        ) + 1;
-    }
-
-    setThresholds({
-      presidentialVotesThreshold: presidential.votesNeeded,
-      senateThreshold,
-      houseThreshold,
-    });
   }, [cds]);
 
   const toggleShowCds = () => {
@@ -279,7 +254,6 @@ const DistrictWrapper = ({
                 <RankedCard
                   title="Presidential Election"
                   candidates={presidential}
-                  votesNeeded={thresholds.presidentialVotesThreshold}
                   rankObj={presidentialRank}
                   suffixText=" (270 ELECTORS)"
                 />
@@ -287,7 +261,6 @@ const DistrictWrapper = ({
                 <VsCard
                   title="Presidential Election"
                   candidates={presidential}
-                  votesNeeded={thresholds.presidentialVotesThreshold}
                   suffixText=" (270 ELECTORS)"
                 />
               )}
@@ -297,7 +270,6 @@ const DistrictWrapper = ({
                 <RankedCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
-                  votesNeeded={thresholds.senateThreshold}
                   rankObj={senateRank}
                   suffixText={` ${stateShort}`}
                 />
@@ -305,7 +277,6 @@ const DistrictWrapper = ({
                 <VsCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
-                  votesNeeded={thresholds.senateThreshold}
                   suffixText={` ${stateShort}`}
                 />
               )}
@@ -315,7 +286,6 @@ const DistrictWrapper = ({
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
-                  votesNeeded={thresholds.houseThreshold}
                   rankObj={houseRank}
                   suffixText={` ${shortState}-${districtNumber}`}
                 />
@@ -323,7 +293,6 @@ const DistrictWrapper = ({
                 <VsCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
-                  votesNeeded={thresholds.houseThreshold}
                   suffixText={` ${shortState}-${districtNumber}`}
                 />
               )}

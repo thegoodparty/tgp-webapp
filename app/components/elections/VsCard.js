@@ -93,15 +93,12 @@ const Green = styled.span`
   color: ${({ theme }) => theme.colors.green};
 `;
 
-const VsCard = ({
-  title,
-  candidates = {},
-  votesNeeded = 38658139,
-  suffixText=''
-}) => {
+const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
   const { good, notGood, unknown } = candidates;
   const [width, height] = useWindowSize();
   const { topRank } = candidates;
+
+  const votesNeeded = candidates.threshold;
 
   if (!good && !notGood && !unknown) {
     return (
@@ -232,9 +229,8 @@ const VsCard = ({
 VsCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  votesNeeded: PropTypes.number,
   showElectorsCount: PropTypes.bool,
-  suffixText: PropTypes.string
+  suffixText: PropTypes.string,
 };
 
 export default VsCard;

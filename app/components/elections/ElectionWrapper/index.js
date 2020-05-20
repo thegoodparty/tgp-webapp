@@ -27,6 +27,10 @@ import { getCookie, setCookie } from '../../../helpers/cookieHelper';
 const Description = styled(Body)`
   margin: 10px 0 22px;
 `;
+const GoodCandidate = styled.span`
+  color: ${({ theme }) => theme.colors.blue};
+  cursor: pointer;
+`;
 
 const AlertWrapper = styled.div`
   position: relative;
@@ -176,6 +180,8 @@ const ElectionWrapper = ({
     // deSelectCandidate(id);
   };
 
+  const stateUpper = state ? state.toUpperCase() : '';
+
   return (
     <GrayWrapper>
       {candidates ? (
@@ -208,8 +214,22 @@ const ElectionWrapper = ({
               </MapWrapper>
             </Row>
             <Description>
-              Join any candidate voting blocs and we&apos;ll let you know if
-              they grow big enough to win!
+              {candidates.good.length > 0 ? (
+                <>
+                  Join any candidate voting blocs and we&apos;ll let you know if
+                  they grow big enough to win!
+                </>
+              ) : (
+                <>
+                  We&apos;re looking for{' '}
+                  <GoodCandidate onClick={openFiltersCallback}>
+                    good candidate options
+                  </GoodCandidate>{' '}
+                  in this race. Join #GoodBloc{stateUpper}
+                  {districtNumber} to be notified as soon as we find any good
+                  candidates.
+                </>
+              )}
             </Description>
 
             <VsList
