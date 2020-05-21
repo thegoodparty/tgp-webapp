@@ -34,7 +34,7 @@ const Message = styled(TextField)`
 
 const SubmitWrapper = styled(FooterWrapper)`
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     display: block;
   }
 `;
@@ -64,6 +64,7 @@ function ProjectProposal({ open, handleClose, project }) {
             rows={10}
             variant="outlined"
             placeholder="Let them know how you can help with this project…"
+            autoFocus
           />
           <SubmitWrapper>
             <SendButton color="primary" variant="contained">

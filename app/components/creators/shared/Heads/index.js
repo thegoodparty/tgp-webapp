@@ -7,7 +7,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import SampleAvatarImg from 'images/avatar.png';
+import SampleAvatarImg1 from 'images/avatars/ellipse_1.png';
+import SampleAvatarImg2 from 'images/avatars/ellipse_2.png';
+import SampleAvatarImg3 from 'images/avatars/ellipse_3.png';
+import SampleAvatarImg4 from 'images/avatars/ellipse_4.png';
+import SampleAvatarImg5 from 'images/avatars/ellipse_5.png';
+import SampleAvatarImg6 from 'images/avatars/ellipse_6.png';
+import SampleAvatarImg7 from 'images/avatars/ellipse_7.png';
+import SampleAvatarImg8 from 'images/avatars/ellipse_8.png';
+import SampleAvatarImg9 from 'images/avatars/ellipse_9.png';
+import SampleAvatarImg10 from 'images/avatars/ellipse_10.png';
+import SampleAvatarImg11 from 'images/avatars/ellipse_11.png';
+import SampleAvatarImg12 from 'images/avatars/ellipse_12.png';
+import SampleAvatarImg13 from 'images/avatars/ellipse_13.png';
 
 const AvatarsWrapper = styled.div`
   display: flex;
@@ -16,7 +28,7 @@ const AvatarsWrapper = styled.div`
   justify-content: center;
   margin: 0 auto;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 0 1.5rem;
   }
 `;
@@ -28,7 +40,7 @@ const Avatar = styled.img`
   margin-bottom: 0.5rem;
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     width: 24px;
     height: 24px;
     margin-right: 0.7rem;
@@ -38,19 +50,19 @@ const Avatar = styled.img`
 function Heads() {
   return (
     <AvatarsWrapper>
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
-      <Avatar src={SampleAvatarImg} alt="avatar" />
+      <Avatar src={SampleAvatarImg1} alt="avatar" />
+      <Avatar src={SampleAvatarImg2} alt="avatar" />
+      <Avatar src={SampleAvatarImg3} alt="avatar" />
+      <Avatar src={SampleAvatarImg4} alt="avatar" />
+      <Avatar src={SampleAvatarImg5} alt="avatar" />
+      <Avatar src={SampleAvatarImg6} alt="avatar" />
+      <Avatar src={SampleAvatarImg7} alt="avatar" />
+      <Avatar src={SampleAvatarImg8} alt="avatar" />
+      <Avatar src={SampleAvatarImg9} alt="avatar" />
+      <Avatar src={SampleAvatarImg10} alt="avatar" />
+      <Avatar src={SampleAvatarImg11} alt="avatar" />
+      <Avatar src={SampleAvatarImg12} alt="avatar" />
+      <Avatar src={SampleAvatarImg13} alt="avatar" />
     </AvatarsWrapper>
   );
 }

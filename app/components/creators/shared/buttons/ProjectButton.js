@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 const ProjectButton = styled(Button)`
   && {
     padding: 1rem 2rem;
-    font: normal bold 1rem normal;
+    font: normal bold 17px normal;
     font-family: unset;
     color: ${({ theme }) => theme.colors.blue};
     text-transform: uppercase;
@@ -12,7 +12,7 @@ const ProjectButton = styled(Button)`
     line-height: 100%;
     border-radius: 2rem;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.breakpoints.contentMax}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       font-size: 13px;
       padding: 0.5rem 3rem;
       width: 100%;

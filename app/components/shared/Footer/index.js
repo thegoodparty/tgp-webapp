@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   }
   &.creatorsFooter {
     background-color: ${({ theme }) => theme.colors.blue};
+    margin-bottom: 0;
   }
   &.withNav {
     margin-bottom: 4rem;
@@ -64,7 +65,7 @@ function Footer() {
       setWithMobileNav(false);
     } else {
       setWithMobileNav(true);
-    } 
+    }
   };
   const updateIsCreatorsNav = location => {
     const { pathname } = location;

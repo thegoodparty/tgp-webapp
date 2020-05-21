@@ -9,6 +9,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
+import Mail from '@material-ui/icons/Mail';
+import Favorite from '@material-ui/icons/Favorite';
+import Share from '@material-ui/icons/Share';
 import NotionIcon from 'images/icons/notion.svg';
 import FigmaIcon from 'images/icons/figma.svg';
 import MessageIcon from 'images/icons/message.svg';
@@ -26,7 +29,7 @@ const ProjectWrapper = styled.div`
     cursor: pointer;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 1rem;
     margin-bottom: 1rem;
   }
@@ -35,7 +38,7 @@ const ProjectBodyWrapper = styled(Grid)`
   padding-bottom: 2rem;
   border-bottom: 1px solid ${({ theme }) => theme.creators.colors.gray2};
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding-bottom: 1.5rem;
   }
 `;
@@ -44,7 +47,7 @@ const ProjectContent = styled(Grid)`
   && {
     padding-right: 2rem;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       padding-right: 0;
       order: 1;
     }
@@ -52,19 +55,19 @@ const ProjectContent = styled(Grid)`
 `;
 
 const Title = styled.h3`
-  font: normal bold 2rem/130% normal;
+  font: normal bold 32px/130% normal;
   font-family: unset;
   color: #000;
   margin: 0;
   margin-bottom: 1rem;
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
-    font-size: 1.7rem;
+      theme.creators.breakpoints.creatorsTablet}) {
+    font-size: 27px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
-    font-size: 1rem;
+      theme.creators.breakpoints.creatorsMobile}) {
+    font-size: 17px;
     margin-bottom: 0.5rem;
   }
 `;
@@ -72,7 +75,7 @@ const Title = styled.h3`
 const Topics = styled.div`
   margin-bottom: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-bottom: 1rem;
   }
 `;
@@ -81,7 +84,7 @@ const Topic = styled.span`
   background-color: ${({ theme }) => theme.creators.colors.lightGray};
   color: #fff;
   border-radius: 0.3rem;
-  font: normal 600 0.6rem normal;
+  font: normal 600 10px normal;
   font-family: unset;
   padding: 0.3rem 0.5rem;
   margin-right: 0.6rem;
@@ -89,12 +92,12 @@ const Topic = styled.span`
 `;
 
 const Summary = styled.p`
-  font: normal normal 1.1rem/140% normal;
+  font: normal normal 16px/140% normal;
   font-family: unset;
   color: #000;
   margin-bottom: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
     margin-bottom: 1rem;
   }
@@ -105,14 +108,14 @@ const OuterLinkWrapper = styled.div`
 `;
 const OuterLink = styled.a`
   color: ${({ theme }) => theme.colors.blue};
-  font: normal 500 1rem/22px normal;
+  font: normal 500 15px/22px normal;
   font-family: unset;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -126,7 +129,7 @@ const LinkIcon = styled.img`
 const ProjectFooter = styled(Grid)`
   padding-top: 2rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
     padding-top: 1rem;
   }
@@ -134,16 +137,16 @@ const ProjectFooter = styled(Grid)`
 
 const FooterAction = styled.a`
   color: ${({ theme }) => theme.creators.colors.lightGray};
-  font: normal 600 1rem/40px normal;
+  font: normal 600 16px/40px normal;
   font-family: unset;
   text-transform: uppercase;
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     margin-right: 1rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     margin-right: 2rem;
     font-size: 13px;
     order: 2;
@@ -153,12 +156,12 @@ const FooterAction = styled.a`
   }
 `;
 
-const FooterActionIcon = styled.img`
+const FooterActionIcon = styled.span`
   margin-right: 1rem;
   position: relative;
   top: -2px;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     top: -1px;
     margin-right: 0.5rem;
   }
@@ -169,7 +172,7 @@ const FooterActions = styled.div`
   width: 100%;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     justify-content: space-between;
   }
 `;
@@ -179,7 +182,7 @@ const FooterActionsWrapper = styled(Grid)`
     display: flex;
     align-items: center;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       margin-top: 1rem;
       padding-top: 1rem;
       border-top: 1px solid ${({ theme }) => theme.creators.colors.gray2};
@@ -195,7 +198,7 @@ const ShowMore = styled.a`
   font: normal 500 1.1rem/100% normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -210,7 +213,7 @@ const CollaboratorContainer = styled(Grid)`
 const ProjectImageWrapper = styled(Grid)`
   && {
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       order: 0;
       margin-bottom: 1.5rem;
     }
@@ -267,15 +270,15 @@ function Project({ project, showMore = false }) {
         <FooterActionsWrapper item xs={12} lg={5}>
           <FooterActions>
             <FooterAction>
-              <FooterActionIcon src={MessageIcon} alt="message icon" />
-              Get In Touch
+              <FooterActionIcon > <Mail /> </FooterActionIcon>
+              I want to help
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={ShareIcon} alt="share icon" />
+              <FooterActionIcon > <Share /> </FooterActionIcon>
               Share
             </FooterAction>
             <FooterAction className="favorite">
-              <FooterActionIcon src={FavoriteIcon} alt="favorite icon" />
+              <FooterActionIcon > <Favorite /> </FooterActionIcon>
               102
             </FooterAction>
           </FooterActions>

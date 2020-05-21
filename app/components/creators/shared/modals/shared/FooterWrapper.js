@@ -5,7 +5,7 @@ const FooterWrapper = styled.div`
   align-items: center;
   margin-top: 2.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-top: 0rem;
   }
 `;

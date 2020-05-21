@@ -78,6 +78,7 @@ function SecondStep({
                     variant="outlined"
                     placeholder="YouTube or Vimeo link"
                     onChange={ev => updateProject(ev.target.value, 'video')}
+                    autoFocus
                   />
                 </ProjectFormControl>
               </Grid>

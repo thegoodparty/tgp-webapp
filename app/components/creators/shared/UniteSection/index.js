@@ -24,11 +24,11 @@ const SectionWrapper = styled.div`
   padding-bottom: 3rem;
   padding: 3rem 8rem 6rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     padding: 4rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 2rem;
   }
 `;
@@ -36,15 +36,15 @@ const Audience = styled.p`
   text-align: center;
   margin: 3rem 0;
   color: ${({ theme }) => theme.colors.blue};
-  font: normal bold 2rem normal;
+  font: normal 400 32px normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
-    font-size: 1.5rem;
+      theme.creators.breakpoints.creatorsTablet}) {
+    font-size: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
-    font-size: 1rem;
+      theme.creators.breakpoints.creatorsMobile}) {
+    font-size: 17px;
     line-height: 140%;
     margin: 1.5rem 0;
   }
@@ -57,13 +57,13 @@ const Logo = styled.img`
   top: -5px;
   position: relative;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     width: 30px;
     height: 25px;
     top: -2px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     width: 17px;
     height: 14px;
     top: -3px;
@@ -74,19 +74,19 @@ const Logo = styled.img`
 const LogoTitle = styled(Body)`
   margin: 4rem 0;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
-    font-size: 1.5rem;
+      theme.creators.breakpoints.creatorsTablet}) {
+    font-size: 24px;
     margin: 3rem 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 15px;
     margin: 2rem 0;
   }
 `;
 
 const CreatorsCount = styled.p`
-  color: ${({ theme }) => theme.creators.colors.gray};
+  color: ${({ theme }) => theme.creators.colors.darkGray};
   font: normal 600 1.5rem normal;
   font-family: unset;
   text-transform: uppercase;
@@ -94,7 +94,11 @@ const CreatorsCount = styled.p`
   margin-bottom: 2.5rem;
   margin-top: 0;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsTablet}) {
+    font-size: 20px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -103,20 +107,21 @@ const Description = styled.p`
   max-width: 45rem;
   margin: 0 auto;
   margin-top: 5rem;
-  font: normal 500 1.6rem normal;
+  font: normal 400 28px normal;
   font-family: unset;
-  color: ${({ theme }) => theme.creators.colors.gray};
+  color: ${({ theme }) => theme.creators.colors.darkGray};
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     max-width: none;
     margin-top: 3rem;
-    font-size: 1.3rem;
+    font-size: 20px;
     padding: 0 4rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-top: 2.5rem;
-    font-size: 1rem;
+    line-height: 1.3;
+    font-size: 15px;
     padding: 0;
   }
 `;
@@ -125,20 +130,17 @@ const TitleImg = styled.img`
   width: 100%;
   height: 100%;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
-    &.unite {
-      margin-bottom: 4rem;
-    }
+      theme.creators.breakpoints.creatorsTablet}) {
   }
 `;
 const SmBr = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsMobile}) {
     display: inline-block;
   }
 `
 const SmPunct = styled.span`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsMobile}) {
     display: inline;
   }
 `
@@ -152,12 +154,15 @@ function UniteSection() {
       <Hidden smUp>
         <TitleImg src={MultiLineCreatorsTitle} alt="creators" />
       </Hidden>
-      <Audience>
+      {/* <Audience>
         Designers · Videographers · Podcasters <br /> Writers · Content
         Creators · Coders <SmPunct> · </SmPunct> <SmBr /> Influencers · Makers
+      </Audience> */}
+      <Audience>
+        Designers · Videographers · Podcasters <br /> Writers · Content
+        Creators · Coders ·  Influencers · Makers
       </Audience>
-     
-      <TitleImg className="unite" src={UniteTitle} alt="unite" />
+      <TitleImg src={UniteTitle} alt="unite" />
       <p className="text-center">
         <LogoTitle>
           Let's all build <Logo src={LogoCaps} alt="logo" /> the good party

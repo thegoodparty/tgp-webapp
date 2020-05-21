@@ -22,7 +22,7 @@ const Logo = styled.img`
   width: 120px;
   margin-bottom: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     height: 80px;
     width: 100px;
   }
@@ -34,7 +34,7 @@ const Title = styled(Body)`
   text-transform: none;
   margin-bottom: 1rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 1.3rem;
   }
 `;
@@ -42,7 +42,7 @@ const Title = styled(Body)`
 const Blurb = styled(Body18)`
   margin: 1rem 0 3rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 15px;
   }
 `;
@@ -65,7 +65,7 @@ const JoinWithButton = styled(MediumButton)`
       background-color: ${({ theme }) => theme.colors.blue};
     }
     @media only screen and (max-width: ${({ theme }) =>
-        theme.breakpoints.contentMax}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       font-size: 13px;
     }
   }
@@ -74,7 +74,7 @@ const JoinWithButton = styled(MediumButton)`
 const SocialIcon = styled.img`
   margin-right: 0.7rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     width: 16px;
     height: 18px;
   }

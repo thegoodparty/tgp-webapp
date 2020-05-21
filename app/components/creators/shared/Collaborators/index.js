@@ -7,7 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import SampleAvatarImg from 'images/avatar.png';
+import SampleAvatarImg1 from 'images/avatars/ellipse_1.png';
+import SampleAvatarImg2 from 'images/avatars/ellipse_2.png';
+import SampleAvatarImg3 from 'images/avatars/ellipse_3.png';
+
 import { Hidden } from '@material-ui/core';
 
 const CollaboratorWrapper = styled.div`
@@ -24,7 +27,7 @@ const Collaborator = styled.img`
 
 const CollaboratorsCount = styled.span`
   color: ${({ theme }) => theme.creators.colors.lightGray};
-  font: normal bold 1.1rem/42px normal;
+  font: normal bold 16px/42px normal;
   font-family: unset;
   margin-left: 2rem;
   text-align: left;
@@ -32,14 +35,14 @@ const CollaboratorsCount = styled.span`
     color: black;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
     line-height: 20px;
   }
 `;
 
 function Collaborators({ project }) {
-  const collaborators = [SampleAvatarImg, SampleAvatarImg, SampleAvatarImg];
+  const collaborators = [SampleAvatarImg1, SampleAvatarImg2, SampleAvatarImg3];
   return (
     <>
       {collaborators.map((collaborator, index) => (

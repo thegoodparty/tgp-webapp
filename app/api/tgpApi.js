@@ -90,7 +90,7 @@ const api = {
     method: 'PUT',
     withAuth: true,
   },
-
+  
   updateUser: {
     url: `${base}user/update-user`,
     method: 'PUT',
