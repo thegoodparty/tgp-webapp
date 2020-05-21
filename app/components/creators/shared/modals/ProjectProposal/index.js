@@ -34,7 +34,7 @@ const Message = styled(TextField)`
 
 const SubmitWrapper = styled(FooterWrapper)`
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     display: block;
   }
 `;

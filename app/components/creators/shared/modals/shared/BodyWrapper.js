@@ -10,7 +10,7 @@ const BodyWrapper = styled.div`
   text-align: center;
   outline: none;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 3rem 2rem;
   }
 `;

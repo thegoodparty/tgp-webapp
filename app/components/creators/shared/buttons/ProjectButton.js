@@ -12,7 +12,7 @@ const ProjectButton = styled(Button)`
     line-height: 100%;
     border-radius: 2rem;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.breakpoints.contentMax}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       font-size: 13px;
       padding: 0.5rem 3rem;
       width: 100%;

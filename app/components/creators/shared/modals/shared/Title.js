@@ -9,7 +9,7 @@ const Title = styled(Body)`
   margin-bottom: 2.5rem;
   text-align: left;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
   }

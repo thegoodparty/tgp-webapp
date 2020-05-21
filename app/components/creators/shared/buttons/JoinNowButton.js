@@ -13,12 +13,12 @@ const JoinNowButton = styled(Button)`
     margin-bottom: 2rem;
     box-shadow: none;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       font-size: 27px;
       padding: 1rem 3rem;
     }
     @media only screen and (max-width: ${({ theme }) =>
-        theme.breakpoints.contentMax}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       padding: 1rem 5rem;
       font: normal normal 15px normal;
       margin-bottom: 1rem;

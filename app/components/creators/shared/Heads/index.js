@@ -15,7 +15,7 @@ const AvatarsWrapper = styled.div`
   justify-content: center;
   margin: 0 auto;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 0 1.5rem;
   }
 `;
@@ -27,7 +27,7 @@ const Avatar = styled.img`
   margin-bottom: 0.5rem;
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     width: 24px;
     height: 24px;
     margin-right: 0.7rem;

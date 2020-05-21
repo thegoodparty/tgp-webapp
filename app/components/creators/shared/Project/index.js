@@ -27,7 +27,7 @@ const ProjectWrapper = styled.div`
     cursor: pointer;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 1rem;
     margin-bottom: 1rem;
   }
@@ -36,7 +36,7 @@ const ProjectBodyWrapper = styled(Grid)`
   padding-bottom: 2rem;
   border-bottom: 1px solid ${({ theme }) => theme.creators.colors.gray2};
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding-bottom: 1.5rem;
   }
 `;
@@ -45,7 +45,7 @@ const ProjectContent = styled(Grid)`
   && {
     padding-right: 2rem;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       padding-right: 0;
       order: 1;
     }
@@ -60,11 +60,11 @@ const Title = styled.h3`
   margin-bottom: 1rem;
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 27px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 17px;
     margin-bottom: 0.5rem;
   }
@@ -73,7 +73,7 @@ const Title = styled.h3`
 const Topics = styled.div`
   margin-bottom: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-bottom: 1rem;
   }
 `;
@@ -90,12 +90,12 @@ const Topic = styled.span`
 `;
 
 const Summary = styled.p`
-  font: normal normal 17px/140% normal;
+  font: normal normal 16px/140% normal;
   font-family: unset;
   color: #000;
   margin-bottom: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
     margin-bottom: 1rem;
   }
@@ -113,7 +113,7 @@ const OuterLink = styled.a`
   overflow: hidden;
   text-overflow: ellipsis;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -127,7 +127,7 @@ const LinkIcon = styled.img`
 const ProjectFooter = styled(Grid)`
   padding-top: 2rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
     padding-top: 1rem;
   }
@@ -140,11 +140,11 @@ const FooterAction = styled.a`
   text-transform: uppercase;
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     margin-right: 1rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     margin-right: 2rem;
     font-size: 13px;
     order: 2;
@@ -159,7 +159,7 @@ const FooterActionIcon = styled.span`
   position: relative;
   top: -2px;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     top: -1px;
     margin-right: 0.5rem;
   }
@@ -170,7 +170,7 @@ const FooterActions = styled.div`
   width: 100%;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     justify-content: space-between;
   }
 `;
@@ -180,7 +180,7 @@ const FooterActionsWrapper = styled(Grid)`
     display: flex;
     align-items: center;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       margin-top: 1rem;
       padding-top: 1rem;
       border-top: 1px solid ${({ theme }) => theme.creators.colors.gray2};
@@ -196,7 +196,7 @@ const ShowMore = styled.a`
   font: normal 500 1.1rem/100% normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -211,7 +211,7 @@ const CollaboratorContainer = styled(Grid)`
 const ProjectImageWrapper = styled(Grid)`
   && {
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       order: 0;
       margin-bottom: 1.5rem;
     }

@@ -10,7 +10,7 @@ const ProjectFormLabel = styled(Body18)`
     margin-bottom: 1rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 15px;
   }
 `;

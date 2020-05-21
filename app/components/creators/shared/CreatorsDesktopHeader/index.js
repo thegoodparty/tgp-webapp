@@ -25,17 +25,17 @@ const Wrapper = styled.div`
   background-color: #fff;
   z-index: 100;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     height: 64px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     height: 88px;
   }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent};
+  max-width: ${({ theme }) => theme.creators.breakpoints.creatorsTablet};
   margin: 0 auto;
   padding: 0 3rem;
   display: flex;
@@ -44,12 +44,12 @@ const ContentWrapper = styled.div`
   align-items: center;
   height: 132px;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     height: 64px;
     padding: 0 2rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     height: 88px;
     padding: 0 1rem;
   }
@@ -65,12 +65,12 @@ const Logo = styled.img`
   width: 343px;
   height: 32px;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     width: 220px;
     height: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     width: 343px;
     height: 32px;
   }
@@ -78,11 +78,11 @@ const Logo = styled.img`
 
 const LogoTitle = styled(Body)`
   @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 1.3rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 1.5rem;
   }
 `;
@@ -115,7 +115,7 @@ const TopLink = styled(Link)`
   }
 
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 20px;
   }
 `;

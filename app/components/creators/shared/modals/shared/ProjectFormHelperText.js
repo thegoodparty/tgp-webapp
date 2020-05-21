@@ -7,7 +7,7 @@ const ProjectFormHelperText = styled(FormHelperText)`
     font-family: unset;
     color: ${({ theme }) => theme.creators.colors.gray};
     @media only screen and (max-width: ${({ theme }) =>
-        theme.breakpoints.contentMax}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       font-size: 13px;
     }
   }

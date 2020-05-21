@@ -5,7 +5,7 @@ const ProjectFormControl = styled(FormControl)`
   && {
     margin-bottom: 2.5rem;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.breakpoints.contentMax}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       margin-bottom: 1.5rem;
     }
   }
