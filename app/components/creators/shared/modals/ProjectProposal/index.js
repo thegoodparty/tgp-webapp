@@ -64,6 +64,7 @@ function ProjectProposal({ open, handleClose, project }) {
             rows={10}
             variant="outlined"
             placeholder="Let them know how you can help with this project…"
+            autoFocus
           />
           <SubmitWrapper>
             <SendButton color="primary" variant="contained">

@@ -36,15 +36,15 @@ const Audience = styled.p`
   text-align: center;
   margin: 3rem 0;
   color: ${({ theme }) => theme.colors.blue};
-  font: normal bold 2rem normal;
+  font: normal 400 32px normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    font-size: 1.5rem;
+    font-size: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpoints.contentMax}) {
-    font-size: 1rem;
+    font-size: 17px;
     line-height: 140%;
     margin: 1.5rem 0;
   }
@@ -75,7 +75,7 @@ const LogoTitle = styled(Body)`
   margin: 4rem 0;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    font-size: 1.5rem;
+    font-size: 24px;
     margin: 3rem 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
@@ -94,6 +94,10 @@ const CreatorsCount = styled.p`
   margin-bottom: 2.5rem;
   margin-top: 0;
   @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    font-size: 20px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
       theme.breakpoints.contentMax}) {
     font-size: 13px;
   }
@@ -103,20 +107,20 @@ const Description = styled.p`
   max-width: 45rem;
   margin: 0 auto;
   margin-top: 5rem;
-  font: normal 500 1.6rem normal;
+  font: normal 400 28px normal;
   font-family: unset;
   color: ${({ theme }) => theme.creators.colors.gray};
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
     max-width: none;
     margin-top: 3rem;
-    font-size: 1.3rem;
+    font-size: 20px;
     padding: 0 4rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpoints.contentMax}) {
     margin-top: 2.5rem;
-    font-size: 1rem;
+    font-size: 15px;
     padding: 0;
   }
 `;
@@ -126,19 +130,16 @@ const TitleImg = styled.img`
   height: 100%;
   @media only screen and (min-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    &.unite {
-      margin-bottom: 4rem;
-    }
   }
 `;
 const SmBr = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.contentMax}) {
     display: inline-block;
   }
 `
 const SmPunct = styled.span`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.contentMax}) {
     display: inline;
   }
 `
@@ -152,12 +153,15 @@ function UniteSection() {
       <Hidden smUp>
         <TitleImg src={MultiLineCreatorsTitle} alt="creators" />
       </Hidden>
-      <Audience>
+      {/* <Audience>
         Designers · Videographers · Podcasters <br /> Writers · Content
         Creators · Coders <SmPunct> · </SmPunct> <SmBr /> Influencers · Makers
+      </Audience> */}
+      <Audience>
+        Designers · Videographers · Podcasters <br /> Writers · Content
+        Creators · Coders ·  Influencers · Makers
       </Audience>
-     
-      <TitleImg className="unite" src={UniteTitle} alt="unite" />
+      <TitleImg src={UniteTitle} alt="unite" />
       <p className="text-center">
         <LogoTitle>
           Let's all build <Logo src={LogoCaps} alt="logo" /> the good party

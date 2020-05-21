@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 const ProjectButton = styled(Button)`
   && {
     padding: 1rem 2rem;
-    font: normal bold 1rem normal;
+    font: normal bold 17px normal;
     font-family: unset;
     color: ${({ theme }) => theme.colors.blue};
     text-transform: uppercase;

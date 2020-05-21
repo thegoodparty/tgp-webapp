@@ -95,6 +95,7 @@ function FirstStep({
                   variant="outlined"
                   placeholder="e.g. Graphics for the native iOS and Android app"
                   onChange={ev => updateProject(ev.target.value, 'title')}
+                  autoFocus 
                 />
               </ProjectFormControl>
             </Grid>

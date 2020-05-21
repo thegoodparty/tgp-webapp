@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
+import { Mail, Favorite, Share } from '@material-ui/icons';
 import NotionIcon from 'images/icons/notion.svg';
 import FigmaIcon from 'images/icons/figma.svg';
 import MessageIcon from 'images/icons/message.svg';
@@ -52,7 +53,7 @@ const ProjectContent = styled(Grid)`
 `;
 
 const Title = styled.h3`
-  font: normal bold 2rem/130% normal;
+  font: normal bold 32px/130% normal;
   font-family: unset;
   color: #000;
   margin: 0;
@@ -60,11 +61,11 @@ const Title = styled.h3`
   cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    font-size: 1.7rem;
+    font-size: 27px;
   }
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpoints.contentMax}) {
-    font-size: 1rem;
+    font-size: 17px;
     margin-bottom: 0.5rem;
   }
 `;
@@ -81,7 +82,7 @@ const Topic = styled.span`
   background-color: ${({ theme }) => theme.creators.colors.lightGray};
   color: #fff;
   border-radius: 0.3rem;
-  font: normal 600 0.6rem normal;
+  font: normal 600 10px normal;
   font-family: unset;
   padding: 0.3rem 0.5rem;
   margin-right: 0.6rem;
@@ -89,7 +90,7 @@ const Topic = styled.span`
 `;
 
 const Summary = styled.p`
-  font: normal normal 1.1rem/140% normal;
+  font: normal normal 17px/140% normal;
   font-family: unset;
   color: #000;
   margin-bottom: 1.5rem;
@@ -105,7 +106,7 @@ const OuterLinkWrapper = styled.div`
 `;
 const OuterLink = styled.a`
   color: ${({ theme }) => theme.colors.blue};
-  font: normal 500 1rem/22px normal;
+  font: normal 500 15px/22px normal;
   font-family: unset;
   flex: 1;
   white-space: nowrap;
@@ -134,7 +135,7 @@ const ProjectFooter = styled(Grid)`
 
 const FooterAction = styled.a`
   color: ${({ theme }) => theme.creators.colors.lightGray};
-  font: normal 600 1rem/40px normal;
+  font: normal 600 16px/40px normal;
   font-family: unset;
   text-transform: uppercase;
   cursor: pointer;
@@ -153,7 +154,7 @@ const FooterAction = styled.a`
   }
 `;
 
-const FooterActionIcon = styled.img`
+const FooterActionIcon = styled.span`
   margin-right: 1rem;
   position: relative;
   top: -2px;
@@ -267,15 +268,15 @@ function Project({ project, showMore = false }) {
         <FooterActionsWrapper item xs={12} lg={5}>
           <FooterActions>
             <FooterAction>
-              <FooterActionIcon src={MessageIcon} alt="message icon" />
-              Get In Touch
+              <FooterActionIcon > <Mail /> </FooterActionIcon>
+              I want to help
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon src={ShareIcon} alt="share icon" />
+              <FooterActionIcon > <Share /> </FooterActionIcon>
               Share
             </FooterAction>
             <FooterAction className="favorite">
-              <FooterActionIcon src={FavoriteIcon} alt="favorite icon" />
+              <FooterActionIcon > <Favorite /> </FooterActionIcon>
               102
             </FooterAction>
           </FooterActions>

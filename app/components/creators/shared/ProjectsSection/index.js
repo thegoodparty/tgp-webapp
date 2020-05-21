@@ -40,20 +40,19 @@ const SectionHeader = styled.div`
   }
 `;
 const Title = styled.h2`
-  font: normal 800 4.5rem normal;
+  font: normal 800 64px normal;
   font-family: unset;
   color: #fff;
   text-transform: uppercase;
   margin: 0;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    font-size: 2rem;
+    font-size: 32px;
     margin-bottom: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpoints.contentMax}) {
     margin-bottom: 1.5rem;
-    font-size: 2rem;
   }
 `;
 

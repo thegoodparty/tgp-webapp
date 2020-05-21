@@ -103,7 +103,7 @@ const TopLink = styled(Link)`
     }
   }
   &.menu-item {
-    font: normal 600 1.5rem/1.5rem normal;
+    font: normal 600 24px normal;
     font-family: unset;
     color: ${({ theme }) => theme.creators.colors.lightGray};
     text-transform: uppercase;
@@ -116,7 +116,7 @@ const TopLink = styled(Link)`
 
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsContent}) {
-    font-size: 1.2rem;
+    font-size: 20px;
   }
 `;
 const AvatarWrapper = styled(Body14)`
