@@ -36,8 +36,7 @@ const Wrapper = ({
   let className = '';
   if (white) {
     className = 'white';
-  }
-  if(blue) {
+  } else  if(blue) {
     className = 'blue';
   }
   return (

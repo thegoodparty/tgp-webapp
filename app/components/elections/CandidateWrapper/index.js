@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import CheckIcon from '@material-ui/icons/Check';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
 import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
@@ -17,6 +20,8 @@ import {
 import GrayWrapper from 'components/shared/GrayWrapper';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
+  candidateBlocName,
+  candidateRankObj,
   houseElectionLink,
   partyResolver,
   presidentialElectionLink,
@@ -25,7 +30,7 @@ import {
   shortToLongState,
 } from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
-import { percHelper, toPrecision } from 'helpers/numberHelper';
+import { numberFormatter, percHelper, toPrecision } from 'helpers/numberHelper';
 import contentfulHelper from 'helpers/contentfulHelper';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
@@ -34,6 +39,8 @@ import GrayCheckbox from 'images/icons/checkbox-gray.svg';
 import RedCheckbox from 'images/icons/checkbox-red.svg';
 import GreenCheckbox from 'images/icons/checkbox-green.svg';
 import QuestionMarkGray from 'images/icons/question-mark.svg';
+import { candidateRanking } from '../../../helpers/electionsHelper';
+import { numberNth } from '../../../helpers/numberHelper';
 
 const TopRow = styled.div`
   display: flex;
@@ -71,6 +78,12 @@ const SocialLabel = styled(Body9)`
   flex-wrap: no-wrap;
 `;
 
+const BlocCount = styled(Body13)`
+  margin-top: 20px;
+  color: ${({ theme }) => theme.colors.gray7};
+  text-align: center;
+`;
+
 const RankButton = styled(Body9)`
   border: solid 2px ${({ theme }) => theme.colors.blue};
   padding: 14px 24px;
@@ -86,7 +99,45 @@ const RankButton = styled(Body9)`
   }
 `;
 
-const StyledBody12 = styled(Body12)`
+const RankWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12px;
+  cursor: pointer;
+`;
+
+const CheckMark = styled(CheckIcon)`
+  color: ${({ theme }) => theme.colors.lightBlue};
+  && {
+    font-size: 9px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 12px;
+    }
+  }
+`;
+
+const CloseIcon = styled(HighlightOffIcon)`
+  color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
+  && {
+    font-size: 9px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 12px;
+    }
+  }
+`;
+
+const ChosenCand = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
+  margin: 0 6px;
+  text-transform: uppercase;
+`;
+
+const StyledBody13 = styled(Body13)`
+  font-weight: 400;
+  padding: 0 2rem;
   color: ${({ theme }) => theme.colors.blue};
   &.white {
     color: #fff;
@@ -176,19 +227,23 @@ const ChamberLink = styled(Body11)`
 
 const CandidateWrapper = ({
   candidate,
-  chamberRank = [],
+  chamberRank,
   chamberName,
   incumbent,
   user,
+  saveRankingCallback,
+  deleteCandidateRankingCallback,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
-  const [rank, setRank] = useState(false);
+  // const [rank, setRank] = useState(false);
   const [socialAccounts, setSocialAccounts] = useState([]);
   const [comparedIncumbent, setComparedIncumbent] = useState({});
   let isGood;
   if (candidate) {
     ({ isGood } = candidate);
   }
+  const rank = candidateRanking(chamberRank, candidate);
+  const rankObj = candidateRankObj(chamberRank, candidate);
 
   useEffect(() => {
     if (candidate) {
@@ -255,18 +310,18 @@ const CandidateWrapper = ({
     }
   }, [incumbent]);
 
-  useEffect(() => {
-    if (candidate && chamberRank && chamberRank.length > 0) {
-      const savedRank = chamberRank.indexOf(candidate.id) + 1;
-      if (savedRank) {
-        setRank(savedRank);
-      } else {
-        setRank(false);
-      }
-    } else {
-      setRank(false);
-    }
-  }, [chamberRank, candidate]);
+  // useEffect(() => {
+  //   if (candidate && chamberRank && chamberRank.length > 0) {
+  //     const savedRank = chamberRank.indexOf(candidate.id) + 1;
+  //     if (savedRank) {
+  //       setRank(savedRank);
+  //     } else {
+  //       setRank(false);
+  //     }
+  //   } else {
+  //     setRank(false);
+  //   }
+  // }, [chamberRank, candidate]);
 
   const campaignWebsite =
     candidate && candidate.campaignWebsite
@@ -291,6 +346,7 @@ const CandidateWrapper = ({
     state,
     district,
     isBigMoney,
+    rankingCount,
   } = candidate;
 
   const isUnkown = isGood === null;
@@ -305,13 +361,8 @@ const CandidateWrapper = ({
     ? moneyHelper(smallDonorPerHour)
     : moneyHelper(largeDonorPerHour);
 
-  const lastName = () => {
-    if (!name) {
-      return '';
-    }
-    const arr = name.split(' ');
-    return arr[arr.length - 1];
-  };
+  const nameArr = name ? name.split(' ') : [];
+  const lastName = name ? nameArr[nameArr.length - 1] : '';
 
   const coloredGood = () => {
     if (isGood) {
@@ -388,26 +439,28 @@ const CandidateWrapper = ({
 
   const rankPageLink = () => {
     if (chamberName === 'presidential') {
-      return presidentialElectionLink(chamberRank, true);
+      return presidentialElectionLink();
     }
     if (chamberName === 'senate') {
-      return senateElectionLink(chamberRank, state, true);
+      return senateElectionLink(state);
     }
-    return houseElectionLink(chamberRank, state, district, true);
+    return houseElectionLink(state, district);
   };
 
-  const rankLabel = () => {
-    if (rank) {
-      return `YOUR ${rankText(rank)} CHOICE`;
-    }
-    if (chamberRank && chamberRank.length > 0) {
-      return 'EDIT CHOICES';
-    }
-    return 'RANK YOUR CHOICES';
-  };
+  // const rankLabel = () => {
+  //   if (rank) {
+  //     return `YOUR ${rankText(rank)} CHOICE`;
+  //   }
+  //   if (chamberRank && chamberRank.length > 0) {
+  //     return 'EDIT CHOICES';
+  //   }
+  //   return 'RANK YOUR CHOICES';
+  // };
 
   const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
+
+  const blocName = candidateBlocName(candidate, chamberName, state, district);
   return (
     <GrayWrapper>
       {candidate && name ? (
@@ -443,17 +496,47 @@ const CandidateWrapper = ({
                   ))}
                 </SocialLinks>
               )}
-              <Link to={rankPageLink()}>
-                <RankButton className={rank ? 'blue' : ''}>
-                  <StyledBody12 className={rank ? 'white' : ''}>
-                    {rankLabel()}
-                  </StyledBody12>
-                </RankButton>
-              </Link>
+              {isGoodOrUnkwown && (
+                <>
+                  <BlocCount>
+                    {numberFormatter(rankingCount)}{' '}
+                    {rankingCount === 1 ? 'person' : 'people'} have joined{' '}
+                    <br />
+                    <strong>{blocName}</strong>
+                  </BlocCount>
+                  {rank ? (
+                    <>
+                      <RankButton>
+                        <StyledBody13>GROW {blocName}</StyledBody13>
+                      </RankButton>
+                      <RankWrapper
+                        onClick={() =>
+                          deleteCandidateRankingCallback(
+                            { ...rankObj, chamber: chamberName },
+                            user,
+                          )
+                        }
+                      >
+                        <CheckMark />{' '}
+                        <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>
+                        <CloseIcon />
+                      </RankWrapper>
+                    </>
+                  ) : (
+                    <RankButton className="blue">
+                      <Link to={rankPageLink()}>
+                        <StyledBody13 className="white">
+                          JOIN {blocName}
+                        </StyledBody13>
+                      </Link>
+                    </RankButton>
+                  )}
+                </>
+              )}
             </TopRow>
 
             <Body style={{ marginTop: '32px' }}>
-              Why {lastName()} is {coloredGood()}
+              Why {lastName} is {coloredGood()}
             </Body>
             {!isGoodOrUnkwown && (
               <>
@@ -721,10 +804,10 @@ const CandidateWrapper = ({
                   <br />
                   This means that{' '}
                   <strong>
-                    Big Money backers are bankrolling {lastName()}
+                    Big Money backers are bankrolling {lastName}
                     ’s {isIncumbent && 're-'}election at a rate of{' '}
                     <ColoredText className={color}>{perHour}/hr</ColoredText>{' '}
-                    for every hour {isIncumbent ? lastName() : 'the incumbent'}{' '}
+                    for every hour {isIncumbent ? lastName : 'the incumbent'}{' '}
                     has been in office.
                   </strong>{' '}
                   Of course, Big Money Backers usually expect a big return on
@@ -748,7 +831,7 @@ const CandidateWrapper = ({
                         ) of funds coming from Small Individual Donors
                       </strong>
                       , donating less than $200/each. <br /> <br />
-                      This means that {lastName()} is mostly being supported by
+                      This means that {lastName} is mostly being supported by
                       large numbers of ordinary people, who are banding
                       together, each giving a little, to help {name} compete
                       with the Big Money pouring into this race. <br /> <br />
@@ -907,6 +990,8 @@ CandidateWrapper.propTypes = {
   chamberName: PropTypes.string,
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  saveRankingCallback: PropTypes.func,
+  deleteCandidateRankingCallback: PropTypes.func,
 };
 
 export default CandidateWrapper;

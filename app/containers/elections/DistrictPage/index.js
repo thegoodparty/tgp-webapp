@@ -30,6 +30,7 @@ import userActions from 'containers/you/YouPage/actions';
 import { getRankFromUserOrState } from 'helpers/electionsHelper';
 import makeSelectCandidate from '../CandidatePage/selectors';
 import candidateActions from '../CandidatePage/actions';
+import { makeSelectRanking } from '../../you/YouPage/selectors';
 
 export function DistrictPage({
   content,
@@ -42,6 +43,7 @@ export function DistrictPage({
   changeZipCallback,
   userState,
   candidateState,
+  rankingObj,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -52,16 +54,10 @@ export function DistrictPage({
   });
 
   const [cdIndex, setCdIndex] = useState(0);
-  const [districtNum, setDistrictNum] = useState(0);
-  const { user } = userState;
+  const { user, ranking } = userState;
 
   const { zipWithDistricts } = districtState;
-  const {
-    presidential,
-    houseCandidates,
-    senateCandidates,
-    userCounts,
-  } = districtState;
+  const { presidential, houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
     if (!zipWithDistricts) {
@@ -71,6 +67,16 @@ export function DistrictPage({
       dispatch(districtActions.loadAllPresidentialAction());
     }
   }, [zip]);
+
+  useEffect(() => {
+    if (user && !ranking) {
+      dispatch(userActions.userRankingAction());
+    }
+  }, [user]);
+
+  if (!user && !ranking) {
+    dispatch(userActions.guestRankingAction());
+  }
 
   useEffect(() => {
     if (zipWithDistricts) {
@@ -100,7 +106,6 @@ export function DistrictPage({
         cds.forEach(district => {
           if (district.id === approxPct[tempCd].districtId) {
             districtNumber = district.code;
-            setDistrictNum(districtNumber);
           }
         });
       }
@@ -114,24 +119,8 @@ export function DistrictPage({
       if (shortState) {
         dispatch(districtActions.loadSenateCandidatesAction(shortState));
       }
-      if (districtNumber) {
-        dispatch(districtActions.userCountsAction(shortState, districtNumber));
-      }
     }
   }, [zipWithDistricts, zip, cd, user]);
-
-  const { stateShort } = zipWithDistricts;
-  const presidentialRank = getRankFromUserOrState(
-    user,
-    candidateState,
-    'presidentialRank',
-  );
-
-  let senateRank = getRankFromUserOrState(user, candidateState, 'senateRank');
-  senateRank = senateRank ? senateRank[stateShort] : [];
-
-  let houseRank = getRankFromUserOrState(user, candidateState, 'houseRank');
-  houseRank = houseRank ? houseRank[stateShort + districtNum] : [];
 
   const childProps = {
     district: zipWithDistricts,
@@ -144,10 +133,7 @@ export function DistrictPage({
     deleteRankingCallback,
     changeZipCallback,
     user,
-    userCounts,
-    presidentialRank,
-    senateRank,
-    houseRank,
+    ranking: rankingObj,
   };
 
   return (
@@ -172,6 +158,7 @@ DistrictPage.propTypes = {
   changeZipCallback: PropTypes.func,
   userState: PropTypes.object,
   candidateState: PropTypes.object,
+  rankingObj: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -190,7 +177,7 @@ function mapDispatchToProps(dispatch, ownProps) {
         candidateActions.saveRankHouseCandidateAction([], state, district),
       );
       dispatch(candidateActions.saveRankSenateCandidateAction([], state));
-      dispatch(userActions.deleteUserRankingAction());
+      dispatch(userActions.deleteAllUserRankingsAction());
     },
     changeZipCallback: () => {
       dispatch(push('/intro/zip-finder'));
@@ -204,6 +191,7 @@ const mapStateToProps = createStructuredSelector({
   search: makeSelectLocation(),
   userState: makeSelectUser(),
   candidateState: makeSelectCandidate(),
+  rankingObj: makeSelectRanking(),
 });
 
 const withConnect = connect(

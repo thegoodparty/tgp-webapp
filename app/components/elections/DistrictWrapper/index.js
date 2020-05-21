@@ -22,8 +22,6 @@ import GrayWrapper from 'components/shared/GrayWrapper';
 import {
   houseElectionLink,
   presidentialElectionLink,
-  presidentialVotesThreshold,
-  rankingModeQuery,
   senateElectionLink,
 } from 'helpers/electionsHelper';
 import VsCard from '../VsCard';
@@ -76,16 +74,15 @@ const DistrictWrapper = ({
   deleteRankingCallback,
   changeZipCallback,
   user,
-  userCounts,
-  presidentialRank,
-  senateRank,
-  houseRank,
+  ranking = {},
 }) => {
   let districtNumber;
+  const presidentialRank = ranking['presidential'];
+  const senateRank = ranking['senate'];
+  const houseRank = ranking['house'];
 
   const [showCds, setShowCds] = useState(false);
   const [cdsWithPerc, setCdsWithPerc] = useState([]);
-  const [thresholds, setThresholds] = useState({});
   const [showRankAlert, setShowRankAlert] = React.useState(false);
   const [selectedCid, setSelectedCid] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(false);
@@ -98,7 +95,6 @@ const DistrictWrapper = ({
     primaryCity,
     stateLong,
     zip,
-    senateThresholds,
   } = district;
 
   const shortState = stateShort ? stateShort.toUpperCase() : '';
@@ -135,28 +131,6 @@ const DistrictWrapper = ({
       });
     });
     setCdsWithPerc(cdWithPerc);
-    let houseThreshold;
-    let senateThreshold;
-    if (cds && cds[cdIndex]) {
-      houseThreshold =
-        Math.max(
-          cds[cdIndex].writeInThreshold,
-          cds[cdIndex].writeInThresholdWithPresident,
-        ) + 1;
-    }
-    if (senateThresholds) {
-      senateThreshold =
-        Math.max(
-          senateThresholds.writeInThreshold,
-          senateThresholds.writeInThresholdWithPresident,
-        ) + 1;
-    }
-
-    setThresholds({
-      presidentialVotesThreshold,
-      senateThreshold,
-      houseThreshold,
-    });
   }, [cds]);
 
   const toggleShowCds = () => {
@@ -184,7 +158,6 @@ const DistrictWrapper = ({
   }
 
   const handleDistrictChange = (cdId, index) => {
-    console.log('here1');
     if ((user && houseRank) || (user && senateRank)) {
       setSelectedCid(cdId);
       setSelectedIndex(index);
@@ -218,6 +191,8 @@ const DistrictWrapper = ({
     }
     handleCloseAlert();
   };
+
+  const upperState = stateShort ? stateShort.toUpperCase() : stateShort;
 
   return (
     <GrayWrapper>
@@ -269,61 +244,58 @@ const DistrictWrapper = ({
             <Spacer>
               <Body>
                 You have <strong>{electionCount}</strong> relevant Federal
-                elections. Join voting blocs to see if your vote can elect
-                someone Good.
+                elections. Check candidate voting blocs to see if your vote can
+                elect someone Good.{' '}
+                <Link to="/party/faq/what-makes-a-candidate-a-good-option/5KnBx42FOEVDJNUFpoU1PX">
+                  See how we determine Good Options.
+                </Link>
               </Body>
             </Spacer>
-            <Link to={presidentialElectionLink(presidentialRank)}>
-              {presidentialRank && presidentialRank.length > 0 ? (
+            <Link to={presidentialElectionLink()}>
+              {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
                 <RankedCard
                   title="Presidential Election"
                   candidates={presidential}
-                  votesNeeded={thresholds.presidentialVotesThreshold}
-                  peopleSoFar={userCounts ? userCounts.totalUsers : 0}
-                  rank={presidentialRank}
+                  rankObj={presidentialRank}
+                  suffixText=" (270 ELECTORS)"
                 />
               ) : (
                 <VsCard
                   title="Presidential Election"
                   candidates={presidential}
-                  votesNeeded={thresholds.presidentialVotesThreshold}
-                  peopleSoFar={userCounts ? userCounts.totalUsers : 0}
+                  suffixText=" (270 ELECTORS)"
                 />
               )}
             </Link>
-            <Link to={senateElectionLink(senateRank, shortState)}>
-              {senateRank && senateRank.length > 0 ? (
+            <Link to={senateElectionLink(shortState)}>
+              {senateRank && Object.keys(senateRank).length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
-                  votesNeeded={thresholds.senateThreshold}
-                  peopleSoFar={userCounts ? userCounts.stateUsers : 0}
-                  rank={senateRank}
+                  rankObj={senateRank}
+                  suffixText={` ${upperState}`}
                 />
               ) : (
                 <VsCard
                   title={`Senator - ${stateLong}`}
                   candidates={senateCandidates}
-                  votesNeeded={thresholds.senateThreshold}
-                  peopleSoFar={userCounts ? userCounts.stateUsers : 0}
+                  suffixText={` ${upperState}`}
                 />
               )}
             </Link>
-            <Link to={houseElectionLink(houseRank, shortState, districtNumber)}>
-              {houseRank && houseRank.length > 0 ? (
+            <Link to={houseElectionLink(shortState, districtNumber)}>
+              {houseRank && Object.keys(houseRank).length > 0 ? (
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
-                  votesNeeded={thresholds.houseThreshold}
-                  peopleSoFar={userCounts ? userCounts.districtUsers : 0}
-                  rank={houseRank}
+                  rankObj={houseRank}
+                  suffixText={` ${upperState}-${districtNumber}`}
                 />
               ) : (
                 <VsCard
                   title={`House Representative ${shortState}-${districtNumber}`}
                   candidates={houseCandidates}
-                  votesNeeded={thresholds.houseThreshold}
-                  peopleSoFar={userCounts ? userCounts.districtUsers : 0}
+                  suffixText={` ${upperState}-${districtNumber}`}
                 />
               )}
             </Link>
@@ -374,7 +346,6 @@ DistrictWrapper.propTypes = {
   houseCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  userCounts: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   cdIndex: PropTypes.number,
   changeDistrictCallback: PropTypes.func,
   deleteRankingCallback: PropTypes.func,

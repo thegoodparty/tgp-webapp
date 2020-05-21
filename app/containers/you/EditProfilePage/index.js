@@ -93,7 +93,7 @@ function mapDispatchToProps(dispatch) {
         dispatch(
           candidateActions.saveRankSenateCandidateAction([], shortState),
         );
-        dispatch(userActions.deleteUserRankingAction());
+        dispatch(userActions.deleteAllUserRankingsAction());
       }
 
       dispatch(push('/intro/zip-finder'));

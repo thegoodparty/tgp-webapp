@@ -24,23 +24,26 @@ const MoreChoices = styled(Body9)`
 
 const RankedCard = ({
   title,
-  peopleSoFar,
-  votesNeeded,
   candidates = {},
-  rank = [],
+  rankObj = {},
+  suffixText = '',
 }) => {
+  const rank = Object.keys(rankObj);
   const [candidatesHash, setCandidatesHash] = useState({});
   useEffect(() => {
     const candHash = mapCandidateToHash(candidates);
     setCandidatesHash(candHash);
   }, [candidates]);
+  const { topRank } = candidates;
 
-  const candidateRow = (rankedId, index) => {
+  const votesNeeded = candidates.threshold;
+
+  const candidateRow = (userRank, index) => {
     if (index > 1) {
       return <></>;
     }
     if (candidatesHash !== {}) {
-      const candidate = candidatesHash[rankedId];
+      const candidate = candidatesHash[userRank.candidateId];
       if (candidate) {
         return (
           <RankedCandidate
@@ -58,15 +61,17 @@ const RankedCard = ({
       <H3>{title}</H3>
 
       <SupportersProgressBar
-        peopleSoFar={peopleSoFar}
+        peopleSoFar={topRank}
         votesNeeded={votesNeeded}
+        suffixText={suffixText}
+        userState={candidates.userState}
       />
       <YourChoices>
         {rank.length > 2 ? 'YOUR RANKED CHOICES' : 'YOUR CHOICE'}
       </YourChoices>
       {rank.map((rankedId, index) => (
         <React.Fragment key={rankedId}>
-          {candidateRow(rankedId, index)}
+          {candidateRow(rankObj[rankedId], index)}
         </React.Fragment>
       ))}
       {rank.length > 2 ? (
@@ -81,9 +86,8 @@ const RankedCard = ({
 RankedCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  peopleSoFar: PropTypes.number,
-  votesNeeded: PropTypes.number,
   rank: PropTypes.array,
+  suffixText: PropTypes.string,
 };
 
 export default RankedCard;

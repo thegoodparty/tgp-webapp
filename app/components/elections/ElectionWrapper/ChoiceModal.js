@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
+import { Link } from 'react-router-dom';
 
 import heartImg from 'images/heart.svg';
-import { Body, H1, Body11, Body9 } from 'components/shared/typogrophy';
-import { OutlinedButton } from 'components/shared/buttons';
+import { Body, H1, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { partyResolver } from 'helpers/electionsHelper';
+import {
+  candidateBlocName,
+  candidateFirstName,
+  partyResolver,
+} from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ShareButton from '../../shared/ShareButton';
@@ -38,37 +42,20 @@ const Close = styled.div`
   cursor: pointer;
 `;
 
-const BodyText = styled(Body)`
-  margin: 16px 0;
-  letter-spacing: 0.2px;
-`;
-
-const Row = styled(Body)`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+const CenterBar = styled(Body)`
   margin-bottom: 32px;
-`;
-
-const ButtonRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
-
-const ButtonWrapper = styled.div`
-  padding: 0 10px;
   width: 100%;
 `;
 
 const AvatarWrapper = styled(Body)`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SupportersWrapper = styled.div`
-  flex: 6;
+  flex: 1;
 `;
 
 const SupportersRow = styled.div`
@@ -76,12 +63,15 @@ const SupportersRow = styled.div`
   align-items: center;
   flex-direction: row;
   position: relative;
+  width: 100%;
+  min-height: 40px;
 `;
 
 const SupportersCount = styled(H1)`
   color: ${({ theme }) => theme.colors.gray7};
   position: absolute;
-  left: 45px;
+  left: 50%;
+  transform: translate(-50%);
   top: -5px;
   animation-fill-mode: forwards;
 
@@ -114,8 +104,15 @@ const HeartImg = styled.img`
   margin-right: 8px;
 `;
 
-const SuppoetersBody = styled(Body)`
-  color: ${({ theme }) => theme.colors.gray7};
+const SuppoetersBody13 = styled(Body13)`
+  color: ${({ theme }) => theme.colors.gray6};
+  margin-top: 5px;
+`;
+
+const Footer = styled(Body13)`
+  color: ${({ theme }) => theme.colors.gray6};
+  margin-top: 24px;
+  text-align: center;
 `;
 
 const ShareWrapper = styled.div``;
@@ -127,13 +124,16 @@ const ChoiceModal = ({
   user,
   chamberCount,
   animateCount,
+  userState,
+  suffixText,
   closeCallback,
-  cancelCallback,
+  chamber,
+  state,
+  districtNumber,
 }) => {
   if (!candidate) {
     return <> </>;
   }
-  const notGood = candidate.isGood === false;
 
   let { isGood } = candidate;
   if (candidate.unknown) {
@@ -141,11 +141,6 @@ const ChoiceModal = ({
   }
 
   const url = uuidUrl(user);
-
-  const cancelChoice = () => {
-    cancelCallback(candidate.id);
-    closeCallback();
-  };
 
   const saveShare = () => {
     setCookie('isSharedModal', true);
@@ -163,102 +158,78 @@ const ChoiceModal = ({
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        {notGood ? (
-          <>
-            <H1>
-              Umm, Really?{' '}
-              <span role="img" aria-label="oh really">
-                🤔
-              </span>
-            </H1>
-            <BodyText>
-              We respect your freedom to join whichever voting blocs who you
-              like. However, please be aware that this candidate has raised a
-              majority (&gt;50%) of their funding from Corporate Lobbyists,
-              Political Action Committees (PACs), and other Big Money Donors.
-              <br />
-              <br />
-              To see more details please visit this candidate&apos;s profile
-              page.
-            </BodyText>
-            <ButtonRow>
-              <ButtonWrapper>
-                <OutlinedButton fullWidth onClick={cancelChoice} active>
-                  <span className="bold500">CANCEL</span>
-                </OutlinedButton>
-              </ButtonWrapper>
-              <ButtonWrapper>
-                <OutlinedButton fullWidth onClick={closeCallback} active>
-                  <span className="bold500">OK</span>
-                </OutlinedButton>
-              </ButtonWrapper>
-            </ButtonRow>
-          </>
-        ) : (
-          <>
-            <H1>Good Choice!</H1>
-            <BodyText>
-              Now tell some friends! Let&apos;s see if we can grow this voting
-              bloc enough to win!
-            </BodyText>
-            <Row>
-              <SupportersWrapper>
-                <SupportersRow>
+
+        <AvatarWrapper>
+          <CandidateAvatar
+            good={isGood}
+            size="xl"
+            src={candidate.image}
+            name={candidate.name}
+          />
+          <H1 style={{ marginTop: '18px', marginBottom: '36px' }}>
+            {candidateBlocName(candidate, chamber, state, districtNumber)}{' '}
+            Joined!{' '}
+            <span role="img" aria-label="flex">
+              💪
+            </span>
+          </H1>
+
+          <SupportersRow>
+            {animateCount ? (
+              <>
+                <SupportersCount
+                  style={{
+                    animation: `animate-out 1s ease-in-out forwards`,
+                  }}
+                >
                   <HeartImg src={heartImg} alt="tgp" />
-                  {animateCount ? (
-                    <>
-                      <SupportersCount
-                        style={{
-                          animation: `animate-out 1s ease-in-out forwards`,
-                        }}
-                      >
-                        {numberFormatter(countWithUser)}{' '}
-                        {countWithUser === 1 ? 'person' : 'people'}
-                      </SupportersCount>
-                      <SupportersCount
-                        style={{
-                          animation: `animate-in 1s ease-in-out forwards`,
-                        }}
-                      >
-                        {numberFormatter(countWithUser + 1)}{' '}
-                        {countWithUser + 1 === 1 ? 'person' : 'people'}
-                      </SupportersCount>
-                    </>
-                  ) : (
-                    <SupportersCount>
-                      {numberFormatter(chamberCount)}{' '}
-                      {chamberCount === 1 ? 'person' : 'people'}
-                    </SupportersCount>
-                  )}
-                </SupportersRow>
-                <SuppoetersBody>in this voting bloc so far</SuppoetersBody>
-                <SupportersProgressBar
-                  votesNeeded={votesNeeded}
-                  peopleSoFar={chamberCount}
-                  showSupporters={false}
-                  alignLeft
-                />
-              </SupportersWrapper>
-              <div>
-                <AvatarWrapper>
-                  <CandidateAvatar
-                    good={isGood}
-                    size="responsive"
-                    src={candidate.image}
-                    name={candidate.name}
-                  />
-                  <Body11 style={{ margin: '8px 0 4px' }}>
-                    {candidate.name}
-                  </Body11>
-                  <Body9>{partyResolver(candidate.party)}</Body9>
-                </AvatarWrapper>
-              </div>
-            </Row>
-            <ShareWrapper onClick={saveShare}>
-              <ShareButton url={url} />
-            </ShareWrapper>
-          </>
-        )}
+                  {numberFormatter(countWithUser)}{' '}
+                  {countWithUser === 0 ? 'person' : 'people'}
+                </SupportersCount>
+                <SupportersCount
+                  style={{
+                    animation: `animate-in 1s ease-in-out forwards`,
+                  }}
+                >
+                  <HeartImg src={heartImg} alt="tgp" />
+                  {numberFormatter(countWithUser + 1)}{' '}
+                  {countWithUser === 1 ? 'person' : 'people'}
+                </SupportersCount>
+              </>
+            ) : (
+              <SupportersCount>
+                <HeartImg src={heartImg} alt="tgp" />
+                {numberFormatter(chamberCount)}{' '}
+                {chamberCount === 1 ? 'person' : 'people'}
+              </SupportersCount>
+            )}
+          </SupportersRow>
+          <SuppoetersBody13>
+            have joined the{' '}
+            {candidateBlocName(candidate, chamber, state, districtNumber)} so
+            far
+          </SuppoetersBody13>
+        </AvatarWrapper>
+        <CenterBar>
+          <SupportersProgressBar
+            votesNeeded={votesNeeded}
+            peopleSoFar={chamberCount}
+            showSupporters={false}
+            userState={userState}
+            suffixText={suffixText}
+          />
+        </CenterBar>
+
+        <ShareWrapper onClick={saveShare}>
+          <ShareButton url={url} />
+        </ShareWrapper>
+        <Footer>
+          Don&apos;t worry, we will{' '}
+          <Link to="/party/faq/we-never-waste-your-vote/prGq4SAFpfT7qzBFM1HDy">
+            never waste your vote
+          </Link>
+          .
+        </Footer>
       </Wrapper>
     </Dialog>
   );
@@ -267,12 +238,15 @@ const ChoiceModal = ({
 ChoiceModal.propTypes = {
   open: PropTypes.bool,
   closeCallback: PropTypes.func,
-  cancelCallback: PropTypes.func,
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   votesNeeded: PropTypes.number,
   chamberCount: PropTypes.number,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   animateCount: PropTypes.bool,
+  userState: PropTypes.string,
+  suffixText: PropTypes.string,
+  chamber: PropTypes.string,
+  state: PropTypes.string,
 };
 
 export default ChoiceModal;

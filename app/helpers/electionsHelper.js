@@ -19,7 +19,7 @@ export const partyResolver = partyLetter => {
     return 'INDEPENDENT';
   }
   if (partyLetter === 'W') {
-    return 'WRITE-IN';
+    return 'AS A WRITE-IN';
   }
   if (partyLetter === 'VC') {
     return 'VETTING CHALLENGERS';
@@ -58,7 +58,7 @@ export const rankText = number => {
   return number + 'TH';
 };
 
-export const presidentialVotesThreshold = 65853514;
+export const presidentialVotesThreshold = 38658139;
 
 export const defaultFilters = {
   smallDonors: true,
@@ -216,36 +216,22 @@ export const mapCandidateToHash = candidates => {
   return candHash;
 };
 
-export const rankingModeQuery = '?rankingMode=true';
-
-export const presidentialElectionLink = (rank, forceEdit = false) => {
-  const route = '/elections/presidential';
-  if (!rank || rank.length === 0 || forceEdit) {
-    return route + rankingModeQuery;
-  }
-  return route;
+export const presidentialElectionLink = () => {
+  return '/elections/presidential';
 };
 
-export const senateElectionLink = (rank, state, forceEdit = false) => {
+export const senateElectionLink = state => {
   if (!state) {
     return '';
   }
-  const route = `/elections/senate/${state.toLowerCase()}`;
-  if (!rank || rank.length === 0 || forceEdit) {
-    return route + rankingModeQuery;
-  }
-  return route;
+  return `/elections/senate/${state.toLowerCase()}`;
 };
 
-export const houseElectionLink = (rank, state, district, forceEdit = false) => {
+export const houseElectionLink = (state, district) => {
   if (!state || !district) {
     return '';
   }
-  const route = `/elections/house/${state.toLowerCase()}/${district}`;
-  if (!rank || rank.length === 0 || forceEdit) {
-    return route + rankingModeQuery;
-  }
-  return route;
+  return `/elections/house/${state.toLowerCase()}/${district}`;
 };
 
 export const isDistrictInCds = (districtNumber, cds) => {
@@ -256,6 +242,61 @@ export const isDistrictInCds = (districtNumber, cds) => {
     if (parseInt(districtNumber, 10) === parseInt(cds[i].code, 10)) {
       return true;
     }
+  }
+  return false;
+};
+
+export const candidateFirstName = candidate => {
+  if (!candidate) {
+    return '';
+  }
+  const nameArr = candidate.name ? candidate.name.split(' ') : [];
+  return candidate.name ? nameArr[0] : '';
+};
+
+export const candidateLastName = candidate => {
+  if (!candidate) {
+    return '';
+  }
+  const nameArr = candidate.name ? candidate.name.split(' ') : [];
+
+  return candidate.name ? nameArr[nameArr.length - 1] : '';
+};
+
+export const candidateBlocName = (candidate, chamber, state, district) => {
+  if (!candidate) {
+    return '';
+  }
+  const lastName = candidateLastName(candidate);
+  if (chamber === 'presidential') {
+    if (lastName === 'Sanders') {
+      return '#BernieBloc';
+    }
+    return `#${lastName}Bloc`;
+  }
+  if (chamber === 'senate') {
+    return `#${lastName}${state.toUpperCase()}Bloc`;
+  }
+  if (chamber === 'house') {
+    return `#${lastName}${state}${district}Bloc`;
+  }
+};
+
+export const candidateRanking = (ranking, candidate) => {
+  const rankObj = candidateRankObj(ranking, candidate);
+  return rankObj ? rankObj.rank : false;
+};
+
+export const candidateRankObj = (ranking, candidate) => {
+  if (!ranking || !candidate) {
+    return false;
+  }
+
+  if (
+    ranking[candidate.id] &&
+    ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
+  ) {
+    return ranking[candidate.id];
   }
   return false;
 };
