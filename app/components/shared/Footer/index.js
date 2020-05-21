@@ -65,7 +65,7 @@ function Footer() {
       setWithMobileNav(false);
     } else {
       setWithMobileNav(true);
-    } D
+    }
   };
   const updateIsCreatorsNav = location => {
     const { pathname } = location;
