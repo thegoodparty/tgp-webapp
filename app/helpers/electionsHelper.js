@@ -263,23 +263,15 @@ export const candidateLastName = candidate => {
   return candidate.name ? nameArr[nameArr.length - 1] : '';
 };
 
-export const candidateBlocName = (candidate, chamber, state, district) => {
+export const candidateBlocName = (candidate, chamber) => {
   if (!candidate) {
     return '';
   }
   const lastName = candidateLastName(candidate);
-  if (chamber === 'presidential') {
-    if (lastName === 'Sanders') {
-      return '#BernieBloc';
-    }
-    return `#${lastName}Bloc`;
+  if (chamber === 'presidential' && lastName === 'Sanders') {
+    return '#BernieBloc';
   }
-  if (chamber === 'senate') {
-    return `#${lastName}${state.toUpperCase()}Bloc`;
-  }
-  if (chamber === 'house') {
-    return `#${lastName}${state}${district}Bloc`;
-  }
+  return `#${lastName}Bloc`;
 };
 
 export const candidateRanking = (ranking, candidate) => {

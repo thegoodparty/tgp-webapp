@@ -27,7 +27,7 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
-import { isDistrictInCds } from 'helpers/electionsHelper';
+import { candidateBlocName, isDistrictInCds } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
@@ -204,11 +204,14 @@ function mapDispatchToProps(dispatch, ownProps) {
           ),
         );
       } else {
+        const blocName = candidateBlocName(candidate, chamber);
+        console.log('page blocName', blocName);
         dispatch(
           userActions.saveGuestRankingAction(
             candidate,
             rank,
             chamber,
+            blocName,
             refreshUserCount,
           ),
         );

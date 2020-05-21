@@ -167,7 +167,7 @@ const ChoiceModal = ({
             name={candidate.name}
           />
           <H1 style={{ marginTop: '18px', marginBottom: '36px' }}>
-            {candidateBlocName(candidate, chamber, state, districtNumber)}{' '}
+            {candidateBlocName(candidate, chamber)}{' '}
             Joined!{' '}
             <span role="img" aria-label="flex">
               💪
@@ -206,7 +206,7 @@ const ChoiceModal = ({
           </SupportersRow>
           <SuppoetersBody13>
             have joined the{' '}
-            {candidateBlocName(candidate, chamber, state, districtNumber)} so
+            {candidateBlocName(candidate, chamber)} so
             far
           </SuppoetersBody13>
         </AvatarWrapper>

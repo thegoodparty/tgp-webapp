@@ -460,7 +460,7 @@ const CandidateWrapper = ({
   const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
 
-  const blocName = candidateBlocName(candidate, chamberName, state, district);
+  const blocName = candidateBlocName(candidate, chamberName);
   return (
     <GrayWrapper>
       {candidate && name ? (

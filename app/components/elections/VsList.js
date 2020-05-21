@@ -280,7 +280,7 @@ const VsList = ({
             ) : (
               <BlueBody11>
                 GROW{' '}
-                {candidateBlocName(candidate, chamber, state, districtNumber)}
+                {candidateBlocName(candidate, chamber)}
               </BlueBody11>
             )}
           </GrowButtonWrapper>
@@ -300,7 +300,7 @@ const VsList = ({
           </JoinButton>
         ) : (
           <JoinButton onClick={e => handleChoice(candidate, e)}>
-            JOIN {candidateBlocName(candidate, chamber, state, districtNumber)}
+            JOIN {candidateBlocName(candidate, chamber)}
           </JoinButton>
         )}
       </GrowWrapper>
@@ -331,7 +331,7 @@ const VsList = ({
     <BlocCount>
       {numberFormatter(candidate.ranking)}{' '}
       {candidate.ranking === 1 ? 'is' : 'are'} in{' '}
-      {candidateBlocName(candidate, chamber, state, districtNumber)}
+      {candidateBlocName(candidate, chamber)}
     </BlocCount>
   );
 
