@@ -14,11 +14,11 @@ import Favorite from '@material-ui/icons/Favorite';
 import Share from '@material-ui/icons/Share';
 import NotionIcon from 'images/icons/notion.svg';
 import FigmaIcon from 'images/icons/figma.svg';
-import MessageIcon from 'images/icons/message.svg';
-import ShareIcon from 'images/icons/share1.svg';
-import FavoriteIcon from 'images/icons/favorite.svg';
 import Collaborators from '../Collaborators';
 import { ProjectProposal } from '../modals';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import ReactPlayer from 'react-player';
 
 const ProjectWrapper = styled.div`
   border-radius: 16px;
@@ -191,7 +191,7 @@ const FooterActionsWrapper = styled(Grid)`
 `;
 const ProjectImg = styled.img`
   width: 100%;
-  height: 100%;
+  max-height: 300px;
 `;
 const ShowMore = styled.a`
   color: ${({ theme }) => theme.colors.blue};
@@ -212,6 +212,41 @@ const CollaboratorContainer = styled(Grid)`
 
 const ProjectImageWrapper = styled(Grid)`
   && {
+    div {
+      background-color: white;
+    }
+    div.thumbs-wrapper {
+      margin: 12px;
+    }
+    ul.thumbs {
+      padding: 0;
+      margin: 0;
+      li.thumb {
+        height: 48px;
+        width: 48px !important;
+        margin-right: 0.5rem;
+        img {
+          width: 100% !important;
+          height: 100%;
+        }
+      }
+    }
+    img.carousel-img {
+      max-height: 444px;
+      width: auto;
+    }
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.creators.breakpoints.creatorsTablet}) {
+      img.carousel-img {
+        max-height: 235px;
+      }
+    }
+    @media only screen and (max-width: ${({ theme }) =>
+        theme.creators.breakpoints.creatorsTablet}) {
+      img.carousel-img {
+        max-height: 300px;
+      }
+    }
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsTablet}) {
       order: 0;
@@ -219,6 +254,7 @@ const ProjectImageWrapper = styled(Grid)`
     }
   }
 `;
+
 function Project({ project, showMore = false }) {
   const [touch, setTouch] = useState(false);
 
@@ -240,27 +276,52 @@ function Project({ project, showMore = false }) {
             handleClose={() => setTouch(false)}
           />
           <Topics>
-            {project.topics.map((topic, index) => (
-              <Topic key={index}>{topic}</Topic>
-            ))}
+            {project.topics &&
+              project.topics.map((topic, index) => (
+                <Topic key={index}>{topic}</Topic>
+              ))}
           </Topics>
           <Summary>{project.summary}</Summary>
           <div>
-            {project.links && project.links.map((link, index) => {
-              const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
-              return (
-                <OuterLinkWrapper key={index}>
-                  <OuterLink href={link} target="_blank">
-                    <LinkIcon src={icon} alt="link icon" />
-                    {link}
-                  </OuterLink>
-                </OuterLinkWrapper>
-              );
-            })}
+            {project.links &&
+              project.links.map((link, index) => {
+                const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
+                return (
+                  <OuterLinkWrapper key={index}>
+                    <OuterLink href={link} target="_blank">
+                      <LinkIcon src={icon} alt="link icon" />
+                      {link}
+                    </OuterLink>
+                  </OuterLinkWrapper>
+                );
+              })}
           </div>
         </ProjectContent>
         <ProjectImageWrapper item xs={12} lg={5}>
-          <ProjectImg src={`http:${project.images[0]}`} alt="project img" />
+          {project.images.length == 0 && project.video && (
+            <ReactPlayer
+              url={project.video}
+              playing={false}
+              width="100%"
+              height="100%"
+            />
+          )}
+          {project.images.length == 1 && (
+            <ProjectImg src={`http:${project.images[0]}`} alt="project img" />
+          )}
+          {project.images.length > 1 && (
+            <Carousel>
+              {project.images.map(image => (
+                <div>
+                  <img
+                    src={`http:${image}`}
+                    alt="project img"
+                    className="carousel-img"
+                  />
+                </div>
+              ))}
+            </Carousel>
+          )}
         </ProjectImageWrapper>
       </ProjectBodyWrapper>
       <ProjectFooter container>
@@ -270,15 +331,24 @@ function Project({ project, showMore = false }) {
         <FooterActionsWrapper item xs={12} lg={5}>
           <FooterActions>
             <FooterAction>
-              <FooterActionIcon > <Mail /> </FooterActionIcon>
+              <FooterActionIcon>
+                {' '}
+                <Mail />{' '}
+              </FooterActionIcon>
               I want to help
             </FooterAction>
             <FooterAction>
-              <FooterActionIcon > <Share /> </FooterActionIcon>
+              <FooterActionIcon>
+                {' '}
+                <Share />{' '}
+              </FooterActionIcon>
               Share
             </FooterAction>
             <FooterAction className="favorite">
-              <FooterActionIcon > <Favorite /> </FooterActionIcon>
+              <FooterActionIcon>
+                {' '}
+                <Favorite />{' '}
+              </FooterActionIcon>
               102
             </FooterAction>
           </FooterActions>
