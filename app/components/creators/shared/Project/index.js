@@ -246,7 +246,7 @@ function Project({ project, showMore = false }) {
           </Topics>
           <Summary>{project.summary}</Summary>
           <div>
-            {project.links.map((link, index) => {
+            {project.links && project.links.map((link, index) => {
               const icon = link.includes('notion') ? NotionIcon : FigmaIcon;
               return (
                 <OuterLinkWrapper key={index}>
