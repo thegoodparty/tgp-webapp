@@ -23,6 +23,7 @@ import { numberFormatter, numberNth } from '../../../helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChoiceModal from './ChoiceModal';
 import { getCookie, setCookie } from '../../../helpers/cookieHelper';
+import ShareModal from './ShareModal';
 
 const Description = styled(Body)`
   margin: 10px 0 22px;
@@ -108,6 +109,7 @@ const ElectionWrapper = ({
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(true);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
 
   const { topRank } = candidates;
@@ -125,7 +127,7 @@ const ElectionWrapper = ({
   };
 
   let articles = [];
-  if (content && content.faqArticles) {
+  if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
   }
 
@@ -156,6 +158,7 @@ const ElectionWrapper = ({
       setChoiceModalCandidate(candidate);
       selectCandidate(candidate, rank);
       setShowChoiceModal(true);
+      setShowShareModal(false);
     } else {
       // ranking not allowed
       setShowRankAlert(true);
@@ -173,14 +176,28 @@ const ElectionWrapper = ({
     );
   };
 
+  const handleGrowCallback = candidate => {
+    setChoiceModalCandidate(candidate);
+    setShowChoiceModal(false);
+    setShowShareModal(true);
+  };
+
   const onCloseChoiceModal = () => {
     setShowChoiceModal(false);
     setChoiceModalCandidate(false);
     refreshCountCallback(state, districtNumber);
   };
 
-  const cancelCallback = id => {
-    // deSelectCandidate(id);
+  const onShareChoiceModal = () => {
+    setShowChoiceModal(false);
+    setShowShareModal(true);
+    refreshCountCallback(state, districtNumber);
+  };
+
+  const onCloseShareModal = () => {
+    setShowShareModal(false);
+    setChoiceModalCandidate(false);
+    // refreshCountCallback(state, districtNumber);
   };
 
   const stateUpper = state ? state.toUpperCase() : '';
@@ -245,6 +262,7 @@ const ElectionWrapper = ({
               openFiltersCallback={openFiltersCallback}
               ranking={ranking}
               handleChoiceCallback={handleChoiceCallback}
+              handleGrowCallback={handleGrowCallback}
               handleDeselectCandidate={handleDeselectCandidate}
               goodBlock={`${stateUpper}${districtNumber ? districtNumber : ''}`}
               districtNumber={districtNumber}
@@ -283,6 +301,7 @@ const ElectionWrapper = ({
       <ChoiceModal
         open={showChoiceModal}
         closeCallback={onCloseChoiceModal}
+        shareCallback={onShareChoiceModal}
         candidate={choiceModalCandidate}
         votesNeeded={votesNeeded}
         chamberCount={
@@ -294,9 +313,15 @@ const ElectionWrapper = ({
         animateCount
         userState={candidates.userState}
         suffixText={suffixText}
-        districtNumber={districtNumber}
         chamber={chamber}
-        state={stateUpper}
+      />
+      <ShareModal
+        open={showShareModal}
+        closeCallback={onCloseShareModal}
+        candidate={choiceModalCandidate}
+        // candidate={candidates.good ? candidates.good[0] : null}
+        user={user}
+        chamber={chamber}
       />
     </GrayWrapper>
   );

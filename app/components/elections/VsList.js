@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,6 @@ import {
   partyResolver,
   candidateRoute,
   candidateRanking,
-  candidateFirstName,
   candidateBlocName,
 } from 'helpers/electionsHelper';
 import { numberFormatter, numberNth } from 'helpers/numberHelper';
@@ -253,6 +252,7 @@ const VsList = ({
   chamber,
   state,
   districtNumber,
+  handleGrowCallback,
 }) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
@@ -269,18 +269,25 @@ const VsList = ({
       }
     });
   }
+
+  const onGrow = (candidate, e) => {
+    console.log('here');
+    e.stopPropagation();
+    e.preventDefault();
+    handleGrowCallback(candidate);
+  };
+
   const choiceButton = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
     if (candidateRank) {
       return (
         <GrowWrapper>
-          <GrowButtonWrapper>
+          <GrowButtonWrapper onClick={e => onGrow(candidate, e)}>
             {candidate.id === noneYetCandidate.id ? (
               <BlueBody11>GROW #GoodBloc{goodBlock}</BlueBody11>
             ) : (
               <BlueBody11>
-                GROW{' '}
-                {candidateBlocName(candidate, chamber)}
+                GROW {candidateBlocName(candidate, chamber)}
               </BlueBody11>
             )}
           </GrowButtonWrapper>
@@ -452,9 +459,10 @@ VsList.propTypes = {
   ]),
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
+  handleGrowCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,
   goodBlock: PropTypes.string,
-  districtNumber: PropTypes.number,
+  districtNumber: PropTypes.string,
   chamber: PropTypes.string,
   state: PropTypes.string,
 };

@@ -14,6 +14,7 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
+import { candidateBlocName } from '../../../helpers/electionsHelper';
 
 function* register(action) {
   try {
@@ -361,14 +362,7 @@ function* uploadAvatar(action) {
 
 function* saveUserRanking(action) {
   try {
-    const {
-      candidate,
-      rank,
-      chamber,
-      state,
-      district,
-      refreshUserCount,
-    } = action;
+    const { candidate, rank, chamber, state, district } = action;
     const api = tgpApi.rankCandidate;
     const payload = {
       rank,
@@ -388,9 +382,6 @@ function* saveUserRanking(action) {
     } else {
       yield put(districtActions.loadHouseCandidatesAction(state, district));
     }
-    // if (refreshUserCount) {
-    //   yield put(districtActions.userCountsAction(state, district));
-    // }
   } catch (error) {
     console.log(error);
     yield put(
@@ -401,9 +392,10 @@ function* saveUserRanking(action) {
 
 function* saveGuestRanking(action) {
   try {
-    const { candidate, rank, chamber, refreshUserCount } = action;
+    const { candidate, rank, chamber } = action;
     const rankingCookie = getCookie('guestRanking');
     const ranking = rankingCookie ? JSON.parse(rankingCookie) : [];
+    const blocName = candidateBlocName(candidate, chamber);
 
     ranking.push({
       id: `cookie-${chamber}-${candidate.id}${
@@ -413,7 +405,7 @@ function* saveGuestRanking(action) {
       candidate: candidate.id,
       chamber,
       isIncumbent: !!candidate.isIncumbent,
-      candName: candidate.name,
+      blocName,
     });
     setCookie('guestRanking', JSON.stringify(ranking));
 

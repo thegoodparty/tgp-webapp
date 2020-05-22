@@ -6,18 +6,15 @@ import CloseIcon from '@material-ui/icons/Cancel';
 import { Link } from 'react-router-dom';
 
 import heartImg from 'images/heart.svg';
-import { Body, H1, Body13 } from 'components/shared/typogrophy';
+import { Body, H1, Body13, H3 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import {
-  candidateBlocName,
-  candidateFirstName,
-  partyResolver,
-} from 'helpers/electionsHelper';
+import { candidateBlocName } from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ShareButton from '../../shared/ShareButton';
 import { uuidUrl } from '../../../helpers/userHelper';
 import { setCookie } from '../../../helpers/cookieHelper';
+import { BlueButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -52,10 +49,6 @@ const AvatarWrapper = styled(Body)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const SupportersWrapper = styled.div`
-  flex: 1;
 `;
 
 const SupportersRow = styled.div`
@@ -115,8 +108,6 @@ const Footer = styled(Body13)`
   text-align: center;
 `;
 
-const ShareWrapper = styled.div``;
-
 const ChoiceModal = ({
   candidate,
   open,
@@ -127,9 +118,8 @@ const ChoiceModal = ({
   userState,
   suffixText,
   closeCallback,
+  shareCallback,
   chamber,
-  state,
-  districtNumber,
 }) => {
   if (!candidate) {
     return <> </>;
@@ -141,10 +131,6 @@ const ChoiceModal = ({
   }
 
   const url = uuidUrl(user);
-
-  const saveShare = () => {
-    setCookie('isSharedModal', true);
-  };
 
   const countWithUser = user ? chamberCount : chamberCount - 1;
 
@@ -167,8 +153,7 @@ const ChoiceModal = ({
             name={candidate.name}
           />
           <H1 style={{ marginTop: '18px', marginBottom: '36px' }}>
-            {candidateBlocName(candidate, chamber)}{' '}
-            Joined!{' '}
+            {candidateBlocName(candidate, chamber)} Joined!{' '}
             <span role="img" aria-label="flex">
               💪
             </span>
@@ -205,9 +190,7 @@ const ChoiceModal = ({
             )}
           </SupportersRow>
           <SuppoetersBody13>
-            have joined the{' '}
-            {candidateBlocName(candidate, chamber)} so
-            far
+            have joined the {candidateBlocName(candidate, chamber)} so far
           </SuppoetersBody13>
         </AvatarWrapper>
         <CenterBar>
@@ -220,9 +203,9 @@ const ChoiceModal = ({
           />
         </CenterBar>
 
-        <ShareWrapper onClick={saveShare}>
-          <ShareButton url={url} />
-        </ShareWrapper>
+        <BlueButton fullWidth onClick={shareCallback}>
+          <H3 style={{color: '#FFF'}}>TELL SOME FRIENDS</H3>
+        </BlueButton>
         <Footer>
           Don&apos;t worry, we will{' '}
           <Link to="/party/faq/we-never-waste-your-vote/prGq4SAFpfT7qzBFM1HDy">
@@ -238,6 +221,7 @@ const ChoiceModal = ({
 ChoiceModal.propTypes = {
   open: PropTypes.bool,
   closeCallback: PropTypes.func,
+  shareCallback: PropTypes.func,
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   votesNeeded: PropTypes.number,
   chamberCount: PropTypes.number,
@@ -246,7 +230,6 @@ ChoiceModal.propTypes = {
   userState: PropTypes.string,
   suffixText: PropTypes.string,
   chamber: PropTypes.string,
-  state: PropTypes.string,
 };
 
 export default ChoiceModal;

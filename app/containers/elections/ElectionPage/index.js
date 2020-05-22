@@ -183,15 +183,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
 
-    saveRankingCallback: (
-      user,
-      candidate,
-      rank,
-      chamber,
-      state,
-      district,
-      refreshUserCount,
-    ) => {
+    saveRankingCallback: (user, candidate, rank, chamber, state, district) => {
       if (user) {
         dispatch(
           userActions.saveUserRankingAction(
@@ -200,21 +192,10 @@ function mapDispatchToProps(dispatch, ownProps) {
             chamber,
             state,
             district,
-            refreshUserCount,
           ),
         );
       } else {
-        const blocName = candidateBlocName(candidate, chamber);
-        console.log('page blocName', blocName);
-        dispatch(
-          userActions.saveGuestRankingAction(
-            candidate,
-            rank,
-            chamber,
-            blocName,
-            refreshUserCount,
-          ),
-        );
+        dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
       }
     },
     deleteCandidateRankingCallback: (rank, user, chamber, state, district) => {

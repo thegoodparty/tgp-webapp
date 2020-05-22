@@ -51,14 +51,14 @@ const makeSelectRanking = () =>
             candidate,
             isIncumbent,
             chamber,
-            candName, // only valid for guest ranking. Used for the register banner
+            blocName, // only valid for guest ranking. Used for the register banner
           } = userRank;
           rankingObj[chamber][candidate] = {
             id,
             rank,
             candidateId: candidate,
             isIncumbent,
-            candName,
+            blocName,
           };
         });
       }

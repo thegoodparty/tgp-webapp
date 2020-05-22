@@ -97,13 +97,11 @@ const saveUserRankingAction = (
   chamber,
   state,
   district,
-  refreshUserCount,
 ) => ({
   type: types.SAVE_USER_RANKING,
   candidate,
   rank,
   chamber,
-  refreshUserCount,
   state,
   district,
 });
@@ -153,17 +151,11 @@ const userRankingActionSuccess = ranking => ({
   ranking,
 });
 
-const saveGuestRankingAction = (
-  candidate,
-  rank,
-  chamber,
-  refreshUserCount,
-) => ({
+const saveGuestRankingAction = (candidate, rank, chamber) => ({
   type: types.SAVE_GUEST_RANKING,
   candidate,
   rank,
   chamber,
-  refreshUserCount,
 });
 
 const deleteGuestRankingAction = rankToDelete => ({
