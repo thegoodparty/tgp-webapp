@@ -56,14 +56,12 @@ export function RegisterBannerContainer({
 
   let blocName = '';
   if (presidentialCount > 0) {
-    blocName = rankingObj.presidential[presidentialRankArr[0]].candName;
+    blocName = rankingObj.presidential[presidentialRankArr[0]].blocName;
   } else if (senateCount > 0) {
-    blocName = rankingObjsenate[senateRankArr[0]].candName;
-  } else if (houseRank > 0) {
-    blocName = rankingObj.house[houseRankArr[0]].candName;
+    blocName = rankingObj.senate[senateRankArr[0]].blocName;
+  } else if (houseCount > 0) {
+    blocName = rankingObj.house[houseRankArr[0]].blocName;
   }
-
-  blocName = blocName !== '' ? candidateFirstName({ name: blocName }) : '';
 
   const count = presidentialCount + senateCount + houseCount;
 
