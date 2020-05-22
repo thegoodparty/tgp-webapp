@@ -99,7 +99,7 @@ const DistrictWrapper = ({
 
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];
-  if (cds && cds.length > 0) {
+  if (cds?.length > 0) {
     const { districtId } = approxPct[cdIndex];
     cds.forEach(dist => {
       if (dist.id === districtId) {
@@ -109,7 +109,7 @@ const DistrictWrapper = ({
   }
 
   let articles = [];
-  if (content && content.faqArticles) {
+  if (content?.faqArticles) {
     const allArticles = content.faqArticles;
     articles = allArticles.filter(article => {
       if (!article.pages) {
@@ -139,18 +139,14 @@ const DistrictWrapper = ({
 
   let electionCount = 3;
   if (
-    senateCandidates &&
-    senateCandidates.good &&
-    senateCandidates.good.length < 2 &&
+    senateCandidates?.good?.length < 2 &&
     senateCandidates.notGood.length === 0 &&
     senateCandidates.unknown.length === 0
   ) {
     electionCount--;
   }
   if (
-    houseCandidates &&
-    houseCandidates.good &&
-    houseCandidates.good.length < 2 &&
+    houseCandidates?.good?.length < 2 &&
     houseCandidates.notGood.length === 0 &&
     houseCandidates.unknown.length === 0
   ) {

@@ -51,7 +51,7 @@ function RegisterBannerWrapper({ count, showBanner, blocName }) {
           <Link to="/you/register">
             <ContentWrapper>
               <Body13>
-                You have joined #{blocName}Bloc{' '}
+                You have joined {blocName}{' '}
                 {count > 1
                   ? ` + ${count - 1} other${count > 2 ? 's' : ''}`
                   : ''}
