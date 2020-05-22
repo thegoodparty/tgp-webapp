@@ -215,26 +215,36 @@ const ProjectImageWrapper = styled(Grid)`
     div {
       background-color: white;
     }
-    div.thumbs-wrapper {
-      margin: 12px;
-    }
-    ul.thumbs {
-      padding: 0;
-      margin: 0;
-      li.thumb {
-        height: 48px;
-        width: 48px !important;
-        margin-right: 0.5rem;
-        img {
-          width: 100% !important;
-          height: 100%;
+    
+    .carousel-root {
+      div.thumbs-wrapper {
+        margin: 12px;
+      }
+      p.carousel-status {
+        display: none;
+      }
+      ul.control-dots {
+        display: none;
+      }
+      ul.thumbs {
+        padding: 0;
+        margin: 0;
+        li.thumb {
+          height: 48px;
+          width: 48px !important;
+          margin-right: 0.5rem;
+          img {
+            width: 100% !important;
+            height: 100%;
+          }
         }
       }
+      img.carousel-img {
+        max-height: 444px;
+        width: auto;
+      }
     }
-    img.carousel-img {
-      max-height: 444px;
-      width: auto;
-    }
+    
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsTablet}) {
       img.carousel-img {
