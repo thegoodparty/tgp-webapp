@@ -27,7 +27,7 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
-import { candidateBlocName, isDistrictInCds } from 'helpers/electionsHelper';
+import { candidateBlocName, findBlocCandidate, isDistrictInCds } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
@@ -36,6 +36,8 @@ import makeSelectUser, {
 } from 'containers/you/YouPage/selectors';
 
 import userActions from 'containers/you/YouPage/actions';
+import { makeSelectLocation } from '../../App/selectors';
+import queryHelper from '../../../helpers/queryHelper';
 
 export function ElectionPage({
   content,
@@ -44,6 +46,7 @@ export function ElectionPage({
   district,
   districtState,
   candidateState,
+  locationState,
   userState,
   rankingObj,
   dispatch,
@@ -60,6 +63,7 @@ export function ElectionPage({
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
   const { user, ranking } = userState;
+  const { blocCandidate } = districtState;
 
   let candidates;
   if (chamber === 'presidential') {
@@ -69,6 +73,7 @@ export function ElectionPage({
   } else {
     candidates = districtState.houseCandidates;
   }
+  const { search, pathname } = locationState;
 
   useEffect(() => {
     if (!candidates) {
@@ -79,6 +84,10 @@ export function ElectionPage({
       } else {
         dispatch(districtActions.loadHouseCandidatesAction(state, district));
       }
+    }
+    const bloc = queryHelper(search, 'b');
+    if (bloc) {
+      loadBlocCandidate(bloc);
     }
   }, []);
 
@@ -123,6 +132,14 @@ export function ElectionPage({
   }
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
+  const loadBlocCandidate = bloc => {
+    dispatch(districtActions.loadBlocCandidateAction(bloc));
+    dispatch(push(pathname));
+  };
+  ``;
+
+  const blocCandidateMatch = findBlocCandidate(candidates, blocCandidate);
+
   const childProps = {
     candidates,
     user,
@@ -136,6 +153,7 @@ export function ElectionPage({
     saveRankingCallback,
     refreshCountCallback,
     deleteCandidateRankingCallback,
+    blocCandidate: blocCandidateMatch,
   };
 
   return (
@@ -166,6 +184,7 @@ ElectionPage.propTypes = {
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
   rankingObj: PropTypes.object,
+  locationState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -174,6 +193,7 @@ const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
   rankingObj: makeSelectRanking(),
+  locationState: makeSelectLocation(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {

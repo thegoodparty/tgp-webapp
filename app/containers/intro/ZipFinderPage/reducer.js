@@ -17,6 +17,7 @@ export const initialState = {
   error: false,
   geoError: false,
   userCounts: false,
+  blocCandidate: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -98,6 +99,10 @@ const zipFinderPageReducer = (state = initialState, action) =>
 
       case types.USERS_COUNTS_SUCCESS:
         draft.userCounts = action.userCounts;
+        break;
+
+      case types.LOAD_BLOC_CANDIDATE_SUCCESS:
+        draft.blocCandidate = action.blocCandidate;
         break;
     }
   });

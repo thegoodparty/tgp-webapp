@@ -105,12 +105,20 @@ const ElectionWrapper = ({
   editModeCallback,
   refreshCountCallback,
   deleteCandidateRankingCallback,
+  blocCandidate,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(true);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
+
+  useEffect(() => {
+    if (blocCandidate) {
+      setChoiceModalCandidate(blocCandidate);
+      setShowShareModal(true);
+    }
+  }, [blocCandidate]);
 
   const { topRank } = candidates;
 
@@ -336,6 +344,7 @@ ElectionWrapper.propTypes = {
   districtNumber: PropTypes.string,
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  blocCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rankingAllowed: PropTypes.bool,
   saveRankingCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,

@@ -10,7 +10,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { candidateBlocName } from 'helpers/electionsHelper';
+import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
@@ -112,13 +112,13 @@ const ShareModal = ({ candidate, open, user, chamber, closeCallback }) => {
     isGood = null;
   }
 
-  const blocName = candidateBlocName(candidate, chamber);
+  const blocName = candidateBlocLink(candidate, chamber);
   let url = uuidUrl(user);
   let queryOperator = '&';
   if (url === 'https://thegoodparty.org') {
     queryOperator = '?';
   }
-  url = url + queryOperator + blocName?.substring(1, blocName.length);
+  url = url + queryOperator + blocName;
   console.log('url', url);
 
   return (
@@ -182,9 +182,7 @@ const ShareModal = ({ candidate, open, user, chamber, closeCallback }) => {
             </Grid>
             <Grid item xs>
               <IconItem>
-                <IconWrapper>
-                  ?
-                </IconWrapper>
+                <IconWrapper>?</IconWrapper>
               </IconItem>
             </Grid>
           </Grid>

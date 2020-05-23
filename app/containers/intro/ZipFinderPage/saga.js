@@ -110,6 +110,18 @@ function* userCounts(action) {
   }
 }
 
+function* loadBlocCandidate(action) {
+  try {
+    const { bloc } = action;
+    const api = tgpApi.findBlocCandidate;
+    const payload = { bloc };
+    const candidate = yield call(requestHelper, api, payload);
+    yield put(actions.loadBlocCandidateActionSuccess(candidate));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* gelocationToDistrict(action) {
   try {
     const { coords } = action;
@@ -184,4 +196,8 @@ export default function* saga() {
   );
 
   const countsAction = yield takeLatest(types.USERS_COUNTS, userCounts);
+  const blocAction = yield takeLatest(
+    types.LOAD_BLOC_CANDIDATE,
+    loadBlocCandidate,
+  );
 }

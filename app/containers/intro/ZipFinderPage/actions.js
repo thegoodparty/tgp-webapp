@@ -82,6 +82,16 @@ const userCountsActionSuccess = userCounts => ({
   userCounts,
 });
 
+const loadBlocCandidateAction = bloc => ({
+  type: types.LOAD_BLOC_CANDIDATE,
+  bloc,
+});
+
+const loadBlocCandidateActionSuccess = blocCandidate => ({
+  type: types.LOAD_BLOC_CANDIDATE_SUCCESS,
+  blocCandidate,
+});
+
 export default {
   loadZipAction,
   loadZipActionSuccess,
@@ -99,4 +109,6 @@ export default {
   loadSenateCandidatesActionSuccess,
   userCountsAction,
   userCountsActionSuccess,
+  loadBlocCandidateAction,
+  loadBlocCandidateActionSuccess,
 };
