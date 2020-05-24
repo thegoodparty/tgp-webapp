@@ -22,7 +22,6 @@ import { shortToLongState } from '../../../helpers/electionsHelper';
 import { numberFormatter, numberNth } from '../../../helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChoiceModal from './ChoiceModal';
-import { getCookie, setCookie } from '../../../helpers/cookieHelper';
 import ShareModal from './ShareModal';
 
 const Description = styled(Body)`
@@ -112,17 +111,19 @@ const ElectionWrapper = ({
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
+  const [isExternalLink, setIsExternalLink] = useState(false);
 
   useEffect(() => {
     if (blocCandidate) {
+      setIsExternalLink(true);
       setChoiceModalCandidate(blocCandidate);
-      setShowShareModal(true);
+      setShowChoiceModal(true);
     }
   }, [blocCandidate]);
 
   const { topRank } = candidates;
 
-  const selectCandidate = async (candidate, rank) => {
+  const selectCandidate = (candidate, rank) => {
     saveRankingCallback(user, candidate, rank, chamber, state, districtNumber);
   };
 
@@ -161,7 +162,7 @@ const ElectionWrapper = ({
     votesNeeded = candidates.threshold;
   }
 
-  const handleChoiceCallback = async (candidate, rank) => {
+  const handleChoiceCallback = (candidate, rank) => {
     if (rankingAllowed) {
       setChoiceModalCandidate(candidate);
       selectCandidate(candidate, rank);
@@ -173,8 +174,7 @@ const ElectionWrapper = ({
     }
   };
 
-  const handleDeselectCandidate = async rank => {
-    // await deSelectCandidate(candidate.id);
+  const handleDeselectCandidate = rank => {
     deleteCandidateRankingCallback(
       { ...rank, chamber },
       user,
@@ -193,6 +193,7 @@ const ElectionWrapper = ({
   const onCloseChoiceModal = () => {
     setShowChoiceModal(false);
     setChoiceModalCandidate(false);
+    setIsExternalLink(false);
     refreshCountCallback(state, districtNumber);
   };
 
@@ -202,9 +203,29 @@ const ElectionWrapper = ({
     refreshCountCallback(state, districtNumber);
   };
 
+  const onJoinChoiceModal = candidateJoined => {
+    setShowChoiceModal(false);
+
+    setShowShareModal(true);
+    let nextChoice = 1;
+    const { good, notGood, unknown } = candidates;
+    [...good, ...notGood, ...unknown].forEach(candidate => {
+      if (
+        ranking[candidate.id] &&
+        ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
+      ) {
+        nextChoice++;
+      }
+    });
+    selectCandidate(candidateJoined, nextChoice);
+
+    refreshCountCallback(state, districtNumber);
+  };
+
   const onCloseShareModal = () => {
     setShowShareModal(false);
     setChoiceModalCandidate(false);
+    setIsExternalLink(false);
     // refreshCountCallback(state, districtNumber);
   };
 
@@ -310,7 +331,9 @@ const ElectionWrapper = ({
         open={showChoiceModal}
         closeCallback={onCloseChoiceModal}
         shareCallback={onShareChoiceModal}
+        joinCallback={onJoinChoiceModal}
         candidate={choiceModalCandidate}
+        // candidate={candidates.good ? candidates.good[0] : null}
         votesNeeded={votesNeeded}
         chamberCount={
           choiceModalCandidate.id < 0
@@ -318,10 +341,11 @@ const ElectionWrapper = ({
             : choiceModalCandidate.ranking
         }
         user={user}
-        animateCount
+        animateCount={!isExternalLink}
         userState={candidates.userState}
         suffixText={suffixText}
         chamber={chamber}
+        isExternalLink={isExternalLink}
       />
       <ShareModal
         open={showShareModal}
@@ -330,6 +354,7 @@ const ElectionWrapper = ({
         // candidate={candidates.good ? candidates.good[0] : null}
         user={user}
         chamber={chamber}
+        isExternalLink={isExternalLink}
       />
     </GrayWrapper>
   );
