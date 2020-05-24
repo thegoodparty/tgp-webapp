@@ -271,7 +271,6 @@ const VsList = ({
   }
 
   const onGrow = (candidate, e) => {
-    console.log('here');
     e.stopPropagation();
     e.preventDefault();
     handleGrowCallback(candidate);

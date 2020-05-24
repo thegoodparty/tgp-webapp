@@ -163,7 +163,7 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
           {cloneGood.length > 1 && <Name>{cloneGood.length} CANDIDATES</Name>}
           {cloneGood.length === 1 && (
             <>
-              <Name className={(cloneGood[0].id = 'noneyet' ? 'gray' : '')}>
+              <Name className={(cloneGood[0].id === 'noneyet' ? 'gray' : '')}>
                 {cloneGood[0].name.toUpperCase()}
               </Name>
               <Role>
