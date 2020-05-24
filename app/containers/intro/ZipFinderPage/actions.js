@@ -92,6 +92,10 @@ const loadBlocCandidateActionSuccess = blocCandidate => ({
   blocCandidate,
 });
 
+const clearBlocCandidateAction = () => ({
+  type: types.CLEAR_BLOC_CANDIDATE,
+});
+
 export default {
   loadZipAction,
   loadZipActionSuccess,
@@ -111,4 +115,5 @@ export default {
   userCountsActionSuccess,
   loadBlocCandidateAction,
   loadBlocCandidateActionSuccess,
+  clearBlocCandidateAction,
 };

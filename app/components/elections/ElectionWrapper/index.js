@@ -104,6 +104,7 @@ const ElectionWrapper = ({
   editModeCallback,
   refreshCountCallback,
   deleteCandidateRankingCallback,
+  clearBlocCandidateCallback,
   blocCandidate,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
@@ -194,6 +195,7 @@ const ElectionWrapper = ({
     setShowChoiceModal(false);
     setChoiceModalCandidate(false);
     setIsExternalLink(false);
+    clearBlocCandidateCallback();
     refreshCountCallback(state, districtNumber);
   };
 
@@ -225,6 +227,7 @@ const ElectionWrapper = ({
   const onCloseShareModal = () => {
     setShowShareModal(false);
     setChoiceModalCandidate(false);
+    clearBlocCandidateCallback();
     setIsExternalLink(false);
     // refreshCountCallback(state, districtNumber);
   };
@@ -293,7 +296,7 @@ const ElectionWrapper = ({
               handleChoiceCallback={handleChoiceCallback}
               handleGrowCallback={handleGrowCallback}
               handleDeselectCandidate={handleDeselectCandidate}
-              goodBlock={`${stateUpper}${districtNumber ? districtNumber : ''}`}
+              goodBloc={`${stateUpper}${districtNumber ? districtNumber : ''}`}
               districtNumber={districtNumber}
               chamber={chamber}
               state={stateUpper}
@@ -374,6 +377,7 @@ ElectionWrapper.propTypes = {
   saveRankingCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
+  clearBlocCandidateCallback: PropTypes.func,
 };
 
 export default ElectionWrapper;

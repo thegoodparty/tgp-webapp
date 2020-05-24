@@ -248,7 +248,7 @@ const VsList = ({
   ranking,
   handleChoiceCallback,
   handleDeselectCandidate,
-  goodBlock,
+  goodBloc,
   chamber,
   state,
   districtNumber,
@@ -283,7 +283,7 @@ const VsList = ({
         <GrowWrapper>
           <GrowButtonWrapper onClick={e => onGrow(candidate, e)}>
             {candidate.id === noneYetCandidate.id ? (
-              <BlueBody11>GROW #GoodBloc{goodBlock}</BlueBody11>
+              <BlueBody11>GROW #GoodBloc</BlueBody11>
             ) : (
               <BlueBody11>
                 GROW {candidateBlocName(candidate, chamber)}
@@ -302,7 +302,7 @@ const VsList = ({
       <GrowWrapper>
         {candidate.id === noneYetCandidate.id ? (
           <JoinButton onClick={e => handleChoice(candidate, e)}>
-            JOIN #GoodBloc{goodBlock}
+            JOIN #GoodBloc
           </JoinButton>
         ) : (
           <JoinButton onClick={e => handleChoice(candidate, e)}>
@@ -340,6 +340,10 @@ const VsList = ({
       {candidateBlocName(candidate, chamber)}
     </BlocCount>
   );
+  let displayBloc = goodBloc;
+  if(chamber=== 'house'){
+    displayBloc = goodBloc.substring(0,2) + '-' + goodBloc.substring(2, goodBloc.length)
+  }
 
   return (
     <div>
@@ -373,8 +377,8 @@ const VsList = ({
               <Role>GOOD PARTY APPROVED</Role>
               <BlocCount>
                 {numberFormatter(candidates.goodEmptyBlock)}{' '}
-                {candidates.goodEmptyBlock === 1 ? 'is' : 'are'} in # GoodBlock
-                {goodBlock}
+                {candidates.goodEmptyBlock === 1 ? 'is' : 'are'} in # GoodBloc
+                of {displayBloc}
               </BlocCount>
               {choiceButton(noneYetCandidate)}
             </CandidateWrapper>
@@ -460,7 +464,7 @@ VsList.propTypes = {
   handleChoiceCallback: PropTypes.func,
   handleGrowCallback: PropTypes.func,
   handleDeselectCandidate: PropTypes.func,
-  goodBlock: PropTypes.string,
+  goodBloc: PropTypes.string,
   districtNumber: PropTypes.string,
   chamber: PropTypes.string,
   state: PropTypes.string,

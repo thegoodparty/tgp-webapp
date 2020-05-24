@@ -27,7 +27,11 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
-import { candidateBlocName, findBlocCandidate, isDistrictInCds } from 'helpers/electionsHelper';
+import {
+  candidateBlocName,
+  findBlocCandidate,
+  isDistrictInCds,
+} from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
@@ -53,6 +57,7 @@ export function ElectionPage({
   saveRankingCallback,
   refreshCountCallback,
   deleteCandidateRankingCallback,
+  clearBlocCandidateCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -154,6 +159,7 @@ export function ElectionPage({
     refreshCountCallback,
     deleteCandidateRankingCallback,
     blocCandidate: blocCandidateMatch,
+    clearBlocCandidateCallback,
   };
 
   return (
@@ -185,6 +191,7 @@ ElectionPage.propTypes = {
   deleteCandidateRankingCallback: PropTypes.func,
   rankingObj: PropTypes.object,
   locationState: PropTypes.object,
+  clearBlocCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -235,6 +242,9 @@ function mapDispatchToProps(dispatch, ownProps) {
 
     refreshCountCallback: (state, district) => {
       // dispatch(districtActions.userCountsAction(state, district));
+    },
+    clearBlocCandidateCallback: () => {
+      dispatch(districtActions.clearBlocCandidateAction());
     },
   };
 }

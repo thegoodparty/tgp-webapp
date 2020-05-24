@@ -104,6 +104,10 @@ const zipFinderPageReducer = (state = initialState, action) =>
       case types.LOAD_BLOC_CANDIDATE_SUCCESS:
         draft.blocCandidate = action.blocCandidate;
         break;
+
+      case types.CLEAR_BLOC_CANDIDATE:
+        draft.blocCandidate = false;
+        break;
     }
   });
 
