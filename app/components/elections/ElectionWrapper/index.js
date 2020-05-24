@@ -110,7 +110,7 @@ const ElectionWrapper = ({
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
-  const [showShareModal, setShowShareModal] = useState(true);
+  const [showShareModal, setShowShareModal] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
 
   useEffect(() => {
