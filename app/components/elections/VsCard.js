@@ -137,7 +137,7 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
       <Row>
         <Sider>
           <Body9>
-            <Green>GOOD OPTIONS</Green>
+            <Green>POTENTIALLY GOOD</Green>
           </Body9>
           <AvatarsWrapper>
             {cloneGood.map((candidate, index) => (

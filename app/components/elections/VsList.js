@@ -349,7 +349,7 @@ const VsList = ({
     <div>
       <Row>
         <Side>
-          <GoodTitle>GOOD OPTIONS</GoodTitle>
+          <GoodTitle>POTENTIALLY GOOD</GoodTitle>
           {good.map(candidate => (
             <Link to={candidateRoute(candidate)} key={candidate.id}>
               <CandidateWrapper>
