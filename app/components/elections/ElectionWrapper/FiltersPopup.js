@@ -41,13 +41,10 @@ const FiltersPopup = () => {
       <Body style={{ marginTop: '10px', marginBottom: '32px' }}>
         To be a{' '}
         <Green>
-          <strong>Good Option</strong>
+          <strong>Potentially Good Option</strong>
         </Green>
-        , candidates must pass <u>both</u> our Follow the Money criteria and
-        have Candidate Policy Positions that are aligned with{' '}
-        <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-          The Good Party Platform.
-        </Link>
+        , candidates must pass <u>both</u> our <strong>Follow the Money</strong>{' '}
+        and <strong>Character Check</strong> criteria below:
       </Body>
       <H3>Follow the Money</H3>
       <Row style={{ marginTop: '18px' }}>
@@ -76,18 +73,19 @@ const FiltersPopup = () => {
       </Row>
 
       <H3 style={{ marginTop: '24px', marginBottom: '12px' }}>
-        Candidate Policy Positions
+        Character Check
       </H3>
       <Row>
         <Checkbox src={checkboxImg} />
         <div style={{ flex: 1 }}>
-          <Label>Aligned with Good Party Platform </Label>
+          <Label>Vetted for Hate-Speech</Label>
           <Body13>
-            Candidates Policy Posititions have been vetted and approved as
-            compatible and well-aligned with{' '}
-            <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-              The Good Party Platform.
-            </Link>
+            Candidate has not engaged in a pattern of activities or{' '}
+            <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+              hate-speech
+            </Link>{' '}
+            that encourages intolerance, discrimination or hostility towards a
+            constitutionally or state-protected group or class.
           </Body13>
         </div>
       </Row>

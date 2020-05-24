@@ -558,7 +558,7 @@ const CandidateWrapper = ({
                       <strong>Follow the Money:</strong> Candidate has raised
                       most of funding (&gt;50%) from Small Indiv. Donors
                       (&lt;$200). This is good, but not enough because of
-                      candidate policy positions.
+                      failing the character check.
                     </Body13>
                   </CheckboxRow>
                 )}
@@ -567,11 +567,14 @@ const CandidateWrapper = ({
                   <CheckboxRow>
                     <CheckboxImg src={GrayCheckbox} />
                     <Body13>
-                      <strong>Candidate Policy Positions:</strong> Candidate
-                      positions are aligned with{' '}
-                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-                        The Good Party Platform.
-                      </Link>
+                      <strong>Character Check:</strong> Candidate Candidate has{' '}
+                      <strong>not</strong> engaged in a pattern of activities or{' '}
+                      <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+                        hate-speech
+                      </Link>{' '}
+                      encouraging intolerance, discrimination or hostility
+                      towards a constitutionally or state-protected group or
+                      class.
                     </Body13>
                   </CheckboxRow>
                 ) : (
@@ -581,14 +584,15 @@ const CandidateWrapper = ({
                         <CheckboxImg src={RedCheckbox} />
                         <Body13>
                           <strong>
-                            <ColoredText>
-                              Candidate Policy Positions:
-                            </ColoredText>{' '}
+                            <ColoredText>Character Check:</ColoredText>{' '}
                           </strong>
-                          Candidate positions are not aligned with{' '}
-                          <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-                            The Good Party Platform.
-                          </Link>
+                          Candidate has engaged in a pattern of activities or{' '}
+                          <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+                            hate-speech
+                          </Link>{' '}
+                          encouraging intolerance, discrimination or hostility
+                          towards a constitutionally or state-protected group or
+                          class.
                         </Body13>
                       </CheckboxRow>
                     ) : (
@@ -597,13 +601,18 @@ const CandidateWrapper = ({
                         <Body13>
                           <strong>
                             <ColoredText className="gray">
-                              Candidate Policy Positions:
+                              Character Check:
                             </ColoredText>{' '}
                           </strong>
-                          Not yet confirmed if this candidate aligns with{' '}
-                          <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-                            The Good Party Platform.
-                          </Link>
+                          Candidate has not yet been vetted. Do you have factual
+                          info about this candidate we should consider?{' '}
+                          <a
+                            href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
+                              window.location.href
+                            }`}
+                          >
+                            Please let us know
+                          </a>
                         </Body13>
                       </CheckboxRow>
                     )}
@@ -648,13 +657,17 @@ const CandidateWrapper = ({
                     <Body13>
                       <strong>
                         <ColoredText className="green">
-                          Candidate Policy Positions:
+                          Character Check:
                         </ColoredText>
                       </strong>{' '}
-                      Candidate positions are aligned with{' '}
-                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-                        The Good Party Platform.
-                      </Link>
+                      Candidate has <strong>not</strong> engaged in a pattern of
+                      activities or{' '}
+                      <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+                        hate-speech
+                      </Link>{' '}
+                      encouraging intolerance, discrimination or hostility
+                      towards a constitutionally or state-protected group or
+                      class.
                     </Body13>
                   </CheckboxRow>
                 ) : (
@@ -698,11 +711,16 @@ const CandidateWrapper = ({
                 <CheckboxRow>
                   <CheckboxImg src={QuestionMarkGray} />
                   <Body13>
-                    <strong>Candidate Policy Positions: </strong>
-                    Not yet confirmed if this candidate aligns with{' '}
-                    <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
-                      The Good Party Platform.
-                    </Link>
+                    <strong>Character Check: </strong>
+                    Candidate has not yet been vetted. Do you have factual info
+                    about this candidate we should consider?{' '}
+                    <a
+                      href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
+                        window.location.href
+                      }`}
+                    >
+                      Please let us know
+                    </a>
                   </Body13>
                 </CheckboxRow>
               </>
