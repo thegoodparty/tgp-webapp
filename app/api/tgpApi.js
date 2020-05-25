@@ -41,6 +41,10 @@ const api = {
     url: `${base}candidates/find`,
     method: 'GET',
   },
+  findBlocCandidate: {
+    url: `${base}candidates/find-by-bloc`,
+    method: 'GET',
+  },
 
   //
   // CONTENT
@@ -90,7 +94,7 @@ const api = {
     method: 'PUT',
     withAuth: true,
   },
-  
+
   updateUser: {
     url: `${base}user/update-user`,
     method: 'PUT',

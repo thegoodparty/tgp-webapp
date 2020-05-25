@@ -10,7 +10,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -27,7 +27,11 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
-import { candidateBlocName, isDistrictInCds } from 'helpers/electionsHelper';
+import {
+  candidateBlocName,
+  findBlocCandidate,
+  isDistrictInCds,
+} from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
@@ -36,6 +40,8 @@ import makeSelectUser, {
 } from 'containers/you/YouPage/selectors';
 
 import userActions from 'containers/you/YouPage/actions';
+import { makeSelectLocation } from '../../App/selectors';
+import queryHelper from '../../../helpers/queryHelper';
 
 export function ElectionPage({
   content,
@@ -44,12 +50,15 @@ export function ElectionPage({
   district,
   districtState,
   candidateState,
+  locationState,
   userState,
   rankingObj,
   dispatch,
   saveRankingCallback,
   refreshCountCallback,
   deleteCandidateRankingCallback,
+  clearBlocCandidateCallback,
+  clearJoinCandidateCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -60,6 +69,7 @@ export function ElectionPage({
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
   const { user, ranking } = userState;
+  const { blocCandidate, joinCandidate } = districtState;
 
   let candidates;
   if (chamber === 'presidential') {
@@ -69,6 +79,7 @@ export function ElectionPage({
   } else {
     candidates = districtState.houseCandidates;
   }
+  const { search, pathname } = locationState;
 
   useEffect(() => {
     if (!candidates) {
@@ -79,6 +90,21 @@ export function ElectionPage({
       } else {
         dispatch(districtActions.loadHouseCandidatesAction(state, district));
       }
+    }
+    const bloc = queryHelper(search, 'b');
+    if (bloc) {
+      loadBlocCandidate(bloc);
+    }
+    const joinDeepLinkId = queryHelper(search, 'join');
+    const joinDeepLinkName = queryHelper(search, 'name');
+    if (joinDeepLinkId) {
+      dispatch(
+        districtActions.setJoinCandidateAction({
+          id: parseInt(joinDeepLinkId, 10),
+          name: joinDeepLinkName,
+        }),
+      );
+      dispatch(push(pathname));
     }
   }, []);
 
@@ -123,6 +149,17 @@ export function ElectionPage({
   }
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
+  const loadBlocCandidate = bloc => {
+    dispatch(districtActions.loadBlocCandidateAction(bloc));
+    dispatch(push(pathname));
+  };
+  ``;
+
+  const blocCandidateMatch = findBlocCandidate(candidates, blocCandidate);
+  let joinCandidateMatch;
+  if (joinCandidate) {
+    joinCandidateMatch = findBlocCandidate(candidates, joinCandidate);
+  }
   const childProps = {
     candidates,
     user,
@@ -136,6 +173,10 @@ export function ElectionPage({
     saveRankingCallback,
     refreshCountCallback,
     deleteCandidateRankingCallback,
+    blocCandidate: blocCandidateMatch,
+    clearBlocCandidateCallback,
+    joinCandidate: joinCandidateMatch,
+    clearJoinCandidateCallback,
   };
 
   return (
@@ -166,6 +207,9 @@ ElectionPage.propTypes = {
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
   rankingObj: PropTypes.object,
+  locationState: PropTypes.object,
+  clearBlocCandidateCallback: PropTypes.func,
+  clearJoinCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -174,6 +218,7 @@ const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
   rankingObj: makeSelectRanking(),
+  locationState: makeSelectLocation(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -215,6 +260,12 @@ function mapDispatchToProps(dispatch, ownProps) {
 
     refreshCountCallback: (state, district) => {
       // dispatch(districtActions.userCountsAction(state, district));
+    },
+    clearBlocCandidateCallback: () => {
+      dispatch(districtActions.clearBlocCandidateAction());
+    },
+    clearJoinCandidateCallback: () => {
+      dispatch(districtActions.clearJoinCandidateAction());
     },
   };
 }

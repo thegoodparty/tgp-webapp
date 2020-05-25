@@ -16,6 +16,7 @@ import { createStructuredSelector } from 'reselect';
 import history from 'utils/history';
 import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
+import { push } from 'connected-react-router';
 
 import HomePage from 'containers/intro/HomePage/Loadable';
 
@@ -91,8 +92,31 @@ function App({ locationState, dispatch }) {
     if (uuid) {
       setCookie('referrer', uuid);
     }
+    const bloc = queryHelper(search, 'b');
+    if (bloc) {
+      blocRedirect(bloc);
+    }
     fullStoryIdentify();
   }, []);
+
+  const blocRedirect = bloc => {
+    const [nameBloc, stateDistrict] = bloc.split('-');
+    if (!stateDistrict) {
+      dispatch(push(`/elections/presidential?b=${bloc}`));
+    } else if (stateDistrict.length === 2) {
+      dispatch(
+        push(`/elections/senate/${stateDistrict.toLowerCase()}?b=${bloc}`),
+      );
+    } else {
+      const state = stateDistrict.substring(0, 2);
+      const district = stateDistrict.substring(2, stateDistrict.length);
+      dispatch(
+        push(
+          `/elections/house/${state.toLowerCase()}/${district}?b=${bloc}`,
+        ),
+      );
+    }
+  };
 
   return (
     <div>

@@ -267,11 +267,38 @@ export const candidateBlocName = (candidate, chamber) => {
   if (!candidate) {
     return '';
   }
+  if (candidate.id < 0) {
+    return '#GoodBloc';
+  }
   const lastName = candidateLastName(candidate);
   if (chamber === 'presidential' && lastName === 'Sanders') {
     return '#BernieBloc';
   }
   return `#${lastName}Bloc`;
+};
+
+export const candidateBlocLink = (candidate, chamber) => {
+  if (!candidate) {
+    return '';
+  }
+  const { state, district } = candidate;
+
+  if (candidate.id < 0) {
+    return `GoodBloc-${candidate.state}${candidate.id * -1}`;
+  }
+
+  const lastName = candidateLastName(candidate);
+  if (chamber === 'presidential') {
+    if (lastName === 'Sanders') {
+      return 'BernieBloc';
+    }
+    return `${lastName}Bloc`;
+  }
+  if (chamber === 'senate') {
+    return `${lastName}Bloc-${state.toUpperCase()}`;
+  }
+
+  return `${lastName}Bloc-${state.toUpperCase()}${district}`;
 };
 
 export const candidateRanking = (ranking, candidate) => {
@@ -291,4 +318,31 @@ export const candidateRankObj = (ranking, candidate) => {
     return ranking[candidate.id];
   }
   return false;
+};
+
+export const findBlocCandidate = (candidates, blocCandidate) => {
+  if (!candidates || !blocCandidate) {
+    return null;
+  }
+  for (let i = 0; i < candidates.good.length; i++) {
+    const candidate = candidates.good[i];
+    if (
+      candidate.id === blocCandidate.id &&
+      candidate.name === candidate.name
+    ) {
+      return candidate;
+    }
+  }
+
+  for (let i = 0; i < candidates.unknown.length; i++) {
+    const candidate = candidates.unknown[i];
+    if (
+      candidate.id === blocCandidate.id &&
+      candidate.name === candidate.name
+    ) {
+      return candidate;
+    }
+  }
+
+  return null;
 };

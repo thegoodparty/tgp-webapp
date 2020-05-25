@@ -10,10 +10,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { candidateBlocName } from 'helpers/electionsHelper';
+import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
+import SmsIcon from 'images/icons/sms-icon.svg';
+import ShareIcon from 'images/icons/share-icon.svg';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -50,7 +52,11 @@ const Subtitle = styled(H3)`
 `;
 
 const ShareThisWrapper = styled.div`
-  padding: 36px 60px;
+  padding: 36px 0;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 36px 60px;
+  }
 
   .st-inline-share-buttons {
     // display: flex !important;
@@ -59,15 +65,51 @@ const ShareThisWrapper = styled.div`
   .st-btn {
     margin: 20px !important;
     border-radius: 50% !important;
+    &:after {
+      top: 45px;
+      left: 0;
+      width: 56px;
+      text-align: center;
+      position: absolute;
+      display: block;
+      font-size: 10px;
+      color: ${({ theme }) => theme.colors.gray6};
+    }
   }
 
   .st-btn[data-network='email'] {
     background-color: #f39268 !important;
+    &:after {
+      content: 'EMAIL';
+    }
+  }
+
+  .st-btn[data-network='facebook'] {
+    &:after {
+      content: 'FACEBOOK';
+    }
+  }
+
+  .st-btn[data-network='twitter'] {
+    &:after {
+      content: 'TWITTER';
+    }
   }
 `;
 
 const AdditionalSharesWrapper = styled.div`
-  padding: 0 115px;
+  padding: 0 25px;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0 115px;
+  }
+
+  &.with-native {
+    padding: 0 8px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      padding: 0 90px;
+    }
+  }
 `;
 
 const IconItem = styled.div`
@@ -83,9 +125,25 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+
+  &.sms {
+    background: linear-gradient(#67ff81, #03b521);
+  }
+
+  &.native-share {
+    background: #fff;
+  }
 `;
 
 const Icon = styled.img``;
+
+const IconLabel = styled.div`
+  font-size: 10px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray6};
+  margin-top: 12px;
+`;
 
 const CopiedWrapper = styled.div`
   margin-top: 36px;
@@ -101,7 +159,14 @@ const Copied = styled(Body11)`
   margin-left: 6px;
 `;
 
-const ShareModal = ({ candidate, open, user, chamber, closeCallback }) => {
+const ShareModal = ({
+  candidate,
+  open,
+  user,
+  chamber,
+  isExternalLink,
+  closeCallback,
+}) => {
   const [copied, setCopied] = useState(false);
   if (!candidate) {
     return <> </>;
@@ -111,15 +176,38 @@ const ShareModal = ({ candidate, open, user, chamber, closeCallback }) => {
   if (candidate.unknown) {
     isGood = null;
   }
-
   const blocName = candidateBlocName(candidate, chamber);
+  const blocLink = candidateBlocLink(candidate, chamber);
   let url = uuidUrl(user);
   let queryOperator = '&';
   if (url === 'https://thegoodparty.org') {
     queryOperator = '?';
   }
-  url = url + queryOperator + blocName?.substring(1, blocName.length);
-  console.log('url', url);
+  url = url + queryOperator + 'b=' + blocLink;
+
+  const messageTitle = `Want see if we can elect ${
+    candidate.name
+  } for President?`;
+  const messageBody = `Check out ${blocName} in The Good Party. See what’s possible, before we vote: ${url}`;
+
+  const sendSms = () => {
+    if (navigator.userAgent.match(/Android/i)) {
+      window.open(`sms:?&body=${messageBody}`, '_blank');
+    } else {
+      window.open(`sms:?&body=${messageBody}`, '_blank');
+    }
+  };
+
+  const canShare = typeof navigator !== 'undefined' && navigator.share;
+  const nativeShare = () => {
+    navigator
+      .share({
+        title: messageTitle,
+        text: messageBody,
+        url,
+      })
+      .then(() => console.log('Successful share'));
+  };
 
   return (
     <Dialog onClose={closeCallback} open={open}>
@@ -136,7 +224,16 @@ const ShareModal = ({ candidate, open, user, chamber, closeCallback }) => {
             name={candidate.name}
           />
           <H1 style={{ marginTop: '22px', marginBottom: '10px' }}>
-            Grow {blocName}
+            {isExternalLink ? (
+              <>
+                {blocName} Joined!{' '}
+                <span role="img" aria-label="flex">
+                  💪
+                </span>
+              </>
+            ) : (
+              <>Grow {blocName}</>
+            )}
           </H1>
           <Subtitle>Spread the word to grow this bloc!</Subtitle>
         </AvatarWrapper>
@@ -162,15 +259,28 @@ const ShareModal = ({ candidate, open, user, chamber, closeCallback }) => {
 
               // OPTIONAL PARAMETERS
               url,
-              description: `Grow ${blocName} on The Good Party`,
-              title: `Grow ${blocName} on The Good Party`, // (defaults to og:title or twitter:title)
-              message: `follow ${url} to grow ${blocName}`, // (only for email sharing)
-              subject: `Grow ${blocName}`, // (only for email sharing)
+              description: messageBody,
+              title: messageTitle, // (defaults to og:title or twitter:title)
+              message: messageBody, // (only for email sharing)
+              subject: messageTitle, // (only for email sharing)
             }}
           />
+          {/*<Labels>*/}
+          {/*<Body9>Facebook</Body9>*/}
+          {/*<Body9>Twitter</Body9>*/}
+          {/*<Body9>Email</Body9>*/}
+          {/*</Labels>*/}
         </ShareThisWrapper>
-        <AdditionalSharesWrapper>
+        <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
+            <Grid item xs>
+              <IconItem onClick={sendSms}>
+                <IconWrapper className="sms">
+                  <Icon src={SmsIcon} alt="sms" />
+                </IconWrapper>
+              </IconItem>
+              <IconLabel>SMS</IconLabel>
+            </Grid>
             <Grid item xs>
               <IconItem>
                 <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
@@ -179,14 +289,20 @@ const ShareModal = ({ candidate, open, user, chamber, closeCallback }) => {
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
+              <IconLabel>COPY LINK</IconLabel>
             </Grid>
-            <Grid item xs>
-              <IconItem>
-                <IconWrapper>
-                  ?
-                </IconWrapper>
-              </IconItem>
-            </Grid>
+            {canShare && (
+              <Grid item xs>
+                <IconItem>
+                  <IconItem onClick={nativeShare}>
+                    <IconWrapper className="native-share">
+                      <Icon src={ShareIcon} alt="more" />
+                    </IconWrapper>
+                  </IconItem>
+                </IconItem>
+                <IconLabel>MORE</IconLabel>
+              </Grid>
+            )}
           </Grid>
         </AdditionalSharesWrapper>
         {copied && (
@@ -206,6 +322,7 @@ ShareModal.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamber: PropTypes.string,
+  isExternalLink: PropTypes.bool,
 };
 
 export default ShareModal;
