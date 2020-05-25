@@ -107,6 +107,8 @@ const ElectionWrapper = ({
   deleteCandidateRankingCallback,
   clearBlocCandidateCallback,
   blocCandidate,
+  joinCandidate,
+  clearJoinCandidateCallback,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -122,6 +124,16 @@ const ElectionWrapper = ({
       setShowChoiceModal(true);
     }
   }, [blocCandidate]);
+
+  useEffect(() => {
+    if (joinCandidate) {
+      const rank = findNextRank(joinCandidate);
+      selectCandidate(joinCandidate, rank);
+      setChoiceModalCandidate(joinCandidate);
+      setShowChoiceModal(true);
+      clearJoinCandidateCallback();
+    }
+  }, [joinCandidate]);
 
   const { topRank } = candidates;
 
@@ -210,6 +222,13 @@ const ElectionWrapper = ({
     setShowChoiceModal(false);
 
     setShowShareModal(true);
+    const rank = findNextRank(candidateJoined);
+    selectCandidate(candidateJoined, rank);
+
+    refreshCountCallback(state, districtNumber);
+  };
+
+  const findNextRank = candidate => {
     let nextChoice = 1;
     const { good, notGood, unknown } = candidates;
     [...good, ...notGood, ...unknown].forEach(candidate => {
@@ -220,9 +239,7 @@ const ElectionWrapper = ({
         nextChoice++;
       }
     });
-    selectCandidate(candidateJoined, nextChoice);
-
-    refreshCountCallback(state, districtNumber);
+    return nextChoice;
   };
 
   const onCloseShareModal = () => {
@@ -377,11 +394,13 @@ ElectionWrapper.propTypes = {
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   blocCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  joinCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rankingAllowed: PropTypes.bool,
   saveRankingCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
   clearBlocCandidateCallback: PropTypes.func,
+  clearJoinCandidateCallback: PropTypes.func,
 };
 
 export default ElectionWrapper;

@@ -10,7 +10,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -58,6 +58,7 @@ export function ElectionPage({
   refreshCountCallback,
   deleteCandidateRankingCallback,
   clearBlocCandidateCallback,
+  clearJoinCandidateCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -68,7 +69,7 @@ export function ElectionPage({
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
   const { user, ranking } = userState;
-  const { blocCandidate } = districtState;
+  const { blocCandidate, joinCandidate } = districtState;
 
   let candidates;
   if (chamber === 'presidential') {
@@ -93,6 +94,17 @@ export function ElectionPage({
     const bloc = queryHelper(search, 'b');
     if (bloc) {
       loadBlocCandidate(bloc);
+    }
+    const joinDeepLinkId = queryHelper(search, 'join');
+    const joinDeepLinkName = queryHelper(search, 'name');
+    if (joinDeepLinkId) {
+      dispatch(
+        districtActions.setJoinCandidateAction({
+          id: parseInt(joinDeepLinkId, 10),
+          name: joinDeepLinkName,
+        }),
+      );
+      dispatch(push(pathname));
     }
   }, []);
 
@@ -144,7 +156,10 @@ export function ElectionPage({
   ``;
 
   const blocCandidateMatch = findBlocCandidate(candidates, blocCandidate);
-
+  let joinCandidateMatch;
+  if (joinCandidate) {
+    joinCandidateMatch = findBlocCandidate(candidates, joinCandidate);
+  }
   const childProps = {
     candidates,
     user,
@@ -160,6 +175,8 @@ export function ElectionPage({
     deleteCandidateRankingCallback,
     blocCandidate: blocCandidateMatch,
     clearBlocCandidateCallback,
+    joinCandidate: joinCandidateMatch,
+    clearJoinCandidateCallback,
   };
 
   return (
@@ -192,6 +209,7 @@ ElectionPage.propTypes = {
   rankingObj: PropTypes.object,
   locationState: PropTypes.object,
   clearBlocCandidateCallback: PropTypes.func,
+  clearJoinCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -245,6 +263,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     clearBlocCandidateCallback: () => {
       dispatch(districtActions.clearBlocCandidateAction());
+    },
+    clearJoinCandidateCallback: () => {
+      dispatch(districtActions.clearJoinCandidateAction());
     },
   };
 }

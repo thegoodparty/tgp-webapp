@@ -235,7 +235,6 @@ const CandidateWrapper = ({
   deleteCandidateRankingCallback,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
-  // const [rank, setRank] = useState(false);
   const [socialAccounts, setSocialAccounts] = useState([]);
   const [comparedIncumbent, setComparedIncumbent] = useState({});
   let isGood;
@@ -447,6 +446,18 @@ const CandidateWrapper = ({
     return houseElectionLink(state, district);
   };
 
+  const rankPageJoinLink = () => {
+
+    const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
+    if (chamberName === 'presidential') {
+      return presidentialElectionLink() + query;
+    }
+    if (chamberName === 'senate') {
+      return senateElectionLink(state) + query;
+    }
+    return houseElectionLink(state, district) + query;
+  };
+
   // const rankLabel = () => {
   //   if (rank) {
   //     return `YOUR ${rankText(rank)} CHOICE`;
@@ -524,7 +535,7 @@ const CandidateWrapper = ({
                     </>
                   ) : (
                     <RankButton className="blue">
-                      <Link to={rankPageLink()}>
+                      <Link to={rankPageJoinLink()}>
                         <StyledBody13 className="white">
                           JOIN {blocName}
                         </StyledBody13>
@@ -1003,7 +1014,7 @@ const CandidateWrapper = ({
 };
 
 CandidateWrapper.propTypes = {
-  candidate: PropTypes.object,
+  candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamberRank: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   chamberName: PropTypes.string,
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),

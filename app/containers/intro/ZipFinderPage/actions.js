@@ -71,12 +71,6 @@ const geolocationToDistrictActionError = error => ({
   error,
 });
 
-const userCountsAction = (shortState, districtNumber) => ({
-  type: types.USERS_COUNTS,
-  shortState,
-  districtNumber,
-});
-
 const userCountsActionSuccess = userCounts => ({
   type: types.USERS_COUNTS_SUCCESS,
   userCounts,
@@ -96,6 +90,15 @@ const clearBlocCandidateAction = () => ({
   type: types.CLEAR_BLOC_CANDIDATE,
 });
 
+const setJoinCandidateAction = joinCandidate => ({
+  type: types.SET_JOIN_CANDIDATE,
+  joinCandidate
+});
+
+const clearJoinCandidateAction = () => ({
+  type: types.CLEAR_JOIN_CANDIDATE,
+});
+
 export default {
   loadZipAction,
   loadZipActionSuccess,
@@ -111,9 +114,10 @@ export default {
   geolocationToDistrictActionError,
   loadSenateCandidatesAction,
   loadSenateCandidatesActionSuccess,
-  userCountsAction,
   userCountsActionSuccess,
   loadBlocCandidateAction,
   loadBlocCandidateActionSuccess,
   clearBlocCandidateAction,
+  setJoinCandidateAction,
+  clearJoinCandidateAction,
 };
