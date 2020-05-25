@@ -14,11 +14,11 @@ import Favorite from '@material-ui/icons/Favorite';
 import Share from '@material-ui/icons/Share';
 import NotionIcon from 'images/icons/notion.svg';
 import FigmaIcon from 'images/icons/figma.svg';
-import Collaborators from '../Collaborators';
-import { ProjectProposal } from '../modals';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player';
+import Collaborators from '../Collaborators';
+import { ProjectProposal } from '../modals';
 
 const ProjectWrapper = styled.div`
   border-radius: 16px;
@@ -308,7 +308,7 @@ function Project({ project, showMore = false }) {
           </div>
         </ProjectContent>
         <ProjectImageWrapper item xs={12} lg={5}>
-          {project.images.length == 0 && project.video && (
+          {project.images.length === 0 && project.video && (
             <ReactPlayer
               url={project.video}
               playing={false}
@@ -316,15 +316,15 @@ function Project({ project, showMore = false }) {
               height="100%"
             />
           )}
-          {project.images.length == 1 && (
-            <ProjectImg src={`http:${project.images[0]}`} alt="project img" />
+          {project.images.length === 1 && (
+            <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
           )}
           {project.images.length > 1 && (
             <Carousel>
               {project.images.map(image => (
                 <div>
                   <img
-                    src={`http:${image}`}
+                    src={`https:${image}`}
                     alt="project img"
                     className="carousel-img"
                   />
