@@ -82,8 +82,8 @@ const SupportersRow = styled.div`
 const SupportersCount = styled(H1)`
   color: ${({ theme }) => theme.colors.gray7};
   position: absolute;
-  left: 50%;
-  transform: translate(-50%);
+  width: 100%;
+  text-align: center;
   top: -5px;
   animation-fill-mode: forwards;
 
