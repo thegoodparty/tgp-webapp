@@ -267,6 +267,9 @@ export const candidateBlocName = (candidate, chamber) => {
   if (!candidate) {
     return '';
   }
+  if (candidate.id < 0) {
+    return '#GoodBloc';
+  }
   const lastName = candidateLastName(candidate);
   if (chamber === 'presidential' && lastName === 'Sanders') {
     return '#BernieBloc';

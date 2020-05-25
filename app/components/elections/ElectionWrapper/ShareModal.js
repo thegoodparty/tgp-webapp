@@ -176,14 +176,14 @@ const ShareModal = ({
   if (candidate.unknown) {
     isGood = null;
   }
-
   const blocName = candidateBlocName(candidate, chamber);
+  const blocLink = candidateBlocLink(candidate, chamber);
   let url = uuidUrl(user);
   let queryOperator = '&';
   if (url === 'https://thegoodparty.org') {
     queryOperator = '?';
   }
-  url = url + queryOperator + 'b=' + blocName;
+  url = url + queryOperator + 'b=' + blocLink;
 
   const messageTitle = `Want see if we can elect ${
     candidate.name

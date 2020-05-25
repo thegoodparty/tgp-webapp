@@ -331,6 +331,8 @@ const VsList = ({
   const noneYetCandidate = {
     id: districtNumber ? districtNumber * -1 : -1,
     isGood: true,
+    chamber,
+    state,
   };
 
   const blocCountSection = candidate => (
@@ -341,8 +343,9 @@ const VsList = ({
     </BlocCount>
   );
   let displayBloc = goodBloc;
-  if(chamber=== 'house'){
-    displayBloc = goodBloc.substring(0,2) + '-' + goodBloc.substring(2, goodBloc.length)
+  if (chamber === 'house') {
+    displayBloc =
+      goodBloc.substring(0, 2) + '-' + goodBloc.substring(2, goodBloc.length);
   }
 
   return (
