@@ -52,7 +52,7 @@ const Subtitle = styled(H3)`
 `;
 
 const ShareThisWrapper = styled.div`
-  padding: 36px 0px;
+  padding: 36px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 36px 60px;
@@ -65,10 +65,35 @@ const ShareThisWrapper = styled.div`
   .st-btn {
     margin: 20px !important;
     border-radius: 50% !important;
+    &:after {
+      top: 45px;
+      left: 0;
+      width: 56px;
+      text-align: center;
+      position: absolute;
+      display: block;
+      font-size: 10px;
+      color: ${({ theme }) => theme.colors.gray6};
+    }
   }
 
   .st-btn[data-network='email'] {
     background-color: #f39268 !important;
+    &:after {
+      content: 'EMAIL';
+    }
+  }
+
+  .st-btn[data-network='facebook'] {
+    &:after {
+      content: 'FACEBOOK';
+    }
+  }
+
+  .st-btn[data-network='twitter'] {
+    &:after {
+      content: 'TWITTER';
+    }
   }
 `;
 
@@ -113,6 +138,13 @@ const IconWrapper = styled.div`
 
 const Icon = styled.img``;
 
+const IconLabel = styled.div`
+  font-size: 10px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray6};
+  margin-top: 12px;
+`;
+
 const CopiedWrapper = styled.div`
   margin-top: 36px;
   display: flex;
@@ -145,7 +177,7 @@ const ShareModal = ({
     isGood = null;
   }
 
-  const blocName = candidateBlocLink(candidate, chamber);
+  const blocName = candidateBlocName(candidate, chamber);
   let url = uuidUrl(user);
   let queryOperator = '&';
   if (url === 'https://thegoodparty.org') {
@@ -233,6 +265,11 @@ const ShareModal = ({
               subject: messageTitle, // (only for email sharing)
             }}
           />
+          {/*<Labels>*/}
+          {/*<Body9>Facebook</Body9>*/}
+          {/*<Body9>Twitter</Body9>*/}
+          {/*<Body9>Email</Body9>*/}
+          {/*</Labels>*/}
         </ShareThisWrapper>
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
@@ -242,6 +279,7 @@ const ShareModal = ({
                   <Icon src={SmsIcon} alt="sms" />
                 </IconWrapper>
               </IconItem>
+              <IconLabel>SMS</IconLabel>
             </Grid>
             <Grid item xs>
               <IconItem>
@@ -251,6 +289,7 @@ const ShareModal = ({
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
+              <IconLabel>COPY LINK</IconLabel>
             </Grid>
             {canShare && (
               <Grid item xs>
@@ -261,6 +300,7 @@ const ShareModal = ({
                     </IconWrapper>
                   </IconItem>
                 </IconItem>
+                <IconLabel>MORE</IconLabel>
               </Grid>
             )}
           </Grid>
