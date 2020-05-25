@@ -580,7 +580,7 @@ const CandidateWrapper = ({
                     <Body13>
                       <strong>Character Check:</strong> Candidate Candidate has{' '}
                       <strong>not</strong> engaged in a pattern of activities or{' '}
-                      <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+                      <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
                         hate-speech
                       </Link>{' '}
                       encouraging intolerance, discrimination or hostility
@@ -598,7 +598,7 @@ const CandidateWrapper = ({
                             <ColoredText>Character Check:</ColoredText>{' '}
                           </strong>
                           Candidate has engaged in a pattern of activities or{' '}
-                          <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+                          <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
                             hate-speech
                           </Link>{' '}
                           encouraging intolerance, discrimination or hostility
@@ -673,7 +673,7 @@ const CandidateWrapper = ({
                       </strong>{' '}
                       Candidate has <strong>not</strong> engaged in a pattern of
                       activities or{' '}
-                      <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+                      <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
                         hate-speech
                       </Link>{' '}
                       encouraging intolerance, discrimination or hostility
@@ -689,7 +689,7 @@ const CandidateWrapper = ({
                         <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
                       </strong>
                       Candidate positions are not aligned with{' '}
-                      <Link to="/party/faq/what-is-the-good-party-platform/2Pv9KNb6rng0sMfqwu1xKm">
+                      <Link to="?article=2Pv9KNb6rng0sMfqwu1xKm">
                         The Good Party Platform.
                       </Link>
                     </Body13>

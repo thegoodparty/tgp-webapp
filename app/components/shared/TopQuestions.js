@@ -33,6 +33,7 @@ const ArticleTitle = styled(Body)`
 `;
 
 const TopQuestions = ({ articles }) => {
+  const { pathname } = window.location;
   return (
     <Wrapper>
       <Row>
@@ -44,7 +45,7 @@ const TopQuestions = ({ articles }) => {
       {articles &&
         articles.map((article, index) => (
           <Link
-            to={`/party/faq/${slugify(article.title)}/${article.id}`}
+            to={`?article=${article.id}`}
             key={article.id}
           >
             <ArticleTitle className={index === 0 ? 'first' : ''}>

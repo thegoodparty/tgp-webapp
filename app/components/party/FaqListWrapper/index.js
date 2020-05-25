@@ -48,7 +48,7 @@ const FaqListWrapper = ({ content, backButtonCallback }) => {
         {articles &&
           articles.map(article => (
             <Link
-              to={`/party/faq/${slugify(article.title)}/${article.id}`}
+              to={`?article=${article.id}`}
               key={article.id}
             >
               <ArticleWrapper>

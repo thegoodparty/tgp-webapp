@@ -241,11 +241,11 @@ const DistrictWrapper = ({
               <Body>
                 You have <strong>{electionCount}</strong> relevant Federal
                 Elections. Check{' '}
-                <Link to="/party/faq/what-is-a-candidate-voting-bloc/1ic6T6fhH0jZLNvX5aZkDe">
+                <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
                   candidate voting blocs
                 </Link>{' '}
                 to see if your vote can elect someone {' '}
-                <Link to="/party/faq/what-makes-a-candidate-a-good-option/5KnBx42FOEVDJNUFpoU1PX">
+                <Link to="?article=5KnBx42FOEVDJNUFpoU1PX">
                   Potentially Good
                 </Link>.
               </Body>

@@ -13,24 +13,27 @@ import { goBack } from 'connected-react-router';
 
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectContent } from 'containers/App/selectors';
+import {
+  makeSelectContent,
+  makeSelectModalArticleId,
+} from 'containers/App/selectors';
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
-import { getArticleById } from '../../../helpers/articlesHelper';
+import { getArticleById } from 'helpers/articlesHelper';
 
 export function FaqArticlePage({ id, content, dispatch, backButtonCallback }) {
   const [article, setArticle] = useState(null);
-  useEffect(() => {
-    if (!id) {
-      dispatch(push('/party/faqs'));
-    }
-  }, []);
 
   useEffect(() => {
     if (content) {
       setArticle(getArticleById(content.faqArticles, id));
     }
-  }, [content]);
+    console.log('id effect');
+  }, [id]);
+
+  if (!id) {
+    return <></>;
+  }
 
   const childProps = {
     article,
@@ -54,14 +57,13 @@ export function FaqArticlePage({ id, content, dispatch, backButtonCallback }) {
 FaqArticlePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   backButtonCallback: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    id: ownProps.match.params.id,
     backButtonCallback: () => {
       dispatch(goBack());
     },
@@ -70,6 +72,7 @@ function mapDispatchToProps(dispatch, ownProps) {
 
 const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
+  id: makeSelectModalArticleId(),
 });
 
 const withConnect = connect(

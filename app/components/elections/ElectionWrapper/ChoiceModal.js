@@ -255,7 +255,7 @@ const ChoiceModal = ({
               </H3>
             </BlueButton>
             <Footer>
-              <Link to="/party/faq/what-is-a-candidate-voting-bloc/1ic6T6fhH0jZLNvX5aZkDe">
+              <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
                 What is the {blocName} in The Good Party?
               </Link>
             </Footer>
@@ -267,7 +267,7 @@ const ChoiceModal = ({
             </BlueButton>
             <Footer>
               Don&apos;t worry, we will{' '}
-              <Link to="/party/faq/we-never-waste-your-vote/prGq4SAFpfT7qzBFM1HDy">
+              <Link to="?article=prGq4SAFpfT7qzBFM1HDy">
                 never waste your vote
               </Link>
               .

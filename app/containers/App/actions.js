@@ -14,8 +14,19 @@ const loadContentActionError = error => ({
   error,
 });
 
+const setArticleModalAction = modalArticleId => ({
+  type: types.SET_ARTICLE_MODAL,
+  modalArticleId,
+});
+
+const clearArticleModalAction = () => ({
+  type: types.CLEAR_ARTICLE_MODAL,
+});
+
 export default {
   loadContentAction,
   loadContentActionSuccess,
   loadContentActionError,
+  setArticleModalAction,
+  clearArticleModalAction,
 };

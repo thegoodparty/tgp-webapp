@@ -11,6 +11,16 @@ import { H1 } from 'components/shared/typogrophy';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 
+const OverlayWrapper = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-y: auto;
+  z-index:2000;
+`;
 const BackIconWrapper = styled.div`
   display: none;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -22,10 +32,9 @@ const BackIconWrapper = styled.div`
 `;
 
 const FaqArticleWrapper = ({ article, backButtonCallback }) => (
-  <div>
+  <>
     {article ? (
-      <>
-        <Nav />
+      <OverlayWrapper>
         <Wrapper white>
           <MobileHeader />
           <BackIconWrapper onClick={backButtonCallback}>
@@ -37,11 +46,11 @@ const FaqArticleWrapper = ({ article, backButtonCallback }) => (
             {contentfulHelper(article.articleBody)}
           </CmsContentWrapper>
         </Wrapper>
-      </>
+      </OverlayWrapper>
     ) : (
       <LoadingAnimation />
     )}
-  </div>
+  </>
 );
 
 FaqArticleWrapper.propTypes = {

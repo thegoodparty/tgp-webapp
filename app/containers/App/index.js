@@ -69,7 +69,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
-import { makeSelectLocation } from './selectors';
+import { makeSelectContent, makeSelectLocation } from './selectors';
 
 if (ENV === 'prod') {
   history.listen(location => {
@@ -78,16 +78,17 @@ if (ENV === 'prod') {
   });
 }
 
-function App({ locationState, dispatch }) {
+function App({ locationState, content, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
+  const { search } = locationState;
 
   useEffect(() => {
     if (ENV === 'prod') {
       ReactGA.pageview(window.location.pathname);
     }
     dispatch(globalActions.loadContentAction());
-    const { search } = locationState;
+
     const uuid = queryHelper(search, 'u');
     if (uuid) {
       setCookie('referrer', uuid);
@@ -98,6 +99,15 @@ function App({ locationState, dispatch }) {
     }
     fullStoryIdentify();
   }, []);
+
+  useEffect(() => {
+    const modalArticleId = queryHelper(search, 'article');
+    if (modalArticleId) {
+      dispatch(globalActions.setArticleModalAction(modalArticleId));
+    }else {
+      dispatch(globalActions.clearArticleModalAction());
+    }
+  }, [search]);
 
   const blocRedirect = bloc => {
     const [nameBloc, stateDistrict] = bloc.split('-');
@@ -111,9 +121,7 @@ function App({ locationState, dispatch }) {
       const state = stateDistrict.substring(0, 2);
       const district = stateDistrict.substring(2, stateDistrict.length);
       dispatch(
-        push(
-          `/elections/house/${state.toLowerCase()}/${district}?b=${bloc}`,
-        ),
+        push(`/elections/house/${state.toLowerCase()}/${district}?b=${bloc}`),
       );
     }
   };
@@ -178,11 +186,11 @@ function App({ locationState, dispatch }) {
 
           <Route exact path="/party" component={PartyPage} />
           <Route exact path="/party/faqs" component={FaqListPage} />
-          <Route
-            exact
-            path="/party/faq/:title/:id"
-            component={FaqArticlePage}
-          />
+          {/*<Route*/}
+            {/*exact*/}
+            {/*path="/party/faq/:title/:id"*/}
+            {/*component={FaqArticlePage}*/}
+          {/*/>*/}
           <Route exact path="/party/events" component={EventsPage} />
 
           <Route
@@ -208,6 +216,7 @@ function App({ locationState, dispatch }) {
         </Switch>
         <GlobalStyle />
         <SnackbarContainer />
+        {content && <FaqArticlePage />}
         <Footer />
       </ErrorBoundary>
     </div>
@@ -217,6 +226,7 @@ function App({ locationState, dispatch }) {
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   locationState: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {
@@ -227,6 +237,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   locationState: makeSelectLocation(),
+  content: makeSelectContent(),
 });
 
 const withConnect = connect(

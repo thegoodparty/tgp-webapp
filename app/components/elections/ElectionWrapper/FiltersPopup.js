@@ -81,7 +81,7 @@ const FiltersPopup = () => {
           <Label>Vetted for Hate-Speech</Label>
           <Body13>
             Candidate has not engaged in a pattern of activities or{' '}
-            <Link to="/party/faq/what-is-hatespeech/5bwvf0PwsbpFEe8IJ9sHhX">
+            <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
               hate-speech
             </Link>{' '}
             that encourages intolerance, discrimination or hostility towards a

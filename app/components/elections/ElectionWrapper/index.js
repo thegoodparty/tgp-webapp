@@ -292,7 +292,7 @@ const ElectionWrapper = ({
               {candidates.good.length > 0 ? (
                 <>
                   Join any{' '}
-                  <Link to="/party/faq/what-is-a-candidate-voting-bloc/1ic6T6fhH0jZLNvX5aZkDe">
+                  <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
                     candidate voting blocs
                   </Link>{' '}
                   and we&apos;ll let you know if they grow big enough to win!
