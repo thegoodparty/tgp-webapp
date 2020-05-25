@@ -282,6 +282,11 @@ export const candidateBlocLink = (candidate, chamber) => {
     return '';
   }
   const { state, district } = candidate;
+
+  if (candidate.id < 0) {
+    return `GoodBloc-${candidate.state}${candidate.id * -1}`;
+  }
+
   const lastName = candidateLastName(candidate);
   if (chamber === 'presidential') {
     if (lastName === 'Sanders') {
