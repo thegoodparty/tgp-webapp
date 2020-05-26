@@ -265,11 +265,6 @@ const ShareModal = ({
               subject: messageTitle, // (only for email sharing)
             }}
           />
-          {/*<Labels>*/}
-          {/*<Body9>Facebook</Body9>*/}
-          {/*<Body9>Twitter</Body9>*/}
-          {/*<Body9>Email</Body9>*/}
-          {/*</Labels>*/}
         </ShareThisWrapper>
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
