@@ -274,7 +274,7 @@ const ShareModal = ({
                   <Icon src={SmsIcon} alt="sms" />
                 </IconWrapper>
               </IconItem>
-              <IconLabel>SMS</IconLabel>
+              <IconLabel>SMS/TEXT</IconLabel>
             </Grid>
             <Grid item xs>
               <IconItem>
