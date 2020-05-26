@@ -83,7 +83,7 @@ const api = {
 
   login: {
     url: `${base}entrance/login`,
-    method: 'PUT',
+    method: 'PUT',  
   },
 
   socialLogin: {
