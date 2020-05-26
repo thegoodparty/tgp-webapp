@@ -380,8 +380,8 @@ const VsList = ({
               <Role>GOOD PARTY APPROVED</Role>
               <BlocCount>
                 {numberFormatter(candidates.goodEmptyBlock)}{' '}
-                {candidates.goodEmptyBlock === 1 ? 'is' : 'are'} in # GoodBloc
-                of {displayBloc}
+                {candidates.goodEmptyBlock === 1 ? 'is' : 'are'} in #GoodBloc of{' '}
+                {displayBloc}
               </BlocCount>
               {choiceButton(noneYetCandidate)}
             </CandidateWrapper>

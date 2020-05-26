@@ -303,8 +303,7 @@ const ElectionWrapper = ({
                   <GoodCandidate onClick={openFiltersCallback}>
                     good candidate options
                   </GoodCandidate>{' '}
-                  in this race. Join #GoodBloc{stateUpper}
-                  {districtNumber} to be notified as soon as we find any good
+                  in this race. Join #GoodBloc to be notified as soon as we find any good
                   candidates.
                 </>
               )}
