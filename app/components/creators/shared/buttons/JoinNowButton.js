@@ -21,6 +21,7 @@ const JoinNowButton = styled(Button)`
         theme.creators.breakpoints.creatorsMobile}) {
       padding: 1rem 5rem;
       font: normal normal 15px normal;
+      font-family: unset;
       margin-bottom: 1rem;
     }
   }

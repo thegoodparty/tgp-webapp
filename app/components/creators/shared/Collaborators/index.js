@@ -23,6 +23,8 @@ const CollaboratorWrapper = styled.div`
 const Collaborator = styled.img`
   width: 2.5rem;
   height: 2.5rem;
+  border: 2px solid white;
+  border-radius: 20px;
 `;
 
 const CollaboratorsCount = styled.span`

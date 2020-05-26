@@ -28,7 +28,6 @@ const Message = styled(TextField)`
     margin-top: 2.5rem;
     background: ${({ theme }) => theme.creators.colors.formColor};
     border-radius: 4px;
-    margin-bottom: 1.5rem;
   }
 `;
 
@@ -41,7 +40,6 @@ const SubmitWrapper = styled(FooterWrapper)`
 
 const SendButton = styled(BlueButton)`
   && {
-    width: 100%;
     margin-bottom: 0.7rem;
   }
 `;

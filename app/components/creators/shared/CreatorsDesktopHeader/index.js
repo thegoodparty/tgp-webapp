@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   Drawer,
@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import LogoCaps from 'images/logo-caps.svg';
 import { Body14, Body9 } from 'components/shared/typogrophy';
 import Body from '../typography/Body';
+import { Join } from '../modals';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -56,7 +57,21 @@ const ContentWrapper = styled.div`
 `;
 
 const MenuItemsWrapper = styled.div`
-  display: flex;
+  &.desktop {
+    display: none;
+  }
+  &.mobile {
+    display: flex;
+  }
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsTabletValue - 250}px) {
+    &.desktop {
+      display: flex;
+    }
+    &.mobile {
+      display: none;
+    }
+  }
 `;
 
 const Logo = styled.img`
@@ -116,7 +131,10 @@ const TopLink = styled(Link)`
 
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
-    font-size: 20px;
+    &.menu-item {
+      font-size: 20px;
+      margin-left: 1.5rem;
+    }
   }
 `;
 const AvatarWrapper = styled(Body14)`
@@ -129,29 +147,43 @@ const AvatarWrapper = styled(Body14)`
   }
 `;
 
-const CreatorsDesktopHeader = () => {
+const CreatorsDesktopHeader = ({ isLoggedIn, toggleLoggedIn }) => {
   const [menu, setMenu] = useState(false);
+  const [join, setJoin] = useState(false);
+  console.log(isLoggedIn, toggleLoggedIn);
+  const onClickJoin = () => {
+    setMenu(false);
+    if (!isLoggedIn) {
+      setJoin(true);
+    } else {
+      toggleLoggedIn(false);
+    }
+  };
   return (
     <Wrapper>
       <ContentWrapper>
         <TopLink className="logo" to="/">
           <Logo src={LogoCaps} alt="logo" />
         </TopLink>
-        <MenuItemsWrapper>
-          <Hidden smDown>
-            <>
-              <TopLink className="menu-item">About</TopLink>
-              <TopLink className="menu-item active">Creators</TopLink>
-              <TopLink className="menu-item">Join</TopLink>
-            </>
-          </Hidden>
-          <Hidden mdUp>
-            <TopLink className="menu-item" onClick={() => setMenu(true)}>
-              <Menu />
-            </TopLink>
-          </Hidden>
+        <Join
+          open={join}
+          handleClose={() => setJoin(false)}
+          toggleLoggedIn={toggleLoggedIn}
+        />
+        <MenuItemsWrapper className="desktop">
+          <TopLink className="menu-item">About</TopLink>
+          <TopLink className="menu-item active">Creators</TopLink>
+          <TopLink className="menu-item" onClick={onClickJoin}>
+            {isLoggedIn ? 'You' : 'Join'}
+          </TopLink>
         </MenuItemsWrapper>
-        <Hidden mdUp>
+        <MenuItemsWrapper className="mobile">
+          <TopLink className="menu-item" onClick={() => setMenu(true)}>
+            <Menu />
+          </TopLink>
+        </MenuItemsWrapper>
+
+        <Hidden smUp>
           <Drawer anchor="top" open={menu} onClose={() => setMenu(false)}>
             <List>
               <ListItem button onClick={() => setMenu(false)}>
@@ -160,8 +192,10 @@ const CreatorsDesktopHeader = () => {
               <ListItem button onClick={() => setMenu(false)}>
                 <TopLink className="menu-item active">Creators</TopLink>
               </ListItem>
-              <ListItem button onClick={() => setMenu(false)}>
-                <TopLink className="menu-item">Join</TopLink>
+              <ListItem button onClick={onClickJoin}>
+                <TopLink className="menu-item">
+                  {isLoggedIn ? 'You' : 'Join'}
+                </TopLink>
               </ListItem>
             </List>
           </Drawer>
@@ -171,6 +205,9 @@ const CreatorsDesktopHeader = () => {
   );
 };
 
-CreatorsDesktopHeader.propTypes = {};
+CreatorsDesktopHeader.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  toggleLoggedIn: PropTypes.func,
+};
 
 export default CreatorsDesktopHeader;
