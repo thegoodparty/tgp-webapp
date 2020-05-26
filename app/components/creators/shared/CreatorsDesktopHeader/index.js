@@ -150,7 +150,6 @@ const AvatarWrapper = styled(Body14)`
 const CreatorsDesktopHeader = ({ isLoggedIn, toggleLoggedIn }) => {
   const [menu, setMenu] = useState(false);
   const [join, setJoin] = useState(false);
-  console.log(isLoggedIn, toggleLoggedIn);
   const onClickJoin = () => {
     setMenu(false);
     if (!isLoggedIn) {
