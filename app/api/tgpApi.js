@@ -53,6 +53,10 @@ const api = {
     url: `${base}content/all-content`,
     method: 'GET',
   },
+  articleFeedback: {
+    url: `${base}content/article-feedback`,
+    method: 'POST',
+  },
 
   //
   // ENTRANCE

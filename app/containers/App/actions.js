@@ -23,10 +23,18 @@ const clearArticleModalAction = () => ({
   type: types.CLEAR_ARTICLE_MODAL,
 });
 
+const sendArticleFeedbackAction = (id, title, feedback) => ({
+  type: types.SEND_ARTICLE_FEEDBACK,
+  id,
+  title,
+  feedback,
+});
+
 export default {
   loadContentAction,
   loadContentActionSuccess,
   loadContentActionError,
   setArticleModalAction,
   clearArticleModalAction,
+  sendArticleFeedbackAction,
 };

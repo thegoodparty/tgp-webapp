@@ -9,26 +9,35 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import { goBack } from 'connected-react-router';
+import { goBack, push } from 'connected-react-router';
 
 import { createStructuredSelector } from 'reselect';
 
+import globalActions from 'containers/App/actions';
+
 import {
   makeSelectContent,
+  makeSelectLocation,
   makeSelectModalArticleId,
 } from 'containers/App/selectors';
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from 'helpers/articlesHelper';
 
-export function FaqArticlePage({ id, content, dispatch, backButtonCallback }) {
+export function FaqArticlePage({
+  id,
+  content,
+  dispatch,
+  backButtonCallback,
+  closeModalCallback,
+  helpfulCallback,
+}) {
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
     if (content) {
       setArticle(getArticleById(content.faqArticles, id));
     }
-    console.log('id effect');
   }, [id]);
 
   if (!id) {
@@ -38,6 +47,8 @@ export function FaqArticlePage({ id, content, dispatch, backButtonCallback }) {
   const childProps = {
     article,
     backButtonCallback,
+    closeModalCallback,
+    helpfulCallback,
   };
 
   return (
@@ -59,6 +70,8 @@ FaqArticlePage.propTypes = {
   backButtonCallback: PropTypes.func.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  closeModalCallback: PropTypes.func,
+  helpfulCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -66,6 +79,12 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     backButtonCallback: () => {
       dispatch(goBack());
+    },
+    closeModalCallback: () => {
+      dispatch(push(window.location.pathname));
+    },
+    helpfulCallback: (id, title, feedback) => {
+      dispatch(globalActions.sendArticleFeedbackAction(id, title, feedback));
     },
   };
 }

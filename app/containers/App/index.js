@@ -39,7 +39,7 @@ import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
 
 import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';
-import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
+import FaqArticlePage from 'containers/party/FaqArticlePage';
 import EventsPage from 'containers/party/EventsPage/Loadable';
 
 import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
