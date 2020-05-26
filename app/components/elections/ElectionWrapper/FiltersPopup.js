@@ -41,10 +41,11 @@ const FiltersPopup = () => {
       <Body style={{ marginTop: '10px', marginBottom: '32px' }}>
         To be a{' '}
         <Green>
-          <strong>Potentially Good Option</strong>
-        </Green>
-        , candidates must pass <u>both</u> our <strong>Follow the Money</strong>{' '}
-        and <strong>Character Check</strong> criteria below:
+          <strong>Potentially Good</strong>
+        </Green>{' '}
+        option, candidates must pass <u>both</u> our{' '}
+        <strong>Follow the Money</strong> and <strong>Character Check</strong>{' '}
+        criteria below:
       </Body>
       <H3>Follow the Money</H3>
       <Row style={{ marginTop: '18px' }}>
@@ -81,10 +82,8 @@ const FiltersPopup = () => {
           <Label>Vetted for Hate-Speech</Label>
           <Body13>
             Candidate has not engaged in a pattern of activities or{' '}
-            <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
-              hate-speech
-            </Link>{' '}
-            that encourages intolerance, discrimination or hostility towards a
+            <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">hate-speech</Link> that
+            encourages intolerance, discrimination or hostility towards a
             constitutionally or state-protected group or class.
           </Body13>
         </div>
