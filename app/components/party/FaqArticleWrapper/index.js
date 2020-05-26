@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BackIcon from '@material-ui/icons/ChevronLeft';
+import Dialog from '@material-ui/core/Dialog';
 
 import Wrapper from 'components/shared/Wrapper';
 import { Body, Body11, H1, Body13 } from 'components/shared/typogrophy';
@@ -78,7 +79,7 @@ const FaqArticleWrapper = ({
   return (
     <>
       {article ? (
-        <OverlayWrapper>
+        <Dialog onClose={closeModalCallback} open={true}>
           <Wrapper white>
             <TopWrapper>
               <BackIconWrapper onClick={backButtonCallback}>
@@ -107,7 +108,7 @@ const FaqArticleWrapper = ({
               <Close onClick={closeModalCallback}>Close</Close>
             </div>
           </Wrapper>
-        </OverlayWrapper>
+        </Dialog>
       ) : (
         <LoadingAnimation />
       )}
