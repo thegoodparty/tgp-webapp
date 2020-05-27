@@ -331,6 +331,7 @@ const VsList = ({
   const noneYetCandidate = {
     id: districtNumber ? districtNumber * -1 : -1,
     isGood: true,
+    name: 'somebody Good',
     chamber,
     state,
   };

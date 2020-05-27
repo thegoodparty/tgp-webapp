@@ -185,10 +185,19 @@ const ShareModal = ({
   }
   url = url + queryOperator + 'b=' + blocLink;
 
+  let chamberTitle = 'President';
+  if (candidate.chamber?.toLowerCase() === 'senate') {
+    chamberTitle = `U.S. Senate from ${candidate.state?.toUpperCase()}`;
+  } else if (candidate.chamber?.toLowerCase() === 'house') {
+    chamberTitle = `U.S. House from ${candidate.state?.toUpperCase()}-${Math.abs(
+      candidate.id,
+    )}`;
+  }
+
   const messageTitle = `Want see if we can elect ${
     candidate.name
-  } for President?`;
-  const messageBody = `Check out ${blocName} in The Good Party. See what’s possible, before we vote: ${url}`;
+  } for ${chamberTitle}?`;
+  const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
 
   const sendSms = () => {
     if (navigator.userAgent.match(/Android/i)) {
@@ -208,6 +217,10 @@ const ShareModal = ({
       })
       .then(() => console.log('Successful share'));
   };
+
+  console.log('messageTitle', messageTitle);
+  console.log('messageBody', messageBody);
+  console.log('cadidate', candidate);
 
   return (
     <Dialog onClose={closeCallback} open={open}>
