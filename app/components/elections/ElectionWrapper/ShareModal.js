@@ -218,10 +218,6 @@ const ShareModal = ({
       .then(() => console.log('Successful share'));
   };
 
-  console.log('messageTitle', messageTitle);
-  console.log('messageBody', messageBody);
-  console.log('cadidate', candidate);
-
   return (
     <Dialog onClose={closeCallback} open={open}>
       <Wrapper>

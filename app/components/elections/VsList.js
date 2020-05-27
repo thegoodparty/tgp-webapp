@@ -13,6 +13,7 @@ import {
   candidateRoute,
   candidateRanking,
   candidateBlocName,
+  generateEmptyBlocCandidate,
 } from 'helpers/electionsHelper';
 import { numberFormatter, numberNth } from 'helpers/numberHelper';
 
@@ -300,15 +301,12 @@ const VsList = ({
     }
     return (
       <GrowWrapper>
-        {candidate.id === noneYetCandidate.id ? (
-          <JoinButton onClick={e => handleChoice(candidate, e)}>
-            JOIN #GoodBloc
-          </JoinButton>
-        ) : (
-          <JoinButton onClick={e => handleChoice(candidate, e)}>
-            JOIN {candidateBlocName(candidate, chamber)}
-          </JoinButton>
-        )}
+        <JoinButton onClick={e => handleChoice(candidate, e)}>
+          JOIN{' '}
+          {candidate.id === noneYetCandidate.id
+            ? '#GoodBloc'
+            : candidateBlocName(candidate, chamber)}
+        </JoinButton>
       </GrowWrapper>
     );
   };
@@ -328,13 +326,7 @@ const VsList = ({
     }
   };
 
-  const noneYetCandidate = {
-    id: districtNumber ? districtNumber * -1 : -1,
-    isGood: true,
-    name: 'somebody Good',
-    chamber,
-    state,
-  };
+  const noneYetCandidate = generateEmptyBlocCandidate(districtNumber, chamber, state);
 
   const blocCountSection = candidate => (
     <BlocCount>

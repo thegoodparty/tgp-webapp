@@ -346,3 +346,13 @@ export const findBlocCandidate = (candidates, blocCandidate) => {
 
   return null;
 };
+
+export const generateEmptyBlocCandidate = (districtNumber, chamber, state) => {
+  return {
+    id: districtNumber ? districtNumber * -1 : -1,
+    isGood: true,
+    name: 'somebody Good',
+    chamber,
+    state,
+  };
+};

@@ -30,6 +30,7 @@ import { makeSelectContent } from 'containers/App/selectors';
 import {
   candidateBlocName,
   findBlocCandidate,
+  generateEmptyBlocCandidate,
   isDistrictInCds,
 } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
@@ -68,6 +69,8 @@ export function ElectionPage({
   });
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
+  const [emptyBlocCandidate, setEmptyBlocCandidate] = useState(false);
+
   const { user, ranking } = userState;
   const { blocCandidate, joinCandidate } = districtState;
 
@@ -93,7 +96,15 @@ export function ElectionPage({
     }
     const bloc = queryHelper(search, 'b');
     if (bloc) {
-      loadBlocCandidate(bloc);
+      if (bloc.includes('GoodBloc')) {
+        setEmptyBlocCandidate(
+          generateEmptyBlocCandidate(district, chamber, state),
+        );
+        dispatch(push(pathname));
+      } else {
+        dispatch(districtActions.loadBlocCandidateAction(bloc));
+        dispatch(push(pathname));
+      }
     }
     const joinDeepLinkId = queryHelper(search, 'join');
     const joinDeepLinkName = queryHelper(search, 'name');
@@ -149,17 +160,14 @@ export function ElectionPage({
   }
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
-  const loadBlocCandidate = bloc => {
-    dispatch(districtActions.loadBlocCandidateAction(bloc));
-    dispatch(push(pathname));
-  };
-  ``;
-
-  const blocCandidateMatch = findBlocCandidate(candidates, blocCandidate);
+  const blocCandidateMatch = emptyBlocCandidate
+    ? emptyBlocCandidate
+    : findBlocCandidate(candidates, blocCandidate);
   let joinCandidateMatch;
   if (joinCandidate) {
     joinCandidateMatch = findBlocCandidate(candidates, joinCandidate);
   }
+
   const childProps = {
     candidates,
     user,
