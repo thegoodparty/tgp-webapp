@@ -44,7 +44,6 @@ const RankedCard = ({
   useEffect(() => {
     const rank = Object.keys(rankObj);
     rank.sort((a, b) => {
-      console.log('in sort', rankObj[a].rank, rankObj[b].rank);
       return rankObj[a].rank - rankObj[b].rank;
     });
     setSortedRank(rank);

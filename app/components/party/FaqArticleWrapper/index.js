@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BackIcon from '@material-ui/icons/ChevronLeft';
+import CloseIcon from '@material-ui/icons/Cancel';
 import Dialog from '@material-ui/core/Dialog';
 
 import { Body, Body11, H1, Body13 } from 'components/shared/typogrophy';
@@ -30,6 +31,12 @@ const TopWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+`;
+
+const TopClose = styled(CloseIcon)`
+  font-size 24px;
+  cursor: pointer;
+  
 `;
 
 const BackIconWrapper = styled.div`
@@ -90,7 +97,9 @@ const FaqArticleWrapper = ({
                 <BackIconWrapper onClick={backButtonCallback}>
                   <BackIcon style={{ fontSize: '34px' }} />
                 </BackIconWrapper>
-                <Link to="/party/faqs">SEE FAQ</Link>
+                <TopClose
+                  onClick={closeModalCallback}
+                />
               </TopWrapper>
               <H1 style={{ marginBottom: '32px' }}>{article.title}</H1>
 
