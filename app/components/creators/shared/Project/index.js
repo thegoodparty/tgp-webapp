@@ -18,7 +18,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player';
 import Collaborators from '../Collaborators';
-import { ProjectProposal } from '../modals';
+import { ProjectProposal, Join } from '../modals';
 
 const ProjectWrapper = styled.div`
   border-radius: 16px;
@@ -141,27 +141,25 @@ const FooterAction = styled.a`
   font-family: unset;
   text-transform: uppercase;
   cursor: pointer;
+  margin-right: 0;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
-    margin-right: 1rem;
+    margin-right: 2.5rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
-    margin-right: 2rem;
+      theme.creators.breakpoints.creatorsMobile}) {
+    margin-right: 0;
     font-size: 13px;
-    order: 2;
-    &.favorite {
-      order: 0;
-    }
   }
 `;
 
 const FooterActionIcon = styled.span`
-  margin-right: 1rem;
+  margin-right: 10px;
   position: relative;
   top: -2px;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
+    margin-right: 6px;
     top: -1px;
     margin-right: 0.5rem;
   }
@@ -170,7 +168,11 @@ const FooterActionIcon = styled.span`
 const FooterActions = styled.div`
   display: flex;
   width: 100%;
-
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
+    justify-content: space-between;
+    padding-right: 1.5rem;
+  }
   @media only screen and (min-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
     justify-content: space-between;
@@ -191,7 +193,23 @@ const FooterActionsWrapper = styled(Grid)`
 `;
 const ProjectImg = styled.img`
   width: 100%;
-  max-height: 300px;
+  max-height: 444px;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsContent}) {
+    width: auto;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsTablet}) {
+    max-height: 300px;
+    
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
+    max-height: 235px;
+    width: 100%;
+  }
+  
+  
 `;
 const ShowMore = styled.a`
   color: ${({ theme }) => theme.colors.blue};
@@ -215,7 +233,7 @@ const ProjectImageWrapper = styled(Grid)`
     div {
       background-color: white;
     }
-    
+
     .carousel-root {
       div.thumbs-wrapper {
         margin: 12px;
@@ -244,12 +262,9 @@ const ProjectImageWrapper = styled(Grid)`
         width: auto;
       }
     }
-    
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsTablet}) {
-      img.carousel-img {
-        max-height: 235px;
-      }
+        theme.creators.breakpoints.creatorsContent}) {
+      text-align: center;
     }
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsTablet}) {
@@ -258,32 +273,61 @@ const ProjectImageWrapper = styled(Grid)`
       }
     }
     @media only screen and (max-width: ${({ theme }) =>
+        theme.creators.breakpoints.creatorsMobile}) {
+      img.carousel-img {
+        max-height: 235px;
+      }
+      & > div {
+        height: auto !important;
+      }
+    }
+    
+    
+    @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsTablet}) {
-      order: 0;
       margin-bottom: 1.5rem;
     }
   }
 `;
 
-function Project({ project, showMore = false }) {
+function Project({
+  project,
+  showMore = false,
+  clickShowMore = null,
+  toggleLoggedIn,
+  isLoggedIn,
+}) {
   const [touch, setTouch] = useState(false);
+  const [join, setJoin] = useState(false);
 
   if (showMore) {
     return (
       <ProjectWrapper className="text-center show-more">
-        <ShowMore>Show More</ShowMore>
+        <ShowMore onClick={clickShowMore}>Show More</ShowMore>
       </ProjectWrapper>
     );
   }
+  const onClickHelp = () => {
+    if (isLoggedIn) {
+      setTouch(true);
+    } else {
+      setJoin(true);
+    }
+  };
   return (
     <ProjectWrapper>
       <ProjectBodyWrapper container>
         <ProjectContent item xs={12} lg={7}>
-          <Title onClick={() => setTouch(true)}>{project.title}</Title>
+          <Title>{project.title}</Title>
           <ProjectProposal
             project={project}
             open={touch}
             handleClose={() => setTouch(false)}
+          />
+          <Join
+            open={join}
+            handleClose={() => setJoin(false)}
+            toggleLoggedIn={toggleLoggedIn}
           />
           <Topics>
             {project.topics &&
@@ -309,12 +353,7 @@ function Project({ project, showMore = false }) {
         </ProjectContent>
         <ProjectImageWrapper item xs={12} lg={5}>
           {project.images.length === 0 && project.video && (
-            <ReactPlayer
-              url={project.video}
-              playing={false}
-              width="100%"
-              height="100%"
-            />
+            <ReactPlayer url={project.video} playing={false} width="auto" />
           )}
           {project.images.length === 1 && (
             <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
@@ -335,12 +374,20 @@ function Project({ project, showMore = false }) {
         </ProjectImageWrapper>
       </ProjectBodyWrapper>
       <ProjectFooter container>
-        <CollaboratorContainer item xs={12} lg={7}>
+        <CollaboratorContainer item xs={12} md={5} lg={7}>
           <Collaborators project={project} />
         </CollaboratorContainer>
-        <FooterActionsWrapper item xs={12} lg={5}>
+        <FooterActionsWrapper item xs={12} md={7} lg={5}>
           <FooterActions>
-            <FooterAction>
+            <FooterAction className="favorite">
+              <FooterActionIcon>
+                {' '}
+                <Favorite />{' '}
+              </FooterActionIcon>
+              102
+            </FooterAction>
+            <FooterAction onClick={onClickHelp}>
+              {/* onClick={() => setTouch(true)} */}
               <FooterActionIcon>
                 {' '}
                 <Mail />{' '}
@@ -354,13 +401,6 @@ function Project({ project, showMore = false }) {
               </FooterActionIcon>
               Share
             </FooterAction>
-            <FooterAction className="favorite">
-              <FooterActionIcon>
-                {' '}
-                <Favorite />{' '}
-              </FooterActionIcon>
-              102
-            </FooterAction>
           </FooterActions>
         </FooterActionsWrapper>
       </ProjectFooter>
@@ -371,6 +411,8 @@ function Project({ project, showMore = false }) {
 Project.propTypes = {
   showMore: PropTypes.bool,
   projects: PropTypes.array,
+  isLoggedIn: PropTypes.bool,
+  toggleLoggedIn: PropTypes.func,
 };
 
 export default Project;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import Wrapper from 'components/creators/shared/Wrapper';
@@ -8,14 +8,18 @@ import UniteSection from 'components/creators/shared/UniteSection';
 import ProjectsSection from 'components/creators/shared/ProjectsSection';
 
 const CreatorsWrapper = ({ projects = [] }) => {
+  const [isLoggedIn, toggleLoggedIn] = useState(false);
   return (
     <div style={{ backgroundColor: '#FFF' }}>
-      <CreatorsHeaderWrapper />
+      <CreatorsHeaderWrapper
+        isLoggedIn={isLoggedIn}
+        toggleLoggedIn={toggleLoggedIn}
+      />
       <Wrapper white>
-        <UniteSection />
+        <UniteSection isLoggedIn={isLoggedIn} toggleLoggedIn={toggleLoggedIn} />
       </Wrapper>
       <Wrapper blue>
-        <ProjectsSection projects={projects} />
+        <ProjectsSection projects={projects} toggleLoggedIn={toggleLoggedIn} isLoggedIn={isLoggedIn} />
       </Wrapper>
     </div>
   );

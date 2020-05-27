@@ -7,6 +7,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Mail from '@material-ui/icons/Mail';
 import ExpandList from 'images/icons/expand.svg';
 import { ProjectButton } from '../buttons';
 import { ListProject } from '../modals';
@@ -57,9 +58,6 @@ const Title = styled.h2`
   }
 `;
 
-const TitleButtonIcon = styled.img`
-  margin-right: 0.5rem;
-`;
 const SectionHeaderActions = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
@@ -68,34 +66,47 @@ const SectionHeaderActions = styled.div`
   }
 `;
 
-function ProjectsSection({ projects }) {
+function ProjectsSection({ projects, isLoggedIn, toggleLoggedIn }) {
   const [listProject, setListProject] = useState(false);
+  const [limit, setLimit] = useState(6);
   return (
     <SectionWrapper>
       <SectionHeader>
         <Title>Projects</Title>
         <SectionHeaderActions>
-          <ProjectButton
-            variant="contained"
-            onClick={() => setListProject(true)}
+          <a
+            href="https://docs.google.com/forms/d/1sFLfwwoTGOOLKXUSytTCiN3WsVAx0zRSCktUVcYEbGQ/viewform?edit_requested=true"
+            target="_blank"
           >
-            <TitleButtonIcon src={ExpandList} alt="expandlist icon" /> List your
-            project
-          </ProjectButton>
-          <ListProject
-            open={listProject}
-            handleClose={() => setListProject(false)}
-          />
+            <ProjectButton variant="contained">
+              <Mail style={{ marginRight: '0.5rem' }} /> Suggest a Project
+            </ProjectButton>
+            <ListProject
+              open={listProject}
+              handleClose={() => setListProject(false)}
+            />
+          </a>
         </SectionHeaderActions>
       </SectionHeader>
-      {projects.map(project => (
-        <Project project={project} key={project.id} />
+      {projects.slice(0, limit).map(project => (
+        <Project
+          project={project}
+          key={project.id}
+          isLoggedIn={isLoggedIn}
+          toggleLoggedIn={toggleLoggedIn}
+        />
       ))}
-      <Project showMore />
+      {projects && limit < projects.length && (
+        <Project showMore clickShowMore={() => setLimit(limit + 6)} />
+      )}
     </SectionWrapper>
   );
 }
 
-ProjectsSection.propTypes = { projects: PropTypes.array };
+ProjectsSection.propTypes = { 
+  projects: PropTypes.array,
+  isLoggedIn: PropTypes.bool,
+  toggleLoggedIn: PropTypes.func
+};
 
 export default ProjectsSection;

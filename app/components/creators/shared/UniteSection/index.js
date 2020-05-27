@@ -36,7 +36,7 @@ const Audience = styled.p`
   text-align: center;
   margin: 3rem 0;
   color: ${({ theme }) => theme.colors.blue};
-  font: normal 400 32px normal;
+  font: normal 500 32px normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
@@ -86,16 +86,16 @@ const LogoTitle = styled(Body)`
 `;
 
 const CreatorsCount = styled.p`
-  color: ${({ theme }) => theme.creators.colors.darkGray};
-  font: normal 600 1.5rem normal;
+  color: black;
+  font: normal 500 18px normal;
   font-family: unset;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   margin-top: 0;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
-    font-size: 20px;
+    font-size: 15px;
   }
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
@@ -134,17 +134,19 @@ const TitleImg = styled.img`
   }
 `;
 const SmBr = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsMobile}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
     display: inline-block;
   }
-`
+`;
 const SmPunct = styled.span`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.creators.breakpoints.creatorsMobile}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
     display: inline;
   }
-`
-function UniteSection() {
+`;
+function UniteSection({ isLoggedIn, toggleLoggedIn }) {
   const [join, setJoin] = useState(false);
   return (
     <SectionWrapper>
@@ -159,8 +161,7 @@ function UniteSection() {
         Creators · Coders <SmPunct> · </SmPunct> <SmBr /> Influencers · Makers
       </Audience> */}
       <Audience>
-        Designers · Videographers · Podcasters <br /> Writers · Content
-        Creators · Coders ·  Influencers · Makers
+        Designers · Videographers · Podcasters · Writers · Content Creators · Coders ·  Influencers · Makers
       </Audience>
       <TitleImg src={UniteTitle} alt="unite" />
       <p className="text-center">
@@ -168,18 +169,26 @@ function UniteSection() {
           Let's all build <Logo src={LogoCaps} alt="logo" /> the good party
         </LogoTitle>
       </p>
-      <div className="text-center">
-        <JoinNowButton
-          variant="contained"
-          color="primary"
-          onClick={() => setJoin(true)}
-        >
-          Join Now
-        </JoinNowButton>
-        <Join open={join} handleClose={() => setJoin(false)} />
-      </div>
-      <CreatorsCount>640 Creators have joined so far</CreatorsCount>
-      <Heads />
+      {!isLoggedIn && (
+        <>
+          <div className="text-center">
+            <JoinNowButton
+              variant="contained"
+              color="primary"
+              onClick={() => setJoin(true)}
+            >
+              Join Now
+            </JoinNowButton>
+            <Join
+              open={join}
+              handleClose={() => setJoin(false)}
+              toggleLoggedIn={toggleLoggedIn}
+            />
+          </div>
+          <CreatorsCount>640 Creators have joined so far</CreatorsCount>
+          <Heads />
+        </>
+      )}
       <Description>
         The Good Party is a non-profit project with a simple plan to use good
         open-source tech to take back Democracy from big-money donors and
@@ -200,6 +209,9 @@ function UniteSection() {
   );
 }
 
-UniteSection.propTypes = {};
+UniteSection.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  toggleLoggedIn: PropTypes.func,
+};
 
 export default UniteSection;

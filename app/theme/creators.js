@@ -2,7 +2,8 @@ export const creators = {
   breakpoints: {
     creatorsContent: '1280px',
     creatorsMobile: '569px',
-    creatorsTablet: '1024px'
+    creatorsTablet: '956px',
+    creatorsTabletValue: 956,
   },
   colors: {
     lightGray: '#B3B3B3',
