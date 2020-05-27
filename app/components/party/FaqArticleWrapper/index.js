@@ -5,21 +5,25 @@ import { Link } from 'react-router-dom';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import Dialog from '@material-ui/core/Dialog';
 
-import Wrapper from 'components/shared/Wrapper';
 import { Body, Body11, H1, Body13 } from 'components/shared/typogrophy';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 
-const OverlayWrapper = styled.div`
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  overflow-y: auto;
-  z-index: 2000;
+const TgpDialog = styled(Dialog)`
+  && {
+    .MuiDialog-paper {
+      margin: 12px !important;
+    }
+  }
 `;
+
+const Wrapper = styled.div`
+  padding: 12px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 24px;
+  }
+`;
+
 const TopWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -79,36 +83,38 @@ const FaqArticleWrapper = ({
   return (
     <>
       {article ? (
-        <Dialog onClose={closeModalCallback} open={true}>
-          <Wrapper white>
-            <TopWrapper>
-              <BackIconWrapper onClick={backButtonCallback}>
-                <BackIcon style={{ fontSize: '34px' }} />
-              </BackIconWrapper>
-              <Link to="/party/faqs">SEE FAQ</Link>
-            </TopWrapper>
-            <H1 style={{ marginBottom: '32px' }}>{article.title}</H1>
+        <>
+          <TgpDialog onClose={closeModalCallback} open={true}>
+            <Wrapper>
+              <TopWrapper>
+                <BackIconWrapper onClick={backButtonCallback}>
+                  <BackIcon style={{ fontSize: '34px' }} />
+                </BackIconWrapper>
+                <Link to="/party/faqs">SEE FAQ</Link>
+              </TopWrapper>
+              <H1 style={{ marginBottom: '32px' }}>{article.title}</H1>
 
-            <CmsContentWrapper>
-              {contentfulHelper(article.articleBody)}
-            </CmsContentWrapper>
-            <WasHelpul>Was this helpful?</WasHelpul>
-            <ButtonsWrapper>
-              <FeedbackButton
-                className="blue"
-                onClick={() => handleFeedback(true)}
-              >
-                Yes
-              </FeedbackButton>
-              <FeedbackButton onClick={() => handleFeedback(false)}>
-                No
-              </FeedbackButton>
-            </ButtonsWrapper>
-            <div className="text-center">
-              <Close onClick={closeModalCallback}>Close</Close>
-            </div>
-          </Wrapper>
-        </Dialog>
+              <CmsContentWrapper>
+                {contentfulHelper(article.articleBody)}
+              </CmsContentWrapper>
+              <WasHelpul>Was this helpful?</WasHelpul>
+              <ButtonsWrapper>
+                <FeedbackButton
+                  className="blue"
+                  onClick={() => handleFeedback(true)}
+                >
+                  Yes
+                </FeedbackButton>
+                <FeedbackButton onClick={() => handleFeedback(false)}>
+                  No
+                </FeedbackButton>
+              </ButtonsWrapper>
+              <div className="text-center">
+                <Close onClick={closeModalCallback}>Close</Close>
+              </div>
+            </Wrapper>
+          </TgpDialog>
+        </>
       ) : (
         <LoadingAnimation />
       )}
