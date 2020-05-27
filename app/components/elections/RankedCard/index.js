@@ -6,7 +6,10 @@ import Card from 'components/shared/Card';
 import { H3, Body9, Body11 } from 'components/shared/typogrophy/index';
 import RankedCandidate from '../RankedCandidate';
 import SupportersProgressBar from '../SupportersProgressBar';
-import { mapCandidateToHash } from '../../../helpers/electionsHelper';
+import {
+  generateEmptyBlocCandidate,
+  mapCandidateToHash,
+} from '../../../helpers/electionsHelper';
 
 const YourChoices = styled(Body11)`
   margin: 32px 0 16px;
@@ -27,20 +30,50 @@ const RankedCard = ({
   candidates = {},
   rankObj = {},
   suffixText = '',
+  chamber,
+  district,
+  state,
 }) => {
-  const rank = Object.keys(rankObj);
   const [candidatesHash, setCandidatesHash] = useState({});
+  const [sortedRank, setSortedRank] = useState([]);
   useEffect(() => {
     const candHash = mapCandidateToHash(candidates);
     setCandidatesHash(candHash);
   }, [candidates]);
+
+  useEffect(() => {
+    const rank = Object.keys(rankObj);
+    rank.sort((a, b) => {
+      console.log('in sort', rankObj[a].rank, rankObj[b].rank);
+      return rankObj[a].rank - rankObj[b].rank;
+    });
+    setSortedRank(rank);
+  }, [rankObj]);
+
   const { topRank } = candidates;
 
   const votesNeeded = candidates.threshold;
+  let hasEmptyUser = false;
 
   const candidateRow = (userRank, index) => {
     if (index > 1) {
       return <></>;
+    }
+    // empty candidate
+    if (userRank?.candidateId < 0) {
+      const emptyCandidate = generateEmptyBlocCandidate(
+        district,
+        chamber,
+        state,
+      );
+      hasEmptyUser = true;
+      return (
+        <RankedCandidate
+          candidate={emptyCandidate}
+          index={userRank.rank}
+          withLink={false}
+        />
+      );
     }
     if (candidatesHash !== {}) {
       const candidate = candidatesHash[userRank.candidateId];
@@ -48,7 +81,7 @@ const RankedCard = ({
         return (
           <RankedCandidate
             candidate={candidate}
-            index={index}
+            index={userRank.rank}
             withLink={false}
           />
         );
@@ -67,15 +100,15 @@ const RankedCard = ({
         userState={candidates.userState}
       />
       <YourChoices>
-        {rank.length > 2 ? 'YOUR RANKED CHOICES' : 'YOUR CHOICE'}
+        {sortedRank.length > 2 ? 'YOUR RANKED CHOICES' : 'YOUR CHOICE'}
       </YourChoices>
-      {rank.map((rankedId, index) => (
+      {sortedRank.map((rankedId, index) => (
         <React.Fragment key={rankedId}>
           {candidateRow(rankObj[rankedId], index)}
         </React.Fragment>
       ))}
-      {rank.length > 2 ? (
-        <MoreChoices>+ {rank.length - 2} MORE CHOICES</MoreChoices>
+      {sortedRank.length > 2 ? (
+        <MoreChoices>+ {sortedRank.length - 2} MORE CHOICES</MoreChoices>
       ) : (
         <MoreChoices>SEE DETAILS</MoreChoices>
       )}

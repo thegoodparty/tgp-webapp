@@ -351,8 +351,17 @@ export const generateEmptyBlocCandidate = (districtNumber, chamber, state) => {
   return {
     id: districtNumber ? districtNumber * -1 : -1,
     isGood: true,
-    name: 'somebody Good',
+    name: 'Somebody Good',
     chamber,
     state,
+    image: 'http://assets.thegoodparty.org/gray-heart.png',
   };
+};
+
+export const isEmptyCandidates = candidates => {
+  return (
+    candidates?.good?.length === 0 &&
+    candidates.notGood?.length === 0 &&
+    candidates.unknown?.length === 0
+  );
 };

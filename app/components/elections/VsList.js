@@ -254,11 +254,18 @@ const VsList = ({
   state,
   districtNumber,
   handleGrowCallback,
+  user,
 }) => {
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
     return <LoadingAnimation />;
   }
+  const noneYetCandidate = generateEmptyBlocCandidate(
+    districtNumber,
+    chamber,
+    state,
+  );
+
   let nextChoice = 1;
   if (candidates) {
     [...good, ...notGood, ...unknown].forEach(candidate => {
@@ -269,6 +276,10 @@ const VsList = ({
         nextChoice++;
       }
     });
+  }
+
+  if (good.length === 0 && ranking[(noneYetCandidate?.id)]) {
+    nextChoice++;
   }
 
   const onGrow = (candidate, e) => {
@@ -326,21 +337,33 @@ const VsList = ({
     }
   };
 
-  const noneYetCandidate = generateEmptyBlocCandidate(districtNumber, chamber, state);
+  const blocCountSection = candidate => {
+    const candidateRank = candidateRanking(ranking, candidate);
+    let rank = candidate.ranking;
 
-  const blocCountSection = candidate => (
-    <BlocCount>
-      {numberFormatter(candidate.ranking)}{' '}
-      {candidate.ranking === 1 ? 'is' : 'are'} in{' '}
-      {candidateBlocName(candidate, chamber)}
-    </BlocCount>
-  );
+    if (candidateRank && !user) {
+      // no user - need to add the guest count
+      rank++;
+    }
+
+    return (
+      <BlocCount>
+        {numberFormatter(rank)} {rank === 1 ? 'is' : 'are'} in{' '}
+        {candidateBlocName(candidate, chamber)}
+      </BlocCount>
+    );
+  };
+
   let displayBloc = goodBloc;
   if (chamber === 'house') {
     displayBloc =
       goodBloc.substring(0, 2) + '-' + goodBloc.substring(2, goodBloc.length);
   }
 
+  let goodEmptyBloc = candidates.goodEmptyBloc;
+  if (!user && ranking[(noneYetCandidate?.id)]) {
+    goodEmptyBloc++;
+  }
   return (
     <div>
       <Row>
@@ -368,12 +391,16 @@ const VsList = ({
           ))}
           {good.length === 0 && (
             <CandidateWrapper>
-              <CandidateAvatar size="responsive" src="blank" good />
+              <CandidateAvatar
+                size="responsive"
+                src={noneYetCandidate.image}
+                good
+              />
               <Name className="gray">NONE YET</Name>
               <Role>GOOD PARTY APPROVED</Role>
               <BlocCount>
-                {numberFormatter(candidates.goodEmptyBlock)}{' '}
-                {candidates.goodEmptyBlock === 1 ? 'is' : 'are'} in #GoodBloc of{' '}
+                {numberFormatter(goodEmptyBloc)}{' '}
+                {goodEmptyBloc === 1 ? 'is' : 'are'} in #GoodBloc of{' '}
                 {displayBloc}
               </BlocCount>
               {choiceButton(noneYetCandidate)}
@@ -456,6 +483,7 @@ VsList.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleGrowCallback: PropTypes.func,

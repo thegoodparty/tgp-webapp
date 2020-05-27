@@ -137,7 +137,6 @@ const ElectionWrapper = ({
     }
   }, [joinCandidate]);
 
-
   useEffect(() => {
     if (growCandidate) {
       setChoiceModalCandidate(growCandidate);
@@ -189,10 +188,14 @@ const ElectionWrapper = ({
 
   const handleChoiceCallback = (candidate, rank) => {
     if (rankingAllowed) {
+      if (candidate.id < 0) {
+        candidate.ranking = candidates.goodEmptyBloc;
+      }
+      console.log('after', candidate);
       setChoiceModalCandidate(candidate);
-      selectCandidate(candidate, rank);
       setShowChoiceModal(true);
       setShowShareModal(false);
+      selectCandidate(candidate, rank);
     } else {
       // ranking not allowed
       setShowRankAlert(true);
@@ -314,8 +317,8 @@ const ElectionWrapper = ({
                   <GoodCandidate onClick={openFiltersCallback}>
                     good candidate options
                   </GoodCandidate>{' '}
-                  in this race. Join #GoodBloc to be notified as soon as we find any good
-                  candidates.
+                  in this race. Join #GoodBloc to be notified as soon as we find
+                  any good candidates.
                 </>
               )}
             </Description>
@@ -331,6 +334,7 @@ const ElectionWrapper = ({
               districtNumber={districtNumber}
               chamber={chamber}
               state={stateUpper}
+              user={user}
             />
 
             <TopQuestions articles={articles} />
@@ -361,6 +365,7 @@ const ElectionWrapper = ({
           </H3>
         </AlertWrapper>
       </Dialog>
+
       <ChoiceModal
         open={showChoiceModal}
         closeCallback={onCloseChoiceModal}
@@ -369,11 +374,7 @@ const ElectionWrapper = ({
         candidate={choiceModalCandidate}
         // candidate={candidates.good ? candidates.good[0] : null}
         votesNeeded={votesNeeded}
-        chamberCount={
-          choiceModalCandidate.id < 0
-            ? candidates.goodEmptyBlock
-            : choiceModalCandidate.ranking
-        }
+        chamberCount={choiceModalCandidate.ranking}
         user={user}
         animateCount={!isExternalLink}
         userState={candidates.userState}

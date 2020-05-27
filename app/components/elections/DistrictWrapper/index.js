@@ -21,6 +21,7 @@ import TopQuestions from 'components/shared/TopQuestions';
 import GrayWrapper from 'components/shared/GrayWrapper';
 import {
   houseElectionLink,
+  isEmptyCandidates,
   presidentialElectionLink,
   senateElectionLink,
 } from 'helpers/electionsHelper';
@@ -244,10 +245,11 @@ const DistrictWrapper = ({
                 <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
                   candidate voting blocs
                 </Link>{' '}
-                to see if your vote can elect someone {' '}
+                to see if your vote can elect someone{' '}
                 <Link to="?article=5KnBx42FOEVDJNUFpoU1PX">
                   Potentially Good
-                </Link>.
+                </Link>
+                .
               </Body>
             </Spacer>
             <Link to={presidentialElectionLink()}>
@@ -266,38 +268,47 @@ const DistrictWrapper = ({
                 />
               )}
             </Link>
-            <Link to={senateElectionLink(shortState)}>
-              {senateRank && Object.keys(senateRank).length > 0 ? (
-                <RankedCard
-                  title={`Senator - ${stateLong}`}
-                  candidates={senateCandidates}
-                  rankObj={senateRank}
-                  suffixText={` ${upperState}`}
-                />
-              ) : (
-                <VsCard
-                  title={`Senator - ${stateLong}`}
-                  candidates={senateCandidates}
-                  suffixText={` ${upperState}`}
-                />
-              )}
-            </Link>
-            <Link to={houseElectionLink(shortState, districtNumber)}>
-              {houseRank && Object.keys(houseRank).length > 0 ? (
-                <RankedCard
-                  title={`House Representative ${shortState}-${districtNumber}`}
-                  candidates={houseCandidates}
-                  rankObj={houseRank}
-                  suffixText={` ${upperState}-${districtNumber}`}
-                />
-              ) : (
-                <VsCard
-                  title={`House Representative ${shortState}-${districtNumber}`}
-                  candidates={houseCandidates}
-                  suffixText={` ${upperState}-${districtNumber}`}
-                />
-              )}
-            </Link>
+            {!isEmptyCandidates(senateCandidates) && (
+              <Link to={senateElectionLink(shortState)}>
+                {senateRank && Object.keys(senateRank).length > 0 ? (
+                  <RankedCard
+                    title={`Senator - ${stateLong}`}
+                    candidates={senateCandidates}
+                    rankObj={senateRank}
+                    suffixText={` ${upperState}`}
+                    chamber="senate"
+                    state={shortState}
+                  />
+                ) : (
+                  <VsCard
+                    title={`Senator - ${stateLong}`}
+                    candidates={senateCandidates}
+                    suffixText={` ${upperState}`}
+                  />
+                )}
+              </Link>
+            )}
+            {!isEmptyCandidates(houseCandidates) && (
+              <Link to={houseElectionLink(shortState, districtNumber)}>
+                {houseRank && Object.keys(houseRank).length > 0 ? (
+                  <RankedCard
+                    title={`House Representative ${shortState}-${districtNumber}`}
+                    candidates={houseCandidates}
+                    rankObj={houseRank}
+                    suffixText={` ${upperState}-${districtNumber}`}
+                    chamber="house"
+                    district={districtNumber}
+                    state={shortState}
+                  />
+                ) : (
+                  <VsCard
+                    title={`House Representative ${shortState}-${districtNumber}`}
+                    candidates={houseCandidates}
+                    suffixText={` ${upperState}-${districtNumber}`}
+                  />
+                )}
+              </Link>
+            )}
             <TopQuestions articles={articles} />
           </Wrapper>
           <AmaContainer />

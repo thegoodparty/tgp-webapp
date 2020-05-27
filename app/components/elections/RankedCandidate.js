@@ -42,7 +42,7 @@ const RankedCandidate = ({ candidate, index, withLink = true }) => {
   return (
     <Wrapper>
       <Row>
-        <RankIndex>{index + 1}</RankIndex>
+        <RankIndex>{index}</RankIndex>
         <CandidateAvatar
           size="responsive"
           src={candidate.image}

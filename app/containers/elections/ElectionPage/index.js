@@ -185,6 +185,7 @@ export function ElectionPage({
     growCandidateMatch = findBlocCandidate(candidates, growCandidate);
   }
 
+
   const childProps = {
     candidates,
     user,

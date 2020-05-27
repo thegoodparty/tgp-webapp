@@ -115,6 +115,7 @@ const CandidateAvatar = ({
     initials = getInitials(name);
   }
 
+
   return (
     <Wrapper
       wrapperSizeSmall={wrapperSizeSmall}
