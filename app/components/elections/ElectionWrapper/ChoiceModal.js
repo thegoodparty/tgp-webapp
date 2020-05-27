@@ -263,7 +263,7 @@ const ChoiceModal = ({
         ) : (
           <>
             <BlueButton fullWidth onClick={shareCallback}>
-              <H3 style={{ color: '#FFF' }}>TELL SOME FRIENDS</H3>
+              <H3 style={{ color: '#FFF' }}>TELL SOME FRIENDS...</H3>
             </BlueButton>
             <Footer>
               Don&apos;t worry, we will{' '}
