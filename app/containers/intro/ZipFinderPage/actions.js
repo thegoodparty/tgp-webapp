@@ -92,11 +92,20 @@ const clearBlocCandidateAction = () => ({
 
 const setJoinCandidateAction = joinCandidate => ({
   type: types.SET_JOIN_CANDIDATE,
-  joinCandidate
+  joinCandidate,
 });
 
 const clearJoinCandidateAction = () => ({
   type: types.CLEAR_JOIN_CANDIDATE,
+});
+
+const setGrowCandidateAction = growCandidate => ({
+  type: types.SET_GROW_CANDIDATE,
+  growCandidate,
+});
+
+const clearGrowCandidateAction = () => ({
+  type: types.CLEAR_GROW_CANDIDATE,
 });
 
 export default {
@@ -120,4 +129,6 @@ export default {
   clearBlocCandidateAction,
   setJoinCandidateAction,
   clearJoinCandidateAction,
+  setGrowCandidateAction,
+  clearGrowCandidateAction,
 };

@@ -108,7 +108,9 @@ const ElectionWrapper = ({
   clearBlocCandidateCallback,
   blocCandidate,
   joinCandidate,
+  growCandidate,
   clearJoinCandidateCallback,
+  clearGrowCandidateCallback,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -134,6 +136,15 @@ const ElectionWrapper = ({
       clearJoinCandidateCallback();
     }
   }, [joinCandidate]);
+
+
+  useEffect(() => {
+    if (growCandidate) {
+      setChoiceModalCandidate(growCandidate);
+      setShowShareModal(true);
+      clearGrowCandidateCallback();
+    }
+  }, [growCandidate]);
 
   const { topRank } = candidates;
 
@@ -394,12 +405,14 @@ ElectionWrapper.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   blocCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   joinCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  growCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rankingAllowed: PropTypes.bool,
   saveRankingCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
   clearBlocCandidateCallback: PropTypes.func,
   clearJoinCandidateCallback: PropTypes.func,
+  clearGrowCandidateCallback: PropTypes.func,
 };
 
 export default ElectionWrapper;

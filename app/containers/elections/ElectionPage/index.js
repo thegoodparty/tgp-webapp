@@ -28,7 +28,6 @@ import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
 import {
-  candidateBlocName,
   findBlocCandidate,
   generateEmptyBlocCandidate,
   isDistrictInCds,
@@ -60,6 +59,7 @@ export function ElectionPage({
   deleteCandidateRankingCallback,
   clearBlocCandidateCallback,
   clearJoinCandidateCallback,
+  clearGrowCandidateCallback,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -72,7 +72,7 @@ export function ElectionPage({
   const [emptyBlocCandidate, setEmptyBlocCandidate] = useState(false);
 
   const { user, ranking } = userState;
-  const { blocCandidate, joinCandidate } = districtState;
+  const { blocCandidate, joinCandidate, growCandidate } = districtState;
 
   let candidates;
   if (chamber === 'presidential') {
@@ -106,12 +106,24 @@ export function ElectionPage({
         dispatch(push(pathname));
       }
     }
+
     const joinDeepLinkId = queryHelper(search, 'join');
     const joinDeepLinkName = queryHelper(search, 'name');
     if (joinDeepLinkId) {
       dispatch(
         districtActions.setJoinCandidateAction({
           id: parseInt(joinDeepLinkId, 10),
+          name: joinDeepLinkName,
+        }),
+      );
+      dispatch(push(pathname));
+    }
+
+    const growDeepLinkId = queryHelper(search, 'grow');
+    if (growDeepLinkId) {
+      dispatch(
+        districtActions.setGrowCandidateAction({
+          id: parseInt(growDeepLinkId, 10),
           name: joinDeepLinkName,
         }),
       );
@@ -168,6 +180,11 @@ export function ElectionPage({
     joinCandidateMatch = findBlocCandidate(candidates, joinCandidate);
   }
 
+  let growCandidateMatch;
+  if (growCandidate) {
+    growCandidateMatch = findBlocCandidate(candidates, growCandidate);
+  }
+
   const childProps = {
     candidates,
     user,
@@ -184,7 +201,9 @@ export function ElectionPage({
     blocCandidate: blocCandidateMatch,
     clearBlocCandidateCallback,
     joinCandidate: joinCandidateMatch,
+    growCandidate: growCandidateMatch,
     clearJoinCandidateCallback,
+    clearGrowCandidateCallback,
   };
 
   return (
@@ -218,6 +237,7 @@ ElectionPage.propTypes = {
   locationState: PropTypes.object,
   clearBlocCandidateCallback: PropTypes.func,
   clearJoinCandidateCallback: PropTypes.func,
+  clearGrowCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -274,6 +294,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     clearJoinCandidateCallback: () => {
       dispatch(districtActions.clearJoinCandidateAction());
+    },
+    clearGrowCandidateCallback: () => {
+      dispatch(districtActions.clearGrowCandidateAction());
     },
   };
 }

@@ -447,8 +447,18 @@ const CandidateWrapper = ({
   };
 
   const rankPageJoinLink = () => {
-
     const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
+    if (chamberName === 'presidential') {
+      return presidentialElectionLink() + query;
+    }
+    if (chamberName === 'senate') {
+      return senateElectionLink(state) + query;
+    }
+    return houseElectionLink(state, district) + query;
+  };
+
+  const rankPageGrowLink = () => {
+    const query = `?grow=${candidate.id}&name=${encodeURI(candidate.name)}`;
     if (chamberName === 'presidential') {
       return presidentialElectionLink() + query;
     }
@@ -517,9 +527,11 @@ const CandidateWrapper = ({
                   </BlocCount>
                   {rank ? (
                     <>
-                      <RankButton>
-                        <StyledBody13>GROW {blocName}</StyledBody13>
-                      </RankButton>
+                      <Link to={rankPageGrowLink()}>
+                        <RankButton>
+                          <StyledBody13>GROW {blocName}</StyledBody13>
+                        </RankButton>
+                      </Link>
                       <RankWrapper
                         onClick={() =>
                           deleteCandidateRankingCallback(
