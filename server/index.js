@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 const prerenderToken = process.env.PRERENDER_TOKEN;
+console.log('--------- NODE HERE prerenderToken--------', prerenderToken);
 if (prerenderToken) {
   app.use(require('prerender-node').set('prerenderToken', prerenderToken));
 }
