@@ -30,6 +30,10 @@ if (process.env.NODE_ENV === 'production') {
     res.redirect(`https://${req.hostname}${req.url}`); // express 4.x
   });
 }
+const prerenderToken = process.env.PRERENDER_TOKEN;
+if (prerenderToken) {
+  app.use(require('prerender-node').set('prerenderToken', prerenderToken));
+}
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);

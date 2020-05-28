@@ -85,6 +85,7 @@
     "lodash": "4.17.13",
     "material-ui-dropzone": "^3.0.0",
     "minimist": ">=1.2.3",
+    "prerender-node": "^3.2.5",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-copy-to-clipboard": "^5.0.2",
