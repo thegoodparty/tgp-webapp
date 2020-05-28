@@ -195,10 +195,16 @@ const ChoiceModal = ({
               {candidate.chamber === 'Presidential' ? (
                 <SubTitle>
                   {candidate.party === 'W' ? '' : 'AS A'}{' '}
-                  {partyResolver(candidate.party)} CANDIDATE FOR U.S. PRESIDENT
+                  {partyResolver(candidate.party)} CANDIDATE FOR
+                  <br />
+                  U.S. PRESIDENT
                 </SubTitle>
               ) : (
-                <SubTitle>TO THE U.S. {displayChamber}</SubTitle>
+                <SubTitle>
+                  FOR THE
+                  <br />
+                  U.S. {displayChamber}
+                </SubTitle>
               )}
             </>
           ) : (
