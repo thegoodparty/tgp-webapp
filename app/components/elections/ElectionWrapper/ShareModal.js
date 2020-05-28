@@ -189,9 +189,9 @@ const ShareModal = ({
   if (candidate.chamber?.toLowerCase() === 'senate') {
     chamberTitle = `U.S. Senate from ${candidate.state?.toUpperCase()}`;
   } else if (candidate.chamber?.toLowerCase() === 'house') {
-    chamberTitle = `U.S. House from ${candidate.state?.toUpperCase()}-${Math.abs(
-      candidate.id,
-    )}`;
+    chamberTitle = `U.S. House from ${candidate.state?.toUpperCase()}-${
+      candidate.id < 0 ? Math.abs(candidate.id) : candidate.district
+    }`;
   }
 
   const messageTitle = `Want see if we can elect ${
