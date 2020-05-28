@@ -193,7 +193,10 @@ const ChoiceModal = ({
                 Want to try and elect {candidate.name}?
               </TitleH1>
               {candidate.chamber === 'Presidential' ? (
-                <SubTitle>{candidate.party==='W' ? '' : 'AS A'} {partyResolver(candidate.party)} CANDIDATE FOR U.S. PRESIDENT</SubTitle>
+                <SubTitle>
+                  {candidate.party === 'W' ? '' : 'AS A'}{' '}
+                  {partyResolver(candidate.party)} CANDIDATE FOR U.S. PRESIDENT
+                </SubTitle>
               ) : (
                 <SubTitle>TO THE U.S. {displayChamber}</SubTitle>
               )}
