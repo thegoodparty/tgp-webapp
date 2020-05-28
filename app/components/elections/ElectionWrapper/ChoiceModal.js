@@ -140,6 +140,8 @@ const ChoiceModal = ({
   shareCallback,
   joinCallback,
   chamber,
+  state,
+  district,
   isExternalLink,
 }) => {
   if (!candidate) {
@@ -154,9 +156,9 @@ const ChoiceModal = ({
   if (candidate.chamber === 'Presidential') {
     displayChamber = 'PRESIDENT';
   } else if (candidate.chamber === 'Senate') {
-    displayChamber = 'SENATE';
+    displayChamber = `SENATE FROM ${state?.toUpperCase()}`;
   } else {
-    displayChamber = 'HOUSE OF REPRESENTATIVES';
+    displayChamber = `HOUSE OF REPRESENTATIVES FROM ${state?.toUpperCase()}-${district}`;
   }
 
   const blocName = candidateBlocName(candidate, chamber);
@@ -190,12 +192,7 @@ const ChoiceModal = ({
               <TitleH1 style={{ marginBottom: '12px' }}>
                 Want to try and elect {candidate.name}?
               </TitleH1>
-              <SubTitle>
-                {candidate.party !== 'W' && 'AS A '}
-                {partyResolver(candidate.party)} FOR
-                <br />
-                U.S {displayChamber}
-              </SubTitle>
+              <SubTitle>TO THE U.S. {displayChamber}</SubTitle>
             </>
           ) : (
             <TitleH1>
@@ -236,7 +233,11 @@ const ChoiceModal = ({
               </SupportersCount>
             )}
           </SupportersRow>
-          <SuppoetersBody13>have joined the {blocName} so far</SuppoetersBody13>
+          <SuppoetersBody13>
+            have joined the {blocName} {' '}
+            {state ? `in ${state.toUpperCase()}` : ''}
+            {district ? `-${district}` : ''} so far
+          </SuppoetersBody13>
         </AvatarWrapper>
         <CenterBar>
           <SupportersProgressBar
@@ -292,6 +293,8 @@ ChoiceModal.propTypes = {
   userState: PropTypes.string,
   suffixText: PropTypes.string,
   chamber: PropTypes.string,
+  state: PropTypes.string,
+  district: PropTypes.number,
   isExternalLink: PropTypes.bool,
 };
 

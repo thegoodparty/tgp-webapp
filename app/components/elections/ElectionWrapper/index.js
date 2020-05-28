@@ -380,6 +380,8 @@ const ElectionWrapper = ({
         userState={candidates.userState}
         suffixText={suffixText}
         chamber={chamber}
+        state={state}
+        district={districtNumber}
         isExternalLink={isExternalLink}
       />
       <ShareModal

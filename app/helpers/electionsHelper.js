@@ -352,6 +352,7 @@ export const generateEmptyBlocCandidate = (districtNumber, chamber, state) => {
     id: districtNumber ? districtNumber * -1 : -1,
     isGood: true,
     name: 'Somebody Good',
+    party: 'W',
     chamber,
     state,
     image: 'http://assets.thegoodparty.org/gray-heart.png',
