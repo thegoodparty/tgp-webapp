@@ -201,9 +201,9 @@ const ShareModal = ({
 
   const sendSms = () => {
     if (navigator.userAgent.match(/Android/i)) {
-      window.open(`sms:?&body=${messageBody}`, '_blank');
+      window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
     } else {
-      window.open(`sms:?&body=${messageBody}`, '_blank');
+      window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
     }
   };
 
