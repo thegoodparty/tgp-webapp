@@ -75,7 +75,7 @@ const RankedCard = ({
       );
     }
     if (candidatesHash !== {}) {
-      const candidate = candidatesHash[userRank.candidateId];
+      const candidate = candidatesHash[userRank?.candidateId];
       if (candidate) {
         return (
           <RankedCandidate

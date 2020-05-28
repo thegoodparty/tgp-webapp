@@ -51,7 +51,11 @@ const RankedCandidate = ({ candidate, index, withLink = true }) => {
         />
         <CandName>
           <BlueBody13>{candidate.name}</BlueBody13>
-          <Party>{partyResolver(candidate.party)}</Party>
+          <Party>
+            {candidate.party === 'VC'
+              ? 'GOOD PARTY APPROVED'
+              : partyResolver(candidate.party)}
+          </Party>
         </CandName>
       </Row>
     </Wrapper>
