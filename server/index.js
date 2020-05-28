@@ -31,9 +31,11 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 const prerenderToken = process.env.PRERENDER_TOKEN;
-console.log('--------- NODE HERE prerenderToken--------', prerenderToken);
-if (prerenderToken) {
+if (typeof prerenderToken !== 'undefined') {
+  console.log('prerender is defined');
   app.use(require('prerender-node').set('prerenderToken', prerenderToken));
+} else {
+  console.log('prerender is not defined');
 }
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
