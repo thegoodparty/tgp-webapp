@@ -114,7 +114,7 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
       id: 'noneyet',
       name: 'NONE YET',
       party: 'VC',
-      image: null,
+      image: 'http://assets.thegoodparty.org/gray-heart.png',
       isGood: true,
     });
   }
