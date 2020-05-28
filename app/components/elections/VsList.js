@@ -98,8 +98,9 @@ const BlocCount = styled(Body11)`
 `;
 
 const JoinButton = styled(Body11)`
-  padding: 0.8rem 0.2rem;
+  padding: 0.8rem 0.6rem;
   width: 100%;
+  min-width: 140px;
   border-radius: 40px;
   margin-top: 8px;
   cursor: pointer;
@@ -125,8 +126,9 @@ const GrowWrapperUnknown = styled.div`
 `;
 
 const GrowButtonWrapper = styled.div`
-  padding: 0.8rem 0.2rem;
+  padding: 0.8rem 0.6rem;
   width: 100%;
+  min-width: 140px;
   border: solid 2px ${({ theme }) => theme.colors.blue};
   border-radius: 40px;
   margin-top: 8px;
