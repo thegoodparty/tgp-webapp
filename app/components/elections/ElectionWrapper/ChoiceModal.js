@@ -201,8 +201,7 @@ const ChoiceModal = ({
                 </SubTitle>
               ) : (
                 <SubTitle>
-                  {candidate.id < 0 ? 'AS A' : partyResolver(candidate.party)}{' '}
-                  CANDIDATE
+                  {candidate.id < 0 ? 'TO THE ' : `${partyResolver(candidate.party)} CANDIDATE `}
                   <br />
                   U.S. {displayChamber}
                 </SubTitle>
