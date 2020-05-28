@@ -200,7 +200,12 @@ const ShareModal = ({
   const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
 
   const sendSms = () => {
-    window.open(`sms://;?&body=${messageBody.replace('&', '%26')}`, '_blank');
+    // if (navigator.userAgent.match(/Android/i)) {
+    //   window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
+    // } else {
+    //   window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
+    // }
+    window.open(`sms:;?&body=${messageBody.replace('&', '%26')}`, '_blank');
   };
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
