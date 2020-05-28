@@ -192,7 +192,11 @@ const ChoiceModal = ({
               <TitleH1 style={{ marginBottom: '12px' }}>
                 Want to try and elect {candidate.name}?
               </TitleH1>
-              <SubTitle>TO THE U.S. {displayChamber}</SubTitle>
+              {candidate.chamber === 'Presidential' ? (
+                <SubTitle>{candidate.party==='W' ? '' : 'AS A'} {partyResolver(candidate.party)} CANDIDATE FOR U.S. PRESIDENT</SubTitle>
+              ) : (
+                <SubTitle>TO THE U.S. {displayChamber}</SubTitle>
+              )}
             </>
           ) : (
             <TitleH1>
@@ -234,7 +238,7 @@ const ChoiceModal = ({
             )}
           </SupportersRow>
           <SuppoetersBody13>
-            have joined the {blocName} {' '}
+            have joined the {blocName}{' '}
             {state ? `in ${state.toUpperCase()}` : ''}
             {district ? `-${district}` : ''} so far
           </SuppoetersBody13>
