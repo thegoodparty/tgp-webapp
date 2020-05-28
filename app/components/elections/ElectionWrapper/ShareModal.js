@@ -278,12 +278,14 @@ const ShareModal = ({
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
             <Grid item xs>
-              <IconItem onClick={sendSms}>
-                <IconWrapper className="sms">
-                  <Icon src={SmsIcon} alt="sms" />
-                </IconWrapper>
-              </IconItem>
-              <IconLabel>SMS / TEXT</IconLabel>
+              <a href={`sms:?&body=${messageBody.replace('&', '%26')}`}>
+                <IconItem>
+                  <IconWrapper className="sms">
+                    <Icon src={SmsIcon} alt="sms" />
+                  </IconWrapper>
+                </IconItem>
+                <IconLabel>SMS / TEXT</IconLabel>
+              </a>
             </Grid>
             <Grid item xs>
               <IconItem>
