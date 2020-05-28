@@ -201,7 +201,7 @@ const ChoiceModal = ({
                 </SubTitle>
               ) : (
                 <SubTitle>
-                  FOR THE
+                  {partyResolver(candidate.party)} CANDIDATE
                   <br />
                   U.S. {displayChamber}
                 </SubTitle>
