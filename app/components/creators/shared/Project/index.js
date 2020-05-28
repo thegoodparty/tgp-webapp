@@ -18,7 +18,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player';
 import Collaborators from '../Collaborators';
-import { ProjectProposal, Join } from '../modals';
+import { ProjectProposal } from '../modals';
 
 const ProjectWrapper = styled.div`
   border-radius: 16px;
@@ -294,11 +294,10 @@ function Project({
   project,
   showMore = false,
   clickShowMore = null,
-  toggleLoggedIn,
-  isLoggedIn,
+  toggleJoin,
+  user,
 }) {
   const [touch, setTouch] = useState(false);
-  const [join, setJoin] = useState(false);
 
   if (showMore) {
     return (
@@ -308,10 +307,10 @@ function Project({
     );
   }
   const onClickHelp = () => {
-    if (isLoggedIn) {
+    if (user) {
       setTouch(true);
     } else {
-      setJoin(true);
+      toggleJoin(true);
     }
   };
   return (
@@ -323,11 +322,6 @@ function Project({
             project={project}
             open={touch}
             handleClose={() => setTouch(false)}
-          />
-          <Join
-            open={join}
-            handleClose={() => setJoin(false)}
-            toggleLoggedIn={toggleLoggedIn}
           />
           <Topics>
             {project.topics &&
@@ -411,8 +405,8 @@ function Project({
 Project.propTypes = {
   showMore: PropTypes.bool,
   projects: PropTypes.array,
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  toggleJoin: PropTypes.func
 };
 
 export default Project;

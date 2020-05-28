@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -15,16 +15,42 @@ import CreatorsWrapper from 'components/creators/CreatorsWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectCreatorsPage from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import { makeSelectContent } from 'containers/App/selectors';
 
-export function CreatorsPage({ content }) {
-  useInjectReducer({ key: 'creatorsPage', reducer });
-  useInjectSaga({ key: 'creatorsPage', saga });
+import userActions from 'containers/you/YouPage/actions';
+import { makeSelectContent } from 'containers/App/selectors';
+import makeSelectUser from 'containers/you/YouPage/selectors';
+
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import makeSelectCreatorsPage from './selectors';
+import reducer from 'containers/you/YouPage/reducer';
+import saga from 'containers/you/YouPage/saga';
+// import reducer from './reducer';
+// import saga from './saga';
+
+export function CreatorsPage({
+  content,
+  userState,
+  dispatch,
+  socialLoginCallback,
+  socialLoginFailureCallback,
+}) {
+  useInjectReducer({ key: 'user', reducer });
+  useInjectSaga({ key: 'user', saga });
+  const stateUser = userState.user;
+  const [user, setUser] = React.useState(null);
+  useEffect(() => {
+    if (!stateUser) {
+      dispatch(userActions.loadUserFromCookieAction());
+      dispatch(userActions.generateUuidAction());
+    } else {
+      setUser(stateUser);
+    }
+  }, [stateUser]);
   const childProps = {
     projects: content ? content.creatorsProjects || [] : [],
+    user,
+    socialLoginCallback,
+    socialLoginFailureCallback,
   };
 
   return (
@@ -41,16 +67,26 @@ export function CreatorsPage({ content }) {
 CreatorsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  userState: PropTypes.object,
+  socialLoginCallback: PropTypes.func,
+  socialLoginFailureCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   creatorsPage: makeSelectCreatorsPage(),
   content: makeSelectContent(),
+  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    socialLoginCallback: user => {
+      dispatch(userActions.socialRegisterAction(user, '/creators'));
+    },
+    socialLoginFailureCallback: err => {
+      dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    },
   };
 }
 
@@ -59,4 +95,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(CreatorsPage);
+export default compose(withConnect, memo)(CreatorsPage);

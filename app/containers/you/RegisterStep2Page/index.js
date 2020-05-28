@@ -21,15 +21,15 @@ import { createStructuredSelector } from 'reselect';
 
 import RegisterStep2Wrapper from 'components/you/RegisterStep2Wrapper';
 
-export function RegisterStep2Page({ userState, submitCallback }) {
+export function RegisterStep2Page({ userState, submitCallback, location }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
   const { user, loading } = userState;
-
   const childProps = {
     user,
     submitCallback,
     loading,
+    redirect: location.state.redirect
   };
 
   return (
@@ -56,7 +56,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    submitCallback: (feedback, photo) => {
+    submitCallback: (feedback, photo, redirect) => {
       if (feedback) {
         dispatch(
           userActions.updateUserAction({
@@ -69,7 +69,7 @@ function mapDispatchToProps(dispatch) {
           userActions.uploadAvatarAction(photo.pictureFile, photo.pictureData),
         );
       }
-      dispatch(push('/you'));
+      dispatch(push(`${redirect}`));
     },
   };
 }

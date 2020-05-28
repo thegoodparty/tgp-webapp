@@ -16,9 +16,10 @@ const registerActionError = error => ({
   error,
 });
 
-const socialRegisterAction = user => ({
+const socialRegisterAction = (user, redirect = '/you') => ({
   type: types.SOCIAL_REGISTER,
   user,
+  redirect
 });
 
 const resendEmailAction = email => ({
@@ -58,9 +59,10 @@ const loginAction = email => ({
   email,
 });
 
-const socialLoginAction = user => ({
+const socialLoginAction = (user, redirect = '/you') => ({
   type: types.SOCIAL_LOGIN,
   user,
+  redirect
 });
 
 const updatePresidentialRankAction = rank => ({

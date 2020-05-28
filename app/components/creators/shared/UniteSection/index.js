@@ -12,7 +12,6 @@ import { Hidden } from '@material-ui/core';
 
 import { Body, Body15 } from '../typography';
 import { JoinNowButton } from '../buttons';
-import { Join } from '../modals';
 import Heads from '../Heads';
 
 import LogoCaps from 'images/logo.svg';
@@ -146,8 +145,7 @@ const SmPunct = styled.span`
     display: inline;
   }
 `;
-function UniteSection({ isLoggedIn, toggleLoggedIn }) {
-  const [join, setJoin] = useState(false);
+function UniteSection({ user, toggleJoin }) {
   return (
     <SectionWrapper>
       <Hidden xsDown>
@@ -169,21 +167,16 @@ function UniteSection({ isLoggedIn, toggleLoggedIn }) {
           Let's all build <Logo src={LogoCaps} alt="logo" /> the good party
         </LogoTitle>
       </p>
-      {!isLoggedIn && (
+      {!user && (
         <>
           <div className="text-center">
             <JoinNowButton
               variant="contained"
               color="primary"
-              onClick={() => setJoin(true)}
+              onClick={() => toggleJoin(true)}
             >
               Join Now
             </JoinNowButton>
-            <Join
-              open={join}
-              handleClose={() => setJoin(false)}
-              toggleLoggedIn={toggleLoggedIn}
-            />
           </div>
           <CreatorsCount>640 Creators have joined so far</CreatorsCount>
           <Heads />
@@ -210,8 +203,8 @@ function UniteSection({ isLoggedIn, toggleLoggedIn }) {
 }
 
 UniteSection.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  toggleJoin: PropTypes.func,
 };
 
 export default UniteSection;

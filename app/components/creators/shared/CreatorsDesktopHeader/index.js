@@ -14,7 +14,6 @@ import styled from 'styled-components';
 import LogoCaps from 'images/logo-caps.svg';
 import { Body14, Body9 } from 'components/shared/typogrophy';
 import Body from '../typography/Body';
-import { Join } from '../modals';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -147,15 +146,12 @@ const AvatarWrapper = styled(Body14)`
   }
 `;
 
-const CreatorsDesktopHeader = ({ isLoggedIn, toggleLoggedIn }) => {
+const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
   const [menu, setMenu] = useState(false);
-  const [join, setJoin] = useState(false);
   const onClickJoin = () => {
     setMenu(false);
-    if (!isLoggedIn) {
-      setJoin(true);
-    } else {
-      toggleLoggedIn(false);
+    if (!user) {
+      toggleJoin(true);
     }
   };
   return (
@@ -164,17 +160,18 @@ const CreatorsDesktopHeader = ({ isLoggedIn, toggleLoggedIn }) => {
         <TopLink className="logo" to="/">
           <Logo src={LogoCaps} alt="logo" />
         </TopLink>
-        <Join
-          open={join}
-          handleClose={() => setJoin(false)}
-          toggleLoggedIn={toggleLoggedIn}
-        />
         <MenuItemsWrapper className="desktop">
           <TopLink className="menu-item">About</TopLink>
           <TopLink className="menu-item active">Creators</TopLink>
-          <TopLink className="menu-item" onClick={onClickJoin}>
-            {isLoggedIn ? 'You' : 'Join'}
-          </TopLink>
+          {user ? (
+            <TopLink className="menu-item" to="/you">
+              You
+            </TopLink>
+          ) : (
+            <TopLink className="menu-item" onClick={onClickJoin}>
+              Join
+            </TopLink>
+          )}
         </MenuItemsWrapper>
         <MenuItemsWrapper className="mobile">
           <TopLink className="menu-item" onClick={() => setMenu(true)}>
@@ -191,11 +188,17 @@ const CreatorsDesktopHeader = ({ isLoggedIn, toggleLoggedIn }) => {
               <ListItem button onClick={() => setMenu(false)}>
                 <TopLink className="menu-item active">Creators</TopLink>
               </ListItem>
-              <ListItem button onClick={onClickJoin}>
-                <TopLink className="menu-item">
-                  {isLoggedIn ? 'You' : 'Join'}
-                </TopLink>
-              </ListItem>
+              {user ? (
+                <ListItem button>
+                  <TopLink className="menu-item" to="/you">
+                    You
+                  </TopLink>
+                </ListItem>
+              ) : (
+                <ListItem button onClick={onClickJoin}>
+                  <TopLink className="menu-item">Join</TopLink>
+                </ListItem>
+              )}
             </List>
           </Drawer>
         </Hidden>
@@ -205,8 +208,8 @@ const CreatorsDesktopHeader = ({ isLoggedIn, toggleLoggedIn }) => {
 };
 
 CreatorsDesktopHeader.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  toggleJoin: PropTypes.func,
 };
 
 export default CreatorsDesktopHeader;

@@ -13,13 +13,13 @@ import LogoCaps from 'images/logo.svg';
 import FacebookIcon from 'images/icons/facebook.svg';
 import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
-import globals from 'globals';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import { OutlinedButton } from 'components/shared/buttons';
 import { BodyWrapper, OverlayModal } from '../shared';
 import { Body, Body18, Body13, Body15, Body11 } from '../../typography';
 import { MediumButton } from '../../buttons';
 import Heads from '../../Heads';
+import globals from '../../../../../globals';
 
 const Logo = styled.img`
   height: 97px;
@@ -109,14 +109,9 @@ const JoinBodyWrapper = styled(BodyWrapper)`
 function Join({
   open,
   handleClose,
-  toggleLoggedIn,
   socialLoginCallback,
   socialLoginFailureCallback,
 }) {
-  const onClickJoin = () => {
-    toggleLoggedIn(true);
-    handleClose();
-  };
   return (
     <OverlayModal
       open={open}
@@ -140,7 +135,6 @@ function Join({
               appId={globals.facebookAppId}
               onLoginSuccess={socialLoginCallback}
               onLoginFailure={socialLoginFailureCallback}
-              triggerLogin={onClickJoin}
             >
               Continue with Facebook
             </SocialButton>
@@ -150,7 +144,6 @@ function Join({
               appId={globals.googleAppId}
               onLoginSuccess={socialLoginCallback}
               onLoginFailure={socialLoginFailureCallback}
-              triggerLogin={onClickJoin}
             >
               Continue with GOOGLE
             </SocialButton>
@@ -158,7 +151,6 @@ function Join({
               <Link
                 to="/you/register-email"
                 style={{ width: '100%' }}
-                onClick={onClickJoin}
               >
                 <EmailInner>
                   <EmailIconImg src={EmailIcon} />
@@ -188,8 +180,8 @@ function Join({
 Join.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func,
+  socialLoginCallback: PropTypes.func,
+  socialLoginFailureCallback: PropTypes.func,
 };
 
 export default Join;
