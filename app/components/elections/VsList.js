@@ -106,6 +106,10 @@ const JoinButton = styled(Body11)`
   background-color: ${({ theme }) => theme.colors.blue};
   color: #fff;
   text-align: center;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0.8rem 2rem;
+    min-width: 220px;
+  }
 `;
 
 const GrowWrapper = styled.div`
@@ -128,6 +132,10 @@ const GrowButtonWrapper = styled.div`
   margin-top: 8px;
   cursor: pointer;
   text-align: center;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0.8rem 2rem;
+    min-width: 220px;
+  }
 `;
 const BlueBody11 = styled(Body11)`
   color: ${({ theme }) => theme.colors.blue};
