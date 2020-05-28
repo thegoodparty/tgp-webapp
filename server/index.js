@@ -30,13 +30,13 @@ if (process.env.NODE_ENV === 'production') {
     res.redirect(`https://${req.hostname}${req.url}`); // express 4.x
   });
 }
-const prerenderToken = process.env.PRERENDER_TOKEN;
-if (typeof prerenderToken !== 'undefined') {
-  console.log('prerender is defined');
-  app.use(require('prerender-node').set('prerenderToken', prerenderToken));
-} else {
-  console.log('prerender is not defined');
-}
+// const prerenderToken = process.env.PRERENDER_TOKEN;
+// if (typeof prerenderToken !== 'undefined') {
+//   console.log('prerender is defined');
+//   app.use(require('prerender-node').set('prerenderToken', prerenderToken));
+// } else {
+//   console.log('prerender is not defined');
+// }
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
