@@ -480,6 +480,7 @@ const CandidateWrapper = ({
 
   const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
+  const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
 
   const blocName = candidateBlocName(candidate, chamberName);
   return (
@@ -799,10 +800,9 @@ const CandidateWrapper = ({
                   <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
                 </Fund>
               )}
-
               {isGoodOrUnkwown ? (
                 <Fund>
-                  {isIncumbent ? (
+                  {isIncumbent || isSameAsComparedIncumbent ? (
                     <>
                       <ColoredBody13 className="gray">N/A</ColoredBody13>
                       <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
@@ -858,7 +858,7 @@ const CandidateWrapper = ({
                 </>
               ) : (
                 <>
-                  {isBigMoney || isIncumbent ? (
+                  {isBigMoney || isIncumbent || isSameAsComparedIncumbent ? (
                     <>
                       <strong>
                         {name} has raised {moneyHelper(totalRaised)} with{' '}
@@ -876,7 +876,7 @@ const CandidateWrapper = ({
                       large numbers of ordinary people, who are banding
                       together, each giving a little, to help {name} compete
                       with the Big Money pouring into this race. <br /> <br />
-                      {!isIncumbent && (
+                      {!isIncumbent && !isSameAsComparedIncumbent && (
                         <>
                           In contrast to {name}, the incumbent in this race,{' '}
                           <strong>
@@ -907,7 +907,7 @@ const CandidateWrapper = ({
                     </>
                   )}
 
-                  {!isIncumbent && !isBigMoney && (
+                  {!isIncumbent && !isBigMoney && !isSameAsComparedIncumbent && (
                     <>
                       <br />
                       <br />
