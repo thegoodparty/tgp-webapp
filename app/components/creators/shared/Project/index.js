@@ -25,6 +25,7 @@ const ProjectWrapper = styled.div`
   padding: 2rem;
   background-color: #fff;
   margin-bottom: 2rem;
+  box-shadow: 2px 4px 24px black;
   &.show-more {
     cursor: pointer;
   }
@@ -258,7 +259,7 @@ const ProjectImageWrapper = styled(Grid)`
         }
       }
       img.carousel-img {
-        max-height: 444px;
+        max-height: 300px;
         width: auto;
       }
     }
@@ -271,6 +272,7 @@ const ProjectImageWrapper = styled(Grid)`
       img.carousel-img {
         max-height: 300px;
       }
+      
     }
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsMobile}) {
@@ -323,12 +325,12 @@ function Project({
             open={touch}
             handleClose={() => setTouch(false)}
           />
-          <Topics>
+          {/* <Topics>
             {project.topics &&
               project.topics.map((topic, index) => (
                 <Topic key={index}>{topic}</Topic>
               ))}
-          </Topics>
+          </Topics> */}
           <Summary>{project.summary}</Summary>
           <div>
             {project.links &&
@@ -347,7 +349,7 @@ function Project({
         </ProjectContent>
         <ProjectImageWrapper item xs={12} lg={5}>
           {project.images.length === 0 && project.video && (
-            <ReactPlayer url={project.video} playing={false} width="auto" />
+            <ReactPlayer url={project.video} playing={false} width="auto" height="300px" />
           )}
           {project.images.length === 1 && (
             <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
