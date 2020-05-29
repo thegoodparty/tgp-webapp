@@ -367,7 +367,7 @@ const CandidateWrapper = ({
     if (isGood) {
       return (
         <ColoredText className="green">
-          <strong>a Good Option</strong>
+          <strong>Potentially Good</strong>
         </ColoredText>
       );
     }
