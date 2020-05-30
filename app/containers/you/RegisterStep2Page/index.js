@@ -29,7 +29,7 @@ export function RegisterStep2Page({ userState, submitCallback, location }) {
     user,
     submitCallback,
     loading,
-    redirect: location.state.redirect
+    redirect: location && location.state && location.state.redirect
   };
 
   return (
@@ -69,7 +69,12 @@ function mapDispatchToProps(dispatch) {
           userActions.uploadAvatarAction(photo.pictureFile, photo.pictureData),
         );
       }
-      dispatch(push(`${redirect}`));
+      if(redirect) {
+        dispatch(push(`${redirect}`));
+      }
+      else {
+        dispatch(push('/you'));
+      }
     },
   };
 }
