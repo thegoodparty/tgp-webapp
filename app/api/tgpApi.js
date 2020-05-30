@@ -1,6 +1,6 @@
 import ENV from './ENV';
-// let base = 'http://localhost:1337/api/v1/';
-let base = 'https://api-dev.thegoodparty.org/api/v1/';
+let base = 'http://localhost:1337/api/v1/';
+//let base = 'https://api-dev.thegoodparty.org/api/v1/';
 if (ENV === 'dev') {
   base = 'https://api-dev.thegoodparty.org/api/v1/';
 } else if (ENV === 'prod') {
