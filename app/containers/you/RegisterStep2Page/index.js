@@ -29,7 +29,7 @@ export function RegisterStep2Page({ userState, submitCallback, location }) {
     user,
     submitCallback,
     loading,
-    redirect: location && location.state && location.state.redirect
+    redirect: location?.state?.redirect
   };
 
   return (
