@@ -12,12 +12,12 @@ const Spacer = styled.div`
   }
 `;
 
-const CreatorsHeaderWrapper = ({ isLoggedIn, toggleLoggedIn }) => {
+const CreatorsHeaderWrapper = ({ toggleJoin, user }) => {
   return (
     <>
       <CreatorsDesktopHeader
-        isLoggedIn={isLoggedIn}
-        toggleLoggedIn={toggleLoggedIn}
+        toggleJoin={toggleJoin}
+        user={user}
       />
       <Spacer />
     </>
@@ -25,13 +25,8 @@ const CreatorsHeaderWrapper = ({ isLoggedIn, toggleLoggedIn }) => {
 };
 
 CreatorsHeaderWrapper.propTypes = {
-  pathname: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  zipCode: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  navigateCallback: PropTypes.func,
-  hideMobileNav: PropTypes.bool,
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func
+  toggleJoin: PropTypes.func
 };
 
 export default CreatorsHeaderWrapper;

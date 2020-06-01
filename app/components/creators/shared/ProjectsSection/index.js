@@ -66,7 +66,7 @@ const SectionHeaderActions = styled.div`
   }
 `;
 
-function ProjectsSection({ projects, isLoggedIn, toggleLoggedIn }) {
+function ProjectsSection({ projects, user, toggleJoin }) {
   const [listProject, setListProject] = useState(false);
   const [limit, setLimit] = useState(6);
   return (
@@ -92,8 +92,8 @@ function ProjectsSection({ projects, isLoggedIn, toggleLoggedIn }) {
         <Project
           project={project}
           key={project.id}
-          isLoggedIn={isLoggedIn}
-          toggleLoggedIn={toggleLoggedIn}
+          user={user}
+          toggleJoin={toggleJoin}
         />
       ))}
       {projects && limit < projects.length && (
@@ -105,8 +105,8 @@ function ProjectsSection({ projects, isLoggedIn, toggleLoggedIn }) {
 
 ProjectsSection.propTypes = { 
   projects: PropTypes.array,
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  toggleJoin: PropTypes.func
 };
 
 export default ProjectsSection;

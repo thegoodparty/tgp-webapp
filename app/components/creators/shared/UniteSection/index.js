@@ -12,7 +12,6 @@ import { Hidden } from '@material-ui/core';
 
 import { Body, Body15 } from '../typography';
 import { JoinNowButton } from '../buttons';
-import { Join } from '../modals';
 import Heads from '../Heads';
 
 import LogoCaps from 'images/logo.svg';
@@ -107,7 +106,8 @@ const Description = styled.p`
   max-width: 45rem;
   margin: 0 auto;
   margin-top: 5rem;
-  font: normal 400 28px normal;
+  font: normal 400 24px normal;
+  line-height: 1.5;
   font-family: unset;
   color: ${({ theme }) => theme.creators.colors.darkGray};
   @media only screen and (max-width: ${({ theme }) =>
@@ -146,8 +146,7 @@ const SmPunct = styled.span`
     display: inline;
   }
 `;
-function UniteSection({ isLoggedIn, toggleLoggedIn }) {
-  const [join, setJoin] = useState(false);
+function UniteSection({ user, toggleJoin }) {
   return (
     <SectionWrapper>
       <Hidden xsDown>
@@ -161,7 +160,8 @@ function UniteSection({ isLoggedIn, toggleLoggedIn }) {
         Creators · Coders <SmPunct> · </SmPunct> <SmBr /> Influencers · Makers
       </Audience> */}
       <Audience>
-        Designers · Videographers · Podcasters · Writers · Content Creators · Coders ·  Influencers · Makers
+        Designers · Videographers · Podcasters · Writers · Content
+        Creators · Coders ·  Influencers · Makers
       </Audience>
       <TitleImg src={UniteTitle} alt="unite" />
       <p className="text-center">
@@ -169,49 +169,47 @@ function UniteSection({ isLoggedIn, toggleLoggedIn }) {
           Let's all build <Logo src={LogoCaps} alt="logo" /> the good party
         </LogoTitle>
       </p>
-      {!isLoggedIn && (
+      {!user && (
         <>
           <div className="text-center">
             <JoinNowButton
               variant="contained"
               color="primary"
-              onClick={() => setJoin(true)}
+              onClick={() => toggleJoin(true)}
             >
               Join Now
             </JoinNowButton>
-            <Join
-              open={join}
-              handleClose={() => setJoin(false)}
-              toggleLoggedIn={toggleLoggedIn}
-            />
           </div>
           <CreatorsCount>640 Creators have joined so far</CreatorsCount>
           <Heads />
         </>
       )}
       <Description>
-        The Good Party is a non-profit project with a simple plan to use good
-        open-source tech to take back Democracy from big-money donors and
+        The Good Party is a non-profit project with a simple plan to use
+        open-source technology to take back democracy from big-money donors and
         crooked career politicians.
         <br />
         <br />
-        We’re calling on Creators of the World to join us now to help create the
-        free tech, messaging, visuals, audio, and stories that can organically
-        reach and inspire millions of people. We’re also building the tools
-        needed to disrupt the two-party system, and get good indie / grass-roots
-        candidates elected so that we can change politics for Good!
+        We’re calling on creators of the world to help us create the technology,
+        messaging, visuals, audio, and stories that can reach and inspire
+        millions of people.
+        <br />
+        <br />
+        We’re also building the tools needed to disrupt the two-party system,
+        and get good indie/grass-roots candidates elected so that we can change
+        politics for Good.
         <br />
         <br />
         Help with any project you can from the list below or add your own. All
-        projects are open-source and free for Good.
+        projects are open-source and free for good.
       </Description>
     </SectionWrapper>
   );
 }
 
 UniteSection.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  toggleJoin: PropTypes.func,
 };
 
 export default UniteSection;

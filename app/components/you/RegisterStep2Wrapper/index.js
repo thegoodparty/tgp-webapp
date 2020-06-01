@@ -100,7 +100,7 @@ const SubmitText = styled(Body11)`
   }
 `;
 
-const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
+const RegisterStep2Wrapper = ({ user, submitCallback, redirect, loading }) => {
   const [showUploadPhoto, setShowUploadPhoto] = useState(false);
   const [comments, setComments] = useState('');
   const [uploadedPhoto, setUploadedPhoto] = useState(false);
@@ -136,7 +136,7 @@ const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
   };
 
   const handleSubmit = () => {
-    submitCallback(comments, uploadedPhoto);
+    submitCallback(comments, uploadedPhoto, redirect);
   };
   return (
     <GrayWrapper>
@@ -217,6 +217,7 @@ RegisterStep2Wrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   submitCallback: PropTypes.func,
   loading: PropTypes.bool,
+  redirect: PropTypes.string
 };
 
 export default RegisterStep2Wrapper;

@@ -10,7 +10,7 @@ const JoinNowButton = styled(Button)`
     padding: 2rem 6rem;
     text-transform: uppercase;
     border-radius: 4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     box-shadow: none;
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsTablet}) {
