@@ -310,8 +310,8 @@ const DistrictWrapper = ({
               </Link>
             )}
             <TopQuestions articles={articles} />
+            <AmaContainer />
           </Wrapper>
-          <AmaContainer />
         </>
       ) : (
         <Wrapper>

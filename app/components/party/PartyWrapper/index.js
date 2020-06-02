@@ -77,8 +77,8 @@ const PartyWrapper = ({ content, appVersion }) => {
           </EventsWrapper>
         )}
         <TopQuestions articles={articles} />
+        <AmaContainer />
       </Wrapper>
-      <AmaContainer />
       <AppVersion>
         The Good Party V.{appVersion} {ENV !== 'prod' && ENV}
         {productionVersion ? (

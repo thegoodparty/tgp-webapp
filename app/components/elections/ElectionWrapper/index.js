@@ -338,8 +338,8 @@ const ElectionWrapper = ({
             />
 
             <TopQuestions articles={articles} />
+            <AmaContainer />
           </Wrapper>
-          <AmaContainer />
           <BottomPopup open={showFilters} handleClose={hideFilters}>
             <FiltersPopup />
           </BottomPopup>
