@@ -64,6 +64,19 @@ function updateCandidateSuccess(candidate) {
   };
 }
 
+function loadArticlesFeedback() {
+  return {
+    type: types.LOAD_ARTICLES_FEEDBACK,
+  };
+}
+
+function loadArticlesFeedbackSuccess(articlesFeedback) {
+  return {
+    type: types.LOAD_ARTICLES_FEEDBACK_SUCCESS,
+    articlesFeedback,
+  };
+}
+
 export default {
   loadCandidates,
   loadCandidatesSuccess,
@@ -75,4 +88,7 @@ export default {
 
   updateCandidate,
   updateCandidateSuccess,
+
+  loadArticlesFeedback,
+  loadArticlesFeedbackSuccess,
 };

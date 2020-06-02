@@ -28,6 +28,7 @@ export function AdminPage({
   loadCandidatesCallback,
   updateCandidateCallback,
   loadAllUsersCallback,
+  loadArticleFeedbackCallback,
   userState,
   dispatch,
 }) {
@@ -49,6 +50,7 @@ export function AdminPage({
     loadCandidatesCallback,
     updateCandidateCallback,
     loadAllUsersCallback,
+    loadArticleFeedbackCallback,
     loading,
     error,
     user,
@@ -70,6 +72,7 @@ AdminPage.propTypes = {
   loadCandidatesCallback: PropTypes.func,
   updateCandidateCallback: PropTypes.func,
   loadAllUsersCallback: PropTypes.func,
+  loadArticleFeedbackCallback: PropTypes.func,
   userState: PropTypes.object,
 };
 
@@ -91,6 +94,9 @@ function mapDispatchToProps(dispatch) {
     loadAllUsersCallback: () => {
       dispatch(adminActions.loadAllUsers());
     },
+    loadArticleFeedbackCallback: () => {
+
+    }
   };
 }
 

@@ -36,6 +36,18 @@ export const uuidUrl = (user, url = 'https://thegoodparty.org') => {
   return returnUrl;
 };
 
+export const getUuid = user => {
+  if (user?.uuid) {
+    return user.uuid;
+  } else {
+    const uuidCookie = getCookie('guuid');
+    if (uuidCookie) {
+      return uuidCookie;
+    }
+  }
+  return '';
+};
+
 export const userDistrict = user => {
   if (!user) {
     return null;

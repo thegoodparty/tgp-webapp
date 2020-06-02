@@ -10,6 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
 import UserIcon from '@material-ui/icons/Person';
+import ArticletIcon from '@material-ui/icons/Assignment';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -85,6 +86,7 @@ const leftMenuItems = [
   { icon: <AccountBalanceIcon />, label: 'Senate Candidates' },
   { icon: <HomeIcon />, label: 'House Candidates' },
   { icon: <UserIcon />, label: 'Users' },
+  { icon: <ArticletIcon />, label: 'Articles' },
 ];
 
 const AdminWrapper = ({
@@ -94,6 +96,7 @@ const AdminWrapper = ({
   loadCandidatesCallback,
   updateCandidateCallback,
   loadAllUsersCallback,
+  loadArticleFeedbackCallback,
   loading,
   error,
 }) => {
@@ -108,6 +111,9 @@ const AdminWrapper = ({
     }
     if (index === 3) {
       loadAllUsersCallback();
+    }
+    if (index === 4) {
+      loadArticleFeedbackCallback();
     }
   };
 
@@ -208,6 +214,7 @@ AdminWrapper.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateCandidateCallback: PropTypes.func,
+  loadArticleFeedbackCallback: PropTypes.func,
 };
 
 export default AdminWrapper;
