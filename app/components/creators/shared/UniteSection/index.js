@@ -180,7 +180,7 @@ function UniteSection({ user, toggleJoin }) {
               Join Now
             </JoinNowButton>
           </div>
-          <CreatorsCount>640 Creators have joined so far</CreatorsCount>
+          {/* <CreatorsCount>640 Creators have joined so far</CreatorsCount> */}
           <Heads />
         </>
       )}
