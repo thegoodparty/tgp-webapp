@@ -1,5 +1,19 @@
+import React from 'react';
 import styled from 'styled-components';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
+
+const dtrOptions = {
+  renderNode: {
+    [BLOCKS.EMBEDDED_ASSET]: (node) => (
+      <img
+        src={node.data?.target?.fields?.file?.url}
+        alt={node.data?.target?.fields?.title}
+        className="faq-image"
+      />
+    ),
+  },
+};
 
 // returns only articles that match the page.
 const contentfulHelper = rawRichTextField => {
@@ -8,7 +22,8 @@ const contentfulHelper = rawRichTextField => {
     if (typeof doc === 'string') {
       doc = JSON.parse(rawRichTextField);
     }
-    return documentToReactComponents(doc);
+    console.log('contentful', doc);
+    return documentToReactComponents(doc, dtrOptions);
   } catch (e) {
     console.log('error at helper');
     console.log(e);

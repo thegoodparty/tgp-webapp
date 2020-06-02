@@ -64,6 +64,10 @@ const GlobalStyle = createGlobalStyle`
   .spacing05 {
     letter-spacing: 0.5px;
   }
+  .faq-image {
+    width: 100%;
+    height: auto;
+  }
 
   
 `;
