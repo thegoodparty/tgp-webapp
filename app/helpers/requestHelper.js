@@ -6,6 +6,7 @@ import { makeSelectToken } from 'containers/you/YouPage/selectors';
 import { headersOptions } from './httpHeaderHelper';
 import fetchHelper from './fetchHelper';
 import snackbarActions from '../containers/shared/SnackbarContainer/actions';
+import { getCookie } from './cookieHelper';
 
 export default function* requestHelper(api, data) {
   let { url } = api;
@@ -29,8 +30,11 @@ export default function* requestHelper(api, data) {
   if (withAuth) {
     token = yield select(makeSelectToken());
     if (!token) {
-      yield put(userActions.signoutAction('/login'));
-      throw new Error({ message: 'missing token' });
+      token = getCookie('token');
+      if (!token) {
+        yield put(userActions.signoutAction('/login'));
+        throw new Error({ message: 'missing token' });
+      }
     }
   }
 
