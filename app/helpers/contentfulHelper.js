@@ -22,7 +22,6 @@ const contentfulHelper = rawRichTextField => {
     if (typeof doc === 'string') {
       doc = JSON.parse(rawRichTextField);
     }
-    console.log('contentful', doc);
     return documentToReactComponents(doc, dtrOptions);
   } catch (e) {
     console.log('error at helper');
