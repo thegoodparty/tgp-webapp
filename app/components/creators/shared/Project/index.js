@@ -18,13 +18,14 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player';
 import Collaborators from '../Collaborators';
-import { ProjectProposal, Join } from '../modals';
+import { ProjectProposal } from '../modals';
 
 const ProjectWrapper = styled.div`
   border-radius: 16px;
   padding: 2rem;
   background-color: #fff;
   margin-bottom: 2rem;
+  box-shadow: 2px 4px 24px black;
   &.show-more {
     cursor: pointer;
   }
@@ -258,7 +259,7 @@ const ProjectImageWrapper = styled(Grid)`
         }
       }
       img.carousel-img {
-        max-height: 444px;
+        max-height: 300px;
         width: auto;
       }
     }
@@ -271,6 +272,7 @@ const ProjectImageWrapper = styled(Grid)`
       img.carousel-img {
         max-height: 300px;
       }
+      
     }
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsMobile}) {
@@ -294,11 +296,10 @@ function Project({
   project,
   showMore = false,
   clickShowMore = null,
-  toggleLoggedIn,
-  isLoggedIn,
+  toggleJoin,
+  user,
 }) {
   const [touch, setTouch] = useState(false);
-  const [join, setJoin] = useState(false);
 
   if (showMore) {
     return (
@@ -308,10 +309,10 @@ function Project({
     );
   }
   const onClickHelp = () => {
-    if (isLoggedIn) {
+    if (user) {
       setTouch(true);
     } else {
-      setJoin(true);
+      toggleJoin(true);
     }
   };
   return (
@@ -324,17 +325,12 @@ function Project({
             open={touch}
             handleClose={() => setTouch(false)}
           />
-          <Join
-            open={join}
-            handleClose={() => setJoin(false)}
-            toggleLoggedIn={toggleLoggedIn}
-          />
-          <Topics>
+          {/* <Topics>
             {project.topics &&
               project.topics.map((topic, index) => (
                 <Topic key={index}>{topic}</Topic>
               ))}
-          </Topics>
+          </Topics> */}
           <Summary>{project.summary}</Summary>
           <div>
             {project.links &&
@@ -353,7 +349,7 @@ function Project({
         </ProjectContent>
         <ProjectImageWrapper item xs={12} lg={5}>
           {project.images.length === 0 && project.video && (
-            <ReactPlayer url={project.video} playing={false} width="auto" />
+            <ReactPlayer url={project.video} playing={false} width="auto" height="300px" />
           )}
           {project.images.length === 1 && (
             <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
@@ -411,8 +407,8 @@ function Project({
 Project.propTypes = {
   showMore: PropTypes.bool,
   projects: PropTypes.array,
-  isLoggedIn: PropTypes.bool,
-  toggleLoggedIn: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  toggleJoin: PropTypes.func
 };
 
 export default Project;
