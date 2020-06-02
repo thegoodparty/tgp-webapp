@@ -25,7 +25,7 @@ const ProjectWrapper = styled.div`
   padding: 2rem;
   background-color: #fff;
   margin-bottom: 2rem;
-  box-shadow: 2px 4px 24px black;
+  box-shadow: 2px 8px 18px rgba(0, 0, 0, .15);
   &.show-more {
     cursor: pointer;
   }
