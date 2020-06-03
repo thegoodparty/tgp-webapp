@@ -143,9 +143,9 @@ const RegisterStep2Wrapper = ({ user, submitCallback, redirect, loading }) => {
       <Nav />
       <Wrapper>
         <MobileHeader />
-        <Link to="/you">
-          <Skip>Skip</Skip>
-        </Link>
+
+        <Skip onClick={submitCallback}>Skip</Skip>
+
         <Grid container spacing={3}>
           <Grid item xs={12} />
           <Grid item xs={12} md={6}>
@@ -217,7 +217,7 @@ RegisterStep2Wrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   submitCallback: PropTypes.func,
   loading: PropTypes.bool,
-  redirect: PropTypes.string
+  redirect: PropTypes.string,
 };
 
 export default RegisterStep2Wrapper;

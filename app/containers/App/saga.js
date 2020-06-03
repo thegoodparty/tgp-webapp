@@ -6,7 +6,7 @@ import types from './constants';
 import actions from './actions';
 import snackbarActions from '../shared/SnackbarContainer/actions';
 import makeSelectUser from '../you/YouPage/selectors';
-import { getCookie } from '../../helpers/cookieHelper';
+import { getUserCookie } from '../../helpers/cookieHelper';
 import { getUuid } from '../../helpers/userHelper';
 
 function* loadContent() {
@@ -45,7 +45,7 @@ function* getUserFromStateOrCookie() {
   if (userState && userState.user) {
     return userState.user;
   }
-  const cookieUser = getCookie('user');
+  const cookieUser = getUserCookie();
   if (cookieUser) {
     return JSON.parse(cookieUser);
   }

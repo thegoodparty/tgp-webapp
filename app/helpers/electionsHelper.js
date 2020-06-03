@@ -321,29 +321,34 @@ export const candidateRankObj = (ranking, candidate) => {
 };
 
 export const findBlocCandidate = (candidates, blocCandidate) => {
+  console.log('findBlocCandidate1',candidates, blocCandidate);
   if (!candidates || !blocCandidate) {
     return null;
   }
+  console.log('findBlocCandidate2');
   for (let i = 0; i < candidates.good.length; i++) {
     const candidate = candidates.good[i];
     if (
       candidate.id === blocCandidate.id &&
       candidate.name === candidate.name
     ) {
+      console.log('findBlocCandidate3', candidate);
       return candidate;
     }
   }
-
+  console.log('findBlocCandidate4');
   for (let i = 0; i < candidates.unknown.length; i++) {
     const candidate = candidates.unknown[i];
     if (
       candidate.id === blocCandidate.id &&
       candidate.name === candidate.name
     ) {
+      console.log('findBlocCandidate5', candidate);
       return candidate;
     }
   }
-
+  console.log('findBlocCandidate6', blocCandidate);
+  console.log('findBlocCandidate7', candidates);
   return null;
 };
 

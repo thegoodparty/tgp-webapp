@@ -30,5 +30,35 @@ export const deleteCookies = () => {
 };
 
 export const deleteCookie = name => {
+  setCookie(name, '', 0);
   document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
+
+export const setUserCookie = value => {
+  const val = typeof value === 'string' ? value : JSON.stringify(value);
+  setCookie('user', val);
+};
+
+export const getUserCookie = () => {
+  return getCookie('user');
+};
+
+export const setSignupRedirectCookie = (route, options = {}) => {
+  const cookie = {
+    route,
+    options,
+  };
+  setCookie('signupRedirect', JSON.stringify(cookie));
+};
+
+export const getSignupRedirectCookie = () => {
+  const cookie = getCookie('signupRedirect');
+  if (cookie) {
+    return JSON.parse(cookie);
+  }
+  return false;
+};
+
+export const deleteSignupRedirectCookie = () => {
+  deleteCookie('signupRedirect');
 };

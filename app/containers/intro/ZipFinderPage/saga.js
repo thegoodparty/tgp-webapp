@@ -2,15 +2,15 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import requestHelper from 'helpers/requestHelper';
-import { getCookie, setCookie } from 'helpers/cookieHelper';
+import { getCookie, getUserCookie, setCookie } from 'helpers/cookieHelper';
 import { GOOGLE_API_KEY } from 'api/ENV';
 
+import selectUser from 'containers/you/YouPage/selectors';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
-import { makeSelectUserObj } from '../../you/YouPage/selectors';
-import selectUser from '../../you/YouPage/selectors';
+
 
 function* loadZip(action) {
   try {
@@ -168,7 +168,7 @@ function* getUserFromStateOrCookie() {
   if (userState && userState.user) {
     return userState.user;
   }
-  const cookieUser = getCookie('user');
+  const cookieUser = getUserCookie();
   if (cookieUser) {
     return JSON.parse(cookieUser);
   }

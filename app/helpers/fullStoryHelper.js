@@ -1,4 +1,4 @@
-import { getCookie } from './cookieHelper';
+import { getUserCookie } from './cookieHelper';
 
 export const fullStoryIdentify = user => {
   if (typeof FS === 'undefined') {
@@ -10,7 +10,7 @@ export const fullStoryIdentify = user => {
       email: user.email,
     });
   } else {
-    let cookieUser = getCookie('user');
+    let cookieUser = getUserCookie();
     if (cookieUser) {
       cookieUser = JSON.parse(cookieUser);
       FS.identify(cookieUser.id, {

@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { deleteCookies, getCookie } from 'helpers/cookieHelper';
+import { deleteCookies, getCookie, getUserCookie } from 'helpers/cookieHelper';
 import { fullStoryIdentify } from 'helpers/fullStoryHelper';
 
 import types from './constants';
@@ -58,7 +58,7 @@ const userReducer = (state = initialState, action) =>
         break;
 
       case types.LOAD_USER_FROM_COOKIE:
-        let user = getCookie('user');
+        let user = getUserCookie();
         let token = getCookie('token');
         if (user) {
           draft.user = JSON.parse(user);
