@@ -28,6 +28,7 @@ import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
 import {
+  candidateBlocName,
   findBlocCandidate,
   generateEmptyBlocCandidate,
   isDistrictInCds,
@@ -309,6 +310,7 @@ function mapDispatchToProps(dispatch, ownProps) {
           candidateId: candidate.id,
           name: candidate.name,
           rank,
+          blocName: candidateBlocName(candidate, chamber),
         };
         setSignupRedirectCookie(route, options);
         // dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
