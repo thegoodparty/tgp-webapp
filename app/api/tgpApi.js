@@ -1,6 +1,6 @@
 import ENV from './ENV';
 let base = 'http://localhost:1337/api/v1/';
-// let base = 'https://api-dev.thegoodparty.org/api/v1/';
+//let base = 'https://api-dev.thegoodparty.org/api/v1/';
 if (ENV === 'dev') {
   base = 'https://api-dev.thegoodparty.org/api/v1/';
 } else if (ENV === 'prod') {
@@ -83,7 +83,7 @@ const api = {
 
   login: {
     url: `${base}entrance/login`,
-    method: 'PUT',  
+    method: 'PUT',
   },
 
   socialLogin: {
@@ -184,6 +184,12 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    articlesFeedback: {
+      url: `${base}admin/articles-feedback`,
+      method: 'GET',
+      withAuth: true,
+    },
+
   },
 };
 export default api;

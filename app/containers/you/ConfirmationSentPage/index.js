@@ -20,7 +20,7 @@ import makeSelectUser from 'containers/you/YouPage/selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
-import { getCookie } from 'helpers/cookieHelper';
+import { getUserCookie } from 'helpers/cookieHelper';
 
 export function ConfirmationSentPage({
   userState,
@@ -36,7 +36,7 @@ export function ConfirmationSentPage({
   const [email, setEmail] = useState(stateEmail);
   useEffect(() => {
     if (!user) {
-      user = getCookie('user');
+      user = getUserCookie();
       if (!user) {
         dispatch(push('/'));
       } else {

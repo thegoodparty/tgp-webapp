@@ -28,6 +28,7 @@ import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
 import {
+  candidateBlocName,
   findBlocCandidate,
   generateEmptyBlocCandidate,
   isDistrictInCds,
@@ -42,6 +43,12 @@ import makeSelectUser, {
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectLocation } from '../../App/selectors';
 import queryHelper from '../../../helpers/queryHelper';
+import {
+  deleteSignupRedirectCookie,
+  getSignupRedirectCookie,
+  setCookie,
+  setSignupRedirectCookie,
+} from '../../../helpers/cookieHelper';
 
 export function ElectionPage({
   content,
@@ -70,6 +77,8 @@ export function ElectionPage({
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
 
   const [emptyBlocCandidate, setEmptyBlocCandidate] = useState(false);
+  const [postRegisterCookie, setPostRegisterCookie] = useState(false);
+  const [postRegisterJoin, setPostRegisterJoin] = useState(false);
 
   const { user, ranking } = userState;
   const { blocCandidate, joinCandidate, growCandidate } = districtState;
@@ -129,6 +138,12 @@ export function ElectionPage({
       );
       dispatch(push(pathname));
     }
+
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      setPostRegisterCookie(cookieRedirect.options);
+      deleteSignupRedirectCookie();
+    }
   }, []);
 
   useEffect(() => {
@@ -185,6 +200,24 @@ export function ElectionPage({
     growCandidateMatch = findBlocCandidate(candidates, growCandidate);
   }
 
+  let postRegisterCandidate;
+  if (postRegisterCookie) {
+    const { candidateId, name, rank } = postRegisterCookie;
+    if (candidateId && name) {
+      postRegisterCandidate = findBlocCandidate(candidates, {
+        id: candidateId,
+        name,
+      });
+      console.log('postRegisterCandidate', postRegisterCandidate);
+      if (postRegisterCandidate) {
+        setPostRegisterJoin({
+          rank,
+          candidate: postRegisterCandidate,
+        });
+        setPostRegisterCookie(false);
+      }
+    }
+  }
 
   const childProps = {
     candidates,
@@ -205,6 +238,7 @@ export function ElectionPage({
     growCandidate: growCandidateMatch,
     clearJoinCandidateCallback,
     clearGrowCandidateCallback,
+    postRegisterJoin,
   };
 
   return (
@@ -269,7 +303,18 @@ function mapDispatchToProps(dispatch, ownProps) {
           ),
         );
       } else {
-        dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
+        const route = `/elections/${chamber}${state ? `/${state}` : ''}${
+          district ? `/${district}` : ''
+        }`;
+        const options = {
+          candidateId: candidate.id,
+          name: candidate.name,
+          rank,
+          blocName: candidateBlocName(candidate, chamber),
+        };
+        setSignupRedirectCookie(route, options);
+        // dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
+        dispatch(push('/you/register'));
       }
     },
     deleteCandidateRankingCallback: (rank, user, chamber, state, district) => {

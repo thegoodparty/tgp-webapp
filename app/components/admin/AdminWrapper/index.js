@@ -10,6 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
 import UserIcon from '@material-ui/icons/Person';
+import ArticletIcon from '@material-ui/icons/Assignment';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -18,6 +19,7 @@ import heartImg from 'images/heart.svg';
 
 import AdminCandidateList from '../AdminCandidateList/Loadable';
 import AdminUsersList from '../AdminUsersList/Loadable';
+import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -85,17 +87,21 @@ const leftMenuItems = [
   { icon: <AccountBalanceIcon />, label: 'Senate Candidates' },
   { icon: <HomeIcon />, label: 'House Candidates' },
   { icon: <UserIcon />, label: 'Users' },
+  { icon: <ArticletIcon />, label: 'Articles' },
 ];
 
 const AdminWrapper = ({
   user,
   candidates,
   users,
+  articles,
   loadCandidatesCallback,
   updateCandidateCallback,
   loadAllUsersCallback,
+  loadArticleFeedbackCallback,
   loading,
   error,
+  content,
 }) => {
   const [selectedItem, setSelectedItem] = useState(false);
   const [leftOpen, setLeftOpen] = useState(false);
@@ -108,6 +114,9 @@ const AdminWrapper = ({
     }
     if (index === 3) {
       loadAllUsersCallback();
+    }
+    if (index === 4) {
+      loadArticleFeedbackCallback();
     }
   };
 
@@ -153,6 +162,9 @@ const AdminWrapper = ({
     }
     if (selectedItem === 3) {
       return <AdminUsersList users={users} />;
+    }
+    if (selectedItem === 4) {
+      return <AdminArticlesFeedback articles={articles} content={content} />;
     }
 
     return (
@@ -204,10 +216,13 @@ AdminWrapper.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loadCandidatesCallback: PropTypes.func,
   users: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  articles: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loadAllUsersCallback: PropTypes.func,
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateCandidateCallback: PropTypes.func,
+  loadArticleFeedbackCallback: PropTypes.func,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default AdminWrapper;

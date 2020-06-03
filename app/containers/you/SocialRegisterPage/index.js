@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -21,6 +21,7 @@ import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-react-router';
+import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 export function SocialRegisterPage({
   userState,
@@ -31,17 +32,24 @@ export function SocialRegisterPage({
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
+  const [blocName, setBlocName] = useState(false);
+
   const { user } = userState;
 
   useEffect(() => {
     if (user) {
       dispatch(push('/you'));
     }
+    const blocCookie = getSignupRedirectCookie();
+    if (blocCookie) {
+      setBlocName(blocCookie.options?.blocName);
+    }
   }, []);
 
   const childPros = {
     socialLoginCallback,
     socialLoginFailureCallback,
+    blocName
   };
 
   return (

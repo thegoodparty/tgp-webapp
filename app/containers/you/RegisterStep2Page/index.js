@@ -20,6 +20,7 @@ import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
 import RegisterStep2Wrapper from 'components/you/RegisterStep2Wrapper';
+import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 export function RegisterStep2Page({ userState, submitCallback, location }) {
   useInjectReducer({ key: 'user', reducer });
@@ -29,7 +30,7 @@ export function RegisterStep2Page({ userState, submitCallback, location }) {
     user,
     submitCallback,
     loading,
-    redirect: location?.state?.redirect
+    redirect: location?.state?.redirect,
   };
 
   return (
@@ -57,6 +58,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     submitCallback: (feedback, photo, redirect) => {
+      console.log('callback1');
       if (feedback) {
         dispatch(
           userActions.updateUserAction({
@@ -69,10 +71,12 @@ function mapDispatchToProps(dispatch) {
           userActions.uploadAvatarAction(photo.pictureFile, photo.pictureData),
         );
       }
-      if(redirect) {
+      const cookieRedirect = getSignupRedirectCookie();
+      if (cookieRedirect) {
+        dispatch(push(cookieRedirect.route));
+      } else if (redirect) {
         dispatch(push(`${redirect}`));
-      }
-      else {
+      } else {
         dispatch(push('/you'));
       }
     },

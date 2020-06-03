@@ -87,6 +87,7 @@ const StyledBody13 = styled(Body13)`
 function SocialRegisterWrapper({
   socialLoginCallback,
   socialLoginFailureCallback,
+  blocName,
 }) {
   return (
     <GrayWrapper>
@@ -97,10 +98,23 @@ function SocialRegisterWrapper({
           <Grid item xs={12} md={6}>
             <VerticalWrapper>
               <Heart src={heartImg} />
-              <H1>Join The Good Party</H1>
-              <StyledH2>
-                Have your choices count and let&apos;s fix politics for Good!
-              </StyledH2>
+              {blocName ? (
+                <>
+                  <H1>Join {blocName}</H1>
+                  <StyledH2>
+                    Sign-up to be counted, and we&apos;ll notify you if we can
+                    win!
+                  </StyledH2>
+                </>
+              ) : (
+                <>
+                  <H1>Join The Good Party</H1>
+                  <StyledH2>
+                    Have your choices count and let&apos;s fix politics for
+                    Good!
+                  </StyledH2>
+                </>
+              )}
             </VerticalWrapper>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -157,6 +171,7 @@ function SocialRegisterWrapper({
 SocialRegisterWrapper.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  blocName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export default SocialRegisterWrapper;

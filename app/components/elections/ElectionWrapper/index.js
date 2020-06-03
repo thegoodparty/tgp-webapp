@@ -111,6 +111,7 @@ const ElectionWrapper = ({
   growCandidate,
   clearJoinCandidateCallback,
   clearGrowCandidateCallback,
+  postRegisterJoin,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -118,6 +119,8 @@ const ElectionWrapper = ({
   const [showShareModal, setShowShareModal] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
   const [isExternalLink, setIsExternalLink] = useState(false);
+
+  console.log('postRegisterJoin', postRegisterJoin);
 
   useEffect(() => {
     if (blocCandidate) {
@@ -144,6 +147,13 @@ const ElectionWrapper = ({
       clearGrowCandidateCallback();
     }
   }, [growCandidate]);
+
+  useEffect(() => {
+    console.log('postRegisterJoin effect', postRegisterJoin);
+    if (user && postRegisterJoin?.candidate) {
+      handleChoiceCallback(postRegisterJoin.candidate, postRegisterJoin.rank);
+    }
+  }, [postRegisterJoin]);
 
   const { topRank } = candidates;
 
@@ -191,10 +201,11 @@ const ElectionWrapper = ({
       if (candidate.id < 0) {
         candidate.ranking = candidates.goodEmptyBloc;
       }
-      console.log('after', candidate);
-      setChoiceModalCandidate(candidate);
-      setShowChoiceModal(true);
-      setShowShareModal(false);
+      if (user) {
+        setChoiceModalCandidate(candidate);
+        setShowChoiceModal(true);
+        setShowShareModal(false);
+      }
       selectCandidate(candidate, rank);
     } else {
       // ranking not allowed
@@ -416,6 +427,7 @@ ElectionWrapper.propTypes = {
   clearBlocCandidateCallback: PropTypes.func,
   clearJoinCandidateCallback: PropTypes.func,
   clearGrowCandidateCallback: PropTypes.func,
+  postRegisterJoin: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ElectionWrapper;

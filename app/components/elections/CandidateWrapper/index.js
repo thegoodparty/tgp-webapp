@@ -481,7 +481,9 @@ const CandidateWrapper = ({
   const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
   const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
-  const fakeIncumbentOrIncumbentLabel = comparedIncumbent.isFakeIncumbent ?  'top funded candidate' : 'incumbent';
+  const fakeIncumbentOrIncumbentLabel = comparedIncumbent.isFakeIncumbent
+    ? 'top funded candidate'
+    : 'incumbent';
 
   const blocName = candidateBlocName(candidate, chamberName);
   return (
@@ -592,14 +594,11 @@ const CandidateWrapper = ({
                   <CheckboxRow>
                     <CheckboxImg src={GrayCheckbox} />
                     <Body13>
-                      <strong>Character Check:</strong> Candidate Candidate has{' '}
-                      <strong>not</strong> engaged in a pattern of activities or{' '}
-                      <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
-                        hate-speech
-                      </Link>{' '}
-                      encouraging intolerance, discrimination or hostility
-                      towards a constitutionally or state-protected group or
-                      class.
+                      <strong>Character Check:</strong> Candidate passes{' '}
+                      <Link to="?article=66i4vRRLkX1yf8MnCQvYSb">
+                        our minimum standard of civility
+                      </Link>
+                      .
                     </Body13>
                   </CheckboxRow>
                 ) : (
@@ -611,7 +610,11 @@ const CandidateWrapper = ({
                           <strong>
                             <ColoredText>Character Check:</ColoredText>{' '}
                           </strong>
-                          Candidate has engaged in a pattern of activities or{' '}
+                          Candidate fails to meet{' '}
+                          <Link to="?article=66i4vRRLkX1yf8MnCQvYSb">
+                            our minimum standard of civility
+                          </Link>
+                          . Candidate has engaged in a pattern of activities or{' '}
                           <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
                             hate-speech
                           </Link>{' '}
@@ -685,14 +688,11 @@ const CandidateWrapper = ({
                           Character Check:
                         </ColoredText>
                       </strong>{' '}
-                      Candidate has <strong>not</strong> engaged in a pattern of
-                      activities or{' '}
-                      <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
-                        hate-speech
-                      </Link>{' '}
-                      encouraging intolerance, discrimination or hostility
-                      towards a constitutionally or state-protected group or
-                      class.
+                      Candidate passes{' '}
+                      <Link to="?article=66i4vRRLkX1yf8MnCQvYSb">
+                        minimum standard of civility
+                      </Link>
+                      .
                     </Body13>
                   </CheckboxRow>
                 ) : (
@@ -903,7 +903,8 @@ const CandidateWrapper = ({
                         <ColoredText className="green">
                           {comparedIncumbent.relativePerc}%
                         </ColoredText>{' '}
-                        of the funding of the {fakeIncumbentOrIncumbentLabel} in this race
+                        of the funding of the {fakeIncumbentOrIncumbentLabel} in
+                        this race
                       </strong>
                     </>
                   )}
@@ -913,7 +914,8 @@ const CandidateWrapper = ({
                       <br />
                       <br />
                       <strong>
-                        The {fakeIncumbentOrIncumbentLabel}, {comparedIncumbent.name}, has raised{' '}
+                        The {fakeIncumbentOrIncumbentLabel},{' '}
+                        {comparedIncumbent.name}, has raised{' '}
                         {moneyHelper(comparedIncumbent.raised)}, or{' '}
                         {comparedIncumbent.xTimes}x times more money, with a{' '}
                         <ColoredText className="red">

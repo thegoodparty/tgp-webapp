@@ -2,7 +2,13 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import requestHelper from 'helpers/requestHelper';
-import { deleteCookie, getCookie, setCookie } from 'helpers/cookieHelper';
+import {
+  deleteCookie,
+  getCookie,
+  getUserCookie,
+  setCookie,
+  setUserCookie,
+} from 'helpers/cookieHelper';
 import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
 import selectCandidate from 'containers/elections/CandidatePage/selectors';
 
@@ -41,7 +47,7 @@ function* register(action) {
     const { user } = response;
     yield put(actions.registerActionSuccess(user));
     yield put(push('/you/confirmation-sent'));
-    setCookie('user', JSON.stringify(user));
+    setUserCookie(user);
     deleteCookie('guestRanking');
   } catch (error) {
     if (error.response && error.response.exists) {
@@ -120,7 +126,7 @@ function* socialRegister(action) {
     yield put(actions.confirmEmailActionSuccess(responseUser, access_token));
 
     yield put(push({ pathname: '/you/register-step2', state: { redirect } }));
-    setCookie('user', JSON.stringify(responseUser));
+    setUserCookie(responseUser);
     setCookie('token', access_token);
   } catch (error) {
     if (error.response && error.response.exists) {
@@ -189,7 +195,7 @@ function* getEmailFromStateOrCookie() {
   if (userState && userState.user) {
     return userState.user.email;
   }
-  const cookieUser = getCookie('user');
+  const cookieUser = getUserCookie();
   if (cookieUser) {
     return JSON.parse(cookieUser).email;
   }
@@ -213,7 +219,7 @@ function* confirmEmail(action) {
     } else {
       yield put(push('/you/register-step2'));
     }
-    setCookie('user', JSON.stringify(user));
+    setUserCookie(user);
     setCookie('token', access_token);
     if (token.length === 6) {
       yield put(snackbarActions.showSnakbarAction(`Welcome back ${user.name}`));
@@ -284,7 +290,7 @@ function* socialLogin(action) {
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
     yield put(push(`${redirect}`));
-    setCookie('user', JSON.stringify(responseUser));
+    setUserCookie(responseUser);
     setCookie('token', accessToken);
 
     yield put(
@@ -318,7 +324,7 @@ function* updateUser(action) {
     const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
 
-    setCookie('user', JSON.stringify(user));
+    setUserCookie(user);
     yield put(snackbarActions.showSnakbarAction('Your Profile is updated'));
   } catch (error) {
     console.log('Error updading user', error);
@@ -342,8 +348,7 @@ function* uploadAvatar(action) {
     const response = yield call(requestHelper, api, data);
     const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
-
-    setCookie('user', JSON.stringify(user));
+    setUserCookie(user);
     yield put(
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
@@ -486,7 +491,7 @@ function* deleteGuestRanking(action) {
 }
 
 function* generateUuid() {
-  const user = getCookie('user');
+  const user = getUserCookie();
   const guestUuid = getCookie('guuid');
   if (!user && !guestUuid) {
     const uuid = Math.random()
