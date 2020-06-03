@@ -21,7 +21,7 @@ import reducer from './reducer';
 import saga from './saga';
 import adminActions from './actions';
 import makeSelectUser from '../../you/YouPage/selectors';
-import userActions from '../../you/YouPage/actions';
+import { makeSelectContent } from '../../App/selectors';
 
 export function AdminPage({
   adminState,
@@ -30,6 +30,7 @@ export function AdminPage({
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
   userState,
+  content,
   dispatch,
 }) {
   useInjectReducer({ key: 'adminPage', reducer });
@@ -42,11 +43,12 @@ export function AdminPage({
     }
   });
 
-  const { candidates, users, loading, error } = adminState;
+  const { candidates, users, articlesFeedback, loading, error } = adminState;
 
   const childProps = {
     candidates,
     users,
+    articles: articlesFeedback,
     loadCandidatesCallback,
     updateCandidateCallback,
     loadAllUsersCallback,
@@ -54,6 +56,7 @@ export function AdminPage({
     loading,
     error,
     user,
+    content,
   };
   return (
     <div>
@@ -74,11 +77,13 @@ AdminPage.propTypes = {
   loadAllUsersCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
   userState: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 const mapStateToProps = createStructuredSelector({
   adminState: makeSelectAdminPage(),
   userState: makeSelectUser(),
+  content: makeSelectContent(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -95,8 +100,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(adminActions.loadAllUsers());
     },
     loadArticleFeedbackCallback: () => {
-
-    }
+      dispatch(adminActions.loadArticlesFeedback());
+    },
   };
 }
 

@@ -83,7 +83,7 @@ const api = {
 
   login: {
     url: `${base}entrance/login`,
-    method: 'PUT',  
+    method: 'PUT',
   },
 
   socialLogin: {
@@ -184,6 +184,12 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    articlesFeedback: {
+      url: `${base}admin/articles-feedback`,
+      method: 'GET',
+      withAuth: true,
+    },
+
   },
 };
 export default api;

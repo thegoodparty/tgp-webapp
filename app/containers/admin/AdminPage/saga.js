@@ -38,6 +38,21 @@ function* loadAllUsers() {
   }
 }
 
+function* loadArticlesFeedback() {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading Articles Feedback'));
+    const api = tgpApi.admin.articlesFeedback;
+    const { articles } = yield call(requestHelper, api, null);
+    console.log('articles', articles)
+    yield put(actions.loadArticlesFeedbackSuccess(articles));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Loading Articles', 'error'),
+    );
+  }
+}
+
 function* updateCandidate(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Candidate'));
@@ -59,6 +74,7 @@ function* updateCandidate(action) {
 export default function* saga() {
   const candAction = yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
   yield takeLatest(types.LOAD_ALL_USERS, loadAllUsers);
+  yield takeLatest(types.LOAD_ARTICLES_FEEDBACK, loadArticlesFeedback);
   const updateCandAction = yield takeLatest(
     types.UPDATE_CANDIDATE,
     updateCandidate,

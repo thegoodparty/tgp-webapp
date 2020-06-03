@@ -8,9 +8,10 @@ import types from './constants';
 
 export const initialState = {
   candidates: false,
-  userss: false,
+  users: false,
   loading: false,
   error: false,
+  articlesFeedback: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -64,6 +65,9 @@ const adminPageReducer = (state = initialState, action) =>
         }
         draft.candidates = updatedCandidates;
         break;
+
+      case types.LOAD_ARTICLES_FEEDBACK_SUCCESS:
+        draft.articlesFeedback = action.articlesFeedback;
     }
   });
 

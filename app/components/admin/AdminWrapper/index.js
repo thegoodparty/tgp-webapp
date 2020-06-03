@@ -19,6 +19,7 @@ import heartImg from 'images/heart.svg';
 
 import AdminCandidateList from '../AdminCandidateList/Loadable';
 import AdminUsersList from '../AdminUsersList/Loadable';
+import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -93,12 +94,14 @@ const AdminWrapper = ({
   user,
   candidates,
   users,
+  articles,
   loadCandidatesCallback,
   updateCandidateCallback,
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
   loading,
   error,
+  content,
 }) => {
   const [selectedItem, setSelectedItem] = useState(false);
   const [leftOpen, setLeftOpen] = useState(false);
@@ -160,6 +163,9 @@ const AdminWrapper = ({
     if (selectedItem === 3) {
       return <AdminUsersList users={users} />;
     }
+    if (selectedItem === 4) {
+      return <AdminArticlesFeedback articles={articles} content={content} />;
+    }
 
     return (
       <MainPanelPlaceholder>
@@ -210,11 +216,13 @@ AdminWrapper.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loadCandidatesCallback: PropTypes.func,
   users: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  articles: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loadAllUsersCallback: PropTypes.func,
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateCandidateCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default AdminWrapper;
