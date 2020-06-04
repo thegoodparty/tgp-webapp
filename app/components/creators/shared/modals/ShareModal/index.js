@@ -174,7 +174,7 @@ const ShareModal = ({
                     <CloseIcon onClick={handleClose} />
                     <Logo src={LogoCaps} alt="logo" />
                     <ModalTitle>Let’s build The Good Party</ModalTitle>
-                    <Blurb>
+                    <Blurb style={{marginBottom: 0}}>
                         Spread the word to get more creators on board. Together we can fix politics for Good.
                         </Blurb>
                     <ShareThisWrapper>

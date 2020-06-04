@@ -16,9 +16,6 @@ import CreatorsWrapper from 'components/creators/CreatorsWrapper';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import {
-  deleteSignupRedirectCookie,
-  getSignupRedirectCookie,
-  setCookie,
   setSignupRedirectCookie,
 } from 'helpers/cookieHelper';
 
