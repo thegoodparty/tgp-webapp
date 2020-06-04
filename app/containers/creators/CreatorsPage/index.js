@@ -15,15 +15,23 @@ import CreatorsWrapper from 'components/creators/CreatorsWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import {
+  deleteSignupRedirectCookie,
+  getSignupRedirectCookie,
+  setCookie,
+  setSignupRedirectCookie,
+} from 'helpers/cookieHelper';
 
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectContent } from 'containers/App/selectors';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import makeSelectCreatorsPage from './selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
+
+import makeSelectCreatorsPage from './selectors';
+
 // import reducer from './reducer';
 // import saga from './saga';
 
@@ -82,7 +90,8 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     socialLoginCallback: user => {
-      dispatch(userActions.socialRegisterAction(user, '/creators'));
+      setSignupRedirectCookie('/creators');
+      dispatch(userActions.socialRegisterAction(user));
     },
     socialLoginFailureCallback: err => {
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));

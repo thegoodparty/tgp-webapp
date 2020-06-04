@@ -21,6 +21,7 @@ import {
   ProjectFormControl,
   ProjectFormHelperText,
   ProjectFormControlHeader,
+  CloseIcon
 } from '../shared';
 
 const AddProjectLink = styled(Body15)`
@@ -67,6 +68,7 @@ function SecondStep({
       >
         <Fade in={open}>
           <BodyWrapper>
+            <CloseIcon onClick={closeModal} />
             <Title>List Project</Title>
             <Grid container>
               <Grid item xs={12}>

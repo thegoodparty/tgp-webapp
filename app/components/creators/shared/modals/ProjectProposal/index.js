@@ -11,7 +11,7 @@ import { Fade, TextField } from '@material-ui/core';
 import Collaborators from '../../Collaborators';
 import { Body18, Body13 } from '../../typography';
 import { BlueButton } from '../../buttons';
-import { Title, BodyWrapper, OverlayModal, FooterWrapper } from '../shared';
+import { Title, BodyWrapper, OverlayModal, FooterWrapper, CloseIcon } from '../shared';
 
 const FooterMessage = styled(Body13)`
   color: ${({ theme }) => theme.creators.colors.gray};
@@ -33,7 +33,7 @@ const Message = styled(TextField)`
 
 const SubmitWrapper = styled(FooterWrapper)`
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     display: block;
   }
 `;
@@ -53,6 +53,7 @@ function ProjectProposal({ open, handleClose, project }) {
     >
       <Fade in={open}>
         <BodyWrapper>
+          <CloseIcon onClick={handleClose} />
           <Title>{project.title}</Title>
           <CollaboratorsWrapper>
             <Collaborators project={project} />

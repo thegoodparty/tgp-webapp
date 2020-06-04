@@ -63,7 +63,7 @@ function* register(action) {
 function* socialRegister(action) {
   try {
     /* eslint-disable no-underscore-dangle */
-    const { user, redirect } = action;
+    const { user } = action;
     const profile = user._profile;
     const provider = user._provider;
     const { name, email, id, profilePicURL } = profile;
@@ -125,13 +125,13 @@ function* socialRegister(action) {
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(responseUser, access_token));
 
-    yield put(push({ pathname: '/you/register-step2', state: { redirect } }));
+    yield put(push('/you/register-step2'));
     setUserCookie(responseUser);
     setCookie('token', access_token);
   } catch (error) {
     if (error.response && error.response.exists) {
       // user is already in our system, try login.
-      yield put(actions.socialLoginAction(action.user, action.redirect));
+      yield put(actions.socialLoginAction(action.user));
     } else {
       yield put(actions.registerActionError(error));
     }
@@ -250,7 +250,7 @@ function* login(action) {
 function* socialLogin(action) {
   try {
     /* eslint-disable no-underscore-dangle */
-    const { user, redirect } = action;
+    const { user } = action;
     const profile = user._profile;
     const provider = user._provider;
     const { email, profilePicURL } = profile;
@@ -289,7 +289,7 @@ function* socialLogin(action) {
     const accessToken = response.token;
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
-    yield put(push(`${redirect}`));
+    yield put(push('/you'));
     setUserCookie(responseUser);
     setCookie('token', accessToken);
 

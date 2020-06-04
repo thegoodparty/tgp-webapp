@@ -25,33 +25,34 @@ const Wrapper = styled.div`
   background-color: #fff;
   z-index: 100;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    height: 64px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
     height: 88px;
   }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
+    height: 64px;
+  }
+  
 `;
 
 const ContentWrapper = styled.div`
-  max-width: ${({ theme }) => theme.creators.breakpoints.creatorsTablet};
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 0 3rem 0 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 132px;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    height: 64px;
-    padding: 0 2rem;
-  }
+  
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
     height: 88px;
-    padding: 0 1rem;
+    padding: 0 2rem 0 0.5rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
+    height: 64px;
+    padding: 0 1rem
   }
 `;
 
@@ -79,14 +80,14 @@ const Logo = styled.img`
   width: 343px;
   height: 32px;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    width: 220px;
-    height: 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
     width: 343px;
     height: 32px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
+    width: 220px;
+    height: 24px;
   }
 `;
 
@@ -161,7 +162,6 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
           <Logo src={LogoCaps} alt="logo" />
         </TopLink>
         <MenuItemsWrapper className="desktop">
-          <TopLink className="menu-item">About</TopLink>
           <TopLink className="menu-item active">Creators</TopLink>
           {user ? (
             <TopLink className="menu-item" to="/you">

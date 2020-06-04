@@ -15,41 +15,21 @@ import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import { OutlinedButton } from 'components/shared/buttons';
-import { BodyWrapper, OverlayModal } from '../shared';
+import { BodyWrapper, OverlayModal, CloseIcon, Blurb, Logo, Title } from '../shared';
 import { Body, Body18, Body13, Body15, Body11 } from '../../typography';
 import { MediumButton } from '../../buttons';
 import Heads from '../../Heads';
 import globals from '../../../../../globals';
 
-const Logo = styled.img`
-  height: 97px;
-  width: 120px;
-  margin-bottom: 1.5rem;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    height: 80px;
-    width: 100px;
-  }
-`;
-
-const Title = styled(Body)`
-  color: #000;
-  line-height: 130%;
-  text-transform: none;
+const JoinTitle = styled(Title)`
   margin-bottom: 1rem;
+  text-align: center;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
-    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
-const Blurb = styled(Body18)`
-  margin: 1rem 0 3rem;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    font-size: 15px;
-  }
-`;
 const JoinButtonWrapper = styled.div`
   margin: 1rem 0;
 `;
@@ -106,6 +86,7 @@ const JoinBodyWrapper = styled(BodyWrapper)`
     }
   }
 `;
+
 function Join({
   open,
   handleClose,
@@ -121,8 +102,9 @@ function Join({
     >
       <Fade in={open}>
         <JoinBodyWrapper>
+          <CloseIcon onClick={handleClose} />
           <Logo src={LogoCaps} alt="logo" />
-          <Title>Help fix politics for Good!</Title>
+          <JoinTitle>Help fix politics for Good!</JoinTitle>
           <Blurb>
             Join our community of creators <br /> working together for the Good
             of all.
