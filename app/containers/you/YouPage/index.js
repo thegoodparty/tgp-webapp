@@ -29,11 +29,11 @@ import {
   deleteSignupRedirectCookie,
   getSignupRedirectCookie,
 } from 'helpers/cookieHelper';
+import { userDistrict } from 'helpers/userHelper';
+import articlesHelper from 'helpers/articlesHelper';
 
 import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
-import { userDistrict } from '../../../helpers/userHelper';
 import { makeSelectContent } from '../../App/selectors';
-import articlesHelper from '../../../helpers/articlesHelper';
 import { makeSelectRanking } from './selectors';
 
 export function YouPage({

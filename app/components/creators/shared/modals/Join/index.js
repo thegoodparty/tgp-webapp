@@ -15,14 +15,11 @@ import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import { OutlinedButton } from 'components/shared/buttons';
-import {
-  setSignupRedirectCookie,
-} from 'helpers/cookieHelper';
+import globals from 'globals';
 import { BodyWrapper, OverlayModal, CloseIcon, Blurb, Logo, Title } from '../shared';
 import { Body, Body18, Body13, Body15, Body11 } from '../../typography';
 import { MediumButton } from '../../buttons';
 import Heads from '../../Heads';
-import globals from '../../../../../globals';
 
 const JoinTitle = styled(Title)`
   margin-bottom: 1rem;
@@ -95,6 +92,7 @@ function Join({
   handleClose,
   socialLoginCallback,
   socialLoginFailureCallback,
+  setSignupRedirectCookieCallback
 }) {
   return (
     <OverlayModal
@@ -144,7 +142,7 @@ function Join({
               </Link>
             </OutlinedButton>
           </JoinButtonWrapper>
-          <StyledBody15 style={{ marginTop: '24px' }}  onClick={() => setSignupRedirectCookie('/creators')}>
+          <StyledBody15 style={{ marginTop: '24px' }}  onClick={() => setSignupRedirectCookieCallback('/creators')}>
             Have an account? <Link to="/login"><b>Sign In</b></Link>
           </StyledBody15>
           <StyledBody11 style={{ margin: '24px 0' }}>
@@ -167,6 +165,7 @@ Join.propTypes = {
   handleClose: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  setSignupRedirectCookieCallback: PropTypes.func
 };
 
 export default Join;

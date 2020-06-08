@@ -89,7 +89,6 @@ function ProjectsSection({ projects, user, toggleJoin }) {
 
   const onCloseShareModal = () => {
     setShowShareModal(false);
-    // refreshCountCallback(state, districtNumber);
   };
   const onClickShareButton = () => {
     setShowShareModal(true);

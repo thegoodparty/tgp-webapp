@@ -38,11 +38,13 @@ export function CreatorsPage({
   dispatch,
   socialLoginCallback,
   socialLoginFailureCallback,
+  setSignupRedirectCookieCallback
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
   const stateUser = userState.user;
   const [user, setUser] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());
@@ -50,12 +52,15 @@ export function CreatorsPage({
     } else {
       setUser(stateUser);
     }
+    setLoading(false);
   }, [stateUser]);
   const childProps = {
     projects: content ? content.creatorsProjects || [] : [],
     user,
     socialLoginCallback,
     socialLoginFailureCallback,
+    setSignupRedirectCookieCallback,
+    loading
   };
 
   return (
@@ -75,6 +80,7 @@ CreatorsPage.propTypes = {
   userState: PropTypes.object,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  setSignupRedirectCookieCallback: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -86,6 +92,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    setSignupRedirectCookieCallback: redirect => {
+      setSignupRedirectCookie(redirect);
+    },
     socialLoginCallback: user => {
       setSignupRedirectCookie('/creators');
       dispatch(userActions.socialRegisterAction(user));

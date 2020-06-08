@@ -29,11 +29,6 @@ const ShareThisWrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 36px 60px;
   }
-
-  .st-inline-share-buttons {
-    // display: flex !important;
-  }
-
   .st-btn {
     margin: 20px !important;
     border-radius: 50% !important;
@@ -142,15 +137,6 @@ const ShareModal = ({
 
     const messageTitle = `Creators of the World — Unite!`;
     const messageBody = `The Good Party is a non-profit to take back democracy from big-money donors and crooked career politicians. Please help us create the technology, messaging, visuals, audio, and stories that can reach and inspire millions of people: ${url}`;
-
-    const sendSms = () => {
-        // if (navigator.userAgent.match(/Android/i)) {
-        //   window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
-        // } else {
-        //   window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
-        // }
-        window.open(`sms:;?&body=${messageBody.replace('&', '%26')}`, '_blank');
-    };
 
     const canShare = typeof navigator !== 'undefined' && navigator.share;
     const nativeShare = () => {

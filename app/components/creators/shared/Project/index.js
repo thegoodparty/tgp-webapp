@@ -171,13 +171,11 @@ const FooterActions = styled.div`
   
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
-    // justify-content: space-between;
     padding-right: 1.5rem;
   }
   @media only screen and (min-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsTablet}) {
       justify-content: flex-end;
-    // justify-content: space-between;
   }
 `;
 
@@ -365,14 +363,12 @@ function Project({
             <VideoPlayer url={project.video} playing={false} width="" height="" />
           )}
           {project.images.length === 1 && (
-            // <ImageWrapper>
-              <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
-            // </ImageWrapper>
+            <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
           )}
           {project.images.length > 1 && (
             <Carousel>
-              {project.images.map(image => (
-                <ImageWrapper>
+              {project.images.map((image, index) => (
+                <ImageWrapper key={index}>
                   <img
                     src={`https:${image}`}
                     alt="project img"
