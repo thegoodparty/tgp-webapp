@@ -19,7 +19,7 @@ const AskQuestion = styled(Body)`
 const TgpDialog = styled(Dialog)`
   && {
     .MuiDialog-paper {
-      width: 100vh;
+      width: 100vw;
       max-width: ${({ theme }) => theme.breakpoints.contentMax};
       margin: 12px !important;
     }

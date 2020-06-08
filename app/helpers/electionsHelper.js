@@ -321,7 +321,6 @@ export const candidateRankObj = (ranking, candidate) => {
 };
 
 export const findBlocCandidate = (candidates, blocCandidate) => {
-  console.log('findBlocCandidate1',candidates, blocCandidate);
   if (!candidates || !blocCandidate) {
     return null;
   }

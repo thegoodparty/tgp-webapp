@@ -18,50 +18,12 @@ import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
 import { push } from 'connected-react-router';
 
-import HomePage from 'containers/intro/HomePage/Loadable';
-
-import SplashPage from 'containers/intro/SplashPage/Loadable';
-import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
-
-import DistrictPage from 'containers/elections/DistrictPage/Loadable';
-import ElectionPage from 'containers/elections/ElectionPage/Loadable';
-import CandidatePage from 'containers/elections/CandidatePage/Loadable';
-
-import RegisterPage from 'containers/you/EmailRegisterPage/Loadable';
-import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
-import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
-import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
-import RegisterStep2Page from 'containers/you/RegisterStep2Page/Loadable';
-import YouPage from 'containers/you/YouPage/Loadable';
-import LoginPage from 'containers/you/LoginPage/Loadable';
-import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
-import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
-
-import PartyPage from 'containers/party/PartyPage/Loadable';
-import FaqListPage from 'containers/party/FaqListPage/Loadable';
-import FaqArticlePage from 'containers/party/FaqArticlePage';
-import EventsPage from 'containers/party/EventsPage/Loadable';
-
-import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
-import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loadable';
-import Races from 'containers/scraping/Races/Loadable';
-
-import CreatorsPage from 'containers/creators/CreatorsPage/Loadable';
-
-import AdminPage from 'containers/admin/AdminPage/Loadable';
-
-import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
-import ResearchPage from 'containers/shared/ResearchPage/Loadable';
-import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
-
 import GlobalStyle from 'global-styles';
 import SnackbarContainer from 'containers/shared/SnackbarContainer';
 
 import Footer from 'components/shared/Footer';
 import ErrorBoundary from 'containers/shared/ErrorBoundry';
 
-import queryHelper from 'helpers/queryHelper';
-import { setCookie } from 'helpers/cookieHelper';
 import { fullStoryIdentify } from 'helpers/fullStoryHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
@@ -69,7 +31,8 @@ import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
-import { makeSelectContent, makeSelectLocation } from './selectors';
+import Routes from './Routes';
+import QueryRoutes from './QueryRoutes';
 
 if (ENV === 'prod') {
   history.listen(location => {
@@ -78,10 +41,9 @@ if (ENV === 'prod') {
   });
 }
 
-function App({ locationState, content, dispatch }) {
+function App({ dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
-  const { search } = locationState;
 
   useEffect(() => {
     if (ENV === 'prod') {
@@ -89,134 +51,16 @@ function App({ locationState, content, dispatch }) {
     }
     dispatch(globalActions.loadContentAction());
 
-    const uuid = queryHelper(search, 'u');
-    if (uuid) {
-      setCookie('referrer', uuid);
-    }
-    const bloc = queryHelper(search, 'b');
-    if (bloc) {
-      blocRedirect(bloc);
-    }
     fullStoryIdentify();
   }, []);
-
-  useEffect(() => {
-    const modalArticleId = queryHelper(search, 'article');
-    if (modalArticleId) {
-      dispatch(globalActions.setArticleModalAction(modalArticleId));
-    }else {
-      dispatch(globalActions.clearArticleModalAction());
-    }
-  }, [search]);
-
-  const blocRedirect = bloc => {
-    const [nameBloc, stateDistrict] = bloc.split('-');
-    if (!stateDistrict) {
-      dispatch(push(`/elections/presidential?b=${bloc}`));
-    } else if (stateDistrict.length === 2) {
-      dispatch(
-        push(`/elections/senate/${stateDistrict.toLowerCase()}?b=${bloc}`),
-      );
-    } else {
-      const state = stateDistrict.substring(0, 2);
-      const district = stateDistrict.substring(2, stateDistrict.length);
-      dispatch(
-        push(`/elections/house/${state.toLowerCase()}/${district}?b=${bloc}`),
-      );
-    }
-  };
 
   return (
     <div>
       <ErrorBoundary>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/intro/splash" component={SplashPage} />
-          <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
-
-          <Route
-            exact
-            path="/elections/district/:zip"
-            component={DistrictPage}
-          />
-          <Route
-            exact
-            path="/elections/district/:zip/:cd"
-            component={DistrictPage}
-          />
-          <Route
-            exact
-            path="/elections/candidate/:chamber/:name/:id"
-            component={CandidatePage}
-          />
-
-          <Route exact path="/elections/:chamber" component={ElectionPage} />
-          <Route
-            exact
-            path="/elections/:chamber/:state"
-            component={ElectionPage}
-          />
-          <Route
-            exact
-            path="/elections/:chamber/:state/:district"
-            component={ElectionPage}
-          />
-
-          <Route exact path="/you/register" component={SocialRegisterPage} />
-          <Route exact path="/you/register-email" component={RegisterPage} />
-          <Route
-            exact
-            path="/you/confirmation-sent"
-            component={ConfirmationSentPage}
-          />
-          <Route
-            exact
-            path="/email-confirmation"
-            component={EmailConfirmationPage}
-          />
-          <Route
-            exact
-            path="/you/register-step2"
-            component={RegisterStep2Page}
-          />
-          <Route exact path="/you" component={YouPage} />
-          <Route exact path="/you/edit" component={EditProfilePage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/login/confirm" component={LoginConfirmPage} />
-
-          <Route exact path="/party" component={PartyPage} />
-          <Route exact path="/party/faqs" component={FaqListPage} />
-          {/*<Route*/}
-            {/*exact*/}
-            {/*path="/party/faq/:title/:id"*/}
-            {/*component={FaqArticlePage}*/}
-          {/*/>*/}
-          <Route exact path="/party/events" component={EventsPage} />
-
-          <Route
-            exact
-            path="/scrape/incumbents"
-            component={IncumbentsToScrape}
-          />
-          <Route
-            exact
-            path="/scrape/candidates"
-            component={AllCandidatesToScrape}
-          />
-          <Route exact path="/scrape/races" component={Races} />
-
-          <Route exact path="/privacy" component={PrivacyPage} />
-          <Route exact path="/research" component={ResearchPage} />
-
-          <Route exact path="/creators" component={CreatorsPage} />
-
-          <Route exact path="/admin" component={AdminPage} />
-
-          <Route component={NotFoundPage} />
-        </Switch>
+        <Routes />
         <GlobalStyle />
         <SnackbarContainer />
-        {content && <FaqArticlePage />}
+        <QueryRoutes />
         <Footer />
       </ErrorBoundary>
     </div>
@@ -225,8 +69,6 @@ function App({ locationState, content, dispatch }) {
 
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  locationState: PropTypes.object,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {
@@ -235,10 +77,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-  locationState: makeSelectLocation(),
-  content: makeSelectContent(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 const withConnect = connect(
   mapStateToProps,
