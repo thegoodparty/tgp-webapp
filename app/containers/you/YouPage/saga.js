@@ -49,7 +49,7 @@ function* register(action) {
     const { user } = response;
     yield put(actions.registerActionSuccess(user));
     yield put(push('/you/confirmation-sent'));
-    setUserCookie(user);
+    // setUserCookie(user);
     deleteCookie('guestRanking');
   } catch (error) {
     if (error.response && error.response.exists) {

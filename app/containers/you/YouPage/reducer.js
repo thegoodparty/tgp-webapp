@@ -26,7 +26,7 @@ const userReducer = (state = initialState, action) =>
         break;
 
       case types.REGISTER_SUCCESS:
-        draft.user = action.user;
+        // draft.user = action.user;
         draft.loading = false;
         draft.error = false;
         fullStoryIdentify(action.user);

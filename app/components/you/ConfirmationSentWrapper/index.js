@@ -51,9 +51,7 @@ const wrapperStyles = {
 const ConfirmationSentWrapper = ({ email, emailSendCallback }) => {
   return (
     <PageWrapper>
-      <Nav />
       <Wrapper style={wrapperStyles}>
-        <MobileHeader whiteBackButton />
         <div className="text-center">
           <Img src={EmailConfirmationImage} />
         </div>
