@@ -16,7 +16,9 @@ import CreatorsWrapper from 'components/creators/CreatorsWrapper';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import {
+  getSignupRedirectCookie,
   setSignupRedirectCookie,
+  deleteSignupRedirectCookie,
 } from 'helpers/cookieHelper';
 
 import userActions from 'containers/you/YouPage/actions';
@@ -46,6 +48,10 @@ export function CreatorsPage({
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   useEffect(() => {
+    const cookieRedirect = getSignupRedirectCookie();
+    if(cookieRedirect) {
+      deleteSignupRedirectCookie();
+    }
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());
       dispatch(userActions.generateUuidAction());

@@ -48,6 +48,7 @@ export const setSignupRedirectCookie = (route, options = {}) => {
     route,
     options,
   };
+  console.log('setting cookie');
   setCookie('signupRedirect', JSON.stringify(cookie));
 };
 

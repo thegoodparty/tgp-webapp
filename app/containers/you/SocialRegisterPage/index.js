@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -21,27 +21,38 @@ import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-react-router';
+import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 export function SocialRegisterPage({
   userState,
   dispatch,
   socialLoginCallback,
   socialLoginFailureCallback,
+  closeModalCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
+  const [blocName, setBlocName] = useState(false);
+
   const { user } = userState;
 
   useEffect(() => {
-    if (user) {
-      dispatch(push('/you'));
+    // if (user) {
+    //   console.log('redirect to  you6');
+    //   dispatch(push('/you'));
+    // }
+    const blocCookie = getSignupRedirectCookie();
+    if (blocCookie) {
+      setBlocName(blocCookie.options?.blocName);
     }
   }, []);
 
   const childPros = {
     socialLoginCallback,
     socialLoginFailureCallback,
+    closeModalCallback,
+    blocName,
   };
 
   return (
@@ -60,6 +71,7 @@ SocialRegisterPage.propTypes = {
   dispatch: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  closeModalCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -73,7 +85,11 @@ function mapDispatchToProps(dispatch) {
       dispatch(userActions.socialRegisterAction(user));
     },
     socialLoginFailureCallback: err => {
+      console.log('err register', err);
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    },
+    closeModalCallback: () => {
+      dispatch(push(window.location.pathname));
     },
   };
 }

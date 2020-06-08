@@ -70,7 +70,15 @@ function mapDispatchToProps(dispatch) {
           userActions.uploadAvatarAction(photo.pictureFile, photo.pictureData),
         );
       }
-      dispatch(push('/you'));
+      const cookieRedirect = getSignupRedirectCookie();
+      if (cookieRedirect) {
+        dispatch(push(cookieRedirect.route));
+      } else if (redirect) {
+        dispatch(push(`${redirect}`));
+      } else {
+        console.log('redirect to  you1');
+        dispatch(push('/you'));
+      }
     },
   };
 }

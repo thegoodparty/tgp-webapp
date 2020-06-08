@@ -28,6 +28,7 @@ import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
 import { makeSelectContent } from 'containers/App/selectors';
 import {
+  candidateBlocName,
   findBlocCandidate,
   generateEmptyBlocCandidate,
   isDistrictInCds,
@@ -40,14 +41,13 @@ import makeSelectUser, {
 } from 'containers/you/YouPage/selectors';
 
 import userActions from 'containers/you/YouPage/actions';
-import { makeSelectLocation } from '../../App/selectors';
-import queryHelper from '../../../helpers/queryHelper';
+import { makeSelectLocation } from 'containers/App/selectors';
+import queryHelper from 'helpers/queryHelper';
 import {
   deleteSignupRedirectCookie,
   getSignupRedirectCookie,
-  setCookie,
   setSignupRedirectCookie,
-} from '../../../helpers/cookieHelper';
+} from 'helpers/cookieHelper';
 
 export function ElectionPage({
   content,
@@ -137,13 +137,17 @@ export function ElectionPage({
       );
       dispatch(push(pathname));
     }
-
-    const cookieRedirect = getSignupRedirectCookie();
-    if (cookieRedirect) {
-      setPostRegisterCookie(cookieRedirect.options);
-      deleteSignupRedirectCookie();
-    }
   }, []);
+
+  useEffect(() => {
+    const cookieRedirect = getSignupRedirectCookie();
+    console.log('election page', cookieRedirect);
+    if (cookieRedirect) {
+      console.log('election page2 setting post register');
+      setPostRegisterCookie(cookieRedirect.options);
+      // deleteSignupRedirectCookie();
+    }
+  }, [pathname, search]);
 
   useEffect(() => {
     if (user && !ranking) {
@@ -301,6 +305,7 @@ function mapDispatchToProps(dispatch, ownProps) {
             district,
           ),
         );
+        deleteSignupRedirectCookie();
       } else {
         const route = `/elections/${chamber}${state ? `/${state}` : ''}${
           district ? `/${district}` : ''
@@ -309,10 +314,12 @@ function mapDispatchToProps(dispatch, ownProps) {
           candidateId: candidate.id,
           name: candidate.name,
           rank,
+          blocName: candidateBlocName(candidate, chamber),
         };
+        console.log('setting redirect cookie');
         setSignupRedirectCookie(route, options);
         // dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
-        dispatch(push('/you/register'));
+        dispatch(push('?register=true'));
       }
     },
     deleteCandidateRankingCallback: (rank, user, chamber, state, district) => {

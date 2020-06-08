@@ -156,7 +156,7 @@ const LoginWrapper = ({
 
               <Body13 style={{ margin: '24px 0' }}>
                 Don&apos;t have an account?{' '}
-                <Link to="/you/register">Create one</Link>
+                <Link to="?register=true">Create one</Link>
               </Body13>
             </VerticalWrapper>
           </Grid>

@@ -4,6 +4,7 @@ import { push } from 'connected-react-router';
 import requestHelper from 'helpers/requestHelper';
 import {
   deleteCookie,
+  deleteSignupRedirectCookie,
   getCookie,
   getUserCookie,
   setCookie,
@@ -21,6 +22,7 @@ import actions from './actions';
 
 import selectUser from './selectors';
 import { candidateBlocName } from '../../../helpers/electionsHelper';
+import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 function* register(action) {
   try {
@@ -125,7 +127,13 @@ function* socialRegister(action) {
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(responseUser, access_token));
 
-    yield put(push('/you/register-step2'));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+    } else {
+      yield put(push(location.pathname));
+    }
+
     setUserCookie(responseUser);
     setCookie('token', access_token);
   } catch (error) {
@@ -175,7 +183,6 @@ function* resendEmail(action) {
     } else {
       email = yield getEmailFromStateOrCookie();
     }
-    console.log(email);
     const payload = {
       email: encodeURIComponent(email),
     };
@@ -214,11 +221,7 @@ function* confirmEmail(action) {
     const { user } = response;
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(user, access_token));
-    if (fromLogin) {
-      yield put(push('/you'));
-    } else {
-      yield put(push('/you/register-step2'));
-    }
+
     setUserCookie(user);
     setCookie('token', access_token);
     if (token.length === 6) {
@@ -228,7 +231,20 @@ function* confirmEmail(action) {
         snackbarActions.showSnakbarAction('Your account has been verified'),
       );
     }
+    if (fromLogin) {
+      console.log('redirect to  you2');
+      yield put(push('/you'));
+    } else {
+      const cookieRedirect = getSignupRedirectCookie();
+      if (cookieRedirect) {
+        yield put(push(cookieRedirect.route));
+      } else {
+        console.log('redirect to  you3');
+        yield put(push('/you'));
+      }
+    }
   } catch (error) {
+    console.log('error at email conriamtion', error);
     yield put(actions.confirmEmailActionError(error.response));
   }
 }
@@ -353,6 +369,7 @@ function* uploadAvatar(action) {
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
     if (withRedirect) {
+      console.log('redirect to  you4');
       yield put(push('/you'));
     }
   } catch (error) {
@@ -507,7 +524,7 @@ function* crew() {
     const response = yield call(requestHelper, api, null);
     yield put(actions.crewActionSuccess(response.crew));
   } catch (error) {
-    console.log('crew error', error);
+    console.log('crew error', JSON.stringify(error));
   }
 }
 
@@ -517,7 +534,7 @@ function* userRanking() {
     const { ranking } = yield call(requestHelper, api, null);
     yield put(actions.userRankingActionSuccess(ranking));
   } catch (error) {
-    console.log('crew error', error);
+    console.log('user ranking ranking', JSON.stringify(error));
   }
 }
 
@@ -529,7 +546,7 @@ function* guestRanking() {
       yield put(actions.userRankingActionSuccess(ranking));
     }
   } catch (error) {
-    console.log('crew error', error);
+    console.log('guest ranking error', JSON.stringify(error));
   }
 }
 
