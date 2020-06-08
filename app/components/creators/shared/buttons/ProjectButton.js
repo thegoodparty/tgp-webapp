@@ -11,11 +11,14 @@ const ProjectButton = styled(Button)`
     background-color: #fff;
     line-height: 100%;
     border-radius: 2rem;
+    margin-left: 20px;
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsMobile}) {
       font-size: 13px;
       padding: 0.5rem 3rem;
       width: 100%;
+      margin-left: 0;
+      margin-bottom: 10px;
     }
   }
 `;

@@ -15,41 +15,21 @@ import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import { OutlinedButton } from 'components/shared/buttons';
-import { BodyWrapper, OverlayModal } from '../shared';
+import globals from 'globals';
+import { BodyWrapper, OverlayModal, CloseIcon, Blurb, Logo, Title } from '../shared';
 import { Body, Body18, Body13, Body15, Body11 } from '../../typography';
 import { MediumButton } from '../../buttons';
 import Heads from '../../Heads';
-import globals from '../../../../../globals';
 
-const Logo = styled.img`
-  height: 97px;
-  width: 120px;
-  margin-bottom: 1.5rem;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    height: 80px;
-    width: 100px;
-  }
-`;
-
-const Title = styled(Body)`
-  color: #000;
-  line-height: 130%;
-  text-transform: none;
+const JoinTitle = styled(Title)`
   margin-bottom: 1rem;
+  text-align: center;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    font-size: 1.3rem;
+    theme.creators.breakpoints.creatorsMobile}) {
+    margin-bottom: 1.5rem;
   }
 `;
 
-const Blurb = styled(Body18)`
-  margin: 1rem 0 3rem;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    font-size: 15px;
-  }
-`;
 const JoinButtonWrapper = styled.div`
   margin: 1rem 0;
 `;
@@ -82,7 +62,7 @@ const StyledBody13 = styled(Body13)`
 const StyledBody15 = styled(Body15)`
   color: ${({ theme }) => theme.creators.colors.darkGray};
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     font-size: 13px;
   }
 `;
@@ -92,7 +72,7 @@ const StyledBody11 = styled(Body11)`
     margin-bottom: 5px !important;
     color: ${({ theme }) => theme.creators.colors.darkGray};
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
       font-size: 11px;
     }
   }
@@ -101,16 +81,18 @@ const JoinBodyWrapper = styled(BodyWrapper)`
   && {
     padding: 3rem 7rem;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
       padding: 3rem;
     }
   }
 `;
+
 function Join({
   open,
   handleClose,
   socialLoginCallback,
   socialLoginFailureCallback,
+  setSignupRedirectCookieCallback
 }) {
   return (
     <OverlayModal
@@ -121,8 +103,9 @@ function Join({
     >
       <Fade in={open}>
         <JoinBodyWrapper>
+          <CloseIcon onClick={handleClose} />
           <Logo src={LogoCaps} alt="logo" />
-          <Title>Help fix politics for Good!</Title>
+          <JoinTitle>Help fix politics for Good!</JoinTitle>
           <Blurb>
             Join our community of creators <br /> working together for the Good
             of all.
@@ -147,7 +130,7 @@ function Join({
             >
               Continue with GOOGLE
             </SocialButton>
-            <OutlinedButton active style={{ marginTop: '24px', width: '100%' }}>
+            <OutlinedButton active style={{ marginTop: '24px', width: '100%' }} onClick={() => setSignupRedirectCookie('/creators')}>
               <Link
                 to="/you/register-email"
                 style={{ width: '100%' }}
@@ -159,7 +142,7 @@ function Join({
               </Link>
             </OutlinedButton>
           </JoinButtonWrapper>
-          <StyledBody15 style={{ marginTop: '24px' }}>
+          <StyledBody15 style={{ marginTop: '24px' }}  onClick={() => setSignupRedirectCookieCallback('/creators')}>
             Have an account? <Link to="/login"><b>Sign In</b></Link>
           </StyledBody15>
           <StyledBody11 style={{ margin: '24px 0' }}>
@@ -182,6 +165,7 @@ Join.propTypes = {
   handleClose: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  setSignupRedirectCookieCallback: PropTypes.func
 };
 
 export default Join;

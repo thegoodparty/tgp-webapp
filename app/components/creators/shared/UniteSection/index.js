@@ -23,11 +23,11 @@ const SectionWrapper = styled.div`
   padding-bottom: 3rem;
   padding: 3rem 8rem 6rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     padding: 4rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     padding: 2rem;
   }
 `;
@@ -38,11 +38,11 @@ const Audience = styled.p`
   font: normal 500 32px normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     font-size: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+  theme.creators.breakpoints.creatorsMobile}) {
     font-size: 17px;
     line-height: 140%;
     margin: 1.5rem 0;
@@ -56,13 +56,13 @@ const Logo = styled.img`
   top: -5px;
   position: relative;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     width: 30px;
     height: 25px;
     top: -2px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     width: 17px;
     height: 14px;
     top: -3px;
@@ -71,14 +71,14 @@ const Logo = styled.img`
 `;
 
 const LogoTitle = styled(Body)`
-  margin: 4rem 0;
+  margin: 60px 0;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     font-size: 24px;
     margin: 3rem 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     font-size: 15px;
     margin: 2rem 0;
   }
@@ -93,11 +93,11 @@ const CreatorsCount = styled.p`
   margin-bottom: 1.5rem;
   margin-top: 0;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     font-size: 15px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -111,14 +111,14 @@ const Description = styled.p`
   font-family: unset;
   color: ${({ theme }) => theme.creators.colors.darkGray};
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     max-width: none;
     margin-top: 3rem;
     font-size: 20px;
     padding: 0 4rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     margin-top: 2.5rem;
     line-height: 1.3;
     font-size: 15px;
@@ -130,20 +130,161 @@ const TitleImg = styled.img`
   width: 100%;
   height: 100%;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
   }
 `;
-const SmBr = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    display: inline-block;
-  }
-`;
+
 const SmPunct = styled.span`
   display: none;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     display: inline;
+  }
+`;
+const VideoPunct = styled.span`
+  display: inline;
+  @media only screen and (min-width: 466px) and (max-width: 530px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 701px) and (max-width: 790px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 1021px) and (max-width: 1140px) {
+    display: none;
+  }
+`;
+
+const VideoBr = styled.br`
+  display: none;
+
+  @media only screen and (min-width: 466px) and (max-width: 530px) {
+    display: inline-block;
+  }
+
+  @media only screen and (min-width: 701px) and (max-width: 790px) {
+    display: inline-block;
+  }
+
+  @media only screen and (min-width: 1021px) and (max-width: 1140px) {
+    display: inline-block;
+  }
+`;
+const PodcastersPunct = styled.span`
+  
+  display: inline;
+
+  @media only screen and (min-width: 375px) and (max-width: 465px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 570px) and (max-width: 695px) {
+    display: none;
+  }
+  @media only screen and (min-width: 957px) and (max-width: 1020px) {
+    display: none;
+  }
+`;
+
+const PodcastersBr = styled.br`
+  display: none;
+  @media only screen and (min-width: 375px) and (max-width: 465px) {
+    display: inline-block;
+  }
+  @media only screen and (min-width: 570px) and (max-width: 695px) {
+    display: inline-block;
+  }
+  @media only screen and (min-width: 957px) and (max-width: 1020px) {
+    display: inline-block;
+  }
+  
+`;
+const InfluencersPunct = styled.span`
+  
+  display: inline;
+
+  @media only screen and (min-width: 466px) and (max-width: 560px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 696px) and (max-width: 830px) {
+    display: none;
+  }
+  @media only screen and (min-width: 1021px) and (max-width: 1187px) {
+    display: none;
+  }
+`;
+
+const InfluencersBr = styled.br`
+  display: none;
+  @media only screen and (min-width: 466px) and (max-width: 560px) {
+    display: inline-block;
+  }
+  @media only screen and (min-width: 696px) and (max-width: 830px) {
+    display: inline-block;
+  }
+  @media only screen and (min-width: 1021px) and (max-width: 1187px) {
+    display: inline-block;
+  }
+`;
+const MakersPunct = styled.span`
+  
+  display: inline;
+  @media only screen and (min-width: 561px) and (max-width: 569px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 831px) and (max-width: 956px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 1188px){
+    display: none;
+  }
+`;
+
+const MakersBr = styled.br`
+  display: none;
+  @media only screen and (min-width: 561px) and (max-width: 569px) {
+    display: inline-block;
+  }
+  @media only screen and (min-width: 831px) and (max-width: 956px) {
+    display: inline-block;
+  }
+
+  @media only screen and (min-width: 1188px){
+    display: inline-block;
+  }
+`;
+
+const CodersPunct = styled.span`
+  display: inline;
+  @media only screen and (min-width: 375px) and (max-width: 465px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 570px) and (max-width: 700px) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 957px) and (max-width: 1020px) {
+    display: none;
+  }
+`;
+
+const CodersBr = styled.br`
+  display: none;
+  @media only screen and (min-width: 375px) and (max-width: 465px) {
+    display: inline-block;
+  }
+
+  @media only screen and (min-width: 570px) and (max-width: 700px) {
+    display: inline-block;
+  }
+
+  @media only screen and (min-width: 957px) and (max-width: 1020px) {
+    display: inline-block;
   }
 `;
 function UniteSection({ user, toggleJoin }) {
@@ -155,14 +296,15 @@ function UniteSection({ user, toggleJoin }) {
       <Hidden smUp>
         <TitleImg src={MultiLineCreatorsTitle} alt="creators" />
       </Hidden>
-      {/* <Audience>
-        Designers · Videographers · Podcasters <br /> Writers · Content
-        Creators · Coders <SmPunct> · </SmPunct> <SmBr /> Influencers · Makers
-      </Audience> */}
       <Audience>
+        Designers · Writers · Podcasters <PodcastersPunct> · </PodcastersPunct> <PodcastersBr />Influencers <InfluencersPunct> · </InfluencersPunct> <InfluencersBr />Makers <MakersPunct> · </MakersPunct> <MakersBr />Coders <CodersPunct> · </CodersPunct> <CodersBr /><span style={{ whiteSpace: 'nowrap' }}>Content
+        Creators</span> <VideoPunct> · </VideoPunct><VideoBr /> Videographers
+      </Audience>
+      
+      {/* <Audience>
         Designers · Videographers · Podcasters · Writers · Content
         Creators · Coders ·  Influencers · Makers
-      </Audience>
+      </Audience> */}
       <TitleImg src={UniteTitle} alt="unite" />
       <p className="text-center">
         <LogoTitle>

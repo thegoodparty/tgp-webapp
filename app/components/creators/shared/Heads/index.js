@@ -8,18 +8,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SampleAvatarImg1 from 'images/avatars/ellipse_1.png';
-import SampleAvatarImg2 from 'images/avatars/ellipse_2.png';
-import SampleAvatarImg3 from 'images/avatars/ellipse_3.png';
-import SampleAvatarImg4 from 'images/avatars/ellipse_4.png';
-import SampleAvatarImg5 from 'images/avatars/ellipse_5.png';
+import SampleAvatarImg2 from 'images/avatars/ellipse_5.png';
+import SampleAvatarImg3 from 'images/avatars/ellipse_8.png';
+import SampleAvatarImg4 from 'images/avatars/ellipse_7.png';
+import SampleAvatarImg5 from 'images/avatars/ellipse_2.png';
 import SampleAvatarImg6 from 'images/avatars/ellipse_6.png';
-import SampleAvatarImg7 from 'images/avatars/ellipse_7.png';
-import SampleAvatarImg8 from 'images/avatars/ellipse_8.png';
+import SampleAvatarImg7 from 'images/avatars/ellipse_4.png';
+import SampleAvatarImg8 from 'images/avatars/ellipse_3.png';
 import SampleAvatarImg9 from 'images/avatars/ellipse_9.png';
 import SampleAvatarImg10 from 'images/avatars/ellipse_10.png';
 import SampleAvatarImg11 from 'images/avatars/ellipse_11.png';
-import SampleAvatarImg12 from 'images/avatars/ellipse_12.png';
-import SampleAvatarImg13 from 'images/avatars/ellipse_13.png';
 
 const AvatarsWrapper = styled.div`
   display: flex;
@@ -36,6 +34,7 @@ const AvatarsWrapper = styled.div`
 const Avatar = styled.img`
   width: 32px;
   height: 32px;
+  border-radius: 16px;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
   cursor: pointer;
@@ -61,8 +60,6 @@ function Heads() {
       <Avatar src={SampleAvatarImg9} alt="avatar" />
       <Avatar src={SampleAvatarImg10} alt="avatar" />
       <Avatar src={SampleAvatarImg11} alt="avatar" />
-      <Avatar src={SampleAvatarImg12} alt="avatar" />
-      <Avatar src={SampleAvatarImg13} alt="avatar" />
     </AvatarsWrapper>
   );
 }

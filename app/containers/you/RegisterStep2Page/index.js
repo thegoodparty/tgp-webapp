@@ -30,7 +30,6 @@ export function RegisterStep2Page({ userState, submitCallback, location }) {
     user,
     submitCallback,
     loading,
-    redirect: location?.state?.redirect,
   };
 
   return (
@@ -57,7 +56,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    submitCallback: (feedback, photo, redirect) => {
+    submitCallback: (feedback, photo) => {
       console.log('callback1');
       if (feedback) {
         dispatch(

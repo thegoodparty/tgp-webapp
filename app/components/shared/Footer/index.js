@@ -19,7 +19,10 @@ const Wrapper = styled.div`
   }
   &.creatorsFooter {
     background-color: ${({ theme }) => theme.colors.blue};
-    margin-bottom: 0;
+    && {
+      margin-bottom: 0;
+
+    }
   }
   &.withNav {
     margin-bottom: 4rem;
