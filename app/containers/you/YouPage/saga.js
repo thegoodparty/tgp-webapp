@@ -232,14 +232,12 @@ function* confirmEmail(action) {
       );
     }
     if (fromLogin) {
-      console.log('redirect to  you2');
       yield put(push('/you'));
     } else {
       const cookieRedirect = getSignupRedirectCookie();
       if (cookieRedirect) {
         yield put(push(cookieRedirect.route));
       } else {
-        console.log('redirect to  you3');
         yield put(push('/you'));
       }
     }
