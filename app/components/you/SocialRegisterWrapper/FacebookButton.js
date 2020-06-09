@@ -51,8 +51,8 @@ const Icon = styled.img`
 const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
   const triggerLogin = () => {
     window.FB.getLoginStatus(response =>
-      handleLoginStatus(response).then(() => {
-        const user = generateUser(response);
+      handleLoginStatus(response).then((profile) => {
+        const user = generateUser(profile);
         const res = {
           _profile: user?.profile,
           _provider: 'facebook',
