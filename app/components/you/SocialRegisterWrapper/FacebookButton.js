@@ -68,7 +68,6 @@ const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
     },
     token: {
       accessToken: response.accessToken,
-      expiresAt: timestampFromNow(response.expiresIn),
     },
   });
 
