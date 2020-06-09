@@ -8,6 +8,9 @@ import React, { memo, useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import history from 'utils/history';
 import styled from 'styled-components';
+
+import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
+import globals from 'globals';
 import { Body9 } from '../typogrophy';
 
 const Wrapper = styled.div`
@@ -21,7 +24,6 @@ const Wrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.blue};
     && {
       margin-bottom: 0;
-
     }
   }
   &.withNav {
@@ -44,6 +46,9 @@ const InnerWrapper = styled(Body9)`
     color: ${({ theme }) => theme.creators.colors.gray11};
     border: solid 1px ${({ theme }) => theme.creators.colors.gray11};
   }
+`;
+const HideMe = styled.div`
+  display:none;
 `;
 
 function Footer() {
@@ -80,12 +85,26 @@ function Footer() {
   };
 
   return (
-    <Wrapper className={(withMobileNav ? 'withNav' : '') + (isCreatorsNav ? ' creatorsFooter' : '')}>
-      <InnerWrapper className={(isCreatorsNav ? ' creatorsFooterContent' : '')}>
+    <Wrapper
+      className={
+        (withMobileNav ? 'withNav' : '') +
+        (isCreatorsNav ? ' creatorsFooter' : '')
+      }
+    >
+      <InnerWrapper className={isCreatorsNav ? ' creatorsFooterContent' : ''}>
         PAID FOR BY THE GOOD PARTY
         <br />
         NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATES COMMITTEE.
       </InnerWrapper>
+      <HideMe>
+        <SocialButton
+          channel="facebook"
+          provider="facebook"
+          appId={globals.facebookAppId}
+        >
+          Continue with Facebook
+        </SocialButton>
+      </HideMe>
     </Wrapper>
   );
 }
