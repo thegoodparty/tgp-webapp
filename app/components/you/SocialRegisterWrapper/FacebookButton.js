@@ -52,10 +52,13 @@ const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
   const triggerLogin = () => {
     window.FB.getLoginStatus(response =>
       handleLoginStatus(response).then(() => {
+        const user = generateUser(response);
         const res = {
-          _profile: generateUser(response),
+          _profile: user?.profile,
           _provider: 'facebook',
+          _token: user?.token,
         };
+        console.log('res', res)
         onLoginSuccess(res);
       }, onLoginFailure),
     );
