@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
+import EditIcon from '@material-ui/icons/Edit';
 
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from '../../shared/typogrophy';
@@ -118,11 +119,24 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       headerStyle,
       filterMethod: customFilter,
       Cell: row => {
+        const chamberLower = row.original.chamber
+          ? row.original.chamber.toLowerCase()
+          : 'presidential';
+
         const route = candidateRoute(row.original);
+        const editRoute = `/admin/edit-candidate/${chamberLower}${
+          row.original.isIncumbent ? '-i' : ''
+        }/${row.original.id}`;
         return (
-          <a href={route} target="_blank">
-            {row.original.name}
-          </a>
+          <>
+            <a href={editRoute} target="_blank">
+              <EditIcon />
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            <a href={route} target="_blank">
+              {row.original.name}
+            </a>
+          </>
         );
       },
     },

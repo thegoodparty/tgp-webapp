@@ -77,6 +77,22 @@ function loadArticlesFeedbackSuccess(articlesFeedback) {
   };
 }
 
+function loadCandidateAction(id, chamber, isIncumbent) {
+  return {
+    type: types.LOAD_CANDIDATE,
+    id,
+    chamber,
+    isIncumbent,
+  };
+}
+
+function loadCandidateActionSuccess(candidate) {
+  return {
+    type: types.LOAD_CANDIDATE_SUCCESS,
+    candidate,
+  };
+}
+
 export default {
   loadCandidates,
   loadCandidatesSuccess,
@@ -91,4 +107,7 @@ export default {
 
   loadArticlesFeedback,
   loadArticlesFeedbackSuccess,
+
+  loadCandidateAction,
+  loadCandidateActionSuccess,
 };

@@ -70,6 +70,21 @@ function* updateCandidate(action) {
   }
 }
 
+
+function* loadCandidate(action) {
+  try {
+    const api = tgpApi.findCandidate;
+    const { id, chamber, isIncumbent } = action;
+    const payload = { id, chamber, isIncumbent };
+    const candidate = yield call(requestHelper, api, payload);
+    console.log('candidate', candidate)
+    yield put(actions.loadCandidateActionSuccess(candidate));
+  } catch (error) {
+    console.log(error);
+    yield put(actions.loadCandidateActionError(error));
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const candAction = yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
@@ -78,5 +93,10 @@ export default function* saga() {
   const updateCandAction = yield takeLatest(
     types.UPDATE_CANDIDATE,
     updateCandidate,
+  );
+
+  const loadCandAction = yield takeLatest(
+    types.LOAD_CANDIDATE,
+    loadCandidate,
   );
 }
