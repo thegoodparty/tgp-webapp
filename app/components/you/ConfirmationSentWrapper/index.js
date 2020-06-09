@@ -12,6 +12,7 @@ import tgpTheme from 'theme/index';
 const PageWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.blue};
   position: relative;
+  height: 100vh;
 `;
 
 const Img = styled.img`
