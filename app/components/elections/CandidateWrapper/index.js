@@ -231,7 +231,6 @@ const CandidateWrapper = ({
   chamberName,
   incumbent,
   user,
-  saveRankingCallback,
   deleteCandidateRankingCallback,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
@@ -447,14 +446,18 @@ const CandidateWrapper = ({
   };
 
   const rankPageJoinLink = () => {
-    const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
-    if (chamberName === 'presidential') {
-      return presidentialElectionLink() + query;
+    if (user) {
+      const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
+      if (chamberName === 'presidential') {
+        return presidentialElectionLink() + query;
+      }
+      if (chamberName === 'senate') {
+        return senateElectionLink(state) + query;
+      }
+      return houseElectionLink(state, district) + query;
+    } else {
+      return '?register=true';
     }
-    if (chamberName === 'senate') {
-      return senateElectionLink(state) + query;
-    }
-    return houseElectionLink(state, district) + query;
   };
 
   const rankPageGrowLink = () => {
@@ -1034,7 +1037,6 @@ CandidateWrapper.propTypes = {
   chamberName: PropTypes.string,
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  saveRankingCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
 };
 

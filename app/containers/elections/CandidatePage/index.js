@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { push } from 'connected-react-router';
 
 import CandidateWrapper from 'components/elections/CandidateWrapper';
 import {
@@ -33,7 +34,6 @@ export function CandidatePage({
   dispatch,
   userState,
   rankingObj,
-  saveRankingCallback,
   deleteCandidateRankingCallback,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
@@ -81,7 +81,6 @@ export function CandidatePage({
     chamberName,
     incumbent,
     user,
-    saveRankingCallback,
     deleteCandidateRankingCallback,
   };
 
@@ -119,7 +118,6 @@ CandidatePage.propTypes = {
   candidateState: PropTypes.object,
   userState: PropTypes.object,
   rankingObj: PropTypes.object,
-  saveRankingCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
 };
 
@@ -134,13 +132,6 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
-    saveRankingCallback: (user, candidate, rank, chamber) => {
-      if (user) {
-        dispatch(userActions.saveUserRankingAction(candidate, rank, chamber));
-      } else {
-        dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
-      }
-    },
     deleteCandidateRankingCallback: (rank, user) => {
       if (user) {
         dispatch(userActions.deleteCandidateRankingAction(rank.id));

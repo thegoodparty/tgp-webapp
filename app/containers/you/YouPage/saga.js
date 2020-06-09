@@ -304,7 +304,13 @@ function* socialLogin(action) {
     const accessToken = response.token;
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
-    yield put(push('/you'));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+    } else {
+      yield put(push('/you'));
+    }
+
     setUserCookie(responseUser);
     setCookie('token', accessToken);
 
@@ -389,6 +395,7 @@ function* saveUserRanking(action) {
       rank,
       candidateId: candidate.id,
       chamber,
+      state,
       isIncumbent: candidate.isIncumbent,
     };
     const { ranking } = yield call(requestHelper, api, payload);
