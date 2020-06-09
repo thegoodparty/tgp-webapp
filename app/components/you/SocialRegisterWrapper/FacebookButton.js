@@ -64,7 +64,7 @@ const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
       firstName: response.first_name,
       lastName: response.last_name,
       email: response.email,
-      profilePicURL: response.picture.data.url,
+      profilePicURL: response.picture?.data?.url,
     },
     token: {
       accessToken: response.accessToken,
