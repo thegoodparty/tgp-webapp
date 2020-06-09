@@ -11,9 +11,9 @@ import Grid from '@material-ui/core/Grid';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
-import LoadingAnimation from '../../shared/LoadingAnimation';
-import { Body13, Body11, H1 } from '../../shared/typogrophy';
-import { partyResolver } from '../../../helpers/electionsHelper';
+import LoadingAnimation from 'components/shared/LoadingAnimation';
+import { Body13, Body11, H1 } from 'components/shared/typogrophy';
+import { partyResolver } from 'helpers/electionsHelper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -58,7 +58,12 @@ function AdminEditCandidate({ candidate }) {
       { name: 'Is Big Money', value: candidate.isBigMoney ? 'Yes' : 'No' },
       { name: 'Is Good', value: candidate.isGood ? 'Yes' : 'No' },
       { name: 'Small Contributions', value: candidate.smallContributions },
-      { name: 'Raised', value: candidate.combinedRaised ? candidate.combinedRaised : candidate.raised },
+      {
+        name: 'Raised',
+        value: candidate.combinedRaised
+          ? candidate.combinedRaised
+          : candidate.raised,
+      },
       { name: 'Outside Report Date', value: candidate.outsideReportDate },
       { name: 'Campaign Report Date', value: candidate.campaignReportDate },
     ];
