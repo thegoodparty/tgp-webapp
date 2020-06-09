@@ -15,13 +15,13 @@ import Dialog from '@material-ui/core/Dialog';
 import heartImg from 'images/heart.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import globals from 'globals';
-import QueryModalContainer  from 'containers/shared/QueryModalContainer';
+import QueryModalContainer from 'containers/shared/QueryModalContainer';
 
 import SocialButton from './SocialButton';
 
 import { H1, H2, Body13, Body11 } from '../../shared/typogrophy';
 import { OutlinedButton } from '../../shared/buttons';
-
+import FacebookButton from './FacebookButton';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -142,15 +142,12 @@ function SocialRegisterWrapper({
         </Grid>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <SocialButton
-              channel="facebook"
-              provider="facebook"
-              appId={globals.facebookAppId}
+            <FacebookButton
               onLoginSuccess={socialLoginCallback}
               onLoginFailure={socialLoginFailureCallback}
             >
               Continue with Facebook
-            </SocialButton>
+            </FacebookButton>
             <SocialButton
               channel="google"
               provider="google"
