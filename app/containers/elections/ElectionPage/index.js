@@ -141,9 +141,7 @@ export function ElectionPage({
 
   useEffect(() => {
     const cookieRedirect = getSignupRedirectCookie();
-    console.log('election page', cookieRedirect);
     if (cookieRedirect) {
-      console.log('election page2 setting post register');
       setPostRegisterCookie(cookieRedirect.options);
       // deleteSignupRedirectCookie();
     }
@@ -207,11 +205,18 @@ export function ElectionPage({
   if (postRegisterCookie) {
     const { candidateId, name, rank } = postRegisterCookie;
     if (candidateId && name) {
-      postRegisterCandidate = findBlocCandidate(candidates, {
-        id: candidateId,
-        name,
-      });
-      console.log('postRegisterCandidate', postRegisterCandidate);
+      if (candidateId < 0) {
+        postRegisterCandidate = generateEmptyBlocCandidate(
+          district,
+          chamber,
+          state,
+        );
+      } else {
+        postRegisterCandidate = findBlocCandidate(candidates, {
+          id: candidateId,
+          name,
+        });
+      }
       if (postRegisterCandidate) {
         setPostRegisterJoin({
           rank,
