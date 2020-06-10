@@ -76,7 +76,7 @@ const YouWrapper = ({ articles }) => (
           First we count the people needed for a good indy candidate to win,
           then we all vote to get them in.
         </H3Body>
-        <ButtonWrapper to="?register=truer">
+        <ButtonWrapper to="?register=true">
           <OutlinedButton active fullWidth>
             COUNT ME IN!
           </OutlinedButton>
