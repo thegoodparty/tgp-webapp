@@ -80,7 +80,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
   };
 
   const onEmailFocus = () => {
-    console.log('on Focus');
     if (name !== '') {
       setShowName(true);
     }
