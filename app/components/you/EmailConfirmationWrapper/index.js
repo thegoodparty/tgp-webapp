@@ -197,7 +197,7 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
                       </OutlinedButton>
                     </div>
                     <div>
-                      <Link to="/you/register">
+                      <Link to="?register=true">
                         <OutlinedButton white fullWidth>
                           REGISTER
                         </OutlinedButton>
