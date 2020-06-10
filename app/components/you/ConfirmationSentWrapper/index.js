@@ -12,6 +12,7 @@ import tgpTheme from 'theme/index';
 const PageWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.blue};
   position: relative;
+  height: 100vh;
 `;
 
 const Img = styled.img`
@@ -51,9 +52,7 @@ const wrapperStyles = {
 const ConfirmationSentWrapper = ({ email, emailSendCallback }) => {
   return (
     <PageWrapper>
-      <Nav />
       <Wrapper style={wrapperStyles}>
-        <MobileHeader whiteBackButton />
         <div className="text-center">
           <Img src={EmailConfirmationImage} />
         </div>

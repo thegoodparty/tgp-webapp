@@ -15,6 +15,7 @@ import heartImg from 'images/heart.svg';
 import TextField from '@material-ui/core/TextField';
 import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
+import FacebookButton from '../SocialRegisterWrapper/FacebookButton';
 
 const Heart = styled.img`
   width: 64px;
@@ -135,15 +136,12 @@ const LoginWrapper = ({
                   <Body13 style={{ color: '#767676' }}>Or</Body13>
                 </Or>
               </OrWrapper>
-              <SocialButton
-                channel="facebook"
-                provider="facebook"
-                appId={globals.facebookAppId}
+              <FacebookButton
                 onLoginSuccess={socialLoginCallback}
                 onLoginFailure={socialLoginFailureCallback}
               >
                 Continue with Facebook
-              </SocialButton>
+              </FacebookButton>
               <SocialButton
                 channel="google"
                 provider="google"
@@ -156,7 +154,7 @@ const LoginWrapper = ({
 
               <Body13 style={{ margin: '24px 0' }}>
                 Don&apos;t have an account?{' '}
-                <Link to="/you/register">Create one</Link>
+                <Link to="?register=true">Create one</Link>
               </Body13>
             </VerticalWrapper>
           </Grid>

@@ -15,15 +15,22 @@ import CreatorsWrapper from 'components/creators/CreatorsWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import {
+  getSignupRedirectCookie,
+  setSignupRedirectCookie,
+  deleteSignupRedirectCookie,
+} from 'helpers/cookieHelper';
 
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectContent } from 'containers/App/selectors';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import makeSelectCreatorsPage from './selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
+
+import makeSelectCreatorsPage from './selectors';
+
 // import reducer from './reducer';
 // import saga from './saga';
 
@@ -33,24 +40,33 @@ export function CreatorsPage({
   dispatch,
   socialLoginCallback,
   socialLoginFailureCallback,
+  setSignupRedirectCookieCallback
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
   const stateUser = userState.user;
   const [user, setUser] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
   useEffect(() => {
+    const cookieRedirect = getSignupRedirectCookie();
+    if(cookieRedirect) {
+      deleteSignupRedirectCookie();
+    }
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());
       dispatch(userActions.generateUuidAction());
     } else {
       setUser(stateUser);
     }
+    setLoading(false);
   }, [stateUser]);
   const childProps = {
     projects: content ? content.creatorsProjects || [] : [],
     user,
     socialLoginCallback,
     socialLoginFailureCallback,
+    setSignupRedirectCookieCallback,
+    loading
   };
 
   return (
@@ -70,6 +86,7 @@ CreatorsPage.propTypes = {
   userState: PropTypes.object,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  setSignupRedirectCookieCallback: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -81,8 +98,12 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    setSignupRedirectCookieCallback: redirect => {
+      setSignupRedirectCookie(redirect);
+    },
     socialLoginCallback: user => {
-      dispatch(userActions.socialRegisterAction(user, '/creators'));
+      setSignupRedirectCookie('/creators');
+      dispatch(userActions.socialRegisterAction(user));
     },
     socialLoginFailureCallback: err => {
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));

@@ -4,6 +4,7 @@ import { push } from 'connected-react-router';
 import requestHelper from 'helpers/requestHelper';
 import {
   deleteCookie,
+  deleteSignupRedirectCookie,
   getCookie,
   getUserCookie,
   setCookie,
@@ -21,6 +22,7 @@ import actions from './actions';
 
 import selectUser from './selectors';
 import { candidateBlocName } from '../../../helpers/electionsHelper';
+import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 function* register(action) {
   try {
@@ -63,7 +65,7 @@ function* register(action) {
 function* socialRegister(action) {
   try {
     /* eslint-disable no-underscore-dangle */
-    const { user, redirect } = action;
+    const { user } = action;
     const profile = user._profile;
     const provider = user._provider;
     const { name, email, id, profilePicURL } = profile;
@@ -125,13 +127,19 @@ function* socialRegister(action) {
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(responseUser, access_token));
 
-    yield put(push({ pathname: '/you/register-step2', state: { redirect } }));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+    } else {
+      yield put(push(location.pathname));
+    }
+
     setUserCookie(responseUser);
     setCookie('token', access_token);
   } catch (error) {
     if (error.response && error.response.exists) {
       // user is already in our system, try login.
-      yield put(actions.socialLoginAction(action.user, action.redirect));
+      yield put(actions.socialLoginAction(action.user));
     } else {
       yield put(actions.registerActionError(error));
     }
@@ -175,7 +183,6 @@ function* resendEmail(action) {
     } else {
       email = yield getEmailFromStateOrCookie();
     }
-    console.log(email);
     const payload = {
       email: encodeURIComponent(email),
     };
@@ -214,11 +221,7 @@ function* confirmEmail(action) {
     const { user } = response;
     const access_token = response.token;
     yield put(actions.confirmEmailActionSuccess(user, access_token));
-    if (fromLogin) {
-      yield put(push('/you'));
-    } else {
-      yield put(push('/you/register-step2'));
-    }
+
     setUserCookie(user);
     setCookie('token', access_token);
     if (token.length === 6) {
@@ -228,7 +231,18 @@ function* confirmEmail(action) {
         snackbarActions.showSnakbarAction('Your account has been verified'),
       );
     }
+    if (fromLogin) {
+      yield put(push('/you'));
+    } else {
+      const cookieRedirect = getSignupRedirectCookie();
+      if (cookieRedirect) {
+        yield put(push(cookieRedirect.route));
+      } else {
+        yield put(push('/you'));
+      }
+    }
   } catch (error) {
+    console.log('error at email conriamtion', error);
     yield put(actions.confirmEmailActionError(error.response));
   }
 }
@@ -250,7 +264,7 @@ function* login(action) {
 function* socialLogin(action) {
   try {
     /* eslint-disable no-underscore-dangle */
-    const { user, redirect } = action;
+    const { user } = action;
     const profile = user._profile;
     const provider = user._provider;
     const { email, profilePicURL } = profile;
@@ -289,7 +303,13 @@ function* socialLogin(action) {
     const accessToken = response.token;
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
-    yield put(push(`${redirect}`));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+    } else {
+      yield put(push('/you'));
+    }
+
     setUserCookie(responseUser);
     setCookie('token', accessToken);
 
@@ -353,6 +373,7 @@ function* uploadAvatar(action) {
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
     if (withRedirect) {
+      console.log('redirect to  you4');
       yield put(push('/you'));
     }
   } catch (error) {
@@ -373,6 +394,7 @@ function* saveUserRanking(action) {
       rank,
       candidateId: candidate.id,
       chamber,
+      state,
       isIncumbent: candidate.isIncumbent,
     };
     const { ranking } = yield call(requestHelper, api, payload);
@@ -507,7 +529,7 @@ function* crew() {
     const response = yield call(requestHelper, api, null);
     yield put(actions.crewActionSuccess(response.crew));
   } catch (error) {
-    console.log('crew error', error);
+    console.log('crew error', JSON.stringify(error));
   }
 }
 
@@ -517,7 +539,7 @@ function* userRanking() {
     const { ranking } = yield call(requestHelper, api, null);
     yield put(actions.userRankingActionSuccess(ranking));
   } catch (error) {
-    console.log('crew error', error);
+    console.log('user ranking ranking', JSON.stringify(error));
   }
 }
 
@@ -529,7 +551,7 @@ function* guestRanking() {
       yield put(actions.userRankingActionSuccess(ranking));
     }
   } catch (error) {
-    console.log('crew error', error);
+    console.log('guest ranking error', JSON.stringify(error));
   }
 }
 

@@ -28,6 +28,7 @@ export function SocialRegisterPage({
   dispatch,
   socialLoginCallback,
   socialLoginFailureCallback,
+  closeModalCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -37,9 +38,10 @@ export function SocialRegisterPage({
   const { user } = userState;
 
   useEffect(() => {
-    if (user) {
-      dispatch(push('/you'));
-    }
+    // if (user) {
+    //   console.log('redirect to  you6');
+    //   dispatch(push('/you'));
+    // }
     const blocCookie = getSignupRedirectCookie();
     if (blocCookie) {
       setBlocName(blocCookie.options?.blocName);
@@ -49,7 +51,8 @@ export function SocialRegisterPage({
   const childPros = {
     socialLoginCallback,
     socialLoginFailureCallback,
-    blocName
+    closeModalCallback,
+    blocName,
   };
 
   return (
@@ -68,6 +71,7 @@ SocialRegisterPage.propTypes = {
   dispatch: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  closeModalCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -81,7 +85,11 @@ function mapDispatchToProps(dispatch) {
       dispatch(userActions.socialRegisterAction(user));
     },
     socialLoginFailureCallback: err => {
+      console.log('err register', err);
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    },
+    closeModalCallback: () => {
+      dispatch(push(window.location.pathname));
     },
   };
 }

@@ -23,6 +23,7 @@
     <meta property="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#ffffff" />
     <meta property="fb:app_id" content="241239336921963"/>
+    <meta name="google-signin-client_id" content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com">
 
     <link rel="icon" href="/favicon.ico" />
     <title>THE GOOD PARTY</title>
@@ -68,5 +69,27 @@
       href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500,600,700"
       rel="stylesheet"
     />
+
+      <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '241239336921963',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v7.0'
+        });
+
+        FB.AppEvents.logPageView();
+
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
   </body>
 </html>

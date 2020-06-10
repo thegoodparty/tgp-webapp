@@ -17,7 +17,6 @@ import globalActions from 'containers/App/actions';
 
 import {
   makeSelectContent,
-  makeSelectLocation,
   makeSelectModalArticleId,
 } from 'containers/App/selectors';
 

@@ -24,10 +24,16 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 
 import YouWrapper from 'components/you/YouWrapper';
 import ProfileWrapper from 'components/you/ProfileWrapper/Loadable';
+
+import {
+  deleteSignupRedirectCookie,
+  getSignupRedirectCookie,
+} from 'helpers/cookieHelper';
+import { userDistrict } from 'helpers/userHelper';
+import articlesHelper from 'helpers/articlesHelper';
+
 import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
-import { userDistrict } from '../../../helpers/userHelper';
 import { makeSelectContent } from '../../App/selectors';
-import articlesHelper from '../../../helpers/articlesHelper';
 import { makeSelectRanking } from './selectors';
 
 export function YouPage({
@@ -48,6 +54,11 @@ export function YouPage({
   const { houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      dispatch(push(cookieRedirect.route));
+      deleteSignupRedirectCookie();
+    }
     if (user && !crew) {
       dispatch(userActions.crewAction());
     }

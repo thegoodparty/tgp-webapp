@@ -10,6 +10,7 @@ const BodyWrapper = styled.div`
   text-align: center;
   outline: none;
   box-shadow: 2px 8px 18px rgba(0, 0, 0, .15);
+  position: relative;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
     padding: 3rem 2rem;

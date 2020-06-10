@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
 import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
-import { fullFirstLastInitials } from '../../../helpers/userHelper';
+import { fullFirstLastInitials } from 'helpers/userHelper';
 
 const Input = styled(TextField)`
   && {
@@ -82,7 +80,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
   };
 
   const onEmailFocus = () => {
-    console.log('on Focus');
     if (name !== '') {
       setShowName(true);
     }
@@ -90,9 +87,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
 
   return (
     <div>
-      <Nav />
       <Wrapper white>
-        <MobileHeader />
         <H2>Join The Good Party</H2>
         <Body13 style={{ marginTop: '16px', marginBottom: '28px' }}>
           Please enter your info, so we can count your support and notify you as

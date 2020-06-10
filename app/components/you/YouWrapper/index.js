@@ -66,7 +66,7 @@ const YouWrapper = ({ articles }) => (
     <Wrapper white>
       <MobileHeader />
       <Login>
-        <Link to="/you/register">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <Link to="?register=true">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
         <Link to="login">Login</Link>
       </Login>
       <InnerWrapper>

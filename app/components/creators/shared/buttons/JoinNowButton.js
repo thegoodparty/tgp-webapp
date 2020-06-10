@@ -22,7 +22,7 @@ const JoinNowButton = styled(Button)`
       padding: 1rem 5rem;
       font: normal normal 15px normal;
       font-family: unset;
-      margin-bottom: 1rem;
+      margin-bottom: 2.5rem;
     }
   }
 `;

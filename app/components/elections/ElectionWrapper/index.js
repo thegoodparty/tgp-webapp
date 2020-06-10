@@ -120,8 +120,6 @@ const ElectionWrapper = ({
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
   const [isExternalLink, setIsExternalLink] = useState(false);
 
-  console.log('postRegisterJoin', postRegisterJoin);
-
   useEffect(() => {
     if (blocCandidate) {
       setIsExternalLink(true);
@@ -149,7 +147,6 @@ const ElectionWrapper = ({
   }, [growCandidate]);
 
   useEffect(() => {
-    console.log('postRegisterJoin effect', postRegisterJoin);
     if (user && postRegisterJoin?.candidate) {
       handleChoiceCallback(postRegisterJoin.candidate, postRegisterJoin.rank);
     }
