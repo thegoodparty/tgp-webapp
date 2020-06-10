@@ -7,15 +7,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import SampleAvatarImg1 from 'images/avatars/ellipse_1.png';
-import SampleAvatarImg2 from 'images/avatars/ellipse_2.png';
-import SampleAvatarImg3 from 'images/avatars/ellipse_3.png';
 
 import { Hidden } from '@material-ui/core';
 
 const CollaboratorWrapper = styled.div`
   margin-right: -10px;
-  cursor: pointer;
   &:hover {
     z-index: 2;
   }
@@ -44,7 +40,7 @@ const CollaboratorsCount = styled.span`
 `;
 
 function Collaborators({ project }) {
-  const collaborators = [SampleAvatarImg1, SampleAvatarImg2, SampleAvatarImg3];
+  const collaborators = [project.creatorPhoto];
   return (
     <>
       {collaborators.map((collaborator, index) => (
@@ -53,11 +49,11 @@ function Collaborators({ project }) {
         </CollaboratorWrapper>
       ))}
       <CollaboratorsCount>
-        <span>Kai Gradert</span>{' '}
-        <Hidden smUp>
+        <span>{project.creatorName}</span>{' '}
+        {/* <Hidden smUp>
           <br />
         </Hidden>
-        and <span>12 others</span>
+        and <span>12 others</span> */}
       </CollaboratorsCount>
     </>
   );
