@@ -66,7 +66,6 @@ function* socialRegister(action) {
   try {
     /* eslint-disable no-underscore-dangle */
     const { user } = action;
-    console.log('sage action', action);
     const profile = user._profile;
     const provider = user._provider;
     const { name, email, id, profilePicURL } = profile;
