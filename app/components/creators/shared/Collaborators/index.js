@@ -7,9 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import SampleAvatarImg1 from 'images/avatars/ellipse_1.png';
-import SampleAvatarImg2 from 'images/avatars/ellipse_2.png';
-import SampleAvatarImg3 from 'images/avatars/ellipse_3.png';
 
 import { Hidden } from '@material-ui/core';
 
