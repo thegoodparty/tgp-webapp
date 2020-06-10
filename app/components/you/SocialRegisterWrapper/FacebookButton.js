@@ -50,18 +50,9 @@ const Icon = styled.img`
 
 const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
   const triggerLogin = () => {
-    window.FB.getLoginStatus(response =>
-      handleLoginStatus(response).then((profile) => {
-        const user = generateUser(profile);
-        const res = {
-          _profile: user?.profile,
-          _provider: 'facebook',
-          _token: user?.token,
-        };
-        console.log('res', res)
-        onLoginSuccess(res);
-      }, onLoginFailure),
-    );
+    window.FB.getLoginStatus(response => {
+      handleSuccessfulResponse(response);
+    });
   };
 
   const generateUser = response => ({
@@ -84,15 +75,6 @@ const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
    */
   const handleLoginStatus = response =>
     new Promise((resolve, reject) => {
-      if (!response.authResponse) {
-        return reject({
-          provider: 'facebook',
-          type: 'auth',
-          description: 'Authentication failed',
-          error: response,
-        });
-      }
-
       switch (response.status) {
         case 'connected':
           getProfile().then(profile =>
@@ -104,16 +86,37 @@ const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
 
           break;
         case 'not_authorized':
-        case 'unknown':
           return reject({
             provider: 'facebook',
             type: 'auth',
-            description:
-              'Authentication has been cancelled or an unknown error occurred',
+            description: 'Not Authorized',
             error: response,
           });
+        case 'unknown':
+          login();
       }
     });
+
+  const login = () => {
+    FB.login(
+      response => {
+        handleSuccessfulResponse(response);
+      },
+      { scope: 'public_profile,email' },
+    );
+  };
+
+  const handleSuccessfulResponse = response => {
+    handleLoginStatus(response).then(profile => {
+      const user = generateUser(profile);
+      const res = {
+        _profile: user?.profile,
+        _provider: 'facebook',
+        _token: user?.token,
+      };
+      onLoginSuccess(res);
+    }, onLoginFailure);
+  };
 
   /**
    * Gets currently logged in user profile data.
@@ -143,8 +146,8 @@ const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
 };
 
 FacebookButton.propTypes = {
-  channel: PropTypes.string,
-  triggerLogin: PropTypes.func,
+  onLoginSuccess: PropTypes.func,
+  onLoginFailure: PropTypes.func,
   children: PropTypes.string,
 };
 
