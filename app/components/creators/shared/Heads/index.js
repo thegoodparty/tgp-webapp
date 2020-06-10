@@ -21,7 +21,7 @@ import SampleAvatarImg11 from 'images/avatars/ellipse_11.png';
 
 const AvatarsWrapper = styled.div`
   display: flex;
-  max-width: 22rem;
+  max-width: 20rem;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
@@ -37,7 +37,6 @@ const Avatar = styled.img`
   border-radius: 16px;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
-  cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
     width: 24px;
