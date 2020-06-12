@@ -56,11 +56,16 @@ function* loadArticlesFeedback() {
 function* updateCandidate(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Candidate'));
-    const { id, updatedFields, chamber, isIncumbent } = action;
+    const { id, updatedFields, chamber, isIncumbent, isEdit } = action;
     const api = tgpApi.admin.updateCandidate;
     const payload = { id, updatedFields, chamber, isIncumbent };
     const { candidate } = yield call(requestHelper, api, payload);
-    yield put(actions.updateCandidateSuccess(candidate));
+    if(isEdit) {
+      yield put(actions.editCandidateSuccess(candidate));
+    } else {
+      yield put(actions.updateCandidateSuccess(candidate));
+    }
+
   } catch (error) {
     console.log(error);
     yield put(

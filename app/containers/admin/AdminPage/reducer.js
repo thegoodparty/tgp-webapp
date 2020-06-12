@@ -65,6 +65,11 @@ const adminPageReducer = (state = initialState, action) =>
           }
         }
         draft.candidates = updatedCandidates;
+        draft.candidate = candidate;
+        break;
+
+      case types.EDIT_CANDIDATE_SUCCESS:
+        draft.candidate = action.candidate;
         break;
 
       case types.LOAD_ARTICLES_FEEDBACK_SUCCESS:

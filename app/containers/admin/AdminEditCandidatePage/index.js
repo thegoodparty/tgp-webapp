@@ -27,11 +27,11 @@ export function AdminEditCandidatePage({
   adminState,
   id,
   chamber,
+  saveCandidateCallback,
   dispatch,
 }) {
   useInjectReducer({ key: 'adminPage', reducer });
   useInjectSaga({ key: 'adminPage', saga });
-
 
   const { candidate } = adminState;
   const [chamberName, chamberIncumbent] = chamber?.split('-');
@@ -52,6 +52,7 @@ export function AdminEditCandidatePage({
 
   const childProps = {
     candidate,
+    saveCandidateCallback,
   };
 
   return (
@@ -74,6 +75,7 @@ AdminEditCandidatePage.propTypes = {
   adminState: PropTypes.object,
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
+  saveCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -86,6 +88,18 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
+    saveCandidateCallback: (updatedFields, candidate) => {
+      const { id, chamber, isIncumbent } = candidate;
+      dispatch(
+        adminActions.updateCandidate(
+          id,
+          updatedFields,
+          chamber ? chamber.toLowerCase() : chamber,
+          isIncumbent,
+          true
+        ),
+      );
+    },
   };
 }
 

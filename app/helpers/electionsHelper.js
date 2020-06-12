@@ -58,14 +58,6 @@ export const rankText = number => {
   return number + 'TH';
 };
 
-export const presidentialVotesThreshold = 38658139;
-
-export const defaultFilters = {
-  smallDonors: true,
-  smallFunding: true,
-  mostlyBigDonors: true,
-};
-
 const hoursPerMonth = 2000 / 12;
 
 const calcHours = candidate => {
@@ -105,7 +97,7 @@ export const candidateCalculatedFields = orgCandidate => {
   const candidate = { ...orgCandidate };
   const { combinedRaised, raised, smallContributions } = candidate;
   const totalRaised = combinedRaised || raised;
-  const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
+  const largeDonorPerc = totalRaised === 0 ? 0 : (totalRaised - smallContributions) / totalRaised;
   const smallDonorPerc = 1 - largeDonorPerc;
   const hours = calcHours(candidate);
   const largeDonorPerHour = (totalRaised * largeDonorPerc) / hours;
@@ -266,6 +258,9 @@ export const candidateLastName = candidate => {
 export const candidateBlocName = (candidate, chamber) => {
   if (!candidate) {
     return '';
+  }
+  if(candidate.blocName){
+    return candidate.blocName;
   }
   if (candidate.id < 0) {
     return '#GoodBloc';

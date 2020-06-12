@@ -266,6 +266,7 @@ const CandidateWrapper = ({
         try {
           bio = info ? decodeURI(info) : null;
         } catch (e) {
+          bio = info;
           console.log(e);
         }
       }
@@ -988,6 +989,15 @@ const CandidateWrapper = ({
                   Campaign Website
                 </Body>
                 <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
+              </div>
+            )}
+
+            {candidateInfo && candidateInfo !== 'null' && chamberName !== 'presidential' && (
+              <div>
+                <Body className="bold600" style={{ margin: '48px 0 16px' }}>
+                  CandidateConnection
+                </Body>
+                <Body13 dangerouslySetInnerHTML={{ __html: candidateInfo }} />
               </div>
             )}
             {(campaignWebsite && campaignWebsite !== 'null') ||

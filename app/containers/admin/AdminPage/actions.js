@@ -47,19 +47,33 @@ function loadAllUsersError(error) {
   };
 }
 
-function updateCandidate(id, updatedFields, chamber, isIncumbent) {
+function updateCandidate(
+  id,
+  updatedFields,
+  chamber,
+  isIncumbent,
+  isEdit = false,
+) {
   return {
     type: types.UPDATE_CANDIDATE,
     id,
     updatedFields,
     chamber,
     isIncumbent,
+    isEdit,
   };
 }
 
 function updateCandidateSuccess(candidate) {
   return {
     type: types.UPDATE_CANDIDATE_SUCCESS,
+    candidate,
+  };
+}
+
+function editCandidateSuccess(candidate) {
+  return {
+    type: types.EDIT_CANDIDATE_SUCCESS,
     candidate,
   };
 }
@@ -104,6 +118,7 @@ export default {
 
   updateCandidate,
   updateCandidateSuccess,
+  editCandidateSuccess,
 
   loadArticlesFeedback,
   loadArticlesFeedbackSuccess,

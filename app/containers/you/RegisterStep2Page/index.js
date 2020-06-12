@@ -76,7 +76,6 @@ function mapDispatchToProps(dispatch) {
       } else if (redirect) {
         dispatch(push(`${redirect}`));
       } else {
-        console.log('redirect to  you1');
         dispatch(push('/you'));
       }
     },
