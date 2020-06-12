@@ -25,7 +25,7 @@ const CollaboratorsWrapper = styled.div`
 const Message = styled(TextField)`
   && {
     width: 100%;
-    margin-top: 2.5rem;
+    margin-top: 1rem;
     background: ${({ theme }) => theme.creators.colors.formColor};
     border-radius: 4px;
   }

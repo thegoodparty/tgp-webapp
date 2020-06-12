@@ -10,15 +10,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Fade } from '@material-ui/core';
 import LogoCaps from 'images/logo.svg';
-import FacebookIcon from 'images/icons/facebook.svg';
-import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import { OutlinedButton } from 'components/shared/buttons';
 import globals from 'globals';
 import { BodyWrapper, OverlayModal, CloseIcon, Blurb, Logo, Title } from '../shared';
-import { Body, Body18, Body13, Body15, Body11 } from '../../typography';
-import { MediumButton } from '../../buttons';
+import { Body13, Body15, Body11 } from '../../typography';
 import Heads from '../../Heads';
 
 const JoinTitle = styled(Title)`

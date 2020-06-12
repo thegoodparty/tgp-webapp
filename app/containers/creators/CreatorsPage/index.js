@@ -46,10 +46,10 @@ export function CreatorsPage({
   useInjectSaga({ key: 'user', saga });
   const stateUser = userState.user;
   const [user, setUser] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   useEffect(() => {
     const cookieRedirect = getSignupRedirectCookie();
-    if(cookieRedirect) {
+    if (cookieRedirect) {
       deleteSignupRedirectCookie();
     }
     if (!stateUser) {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
+import Footer from 'components/shared/Footer';
 import Wrapper from 'components/creators/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
 import CreatorsHeaderWrapper from 'components/creators/shared/CreatorsHeaderWrapper';
 import UniteSection from 'components/creators/shared/UniteSection';
 import ProjectsSection from 'components/creators/shared/ProjectsSection';
@@ -34,6 +34,8 @@ const CreatorsWrapper = ({
           user={user}
         />
       </Wrapper>
+      <Footer isCreators={true} />
+
       <Join
         open={join}
         handleClose={() => setJoin(false)}
