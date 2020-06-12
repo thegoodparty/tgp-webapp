@@ -35,7 +35,6 @@ export function LoginPage({
   const { user } = userState;
   useEffect(() => {
     if (user) {
-      console.log('redirect to  you5');
       dispatch(push('/you'));
     }
   }, [userState]);

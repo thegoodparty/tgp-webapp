@@ -231,7 +231,6 @@ const CandidateWrapper = ({
   chamberName,
   incumbent,
   user,
-  saveRankingCallback,
   deleteCandidateRankingCallback,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
@@ -267,6 +266,7 @@ const CandidateWrapper = ({
         try {
           bio = info ? decodeURI(info) : null;
         } catch (e) {
+          bio = info;
           console.log(e);
         }
       }
@@ -447,14 +447,18 @@ const CandidateWrapper = ({
   };
 
   const rankPageJoinLink = () => {
-    const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
-    if (chamberName === 'presidential') {
-      return presidentialElectionLink() + query;
+    if (user) {
+      const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
+      if (chamberName === 'presidential') {
+        return presidentialElectionLink() + query;
+      }
+      if (chamberName === 'senate') {
+        return senateElectionLink(state) + query;
+      }
+      return houseElectionLink(state, district) + query;
+    } else {
+      return '?register=true';
     }
-    if (chamberName === 'senate') {
-      return senateElectionLink(state) + query;
-    }
-    return houseElectionLink(state, district) + query;
   };
 
   const rankPageGrowLink = () => {
@@ -987,6 +991,15 @@ const CandidateWrapper = ({
                 <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
               </div>
             )}
+
+            {candidateInfo && candidateInfo !== 'null' && chamberName !== 'presidential' && (
+              <div>
+                <Body className="bold600" style={{ margin: '48px 0 16px' }}>
+                  CandidateConnection
+                </Body>
+                <Body13 dangerouslySetInnerHTML={{ __html: candidateInfo }} />
+              </div>
+            )}
             {(campaignWebsite && campaignWebsite !== 'null') ||
             (candidateInfo && candidateInfo !== 'null') ? (
               <div className="text-center" style={{ paddingBottom: '16px' }}>
@@ -1034,7 +1047,6 @@ CandidateWrapper.propTypes = {
   chamberName: PropTypes.string,
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  saveRankingCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
 };
 

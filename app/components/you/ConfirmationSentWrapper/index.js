@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
 import { Body13, H2, H3 } from 'components/shared/typogrophy/index';
 import EmailConfirmationImage from 'images/email-confirmation.svg';
 import tgpTheme from 'theme/index';
@@ -12,6 +10,7 @@ import tgpTheme from 'theme/index';
 const PageWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.blue};
   position: relative;
+  height: 100vh;
 `;
 
 const Img = styled.img`
@@ -51,9 +50,7 @@ const wrapperStyles = {
 const ConfirmationSentWrapper = ({ email, emailSendCallback }) => {
   return (
     <PageWrapper>
-      <Nav />
       <Wrapper style={wrapperStyles}>
-        <MobileHeader whiteBackButton />
         <div className="text-center">
           <Img src={EmailConfirmationImage} />
         </div>

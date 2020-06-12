@@ -58,14 +58,6 @@ export const rankText = number => {
   return number + 'TH';
 };
 
-export const presidentialVotesThreshold = 38658139;
-
-export const defaultFilters = {
-  smallDonors: true,
-  smallFunding: true,
-  mostlyBigDonors: true,
-};
-
 const hoursPerMonth = 2000 / 12;
 
 const calcHours = candidate => {
@@ -105,7 +97,7 @@ export const candidateCalculatedFields = orgCandidate => {
   const candidate = { ...orgCandidate };
   const { combinedRaised, raised, smallContributions } = candidate;
   const totalRaised = combinedRaised || raised;
-  const largeDonorPerc = (totalRaised - smallContributions) / totalRaised;
+  const largeDonorPerc = totalRaised === 0 ? 0 : (totalRaised - smallContributions) / totalRaised;
   const smallDonorPerc = 1 - largeDonorPerc;
   const hours = calcHours(candidate);
   const largeDonorPerHour = (totalRaised * largeDonorPerc) / hours;
@@ -267,6 +259,9 @@ export const candidateBlocName = (candidate, chamber) => {
   if (!candidate) {
     return '';
   }
+  if(candidate.blocName){
+    return candidate.blocName;
+  }
   if (candidate.id < 0) {
     return '#GoodBloc';
   }
@@ -324,30 +319,24 @@ export const findBlocCandidate = (candidates, blocCandidate) => {
   if (!candidates || !blocCandidate) {
     return null;
   }
-  console.log('findBlocCandidate2');
   for (let i = 0; i < candidates.good.length; i++) {
     const candidate = candidates.good[i];
     if (
       candidate.id === blocCandidate.id &&
       candidate.name === candidate.name
     ) {
-      console.log('findBlocCandidate3', candidate);
       return candidate;
     }
   }
-  console.log('findBlocCandidate4');
   for (let i = 0; i < candidates.unknown.length; i++) {
     const candidate = candidates.unknown[i];
     if (
       candidate.id === blocCandidate.id &&
       candidate.name === candidate.name
     ) {
-      console.log('findBlocCandidate5', candidate);
       return candidate;
     }
   }
-  console.log('findBlocCandidate6', blocCandidate);
-  console.log('findBlocCandidate7', candidates);
   return null;
 };
 

@@ -232,14 +232,12 @@ function* confirmEmail(action) {
       );
     }
     if (fromLogin) {
-      console.log('redirect to  you2');
       yield put(push('/you'));
     } else {
       const cookieRedirect = getSignupRedirectCookie();
       if (cookieRedirect) {
         yield put(push(cookieRedirect.route));
       } else {
-        console.log('redirect to  you3');
         yield put(push('/you'));
       }
     }
@@ -305,7 +303,13 @@ function* socialLogin(action) {
     const accessToken = response.token;
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
-    yield put(push('/you'));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+    } else {
+      yield put(push('/you'));
+    }
+
     setUserCookie(responseUser);
     setCookie('token', accessToken);
 
@@ -369,7 +373,6 @@ function* uploadAvatar(action) {
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
     if (withRedirect) {
-      console.log('redirect to  you4');
       yield put(push('/you'));
     }
   } catch (error) {
@@ -390,6 +393,7 @@ function* saveUserRanking(action) {
       rank,
       candidateId: candidate.id,
       chamber,
+      state,
       isIncumbent: candidate.isIncumbent,
     };
     const { ranking } = yield call(requestHelper, api, payload);
