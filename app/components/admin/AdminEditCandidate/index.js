@@ -62,12 +62,6 @@ const Input = styled(TextField)`
 `;
 
 function AdminEditCandidate({ candidate, saveCandidateCallback }) {
-  window.onbeforeunload = () => {
-    if (showSave) {
-      return 'Are you sure you want to leave?';
-    }
-  };
-
   const [editableValues, setEditableValues] = useState(false);
   const [initialData, setInitialData] = useState(false);
   const [campaignWebsite, setCampaignWebsite] = useState('');
