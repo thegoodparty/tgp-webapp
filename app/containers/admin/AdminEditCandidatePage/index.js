@@ -94,7 +94,7 @@ function mapDispatchToProps(dispatch, ownProps) {
         adminActions.updateCandidate(
           id,
           updatedFields,
-          chamber ? chamber.toLowerCase() : chamber,
+          chamber ? chamber.toLowerCase() : 'presidential',
           isIncumbent,
           true
         ),
