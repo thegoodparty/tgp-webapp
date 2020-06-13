@@ -56,17 +56,37 @@ function* loadArticlesFeedback() {
 function* updateCandidate(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Candidate'));
-    const { id, updatedFields, chamber, isIncumbent } = action;
+    const { id, updatedFields, chamber, isIncumbent, isEdit } = action;
     const api = tgpApi.admin.updateCandidate;
     const payload = { id, updatedFields, chamber, isIncumbent };
     const { candidate } = yield call(requestHelper, api, payload);
-    yield put(actions.updateCandidateSuccess(candidate));
+    if(isEdit) {
+      yield put(actions.editCandidateSuccess(candidate));
+    } else {
+      yield put(actions.updateCandidateSuccess(candidate));
+    }
+
   } catch (error) {
     console.log(error);
     yield put(
       snackbarActions.showSnakbarAction('Error Loading Candidates', 'error'),
     );
     yield put(actions.loadCandidatesError(error));
+  }
+}
+
+
+function* loadCandidate(action) {
+  try {
+    const api = tgpApi.findCandidate;
+    const { id, chamber, isIncumbent } = action;
+    const payload = { id, chamber, isIncumbent };
+    const candidate = yield call(requestHelper, api, payload);
+    console.log('candidate', candidate)
+    yield put(actions.loadCandidateActionSuccess(candidate));
+  } catch (error) {
+    console.log(error);
+    yield put(actions.loadCandidateActionError(error));
   }
 }
 
@@ -78,5 +98,10 @@ export default function* saga() {
   const updateCandAction = yield takeLatest(
     types.UPDATE_CANDIDATE,
     updateCandidate,
+  );
+
+  const loadCandAction = yield takeLatest(
+    types.LOAD_CANDIDATE,
+    loadCandidate,
   );
 }

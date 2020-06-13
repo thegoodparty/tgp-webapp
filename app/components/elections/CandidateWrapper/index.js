@@ -245,29 +245,17 @@ const CandidateWrapper = ({
 
   useEffect(() => {
     if (candidate) {
-      let info;
-      let facebook;
-      let twitter;
-      let website;
+      const info = candidate.info;
+      const facebook = candidate.facebook;
+      const twitter = candidate.twitter;
+      const website = candidate.website;
       let bio = '';
-      if (chamberName === 'presidential') {
-        info = candidate.info ? JSON.parse(candidate.info) : '';
-        if (info) {
-          facebook = info.facebook;
-          twitter = info.twitter;
-          website = info.website;
-          bio = contentfulHelper(info.bio);
-        }
-      } else {
-        info = candidate.info;
-        facebook = candidate.facebook;
-        twitter = candidate.twitter;
-        website = candidate.website;
-        try {
-          bio = info ? decodeURI(info) : null;
-        } catch (e) {
-          console.log(e);
-        }
+
+      try {
+        bio = info ? decodeURI(info) : null;
+      } catch (e) {
+        bio = info;
+        // console.log(e);
       }
       setCandidateInfo(bio);
       setSocialAccounts([
@@ -963,23 +951,20 @@ const CandidateWrapper = ({
               <Body className="bold600" style={{ marginTop: '48px' }}>
                 Candidate Policy Positions:
               </Body>
-              {chamberName === 'presidential' ? (
-                <Body13>{candidateInfo}</Body13>
-              ) : (
-                <div>
-                  {((campaignWebsite && campaignWebsite !== null) ||
-                    (candidateInfo && candidateInfo)) !== null && (
-                    <Body13 style={{ marginTop: '12px' }}>
-                      The following policy positions for {name} were compiled by{' '}
-                      <a href={ballotpediaLink} target="_blank">
-                        Ballotpedia
-                      </a>{' '}
-                      from the candidate&apos;s survey, official campaign
-                      website, editorials, speeches, and interviews.
-                    </Body13>
-                  )}
-                </div>
-              )}
+
+              <div>
+                {((campaignWebsite && campaignWebsite !== null) ||
+                  (candidateInfo && candidateInfo)) !== null && (
+                  <Body13 style={{ marginTop: '12px' }}>
+                    The following policy positions for {name} were compiled by{' '}
+                    <a href={ballotpediaLink} target="_blank">
+                      Ballotpedia
+                    </a>{' '}
+                    from the candidate&apos;s survey, official campaign website,
+                    editorials, speeches, and interviews.
+                  </Body13>
+                )}
+              </div>
             </InfoWrapper>
 
             {campaignWebsite && campaignWebsite !== 'null' && (
@@ -988,6 +973,15 @@ const CandidateWrapper = ({
                   Campaign Website
                 </Body>
                 <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
+              </div>
+            )}
+
+            {candidateInfo && candidateInfo !== 'null' && (
+              <div>
+                <Body className="bold600" style={{ margin: '48px 0 16px' }}>
+                  CandidateConnection
+                </Body>
+                <Body13 dangerouslySetInnerHTML={{ __html: candidateInfo }} />
               </div>
             )}
             {(campaignWebsite && campaignWebsite !== 'null') ||

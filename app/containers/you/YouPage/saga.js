@@ -373,7 +373,6 @@ function* uploadAvatar(action) {
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
     if (withRedirect) {
-      console.log('redirect to  you4');
       yield put(push('/you'));
     }
   } catch (error) {

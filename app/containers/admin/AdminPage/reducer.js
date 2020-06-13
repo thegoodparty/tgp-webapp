@@ -12,6 +12,7 @@ export const initialState = {
   loading: false,
   error: false,
   articlesFeedback: false,
+  candidate: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -21,33 +22,33 @@ const adminPageReducer = (state = initialState, action) =>
       case types.LOAD_CANDIDATES:
         draft.candidates = false;
         draft.loading = true;
-        draft.errog = false;
+        draft.error = false;
         break;
       case types.LOAD_CANDIDATES_SUCCESS:
         draft.candidates = action.candidates;
         draft.loading = false;
-        draft.errog = false;
+        draft.error = false;
         break;
       case types.LOAD_CANDIDATES_ERROR:
         draft.candidates = false;
         draft.loading = false;
-        draft.errog = action.error;
+        draft.error = action.error;
         break;
 
       case types.LOAD_ALL_USERS:
         draft.users = false;
         draft.loading = true;
-        draft.errog = false;
+        draft.error = false;
         break;
       case types.LOAD_ALL_USERS_SUCCESS:
         draft.users = action.users;
         draft.loading = false;
-        draft.errog = false;
+        draft.error = false;
         break;
       case types.LOAD_ALL_USERS_ERROR:
         draft.users = false;
         draft.loading = false;
-        draft.errog = action.error;
+        draft.error = action.error;
         break;
 
       case types.UPDATE_CANDIDATE_SUCCESS:
@@ -64,10 +65,27 @@ const adminPageReducer = (state = initialState, action) =>
           }
         }
         draft.candidates = updatedCandidates;
+        draft.candidate = candidate;
+        break;
+
+      case types.EDIT_CANDIDATE_SUCCESS:
+        draft.candidate = action.candidate;
         break;
 
       case types.LOAD_ARTICLES_FEEDBACK_SUCCESS:
         draft.articlesFeedback = action.articlesFeedback;
+        break;
+
+      case types.LOAD_CANDIDATE:
+        draft.candidate = false;
+        draft.loading = true;
+        draft.error = false;
+        break;
+      case types.LOAD_CANDIDATE_SUCCESS:
+        draft.candidate = action.candidate;
+        draft.loading = false;
+        draft.error = false;
+        break;
     }
   });
 
