@@ -234,6 +234,7 @@ const CandidateWrapper = ({
   deleteCandidateRankingCallback,
 }) => {
   const [candidateInfo, setCandidateInfo] = useState('');
+  const [campaignWebsite, setCampaignWebsite] = useState('');
   const [socialAccounts, setSocialAccounts] = useState([]);
   const [comparedIncumbent, setComparedIncumbent] = useState({});
   let isGood;
@@ -258,6 +259,19 @@ const CandidateWrapper = ({
         // console.log(e);
       }
       setCandidateInfo(bio);
+
+      let campWebsite = '';
+      try {
+        campWebsite = candidate.campaignWebsite
+          ? decodeURI(candidate.campaignWebsite)
+          : null;
+      } catch (e) {
+        campWebsite = candidate.campaignWebsite;
+        // console.log(e);
+      }
+
+      setCampaignWebsite(campWebsite);
+
       setSocialAccounts([
         { name: 'facebook', url: facebook, icon: FacebookIcon },
         { name: 'twitter', url: twitter, icon: TwitterIcon },
@@ -308,11 +322,6 @@ const CandidateWrapper = ({
   //     setRank(false);
   //   }
   // }, [chamberRank, candidate]);
-
-  const campaignWebsite =
-    candidate && candidate.campaignWebsite
-      ? decodeURI(candidate.campaignWebsite)
-      : null;
 
   const {
     name,
