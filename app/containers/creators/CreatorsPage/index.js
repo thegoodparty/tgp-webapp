@@ -98,7 +98,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     sendMessageToCreatorCallback: (messageInfo) => {
-      console.log(messageInfo)
       dispatch(userActions.sendMessageToCreator(messageInfo));
     },
     setSignupRedirectCookieCallback: redirect => {
