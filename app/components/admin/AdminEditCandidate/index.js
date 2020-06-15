@@ -99,14 +99,14 @@ function AdminEditCandidate({ candidate, saveCandidateCallback }) {
         if (candidate.campaignWebsite.charAt(0) === '%') {
           setCampaignWebsite(decodeURIComponent(candidate.campaignWebsite));
         } else {
-          setCampaignWebsite('<p>' + candidate.campaignWebsite + '</p>');
+          setCampaignWebsite(candidate.campaignWebsite);
         }
       }
       if (candidate.info) {
         if (candidate.info.charAt(0) === '%') {
           setInfo(decodeURIComponent(candidate.info));
         } else {
-          setInfo('<p>' + candidate.info + '</p>');
+          setInfo(candidate.info);
         }
       }
     }
@@ -173,11 +173,18 @@ function AdminEditCandidate({ candidate, saveCandidateCallback }) {
 
   const saveCandidate = () => {
     const data = {};
+    console.log('html', editedInfo.toString('html'));
     if (infoEdited) {
       data.info = editedInfo.toString('html');
+      if (data.info === '<p><br></p>') {
+        data.info = '';
+      }
     }
     if (campaignEdited) {
       data.campaignWebsite = editedCampaign.toString('html');
+      if (data.campaignWebsite === '<p><br></p>') {
+        data.campaignWebsite = '';
+      }
     }
 
     addIfEdited('openSecretsId', data);
