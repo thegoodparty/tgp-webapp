@@ -260,7 +260,7 @@ export const candidateBlocName = (candidate, chamber) => {
     return '';
   }
   if(candidate.blocName){
-    return candidate.blocName;
+    return `#${candidate.blocName}`;
   }
   if (candidate.id < 0) {
     return '#GoodBloc';
