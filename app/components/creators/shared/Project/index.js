@@ -365,9 +365,9 @@ function Project({
               })}
           </OuterLinkList>
         </ProjectContent>
-        {(project.images.length > 0 || project.video) && 
+        {(project.images?.length > 0 || project.video) && 
           <ProjectImageWrapper item xs={12} lg={5}>
-            {project.images.length === 0 && project.video && (
+            {project.images?.length === 0 && project.video && (
               <VideoPlayer 
                 url={project.video} 
                 playing={false} 
@@ -381,12 +381,12 @@ function Project({
                 }} 
               />
             )}
-            {project.images.length === 1 && (
+            {project.images?.length === 1 && (
               <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
             )}
-            {project.images.length > 1 && (
+            {project.images?.length > 1 && (
               <Carousel>
-                {project.images.map((image, index) => (
+                {project.images?.map((image, index) => (
                   <ImageWrapper key={index}>
                     <img
                       src={`https:${image}`}

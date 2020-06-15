@@ -46,7 +46,6 @@ export function CreatorsPage({
   useInjectSaga({ key: 'user', saga });
   const stateUser = userState.user;
   const [user, setUser] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
   useEffect(() => {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
@@ -58,7 +57,6 @@ export function CreatorsPage({
     } else {
       setUser(stateUser);
     }
-    setLoading(false);
   }, [stateUser]);
   const childProps = {
     projects: content ? content.creatorsProjects || [] : [],
@@ -66,7 +64,6 @@ export function CreatorsPage({
     socialLoginCallback,
     socialLoginFailureCallback,
     setSignupRedirectCookieCallback,
-    loading
   };
 
   return (

@@ -13,7 +13,8 @@ import YoutubeIcon from 'images/icons/icons8-youtube.svg';
 const NOTION = 'https://notion.so';
 const FIGMA = 'https://www.figma.com';
 const GOOGLE = 'https://www.google.com';
-const GOOGLE_DRIVE = 'https://drive.google.com/';
+const GOOGLE_DRIVE = 'https://drive.google.com';
+const GOOGLE_DOCS_BASE = 'https://docs.google.com';
 const GOOGLE_DOCS = 'https://docs.google.com/document';
 const GOOGLE_SHEET = 'https://docs.google.com/spreadsheets';
 const GOOGLE_PPT = 'https://docs.google.com/presentation';
@@ -37,12 +38,17 @@ const ICONS_LIST = {
     [VIMEO]: VimeoIcon,
     [YOUTUBE]: YoutubeIcon
 }
-export const getLinkIcon = (link) => {
-    const baseLinks = Object.keys(ICONS_LIST);
-    for(let i = 0; i < baseLinks.length; i++) {
-        if(link.includes(baseLinks[i])) {
-            return ICONS_LIST[baseLinks[i]]
-        }
+export const getBaseUrl = (link) => {
+    let pathArray = link.split( '/' );
+    let protocol = pathArray[0];
+    let host = pathArray[2];
+    let firstParam = pathArray[3];
+    let url = protocol + '//' + host;
+    if(url == GOOGLE_DOCS_BASE) {
+        url += '/' + firstParam;
     }
-    return null;
+    return url
+}
+export const getLinkIcon = (link) => {
+    return ICONS_LIST[getBaseUrl(link)];
 }

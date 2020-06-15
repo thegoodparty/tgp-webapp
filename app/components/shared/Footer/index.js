@@ -46,7 +46,7 @@ const InnerWrapper = styled(Body9)`
   }
 `;
 
-function Footer({isCreators = false}) {
+function Footer({ isCreators = false }) {
   const [withMobileNav, setWithMobileNav] = useState(true);
   const [currentPath, setCurrentPath] = useState(null);
   useEffect(() => {
@@ -71,7 +71,7 @@ function Footer({isCreators = false}) {
     }
   };
 
-  if(currentPath == '/creators' && !isCreators) {
+  if (currentPath == '/creators' && !isCreators) {
     return (<></>)
   }
   return (

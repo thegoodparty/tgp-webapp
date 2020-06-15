@@ -7,20 +7,17 @@ import CreatorsHeaderWrapper from 'components/creators/shared/CreatorsHeaderWrap
 import UniteSection from 'components/creators/shared/UniteSection';
 import ProjectsSection from 'components/creators/shared/ProjectsSection';
 import { Join } from 'components/creators/shared/modals';
-import LoadingAnimation from 'components/shared/LoadingAnimation';
 const CreatorsWrapper = ({
   projects = [],
   user,
   socialLoginCallback,
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
-  loading
 }) => {
   const [join, setJoin] = useState(false);
   useEffect(() => {
     setJoin(false);
   }, [user])
-  if(loading) return (<LoadingAnimation />);
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <CreatorsHeaderWrapper toggleJoin={join => setJoin(join)} user={user} />
