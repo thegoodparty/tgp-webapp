@@ -5,7 +5,7 @@ const initialState = {
   content: false,
   loading: false,
   error: false,
-  appVersion: '1.0.14.7',
+  appVersion: '1.0.15',
   modalArticleId: false
 };
 
