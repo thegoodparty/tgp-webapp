@@ -13,6 +13,7 @@ const CreatorsWrapper = ({
   socialLoginCallback,
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
+  sendMessageToCreatorCallback
 }) => {
   const [join, setJoin] = useState(false);
   useEffect(() => {
@@ -29,6 +30,7 @@ const CreatorsWrapper = ({
           projects={projects}
           toggleJoin={join => setJoin(join)}
           user={user}
+          sendMessageToCreatorCallback={sendMessageToCreatorCallback}
         />
       </Wrapper>
       <Footer isCreators={true} />
@@ -49,7 +51,8 @@ CreatorsWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
-  setSignupRedirectCookieCallback: PropTypes.func
+  setSignupRedirectCookieCallback: PropTypes.func,
+  sendMessageToCreatorCallback: PropTypes.func
 };
 
 export default CreatorsWrapper;

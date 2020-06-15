@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Fade, TextField } from '@material-ui/core';
@@ -38,7 +38,21 @@ const SubmitWrapper = styled(FooterWrapper)`
   }
 `;
 
-function ProjectProposal({ open, handleClose, project }) {
+function ProjectProposal({ open, handleClose, project, user, sendMessageToCreatorCallback }) {
+  console.log(user)
+  const [message, setMessage] = useState('');
+  const sendMessage = () => {
+    const messageInfo = {
+      message,
+      senderName: user.name,
+      senderEmail: user.email,
+      projectName: project.title,
+      creatorEmail: project.email,
+      creatorName: project.creatorName
+    }
+    sendMessageToCreatorCallback(messageInfo)
+    handleClose()
+  }
   return (
     <OverlayModal
       open={open}
@@ -59,9 +73,11 @@ function ProjectProposal({ open, handleClose, project }) {
             variant="outlined"
             placeholder="Let them know how you can help with this project…"
             autoFocus
+            value={message}
+            onChange={ev => setMessage(ev.target.value)}
           />
           <SubmitWrapper>
-            <BlueButton color="primary" variant="contained">
+            <BlueButton color="primary" variant="contained" disabled={message.length == 0} onClick={sendMessage}>
               Send
             </BlueButton>
             <FooterMessage>
@@ -78,6 +94,8 @@ ProjectProposal.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
   project: PropTypes.object,
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  sendMessageToCreatorCallback: PropTypes.func
 };
 
 export default ProjectProposal;

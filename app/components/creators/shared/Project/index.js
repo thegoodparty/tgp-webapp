@@ -312,6 +312,7 @@ function Project({
   clickShowMore = null,
   toggleJoin,
   user,
+  sendMessageToCreatorCallback
 }) {
   const [touch, setTouch] = useState(false);
 
@@ -338,6 +339,8 @@ function Project({
             project={project}
             open={touch}
             handleClose={() => setTouch(false)}
+            sendMessageToCreatorCallback={sendMessageToCreatorCallback}
+            user={user}
           />
           <Topics>
             {project.topics &&
@@ -439,7 +442,8 @@ Project.propTypes = {
   showMore: PropTypes.bool,
   projects: PropTypes.array,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  toggleJoin: PropTypes.func
+  toggleJoin: PropTypes.func,
+  sendMessageToCreatorCallback: PropTypes.func
 };
 
 export default Project;

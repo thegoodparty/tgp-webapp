@@ -40,7 +40,8 @@ export function CreatorsPage({
   dispatch,
   socialLoginCallback,
   socialLoginFailureCallback,
-  setSignupRedirectCookieCallback
+  setSignupRedirectCookieCallback,
+  sendMessageToCreatorCallback
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -64,6 +65,7 @@ export function CreatorsPage({
     socialLoginCallback,
     socialLoginFailureCallback,
     setSignupRedirectCookieCallback,
+    sendMessageToCreatorCallback
   };
 
   return (
@@ -95,6 +97,10 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    sendMessageToCreatorCallback: (messageInfo) => {
+      console.log(messageInfo)
+      dispatch(userActions.sendMessageToCreator(messageInfo));
+    },
     setSignupRedirectCookieCallback: redirect => {
       setSignupRedirectCookie(redirect);
     },

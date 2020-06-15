@@ -189,7 +189,13 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
-
   },
+
+  creator: {
+    message: {
+      url: `${base}creator/ich-email`,
+      method: 'POST',
+    }
+  }
 };
 export default api;

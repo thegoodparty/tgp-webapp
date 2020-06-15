@@ -24,6 +24,22 @@ import selectUser from './selectors';
 import { candidateBlocName } from '../../../helpers/electionsHelper';
 import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
+function* sendCreatorMessage(action) {
+  try {
+    const { messageInfo } = action;
+    const api = tgpApi.creator.message;
+    const payload = messageInfo;
+    yield call(requestHelper, api, payload);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        `This message was sent to ${messageInfo.creatorEmail}`,
+      ),
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* register(action) {
   try {
     const { email, name } = action;
@@ -567,6 +583,8 @@ export default function* saga() {
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
+  const creatorMessageAction = yield takeLatest(types.SEND_MESSAGE_TO_CREATOR, sendCreatorMessage);
+
   const saveUserRankingAction = yield takeLatest(
     types.SAVE_USER_RANKING,
     saveUserRanking,
