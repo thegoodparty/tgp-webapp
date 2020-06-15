@@ -38,7 +38,7 @@ const ProjectBodyWrapper = styled(Grid)`
   padding-bottom: 20px;
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
   }
 `;
 
@@ -130,11 +130,11 @@ const LinkIcon = styled(LazyLoadImage)`
 `;
 
 const ProjectFooter = styled(Grid)`
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
-    padding-top: 0.5rem;
+    padding-top: 1rem;
   }
 `;
 
@@ -304,7 +304,7 @@ const VideoPlayer = styled(ReactPlayer)`
 `;
 
 const OuterLinkList = styled.div`
-  margin-top: 10px;
+  margin-top: 16px;
 `;
 function Project({
   project,

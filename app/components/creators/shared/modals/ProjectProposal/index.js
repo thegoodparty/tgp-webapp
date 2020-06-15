@@ -38,11 +38,6 @@ const SubmitWrapper = styled(FooterWrapper)`
   }
 `;
 
-const SendButton = styled(BlueButton)`
-  && {
-    margin-bottom: 0.7rem;
-  }
-`;
 function ProjectProposal({ open, handleClose, project }) {
   return (
     <OverlayModal
@@ -66,11 +61,11 @@ function ProjectProposal({ open, handleClose, project }) {
             autoFocus
           />
           <SubmitWrapper>
-            <SendButton color="primary" variant="contained">
+            <BlueButton color="primary" variant="contained">
               Send
-            </SendButton>
+            </BlueButton>
             <FooterMessage>
-              Your message will be emailed to Kai Gradert
+              Your message will be emailed to {project.creatorName}
             </FooterMessage>
           </SubmitWrapper>
         </BodyWrapper>
