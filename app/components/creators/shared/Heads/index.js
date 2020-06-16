@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import SampleAvatarImg1 from 'images/avatars/ellipse_1.png';
 import SampleAvatarImg2 from 'images/avatars/ellipse_5.png';
 import SampleAvatarImg3 from 'images/avatars/ellipse_8.png';
@@ -31,7 +31,7 @@ const AvatarsWrapper = styled.div`
   }
 `;
 
-const Avatar = styled.img`
+const Avatar = styled(LazyLoadImage)`
   width: 32px;
   height: 32px;
   border-radius: 16px;

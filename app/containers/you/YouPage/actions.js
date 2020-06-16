@@ -163,6 +163,11 @@ const deleteGuestRankingAction = rankToDelete => ({
   rankToDelete,
 });
 
+const sendMessageToCreator = messageInfo => ({
+  type: types.SEND_MESSAGE_TO_CREATOR,
+  messageInfo
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -190,4 +195,5 @@ export default {
   userRankingActionSuccess,
   saveGuestRankingAction,
   deleteGuestRankingAction,
+  sendMessageToCreator
 };

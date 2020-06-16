@@ -189,7 +189,14 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
-
   },
+
+  creator: {
+    message: {
+      url: `${base}creator/engagement-email`,
+      method: 'POST',
+      withAuth: true,
+    }
+  }
 };
 export default api;

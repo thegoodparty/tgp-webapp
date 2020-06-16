@@ -38,6 +38,8 @@ const GUEST_RANKING = '@@tgp/user/GUEST_RANKING';
 const SAVE_GUEST_RANKING = '@@tgp/user/SAVE_GUEST_RANKING';
 const DELETE_GUEST_RANKING = '@@tgp/user/DELETE_GUEST_RANKING';
 
+const SEND_MESSAGE_TO_CREATOR = '@@tgp/creator/sendMessageToCreator'
+
 export default {
   REGISTER,
   REGISTER_SUCCESS,
@@ -65,4 +67,5 @@ export default {
   USER_RANKING_SUCCESS,
   SAVE_GUEST_RANKING,
   DELETE_GUEST_RANKING,
+  SEND_MESSAGE_TO_CREATOR
 };

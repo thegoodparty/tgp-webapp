@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Fade, TextField } from '@material-ui/core';
@@ -25,7 +25,7 @@ const CollaboratorsWrapper = styled.div`
 const Message = styled(TextField)`
   && {
     width: 100%;
-    margin-top: 2.5rem;
+    margin-top: 1rem;
     background: ${({ theme }) => theme.creators.colors.formColor};
     border-radius: 4px;
   }
@@ -38,12 +38,19 @@ const SubmitWrapper = styled(FooterWrapper)`
   }
 `;
 
-const SendButton = styled(BlueButton)`
-  && {
-    margin-bottom: 0.7rem;
+function ProjectProposal({ open, handleClose, project, user, sendMessageToCreatorCallback }) {
+  console.log(user)
+  const [message, setMessage] = useState('');
+  const sendMessage = () => {
+    const messageInfo = {
+      message,
+      projectName: project.title,
+      creatorEmail: project.email,
+      creatorName: project.creatorName
+    }
+    sendMessageToCreatorCallback(messageInfo)
+    handleClose()
   }
-`;
-function ProjectProposal({ open, handleClose, project }) {
   return (
     <OverlayModal
       open={open}
@@ -64,13 +71,15 @@ function ProjectProposal({ open, handleClose, project }) {
             variant="outlined"
             placeholder="Let them know how you can help with this project…"
             autoFocus
+            value={message}
+            onChange={ev => setMessage(ev.target.value)}
           />
           <SubmitWrapper>
-            <SendButton color="primary" variant="contained">
+            <BlueButton color="primary" variant="contained" disabled={message.length === 0} onClick={sendMessage}>
               Send
-            </SendButton>
+            </BlueButton>
             <FooterMessage>
-              Your message will be emailed to Kai Gradert
+              Your message will be emailed to {project.creatorName}
             </FooterMessage>
           </SubmitWrapper>
         </BodyWrapper>
@@ -83,6 +92,8 @@ ProjectProposal.propTypes = {
   open: PropTypes.bool,
   handleClose: PropTypes.func,
   project: PropTypes.object,
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  sendMessageToCreatorCallback: PropTypes.func
 };
 
 export default ProjectProposal;

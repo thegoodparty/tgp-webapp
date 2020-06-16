@@ -6,9 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
-
-import { Hidden } from '@material-ui/core';
 
 const CollaboratorWrapper = styled.div`
   margin-right: -10px;
@@ -16,7 +15,7 @@ const CollaboratorWrapper = styled.div`
     z-index: 2;
   }
 `;
-const Collaborator = styled.img`
+const Collaborator = styled(LazyLoadImage)`
   width: 2.5rem;
   height: 2.5rem;
   border: 2px solid white;
