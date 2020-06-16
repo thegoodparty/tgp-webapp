@@ -333,7 +333,7 @@ function Project({
   return (
     <ProjectWrapper>
       <ProjectBodyWrapper container>
-        <ProjectContent item xs={12} lg={(project.images.length > 0 || project.video) ? 7 : 12}>
+        <ProjectContent item xs={12} lg={(project.images?.length > 0 || project.video) ? 7 : 12}>
           <Title>{project.title}</Title>
           <ProjectProposal
             project={project}

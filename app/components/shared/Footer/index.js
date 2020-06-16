@@ -71,7 +71,7 @@ function Footer({ isCreators = false }) {
     }
   };
 
-  if (currentPath == '/creators' && !isCreators) {
+  if (currentPath === '/creators' && !isCreators) {
     return (<></>)
   }
   return (

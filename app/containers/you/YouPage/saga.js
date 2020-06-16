@@ -21,8 +21,8 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import { candidateBlocName } from '../../../helpers/electionsHelper';
-import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
+import { candidateBlocName } from 'helpers/electionsHelper';
+import { getSignupRedirectCookie } from 'helpers/cookieHelper';
 
 function* sendCreatorMessage(action) {
   try {

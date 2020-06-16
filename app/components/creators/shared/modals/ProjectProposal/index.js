@@ -44,8 +44,6 @@ function ProjectProposal({ open, handleClose, project, user, sendMessageToCreato
   const sendMessage = () => {
     const messageInfo = {
       message,
-      senderName: user.name,
-      senderEmail: user.email,
       projectName: project.title,
       creatorEmail: project.email,
       creatorName: project.creatorName
@@ -77,7 +75,7 @@ function ProjectProposal({ open, handleClose, project, user, sendMessageToCreato
             onChange={ev => setMessage(ev.target.value)}
           />
           <SubmitWrapper>
-            <BlueButton color="primary" variant="contained" disabled={message.length == 0} onClick={sendMessage}>
+            <BlueButton color="primary" variant="contained" disabled={message.length === 0} onClick={sendMessage}>
               Send
             </BlueButton>
             <FooterMessage>

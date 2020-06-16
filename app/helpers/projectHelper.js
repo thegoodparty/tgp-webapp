@@ -44,7 +44,7 @@ export const getBaseUrl = (link) => {
     let host = pathArray[2];
     let firstParam = pathArray[3];
     let url = protocol + '//' + host;
-    if(url == GOOGLE_DOCS_BASE) {
+    if(url === GOOGLE_DOCS_BASE) {
         url += '/' + firstParam;
     }
     return url
