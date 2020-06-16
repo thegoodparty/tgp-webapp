@@ -193,7 +193,7 @@ const api = {
 
   creator: {
     message: {
-      url: `${base}creator/engagement-email`,
+      url: `${base}creators/engagement-email`,
       method: 'POST',
       withAuth: true,
     }
