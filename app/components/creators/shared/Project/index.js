@@ -80,7 +80,7 @@ const Topics = styled.div`
 `;
 
 const Topic = styled.span`
-  background-color: ${({ theme }) => theme.creators.colors.lightGray};
+  background-color: ${({ theme }) => theme.colors.blue};
   color: #fff;
   border-radius: 0.3rem;
   font: normal 600 10px normal;
@@ -94,6 +94,7 @@ const Summary = styled.p`
   font-family: unset;
   color: #000;
   margin: 0;
+  white-space: pre-line;
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
@@ -139,20 +140,24 @@ const ProjectFooter = styled(Grid)`
 `;
 
 const FooterAction = styled.a`
-  color: ${({ theme }) => theme.creators.colors.lightGray};
-  font: normal 600 16px/40px normal;
+  background-color: ${({ theme }) => theme.colors.blue};
+  color: white;
+  padding: 14px 2rem;
+  border-radius: 25px;
+  font: normal 500 19px/20px normal;
   font-family: unset;
   text-transform: uppercase;
   cursor: pointer;
   margin-right: 0;
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsTablet}) {
-    margin-right: 2.5rem;
+    padding:0.5rem 1rem;
+    font-size: 13px;
   }
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
-    margin-right: 0;
-    font-size: 13px;
+    text-align: center;
+    width: 100%;
   }
 `;
 
@@ -174,7 +179,6 @@ const FooterActions = styled.div`
   
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
-    padding-right: 1.5rem;
   }
   @media only screen and (min-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsTablet}) {
@@ -416,12 +420,9 @@ function Project({
               </FooterActionIcon>
               102
             </FooterAction> */}
-            <FooterAction onClick={onClickHelp}>
+
+            <FooterAction target="_blank" href="https://google.com">
               {/* onClick={() => setTouch(true)} */}
-              <FooterActionIcon>
-                {' '}
-                <Mail />{' '}
-              </FooterActionIcon>
               I can help
             </FooterAction>
             {/* <FooterAction>
