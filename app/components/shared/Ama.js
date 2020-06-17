@@ -91,7 +91,11 @@ const Ama = ({ sendAmaCallback }) => {
         <span role="img" aria-label="thinker">
           🤔
         </span>{' '}
-        Ask a question
+        Ask a question or{' '}
+        <span role="img" aria-label="light-bulb">
+          💡
+        </span>
+        Give a Suggestion
       </AskQuestion>
       <TgpDialog onClose={closeModal} open={open}>
         <Wrapper>
