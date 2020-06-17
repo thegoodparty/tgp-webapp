@@ -11,7 +11,6 @@ import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
 
-
 function* loadZip(action) {
   try {
     const { zip, redirect } = action;
@@ -41,13 +40,20 @@ function* loadCookieZip() {
   }
 }
 
-function* loadPresidential() {
+function* loadPresidential(action) {
   try {
+    const { zip, state } = action;
     const api = tgpApi.allPresidential;
     const user = yield call(getUserFromStateOrCookie);
-    let payload = null;
-    if (user && user.shortState) {
-      payload = { userState: user.shortState };
+    let payload = {};
+    if (zip) {
+      payload.zip = zip;
+    }
+    if (state) {
+      payload.state = state;
+    }
+    if (user?.shortState) {
+      payload.userState = user.shortState;
     }
 
     const { presidential } = yield call(requestHelper, api, payload);
@@ -178,7 +184,10 @@ function* getUserFromStateOrCookie() {
 // Individual exports for testing
 export default function* saga() {
   const zipAction = yield takeLatest(types.LOAD_ZIP, loadZip);
-  yield takeLatest(types.LOAD_ALL_PRESIDENTIAL, loadPresidential);
+  const presAction = yield takeLatest(
+    types.LOAD_ALL_PRESIDENTIAL,
+    loadPresidential,
+  );
   const houseAction = yield takeLatest(
     types.LOAD_HOUSE_CANDIDATES,
     loadHouseCandidates,

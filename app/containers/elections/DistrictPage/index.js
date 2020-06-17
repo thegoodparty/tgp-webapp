@@ -64,7 +64,7 @@ export function DistrictPage({
       dispatch(districtActions.loadZipAction(zip));
     }
     if (!presidential) {
-      dispatch(districtActions.loadAllPresidentialAction());
+      dispatch(districtActions.loadAllPresidentialAction(zip, false));
     }
   }, [zip]);
 
