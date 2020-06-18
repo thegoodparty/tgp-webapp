@@ -85,7 +85,7 @@ const ProjectButtonLink = styled.a`
 function ProjectsSection({ projects, user, toggleJoin, sendMessageToCreatorCallback }) {
   const [listProject, setListProject] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(12);
 
   const onCloseShareModal = () => {
     setShowShareModal(false);
@@ -125,7 +125,7 @@ function ProjectsSection({ projects, user, toggleJoin, sendMessageToCreatorCallb
         />
       ))}
       {projects && limit < projects.length && (
-        <Project showMore clickShowMore={() => setLimit(limit + 6)} />
+        <Project showMore clickShowMore={() => setLimit(limit + 12)} />
       )}
       <ShareModal
         open={showShareModal}

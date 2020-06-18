@@ -59,7 +59,6 @@ const Title = styled.h3`
   color: #000;
   margin: 0;
   margin-bottom: 1rem;
-  cursor: pointer;
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsTablet}) {
     font-size: 27px;
@@ -421,7 +420,7 @@ function Project({
               102
             </FooterAction> */}
 
-            <FooterAction target="_blank" href="https://google.com">
+            <FooterAction target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform">
               {/* onClick={() => setTouch(true)} */}
               I can help
             </FooterAction>
