@@ -99,7 +99,7 @@ const RankedCard = ({
         userState={candidates.userState}
       />
       <YourChoices>
-        {sortedRank.length > 2 ? 'YOUR RANKED CHOICES' : 'YOUR CHOICE'}
+        YOUR CHOICE{sortedRank.length > 1 && 'S'}
       </YourChoices>
       {sortedRank.map((rankedId, index) => (
         <React.Fragment key={rankedId}>
