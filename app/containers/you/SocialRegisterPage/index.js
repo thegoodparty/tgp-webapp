@@ -84,9 +84,20 @@ function mapDispatchToProps(dispatch) {
     socialLoginCallback: user => {
       dispatch(userActions.socialRegisterAction(user));
     },
-    socialLoginFailureCallback: err => {
-      console.log('err register', err);
-      dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    socialLoginFailureCallback: (err, b, c) => {
+      if (err.toString().includes('[google][load] Failed to load SDK')) {
+        dispatch(
+          snackbarActions.showSnakbarAction(
+            'Your browser is blocking Google Cookies.',
+            'error',
+          ),
+        );
+      } else {
+        console.log('error social register', err);
+        dispatch(
+          snackbarActions.showSnakbarAction('Error Registering', 'error'),
+        );
+      }
     },
     closeModalCallback: () => {
       dispatch(push(window.location.pathname));

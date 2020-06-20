@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Hidden from '@material-ui/core/Hidden';
 import CreatorsDesktopHeader from '../CreatorsDesktopHeader';
 
 const Spacer = styled.div`

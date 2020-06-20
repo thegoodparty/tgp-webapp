@@ -46,16 +46,16 @@ const InnerWrapper = styled(Body9)`
   }
 `;
 
-function Footer() {
+function Footer({ isCreators = false }) {
   const [withMobileNav, setWithMobileNav] = useState(true);
-  const [isCreatorsNav, setIsCreatorsNav] = useState(false);
+  const [currentPath, setCurrentPath] = useState(null);
   useEffect(() => {
     history.listen(location => {
       updateMobileNav(location);
-      updateIsCreatorsNav(location);
+      setCurrentPath(location.pathname)
     });
     updateMobileNav(window.location);
-    updateIsCreatorsNav(window.location);
+    setCurrentPath(window.location.pathname)
   }, []);
 
   const updateMobileNav = location => {
@@ -70,19 +70,14 @@ function Footer() {
       setWithMobileNav(true);
     }
   };
-  const updateIsCreatorsNav = location => {
-    const { pathname } = location;
-    if (pathname === '/creators') {
-      setIsCreatorsNav(true);
-    } else {
-      setIsCreatorsNav(false);
-    }
-  };
 
+  if (currentPath === '/creators' && !isCreators) {
+    return (<></>)
+  }
   return (
-    <Wrapper className={(withMobileNav ? 'withNav' : '') + (isCreatorsNav ? ' creatorsFooter' : '')}>
-      <InnerWrapper className={(isCreatorsNav ? ' creatorsFooterContent' : '')}>
-        PAID FOR BY THE GOOD PARTY | thegoodparty.org
+    <Wrapper className={(withMobileNav ? 'withNav' : '') + (isCreators ? ' creatorsFooter' : '')}>
+      <InnerWrapper className={(isCreators ? ' creatorsFooterContent' : '')}>
+        PAID FOR BY THE GOOD PARTY  | thegoodparty.org
         <br />
         NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
       </InnerWrapper>

@@ -82,10 +82,10 @@ const ProjectButtonLink = styled.a`
     width: 100%;
   }
 `;
-function ProjectsSection({ projects, user, toggleJoin }) {
+function ProjectsSection({ projects, user, toggleJoin, sendMessageToCreatorCallback }) {
   const [listProject, setListProject] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(12);
 
   const onCloseShareModal = () => {
     setShowShareModal(false);
@@ -121,10 +121,11 @@ function ProjectsSection({ projects, user, toggleJoin }) {
           key={project.id}
           user={user}
           toggleJoin={toggleJoin}
+          sendMessageToCreatorCallback={sendMessageToCreatorCallback}
         />
       ))}
       {projects && limit < projects.length && (
-        <Project showMore clickShowMore={() => setLimit(limit + 6)} />
+        <Project showMore clickShowMore={() => setLimit(limit + 12)} />
       )}
       <ShareModal
         open={showShareModal}
@@ -138,7 +139,8 @@ function ProjectsSection({ projects, user, toggleJoin }) {
 ProjectsSection.propTypes = {
   projects: PropTypes.array,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  toggleJoin: PropTypes.func
+  toggleJoin: PropTypes.func,
+  sendMessageToCreatorCallback: PropTypes.func
 };
 
 export default ProjectsSection;

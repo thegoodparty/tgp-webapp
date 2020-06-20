@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Drawer,
   List,
   ListItem,
-  ListItemIcon,
-  ListItemText,
   Hidden,
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoCaps from 'images/logo-caps.svg';
-import { Body14, Body9 } from 'components/shared/typogrophy';
+import { Body14 } from 'components/shared/typogrophy';
 import Body from '../typography/Body';
 
 const Wrapper = styled.div`
@@ -182,9 +180,9 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
         <Hidden smUp>
           <Drawer anchor="top" open={menu} onClose={() => setMenu(false)}>
             <List>
-              <ListItem button onClick={() => setMenu(false)}>
+              {/* <ListItem button onClick={() => setMenu(false)}>
                 <TopLink className="menu-item">About</TopLink>
-              </ListItem>
+              </ListItem> */}
               <ListItem button onClick={() => setMenu(false)}>
                 <TopLink className="menu-item active">Creators</TopLink>
               </ListItem>

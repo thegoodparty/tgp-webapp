@@ -450,14 +450,11 @@ const VsList = ({
           ))}
         </Side>
       </Row>
-      {good.length === 0 && (
-        <a href="https://forms.gle/kydnhUp6xqF6RUpb9" target="_blank">
-          <NominateWrapper>
-            <MailOutlineIcon />{' '}
-            <NominateText>Nominate a candidate</NominateText>
-          </NominateWrapper>
-        </a>
-      )}
+      <a href="https://forms.gle/kydnhUp6xqF6RUpb9" target="_blank">
+        <NominateWrapper>
+          <MailOutlineIcon /> <NominateText>Nominate a candidate</NominateText>
+        </NominateWrapper>
+      </a>
       {unknown && unknown.length > 0 && (
         <UnknownWrapper>
           <UnknownTitle>NOT YET RATED</UnknownTitle>
