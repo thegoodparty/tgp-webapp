@@ -77,9 +77,9 @@ function Footer({ isCreators = false }) {
   return (
     <Wrapper className={(withMobileNav ? 'withNav' : '') + (isCreators ? ' creatorsFooter' : '')}>
       <InnerWrapper className={(isCreators ? ' creatorsFooterContent' : '')}>
-        PAID FOR BY THE GOOD PARTY
+        PAID FOR BY THE GOOD PARTY  | thegoodparty.org
         <br />
-        NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATES COMMITTEE.
+        NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
       </InnerWrapper>
     </Wrapper>
   );
