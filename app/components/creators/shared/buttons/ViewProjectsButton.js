@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 
-const JoinNowButton = styled(Button)`
+const ViewProjectsButton = styled(Button)`
   && {
     background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
@@ -27,4 +27,4 @@ const JoinNowButton = styled(Button)`
   }
 `;
 
-export default JoinNowButton;
+export default ViewProjectsButton;

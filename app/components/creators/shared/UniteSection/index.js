@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import { Hidden } from '@material-ui/core';
 
 import { Body, Body15 } from '../typography';
-import { JoinNowButton } from '../buttons';
+import { ViewProjectsButton } from '../buttons';
 import Heads from '../Heads';
 
 import LogoCaps from 'images/logo.svg';
@@ -20,15 +20,27 @@ import SingleLineCreatorsTitle from 'images/title--creators_of_the_world.svg';
 import MultiLineCreatorsTitle from 'images/title--creators_of_the_world_2.svg';
 
 const SectionWrapper = styled.div`
-  padding-bottom: 3rem;
-  padding: 3rem 8rem 6rem;
+  padding: 3rem 8rem 0;
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsTablet}) {
     padding: 4rem;
+    padding-bottom: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
     padding: 2rem;
+    padding-bottom: 0;
+  }
+`;
+const Spare = styled.div`
+  height: 6rem;
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.creators.breakpoints.creatorsTablet}) {
+    height: 4rem;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.creators.breakpoints.creatorsMobile}) {
+    height: 2rem;
   }
 `;
 const Audience = styled.p`
@@ -42,7 +54,7 @@ const Audience = styled.p`
     font-size: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-  theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     font-size: 17px;
     line-height: 140%;
     margin: 1.5rem 0;
@@ -300,7 +312,7 @@ function UniteSection({ user, toggleJoin }) {
         Designers · Writers · Podcasters <PodcastersPunct> · </PodcastersPunct> <PodcastersBr />Influencers <InfluencersPunct> · </InfluencersPunct> <InfluencersBr />Makers <MakersPunct> · </MakersPunct> <MakersBr />Coders <CodersPunct> · </CodersPunct> <CodersBr /><span style={{ whiteSpace: 'nowrap' }}>Content
         Creators</span> <VideoPunct> · </VideoPunct><VideoBr /> Videographers
       </Audience>
-      
+
       {/* <Audience>
         Designers · Videographers · Podcasters · Writers · Content
         Creators · Coders ·  Influencers · Makers
@@ -311,17 +323,18 @@ function UniteSection({ user, toggleJoin }) {
           Let's all build <Logo src={LogoCaps} alt="logo" /> the good party
         </LogoTitle>
       </p>
+      <div className="text-center">
+        <ViewProjectsButton
+          variant="contained"
+          color="primary"
+          href="#projects-section"
+        >
+          View Projects
+        </ViewProjectsButton>
+      </div>
       {!user && (
         <>
-          <div className="text-center">
-            <JoinNowButton
-              variant="contained"
-              color="primary"
-              onClick={() => toggleJoin(true)}
-            >
-              Join Now
-            </JoinNowButton>
-          </div>
+
           {/* <CreatorsCount>640 Creators have joined so far</CreatorsCount> */}
           <Heads />
         </>
@@ -345,13 +358,13 @@ function UniteSection({ user, toggleJoin }) {
         Help with any project you can from the list below or add your own. All
         projects are open-source and free for good.
       </Description>
+      <Spare id="projects-section"></Spare>
     </SectionWrapper>
   );
 }
 
 UniteSection.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  toggleJoin: PropTypes.func,
 };
 
 export default UniteSection;

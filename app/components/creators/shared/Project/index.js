@@ -239,10 +239,11 @@ const ProjectImageWrapper = styled(Grid)`
         li.thumb {
           height: 48px;
           width: 48px !important;
+          line-height: 38px;
+          vertical-align: middle;
           margin-right: 0.5rem;
           img {
             width: 100% !important;
-            height: 100%;
           }
         }
       }
@@ -420,7 +421,7 @@ function Project({
               102
             </FooterAction> */}
 
-            <FooterAction target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform">
+            <FooterAction target="_blank" href={project.ichLink}>
               {/* onClick={() => setTouch(true)} */}
               I can help
             </FooterAction>
