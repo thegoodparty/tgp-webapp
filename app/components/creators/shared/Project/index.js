@@ -244,6 +244,7 @@ const ProjectImageWrapper = styled(Grid)`
           margin-right: 0.5rem;
           img {
             width: 100% !important;
+            vertical-align: middle;
           }
         }
       }
