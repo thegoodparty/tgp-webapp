@@ -66,10 +66,12 @@ const adminPageReducer = (state = initialState, action) =>
         }
         draft.candidates = updatedCandidates;
         draft.candidate = candidate;
+        draft.loading = false;
         break;
 
       case types.EDIT_CANDIDATE_SUCCESS:
         draft.candidate = action.candidate;
+        draft.loading = false;
         break;
 
       case types.LOAD_ARTICLES_FEEDBACK_SUCCESS:
@@ -81,10 +83,15 @@ const adminPageReducer = (state = initialState, action) =>
         draft.loading = true;
         draft.error = false;
         break;
+
       case types.LOAD_CANDIDATE_SUCCESS:
         draft.candidate = action.candidate;
         draft.loading = false;
         draft.error = false;
+        break;
+
+      case types.UPDATE_CANDIDATE_IMAGE:
+        draft.loading = true;
         break;
     }
   });

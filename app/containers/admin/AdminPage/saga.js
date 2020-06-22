@@ -43,7 +43,7 @@ function* loadArticlesFeedback() {
     yield put(snackbarActions.showSnakbarAction('Loading Articles Feedback'));
     const api = tgpApi.admin.articlesFeedback;
     const { articles } = yield call(requestHelper, api, null);
-    console.log('articles', articles)
+    console.log('articles', articles);
     yield put(actions.loadArticlesFeedbackSuccess(articles));
   } catch (error) {
     console.log(error);
@@ -60,21 +60,40 @@ function* updateCandidate(action) {
     const api = tgpApi.admin.updateCandidate;
     const payload = { id, updatedFields, chamber, isIncumbent };
     const { candidate } = yield call(requestHelper, api, payload);
-    if(isEdit) {
+    if (isEdit) {
       yield put(actions.editCandidateSuccess(candidate));
     } else {
       yield put(actions.updateCandidateSuccess(candidate));
     }
-
   } catch (error) {
     console.log(error);
     yield put(
-      snackbarActions.showSnakbarAction('Error Loading Candidates', 'error'),
+      snackbarActions.showSnakbarAction('Error Updating Candidate', 'error'),
     );
     yield put(actions.loadCandidatesError(error));
   }
 }
 
+function* updateCandidateImage(action) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Updating Candidate Image'));
+    const { base64, candidate, chamber } = action;
+    const { id, isIncumbent } = candidate;
+    const api = tgpApi.admin.updateCandidateImage;
+    const payload = { base64, id, chamber, isIncumbent };
+    const response = yield call(requestHelper, api, payload);
+    yield put(actions.editCandidateSuccess(response.candidate));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error Upading Candidate Iamge',
+        'error',
+      ),
+    );
+    yield put(actions.loadCandidatesError(error));
+  }
+}
 
 function* loadCandidate(action) {
   try {
@@ -82,7 +101,6 @@ function* loadCandidate(action) {
     const { id, chamber, isIncumbent } = action;
     const payload = { id, chamber, isIncumbent };
     const candidate = yield call(requestHelper, api, payload);
-    console.log('candidate', candidate)
     yield put(actions.loadCandidateActionSuccess(candidate));
   } catch (error) {
     console.log(error);
@@ -99,9 +117,10 @@ export default function* saga() {
     types.UPDATE_CANDIDATE,
     updateCandidate,
   );
-
-  const loadCandAction = yield takeLatest(
-    types.LOAD_CANDIDATE,
-    loadCandidate,
+  const updateCandImageAction = yield takeLatest(
+    types.UPDATE_CANDIDATE_IMAGE,
+    updateCandidateImage,
   );
+
+  const loadCandAction = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
 }

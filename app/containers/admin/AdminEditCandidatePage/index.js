@@ -28,12 +28,13 @@ export function AdminEditCandidatePage({
   id,
   chamber,
   saveCandidateCallback,
+  uploadImageCallback,
   dispatch,
 }) {
   useInjectReducer({ key: 'adminPage', reducer });
   useInjectSaga({ key: 'adminPage', saga });
 
-  const { candidate } = adminState;
+  const { candidate, loading } = adminState;
   const [chamberName, chamberIncumbent] = chamber?.split('-');
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -52,7 +53,10 @@ export function AdminEditCandidatePage({
 
   const childProps = {
     candidate,
+    chamber,
     saveCandidateCallback,
+    uploadImageCallback,
+    loading
   };
 
   return (
@@ -76,6 +80,7 @@ AdminEditCandidatePage.propTypes = {
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
   saveCandidateCallback: PropTypes.func,
+  uploadImageCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -96,9 +101,12 @@ function mapDispatchToProps(dispatch, ownProps) {
           updatedFields,
           chamber ? chamber.toLowerCase() : 'presidential',
           isIncumbent,
-          true
+          true,
         ),
       );
+    },
+    uploadImageCallback: (base64, candidate, chamber) => {
+      dispatch(adminActions.updateCandidateImage(base64, candidate, chamber));
     },
   };
 }
