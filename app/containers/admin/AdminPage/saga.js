@@ -77,7 +77,10 @@ function* updateCandidate(action) {
 function* updateCandidateImage(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Candidate Image'));
-    const { base64, candidate, chamber } = action;
+    let { base64, candidate, chamber } = action;
+    if (chamber === 'presidential-i') {
+      chamber = 'presidential';
+    }
     const { id, isIncumbent } = candidate;
     const api = tgpApi.admin.updateCandidateImage;
     const payload = { base64, id, chamber, isIncumbent };
