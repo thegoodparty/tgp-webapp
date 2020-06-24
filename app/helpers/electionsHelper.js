@@ -12,7 +12,7 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'GP') {
     return 'GREEN PARTY';
   }
-  if (partyLetter === 'LP') {
+  if (partyLetter === 'LP' || partyLetter === 'L') {
     return 'LIBERTARIAN';
   }
   if (partyLetter === 'I') {
