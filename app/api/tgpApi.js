@@ -179,6 +179,11 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    updateCandidateImage: {
+      url: `${base}admin/candidate-image`,
+      method: 'PUT',
+      withAuth: true,
+    },
     allUsers: {
       url: `${base}admin/users`,
       method: 'GET',
@@ -196,7 +201,7 @@ const api = {
       url: `${base}creators/engagement-email`,
       method: 'POST',
       withAuth: true,
-    }
-  }
+    },
+  },
 };
 export default api;

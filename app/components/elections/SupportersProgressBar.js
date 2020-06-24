@@ -75,7 +75,8 @@ const SupportersProgressBar = ({
       </BarBg>
       <BarBody9>
         {numberFormatter(votesNeeded)} VOTES NEEDED TO WIN
-        {userState ? ` IN ${userState.toUpperCase()}` : suffixText}
+        {userState && <>IN {userState.toUpperCase()}</>}
+        {suffixText}
       </BarBody9>
     </ProgressBarWrapper>
   );

@@ -78,6 +78,22 @@ function editCandidateSuccess(candidate) {
   };
 }
 
+function updateCandidateImage(base64, candidate, chamber) {
+  return {
+    type: types.UPDATE_CANDIDATE_IMAGE,
+    base64,
+    candidate,
+    chamber,
+  };
+}
+
+// function updateCandidateImageSuccess(candidate) {
+//   return {
+//     type: types.UPDATE_CANDIDATE_IMAGE_SUCCESS,
+//     candidate,
+//   };
+// }
+
 function loadArticlesFeedback() {
   return {
     type: types.LOAD_ARTICLES_FEEDBACK,
@@ -119,6 +135,7 @@ export default {
   updateCandidate,
   updateCandidateSuccess,
   editCandidateSuccess,
+  updateCandidateImage,
 
   loadArticlesFeedback,
   loadArticlesFeedbackSuccess,

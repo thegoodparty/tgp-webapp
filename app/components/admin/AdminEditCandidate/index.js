@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -18,6 +19,7 @@ import { BlueButton } from 'components/shared/buttons';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 
 import RtfEditor from './RtfEditor';
+import ImageCrop from '../../shared/ImageCrop';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -61,7 +63,13 @@ const Input = styled(TextField)`
   }
 `;
 
-function AdminEditCandidate({ candidate, saveCandidateCallback }) {
+function AdminEditCandidate({
+  candidate,
+  chamber,
+  saveCandidateCallback,
+  uploadImageCallback,
+  loading,
+}) {
   const [editableValues, setEditableValues] = useState(false);
   const [initialData, setInitialData] = useState(false);
   const [campaignWebsite, setCampaignWebsite] = useState('');
@@ -204,6 +212,10 @@ function AdminEditCandidate({ candidate, saveCandidateCallback }) {
     }
   };
 
+  const handleUpload = base64 => {
+    uploadImageCallback(base64, candidate, chamber);
+  };
+
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
@@ -211,14 +223,27 @@ function AdminEditCandidate({ candidate, saveCandidateCallback }) {
       {candidate ? (
         <Wrapper>
           <StyledH1>Edit Candidate</StyledH1>
-          <AvatarWrapper>
-            <CandidateAvatar
-              src={candidate.image}
-              good={candidate.isGood}
-              name={candidate.name}
-              size="xl"
-            />
-          </AvatarWrapper>
+          {loading ? (
+            <AvatarWrapper>
+              <CircularProgress />
+            </AvatarWrapper>
+          ) : (
+            <>
+              <AvatarWrapper>
+                <CandidateAvatar
+                  src={candidate.image}
+                  good={candidate.isGood}
+                  name={candidate.name}
+                  size="xl"
+                />
+              </AvatarWrapper>
+              <ImageCrop
+                uploadImageCallback={handleUpload}
+                loading={loading}
+                currentImage={candidate.image}
+              />
+            </>
+          )}
           <H2 className="text-center">
             <a href={candidateRoute(candidate)} target="_blank">
               {name}
@@ -250,13 +275,13 @@ function AdminEditCandidate({ candidate, saveCandidateCallback }) {
           <br />
           <br />
 
-          <H3>Info:</H3>
+          <H3>Candidate Policy Position:</H3>
           <br />
           <RtfEditor initialText={info} onChangeCallback={editInfo} />
           <br />
           <br />
 
-          <H3>Campaign Website:</H3>
+          <H3>Campaign Website &amp; Other Info:</H3>
           <br />
           <RtfEditor
             initialText={campaignWebsite}
@@ -272,6 +297,8 @@ function AdminEditCandidate({ candidate, saveCandidateCallback }) {
 
 AdminEditCandidate.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  uploadImageCallback: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export default AdminEditCandidate;
