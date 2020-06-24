@@ -43,7 +43,8 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
     "deploy-dev": "git checkout develop  && eb deploy",
-    "deploy-prod": "git checkout master  && eb deploy"
+    "deploy-prod": "git checkout master  && eb deploy",
+    "cypress:open": "./node_modules/.bin/cypress open"
   },
   "browserslist": [
     "last 2 versions",
@@ -142,6 +143,7 @@
     "compression-webpack-plugin": "2.0.0",
     "coveralls": "3.0.3",
     "css-loader": "2.1.1",
+    "cypress": "^4.9.0",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-airbnb-base": "13.1.0",
