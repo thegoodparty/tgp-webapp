@@ -1012,9 +1012,11 @@ const CandidateWrapper = ({
                 <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
                 <div className="text-center">
                   <BallotpediaNoData style={{ padding: '16px 0' }}>
-                    <OpenSecretsLink>
-                      COMPILED BY THE GOOD PARTY VOLUNTEERS
-                    </OpenSecretsLink>
+                    <Link to="?article=579kihjyIPloNaEw02rniq">
+                      <OpenSecretsLink>
+                        COMPILED BY THE GOOD PARTY VOLUNTEERS
+                      </OpenSecretsLink>
+                    </Link>
                   </BallotpediaNoData>
                 </div>
               </div>
