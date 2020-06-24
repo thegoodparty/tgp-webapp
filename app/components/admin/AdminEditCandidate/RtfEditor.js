@@ -7,6 +7,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RichTextEditor from 'react-rte';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  font-family: Libre Franklin, sans-serif;
+  span {
+    font-family: Libre Franklin, sans-serif;
+  }
+`;
 
 function RtfEditor({ initialText = '', onChangeCallback = () => {} }) {
   const [initialValue, setInitialValue] = useState(false);
@@ -24,7 +32,9 @@ function RtfEditor({ initialText = '', onChangeCallback = () => {} }) {
   return (
     <>
       {initialValue && (
-        <RichTextEditor value={initialValue} onChange={onChange} />
+        <Wrapper>
+          <RichTextEditor value={initialValue} onChange={onChange} />
+        </Wrapper>
       )}
     </>
   );
