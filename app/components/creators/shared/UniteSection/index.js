@@ -33,7 +33,7 @@ const SectionWrapper = styled.div`
   }
 `;
 const Spare = styled.div`
-  height: 6rem;
+  height: 5rem;
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsTablet}) {
     height: 4rem;
@@ -118,6 +118,7 @@ const Description = styled.p`
   max-width: 45rem;
   margin: 0 auto;
   margin-top: 5rem;
+  margin-bottom: 5rem;
   font: normal 400 24px normal;
   line-height: 1.5;
   font-family: unset;
@@ -126,12 +127,15 @@ const Description = styled.p`
     theme.creators.breakpoints.creatorsTablet}) {
     max-width: none;
     margin-top: 3rem;
+    margin-bottom: 4rem;
     font-size: 20px;
     padding: 0 4rem;
+    
   }
   @media only screen and (max-width: ${({ theme }) =>
     theme.creators.breakpoints.creatorsMobile}) {
     margin-top: 2.5rem;
+    margin-bottom: 2rem;
     line-height: 1.3;
     font-size: 15px;
     padding: 0;
@@ -358,6 +362,16 @@ function UniteSection({ user, toggleJoin }) {
         Help with any project you can from the list below or add your own. All
         projects are open-source and free for good.
       </Description>
+      <div className="text-center">
+        <ViewProjectsButton
+          variant="contained"
+          color="primary"
+          target="__blank"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform"
+        >
+          I want to Help
+        </ViewProjectsButton>
+      </div>
       <Spare id="projects-section"></Spare>
     </SectionWrapper>
   );

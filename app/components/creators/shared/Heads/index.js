@@ -25,9 +25,11 @@ const AvatarsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
+  margin-top: 4rem;
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
     padding: 0 1.5rem;
+    margin-bottom: 2.5rem;
   }
 `;
 
