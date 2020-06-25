@@ -44,7 +44,9 @@
     "prettify": "prettier --write",
     "deploy-dev": "git checkout develop  && eb deploy",
     "deploy-prod": "git checkout master  && eb deploy",
-    "cypress:open": "./node_modules/.bin/cypress open"
+    "cypress:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress open",
+    "cypress:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress open",
+    "cypress:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress open"
   },
   "browserslist": [
     "last 2 versions",

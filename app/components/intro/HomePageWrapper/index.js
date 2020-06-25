@@ -69,22 +69,32 @@ function HomePageWrapper() {
       <Wrapper white style={wrapperStyles} noHeader>
         <div>
           <LoginLink>
-            <Link to="?register=true">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
-            <Link to="/login">Login</Link>
+            <Link to="?register=true" data-cy="register">
+              Sign-Up
+            </Link>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <Link to="/login" data-cy="login">
+              Login
+            </Link>
           </LoginLink>
           <div>
             <Logo src={heartImg} />
           </div>
-          <H1>
+          <H1 data-cy="title">
             Power and Money have corrupted <u>both</u> major political parties
           </H1>
-          <StyledH2>
+          <StyledH2 data-cy="subtitle">
             Imagine a simple new way to organize and vote, to replace every bad
             politician with someone <strong>Good!</strong>
           </StyledH2>
           <ButtonWrapper>
-            <Link to="/intro/splash">
-              <BlueButton variant="contained" color="primary" size="large">
+            <Link to="/intro/splash" data-cy="enter-link">
+              <BlueButton
+                variant="contained"
+                color="primary"
+                size="large"
+                data-cy="enter-button"
+              >
                 ENTER THE GOOD PARTY
               </BlueButton>
             </Link>
