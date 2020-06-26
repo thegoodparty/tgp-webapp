@@ -1,4 +1,4 @@
-describe('HomePage', () => {
+describe('ZipFinder', () => {
     beforeEach(() => {
         cy.visit('/intro/zip-finder');
     });
