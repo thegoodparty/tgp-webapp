@@ -103,16 +103,19 @@ const NavWrapper = ({
               label="PARTY"
               icon={icon(PartyIcon, PartyIconGray, 0)}
               className={classes.bottomNavItem}
+              data-cy="party"
             />
             <BottomNavigationAction
               label="ELECTIONS"
               icon={icon(ElectionIcon, ElectionIconGray, 1)}
               className={classes.bottomNavItem}
+              data-cy="elections"
             />
             <BottomNavigationAction
               label="YOU"
               icon={icon(YouIcon, YouIconGray, 2)}
               className={classes.bottomNavItem}
+              data-cy="you"
             />
           </BottomNavigation>
         </Hidden>
