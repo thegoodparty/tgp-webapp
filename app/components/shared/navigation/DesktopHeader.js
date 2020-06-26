@@ -70,14 +70,15 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
   return (
     <Wrapper>
       <ContentWrapper>
-        <TopLink className={partyRoute ? 'showBorder' : ''}>
-          <Logo src={LogoCaps} onClick={() => handleNavigate('/party')} />
+        <TopLink className={partyRoute ? 'showBorder' : ''} >
+          <Logo src={LogoCaps} onClick={() => handleNavigate('/party')} data-cy="party" />
         </TopLink>
         {!hideLinks && (
           <>
             <TopLink
               className={electionRoute ? 'showBorder' : ''}
               onClick={() => handleNavigate('/elections')}
+              data-cy="elections"
             >
               ELECTIONS
             </TopLink>
@@ -95,6 +96,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
               <TopLink
                 className={youRoute ? 'showBorder' : ''}
                 onClick={() => handleNavigate('/you')}
+                data-cy="you"
               >
                 YOU
               </TopLink>
