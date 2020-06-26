@@ -38,7 +38,7 @@ function SnackbarWrapper({ message, severity, isOpen, closeCallback }) {
       onClose={handleClose}
       anchorOrigin={{ vertical, horizontal: 'center' }}
     >
-      <Alert onClose={handleClose} severity={severity}>
+      <Alert onClose={handleClose} severity={severity} data-cy="alert">
         {message}
       </Alert>
     </Snackbar>
