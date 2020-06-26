@@ -268,7 +268,7 @@ const CandidateWrapper = ({
         bio = info ? decodeURI(info) : null;
       } catch (e) {
         bio = info;
-        console.log(e);
+        // console.log(e);
       }
       setCandidateInfo(bio);
 
