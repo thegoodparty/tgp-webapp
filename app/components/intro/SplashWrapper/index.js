@@ -107,7 +107,7 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle>See Good Candidates</SmallTitle>
             <Body14>
-              See good grass-roots candidates who are challenging Big Money
+              See good grass-roots candidates who are challenging the Big Money
               politicians of two-party system.
             </Body14>
           </TextWrapper>

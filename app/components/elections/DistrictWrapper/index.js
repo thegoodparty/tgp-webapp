@@ -264,7 +264,7 @@ const DistrictWrapper = ({
                 <VsCard
                   title="Presidential Election"
                   candidates={presidential}
-                  suffixText={` (${presidential.electors} ELECTORS)`}
+                  suffixText={` IN ${upperState} (${presidential.electors} ELECTORS)`}
                 />
               )}
             </Link>
