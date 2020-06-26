@@ -167,9 +167,12 @@ const FundsWrapper = styled.div`
 const Fund = styled.div`
   text-align: center;
   margin: 0 4px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+    margin: 0 10px;
+  }
 `;
 
-const ColoredBody13 = styled(Body13)`
+const ColoredBodyText = styled(Body13)`
   color: ${({ theme }) => theme.colors.red};
   font-weight: 700;
 
@@ -179,6 +182,15 @@ const ColoredBody13 = styled(Body13)`
 
   &.gray {
     color: ${({ theme }) => theme.colors.gray4};
+  }
+  font-size: 9px;
+  
+  @media only screen and (min-width: 375px) {
+    font-size: 11px;
+  }
+
+  @media only screen and (min-width: 600px) {
+    font-size: 16px;
   }
 `;
 
@@ -759,31 +771,27 @@ const CandidateWrapper = ({
             </FollowWrapper>
             <FundsWrapper>
               <Fund>
-                <Body13 className="bold700">
-                  <ColoredText
-                    className={
-                      !isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'
-                    }
-                  >
-                    {moneyHelper(totalRaised)}
-                  </ColoredText>
-                </Body13>
+                <ColoredBodyText
+                  className={!isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'}
+                >
+                  {moneyHelper(totalRaised)}
+                </ColoredBodyText>
                 <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
               </Fund>
               {isGoodOrUnkwown ? (
                 <Fund>
                   {isIncumbent || isBigMoney || perc > 50 ? (
                     <>
-                      <ColoredBody13 className="green">{perc}%</ColoredBody13>
+                      <ColoredBodyText className="green">{perc}%</ColoredBodyText>
                       <StyledBody9>
                         FROM SMALL INDIV DONORS &lt;$200
                       </StyledBody9>
                     </>
                   ) : (
                     <>
-                      <ColoredBody13 className="green">
+                      <ColoredBodyText className="green">
                         {comparedIncumbent.relativePerc}%
-                      </ColoredBody13>
+                      </ColoredBodyText>
                       <StyledBody9>
                         FUNDING RELATIVE TO{' '}
                         {comparedIncumbent.isFakeIncumbent
@@ -795,9 +803,9 @@ const CandidateWrapper = ({
                 </Fund>
               ) : (
                 <Fund>
-                  <ColoredBody13 className={colorWithGray}>
+                  <ColoredBodyText className={colorWithGray}>
                     {perc}%
-                  </ColoredBody13>
+                  </ColoredBodyText>
                   <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
                 </Fund>
               )}
@@ -805,21 +813,21 @@ const CandidateWrapper = ({
                 <Fund>
                   {isIncumbent || isSameAsComparedIncumbent ? (
                     <>
-                      <ColoredBody13 className="gray">N/A</ColoredBody13>
+                      <ColoredBodyText className="gray">N/A</ColoredBodyText>
                       <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
                     </>
                   ) : (
                     <>
-                      <ColoredBody13 className="green">
+                      <ColoredBodyText className="green">
                         {comparedIncumbent.xTimes}x
-                      </ColoredBody13>
+                      </ColoredBodyText>
                       <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
                     </>
                   )}
                 </Fund>
               ) : (
                 <Fund>
-                  <ColoredBody13 className={color}>{perHour}/hr</ColoredBody13>
+                  <ColoredBodyText className={color}>{perHour}/hr</ColoredBodyText>
                   <StyledBody9>
                     BIG MONEY
                     <SmallBr /> FUNDING RATE
