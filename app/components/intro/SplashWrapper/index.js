@@ -107,7 +107,7 @@ function SplashWrapper() {
           <TextWrapper>
             <SmallTitle data-cy="card-title">See Good Candidates</SmallTitle>
             <Body14 data-cy="card-text">
-              See good grass-roots candidates who are challenging Big Money
+              See good grass-roots candidates who are challenging the Big Money
               politicians of two-party system.
             </Body14>
           </TextWrapper>
