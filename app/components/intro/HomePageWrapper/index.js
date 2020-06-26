@@ -81,11 +81,11 @@ function HomePageWrapper() {
             <Logo src={heartImg} />
           </div>
           <H1 data-cy="title">
-
+            Power and Money have corrupted <u>both</u> major political parties
           </H1>
           <StyledH2 data-cy="subtitle">
-            Imagine a simple new way to organize and vote, to replace every bad
-            politician with someone <strong>Good!</strong>
+            Imagine a simple new way to organize and vote, to replace bad career
+            politicians with someone new and <strong>Good!</strong>
           </StyledH2>
           <ButtonWrapper>
             <Link to="/intro/splash" data-cy="enter-link">
