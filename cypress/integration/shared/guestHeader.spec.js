@@ -1,5 +1,5 @@
 describe('GuestHeader', () => {
-    it('finds correct test', () => {
+    it('finds correct text', () => {
         cy.visit('/you');
         cy.get('[data-cy=elections]').contains('ELECTIONS');
         cy.get('[data-cy=you]').contains('YOU');
