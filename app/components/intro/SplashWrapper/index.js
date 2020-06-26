@@ -99,25 +99,25 @@ function SplashWrapper() {
       <Wrapper style={wrapperStyles} noHeader>
         <Centered>
           <Logo src={heartImg} />
-          <H1>THE GOOD PARTY</H1>
-          <SubTitle>FIXING POLITICS FOR GOOD</SubTitle>
+          <H1 data-cy="title">THE GOOD PARTY</H1>
+          <SubTitle data-cy="subtitle">FIXING POLITICS FOR GOOD</SubTitle>
         </Centered>
-        <Card>
-          <Icon src={heartImg} className="heart" />
+        <Card data-cy="card-item">
+          <Icon src={heartImg} className="heart" data-cy="card-icon"/>
           <TextWrapper>
-            <SmallTitle>See Good Candidates</SmallTitle>
-            <Body14>
+            <SmallTitle data-cy="card-title">See Good Candidates</SmallTitle>
+            <Body14 data-cy="card-text">
               See good grass-roots candidates who are challenging Big Money
               politicians of two-party system.
             </Body14>
           </TextWrapper>
         </Card>
 
-        <Card>
-          <Icon src={peopleImg} />
+        <Card data-cy="card-item">
+          <Icon src={peopleImg} data-cy="card-icon" />
           <TextWrapper>
-            <SmallTitle>Join Voting Blocs</SmallTitle>
-            <Body14>
+            <SmallTitle data-cy="card-title">Join Voting Blocs</SmallTitle>
+            <Body14 data-cy="card-text">
               Privately join candidate voting blocs to be notified if any bloc
               grows big enough to win,{' '}
               <strong>
@@ -128,20 +128,20 @@ function SplashWrapper() {
           </TextWrapper>
         </Card>
 
-        <Card>
-          <Icon src={writeinImg} />
+        <Card data-cy="card-item">
+          <Icon src={writeinImg} data-cy="card-icon" />
           <TextWrapper>
-            <SmallTitle>Never Waste Your Vote</SmallTitle>
-            <Body14>
+            <SmallTitle data-cy="card-title">Never Waste Your Vote</SmallTitle>
+            <Body14 data-cy="card-text">
               We only activate a candidate bloc vote, when we’ve confirmed the
               bloc has enough votes to win for sure.
             </Body14>
           </TextWrapper>
         </Card>
-        <Link to="/intro/zip-finder">
+        <Link to="/intro/zip-finder" data-cy="start-link">
           <ButtonWrppaer>
             <NextButton active>
-              <SeeHow>GET STARTED</SeeHow>
+              <SeeHow data-cy="start-button">GET STARTED</SeeHow>
             </NextButton>
           </ButtonWrppaer>
         </Link>
