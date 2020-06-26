@@ -10,7 +10,6 @@ const ViewProjectsButton = styled(Button)`
     padding: 2rem 6rem;
     text-transform: uppercase;
     border-radius: 4rem;
-    margin-bottom: 4rem;
     box-shadow: none;
     @media only screen and (max-width: ${({ theme }) =>
         theme.creators.breakpoints.creatorsTablet}) {
@@ -22,7 +21,6 @@ const ViewProjectsButton = styled(Button)`
       padding: 1rem 5rem;
       font: normal normal 15px normal;
       font-family: unset;
-      margin-bottom: 2.5rem;
     }
   }
 `;
