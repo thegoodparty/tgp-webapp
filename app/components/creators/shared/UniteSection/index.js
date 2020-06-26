@@ -366,7 +366,7 @@ function UniteSection({ user, toggleJoin }) {
         <ViewProjectsButton
           variant="contained"
           color="primary"
-          target="__blank"
+          target="_blank"
           href="https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform"
         >
           I want to Help
