@@ -10,8 +10,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
+import PageWrapper from 'components/shared/PageWrapper';
 import heartImg from 'images/heart.svg';
-import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2 } from 'components/shared/typogrophy';
 
 const Logo = styled.img`
@@ -65,43 +65,41 @@ const wrapperStyles = {
 };
 function HomePageWrapper() {
   return (
-    <div style={{ backgroundColor: '#FFF' }}>
-      <Wrapper white style={wrapperStyles} noHeader>
+    <PageWrapper white wrapperStyles={wrapperStyles} hideNav>
+      <div>
+        <LoginLink>
+          <Link to="?register=true" data-cy="register">
+            Sign-Up
+          </Link>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <Link to="/login" data-cy="login">
+            Login
+          </Link>
+        </LoginLink>
         <div>
-          <LoginLink>
-            <Link to="?register=true" data-cy="register">
-              Sign-Up
-            </Link>
-            &nbsp;&nbsp;|&nbsp;&nbsp;
-            <Link to="/login" data-cy="login">
-              Login
-            </Link>
-          </LoginLink>
-          <div>
-            <Logo src={heartImg} />
-          </div>
-          <H1 data-cy="title">
-            Power and Money have corrupted <u>both</u> major political parties
-          </H1>
-          <StyledH2 data-cy="subtitle">
-            Imagine a simple new way to organize and vote, to replace bad career
-            politicians with someone new and <strong>Good!</strong>
-          </StyledH2>
-          <ButtonWrapper>
-            <Link to="/intro/splash" data-cy="enter-link">
-              <BlueButton
-                variant="contained"
-                color="primary"
-                size="large"
-                data-cy="enter-button"
-              >
-                ENTER THE GOOD PARTY
-              </BlueButton>
-            </Link>
-          </ButtonWrapper>
+          <Logo src={heartImg} />
         </div>
-      </Wrapper>
-    </div>
+        <H1 data-cy="title">
+          Power and Money have corrupted <u>both</u> major political parties
+        </H1>
+        <StyledH2 data-cy="subtitle">
+          Imagine a simple new way to organize and vote, to replace bad career
+          politicians with someone new and <strong>Good!</strong>
+        </StyledH2>
+        <ButtonWrapper>
+          <Link to="/intro/splash" data-cy="enter-link">
+            <BlueButton
+              variant="contained"
+              color="primary"
+              size="large"
+              data-cy="enter-button"
+            >
+              ENTER THE GOOD PARTY
+            </BlueButton>
+          </Link>
+        </ButtonWrapper>
+      </div>
+    </PageWrapper>
   );
 }
 

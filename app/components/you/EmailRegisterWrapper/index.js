@@ -8,6 +8,7 @@ import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 import { fullFirstLastInitials } from 'helpers/userHelper';
+import Footer from 'components/shared/Footer';
 
 const Input = styled(TextField)`
   && {
@@ -141,6 +142,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
           )}
         </form>
       </Wrapper>
+      <Footer />
     </div>
   );
 };

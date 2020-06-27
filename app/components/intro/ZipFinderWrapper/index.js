@@ -8,10 +8,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from '@material-ui/core/Input';
+
+import PageWrapper from 'components/shared/PageWrapper';
 import { H2, Body, Body11, Body13, Body12 } from 'components/shared/typogrophy';
 import NextButton from 'components/shared/buttons/NextButton';
-import GrayWrapper from 'components/shared/GrayWrapper';
-import Nav from 'containers/shared/Nav';
 import GeoLocator from './GeoLocator';
 
 const ContentWrapper = styled.div`
@@ -106,14 +106,17 @@ function ZipFinderWrapper({
     setFindGeoLocation(true);
   };
   return (
-    <GrayWrapper>
-      <Nav hideMobileNav={user ? false : true} />
+    <PageWrapper hideMobileNav={user ? false : true}>
       <ContentWrapper>
-        <StyledH2 data-cy="title">Enter your zip code to see your Federal elections</StyledH2>
+        <StyledH2 data-cy="title">
+          Enter your zip code to see your Federal elections
+        </StyledH2>
         <Body style={{ marginBottom: '24px' }}>
           See if your vote can be used in voting blocs to elect someone good!
         </Body>
-        <Body className="bold600" data-cy="form-label">Enter Home Zip Code</Body>
+        <Body className="bold600" data-cy="form-label">
+          Enter Home Zip Code
+        </Body>
         <Form noValidate onSubmit={handleSubmitForm}>
           <StyledInput
             value={zip}
@@ -134,7 +137,9 @@ function ZipFinderWrapper({
             src="https://assets.thegoodparty.org/icons/location-user.svg"
             alt="location"
           />
-          <Location data-cy="geo-location-button">I’m Home, Use my Current Location</Location>
+          <Location data-cy="geo-location-button">
+            I’m Home, Use my Current Location
+          </Location>
         </LocationWrapper>
         {findGeoLocation && (
           <GeoLocator
@@ -148,7 +153,7 @@ function ZipFinderWrapper({
           </NextButton>
         </ButtonWrapper>
       </ContentWrapper>
-    </GrayWrapper>
+    </PageWrapper>
   );
 }
 

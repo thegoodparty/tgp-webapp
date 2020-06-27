@@ -12,8 +12,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import WarningIcon from '@material-ui/icons/Warning';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
+import PageWrapper from 'components/shared/PageWrapper';
 import Nav from 'containers/shared/Nav';
 import {
   H1,
@@ -278,156 +277,142 @@ const EditProfileWrapper = ({
   };
 
   return (
-    <div>
-      <Nav />
-      <Wrapper white>
-        <MobileHeader />
-        <Hidden smDown>
-          <Link to="/you">
-            <BackIcon style={{ fontSize: '34px' }} />
-          </Link>
-        </Hidden>
-        {user && (
-          <>
-            <Row>
-              <H1>Edit Profile</H1>
+    <PageWrapper white>
+      <Hidden smDown>
+        <Link to="/you">
+          <BackIcon style={{ fontSize: '34px' }} />
+        </Link>
+      </Hidden>
+      {user && (
+        <>
+          <Row>
+            <H1>Edit Profile</H1>
 
-              <UserInitials onClick={uploadPhoto}>
-                <UserAvatar user={user} size="large" />
-                <Camera>
-                  <CameraAltOutlinedIcon style={{ fontSize: '18px' }} />
-                </Camera>
-              </UserInitials>
-            </Row>
-            <Form noValidate onSubmit={handleSubmitForm}>
+            <UserInitials onClick={uploadPhoto}>
+              <UserAvatar user={user} size="large" />
+              <Camera>
+                <CameraAltOutlinedIcon style={{ fontSize: '18px' }} />
+              </Camera>
+            </UserInitials>
+          </Row>
+          <Form noValidate onSubmit={handleSubmitForm}>
+            <Input
+              value={newName}
+              label="Name"
+              required
+              size="medium"
+              fullWidth
+              onChange={onChangeName}
+              helperText="Only your last initial will ever be shown"
+            />
+            <Input
+              value={newFeedback}
+              label="Share any thoughts about The Good Party"
+              size="medium"
+              multiline
+              fullWidth
+              onChange={onChangeFeedback}
+            />
+            <BlueButton fullWidth disabled={!canSave()} onClick={handleSubmit}>
+              Save
+            </BlueButton>
+          </Form>
+          <Row style={{ marginTop: '48px' }}>
+            <Body11>Congressional District</Body11>
+            <StyledBody14 onClick={handleChangeAddress}>Edit</StyledBody14>
+          </Row>
+          <Address>
+            {primaryCity}
+            {districtName && `, ${districtName}`}{' '}
+          </Address>
+          <Address>
+            {stateLong} {zipCode && zipCode.zip}
+          </Address>
+
+          <PrivateWrapper>
+            <Private>
+              <H3>Private Info&nbsp;</H3>
+              <LockIcon />
+            </Private>
+            <Body11>Not shown anywhere, only used for login and contact</Body11>
+            <br />
+            {!phone && !editPhone && (
+              <PhoneWrapper>
+                <AddPhoneLabel>Phone Number</AddPhoneLabel>
+                <AddPhone onClick={() => setEditPhone(true)}>
+                  Add Phone
+                </AddPhone>
+              </PhoneWrapper>
+            )}
+            <form noValidate onSubmit={handleSubmitPhoneEmailForm}>
+              {(phone || editPhone) && (
+                <PhoneWrapper>
+                  <Input
+                    value={phone}
+                    label="Phone"
+                    size="medium"
+                    autoFocus={editPhone}
+                    fullWidth
+                    onChange={onChangePhone}
+                    style={{ marginBottom: '24px' }}
+                  />
+                </PhoneWrapper>
+              )}
               <Input
-                value={newName}
-                label="Name"
-                required
+                value={email}
+                onChange={onChangeEmail}
+                label="Email"
                 size="medium"
                 fullWidth
-                onChange={onChangeName}
-                helperText="Only your last initial will ever be shown"
+                style={{ marginBottom: '16px' }}
               />
-              <Input
-                value={newFeedback}
-                label="Share any thoughts about The Good Party"
-                size="medium"
-                multiline
-                fullWidth
-                onChange={onChangeFeedback}
-              />
+              {isEmailVerified && email === initialEmail && (
+                <Verified>VERIFIED</Verified>
+              )}
               <BlueButton
                 fullWidth
-                disabled={!canSave()}
-                onClick={handleSubmit}
+                disabled={!canSavePhoneEmail()}
+                onClick={handlePhoneEmailSubmit}
+                style={{ margin: '24px 0' }}
               >
                 Save
               </BlueButton>
-            </Form>
-            <Row style={{ marginTop: '48px' }}>
-              <Body11>Congressional District</Body11>
-              <StyledBody14 onClick={handleChangeAddress}>Edit</StyledBody14>
-            </Row>
-            <Address>
-              {primaryCity}
-              {districtName && `, ${districtName}`}{' '}
-            </Address>
-            <Address>
-              {stateLong} {zipCode && zipCode.zip}
-            </Address>
-
-            <PrivateWrapper>
-              <Private>
-                <H3>Private Info&nbsp;</H3>
-                <LockIcon />
-              </Private>
-              <Body11>
-                Not shown anywhere, only used for login and contact
-              </Body11>
-              <br />
-              {!phone && !editPhone && (
-                <PhoneWrapper>
-                  <AddPhoneLabel>Phone Number</AddPhoneLabel>
-                  <AddPhone onClick={() => setEditPhone(true)}>
-                    Add Phone
-                  </AddPhone>
-                </PhoneWrapper>
-              )}
-              <form noValidate onSubmit={handleSubmitPhoneEmailForm}>
-                {(phone || editPhone) && (
-                  <PhoneWrapper>
-                    <Input
-                      value={phone}
-                      label="Phone"
-                      size="medium"
-                      autoFocus={editPhone}
-                      fullWidth
-                      onChange={onChangePhone}
-                      style={{ marginBottom: '24px' }}
-                    />
-                  </PhoneWrapper>
-                )}
-                <Input
-                  value={email}
-                  onChange={onChangeEmail}
-                  label="Email"
-                  size="medium"
-                  fullWidth
-                  style={{ marginBottom: '16px' }}
-                />
-                {isEmailVerified && email === initialEmail && (
-                  <Verified>VERIFIED</Verified>
-                )}
-                <BlueButton
-                  fullWidth
-                  disabled={!canSavePhoneEmail()}
-                  onClick={handlePhoneEmailSubmit}
-                  style={{ margin: '24px 0' }}
-                >
-                  Save
-                </BlueButton>
-              </form>
-            </PrivateWrapper>
-            <Dialog
-              onClose={handleCloseAlert}
-              aria-labelledby="Ranking not Allowed"
-              open={showRankAlert}
-            >
-              <AlertWrapper>
-                <DialogTitle id="alert-dialog-title">
-                  <WarningIcon /> District Change
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    If you proceed, your previous district&apos;s ranked choices
-                    will be discarded.
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleCloseAlert} color="primary">
-                    Cancel
-                  </Button>
-                  <Button
-                    onClick={handleDeleteRanking}
-                    color="primary"
-                    autoFocus
-                  >
-                    Proceed
-                  </Button>
-                </DialogActions>
-              </AlertWrapper>
-            </Dialog>
-          </>
-        )}
-      </Wrapper>
+            </form>
+          </PrivateWrapper>
+          <Dialog
+            onClose={handleCloseAlert}
+            aria-labelledby="Ranking not Allowed"
+            open={showRankAlert}
+          >
+            <AlertWrapper>
+              <DialogTitle id="alert-dialog-title">
+                <WarningIcon /> District Change
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  If you proceed, your previous district&apos;s ranked choices
+                  will be discarded.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCloseAlert} color="primary">
+                  Cancel
+                </Button>
+                <Button onClick={handleDeleteRanking} color="primary" autoFocus>
+                  Proceed
+                </Button>
+              </DialogActions>
+            </AlertWrapper>
+          </Dialog>
+        </>
+      )}
       {showUploadPhoto && (
         <AvatarUpload
           closeCallback={closeUploadPhotoCallback}
           selectImageCallback={selectImageCallback}
         />
       )}
-    </div>
+    </PageWrapper>
   );
 };
 

@@ -5,17 +5,14 @@ import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
 
+import PageWrapper from 'components/shared/PageWrapper';
 import heartImg from 'images/heart.svg';
 import UsMapImage from 'images/us-map.svg';
-import Wrapper from 'components/shared/Wrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
-import { Body, Body13, H1, H3 } from 'components/shared/typogrophy';
+import { Body, H1, H3 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
 import articlesHelper from 'helpers/articlesHelper';
-import GrayWrapper from 'components/shared/GrayWrapper';
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
 import BottomPopup from '../../shared/BottomPopup';
@@ -280,83 +277,76 @@ const ElectionWrapper = ({
       : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
 
   return (
-    <GrayWrapper>
+    <PageWrapper>
       {candidates ? (
         <>
-          <Nav />
-          <Wrapper>
-            <MobileHeader />
-            <H1>{title}</H1>
-            <Row>
-              <SupportersWrapper>
-                <SupportersRow>
-                  <HeartImg src={heartImg} alt="tgp" />
-                  <SupportersCount>
-                    {numberFormatter(topRank)}{' '}
-                    {topRank === 1 ? 'Person' : 'People'}{' '}
-                  </SupportersCount>
-                </SupportersRow>
-                <SuppoetersBody>in top voting bloc so far</SuppoetersBody>
-                <SupportersProgressBar
-                  votesNeeded={votesNeeded}
-                  peopleSoFar={topRank}
-                  userState={candidates.userState}
-                  showSupporters={false}
-                  suffixText={suffixText}
-                  alignLeft
-                />
-              </SupportersWrapper>
-              <MapWrapper>
-                <img src={UsMapImage} alt="" />
-              </MapWrapper>
-            </Row>
-            <Description>
-              {candidates.good.length > 0 ? (
-                <>
-                  Join any{' '}
-                  <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
-                    candidate voting blocs
-                  </Link>{' '}
-                  and we&apos;ll let you know if they grow big enough to win!
-                </>
-              ) : (
-                <>
-                  We&apos;re looking for{' '}
-                  <GoodCandidate onClick={openFiltersCallback}>
-                    good candidate options
-                  </GoodCandidate>{' '}
-                  in this race. Join #GoodBloc to be notified as soon as we find
-                  any good candidates.
-                </>
-              )}
-            </Description>
+          <H1>{title}</H1>
+          <Row>
+            <SupportersWrapper>
+              <SupportersRow>
+                <HeartImg src={heartImg} alt="tgp" />
+                <SupportersCount>
+                  {numberFormatter(topRank)}{' '}
+                  {topRank === 1 ? 'Person' : 'People'}{' '}
+                </SupportersCount>
+              </SupportersRow>
+              <SuppoetersBody>in top voting bloc so far</SuppoetersBody>
+              <SupportersProgressBar
+                votesNeeded={votesNeeded}
+                peopleSoFar={topRank}
+                userState={candidates.userState}
+                showSupporters={false}
+                suffixText={suffixText}
+                alignLeft
+              />
+            </SupportersWrapper>
+            <MapWrapper>
+              <img src={UsMapImage} alt="" />
+            </MapWrapper>
+          </Row>
+          <Description>
+            {candidates.good.length > 0 ? (
+              <>
+                Join any{' '}
+                <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
+                  candidate voting blocs
+                </Link>{' '}
+                and we&apos;ll let you know if they grow big enough to win!
+              </>
+            ) : (
+              <>
+                We&apos;re looking for{' '}
+                <GoodCandidate onClick={openFiltersCallback}>
+                  good candidate options
+                </GoodCandidate>{' '}
+                in this race. Join #GoodBloc to be notified as soon as we find
+                any good candidates.
+              </>
+            )}
+          </Description>
 
-            <VsList
-              candidates={candidates}
-              openFiltersCallback={openFiltersCallback}
-              ranking={ranking}
-              handleChoiceCallback={handleChoiceCallback}
-              handleGrowCallback={handleGrowCallback}
-              handleDeselectCandidate={handleDeselectCandidate}
-              goodBloc={`${stateUpper}${districtNumber ? districtNumber : ''}`}
-              districtNumber={districtNumber}
-              chamber={chamber}
-              state={stateUpper}
-              user={user}
-            />
+          <VsList
+            candidates={candidates}
+            openFiltersCallback={openFiltersCallback}
+            ranking={ranking}
+            handleChoiceCallback={handleChoiceCallback}
+            handleGrowCallback={handleGrowCallback}
+            handleDeselectCandidate={handleDeselectCandidate}
+            goodBloc={`${stateUpper}${districtNumber ? districtNumber : ''}`}
+            districtNumber={districtNumber}
+            chamber={chamber}
+            state={stateUpper}
+            user={user}
+          />
 
-            <TopQuestions articles={articles} />
-            <AmaContainer />
-          </Wrapper>
+          <TopQuestions articles={articles} />
+          <AmaContainer />
           <BottomPopup open={showFilters} handleClose={hideFilters}>
             <FiltersPopup />
           </BottomPopup>
         </>
       ) : (
-        <Wrapper>
-          <MobileHeader />
-          <LoadingAnimation />
-        </Wrapper>
+        <LoadingAnimation />
       )}
       <Dialog
         onClose={handleCloseAlert}
@@ -401,7 +391,7 @@ const ElectionWrapper = ({
         chamber={chamber}
         isExternalLink={isExternalLink}
       />
-    </GrayWrapper>
+    </PageWrapper>
   );
 };
 
