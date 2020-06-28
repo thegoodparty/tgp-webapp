@@ -14,10 +14,7 @@ const Spacer = styled.div`
 const CreatorsHeaderWrapper = ({ toggleJoin, user }) => {
   return (
     <>
-      <CreatorsDesktopHeader
-        toggleJoin={toggleJoin}
-        user={user}
-      />
+      <CreatorsDesktopHeader toggleJoin={toggleJoin} user={user} />
       <Spacer />
     </>
   );
@@ -25,7 +22,7 @@ const CreatorsHeaderWrapper = ({ toggleJoin, user }) => {
 
 CreatorsHeaderWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  toggleJoin: PropTypes.func
+  toggleJoin: PropTypes.func,
 };
 
 export default CreatorsHeaderWrapper;

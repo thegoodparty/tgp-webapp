@@ -41,7 +41,7 @@ export function CreatorsPage({
   socialLoginCallback,
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
-  sendMessageToCreatorCallback
+  sendMessageToCreatorCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -65,7 +65,7 @@ export function CreatorsPage({
     socialLoginCallback,
     socialLoginFailureCallback,
     setSignupRedirectCookieCallback,
-    sendMessageToCreatorCallback
+    sendMessageToCreatorCallback,
   };
 
   return (
@@ -85,7 +85,7 @@ CreatorsPage.propTypes = {
   userState: PropTypes.object,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
-  setSignupRedirectCookieCallback: PropTypes.func
+  setSignupRedirectCookieCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -97,7 +97,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    sendMessageToCreatorCallback: (messageInfo) => {
+    sendMessageToCreatorCallback: messageInfo => {
       dispatch(userActions.sendMessageToCreator(messageInfo));
     },
     setSignupRedirectCookieCallback: redirect => {
@@ -118,4 +118,7 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect, memo)(CreatorsPage);
+export default compose(
+  withConnect,
+  memo,
+)(CreatorsPage);
