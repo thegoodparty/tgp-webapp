@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
+import PageWrapper from 'components/shared/PageWrapper';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import { dateUsHelper } from 'helpers/dateHelper';
 
@@ -36,25 +34,21 @@ const PrivacyWrapper = ({ content }) => {
     cmsContent = contentfulHelper(content.privacyPage.pageContent);
   }
   return (
-    <div>
-      <Nav />
-      <Wrapper white>
-        <MobileHeader />
-        {content && content.privacyPage && (
-          <>
-            <TitleWrapper>
-              <H1>{content.privacyPage.title}</H1>
-            </TitleWrapper>
-            <RevisionWrapper>
-              <Body11>Last Revision</Body11>
-              <Divider />
-              <Body11>{dateUsHelper(content.privacyPage.lastModified)}</Body11>
-            </RevisionWrapper>
-            <CmsContentWrapper>{cmsContent}</CmsContentWrapper>
-          </>
-        )}
-      </Wrapper>
-    </div>
+    <PageWrapper white>
+      {content && content.privacyPage && (
+        <>
+          <TitleWrapper>
+            <H1>{content.privacyPage.title}</H1>
+          </TitleWrapper>
+          <RevisionWrapper>
+            <Body11>Last Revision</Body11>
+            <Divider />
+            <Body11>{dateUsHelper(content.privacyPage.lastModified)}</Body11>
+          </RevisionWrapper>
+          <CmsContentWrapper>{cmsContent}</CmsContentWrapper>
+        </>
+      )}
+    </PageWrapper>
   );
 };
 

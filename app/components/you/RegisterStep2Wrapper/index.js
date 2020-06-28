@@ -5,11 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
+import PageWrapper from 'components/shared/PageWrapper';
 import { Body, Body13, H2, Body11 } from 'components/shared/typogrophy/index';
-import GrayWrapper from 'components/shared/GrayWrapper';
 import heartImg from 'images/heart.svg';
 import addPhotoImg from 'images/icons/add-photo.svg';
 
@@ -139,77 +136,72 @@ const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
     submitCallback(comments, uploadedPhoto);
   };
   return (
-    <GrayWrapper>
-      <Nav />
-      <Wrapper>
-        <MobileHeader />
+    <PageWrapper>
+      <Skip onClick={submitCallback}>Skip</Skip>
 
-        <Skip onClick={submitCallback}>Skip</Skip>
-
-        <Grid container spacing={3}>
-          <Grid item xs={12} />
-          <Grid item xs={12} md={6}>
-            <VerticalWrapper>
-              <Heart src={heartImg} />
-              <H2>Add some flavor!</H2>
-            </VerticalWrapper>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <VerticalWrapper>
-              <Body className="bold600">Profile Photo</Body>
-              {avatar ? (
-                <PhotoRow onClick={uploadPhoto}>
-                  {uploadedPhoto ? (
-                    <UserAvatar user={{ avatar }} size="large" />
-                  ) : (
-                    <UserAvatar user={user} size="large" />
-                  )}
-                  <PhotoAction>Edit Photo</PhotoAction>
-                </PhotoRow>
-              ) : (
-                <PhotoRow onClick={uploadPhoto}>
-                  <AddPhotoWrapper>
-                    <img src={addPhotoImg} />
-                  </AddPhotoWrapper>
-                  <PhotoAction>Add a Photo</PhotoAction>
-                </PhotoRow>
-              )}
-              <Body className="bold600">
-                What inspires you about The Good Party?
-              </Body>
-              <Input
-                value={comments}
-                label="I’m excited to join because..."
-                helperText="We may use this quote to inspire others to join!"
-                size="medium"
-                fullWidth
-                multiline
-                rows={2}
-                rowsMax={8}
-                variant="outlined"
-                onChange={onChangeComments}
-                style={{ margin: '16px 0' }}
-              />
-              {loading ? (
-                <CircularProgress />
-              ) : (
-                <NextButton active={submitActive()} onClick={handleSubmit}>
-                  <SubmitText className={submitActive() && 'active'}>
-                    SUBMIT
-                  </SubmitText>
-                </NextButton>
-              )}
-            </VerticalWrapper>
-          </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} />
+        <Grid item xs={12} md={6}>
+          <VerticalWrapper>
+            <Heart src={heartImg} />
+            <H2>Add some flavor!</H2>
+          </VerticalWrapper>
         </Grid>
-      </Wrapper>
+        <Grid item xs={12} md={6}>
+          <VerticalWrapper>
+            <Body className="bold600">Profile Photo</Body>
+            {avatar ? (
+              <PhotoRow onClick={uploadPhoto}>
+                {uploadedPhoto ? (
+                  <UserAvatar user={{ avatar }} size="large" />
+                ) : (
+                  <UserAvatar user={user} size="large" />
+                )}
+                <PhotoAction>Edit Photo</PhotoAction>
+              </PhotoRow>
+            ) : (
+              <PhotoRow onClick={uploadPhoto}>
+                <AddPhotoWrapper>
+                  <img src={addPhotoImg} />
+                </AddPhotoWrapper>
+                <PhotoAction>Add a Photo</PhotoAction>
+              </PhotoRow>
+            )}
+            <Body className="bold600">
+              What inspires you about The Good Party?
+            </Body>
+            <Input
+              value={comments}
+              label="I’m excited to join because..."
+              helperText="We may use this quote to inspire others to join!"
+              size="medium"
+              fullWidth
+              multiline
+              rows={2}
+              rowsMax={8}
+              variant="outlined"
+              onChange={onChangeComments}
+              style={{ margin: '16px 0' }}
+            />
+            {loading ? (
+              <CircularProgress />
+            ) : (
+              <NextButton active={submitActive()} onClick={handleSubmit}>
+                <SubmitText className={submitActive() && 'active'}>
+                  SUBMIT
+                </SubmitText>
+              </NextButton>
+            )}
+          </VerticalWrapper>
+        </Grid>
+      </Grid>
       {showUploadPhoto && (
         <AvatarUpload
           closeCallback={closeUploadPhotoCallback}
           selectImageCallback={selectImageCallback}
         />
       )}
-    </GrayWrapper>
+    </PageWrapper>
   );
 };
 

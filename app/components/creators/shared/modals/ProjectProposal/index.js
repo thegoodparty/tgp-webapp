@@ -11,7 +11,13 @@ import { Fade, TextField } from '@material-ui/core';
 import Collaborators from '../../Collaborators';
 import { Body18, Body13 } from '../../typography';
 import { BlueButton } from '../../buttons';
-import { Title, BodyWrapper, OverlayModal, FooterWrapper, CloseIcon } from '../shared';
+import {
+  Title,
+  BodyWrapper,
+  OverlayModal,
+  FooterWrapper,
+  CloseIcon,
+} from '../shared';
 
 const FooterMessage = styled(Body13)`
   color: ${({ theme }) => theme.creators.colors.gray};
@@ -33,24 +39,30 @@ const Message = styled(TextField)`
 
 const SubmitWrapper = styled(FooterWrapper)`
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     display: block;
   }
 `;
 
-function ProjectProposal({ open, handleClose, project, user, sendMessageToCreatorCallback }) {
-  console.log(user)
+function ProjectProposal({
+  open,
+  handleClose,
+  project,
+  user,
+  sendMessageToCreatorCallback,
+}) {
+  console.log(user);
   const [message, setMessage] = useState('');
   const sendMessage = () => {
     const messageInfo = {
       message,
       projectName: project.title,
       creatorEmail: project.email,
-      creatorName: project.creatorName
-    }
-    sendMessageToCreatorCallback(messageInfo)
-    handleClose()
-  }
+      creatorName: project.creatorName,
+    };
+    sendMessageToCreatorCallback(messageInfo);
+    handleClose();
+  };
   return (
     <OverlayModal
       open={open}
@@ -75,7 +87,12 @@ function ProjectProposal({ open, handleClose, project, user, sendMessageToCreato
             onChange={ev => setMessage(ev.target.value)}
           />
           <SubmitWrapper>
-            <BlueButton color="primary" variant="contained" disabled={message.length === 0} onClick={sendMessage}>
+            <BlueButton
+              color="primary"
+              variant="contained"
+              disabled={message.length === 0}
+              onClick={sendMessage}
+            >
               Send
             </BlueButton>
             <FooterMessage>
@@ -93,7 +110,7 @@ ProjectProposal.propTypes = {
   handleClose: PropTypes.func,
   project: PropTypes.object,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  sendMessageToCreatorCallback: PropTypes.func
+  sendMessageToCreatorCallback: PropTypes.func,
 };
 
 export default ProjectProposal;

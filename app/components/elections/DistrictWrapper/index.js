@@ -11,14 +11,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import WarningIcon from '@material-ui/icons/Warning';
 
-import Wrapper from 'components/shared/Wrapper';
+import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
 import AmaContainer from 'containers/shared/AmaContainer';
 import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
-import GrayWrapper from 'components/shared/GrayWrapper';
 import {
   houseElectionLink,
   isEmptyCandidates,
@@ -192,132 +189,123 @@ const DistrictWrapper = ({
   const upperState = stateShort ? stateShort.toUpperCase() : stateShort;
 
   return (
-    <GrayWrapper>
+    <PageWrapper>
       {district && presidential ? (
         <>
-          <Nav />
-          <Wrapper>
-            <MobileHeader />
-            <Row>
-              <H1>{primaryCity},</H1>
-              &nbsp;
-              <H3>
-                {shortState} {zip}
-              </H3>
-            </Row>
-            <Row justifyContent="space-between">
-              <Body>
-                Congressional District:{' '}
-                <strong>
-                  {shortState}-{districtNumber}
-                </strong>
-              </Body>
-              <NotDistrict onClick={toggleShowCds}>
-                {showCds ? 'Select Your District' : 'Not Your District?'}
-              </NotDistrict>
-            </Row>
-            <Collapse in={showCds} timeout={600}>
-              {cdsWithPerc.length > 1 &&
-                cdsWithPerc.map((cd, index) => (
-                  <CdWrapper
-                    className={index === cdIndex && 'active'}
-                    key={cd.id}
-                    onClick={() =>
-                      handleDistrictChange(cd.id, index, zip, user)
-                    }
-                  >
-                    <Body className={index === cdIndex && 'active'}>
-                      {cd.name}
-                    </Body>
-                    <Body11>
-                      {cd.pct}% of {zip} zip code population live in {cd.name}
-                    </Body11>
-                  </CdWrapper>
-                ))}
-              <CdWrapper onClick={handleZipChange}>
-                <Body>Change your Zip Code</Body>
-              </CdWrapper>
-            </Collapse>
-            <Spacer>
-              <Body>
-                You have <strong>{electionCount}</strong> relevant Federal
-                Elections. Check{' '}
-                <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
-                  candidate voting blocs
-                </Link>{' '}
-                to see if your vote can elect someone{' '}
-                <Link to="?article=5KnBx42FOEVDJNUFpoU1PX">
-                  Potentially Good
-                </Link>
-                .
-              </Body>
-            </Spacer>
-            <Link to={presidentialElectionLink()}>
-              {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
+          <Row>
+            <H1>{primaryCity},</H1>
+            &nbsp;
+            <H3>
+              {shortState} {zip}
+            </H3>
+          </Row>
+          <Row justifyContent="space-between">
+            <Body>
+              Congressional District:{' '}
+              <strong>
+                {shortState}-{districtNumber}
+              </strong>
+            </Body>
+            <NotDistrict onClick={toggleShowCds}>
+              {showCds ? 'Select Your District' : 'Not Your District?'}
+            </NotDistrict>
+          </Row>
+          <Collapse in={showCds} timeout={600}>
+            {cdsWithPerc.length > 1 &&
+              cdsWithPerc.map((cd, index) => (
+                <CdWrapper
+                  className={index === cdIndex && 'active'}
+                  key={cd.id}
+                  onClick={() => handleDistrictChange(cd.id, index, zip, user)}
+                >
+                  <Body className={index === cdIndex && 'active'}>
+                    {cd.name}
+                  </Body>
+                  <Body11>
+                    {cd.pct}% of {zip} zip code population live in {cd.name}
+                  </Body11>
+                </CdWrapper>
+              ))}
+            <CdWrapper onClick={handleZipChange}>
+              <Body>Change your Zip Code</Body>
+            </CdWrapper>
+          </Collapse>
+          <Spacer>
+            <Body>
+              You have <strong>{electionCount}</strong> relevant Federal
+              Elections. Check{' '}
+              <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
+                candidate voting blocs
+              </Link>{' '}
+              to see if your vote can elect someone{' '}
+              <Link to="?article=5KnBx42FOEVDJNUFpoU1PX">Potentially Good</Link>
+              .
+            </Body>
+          </Spacer>
+          <Link to={presidentialElectionLink()}>
+            {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
+              <RankedCard
+                title="Presidential Election"
+                candidates={presidential}
+                rankObj={presidentialRank}
+                suffixText={` (${presidential.electors} ELECTORS)`}
+              />
+            ) : (
+              <VsCard
+                title="Presidential Election"
+                candidates={presidential}
+                suffixText={` IN ${upperState} (${
+                  presidential.electors
+                } ELECTORS)`}
+              />
+            )}
+          </Link>
+          {!isEmptyCandidates(senateCandidates) && (
+            <Link to={senateElectionLink(shortState)}>
+              {senateRank && Object.keys(senateRank).length > 0 ? (
                 <RankedCard
-                  title="Presidential Election"
-                  candidates={presidential}
-                  rankObj={presidentialRank}
-                  suffixText={` (${presidential.electors} ELECTORS)`}
+                  title={`Senator - ${stateLong}`}
+                  candidates={senateCandidates}
+                  rankObj={senateRank}
+                  suffixText={` ${upperState}`}
+                  chamber="senate"
+                  state={shortState}
                 />
               ) : (
                 <VsCard
-                  title="Presidential Election"
-                  candidates={presidential}
-                  suffixText={` (${presidential.electors} ELECTORS)`}
+                  title={`Senator - ${stateLong}`}
+                  candidates={senateCandidates}
+                  suffixText={` ${upperState}`}
                 />
               )}
             </Link>
-            {!isEmptyCandidates(senateCandidates) && (
-              <Link to={senateElectionLink(shortState)}>
-                {senateRank && Object.keys(senateRank).length > 0 ? (
-                  <RankedCard
-                    title={`Senator - ${stateLong}`}
-                    candidates={senateCandidates}
-                    rankObj={senateRank}
-                    suffixText={` ${upperState}`}
-                    chamber="senate"
-                    state={shortState}
-                  />
-                ) : (
-                  <VsCard
-                    title={`Senator - ${stateLong}`}
-                    candidates={senateCandidates}
-                    suffixText={` ${upperState}`}
-                  />
-                )}
-              </Link>
-            )}
-            {!isEmptyCandidates(houseCandidates) && (
-              <Link to={houseElectionLink(shortState, districtNumber)}>
-                {houseRank && Object.keys(houseRank).length > 0 ? (
-                  <RankedCard
-                    title={`House Representative ${shortState}-${districtNumber}`}
-                    candidates={houseCandidates}
-                    rankObj={houseRank}
-                    suffixText={` ${upperState}-${districtNumber}`}
-                    chamber="house"
-                    district={districtNumber}
-                    state={shortState}
-                  />
-                ) : (
-                  <VsCard
-                    title={`House Representative ${shortState}-${districtNumber}`}
-                    candidates={houseCandidates}
-                    suffixText={` ${upperState}-${districtNumber}`}
-                  />
-                )}
-              </Link>
-            )}
-            <TopQuestions articles={articles} />
-            <AmaContainer />
-          </Wrapper>
+          )}
+          {!isEmptyCandidates(houseCandidates) && (
+            <Link to={houseElectionLink(shortState, districtNumber)}>
+              {houseRank && Object.keys(houseRank).length > 0 ? (
+                <RankedCard
+                  title={`House Representative ${shortState}-${districtNumber}`}
+                  candidates={houseCandidates}
+                  rankObj={houseRank}
+                  suffixText={` ${upperState}-${districtNumber}`}
+                  chamber="house"
+                  district={districtNumber}
+                  state={shortState}
+                />
+              ) : (
+                <VsCard
+                  title={`House Representative ${shortState}-${districtNumber}`}
+                  candidates={houseCandidates}
+                  suffixText={` ${upperState}-${districtNumber}`}
+                />
+              )}
+            </Link>
+          )}
+          <TopQuestions articles={articles} />
+          <AmaContainer />
         </>
       ) : (
-        <Wrapper>
-          <MobileHeader />
-          <LoadingAnimation />
-        </Wrapper>
+        <LoadingAnimation />
       )}
       <Dialog
         onClose={handleCloseAlert}
@@ -344,7 +332,7 @@ const DistrictWrapper = ({
           </DialogActions>
         </AlertWrapper>
       </Dialog>
-    </GrayWrapper>
+    </PageWrapper>
   );
 };
 

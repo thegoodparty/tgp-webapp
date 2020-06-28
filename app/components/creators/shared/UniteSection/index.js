@@ -22,24 +22,24 @@ import MultiLineCreatorsTitle from 'images/title--creators_of_the_world_2.svg';
 const SectionWrapper = styled.div`
   padding: 3rem 8rem 0;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     padding: 4rem;
     padding-bottom: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 2rem;
     padding-bottom: 0;
   }
 `;
 const Spare = styled.div`
-  height: 6rem;
+  height: 5rem;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     height: 4rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     height: 2rem;
   }
 `;
@@ -50,11 +50,11 @@ const Audience = styled.p`
   font: normal 500 32px normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 17px;
     line-height: 140%;
     margin: 1.5rem 0;
@@ -68,13 +68,13 @@ const Logo = styled.img`
   top: -5px;
   position: relative;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     width: 30px;
     height: 25px;
     top: -2px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     width: 17px;
     height: 14px;
     top: -3px;
@@ -85,12 +85,12 @@ const Logo = styled.img`
 const LogoTitle = styled(Body)`
   margin: 60px 0;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 24px;
     margin: 3rem 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 15px;
     margin: 2rem 0;
   }
@@ -105,11 +105,11 @@ const CreatorsCount = styled.p`
   margin-bottom: 1.5rem;
   margin-top: 0;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 15px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -118,20 +118,23 @@ const Description = styled.p`
   max-width: 45rem;
   margin: 0 auto;
   margin-top: 5rem;
+  margin-bottom: 5rem;
   font: normal 400 24px normal;
   line-height: 1.5;
   font-family: unset;
   color: ${({ theme }) => theme.creators.colors.darkGray};
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     max-width: none;
     margin-top: 3rem;
+    margin-bottom: 4rem;
     font-size: 20px;
     padding: 0 4rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-top: 2.5rem;
+    margin-bottom: 2rem;
     line-height: 1.3;
     font-size: 15px;
     padding: 0;
@@ -142,14 +145,14 @@ const TitleImg = styled.img`
   width: 100%;
   height: 100%;
   @media only screen and (min-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
   }
 `;
 
 const SmPunct = styled.span`
   display: none;
   @media only screen and (min-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     display: inline;
   }
 `;
@@ -184,7 +187,6 @@ const VideoBr = styled.br`
   }
 `;
 const PodcastersPunct = styled.span`
-  
   display: inline;
 
   @media only screen and (min-width: 375px) and (max-width: 465px) {
@@ -210,10 +212,8 @@ const PodcastersBr = styled.br`
   @media only screen and (min-width: 957px) and (max-width: 1020px) {
     display: inline-block;
   }
-  
 `;
 const InfluencersPunct = styled.span`
-  
   display: inline;
 
   @media only screen and (min-width: 466px) and (max-width: 560px) {
@@ -241,7 +241,6 @@ const InfluencersBr = styled.br`
   }
 `;
 const MakersPunct = styled.span`
-  
   display: inline;
   @media only screen and (min-width: 561px) and (max-width: 569px) {
     display: none;
@@ -251,7 +250,7 @@ const MakersPunct = styled.span`
     display: none;
   }
 
-  @media only screen and (min-width: 1188px){
+  @media only screen and (min-width: 1188px) {
     display: none;
   }
 `;
@@ -265,7 +264,7 @@ const MakersBr = styled.br`
     display: inline-block;
   }
 
-  @media only screen and (min-width: 1188px){
+  @media only screen and (min-width: 1188px) {
     display: inline-block;
   }
 `;
@@ -309,8 +308,14 @@ function UniteSection({ user, toggleJoin }) {
         <TitleImg src={MultiLineCreatorsTitle} alt="creators" />
       </Hidden>
       <Audience>
-        Designers · Writers · Podcasters <PodcastersPunct> · </PodcastersPunct> <PodcastersBr />Influencers <InfluencersPunct> · </InfluencersPunct> <InfluencersBr />Makers <MakersPunct> · </MakersPunct> <MakersBr />Coders <CodersPunct> · </CodersPunct> <CodersBr /><span style={{ whiteSpace: 'nowrap' }}>Content
-        Creators</span> <VideoPunct> · </VideoPunct><VideoBr /> Videographers
+        Designers · Writers · Podcasters <PodcastersPunct> · </PodcastersPunct>{' '}
+        <PodcastersBr />
+        Influencers <InfluencersPunct> · </InfluencersPunct> <InfluencersBr />
+        Makers <MakersPunct> · </MakersPunct> <MakersBr />
+        Coders <CodersPunct> · </CodersPunct> <CodersBr />
+        <span style={{ whiteSpace: 'nowrap' }}>Content Creators</span>{' '}
+        <VideoPunct> · </VideoPunct>
+        <VideoBr /> Videographers
       </Audience>
 
       {/* <Audience>
@@ -334,7 +339,6 @@ function UniteSection({ user, toggleJoin }) {
       </div>
       {!user && (
         <>
-
           {/* <CreatorsCount>640 Creators have joined so far</CreatorsCount> */}
           <Heads />
         </>
@@ -358,7 +362,17 @@ function UniteSection({ user, toggleJoin }) {
         Help with any project you can from the list below or add your own. All
         projects are open-source and free for good.
       </Description>
-      <Spare id="projects-section"></Spare>
+      <div className="text-center">
+        <ViewProjectsButton
+          variant="contained"
+          color="primary"
+          target="_blank"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform"
+        >
+          I want to Help
+        </ViewProjectsButton>
+      </div>
+      <Spare id="projects-section" />
     </SectionWrapper>
   );
 }

@@ -91,7 +91,7 @@ const Ama = ({ sendAmaCallback }) => {
         <span role="img" aria-label="thinker">
           🤔
         </span>{' '}
-        Ask a question or{' '}
+        Ask a Question or{' '}
         <span role="img" aria-label="light-bulb">
           💡
         </span>
@@ -102,7 +102,16 @@ const Ama = ({ sendAmaCallback }) => {
           <CloseWrapper>
             <TopClose onClick={closeModal} />
           </CloseWrapper>
-          <Title>Ask us Anything</Title>
+          <Title>
+            <span role="img" aria-label="thinker">
+              🤔
+            </span>{' '}
+            Ask a Question or{' '}
+            <span role="img" aria-label="light-bulb">
+              💡
+            </span>
+            Give a Suggestion
+          </Title>
           <form noValidate onSubmit={handleSubmitForm}>
             <StyledTextField
               rows={4}

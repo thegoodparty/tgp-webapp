@@ -61,7 +61,6 @@ function App({ dispatch }) {
         <GlobalStyle />
         <SnackbarContainer />
         <QueryRoutes />
-        <Footer />
       </ErrorBoundary>
     </div>
   );

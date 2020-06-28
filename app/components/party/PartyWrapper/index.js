@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
 import { Body13, Body9, H3 } from 'components/shared/typogrophy/index';
 import EventSnippet from 'components/shared/EventSnippet';
 import articlesHelper from 'helpers/articlesHelper';
@@ -13,6 +10,7 @@ import TopQuestions from 'components/shared/TopQuestions';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import AmaContainer from 'containers/shared/AmaContainer';
 import ENV from 'api/ENV';
+import PageWrapper from 'components/shared/PageWrapper';
 
 const EventsWrapper = styled.div`
   margin-top: 50px;
@@ -58,27 +56,23 @@ const PartyWrapper = ({ content, appVersion }) => {
     productionVersion = content.appVersion.version;
   }
   return (
-    <div style={{ backgroundColor: '#FFF' }}>
-      <Nav />
-      <Wrapper white>
-        <MobileHeader />
-        {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
-        {events.length > 0 && (
-          <EventsWrapper>
-            <Row>
-              <H3>Upcoming Online Events</H3>
-              <Link to="/party/events">
-                <LearnMore>See All</LearnMore>
-              </Link>
-            </Row>
-            {events.map(event => (
-              <EventSnippet event={event} key={event.id} />
-            ))}
-          </EventsWrapper>
-        )}
-        <TopQuestions articles={articles} />
-        <AmaContainer />
-      </Wrapper>
+    <PageWrapper white>
+      {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
+      {events.length > 0 && (
+        <EventsWrapper>
+          <Row>
+            <H3>Upcoming Online Events</H3>
+            <Link to="/party/events">
+              <LearnMore>See All</LearnMore>
+            </Link>
+          </Row>
+          {events.map(event => (
+            <EventSnippet event={event} key={event.id} />
+          ))}
+        </EventsWrapper>
+      )}
+      <TopQuestions articles={articles} />
+      <AmaContainer />
       <AppVersion>
         The Good Party V.{appVersion} {ENV !== 'prod' && ENV}
         {productionVersion ? (
@@ -89,7 +83,7 @@ const PartyWrapper = ({ content, appVersion }) => {
           ''
         )}
       </AppVersion>
-    </div>
+    </PageWrapper>
   );
 };
 

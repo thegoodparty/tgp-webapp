@@ -70,6 +70,8 @@ function MobileHeader({
     dispatch(goBack());
   };
 
+  console.log('inmobile header', isGood, showShare)
+
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   const url = uuidUrl(user);
 

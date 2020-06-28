@@ -31,12 +31,12 @@ const Wrapper = ({
   white,
   noHeader = false,
   creators = false,
-  blue
+  blue,
 }) => {
   let className = '';
   if (white) {
     className = 'white';
-  } else  if(blue) {
+  } else if (blue) {
     className = 'blue';
   }
   return (
@@ -51,7 +51,7 @@ Wrapper.propTypes = {
   style: PropTypes.object,
   white: PropTypes.bool,
   noHeader: PropTypes.bool,
-  blue: PropTypes.bool
+  blue: PropTypes.bool,
 };
 
 export default Wrapper;

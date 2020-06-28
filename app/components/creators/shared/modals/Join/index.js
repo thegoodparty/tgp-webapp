@@ -14,7 +14,14 @@ import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import { OutlinedButton } from 'components/shared/buttons';
 import globals from 'globals';
-import { BodyWrapper, OverlayModal, CloseIcon, Blurb, Logo, Title } from '../shared';
+import {
+  BodyWrapper,
+  OverlayModal,
+  CloseIcon,
+  Blurb,
+  Logo,
+  Title,
+} from '../shared';
 import { Body13, Body15, Body11 } from '../../typography';
 import Heads from '../../Heads';
 
@@ -22,7 +29,7 @@ const JoinTitle = styled(Title)`
   margin-bottom: 1rem;
   text-align: center;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-bottom: 1.5rem;
   }
 `;
@@ -59,7 +66,7 @@ const StyledBody13 = styled(Body13)`
 const StyledBody15 = styled(Body15)`
   color: ${({ theme }) => theme.creators.colors.darkGray};
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 13px;
   }
 `;
@@ -69,7 +76,7 @@ const StyledBody11 = styled(Body11)`
     margin-bottom: 5px !important;
     color: ${({ theme }) => theme.creators.colors.darkGray};
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       font-size: 11px;
     }
   }
@@ -78,7 +85,7 @@ const JoinBodyWrapper = styled(BodyWrapper)`
   && {
     padding: 3rem 7rem;
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       padding: 3rem;
     }
   }
@@ -89,7 +96,7 @@ function Join({
   handleClose,
   socialLoginCallback,
   socialLoginFailureCallback,
-  setSignupRedirectCookieCallback
+  setSignupRedirectCookieCallback,
 }) {
   return (
     <OverlayModal
@@ -127,11 +134,12 @@ function Join({
             >
               Continue with GOOGLE
             </SocialButton>
-            <OutlinedButton active style={{ marginTop: '24px', width: '100%' }} onClick={() => setSignupRedirectCookie('/creators')}>
-              <Link
-                to="/you/register-email"
-                style={{ width: '100%' }}
-              >
+            <OutlinedButton
+              active
+              style={{ marginTop: '24px', width: '100%' }}
+              onClick={() => setSignupRedirectCookie('/creators')}
+            >
+              <Link to="/you/register-email" style={{ width: '100%' }}>
                 <EmailInner>
                   <EmailIconImg src={EmailIcon} />
                   <StyledBody13>CONTINUE WITH EMAIL</StyledBody13>
@@ -139,8 +147,14 @@ function Join({
               </Link>
             </OutlinedButton>
           </JoinButtonWrapper>
-          <StyledBody15 style={{ marginTop: '24px' }}  onClick={() => setSignupRedirectCookieCallback('/creators')}>
-            Have an account? <Link to="/login"><b>Sign In</b></Link>
+          <StyledBody15
+            style={{ marginTop: '24px' }}
+            onClick={() => setSignupRedirectCookieCallback('/creators')}
+          >
+            Have an account?{' '}
+            <Link to="/login">
+              <b>Sign In</b>
+            </Link>
           </StyledBody15>
           <StyledBody11 style={{ margin: '24px 0' }}>
             By signing up, you agree to the{' '}
@@ -162,7 +176,7 @@ Join.propTypes = {
   handleClose: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
-  setSignupRedirectCookieCallback: PropTypes.func
+  setSignupRedirectCookieCallback: PropTypes.func,
 };
 
 export default Join;

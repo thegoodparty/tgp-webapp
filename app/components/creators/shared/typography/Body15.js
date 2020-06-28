@@ -6,4 +6,4 @@ const Body15 = styled.p`
   margin: 0;
 `;
 
-export default Body15
+export default Body15;

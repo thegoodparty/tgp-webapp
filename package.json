@@ -43,7 +43,13 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
     "deploy-dev": "git checkout develop  && eb deploy",
-    "deploy-prod": "git checkout master  && eb deploy"
+    "deploy-prod": "git checkout master  && eb deploy",
+    "cypress:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress open",
+    "cypress:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress open",
+    "cypress:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress open",
+    "cypress:run:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress run --record",
+    "cypress:run:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress run --record",
+    "cypress:run:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress run --record "
   },
   "browserslist": [
     "last 2 versions",
@@ -142,6 +148,7 @@
     "compression-webpack-plugin": "2.0.0",
     "coveralls": "3.0.3",
     "css-loader": "2.1.1",
+    "cypress": "^4.9.0",
     "eslint": "^7.0.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-airbnb-base": "13.1.0",

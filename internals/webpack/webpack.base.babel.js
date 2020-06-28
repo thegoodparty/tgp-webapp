@@ -21,7 +21,7 @@ module.exports = options => ({
     rules: [
       {
         test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /cypress/],
         use: {
           loader: 'babel-loader',
           options: options.babelQuery,

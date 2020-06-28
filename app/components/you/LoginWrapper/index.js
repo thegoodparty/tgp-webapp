@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
+import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H2, H1 } from 'components/shared/typogrophy/index';
-import GrayWrapper from 'components/shared/GrayWrapper';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import heartImg from 'images/heart.svg';
 
@@ -96,71 +93,67 @@ const LoginWrapper = ({
     }
   };
   return (
-    <GrayWrapper>
-      <Nav />
-      <Wrapper>
-        <MobileHeader />
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <VerticalWrapper>
-              <Heart src={heartImg} />
-              <H1>Sign into your account</H1>
-            </VerticalWrapper>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <VerticalWrapper>
-              <form noValidate onSubmit={handleSubmitForm}>
-                <Input
-                  value={email}
-                  label="Email Address"
-                  required
-                  size="medium"
-                  fullWidth
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  variant="outlined"
-                  onChange={onChangeEmail}
-                />
-                <OutlinedButton
-                  fullWidth
-                  active={validateEmail()}
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </OutlinedButton>
-              </form>
-              <OrWrapper>
-                <Border />
-                <Or>
-                  <Body13 style={{ color: '#767676' }}>Or</Body13>
-                </Or>
-              </OrWrapper>
-              <FacebookButton
-                onLoginSuccess={socialLoginCallback}
-                onLoginFailure={socialLoginFailureCallback}
-              >
-                Continue with Facebook
-              </FacebookButton>
-              <SocialButton
-                channel="google"
-                provider="google"
-                appId={globals.googleAppId}
-                onLoginSuccess={socialLoginCallback}
-                onLoginFailure={socialLoginFailureCallback}
-              >
-                Continue with GOOGLE
-              </SocialButton>
-
-              <Body13 style={{ margin: '24px 0' }}>
-                Don&apos;t have an account?{' '}
-                <Link to="?register=true">Create one</Link>
-              </Body13>
-            </VerticalWrapper>
-          </Grid>
+    <PageWrapper>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          <VerticalWrapper>
+            <Heart src={heartImg} />
+            <H1>Sign into your account</H1>
+          </VerticalWrapper>
         </Grid>
-      </Wrapper>
-    </GrayWrapper>
+        <Grid item xs={12} md={6}>
+          <VerticalWrapper>
+            <form noValidate onSubmit={handleSubmitForm}>
+              <Input
+                value={email}
+                label="Email Address"
+                required
+                size="medium"
+                fullWidth
+                type="email"
+                name="email"
+                autoComplete="email"
+                variant="outlined"
+                onChange={onChangeEmail}
+              />
+              <OutlinedButton
+                fullWidth
+                active={validateEmail()}
+                onClick={handleSubmit}
+              >
+                Submit
+              </OutlinedButton>
+            </form>
+            <OrWrapper>
+              <Border />
+              <Or>
+                <Body13 style={{ color: '#767676' }}>Or</Body13>
+              </Or>
+            </OrWrapper>
+            <FacebookButton
+              onLoginSuccess={socialLoginCallback}
+              onLoginFailure={socialLoginFailureCallback}
+            >
+              Continue with Facebook
+            </FacebookButton>
+            <SocialButton
+              channel="google"
+              provider="google"
+              appId={globals.googleAppId}
+              onLoginSuccess={socialLoginCallback}
+              onLoginFailure={socialLoginFailureCallback}
+            >
+              Continue with GOOGLE
+            </SocialButton>
+
+            <Body13 style={{ margin: '24px 0' }}>
+              Don&apos;t have an account?{' '}
+              <Link to="?register=true">Create one</Link>
+            </Body13>
+          </VerticalWrapper>
+        </Grid>
+      </Grid>
+    </PageWrapper>
   );
 };
 
