@@ -19,15 +19,15 @@ describe('GuestHeader', () => {
       cy.get('[data-cy=elections]').click();
       cy.url().should('include', '/intro/zip-finder');
 
-      cy.get('[data-cy=zipcode]').type('99501');
+      cy.get('[data-cy=zipcode]').type('90210');
       cy.get('[data-cy=submit]').click();
 
-      cy.url().should('include', '/elections/district/99501');
+      cy.url().should('include', '/elections/district/90210');
       cy.get('[data-cy=you]').click();
       cy.url().should('include', '/you');
 
       cy.get('[data-cy=elections]').click();
-      cy.url().should('include', '/elections/district/99501');
+      cy.url().should('include', '/elections/district/90210');
 
       cy.get('[data-cy=party]').click();
       cy.url().should('include', '/party');
