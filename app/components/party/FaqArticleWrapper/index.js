@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import CloseIcon from '@material-ui/icons/Cancel';
 import Dialog from '@material-ui/core/Dialog';
+import TextField from '@material-ui/core/TextField';
 
 import { Body, Body11, H1, Body13 } from 'components/shared/typogrophy';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
+import { BlueButton } from '../../shared/buttons';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -56,6 +58,14 @@ const ButtonsWrapper = styled.div`
   justify-content: center;
 `;
 
+const SubmitButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 14px auto;
+  justify-content: center;
+  max-width: 250px;
+`;
+
 const FeedbackButton = styled(Body11)`
   padding: 13px 30px;
   text-align: center;
@@ -77,16 +87,54 @@ const Close = styled(Body13)`
   padding: 10px;
 `;
 
+const HELPFUL_STATES = {
+  notSelected: 0,
+  helpful: 1,
+  notHelpful: 2,
+};
+
 const FaqArticleWrapper = ({
   article,
   backButtonCallback,
   closeModalCallback,
   helpfulCallback,
 }) => {
-  const handleFeedback = feedback => {
-    helpfulCallback(article.id, article.title, feedback);
-    closeModalCallback();
+  const [feedback, setFeedback] = useState('');
+  const [isHelpful, setIsHelpful] = useState(HELPFUL_STATES.notSelected);
+
+  useEffect(() => {
+    if (isHelpful === HELPFUL_STATES.helpful) {
+      handleSubmit();
+    }
+  }, [isHelpful]);
+
+  const handleFeedback = event => {
+    setFeedback(event.target.value);
   };
+
+  const handleHelpful = isHelpfulVal => {
+    if (isHelpfulVal) {
+      setIsHelpful(HELPFUL_STATES.helpful);
+    } else {
+      setIsHelpful(HELPFUL_STATES.notHelpful);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (isHelpful === HELPFUL_STATES.notSelected) {
+      return;
+    }
+    if (isHelpful === HELPFUL_STATES.helpful) {
+      helpfulCallback(article.id, article.title, true, '');
+      closeModalCallback();
+    } else {
+      if (feedback !== '') {
+        helpfulCallback(article.id, article.title, false, feedback);
+        closeModalCallback();
+      }
+    }
+  };
+
   return (
     <>
       {article ? (
@@ -97,9 +145,7 @@ const FaqArticleWrapper = ({
                 <BackIconWrapper onClick={backButtonCallback}>
                   <BackIcon style={{ fontSize: '34px' }} />
                 </BackIconWrapper>
-                <TopClose
-                  onClick={closeModalCallback}
-                />
+                <TopClose onClick={closeModalCallback} />
               </TopWrapper>
               <H1 style={{ marginBottom: '32px' }}>{article.title}</H1>
 
@@ -110,14 +156,32 @@ const FaqArticleWrapper = ({
               <ButtonsWrapper>
                 <FeedbackButton
                   className="blue"
-                  onClick={() => handleFeedback(true)}
+                  onClick={() => handleHelpful(true)}
                 >
                   Yes
                 </FeedbackButton>
-                <FeedbackButton onClick={() => handleFeedback(false)}>
+                <FeedbackButton onClick={() => handleHelpful(false)}>
                   No
                 </FeedbackButton>
               </ButtonsWrapper>
+              {isHelpful === HELPFUL_STATES.notHelpful && (
+                <>
+                  <TextField
+                    rows={4}
+                    multiline
+                    fullWidth
+                    placeholder="Please Provide Feedback"
+                    onChange={handleFeedback}
+                    variant="outlined"
+                    required
+                  />
+                  <SubmitButtonWrapper onClick={handleSubmit}>
+                    <BlueButton disabled={feedback === ''} fullWidth>
+                      SUBMIT
+                    </BlueButton>
+                  </SubmitButtonWrapper>
+                </>
+              )}
               <div className="text-center">
                 <Close onClick={closeModalCallback}>Close</Close>
               </div>

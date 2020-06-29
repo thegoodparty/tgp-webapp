@@ -28,7 +28,6 @@ function PageWrapper({
   hideMobileNav,
   style = {},
 }) {
-  console.log('in page wrapper', mobileHeaderProps);
   return (
     <MainWrapper className={white ? 'white' : ''} style={style}>
       {!hideNav && <Nav hideMobileNav={hideMobileNav} />}

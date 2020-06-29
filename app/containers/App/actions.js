@@ -23,10 +23,11 @@ const clearArticleModalAction = () => ({
   type: types.CLEAR_ARTICLE_MODAL,
 });
 
-const sendArticleFeedbackAction = (id, title, feedback) => ({
+const sendArticleFeedbackAction = (id, title, isHelpful, feedback) => ({
   type: types.SEND_ARTICLE_FEEDBACK,
   id,
   title,
+  isHelpful,
   feedback,
 });
 
