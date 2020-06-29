@@ -360,7 +360,6 @@ function Project({
             {project.links &&
               project.links.map((link, index) => {
                 const icon = getLinkIcon(link);
-                console.log(icon);
                 return (
                   <OuterLinkWrapper key={index}>
                     <OuterLink href={link} target="_blank">

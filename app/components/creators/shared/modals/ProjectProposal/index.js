@@ -51,7 +51,6 @@ function ProjectProposal({
   user,
   sendMessageToCreatorCallback,
 }) {
-  console.log(user);
   const [message, setMessage] = useState('');
   const sendMessage = () => {
     const messageInfo = {
