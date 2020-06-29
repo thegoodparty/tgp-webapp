@@ -492,7 +492,8 @@ const CandidateWrapper = ({
 
   const blocName = candidateBlocName(candidate, chamberName);
   const mobileHeaderProps = {
-    showGood: isGood,
+    showGood: true,
+    isGood,
     showShare: true,
     user,
   };
