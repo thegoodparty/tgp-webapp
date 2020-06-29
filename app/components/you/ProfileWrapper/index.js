@@ -272,11 +272,12 @@ const ProfileWrapper = ({
       <a href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion">
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
-
-      <Body style={{ marginTop: '12px' }}>
-        Creators of the World, Unite! help create{' '}
-        <img src={heartImg} alt="tpg" /> (Coming Soon)
-      </Body>
+      <Link to="/creators">
+        <BottomLink>
+          Creators of the World, Unite! help create{' '}
+          <img src={heartImg} alt="tpg" />
+        </BottomLink>
+      </Link>
       <BottomLink
         style={{ marginTop: '48px', marginBottom: '24px' }}
         onClick={signoutCallback}
