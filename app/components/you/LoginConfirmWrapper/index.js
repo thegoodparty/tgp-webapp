@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
+import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 
@@ -64,30 +62,26 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
     }
   };
   return (
-    <div>
-      <Nav />
-      <Wrapper white>
-        <MobileHeader />
-        <H2 style={{ marginBottom: '28px' }}>A code was sent to {email}</H2>
-        <form noValidate onSubmit={handleSubmitForm}>
-          <Input
-            value={code}
-            label="Enter 6 digit code"
-            required
-            size="medium"
-            fullWidth
-            type="tel"
-            onChange={onChangeCode}
-          />
-          <Link to="/login">
-            <StyledBody13>Didn’t receive the code?</StyledBody13>
-          </Link>
-          <SubmitWrapper onClick={handleSubmit}>
-            <NextButton active={validateCode()}>Confirm</NextButton>
-          </SubmitWrapper>
-        </form>
-      </Wrapper>
-    </div>
+    <PageWrapper white>
+      <H2 style={{ marginBottom: '28px' }}>A code was sent to {email}</H2>
+      <form noValidate onSubmit={handleSubmitForm}>
+        <Input
+          value={code}
+          label="Enter 6 digit code"
+          required
+          size="medium"
+          fullWidth
+          type="tel"
+          onChange={onChangeCode}
+        />
+        <Link to="/login">
+          <StyledBody13>Didn’t receive the code?</StyledBody13>
+        </Link>
+        <SubmitWrapper onClick={handleSubmit}>
+          <NextButton active={validateCode()}>Confirm</NextButton>
+        </SubmitWrapper>
+      </form>
+    </PageWrapper>
   );
 };
 

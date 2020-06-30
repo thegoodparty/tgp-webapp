@@ -28,7 +28,7 @@ import {
   ProjectFormControl,
   ProjectFormHelperText,
   ProjectFormControlHeader,
-  CloseIcon
+  CloseIcon,
 } from '../shared';
 
 const TopicSelect = styled(MultipleSelect)`
@@ -97,7 +97,7 @@ function FirstStep({
                   variant="outlined"
                   placeholder="e.g. Graphics for the native iOS and Android app"
                   onChange={ev => updateProject(ev.target.value, 'title')}
-                  autoFocus 
+                  autoFocus
                 />
               </ProjectFormControl>
             </Grid>
@@ -112,7 +112,7 @@ function FirstStep({
                   <ProjectFormLabel>Project Summary</ProjectFormLabel>
                   <ProjectFormHelperText>Required</ProjectFormHelperText>
                 </ProjectFormControlHeader>
-                  <FormText
+                <FormText
                   multiline
                   error={summary === ''}
                   rows={width > 768 ? 7 : 4}
@@ -120,7 +120,7 @@ function FirstStep({
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  placeholder="Brief description of your project. 
+                  placeholder="Brief description of your project.
   Mention if you are looking for collaborators."
                   onChange={ev => updateProject(ev.target.value, 'summary')}
                 />

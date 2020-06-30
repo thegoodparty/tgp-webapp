@@ -21,7 +21,7 @@ import {
   ProjectFormControl,
   ProjectFormHelperText,
   ProjectFormControlHeader,
-  CloseIcon
+  CloseIcon,
 } from '../shared';
 
 const AddProjectLink = styled(Body15)`

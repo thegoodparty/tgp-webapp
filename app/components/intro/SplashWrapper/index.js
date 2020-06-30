@@ -9,7 +9,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Wrapper from 'components/shared/Wrapper';
+import PageWrapper from 'components/shared/PageWrapper';
 
 import heartImg from 'images/heart.svg';
 import peopleImg from 'images/icons/people.svg';
@@ -17,7 +17,6 @@ import writeinImg from 'images/icons/writein.svg';
 
 import { H1, Body14, Body12 } from 'components/shared/typogrophy';
 import { NextButton } from 'components/shared/buttons';
-import GrayWrapper from 'components/shared/GrayWrapper';
 
 const Logo = styled.img`
   width: 63px;
@@ -95,58 +94,56 @@ const wrapperStyles = {
 
 function SplashWrapper() {
   return (
-    <GrayWrapper>
-      <Wrapper style={wrapperStyles} noHeader>
-        <Centered>
-          <Logo src={heartImg} />
-          <H1 data-cy="title">THE GOOD PARTY</H1>
-          <SubTitle data-cy="subtitle">FIXING POLITICS FOR GOOD</SubTitle>
-        </Centered>
-        <Card data-cy="card-item">
-          <Icon src={heartImg} className="heart" data-cy="card-icon"/>
-          <TextWrapper>
-            <SmallTitle data-cy="card-title">See Good Candidates</SmallTitle>
-            <Body14 data-cy="card-text">
-              See good grass-roots candidates who are challenging the Big Money
-              politicians of two-party system.
-            </Body14>
-          </TextWrapper>
-        </Card>
+    <PageWrapper wrapperStyles={wrapperStyles} hideNav>
+      <Centered>
+        <Logo src={heartImg} />
+        <H1 data-cy="title">THE GOOD PARTY</H1>
+        <SubTitle data-cy="subtitle">FIXING POLITICS FOR GOOD</SubTitle>
+      </Centered>
+      <Card data-cy="card-item">
+        <Icon src={heartImg} className="heart" data-cy="card-icon" />
+        <TextWrapper>
+          <SmallTitle data-cy="card-title">See Good Candidates</SmallTitle>
+          <Body14 data-cy="card-text">
+            See good grass-roots candidates who are challenging the Big Money
+            politicians of two-party system.
+          </Body14>
+        </TextWrapper>
+      </Card>
 
-        <Card data-cy="card-item">
-          <Icon src={peopleImg} data-cy="card-icon" />
-          <TextWrapper>
-            <SmallTitle data-cy="card-title">Join Voting Blocs</SmallTitle>
-            <Body14 data-cy="card-text">
-              Privately join candidate voting blocs to be notified if any bloc
-              grows big enough to win,{' '}
-              <strong>
-                <i>before</i>
-              </strong>{' '}
-              the election.
-            </Body14>
-          </TextWrapper>
-        </Card>
+      <Card data-cy="card-item">
+        <Icon src={peopleImg} data-cy="card-icon" />
+        <TextWrapper>
+          <SmallTitle data-cy="card-title">Join Voting Blocs</SmallTitle>
+          <Body14 data-cy="card-text">
+            Privately join candidate voting blocs to be notified if any bloc
+            grows big enough to win,{' '}
+            <strong>
+              <i>before</i>
+            </strong>{' '}
+            the election.
+          </Body14>
+        </TextWrapper>
+      </Card>
 
-        <Card data-cy="card-item">
-          <Icon src={writeinImg} data-cy="card-icon" />
-          <TextWrapper>
-            <SmallTitle data-cy="card-title">Never Waste Your Vote</SmallTitle>
-            <Body14 data-cy="card-text">
-              We only activate a candidate bloc vote, when we’ve confirmed the
-              bloc has enough votes to win for sure.
-            </Body14>
-          </TextWrapper>
-        </Card>
-        <Link to="/intro/zip-finder" data-cy="start-link">
-          <ButtonWrppaer>
-            <NextButton active>
-              <SeeHow data-cy="start-button">GET STARTED</SeeHow>
-            </NextButton>
-          </ButtonWrppaer>
-        </Link>
-      </Wrapper>
-    </GrayWrapper>
+      <Card data-cy="card-item">
+        <Icon src={writeinImg} data-cy="card-icon" />
+        <TextWrapper>
+          <SmallTitle data-cy="card-title">Never Waste Your Vote</SmallTitle>
+          <Body14 data-cy="card-text">
+            We only activate a candidate bloc vote, when we’ve confirmed the
+            bloc has enough votes to win for sure.
+          </Body14>
+        </TextWrapper>
+      </Card>
+      <Link to="/intro/zip-finder" data-cy="start-link">
+        <ButtonWrppaer>
+          <NextButton active>
+            <SeeHow data-cy="start-button">GET STARTED</SeeHow>
+          </NextButton>
+        </ButtonWrppaer>
+      </Link>
+    </PageWrapper>
   );
 }
 

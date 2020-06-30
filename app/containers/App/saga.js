@@ -24,11 +24,12 @@ function* sendArticleFeedback(action) {
   try {
     const user = yield call(getUserFromStateOrCookie);
     const uuid = getUuid(user);
-    const { id, title, feedback } = action;
+    const { id, title, isHelpful, feedback } = action;
     const api = tgpApi.articleFeedback;
     const payload = {
       id,
       title,
+      isHelpful,
       feedback,
       uuid,
     };

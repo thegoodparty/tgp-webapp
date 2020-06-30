@@ -15,29 +15,29 @@ Cypress.Commands.add('testEventSnippet', ($el, event, isPastEvent = false) => {
         locationLink =
             location.indexOf('ama') === 0 ? `http://${location}` : location;
     }
-    cy.wrap($el).find('[data-cy=event-title').contains(title);
+    cy.wrap($el).find('[data-cy=event-title]').contains(title);
     if (displayDate) {
-        cy.wrap($el).find('[data-cy=event-date').contains(displayDate);
+        cy.wrap($el).find('[data-cy=event-date]').contains(displayDate);
     }
     if (description) {
-        cy.wrap($el).find('[data-cy=event-description').contains(description);
+        cy.wrap($el).find('[data-cy=event-description]').contains(description);
     }
     if (location) {
-        cy.wrap($el).find('[data-cy=event-location').contains('Location:');
+        cy.wrap($el).find('[data-cy=event-location]').contains('Location:');
         if (isLocationLink) {
-            cy.wrap($el).find('[data-cy=event-location-link').contains(location).should('have.attr', 'href', locationLink);
+            cy.wrap($el).find('[data-cy=event-location-link]').contains(location).should('have.attr', 'href', locationLink);
         }
         else {
-            cy.wrap($el).find('[data-cy=event-location').contains(location);
+            cy.wrap($el).find('[data-cy=event-location]').contains(location);
         }
     }
     if (presenter) {
-        cy.wrap($el).find('[data-cy=event-presenter-name').contains(presenter);
-        cy.wrap($el).find('[data-cy=event-presenter').contains(presenterTitle);
+        cy.wrap($el).find('[data-cy=event-presenter-name]').contains(presenter);
+        cy.wrap($el).find('[data-cy=event-presenter]').contains(presenterTitle);
     }
     if (!isPastEvent) {
-        cy.wrap($el).find('[data-cy=event-interested').should('have.attr', 'href', locationLink);
-        cy.wrap($el).find('[data-cy=event-interested').contains('M INTERESTED');
+        cy.wrap($el).find('[data-cy=event-interested]').should('have.attr', 'href', locationLink);
+        cy.wrap($el).find('[data-cy=event-interested]').contains('M INTERESTED');
     }
 })
 

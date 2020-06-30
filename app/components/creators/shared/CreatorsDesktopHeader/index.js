@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Drawer,
-  List,
-  ListItem,
-  Hidden,
-} from '@material-ui/core';
+import { Drawer, List, ListItem, Hidden } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -30,7 +25,6 @@ const Wrapper = styled.div`
       theme.creators.breakpoints.creatorsMobile}) {
     height: 64px;
   }
-  
 `;
 
 const ContentWrapper = styled.div`
@@ -41,7 +35,7 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 132px;
-  
+
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsTablet}) {
     height: 88px;
@@ -50,7 +44,7 @@ const ContentWrapper = styled.div`
   @media only screen and (max-width: ${({ theme }) =>
       theme.creators.breakpoints.creatorsMobile}) {
     height: 64px;
-    padding: 0 1rem
+    padding: 0 1rem;
   }
 `;
 

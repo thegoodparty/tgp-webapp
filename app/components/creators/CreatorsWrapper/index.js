@@ -13,12 +13,12 @@ const CreatorsWrapper = ({
   socialLoginCallback,
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
-  sendMessageToCreatorCallback
+  sendMessageToCreatorCallback,
 }) => {
   const [join, setJoin] = useState(false);
   useEffect(() => {
     setJoin(false);
-  }, [user])
+  }, [user]);
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <CreatorsHeaderWrapper toggleJoin={join => setJoin(join)} user={user} />
@@ -52,7 +52,7 @@ CreatorsWrapper.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   setSignupRedirectCookieCallback: PropTypes.func,
-  sendMessageToCreatorCallback: PropTypes.func
+  sendMessageToCreatorCallback: PropTypes.func,
 };
 
 export default CreatorsWrapper;

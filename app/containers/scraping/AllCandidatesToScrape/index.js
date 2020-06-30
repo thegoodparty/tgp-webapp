@@ -89,16 +89,16 @@ export function AllCandidatesToScrape({
                     <span key={candidate.id}>
                       <a
                         className="ballotpedia"
-                        // href={
-                        //   candidate.source
-                        //     ? candidate.source
-                        //     : `https://ballotpedia.org/${underScoreName(
-                        //         candidate.name,
-                        //       )}`
-                        // }
-                        href={`https://ballotpedia.org/${underScoreName(
-                          candidate.name,
-                        )}`}
+                        href={
+                          candidate.source
+                            ? candidate.source
+                            : `https://ballotpedia.org/${underScoreName(
+                                candidate.name,
+                              )}`
+                        }
+                        // href={`https://ballotpedia.org/${underScoreName(
+                        //   candidate.name,
+                        // )}`}
                       >
                         {candidate.id}|{candidate.name}|
                         {candidate.isIncumbent && 'incumbent'}|
@@ -109,16 +109,16 @@ export function AllCandidatesToScrape({
                       <span key={candidate.id}>
                         <a
                           className="ballotpedia"
-                          // href={
-                          //   candidate.source
-                          //     ? candidate.source
-                          //     : `https://ballotpedia.org/${underScoreNameNoMiddle(
-                          //         candidate.name,
-                          //       )}`
-                          // }
-                          href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                            candidate.name,
-                          )}`}
+                          href={
+                            candidate.source
+                              ? candidate.source
+                              : `https://ballotpedia.org/${underScoreNameNoMiddle(
+                                  candidate.name,
+                                )}`
+                          }
+                          // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
+                          //   candidate.name,
+                          // )}`}
                         >
                           {candidate.id}|{candidate.name}|
                           {candidate.isIncumbent && 'incumbent'}|
@@ -131,19 +131,20 @@ export function AllCandidatesToScrape({
                   <span key={candidate.id}>
                     <a
                       className="ballotpedia"
-                      // href={
-                      //   candidate.source
-                      //     ? candidate.source
-                      //     : `https://ballotpedia.org/${underScoreNameNoMiddle(
-                      //         candidate.name,
-                      //       )}`
-                      // }
-                      href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                        candidate.name,
-                      )}`}
+                      href={
+                        candidate.source
+                          ? candidate.source
+                          : `https://ballotpedia.org/${underScoreNameNoMiddle(
+                              candidate.name,
+                            )}`
+                      }
+                      // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
+                      //   candidate.name,
+                      // )}`}
                     >
                       {candidate.id}|{candidate.name}|
-                      {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
+                      {candidate.isIncumbent && 'incumbent'}|
+                      {candidate.chamber}
                     </a>
                   </span>
                 )}

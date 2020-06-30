@@ -82,8 +82,8 @@ function mapDispatchToProps(dispatch) {
     closeModalCallback: () => {
       dispatch(push(window.location.pathname));
     },
-    helpfulCallback: (id, title, feedback) => {
-      dispatch(globalActions.sendArticleFeedbackAction(id, title, feedback));
+    helpfulCallback: (id, title, isHelpful, feedback) => {
+      dispatch(globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback));
     },
   };
 }

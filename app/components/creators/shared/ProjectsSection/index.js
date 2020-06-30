@@ -19,11 +19,11 @@ const SectionWrapper = styled.div`
   max-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent};
   margin: 0 auto;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     padding: 4rem 4.5rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 2.5rem 1rem;
   }
 `;
@@ -31,12 +31,12 @@ const SectionHeader = styled.div`
   margin-bottom: 2rem;
   align-items: center;
   @media only screen and (min-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     display: flex;
     justify-content: space-between;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 0 1rem;
   }
 `;
@@ -47,24 +47,24 @@ const Title = styled.h2`
   text-transform: uppercase;
   margin: 0;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsContent}) {
+      theme.creators.breakpoints.creatorsContent}) {
     font-size: 40px;
     margin-bottom: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 27px;
     margin-bottom: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-bottom: 1.5rem;
   }
 `;
 
 const SectionHeaderActions = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     align-items: center;
   }
 `;
@@ -72,17 +72,22 @@ const SectionHeaderActions = styled.div`
 const ProjectIcon = styled.img`
   display: block;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     display: none;
   }
 `;
 const ProjectButtonLink = styled.a`
   @media only screen and (min-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     width: 100%;
   }
 `;
-function ProjectsSection({ projects, user, toggleJoin, sendMessageToCreatorCallback }) {
+function ProjectsSection({
+  projects,
+  user,
+  toggleJoin,
+  sendMessageToCreatorCallback,
+}) {
   const [listProject, setListProject] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [limit, setLimit] = useState(12);
@@ -92,13 +97,17 @@ function ProjectsSection({ projects, user, toggleJoin, sendMessageToCreatorCallb
   };
   const onClickShareButton = () => {
     setShowShareModal(true);
-  }
+  };
   return (
     <SectionWrapper>
       <SectionHeader>
         <Title>Projects</Title>
         <SectionHeaderActions>
-          <ProjectButton variant="contained" className="share-button" onClick={onClickShareButton}>
+          <ProjectButton
+            variant="contained"
+            className="share-button"
+            onClick={onClickShareButton}
+          >
             <ProjectIcon src={Share} style={{ marginRight: '0.5rem' }} /> Share
           </ProjectButton>
           <ProjectButtonLink
@@ -106,7 +115,8 @@ function ProjectsSection({ projects, user, toggleJoin, sendMessageToCreatorCallb
             target="_blank"
           >
             <ProjectButton variant="contained">
-              <ProjectIcon src={Plus} style={{ marginRight: '0.5rem' }} /> Suggest a Project
+              <ProjectIcon src={Plus} style={{ marginRight: '0.5rem' }} />{' '}
+              Suggest a Project
             </ProjectButton>
             <ListProject
               open={listProject}
@@ -140,7 +150,7 @@ ProjectsSection.propTypes = {
   projects: PropTypes.array,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   toggleJoin: PropTypes.func,
-  sendMessageToCreatorCallback: PropTypes.func
+  sendMessageToCreatorCallback: PropTypes.func,
 };
 
 export default ProjectsSection;

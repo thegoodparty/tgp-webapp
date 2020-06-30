@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
+import PageWrapper from 'components/shared/PageWrapper';
 import { H1, H3 } from 'components/shared/typogrophy/index';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import tgpTheme from 'theme/index';
@@ -126,18 +124,17 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
     resendEmailCallback();
   };
   return (
-    <>
+    <PageWrapper
+      style={wrapperStyles}
+      wrapperStyles={wrapperStyles}
+      mobileHeaderProps={{ whiteBackButton: true }}
+    >
       {loading ? (
-        <div>
-          <Nav />
-          <LoadingAnimation label="Verifying your email" />
-        </div>
+        <LoadingAnimation label="Verifying your email" />
       ) : (
-        <div style={wrapperStyles}>
-          <Nav />
+        <>
           {error && error.expired ? (
-            <Wrapper style={wrapperStyles}>
-              <MobileHeader whiteBackButton />
+            <>
               <ExpiredImg
                 style={{
                   backgroundImage: `url(${ExpiredTokenImage})`,
@@ -161,10 +158,9 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
                   </ButtonsInnerWrapperExpired>
                 </ButtonsWrapper>
               </ContentWrapper>
-            </Wrapper>
+            </>
           ) : (
-            <Wrapper style={wrapperStyles}>
-              <MobileHeader whiteBackButton />
+            <>
               <Img
                 style={{
                   backgroundImage: `url(${EmailErrorImage})`,
@@ -206,11 +202,11 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
                   </ButtonsInnerWrapper>
                 </ButtonsWrapper>
               </ContentWrapper>
-            </Wrapper>
+            </>
           )}
-        </div>
+        </>
       )}
-    </>
+    </PageWrapper>
   );
 };
 

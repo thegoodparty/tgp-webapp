@@ -5,11 +5,8 @@ import { Link } from 'react-router-dom';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
-import { slugify } from 'helpers/articlesHelper';
 import { Body, H2 } from 'components/shared/typogrophy';
+import PageWrapper from 'components/shared/PageWrapper';
 
 const ArticleWrapper = styled.div`
   display: flex;
@@ -37,33 +34,25 @@ const FaqListWrapper = ({ content, backButtonCallback }) => {
   const articles = content.faqArticles || [];
 
   return (
-    <div>
-      <Nav />
-      <Wrapper white>
-        <MobileHeader />
-        <BackIconWrapper onClick={backButtonCallback}>
-          <BackIcon style={{ fontSize: '34px' }} />
-        </BackIconWrapper>
-        <H2 style={{ marginBottom: '24px' }} data-cy="faqs-page-title">Frequently Asked Q’s</H2>
-        {articles &&
-          articles.map(article => (
-            <Link
-              to={`?article=${article.id}`}
-              key={article.id}
-              data-cy="faq"
-            >
-              <ArticleWrapper>
-                <Body className="article-title" data-cy="faq-title">{article.title}</Body>
-                <div>
-                  <ChevronRightIcon
-                    style={{ fontSize: '30px', marginLeft: '10px' }}
-                  />
-                </div>
-              </ArticleWrapper>
-            </Link>
-          ))}
-      </Wrapper>
-    </div>
+    <PageWrapper white>
+      <BackIconWrapper onClick={backButtonCallback}>
+        <BackIcon style={{ fontSize: '34px' }} />
+      </BackIconWrapper>
+      <H2 style={{ marginBottom: '24px' }} data-cy="faqs-page-title">Frequently Asked Q’s</H2>
+      {articles &&
+        articles.map(article => (
+          <Link to={`?article=${article.id}`} key={article.id} data-cy="faq">
+            <ArticleWrapper>
+              <Body className="article-title" data-cy="faq-title">{article.title}</Body>
+              <div>
+                <ChevronRightIcon
+                  style={{ fontSize: '30px', marginLeft: '10px' }}
+                />
+              </div>
+            </ArticleWrapper>
+          </Link>
+        ))}
+    </PageWrapper>
   );
 };
 

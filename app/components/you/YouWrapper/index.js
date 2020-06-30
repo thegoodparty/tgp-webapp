@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
+import PageWrapper from 'components/shared/PageWrapper';
 import { H3 } from 'components/shared/typogrophy/index';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
 import CapitalImage from 'images/capital.svg';
@@ -61,31 +59,27 @@ const ButtonWrapper = styled(Link)`
 `;
 
 const YouWrapper = ({ articles }) => (
-  <div style={{ backgroundColor: '#FFF' }}>
-    <Nav />
-    <Wrapper white>
-      <MobileHeader />
-      <Login>
-        <Link to="?register=true">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="login">Login</Link>
-      </Login>
-      <InnerWrapper>
-        <Img src={CapitalImage} alt="Capital" aria-label="Capital" />
-        <H3Title>Create a profile and get counted!</H3Title>
-        <H3Body>
-          First we count the people needed for a good indy candidate to win,
-          then we all vote to get them in.
-        </H3Body>
-        <ButtonWrapper to="?register=true">
-          <OutlinedButton active fullWidth>
-            COUNT ME IN!
-          </OutlinedButton>
-        </ButtonWrapper>
-      </InnerWrapper>
-      <TopQuestions articles={articles} />
-      <AmaContainer />
-    </Wrapper>
-  </div>
+  <PageWrapper white>
+    <Login>
+      <Link to="?register=true">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
+      <Link to="login">Login</Link>
+    </Login>
+    <InnerWrapper>
+      <Img src={CapitalImage} alt="Capital" aria-label="Capital" />
+      <H3Title>Create a profile and get counted!</H3Title>
+      <H3Body>
+        First we count the people needed for a good indy candidate to win, then
+        we all vote to get them in.
+      </H3Body>
+      <ButtonWrapper to="?register=true">
+        <OutlinedButton active fullWidth>
+          COUNT ME IN!
+        </OutlinedButton>
+      </ButtonWrapper>
+    </InnerWrapper>
+    <TopQuestions articles={articles} />
+    <AmaContainer />
+  </PageWrapper>
 );
 
 YouWrapper.propTypes = {

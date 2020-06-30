@@ -23,12 +23,12 @@ const ProjectWrapper = styled.div`
   padding: 2rem;
   background-color: #fff;
   margin-bottom: 2rem;
-  box-shadow: 2px 8px 18px rgba(0, 0, 0, .15);
-    &.show-more {
-      cursor: pointer;
+  box-shadow: 2px 8px 18px rgba(0, 0, 0, 0.15);
+  &.show-more {
+    cursor: pointer;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding: 1rem;
     margin-bottom: 1rem;
   }
@@ -37,7 +37,7 @@ const ProjectBodyWrapper = styled(Grid)`
   border-bottom: 1px solid ${({ theme }) => theme.creators.colors.gray2};
   padding-bottom: 20px;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding-bottom: 1rem;
   }
 `;
@@ -46,7 +46,7 @@ const ProjectContent = styled(Grid)`
   && {
     padding-right: 2rem;
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       padding-right: 0;
       order: 1;
     }
@@ -60,11 +60,11 @@ const Title = styled.h3`
   margin: 0;
   margin-bottom: 1rem;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+      theme.creators.breakpoints.creatorsTablet}) {
     font-size: 27px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 17px;
     margin-bottom: 0.5rem;
   }
@@ -73,7 +73,7 @@ const Title = styled.h3`
 const Topics = styled.div`
   margin-bottom: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-bottom: 1rem;
   }
 `;
@@ -116,7 +116,7 @@ const OuterLink = styled.a`
   overflow: hidden;
   text-overflow: ellipsis;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -132,7 +132,7 @@ const LinkIcon = styled(LazyLoadImage)`
 const ProjectFooter = styled(Grid)`
   padding-top: 1.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
     padding-top: 1rem;
   }
@@ -149,12 +149,12 @@ const FooterAction = styled.a`
   cursor: pointer;
   margin-right: 0;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
-    padding:0.5rem 1rem;
+      theme.creators.breakpoints.creatorsTablet}) {
+    padding: 0.5rem 1rem;
     font-size: 13px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     text-align: center;
     width: 100%;
   }
@@ -165,7 +165,7 @@ const FooterActionIcon = styled.span`
   position: relative;
   top: -2px;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     margin-right: 6px;
     top: -1px;
     margin-right: 0.5rem;
@@ -175,13 +175,13 @@ const FooterActionIcon = styled.span`
 const FooterActions = styled.div`
   display: flex;
   width: 100%;
-  
+
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
   }
   @media only screen and (min-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
-      justify-content: flex-end;
+      theme.creators.breakpoints.creatorsTablet}) {
+    justify-content: flex-end;
   }
 `;
 
@@ -190,7 +190,7 @@ const FooterActionsWrapper = styled(Grid)`
     display: flex;
     align-items: center;
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       margin-top: 1rem;
       padding-top: 1rem;
       border-top: 1px solid ${({ theme }) => theme.creators.colors.gray2};
@@ -205,7 +205,7 @@ const ShowMore = styled.a`
   font: normal 500 1.1rem/100% normal;
   font-family: unset;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
   }
 `;
@@ -253,18 +253,17 @@ const ProjectImageWrapper = styled(Grid)`
       }
     }
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsContent}) {
+        theme.creators.breakpoints.creatorsContent}) {
       text-align: center;
     }
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       img.carousel-img {
         max-height: 300px;
       }
-      
     }
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+        theme.creators.breakpoints.creatorsMobile}) {
       img.carousel-img {
         max-height: 235px;
       }
@@ -272,10 +271,9 @@ const ProjectImageWrapper = styled(Grid)`
         height: auto !important;
       }
     }
-    
-    
+
     @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
+        theme.creators.breakpoints.creatorsTablet}) {
       margin-bottom: 1.5rem;
     }
   }
@@ -317,7 +315,7 @@ function Project({
   clickShowMore = null,
   toggleJoin,
   user,
-  sendMessageToCreatorCallback
+  sendMessageToCreatorCallback,
 }) {
   const [touch, setTouch] = useState(false);
 
@@ -338,7 +336,11 @@ function Project({
   return (
     <ProjectWrapper>
       <ProjectBodyWrapper container>
-        <ProjectContent item xs={12} lg={(project.images?.length > 0 || project.video) ? 7 : 12}>
+        <ProjectContent
+          item
+          xs={12}
+          lg={project.images?.length > 0 || project.video ? 7 : 12}
+        >
           <Title>{project.title}</Title>
           <ProjectProposal
             project={project}
@@ -357,15 +359,11 @@ function Project({
           <OuterLinkList>
             {project.links &&
               project.links.map((link, index) => {
-
                 const icon = getLinkIcon(link);
-                console.log(icon)
                 return (
                   <OuterLinkWrapper key={index}>
                     <OuterLink href={link} target="_blank">
-                      {icon &&
-                        <LinkIcon src={icon} alt="link icon" />
-                      }
+                      {icon && <LinkIcon src={icon} alt="link icon" />}
                       {link}
                     </OuterLink>
                   </OuterLinkWrapper>
@@ -373,24 +371,26 @@ function Project({
               })}
           </OuterLinkList>
         </ProjectContent>
-        {(project.images?.length > 0 || project.video) && 
+        {(project.images?.length > 0 || project.video) && (
           <ProjectImageWrapper item xs={12} lg={5}>
             {project.images?.length === 0 && project.video && (
-              <VideoPlayer 
-                url={project.video} 
-                playing={false} 
-                width="" 
-                height="" 
+              <VideoPlayer
+                url={project.video}
+                playing={false}
+                width=""
+                height=""
                 config={{
                   vimeo: {
-                    playerOptions: { controls: true }
-                    
-                  }
-                }} 
+                    playerOptions: { controls: true },
+                  },
+                }}
               />
             )}
             {project.images?.length === 1 && (
-              <ProjectImg src={`https:${project.images[0]}`} alt="project img" />
+              <ProjectImg
+                src={`https:${project.images[0]}`}
+                alt="project img"
+              />
             )}
             {project.images?.length > 1 && (
               <Carousel>
@@ -406,7 +406,7 @@ function Project({
               </Carousel>
             )}
           </ProjectImageWrapper>
-        }
+        )}
       </ProjectBodyWrapper>
       <ProjectFooter container>
         <CollaboratorContainer item xs={12} md={7} lg={7}>
@@ -423,8 +423,7 @@ function Project({
             </FooterAction> */}
 
             <FooterAction target="_blank" href={project.ichLink}>
-              {/* onClick={() => setTouch(true)} */}
-              I can help
+              {/* onClick={() => setTouch(true)} */}I can help
             </FooterAction>
             {/* <FooterAction>
               <FooterActionIcon>
@@ -445,7 +444,7 @@ Project.propTypes = {
   projects: PropTypes.array,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   toggleJoin: PropTypes.func,
-  sendMessageToCreatorCallback: PropTypes.func
+  sendMessageToCreatorCallback: PropTypes.func,
 };
 
 export default Project;
