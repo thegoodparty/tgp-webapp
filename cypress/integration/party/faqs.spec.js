@@ -1,4 +1,4 @@
-describe('Events', () => {
+describe('FAQs', () => {
   beforeEach(() => {
     cy.visit('/party/faqs');
     cy.get('[data-cy=page-title]').contains('FAQs | The Good Party');
