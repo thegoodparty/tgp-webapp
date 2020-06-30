@@ -127,11 +127,9 @@ const FaqArticleWrapper = ({
     if (isHelpful === HELPFUL_STATES.helpful) {
       helpfulCallback(article.id, article.title, true, '');
       closeModalCallback();
-    } else {
-      if (feedback !== '') {
-        helpfulCallback(article.id, article.title, false, feedback);
-        closeModalCallback();
-      }
+    } else if (feedback !== '') {
+      helpfulCallback(article.id, article.title, false, feedback);
+      closeModalCallback();
     }
   };
 
@@ -139,18 +137,23 @@ const FaqArticleWrapper = ({
     <>
       {article ? (
         <>
-          <TgpDialog onClose={closeModalCallback} open={true}>
+          <TgpDialog onClose={closeModalCallback} open>
             <Wrapper>
               <TopWrapper>
                 <BackIconWrapper onClick={backButtonCallback}>
-                  <BackIcon style={{ fontSize: '34px' }} data-cy="article-back" />
+                  <BackIcon
+                    style={{ fontSize: '34px' }}
+                    data-cy="article-back"
+                  />
                 </BackIconWrapper>
                 <TopClose
                   onClick={closeModalCallback}
                   data-cy="article-top-close"
                 />
               </TopWrapper>
-              <H1 style={{ marginBottom: '32px' }} data-cy="article-title">{article.title}</H1>
+              <H1 style={{ marginBottom: '32px' }} data-cy="article-title">
+                {article.title}
+              </H1>
 
               <CmsContentWrapper>
                 {contentfulHelper(article.articleBody)}
@@ -165,7 +168,10 @@ const FaqArticleWrapper = ({
                   >
                     Yes
                   </FeedbackButton>
-                  <FeedbackButton onClick={() => handleHelpful(false)} data-cy="helpful-no">
+                  <FeedbackButton
+                    onClick={() => handleHelpful(false)}
+                    data-cy="helpful-no"
+                  >
                     No
                   </FeedbackButton>
                 </ButtonsWrapper>
@@ -180,8 +186,12 @@ const FaqArticleWrapper = ({
                     onChange={handleFeedback}
                     variant="outlined"
                     required
+                    data-cy="feedback"
                   />
-                  <SubmitButtonWrapper onClick={handleSubmit}>
+                  <SubmitButtonWrapper
+                    onClick={handleSubmit}
+                    data-cy="feedback-submit"
+                  >
                     <BlueButton disabled={feedback === ''} fullWidth>
                       SUBMIT
                     </BlueButton>
@@ -189,7 +199,12 @@ const FaqArticleWrapper = ({
                 </>
               )}
               <div className="text-center">
-                <Close onClick={closeModalCallback} data-cy="article-bottom-close">Close</Close>
+                <Close
+                  onClick={closeModalCallback}
+                  data-cy="article-bottom-close"
+                >
+                  Close
+                </Close>
               </div>
             </Wrapper>
           </TgpDialog>

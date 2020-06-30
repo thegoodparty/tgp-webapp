@@ -7,9 +7,7 @@ describe('Events', () => {
     cy.get('[data-cy=upcoming-events-title]').contains(
       'Upcoming Online Events',
     );
-    cy.getCMSContent().should(response => {
-      cy.writeFile('cypress/fixtures/content.json', response.body);
-    });
+    cy.getCMSContent()
     cy.fixture('content').should(content => {
       cy.get('[data-cy=upcoming-events] > [data-cy=event]')
         .should('have.length', content.events.length)
@@ -20,9 +18,6 @@ describe('Events', () => {
   });
   it('finds past events', () => {
     cy.get('[data-cy=past-events-title]').contains('Past Events');
-    cy.getCMSContent().should(response => {
-      cy.writeFile('cypress/fixtures/content.json', response.body);
-    });
     cy.fixture('content').should(content => {
       cy.get('[data-cy=past-events] > [data-cy=event]')
         .should('have.length', content.pastEvents.length)

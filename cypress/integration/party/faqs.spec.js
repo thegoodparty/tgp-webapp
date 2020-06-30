@@ -5,9 +5,7 @@ describe('Events', () => {
   });
   it('finds faqs', () => {
     cy.get('[data-cy=faqs-page-title]').contains('Frequently Asked Q’s');
-    cy.getCMSContent().should(response => {
-      cy.writeFile('cypress/fixtures/content.json', response.body);
-    });
+    cy.getCMSContent()
     cy.fixture('content').should(content => {
       cy.get('[data-cy=faq]')
         .should('have.length', content.faqArticles.length)

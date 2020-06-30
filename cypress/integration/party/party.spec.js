@@ -7,9 +7,7 @@ describe('PartyPage', () => {
   });
   it('finds events section', () => {
     cy.get('[data-cy=events]').contains('Upcoming Online Events');
-    cy.getCMSContent().should(response => {
-      cy.writeFile('cypress/fixtures/content.json', response.body);
-    });
+    cy.getCMSContent();
     cy.fixture('content').should(content => {
       cy.get('[data-cy=event]')
         .should('have.length', content.events.length)
