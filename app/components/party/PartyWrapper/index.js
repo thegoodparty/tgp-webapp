@@ -61,8 +61,8 @@ const PartyWrapper = ({ content, appVersion }) => {
       {events.length > 0 && (
         <EventsWrapper>
           <Row>
-            <H3>Upcoming Online Events</H3>
-            <Link to="/party/events">
+            <H3 data-cy="events">Upcoming Online Events</H3>
+            <Link to="/party/events" data-cy="events-link">
               <LearnMore>See All</LearnMore>
             </Link>
           </Row>

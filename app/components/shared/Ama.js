@@ -87,7 +87,7 @@ const Ama = ({ sendAmaCallback }) => {
     )}`;
   return (
     <>
-      <AskQuestion onClick={openModal}>
+      <AskQuestion onClick={openModal} data-cy="ama">
         <span role="img" aria-label="thinker">
           🤔
         </span>{' '}
@@ -100,9 +100,9 @@ const Ama = ({ sendAmaCallback }) => {
       <TgpDialog onClose={closeModal} open={open}>
         <Wrapper>
           <CloseWrapper>
-            <TopClose onClick={closeModal} />
+            <TopClose onClick={closeModal} data-cy="ama-dialog-close"/>
           </CloseWrapper>
-          <Title>
+          <Title data-cy="ama-dialog-title">
             <span role="img" aria-label="thinker">
               🤔
             </span>{' '}
@@ -122,7 +122,7 @@ const Ama = ({ sendAmaCallback }) => {
               onChange={onChangeMessage}
             />
             <ButtonWrapper>
-              <a href={mail()}>
+              <a href={mail()} data-cy="ama-dialog-submit">
                 <OutlinedButton
                   fullWidth
                   active={message !== ''}

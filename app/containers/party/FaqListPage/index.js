@@ -24,7 +24,7 @@ export function FaqListPage({ content, backButtonCallback }) {
   return (
     <div>
       <Helmet>
-        <title>FAQs | The Good Party</title>
+        <title data-cy="page-title">FAQs | The Good Party</title>
         <meta name="description" content="Frequently Asked Questions" />
       </Helmet>
       <FaqListWrapper {...childProps} />

@@ -57,17 +57,17 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
   }
 
   return (
-    <Wrapper key={id}>
+    <Wrapper key={id} data-cy="event">
       <Row>
         <div style={{ marginRight: '16px' }}>
-          <Body className="bold600">{title}</Body>
-          {displayDate && <StyledBody12>{displayDate}</StyledBody12>}
-          {description && <StyledBody12>{description}</StyledBody12>}
+          <Body className="bold600" data-cy="event-title">{title}</Body>
+          {displayDate && <StyledBody12 data-cy="event-date">{displayDate}</StyledBody12>}
+          {description && <StyledBody12 data-cy="event-description">{description}</StyledBody12>}
           {location && (
-            <StyledBody12>
-              <strong>Location: </strong>
+            <StyledBody12 data-cy="event-location">
+              <strong data-cy="event-location-label">Location: </strong>
               {isLocationLink ? (
-                <a href={locationLink} target="_blank">
+                <a href={locationLink} target="_blank" data-cy="event-location-link">
                   {location}
                 </a>
               ) : (
@@ -76,8 +76,8 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
             </StyledBody12>
           )}
           {presenter && (
-            <StyledBody12>
-              <span className="bold500 spacing05">{presenter}</span>{' '}
+            <StyledBody12 data-cy="event-presenter">
+              <span className="bold500 spacing05" data-cy="event-presenter-name">{presenter}</span>{' '}
               {presenterTitle}
             </StyledBody12>
           )}
@@ -85,7 +85,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
         <Photo src={avatarPhoto} />
       </Row>
       {!isPastEvent && (
-        <a href={locationLink} target="_blank">
+        <a href={locationLink} target="_blank" data-cy="event-interested">
           <ButtonWrapper>
             <OutlinedButton fullWidth active>
               I&apos;M INTERESTED

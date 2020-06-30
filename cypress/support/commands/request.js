@@ -23,3 +23,10 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+import { api, base } from '../../constants'
+
+Cypress.Commands.add('getCMSContent', () => {
+  cy.request(api.content.method, api.content.url).should(response => {
+    cy.writeFile('cypress/fixtures/content.json', response.body);
+  })
+})

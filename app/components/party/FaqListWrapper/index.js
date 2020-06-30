@@ -38,12 +38,12 @@ const FaqListWrapper = ({ content, backButtonCallback }) => {
       <BackIconWrapper onClick={backButtonCallback}>
         <BackIcon style={{ fontSize: '34px' }} />
       </BackIconWrapper>
-      <H2 style={{ marginBottom: '24px' }}>Frequently Asked Q’s</H2>
+      <H2 style={{ marginBottom: '24px' }} data-cy="faqs-page-title">Frequently Asked Q’s</H2>
       {articles &&
         articles.map(article => (
-          <Link to={`?article=${article.id}`} key={article.id}>
+          <Link to={`?article=${article.id}`} key={article.id} data-cy="faq">
             <ArticleWrapper>
-              <Body className="article-title">{article.title}</Body>
+              <Body className="article-title" data-cy="faq-title">{article.title}</Body>
               <div>
                 <ChevronRightIcon
                   style={{ fontSize: '30px', marginLeft: '10px' }}

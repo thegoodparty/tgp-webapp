@@ -28,21 +28,25 @@ function EventsWrapper({ content, backButtonCallback }) {
   const pastEvents = content ? content.pastEvents : [];
   return (
     <PageWrapper white>
-      <BackIconWrapper onClick={backButtonCallback}>
+      <BackIconWrapper onClick={backButtonCallback} data-cy="back">
         <BackIcon style={{ fontSize: '34px' }} />
       </BackIconWrapper>
       {events.length > 0 && (
-        <H2 style={{ marginBottom: '24px' }}>Upcoming Online Events</H2>
+        <H2 style={{ marginBottom: '24px' }} data-cy="upcoming-events-title">Upcoming Online Events</H2>
       )}
-      {events.map(event => (
-        <EventSnippet event={event} key={event.id} />
-      ))}
+      <div data-cy="upcoming-events">
+        {events.map(event => (
+          <EventSnippet event={event} key={event.id} />
+        ))}
+      </div>
       {pastEvents.length > 0 && (
-        <H2 style={{ margin: '24px 0' }}>Past Events</H2>
+        <H2 style={{ margin: '24px 0' }} data-cy="past-events-title">Past Events</H2>
       )}
-      {pastEvents.map(event => (
-        <EventSnippet event={event} key={event.id} isPastEvent />
-      ))}
+      <div data-cy="past-events">
+        {pastEvents.map(event => (
+          <EventSnippet event={event} key={event.id} isPastEvent />
+        ))}
+      </div>
     </PageWrapper>
   );
 }

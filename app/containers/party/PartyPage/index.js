@@ -27,7 +27,7 @@ export function PartyPage({ content, appVersion }) {
   return (
     <div>
       <Helmet>
-        <title>Party | The Good Party</title>
+        <title data-cy="page-title">Party | The Good Party</title>
         <meta name="description" content="Party | The Good Party" />
       </Helmet>
       <PartyWrapper {...childProps} />
