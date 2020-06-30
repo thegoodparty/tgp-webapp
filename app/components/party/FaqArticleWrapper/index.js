@@ -95,31 +95,33 @@ const FaqArticleWrapper = ({
             <Wrapper>
               <TopWrapper>
                 <BackIconWrapper onClick={backButtonCallback}>
-                  <BackIcon style={{ fontSize: '34px' }} />
+                  <BackIcon style={{ fontSize: '34px' }} data-cy="article-back" />
                 </BackIconWrapper>
                 <TopClose
                   onClick={closeModalCallback}
+                  data-cy="article-top-close"
                 />
               </TopWrapper>
-              <H1 style={{ marginBottom: '32px' }}>{article.title}</H1>
+              <H1 style={{ marginBottom: '32px' }} data-cy="article-title">{article.title}</H1>
 
               <CmsContentWrapper>
                 {contentfulHelper(article.articleBody)}
               </CmsContentWrapper>
-              <WasHelpul>Was this helpful?</WasHelpul>
+              <WasHelpul data-cy="was-helpful">Was this helpful?</WasHelpul>
               <ButtonsWrapper>
                 <FeedbackButton
                   className="blue"
                   onClick={() => handleFeedback(true)}
+                  data-cy="helpful-yes"
                 >
                   Yes
                 </FeedbackButton>
-                <FeedbackButton onClick={() => handleFeedback(false)}>
+                <FeedbackButton onClick={() => handleFeedback(false)} data-cy="helpful-no">
                   No
                 </FeedbackButton>
               </ButtonsWrapper>
               <div className="text-center">
-                <Close onClick={closeModalCallback}>Close</Close>
+                <Close onClick={closeModalCallback} data-cy="article-bottom-close">Close</Close>
               </div>
             </Wrapper>
           </TgpDialog>

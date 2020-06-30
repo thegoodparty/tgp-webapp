@@ -53,7 +53,7 @@ export function FaqArticlePage({
   return (
     <div>
       <Helmet>
-        <title>{article ? article.title : 'FAQ Article'}</title>
+        <title data-cy="page-title">{article ? article.title : 'FAQ Article'}</title>
         <meta
           name="description"
           content={article ? article.title : 'FAQ Article'}

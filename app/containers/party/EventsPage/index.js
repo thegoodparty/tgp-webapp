@@ -24,7 +24,7 @@ export function EventsPage({ content, backButtonCallback }) {
   return (
     <div>
       <Helmet>
-        <title>EventsPage</title>
+        <title data-cy="page-title">EventsPage</title>
         <meta name="description" content="Description of EventsPage" />
       </Helmet>
       <EventsWrapper {...childProps} />

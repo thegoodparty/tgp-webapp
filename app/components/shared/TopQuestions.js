@@ -37,8 +37,8 @@ const TopQuestions = ({ articles }) => {
   return (
     <Wrapper>
       <Row>
-        <H3>Top Questions</H3>
-        <Link to="/party/faqs">
+        <H3 data-cy="faqs">Top Questions</H3>
+        <Link to="/party/faqs" data-cy="faqs-link">
           <SeeFaq className="blue">See FAQ</SeeFaq>
         </Link>
       </Row>
@@ -47,8 +47,9 @@ const TopQuestions = ({ articles }) => {
           <Link
             to={`?article=${article.id}`}
             key={article.id}
+            data-cy="faq"
           >
-            <ArticleTitle className={index === 0 ? 'first' : ''}>
+            <ArticleTitle className={index === 0 ? 'first' : ''} data-cy="faq-title">
               {article.title}
             </ArticleTitle>
           </Link>
