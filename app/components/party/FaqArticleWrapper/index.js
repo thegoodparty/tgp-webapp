@@ -153,24 +153,26 @@ const FaqArticleWrapper = ({
                 {contentfulHelper(article.articleBody)}
               </CmsContentWrapper>
               <WasHelpul>Was this helpful?</WasHelpul>
-              <ButtonsWrapper>
-                <FeedbackButton
-                  className="blue"
-                  onClick={() => handleHelpful(true)}
-                >
-                  Yes
-                </FeedbackButton>
-                <FeedbackButton onClick={() => handleHelpful(false)}>
-                  No
-                </FeedbackButton>
-              </ButtonsWrapper>
+              {isHelpful === HELPFUL_STATES.notSelected && (
+                <ButtonsWrapper>
+                  <FeedbackButton
+                    className="blue"
+                    onClick={() => handleHelpful(true)}
+                  >
+                    Yes
+                  </FeedbackButton>
+                  <FeedbackButton onClick={() => handleHelpful(false)}>
+                    No
+                  </FeedbackButton>
+                </ButtonsWrapper>
+              )}
               {isHelpful === HELPFUL_STATES.notHelpful && (
                 <>
                   <TextField
                     rows={4}
                     multiline
                     fullWidth
-                    placeholder="Please Provide Feedback"
+                    placeholder="Please let us know how we can improve."
                     onChange={handleFeedback}
                     variant="outlined"
                     required
