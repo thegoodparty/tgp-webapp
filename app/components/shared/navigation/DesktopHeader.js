@@ -70,7 +70,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
     <Wrapper>
       <ContentWrapper>
         <TopLink>
-          <Logo src={LogoCaps} onClick={() => handleNavigate('/')} data-cy="logo" />
+          <Logo src={LogoCaps} onClick={() => handleNavigate('/home')} data-cy="logo" />
         </TopLink>
         {!hideLinks && (
           <>

@@ -28,7 +28,10 @@ function HomePage({ userState, dispatch }) {
 
   const { user } = userState;
   useEffect(() => {
-    if (!user) {
+    const { pathname } = window.location;
+    if (user && pathname !== '/home') {
+      dispatch(push('/party'));
+    } else {
       dispatch(userActions.loadUserFromCookieAction());
       dispatch(userActions.generateUuidAction());
     }

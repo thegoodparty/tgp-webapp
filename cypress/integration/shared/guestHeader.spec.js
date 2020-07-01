@@ -33,7 +33,7 @@ describe('GuestHeader', () => {
       cy.url().should('include', '/party');
 
       cy.get('[data-cy=logo]').click();
-      cy.url().should('include', '/');
+      cy.url().should('include', '/home');
     });
   });
 });
