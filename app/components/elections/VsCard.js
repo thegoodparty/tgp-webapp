@@ -131,12 +131,12 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
 
   const avatarSpace = width > theme.breakpoints.mdPx ? 55 : 40;
   return (
-    <Card>
-      <H3>{title}</H3>
+    <Card data-cy="vs-card">
+      <H3 data-cy="title">{title}</H3>
       <Row>
-        <Sider>
+        <Sider data-cy="good-candidates">
           <Body9>
-            <Green>POTENTIALLY GOOD</Green>
+            <Green data-cy="potentially-good">POTENTIALLY GOOD</Green>
           </Body9>
           <AvatarsWrapper>
             {cloneGood.map((candidate, index) => (
@@ -144,9 +144,10 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
                 {index < 3 && (
                   <AvatarAbsolute
                     style={{
-                      left: avatarSpace * index + 'px',
+                      left: `${avatarSpace * index}px`,
                       zIndex: 5 - index,
                     }}
+                    data-cy="candidate-avatar"
                   >
                     <CandidateAvatar
                       size="responsive"
@@ -159,13 +160,20 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
               </React.Fragment>
             ))}
           </AvatarsWrapper>
-          {cloneGood.length > 1 && <Name>{cloneGood.length} CANDIDATES</Name>}
+          {cloneGood.length > 1 && (
+            <Name data-cy="candidates-count">
+              {cloneGood.length} CANDIDATES
+            </Name>
+          )}
           {cloneGood.length === 1 && (
             <>
-              <Name className={cloneGood[0].id === 'noneyet' ? 'gray' : ''}>
+              <Name
+                className={cloneGood[0].id === 'noneyet' ? 'gray' : ''}
+                data-cy="candidates-name"
+              >
                 {cloneGood[0].name.toUpperCase()}
               </Name>
-              <Role>
+              <Role data-cy="candidates-role">
                 {cloneGood[0].isIncumbent && (
                   <>
                     INCUMBENT
@@ -181,9 +189,9 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
           <Line />
           <Vs>VS</Vs>
         </Middler>
-        <Sider className="right">
+        <Sider className="right" data-cy="not-good-candidates">
           <Body9>
-            <Red>NOT GOOD ENOUGH</Red>
+            <Red data-cy="not-good-enough">NOT GOOD ENOUGH</Red>
           </Body9>
           <AvatarsWrapper>
             {notGood.map((candidate, index) => (
@@ -192,9 +200,10 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
                   <AvatarAbsolute
                     className={`avatar-${index}`}
                     style={{
-                      right: avatarSpace * index + 'px',
+                      right: `${avatarSpace * index}px`,
                       zIndex: 5 - index,
                     }}
+                    data-cy="candidate-avatar"
                   >
                     <CandidateAvatar
                       size="responsive"
@@ -206,11 +215,15 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
               </React.Fragment>
             ))}
           </AvatarsWrapper>
-          {notGood.length > 1 && <Name>{notGood.length} CANDIDATES</Name>}
+          {notGood.length > 1 && (
+            <Name data-cy="candidates-count">{notGood.length} CANDIDATES</Name>
+          )}
           {notGood.length === 1 && (
             <>
-              <Name>{notGood[0].name.toUpperCase()}</Name>
-              <Role>
+              <Name data-cy="candidates-name">
+                {notGood[0].name.toUpperCase()}
+              </Name>
+              <Role data-cy="candidates-role">
                 {notGood[0].isIncumbent && (
                   <>
                     INCUMBENT

@@ -1,4 +1,4 @@
-import { articlesHelper } from '../../support/utils';
+import articlesHelper from '../../../app/helpers/articlesHelper';
 
 describe('PartyPage', () => {
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe('PartyPage', () => {
     cy.get('[data-cy=page-title]').contains('FAQs | The Good Party');
   });
   it('finds ama link', () => {
-    cy.get('[data-cy=ama')
+    cy.get('[data-cy=ama]')
       .contains('Ask a Question')
       .contains('Give a Suggestion')
       .click();

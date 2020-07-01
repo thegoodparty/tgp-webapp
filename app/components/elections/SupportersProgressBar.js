@@ -62,9 +62,12 @@ const SupportersProgressBar = ({
     progress = 100;
   }
   return (
-    <ProgressBarWrapper className={alignLeft ? 'left' : ''}>
+    <ProgressBarWrapper
+      className={alignLeft ? 'left' : ''}
+      data-cy="supporter-progress"
+    >
       {showSupporters && (
-        <BarBody11>
+        <BarBody11 data-cy="people-so-far">
           {numberFormatter(peopleSoFar)}{' '}
           {peopleSoFar === 1 ? 'person ' : 'people '}
           in top candidate voting bloc so far
@@ -73,7 +76,7 @@ const SupportersProgressBar = ({
       <BarBg>
         <Bar style={{ width: `${progress}%` }} />
       </BarBg>
-      <BarBody9>
+      <BarBody9 data-cy="votes-needed">
         {numberFormatter(votesNeeded)} VOTES NEEDED TO WIN
         {userState && <> IN {userState.toUpperCase()}</>}
         {suffixText}

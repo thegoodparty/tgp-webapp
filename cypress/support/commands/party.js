@@ -82,22 +82,13 @@ Cypress.Commands.add('testFAQArticle', ($el, index, article) => {
   cy.get('[data-cy=article-title]').contains(article.title);
 
   cy.get('[data-cy=was-helpful]').contains('Was this helpful?');
-  cy.get('[data-cy=helpful-yes]')
-    .contains('Yes')
-    .click();
-  cy.get('[data-cy=feedback]').should('not.exist');
-  cy.url().should('include', `/faqs`);
 
-  cy.wrap($el)
-    .find('[data-cy=faq-title]')
-    .click();
   cy.get('[data-cy=helpful-no]')
     .contains('No')
     .click();
   cy.get('[data-cy=feedback]').should('exist');
   cy.get('[data-cy=feedback-submit]').contains('SUBMIT');
   
-
   cy.get('[data-cy=article-bottom-close]').click();
   cy.wrap($el)
     .find('[data-cy=faq-title]')

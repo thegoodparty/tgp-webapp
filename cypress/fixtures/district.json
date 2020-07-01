@@ -1,0 +1,35 @@
+{
+  "cds": [
+    {
+      "id": 370,
+      "name": "Los Angeles, CA-40",
+      "ocdDivisionId": "ocd-division/country:us/state:ca/cd:40",
+      "code": 40,
+      "writeInThreshold": 187877,
+      "writeInThresholdWithPresident": 144924
+    },
+    {
+      "id": 374,
+      "name": "Los Angeles, CA-34",
+      "ocdDivisionId": "ocd-division/country:us/state:ca/cd:34",
+      "code": 34,
+      "writeInThreshold": 220391,
+      "writeInThresholdWithPresident": 122843
+    }
+  ],
+  "createdAt": 1577925257401,
+  "updatedAt": 1577925257415,
+  "id": 36928,
+  "zip": "90058",
+  "primaryCity": "Los Angeles",
+  "primaryCounty": "Los Angeles",
+  "approxPct": 94,
+  "approxPctArr": "[{\"districtId\":370,\"pct\":94},{\"districtId\":374,\"pct\":6}]",
+  "stateShort": "ca",
+  "stateLong": "California",
+  "sequence": 1,
+  "senateThresholds": {
+    "writeInThreshold": 6019422,
+    "writeInThresholdWithPresident": 7864624
+  }
+}

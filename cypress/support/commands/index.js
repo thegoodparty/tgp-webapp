@@ -1,3 +1,4 @@
-import './base'
-import './request'
-import './party'
+import './base';
+import './request';
+import './party';
+import './district';

@@ -1,15 +1,31 @@
-export const articlesHelper = (articles, page) => {
-    return articles.filter(article => {
-        let showArticle = false;
-        if (!article.pages) {
-            return false;
-        }
-        article.pages.forEach(cmsPage => {
-            if (cmsPage === page) {
-                showArticle = true;
-                return true;
-            }
-        });
-        return showArticle;
+export const getElectionCount = (senateCandidates, houseCandidates) => {
+  let electionCount = 3;
+  if (
+    senateCandidates?.good?.length < 2 &&
+    senateCandidates.notGood.length === 0 &&
+    senateCandidates.unknown.length === 0
+  ) {
+    electionCount--;
+  }
+  if (
+    houseCandidates?.good?.length < 2 &&
+    houseCandidates.notGood.length === 0 &&
+    houseCandidates.unknown.length === 0
+  ) {
+    electionCount--;
+  }
+  return electionCount;
+};
+
+export const getCdsWithPerc = (approxPctArr, cds) => {
+  const approxArr = approxPctArr ? JSON.parse(approxPctArr) : [];
+  const cdWithPerc = [];
+  approxArr.forEach(approxDist => {
+    cds.forEach(cd => {
+      if (approxDist.districtId === cd.id) {
+        cdWithPerc.push({ ...cd, pct: approxDist.pct });
+      }
     });
+  });
+  return cdWithPerc;
 };

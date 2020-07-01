@@ -1,0 +1,71 @@
+{
+  "houseCandidates": {
+    "good": [],
+    "notGood": [
+      {
+        "createdAt": 1588021768717,
+        "updatedAt": 1593511584367,
+        "id": 399,
+        "openSecretsId": "N00006671",
+        "name": "Lucille Roybal-Allard",
+        "state": "ca",
+        "chamber": "House",
+        "district": 40,
+        "image": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/LucilleRoybalAllardReplace.jpg",
+        "raised": 570996,
+        "party": "D",
+        "smallContributions": 3397,
+        "reportDate": "03/31/2020",
+        "isActive": true,
+        "isApproved": null,
+        "isAligned": "unknown",
+        "isCertified": null,
+        "facebook": "http://www.facebook.com/lucille.roybalallard.1",
+        "twitter": "https://www.twitter.com/RepRoybalAllard",
+        "website": "http://lucilleforcongress.com/",
+        "info": "",
+        "campaignWebsite": "%0A%3Cp%3ERoybal-Allard%20least%20often%20votes%20with:%0A%3C/p%3E%0A%3Cul%3E%3Cli%3E%3Ca%20href=%22/Democratic_Party%22%20title=%22Democratic%20Party%22%3E%3Cimg%20alt=%22Democratic%20Party%22%20src=%22https://cdn.ballotpedia.org/images/d/d4/Electiondot.png%22%20width=%2218%22%20height=%2218%22%20data-file-width=%2216%22%20data-file-height=%2216%22%3E%3C/a%3E%20%3Ca%20href=%22/Jim_Matheson%22%20title=%22Jim%20Matheson%22%3EJim%20Matheson%3C/a%3E%3C/li%3E%0A%3Cli%3E%3Ca%20href=%22/Republican_Party%22%20title=%22Republican%20Party%22%3E%3Cimg%20alt=%22Republican%20Party%22%20src=%22https://cdn.ballotpedia.org/images/f/fd/Ends.png%22%20width=%2218%22%20height=%2218%22%20data-file-width=%2216%22%20data-file-height=%2216%22%3E%3C/a%3E%20%3Ca%20href=%22/Randy_Weber%22%20title=%22Randy%20Weber%22%3ERandy%20Weber%3C/a%3E%3C/li%3E%3C/ul%3E%0A%3Cp%3E%3C/p%3E%0A",
+        "source": "https://ballotpedia.org/Lucille_Roybal-Allard",
+        "needsSecondPass": true,
+        "blocName": "Roybal-AllardBloc",
+        "isIncumbent": true,
+        "combinedRaised": 0,
+        "isGood": false
+      }
+    ],
+    "unknown": [
+      {
+        "createdAt": 1588021762638,
+        "updatedAt": 1593511577182,
+        "id": 619,
+        "uuid": "Antonio Delgado_ca40",
+        "name": "Antonio Delgado",
+        "state": "ca",
+        "district": 40,
+        "chamber": "House",
+        "party": "R",
+        "image": "",
+        "raised": 28500,
+        "smallContributions": 0,
+        "isActive": true,
+        "isApproved": null,
+        "isAligned": "unknown",
+        "isCertified": null,
+        "facebook": "",
+        "twitter": "",
+        "website": "",
+        "info": "",
+        "campaignWebsite": "",
+        "source": "https://ballotpedia.org/Antonio_Delgado",
+        "needsSecondPass": false,
+        "blocName": "DelgadoBloc",
+        "combinedRaised": 28500,
+        "isGood": null,
+        "ranking": 0
+      }
+    ],
+    "topRank": 0,
+    "threshold": 187878,
+    "goodEmptyBloc": 0
+  }
+}

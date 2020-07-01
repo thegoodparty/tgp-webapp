@@ -141,7 +141,7 @@ export function DistrictPage({
   return (
     <div>
       <Helmet>
-        <title>Elections | District Page</title>
+        <title data-cy="page-title">Elections | District Page</title>
         <meta name="description" content="Elections | District Page" />
       </Helmet>
       <DistrictWrapper {...childProps} />

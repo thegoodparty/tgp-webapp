@@ -75,9 +75,9 @@ const DistrictWrapper = ({
   ranking = {},
 }) => {
   let districtNumber;
-  const presidentialRank = ranking['presidential'];
-  const senateRank = ranking['senate'];
-  const houseRank = ranking['house'];
+  const presidentialRank = ranking.presidential;
+  const senateRank = ranking.senate;
+  const houseRank = ranking.house;
 
   const [showCds, setShowCds] = useState(false);
   const [cdsWithPerc, setCdsWithPerc] = useState([]);
@@ -192,21 +192,21 @@ const DistrictWrapper = ({
     <PageWrapper>
       {district && presidential ? (
         <>
-          <Row>
+          <Row data-cy="location">
             <H1>{primaryCity},</H1>
             &nbsp;
             <H3>
               {shortState} {zip}
             </H3>
           </Row>
-          <Row justifyContent="space-between">
+          <Row justifyContent="space-between" data-cy="congressional-district">
             <Body>
               Congressional District:{' '}
               <strong>
                 {shortState}-{districtNumber}
               </strong>
             </Body>
-            <NotDistrict onClick={toggleShowCds}>
+            <NotDistrict onClick={toggleShowCds} data-cy="select-district">
               {showCds ? 'Select Your District' : 'Not Your District?'}
             </NotDistrict>
           </Row>
@@ -217,32 +217,44 @@ const DistrictWrapper = ({
                   className={index === cdIndex && 'active'}
                   key={cd.id}
                   onClick={() => handleDistrictChange(cd.id, index, zip, user)}
+                  data-cy="district"
                 >
-                  <Body className={index === cdIndex && 'active'}>
+                  <Body
+                    className={index === cdIndex && 'active'}
+                    data-cy="district-name"
+                  >
                     {cd.name}
                   </Body>
-                  <Body11>
+                  <Body11 data-cy="district-data">
                     {cd.pct}% of {zip} zip code population live in {cd.name}
                   </Body11>
                 </CdWrapper>
               ))}
-            <CdWrapper onClick={handleZipChange}>
+            <CdWrapper onClick={handleZipChange} data-cy="change-zip">
               <Body>Change your Zip Code</Body>
             </CdWrapper>
           </Collapse>
           <Spacer>
-            <Body>
-              You have <strong>{electionCount}</strong> relevant Federal
-              Elections. Check{' '}
-              <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
+            <Body data-cy="federal-election">
+              You have <strong data-cy="election-count">{electionCount}</strong>{' '}
+              relevant Federal Elections. Check{' '}
+              <Link
+                to="?article=1ic6T6fhH0jZLNvX5aZkDe"
+                data-cy="candidate-article"
+              >
                 candidate voting blocs
               </Link>{' '}
               to see if your vote can elect someone{' '}
-              <Link to="?article=5KnBx42FOEVDJNUFpoU1PX">Potentially Good</Link>
+              <Link
+                to="?article=5KnBx42FOEVDJNUFpoU1PX"
+                data-cy="potentially-good-article"
+              >
+                Potentially Good
+              </Link>
               .
             </Body>
           </Spacer>
-          <Link to={presidentialElectionLink()}>
+          <Link to={presidentialElectionLink()} data-cy="presidential">
             {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
               <RankedCard
                 title="Presidential Election"
@@ -261,7 +273,7 @@ const DistrictWrapper = ({
             )}
           </Link>
           {!isEmptyCandidates(senateCandidates) && (
-            <Link to={senateElectionLink(shortState)}>
+            <Link to={senateElectionLink(shortState)} data-cy="senate">
               {senateRank && Object.keys(senateRank).length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
