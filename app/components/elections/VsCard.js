@@ -6,7 +6,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from 'components/shared/Card';
 import { H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { useWindowSize } from 'customHooks/useWindowSize';
 import theme from 'theme';
 import { partyResolver } from 'helpers/electionsHelper';
@@ -163,13 +162,17 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
           {cloneGood.length > 1 && <Name>{cloneGood.length} CANDIDATES</Name>}
           {cloneGood.length === 1 && (
             <>
-              <Name className={(cloneGood[0].id === 'noneyet' ? 'gray' : '')}>
+              <Name className={cloneGood[0].id === 'noneyet' ? 'gray' : ''}>
                 {cloneGood[0].name.toUpperCase()}
               </Name>
               <Role>
-                {cloneGood[0].isIncumbent
-                  ? 'INCUMBENT'
-                  : partyResolver(cloneGood[0].party)}
+                {cloneGood[0].isIncumbent && (
+                  <>
+                    INCUMBENT
+                    <br />
+                  </>
+                )}
+                {partyResolver(cloneGood[0].party)}
               </Role>
             </>
           )}
@@ -208,9 +211,13 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
             <>
               <Name>{notGood[0].name.toUpperCase()}</Name>
               <Role>
-                {notGood[0].isIncumbent
-                  ? 'INCUMBENT'
-                  : partyResolver(notGood[0].party)}
+                {notGood[0].isIncumbent && (
+                  <>
+                    INCUMBENT
+                    <br />
+                  </>
+                )}
+                {partyResolver(notGood[0].party)}
               </Role>
             </>
           )}
