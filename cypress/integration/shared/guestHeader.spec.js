@@ -31,6 +31,9 @@ describe('GuestHeader', () => {
 
       cy.get('[data-cy=party]').click();
       cy.url().should('include', '/party');
+
+      cy.get('[data-cy=logo]').click();
+      cy.url().should('include', '/');
     });
   });
 });

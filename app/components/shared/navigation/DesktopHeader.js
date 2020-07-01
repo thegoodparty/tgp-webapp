@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { getInitials } from 'helpers/userHelper';
 import LogoCaps from 'images/logo-caps.svg';
 import { Body14, Body9 } from '../typogrophy';
 import UserAvatar from '../UserAvatar';
@@ -70,11 +69,18 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
   return (
     <Wrapper>
       <ContentWrapper>
-        <TopLink className={partyRoute ? 'showBorder' : ''} >
-          <Logo src={LogoCaps} onClick={() => handleNavigate('/party')} data-cy="party" />
+        <TopLink>
+          <Logo src={LogoCaps} onClick={() => handleNavigate('/')} data-cy="logo" />
         </TopLink>
         {!hideLinks && (
           <>
+            <TopLink
+              className={partyRoute ? 'showBorder' : ''}
+              onClick={() => handleNavigate('/party')}
+              data-cy="party"
+            >
+              ABOUT
+            </TopLink>
             <TopLink
               className={electionRoute ? 'showBorder' : ''}
               onClick={() => handleNavigate('/elections')}

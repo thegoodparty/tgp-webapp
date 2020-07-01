@@ -28,13 +28,10 @@ function HomePage({ userState, dispatch }) {
 
   const { user } = userState;
   useEffect(() => {
-    if (user) {
-      dispatch(push('/party'));
-    } else {
+    if (!user) {
       dispatch(userActions.loadUserFromCookieAction());
       dispatch(userActions.generateUuidAction());
     }
-    console.log('homepage', user);
   }, [userState]);
 
   return (
