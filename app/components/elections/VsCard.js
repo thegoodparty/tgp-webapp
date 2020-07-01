@@ -6,7 +6,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from 'components/shared/Card';
 import { H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import noCandidateImage from 'components/shared/noCandidateImageUrl';
 import { useWindowSize } from 'customHooks/useWindowSize';
 import theme from 'theme';
 import { partyResolver } from 'helpers/electionsHelper';
@@ -175,9 +174,13 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
                 {cloneGood[0].name.toUpperCase()}
               </Name>
               <Role data-cy="candidates-role">
-                {cloneGood[0].isIncumbent
-                  ? 'INCUMBENT'
-                  : partyResolver(cloneGood[0].party)}
+                {cloneGood[0].isIncumbent && (
+                  <>
+                    INCUMBENT
+                    <br />
+                  </>
+                )}
+                {partyResolver(cloneGood[0].party)}
               </Role>
             </>
           )}
@@ -221,9 +224,13 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
                 {notGood[0].name.toUpperCase()}
               </Name>
               <Role data-cy="candidates-role">
-                {notGood[0].isIncumbent
-                  ? 'INCUMBENT'
-                  : partyResolver(notGood[0].party)}
+                {notGood[0].isIncumbent && (
+                  <>
+                    INCUMBENT
+                    <br />
+                  </>
+                )}
+                {partyResolver(notGood[0].party)}
               </Role>
             </>
           )}

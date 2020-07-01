@@ -100,7 +100,7 @@ const NavWrapper = ({
             className={classes.bottomNav}
           >
             <BottomNavigationAction
-              label="PARTY"
+              label="ABOUT"
               icon={icon(PartyIcon, PartyIconGray, 0)}
               className={classes.bottomNavItem}
               data-cy="party"

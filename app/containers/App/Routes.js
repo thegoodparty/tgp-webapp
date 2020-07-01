@@ -48,6 +48,7 @@ function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
+      <Route exact path="/home" component={HomePage} />
       <Route exact path="/intro/splash" component={SplashPage} />
       <Route exact path="/intro/zip-finder" component={ZipFinderPage} />
 

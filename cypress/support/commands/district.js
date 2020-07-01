@@ -1,4 +1,6 @@
-import { partyResolver, numberFormatter } from '../utils';
+import { partyResolver } from '../../../app/helpers/electionsHelper';
+import { numberFormatter } from '../../../app/helpers/numberHelper';
+
 
 Cypress.Commands.add('testVSCard', (el, title, candidates, suffixText) => {
   const { good, notGood, unknown, topRank, userState, threshold } = candidates;

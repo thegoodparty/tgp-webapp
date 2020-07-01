@@ -102,11 +102,11 @@ function MobileHeader({
             {!isGood ? 'NOT GOOD ENOUGH' : 'GOOD OPTION'}
           </GoodNoGood>
         ) : (
-          <Link to="/party" className="text-center">
+          <Link to="/home" className="text-center">
             {whiteBackButton ? (
-              <Logo src={WhiteLogoImg} alt="The Good Party" />
+              <Logo src={WhiteLogoImg} alt="The Good Party" data-cy="logo" />
             ) : (
-              <Logo src={LogoCapsImg} alt="The Good Party" />
+              <Logo src={LogoCapsImg} alt="The Good Party" data-cy="logo" />
             )}
           </Link>
         )}

@@ -1,4 +1,4 @@
-import { articlesHelper } from '../../support/utils';
+import articlesHelper from '../../../app/helpers/articlesHelper';
 
 describe('PartyPage', () => {
   beforeEach(() => {

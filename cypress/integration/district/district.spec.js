@@ -1,10 +1,9 @@
+import articlesHelper from '../../../app/helpers/articlesHelper';
 import {
-  articlesHelper,
-  getElectionCount,
-  getCdsWithPerc,
   presidentialElectionLink,
   isEmptyCandidates,
-} from '../../support/utils';
+} from '../../../app/helpers/electionsHelper';
+import { getElectionCount, getCdsWithPerc } from '../../support/utils';
 
 context('District', () => {
   let district;
