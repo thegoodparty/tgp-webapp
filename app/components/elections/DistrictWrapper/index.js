@@ -217,7 +217,7 @@ const DistrictWrapper = ({
                   className={index === cdIndex && 'active'}
                   key={cd.id}
                   onClick={() => handleDistrictChange(cd.id, index, zip, user)}
-                  data-cy="district"
+                  data-cy="active-district"
                 >
                   <Body
                     className={index === cdIndex && 'active'}
@@ -293,7 +293,10 @@ const DistrictWrapper = ({
             </Link>
           )}
           {!isEmptyCandidates(houseCandidates) && (
-            <Link to={houseElectionLink(shortState, districtNumber)}>
+            <Link
+              to={houseElectionLink(shortState, districtNumber)}
+              data-cy="district"
+            >
               {houseRank && Object.keys(houseRank).length > 0 ? (
                 <RankedCard
                   title={`House Representative ${shortState}-${districtNumber}`}
