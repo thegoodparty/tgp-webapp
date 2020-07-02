@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import { goBack, push } from 'connected-react-router';
+import { goBack, push, replace } from 'connected-react-router';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -80,7 +80,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(goBack());
     },
     closeModalCallback: () => {
-      dispatch(push(window.location.pathname));
+      dispatch(replace(window.location.pathname));
     },
     helpfulCallback: (id, title, isHelpful, feedback) => {
       dispatch(globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback));
