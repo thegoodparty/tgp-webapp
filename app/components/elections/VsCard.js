@@ -249,7 +249,6 @@ const VsCard = ({ title, candidates = {}, suffixText = '' }) => {
 VsCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  showElectorsCount: PropTypes.bool,
   suffixText: PropTypes.string,
 };
 

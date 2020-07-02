@@ -273,7 +273,7 @@ const ElectionWrapper = ({
 
   const suffixText =
     chamber === 'presidential'
-      ? ' (270 ELECTORS)'
+      ? ` (${candidates.electors} ELECTORS)`
       : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
 
   return (
