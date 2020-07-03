@@ -324,7 +324,10 @@ const VsList = ({
     }
     return (
       <GrowWrapper>
-        <JoinButton onClick={e => handleChoice(candidate, e)}>
+        <JoinButton
+          onClick={e => handleChoice(candidate, e)}
+          data-cy="join-button"
+        >
           JOIN{' '}
           {candidate.id === noneYetCandidate.id
             ? '#GoodBloc'
@@ -359,7 +362,7 @@ const VsList = ({
     }
 
     return (
-      <BlocCount>
+      <BlocCount data-cy="block-count">
         {numberFormatter(rank)} {rank === 1 ? 'is' : 'are'} in{' '}
         {candidateBlocName(candidate, chamber)}
       </BlocCount>
@@ -368,21 +371,27 @@ const VsList = ({
 
   let displayBloc = goodBloc;
   if (chamber === 'house') {
-    displayBloc =
-      goodBloc.substring(0, 2) + '-' + goodBloc.substring(2, goodBloc.length);
+    displayBloc = `${goodBloc.substring(0, 2)}-${goodBloc.substring(
+      2,
+      goodBloc.length,
+    )}`;
   }
 
-  let goodEmptyBloc = candidates.goodEmptyBloc;
+  let { goodEmptyBloc } = candidates;
   if (!user && ranking[(noneYetCandidate?.id)]) {
     goodEmptyBloc++;
   }
   return (
-    <div>
+    <div data-cy="vs-list">
       <Row>
-        <Side>
-          <GoodTitle>POTENTIALLY GOOD</GoodTitle>
+        <Side data-cy="good-side">
+          <GoodTitle data-cy="side-title">POTENTIALLY GOOD</GoodTitle>
           {good.map(candidate => (
-            <Link to={candidateRoute(candidate)} key={candidate.id}>
+            <Link
+              to={candidateRoute(candidate)}
+              key={candidate.id}
+              data-cy="candidate"
+            >
               <CandidateWrapper>
                 <CandidateAvatar
                   size="responsive"
@@ -390,8 +399,8 @@ const VsList = ({
                   name={candidate.name}
                   good
                 />
-                <Name>{candidate.name}</Name>
-                <Role>
+                <Name data-cy="candidate-name">{candidate.name}</Name>
+                <Role data-cy="candidate-role">
                   {partyResolver(candidate.party)}
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
@@ -402,15 +411,17 @@ const VsList = ({
             </Link>
           ))}
           {good.length === 0 && (
-            <CandidateWrapper>
+            <CandidateWrapper data-cy="candidate">
               <CandidateAvatar
                 size="responsive"
                 src={noneYetCandidate.image}
                 good
               />
-              <Name className="gray">NONE YET</Name>
-              <Role>GOOD PARTY APPROVED</Role>
-              <BlocCount>
+              <Name className="gray" data-cy="candidate-name">
+                NONE YET
+              </Name>
+              <Role data-cy="candidate-role">GOOD PARTY APPROVED</Role>
+              <BlocCount data-cy="block-count">
                 {numberFormatter(goodEmptyBloc)}{' '}
                 {goodEmptyBloc === 1 ? 'is' : 'are'} in #GoodBloc of{' '}
                 {displayBloc}
@@ -421,45 +432,57 @@ const VsList = ({
         </Side>
         <Middle>
           <FiltersWRapper>
-            <FiltersButton onClick={openFiltersCallback}>
+            <FiltersButton onClick={openFiltersCallback} data-cy="open-filter">
               GOOD CRITERIA
             </FiltersButton>
           </FiltersWRapper>
           <Line />
-          <Vs>VS</Vs>
+          <Vs data-cy="vs">VS</Vs>
         </Middle>
-        <Side className="right">
-          <NotGoodTitle>NOT GOOD ENOUGH</NotGoodTitle>
+        <Side className="right" data-cy="not-good-side">
+          <NotGoodTitle data-cy="side-title">NOT GOOD ENOUGH</NotGoodTitle>
           {notGood.map(candidate => (
-            <Link to={candidateRoute(candidate)} key={candidate.id}>
+            <Link
+              to={candidateRoute(candidate)}
+              key={candidate.id}
+              data-cy="candidate"
+            >
               <CandidateWrapper className="right">
                 <CandidateAvatar
                   size="responsive"
                   src={candidate.image}
                   name={candidate.name}
                 />
-                <Name>{candidate.name}</Name>
-                <Role className="text-right">
+                <Name data-cy="candidate-name">{candidate.name}</Name>
+                <Role className="text-right" data-cy="candidate-role">
                   {partyResolver(candidate.party)}
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
-                <WhyNot>Why not good enough?</WhyNot>
+                <WhyNot data-cy="why-not">Why not good enough?</WhyNot>
               </CandidateWrapper>
             </Link>
           ))}
         </Side>
       </Row>
-      <a href="https://forms.gle/kydnhUp6xqF6RUpb9" target="_blank">
+      <a
+        href="https://forms.gle/kydnhUp6xqF6RUpb9"
+        target="_blank"
+        data-cy="nominate-candidate"
+      >
         <NominateWrapper>
           <MailOutlineIcon /> <NominateText>Nominate a candidate</NominateText>
         </NominateWrapper>
       </a>
       {unknown && unknown.length > 0 && (
-        <UnknownWrapper>
-          <UnknownTitle>NOT YET RATED</UnknownTitle>
+        <UnknownWrapper data-cy="unknown-side">
+          <UnknownTitle data-cy="side-title">NOT YET RATED</UnknownTitle>
           {unknown.map(candidate => (
-            <Link to={candidateRoute(candidate)} key={candidate.id}>
+            <Link
+              to={candidateRoute(candidate)}
+              key={candidate.id}
+              data-cy="candidate"
+            >
               <CandidateWrapper className="center">
                 <CandidateAvatar
                   size="responsive"
@@ -467,8 +490,8 @@ const VsList = ({
                   good={null}
                   name={candidate.name}
                 />
-                <Name>{candidate.name}</Name>
-                <Role>
+                <Name data-cy="candidate-name">{candidate.name}</Name>
+                <Role data-cy="candidate-role">
                   {partyResolver(candidate.party)}
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}

@@ -34,63 +34,73 @@ const Label = styled(Body)`
   padding-top: 9px;
 `;
 
-const FiltersPopup = () => {
-  return (
-    <Wrapper onClick={e => e.stopPropagation()}>
-      <H1>Good Criteria</H1>
-      <Body style={{ marginTop: '10px', marginBottom: '32px' }}>
-        To be a{' '}
-        <Green>
-          <strong>Potentially Good</strong>
-        </Green>{' '}
-        option, candidates must pass <u>both</u> our{' '}
-        <strong>Follow the Money</strong> and <strong>Character Check</strong>{' '}
-        criteria below:
-      </Body>
-      <H3>Follow the Money</H3>
-      <Row style={{ marginTop: '18px' }}>
-        <Checkbox src={checkboxImg} />
-        <div style={{ flex: 1 }}>
-          <Label>Mostly Funded by Small Donors (&lt;$200)</Label>
-          <Body13 style={{ flex: 1 }}>
-            Major candidates who have raised lots of funding, but have ensured
-            that most of their funding (&gt;50%) is coming from Small Individual
-            Donors (&lt;$200).
-          </Body13>
-        </div>
-      </Row>
-      <div className="text-center" style={{ marginTop: '24px' }}>
-        <Body13>or</Body13>
+const FiltersPopup = () => (
+  <Wrapper onClick={e => e.stopPropagation()} data-cy="filters-popup">
+    <H1 data-cy="title">Good Criteria</H1>
+    <Body style={{ marginTop: '10px', marginBottom: '32px' }}>
+      To be a{' '}
+      <Green>
+        <strong>Potentially Good</strong>
+      </Green>{' '}
+      option, candidates must pass <u>both</u> our{' '}
+      <strong>Follow the Money</strong> and <strong>Character Check</strong>{' '}
+      criteria below:
+    </Body>
+    <H3 data-cy="follow-money-title">Follow the Money</H3>
+    <Row style={{ marginTop: '18px' }} data-cy="follow-money-1">
+      <Checkbox src={checkboxImg} />
+      <div style={{ flex: 1 }}>
+        <Label data-cy="follow-money-1-label">
+          Mostly Funded by Small Donors (&lt;$200)
+        </Label>
+        <Body13 style={{ flex: 1 }} data-cy="follow-money-1-body">
+          Major candidates who have raised lots of funding, but have ensured
+          that most of their funding (&gt;50%) is coming from Small Individual
+          Donors (&lt;$200).
+        </Body13>
       </div>
-      <Row style={{ marginTop: '18px' }}>
-        <Checkbox src={checkboxImg} />
-        <div style={{ flex: 1 }}>
-          <Label>Relatively Small Amount of Funding</Label>
-          <Body13>
-            Relatively lessor known candidates who have raised less than half
-            (&lt;50%) of the funding of the incumbent in race.
-          </Body13>
-        </div>
-      </Row>
+    </Row>
+    <div className="text-center" style={{ marginTop: '24px' }}>
+      <Body13>or</Body13>
+    </div>
+    <Row style={{ marginTop: '18px' }}>
+      <Checkbox src={checkboxImg} />
+      <div style={{ flex: 1 }}>
+        <Label data-cy="follow-money-2-label">
+          Relatively Small Amount of Funding
+        </Label>
+        <Body13 data-cy="follow-money-2-body">
+          Relatively lessor known candidates who have raised less than half
+          (&lt;50%) of the funding of the incumbent in race.
+        </Body13>
+      </div>
+    </Row>
 
-      <H3 style={{ marginTop: '24px', marginBottom: '12px' }}>
-        Character Check
-      </H3>
-      <Row>
-        <Checkbox src={checkboxImg} />
-        <div style={{ flex: 1 }}>
-          <Label>Vetted for Hate-Speech</Label>
-          <Body13>
-            Candidate has not engaged in a pattern of activities or{' '}
-            <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">hate-speech</Link> that
-            encourages intolerance, discrimination or hostility towards a
-            constitutionally or state-protected group or class.
-          </Body13>
-        </div>
-      </Row>
-    </Wrapper>
-  );
-};
+    <H3
+      style={{ marginTop: '24px', marginBottom: '12px' }}
+      data-cy="character-check-title"
+    >
+      Character Check
+    </H3>
+    <Row>
+      <Checkbox src={checkboxImg} />
+      <div style={{ flex: 1 }}>
+        <Label data-cy="character-check-label">Vetted for Hate-Speech</Label>
+        <Body13 data-cy="character-check-body">
+          Candidate has not engaged in a pattern of activities or{' '}
+          <Link
+            to="?article=5bwvf0PwsbpFEe8IJ9sHhX"
+            data-cy="character-check-link"
+          >
+            hate-speech
+          </Link>{' '}
+          that encourages intolerance, discrimination or hostility towards a
+          constitutionally or state-protected group or class.
+        </Body13>
+      </div>
+    </Row>
+  </Wrapper>
+);
 
 FiltersPopup.propTypes = {};
 

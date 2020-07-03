@@ -88,15 +88,7 @@ Cypress.Commands.add('testFAQArticle', ($el, index, article) => {
     .click();
   cy.get('[data-cy=feedback]').should('exist');
   cy.get('[data-cy=feedback-submit]').contains('SUBMIT');
-  
-  cy.get('[data-cy=article-bottom-close]').click();
-  cy.wrap($el)
-    .find('[data-cy=faq-title]')
-    .click();
-  
-  cy.get('[data-cy=article-back]').click();
-  cy.wrap($el)
-    .find('[data-cy=faq-title]')
-    .click();
+  cy.get('[data-cy=article-bottom-close]').should('exist');
+  cy.get('[data-cy=article-back]').should('exist');
   cy.get('[data-cy=article-top-close]').click();
 });
