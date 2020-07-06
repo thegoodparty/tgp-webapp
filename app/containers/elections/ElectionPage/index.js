@@ -26,7 +26,10 @@ import saga from 'containers/intro/ZipFinderPage/saga';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
 import makeSelectZipFinderPage from 'containers/intro/ZipFinderPage/selectors';
-import { makeSelectContent } from 'containers/App/selectors';
+import {
+  makeSelectContent,
+  makeSelectLocation,
+} from 'containers/App/selectors';
 import {
   candidateBlocName,
   findBlocCandidate,
@@ -41,7 +44,7 @@ import makeSelectUser, {
 } from 'containers/you/YouPage/selectors';
 
 import userActions from 'containers/you/YouPage/actions';
-import { makeSelectLocation } from 'containers/App/selectors';
+
 import queryHelper from 'helpers/queryHelper';
 import {
   deleteSignupRedirectCookie,
@@ -167,7 +170,7 @@ export function ElectionPage({
     }
   } else if (chamber === 'house') {
     if (user) {
-      const userDistrict = user.districtNumber + '';
+      const userDistrict = `${user.districtNumber}`;
       const userShortState = user.shortState;
       if (user.districtNumber === null) {
         // if district not set - take the first district in cds array.
@@ -188,9 +191,8 @@ export function ElectionPage({
   }
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
-  const blocCandidateMatch = emptyBlocCandidate
-    ? emptyBlocCandidate
-    : findBlocCandidate(candidates, blocCandidate);
+  const blocCandidateMatch =
+    emptyBlocCandidate || findBlocCandidate(candidates, blocCandidate);
   let joinCandidateMatch;
   if (joinCandidate) {
     joinCandidateMatch = findBlocCandidate(candidates, joinCandidate);
@@ -252,7 +254,9 @@ export function ElectionPage({
   return (
     <div>
       <Helmet>
-        <title>{displayChamber} Election | The Good Party</title>
+        <title data-cy="page-title">
+          {displayChamber} Election | The Good Party
+        </title>
         <meta
           name="description"
           content={`${chamber} Election | The Good Party`}

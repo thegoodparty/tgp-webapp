@@ -7,7 +7,7 @@ describe('Events', () => {
     cy.get('[data-cy=upcoming-events-title]').contains(
       'Upcoming Online Events',
     );
-    cy.getCMSContent()
+    cy.getCMSContent();
     cy.fixture('content').should(content => {
       cy.get('[data-cy=upcoming-events] > [data-cy=event]')
         .should('have.length', content.events.length)

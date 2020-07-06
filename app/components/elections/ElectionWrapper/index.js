@@ -280,17 +280,19 @@ const ElectionWrapper = ({
     <PageWrapper>
       {candidates ? (
         <>
-          <H1>{title}</H1>
+          <H1 data-cy="title">{title}</H1>
           <Row>
-            <SupportersWrapper>
+            <SupportersWrapper data-cy="supporters">
               <SupportersRow>
                 <HeartImg src={heartImg} alt="tgp" />
-                <SupportersCount>
+                <SupportersCount data-cy="supporters-count">
                   {numberFormatter(topRank)}{' '}
                   {topRank === 1 ? 'Person' : 'People'}{' '}
                 </SupportersCount>
               </SupportersRow>
-              <SuppoetersBody>in top voting bloc so far</SuppoetersBody>
+              <SuppoetersBody data-cy="supporters-body">
+                in top voting bloc so far
+              </SuppoetersBody>
               <SupportersProgressBar
                 votesNeeded={votesNeeded}
                 peopleSoFar={topRank}
@@ -304,11 +306,11 @@ const ElectionWrapper = ({
               <img src={UsMapImage} alt="" />
             </MapWrapper>
           </Row>
-          <Description>
+          <Description data-cy="description">
             {candidates.good.length > 0 ? (
               <>
                 Join any{' '}
-                <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
+                <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe" data-cy="article">
                   candidate voting blocs
                 </Link>{' '}
                 and we&apos;ll let you know if they grow big enough to win!
@@ -316,7 +318,10 @@ const ElectionWrapper = ({
             ) : (
               <>
                 We&apos;re looking for{' '}
-                <GoodCandidate onClick={openFiltersCallback}>
+                <GoodCandidate
+                  onClick={openFiltersCallback}
+                  data-cy="good-candidate-option"
+                >
                   good candidate options
                 </GoodCandidate>{' '}
                 in this race. Join #GoodBloc to be notified as soon as we find
@@ -332,7 +337,7 @@ const ElectionWrapper = ({
             handleChoiceCallback={handleChoiceCallback}
             handleGrowCallback={handleGrowCallback}
             handleDeselectCandidate={handleDeselectCandidate}
-            goodBloc={`${stateUpper}${districtNumber ? districtNumber : ''}`}
+            goodBloc={`${stateUpper}${districtNumber || ''}`}
             districtNumber={districtNumber}
             chamber={chamber}
             state={stateUpper}

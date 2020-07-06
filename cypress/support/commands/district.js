@@ -87,19 +87,13 @@ Cypress.Commands.add('testVSCard', (el, title, candidates, suffixText) => {
     if (progress > 100) {
       progress = 100;
     }
-    console.log(topRank);
-    cy.get('@vscard')
-      .find('[data-cy=supporter-progress]')
-      .as('supporter');
-    cy.get('@supporter')
-      .find('[data-cy=people-so-far]')
-      .should('contain', numberFormatter(topRank))
-      .and('contain', topRank === 1 ? 'person ' : 'people ')
-      .and('contain', 'in top candidate voting bloc so far');
-    cy.get('@supporter')
-      .find('[data-cy=votes-needed]')
-      .should('contain', numberFormatter(threshold))
-      .and('contain', userState ? `IN ${userState.toUpperCase()}` : '')
-      .and('contain', suffixText);
+    cy.testSupportersProgressBar(
+      el,
+      threshold,
+      topRank,
+      userState,
+      true,
+      suffixText,
+    );
   }
 });

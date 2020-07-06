@@ -54,8 +54,8 @@ const BottomPopup = ({ open, handleClose, children }) => {
   const classes = useStyles();
   return (
     <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-      <Wrapper className={open ? 'open' : 'close'}>
-        <CloseWrapper onClick={handleClose}>
+      <Wrapper className={open ? 'open' : 'close'} data-cy="bottom-popup">
+        <CloseWrapper onClick={handleClose} data-cy="popup-close">
           <CloseIcon />
         </CloseWrapper>
         <InnerWrapper>{children}</InnerWrapper>

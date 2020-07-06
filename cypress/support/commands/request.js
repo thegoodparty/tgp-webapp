@@ -53,10 +53,14 @@ Cypress.Commands.add('getDistrictData', zip => {
   });
 });
 
-Cypress.Commands.add('getPresidentialCandidateData', zip => {
-  cy.sendRequest(api.allPresidential.method, api.allPresidential.url, {
-    zip,
-  });
+Cypress.Commands.add('getPresidentialCandidateData', (zip = null) => {
+  cy.sendRequest(
+    api.allPresidential.method,
+    api.allPresidential.url,
+    zip && {
+      zip,
+    },
+  );
 });
 
 Cypress.Commands.add('getSenateCandidateData', state => {
