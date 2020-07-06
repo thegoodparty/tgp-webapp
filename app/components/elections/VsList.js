@@ -310,7 +310,7 @@ const VsList = ({
               <BlueBody11>GROW #GoodBloc</BlueBody11>
             ) : (
               <BlueBody11>
-                GROW {candidateBlocName(candidate, chamber)}
+                GROW {candidateBlocName(candidate)}
               </BlueBody11>
             )}
           </GrowButtonWrapper>
@@ -328,7 +328,7 @@ const VsList = ({
           JOIN{' '}
           {candidate.id === noneYetCandidate.id
             ? '#GoodBloc'
-            : candidateBlocName(candidate, chamber)}
+            : candidateBlocName(candidate)}
         </JoinButton>
       </GrowWrapper>
     );
@@ -361,7 +361,7 @@ const VsList = ({
     return (
       <BlocCount>
         {numberFormatter(rank)} {rank === 1 ? 'is' : 'are'} in{' '}
-        {candidateBlocName(candidate, chamber)}
+        {candidateBlocName(candidate)}
       </BlocCount>
     );
   };

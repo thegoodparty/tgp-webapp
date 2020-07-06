@@ -437,7 +437,7 @@ function* saveGuestRanking(action) {
     const { candidate, rank, chamber } = action;
     const rankingCookie = getCookie('guestRanking');
     const ranking = rankingCookie ? JSON.parse(rankingCookie) : [];
-    const blocName = candidateBlocName(candidate, chamber);
+    const blocName = candidateBlocName(candidate);
 
     ranking.push({
       id: `cookie-${chamber}-${candidate.id}${

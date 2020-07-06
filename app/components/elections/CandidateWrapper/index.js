@@ -490,7 +490,7 @@ const CandidateWrapper = ({
     ? 'top funded candidate'
     : 'incumbent';
 
-  const blocName = candidateBlocName(candidate, chamberName);
+  const blocName = candidateBlocName(candidate);
   const mobileHeaderProps = {
     showGood: true,
     isGood,
