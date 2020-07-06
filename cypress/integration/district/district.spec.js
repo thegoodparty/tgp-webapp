@@ -1,7 +1,9 @@
 import articlesHelper from '../../../app/helpers/articlesHelper';
 import {
-  presidentialElectionLink,
+  houseElectionLink,
   isEmptyCandidates,
+  presidentialElectionLink,
+  senateElectionLink,
 } from '../../../app/helpers/electionsHelper';
 import { getElectionCount, getCdsWithPerc } from '../../support/utils';
 
@@ -34,7 +36,7 @@ context('District', () => {
             .should('contain', 'Select Your District');
           const cdWithPerc = getCdsWithPerc(approxPctArr, cds);
           if (cdWithPerc.length > 1) {
-            cy.get('[data-cy=district]')
+            cy.get('[data-cy=active-district]')
               .should('have.length', cdWithPerc.length)
               .each(($el, index) => {
                 // check district name
@@ -87,11 +89,11 @@ context('District', () => {
       it(`loads senate candidate data and finds Senate Candidate section`, () => {
         cy.getSenateCandidateData(shortState).then(response => {
           senate = response.body.senateCandidates;
-          cy.get('[data-cy=presidential]')
-            .should('have.attr', 'href')
-            .and('include', presidentialElectionLink());
           if (!isEmptyCandidates(senate)) {
             const { stateLong } = district;
+            cy.get('[data-cy=senate]')
+              .should('have.attr', 'href')
+              .and('include', senateElectionLink(shortState));
             cy.testVSCard(
               'senate',
               `Senator - ${stateLong}`,
@@ -109,6 +111,9 @@ context('District', () => {
             house = response.body.houseCandidates;
             const { primaryCity, zip } = district;
             if (district && presidential) {
+              cy.get('[data-cy=district]')
+                .should('have.attr', 'href')
+                .and('include', houseElectionLink(shortState, cd.code));
               cy.get('[data-cy=location]')
                 .should('contain', primaryCity)
                 .and('contain', zip)
