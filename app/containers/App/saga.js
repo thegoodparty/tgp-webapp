@@ -1,13 +1,12 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
+import { getUserFromStateOrCookie, getUuid } from 'helpers/userHelper';
+
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
 import snackbarActions from '../shared/SnackbarContainer/actions';
-import makeSelectUser from '../you/YouPage/selectors';
-import { getUserCookie } from '../../helpers/cookieHelper';
-import { getUuid } from '../../helpers/userHelper';
 
 function* loadContent() {
   try {
@@ -39,18 +38,6 @@ function* sendArticleFeedback(action) {
     console.log(error);
     snackbarActions.showSnakbarAction('Error sending your feedback', 'error');
   }
-}
-
-function* getUserFromStateOrCookie() {
-  const userState = yield select(makeSelectUser);
-  if (userState && userState.user) {
-    return userState.user;
-  }
-  const cookieUser = getUserCookie();
-  if (cookieUser) {
-    return JSON.parse(cookieUser);
-  }
-  return null;
 }
 
 // Individual exports for testing

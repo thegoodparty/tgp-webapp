@@ -34,6 +34,7 @@ import GrayCheckbox from 'images/icons/checkbox-gray.svg';
 import RedCheckbox from 'images/icons/checkbox-red.svg';
 import GreenCheckbox from 'images/icons/checkbox-green.svg';
 import QuestionMarkGray from 'images/icons/question-mark.svg';
+import SupportersProgressBar from '../SupportersProgressBar';
 
 const TopRow = styled.div`
   display: flex;
@@ -497,6 +498,14 @@ const CandidateWrapper = ({
     showShare: true,
     user,
   };
+  let votesNeededState;
+  if(chamberName === 'presidential'){
+    votesNeededState = user?.shortState;
+  } else if(chamberName === 'senate'){
+    votesNeededState = state || '';
+  } else {
+    votesNeededState = `${state}-${district}`;
+  }
   return (
     <PageWrapper mobileHeaderProps={mobileHeaderProps}>
       {candidate && name ? (
@@ -527,9 +536,16 @@ const CandidateWrapper = ({
             {isGoodOrUnkwown && (
               <>
                 <BlocCount>
-                  {numberFormatter(rankingCount)}{' '}
-                  {rankingCount === 1 ? 'person' : 'people'} have joined <br />
-                  <strong>{blocName}</strong>
+                  <SupportersProgressBar
+                    peopleSoFar={rankingCount}
+                    votesNeeded={candidate.votesNeeded}
+                    userState={votesNeededState}
+                    prefixText={
+                      <>
+                        have joined <strong>{blocName}</strong>
+                      </>
+                    }
+                  />
                 </BlocCount>
                 {rank ? (
                   <>
