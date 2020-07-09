@@ -53,6 +53,7 @@ const SupportersProgressBar = ({
   showSupporters = true,
   alignLeft = false,
   suffixText,
+  prefixText = 'in top candidate voting bloc so far',
 }) => {
   let progress = 3;
   if (peopleSoFar && votesNeeded) {
@@ -70,7 +71,7 @@ const SupportersProgressBar = ({
         <BarBody11 data-cy="people-so-far">
           {numberFormatter(peopleSoFar)}{' '}
           {peopleSoFar === 1 ? 'person ' : 'people '}
-          in top candidate voting bloc so far
+          {prefixText}
         </BarBody11>
       )}
       <BarBg>
@@ -92,6 +93,8 @@ SupportersProgressBar.propTypes = {
   alignLeft: PropTypes.bool,
   showElectorsCount: PropTypes.bool,
   userState: PropTypes.string,
+  prefixText: PropTypes.string,
+  suffixText: PropTypes.string,
 };
 
 export default SupportersProgressBar;

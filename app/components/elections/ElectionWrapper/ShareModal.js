@@ -176,7 +176,7 @@ const ShareModal = ({
   if (candidate.unknown) {
     isGood = null;
   }
-  const blocName = candidateBlocName(candidate, chamber);
+  const blocName = candidateBlocName(candidate);
   const blocLink = candidateBlocLink(candidate, chamber);
   let url = uuidUrl(user);
   let queryOperator = '&';

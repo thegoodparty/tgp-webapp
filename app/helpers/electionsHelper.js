@@ -97,7 +97,8 @@ export const candidateCalculatedFields = orgCandidate => {
   const candidate = { ...orgCandidate };
   const { combinedRaised, raised, smallContributions } = candidate;
   const totalRaised = combinedRaised || raised;
-  const largeDonorPerc = totalRaised === 0 ? 0 : (totalRaised - smallContributions) / totalRaised;
+  const largeDonorPerc =
+    totalRaised === 0 ? 0 : (totalRaised - smallContributions) / totalRaised;
   const smallDonorPerc = 1 - largeDonorPerc;
   const hours = calcHours(candidate);
   const largeDonorPerHour = (totalRaised * largeDonorPerc) / hours;
@@ -255,20 +256,17 @@ export const candidateLastName = candidate => {
   return candidate.name ? nameArr[nameArr.length - 1] : '';
 };
 
-export const candidateBlocName = (candidate, chamber) => {
+export const candidateBlocName = candidate => {
   if (!candidate) {
     return '';
   }
-  if(candidate.blocName){
+  if (candidate.blocName) {
     return `#${candidate.blocName}`;
   }
   if (candidate.id < 0) {
     return '#GoodBloc';
   }
   const lastName = candidateLastName(candidate);
-  if (chamber === 'presidential' && lastName === 'Sanders') {
-    return '#BernieBloc';
-  }
   return `#${lastName}Bloc`;
 };
 
@@ -279,21 +277,21 @@ export const candidateBlocLink = (candidate, chamber) => {
   const { state, district } = candidate;
 
   if (candidate.id < 0) {
-    return `GoodBloc-${candidate.state}${candidate.id * -1}`;
+    return `GoodBloc-${candidate.state}${
+      chamber === 'house' ? candidate.id * -1 : ''
+    }`;
   }
 
-  const lastName = candidateLastName(candidate);
+  const blocName = candidateBlocName(candidate).replace('#', '');
+
   if (chamber === 'presidential') {
-    if (lastName === 'Sanders') {
-      return 'BernieBloc';
-    }
-    return `${lastName}Bloc`;
+    return blocName;
   }
   if (chamber === 'senate') {
-    return `${lastName}Bloc-${state.toUpperCase()}`;
+    return `${blocName}-${state.toUpperCase()}`;
   }
 
-  return `${lastName}Bloc-${state.toUpperCase()}${district}`;
+  return `${blocName}-${state.toUpperCase()}${district}`;
 };
 
 export const candidateRanking = (ranking, candidate) => {

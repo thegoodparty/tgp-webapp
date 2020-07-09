@@ -323,7 +323,7 @@ function mapDispatchToProps(dispatch, ownProps) {
           candidateId: candidate.id,
           name: candidate.name,
           rank,
-          blocName: candidateBlocName(candidate, chamber),
+          blocName: candidateBlocName(candidate),
         };
         console.log('setting redirect cookie');
         setSignupRedirectCookie(route, options);

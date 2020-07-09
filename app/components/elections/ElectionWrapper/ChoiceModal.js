@@ -161,7 +161,7 @@ const ChoiceModal = ({
     displayChamber = `HOUSE OF REPRESENTATIVES FROM ${state?.toUpperCase()}-${district}`;
   }
 
-  const blocName = candidateBlocName(candidate, chamber);
+  const blocName = candidateBlocName(candidate);
   return (
     <Dialog
       onClose={closeCallback}

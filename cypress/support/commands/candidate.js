@@ -45,7 +45,17 @@ Cypress.Commands.add(
       source,
       info,
       campaignWebsite,
+      votesNeeded,
     } = candidateCalculatedFields(candidateData);
+    const { chamber, candidateId, candidateName } = candidate;
+    let votesNeededState;
+    if (chamber === 'presidential') {
+      votesNeededState = '';
+    } else if (chamber === 'senate') {
+      votesNeededState = state || '';
+    } else {
+      votesNeededState = `${state}-${district}`;
+    }
     let campWebsite = '';
     try {
       campWebsite = campaignWebsite ? decodeURI(campaignWebsite) : null;
@@ -81,7 +91,6 @@ Cypress.Commands.add(
       { name: 'twitter', url: twitter },
       { name: 'website', url: website },
     ].filter(social => social.url && social.url !== '');
-    const { chamber, candidateId, candidateName } = candidate;
     const raised = incumbent.raised || incumbent.combinedRaised;
     let bigFundsPerc = (raised - incumbent.smallContributions) / raised;
     bigFundsPerc = toPrecision(bigFundsPerc);
@@ -172,14 +181,15 @@ Cypress.Commands.add(
         });
     }
     if (isGoodOrUnkwown) {
-      cy.get('@top-row')
-        .get('[data-cy=bloc-count]')
-        .should('contain', numberFormatter(rankingCount))
-        .and(
-          'contain',
-          `${rankingCount === 1 ? 'person' : 'people'} have joined`,
-        )
-        .and('contain', blocName);
+      cy.testSupportersProgressBar(
+        'top-row',
+        votesNeeded,
+        rankingCount,
+        votesNeededState,
+        true,
+        '', 
+        blocName,
+      );
       cy.get('@top-row')
         .get('[data-cy=rank-button]')
         .should('contain', `JOIN ${blocName}`)
@@ -246,7 +256,7 @@ Cypress.Commands.add(
           .find('[data-cy=link1]')
           .should('contain', 'our minimum standard of civility')
           .and('have.attr', 'href')
-          .and('include', '?article=66i4vRRLkX1yf8MnCQvYSb')
+          .and('include', '?article=66i4vRRLkX1yf8MnCQvYSb');
         cy.get('@top-row')
           .get('[data-cy=character-check]')
           .find('[data-cy=link2]')

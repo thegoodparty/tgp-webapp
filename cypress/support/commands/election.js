@@ -113,7 +113,15 @@ Cypress.Commands.add('testFiltersPopup', () => {
 });
 Cypress.Commands.add(
   'testSupportersProgressBar',
-  (el, votesNeeded, peopleSoFar, userState, showSupporters, suffixText) => {
+  (
+    el,
+    votesNeeded,
+    peopleSoFar,
+    userState,
+    showSupporters = true,
+    suffixText,
+    prefixText = 'in top candidate voting bloc so far',
+  ) => {
     let progress = 3;
     if (peopleSoFar && votesNeeded) {
       progress = 3 + (peopleSoFar * 100) / votesNeeded;
@@ -129,7 +137,7 @@ Cypress.Commands.add(
         .find('[data-cy=people-so-far]')
         .should('contain', numberFormatter(peopleSoFar))
         .and('contain', peopleSoFar === 1 ? 'person ' : 'people ')
-        .and('contain', 'in top candidate voting bloc so far');
+        .and('contain', prefixText);
     }
     cy.get('@supporter')
       .find('[data-cy=votes-needed]')

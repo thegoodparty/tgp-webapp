@@ -1,4 +1,6 @@
-import { getCookie } from './cookieHelper';
+import { select } from 'redux-saga/effects';
+import { getCookie, getUserCookie } from './cookieHelper';
+import selectUser from '../containers/you/YouPage/selectors';
 
 export const getInitials = name => {
   if (!name) {
@@ -73,3 +75,15 @@ export const userDistrict = user => {
   }
   return null;
 };
+
+export function* getUserFromStateOrCookie() {
+  const userState = yield select(selectUser);
+  if (userState && userState.user) {
+    return userState.user;
+  }
+  const cookieUser = getUserCookie();
+  if (cookieUser) {
+    return JSON.parse(cookieUser);
+  }
+  return null;
+}
