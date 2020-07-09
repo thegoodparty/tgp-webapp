@@ -277,10 +277,12 @@ export const candidateBlocLink = (candidate, chamber) => {
   const { state, district } = candidate;
 
   if (candidate.id < 0) {
-    return `GoodBloc-${candidate.state}${candidate.id * -1}`;
+    return `GoodBloc-${candidate.state}${
+      chamber === 'house' ? candidate.id * -1 : ''
+    }`;
   }
 
-  const blocName = candidateBlocName(candidate).replace('#','');
+  const blocName = candidateBlocName(candidate).replace('#', '');
 
   if (chamber === 'presidential') {
     return blocName;
