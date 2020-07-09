@@ -89,11 +89,10 @@ export function CandidatePage({
       Object.keys(candidate).length === 0 && candidate.constructor === Object
     );
   };
-
   return (
     <div>
       <Helmet>
-        <title>
+        <title data-cy="page-title">
           {candidate && !emptyCandidate() ? candidate.name : ''} | {chamberName}{' '}
           {candidate && !emptyCandidate() && candidate.isIncumbent
             ? 'incumbent'

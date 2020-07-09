@@ -3,3 +3,4 @@ import './request';
 import './party';
 import './district';
 import './election';
+import './candidate';

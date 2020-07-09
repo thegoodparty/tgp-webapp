@@ -1,0 +1,567 @@
+import {
+  partyResolver,
+  candidateRoute,
+  candidateRanking,
+  candidateBlocName,
+  generateEmptyBlocCandidate,
+  candidateCalculatedFields,
+  shortToLongState,
+} from '../../../app/helpers/electionsHelper';
+import {
+  numberFormatter,
+  percHelper,
+  toPrecision,
+  numberNth,
+} from '../../../app/helpers/numberHelper';
+import moneyHelper from '../../../app/helpers/moneyHelper';
+import { rankPageLink, rankPageJoinLink } from '../utils';
+
+Cypress.Commands.add(
+  'testCandidateTopRow',
+  (candidate, candidateData, incumbent) => {
+    const {
+      name,
+      image,
+      party,
+      totalRaised,
+      smallDonorPerc,
+      largeDonorPerc,
+      smallDonorPerHour,
+      largeDonorPerHour,
+      isIncumbent,
+      outsideReportDate,
+      reportDate,
+      openSecretsId,
+      uuid,
+      isAligned,
+      state,
+      district,
+      isBigMoney,
+      rankingCount,
+      isGood,
+      facebook,
+      twitter,
+      website,
+      source,
+      info,
+      campaignWebsite,
+    } = candidateCalculatedFields(candidateData);
+    let campWebsite = '';
+    try {
+      campWebsite = campaignWebsite ? decodeURI(campaignWebsite) : null;
+    } catch (e) {
+      campWebsite = candidate.campaignWebsite;
+      // console.log(e);
+    }
+    const ballotpediaLink = source || 'https://ballotpedia.org/';
+    let candidateInfo;
+    try {
+      candidateInfo = info ? decodeURI(info) : null;
+    } catch (e) {
+      candidateInfo = info;
+      // console.log(e);
+    }
+    const isUnkown = isGood === null;
+    const isGoodOrUnkwown = isGood || isUnkown;
+    const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
+    const smallMoneyFunds = totalRaised - bigMoneyFunds;
+
+    const perc = isGoodOrUnkwown
+      ? percHelper(smallDonorPerc, true)
+      : percHelper(largeDonorPerc, true);
+    const perHour = isGoodOrUnkwown
+      ? moneyHelper(smallDonorPerHour)
+      : moneyHelper(largeDonorPerHour);
+
+    const nameArr = name ? name.split(' ') : [];
+    const lastName = name ? nameArr[nameArr.length - 1] : '';
+    const blocName = candidateBlocName(candidateData, chamber);
+    const socialAccounts = [
+      { name: 'facebook', url: facebook },
+      { name: 'twitter', url: twitter },
+      { name: 'website', url: website },
+    ].filter(social => social.url && social.url !== '');
+    const { chamber, candidateId, candidateName } = candidate;
+    const raised = incumbent.raised || incumbent.combinedRaised;
+    let bigFundsPerc = (raised - incumbent.smallContributions) / raised;
+    bigFundsPerc = toPrecision(bigFundsPerc);
+    const comparedIncumbent = {
+      name: incumbent.name,
+      raised,
+      bigFundsPerc,
+      isFakeIncumbent: incumbent.isFakeIncumbent,
+    };
+    comparedIncumbent.xTimes = (comparedIncumbent.raised / totalRaised).toFixed(
+      2,
+    );
+    comparedIncumbent.relativePerc = (
+      (totalRaised * 100) /
+      comparedIncumbent.raised
+    ).toFixed(2);
+
+    comparedIncumbent.xTimes = toPrecision(
+      comparedIncumbent.raised / totalRaised,
+    );
+    comparedIncumbent.relativePerc = toPrecision(
+      (totalRaised * 100) / comparedIncumbent.raised,
+    );
+    comparedIncumbent.bigMoneyFunds =
+      comparedIncumbent.raised * comparedIncumbent.bigFundsPerc;
+
+    const combinedReportDate =
+      reportDate ||
+      outsideReportDate ||
+      (incumbent && incumbent.reportDate) ||
+      '02/12/2020';
+    const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
+    const fakeIncumbentOrIncumbentLabel = comparedIncumbent.isFakeIncumbent
+      ? 'top funded candidate'
+      : 'incumbent';
+    let openSecretLink = 'https://www.opensecrets.org/';
+    if (chamber === 'presidential') {
+      openSecretLink += `2020-presidential-race/candidate?id=${openSecretsId}`;
+    } else if (isIncumbent) {
+      openSecretLink += `members-of-congress/summary?cycle=2020&type=C&cid=${openSecretsId}`;
+    } else if (uuid) {
+      const stateDistrict = uuid.split('_')[1];
+      openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
+    }
+    cy.get('[data-cy=top-row]').as('top-row');
+    cy.get('@top-row')
+      .find('[data-cy=top-name]')
+      .contains(name);
+    cy.get('@top-row')
+      .find('[data-cy=top-position]')
+      .should('contain', partyResolver(party))
+      .and('contain', isIncumbent ? 'INCUMBENT' : 'CANDIDATE');
+    const rankLink = rankPageLink(chamber, state, district);
+    if (chamber === 'presidential') {
+      cy.get('@top-row')
+        .find('[data-cy=chamber-link]')
+        .contains('U.S. President')
+        .should('have.attr', 'href')
+        .and('include', rankLink);
+    } else if (chamber === 'senate') {
+      if (state) {
+        cy.get('@top-row')
+          .find('[data-cy=chamber-link]')
+          .contains(`U.S. Senate for ${shortToLongState[state.toUpperCase()]}`)
+          .should('have.attr', 'href')
+          .and('include', rankLink);
+      }
+    } else if (chamber === 'house') {
+      if (state && district) {
+        cy.get('@top-row')
+          .find('[data-cy=chamber-link]')
+          .contains(
+            `U.S. House for District ${state.toUpperCase()}-${district}`,
+          )
+          .should('have.attr', 'href')
+          .and('include', rankLink);
+      }
+    }
+    if (socialAccounts.length > 0) {
+      cy.get('@top-row')
+        .get('[data-cy=social-link]')
+        .should('have.length', socialAccounts.length)
+        .each(($el, index) => {
+          cy.wrap($el)
+            .should('contain', socialAccounts[index].name)
+            .and('have.attr', 'href')
+            .and('include', socialAccounts[index].url);
+        });
+    }
+    if (isGoodOrUnkwown) {
+      cy.get('@top-row')
+        .get('[data-cy=bloc-count]')
+        .should('contain', numberFormatter(rankingCount))
+        .and(
+          'contain',
+          `${rankingCount === 1 ? 'person' : 'people'} have joined`,
+        )
+        .and('contain', blocName);
+      cy.get('@top-row')
+        .get('[data-cy=rank-button]')
+        .should('contain', `JOIN ${blocName}`)
+        .and('have.attr', 'href')
+        .and('include', rankPageJoinLink(candidateData, chamber));
+    }
+    cy.get('@top-row')
+      .get('[data-cy=why]')
+      .should('contain', `Why ${lastName} is`)
+      .find('[data-cy=colored-good]')
+      .contains(
+        isGood
+          ? 'Potentially Good'
+          : isUnkown
+            ? 'Not Yet Rated'
+            : 'Not Good Enough',
+      );
+
+    // Reason
+    if (!isGoodOrUnkwown) {
+      if (isBigMoney) {
+        cy.get('@top-row')
+          .get('[data-cy=is-big-money]')
+          .should('contain', 'Follow the Money:')
+          .and('contain', 'Candidate has raised most of funding')
+          .and('contain', '50%')
+          .and('contain', 'from Big Money sources.');
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=is-big-money]')
+          .should('contain', 'Follow the Money:')
+          .and(
+            'contain',
+            'Candidate has raised most of funding (&gt;50%) from Small Indiv. Donors',
+          )
+          .and('contain', '$200')
+          .and(
+            'contain',
+            'This is good, but not enough because of failing the character check.',
+          );
+      }
+      if (isAligned === 'yes') {
+        cy.get('@top-row')
+          .get('[data-cy=character-check]')
+          .should('contain', 'Character Check:')
+          .and('contain', 'Candidate passes')
+          .find('[data-cy=link]')
+          .should('contain', 'our minimum standard of civility')
+          .and('have.attr', 'href')
+          .and('include', '?article=66i4vRRLkX1yf8MnCQvYSb');
+      } else if (isAligned === 'no') {
+        cy.get('@top-row')
+          .get('[data-cy=character-check]')
+          .should('contain', 'Character Check:')
+          .should('contain', 'Candidate fails to meet')
+          .and(
+            'contain',
+            '. Candidate has engaged in a pattern of activities or',
+          )
+          .and(
+            'contain',
+            'encouraging intolerance, discrimination or hostility towards a constitutionally or state-protected group or class.',
+          )
+          .find('[data-cy=link1]')
+          .should('contain', 'our minimum standard of civility')
+          .and('have.attr', 'href')
+          .and('include', '?article=66i4vRRLkX1yf8MnCQvYSb')
+        cy.get('@top-row')
+          .get('[data-cy=character-check]')
+          .find('[data-cy=link2]')
+          .should('contain', 'hate-speech')
+          .and('have.attr', 'href')
+          .and('include', '?article=5bwvf0PwsbpFEe8IJ9sHhX');
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=character-check]')
+          .should('contain', 'Character Check:')
+          .and(
+            'contain',
+            'Candidate has not yet been vetted. Do you have factual info about this candidate we should consider?',
+          )
+          .find('[data-cy=link]')
+          .should('contain', 'Please let us know')
+          .and('have.attr', 'href')
+          .and(
+            'include',
+            'mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=',
+          );
+      }
+    }
+    if (isGood) {
+      if (isBigMoney || isIncumbent || perc > 50) {
+        cy.get('@top-row')
+          .get('[data-cy=is-big-money]')
+          .should('contain', 'Follow the Money:')
+          .and('contain', 'Candidate has raised most of funding')
+          .and('contain', '50%')
+          .and('contain', '$200');
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=is-big-money]')
+          .should('contain', 'Follow the Money:')
+          .and(
+            'contain',
+            'Candidate has raised less than 50% of the total funding of the incumbent in this race.',
+          );
+      }
+      if (isAligned === 'yes') {
+        cy.get('@top-row')
+          .get('[data-cy=character-check]')
+          .should('contain', 'Character Check:')
+          .and('contain', 'Candidate passes')
+          .find('[data-cy=link]')
+          .should('contain', 'minimum standard of civility')
+          .and('have.attr', 'href')
+          .and('include', '?article=66i4vRRLkX1yf8MnCQvYSb');
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=character-check]')
+          .should('contain', 'Candidate Policy Positions:')
+          .and('contain', 'Candidate positions are not aligned with')
+          .find('[data-cy=link]')
+          .should('contain', 'The Good Party Platform.')
+          .and('have.attr', 'href')
+          .and('include', '?article=2Pv9KNb6rng0sMfqwu1xKm');
+      }
+    }
+    if (isUnkown) {
+      if (comparedIncumbent.relativePerc < 50) {
+        cy.get('@top-row')
+          .get('[data-cy=is-big-money]')
+          .should(
+            'contain',
+            'Candidate has raised less than 50% of the total funding of the incumbent in this race.',
+          );
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=is-big-money]')
+          .should('contain', 'Follow the Money:')
+          .and('contain', 'Candidate has raised most of funding')
+          .and('contain', '50%')
+          .and('contain', '$200')
+          .and('contain', 'from Small Indiv. Donors');
+      }
+      cy.get('@top-row')
+        .get('[data-cy=character-check]')
+        .and(
+          'contain',
+          'Candidate has not yet been vetted. Do you have factual info about this candidate we should consider?',
+        )
+        .find('[data-cy=link]')
+        .should('contain', 'Please let us know')
+        .and('have.attr', 'href')
+        .and(
+          'include',
+          'mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=',
+        );
+    }
+
+    // Follow Wrapper
+    cy.get('@top-row')
+      .get('[data-cy=follow-wrapper]')
+      .should('contain', 'Follow the Money')
+      .and('contain', `(FEC DATA as of ${combinedReportDate})`);
+
+    // Funds Wrapper
+    cy.get('@top-row')
+      .get('[data-cy=total-fund]')
+      .should('contain', moneyHelper(totalRaised))
+      .and('contain', 'TOTAL FUNDS RAISED');
+
+    if (isGoodOrUnkwown) {
+      if (isIncumbent || isBigMoney || perc > 50) {
+        cy.get('@top-row')
+          .get('[data-cy=fund]')
+          .should('contain', `${perc}%`)
+          .and('contain', 'FROM SMALL INDIV DONORS')
+          .and('contain', '$200');
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=fund]')
+          .should('contain', `${comparedIncumbent.relativePerc}%`)
+          .and('contain', 'FUNDING RELATIVE TO')
+          .and(
+            'contain',
+            comparedIncumbent.isFakeIncumbent
+              ? 'BIG MONEY CANDIDATE'
+              : 'INCUMBENT',
+          );
+      }
+      if (isIncumbent || isSameAsComparedIncumbent) {
+        cy.get('@top-row')
+          .get('[data-cy=fund-disadvantage]')
+          .should('contain', 'N/A')
+          .and('contain', 'FUNDING DISADVANTAGE');
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=fund-disadvantage]')
+          .should('contain', `${comparedIncumbent.xTimes}x`)
+          .and('contain', 'FUNDING DISADVANTAGE');
+      }
+    } else {
+      cy.get('@top-row')
+        .get('[data-cy=fund]')
+        .should('contain', `${perc}%`)
+        .and('contain', 'FROM BIG MONEY SOURCES');
+      cy.get('@top-row')
+        .get('[data-cy=fund-disadvantage]')
+        .should('contain', `${perHour}/hr`)
+        .and('contain', 'FUNDING RATE')
+        .and('contain', 'BIG MONEY');
+    }
+    cy.get('@top-row')
+      .get('[data-cy=fec]')
+      .should(
+        'contain',
+        `According to Federal Election Commission (FEC) filings for the this election cycle, as of ${combinedReportDate}`,
+      );
+    if (!isGoodOrUnkwown) {
+      cy.get('@top-row')
+        .get('[data-cy=fec]')
+        .should(
+          'contain',
+          `${name} has raised ${moneyHelper(totalRaised)} in Total Funds ,`,
+        )
+        .and('contain', `${moneyHelper(bigMoneyFunds)}`)
+        .and(
+          'contain',
+          `(${perc}%) of the their funds coming from Big Money Sources`,
+        )
+        .and(
+          'contain',
+          `like Political Action Committees (PACs), Corporate Lobbyists`,
+        )
+        .and('contain', `Big Money backers are bankrolling ${lastName}`)
+        .and('contain', `${isIncumbent ? 're-' : ''}election at a rate of`)
+        .and('contain', `${perHour}/hr`)
+        .and(
+          'contain',
+          `their investments, which means, if ${isIncumbent ? 're-' : ''}`,
+        )
+        .and(
+          'contain',
+          `elected, ${name} will have to work very hard to deliver a good`,
+        )
+        .and(
+          'contain',
+          `every hour ${isIncumbent ? lastName : 'the incumbent'} has been`,
+        );
+    } else {
+      if (isBigMoney || isIncumbent || isSameAsComparedIncumbent) {
+        cy.get('@top-row')
+          .get('[data-cy=fec]')
+          .should(
+            'contain',
+            `${name} has raised ${moneyHelper(totalRaised)} with`,
+          )
+          .and('contain', `${moneyHelper(smallMoneyFunds)}`)
+          .and(
+            'contain',
+            `This means that ${lastName} is mostly being supported by`,
+          )
+          .and(
+            'contain',
+            `each giving a little, to help ${name} compete with the Big`,
+          )
+          .and('contain', `${perc}%`);
+        if (!isIncumbent && !isSameAsComparedIncumbent) {
+          cy.get('@top-row')
+            .get('[data-cy=fec]')
+            .should(
+              'contain',
+              `In contrast to ${name}, the incumbent in this race,`,
+            )
+            .and('contain', `${comparedIncumbent.name}, has raised`)
+            .and('contain', `${moneyHelper(comparedIncumbent.raised)}, or`)
+            .and(
+              'contain',
+              `${comparedIncumbent.xTimes}x times more money, with a`,
+            )
+            .and('contain', `${moneyHelper(comparedIncumbent.bigMoneyFunds)}`)
+            .and(
+              'contain',
+              `(${percHelper(comparedIncumbent.bigFundsPerc, true)}% )`,
+            )
+            .and('contain', `${comparedIncumbent.name}, has raised`);
+        }
+      } else {
+        cy.get('@top-row')
+          .get('[data-cy=fec]')
+          .should(
+            'contain',
+            `${name} has raised just ${moneyHelper(totalRaised)} in Total`,
+          )
+          .and('contain', `${comparedIncumbent.relativePerc}%`)
+          .and(
+            'contain',
+            `of the funding of the ${fakeIncumbentOrIncumbentLabel} in`,
+          );
+      }
+
+      if (!isIncumbent && !isBigMoney && !isSameAsComparedIncumbent) {
+        cy.get('@top-row')
+          .get('[data-cy=fec]')
+          .should('contain', `The ${fakeIncumbentOrIncumbentLabel}`)
+          .and('contain', `${comparedIncumbent.name}, has raised`)
+          .and('contain', `${moneyHelper(comparedIncumbent.raised)}, or`)
+          .and(
+            'contain',
+            `${comparedIncumbent.xTimes}x times more money, with a`,
+          )
+          .and('contain', `${moneyHelper(comparedIncumbent.bigMoneyFunds)}`)
+          .and(
+            'contain',
+            `(${percHelper(comparedIncumbent.bigFundsPerc, true)}% )`,
+          )
+          .and(
+            'contain',
+            `${
+              comparedIncumbent.isFakeIncumbent
+                ? 'Big Money Candidate'
+                : 'Incumbent'
+            }`,
+          )
+          .and(
+            'contain',
+            `candidates like ${name} must overcome against a major party`,
+          );
+      }
+    }
+
+    cy.get('@top-row')
+      .get('[data-cy=secret-link]')
+      .should('contain', 'FEC DATA COURTESY OF OPENSECRETS.ORG')
+      .should('have.attr', 'href')
+      .and('include', openSecretLink);
+    cy.get('@top-row')
+      .get('[data-cy=error-link]')
+      .should('contain', 'Report an error')
+      .should('have.attr', 'href')
+      .and(
+        'include',
+        `mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body`,
+      );
+
+    cy.get('@top-row')
+      .get('[data-cy=info-wrapper]')
+      .should('contain', 'Candidate Policy Positions:');
+    if (candidateInfo && candidateInfo !== 'null') {
+      cy.get('@top-row')
+        .get('[data-cy=info-wrapper]')
+        .should(
+          'contain',
+          `The following policy positions for ${name} were compiled by`,
+        );
+      cy.get('@top-row')
+        .get('[data-cy=ballot-link-1]')
+        .should('contain', 'Ballotpedia')
+        .should('have.attr', 'href')
+        .and('include', ballotpediaLink);
+      cy.get('@top-row')
+        .get('[data-cy=ballot-link-2]')
+        .should('contain', 'CANDIDATE DATA COURTESY OF BALLOTPEDIA')
+        .should('have.attr', 'href')
+        .and('include', ballotpediaLink);
+    } else {
+      cy.get('@top-row')
+        .get('[data-cy=ballot-link]')
+        .should('contain', 'Ballotpedia')
+        .should('have.attr', 'href')
+        .and('include', ballotpediaLink);
+    }
+
+    if (campWebsite && campWebsite !== 'null') {
+      cy.get('@top-row')
+        .get('[data-cy=campaign-website]')
+        .should('contain', 'Campaign Website');
+      cy.get('@top-row')
+        .get('[data-cy=volunteer-article]')
+        .should('contain', 'COMPILED BY THE GOOD PARTY VOLUNTEERS')
+        .should('have.attr', 'href')
+        .and('include', '?article=579kihjyIPloNaEw02rniq');
+    }
+  },
+);

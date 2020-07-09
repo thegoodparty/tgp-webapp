@@ -251,10 +251,10 @@ const CandidateWrapper = ({
 
   useEffect(() => {
     if (candidate) {
-      const info = candidate.info;
-      const facebook = candidate.facebook;
-      const twitter = candidate.twitter;
-      const website = candidate.website;
+      const { info } = candidate;
+      const { facebook } = candidate;
+      const { twitter } = candidate;
+      const { website } = candidate;
       let bio = '';
 
       try {
@@ -367,20 +367,20 @@ const CandidateWrapper = ({
   const coloredGood = () => {
     if (isGood) {
       return (
-        <ColoredText className="green">
+        <ColoredText className="green" data-cy="colored-good">
           <strong>Potentially Good</strong>
         </ColoredText>
       );
     }
     if (isUnkown) {
       return (
-        <ColoredText className="gray">
+        <ColoredText className="gray" data-cy="colored-good">
           <strong>Not Yet Rated</strong>
         </ColoredText>
       );
     }
     return (
-      <ColoredText className="red">
+      <ColoredText className="red" data-cy="colored-good">
         <strong>Not Good Enough</strong>
       </ColoredText>
     );
@@ -405,7 +405,9 @@ const CandidateWrapper = ({
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link to={rankPageLink()}>U.S. President</Link>
+          <Link to={rankPageLink()} data-cy="chamber-link">
+            U.S. President
+          </Link>
         </ChamberLink>
       );
     }
@@ -413,7 +415,7 @@ const CandidateWrapper = ({
       if (state) {
         return (
           <ChamberLink>
-            <Link to={rankPageLink()}>
+            <Link to={rankPageLink()} data-cy="chamber-link">
               U.S. Senate for {shortToLongState[state.toUpperCase()]}
             </Link>
           </ChamberLink>
@@ -424,7 +426,7 @@ const CandidateWrapper = ({
       if (state && district) {
         return (
           <ChamberLink>
-            <Link to={rankPageLink()}>
+            <Link to={rankPageLink()} data-cy="chamber-link">
               U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
@@ -457,9 +459,8 @@ const CandidateWrapper = ({
         return senateElectionLink(state) + query;
       }
       return houseElectionLink(state, district) + query;
-    } else {
-      return '?register=true';
     }
+    return '?register=true';
   };
 
   const rankPageGrowLink = () => {
@@ -501,10 +502,16 @@ const CandidateWrapper = ({
     <PageWrapper mobileHeaderProps={mobileHeaderProps}>
       {candidate && name ? (
         <>
-          <TopRow>
+          <TopRow data-cy="top-row">
             <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
-            <H3 style={{ marginTop: '14px' }}>{name}</H3>
-            <Body11 style={{ marginTop: '5px' }} className="bold500">
+            <H3 style={{ marginTop: '14px' }} data-cy="top-name">
+              {name}
+            </H3>
+            <Body11
+              style={{ marginTop: '5px' }}
+              className="bold500"
+              data-cy="top-position"
+            >
               {partyResolver(party)} {isIncumbent ? 'INCUMBENT' : 'CANDIDATE'}
             </Body11>
             {chamberLink()}
@@ -513,7 +520,11 @@ const CandidateWrapper = ({
                 {socialAccounts.map((social, index) => (
                   <React.Fragment key={`${index}-${social.url}`}>
                     {social.url && social.url !== '' && (
-                      <a href={social.url} target="_blank">
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        data-cy="social-link"
+                      >
                         <IconWrapper>
                           <img src={social.icon} alt={social.name} />
                           <SocialLabel>{social.name}</SocialLabel>
@@ -526,7 +537,7 @@ const CandidateWrapper = ({
             )}
             {isGoodOrUnkwown && (
               <>
-                <BlocCount>
+                <BlocCount data-cy="bloc-count">
                   {numberFormatter(rankingCount)}{' '}
                   {rankingCount === 1 ? 'person' : 'people'} have joined <br />
                   <strong>{blocName}</strong>
@@ -553,7 +564,7 @@ const CandidateWrapper = ({
                   </>
                 ) : (
                   <RankButton className="blue">
-                    <Link to={rankPageJoinLink()}>
+                    <Link to={rankPageJoinLink()} data-cy="rank-button">
                       <StyledBody13 className="white">
                         JOIN {blocName}
                       </StyledBody13>
@@ -564,7 +575,7 @@ const CandidateWrapper = ({
             )}
           </TopRow>
 
-          <Body style={{ marginTop: '32px' }}>
+          <Body style={{ marginTop: '32px' }} data-cy="why">
             Why {lastName} is {coloredGood()}
           </Body>
           {!isGoodOrUnkwown && (
@@ -572,7 +583,7 @@ const CandidateWrapper = ({
               {isBigMoney ? (
                 <CheckboxRow>
                   <CheckboxImg src={RedCheckbox} />
-                  <Body13>
+                  <Body13 data-cy="is-big-money">
                     <strong>
                       <ColoredText>Follow the Money:</ColoredText>{' '}
                     </strong>
@@ -583,7 +594,7 @@ const CandidateWrapper = ({
               ) : (
                 <CheckboxRow>
                   <CheckboxImg src={GrayCheckbox} />
-                  <Body13>
+                  <Body13 data-cy="is-big-money">
                     <strong>Follow the Money:</strong> Candidate has raised most
                     of funding (&gt;50%) from Small Indiv. Donors (&lt;$200).
                     This is good, but not enough because of failing the
@@ -595,9 +606,9 @@ const CandidateWrapper = ({
               {isAligned === 'yes' ? (
                 <CheckboxRow>
                   <CheckboxImg src={GrayCheckbox} />
-                  <Body13>
+                  <Body13 data-cy="character-check">
                     <strong>Character Check:</strong> Candidate passes{' '}
-                    <Link to="?article=66i4vRRLkX1yf8MnCQvYSb">
+                    <Link to="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link">
                       our minimum standard of civility
                     </Link>
                     .
@@ -608,16 +619,22 @@ const CandidateWrapper = ({
                   {isAligned === 'no' ? (
                     <CheckboxRow>
                       <CheckboxImg src={RedCheckbox} />
-                      <Body13>
+                      <Body13 data-cy="character-check">
                         <strong>
                           <ColoredText>Character Check:</ColoredText>{' '}
                         </strong>
                         Candidate fails to meet{' '}
-                        <Link to="?article=66i4vRRLkX1yf8MnCQvYSb">
+                        <Link
+                          to="?article=66i4vRRLkX1yf8MnCQvYSb"
+                          data-cy="link1"
+                        >
                           our minimum standard of civility
                         </Link>
                         . Candidate has engaged in a pattern of activities or{' '}
-                        <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX">
+                        <Link
+                          to="?article=5bwvf0PwsbpFEe8IJ9sHhX"
+                          data-cy="link2"
+                        >
                           hate-speech
                         </Link>{' '}
                         encouraging intolerance, discrimination or hostility
@@ -628,7 +645,7 @@ const CandidateWrapper = ({
                   ) : (
                     <CheckboxRow>
                       <CheckboxImg src={QuestionMarkGray} />
-                      <Body13>
+                      <Body13 data-cy="character-check">
                         <strong>
                           <ColoredText className="gray">
                             Character Check:
@@ -640,6 +657,7 @@ const CandidateWrapper = ({
                           href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
                             window.location.href
                           }`}
+                          data-cy="link"
                         >
                           Please let us know
                         </a>
@@ -656,7 +674,7 @@ const CandidateWrapper = ({
               {isBigMoney || isIncumbent || perc > 50 ? (
                 <CheckboxRow>
                   <CheckboxImg src={GreenCheckbox} />
-                  <Body13>
+                  <Body13 data-cy="is-big-money">
                     <strong>
                       <ColoredText className="green">
                         Follow the Money:
@@ -669,7 +687,7 @@ const CandidateWrapper = ({
               ) : (
                 <CheckboxRow>
                   <CheckboxImg src={GreenCheckbox} />
-                  <Body13>
+                  <Body13 data-cy="is-big-money">
                     <strong>
                       <ColoredText className="green">
                         Follow the Money:
@@ -684,14 +702,14 @@ const CandidateWrapper = ({
               {isAligned === 'yes' ? (
                 <CheckboxRow>
                   <CheckboxImg src={GreenCheckbox} />
-                  <Body13>
+                  <Body13 data-cy="character-check">
                     <strong>
                       <ColoredText className="green">
                         Character Check:
                       </ColoredText>
                     </strong>{' '}
                     Candidate passes{' '}
-                    <Link to="?article=66i4vRRLkX1yf8MnCQvYSb">
+                    <Link to="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link">
                       minimum standard of civility
                     </Link>
                     .
@@ -700,12 +718,12 @@ const CandidateWrapper = ({
               ) : (
                 <CheckboxRow>
                   <CheckboxImg src={RedCheckbox} />
-                  <Body13>
+                  <Body13 data-cy="character-check">
                     <strong>
                       <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
                     </strong>
                     Candidate positions are not aligned with{' '}
-                    <Link to="?article=2Pv9KNb6rng0sMfqwu1xKm">
+                    <Link to="?article=2Pv9KNb6rng0sMfqwu1xKm" data-cy="link">
                       The Good Party Platform.
                     </Link>
                   </Body13>
@@ -718,7 +736,7 @@ const CandidateWrapper = ({
             <>
               <CheckboxRow>
                 <CheckboxImg src={GreenCheckbox} />
-                <Body13>
+                <Body13 data-cy="is-big-money">
                   <strong>
                     <ColoredText className="green">
                       Follow the Money:
@@ -737,7 +755,7 @@ const CandidateWrapper = ({
 
               <CheckboxRow>
                 <CheckboxImg src={QuestionMarkGray} />
-                <Body13>
+                <Body13 data-cy="character-check">
                   <strong>Character Check: </strong>
                   Candidate has not yet been vetted. Do you have factual info
                   about this candidate we should consider?{' '}
@@ -745,6 +763,7 @@ const CandidateWrapper = ({
                     href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
                       window.location.href
                     }`}
+                    data-cy="link"
                   >
                     Please let us know
                   </a>
@@ -753,14 +772,14 @@ const CandidateWrapper = ({
             </>
           )}
 
-          <FollowWrapper>
+          <FollowWrapper data-cy="follow-wrapper">
             <Body className="bold600">Follow the Money</Body>
             <Body11 style={{ marginLeft: '5px' }}>
               (FEC DATA as of {combinedReportDate})
             </Body11>
           </FollowWrapper>
           <FundsWrapper>
-            <Fund>
+            <Fund data-cy="total-fund">
               <ColoredBodyText
                 className={!isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'}
               >
@@ -769,7 +788,7 @@ const CandidateWrapper = ({
               <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
             </Fund>
             {isGoodOrUnkwown ? (
-              <Fund>
+              <Fund data-cy="fund">
                 {isIncumbent || isBigMoney || perc > 50 ? (
                   <>
                     <ColoredBodyText className="green">{perc}%</ColoredBodyText>
@@ -790,7 +809,7 @@ const CandidateWrapper = ({
                 )}
               </Fund>
             ) : (
-              <Fund>
+              <Fund data-cy="fund">
                 <ColoredBodyText className={colorWithGray}>
                   {perc}%
                 </ColoredBodyText>
@@ -798,7 +817,7 @@ const CandidateWrapper = ({
               </Fund>
             )}
             {isGoodOrUnkwown ? (
-              <Fund>
+              <Fund data-cy="fund-disadvantage">
                 {isIncumbent || isSameAsComparedIncumbent ? (
                   <>
                     <ColoredBodyText className="gray">N/A</ColoredBodyText>
@@ -814,7 +833,7 @@ const CandidateWrapper = ({
                 )}
               </Fund>
             ) : (
-              <Fund>
+              <Fund data-cy="fund-disadvantage">
                 <ColoredBodyText className={color}>
                   {perHour}/hr
                 </ColoredBodyText>
@@ -826,7 +845,7 @@ const CandidateWrapper = ({
             )}
           </FundsWrapper>
 
-          <Body13 style={{ margin: '26px 0 16px' }}>
+          <Body13 style={{ margin: '26px 0 16px' }} data-cy="fec">
             According to Federal Election Commission (FEC) filings for the this
             election cycle, as of {combinedReportDate},{' '}
             {!isGoodOrUnkwown ? (
@@ -940,8 +959,8 @@ const CandidateWrapper = ({
             )}
           </Body13>
 
-          <div className="text-center">
-            <a href={openSecretLink} target="_blank">
+          <div className="text-center" data-cy="report">
+            <a href={openSecretLink} target="_blank" data-cy="secret-link">
               <OpenSecretsLink>
                 FEC DATA COURTESY OF OPENSECRETS.ORG
               </OpenSecretsLink>
@@ -950,11 +969,12 @@ const CandidateWrapper = ({
               href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
                 window.location.href
               }`}
+              data-cy="error-link"
             >
               <ReportError>Report an error</ReportError>
             </a>
           </div>
-          <InfoWrapper>
+          <InfoWrapper data-cy="info-wrapper">
             <Body className="bold600" style={{ marginTop: '48px' }}>
               Candidate Policy Positions:
             </Body>
@@ -962,7 +982,11 @@ const CandidateWrapper = ({
               <div>
                 <Body13 style={{ marginTop: '12px' }}>
                   The following policy positions for {name} were compiled by{' '}
-                  <a href={ballotpediaLink} target="_blank">
+                  <a
+                    href={ballotpediaLink}
+                    target="_blank"
+                    data-cy="ballot-link-1"
+                  >
                     Ballotpedia
                   </a>{' '}
                   from the candidate&apos;s survey, official campaign website,
@@ -970,7 +994,11 @@ const CandidateWrapper = ({
                 </Body13>
                 <Body13 dangerouslySetInnerHTML={{ __html: candidateInfo }} />
                 <div className="text-center" style={{ paddingBottom: '16px' }}>
-                  <a href={ballotpediaLink} target="_blank">
+                  <a
+                    href={ballotpediaLink}
+                    target="_blank"
+                    data-cy="ballot-link-2"
+                  >
                     <OpenSecretsLink>
                       CANDIDATE DATA COURTESY OF BALLOTPEDIA
                     </OpenSecretsLink>
@@ -982,7 +1010,11 @@ const CandidateWrapper = ({
               <div className="text-center">
                 <BallotpediaNoData style={{ padding: '16px 0' }}>
                   No data found for {name} on{' '}
-                  <a href={ballotpediaLink} target="_blank">
+                  <a
+                    href={ballotpediaLink}
+                    target="_blank"
+                    data-cy="ballot-link"
+                  >
                     Ballotpedia
                   </a>
                   <br />
@@ -1000,14 +1032,17 @@ const CandidateWrapper = ({
           </InfoWrapper>
 
           {campaignWebsite && campaignWebsite !== 'null' && (
-            <div>
+            <div data-cy="campaign-website">
               <Body className="bold600" style={{ margin: '48px 0 16px' }}>
                 Campaign Website &amp; Other Info
               </Body>
               <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
               <div className="text-center">
                 <BallotpediaNoData style={{ padding: '16px 0' }}>
-                  <Link to="?article=579kihjyIPloNaEw02rniq">
+                  <Link
+                    to="?article=579kihjyIPloNaEw02rniq"
+                    data-cy="volunteer-article"
+                  >
                     <OpenSecretsLink>
                       COMPILED BY THE GOOD PARTY VOLUNTEERS
                     </OpenSecretsLink>

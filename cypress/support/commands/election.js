@@ -2,7 +2,6 @@ import { numberFormatter } from '../../../app/helpers/numberHelper';
 import {
   partyResolver,
   candidateRoute,
-  candidateRanking,
   candidateBlocName,
   generateEmptyBlocCandidate,
 } from '../../../app/helpers/electionsHelper';
