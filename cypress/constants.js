@@ -5,6 +5,8 @@ const apiBaseUrls = {
   // 'http://localhost:4000': 'https://api-dev.thegoodparty.org/api/v1/',
 };
 export const base = apiBaseUrls[Cypress.config().baseUrl];
+export const isProduction = Cypress.config().baseUrl === 'https://thegoodparty.org';
+
 export const api = {
   base,
   //

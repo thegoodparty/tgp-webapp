@@ -1,11 +1,5 @@
-import {
-  houseElectionLink,
-  isEmptyCandidates,
-  presidentialElectionLink,
-  senateElectionLink,
-  shortToLongState,
-} from '../../../app/helpers/electionsHelper';
 import { emptyCandidate } from '../../support/utils';
+import { isProduction } from '../../constants';
 
 context('Candidate', () => {
   const candidates = [
@@ -20,8 +14,7 @@ context('Candidate', () => {
       isAligned: false,
       chamber: 'presidential',
       isIncumbent: true,
-      candidateId:
-        Cypress.config().baseUrl === 'https://thegoodparty.org' ? 1 : 14,
+      candidateId: isProduction ? 1 : 14,
       candidateName: 'Donald Trump',
     },
     // isGood = false
@@ -34,8 +27,7 @@ context('Candidate', () => {
       isAligned: true,
       chamber: 'presidential',
       isIncumbent: false,
-      candidateId:
-        Cypress.config().baseUrl === 'https://thegoodparty.org' ? 3 : 12,
+      candidateId: isProduction ? 3 : 12,
       candidateName: 'Joe Biden',
     },
     // isGood = true (most of contributions are from small donors)
@@ -48,8 +40,7 @@ context('Candidate', () => {
       isAligned: true,
       chamber: 'presidential',
       isIncumbent: false,
-      candidateId:
-        Cypress.config().baseUrl === 'https://thegoodparty.org' ? 2 : 11,
+      candidateId: isProduction ? 2 : 11,
       candidateName: 'Bernie Sanders',
     },
     // isGood = true
@@ -62,8 +53,7 @@ context('Candidate', () => {
       isAligned: true,
       chamber: 'presidential',
       isIncumbent: false,
-      candidateId:
-        Cypress.config().baseUrl === 'https://thegoodparty.org' ? 4 : 18,
+      candidateId: isProduction ? 4 : 18,
       candidateName: 'Howie Hawkins',
     },
     // isGood = unknown
@@ -126,43 +116,43 @@ context('Candidate', () => {
         : candidate.isGood === false
           ? 'Not Good'
           : 'Unknown'
-    }, ${candidate.isMajor ? 'Major' : 'Minor'}, ${
+      }, ${candidate.isMajor ? 'Major' : 'Minor'}, ${
       candidate.isAligned ? 'Aligned' : 'Not Aligned'
-    }, ${candidate.isIncumbent ? 'Incumbent' : 'Not Incumbent'}`, () => {
-      beforeEach(() => {
-        const url = `/elections/candidate/${chamber}${
-          isIncumbent ? '-i' : ''
-        }/${candidateId}/${candidateId}`;
-        cy.visit(url);
-      });
-      it(`loads candidate data and test components`, () => {
-        cy.getCandidateData(candidate).then(response1 => {
-          candidateData = response1.body;
-          cy.getIncumbentData(
-            candidate.chamber === 'senate' && candidateData,
-          ).then(response2 => {
-            incumbentData = chamber === 'house' ? {} : response2.body.incumbent;
-            cy.get('[data-cy=page-title]')
-              .should(
-                'contain',
-                candidateData && !emptyCandidate(candidateData)
-                  ? candidateData.name
-                  : '',
-              )
-              .and('contain', chamber)
-              .and(
-                'contain',
-                candidateData &&
-                  !emptyCandidate(candidateData) &&
-                  candidateData.isIncumbent
-                  ? 'incumbent'
-                  : 'candidate',
-              );
-            console.log('candidateData', candidateData);
-            cy.testCandidateTopRow(candidate, candidateData, incumbentData);
+      }, ${candidate.isIncumbent ? 'Incumbent' : 'Not Incumbent'}`, () => {
+        beforeEach(() => {
+          const url = `/elections/candidate/${chamber}${
+            isIncumbent ? '-i' : ''
+            }/${candidateId}/${candidateId}`;
+          cy.visit(url);
+        });
+        it(`loads candidate data and test components`, () => {
+          cy.getCandidateData(candidate).then(response1 => {
+            candidateData = response1.body;
+            cy.getIncumbentData(
+              candidate.chamber === 'senate' && candidateData,
+            ).then(response2 => {
+              incumbentData = chamber === 'house' ? {} : response2.body.incumbent;
+              cy.get('[data-cy=page-title]')
+                .should(
+                  'contain',
+                  candidateData && !emptyCandidate(candidateData)
+                    ? candidateData.name
+                    : '',
+                )
+                .and('contain', chamber)
+                .and(
+                  'contain',
+                  candidateData &&
+                    !emptyCandidate(candidateData) &&
+                    candidateData.isIncumbent
+                    ? 'incumbent'
+                    : 'candidate',
+                );
+              console.log('candidateData', candidateData);
+              cy.testCandidateTopRow(candidate, candidateData, incumbentData);
+            });
           });
         });
       });
-    });
   });
 });
