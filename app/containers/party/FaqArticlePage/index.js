@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import { goBack, push, replace } from 'connected-react-router';
+import { goBack, push, replace, go } from 'connected-react-router';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -22,6 +22,7 @@ import {
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from 'helpers/articlesHelper';
+import history from 'utils/history';
 
 export function FaqArticlePage({
   id,
@@ -53,7 +54,9 @@ export function FaqArticlePage({
   return (
     <div>
       <Helmet>
-        <title data-cy="page-title">{article ? article.title : 'FAQ Article'}</title>
+        <title data-cy="page-title">
+          {article ? article.title : 'FAQ Article'}
+        </title>
         <meta
           name="description"
           content={article ? article.title : 'FAQ Article'}
@@ -80,10 +83,16 @@ function mapDispatchToProps(dispatch) {
       dispatch(goBack());
     },
     closeModalCallback: () => {
-      dispatch(replace(window.location.pathname));
+      if (document.referrer && !document.referrer.includes(location.host)) {
+        dispatch(replace(window.location.pathname));
+      } else {
+        dispatch(goBack());
+      }
     },
     helpfulCallback: (id, title, isHelpful, feedback) => {
-      dispatch(globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback));
+      dispatch(
+        globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback),
+      );
     },
   };
 }
