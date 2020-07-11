@@ -2,309 +2,19 @@
   "events": [
     {
       "id": "h2WaVMyZt4ZXPsILFmqTQ",
-      "title": "The Good Party - Livestream",
-      "dateAndTime": "2020-07-08T17:00",
+      "title": "The Good Party - Livestream + Q&A",
+      "dateAndTime": "2020-07-15T17:00",
       "description": "Learn what Good we're up to and ask us any questions, live!",
       "timeZone": "PST",
-      "displayDate": "Wednesday, July 8th 2020 · 5:00PM PST (8:00PM EST)",
+      "displayDate": "Wednesday, July 15th 2020 · 5:00PM PST (8:00PM EST)",
       "eventDuration": 1,
       "location": "https://www.crowdcast.io/e/the-good-party",
       "presenter": "Farhad Mohit",
       "presenterTitle": "Founder, The Good Party",
       "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1594252800000
+      "utcTime": 1594832400000
     }
   ],
-  "appVersion": {
-    "version": "1.0.18"
-  },
-  "partyPage": {
-    "title": "Header Content",
-    "content": {
-      "nodeType": "document",
-      "data": {},
-      "content": [
-        {
-          "nodeType": "heading-3",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "What is The Good Party?",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "The Good Party Is not a political party, but a way to take back our democracy from corrupt big-money politicians of ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "both",
-              "marks": [
-                {
-                  "type": "underline"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " major parties, using technology to organize our vote to elect bright new indie or grassroots challengers who wouldn't ordinarily have a chance.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We are a mostly volunteer effort, calling on ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "creators of the world",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "https://thegoodparty.org/creators"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": " to join and help us build out state-of-the-art free, open-source technology and tools that empower anyone with a smartphone and private messaging to organize and multiply their impact by voting as a group.  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Our first step is setting up ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "candidate voting blocs",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "https://thegoodparty.org/party?article=1ic6T6fhH0jZLNvX5aZkDe"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": " for all ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "potentially good candidates",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "https://thegoodparty.org/party?article=5KnBx42FOEVDJNUFpoU1PX"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": " running for Congress. So, people can band together and see how many people would vote for a they like, as well as ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "the number of votes needed to win",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "https://thegoodparty.org/party?article=4qI5UjYbJmivzBOy1y74Z4"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": ", ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "before",
-              "marks": [
-                {
-                  "type": "italic"
-                },
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " anyone goes out and actually votes!  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "It's like a kickstarter for democracy, so ensuring no wasted energy or votes, as we work to change politics for ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "Good!",
-              "marks": [
-                {
-                  "type": "bold"
-                },
-                {
-                  "type": "italic"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "heading-3",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "How it works:",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "ordered-list",
-          "content": [
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Show you potentially good candidates who aren't beholden to big money",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Join candidate voting blocs for all of the candidates you like",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Share with others and see if any get enough votes to win, before you vote",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        }
-      ]
-    }
-  },
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -979,7 +689,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Want to join as a volunteer? \n💪 ",
+                "value": "Interested in volunteering? \n💪 ",
                 "marks": [],
                 "data": {}
               },
@@ -998,7 +708,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Let's us know how you'd like to help! ",
+                    "value": "Get in touch! ",
                     "marks": [
                       {
                         "type": "bold"
@@ -1451,7 +1161,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Please tap here to tell us which you like better!",
+                    "value": "Which do you like better?",
                     "marks": [
                       {
                         "type": "bold"
@@ -1467,18 +1177,6 @@
                   "uri": "https://forms.gle/TGLLL5gqaZadFMCN8"
                 }
               },
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
               {
                 "nodeType": "text",
                 "value": "",
@@ -3180,6 +2878,296 @@
       "id": "7D3TGoveRpv3RjgAWnefCy"
     }
   ],
+  "appVersion": {
+    "version": "1.0.18"
+  },
+  "partyPage": {
+    "title": "Header Content",
+    "content": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "heading-3",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "What is The Good Party?",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Good Party Is not a political party, but a way to take back our democracy from corrupt big-money politicians of ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "both",
+              "marks": [
+                {
+                  "type": "underline"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " major parties, using technology to organize our vote to elect bright new indie or grassroots challengers who wouldn't ordinarily have a chance.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We are a mostly volunteer effort, calling on ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "creators of the world",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "https://thegoodparty.org/creators"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": " to join and help us build out state-of-the-art free, open-source technology and tools that empower anyone with a smartphone and private messaging to organize and multiply their impact by voting as a group.  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Our first step is setting up ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "candidate voting blocs",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "https://thegoodparty.org/party?article=1ic6T6fhH0jZLNvX5aZkDe"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": " for all ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "potentially good candidates",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "https://thegoodparty.org/party?article=5KnBx42FOEVDJNUFpoU1PX"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": " running for Congress. So, people can band together and see how many people would vote for a they like, as well as ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "the number of votes needed to win",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "https://thegoodparty.org/party?article=4qI5UjYbJmivzBOy1y74Z4"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": ", ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "before",
+              "marks": [
+                {
+                  "type": "italic"
+                },
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " anyone goes out and actually votes!  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "It's like a kickstarter for democracy, so ensuring no wasted energy or votes, as we work to change politics for ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Good!",
+              "marks": [
+                {
+                  "type": "bold"
+                },
+                {
+                  "type": "italic"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-3",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How it works:",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "ordered-list",
+          "content": [
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Show you potentially good candidates who aren't beholden to big money",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Join candidate voting blocs for all of the candidates you like",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Share with others and see if any get enough votes to win, before you vote",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
   "creatorsProjects": [
     {
       "title": "Candidate Video Introductions",
@@ -4452,6 +4440,20 @@
   },
   "pastEvents": [
     {
+      "id": "1sshfrfXZan94SvZuKZF0g",
+      "title": "The Good Party - Intro + Q&A - REPLAY",
+      "dateAndTime": "2020-07-08T17:00",
+      "description": "Watch replay of this crowdcast by clicking on the link below...",
+      "timeZone": "PST",
+      "displayDate": "Wednesday, July 8, 2020 · 5:00pm PT (8:00pm ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party-20200708",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1594227600000
+    },
+    {
       "id": "6JrcTKnx2WqWg6dbj6iAXI",
       "title": "The Good Party - Intro + Q&A - REPLAY",
       "dateAndTime": "2020-07-01T17:00",
@@ -4463,7 +4465,7 @@
       "presenter": "Farhad Mohit",
       "presenterTitle": "Founder, The Good Party",
       "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1593648000000
+      "utcTime": 1593622800000
     },
     {
       "id": "5QNyF0YhTP7RcLaaaVEjSQ",
@@ -4477,7 +4479,7 @@
       "presenter": "Farhad Mohit",
       "presenterTitle": "Founder, The Good Party",
       "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1593043200000
+      "utcTime": 1593018000000
     },
     {
       "id": "21NWFkt7J5sIsnDZNE27UW",
@@ -4491,7 +4493,7 @@
       "presenter": "Farhad Mohit",
       "presenterTitle": "Founder, The Good Party",
       "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1592438400000
+      "utcTime": 1592413200000
     },
     {
       "id": "3v0K2DGDN9sIBhoILg1dgY",
@@ -4505,7 +4507,7 @@
       "presenter": "Farhad Mohit",
       "presenterTitle": "Founder, The Good Party",
       "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1591228800000
+      "utcTime": 1591203600000
     }
   ]
 }

@@ -76,3 +76,30 @@ Cypress.Commands.add('getHouseCandidateData', (state, district) => {
     district,
   });
 });
+
+Cypress.Commands.add('getCandidateData', candidate => {
+  const { candidateId, chamber, isIncumbent } = candidate;
+  cy.sendRequest(api.findCandidate.method, api.findCandidate.url, {
+    id: candidateId,
+    chamber,
+    isIncumbent: isIncumbent.toString(),
+  });
+});
+
+Cypress.Commands.add('getCandidateData', candidate => {
+  const { candidateId, chamber, isIncumbent } = candidate;
+  cy.sendRequest(api.findCandidate.method, api.findCandidate.url, {
+    id: candidateId,
+    chamber,
+    isIncumbent: isIncumbent.toString(),
+  });
+});
+
+Cypress.Commands.add('getIncumbentData', (candidateData = null) => {
+  const params = candidateData ? { state: candidateData.state } : {};
+  cy.sendRequest(
+    api.districtIncumbent.method,
+    api.districtIncumbent.url,
+    params,
+  );
+});

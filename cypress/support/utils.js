@@ -1,3 +1,9 @@
+import {
+  presidentialElectionLink,
+  senateElectionLink,
+  houseElectionLink,
+} from '../../app/helpers/electionsHelper';
+
 export const getElectionCount = (senateCandidates, houseCandidates) => {
   let electionCount = 3;
   if (
@@ -28,4 +34,42 @@ export const getCdsWithPerc = (approxPctArr, cds) => {
     });
   });
   return cdWithPerc;
+};
+
+export const emptyCandidate = candidate => Object.keys(candidate).length === 0;
+
+export const rankPageLink = (chamberName, state = null, district = null) => {
+  if (chamberName === 'presidential') {
+    return presidentialElectionLink();
+  }
+  if (chamberName === 'senate') {
+    return senateElectionLink(state);
+  }
+  return houseElectionLink(state, district);
+};
+
+export const rankPageGrowLink = (candidate, chamberName) => {
+  const { name, state, district, id } = candidate;
+  const query = `?grow=${id}&name=${encodeURI(name)}`;
+  if (chamberName === 'presidential') {
+    return presidentialElectionLink() + query;
+  }
+  if (chamberName === 'senate') {
+    return senateElectionLink(state) + query;
+  }
+  return houseElectionLink(state, district) + query;
+};
+export const rankPageJoinLink = (candidate, chamberName, user = null) => {
+  const { name, state, district, id } = candidate;
+  if (user) {
+    const query = `?join=${id}&name=${encodeURI(name)}`;
+    if (chamberName === 'presidential') {
+      return presidentialElectionLink() + query;
+    }
+    if (chamberName === 'senate') {
+      return senateElectionLink(state) + query;
+    }
+    return houseElectionLink(state, district) + query;
+  }
+  return '?register=true';
 };
