@@ -20,13 +20,15 @@ import {
   shortToLongState,
 } from 'helpers/electionsHelper';
 import moneyHelper from 'helpers/moneyHelper';
+import { percHelper, numberNth } from 'helpers/numberHelper';
 import {
-  numberFormatter,
-  percHelper,
-  toPrecision,
-  numberNth,
-} from 'helpers/numberHelper';
-
+  getVotesNeededState,
+  convertURI,
+  getComparedIncumbent,
+  getCombinedReportDate,
+  getFakeIncumbentOrIncumbentLabel,
+  getOpenSecretLink,
+} from 'helpers/candidatesHelper';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
 import TwitterIcon from 'images/icons/twitter-icon.svg';
@@ -256,27 +258,8 @@ const CandidateWrapper = ({
       const { facebook } = candidate;
       const { twitter } = candidate;
       const { website } = candidate;
-      let bio = '';
-
-      try {
-        bio = info ? decodeURI(info) : null;
-      } catch (e) {
-        bio = info;
-        // console.log(e);
-      }
-      setCandidateInfo(bio);
-
-      let campWebsite = '';
-      try {
-        campWebsite = candidate.campaignWebsite
-          ? decodeURI(candidate.campaignWebsite)
-          : null;
-      } catch (e) {
-        campWebsite = candidate.campaignWebsite;
-        // console.log(e);
-      }
-
-      setCampaignWebsite(campWebsite);
+      setCandidateInfo(convertURI(info));
+      setCampaignWebsite(convertURI(candidate.campaignWebsite));
 
       setSocialAccounts([
         { name: 'facebook', url: facebook, icon: FacebookIcon },
@@ -291,26 +274,7 @@ const CandidateWrapper = ({
 
   useEffect(() => {
     if (incumbent) {
-      const raised = incumbent.raised || incumbent.combinedRaised;
-      let bigFundsPerc = (raised - incumbent.smallContributions) / raised;
-      bigFundsPerc = toPrecision(bigFundsPerc);
-      const compared = {
-        name: incumbent.name,
-        raised,
-        bigFundsPerc,
-        isFakeIncumbent: incumbent.isFakeIncumbent,
-      };
-      compared.xTimes = (compared.raised / totalRaised).toFixed(2);
-      compared.relativePerc = ((totalRaised * 100) / compared.raised).toFixed(
-        2,
-      );
-
-      compared.xTimes = toPrecision(compared.raised / totalRaised);
-      compared.relativePerc = toPrecision(
-        (totalRaised * 100) / compared.raised,
-      );
-      compared.bigMoneyFunds = compared.raised * compared.bigFundsPerc;
-      setComparedIncumbent(compared);
+      setComparedIncumbent(getComparedIncumbent(totalRaised, incumbent));
     } else {
       setComparedIncumbent({});
     }
@@ -387,20 +351,11 @@ const CandidateWrapper = ({
     );
   };
 
-  let openSecretLink = 'https://www.opensecrets.org/';
-  if (chamberName === 'presidential') {
-    openSecretLink += `2020-presidential-race/candidate?id=${openSecretsId}`;
-  } else if (isIncumbent) {
-    openSecretLink += `members-of-congress/summary?cycle=2020&type=C&cid=${openSecretsId}`;
-  } else if (uuid) {
-    const stateDistrict = uuid.split('_')[1];
-    openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
-  }
-  const combinedReportDate =
-    reportDate ||
-    outsideReportDate ||
-    (incumbent && incumbent.reportDate) ||
-    '02/12/2020';
+  const openSecretLink = getOpenSecretLink(chamberName, candidate);
+  const combinedReportDate = getCombinedReportDate(
+    { reportDate, outsideReportDate },
+    incumbent,
+  );
 
   const chamberLink = () => {
     if (chamberName === 'presidential') {
@@ -488,9 +443,9 @@ const CandidateWrapper = ({
   const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
   const smallMoneyFunds = totalRaised - bigMoneyFunds;
   const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
-  const fakeIncumbentOrIncumbentLabel = comparedIncumbent.isFakeIncumbent
-    ? 'top funded candidate'
-    : 'incumbent';
+  const fakeIncumbentOrIncumbentLabel = getFakeIncumbentOrIncumbentLabel(
+    comparedIncumbent.isFakeIncumbent,
+  );
 
   const blocName = candidateBlocName(candidate);
   const mobileHeaderProps = {
@@ -499,14 +454,12 @@ const CandidateWrapper = ({
     showShare: true,
     user,
   };
-  let votesNeededState;
-  if(chamberName === 'presidential'){
-    votesNeededState = user?.shortState;
-  } else if(chamberName === 'senate'){
-    votesNeededState = state || '';
-  } else {
-    votesNeededState = `${state}-${district}`;
-  }
+  const votesNeededState = getVotesNeededState(
+    chamberName,
+    district,
+    state,
+    user,
+  );
   return (
     <PageWrapper mobileHeaderProps={mobileHeaderProps}>
       {candidate && name ? (

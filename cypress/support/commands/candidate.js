@@ -1,27 +1,27 @@
 import {
   partyResolver,
-  candidateRoute,
-  candidateRanking,
   candidateBlocName,
-  generateEmptyBlocCandidate,
   candidateCalculatedFields,
   shortToLongState,
 } from '../../../app/helpers/electionsHelper';
+import { percHelper } from '../../../app/helpers/numberHelper';
 import {
-  numberFormatter,
-  percHelper,
-  toPrecision,
-  numberNth,
-} from '../../../app/helpers/numberHelper';
+  getVotesNeededState,
+  convertURI,
+  getComparedIncumbent,
+  getFakeIncumbentOrIncumbentLabel,
+  getCombinedReportDate,
+  getOpenSecretLink,
+} from '../../../app/helpers/candidatesHelper';
 import moneyHelper from '../../../app/helpers/moneyHelper';
 import { rankPageLink, rankPageJoinLink } from '../utils';
 
 Cypress.Commands.add(
   'testCandidateTopRow',
   (candidate, candidateData, incumbent) => {
+    const calculatedCandidateData = candidateCalculatedFields(candidateData);
     const {
       name,
-      image,
       party,
       totalRaised,
       smallDonorPerc,
@@ -31,8 +31,6 @@ Cypress.Commands.add(
       isIncumbent,
       outsideReportDate,
       reportDate,
-      openSecretsId,
-      uuid,
       isAligned,
       state,
       district,
@@ -46,43 +44,24 @@ Cypress.Commands.add(
       info,
       campaignWebsite,
       votesNeeded,
-    } = candidateCalculatedFields(candidateData);
-    const { chamber, candidateId, candidateName } = candidate;
-    let votesNeededState;
-    if (chamber === 'presidential') {
-      votesNeededState = '';
-    } else if (chamber === 'senate') {
-      votesNeededState = state || '';
-    } else {
-      votesNeededState = `${state}-${district}`;
-    }
-    let campWebsite = '';
-    try {
-      campWebsite = campaignWebsite ? decodeURI(campaignWebsite) : null;
-    } catch (e) {
-      campWebsite = candidate.campaignWebsite;
-      // console.log(e);
-    }
+    } = calculatedCandidateData;
+    const { chamber } = candidate;
+    const votesNeededState =
+      getVotesNeededState(chamber, district, state) || '';
+    const campWebsite = convertURI(campaignWebsite) || '';
+
     const ballotpediaLink = source || 'https://ballotpedia.org/';
-    let candidateInfo;
-    try {
-      candidateInfo = info ? decodeURI(info) : null;
-    } catch (e) {
-      candidateInfo = info;
-      // console.log(e);
-    }
+    const candidateInfo = convertURI(info);
     const isUnkown = isGood === null;
     const isGoodOrUnkwown = isGood || isUnkown;
     const bigMoneyFunds = candidate ? totalRaised * largeDonorPerc : 0;
     const smallMoneyFunds = totalRaised - bigMoneyFunds;
-
     const perc = isGoodOrUnkwown
       ? percHelper(smallDonorPerc, true)
       : percHelper(largeDonorPerc, true);
     const perHour = isGoodOrUnkwown
       ? moneyHelper(smallDonorPerHour)
       : moneyHelper(largeDonorPerHour);
-
     const nameArr = name ? name.split(' ') : [];
     const lastName = name ? nameArr[nameArr.length - 1] : '';
     const blocName = candidateBlocName(candidateData, chamber);
@@ -91,50 +70,18 @@ Cypress.Commands.add(
       { name: 'twitter', url: twitter },
       { name: 'website', url: website },
     ].filter(social => social.url && social.url !== '');
-    const raised = incumbent.raised || incumbent.combinedRaised;
-    let bigFundsPerc = (raised - incumbent.smallContributions) / raised;
-    bigFundsPerc = toPrecision(bigFundsPerc);
-    const comparedIncumbent = {
-      name: incumbent.name,
-      raised,
-      bigFundsPerc,
-      isFakeIncumbent: incumbent.isFakeIncumbent,
-    };
-    comparedIncumbent.xTimes = (comparedIncumbent.raised / totalRaised).toFixed(
-      2,
+    const comparedIncumbent = getComparedIncumbent(totalRaised, incumbent);
+    const { isFakeIncumbent, bigFundsPerc, relativePerc } = comparedIncumbent;
+    const combinedReportDate = getCombinedReportDate(
+      { reportDate, outsideReportDate },
+      incumbent,
     );
-    comparedIncumbent.relativePerc = (
-      (totalRaised * 100) /
-      comparedIncumbent.raised
-    ).toFixed(2);
-
-    comparedIncumbent.xTimes = toPrecision(
-      comparedIncumbent.raised / totalRaised,
-    );
-    comparedIncumbent.relativePerc = toPrecision(
-      (totalRaised * 100) / comparedIncumbent.raised,
-    );
-    comparedIncumbent.bigMoneyFunds =
-      comparedIncumbent.raised * comparedIncumbent.bigFundsPerc;
-
-    const combinedReportDate =
-      reportDate ||
-      outsideReportDate ||
-      (incumbent && incumbent.reportDate) ||
-      '02/12/2020';
     const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
-    const fakeIncumbentOrIncumbentLabel = comparedIncumbent.isFakeIncumbent
-      ? 'top funded candidate'
-      : 'incumbent';
-    let openSecretLink = 'https://www.opensecrets.org/';
-    if (chamber === 'presidential') {
-      openSecretLink += `2020-presidential-race/candidate?id=${openSecretsId}`;
-    } else if (isIncumbent) {
-      openSecretLink += `members-of-congress/summary?cycle=2020&type=C&cid=${openSecretsId}`;
-    } else if (uuid) {
-      const stateDistrict = uuid.split('_')[1];
-      openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
-    }
+    const fakeIncumbentOrIncumbentLabel = getFakeIncumbentOrIncumbentLabel(
+      isFakeIncumbent,
+    );
+    const openSecretLink = getOpenSecretLink(chamber, calculatedCandidateData);
+
     cy.get('[data-cy=top-row]').as('top-row');
     cy.get('@top-row')
       .find('[data-cy=top-name]')
@@ -187,7 +134,7 @@ Cypress.Commands.add(
         rankingCount,
         votesNeededState,
         true,
-        '', 
+        '',
         blocName,
       );
       cy.get('@top-row')
@@ -318,7 +265,7 @@ Cypress.Commands.add(
       }
     }
     if (isUnkown) {
-      if (comparedIncumbent.relativePerc < 50) {
+      if (relativePerc < 50) {
         cy.get('@top-row')
           .get('[data-cy=is-big-money]')
           .should(
@@ -371,13 +318,11 @@ Cypress.Commands.add(
       } else {
         cy.get('@top-row')
           .get('[data-cy=fund]')
-          .should('contain', `${comparedIncumbent.relativePerc}%`)
+          .should('contain', `${relativePerc}%`)
           .and('contain', 'FUNDING RELATIVE TO')
           .and(
             'contain',
-            comparedIncumbent.isFakeIncumbent
-              ? 'BIG MONEY CANDIDATE'
-              : 'INCUMBENT',
+            isFakeIncumbent ? 'BIG MONEY CANDIDATE' : 'INCUMBENT',
           );
       }
       if (isIncumbent || isSameAsComparedIncumbent) {
@@ -471,10 +416,7 @@ Cypress.Commands.add(
               `${comparedIncumbent.xTimes}x times more money, with a`,
             )
             .and('contain', `${moneyHelper(comparedIncumbent.bigMoneyFunds)}`)
-            .and(
-              'contain',
-              `(${percHelper(comparedIncumbent.bigFundsPerc, true)}% )`,
-            )
+            .and('contain', `(${percHelper(bigFundsPerc, true)}% )`)
             .and('contain', `${comparedIncumbent.name}, has raised`);
         }
       } else {
@@ -484,7 +426,7 @@ Cypress.Commands.add(
             'contain',
             `${name} has raised just ${moneyHelper(totalRaised)} in Total`,
           )
-          .and('contain', `${comparedIncumbent.relativePerc}%`)
+          .and('contain', `${relativePerc}%`)
           .and(
             'contain',
             `of the funding of the ${fakeIncumbentOrIncumbentLabel} in`,
@@ -502,17 +444,10 @@ Cypress.Commands.add(
             `${comparedIncumbent.xTimes}x times more money, with a`,
           )
           .and('contain', `${moneyHelper(comparedIncumbent.bigMoneyFunds)}`)
+          .and('contain', `(${percHelper(bigFundsPerc, true)}% )`)
           .and(
             'contain',
-            `(${percHelper(comparedIncumbent.bigFundsPerc, true)}% )`,
-          )
-          .and(
-            'contain',
-            `${
-              comparedIncumbent.isFakeIncumbent
-                ? 'Big Money Candidate'
-                : 'Incumbent'
-            }`,
+            `${isFakeIncumbent ? 'Big Money Candidate' : 'Incumbent'}`,
           )
           .and(
             'contain',
