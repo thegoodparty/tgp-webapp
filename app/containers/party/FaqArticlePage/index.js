@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import { goBack, push, replace, go } from 'connected-react-router';
+import { goBack, push, replace } from 'connected-react-router';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -22,7 +22,6 @@ import {
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from 'helpers/articlesHelper';
-import history from 'utils/history';
 
 export function FaqArticlePage({
   id,
