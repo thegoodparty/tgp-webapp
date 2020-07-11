@@ -24,6 +24,9 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'VC') {
     return 'VETTING CHALLENGERS';
   }
+  if (partyLetter === 'U') {
+    return 'UNITY';
+  }
   return '';
 };
 
