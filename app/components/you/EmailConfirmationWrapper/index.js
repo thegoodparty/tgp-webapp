@@ -81,7 +81,7 @@ const ButtonsInnerWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-
+  justify-content: center;
   & > div {
     width: calc(50% - 32px);
     margin: 0 16px;
@@ -192,13 +192,7 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
                         Resend Email
                       </OutlinedButton>
                     </div>
-                    <div>
-                      <Link to="?register=true">
-                        <OutlinedButton white fullWidth>
-                          REGISTER
-                        </OutlinedButton>
-                      </Link>
-                    </div>
+
                   </ButtonsInnerWrapper>
                 </ButtonsWrapper>
               </ContentWrapper>

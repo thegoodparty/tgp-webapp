@@ -98,9 +98,14 @@ function MobileHeader({
           <div>&nbsp;</div>
         )}
         {showGood ? (
-          <GoodNoGood className={isGood ? 'good' : 'notgood'}>
-            {!isGood ? 'NOT GOOD ENOUGH' : 'GOOD OPTION'}
-          </GoodNoGood>
+          <>
+            {isGood === true && (
+              <GoodNoGood className="good">GOOD OPTION</GoodNoGood>
+            )}
+            {isGood === false && (
+              <GoodNoGood className="notgood">NOT GOOD ENOUGH</GoodNoGood>
+            )}
+          </>
         ) : (
           <Link to="/home" className="text-center">
             {whiteBackButton ? (

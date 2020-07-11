@@ -53,7 +53,9 @@ export function FaqArticlePage({
   return (
     <div>
       <Helmet>
-        <title data-cy="page-title">{article ? article.title : 'FAQ Article'}</title>
+        <title data-cy="page-title">
+          {article ? article.title : 'FAQ Article'}
+        </title>
         <meta
           name="description"
           content={article ? article.title : 'FAQ Article'}
@@ -80,10 +82,16 @@ function mapDispatchToProps(dispatch) {
       dispatch(goBack());
     },
     closeModalCallback: () => {
-      dispatch(replace(window.location.pathname));
+      if (document.referrer && !document.referrer.includes(location.host)) {
+        dispatch(replace(window.location.pathname));
+      } else {
+        dispatch(goBack());
+      }
     },
     helpfulCallback: (id, title, isHelpful, feedback) => {
-      dispatch(globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback));
+      dispatch(
+        globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback),
+      );
     },
   };
 }
