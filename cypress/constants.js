@@ -1,10 +1,12 @@
-const apiBaseUrls = {
-  'https://dev.thegoodparty.org': 'https://api-dev.thegoodparty.org/api/v1/',
-  'https://thegoodparty.org': 'https://api.thegoodparty.org/api/v1/',
-  'http://localhost:4000': 'http://localhost:1337/api/v1/',
-  // 'http://localhost:4000': 'https://api-dev.thegoodparty.org/api/v1/',
-};
-export const base = apiBaseUrls[Cypress.config().baseUrl];
+// const apiBaseUrls = {
+//   'https://dev.thegoodparty.org': 'https://api-dev.thegoodparty.org/api/v1/',
+//   'https://thegoodparty.org': 'https://api.thegoodparty.org/api/v1/',
+//   // 'http://localhost:4000': 'http://localhost:1337/api/v1/',
+//   'http://localhost:4000': 'https://api-dev.thegoodparty.org/api/v1/',
+// };
+// export const base = apiBaseUrls[Cypress.config().baseUrl];
+export const base = Cypress.env('API_BASE');
+console.log('base', base)
 export const isProduction = Cypress.config().baseUrl === 'https://thegoodparty.org';
 
 export const api = {

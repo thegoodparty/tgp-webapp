@@ -40,6 +40,9 @@ module.exports = require('./webpack.base.babel')({
       exclude: /a\.js|node_modules/, // exclude node_modules
       failOnError: false, // show a warning when there is a circular dependency
     }),
+    new webpack.EnvironmentPlugin({
+      API_ENV: process.env.API_ENV || 'local',
+    }),
   ],
 
   // Emit a source map for easier debugging

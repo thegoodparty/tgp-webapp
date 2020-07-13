@@ -1,4 +1,5 @@
 let ENV; // local, dev, qa, prod
+export const API_ENV =  process?.env?.API_ENV || 'prod';
 const host = window.location.host;
 if (host === 'localhost:4000') {
   ENV = 'local';

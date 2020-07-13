@@ -17,11 +17,11 @@ import history from 'utils/history';
 import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
 import { push } from 'connected-react-router';
+import { Helmet } from 'react-helmet';
 
 import GlobalStyle from 'global-styles';
 import SnackbarContainer from 'containers/shared/SnackbarContainer';
 
-import Footer from 'components/shared/Footer';
 import ErrorBoundary from 'containers/shared/ErrorBoundry';
 
 import { fullStoryIdentify } from 'helpers/fullStoryHelper';
@@ -56,6 +56,11 @@ function App({ dispatch }) {
 
   return (
     <div>
+      {ENV !== 'prod' && (
+        <Helmet>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
+      )}
       <ErrorBoundary>
         <Routes />
         <GlobalStyle />

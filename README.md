@@ -20,13 +20,30 @@ We are using [conventional commits](https://www.conventionalcommits.org/)
 
 ## Get Started
 
-```angular2html
+```
 npm install
-npm run dev
+npm run dev 
+```
 
+To Run with dev api
+```
+npm run dev-dev 
 ```
 
 You will need to run also the api for the project <a href="https://github.com/thegoodparty/tgp-api">https://github.com/thegoodparty/tgp-api</a>
+
+## Tests
+We are using [cypress.io](https://www.cypress.io/) for our tests.
+To run with local api:
+* make sure you run your webapp and api local
+```
+npm run cypress-local
+```
+to run cypress with dev or prod api (and local webApp):
+```
+npm run cypress-local-dev
+npm run cypress-local-prod
+``` 
 
 ## License
 
