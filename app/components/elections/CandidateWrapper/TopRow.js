@@ -230,6 +230,27 @@ const TopRow = ({
     return houseElectionLink(state, district) + query;
   };
 
+  const socialAccountSection = () => {
+    if (socialAccounts.length > 0) {
+      return (
+        <SocialLinks>
+          {socialAccounts.map((social, index) => (
+            <React.Fragment key={`${index}-${social.url}`}>
+              {social.url && social.url !== '' && (
+                <a href={social.url} target="_blank" data-cy="social-link">
+                  <IconWrapper>
+                    <img src={social.icon} alt={social.name} />
+                    <SocialLabel>{social.name}</SocialLabel>
+                  </IconWrapper>
+                </a>
+              )}
+            </React.Fragment>
+          ))}
+        </SocialLinks>
+      );
+    }
+  };
+
   const blocName = candidateBlocName(candidate);
 
   const votesNeededState = getVotesNeededState(
@@ -252,22 +273,7 @@ const TopRow = ({
         {partyResolver(party)} {isIncumbent ? 'INCUMBENT' : 'CANDIDATE'}
       </Body11>
       {chamberLink()}
-      {socialAccounts.length > 0 && (
-        <SocialLinks>
-          {socialAccounts.map((social, index) => (
-            <React.Fragment key={`${index}-${social.url}`}>
-              {social.url && social.url !== '' && (
-                <a href={social.url} target="_blank" data-cy="social-link">
-                  <IconWrapper>
-                    <img src={social.icon} alt={social.name} />
-                    <SocialLabel>{social.name}</SocialLabel>
-                  </IconWrapper>
-                </a>
-              )}
-            </React.Fragment>
-          ))}
-        </SocialLinks>
-      )}
+      {socialAccountSection()}
       {isGoodOrUnkwown && (
         <>
           <BlocCount data-cy="bloc-count">
