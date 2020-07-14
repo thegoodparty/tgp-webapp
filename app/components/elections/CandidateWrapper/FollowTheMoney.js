@@ -115,6 +115,87 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
 
   const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
 
+  const firstFund = () => {
+    return (
+      <Fund data-cy="total-fund">
+        <ColoredBodyText
+          className={!isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'}
+        >
+          {moneyHelper(totalRaised)}
+        </ColoredBodyText>
+        <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
+      </Fund>
+    );
+  };
+  const secondFund = () => {
+    if (isGoodOrUnkwown) {
+      if (isIncumbent || isBigMoney || perc > 50) {
+        return (
+          <Fund data-cy="fund">
+            <ColoredBodyText className="green">{perc}%</ColoredBodyText>
+            <StyledBody9>FROM SMALL INDIV DONORS &lt;$200</StyledBody9>
+          </Fund>
+        );
+      } else {
+        return (
+          <Fund data-cy="fund">
+            <ColoredBodyText className="green">
+              {comparedIncumbent.relativePerc}%
+            </ColoredBodyText>
+            <StyledBody9>
+              FUNDING RELATIVE TO{' '}
+              {comparedIncumbent.isFakeIncumbent
+                ? 'BIG MONEY CANDIDATE'
+                : 'INCUMBENT'}
+            </StyledBody9>
+          </Fund>
+        );
+      }
+    } else {
+      // NOT GOOD ENOUGH
+      return (
+        <Fund data-cy="fund">
+          <ColoredBodyText className={colorWithGray}>{perc}%</ColoredBodyText>
+          <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
+        </Fund>
+      );
+    }
+  };
+
+  const thirdFund = () => {
+    if (isGoodOrUnkwown) {
+      if (isIncumbent || isSameAsComparedIncumbent) {
+        return (
+          <Fund data-cy="fund-disadvantage">
+            <ColoredBodyText className="gray">N/A</ColoredBodyText>
+            <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
+          </Fund>
+        );
+      } else {
+        // NON INCUMBENT GOOD OR UNKNOWN
+        return (
+          <Fund data-cy="fund-disadvantage">
+            <ColoredBodyText className="green">
+              {comparedIncumbent.xTimes}x
+            </ColoredBodyText>
+            <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
+          </Fund>
+        );
+      }
+    } else {
+      // NOT GOOD ENOUGH
+      return (
+        <Fund data-cy="fund-disadvantage">
+          <ColoredBodyText className={color}>{perHour}/hr</ColoredBodyText>
+          <StyledBody9>
+            BIG MONEY
+            <SmallBr /> FUNDING RATE
+          </StyledBody9>
+        </Fund>
+      );
+    }
+  };
+
   return (
     <>
       <FollowWrapper data-cy="follow-wrapper">
@@ -124,66 +205,10 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
         </Body11>
       </FollowWrapper>
       <FundsWrapper>
-        <Fund data-cy="total-fund">
-          <ColoredBodyText
-            className={!isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'}
-          >
-            {moneyHelper(totalRaised)}
-          </ColoredBodyText>
-          <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
-        </Fund>
-        {isGoodOrUnkwown ? (
-          <Fund data-cy="fund">
-            {isIncumbent || isBigMoney || perc > 50 ? (
-              <>
-                <ColoredBodyText className="green">{perc}%</ColoredBodyText>
-                <StyledBody9>FROM SMALL INDIV DONORS &lt;$200</StyledBody9>
-              </>
-            ) : (
-              <>
-                <ColoredBodyText className="green">
-                  {comparedIncumbent.relativePerc}%
-                </ColoredBodyText>
-                <StyledBody9>
-                  FUNDING RELATIVE TO{' '}
-                  {comparedIncumbent.isFakeIncumbent
-                    ? 'BIG MONEY CANDIDATE'
-                    : 'INCUMBENT'}
-                </StyledBody9>
-              </>
-            )}
-          </Fund>
-        ) : (
-          <Fund data-cy="fund">
-            <ColoredBodyText className={colorWithGray}>{perc}%</ColoredBodyText>
-            <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
-          </Fund>
-        )}
-        {isGoodOrUnkwown ? (
-          <Fund data-cy="fund-disadvantage">
-            {isIncumbent || isSameAsComparedIncumbent ? (
-              <>
-                <ColoredBodyText className="gray">N/A</ColoredBodyText>
-                <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
-              </>
-            ) : (
-              <>
-                <ColoredBodyText className="green">
-                  {comparedIncumbent.xTimes}x
-                </ColoredBodyText>
-                <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
-              </>
-            )}
-          </Fund>
-        ) : (
-          <Fund data-cy="fund-disadvantage">
-            <ColoredBodyText className={color}>{perHour}/hr</ColoredBodyText>
-            <StyledBody9>
-              BIG MONEY
-              <SmallBr /> FUNDING RATE
-            </StyledBody9>
-          </Fund>
-        )}
+        {firstFund()}
+        {secondFund()}
+        {thirdFund()}
+        {thirdFund()}
       </FundsWrapper>
     </>
   );
