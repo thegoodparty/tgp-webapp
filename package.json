@@ -22,6 +22,7 @@
     "start": "npm run build && npm run start:prod",
     "dev": "cross-env NODE_ENV=development API_ENV=local node server",
     "dev-dev": "cross-env NODE_ENV=development API_ENV=dev node server",
+    "dev-prod": "cross-env NODE_ENV=development API_ENV=prod node server",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run build && npm run start:prod",
     "start:production-test": "npm run test && npm run build && npm run start:prod",
