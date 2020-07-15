@@ -59,7 +59,7 @@ function AdminArticlesFeedback({ articles, content }) {
       });
       setTableData(data);
     }
-  }, articles);
+  }, [articles]);
 
   let str;
   let rowVal;
