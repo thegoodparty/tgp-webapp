@@ -93,9 +93,7 @@ function AdminArticlesFeedback({ articles, content }) {
 
       Cell: row => {
         return (
-          <Link to={`?article=${row.original.id}`}>
-            {row.original.title}
-          </Link>
+          <Link to={`?article=${row.original.id}`}>{row.original.title}</Link>
         );
       },
     },
@@ -104,12 +102,14 @@ function AdminArticlesFeedback({ articles, content }) {
       accessor: 'helpful',
       headerStyle,
       filterMethod: customFilter,
+      maxWidth: 130,
     },
     {
       Header: 'Not Helpful',
       accessor: 'notHelpful',
       headerStyle,
       filterMethod: customFilter,
+      maxWidth: 130,
     },
   ];
   return (

@@ -43,7 +43,6 @@ function* loadArticlesFeedback() {
     yield put(snackbarActions.showSnakbarAction('Loading Articles Feedback'));
     const api = tgpApi.admin.articlesFeedback;
     const { articles } = yield call(requestHelper, api, null);
-    console.log('articles', articles);
     yield put(actions.loadArticlesFeedbackSuccess(articles));
   } catch (error) {
     console.log(error);
