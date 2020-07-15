@@ -27,6 +27,9 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'U') {
     return 'UNITY';
   }
+  if (partyLetter === 'UUP') {
+    return 'UNITED UTAH PARTY';
+  }
   return '';
 };
 
