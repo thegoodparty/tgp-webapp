@@ -208,7 +208,6 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
         {firstFund()}
         {secondFund()}
         {thirdFund()}
-        {thirdFund()}
       </FundsWrapper>
     </>
   );
