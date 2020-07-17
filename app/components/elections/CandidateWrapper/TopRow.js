@@ -285,7 +285,7 @@ const TopRow = ({
               userState={votesNeededState}
               prefixText={
                 <>
-                  have joined <strong>{blocName}</strong>
+                  support <strong>{blocName}</strong>
                 </>
               }
             />

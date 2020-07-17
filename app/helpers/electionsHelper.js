@@ -266,6 +266,9 @@ export const candidateBlocName = candidate => {
   if (!candidate) {
     return '';
   }
+  if (candidate.twitter) {
+    return `@${candidate.twitter.replace('https://www.twitter.com/', '')}`;
+  }
   if (candidate.blocName) {
     return `#${candidate.blocName}`;
   }
