@@ -156,7 +156,9 @@ const TopRow = ({
     state,
     district,
     rankingCount,
+    twitterFollowers,
   } = candidate;
+  const totalFollowers = rankingCount + (twitterFollowers || 0);
 
   const isUnkown = isGood === null;
   const isGoodOrUnkwown = isGood || isUnkown;
@@ -278,7 +280,7 @@ const TopRow = ({
         <>
           <BlocCount data-cy="bloc-count">
             <SupportersProgressBar
-              peopleSoFar={rankingCount}
+              peopleSoFar={totalFollowers}
               votesNeeded={candidate.votesNeeded}
               userState={votesNeededState}
               prefixText={
