@@ -4,11 +4,12 @@ import requestHelper from 'helpers/requestHelper';
 import types from './constants';
 import actions from './actions';
 
-function* loadAllCandidates({ onlyNoData }) {
+function* loadAllCandidates({ onlyNoData, withPresidential }) {
   try {
     const api = tgpApi.scrapeAllCandidates;
     const payload = {
       onlyNoData,
+      withPresidential,
     };
     const response = yield call(requestHelper, api, payload);
     yield put(actions.loadAllCandidatesActionSuccess(response.allCandidates));
