@@ -1,8 +1,9 @@
 import types from './constants';
 
-const loadAllCandidatesAction = (onlyNoData = false) => ({
+const loadAllCandidatesAction = (onlyNoData = false, withPresidential=false) => ({
   type: types.LOAD_ALL_CANDIDATES,
   onlyNoData,
+  withPresidential
 });
 
 const loadAllCandidatesActionSuccess = candidates => ({
