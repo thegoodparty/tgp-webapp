@@ -148,7 +148,7 @@ const ChoiceModal = ({
     return <> </>;
   }
 
-  let { isGood } = candidate;
+  let { isGood, twitterFollowers } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
@@ -160,6 +160,8 @@ const ChoiceModal = ({
   } else {
     displayChamber = `HOUSE OF REPRESENTATIVES FROM ${state?.toUpperCase()}-${district}`;
   }
+
+  const combinedCount = chamberCount + twitterFollowers;
 
   const blocName = candidateBlocName(candidate);
   return (
@@ -201,7 +203,9 @@ const ChoiceModal = ({
                 </SubTitle>
               ) : (
                 <SubTitle>
-                  {candidate.id < 0 ? 'TO THE ' : `${partyResolver(candidate.party)} CANDIDATE `}
+                  {candidate.id < 0
+                    ? 'TO THE '
+                    : `${partyResolver(candidate.party)} CANDIDATE `}
                   <br />
                   U.S. {displayChamber}
                 </SubTitle>
@@ -225,8 +229,8 @@ const ChoiceModal = ({
                   }}
                 >
                   <HeartImg src={heartImg} alt="tgp" />
-                  {numberFormatter(chamberCount)}{' '}
-                  {chamberCount === 0 ? 'person' : 'people'}
+                  {numberFormatter(combinedCount)}{' '}
+                  {combinedCount === 0 ? 'person' : 'people'}
                 </SupportersCount>
                 <SupportersCount
                   style={{
@@ -234,15 +238,15 @@ const ChoiceModal = ({
                   }}
                 >
                   <HeartImg src={heartImg} alt="tgp" />
-                  {numberFormatter(chamberCount + 1)}{' '}
-                  {chamberCount === 1 ? 'person' : 'people'}
+                  {numberFormatter(combinedCount + 1)}{' '}
+                  {combinedCount === 1 ? 'person' : 'people'}
                 </SupportersCount>
               </>
             ) : (
               <SupportersCount>
                 <HeartImg src={heartImg} alt="tgp" />
-                {numberFormatter(chamberCount ? chamberCount : 0)}{' '}
-                {chamberCount === 1 ? 'person' : 'people'}
+                {numberFormatter(combinedCount ? combinedCount : 0)}{' '}
+                {combinedCount === 1 ? 'person' : 'people'}
               </SupportersCount>
             )}
           </SupportersRow>
@@ -255,7 +259,7 @@ const ChoiceModal = ({
         <CenterBar>
           <SupportersProgressBar
             votesNeeded={votesNeeded}
-            peopleSoFar={chamberCount}
+            peopleSoFar={combinedCount}
             showSupporters={false}
             userState={userState}
             suffixText={suffixText}

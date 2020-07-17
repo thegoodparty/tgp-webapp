@@ -309,9 +309,7 @@ const VsList = ({
             {candidate.id === noneYetCandidate.id ? (
               <BlueBody11>GROW #GoodBloc</BlueBody11>
             ) : (
-              <BlueBody11>
-                GROW {candidateBlocName(candidate)}
-              </BlueBody11>
+              <BlueBody11>GROW {candidateBlocName(candidate)}</BlueBody11>
             )}
           </GrowButtonWrapper>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
@@ -354,7 +352,7 @@ const VsList = ({
 
   const blocCountSection = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
-    let rank = candidate.ranking;
+    let rank = candidate.ranking + (candidate.twitterFollowers || 0);
 
     if (candidateRank && !user) {
       // no user - need to add the guest count
