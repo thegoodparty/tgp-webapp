@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import heartImg from 'images/heart.svg';
 
 const MenuWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 2001;
   top: 10px;
   right: 10px;

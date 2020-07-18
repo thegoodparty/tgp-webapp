@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 
 const MenuWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 2002;
   top: 10px;
   right: 60px;
