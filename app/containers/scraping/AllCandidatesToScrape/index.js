@@ -33,6 +33,7 @@ export function AllCandidatesToScrape({
   const { candidates } = scrapeState;
   const { search } = locationState;
   const onlyNoData = queryHelper(search, 'onlyNoData');
+  const withoutTwitter = queryHelper(search, 'withoutTwitter');
   const withPresidential = queryHelper(search, 'withPresidential');
   useEffect(() => {
     if (!candidates) {
@@ -40,10 +41,11 @@ export function AllCandidatesToScrape({
         scrapeAction.loadAllCandidatesAction(
           onlyNoData || false,
           withPresidential || false,
+          withoutTwitter || false,
         ),
       );
     }
-  }, [candidates, onlyNoData]);
+  }, [candidates, search]);
 
   const underScoreName = name => {
     const nameArr = name.split(' ');
@@ -149,10 +151,12 @@ export function AllCandidatesToScrape({
       </Helmet>
       <div>
         <h1>
-          Candidates {onlyNoData ? ' without data ' : ''}count:{' '}
+          Candidates {onlyNoData ? ' without data ' : ''}
+          {withoutTwitter ? ' without twitter ' : ''}count:{' '}
           {candidates && candidates.length}
         </h1>
         {!withPresidential &&
+          !withoutTwitter &&
           candidates &&
           candidates.map((candidate, index) => (
             <div>
@@ -163,6 +167,16 @@ export function AllCandidatesToScrape({
               <span style={{ padding: '0 20px' }}>
                 {candidate.state} - {candidate.district}
               </span>
+              <a href={candidateRoute(candidate)}>
+                {candidateRoute(candidate)}
+              </a>
+            </div>
+          ))}
+
+        {withoutTwitter &&
+          candidates &&
+          candidates.map(candidate => (
+            <div>
               <a href={candidateRoute(candidate)}>
                 {candidateRoute(candidate)}
               </a>
