@@ -352,7 +352,7 @@ const VsList = ({
 
   const blocCountSection = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
-    let rank = candidate.ranking + (candidate.twitterFollowers || 0);
+    let rank = candidate.ranking;
 
     if (candidateRank && !user) {
       // no user - need to add the guest count
