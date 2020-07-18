@@ -21,6 +21,7 @@ import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectLocation } from 'containers/App/selectors';
 import { getCookie } from 'helpers/cookieHelper';
+import makeSelectCandidate from '../../elections/CandidatePage/selectors';
 
 export function Nav({
   userState,
@@ -68,6 +69,7 @@ Nav.propTypes = {
 const mapStateToProps = createStructuredSelector({
   locationState: makeSelectLocation(),
   userState: makeSelectUser(),
+  candidateState: makeSelectCandidate(),
 });
 
 /* eslint-disable prefer-destructuring */
