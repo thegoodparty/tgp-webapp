@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
 import { Link } from 'react-router-dom';
 
-import heartImg from 'images/heart.svg';
+import SupportersImg from 'images/icons/supporters.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
 import { Body, H1, Body13, H3 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
@@ -22,13 +22,10 @@ const Wrapper = styled.div`
   width: 85vw;
   margin: 0 auto;
   max-width: 500px;
+  padding-top: 24px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 48px 24px 32px;
-  }
-
-  &.with-logo {
-    padding-top: 24px;
+    padding: 24px 24px 32px;
   }
 `;
 
@@ -42,7 +39,8 @@ const Close = styled.div`
 `;
 
 const Logo = styled.img`
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  min-width: 170px;
 `;
 
 const CenterBar = styled(Body)`
@@ -52,8 +50,13 @@ const CenterBar = styled(Body)`
 
 const TitleH1 = styled(H1)`
   text-align: center;
-  margin-top: 18px;
+  margin-top: 8px;
   margin-bottom: 36px;
+`;
+
+const TitleH3 = styled(H3)`
+  text-align: center;
+  margin-top: 18px;
 `;
 
 const SubTitle = styled(Body13)`
@@ -110,7 +113,7 @@ const SupportersCount = styled(H1)`
   }
 `;
 
-const HeartImg = styled.img`
+const SupportersIcon = styled.img`
   height: auto;
   width: 36px;
   margin-right: 8px;
@@ -162,22 +165,21 @@ const ChoiceModal = ({
   }
 
   const blocName = candidateBlocName(candidate);
+  const isTwitter = blocName.charAt(0) === '@';
   return (
     <Dialog
       onClose={closeCallback}
       aria-labelledby="Ranking not Allowed"
       open={open}
     >
-      <Wrapper className={isExternalLink ? 'with-logo' : ''}>
+      <Wrapper>
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        {isExternalLink && (
-          <div className="text-center">
-            {' '}
-            <Logo src={LogoCapsImg} />
-          </div>
-        )}
+        <div className="text-center">
+          {' '}
+          <Logo src={LogoCapsImg} />
+        </div>
 
         <AvatarWrapper>
           <CandidateAvatar
@@ -192,7 +194,7 @@ const ChoiceModal = ({
               <TitleH1 style={{ marginBottom: '12px' }}>
                 Want to try and elect {candidate.name}?
               </TitleH1>
-              {candidate.chamber === 'Presidential' ? (
+              {candidate.chamber === 'presidential' || !candidate.chamber ? (
                 <SubTitle>
                   {candidate.party === 'W' ? '' : 'AS A'}{' '}
                   {partyResolver(candidate.party)} CANDIDATE FOR
@@ -210,12 +212,12 @@ const ChoiceModal = ({
               )}
             </>
           ) : (
-            <TitleH1>
-              {blocName} Joined!{' '}
-              <span role="img" aria-label="flex">
-                💪
-              </span>
-            </TitleH1>
+            <>
+              <TitleH3>You're now part of</TitleH3>
+              <TitleH1>
+                {blocName} {isTwitter && 'Bloc'}
+              </TitleH1>
+            </>
           )}
 
           <SupportersRow>
@@ -226,32 +228,32 @@ const ChoiceModal = ({
                     animation: `animate-out 1s ease-in-out forwards`,
                   }}
                 >
-                  <HeartImg src={heartImg} alt="tgp" />
+                  <SupportersIcon src={SupportersImg} alt="tgp" />
                   {numberFormatter(chamberCount)}{' '}
-                  {chamberCount === 0 ? 'person' : 'people'}
+                  {/*{chamberCount === 0 ? 'person' : 'people'}*/}
                 </SupportersCount>
                 <SupportersCount
                   style={{
                     animation: `animate-in 1s ease-in-out forwards`,
                   }}
                 >
-                  <HeartImg src={heartImg} alt="tgp" />
+                  <SupportersIcon src={SupportersImg} alt="tgp" />
                   {numberFormatter(chamberCount + 1)}{' '}
-                  {chamberCount === 1 ? 'person' : 'people'}
+                  {/*{chamberCount === 1 ? 'person' : 'people'}*/}
                 </SupportersCount>
               </>
             ) : (
               <SupportersCount>
-                <HeartImg src={heartImg} alt="tgp" />
+                <SupportersIcon src={SupportersImg} alt="tgp" />
                 {numberFormatter(chamberCount ? chamberCount : 0)}{' '}
-                {chamberCount === 1 ? 'person' : 'people'}
+                {/*{chamberCount === 1 ? 'person' : 'people'}*/}
               </SupportersCount>
             )}
           </SupportersRow>
           <SuppoetersBody13>
-            have joined the {blocName}{' '}
+            <strong>{blocName}</strong>{' '}
             {state ? `in ${state.toUpperCase()}` : ''}
-            {district ? `-${district}` : ''} so far
+            {district ? `-${district}` : ''} supporters so far
           </SuppoetersBody13>
         </AvatarWrapper>
         <CenterBar>
@@ -267,7 +269,7 @@ const ChoiceModal = ({
           <>
             <BlueButton fullWidth onClick={() => joinCallback(candidate)}>
               <H3 style={{ color: '#FFF', textTransform: 'none' }}>
-                JOIN {blocName}
+                JOIN {blocName} {isTwitter && 'Bloc'}
               </H3>
             </BlueButton>
             <Footer>
@@ -279,7 +281,7 @@ const ChoiceModal = ({
         ) : (
           <>
             <BlueButton fullWidth onClick={shareCallback}>
-              <H3 style={{ color: '#FFF' }}>TELL SOME FRIENDS...</H3>
+              <H3 style={{ color: '#FFF' }}>SHARE TO GROW BLOC...</H3>
             </BlueButton>
             <Footer>
               Don&apos;t worry, we will{' '}
