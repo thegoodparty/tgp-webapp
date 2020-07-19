@@ -260,7 +260,7 @@ const DistrictWrapper = ({
                 title="Presidential Election"
                 candidates={presidential}
                 rankObj={presidentialRank}
-                suffixText={` (${presidential.electors} ELECTORS)`}
+                suffixText=" (270 ELECTORS)"
               />
             ) : (
               <VsCard

@@ -45,7 +45,6 @@ function* loadPresidential(action) {
   try {
     const { zip, state } = action;
     const api = tgpApi.allPresidential;
-    const user = yield call(getUserFromStateOrCookie);
     let payload = {};
     if (zip) {
       payload.zip = zip;
@@ -53,14 +52,8 @@ function* loadPresidential(action) {
     if (state) {
       payload.state = state;
     }
-    if (user?.shortState) {
-      payload.userState = user.shortState;
-    }
-
     const { presidential } = yield call(requestHelper, api, payload);
-    if (user && user.shortState) {
-      presidential.userState = user.shortState;
-    }
+
     yield put(actions.loadAllPresidentialActionSuccess(presidential));
   } catch (error) {
     console.log(error);
