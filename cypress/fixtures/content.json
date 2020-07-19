@@ -1,20 +1,4 @@
 {
-  "events": [
-    {
-      "id": "h2WaVMyZt4ZXPsILFmqTQ",
-      "title": "The Good Party - Livestream + Q&A",
-      "dateAndTime": "2020-07-15T17:00",
-      "description": "Learn what Good we're up to and ask us any questions, live!",
-      "timeZone": "PST",
-      "displayDate": "Wednesday, July 15th 2020 · 5:00PM PST (8:00PM EST)",
-      "eventDuration": 1,
-      "location": "https://www.crowdcast.io/e/the-good-party",
-      "presenter": "Farhad Mohit",
-      "presenterTitle": "Founder, The Good Party",
-      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1594832400000
-    }
-  ],
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -42,7 +26,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=1ic6T6fhH0jZLNvX5aZkDe"
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
                 }
               },
               {
@@ -86,7 +70,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://dev.thegoodparty.org/party/faqs?article=33lnRLO7M0gvfqVkoVxADO"
+                  "uri": "?article=33lnRLO7M0gvfqVkoVxADO"
                 }
               },
               {
@@ -1265,7 +1249,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=prGq4SAFpfT7qzBFM1HDy"
+                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
                 }
               },
               {
@@ -1285,7 +1269,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=4qI5UjYbJmivzBOy1y74Z4"
+                  "uri": "?article=4qI5UjYbJmivzBOy1y74Z4"
                 }
               },
               {
@@ -1317,7 +1301,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=4AupMs228xSHleBULCVdqa"
+                  "uri": "?article=4AupMs228xSHleBULCVdqa"
                 }
               },
               {
@@ -1526,7 +1510,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=prGq4SAFpfT7qzBFM1HDy"
+                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
                 }
               },
               {
@@ -1787,9 +1771,6 @@
               },
               {
                 "nodeType": "hyperlink",
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
-                },
                 "content": [
                   {
                     "nodeType": "text",
@@ -1797,7 +1778,10 @@
                     "marks": [],
                     "data": {}
                   }
-                ]
+                ],
+                "data": {
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
+                }
               },
               {
                 "nodeType": "text",
@@ -1807,9 +1791,6 @@
               },
               {
                 "nodeType": "hyperlink",
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
-                },
                 "content": [
                   {
                     "nodeType": "text",
@@ -1817,7 +1798,10 @@
                     "marks": [],
                     "data": {}
                   }
-                ]
+                ],
+                "data": {
+                  "uri": "https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
+                }
               },
               {
                 "nodeType": "text",
@@ -2242,7 +2226,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=5bwvf0PwsbpFEe8IJ9sHhX"
+                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
                 }
               },
               {
@@ -2304,7 +2288,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/elections/candidate/presidential/bernie-sanders/2?article=5bwvf0PwsbpFEe8IJ9sHhX"
+                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
                 }
               },
               {
@@ -2460,7 +2444,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=1ic6T6fhH0jZLNvX5aZkDe"
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
                 }
               },
               {
@@ -2498,112 +2482,53 @@
     {
       "title": "Why are Sanders, Warren and Yang listed as Write-in Candidates?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "Sanders, Warren and Yang are each listed \"As a Write-in,\" because regardless of what the two major parties would have you believe, the election does not happen during their primaries!  ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "So, we let you still join ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=1ic6T6fhH0jZLNvX5aZkDe"
-                },
+                "nodeType": "hyperlink",
                 "content": [
                   {
-                    "data": {},
-                    "marks": [],
+                    "nodeType": "text",
                     "value": "candidate voting blocs",
-                    "nodeType": "text"
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "nodeType": "hyperlink"
+                "data": {
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
+                }
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": " and to help grow those blocs to see if any candidates you like can get enough votes to win the real election on November 3rd, 2020, ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  },
-                  {
-                    "type": "italic"
-                  }
-                ],
+                "nodeType": "text",
                 "value": "before any actual votes are cast! ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "This way, without wasting a single vote, \"we the people\" get to see who is truly electable by our votes, before we vote.  And rest assured that we will only activate a voting bloc to vote, if we doubly confirm that we have all the votes we need to win the election.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "So, if no voting bloc grows big enough, we stand down and let people know, so they can vote \"the lessor of two evils\" between red or blue mainstream candidates, or to stay on the sidelines, if they choose.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Now, to be sure, growing any write-in presidential candidate's voting bloc big enough to ensure a win would be totally unprecedented in modern times.  However, good ideas do spread quickly online.  So, why not try?  What have we got to lose?   ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Remember, if we can't get enough support to guarantee a win ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
                 "marks": [
                   {
                     "type": "bold"
@@ -2612,52 +2537,111 @@
                     "type": "italic"
                   }
                 ],
-                "value": "before",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "value": " ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": "it is time to vote, then the Good Party will NOT activate the vote... simple as that.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "This way, without wasting a single vote, \"we the people\" get to see who is truly electable by our votes, before we vote.  And rest assured that we will only activate a voting bloc to vote, if we doubly confirm that we have all the votes we need to win the election.",
                 "marks": [],
-                "value": "So, the Good Party lets you check any good options, ",
-                "nodeType": "text"
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "So, if no voting bloc grows big enough, we stand down and let people know, so they can vote \"the lessor of two evils\" between red or blue mainstream candidates, or to stay on the sidelines, if they choose.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Now, to be sure, growing any write-in presidential candidate's voting bloc big enough to ensure a win would be totally unprecedented in modern times.  However, good ideas do spread quickly online.  So, why not try?  What have we got to lose?   ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Remember, if we can't get enough support to guarantee a win ",
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "before",
+                "marks": [
+                  {
+                    "type": "bold"
+                  },
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " ",
                 "marks": [
                   {
                     "type": "bold"
                   }
                 ],
-                "value": "but we will never waste your vote!",
-                "nodeType": "text"
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "it is time to vote, then the Good Party will NOT activate the vote... simple as that.",
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "So, the Good Party lets you check any good options, ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "but we will never waste your vote!",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "pages": [
         "election"
@@ -2702,7 +2686,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=579kihjyIPloNaEw02rniq"
+                  "uri": "?article=579kihjyIPloNaEw02rniq"
                 }
               },
               {
@@ -2762,7 +2746,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Livestream + Q&A",
+                    "value": "Livestream + Q&A or Watch a Replay",
                     "marks": [
                       {
                         "type": "bold"
@@ -2772,45 +2756,17 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://www.crowdcast.io/e/the-good-party"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.crowdcast.io/e/the-good-party"
+                  "uri": "https://thegoodparty.org/party/events"
                 }
               },
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Every Wednesday at 5:00pm PT (8:00pm ET)",
-                "marks": [],
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
                 "data": {}
               }
             ],
@@ -2876,6 +2832,22 @@
         "party"
       ],
       "id": "7D3TGoveRpv3RjgAWnefCy"
+    }
+  ],
+  "events": [
+    {
+      "id": "h2WaVMyZt4ZXPsILFmqTQ",
+      "title": "The Good Party - Livestream + Q&A",
+      "dateAndTime": "2020-07-22T17:00",
+      "description": "Learn what Good we're up to and ask us any questions, live!",
+      "timeZone": "PST",
+      "displayDate": "Wednesday, July 22nd 2020 · 5:00PM PST (8:00PM EST)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1595437200000
     }
   ],
   "appVersion": {
@@ -4439,6 +4411,20 @@
     }
   },
   "pastEvents": [
+    {
+      "id": "7vf3x4T8q3jhlIzxJsCRWb",
+      "title": "The Good Party - Intro + Q&A - REPLAY",
+      "dateAndTime": "2020-07-15T17:00",
+      "description": "Watch replay of this crowdcast by clicking on the link below...",
+      "timeZone": "PST",
+      "displayDate": "Wednesday, July 15th, 2020 · 5:00pm PT (8:00pm ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party-20200715",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1594832400000
+    },
     {
       "id": "1sshfrfXZan94SvZuKZF0g",
       "title": "The Good Party - Intro + Q&A - REPLAY",

@@ -253,12 +253,7 @@ const TopRow = ({
 
   const blocName = candidateBlocName(candidate);
 
-  const votesNeededState = getVotesNeededState(
-    chamberName,
-    district,
-    state,
-    user,
-  );
+  const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
     <TopRowWrapper data-cy="top-row">
       <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
@@ -285,6 +280,9 @@ const TopRow = ({
                 <>
                   support <strong>{blocName}</strong>
                 </>
+              }
+              suffixText={
+                chamberName === 'presidential' ? ' (270 ELECTORS)' : ''
               }
             />
           </BlocCount>

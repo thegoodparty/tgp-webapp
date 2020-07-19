@@ -80,7 +80,7 @@ context('District', () => {
             'presidential',
             'Presidential Election',
             presidential,
-            ' (270 ELECTORS)',
+            '(270 ELECTORS)',
           );
         });
       });

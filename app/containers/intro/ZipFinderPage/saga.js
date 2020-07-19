@@ -41,18 +41,10 @@ function* loadCookieZip() {
   }
 }
 
-function* loadPresidential(action) {
+function* loadPresidential() {
   try {
-    const { zip, state } = action;
     const api = tgpApi.allPresidential;
-    let payload = {};
-    if (zip) {
-      payload.zip = zip;
-    }
-    if (state) {
-      payload.state = state;
-    }
-    const { presidential } = yield call(requestHelper, api, payload);
+    const { presidential } = yield call(requestHelper, api, null);
 
     yield put(actions.loadAllPresidentialActionSuccess(presidential));
   } catch (error) {
@@ -166,10 +158,7 @@ function* gelocationToDistrict(action) {
 // Individual exports for testing
 export default function* saga() {
   const zipAction = yield takeLatest(types.LOAD_ZIP, loadZip);
-  const presAction = yield takeLatest(
-    types.LOAD_ALL_PRESIDENTIAL,
-    loadPresidential,
-  );
+  yield takeLatest(types.LOAD_ALL_PRESIDENTIAL, loadPresidential);
   const houseAction = yield takeLatest(
     types.LOAD_HOUSE_CANDIDATES,
     loadHouseCandidates,
