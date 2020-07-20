@@ -140,9 +140,9 @@ const TopRow = ({
       const { facebook, twitter, website } = candidate;
 
       setSocialAccounts([
+        { name: 'website', url: website, icon: WebsiteIcon },
         { name: 'facebook', url: facebook, icon: FacebookIcon },
         { name: 'twitter', url: twitter, icon: TwitterIcon },
-        { name: 'website', url: website, icon: WebsiteIcon },
       ]);
     } else {
       setSocialAccounts([]);

@@ -8,9 +8,14 @@ import Grid from '@material-ui/core/Grid';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+import LogoCapsImg from 'images/logo-caps.svg';
 import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
+import {
+  blocNameSuffix,
+  candidateBlocLink,
+  candidateBlocName,
+} from 'helpers/electionsHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
@@ -27,7 +32,7 @@ const Wrapper = styled.div`
   max-width: 500px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 48px 24px 32px;
+    padding: 24px 24px 32px;
   }
 `;
 
@@ -45,10 +50,6 @@ const AvatarWrapper = styled(Body)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const Subtitle = styled(H3)`
-  font-weight: 400;
 `;
 
 const ShareThisWrapper = styled.div`
@@ -115,6 +116,11 @@ const AdditionalSharesWrapper = styled.div`
 const IconItem = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+const Logo = styled.img`
+  margin-bottom: 50px;
+  min-width: 170px;
 `;
 
 const IconWrapper = styled.div`
@@ -224,27 +230,34 @@ const ShareModal = ({
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
+        <div className="text-center">
+          {' '}
+          <Logo src={LogoCapsImg} />
+        </div>
 
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
-            size="large"
+            size="xl"
             src={candidate.image}
             name={candidate.name}
           />
-          <H1 style={{ marginTop: '22px', marginBottom: '10px' }}>
-            {isExternalLink ? (
-              <>
-                {blocName} Joined!{' '}
-                <span role="img" aria-label="flex">
-                  💪
-                </span>
-              </>
-            ) : (
-              <>Grow {blocName}</>
-            )}
-          </H1>
-          <Subtitle>Spread the word to grow this bloc!</Subtitle>
+          {isExternalLink ? (
+            <H1 style={{ marginTop: '22px', marginBottom: '10px' }}>
+              {blocName} Joined!{' '}
+              <span role="img" aria-label="flex">
+                💪
+              </span>
+            </H1>
+          ) : (
+            <>
+              <H3 style={{ marginTop: '22px' }}>Please help grow </H3>
+              <H1 style={{ marginTop: '10px', marginBottom: '16px' }}>
+                {blocName} {blocNameSuffix(blocName)}
+              </H1>
+            </>
+          )}
+          <Body>Tell some friends...</Body>
         </AvatarWrapper>
         <ShareThisWrapper>
           <InlineShareButtons

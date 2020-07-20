@@ -334,7 +334,8 @@ const VsList = ({
           JOIN{' '}
           {candidate.id === noneYetCandidate.id
             ? '#GoodBloc'
-            : candidateBlocName(candidate)}
+            : candidateBlocName(candidate)}{' '}
+          {blocNameSuffix(blocName)}
         </JoinButton>
       </GrowWrapper>
     );
@@ -366,8 +367,7 @@ const VsList = ({
 
     return (
       <BlocCount data-cy="block-count">
-        {numberFormatter(rank)} {rank === 1 ? 'is' : 'are'} in{' '}
-        {candidateBlocName(candidate)}
+        {numberFormatter(rank)} people support {candidateBlocName(candidate)}
       </BlocCount>
     );
   };
