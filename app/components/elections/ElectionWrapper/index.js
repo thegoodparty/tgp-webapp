@@ -6,7 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
 
 import PageWrapper from 'components/shared/PageWrapper';
-import heartImg from 'images/heart.svg';
+import supportersImg from 'images/icons/supporters.svg';
 import UsMapImage from 'images/us-map.svg';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import { Body, H1, H3 } from 'components/shared/typogrophy';
@@ -66,7 +66,7 @@ const SupportersCount = styled(H1)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
-const HeartImg = styled.img`
+const SupportersImg = styled.img`
   height: auto;
   width: 36px;
   margin-right: 8px;
@@ -284,14 +284,13 @@ const ElectionWrapper = ({
           <Row>
             <SupportersWrapper data-cy="supporters">
               <SupportersRow>
-                <HeartImg src={heartImg} alt="tgp" />
+                <SupportersImg src={supportersImg} alt="tgp" />
                 <SupportersCount data-cy="supporters-count">
                   {numberFormatter(topRank)}{' '}
-                  {topRank === 1 ? 'Person' : 'People'}{' '}
                 </SupportersCount>
               </SupportersRow>
               <SuppoetersBody data-cy="supporters-body">
-                in top voting bloc so far
+                people support top candidate so far
               </SuppoetersBody>
               <SupportersProgressBar
                 votesNeeded={votesNeeded}

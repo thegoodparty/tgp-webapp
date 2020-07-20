@@ -13,6 +13,7 @@ import { candidateBlocName, partyResolver } from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import { BlueButton } from '../../shared/buttons';
+import { blocNameSuffix } from '../../../helpers/electionsHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -165,7 +166,8 @@ const ChoiceModal = ({
   }
 
   const blocName = candidateBlocName(candidate);
-  const isTwitter = blocName.charAt(0) === '@';
+  const blocSuffix = blocNameSuffix(blocName);
+
   return (
     <Dialog
       onClose={closeCallback}
@@ -215,7 +217,7 @@ const ChoiceModal = ({
             <>
               <TitleH3>You're now part of</TitleH3>
               <TitleH1>
-                {blocName} {isTwitter && 'Bloc'}
+                {blocName} {blocSuffix}
               </TitleH1>
             </>
           )}
@@ -251,9 +253,9 @@ const ChoiceModal = ({
             )}
           </SupportersRow>
           <SuppoetersBody13>
-            <strong>{blocName}</strong>{' '}
+            people support <strong>{blocName}</strong>{' '}
             {state ? `in ${state.toUpperCase()}` : ''}
-            {district ? `-${district}` : ''} supporters so far
+            {district ? `-${district}` : ''}
           </SuppoetersBody13>
         </AvatarWrapper>
         <CenterBar>
@@ -269,7 +271,7 @@ const ChoiceModal = ({
           <>
             <BlueButton fullWidth onClick={() => joinCallback(candidate)}>
               <H3 style={{ color: '#FFF', textTransform: 'none' }}>
-                JOIN {blocName} {isTwitter && 'Bloc'}
+                JOIN {blocName} {blocSuffix}
               </H3>
             </BlueButton>
             <Footer>
@@ -281,7 +283,7 @@ const ChoiceModal = ({
         ) : (
           <>
             <BlueButton fullWidth onClick={shareCallback}>
-              <H3 style={{ color: '#FFF' }}>SHARE TO GROW BLOC...</H3>
+              <H3 style={{ color: '#FFF' }}>SHARE THIS...</H3>
             </BlueButton>
             <Footer>
               Don&apos;t worry, we will{' '}

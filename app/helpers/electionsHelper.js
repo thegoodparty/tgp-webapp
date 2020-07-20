@@ -281,6 +281,13 @@ export const candidateBlocName = candidate => {
   return `#${lastName}Bloc`;
 };
 
+export const blocNameSuffix = blocName => {
+  if (blocName?.charAt(0) === '@') {
+    return 'Bloc';
+  }
+  return '';
+};
+
 export const candidateBlocLink = (candidate, chamber) => {
   if (!candidate) {
     return '';

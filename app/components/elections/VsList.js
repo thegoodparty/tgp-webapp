@@ -14,6 +14,7 @@ import {
   candidateRanking,
   candidateBlocName,
   generateEmptyBlocCandidate,
+  blocNameSuffix,
 } from 'helpers/electionsHelper';
 import { numberFormatter, numberNth } from 'helpers/numberHelper';
 
@@ -302,6 +303,8 @@ const VsList = ({
 
   const choiceButton = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
+    const blocName = candidateBlocName(candidate);
+
     if (candidateRank) {
       return (
         <GrowWrapper>
@@ -309,7 +312,9 @@ const VsList = ({
             {candidate.id === noneYetCandidate.id ? (
               <BlueBody11>GROW #GoodBloc</BlueBody11>
             ) : (
-              <BlueBody11>GROW {candidateBlocName(candidate)}</BlueBody11>
+              <BlueBody11>
+                GROW <strong>{blocName}</strong> {blocNameSuffix(blocName)}
+              </BlueBody11>
             )}
           </GrowButtonWrapper>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>

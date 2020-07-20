@@ -16,6 +16,7 @@ import {
   candidateRanking,
   senateElectionLink,
   shortToLongState,
+  blocNameSuffix,
 } from 'helpers/electionsHelper';
 import { numberNth } from 'helpers/numberHelper';
 import { getVotesNeededState } from 'helpers/candidatesHelper';
@@ -252,6 +253,24 @@ const TopRow = ({
   };
 
   const blocName = candidateBlocName(candidate);
+  const isTwitter = blocName.charAt(0) === '@';
+  const prefixText = () => {
+    if (isTwitter) {
+      return (
+        <>
+          support{' '}
+          <a href={candidate.twitter} target="_blank">
+            <strong>{blocName}</strong>
+          </a>
+        </>
+      );
+    }
+    return (
+      <>
+        support <strong>{blocName}</strong>
+      </>
+    );
+  };
 
   const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
@@ -276,11 +295,7 @@ const TopRow = ({
               peopleSoFar={rankingCount}
               votesNeeded={candidate.votesNeeded}
               userState={votesNeededState}
-              prefixText={
-                <>
-                  support <strong>{blocName}</strong>
-                </>
-              }
+              prefixText={prefixText()}
               suffixText={
                 chamberName === 'presidential' ? ' (270 ELECTORS)' : ''
               }
@@ -290,7 +305,9 @@ const TopRow = ({
             <>
               <Link to={rankPageGrowLink()}>
                 <RankButton>
-                  <StyledBody13>GROW {blocName}</StyledBody13>
+                  <StyledBody13>
+                    GROW <strong>{blocName}</strong> {blocNameSuffix(blocName)}
+                  </StyledBody13>
                 </RankButton>
               </Link>
               <RankWrapper
@@ -308,7 +325,9 @@ const TopRow = ({
           ) : (
             <RankButton className="blue">
               <Link to={rankPageJoinLink()} data-cy="rank-button">
-                <StyledBody13 className="white">JOIN {blocName}</StyledBody13>
+                <StyledBody13 className="white">
+                  JOIN {blocName} {blocNameSuffix(blocName)}
+                </StyledBody13>
               </Link>
             </RankButton>
           )}
