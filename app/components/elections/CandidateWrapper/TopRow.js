@@ -16,6 +16,7 @@ import {
   candidateRanking,
   senateElectionLink,
   shortToLongState,
+  blocNameSuffix,
 } from 'helpers/electionsHelper';
 import { numberNth } from 'helpers/numberHelper';
 import { getVotesNeededState } from 'helpers/candidatesHelper';
@@ -139,9 +140,9 @@ const TopRow = ({
       const { facebook, twitter, website } = candidate;
 
       setSocialAccounts([
+        { name: 'website', url: website, icon: WebsiteIcon },
         { name: 'facebook', url: facebook, icon: FacebookIcon },
         { name: 'twitter', url: twitter, icon: TwitterIcon },
-        { name: 'website', url: website, icon: WebsiteIcon },
       ]);
     } else {
       setSocialAccounts([]);
@@ -252,13 +253,26 @@ const TopRow = ({
   };
 
   const blocName = candidateBlocName(candidate);
+  const isTwitter = blocName.charAt(0) === '@';
+  const prefixText = () => {
+    if (isTwitter) {
+      return (
+        <>
+          support{' '}
+          <a href={candidate.twitter} target="_blank">
+            <strong>{blocName}</strong>
+          </a>
+        </>
+      );
+    }
+    return (
+      <>
+        support <strong>{blocName}</strong>
+      </>
+    );
+  };
 
-  const votesNeededState = getVotesNeededState(
-    chamberName,
-    district,
-    state,
-    user,
-  );
+  const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
     <TopRowWrapper data-cy="top-row">
       <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
@@ -281,10 +295,9 @@ const TopRow = ({
               peopleSoFar={rankingCount}
               votesNeeded={candidate.votesNeeded}
               userState={votesNeededState}
-              prefixText={
-                <>
-                  have joined <strong>{blocName}</strong>
-                </>
+              prefixText={prefixText()}
+              suffixText={
+                chamberName === 'presidential' ? ' (270 ELECTORS)' : ''
               }
             />
           </BlocCount>
@@ -292,7 +305,9 @@ const TopRow = ({
             <>
               <Link to={rankPageGrowLink()}>
                 <RankButton>
-                  <StyledBody13>GROW {blocName}</StyledBody13>
+                  <StyledBody13>
+                    GROW <strong>{blocName}</strong> {blocNameSuffix(blocName)}
+                  </StyledBody13>
                 </RankButton>
               </Link>
               <RankWrapper
@@ -310,7 +325,9 @@ const TopRow = ({
           ) : (
             <RankButton className="blue">
               <Link to={rankPageJoinLink()} data-cy="rank-button">
-                <StyledBody13 className="white">JOIN {blocName}</StyledBody13>
+                <StyledBody13 className="white">
+                  JOIN {blocName} {blocNameSuffix(blocName)}
+                </StyledBody13>
               </Link>
             </RankButton>
           )}

@@ -3,11 +3,10 @@ export const getVotesNeededState = (
   chamberName,
   district,
   state,
-  user = null,
 ) => {
   let votesNeededState;
   if (chamberName === 'presidential') {
-    votesNeededState = user?.shortState;
+    votesNeededState = '';
   } else if (chamberName === 'senate') {
     votesNeededState = state || '';
   } else {

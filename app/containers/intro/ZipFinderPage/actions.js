@@ -16,10 +16,8 @@ const loadZipActionError = error => ({
   error,
 });
 
-const loadAllPresidentialAction = (zip, state) => ({
+const loadAllPresidentialAction = () => ({
   type: types.LOAD_ALL_PRESIDENTIAL,
-  zip,
-  state,
 });
 
 const loadAllPresidentialActionSuccess = presidential => ({

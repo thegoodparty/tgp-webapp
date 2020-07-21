@@ -266,6 +266,11 @@ export const candidateBlocName = candidate => {
   if (!candidate) {
     return '';
   }
+  if (candidate.twitter) {
+    return `@${candidate.twitter
+      .replace('https://www.twitter.com/', '')
+      .replace('https://twitter.com/', '')}`;
+  }
   if (candidate.blocName) {
     return `#${candidate.blocName}`;
   }
@@ -274,6 +279,13 @@ export const candidateBlocName = candidate => {
   }
   const lastName = candidateLastName(candidate);
   return `#${lastName}Bloc`;
+};
+
+export const blocNameSuffix = blocName => {
+  if (blocName?.charAt(0) === '@') {
+    return 'Bloc';
+  }
+  return '';
 };
 
 export const candidateBlocLink = (candidate, chamber) => {

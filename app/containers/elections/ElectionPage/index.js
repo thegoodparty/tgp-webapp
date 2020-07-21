@@ -98,7 +98,7 @@ export function ElectionPage({
   useEffect(() => {
     if (!candidates) {
       if (chamber === 'presidential') {
-        dispatch(districtActions.loadAllPresidentialAction(false, state));
+        dispatch(districtActions.loadAllPresidentialAction());
       } else if (chamber === 'senate') {
         dispatch(districtActions.loadSenateCandidatesAction(state));
       } else {

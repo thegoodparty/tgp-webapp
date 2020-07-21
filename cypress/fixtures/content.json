@@ -1,20 +1,4 @@
 {
-  "events": [
-    {
-      "id": "h2WaVMyZt4ZXPsILFmqTQ",
-      "title": "The Good Party - Livestream + Q&A",
-      "dateAndTime": "2020-07-15T17:00",
-      "description": "Learn what Good we're up to and ask us any questions, live!",
-      "timeZone": "PST",
-      "displayDate": "Wednesday, July 15th 2020 · 5:00PM PST (8:00PM EST)",
-      "eventDuration": 1,
-      "location": "https://www.crowdcast.io/e/the-good-party",
-      "presenter": "Farhad Mohit",
-      "presenterTitle": "Founder, The Good Party",
-      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1594832400000
-    }
-  ],
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -27,7 +11,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "No.  The Good Party is not politics as usual.  We are a free, open-source set of tools that make it easy to organize efficiently to vote in groups via ",
+                "value": "No. The Good Party is not politics as usual. We are a free, open-source set of tools that make it easy for candidates to turn supporters into voters and allow voters to organize efficiently in groups via ",
                 "marks": [],
                 "data": {}
               },
@@ -42,7 +26,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=1ic6T6fhH0jZLNvX5aZkDe"
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
                 }
               },
               {
@@ -59,7 +43,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Our mission is to provide the latest technology and tools that empower ordinary people to actively participate and have impact in democracy.  Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected without having to depend on big money sources or toxic partisan politics.",
+                "value": "Our mission is to provide the latest technology and tools that empower ordinary people to actively participate and have impact on democracy. Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected without having to depend on big money sources or toxic partisan politics.",
                 "marks": [],
                 "data": {}
               }
@@ -86,7 +70,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://dev.thegoodparty.org/party/faqs?article=33lnRLO7M0gvfqVkoVxADO"
+                  "uri": "?article=33lnRLO7M0gvfqVkoVxADO"
                 }
               },
               {
@@ -125,7 +109,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "passionate and diverse team ",
+                    "value": "passionate and diverse team",
                     "marks": [],
                     "data": {}
                   }
@@ -136,7 +120,7 @@
               },
               {
                 "nodeType": "text",
-                "value": "who believe that people are good and if empowered by technology, instead of enslaved by it, we can create a much better world for all.  ",
+                "value": ". We believe that people are good and if empowered by technology, instead of enslaved by it, we can create a much better world for all. ",
                 "marks": [],
                 "data": {}
               },
@@ -168,7 +152,23 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "We believe that commercial interests and power motives often undercut the vast potential of technology to help humanity.  So, we've removed both money and power as motives and set ourselves up as a non-profit, open source project, where as many people as possible can be pro-bono contributers and volunteers.",
+                "value": "We believe that commercial interests and power motives often undercut the vast potential of technology to help humanity. So, we've removed both money and power as motives and set ourselves up as a non-profit, open source project, where as many people as possible can be ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "pro bono",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " contributors and volunteers.",
                 "marks": [],
                 "data": {}
               }
@@ -180,7 +180,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "This way, we can all just focus on building the best platform possible, needed to take on humanity's biggest barrier to progress:  Getting rid of the demoralizing corruption of money and power in politics, that allows career politicians of all stripes to stay in power and set the rules of society to benefit themselves and the big money sources that paid to get them elected.",
+                "value": "This way, we can all just focus on building the best platform possible, needed to take on humanity's biggest barrier to progress: Getting rid of the demoralizing corruption of money and power in politics. The current system allows career politicians of all stripes to stay in power and set the rules of society to benefit themselves and the big money sources that paid to get them elected.",
                 "marks": [],
                 "data": {}
               }
@@ -192,7 +192,19 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Our mission is enormous and exciting:  We're building a free, open, non-commercial foundational platform that upgrades the infrastructure of democracy everywhere.  We're trying to make possible a kind of civic jury duty, where good, ordinary, capable people can step up and serve as honest representatives.  We we each can be given a chance to truly serve society and move everyone towards a more just and sustainable future.  There are several steps to get there, but it starts with this simple Good Party app we offer you today.",
+                "value": "Our mission is enormous and exciting: We're building a free, open, non-commercial foundational platform that upgrades the infrastructure of democracy everywhere. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We're trying to make possible a kind of civic tour of duty, where good, ordinary, capable people can step up and serve as honest representatives. Where people can be given a chance to truly serve society and move everyone towards a more just and sustainable future. There are several steps to get there, but it starts with this simple Good Party app we offer you today.",
                 "marks": [],
                 "data": {}
               }
@@ -224,7 +236,7 @@
               },
               {
                 "nodeType": "text",
-                "value": "who is also a full-time volunteer here.  We are committed to being open and transparent in all matters.  You can see our disclosures here at ",
+                "value": "who is also a full-time volunteer here. We are committed to being open and transparent in all matters. You can see our disclosures here at ",
                 "marks": [],
                 "data": {}
               },
@@ -765,7 +777,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "We are tired of the divisiveness and negativity of both sides of the political establishment. We wanted our logo to immediately convey that we're something positive, different and good.  We also want it to feel super-heroic, but at the same time approachable, humble and inviting.  We want our logo to actively welcome everyone to join and take part!",
+                "value": "We are tired of the divisiveness and negativity of both sides of the political establishment. We wanted our logo to immediately convey that we're something positive, different and good. We also want it to feel super-heroic, but at the same time approachable, humble and inviting. We want our logo to actively welcome everyone to join and take part!",
                 "marks": [],
                 "data": {}
               }
@@ -1213,7 +1225,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "A candidate voting bloc (like #BernieBloc) on The Good Party is a new way that allows people to publicly pool their potential interest in a candidate and see if, together, they'll have enough votes to guarantee victory for any candidate they like, ",
+                "value": "A candidate voting bloc (like @BernieSanders Bloc) on The Good Party is a new way to turn support into votes. It allows people to publicly pool their potential interest in a candidate and see if, together, they'll have enough votes to guarantee victory for any candidate they like, ",
                 "marks": [],
                 "data": {}
               },
@@ -1238,7 +1250,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "So, for the first time ever, by joining voting blocs on The Good Party, people can truly explore all their candidate options -- not just pick from the candidate being favored by red or blue.  ",
+                "value": "So, for the first time ever, by joining voting blocs on The Good Party, people can truly explore all their candidate options -- not just pick from the 'lesser of two evils' candidate favored by red or blue.  ",
                 "marks": [],
                 "data": {}
               }
@@ -1265,12 +1277,12 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=prGq4SAFpfT7qzBFM1HDy"
+                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
                 }
               },
               {
                 "nodeType": "text",
-                "value": ".  Quite simply, if a voting bloc does not attract enough voters to get ",
+                "value": ". Quite simply, if a voting bloc does not attract enough voters to get ",
                 "marks": [],
                 "data": {}
               },
@@ -1285,7 +1297,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=4qI5UjYbJmivzBOy1y74Z4"
+                  "uri": "?article=4qI5UjYbJmivzBOy1y74Z4"
                 }
               },
               {
@@ -1302,7 +1314,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "However, if a candidate voting bloc gets big enough to win an election, then we circle back with everyone in the bloc to reconfirm they're still willing and able to vote for the candidate.  If so, we ",
+                "value": "However, if a candidate voting bloc gets big enough to win an election, then we circle back and \"voterize\" everyone in the bloc - ensuring they are registered and still willing and able to vote for the candidate. If so, we ",
                 "marks": [],
                 "data": {}
               },
@@ -1317,7 +1329,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=4AupMs228xSHleBULCVdqa"
+                  "uri": "?article=4AupMs228xSHleBULCVdqa"
                 }
               },
               {
@@ -1340,144 +1352,144 @@
     {
       "title": "How do you know the number of votes needed to win?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "We use election data and a predictive model to estimate how many votes are needed to guarantee a win for each Federal election across America. We are conservative with our estimates to ensure that we never end up with a false-positive. So we can confidently say we will never waste a single vote.",
                 "marks": [],
-                "value": "We use election data and a predictive model to estimate how many votes are needed to guarantee a win for each Federal election across America.  We are conservative with our estimates to ensure that we never end up with a false-positive.  So we can confidently say we will never waste a single vote.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "heading-3",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Our Data & Model:",
                 "marks": [
                   {
                     "type": "bold"
                   }
                 ],
-                "value": "Our Data & Model:",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "heading-3"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "Thanks to ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "MIT's Election Lab",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
                 "data": {
                   "uri": "https://electionlab.mit.edu/data"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "MIT's Election Lab",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
+                }
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": ", we have access to comprehensive voting data from all Federal elections since 1976. We have used this data to create a model that helps us predict just how many votes we need to win any race in 2020.",
                 "marks": [],
-                "value": ", we have access to comprehensive actual voting data from all Federal elections since 1976.  We have used this data to create a model that helps us predict just how many votes we need to win any race in 2020.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Admittedly, our model is relatively simplistic today. For instance, due to the ",
                 "marks": [],
-                "value": "Admittedly, our model is relatively simplistic today.  For instance, due to the ",
-                "nodeType": "text"
+                "data": {}
               },
               {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Electoral College rules",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
                 "data": {
                   "uri": "https://en.wikipedia.org/wiki/United_States_Electoral_College"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "Electoral College rules",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
+                }
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": ", winning the Presidential election requires more than just getting enough of the popular vote. So, our current model is not adequate much beyond just getting us started... and it will continue to improve and get better over time.",
                 "marks": [],
-                "value": ", winning the Presidential election requires more than just getting enough of the popular vote.  So, our current model is not adequate much beyond just getting us started... and it will continue to improve and get better over time.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Good spot to help if you can: ",
                 "marks": [
                   {
                     "type": "bold"
                   }
                 ],
-                "value": "Good spot to help if you can: ",
-                "nodeType": "text"
+                "data": {}
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "If you are a politically-minded data scientist who would be excited to join an open-source effort to try and fix politics for Good, please ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {
-                  "uri": "mailto:info@thegoodparty.org?subject=Data%20Model%20Team"
-                },
+                "nodeType": "hyperlink",
                 "content": [
                   {
-                    "data": {},
-                    "marks": [],
+                    "nodeType": "text",
                     "value": "get in touch",
-                    "nodeType": "text"
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "nodeType": "hyperlink"
+                "data": {
+                  "uri": "mailto:info@thegoodparty.org?subject=Data%20Model%20Team"
+                }
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "!",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "id": "4qI5UjYbJmivzBOy1y74Z4"
     },
@@ -1492,7 +1504,23 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "No.  We have designed The Good Party specifically not to do that.  Rather, we let you know if there are  enough votes to elect a Good indie or grass-roots candidate, ",
+                "value": "No. We have designed The Good Party specifically ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "not",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " to do that. Rather, we let you know if there are enough votes to elect a Good indie or grass-roots candidate, ",
                 "marks": [],
                 "data": {}
               },
@@ -1511,7 +1539,7 @@
               },
               {
                 "nodeType": "text",
-                "value": " you actually go out and vote.  So, the Good Party ",
+                "value": " you actually go out and vote. So, the Good Party ",
                 "marks": [],
                 "data": {}
               },
@@ -1526,7 +1554,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=prGq4SAFpfT7qzBFM1HDy"
+                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
                 }
               },
               {
@@ -1543,7 +1571,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "If we haven't counted enough votes, we simply let you know so you can vote for the \"lessor of two evils\" among the major party candidates, or just sit this election out, if you don't like anyone enough.",
+                "value": "If we haven't counted enough votes, we simply let you know so you can vote for the \"lesser of two evils\" among the major party candidates, or just sit this election out, if you don't like anyone enough.",
                 "marks": [],
                 "data": {}
               }
@@ -1565,7 +1593,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "When a candidate voting bloc gets big enough (enough supporters) to be able to win, we begin the process of reconfirming support with all the bloc members--but this time, telling each member that we are guaranteed to win if everyone confirms and can vote!",
+                "value": "When a candidate voting bloc gets enough people in it to be able to win, we tell each member that we are guaranteed to win if everyone gets voterized!",
                 "marks": [],
                 "data": {}
               }
@@ -1577,7 +1605,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Then, we help each member of the bloc get ready to vote:",
+                "value": "That means we help each member of the bloc get ready to vote:",
                 "marks": [],
                 "data": {}
               }
@@ -1613,7 +1641,7 @@
                     "content": [
                       {
                         "nodeType": "text",
-                        "value": "Register to vote (as needed)",
+                        "value": "Register to vote (as needed).",
                         "marks": [],
                         "data": {}
                       }
@@ -1649,7 +1677,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "As we do that, every other member of the voting bloc will see this progress and be able to be encourage the people they recruited (their crew) to reconfirm and move us closer to activation.",
+                "value": "As we do that, every other member of the voting bloc will see this progress and be able to encourage the people they recruited (their crew) to reconfirm and move us closer to activation.",
                 "marks": [],
                 "data": {}
               }
@@ -1661,7 +1689,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Once we've reconfirmed everyone.  We are locked and loaded for the vote!  Then on election day, we start the process of having people vote, and share peer-to-peer their \"I voted for Good\" online stickers, reaching out to their friends to do the same.",
+                "value": "Once everyone has been voterized, we are locked and loaded for the vote!  Then in the lead up to and on Election Day, we start the process of having people vote, and share peer-to-peer their \"I voted for Good\" online stickers, reaching out to their friends to do the same.",
                 "marks": [],
                 "data": {}
               }
@@ -1691,7 +1719,7 @@
                     "content": [
                       {
                         "nodeType": "text",
-                        "value": "Today, everyone (regardless of voter registration status) should be able to join a voting bloc and support a candidate, by spreading the word and helping the bloc grow.  So, we didn't want to complicate things upfront by having too many steps and requirements.",
+                        "value": "Today, everyone (regardless of voter registration status) should be able to join a voting bloc and support a candidate, by spreading the word and helping the bloc grow. So, we didn't want to complicate things upfront by having too many steps and requirements",
                         "marks": [],
                         "data": {}
                       }
@@ -1709,7 +1737,7 @@
                     "content": [
                       {
                         "nodeType": "text",
-                        "value": "We have limited resources and focused on deploying the core functionality first.  Now are working feverishly to build the voter registration and vote-by-mail components, before November elections.",
+                        "value": "We have limited resources and focused on deploying the core functionality first. Now we are working feverishly to build the voter registration and vote-by-mail components, before November elections.",
                         "marks": [],
                         "data": {}
                       }
@@ -1787,9 +1815,6 @@
               },
               {
                 "nodeType": "hyperlink",
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
-                },
                 "content": [
                   {
                     "nodeType": "text",
@@ -1797,7 +1822,10 @@
                     "marks": [],
                     "data": {}
                   }
-                ]
+                ],
+                "data": {
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
+                }
               },
               {
                 "nodeType": "text",
@@ -1807,9 +1835,6 @@
               },
               {
                 "nodeType": "hyperlink",
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
-                },
                 "content": [
                   {
                     "nodeType": "text",
@@ -1817,11 +1842,14 @@
                     "marks": [],
                     "data": {}
                   }
-                ]
+                ],
+                "data": {
+                  "uri": "https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
+                }
               },
               {
                 "nodeType": "text",
-                "value": "and publicly track each bloc's growth.  This means that for the first time in history, people can actually see how many others are willing to vote in a bloc with them, ",
+                "value": "and publicly track each bloc's growth. This means that for the first time in history, people can actually see how many others are willing to vote in a bloc with them, ",
                 "marks": [],
                 "data": {}
               },
@@ -1840,7 +1868,7 @@
               },
               {
                 "nodeType": "text",
-                "value": " anyone actually votes!\n",
+                "value": " anyone actually votes!",
                 "marks": [],
                 "data": {}
               }
@@ -1852,7 +1880,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "The idea is that The Good Party only activates and coordinates a bloc vote, if we have enough votes to guarantee victory in advance.\n",
+                "value": "The idea is that The Good Party only activates and coordinates a bloc vote if we have enough votes to guarantee victory in advance.",
                 "marks": [],
                 "data": {}
               }
@@ -1864,7 +1892,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Otherwise, we just notify everyone that the bloc came short, and let them vote for the lessor of two evils between other candidates.\n",
+                "value": "Otherwise, we just notify everyone that the bloc came short, and let them vote for the lesser of two evils between other candidates.",
                 "marks": [],
                 "data": {}
               }
@@ -1876,7 +1904,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "So, join voting blocs for any candidates you like, because you have nothing to lose, and be sure that you will never be asked to cast a wasted vote!",
+                "value": "So, join voting blocs for any candidates you like, because you have nothing to lose, and rest assured that you will never be asked to cast a wasted vote!",
                 "marks": [],
                 "data": {}
               }
@@ -1898,7 +1926,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Not yet.  We are a small team and so have decided to focus on just the Federal level, general elections where we can prove the voting blocs concept and have most impact.   ",
+                "value": "Not yet. We are a small team and so have decided to focus on just the Federal level, General Elections where we can prove the voting blocs concept and have most impact.   ",
                 "marks": [],
                 "data": {}
               }
@@ -1910,7 +1938,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "So for this election we're focused on the U.S President, U.S. Senate, and U.S. House of Representatives races.  That still represents over 470 races, and thousands of candidates.",
+                "value": "So for this election we're focused on the U.S President, U.S. Senate, and U.S. House of Representatives races. That still represents over 470 races, and thousands of candidates.",
                 "marks": [],
                 "data": {}
               }
@@ -1922,7 +1950,19 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "That said, The Good Party's system of voting blocs is a fundemental feature that's designed to be applicable to all democratic elections.  And, we have a ton of features and enhancements in the works.   Our mission is to build an open-source, free, decentralized and non-commercial democracy os that can be used by people across the whole world.  ",
+                "value": "That said, our mission is to build an open-source, free, decentralized and non-commercial democracy that can be used by people across the whole world.  ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Good Party's system of voting blocs is a fundamental feature that's designed to be applicable to all democratic elections. And, we have a ton of features and enhancements in the works.   ",
                 "marks": [],
                 "data": {}
               }
@@ -1946,7 +1986,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "We're hopeful that as this good idea spreads, volunteer developers from all over will join us and help us build out The Good Party to what it must be: A freely available, decentralized, non-commercial public good that helps upgrade democracy for all.",
+                "value": "We're hopeful that as this good idea spreads, volunteer developers from all over will join us and help us build out The Good Party to what it must be: a freely available, decentralized, non-commercial public good that helps upgrade democracy for all.",
                 "marks": [],
                 "data": {}
               }
@@ -1968,7 +2008,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "No.  Your party affiliation and vote are always yours and you can vote for whoever you like in the primaries.  The Good Party app just allows you to see your options ",
+                "value": "No. Your party affiliation and vote are always yours and you always have the choice to vote for whomever you like in the primaries or General Election. The Good Party app just allows you to see your options ",
                 "marks": [],
                 "data": {}
               },
@@ -2021,7 +2061,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "No. Your party affiliations are not affected in any way. The Good Party is not an official political party. We're a crowd-voting platform that quickly shows you who the Good grass roots and indie candidates are in your area, and their voting blocs, so you can quickly check whether we have enough votes to get one of them elected. ",
+                "value": "No. Your party affiliations are not affected in any way. The Good Party is not an official political party. We're a technology platform that shows you voting blocs of the Potentially Good grassroots and indie candidates are in your area, so you can quickly check whether they have enough votes to get elected. ",
                 "marks": [],
                 "data": {}
               }
@@ -2033,7 +2073,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "We are only a \"good party\" in that we offer people a good alternative to the \"lessor of two evils,\" and career politicians offered by the two major parties.",
+                "value": "We are only a \"good party\" in that we offer people a good alternative to the \"lesser of two evils,\" and career politicians offered by the two major parties.",
                 "marks": [],
                 "data": {}
               }
@@ -2143,7 +2183,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Mostly Funded by Small Donors (<$200)",
+                "value": "Mostly Funded by Small Donors (<$200).",
                 "marks": [
                   {
                     "type": "bold"
@@ -2177,7 +2217,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Relatively Small Amount of Funding",
+                "value": "Relatively Small Amount of Funding.",
                 "marks": [
                   {
                     "type": "bold"
@@ -2187,7 +2227,7 @@
               },
               {
                 "nodeType": "text",
-                "value": "  Candidates who have raised relatively little funding when compared to the incumbent in race.  These are candidates who have raised less than half (<50%) of the funding of the incumbent and are relying on grass-roots campaining, word-of-mouth and their policy positions to get them elected.",
+                "value": " Candidates who have raised relatively little funding when compared to the incumbent in race. These are candidates who have raised less than half (<50%) of the funding of the incumbent and are relying on grass-roots campaigning, word-of-mouth and their policy positions to get them elected.",
                 "marks": [],
                 "data": {}
               }
@@ -2242,7 +2282,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=5bwvf0PwsbpFEe8IJ9sHhX"
+                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
                 }
               },
               {
@@ -2304,7 +2344,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/elections/candidate/presidential/bernie-sanders/2?article=5bwvf0PwsbpFEe8IJ9sHhX"
+                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
                 }
               },
               {
@@ -2323,74 +2363,74 @@
     {
       "title": "What is hate-speech?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "The Good Party goes with the ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "U.N. definition of hate-speech",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
                 "data": {
                   "uri": "https://www.un.org/en/genocideprevention/documents/UN%20Strategy%20and%20Plan%20of%20Action%20on%20Hate%20Speech%2018%20June%20SYNOPSIS.pdf"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "U.N. definition of hate-speech",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
+                }
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": " as any kind of communication in speech, writing or behavior, that attacks or uses pejorative or discriminatory language with reference to a person or a group on the basis of who they are. In other words, based on their religion, ethnicity, nationality, race, color, descent, gender or other identity factor.",
                 "marks": [],
-                "value": " as any kind of communication in speech, writing or behavior, that attacks or uses pejorative or discriminatory language with reference to a person or a group on the basis of who they are, in other words, based on their religion, ethnicity, nationality, race, color, descent, gender or other identity factor.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "We look for a pattern of behavior and also make sure that we include hate-speech against any ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {
-                  "uri": "https://en.wikipedia.org/wiki/Protected_group"
-                },
+                "nodeType": "hyperlink",
                 "content": [
                   {
-                    "data": {},
-                    "marks": [],
+                    "nodeType": "text",
                     "value": "constitutionally and state-protected groups and classes",
-                    "nodeType": "text"
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "nodeType": "hyperlink"
+                "data": {
+                  "uri": "https://en.wikipedia.org/wiki/Protected_group"
+                }
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": " in the United States.",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "id": "5bwvf0PwsbpFEe8IJ9sHhX"
     },
@@ -2405,7 +2445,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "The Write-in Vote is a little used feature of the election system in the United States, which has been with us since the founding of the country.  Just as it sounds, the write-in vote allows people to literally ",
+                "value": "The Write-in Vote is a rarely used feature of the election system in the United States, which has been with us since the founding of the country. Just as it sounds, the write-in vote allows people to literally ",
                 "marks": [],
                 "data": {}
               },
@@ -2421,7 +2461,7 @@
               },
               {
                 "nodeType": "text",
-                "value": " the name of a candidate that they like if they don't like the names who are on the ballot.",
+                "value": " the name of a preferred candidate if they don't like the names who are on the ballot.",
                 "marks": [],
                 "data": {}
               }
@@ -2433,7 +2473,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "The reason this feature is infrequently used, is that it is very hard to coordinate enough people to write-in the same name together to get someone actually elected, and many people feel like it's a wasted vote.  However, the power of the write-in vote is that in elections where the two-party system has effectively locked out good grass-roots or indie candidates, we can still write-in any legit candidate's name and get them elected.",
+                "value": "The reason this feature is infrequently used is that it is very hard to coordinate enough people to write-in the same name and actually get someone elected, and many voters fear it's a wasted vote. However, the power of the write-in vote is that in elections where the two-party system has effectively locked out good grass-roots or indie candidates, we can still write-in any legit candidate's name and get them elected.",
                 "marks": [],
                 "data": {}
               }
@@ -2460,12 +2500,12 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=1ic6T6fhH0jZLNvX5aZkDe"
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
                 }
               },
               {
                 "nodeType": "text",
-                "value": ", we will be able coordinate an effective write-in vote, and be sure that, ",
+                "value": ", we will finally be able to coordinate an effective write-in vote, and be sure that, ",
                 "marks": [],
                 "data": {}
               },
@@ -2498,112 +2538,65 @@
     {
       "title": "Why are Sanders, Warren and Yang listed as Write-in Candidates?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Sanders, Warren and Yang are each listed \"As a Write-in,\" because regardless of what the two major parties would have you believe, the election does not only happen during their primaries! ",
                 "marks": [],
-                "value": "Sanders, Warren and Yang are each listed \"As a Write-in,\" because regardless of what the two major parties would have you believe, the election does not happen during their primaries!  ",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Under the current system, the choices on the November ballot are basically decided by the two major parties' power brokers who limit the number of real choices. This cuts third-party, independent and even promising red and blue candidates out of the process months before most voters even begin paying attention to the election. ",
                 "marks": [],
-                "value": "So, we let you still join ",
-                "nodeType": "text"
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "So, we let you continue joining ",
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=1ic6T6fhH0jZLNvX5aZkDe"
-                },
+                "nodeType": "hyperlink",
                 "content": [
                   {
-                    "data": {},
-                    "marks": [],
+                    "nodeType": "text",
                     "value": "candidate voting blocs",
-                    "nodeType": "text"
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "nodeType": "hyperlink"
+                "data": {
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
+                }
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": " and help grow those blocs to see if any candidates you like can get enough votes to win the real election on November 3rd, 2020, ",
                 "marks": [],
-                "value": " and to help grow those blocs to see if any candidates you like can get enough votes to win the real election on November 3rd, 2020, ",
-                "nodeType": "text"
+                "data": {}
               },
               {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  },
-                  {
-                    "type": "italic"
-                  }
-                ],
+                "nodeType": "text",
                 "value": "before any actual votes are cast! ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "This way, without wasting a single vote, \"we the people\" get to see who is truly electable by our votes, before we vote.  And rest assured that we will only activate a voting bloc to vote, if we doubly confirm that we have all the votes we need to win the election.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "So, if no voting bloc grows big enough, we stand down and let people know, so they can vote \"the lessor of two evils\" between red or blue mainstream candidates, or to stay on the sidelines, if they choose.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Now, to be sure, growing any write-in presidential candidate's voting bloc big enough to ensure a win would be totally unprecedented in modern times.  However, good ideas do spread quickly online.  So, why not try?  What have we got to lose?   ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Remember, if we can't get enough support to guarantee a win ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
                 "marks": [
                   {
                     "type": "bold"
@@ -2612,52 +2605,111 @@
                     "type": "italic"
                   }
                 ],
-                "value": "before",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "value": " ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": "it is time to vote, then the Good Party will NOT activate the vote... simple as that.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "This way, without wasting a single vote, \"we the people\" get to see who is truly electable by our votes, before we vote.  And rest assured that we will only activate a voting bloc to vote, if we doubly confirm that we have all the votes we need to win the election.",
                 "marks": [],
-                "value": "So, the Good Party lets you check any good options, ",
-                "nodeType": "text"
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "So, if no voting bloc grows big enough, we stand down and let people know, so they can vote \"the lessor of two evils\" between red or blue mainstream candidates, or to stay on the sidelines, if they choose.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Now, to be sure, growing any write-in presidential candidate's voting bloc big enough to ensure a win would be totally unprecedented in modern times.  However, good ideas do spread quickly online.  So, why not try?  What have we got to lose?   ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Remember, if we can't get enough support to guarantee a win ",
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "before",
+                "marks": [
+                  {
+                    "type": "bold"
+                  },
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " ",
                 "marks": [
                   {
                     "type": "bold"
                   }
                 ],
-                "value": "but we will never waste your vote!",
-                "nodeType": "text"
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "it is time to vote, then The Good Party will NOT activate the vote... simple as that.",
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "So, while The Good Party lets you check out any good options, ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "we will never waste your vote!",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "pages": [
         "election"
@@ -2675,7 +2727,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "No.  The Good Party is free for both users and candidates.  We view our service as a vital public good that must stay free, open and non-commercial.",
+                "value": "No. The Good Party is free for both users and candidates. We view our service as a vital public good that must stay free, open and non-commercial.",
                 "marks": [],
                 "data": {}
               }
@@ -2702,7 +2754,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=579kihjyIPloNaEw02rniq"
+                  "uri": "?article=579kihjyIPloNaEw02rniq"
                 }
               },
               {
@@ -2762,7 +2814,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Livestream + Q&A",
+                    "value": "Livestream + Q&A or Watch a Replay",
                     "marks": [
                       {
                         "type": "bold"
@@ -2772,45 +2824,17 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://www.crowdcast.io/e/the-good-party"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.crowdcast.io/e/the-good-party"
+                  "uri": "https://thegoodparty.org/party/events"
                 }
               },
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Every Wednesday at 5:00pm PT (8:00pm ET)",
-                "marks": [],
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
                 "data": {}
               }
             ],
@@ -2876,11 +2900,78 @@
         "party"
       ],
       "id": "7D3TGoveRpv3RjgAWnefCy"
+    },
+    {
+      "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The current system - which is designed by the elected officials of the two major parties - makes it nearly impossible for alternative candidates to get on the ballot. In fact, they deliberately limit choice because they don't want the competition. That's why you almost never see independents or third-parties get elected. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "That means today, good people that want to serve as honest representatives often have to pick the red or blue label just to have a reasonable shot to get on the ballot - even if they view themselves as independent or not totally aligned with Democrats and Republicans. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "At The Good Party, we believe people are Good. And many of the current elected class initially ran for office because they too wanted to serve. But over time, power and money corrupts. That's where our Follow the Money and Character Check come in. If a Red or Blue candidate - including incumbents - are people-powered and not beholden to Big Money, and pass our minimum threshold of civility, they too are Potentially Good candidates to support. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Same goes for candidates challenging those incumbents. Even if they've chosen to run as red or blue, so long as they demonstrate they aren't banking on Big Money donors, they're potentially as Good as independents and third-party candidates. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Ultimately we support candidates of all stripes who are committed to remaining powered by and accountable to the actual people they serve. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "id": "5YnyOUU7NVOihcos0oR1kL"
     }
   ],
-  "appVersion": {
-    "version": "1.0.18"
-  },
   "partyPage": {
     "title": "Header Content",
     "content": {
@@ -2904,7 +2995,23 @@
           "content": [
             {
               "nodeType": "text",
-              "value": "The Good Party Is not a political party, but a way to take back our democracy from corrupt big-money politicians of ",
+              "value": "The Good Party is ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "not",
+              "marks": [
+                {
+                  "type": "italic"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " a political party. It's a way to take back our democracy from corrupt big-money politicians of ",
               "marks": [],
               "data": {}
             },
@@ -2920,7 +3027,7 @@
             },
             {
               "nodeType": "text",
-              "value": " major parties, using technology to organize our vote to elect bright new indie or grassroots challengers who wouldn't ordinarily have a chance.",
+              "value": " major parties. We use technology to turn supporters into voters and elect bright new indie or grassroots challengers who otherwise don't have a chance.",
               "marks": [],
               "data": {}
             }
@@ -2932,7 +3039,7 @@
           "content": [
             {
               "nodeType": "text",
-              "value": "We are a mostly volunteer effort, calling on ",
+              "value": "We are a not-for-profit, mostly volunteer effort, calling on ",
               "marks": [],
               "data": {}
             },
@@ -2952,7 +3059,7 @@
             },
             {
               "nodeType": "text",
-              "value": " to join and help us build out state-of-the-art free, open-source technology and tools that empower anyone with a smartphone and private messaging to organize and multiply their impact by voting as a group.  ",
+              "value": " to join and help us build state-of-the-art, free, open-source technology and tools. Together we are empowering anyone with a smartphone and private messaging to organize and multiply their impact by voting as a group.  ",
               "marks": [],
               "data": {}
             }
@@ -3004,7 +3111,19 @@
             },
             {
               "nodeType": "text",
-              "value": " running for Congress. So, people can band together and see how many people would vote for a they like, as well as ",
+              "value": " running for Congress. ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "This solves two important challenges: it helps underdog candidates turn their supporters into actual voters; and it allows potential voters to band together and see if they have ",
               "marks": [],
               "data": {}
             },
@@ -3104,7 +3223,7 @@
                   "content": [
                     {
                       "nodeType": "text",
-                      "value": "Show you potentially good candidates who aren't beholden to big money",
+                      "value": "See potentially good candidates who aren't beholden to big money.",
                       "marks": [],
                       "data": {}
                     }
@@ -3122,7 +3241,7 @@
                   "content": [
                     {
                       "nodeType": "text",
-                      "value": "Join candidate voting blocs for all of the candidates you like",
+                      "value": "Join candidate voting blocs for all of the candidates you like.",
                       "marks": [],
                       "data": {}
                     }
@@ -3140,7 +3259,7 @@
                   "content": [
                     {
                       "nodeType": "text",
-                      "value": "Share with others and see if any get enough votes to win, before you vote",
+                      "value": "Share with others and see if any get enough votes to win, before you vote.",
                       "marks": [],
                       "data": {}
                     }
@@ -3167,6 +3286,25 @@
         }
       ]
     }
+  },
+  "events": [
+    {
+      "id": "h2WaVMyZt4ZXPsILFmqTQ",
+      "title": "The Good Party - Livestream + Q&A",
+      "dateAndTime": "2020-07-22T17:00",
+      "description": "Learn what Good we're up to and ask us any questions, live!",
+      "timeZone": "PST",
+      "displayDate": "Wednesday, July 22nd 2020 · 5:00PM PST (8:00PM EST)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1595437200000
+    }
+  ],
+  "appVersion": {
+    "version": "1.0.18"
   },
   "creatorsProjects": [
     {
@@ -4439,6 +4577,20 @@
     }
   },
   "pastEvents": [
+    {
+      "id": "7vf3x4T8q3jhlIzxJsCRWb",
+      "title": "The Good Party - Intro + Q&A - REPLAY",
+      "dateAndTime": "2020-07-15T17:00",
+      "description": "Watch replay of this crowdcast by clicking on the link below...",
+      "timeZone": "PST",
+      "displayDate": "Wednesday, July 15th, 2020 · 5:00pm PT (8:00pm ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party-20200715",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1594832400000
+    },
     {
       "id": "1sshfrfXZan94SvZuKZF0g",
       "title": "The Good Party - Intro + Q&A - REPLAY",

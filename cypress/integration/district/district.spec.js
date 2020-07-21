@@ -80,7 +80,7 @@ context('District', () => {
             'presidential',
             'Presidential Election',
             presidential,
-            ` IN ${shortState} (${presidential.electors} ELECTORS)`,
+            '(270 ELECTORS)',
           );
         });
       });
