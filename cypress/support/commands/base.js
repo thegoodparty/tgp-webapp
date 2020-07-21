@@ -36,3 +36,19 @@ Cypress.Commands.add('testTopQueSection', filter => {
   cy.url().should('include', '/party/faqs');
   cy.get('[data-cy=page-title]').contains('FAQs | The Good Party');
 });
+
+Cypress.Commands.add('signInWithDefaultUser', () => {
+  const cookie = Cypress.env('cookie');
+  const token = Cypress.env('token');
+  cy.setCookie('user', cookie);
+  cy.setCookie('token', token);
+  cy.reload();
+});
+
+Cypress.Commands.add('chooseCorrectZipcode', zipcode => {
+  cy.visit('/intro/zip-finder');
+  cy.get('[data-cy=zipcode]').type(zipcode);
+  cy.get('[data-cy=submit]').click();
+  cy.url().should('include', `/elections/district/${zipcode}`);
+  cy.getCookie('zip').should('exist');
+});

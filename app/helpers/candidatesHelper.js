@@ -71,3 +71,11 @@ export const getOpenSecretLink = (chamber, candidate) => {
   }
   return openSecretLink;
 }
+export const countCandidates = chamber => {
+  let count = 0;
+  if (chamber && typeof chamber.good !== 'undefined') {
+    count =
+      chamber.good.length + chamber.notGood.length + chamber.unknown.length;
+  }
+  return count;
+};

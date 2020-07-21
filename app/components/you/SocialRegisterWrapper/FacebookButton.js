@@ -137,7 +137,7 @@ const FacebookButton = ({ onLoginSuccess, onLoginFailure, children }) => {
 
   return (
     <StyledButton fullWidth onClick={triggerLogin}>
-      <div>
+      <div data-cy="facebook-login">
         <Icon src={FacebookIcon} alt="" />
         <StyledBody13>{children}</StyledBody13>
       </div>

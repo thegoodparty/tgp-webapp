@@ -43,7 +43,7 @@ export function LoginConfirmPage({
   return (
     <div>
       <Helmet>
-        <title>Login Code Confirmation</title>
+        <title data-cy="page-title">Login Code Confirmation</title>
         <meta name="description" content="Login Code Confirmation" />
       </Helmet>
       <LoginConfirmWrapper {...childProps} />

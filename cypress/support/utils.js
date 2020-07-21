@@ -3,7 +3,7 @@ import {
   senateElectionLink,
   houseElectionLink,
 } from '../../app/helpers/electionsHelper';
-
+export { userDistrict } from '../../app/helpers/userHelper';
 export const getElectionCount = (senateCandidates, houseCandidates) => {
   let electionCount = 3;
   if (
@@ -72,4 +72,34 @@ export const rankPageJoinLink = (candidate, chamberName, user = null) => {
     return houseElectionLink(state, district) + query;
   }
   return '?register=true';
+};
+
+export const parseCookie = cookie => JSON.parse(decodeURIComponent(cookie));
+
+export const getRankingObj = ranking => {
+  const rankingObj = {
+    presidential: {},
+    senate: {},
+    house: {},
+  };
+  if (ranking) {
+    ranking.forEach(userRank => {
+      const {
+        id,
+        rank,
+        candidate,
+        isIncumbent,
+        chamber,
+        blocName, // only valid for guest ranking. Used for the register banner
+      } = userRank;
+      rankingObj[chamber][candidate] = {
+        id,
+        rank,
+        candidateId: candidate,
+        isIncumbent,
+        blocName,
+      };
+    });
+  }
+  return rankingObj;
 };

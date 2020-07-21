@@ -82,6 +82,7 @@ const SocialButton = ({ triggerLogin, children, channel, ...props }) => {
       onClick={triggerLogin}
       {...props}
       className={channel}
+      data-cy={`${channel}-social-login`}
     >
       <div>
         {icon()}

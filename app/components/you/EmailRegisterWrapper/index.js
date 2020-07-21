@@ -89,8 +89,11 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
   return (
     <div>
       <Wrapper white>
-        <H2>Join The Good Party</H2>
-        <Body13 style={{ marginTop: '16px', marginBottom: '28px' }}>
+        <H2 data-cy="title">Join The Good Party</H2>
+        <Body13
+          style={{ marginTop: '16px', marginBottom: '28px' }}
+          data-cy="description"
+        >
           Please enter your info, so we can count your support and notify you as
           we make progress.
         </Body13>
@@ -104,6 +107,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             name="name"
             fullWidth
             onChange={onChangeName}
+            data-cy="full-name"
             helperText={`We will never show your full name on our site. ${
               showName
                 ? `On our site you'll be: ${fullFirstLastInitials(name)}`
@@ -123,10 +127,11 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             autoComplete="email"
             onChange={onChangeEmail}
             onFocus={onEmailFocus}
+            data-cy="email"
           />
 
           {!loading && (
-            <SubmitWrapper onClick={handleSubmit}>
+            <SubmitWrapper onClick={handleSubmit} data-cy="submit">
               <NextButton active={validateEmail() && name !== ''}>
                 Submit
               </NextButton>

@@ -5,6 +5,7 @@ import {
   senateElectionLink,
 } from '../../../app/helpers/electionsHelper';
 import { getElectionCount, getCdsWithPerc } from '../../support/utils';
+import { testZipcodes } from '../../constants';
 
 context('District', () => {
   let district;
@@ -14,14 +15,10 @@ context('District', () => {
   let electionCount;
   let shortState;
 
-  const zipcodes = {
-    '40047': '(with Senate)',
-    '90058': '(without Senate)',
-    '50321': '(with Senate)',
-    '84322': '(without Senate)',
-  };
-  Object.keys(zipcodes).forEach(zipcode => {
-    describe(`check district page for ${zipcode} ${zipcodes[zipcode]}`, () => {
+  Object.keys(testZipcodes).forEach(zipcode => {
+    describe(`check district page for ${zipcode} ${
+      testZipcodes[zipcode]
+    }`, () => {
       it(`loads district data and finds Select District section`, () => {
         cy.visit(`/elections/district/${zipcode}`);
         cy.get('[data-cy=page-title]').contains('Elections | District Page');

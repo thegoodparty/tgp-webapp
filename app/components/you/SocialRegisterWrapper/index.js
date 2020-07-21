@@ -124,16 +124,16 @@ function SocialRegisterWrapper({
             <Heart src={heartImg} />
             {blocName ? (
               <>
-                <H1>Join {blocName}</H1>
-                <StyledH2>
+                <H1 data-cy="title">Join {blocName}</H1>
+                <StyledH2 data-cy="description">
                   Sign-up to be counted, and we&apos;ll notify you if we can
                   win!
                 </StyledH2>
               </>
             ) : (
               <>
-                <H1>Join The Good Party</H1>
-                <StyledH2>
+                <H1 data-cy="title">Join The Good Party</H1>
+                <StyledH2 data-cy="description">
                   Have your choices count and let&apos;s fix politics for Good!
                 </StyledH2>
               </>
@@ -148,15 +148,17 @@ function SocialRegisterWrapper({
             >
               Continue with Facebook
             </FacebookButton>
-            <SocialButton
-              channel="google"
-              provider="google"
-              appId={globals.googleAppId}
-              onLoginSuccess={socialLoginCallback}
-              onLoginFailure={socialLoginFailureCallback}
-            >
-              Continue with GOOGLE
-            </SocialButton>
+            <div data-cy="google-login">
+              <SocialButton
+                channel="google"
+                provider="google"
+                appId={globals.googleAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with GOOGLE
+              </SocialButton>
+            </div>
             <OrWrapper>
               <Border />
               <Or>
@@ -164,19 +166,26 @@ function SocialRegisterWrapper({
               </Or>
             </OrWrapper>
             <OutlinedButton active style={{ marginTop: '24px' }}>
-              <Link to="/you/register-email" style={{ width: '100%' }}>
+              <Link
+                to="/you/register-email"
+                style={{ width: '100%' }}
+                data-cy="email-register"
+              >
                 <EmailInner>
                   <EmailIconImg src={EmailIcon} />
                   <StyledBody13>CONTINUE WITH EMAIL</StyledBody13>
                 </EmailInner>
               </Link>
             </OutlinedButton>
-            <Body13 style={{ marginTop: '24px' }}>
-              Have an account? <Link to="/login">Sign In</Link>
-            </Body13>
-            <Body11 style={{ margin: '24px 0' }}>
+            <Body13 style={{ marginTop: '24px' }} data-cy="login-wrapper">
+              Have an account?{' '}
+              <Link to="/login" data-cy="login">
+                Sign In
+              </Link>
+            </Body13> 
+            <Body11 style={{ margin: '24px 0' }} data-cy="policy-wrapper">
               By signing up, you agree to the{' '}
-              <a href="/privacy" className="blue">
+              <a href="/privacy" className="blue" data-cy="policy">
                 Privacy Policy &amp; Terms of Service.
               </a>
             </Body11>

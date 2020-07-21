@@ -61,17 +61,22 @@ const ButtonWrapper = styled(Link)`
 const YouWrapper = ({ articles }) => (
   <PageWrapper white>
     <Login>
-      <Link to="?register=true">Sign-Up</Link>&nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="login">Login</Link>
+      <Link to="?register=true" data-cy="sign-up">
+        Sign-Up
+      </Link>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <Link to="login" data-cy="log-in">
+        Login
+      </Link>
     </Login>
     <InnerWrapper>
       <Img src={CapitalImage} alt="Capital" aria-label="Capital" />
-      <H3Title>Create a profile and get counted!</H3Title>
-      <H3Body>
+      <H3Title data-cy="title">Create a profile and get counted!</H3Title>
+      <H3Body data-cy="description">
         First we count the people needed for a good indy candidate to win, then
         we all vote to get them in.
       </H3Body>
-      <ButtonWrapper to="?register=true">
+      <ButtonWrapper to="?register=true" data-cy="count-in">
         <OutlinedButton active fullWidth>
           COUNT ME IN!
         </OutlinedButton>

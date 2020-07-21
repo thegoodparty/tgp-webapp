@@ -3,10 +3,9 @@ import { push } from 'connected-react-router';
 
 import requestHelper from 'helpers/requestHelper';
 import { getCookie, setCookie } from 'helpers/cookieHelper';
-import { GOOGLE_API_KEY } from 'api/ENV';
-
 import { getUserFromStateOrCookie } from 'helpers/userHelper';
-
+import { GOOGLE_API_KEY } from 'api/ENV';
+import makeSelectUser from 'containers/you/YouPage/selectors';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
@@ -45,8 +44,8 @@ function* loadPresidential(action) {
   try {
     const { zip, state } = action;
     const api = tgpApi.allPresidential;
-    const user = yield call(getUserFromStateOrCookie);
-    let payload = {};
+    const user = yield call(getUserFromStateOrCookie, makeSelectUser);
+    const payload = {};
     if (zip) {
       payload.zip = zip;
     }

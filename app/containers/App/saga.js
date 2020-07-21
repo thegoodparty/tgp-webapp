@@ -1,8 +1,8 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
-import { getUserFromStateOrCookie, getUuid } from 'helpers/userHelper';
-
+import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
+import makeSelectUser from 'containers/you/YouPage/selectors';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
@@ -21,7 +21,7 @@ function* loadContent() {
 
 function* sendArticleFeedback(action) {
   try {
-    const user = yield call(getUserFromStateOrCookie);
+    const user = yield call(getUserFromStateOrCookie, makeSelectUser);
     const uuid = getUuid(user);
     const { id, title, isHelpful, feedback } = action;
     const api = tgpApi.articleFeedback;

@@ -38,12 +38,14 @@ const PrivacyWrapper = ({ content }) => {
       {content && content.privacyPage && (
         <>
           <TitleWrapper>
-            <H1>{content.privacyPage.title}</H1>
+            <H1 data-cy="title">{content.privacyPage.title}</H1>
           </TitleWrapper>
           <RevisionWrapper>
-            <Body11>Last Revision</Body11>
+            <Body11 data-cy="last-revisioin-label">Last Revision</Body11>
             <Divider />
-            <Body11>{dateUsHelper(content.privacyPage.lastModified)}</Body11>
+            <Body11 data-cy="last-revisioin-date">
+              {dateUsHelper(content.privacyPage.lastModified)}
+            </Body11>
           </RevisionWrapper>
           <CmsContentWrapper>{cmsContent}</CmsContentWrapper>
         </>

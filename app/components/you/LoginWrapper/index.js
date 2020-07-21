@@ -98,12 +98,12 @@ const LoginWrapper = ({
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <Heart src={heartImg} />
-            <H1>Sign into your account</H1>
+            <H1 data-cy="title">Sign into your account</H1>
           </VerticalWrapper>
         </Grid>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <form noValidate onSubmit={handleSubmitForm}>
+            <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
               <Input
                 value={email}
                 label="Email Address"
@@ -115,6 +115,7 @@ const LoginWrapper = ({
                 autoComplete="email"
                 variant="outlined"
                 onChange={onChangeEmail}
+                data-cy="email-input"
               />
               <OutlinedButton
                 fullWidth
@@ -136,19 +137,22 @@ const LoginWrapper = ({
             >
               Continue with Facebook
             </FacebookButton>
-            <SocialButton
-              channel="google"
-              provider="google"
-              appId={globals.googleAppId}
-              onLoginSuccess={socialLoginCallback}
-              onLoginFailure={socialLoginFailureCallback}
-            >
-              Continue with GOOGLE
-            </SocialButton>
-
-            <Body13 style={{ margin: '24px 0' }}>
+            <div data-cy="google-login">
+              <SocialButton
+                channel="google"
+                provider="google"
+                appId={globals.googleAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with GOOGLE
+              </SocialButton>
+            </div>
+            <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
               Don&apos;t have an account?{' '}
-              <Link to="?register=true">Create one</Link>
+              <Link to="?register=true" data-cy="register">
+                Create one
+              </Link>
             </Body13>
           </VerticalWrapper>
         </Grid>
