@@ -13,10 +13,8 @@ import { compose } from 'redux';
 import { push } from 'connected-react-router';
 
 import CandidateWrapper from 'components/elections/CandidateWrapper';
-import {
-  candidateCalculatedFields,
-  getRankFromUserOrState,
-} from 'helpers/electionsHelper';
+import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
+import { candidateCalculatedFields } from 'helpers/electionsHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -106,6 +104,7 @@ export function CandidatePage({
         />
       </Helmet>
       <CandidateWrapper {...childProps} />
+      {user && user.isAdmin && <AdminMenuEditCandidate candidate={candidate} />}
     </div>
   );
 }

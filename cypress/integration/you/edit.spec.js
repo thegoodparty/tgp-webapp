@@ -1,7 +1,7 @@
 import { parseCookie } from '../../support/utils';
 
 describe('Edit Profile', () => {
-  let user = parseCookie(Cypress.env('cookie'));
+  const user = parseCookie(Cypress.env('cookie'));
   beforeEach(() => {
     cy.visit('/you/edit');
     cy.get('[data-cy=page-title]').contains('Edit Profile | The Good Party');

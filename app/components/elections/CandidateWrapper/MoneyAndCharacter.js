@@ -114,7 +114,7 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             <CheckboxImg src={GrayCheckbox} />
             <Body13 data-cy="is-big-money">
               <strong>Follow the Money:</strong> Candidate has raised most of
-              funding (&gt;50%) from Small Indiv. Donors (&lt;$200). This is
+              funding (>50%) from Small Indiv. Donors (&lt;$200). This is
               good, but not enough because of failing the character check.
             </Body13>
           </CheckboxRow>
@@ -126,7 +126,7 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
       if (isBigMoney || isIncumbent || perc > 50) {
         // GOOD ENOUGH SMALL MONEY
         goodText =
-          'Candidate has raised most of funding (&gt;50%) from Small Indiv. Donors (&lt;$200)';
+          'Candidate has raised most of funding (>50%) from Small Indiv. Donors (<$200)';
       } else {
         // GOOD ENOUGH BIG MONEY
         goodText =

@@ -70,7 +70,13 @@ const PolicyPositions = ({ candidate }) => {
                   CANDIDATE DATA COURTESY OF BALLOTPEDIA
                 </OpenSecretsLink>
               </a>
-              <ReportError>Report an error</ReportError>
+              <a
+                href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
+                  window.location.href
+                }`}
+              >
+                <ReportError>Report an error</ReportError>
+              </a>
             </div>
           </div>
         ) : (

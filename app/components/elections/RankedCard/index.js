@@ -55,9 +55,6 @@ const RankedCard = ({
   let hasEmptyUser = false;
 
   const candidateRow = (userRank, index) => {
-    if (index > 1) {
-      return <></>;
-    }
     // empty candidate
     if (userRank?.candidateId < 0) {
       const emptyCandidate = generateEmptyBlocCandidate(
@@ -106,11 +103,7 @@ const RankedCard = ({
           {candidateRow(rankObj[rankedId], index)}
         </React.Fragment>
       ))}
-      {sortedRank.length > 2 ? (
-        <MoreChoices>+ {sortedRank.length - 2} MORE CHOICES</MoreChoices>
-      ) : (
-        <MoreChoices>SEE DETAILS</MoreChoices>
-      )}
+      <MoreChoices>SEE DETAILS</MoreChoices>
     </Card>
   );
 };

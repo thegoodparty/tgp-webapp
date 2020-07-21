@@ -14,7 +14,7 @@ Cypress.Commands.add(
     const { topRank, threshold, userState, electors, good } = candidates;
     const suffixText =
       chamber === 'presidential'
-        ? ` (${electors} ELECTORS)`
+        ? ' (270 ELECTORS)'
         : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
     cy.get('[data-cy=title]').contains(title);
     cy.get('[data-cy=supporters-count]')

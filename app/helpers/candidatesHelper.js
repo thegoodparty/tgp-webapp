@@ -3,11 +3,10 @@ export const getVotesNeededState = (
   chamberName,
   district,
   state,
-  user = null,
 ) => {
   let votesNeededState;
   if (chamberName === 'presidential') {
-    votesNeededState = user?.shortState;
+    votesNeededState = '';
   } else if (chamberName === 'senate') {
     votesNeededState = state || '';
   } else {
@@ -71,6 +70,7 @@ export const getOpenSecretLink = (chamber, candidate) => {
   }
   return openSecretLink;
 }
+
 export const countCandidates = chamber => {
   let count = 0;
   if (chamber && typeof chamber.good !== 'undefined') {

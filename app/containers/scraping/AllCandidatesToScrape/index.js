@@ -33,11 +33,19 @@ export function AllCandidatesToScrape({
   const { candidates } = scrapeState;
   const { search } = locationState;
   const onlyNoData = queryHelper(search, 'onlyNoData');
+  const withoutTwitter = queryHelper(search, 'withoutTwitter');
+  const withPresidential = queryHelper(search, 'withPresidential');
   useEffect(() => {
     if (!candidates) {
-      dispatch(scrapeAction.loadAllCandidatesAction(onlyNoData || false));
+      dispatch(
+        scrapeAction.loadAllCandidatesAction(
+          onlyNoData || false,
+          withPresidential || false,
+          withoutTwitter || false,
+        ),
+      );
     }
-  }, [candidates, onlyNoData]);
+  }, [candidates, search]);
 
   const underScoreName = name => {
     const nameArr = name.split(' ');
@@ -66,6 +74,72 @@ export function AllCandidatesToScrape({
     return nameArr.length > 2;
   };
 
+  const allData = candidate => {
+    return (
+      <>
+        <span key={candidate.id}>
+          <a
+            className="ballotpedia"
+            href={
+              candidate.source
+                ? candidate.source
+                : `https://ballotpedia.org/${underScoreName(candidate.name)}`
+            }
+            // href={`https://ballotpedia.org/${underScoreName(
+            //   candidate.name,
+            // )}`}
+          >
+            {candidate.id}|{candidate.name}|
+            {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
+          </a>
+        </span>
+        {hasMiddleName(candidate.name) && (
+          <span key={candidate.id}>
+            <a
+              className="ballotpedia"
+              href={
+                candidate.source
+                  ? candidate.source
+                  : `https://ballotpedia.org/${underScoreNameNoMiddle(
+                      candidate.name,
+                    )}`
+              }
+              // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
+              //   candidate.name,
+              // )}`}
+            >
+              {candidate.id}|{candidate.name}|
+              {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
+            </a>
+          </span>
+        )}
+      </>
+    );
+  };
+
+  const showOnlyData = candidate => {
+    return (
+      <span key={candidate.id}>
+        <a
+          className="ballotpedia"
+          href={
+            candidate.source
+              ? candidate.source
+              : `https://ballotpedia.org/${underScoreNameNoMiddle(
+                  candidate.name,
+                )}`
+          }
+          // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
+          //   candidate.name,
+          // )}`}
+        >
+          {candidate.id}|{candidate.name}|{candidate.isIncumbent && 'incumbent'}
+          |{candidate.chamber}
+        </a>
+      </span>
+    );
+  };
+
   return (
     <div>
       <Helmet>
@@ -77,77 +151,18 @@ export function AllCandidatesToScrape({
       </Helmet>
       <div>
         <h1>
-          Candidates {onlyNoData ? ' without data ' : ''}count:{' '}
+          Candidates {onlyNoData ? ' without data ' : ''}
+          {withoutTwitter ? ' without twitter ' : ''}count:{' '}
           {candidates && candidates.length}
         </h1>
-        {candidates &&
+        {!withPresidential &&
+          !withoutTwitter &&
+          candidates &&
           candidates.map((candidate, index) => (
             <div>
               <>
-                {!onlyNoData ? (
-                  <>
-                    <span key={candidate.id}>
-                      <a
-                        className="ballotpedia"
-                        href={
-                          candidate.source
-                            ? candidate.source
-                            : `https://ballotpedia.org/${underScoreName(
-                                candidate.name,
-                              )}`
-                        }
-                        // href={`https://ballotpedia.org/${underScoreName(
-                        //   candidate.name,
-                        // )}`}
-                      >
-                        {candidate.id}|{candidate.name}|
-                        {candidate.isIncumbent && 'incumbent'}|
-                        {candidate.chamber}
-                      </a>
-                    </span>
-                    {hasMiddleName(candidate.name) && (
-                      <span key={candidate.id}>
-                        <a
-                          className="ballotpedia"
-                          href={
-                            candidate.source
-                              ? candidate.source
-                              : `https://ballotpedia.org/${underScoreNameNoMiddle(
-                                  candidate.name,
-                                )}`
-                          }
-                          // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                          //   candidate.name,
-                          // )}`}
-                        >
-                          {candidate.id}|{candidate.name}|
-                          {candidate.isIncumbent && 'incumbent'}|
-                          {candidate.chamber}
-                        </a>
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <span key={candidate.id}>
-                    <a
-                      className="ballotpedia"
-                      href={
-                        candidate.source
-                          ? candidate.source
-                          : `https://ballotpedia.org/${underScoreNameNoMiddle(
-                              candidate.name,
-                            )}`
-                      }
-                      // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-                      //   candidate.name,
-                      // )}`}
-                    >
-                      {candidate.id}|{candidate.name}|
-                      {candidate.isIncumbent && 'incumbent'}|
-                      {candidate.chamber}
-                    </a>
-                  </span>
-                )}
+                {!onlyNoData && <>{allData(candidate)}</>}
+                {onlyNoData && <>{showOnlyData(candidate)}</>}
               </>
               <span style={{ padding: '0 20px' }}>
                 {candidate.state} - {candidate.district}
@@ -155,6 +170,31 @@ export function AllCandidatesToScrape({
               <a href={candidateRoute(candidate)}>
                 {candidateRoute(candidate)}
               </a>
+            </div>
+          ))}
+
+        {withoutTwitter &&
+          candidates &&
+          candidates.map(candidate => (
+            <div>
+              <a href={candidateRoute(candidate)}>
+                {candidateRoute(candidate)}
+              </a>
+            </div>
+          ))}
+
+        {withPresidential &&
+          candidates &&
+          candidates.map((candidate, index) => (
+            <div>
+              {candidate.twitter && (
+                <span key={candidate.id}>
+                  <a className="twitter" href={candidate.twitter}>
+                    {candidate.id}|{candidate.name}|
+                    {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
+                  </a>
+                </span>
+              )}
             </div>
           ))}
       </div>

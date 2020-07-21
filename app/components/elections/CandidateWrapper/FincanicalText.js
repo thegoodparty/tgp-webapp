@@ -8,7 +8,6 @@ import { Body13, Body9 } from 'components/shared/typogrophy';
 import moneyHelper from 'helpers/moneyHelper';
 import { percHelper } from 'helpers/numberHelper';
 import {
-  convertURI,
   getComparedIncumbent,
   getCombinedReportDate,
   getFakeIncumbentOrIncumbentLabel,
@@ -91,92 +90,94 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
     comparedIncumbent.isFakeIncumbent,
   );
 
-  return (
-    <>
-      <Body13 style={{ margin: '26px 0 16px' }} data-cy="fec">
-        According to Federal Election Commission (FEC) filings for the this
-        election cycle, as of {combinedReportDate},{' '}
-        {!isGoodOrUnkwown ? (
-          <>
-            <strong>
-              {name} has raised {moneyHelper(totalRaised)} in Total Funds , with{' '}
-              <ColoredText className="red">
-                {moneyHelper(bigMoneyFunds)}
-              </ColoredText>{' '}
-              ({perc}%) of the their funds coming from Big Money Sources
-            </strong>
-            , like Political Action Committees (PACs), Corporate Lobbyists and
-            Large Donors. <br />
-            <br />
-            This means that{' '}
-            <strong>
-              Big Money backers are bankrolling {lastName}
-              ’s {isIncumbent && 're-'}election at a rate of{' '}
-              <ColoredText className={color}>{perHour}/hr</ColoredText> for
-              every hour {isIncumbent ? lastName : 'the incumbent'} has been in
-              office.
-            </strong>{' '}
-            Of course, Big Money Backers usually expect a big return on their
-            investments, which means, if {isIncumbent && 're-'}
-            elected, {name} will have to work very hard to deliver a good return
-            for them.
-          </>
-        ) : (
-          <>
-            {isBigMoney || isIncumbent || isSameAsComparedIncumbent ? (
-              <>
-                <strong>
-                  {name} has raised {moneyHelper(totalRaised)} with{' '}
-                  <ColoredText className={color}>
-                    {moneyHelper(smallMoneyFunds)}
-                  </ColoredText>{' '}
-                  (<ColoredText className={colorWithGray}>{perc}%</ColoredText>)
-                  of funds coming from Small Individual Donors
-                </strong>
-                , donating less than $200/each. <br /> <br />
-                This means that {lastName} is mostly being supported by large
-                numbers of ordinary people, who are banding together, each
-                giving a little, to help {name} compete with the Big Money
-                pouring into this race. <br /> <br />
-                {!isIncumbent && !isSameAsComparedIncumbent && (
-                  <>
-                    In contrast to {name}, the incumbent in this race,{' '}
-                    <strong>
-                      {comparedIncumbent.name}, has raised{' '}
-                      {moneyHelper(comparedIncumbent.raised)}, or{' '}
-                      {comparedIncumbent.xTimes}x times more money, with a{' '}
-                      <ColoredText className="red">
-                        {moneyHelper(comparedIncumbent.bigMoneyFunds)}
-                      </ColoredText>{' '}
-                      ({percHelper(comparedIncumbent.bigFundsPerc, true)}% ) of
-                      funds coming from Big Money sources
-                    </strong>
-                    , like Political Action Committees (PACs), Corporate
-                    Lobbyists and Large Donors.
-                  </>
-                )}
-              </>
-            ) : (
-              <>
-                <strong>
-                  {name} has raised just {moneyHelper(totalRaised)} in Total
-                  Funds, or{' '}
-                  <ColoredText className="green">
-                    {comparedIncumbent.relativePerc}%
-                  </ColoredText>{' '}
-                  of the funding of the {fakeIncumbentOrIncumbentLabel} in this
-                  race
-                </strong>
-              </>
-            )}
+  const comparedIncumbentText = () => {
+    if (!isIncumbent && !isBigMoney && !isSameAsComparedIncumbent) {
+      return (
+        <>
+          <br />
+          <br />
+          <strong>
+            The {fakeIncumbentOrIncumbentLabel}, {comparedIncumbent.name}, has
+            raised {moneyHelper(comparedIncumbent.raised)}, or{' '}
+            {comparedIncumbent.xTimes}x times more money, with a{' '}
+            <ColoredText className="red">
+              {moneyHelper(comparedIncumbent.bigMoneyFunds)}
+            </ColoredText>{' '}
+            ({percHelper(comparedIncumbent.bigFundsPerc, true)}% ) of funds
+            coming from Big Money sources
+          </strong>
+          , like Political Action Committees (PACs), Corporate Lobbyists and
+          Large Donors.
+          <br />
+          <br />
+          Such a difference in funding creates a nearly impossible hurdle that
+          relatively less known, indie or grass-roots candidates like {
+            name
+          }{' '}
+          must overcome against a major party{' '}
+          {comparedIncumbent.isFakeIncumbent
+            ? 'Big Money Candidate'
+            : 'Incumbent'}{' '}
+          that Big Money Backers are bankrolling. The reason we created The Good
+          Party is to help such candidates.
+        </>
+      );
+    }
+  };
 
-            {!isIncumbent && !isBigMoney && !isSameAsComparedIncumbent && (
+  const text = () => {
+    if (!isGoodOrUnkwown) {
+      // NOT GOOD ENOUGH
+      return (
+        <>
+          <strong>
+            {name} has raised {moneyHelper(totalRaised)} in Total Funds , with{' '}
+            <ColoredText className="red">
+              {moneyHelper(bigMoneyFunds)}
+            </ColoredText>{' '}
+            ({perc}%) of the their funds coming from Big Money Sources
+          </strong>
+          , like Political Action Committees (PACs), Corporate Lobbyists and
+          Large Donors. <br />
+          <br />
+          This means that{' '}
+          <strong>
+            Big Money backers are bankrolling {lastName}
+            ’s {isIncumbent && 're-'}election at a rate of{' '}
+            <ColoredText className={color}>{perHour}/hr</ColoredText> for every
+            hour {isIncumbent ? lastName : 'the incumbent'} has been in office.
+          </strong>{' '}
+          Of course, Big Money Backers usually expect a big return on their
+          investments, which means, if {isIncumbent && 're-'}
+          elected, {name} will have to work very hard to deliver a good return
+          for them.
+        </>
+      );
+    } else {
+      // GOOD OR UNKNOWN
+      if (isBigMoney || isIncumbent || isSameAsComparedIncumbent) {
+        // GOOD OR UNKNOWN INCUMBENT OR BIG MONEY
+        return (
+          <>
+            <strong>
+              {name} has raised {moneyHelper(totalRaised)} with{' '}
+              <ColoredText className={color}>
+                {moneyHelper(smallMoneyFunds)}
+              </ColoredText>{' '}
+              (<ColoredText className={colorWithGray}>{perc}%</ColoredText>) of
+              funds coming from Small Individual Donors
+            </strong>
+            , donating less than $200/each. <br /> <br />
+            This means that {lastName} is mostly being supported by large
+            numbers of ordinary people, who are banding together, each giving a
+            little, to help {name} compete with the Big Money pouring into this
+            race. <br /> <br />
+            {!isIncumbent && !isSameAsComparedIncumbent && (
               <>
-                <br />
-                <br />
+                In contrast to {name}, the incumbent in this race,{' '}
                 <strong>
-                  The {fakeIncumbentOrIncumbentLabel}, {comparedIncumbent.name},
-                  has raised {moneyHelper(comparedIncumbent.raised)}, or{' '}
+                  {comparedIncumbent.name}, has raised{' '}
+                  {moneyHelper(comparedIncumbent.raised)}, or{' '}
                   {comparedIncumbent.xTimes}x times more money, with a{' '}
                   <ColoredText className="red">
                     {moneyHelper(comparedIncumbent.bigMoneyFunds)}
@@ -186,22 +187,36 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
                 </strong>
                 , like Political Action Committees (PACs), Corporate Lobbyists
                 and Large Donors.
-                <br />
-                <br />
-                Such a difference in funding creates a nearly impossible hurdle
-                that relatively less known, indie or grass-roots candidates like{' '}
-                {name} must overcome against a major party{' '}
-                {comparedIncumbent.isFakeIncumbent
-                  ? 'Big Money Candidate'
-                  : 'Incumbent'}{' '}
-                that Big Money Backers are bankrolling. The reason we created
-                The Good Party is to help such candidates.
               </>
             )}
+            {comparedIncumbentText()}
           </>
-        )}
-      </Body13>
+        );
+      } else {
+        // GOOD OR UNKNOWN SMALL CANDIDATE
+        return (
+          <>
+            <strong>
+              {name} has raised just {moneyHelper(totalRaised)} in Total Funds,
+              or{' '}
+              <ColoredText className="green">
+                {comparedIncumbent.relativePerc}%
+              </ColoredText>{' '}
+              of the funding of the {fakeIncumbentOrIncumbentLabel} in this race
+            </strong>
+            {comparedIncumbentText()}
+          </>
+        );
+      }
+    }
+  };
 
+  return (
+    <>
+      <Body13 style={{ margin: '26px 0 16px' }} data-cy="fec">
+        According to Federal Election Commission (FEC) filings for the this
+        election cycle, as of {combinedReportDate}, {text()}
+      </Body13>
       <div className="text-center" data-cy="report">
         <a href={openSecretLink} target="_blank" data-cy="secret-link">
           <OpenSecretsLink>

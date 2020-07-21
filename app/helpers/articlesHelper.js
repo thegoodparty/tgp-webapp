@@ -24,7 +24,7 @@ export const slugify = text => {
 };
 
 export const getArticleById = (articles, id) => {
-  if (articleHash !== {}) {
+  if (Object.keys(articleHash).length === 0) {
     articles.forEach(article => {
       articleHash[article.id] = article;
     });

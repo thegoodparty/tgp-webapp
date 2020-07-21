@@ -1,8 +1,6 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
-import { getUserFromStateOrCookie } from 'helpers/userHelper';
-import makeSelectUser from 'containers/you/YouPage/selectors';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
@@ -12,10 +10,6 @@ function* loadCandidate(action) {
     const api = tgpApi.findCandidate;
     const { id, chamber, isIncumbent } = action;
     const payload = { id, chamber, isIncumbent };
-    const user = yield call(getUserFromStateOrCookie, makeSelectUser);
-    if (user?.shortState) {
-      payload.userState = user.shortState;
-    }
     const candidate = yield call(requestHelper, api, payload);
     yield put(actions.loadCandidateActionSuccess(candidate));
   } catch (error) {

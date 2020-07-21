@@ -14,6 +14,7 @@ import {
   candidateRanking,
   candidateBlocName,
   generateEmptyBlocCandidate,
+  blocNameSuffix,
 } from 'helpers/electionsHelper';
 import { numberFormatter, numberNth } from 'helpers/numberHelper';
 
@@ -302,6 +303,8 @@ const VsList = ({
 
   const choiceButton = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
+    const blocName = candidateBlocName(candidate);
+
     if (candidateRank) {
       return (
         <GrowWrapper>
@@ -310,7 +313,7 @@ const VsList = ({
               <BlueBody11>GROW #GoodBloc</BlueBody11>
             ) : (
               <BlueBody11>
-                GROW {candidateBlocName(candidate)}
+                GROW <strong>{blocName}</strong> {blocNameSuffix(blocName)}
               </BlueBody11>
             )}
           </GrowButtonWrapper>
@@ -331,7 +334,8 @@ const VsList = ({
           JOIN{' '}
           {candidate.id === noneYetCandidate.id
             ? '#GoodBloc'
-            : candidateBlocName(candidate)}
+            : candidateBlocName(candidate)}{' '}
+          {blocNameSuffix(blocName)}
         </JoinButton>
       </GrowWrapper>
     );
@@ -363,8 +367,7 @@ const VsList = ({
 
     return (
       <BlocCount data-cy="block-count">
-        {numberFormatter(rank)} {rank === 1 ? 'is' : 'are'} in{' '}
-        {candidateBlocName(candidate)}
+        {numberFormatter(rank)} people support {candidateBlocName(candidate)}
       </BlocCount>
     );
   };

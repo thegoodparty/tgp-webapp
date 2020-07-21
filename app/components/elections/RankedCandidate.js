@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Body9, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { partyResolver, candidateRoute } from 'helpers/electionsHelper';
+import { numberFormatter } from '../../helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -24,6 +25,10 @@ const CandName = styled(Body9)`
 `;
 
 const Party = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const Supporters = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
@@ -56,6 +61,7 @@ const RankedCandidate = ({ candidate, index, withLink = true }) => {
               ? 'GOOD PARTY APPROVED'
               : partyResolver(candidate.party)}
           </Party>
+          <Supporters>{numberFormatter(candidate.ranking)} Supporters</Supporters>
         </CandName>
       </Row>
     </Wrapper>
