@@ -243,12 +243,19 @@ const ShareModal = ({
             name={candidate.name}
           />
           {isExternalLink ? (
-            <H1 style={{ marginTop: '22px', marginBottom: '10px' }}>
-              {blocName} Joined!{' '}
-              <span role="img" aria-label="flex">
-                💪
-              </span>
-            </H1>
+            <>
+              <H3 style={{ marginTop: '22px' }}>
+                {' '}
+                Congrats!{' '}
+                <span role="img" aria-label="party">
+                  🎉
+                </span>{' '}
+                You’ve joined
+              </H3>
+              <H1 style={{ marginTop: '10px', marginBottom: '16px' }}>
+                {blocName} {blocNameSuffix(blocName)}
+              </H1>
+            </>
           ) : (
             <>
               <H3 style={{ marginTop: '22px' }}>Please help grow </H3>
