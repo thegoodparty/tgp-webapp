@@ -68,7 +68,7 @@ function* register(action) {
     setUserCookie(user);
     deleteCookie('guestRanking');
   } catch (error) {
-    if (error.response && error.response.exists) {
+    if (error.response?.exists) {
       // user is already in our system, try login.
       yield put(actions.loginAction(action.email));
     } else {
@@ -153,7 +153,7 @@ function* socialRegister(action) {
     setUserCookie(responseUser);
     setCookie('token', access_token);
   } catch (error) {
-    if (error.response && error.response.exists) {
+    if (error.response?.exists) {
       // user is already in our system, try login.
       yield put(actions.socialLoginAction(action.user));
     } else {
@@ -273,7 +273,19 @@ function* login(action) {
     yield call(requestHelper, api, payload);
     yield put(push('/login/confirm'));
   } catch (error) {
-    yield put(push('/login/confirm'));
+    if (error.response?.notexists) {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          `The email ${
+            action.email
+          } doesn't exist in our system. Please register first.`,
+          'error',
+        ),
+      );
+    } else {
+      yield put(snackbarActions.showSnakbarAction('Error login in.'), 'error');
+    }
+    // yield put(push('/login/confirm'));
   }
 }
 
@@ -583,7 +595,10 @@ export default function* saga() {
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
-  const creatorMessageAction = yield takeLatest(types.SEND_MESSAGE_TO_CREATOR, sendCreatorMessage);
+  const creatorMessageAction = yield takeLatest(
+    types.SEND_MESSAGE_TO_CREATOR,
+    sendCreatorMessage,
+  );
 
   const saveUserRankingAction = yield takeLatest(
     types.SAVE_USER_RANKING,
