@@ -22,20 +22,4 @@ describe('Edit Profile', () => {
   it(`check private info section`, () => {
     cy.checkPrivateInfoEditSection(user);
   });
-  // it('loads user data', () => {
-  //   cy.getUserRanking().then(response => {
-  //     ranking = response.body.ranking;
-  //   });
-  //   cy.getUserCrew().then(response => {
-  //     crew = response.body.ranking;
-  //   });
-  // });
-  // it('check election section without zipcode', () => {
-  //   cy.checkElectionSectionInYou(
-  //     user,
-  //     senateCandidatesCount,
-  //     houseCandidatesCount,
-  //     getRankingObj(ranking),
-  //   );
-  // });
 });

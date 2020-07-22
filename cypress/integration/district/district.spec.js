@@ -70,6 +70,8 @@ context('District', () => {
 
         cy.getPresidentialCandidateData(zipcode).then(response => {
           presidential = response.body.presidential;
+          const { stateShort } = district;
+          const upperState = stateShort ? stateShort.toUpperCase() : stateShort;
           cy.get('[data-cy=presidential]')
             .should('have.attr', 'href')
             .and('include', presidentialElectionLink());
@@ -77,7 +79,7 @@ context('District', () => {
             'presidential',
             'Presidential Election',
             presidential,
-            '(270 ELECTORS)',
+            ` IN ${upperState} (${presidential.electors} ELECTORS)`,
           );
         });
       });

@@ -34,7 +34,6 @@ Cypress.Commands.add('checkEmailRegisterSection', () => {
   cy.checkEmailRegisterPage();
 });
 Cypress.Commands.add('checkLoginConfirmPage', email => {
-  cy.wait(2000);
   cy.url().should('include', '/login/confirm');
   cy.get('[data-cy=page-title]').contains('Login Code Confirmation');
   cy.get('[data-cy=title]').should('contain', `A code was sent to ${email}`);

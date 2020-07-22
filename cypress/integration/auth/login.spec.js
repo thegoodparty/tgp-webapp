@@ -1,50 +1,3 @@
-// import 'cypress-localstorage-commands';
-
-// describe('Login', () => {
-//   it('Login through Google', () => {
-//     const username = Cypress.env('googleSocialLoginUsername');
-//     const password = Cypress.env('googleSocialLoginPassword');
-//     const loginUrl = Cypress.env('loginUrl');
-//     const cookieName = Cypress.env('cookieName');
-//     const socialLoginOptions = {
-//       username,
-//       password,
-//       loginUrl,
-//       // headless: true,
-//       logs: true,
-//       isPopup: true,
-//       loginSelector: '[data-cy=google-social-login]',
-//       postLoginSelector: '.account-panel',
-//       popupDelay: 5000,
-//       loginSelectorDelay: 5000,
-//       cookieDelay: 5000,
-//       // getAllBrowserCookies: true,
-//     };
-//     return cy
-//       .task('GoogleSocialLogin', socialLoginOptions)
-//       .then(({ cookies }) => {
-//         cy.clearCookies();
-//         console.log('socialLogin', cookies);
-
-//         const cookie = cookies
-//           .filter(cookie => cookie.name === cookieName)
-//           .pop();
-//         if (cookie) {
-//           cy.setCookie(cookie.name, cookie.value, {
-//             domain: cookie.domain,
-//             expiry: cookie.expires,
-//             httpOnly: cookie.httpOnly,
-//             path: cookie.path,
-//             secure: cookie.secure,
-//           });
-
-//           Cypress.Cookies.defaults({
-//             whitelist: cookieName,
-//           });
-//         }
-//       });
-//   });
-// });
 export { userDistrict } from '../../../app/helpers/userHelper';
 
 describe('Login', () => {
@@ -55,6 +8,7 @@ describe('Login', () => {
     cy.get('[data-cy=register-label]').contains('t have an account?');
   });
   it('finds social login part', () => {
+    cy.wait(3000);
     cy.checkSocialLoginSection();
     cy.get('[data-cy=register]')
       .should('contain', `Create one`)

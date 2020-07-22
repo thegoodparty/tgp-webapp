@@ -14,7 +14,6 @@ import {
   getUserDistrictName,
 } from '../../../app/helpers/userHelper';
 import { formatToPhone } from '../../../app/helpers/phoneHelper';
-import { feedbackLink } from '../../constants';
 import { parseCookie } from '../utils';
 
 Cypress.Commands.add(
@@ -166,18 +165,6 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
   cy.get('[data-cy=invite-url]').should('contain', url);
 });
 
-Cypress.Commands.add('checkHelpSectionInYou', () => {
-  cy.get('[data-cy=help-title]').should('contain', 'What can you do to help?');
-  cy.get('[data-cy=friend-invite]').should('contain', 'Invite Friends');
-  cy.get('[data-cy=feedback-link]')
-    .should('contain', 'Give Feedback or Suggestions')
-    .should('have.attr', 'href')
-    .and('contain', feedbackLink);
-  cy.get('[data-cy=creators-link]')
-    .should('contain', 'Creators of the World, Unite! help create')
-    .should('have.attr', 'href')
-    .and('contain', '/creators');
-});
 
 Cypress.Commands.add('checkSignOutInYou', () => {
   cy.get('[data-cy=signout-link')

@@ -1,7 +1,7 @@
-import { testZipcodes } from '../../constants';
+import { testZipcodes, feedbackLink } from '../../constants';
 import { parseCookie, getRankingObj, userDistrict } from '../../support/utils';
 import { countCandidates } from '../../../app/helpers/candidatesHelper';
-import { presidentialElectionLink } from '../../../app/helpers/electionsHelper';
+
 context('You', () => {
   describe(`check You Page for guest user`, () => {
     beforeEach(() => {
@@ -56,7 +56,6 @@ context('You', () => {
         cy.getCookie('user').then(cookie => {
           user = parseCookie(cookie.value);
           districtNumber = userDistrict(user);
-          console.log('parseduser', user);
           const { shortState } = user;
           cy.getHouseCandidateData(shortState, districtNumber).then(
             response => {
@@ -81,7 +80,19 @@ context('You', () => {
       cy.checkCrewSectionInYou(user, crew);
     });
     it('check help section', () => {
-      cy.checkHelpSectionInYou();
+      cy.get('[data-cy=help-title]').should(
+        'contain',
+        'What can you do to help?',
+      );
+      cy.get('[data-cy=friend-invite]').should('contain', 'Invite Friends');
+      cy.get('[data-cy=feedback-link]')
+        .should('contain', 'Give Feedback or Suggestions')
+        .should('have.attr', 'href')
+        .and('contain', feedbackLink);
+      cy.get('[data-cy=creators-link]')
+        .should('contain', 'Creators of the World, Unite! help create')
+        .should('have.attr', 'href')
+        .and('contain', '/creators');
     });
     it('check sign out', () => {
       cy.checkSignOutInYou();

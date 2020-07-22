@@ -77,7 +77,7 @@ export const userDistrict = user => {
 
 export const getUserDistrict = (congDistrict, cds) => {
   let userDistrictObj = {};
-  if (congDistrict && cds && cds.length > 0) {
+  if (congDistrict && cds?.length > 0) {
     cds.forEach(district => {
       if (district.id === congDistrict) {
         userDistrictObj = district;
@@ -86,7 +86,7 @@ export const getUserDistrict = (congDistrict, cds) => {
     if (!userDistrict.code) {
       userDistrictObj = cds[0];
     }
-  } else if (cds && cds.length > 0) {
+  } else if (cds?.length > 0) {
     userDistrictObj = cds[0]; // eslint-disable-line
   }
   return userDistrictObj;
@@ -94,7 +94,7 @@ export const getUserDistrict = (congDistrict, cds) => {
 
 export const getDisplayCrew = crew => {
   const displayCrew = [];
-  if (crew && crew.length > 0) {
+  if (crew?.length > 0) {
     crew.forEach((crewMember, index) => {
       if (index < 3) {
         displayCrew.push(crewMember);
@@ -105,32 +105,24 @@ export const getDisplayCrew = crew => {
 };
 
 export const getCrewFillers = crew => {
-  let crewFillers = [];
-  if (crew && crew.length < 3) {
+  const crewFillers = [];
+  if (crew?.length < 3) {
     const fillerCount = 3 - crew.length;
-    crewFillers = Array.from(
-      Array(fillerCount),
-      (_, x) => x + 1 + 3 - fillerCount,
-    );
+    for (let i = 0; i < fillerCount; i += 1) {
+      crewFillers.push(i + 1 + 3 - fillerCount);
+    }
   }
   return crewFillers;
 };
 
 export function* getUserFromStateOrCookie(makeSelectUser) {
   const userState = yield select(makeSelectUser);
-  if (userState && userState.user) {
-    return userState.user;
-  }
-  const cookieUser = getUserCookie();
-  if (cookieUser) {
-    return JSON.parse(cookieUser);
-  }
-  return null;
+  return userState?.user || null;
 }
 
 export const getUserDistrictName = (congDistrict, cds) => {
   let districtName = '';
-  if (cds && cds.length > 0) {
+  if (cds?.length > 0) {
     if (congDistrict) {
       cds.forEach(district => {
         if (district.id === congDistrict) {
@@ -142,4 +134,4 @@ export const getUserDistrictName = (congDistrict, cds) => {
     }
   }
   return districtName;
-}
+};
