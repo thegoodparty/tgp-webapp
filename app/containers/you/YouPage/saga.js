@@ -4,7 +4,6 @@ import { push } from 'connected-react-router';
 import requestHelper from 'helpers/requestHelper';
 import {
   deleteCookie,
-  deleteSignupRedirectCookie,
   getCookie,
   getUserCookie,
   setCookie,
@@ -23,6 +22,7 @@ import actions from './actions';
 import selectUser from './selectors';
 import { candidateBlocName } from 'helpers/electionsHelper';
 import { getSignupRedirectCookie } from 'helpers/cookieHelper';
+import AnaliticsService from '../../../services/AnalyticsService';
 
 function* sendCreatorMessage(action) {
   try {
@@ -152,12 +152,14 @@ function* socialRegister(action) {
 
     setUserCookie(responseUser);
     setCookie('token', access_token);
+    AnaliticsService.sendEvent('social-register', 'success');
   } catch (error) {
     if (error.response?.exists) {
       // user is already in our system, try login.
       yield put(actions.socialLoginAction(action.user));
     } else {
       yield put(actions.registerActionError(error));
+      AnaliticsService.sendEvent('social-register', 'error');
     }
   }
 }
@@ -257,9 +259,11 @@ function* confirmEmail(action) {
         yield put(push('/you'));
       }
     }
+    AnaliticsService.sendEvent('email-login-confirm', 'success');
   } catch (error) {
     console.log('error at email conriamtion', error);
     yield put(actions.confirmEmailActionError(error.response));
+    AnaliticsService.sendEvent('email-login-confirm', 'error');
   }
 }
 
@@ -272,6 +276,7 @@ function* login(action) {
     };
     yield call(requestHelper, api, payload);
     yield put(push('/login/confirm'));
+    AnaliticsService.sendEvent('email-login', 'success');
   } catch (error) {
     if (error.response?.notexists) {
       yield put(
@@ -282,8 +287,10 @@ function* login(action) {
           'error',
         ),
       );
+      AnaliticsService.sendEvent('email-login', 'email-exists');
     } else {
-      yield put(snackbarActions.showSnakbarAction('Error login in.'), 'error');
+      yield put(snackbarActions.showSnakbarAction('Error login in.', 'error'));
+      AnaliticsService.sendEvent('email-login', 'error');
     }
     // yield put(push('/login/confirm'));
   }
@@ -344,6 +351,7 @@ function* socialLogin(action) {
     yield put(
       snackbarActions.showSnakbarAction(`Welcome back ${responseUser.name}`),
     );
+    AnaliticsService.sendEvent('social-login', 'success', provider);
   } catch (error) {
     if (error.response && error.response.noUser) {
       yield put(
@@ -352,6 +360,7 @@ function* socialLogin(action) {
     } else {
       yield put(snackbarActions.showSnakbarAction('Error Signing in', 'error'));
     }
+    AnaliticsService.sendEvent('social-login', 'error', action?.user?._provider);
   }
 }
 
