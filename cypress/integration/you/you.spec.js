@@ -1,3 +1,4 @@
+import promisify from 'cypress-promise';
 import { testZipcodes, feedbackLink } from '../../constants';
 import { parseCookie, getRankingObj, userDistrict } from '../../support/utils';
 import { countCandidates } from '../../../app/helpers/candidatesHelper';
@@ -33,13 +34,13 @@ context('You', () => {
       cy.get('[data-cy=page-title]').contains('You | The Good Party');
       cy.signInWithDefaultUser();
     });
-    it('loads user data', () => {
-      cy.getUserRanking().then(response => {
-        ranking = response.body.ranking;
-      });
-      cy.getUserCrew().then(response => {
-        crew = response.body.ranking;
-      });
+    it('loads user data', async () => {
+      ranking = await promisify(
+        cy.getUserRanking().then(response => response.body.ranking),
+      );
+      crew = await promisify(
+        cy.getUserCrew().then(response => response.body.crew),
+      );
     });
     it('check election section without zipcode', () => {
       cy.checkElectionSectionInYou(
@@ -50,30 +51,34 @@ context('You', () => {
       );
     });
     Object.keys(testZipcodes).forEach(zipcode => {
-      it(`check election section - ${zipcode} ${testZipcodes[zipcode]}`, () => {
+      it(`check election section - ${zipcode} ${
+        testZipcodes[zipcode]
+      }`, async () => {
         cy.chooseCorrectZipcode(zipcode);
         cy.visit('/you');
-        cy.getCookie('user').then(cookie => {
-          user = parseCookie(cookie.value);
-          districtNumber = userDistrict(user);
-          const { shortState } = user;
-          cy.getHouseCandidateData(shortState, districtNumber).then(
-            response => {
-              houseCandidates = response.body.houseCandidates;
-              cy.getSenateCandidateData(shortState).then(senate_response => {
-                senateCandidates = senate_response.body.senateCandidates;
-                senateCandidatesCount = countCandidates(senateCandidates);
-                houseCandidatesCount = countCandidates(houseCandidates);
-                cy.checkElectionSectionInYou(
-                  user,
-                  senateCandidatesCount,
-                  houseCandidatesCount,
-                  getRankingObj(ranking),
-                );
-              });
-            },
-          );
-        });
+        user = await promisify(
+          cy.getCookie('user').then(cookie => parseCookie(cookie.value)),
+        );
+        districtNumber = userDistrict(user);
+        const { shortState } = user;
+        houseCandidates = await promisify(
+          cy
+            .getHouseCandidateData(shortState, districtNumber)
+            .then(res => res.body.houseCandidates),
+        );
+        senateCandidates = await promisify(
+          cy
+            .getSenateCandidateData(shortState)
+            .then(res => res.body.senateCandidates),
+        );
+        senateCandidatesCount = countCandidates(senateCandidates);
+        houseCandidatesCount = countCandidates(houseCandidates);
+        cy.checkElectionSectionInYou(
+          user,
+          senateCandidatesCount,
+          houseCandidatesCount,
+          getRankingObj(ranking),
+        );
       });
     });
     it('check crew section', () => {
