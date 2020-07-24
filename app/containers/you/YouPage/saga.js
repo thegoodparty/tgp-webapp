@@ -4,7 +4,6 @@ import { push } from 'connected-react-router';
 import requestHelper from 'helpers/requestHelper';
 import {
   deleteCookie,
-  deleteSignupRedirectCookie,
   getCookie,
   getUserCookie,
   setCookie,
@@ -23,6 +22,8 @@ import actions from './actions';
 import selectUser from './selectors';
 import { candidateBlocName } from 'helpers/electionsHelper';
 import { getSignupRedirectCookie } from 'helpers/cookieHelper';
+import AnalyticsService from 'services/AnalyticsService';
+import globalActions from 'containers/App/actions';
 
 function* sendCreatorMessage(action) {
   try {
@@ -68,7 +69,7 @@ function* register(action) {
     setUserCookie(user);
     deleteCookie('guestRanking');
   } catch (error) {
-    if (error.response && error.response.exists) {
+    if (error.response?.exists) {
       // user is already in our system, try login.
       yield put(actions.loginAction(action.email));
     } else {
@@ -152,12 +153,15 @@ function* socialRegister(action) {
 
     setUserCookie(responseUser);
     setCookie('token', access_token);
+    AnalyticsService.sendEvent('social-register', 'success');
   } catch (error) {
-    if (error.response && error.response.exists) {
+    if (error.response?.exists) {
       // user is already in our system, try login.
       yield put(actions.socialLoginAction(action.user));
     } else {
       yield put(actions.registerActionError(error));
+      AnalyticsService.sendEvent('social-register', 'error');
+      yield put(globalActions.logErrorAction('social register error', error));
     }
   }
 }
@@ -257,9 +261,12 @@ function* confirmEmail(action) {
         yield put(push('/you'));
       }
     }
+    AnalyticsService.sendEvent('email-login-confirm', 'success');
   } catch (error) {
     console.log('error at email conriamtion', error);
     yield put(actions.confirmEmailActionError(error.response));
+    AnalyticsService.sendEvent('email-login-confirm', 'error');
+    yield put(globalActions.logErrorAction('email login confirm error', error));
   }
 }
 
@@ -272,8 +279,25 @@ function* login(action) {
     };
     yield call(requestHelper, api, payload);
     yield put(push('/login/confirm'));
+    AnalyticsService.sendEvent('email-login', 'success');
   } catch (error) {
-    yield put(push('/login/confirm'));
+    if (error.response?.notexists) {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          `The email ${
+            action.email
+          } doesn't exist in our system. Please register first.`,
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent('email-login', 'email-exists');
+      yield put(globalActions.logErrorAction('email login error - email exists', error));
+    } else {
+      yield put(snackbarActions.showSnakbarAction('Error login in.', 'error'));
+      AnalyticsService.sendEvent('email-login', 'error');
+      yield put(globalActions.logErrorAction('email login error', error));
+    }
+    // yield put(push('/login/confirm'));
   }
 }
 
@@ -332,6 +356,7 @@ function* socialLogin(action) {
     yield put(
       snackbarActions.showSnakbarAction(`Welcome back ${responseUser.name}`),
     );
+    AnalyticsService.sendEvent('social-login', 'success', provider);
   } catch (error) {
     if (error.response && error.response.noUser) {
       yield put(
@@ -340,6 +365,12 @@ function* socialLogin(action) {
     } else {
       yield put(snackbarActions.showSnakbarAction('Error Signing in', 'error'));
     }
+    AnalyticsService.sendEvent(
+      'social-login',
+      'error',
+      action?.user?._provider,
+    );
+    yield put(globalActions.logErrorAction(`social login error. provider: ${action?.user?._provider}`, error));
   }
 }
 
@@ -583,7 +614,10 @@ export default function* saga() {
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
-  const creatorMessageAction = yield takeLatest(types.SEND_MESSAGE_TO_CREATOR, sendCreatorMessage);
+  const creatorMessageAction = yield takeLatest(
+    types.SEND_MESSAGE_TO_CREATOR,
+    sendCreatorMessage,
+  );
 
   const saveUserRankingAction = yield takeLatest(
     types.SAVE_USER_RANKING,

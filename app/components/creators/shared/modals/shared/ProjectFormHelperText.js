@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FormHelperText } from '@material-ui/core';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const ProjectFormHelperText = styled(FormHelperText)`
   && {

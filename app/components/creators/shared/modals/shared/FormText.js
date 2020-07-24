@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 
 const FormText = styled(TextField)`
   && {
