@@ -11,6 +11,7 @@ import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
 import UserIcon from '@material-ui/icons/Person';
 import ArticletIcon from '@material-ui/icons/Assignment';
+import StatsIcon from '@material-ui/icons/Equalizer';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -20,6 +21,7 @@ import heartImg from 'images/heart.svg';
 import AdminCandidateList from '../AdminCandidateList/Loadable';
 import AdminUsersList from '../AdminUsersList/Loadable';
 import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
+import AdminUserStats from '../AdminUserStats/Loadable';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -88,6 +90,7 @@ const leftMenuItems = [
   { icon: <HomeIcon />, label: 'House Candidates' },
   { icon: <UserIcon />, label: 'Users' },
   { icon: <ArticletIcon />, label: 'Articles' },
+  { icon: <StatsIcon />, label: 'User Stats' },
 ];
 
 const AdminWrapper = ({
@@ -112,8 +115,10 @@ const AdminWrapper = ({
       const chamber = mapChamber(index);
       loadCandidatesCallback(chamber);
     }
-    if (index === 3) {
-      loadAllUsersCallback();
+    if (index === 3 || index === 5) {
+      if (!users) {
+        loadAllUsersCallback();
+      }
     }
     if (index === 4) {
       loadArticleFeedbackCallback();
@@ -165,6 +170,9 @@ const AdminWrapper = ({
     }
     if (selectedItem === 4) {
       return <AdminArticlesFeedback articles={articles} content={content} />;
+    }
+    if (selectedItem === 5) {
+      return <AdminUserStats users={users} />;
     }
 
     return (

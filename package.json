@@ -116,6 +116,7 @@
     "react-slick": "^0.25.2",
     "react-social-login": "^3.4.7",
     "react-table": "^6.10.0",
+    "recharts": "^1.8.5",
     "redux": "4.0.1",
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
