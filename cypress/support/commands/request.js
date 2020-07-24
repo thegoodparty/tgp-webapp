@@ -115,7 +115,7 @@ Cypress.Commands.add('getIncumbentData', (candidateData = null) => {
 
 Cypress.Commands.add('getUserRanking', () => {
   const token = Cypress.env('token');
-  constcy.sendRequest(
+  cy.sendRequest(
     api.userRanking.method,
     api.userRanking.url,
     null,

@@ -8,7 +8,6 @@ describe('Login', () => {
     cy.get('[data-cy=register-label]').contains('t have an account?');
   });
   it('finds social login part', () => {
-    cy.wait(3000);
     cy.checkSocialLoginSection();
     cy.get('[data-cy=register]')
       .should('contain', `Create one`)

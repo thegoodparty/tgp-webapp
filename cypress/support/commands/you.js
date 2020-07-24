@@ -207,7 +207,6 @@ Cypress.Commands.add('checkInitialInfoEditSection', () => {
   cy.get('[data-cy=profile-form]')
     .find('button')
     .click();
-  cy.wait(4000);
   cy.getCookie('user').then(cookie => {
     const user = parseCookie(cookie.value);
     cy.wrap(user.name).should('contain', 'blueshark0811');
