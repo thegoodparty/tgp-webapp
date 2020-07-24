@@ -167,6 +167,11 @@ const api = {
     method: 'POST',
   },
 
+  logError: {
+    url: `${base}notifications/log-error`,
+    method: 'POST',
+  },
+
   // admin
   admin: {
     candidates: {

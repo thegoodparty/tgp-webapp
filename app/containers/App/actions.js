@@ -23,6 +23,12 @@ const clearArticleModalAction = () => ({
   type: types.CLEAR_ARTICLE_MODAL,
 });
 
+const logErrorAction = (message, error) => ({
+  type: types.LOG_ERROR,
+  message,
+  error,
+});
+
 const sendArticleFeedbackAction = (id, title, isHelpful, feedback) => ({
   type: types.SEND_ARTICLE_FEEDBACK,
   id,
@@ -38,4 +44,5 @@ export default {
   setArticleModalAction,
   clearArticleModalAction,
   sendArticleFeedbackAction,
+  logErrorAction,
 };

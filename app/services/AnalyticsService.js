@@ -1,7 +1,7 @@
 import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
 
-class AnaliticsService {
+class AnalyticsService {
   static sendEvent(category, action = 'click', label, value) {
     if (ENV !== 'prod') {
       return;
@@ -28,4 +28,4 @@ class AnaliticsService {
   }
 }
 
-export default AnaliticsService;
+export default AnalyticsService;
