@@ -40,11 +40,29 @@ function* sendArticleFeedback(action) {
   }
 }
 
+function* logError(action) {
+  try {
+    const user = yield call(getUserFromStateOrCookie);
+    const uuid = getUuid(user);
+    const { error, message } = action;
+    const api = tgpApi.logError;
+    const payload = {
+      message,
+      error: typeof error === 'string' ? error : JSON.stringify(error),
+      uuid,
+    };
+    yield call(requestHelper, api, payload);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_CONTENT, loadContent);
-  let action = yield takeLatest(
+  const action = yield takeLatest(
     types.SEND_ARTICLE_FEEDBACK,
     sendArticleFeedback,
   );
+  const logAction = yield takeLatest(types.LOG_ERROR, logError);
 }

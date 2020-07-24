@@ -11,6 +11,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
@@ -74,6 +75,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
               : 'no',
           isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
           isMajor: candidate.isMajor ? 'yes' : 'no',
+          isHidden: candidate.isHidden === true,
         };
         if (chamber !== 'presidential') {
           fields.state = candidate.state
@@ -133,7 +135,13 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
               <EditIcon />
             </a>
             &nbsp;&nbsp;&nbsp;
-            <a href={route} target="_blank">
+            <a
+              href={route}
+              target="_blank"
+              style={{
+                textDecoration: row.original.isHidden ? 'line-through' : '',
+              }}
+            >
               {row.original.name}
             </a>
           </>
@@ -175,9 +183,30 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       maxWidth: 150,
     },
     {
+      Header: 'isHidden',
+      accessor: 'isHidden',
+      filterMethod: customFilter,
+      headerStyle,
+      maxWidth: 120,
+      Cell: row => {
+        return (
+          <div className="text-center">
+            <Checkbox
+              checked={row.original.isHidden}
+              onChange={event =>
+                updateHidden(row.original, event.target.checked)
+              }
+              inputProps={{ 'aria-label': 'primary checkbox' }}
+            />
+          </div>
+        );
+      },
+    },
+    {
       Header: 'Aligned? (yes/no/unknown)',
       accessor: 'isAligned',
       filterMethod: customFilter,
+      headerStyle,
       maxWidth: 180,
       Cell: row => {
         return (
@@ -219,6 +248,16 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       headerStyle,
     });
   }
+
+  const updateHidden = (candidate, newVal) => {
+    console.log('ewVal', newVal);
+    updateCandidateCallback(
+      candidate.id,
+      { isHidden: newVal },
+      chamber,
+      candidate.incumbent === 'yes',
+    );
+  };
 
   const updateAlignment = (candidate, newVal) => {
     updateCandidateCallback(
