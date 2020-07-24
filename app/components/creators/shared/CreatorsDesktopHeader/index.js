@@ -4,7 +4,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Hidden from '@material-ui/core/Hidden';
-import { Menu } from '@material-ui/icons';
+import Menu from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoCaps from 'images/logo-caps.svg';
