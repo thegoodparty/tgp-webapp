@@ -132,13 +132,13 @@ context('District', () => {
             cy.get('[data-cy=election-count]').should('contain', electionCount);
             cy.get('[data-cy=federal-election]')
               .should('contain', 'relevant Federal Elections')
-              .and('contain', 'to see if your vote can elect someone');
+              .and('contain', 'to see if, by voting as a group');
             cy.get('[data-cy=candidate-article]')
               .should('contain', 'candidate voting blocs')
               .should('have.attr', 'href')
               .and('include', '?article=1ic6T6fhH0jZLNvX5aZkDe');
             cy.get('[data-cy=potentially-good-article]')
-              .should('contain', 'Potentially Good')
+              .should('contain', 'elect someone good')
               .should('have.attr', 'href')
               .and('include', '?article=5KnBx42FOEVDJNUFpoU1PX');
           }
