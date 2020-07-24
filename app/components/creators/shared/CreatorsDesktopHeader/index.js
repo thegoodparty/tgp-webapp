@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Drawer, List, ListItem, Hidden } from '@material-ui/core';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Hidden from '@material-ui/core/Hidden';
 import { Menu } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';

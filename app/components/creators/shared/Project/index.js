@@ -8,8 +8,7 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
-import Mail from '@material-ui/icons/Mail';
+import Grid from '@material-ui/core/Grid';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player/lazy';

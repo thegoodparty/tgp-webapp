@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FormControl } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
 
 const ProjectFormControl = styled(FormControl)`
   && {

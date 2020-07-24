@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Fade, Grid } from '@material-ui/core';
+import Fade from '@material-ui/core/Fade';
+import Grid from '@material-ui/core/Grid';
 
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
