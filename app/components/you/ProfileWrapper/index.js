@@ -12,6 +12,7 @@ import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from 'components/shared/UserAvatar';
 import ShareButton from 'components/shared/ShareButton';
 import TopQuestions from 'components/shared/TopQuestions';
+import CrewMember from 'components/you/CrewMember';
 import {
   houseElectionLink,
   presidentialElectionLink,
@@ -61,10 +62,6 @@ const CrewWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const CrewMember = styled(Body13)`
-  text-align: center;
 `;
 
 const Filler = styled(Body13)`
@@ -232,16 +229,14 @@ const ProfileWrapper = ({
       </Body13>
 
       <CrewWrapper>
-        <CrewMember>
-          <UserAvatar user={user} size="medium" />
-          <div style={{ marginTop: '10px' }}>You</div>
-        </CrewMember>
+        <CrewMember
+          crewMember={user}
+          overrideName="You"
+          overrideCount={displayCrew.length}
+        />
 
         {displayCrew.map(crewMember => (
-          <CrewMember key={crewMember.uuid}>
-            <UserAvatar user={crewMember} size="medium" />
-            <div style={{ marginTop: '10px' }}>{crewMember.name}</div>
-          </CrewMember>
+          <CrewMember crewMember={crewMember} />
         ))}
         {crewFillers.map(filler => (
           <Filler key={filler}>{filler}</Filler>
