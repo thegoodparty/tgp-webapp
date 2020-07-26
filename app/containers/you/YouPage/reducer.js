@@ -12,6 +12,7 @@ export const initialState = {
   loginEmail: false,
   zipCode: false,
   crew: false,
+  leaderbaord: false,
   ranking: false,
 };
 
@@ -95,10 +96,12 @@ const userReducer = (state = initialState, action) =>
 
       case types.CREW:
         draft.crew = false;
+        draft.loading = true;
         break;
 
       case types.CREW_SUCCESS:
         draft.crew = action.crew;
+        draft.loading = false;
         break;
 
       case types.USER_RANKING_SUCCESS:

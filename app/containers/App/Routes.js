@@ -23,6 +23,7 @@ import EmailRegisterPage from 'containers/you/EmailRegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
 import YouPage from 'containers/you/YouPage/Loadable';
+import CrewPage from 'containers/you/CrewPage/Loadable';
 import LoginPage from 'containers/you/LoginPage/Loadable';
 import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
 import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
@@ -86,6 +87,8 @@ function Routes() {
       />
       <Route exact path="/you" component={YouPage} />
       <Route exact path="/you/edit" component={EditProfilePage} />
+      <Route exact path="/you/crew" component={CrewPage} />
+      <Route exact path="/you/crew/leaderboard" component={CrewPage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/login/confirm" component={LoginConfirmPage} />
 

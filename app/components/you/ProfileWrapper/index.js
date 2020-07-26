@@ -46,7 +46,7 @@ const NoElection = styled(Body13)`
   display: inline-block;
 `;
 
-const AllElections = styled.div`
+const AllElections = styled(Body)`
   margin-top: 16px;
   color: ${({ theme }) => theme.colors.blue};
 `;
@@ -55,6 +55,13 @@ const BottomLink = styled(Body)`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
+`;
+
+const CrewTitle = styled(Body)`
+  margin-top: 48px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
 `;
 
 const CrewWrapper = styled.div`
@@ -84,9 +91,27 @@ const UnderCrew = styled(Body)`
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.blue};
 `;
-//
+
 const InviteUrl = styled(Body)`
   color: ${({ theme }) => theme.colors.blue};
+`;
+
+const More = styled(Body13)`
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.blue};
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
+    0px 0px 16px rgba(0, 0, 0, 0.12);
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 80px;
+    width: 80px;
+  }
 `;
 
 const ProfileWrapper = ({
@@ -222,8 +247,12 @@ const ProfileWrapper = ({
       <Link to={electionLink}>
         <AllElections>See All Elections</AllElections>
       </Link>
-
-      <H3 style={{ marginTop: '48px', marginBottom: '4px' }}>Your Crew</H3>
+      <CrewTitle>
+        <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
+        <Body>
+          (<img src={heartImg} alt="tpg" /> people recruited)
+        </Body>
+      </CrewTitle>
       <Body13 style={{ marginBottom: '8px' }}>
         invite people to grow your crew
       </Body13>
@@ -235,13 +264,28 @@ const ProfileWrapper = ({
           overrideCount={displayCrew.length}
         />
 
-        {displayCrew.map(crewMember => (
-          <CrewMember crewMember={crewMember} />
+        {displayCrew.map((crewMember, index) => (
+          <>
+            {crew.length > 3 && index === 2 ? (
+              <div>
+                <More>+{crew.length - 2}</More>
+
+                <Body13 className="text-center" style={{ marginTop: '4px' }}>
+                  <Link to="you/crew">SEE ALL</Link>
+                </Body13>
+              </div>
+            ) : (
+              <CrewMember crewMember={crewMember} />
+            )}
+          </>
         ))}
         {crewFillers.map(filler => (
           <Filler key={filler}>{filler}</Filler>
         ))}
       </CrewWrapper>
+      <Body style={{ marginTop: '10px' }}>
+        <Link to="you/crew/leaderboard">View Leaderboards</Link>
+      </Body>
       <ShareButton
         url={url}
         customElement={

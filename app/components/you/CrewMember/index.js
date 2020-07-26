@@ -29,7 +29,7 @@ const CrewMember = ({ crewMember, overrideName, overrideCount }) => {
       <div style={{ marginTop: '4px' }}>{overrideName || crewMember.name}</div>
       <CountWrapper>
         <Heart src={heartImg} />{' '}
-        <Body11>{overrideCount || crewMember.crewCount}</Body11>
+        <Body11>{overrideCount || crewMember.crewCount || 0}</Body11>
       </CountWrapper>
     </Wrapper>
   );
