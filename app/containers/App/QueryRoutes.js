@@ -15,7 +15,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
 
-import SocialRegisterPage from 'containers/you/SocialRegisterPage';
+import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
 import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
 
 import queryHelper from 'helpers/queryHelper';

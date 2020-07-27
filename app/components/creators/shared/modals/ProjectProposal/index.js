@@ -7,7 +7,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Fade, TextField } from '@material-ui/core';
+import Fade from '@material-ui/core/Fade';
+import TextField from '@material-ui/core/TextField';
 import Collaborators from '../../Collaborators';
 import { Body18, Body13 } from '../../typography';
 import { BlueButton } from '../../buttons';

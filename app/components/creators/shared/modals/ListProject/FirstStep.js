@@ -7,14 +7,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {
-  Fade,
-  FormControlLabel,
-  Checkbox,
-  Grid,
-  Hidden,
-} from '@material-ui/core';
-import { Body18 } from '../../typography';
+import Fade from '@material-ui/core/Fade';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 import { useWindowSize } from 'customHooks/useWindowSize';
 import { BlueButton, GrayButton } from '../../buttons';
 import { MultipleSelect } from 'react-select-material-ui';

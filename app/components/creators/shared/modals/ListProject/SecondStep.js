@@ -7,7 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Fade, Grid } from '@material-ui/core';
+import Fade from '@material-ui/core/Fade';
+import Grid from '@material-ui/core/Grid';
 import { Body15 } from '../../typography';
 import { BlueButton, GrayButton } from '../../buttons';
 import { DropzoneArea } from 'material-ui-dropzone';

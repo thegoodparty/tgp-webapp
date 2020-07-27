@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Modal } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
 
 const OverlayModal = styled(Modal)`
   && {

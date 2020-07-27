@@ -8,7 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Fade } from '@material-ui/core';
+import Fade from '@material-ui/core/Fade';
 import LogoCaps from 'images/logo.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
