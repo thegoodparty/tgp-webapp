@@ -16,9 +16,9 @@ const registerActionError = error => ({
   error,
 });
 
-const socialRegisterAction = (user) => ({
+const socialRegisterAction = user => ({
   type: types.SOCIAL_REGISTER,
-  user
+  user,
 });
 
 const resendEmailAction = email => ({
@@ -58,9 +58,9 @@ const loginAction = email => ({
   email,
 });
 
-const socialLoginAction = (user) => ({
+const socialLoginAction = user => ({
   type: types.SOCIAL_LOGIN,
-  user
+  user,
 });
 
 const updatePresidentialRankAction = rank => ({
@@ -91,13 +91,7 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (
-  candidate,
-  rank,
-  chamber,
-  state,
-  district,
-) => ({
+const saveUserRankingAction = (candidate, rank, chamber, state, district) => ({
   type: types.SAVE_USER_RANKING,
   candidate,
   rank,
@@ -129,13 +123,20 @@ const generateUuidAction = () => ({
   type: types.GENERATE_UUID,
 });
 
-const crewAction = () => ({
+const crewAction = preview => ({
   type: types.CREW,
+  preview,
 });
 
 const crewActionSuccess = crew => ({
   type: types.CREW_SUCCESS,
   crew,
+});
+
+const crewPreviewActionSuccess = (crewPreview, crewCount) => ({
+  type: types.CREW_PREVIEW_SUCCESS,
+  crewPreview,
+  crewCount,
 });
 
 const userRankingAction = () => ({
@@ -165,7 +166,7 @@ const deleteGuestRankingAction = rankToDelete => ({
 
 const sendMessageToCreator = messageInfo => ({
   type: types.SEND_MESSAGE_TO_CREATOR,
-  messageInfo
+  messageInfo,
 });
 
 export default {
@@ -190,10 +191,11 @@ export default {
   generateUuidAction,
   crewAction,
   crewActionSuccess,
+  crewPreviewActionSuccess,
   userRankingAction,
   guestRankingAction,
   userRankingActionSuccess,
   saveGuestRankingAction,
   deleteGuestRankingAction,
-  sendMessageToCreator
+  sendMessageToCreator,
 };

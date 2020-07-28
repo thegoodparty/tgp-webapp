@@ -31,7 +31,7 @@ export function CrewPage({ userState, dispatch }) {
   console.log(pathname, isLeaderboard);
   useEffect(() => {
     if (user && !isLeaderboard && !crew) {
-      dispatch(userActions.crewAction());
+      dispatch(userActions.crewAction(false));
     }
     // if (user && isLeaderboard && !leaderboard) {
     //   dispatch(userActions.leaderbaordAction());

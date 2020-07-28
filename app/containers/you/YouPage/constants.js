@@ -30,6 +30,7 @@ const GENERATE_UUID = '@@tgp/user/GENERATE_UUID';
 
 const CREW = '@@tgp/user/CREW';
 const CREW_SUCCESS = '@@tgp/user/CREW_SUCCESS';
+const CREW_PREVIEW_SUCCESS = '@@tgp/user/CREW_PREVIEW_SUCCESS';
 
 const USER_RANKING = '@@tgp/user/USER_RANKING';
 const USER_RANKING_SUCCESS = '@@tgp/user/USER_RANKING_SUCCESS';
@@ -62,6 +63,7 @@ export default {
   GENERATE_UUID,
   CREW,
   CREW_SUCCESS,
+  CREW_PREVIEW_SUCCESS,
   USER_RANKING,
   GUEST_RANKING,
   USER_RANKING_SUCCESS,

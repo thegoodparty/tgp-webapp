@@ -116,7 +116,8 @@ const More = styled(Body13)`
 
 const ProfileWrapper = ({
   user,
-  crew,
+  crewPreview,
+  crewCount,
   houseCandidatesCount,
   senateCandidatesCount,
   signoutCallback,
@@ -151,18 +152,18 @@ const ProfileWrapper = ({
     electionLink = `/intro/zip-finder`;
   }
 
-  const displayCrew = [];
-  if (crew && crew.length > 0) {
-    crew.forEach((crewMember, index) => {
-      if (index < 3) {
-        displayCrew.push(crewMember);
-      }
-    });
-  }
+  // const displayCrew = [];
+  // if (crewPreview && crewPreview.length > 0) {
+  //   crewPreview.forEach((crewMember, index) => {
+  //     if (index < 3) {
+  //       displayCrew.push(crewMember);
+  //     }
+  //   });
+  // }
 
   let crewFillers = [];
-  if (crew && crew.length < 3) {
-    const fillerCount = 3 - crew.length;
+  if (crewPreview && crewPreview.length < 3) {
+    const fillerCount = 3 - crewPreview.length;
     crewFillers = Array.from(
       Array(fillerCount),
       (_, x) => x + 1 + 3 - fillerCount,
@@ -261,24 +262,25 @@ const ProfileWrapper = ({
         <CrewMember
           crewMember={user}
           overrideName="You"
-          overrideCount={displayCrew.length}
+          overrideCount={crewCount}
         />
 
-        {displayCrew.map((crewMember, index) => (
-          <>
-            {crew.length > 3 && index === 2 ? (
-              <div>
-                <More>+{crew.length - 2}</More>
+        {crewPreview &&
+          crewPreview.map((crewMember, index) => (
+            <React.Fragment key={crewMember.uuid}>
+              {crewCount > 3 && index === 2 ? (
+                <div>
+                  <More>+{crewCount - 2}</More>
 
-                <Body13 className="text-center" style={{ marginTop: '4px' }}>
-                  <Link to="you/crew">SEE ALL</Link>
-                </Body13>
-              </div>
-            ) : (
-              <CrewMember crewMember={crewMember} />
-            )}
-          </>
-        ))}
+                  <Body13 className="text-center" style={{ marginTop: '4px' }}>
+                    <Link to="you/crew">SEE ALL</Link>
+                  </Body13>
+                </div>
+              ) : (
+                <CrewMember crewMember={crewMember} />
+              )}
+            </React.Fragment>
+          ))}
         {crewFillers.map(filler => (
           <Filler key={filler}>{filler}</Filler>
         ))}
