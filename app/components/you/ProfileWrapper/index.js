@@ -202,8 +202,8 @@ const ProfileWrapper = ({
             {presidentialRankCount === 0
               ? 'Rank Choices'
               : `${presidentialRankCount} Choice${
-                  presidentialRankCount === 1 ? '' : 's'
-                } Ranked`}
+              presidentialRankCount === 1 ? '' : 's'
+              } Ranked`}
           </ElectionData>
         </Link>
       </Election>
@@ -215,14 +215,14 @@ const ProfileWrapper = ({
               <ElectionData>
                 {senateRank
                   ? `${senateRankCount} Choice${
-                      senateRankCount > 1 ? 's' : ''
-                    } Ranked`
+                  senateRankCount > 1 ? 's' : ''
+                  } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-            <NoElection>No Race in 2020</NoElection>
-          )}
+              <NoElection>No Race in 2020</NoElection>
+            )}
         </Election>
       )}
       {userDistrict.code && (
@@ -234,14 +234,14 @@ const ProfileWrapper = ({
               <ElectionData>
                 {houseRank && houseRankCount > 0
                   ? `${houseRankCount} Choice${
-                      houseRankCount > 1 ? 's' : ''
-                    } Ranked`
+                  houseRankCount > 1 ? 's' : ''
+                  } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-            <NoElection>No Race in 2020</NoElection>
-          )}
+              <NoElection>No Race in 2020</NoElection>
+            )}
         </Election>
       )}
       <Link to={electionLink}>
@@ -275,8 +275,8 @@ const ProfileWrapper = ({
                 </Body13>
               </div>
             ) : (
-              <CrewMember crewMember={crewMember} />
-            )}
+                <CrewMember crewMember={crewMember} />
+              )}
           </>
         ))}
         {crewFillers.map(filler => (
@@ -287,7 +287,7 @@ const ProfileWrapper = ({
         <Link to="you/crew/leaderboard">View Leaderboards</Link>
       </Body>
       <ShareButton
-        url={url}
+        url={`Check out The Good Party.  See what's possible, before you vote. \n ${url}`}
         customElement={
           <UnderCrew>
             <strong>Invite 3 or more friends to join,</strong> and watch how
@@ -304,10 +304,14 @@ const ProfileWrapper = ({
       <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
         What can you do to help?
       </H3>
+      <BottomLink>Spread the world</BottomLink>
       <ShareButton
-        url={url}
-        customElement={<BottomLink>Invite Friends</BottomLink>}
+        url={`Check out voting blocs on The Good Party.   See what's possible, before you vote. \n ${url}`}
+        customElement={<BottomLink>Invite some friends</BottomLink>}
       />
+      <a href=" http://crowdcast.thegoodparty.org" target="_blank">
+        <BottomLink>Add a share link to our crowdcast </BottomLink>
+      </a>
       <a href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion">
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
