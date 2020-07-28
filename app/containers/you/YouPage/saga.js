@@ -291,7 +291,9 @@ function* login(action) {
         ),
       );
       AnalyticsService.sendEvent('email-login', 'email-exists');
-      yield put(globalActions.logErrorAction('email login error - email exists', error));
+      yield put(
+        globalActions.logErrorAction('email login error - email exists', error),
+      );
     } else {
       yield put(snackbarActions.showSnakbarAction('Error login in.', 'error'));
       AnalyticsService.sendEvent('email-login', 'error');
@@ -370,7 +372,12 @@ function* socialLogin(action) {
       'error',
       action?.user?._provider,
     );
-    yield put(globalActions.logErrorAction(`social login error. provider: ${action?.user?._provider}`, error));
+    yield put(
+      globalActions.logErrorAction(
+        `social login error. provider: ${action?.user?._provider}`,
+        error,
+      ),
+    );
   }
 }
 
@@ -569,11 +576,31 @@ function* generateUuid() {
   }
 }
 
-function* crew() {
+function* crew({ preview }) {
   try {
     const api = tgpApi.crew;
+    const payload = {
+      preview,
+    };
+    const response = yield call(requestHelper, api, payload);
+    if (preview) {
+      yield put(
+        actions.crewPreviewActionSuccess(response.crew, response.crewCount),
+      );
+    } else {
+      yield put(actions.crewActionSuccess(response.crew));
+    }
+  } catch (error) {
+    console.log('crew error', JSON.stringify(error));
+  }
+}
+
+function* leaderboard() {
+  try {
+    const api = tgpApi.leaderboard;
     const response = yield call(requestHelper, api, null);
-    yield put(actions.crewActionSuccess(response.crew));
+    console.log('saga', response.leaderboard)
+    yield put(actions.leaderboardActionSuccess(response.leaderboard));
   } catch (error) {
     console.log('crew error', JSON.stringify(error));
   }
@@ -633,7 +660,8 @@ export default function* saga() {
     deleteCandidateRanking,
   );
   yield takeLatest(types.GENERATE_UUID, generateUuid);
-  yield takeLatest(types.CREW, crew);
+  const crewAction = yield takeLatest(types.CREW, crew);
+  yield takeLatest(types.LEADERBOARD, leaderboard);
   yield takeLatest(types.USER_RANKING, userRanking);
   yield takeLatest(types.GUEST_RANKING, guestRanking);
   const deleteGuest = yield takeLatest(
