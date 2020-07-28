@@ -148,6 +148,12 @@ const api = {
     withAuth: true,
   },
 
+  leaderboard: {
+    url: `${base}user/leaderboard`,
+    method: 'GET',
+    withAuth: true,
+  },
+
   userRanking: {
     url: `${base}user/ranking`,
     method: 'GET',

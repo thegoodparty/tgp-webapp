@@ -14,7 +14,7 @@ export const initialState = {
   crewPreview: false,
   crewCount: 0,
   crew: false,
-  leaderbaord: false,
+  leaderboard: false,
   ranking: false,
 };
 
@@ -109,6 +109,16 @@ const userReducer = (state = initialState, action) =>
         draft.crewPreview = action.crewPreview;
         draft.crewCount = action.crewCount;
         draft.loading = false;
+        break;
+
+      case types.LEADERBOARD:
+        draft.loading = true;
+        draft.leaderboard = false;
+        break;
+
+      case types.LEADERBOARD_SUCCESS:
+        draft.loading = false;
+        draft.leaderboard = action.leaderboard;
         break;
 
       case types.USER_RANKING_SUCCESS:

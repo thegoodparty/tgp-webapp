@@ -139,6 +139,15 @@ const crewPreviewActionSuccess = (crewPreview, crewCount) => ({
   crewCount,
 });
 
+const leaderboardAction = () => ({
+  type: types.LEADERBOARD,
+});
+
+const leaderboardActionSuccess = leaderboard => ({
+  type: types.LEADERBOARD_SUCCESS,
+  leaderboard,
+});
+
 const userRankingAction = () => ({
   type: types.USER_RANKING,
 });
@@ -192,6 +201,8 @@ export default {
   crewAction,
   crewActionSuccess,
   crewPreviewActionSuccess,
+  leaderboardAction,
+  leaderboardActionSuccess,
   userRankingAction,
   guestRankingAction,
   userRankingActionSuccess,

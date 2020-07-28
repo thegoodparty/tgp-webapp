@@ -33,15 +33,16 @@ export function CrewPage({ userState, dispatch }) {
     if (user && !isLeaderboard && !crew) {
       dispatch(userActions.crewAction(false));
     }
-    // if (user && isLeaderboard && !leaderboard) {
-    //   dispatch(userActions.leaderbaordAction());
-    // }
-  }, [user]);
+    if (user && isLeaderboard && !leaderboard) {
+      dispatch(userActions.leaderboardAction());
+    }
+  }, [user, isLeaderboard]);
 
   const childPros = {
-    crew,
-    tab: isLeaderboard ? 'leaderbaord' : 'crew',
-    loading
+    crew: isLeaderboard ? leaderboard : crew,
+    tab: isLeaderboard ? 'leaderboard' : 'crew',
+    loading,
+    user,
   };
   return (
     <div>

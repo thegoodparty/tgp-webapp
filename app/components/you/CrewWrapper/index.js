@@ -38,9 +38,15 @@ const Tab = styled(Link)`
 `;
 
 const RankedCrewWrapper = styled.div`
-  margin-top: 24px;
+  margin-top: 16px;
   display: flex;
   align-items: center;
+
+  padding: 4px 0;
+
+  &.highlighted {
+    background-color: ${({ theme }) => theme.colors.grayBg};
+  }
 `;
 
 const Rank = styled(Body9)`
@@ -72,7 +78,7 @@ const Name = styled(Body13)`
   }
 `;
 
-function CrewWrapper({ crew, tab = 'crew', loading }) {
+function CrewWrapper({ crew, tab = 'crew', loading, user }) {
   return (
     <PageWrapper white>
       <H1>Good Party Leaders</H1>
@@ -96,12 +102,24 @@ function CrewWrapper({ crew, tab = 'crew', loading }) {
       {!loading && crew ? (
         <>
           {crew.map((crewMember, index) => (
-            <RankedCrewWrapper key={crewMember.uuid}>
+            <RankedCrewWrapper
+              key={crewMember.uuid}
+              className={
+                tab === 'leaderboard' && crewMember.uuid === user.uuid
+                  ? 'highlighted'
+                  : ''
+              }
+            >
               <Rank>{index + 1}</Rank>
               <CrewMember crewMember={crewMember} />
               <TextWrapper>
                 <NameLocation>
-                  <Name>{crewMember.name}</Name>
+                  {tab === 'leaderboard' && crewMember.uuid === user.uuid ? (
+                    <Name>YOU</Name>
+                  ) : (
+                    <Name>{crewMember.name}</Name>
+                  )}
+
                   <Body11>
                     {crewMember.shortState}
                     {crewMember.districtNumber &&
@@ -130,6 +148,7 @@ CrewWrapper.propTypes = {
   crew: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   tab: PropTypes.string,
   loading: PropTypes.bool,
+  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 
 export default CrewWrapper;

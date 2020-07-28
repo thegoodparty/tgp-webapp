@@ -595,6 +595,17 @@ function* crew({ preview }) {
   }
 }
 
+function* leaderboard() {
+  try {
+    const api = tgpApi.leaderboard;
+    const response = yield call(requestHelper, api, null);
+    console.log('saga', response.leaderboard)
+    yield put(actions.leaderboardActionSuccess(response.leaderboard));
+  } catch (error) {
+    console.log('crew error', JSON.stringify(error));
+  }
+}
+
 function* userRanking() {
   try {
     const api = tgpApi.userRanking;
@@ -650,6 +661,7 @@ export default function* saga() {
   );
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   const crewAction = yield takeLatest(types.CREW, crew);
+  yield takeLatest(types.LEADERBOARD, leaderboard);
   yield takeLatest(types.USER_RANKING, userRanking);
   yield takeLatest(types.GUEST_RANKING, guestRanking);
   const deleteGuest = yield takeLatest(
