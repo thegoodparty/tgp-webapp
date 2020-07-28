@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-
+import Button from '@material-ui/core/Button';
 import { H3, Body13, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
@@ -23,12 +23,15 @@ import { getVotesNeededState } from 'helpers/candidatesHelper';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
 import TwitterIcon from 'images/icons/twitter-icon.svg';
+import ShareIcon from 'images/icons/share-icon.svg';
+import { IconButton } from '@material-ui/core';
 import SupportersProgressBar from '../SupportersProgressBar';
 
 const TopRowWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 
 const SocialLinks = styled.div`
@@ -77,7 +80,17 @@ const RankWrapper = styled.div`
   margin-top: 12px;
   cursor: pointer;
 `;
-
+const ShareButton = styled(Link)`
+  && {
+    position: absolute;
+    right: 0;
+    color: #117CB6;
+    font-size: 17px;
+    img {
+      margin-right: 5px;
+    }
+  }
+`;
 const CheckMark = styled(CheckIcon)`
   color: ${({ theme }) => theme.colors.lightBlue};
   && {
@@ -275,6 +288,12 @@ const TopRow = ({
   const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
     <TopRowWrapper data-cy="top-row">
+      {isGoodOrUnkwown &&
+        <ShareButton to={rank ? rankPageGrowLink() : rankPageJoinLink()}>
+          <img src={ShareIcon} alt="more" />
+          Share
+        </ShareButton>
+      }
       <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
       <H3 style={{ marginTop: '14px' }} data-cy="top-name">
         {name}
@@ -323,14 +342,14 @@ const TopRow = ({
               </RankWrapper>
             </>
           ) : (
-            <RankButton className="blue">
-              <Link to={rankPageJoinLink()} data-cy="rank-button">
-                <StyledBody13 className="white">
-                  JOIN {blocName} {blocNameSuffix(blocName)}
-                </StyledBody13>
-              </Link>
-            </RankButton>
-          )}
+              <RankButton className="blue">
+                <Link to={rankPageJoinLink()} data-cy="rank-button">
+                  <StyledBody13 className="white">
+                    JOIN {blocName} {blocNameSuffix(blocName)}
+                  </StyledBody13>
+                </Link>
+              </RankButton>
+            )}
         </>
       )}
     </TopRowWrapper>
