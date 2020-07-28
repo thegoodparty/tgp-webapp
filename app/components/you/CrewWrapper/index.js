@@ -101,6 +101,27 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
       </TabWrapper>
       {!loading && crew ? (
         <>
+          {tab === 'crew' && (
+            <RankedCrewWrapper>
+              <Rank>1</Rank>
+              <CrewMember
+                crewMember={user}
+                overrideCount={user.crewCount}
+                overrideName="YOU"
+              />
+              <TextWrapper>
+                <NameLocation>
+                  <Name>YOU</Name>
+
+                  <Body11>
+                    {user.shortState ? user.shortState.toUpperCase() : ''}
+                    {user.districtNumber && `-${user.districtNumber}`}
+                  </Body11>
+                </NameLocation>
+                {user.feedback && <Body11>"{user.feedback}"</Body11>}
+              </TextWrapper>
+            </RankedCrewWrapper>
+          )}
           {crew.map((crewMember, index) => (
             <RankedCrewWrapper
               key={crewMember.uuid}
@@ -110,7 +131,7 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
                   : ''
               }
             >
-              <Rank>{index + 1}</Rank>
+              <Rank>{index + 2}</Rank>
               <CrewMember crewMember={crewMember} />
               <TextWrapper>
                 <NameLocation>
@@ -121,7 +142,9 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
                   )}
 
                   <Body11>
-                    {crewMember.shortState}
+                    {crewMember.shortState
+                      ? crewMember.shortState.toUpperCase()
+                      : ''}
                     {crewMember.districtNumber &&
                       `-${crewMember.districtNumber}`}
                   </Body11>
