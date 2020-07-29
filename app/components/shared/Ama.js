@@ -7,6 +7,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
 
 import { Body, H3 } from 'components/shared/typogrophy';
+import { validateEmail } from 'helpers/emailHelper';
 import { OutlinedButton } from './buttons';
 
 const AskQuestion = styled(Body)`
@@ -87,7 +88,7 @@ const Ama = ({ sendAmaCallback }) => {
           <AmaSubmit href={mail()} data-cy="ama-dialog-submit">
             <OutlinedButton
               fullWidth
-              active={message !== ''}
+              active={message !== '' && validateEmail(replyEmail)}
               onClick={handleSubmit}
             >
               Send
