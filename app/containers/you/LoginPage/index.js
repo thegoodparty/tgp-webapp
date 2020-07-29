@@ -48,7 +48,7 @@ export function LoginPage({
   return (
     <div>
       <Helmet>
-        <title>Sign into your account | TGP</title>
+        <title data-cy="page-title">Sign into your account | TGP</title>
         <meta name="description" content="Sign into your account | TGP" />
       </Helmet>
       <LoginWrapper {...childProps} />

@@ -1,3 +1,4 @@
+
 export const getCookie = name => {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
@@ -63,3 +64,4 @@ export const getSignupRedirectCookie = () => {
 export const deleteSignupRedirectCookie = () => {
   deleteCookie('signupRedirect');
 };
+

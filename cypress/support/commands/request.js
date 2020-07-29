@@ -25,20 +25,29 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import { api, base } from '../../constants';
 
-Cypress.Commands.add('sendRequest', (method, url, data = null) => {
-  if ((method === 'GET' || method === 'DELETE') && data) {
-    url = `${url}?`;
-    Object.keys(data).forEach(key => {
-      url += `${key}=${data[key]}&`;
-    });
-    url = url.slice(0, -1);
-  }
-  let body = null;
-  if ((method === 'POST' || method === 'PUT') && data) {
-    body = JSON.stringify(data);
-  }
-  cy.request(method, url, body);
-});
+Cypress.Commands.add(
+  'sendRequest',
+  (method, url, data = null, token = null) => {
+    if ((method === 'GET' || method === 'DELETE') && data) {
+      url = `${url}?`;
+      Object.keys(data).forEach(key => {
+        url += `${key}=${data[key]}&`;
+      });
+      url = url.slice(0, -1);
+    }
+    let body = null;
+    if ((method === 'POST' || method === 'PUT') && data) {
+      body = JSON.stringify(data);
+    }
+    const options = { method, url, body };
+    if (token) {
+      options.auth = {
+        bearer: token,
+      };
+    }
+    cy.request(options);
+  },
+);
 
 Cypress.Commands.add('getCMSContent', () => {
   cy.sendRequest(api.content.method, api.content.url).should(response => {
@@ -101,5 +110,25 @@ Cypress.Commands.add('getIncumbentData', (candidateData = null) => {
     api.districtIncumbent.method,
     api.districtIncumbent.url,
     params,
+  );
+});
+
+Cypress.Commands.add('getUserRanking', () => {
+  const token = Cypress.env('token');
+  cy.sendRequest(
+    api.userRanking.method,
+    api.userRanking.url,
+    null,
+    api.userRanking.withAuth && token,
+  );
+});
+
+Cypress.Commands.add('getUserCrew', () => {
+  const token = Cypress.env('token');
+  cy.sendRequest(
+    api.crew.method,
+    api.crew.url,
+    null,
+    api.crew.withAuth && token,
   );
 });

@@ -13,7 +13,9 @@ import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/YouPage/selectors';
+import makeSelectUser, {
+  makeSelectRanking,
+} from 'containers/you/YouPage/selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
@@ -31,10 +33,10 @@ import {
 } from 'helpers/cookieHelper';
 import { userDistrict } from 'helpers/userHelper';
 import articlesHelper from 'helpers/articlesHelper';
+import { countCandidates } from 'helpers/candidatesHelper';
 
 import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
 import { makeSelectContent } from '../../App/selectors';
-import { makeSelectRanking } from './selectors';
 
 export function YouPage({
   userState,
@@ -85,15 +87,6 @@ export function YouPage({
     articles = articlesHelper(content.faqArticles, 'party');
   }
 
-  const countCandidates = chamber => {
-    let count = 0;
-    if (chamber && typeof chamber.good !== 'undefined') {
-      count =
-        chamber.good.length + chamber.notGood.length + chamber.unknown.length;
-    }
-    return count;
-  };
-
   const senateCandidatesCount = countCandidates(senateCandidates);
   const houseCandidatesCount = countCandidates(houseCandidates);
 
@@ -115,7 +108,7 @@ export function YouPage({
   return (
     <div>
       <Helmet>
-        <title>You | The Good Party</title>
+        <title data-cy="page-title">You | The Good Party</title>
         <meta name="description" content="You | The Good Party" />
       </Helmet>
       {user ? (

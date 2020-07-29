@@ -1,4 +1,23 @@
 {
+  "events": [
+    {
+      "id": "h2WaVMyZt4ZXPsILFmqTQ",
+      "title": "The Good Party - Livestream + Q&A",
+      "dateAndTime": "2020-07-29T17:00",
+      "description": "Learn what Good we're up to and ask us any questions, live!",
+      "timeZone": "PST",
+      "displayDate": "Weds, July 29th 2020 · 5:00PM PT (8:00PM ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1596042000000
+    }
+  ],
+  "appVersion": {
+    "version": "1.0.19"
+  },
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -11,7 +30,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "No. The Good Party is not politics as usual. We are a free, open-source set of tools that make it easy for candidates to turn supporters into voters and allow voters to organize efficiently in groups via ",
+                "value": "No. The Good Party is not an actual political party. We are a free non-commercial platform and set of open-source tools that allow voters to organize efficiently in groups via ",
                 "marks": [],
                 "data": {}
               },
@@ -43,7 +62,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "Our mission is to provide the latest technology and tools that empower ordinary people to actively participate and have impact on democracy. Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected without having to depend on big money sources or toxic partisan politics.",
+                "value": "Our mission is to provide the latest technology and tools that empower ordinary people to actively participate and have impact on democracy. Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected without having to depend on big money sources or toxic partisan politics.  We do this by showcasing grass-roots candidates, and providing services that help spread the word and turn their social media supporters into actual voters.",
                 "marks": [],
                 "data": {}
               }
@@ -1225,7 +1244,23 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "A candidate voting bloc (like @BernieSanders Bloc) on The Good Party is a new way to turn support into votes. It allows people to publicly pool their potential interest in a candidate and see if, together, they'll have enough votes to guarantee victory for any candidate they like, ",
+                "value": "A candidate voting bloc (like ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "@BernieSanders",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " Bloc) is a new way to turn supporters into voters. It allows people to publicly pool their potential interest in a candidate and see if, together, they'll have enough votes to guarantee victory for any candidate they like, ",
                 "marks": [],
                 "data": {}
               },
@@ -1250,7 +1285,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "So, for the first time ever, by joining voting blocs on The Good Party, people can truly explore all their candidate options -- not just pick from the 'lesser of two evils' candidate favored by red or blue.  ",
+                "value": "So, for the first time ever, by joining candidate voting blocs on The Good Party, people can truly explore all their candidate options -- not just pick from the 'lesser of two evil' candidates favored by red or blue.  ",
                 "marks": [],
                 "data": {}
               }
@@ -1314,7 +1349,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "However, if a candidate voting bloc gets big enough to win an election, then we circle back and \"voterize\" everyone in the bloc - ensuring they are registered and still willing and able to vote for the candidate. If so, we ",
+                "value": "However, if a candidate voting bloc gets big enough to win an election, then we circle back to energize, mobilize and \"voterize\" everyone in the bloc - ensuring they are registered and still willing and able to vote for the candidate. When we have enough people prepared to vote, we ",
                 "marks": [],
                 "data": {}
               },
@@ -3287,25 +3322,6 @@
       ]
     }
   },
-  "events": [
-    {
-      "id": "h2WaVMyZt4ZXPsILFmqTQ",
-      "title": "The Good Party - Livestream + Q&A",
-      "dateAndTime": "2020-07-22T17:00",
-      "description": "Learn what Good we're up to and ask us any questions, live!",
-      "timeZone": "PST",
-      "displayDate": "Wednesday, July 22nd 2020 · 5:00PM PST (8:00PM EST)",
-      "eventDuration": 1,
-      "location": "https://www.crowdcast.io/e/the-good-party",
-      "presenter": "Farhad Mohit",
-      "presenterTitle": "Founder, The Good Party",
-      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1595437200000
-    }
-  ],
-  "appVersion": {
-    "version": "1.0.18"
-  },
   "creatorsProjects": [
     {
       "title": "Candidate Video Introductions",
@@ -4577,6 +4593,20 @@
     }
   },
   "pastEvents": [
+    {
+      "id": "3IWsmL227uDT0MKhqBwurB",
+      "title": "The Good Party - Intro + Q&A - REPLAY",
+      "dateAndTime": "2020-07-22T17:00",
+      "description": "Watch replay of this crowdcast by clicking on the link below...",
+      "timeZone": "PST",
+      "displayDate": "Weds, July 22nd, 2020 · 5:00pm PT (8:00pm ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party-20200722",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1595437200000
+    },
     {
       "id": "7vf3x4T8q3jhlIzxJsCRWb",
       "title": "The Good Party - Intro + Q&A - REPLAY",

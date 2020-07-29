@@ -1,7 +1,6 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
-
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';

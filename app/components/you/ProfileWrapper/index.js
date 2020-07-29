@@ -7,7 +7,13 @@ import PageWrapper from 'components/shared/PageWrapper';
 import heartImg from 'images/heart.svg';
 import { AmaContainer } from 'containers/shared/AmaContainer';
 import { Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
-import { fullFirstLastInitials, uuidUrl } from 'helpers/userHelper';
+import {
+  fullFirstLastInitials,
+  uuidUrl,
+  getUserDistrict,
+  getDisplayCrew,
+  getCrewFillers,
+} from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from 'components/shared/UserAvatar';
 import ShareButton from 'components/shared/ShareButton';
@@ -17,6 +23,7 @@ import {
   houseElectionLink,
   presidentialElectionLink,
   senateElectionLink,
+  getElectionLink,
 } from 'helpers/electionsHelper';
 
 const EditProfile = styled(Body13)`
@@ -132,25 +139,8 @@ const ProfileWrapper = ({
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
 
   const shortState = stateShort ? stateShort.toUpperCase() : '';
-  let userDistrict = {};
-  if (congDistrict && cds && cds.length > 0) {
-    cds.forEach(district => {
-      if (district.id === congDistrict) {
-        userDistrict = district;
-      }
-    });
-    if (!userDistrict.code) {
-      userDistrict = cds[0];
-    }
-  } else if (cds && cds.length > 0) {
-    userDistrict = cds[0]; // eslint-disable-line
-  }
-  let electionLink;
-  if (zip) {
-    electionLink = `/elections/district/${zip}`;
-  } else {
-    electionLink = `/intro/zip-finder`;
-  }
+  const userDistrict = getUserDistrict(congDistrict, cds);
+  const electionLink = getElectionLink(zip);
 
   // const displayCrew = [];
   // if (crewPreview && crewPreview.length > 0) {
@@ -180,25 +170,33 @@ const ProfileWrapper = ({
 
   return (
     <PageWrapper white>
-      <Link to="/you/edit">
+      <Link to="/you/edit" data-cy="edit-profile-link">
         <EditProfile>Edit Profile</EditProfile>
       </Link>
       <Centered>
         <UserAvatar user={user} size="large" />
-        <H2 style={{ marginTop: '30px' }}>{fullFirstLastInitials(name)}</H2>
+        <H2 style={{ marginTop: '30px' }} data-cy="profile-name">
+          {fullFirstLastInitials(name)}
+        </H2>
         {shortState && (
-          <Body13 style={{ marginTop: '5px', marginBottom: '9px' }}>
+          <Body13
+            style={{ marginTop: '5px', marginBottom: '9px' }}
+            data-cy="city"
+          >
             {primaryCity}, {shortState}-{userDistrict.code}
           </Body13>
         )}
-        <Body13>{feedback}</Body13>
+        <Body13 data-cy="feedback">{feedback}</Body13>
       </Centered>
-      <H3>
+      <H3 data-cy="location">
         Your Elections for {shortState}, {zip}
       </H3>
-      <Election>
+      <Election data-cy="presidential-election">
         Presidential:{' '}
-        <Link to={presidentialElectionLink()}>
+        <Link
+          to={presidentialElectionLink()}
+          data-cy="presidential-election-link"
+        >
           <ElectionData>
             {presidentialRankCount === 0
               ? 'Rank Choices'
@@ -209,10 +207,13 @@ const ProfileWrapper = ({
         </Link>
       </Election>
       {stateLong && (
-        <Election>
+        <Election data-cy="senate-election">
           Senate {stateLong}:
           {showSenate ? (
-            <Link to={senateElectionLink(shortState)}>
+            <Link
+              to={senateElectionLink(shortState)}
+              data-cy="senate-election-link"
+            >
               <ElectionData>
                 {senateRank
                   ? `${senateRankCount} Choice${
@@ -227,11 +228,14 @@ const ProfileWrapper = ({
         </Election>
       )}
       {userDistrict.code && (
-        <Election>
+        <Election data-cy="house-election">
           House: {numberNth(userDistrict.code)} District ({shortState}-
           {userDistrict.code})
           {showHouse ? (
-            <Link to={houseElectionLink(shortState, userDistrict.code)}>
+            <Link
+              to={houseElectionLink(shortState, userDistrict.code)}
+              data-cy="house-election-link"
+            >
               <ElectionData>
                 {houseRank && houseRankCount > 0
                   ? `${houseRankCount} Choice${
@@ -245,7 +249,7 @@ const ProfileWrapper = ({
             )}
         </Election>
       )}
-      <Link to={electionLink}>
+      <Link to={electionLink} data-cy="all-election-link">
         <AllElections>See All Elections</AllElections>
       </Link>
       <CrewTitle>
@@ -282,7 +286,9 @@ const ProfileWrapper = ({
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (
-          <Filler key={filler}>{filler}</Filler>
+          <Filler key={filler} data-cy="crew-filler">
+            {filler}
+          </Filler>
         ))}
       </CrewWrapper>
       <Body style={{ marginTop: '10px' }}>
@@ -291,19 +297,28 @@ const ProfileWrapper = ({
       <ShareButton
         url={`Check out The Good Party.  See what's possible, before you vote. \n ${url}`}
         customElement={
-          <UnderCrew>
+          <UnderCrew data-cy="under-crew">
             <strong>Invite 3 or more friends to join,</strong> and watch how
             quickly The Good Party spreads!
           </UnderCrew>
         }
       />
 
-      <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
+      <H3
+        style={{ marginTop: '48px', marginBottom: '8px' }}
+        data-cy="invite-link-label"
+      >
         Your Unique Invite Link
       </H3>
-      <ShareButton url={url} customElement={<InviteUrl>{url}</InviteUrl>} />
+      <ShareButton
+        url={url}
+        customElement={<InviteUrl data-cy="invite-url">{url}</InviteUrl>}
+      />
 
-      <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
+      <H3
+        style={{ marginTop: '48px', marginBottom: '8px' }}
+        data-cy="help-title"
+      >
         What can you do to help?
       </H3>
       <BottomLink>Spread the world</BottomLink>
@@ -317,7 +332,7 @@ const ProfileWrapper = ({
       <a href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion">
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
-      <Link to="/creators">
+      <Link to="/creators" data-cy="creators-link">
         <BottomLink>
           Creators of the World, Unite! help create{' '}
           <img src={heartImg} alt="tpg" />
@@ -326,6 +341,7 @@ const ProfileWrapper = ({
       <BottomLink
         style={{ marginTop: '48px', marginBottom: '24px' }}
         onClick={signoutCallback}
+        data-cy="signout-link"
       >
         Sign Out
       </BottomLink>

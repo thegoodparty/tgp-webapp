@@ -13,10 +13,7 @@ describe('ZipFinder', () => {
     cy.get('[data-cy=submit]').contains('SUBMIT');
   });
   it('check correct zipcode', () => {
-    cy.get('[data-cy=zipcode]').type('90210');
-    cy.get('[data-cy=submit]').click();
-    cy.url().should('include', '/elections/district/90210');
-    cy.getCookie('zip').should('exist');
+    cy.chooseCorrectZipcode('90210');
   });
   it('check invalid numeric zipcode', () => {
     cy.get('[data-cy=zipcode]').type('11111');

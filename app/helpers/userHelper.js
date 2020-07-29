@@ -1,6 +1,5 @@
 import { select } from 'redux-saga/effects';
 import { getCookie, getUserCookie } from './cookieHelper';
-import selectUser from '../containers/you/YouPage/selectors';
 
 export const getInitials = name => {
   if (!name) {
@@ -41,12 +40,12 @@ export const uuidUrl = (user, url = 'https://thegoodparty.org') => {
 export const getUuid = user => {
   if (user?.uuid) {
     return user.uuid;
-  } else {
-    const uuidCookie = getCookie('guuid');
-    if (uuidCookie) {
-      return uuidCookie;
-    }
   }
+  const uuidCookie = getCookie('guuid');
+  if (uuidCookie) {
+    return uuidCookie;
+  }
+
   return '';
 };
 
@@ -76,14 +75,63 @@ export const userDistrict = user => {
   return null;
 };
 
-export function* getUserFromStateOrCookie() {
-  const userState = yield select(selectUser);
-  if (userState && userState.user) {
-    return userState.user;
+export const getUserDistrict = (congDistrict, cds) => {
+  let userDistrictObj = {};
+  if (congDistrict && cds?.length > 0) {
+    cds.forEach(district => {
+      if (district.id === congDistrict) {
+        userDistrictObj = district;
+      }
+    });
+    if (!userDistrict.code) {
+      userDistrictObj = cds[0];
+    }
+  } else if (cds?.length > 0) {
+    userDistrictObj = cds[0]; // eslint-disable-line
   }
-  const cookieUser = getUserCookie();
-  if (cookieUser) {
-    return JSON.parse(cookieUser);
+  return userDistrictObj;
+};
+
+export const getDisplayCrew = crew => {
+  const displayCrew = [];
+  if (crew?.length > 0) {
+    crew.forEach((crewMember, index) => {
+      if (index < 3) {
+        displayCrew.push(crewMember);
+      }
+    });
   }
-  return null;
+  return displayCrew;
+};
+
+export const getCrewFillers = crew => {
+  const crewFillers = [];
+  if (crew?.length < 3) {
+    const fillerCount = 3 - crew.length;
+    for (let i = 0; i < fillerCount; i += 1) {
+      crewFillers.push(i + 1 + 3 - fillerCount);
+    }
+  }
+  return crewFillers;
+};
+
+export function* getUserFromStateOrCookie(makeSelectUser) {
+  const userState = yield select(makeSelectUser);
+  return userState?.user || null;
 }
+
+export const getUserDistrictName = (congDistrict, cds) => {
+  let districtName = '';
+  if (cds?.length > 0) {
+    if (congDistrict) {
+      cds.forEach(district => {
+        if (district.id === congDistrict) {
+          districtName = district.name;
+        }
+      });
+    } else {
+      districtName = cds[0].name;
+    }
+  }
+  return districtName;
+};

@@ -1,3 +1,4 @@
+import promisify from 'cypress-promise';
 import { emptyCandidate } from '../../support/utils';
 import { isProduction } from '../../constants';
 
@@ -116,43 +117,42 @@ context('Candidate', () => {
         : candidate.isGood === false
           ? 'Not Good'
           : 'Unknown'
-      }, ${candidate.isMajor ? 'Major' : 'Minor'}, ${
+    }, ${candidate.isMajor ? 'Major' : 'Minor'}, ${
       candidate.isAligned ? 'Aligned' : 'Not Aligned'
-      }, ${candidate.isIncumbent ? 'Incumbent' : 'Not Incumbent'}`, () => {
-        beforeEach(() => {
-          const url = `/elections/candidate/${chamber}${
-            isIncumbent ? '-i' : ''
-            }/${candidateId}/${candidateId}`;
-          cy.visit(url);
-        });
-        it(`loads candidate data and test components`, () => {
-          cy.getCandidateData(candidate).then(response1 => {
-            candidateData = response1.body;
-            cy.getIncumbentData(
-              candidate.chamber === 'senate' && candidateData,
-            ).then(response2 => {
-              incumbentData = chamber === 'house' ? {} : response2.body.incumbent;
-              cy.get('[data-cy=page-title]')
-                .should(
-                  'contain',
-                  candidateData && !emptyCandidate(candidateData)
-                    ? candidateData.name
-                    : '',
-                )
-                .and('contain', chamber)
-                .and(
-                  'contain',
-                  candidateData &&
-                    !emptyCandidate(candidateData) &&
-                    candidateData.isIncumbent
-                    ? 'incumbent'
-                    : 'candidate',
-                );
-              console.log('candidateData', candidateData);
-              cy.testCandidateTopRow(candidate, candidateData, incumbentData);
-            });
-          });
-        });
+    }, ${candidate.isIncumbent ? 'Incumbent' : 'Not Incumbent'}`, () => {
+      beforeEach(() => {
+        const url = `/elections/candidate/${chamber}${
+          isIncumbent ? '-i' : ''
+        }/${candidateId}/${candidateId}`;
+        cy.visit(url);
       });
+      it(`loads candidate data and test components`, async () => {
+        candidateData = await promisify(
+          cy.getCandidateData(candidate).then(res => res.body),
+        );
+        incumbentData = await promisify(
+          cy
+            .getIncumbentData(candidate.chamber === 'senate' && candidateData)
+            .then(res => (chamber === 'house' ? {} : res.body.incumbent)),
+        );
+        cy.get('[data-cy=page-title]')
+          .should(
+            'contain',
+            candidateData && !emptyCandidate(candidateData)
+              ? candidateData.name
+              : '',
+          )
+          .and('contain', chamber)
+          .and(
+            'contain',
+            candidateData &&
+              !emptyCandidate(candidateData) &&
+              candidateData.isIncumbent
+              ? 'incumbent'
+              : 'candidate',
+          );
+        cy.testCandidateTopRow(candidate, candidateData, incumbentData);
+      });
+    });
   });
 });

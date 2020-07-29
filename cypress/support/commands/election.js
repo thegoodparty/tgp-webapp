@@ -17,10 +17,13 @@ Cypress.Commands.add(
         ? ' (270 ELECTORS)'
         : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
     cy.get('[data-cy=title]').contains(title);
-    cy.get('[data-cy=supporters-count]')
-      .should('contain', numberFormatter(topRank))
-      .and('contain', topRank === 1 ? 'Person' : 'People');
-    cy.get('[data-cy=supporters-body]').contains('in top voting bloc so far');
+    cy.get('[data-cy=supporters-count]').should(
+      'contain',
+      numberFormatter(topRank),
+    );
+    cy.get('[data-cy=supporters-body]').contains(
+      'people support top candidate so far',
+    );
     cy.testSupportersProgressBar(
       'supporters',
       threshold,
@@ -120,7 +123,7 @@ Cypress.Commands.add(
     userState,
     showSupporters = true,
     suffixText,
-    prefixText = 'in top candidate voting bloc so far',
+    prefixText = 'people support top candidate so far',
   ) => {
     let progress = 3;
     if (peopleSoFar && votesNeeded) {
@@ -160,7 +163,6 @@ Cypress.Commands.add('testBlockCountSection', ($el, candidate, chamber) => {
   cy.wrap($el)
     .find('[data-cy=block-count]')
     .should('contain', numberFormatter(candidate.ranking))
-    .and('contain', candidate.ranking === 1 ? 'is' : 'are')
     .and('contain', candidateBlocName(candidate, chamber));
 });
 

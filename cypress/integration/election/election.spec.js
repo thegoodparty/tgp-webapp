@@ -1,6 +1,6 @@
+import promisify from 'cypress-promise';
 import { shortToLongState } from '../../../app/helpers/electionsHelper';
 import { numberNth } from '../../../app/helpers/numberHelper';
-import { getElectionCount, getCdsWithPerc } from '../../support/utils';
 
 context('Election', () => {
   const elections = [
@@ -32,7 +32,7 @@ context('Election', () => {
           `${displayChamber} Election | The Good Party`,
         );
       });
-      it(`loads candidates data and finds header part`, () => {
+      it(`loads candidates data and finds header part`, async () => {
         let title = `${displayChamber} Elections`;
         if (chamber === 'senate' && state) {
           title = `${stateLong} ${displayChamber} Election`;
@@ -58,10 +58,10 @@ context('Election', () => {
             key: 'presidential',
           };
         }
-        loadCandidates.func.then(response => {
-          candidates = response.body[loadCandidates.key];
-          cy.testElectionHeaderSection(candidates, election, title);
-        });
+        candidates = await promisify(
+          loadCandidates.func.then(res => res.body[loadCandidates.key]),
+        );
+        cy.testElectionHeaderSection(candidates, election, title);
       });
       it(`finds VSList`, () => {
         cy.testVSList(candidates, election);
