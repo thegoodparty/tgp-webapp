@@ -6,6 +6,8 @@ const OfflinePlugin = require('offline-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -153,3 +155,7 @@ module.exports = require('./webpack.base.babel')({
       !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });
+
+if (process.env.ANALYZE === 'yes') {
+  module.exports.plugins.push(new BundleAnalyzerPlugin());
+}

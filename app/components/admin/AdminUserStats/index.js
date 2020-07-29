@@ -7,7 +7,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import {
   ResponsiveContainer,
   PieChart,

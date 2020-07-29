@@ -11,7 +11,10 @@ export const initialState = {
   error: false,
   loginEmail: false,
   zipCode: false,
+  crewPreview: false,
+  crewCount: 0,
   crew: false,
+  leaderboard: false,
   ranking: false,
 };
 
@@ -94,11 +97,28 @@ const userReducer = (state = initialState, action) =>
         break;
 
       case types.CREW:
-        draft.crew = false;
+        draft.loading = true;
         break;
 
       case types.CREW_SUCCESS:
         draft.crew = action.crew;
+        draft.loading = false;
+        break;
+
+      case types.CREW_PREVIEW_SUCCESS:
+        draft.crewPreview = action.crewPreview;
+        draft.crewCount = action.crewCount;
+        draft.loading = false;
+        break;
+
+      case types.LEADERBOARD:
+        draft.loading = true;
+        draft.leaderboard = false;
+        break;
+
+      case types.LEADERBOARD_SUCCESS:
+        draft.loading = false;
+        draft.leaderboard = action.leaderboard;
         break;
 
       case types.USER_RANKING_SUCCESS:

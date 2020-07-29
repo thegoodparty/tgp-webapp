@@ -52,7 +52,7 @@ export function YouPage({
   useInjectReducer({ key: 'zipFinderPage', reducer: districtReducer });
   useInjectSaga({ key: 'zipFinderPage', saga: districtSaga });
 
-  const { user, crew, ranking } = userState;
+  const { user, crewPreview, crewCount, ranking } = userState;
   const { houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
@@ -61,8 +61,8 @@ export function YouPage({
       dispatch(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     }
-    if (user && !crew) {
-      dispatch(userActions.crewAction());
+    if (user && !crewPreview) {
+      dispatch(userActions.crewAction(true));
     }
     if (user) {
       const { shortState } = user;
@@ -93,7 +93,8 @@ export function YouPage({
   const accountProps = {
     articles,
     user,
-    crew,
+    crewPreview,
+    crewCount,
     signoutCallback,
     houseCandidatesCount,
     senateCandidatesCount,

@@ -18,6 +18,7 @@ import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from 'components/shared/UserAvatar';
 import ShareButton from 'components/shared/ShareButton';
 import TopQuestions from 'components/shared/TopQuestions';
+import CrewMember from 'components/you/CrewMember';
 import {
   houseElectionLink,
   presidentialElectionLink,
@@ -52,7 +53,7 @@ const NoElection = styled(Body13)`
   display: inline-block;
 `;
 
-const AllElections = styled.div`
+const AllElections = styled(Body)`
   margin-top: 16px;
   color: ${({ theme }) => theme.colors.blue};
 `;
@@ -63,15 +64,18 @@ const BottomLink = styled(Body)`
   cursor: pointer;
 `;
 
+const CrewTitle = styled(Body)`
+  margin-top: 48px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+`;
+
 const CrewWrapper = styled.div`
   margin-top: 17px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const CrewMember = styled(Body13)`
-  text-align: center;
 `;
 
 const Filler = styled(Body13)`
@@ -94,14 +98,33 @@ const UnderCrew = styled(Body)`
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.blue};
 `;
-//
+
 const InviteUrl = styled(Body)`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
+const More = styled(Body13)`
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.blue};
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
+    0px 0px 16px rgba(0, 0, 0, 0.12);
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 80px;
+    width: 80px;
+  }
+`;
+
 const ProfileWrapper = ({
   user,
-  crew,
+  crewPreview,
+  crewCount,
   houseCandidatesCount,
   senateCandidatesCount,
   signoutCallback,
@@ -119,9 +142,23 @@ const ProfileWrapper = ({
   const userDistrict = getUserDistrict(congDistrict, cds);
   const electionLink = getElectionLink(zip);
 
-  const displayCrew = getDisplayCrew(crew);
+  // const displayCrew = [];
+  // if (crewPreview && crewPreview.length > 0) {
+  //   crewPreview.forEach((crewMember, index) => {
+  //     if (index < 3) {
+  //       displayCrew.push(crewMember);
+  //     }
+  //   });
+  // }
 
-  const crewFillers = getCrewFillers(crew);
+  let crewFillers = [];
+  if (crewPreview && crewPreview.length < 3) {
+    const fillerCount = 3 - crewPreview.length;
+    crewFillers = Array.from(
+      Array(fillerCount),
+      (_, x) => x + 1 + 3 - fillerCount,
+    );
+  }
   const showHouse = houseCandidatesCount > 0;
   const showSenate = senateCandidatesCount > 0;
 
@@ -164,8 +201,8 @@ const ProfileWrapper = ({
             {presidentialRankCount === 0
               ? 'Rank Choices'
               : `${presidentialRankCount} Choice${
-                  presidentialRankCount === 1 ? '' : 's'
-                } Ranked`}
+              presidentialRankCount === 1 ? '' : 's'
+              } Ranked`}
           </ElectionData>
         </Link>
       </Election>
@@ -180,14 +217,14 @@ const ProfileWrapper = ({
               <ElectionData>
                 {senateRank
                   ? `${senateRankCount} Choice${
-                      senateRankCount > 1 ? 's' : ''
-                    } Ranked`
+                  senateRankCount > 1 ? 's' : ''
+                  } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-            <NoElection data-cy="no-senate-race">No Race in 2020</NoElection>
-          )}
+              <NoElection>No Race in 2020</NoElection>
+            )}
         </Election>
       )}
       {userDistrict.code && (
@@ -202,50 +239,63 @@ const ProfileWrapper = ({
               <ElectionData>
                 {houseRank && houseRankCount > 0
                   ? `${houseRankCount} Choice${
-                      houseRankCount > 1 ? 's' : ''
-                    } Ranked`
+                  houseRankCount > 1 ? 's' : ''
+                  } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-            <NoElection data-cy="no-house-race">No Race in 2020</NoElection>
-          )}
+              <NoElection>No Race in 2020</NoElection>
+            )}
         </Election>
       )}
       <Link to={electionLink} data-cy="all-election-link">
         <AllElections>See All Elections</AllElections>
       </Link>
-
-      <H3
-        style={{ marginTop: '48px', marginBottom: '4px' }}
-        data-cy="crew-title"
-      >
-        Your Crew
-      </H3>
-      <Body13 style={{ marginBottom: '8px' }} data-cy="invite-crew-label">
+      <CrewTitle>
+        <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
+        <Body>
+          (<img src={heartImg} alt="tpg" /> people recruited)
+        </Body>
+      </CrewTitle>
+      <Body13 style={{ marginBottom: '8px' }}>
         invite people to grow your crew
       </Body13>
 
       <CrewWrapper>
-        <CrewMember data-cy="crew-member-title">
-          <UserAvatar user={user} size="medium" />
-          <div style={{ marginTop: '10px' }}>You</div>
-        </CrewMember>
+        <CrewMember
+          crewMember={user}
+          overrideName="You"
+          overrideCount={crewCount}
+        />
 
-        {displayCrew.map(crewMember => (
-          <CrewMember key={crewMember.uuid} data-cy="crew-member">
-            <UserAvatar user={crewMember} size="medium" />
-            <div style={{ marginTop: '10px' }}>{crewMember.name}</div>
-          </CrewMember>
-        ))}
+        {crewPreview &&
+          crewPreview.map((crewMember, index) => (
+            <React.Fragment key={crewMember.uuid}>
+              {crewCount > 3 && index === 2 ? (
+                <div>
+                  <More>+{crewCount - 2}</More>
+
+                  <Body13 className="text-center" style={{ marginTop: '4px' }}>
+                    <Link to="you/crew">SEE ALL</Link>
+                  </Body13>
+                </div>
+              ) : (
+                <CrewMember crewMember={crewMember} />
+              )}
+            </React.Fragment>
+          ))}
         {crewFillers.map(filler => (
           <Filler key={filler} data-cy="crew-filler">
             {filler}
           </Filler>
         ))}
       </CrewWrapper>
+      <Body style={{ marginTop: '10px' }}>
+        <Link to="you/crew/leaderboard">View Leaderboards</Link>
+      </Body>
       <ShareButton
-        url={url}
+        url={`Check out The Good Party.  See what's possible, before you vote. \n ${url}`}
         customElement={
           <UnderCrew data-cy="under-crew">
             <strong>Invite 3 or more friends to join,</strong> and watch how
@@ -271,16 +321,15 @@ const ProfileWrapper = ({
       >
         What can you do to help?
       </H3>
+      <BottomLink>Spread the world</BottomLink>
       <ShareButton
-        url={url}
-        customElement={
-          <BottomLink data-cy="friend-invite">Invite Friends</BottomLink>
-        }
+        url={`Check out voting blocs on The Good Party.   See what's possible, before you vote. \n ${url}`}
+        customElement={<BottomLink>Invite some friends</BottomLink>}
       />
-      <a
-        href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion"
-        data-cy="feedback-link"
-      >
+      <a href=" http://crowdcast.thegoodparty.org" target="_blank">
+        <BottomLink>Add a share link to our crowdcast </BottomLink>
+      </a>
+      <a href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion">
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
       <Link to="/creators" data-cy="creators-link">
