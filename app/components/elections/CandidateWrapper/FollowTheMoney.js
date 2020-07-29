@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Body13, Body, Body11 } from 'components/shared/typogrophy';
 
 import moneyHelper from 'helpers/moneyHelper';
-import { percHelper } from 'helpers/numberHelper';
+import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import {
   getComparedIncumbent,
   getCombinedReportDate,
@@ -115,18 +115,16 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
 
   const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
 
-  const firstFund = () => {
-    return (
-      <Fund data-cy="total-fund">
-        <ColoredBodyText
-          className={!isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'}
-        >
-          {moneyHelper(totalRaised)}
-        </ColoredBodyText>
-        <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
-      </Fund>
-    );
-  };
+  const firstFund = () => (
+    <Fund data-cy="total-fund">
+      <ColoredBodyText
+        className={!isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'}
+      >
+        {moneyHelper(totalRaised)}
+      </ColoredBodyText>
+      <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
+    </Fund>
+  );
   const secondFund = () => {
     if (isGoodOrUnkwown) {
       if (isIncumbent || isBigMoney || perc > 50) {
@@ -136,30 +134,28 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
             <StyledBody9>FROM SMALL INDIV DONORS &lt;$200</StyledBody9>
           </Fund>
         );
-      } else {
-        return (
-          <Fund data-cy="fund">
-            <ColoredBodyText className="green">
-              {comparedIncumbent.relativePerc}%
-            </ColoredBodyText>
-            <StyledBody9>
-              FUNDING RELATIVE TO{' '}
-              {comparedIncumbent.isFakeIncumbent
-                ? 'BIG MONEY CANDIDATE'
-                : 'INCUMBENT'}
-            </StyledBody9>
-          </Fund>
-        );
       }
-    } else {
-      // NOT GOOD ENOUGH
       return (
         <Fund data-cy="fund">
-          <ColoredBodyText className={colorWithGray}>{perc}%</ColoredBodyText>
-          <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
+          <ColoredBodyText className="green">
+            {comparedIncumbent.relativePerc}%
+          </ColoredBodyText>
+          <StyledBody9>
+            FUNDING RELATIVE TO{' '}
+            {comparedIncumbent.isFakeIncumbent
+              ? 'BIG MONEY CANDIDATE'
+              : 'INCUMBENT'}
+          </StyledBody9>
         </Fund>
       );
     }
+    // NOT GOOD ENOUGH
+    return (
+      <Fund data-cy="fund">
+        <ColoredBodyText className={colorWithGray}>{perc}%</ColoredBodyText>
+        <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
+      </Fund>
+    );
   };
 
   const thirdFund = () => {
@@ -171,29 +167,27 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
             <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
           </Fund>
         );
-      } else {
-        // NON INCUMBENT GOOD OR UNKNOWN
-        return (
-          <Fund data-cy="fund-disadvantage">
-            <ColoredBodyText className="green">
-              {comparedIncumbent.xTimes}x
-            </ColoredBodyText>
-            <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
-          </Fund>
-        );
       }
-    } else {
-      // NOT GOOD ENOUGH
+      // NON INCUMBENT GOOD OR UNKNOWN
       return (
         <Fund data-cy="fund-disadvantage">
-          <ColoredBodyText className={color}>{perHour}/hr</ColoredBodyText>
-          <StyledBody9>
-            BIG MONEY
-            <SmallBr /> FUNDING RATE
-          </StyledBody9>
+          <ColoredBodyText className="green">
+            {numberFormatter(comparedIncumbent.xTimes)}x
+          </ColoredBodyText>
+          <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
         </Fund>
       );
     }
+    // NOT GOOD ENOUGH
+    return (
+      <Fund data-cy="fund-disadvantage">
+        <ColoredBodyText className={color}>{perHour}/hr</ColoredBodyText>
+        <StyledBody9>
+          BIG MONEY
+          <SmallBr /> FUNDING RATE
+        </StyledBody9>
+      </Fund>
+    );
   };
 
   return (
