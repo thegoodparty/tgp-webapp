@@ -43,13 +43,14 @@ function* sendCreatorMessage(action) {
 
 function* register(action) {
   try {
-    const { email, name } = action;
+    const { email, name, password } = action;
     const zip = yield getZipFromStateOrCookie();
     const ranking = getCookie('guestRanking') || '[]';
 
     const payload = {
       email,
       name,
+      password,
       zip,
       ranking,
     };
@@ -63,11 +64,13 @@ function* register(action) {
     }
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
-    const { user } = response;
-    yield put(actions.registerActionSuccess(user));
-    yield put(push('/you/confirmation-sent'));
+    const { user, token } = response;
+    yield put(actions.registerActionSuccess(user, token));
     setUserCookie(user);
+    setCookie('token', token);
     deleteCookie('guestRanking');
+    yield put(push('/you'));
+    AnalyticsService.sendEvent('email-register', 'success');
   } catch (error) {
     if (error.response?.exists) {
       // user is already in our system, try login.
@@ -272,13 +275,19 @@ function* confirmEmail(action) {
 
 function* login(action) {
   try {
-    const { email } = action;
+    const { email, password } = action;
     const api = tgpApi.login;
     const payload = {
       email,
+      password,
     };
-    yield call(requestHelper, api, payload);
-    yield put(push('/login/confirm'));
+    const response = yield call(requestHelper, api, payload);
+    const { user, token } = response;
+    yield put(actions.registerActionSuccess(user, token));
+    setUserCookie(user);
+    setCookie('token', token);
+    deleteCookie('guestRanking');
+    yield put(push('/you'));
     AnalyticsService.sendEvent('email-login', 'success');
   } catch (error) {
     if (error.response?.notexists) {
@@ -294,6 +303,11 @@ function* login(action) {
       yield put(
         globalActions.logErrorAction('email login error - email exists', error),
       );
+    } else if (error.response?.incorrect) {
+      yield put(
+        snackbarActions.showSnakbarAction('Incorrect Password', 'error'),
+      );
+      AnalyticsService.sendEvent('email-login', 'incorrect password');
     } else {
       yield put(snackbarActions.showSnakbarAction('Error login in.', 'error'));
       AnalyticsService.sendEvent('email-login', 'error');
@@ -599,7 +613,7 @@ function* leaderboard() {
   try {
     const api = tgpApi.leaderboard;
     const response = yield call(requestHelper, api, null);
-    console.log('saga', response.leaderboard)
+    console.log('saga', response.leaderboard);
     yield put(actions.leaderboardActionSuccess(response.leaderboard));
   } catch (error) {
     console.log('crew error', JSON.stringify(error));

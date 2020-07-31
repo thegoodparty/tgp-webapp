@@ -33,6 +33,7 @@ const OutlinedButton = ({
   className = '',
   onClick,
   style = {},
+  type = '',
 }) => {
   let buttonClass = className;
   if (white) {
@@ -47,6 +48,7 @@ const OutlinedButton = ({
       onClick={onClick}
       disabled={!active}
       style={style}
+      type={type}
     >
       {children}
     </StyledButton>

@@ -1,14 +1,16 @@
 import types from './constants';
 
-const registerAction = (email, name) => ({
+const registerAction = (email, name, password) => ({
   type: types.REGISTER,
   email,
   name,
+  password,
 });
 
-const registerActionSuccess = user => ({
+const registerActionSuccess = (user, token) => ({
   type: types.REGISTER_SUCCESS,
   user,
+  token,
 });
 
 const registerActionError = error => ({
@@ -53,9 +55,10 @@ const signoutAction = (url = '/') => ({
   url,
 });
 
-const loginAction = email => ({
+const loginAction = (email, password) => ({
   type: types.LOGIN,
   email,
+  password,
 });
 
 const socialLoginAction = user => ({
@@ -63,23 +66,7 @@ const socialLoginAction = user => ({
   user,
 });
 
-const updatePresidentialRankAction = rank => ({
-  type: types.UPDATE_PRESIDENTIAL_RANK,
-  rank,
-});
 
-const updateSenateRankAction = (rank, state) => ({
-  type: types.UPDATE_SENATE_RANK,
-  rank,
-  state,
-});
-
-const updateHouseRankAction = (rank, state, district) => ({
-  type: types.UPDATE_HOUSE_RANK,
-  rank,
-  state,
-  district,
-});
 
 const updateUserAction = updatedFields => ({
   type: types.UPDATE_USER,

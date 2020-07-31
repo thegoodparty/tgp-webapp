@@ -165,24 +165,23 @@ function SocialRegisterWrapper({
                 <Body13 style={{ color: '#767676' }}>Or</Body13>
               </Or>
             </OrWrapper>
-            <OutlinedButton active style={{ marginTop: '24px' }}>
-              <Link
-                to="/you/register-email"
-                style={{ width: '100%' }}
-                data-cy="email-register"
-              >
+            <Link
+              to="/you/register-email"
+              data-cy="email-register"
+            >
+              <OutlinedButton active style={{ marginTop: '24px', width: '100%' }}>
                 <EmailInner>
                   <EmailIconImg src={EmailIcon} />
                   <StyledBody13>CONTINUE WITH EMAIL</StyledBody13>
                 </EmailInner>
-              </Link>
-            </OutlinedButton>
+              </OutlinedButton>
+            </Link>
             <Body13 style={{ marginTop: '24px' }} data-cy="login-wrapper">
               Have an account?{' '}
               <Link to="/login" data-cy="login">
                 Sign In
               </Link>
-            </Body13> 
+            </Body13>
             <Body11 style={{ margin: '24px 0' }} data-cy="policy-wrapper">
               By signing up, you agree to the{' '}
               <a href="/privacy" className="blue" data-cy="policy">

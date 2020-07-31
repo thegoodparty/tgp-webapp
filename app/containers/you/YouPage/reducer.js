@@ -30,6 +30,7 @@ const userReducer = (state = initialState, action) =>
 
       case types.REGISTER_SUCCESS:
         draft.user = action.user;
+        draft.token = action.token;
         draft.loading = false;
         draft.error = false;
         fullStoryIdentify(action.user);

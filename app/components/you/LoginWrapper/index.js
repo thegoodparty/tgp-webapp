@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H2, H1 } from 'components/shared/typogrophy/index';
@@ -73,8 +77,14 @@ const LoginWrapper = ({
   socialLoginFailureCallback,
 }) => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setshowPassword] = useState(false);
   const onChangeEmail = event => {
     setEmail(event.target.value);
+  };
+
+  const enableSubmit = () => {
+    return password.length >= 8 && validateEmail();
   };
 
   const validateEmail = () => {
@@ -89,9 +99,22 @@ const LoginWrapper = ({
 
   const handleSubmit = () => {
     if (validateEmail()) {
-      loginCallback(email);
+      loginCallback(email, password);
     }
   };
+
+  const handleClickShowPassword = () => {
+    setshowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault();
+  };
+
+  const onChangePassword = event => {
+    setPassword(event.target.value);
+  };
+
   return (
     <PageWrapper>
       <Grid container spacing={3}>
@@ -117,10 +140,37 @@ const LoginWrapper = ({
                 onChange={onChangeEmail}
                 data-cy="email-input"
               />
+              <Input
+                value={password}
+                label="Password"
+                required
+                size="medium"
+                fullWidth
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                onChange={onChangePassword}
+                data-cy="password"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
               <OutlinedButton
                 fullWidth
-                active={validateEmail()}
+                active={enableSubmit()}
                 onClick={handleSubmit}
+                type="submit"
               >
                 Submit
               </OutlinedButton>
