@@ -31,8 +31,8 @@ AmaContainer.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    sendAmaCallback: message => {
-      dispatch(amaActions.sendAma(message));
+    sendAmaCallback: (message, replyEmail) => {
+      dispatch(amaActions.sendAma(message, replyEmail));
     },
   };
 }
