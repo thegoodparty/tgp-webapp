@@ -272,3 +272,25 @@ Cypress.Commands.add('checkPrivateInfoEditSection', user => {
     .find('button')
     .should('contain', 'Save');
 });
+
+Cypress.Commands.add('checkCrewRow', ($el, crewMember, user, index) => {
+  cy.wrap($el)
+    .find('[data-cy=crew-rank]')
+    .contains(index + 2);
+  cy.wrap($el)
+    .find('[data-cy=crew-member]')
+    .should('contain', crewMember.name)
+    .and('contain', crewMember.crewCount || 1);
+  cy.wrap($el)
+    .find('[data-cy=crew-member-name]')
+    .should('contain', crewMember.uuid === user.uuid ? 'YOU' : crewMember.name);
+  cy.wrap($el)
+    .find('[data-cy=crew-location]')
+    .should('contain', crewMember.shortState ? crewMember.shortState.toUpperCase() : '')
+    .and('contain', crewMember.districtNumber ? `-${crewMember.districtNumber}` : '');
+  if(crewMember.feedback) {
+    cy.wrap($el)
+    .find('[data-cy=crew-feedback]')
+    .should('contain', crewMember.feedback);
+  }
+});
