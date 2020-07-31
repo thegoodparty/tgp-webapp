@@ -1,3 +1,4 @@
+import promisify from 'cypress-promise';
 import {
   getElectionLink,
   houseElectionLink,
@@ -68,7 +69,7 @@ Cypress.Commands.add(
         presidentialRankCount === 0
           ? 'Rank Choices'
           : `${presidentialRankCount} Choice${
-              presidentialRankCount === 1 ? '' : 's'
+          presidentialRankCount === 1 ? '' : 's'
           } Ranked`,
       )
       .should('have.attr', 'href')
@@ -86,7 +87,7 @@ Cypress.Commands.add(
             'contain',
             senateRank
               ? `${senateRankCount} Choice${
-                  senateRankCount > 1 ? 's' : ''
+              senateRankCount > 1 ? 's' : ''
               } Ranked`
               : 'Rank Choices',
           )
@@ -109,7 +110,7 @@ Cypress.Commands.add(
             'contain',
             houseRank && houseRankCount > 0
               ? `${houseRankCount} Choice${
-                  houseRankCount > 1 ? 's' : ''
+              houseRankCount > 1 ? 's' : ''
               } Ranked`
               : 'Rank Choices',
           )
@@ -131,7 +132,9 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
   const displayCrew = getDisplayCrew(crew);
   const crewFillers = getCrewFillers(crew);
   const url = uuidUrl(user);
-  cy.get('[data-cy=crew-title]').should('contain', 'Your Crew');
+  cy.get('[data-cy=crew-title]')
+    .should('contain', 'Your Crew')
+    .and('contain', 'people recruited');
   cy.get('[data-cy=invite-crew-label]').should(
     'contain',
     'invite people to grow your crew',
@@ -140,7 +143,7 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
     'contain',
     'invite people to grow your crew',
   );
-  cy.get('[data-cy=crew-member-title]').should('contain', 'You');
+  cy.get('[data-cy=you-name]').should('contain', 'You');
   if (displayCrew.length > 0) {
     cy.get('[data-cy=crew-member]')
       .should('have.length', displayCrew.length)
@@ -149,12 +152,16 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
       });
   }
   if (crewFillers.length > 0) {
-    cy.get('[data-cy=crew-fillers]')
+    cy.get('[data-cy=crew-filler]')
       .should('have.length', crewFillers.length)
       .each(($el, index) => {
         cy.wrap($el).contains(crewFillers[index]);
       });
   }
+  cy.get('[data-cy=leaderboards-link]')
+    .should('contain', 'View Leaderboards')
+    .should('have.attr', 'href')
+    .and('contain', 'you/crew/leaderboard');
   cy.get('[data-cy=under-crew]')
     .should('contain', 'Invite 3 or more friends to join,')
     .and('contain', 'and watch how quickly The Good Party');
@@ -164,7 +171,6 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
   );
   cy.get('[data-cy=invite-url]').should('contain', url);
 });
-
 
 Cypress.Commands.add('checkSignOutInYou', () => {
   cy.get('[data-cy=signout-link')
@@ -201,17 +207,17 @@ Cypress.Commands.add('checkGuestRegisterSectionInYou', () => {
     .should('have.attr', 'href')
     .and('contain', '?register=true');
 });
-Cypress.Commands.add('checkInitialInfoEditSection', () => {
+Cypress.Commands.add('checkInitialInfoEditSection', async () => {
   cy.get('[data-cy=new-name]').type('blueshark0811');
   cy.get('[data-cy=new-feedback]').type('The Good Party');
   cy.get('[data-cy=profile-form]')
     .find('button')
     .click();
-  cy.getCookie('user').then(cookie => {
-    const user = parseCookie(cookie.value);
-    cy.wrap(user.name).should('contain', 'blueshark0811');
-    cy.wrap(user.feedback).should('contain', 'The Good Party');
-  });
+  const user = await promisify(
+    cy.getCookie('user').then(cookie => parseCookie(cookie.value)),
+  );
+  cy.wrap(user.name).should('contain', 'blueshark0811');
+  cy.wrap(user.feedback).should('contain', 'The Good Party');
 });
 
 Cypress.Commands.add('checkCongressionalDistrictEditSection', () => {
@@ -265,4 +271,26 @@ Cypress.Commands.add('checkPrivateInfoEditSection', user => {
   cy.get('[data-cy=private-info-form]')
     .find('button')
     .should('contain', 'Save');
+});
+
+Cypress.Commands.add('checkCrewRow', ($el, crewMember, user, index) => {
+  cy.wrap($el)
+    .find('[data-cy=crew-rank]')
+    .contains(index + 2);
+  cy.wrap($el)
+    .find('[data-cy=crew-member]')
+    .should('contain', crewMember.name)
+    .and('contain', crewMember.crewCount || 1);
+  cy.wrap($el)
+    .find('[data-cy=crew-member-name]')
+    .should('contain', crewMember.uuid === user.uuid ? 'YOU' : crewMember.name);
+  cy.wrap($el)
+    .find('[data-cy=crew-location]')
+    .should('contain', crewMember.shortState ? crewMember.shortState.toUpperCase() : '')
+    .and('contain', crewMember.districtNumber ? `-${crewMember.districtNumber}` : '');
+  if(crewMember.feedback) {
+    cy.wrap($el)
+    .find('[data-cy=crew-feedback]')
+    .should('contain', crewMember.feedback);
+  }
 });

@@ -123,12 +123,28 @@ Cypress.Commands.add('getUserRanking', () => {
   );
 });
 
-Cypress.Commands.add('getUserCrew', () => {
+Cypress.Commands.add('getUserCrew', (preview = true) => {
   const token = Cypress.env('token');
+  let param = null;
+  if (!preview) {
+    param = {
+      preview: false,
+    };
+  }
   cy.sendRequest(
     api.crew.method,
     api.crew.url,
-    null,
+    param,
     api.crew.withAuth && token,
+  );
+});
+
+Cypress.Commands.add('getLeaders', () => {
+  const token = Cypress.env('token');
+  cy.sendRequest(
+    api.leaderboard.method,
+    api.leaderboard.url,
+    null,
+    api.leaderboard.withAuth && token,
   );
 });

@@ -57,7 +57,7 @@ Cypress.Commands.add('testEventSnippet', ($el, event, isPastEvent = false) => {
       .should('have.attr', 'href', locationLink);
     cy.wrap($el)
       .find('[data-cy=event-interested]')
-      .contains('M INTERESTED');
+      .contains('ADD TO CALENDAR...');
   }
 });
 

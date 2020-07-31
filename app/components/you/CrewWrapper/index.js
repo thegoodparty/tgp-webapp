@@ -81,20 +81,33 @@ const Name = styled(Body13)`
 function CrewWrapper({ crew, tab = 'crew', loading, user }) {
   return (
     <PageWrapper white>
-      <H1>Good Party Leaders</H1>
-      <Body style={{ marginTop: '15px', marginBottom: '24px' }}>
+      <H1 data-cy="title">Good Party Leaders</H1>
+      <Body
+        style={{ marginTop: '15px', marginBottom: '24px' }}
+        data-cy="description"
+      >
         See where you rank among{' '}
-        <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">your crew</Link>, and{' '}
-        <Link to="/you/crew/leaderboard">overall</Link> in recruiting people to
-        The Good Party.
+        <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe" data-cy="crew-article">
+          your crew
+        </Link>
+        , and{' '}
+        <Link to="/you/crew/leaderboard" data-cy="overall-link">
+          overall
+        </Link>{' '}
+        in recruiting people to The Good Party.
       </Body>
       <TabWrapper>
-        <Tab className={tab === 'crew' ? 'active' : ''} to="/you/crew">
+        <Tab
+          className={tab === 'crew' ? 'active' : ''}
+          to="/you/crew"
+          data-cy="crew-tab"
+        >
           <Body11>YOUR CREW</Body11>
         </Tab>
         <Tab
           className={tab !== 'crew' ? 'active' : ''}
           to="/you/crew/leaderboard"
+          data-cy="overall-tab"
         >
           <Body11>OVERALL</Body11>
         </Tab>
@@ -103,7 +116,7 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
         <>
           {tab === 'crew' && (
             <RankedCrewWrapper>
-              <Rank>1</Rank>
+              <Rank data-cy="you-rank">1</Rank>
               <CrewMember
                 crewMember={user}
                 overrideCount={user.crewCount}
@@ -111,14 +124,16 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
               />
               <TextWrapper>
                 <NameLocation>
-                  <Name>YOU</Name>
+                  <Name data-cy="you-crew-name">YOU</Name>
 
-                  <Body11>
+                  <Body11 data-cy="you-location">
                     {user.shortState ? user.shortState.toUpperCase() : ''}
                     {user.districtNumber && `-${user.districtNumber}`}
                   </Body11>
                 </NameLocation>
-                {user.feedback && <Body11>"{user.feedback}"</Body11>}
+                {user.feedback && (
+                  <Body11 data-cy="you-feedback">"{user.feedback}"</Body11>
+                )}
               </TextWrapper>
             </RankedCrewWrapper>
           )}
@@ -130,18 +145,19 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
                   ? 'highlighted'
                   : ''
               }
+              data-cy="crew-row"
             >
-              <Rank>{index + 2}</Rank>
+              <Rank data-cy="crew-rank">{index + 2}</Rank>
               <CrewMember crewMember={crewMember} />
               <TextWrapper>
                 <NameLocation>
                   {tab === 'leaderboard' && crewMember.uuid === user.uuid ? (
-                    <Name>YOU</Name>
+                    <Name data-cy="crew-member-name">YOU</Name>
                   ) : (
-                    <Name>{crewMember.name}</Name>
+                    <Name data-cy="crew-member-name">{crewMember.name}</Name>
                   )}
 
-                  <Body11>
+                  <Body11 data-cy="crew-location">
                     {crewMember.shortState
                       ? crewMember.shortState.toUpperCase()
                       : ''}
@@ -150,7 +166,7 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
                   </Body11>
                 </NameLocation>
                 {crewMember.feedback && (
-                  <Body11>"{crewMember.feedback}"</Body11>
+                  <Body11 data-cy="crew-feedback">"{crewMember.feedback}"</Body11>
                 )}
               </TextWrapper>
             </RankedCrewWrapper>

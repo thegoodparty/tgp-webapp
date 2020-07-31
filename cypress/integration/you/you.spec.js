@@ -89,7 +89,15 @@ context('You', () => {
         'contain',
         'What can you do to help?',
       );
-      cy.get('[data-cy=friend-invite]').should('contain', 'Invite Friends');
+      cy.get('[data-cy=spread-world]').should('contain', 'Spread the world');
+      cy.get('[data-cy=invite-friends]').should(
+        'contain',
+        'Invite some friends',
+      );
+      cy.get('[data-cy=crowdcast-link]')
+        .should('contain', 'Add a share link to our crowdcast')
+        .should('have.attr', 'href')
+        .and('contain', 'http://crowdcast.thegoodparty.org');
       cy.get('[data-cy=feedback-link]')
         .should('contain', 'Give Feedback or Suggestions')
         .should('have.attr', 'href')
