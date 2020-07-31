@@ -47,7 +47,7 @@ export function CrewPage({ userState, dispatch }) {
   return (
     <div>
       <Helmet>
-        <title>Crew Page</title>
+        <title data-cy="page-title">Crew Page</title>
         <meta name="description" content="Crew Page" />
       </Helmet>
       <CrewWrapper {...childPros} />
