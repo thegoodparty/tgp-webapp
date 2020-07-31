@@ -201,7 +201,7 @@ const ProfileWrapper = ({
             {presidentialRankCount === 0
               ? 'Rank Choices'
               : `${presidentialRankCount} Choice${
-              presidentialRankCount === 1 ? '' : 's'
+                  presidentialRankCount === 1 ? '' : 's'
               } Ranked`}
           </ElectionData>
         </Link>
@@ -217,14 +217,14 @@ const ProfileWrapper = ({
               <ElectionData>
                 {senateRank
                   ? `${senateRankCount} Choice${
-                  senateRankCount > 1 ? 's' : ''
+                      senateRankCount > 1 ? 's' : ''
                   } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-              <NoElection>No Race in 2020</NoElection>
-            )}
+            <NoElection>No Race in 2020</NoElection>
+          )}
         </Election>
       )}
       {userDistrict.code && (
@@ -239,26 +239,26 @@ const ProfileWrapper = ({
               <ElectionData>
                 {houseRank && houseRankCount > 0
                   ? `${houseRankCount} Choice${
-                  houseRankCount > 1 ? 's' : ''
+                      houseRankCount > 1 ? 's' : ''
                   } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-              <NoElection>No Race in 2020</NoElection>
-            )}
+            <NoElection>No Race in 2020</NoElection>
+          )}
         </Election>
       )}
       <Link to={electionLink} data-cy="all-election-link">
         <AllElections>See All Elections</AllElections>
       </Link>
-      <CrewTitle>
+      <CrewTitle data-cy="crew-title">
         <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
         <Body>
           (<img src={heartImg} alt="tpg" /> people recruited)
         </Body>
       </CrewTitle>
-      <Body13 style={{ marginBottom: '8px' }}>
+      <Body13 style={{ marginBottom: '8px' }} data-cy="invite-crew-label">
         invite people to grow your crew
       </Body13>
 
@@ -292,7 +292,9 @@ const ProfileWrapper = ({
         ))}
       </CrewWrapper>
       <Body style={{ marginTop: '10px' }}>
-        <Link to="you/crew/leaderboard">View Leaderboards</Link>
+        <Link to="you/crew/leaderboard" data-cy="leaderboards-link">
+          View Leaderboards
+        </Link>
       </Body>
       <ShareButton
         url={`Check out The Good Party.  See what's possible, before you vote. \n ${url}`}
@@ -321,15 +323,24 @@ const ProfileWrapper = ({
       >
         What can you do to help?
       </H3>
-      <BottomLink>Spread the world</BottomLink>
+      <BottomLink data-cy="spread-world">Spread the world</BottomLink>
       <ShareButton
         url={`Check out voting blocs on The Good Party.   See what's possible, before you vote. \n ${url}`}
-        customElement={<BottomLink>Invite some friends</BottomLink>}
+        customElement={
+          <BottomLink data-cy="invite-friends">Invite some friends</BottomLink>
+        }
       />
-      <a href=" http://crowdcast.thegoodparty.org" target="_blank">
-        <BottomLink>Add a share link to our crowdcast </BottomLink>
+      <a
+        href="http://crowdcast.thegoodparty.org"
+        target="_blank"
+        data-cy="crowdcast-link"
+      >
+        <BottomLink>Add a share link to our crowdcast</BottomLink>
       </a>
-      <a href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion">
+      <a
+        href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion"
+        data-cy="feedback-link"
+      >
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
       <Link to="/creators" data-cy="creators-link">

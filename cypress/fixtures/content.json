@@ -3,21 +3,18 @@
     {
       "id": "h2WaVMyZt4ZXPsILFmqTQ",
       "title": "The Good Party - Livestream + Q&A",
-      "dateAndTime": "2020-07-29T17:00",
+      "dateAndTime": "2020-08-06T17:00",
       "description": "Learn what Good we're up to and ask us any questions, live!",
       "timeZone": "PST",
-      "displayDate": "Weds, July 29th 2020 · 5:00PM PT (8:00PM ET)",
+      "displayDate": "Thurs, Aug 6th 2020 · 5:00PM PT (8:00PM ET)",
       "eventDuration": 1,
       "location": "https://www.crowdcast.io/e/the-good-party",
       "presenter": "Farhad Mohit",
       "presenterTitle": "Founder, The Good Party",
       "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1596042000000
+      "utcTime": 1596733200000
     }
   ],
-  "appVersion": {
-    "version": "1.0.19"
-  },
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -30,7 +27,27 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "No. The Good Party is not an actual political party. We are a free non-commercial platform and set of open-source tools that allow voters to organize efficiently in groups via ",
+                "value": "No. The Good Party is not an actual political party. We are a free non-commercial platform and set of open-source tools, being build by a ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "diverse, mostly volunteer team",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "?article=33lnRLO7M0gvfqVkoVxADO"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ", that allow voters to organize efficiently in groups via ",
                 "marks": [],
                 "data": {}
               },
@@ -3007,6 +3024,9 @@
       "id": "5YnyOUU7NVOihcos0oR1kL"
     }
   ],
+  "appVersion": {
+    "version": "1.0.19"
+  },
   "partyPage": {
     "title": "Header Content",
     "content": {
@@ -4593,6 +4613,20 @@
     }
   },
   "pastEvents": [
+    {
+      "id": "2gcX2qW4192bVAlM40saZ8",
+      "title": "The Good Party - Intro + Q&A - REPLAY",
+      "dateAndTime": "2020-07-29T17:00",
+      "description": "Watch replay of this crowdcast by clicking on the link below...",
+      "timeZone": "PST",
+      "displayDate": "Weds, July 29th, 2020 · 5:00pm PT (8:00pm ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party-20200729",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1596042000000
+    },
     {
       "id": "3IWsmL227uDT0MKhqBwurB",
       "title": "The Good Party - Intro + Q&A - REPLAY",
