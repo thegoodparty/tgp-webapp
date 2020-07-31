@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Body13, Body9 } from 'components/shared/typogrophy';
 
 import moneyHelper from 'helpers/moneyHelper';
-import { percHelper } from 'helpers/numberHelper';
+import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import {
   getComparedIncumbent,
   getCombinedReportDate,
@@ -99,7 +99,8 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
           <strong>
             The {fakeIncumbentOrIncumbentLabel}, {comparedIncumbent.name}, has
             raised {moneyHelper(comparedIncumbent.raised)}, or{' '}
-            {comparedIncumbent.xTimes}x times more money, with a{' '}
+            {numberFormatter(comparedIncumbent.xTimes)}x times more money, with
+            a{' '}
             <ColoredText className="red">
               {moneyHelper(comparedIncumbent.bigMoneyFunds)}
             </ColoredText>{' '}
@@ -153,62 +154,60 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
           for them.
         </>
       );
-    } else {
-      // GOOD OR UNKNOWN
-      if (isBigMoney || isIncumbent || isSameAsComparedIncumbent) {
-        // GOOD OR UNKNOWN INCUMBENT OR BIG MONEY
-        return (
-          <>
-            <strong>
-              {name} has raised {moneyHelper(totalRaised)} with{' '}
-              <ColoredText className={color}>
-                {moneyHelper(smallMoneyFunds)}
-              </ColoredText>{' '}
-              (<ColoredText className={colorWithGray}>{perc}%</ColoredText>) of
-              funds coming from Small Individual Donors
-            </strong>
-            , donating less than $200/each. <br /> <br />
-            This means that {lastName} is mostly being supported by large
-            numbers of ordinary people, who are banding together, each giving a
-            little, to help {name} compete with the Big Money pouring into this
-            race. <br /> <br />
-            {!isIncumbent && !isSameAsComparedIncumbent && (
-              <>
-                In contrast to {name}, the incumbent in this race,{' '}
-                <strong>
-                  {comparedIncumbent.name}, has raised{' '}
-                  {moneyHelper(comparedIncumbent.raised)}, or{' '}
-                  {comparedIncumbent.xTimes}x times more money, with a{' '}
-                  <ColoredText className="red">
-                    {moneyHelper(comparedIncumbent.bigMoneyFunds)}
-                  </ColoredText>{' '}
-                  ({percHelper(comparedIncumbent.bigFundsPerc, true)}% ) of
-                  funds coming from Big Money sources
-                </strong>
-                , like Political Action Committees (PACs), Corporate Lobbyists
-                and Large Donors.
-              </>
-            )}
-            {comparedIncumbentText()}
-          </>
-        );
-      } else {
-        // GOOD OR UNKNOWN SMALL CANDIDATE
-        return (
-          <>
-            <strong>
-              {name} has raised just {moneyHelper(totalRaised)} in Total Funds,
-              or{' '}
-              <ColoredText className="green">
-                {comparedIncumbent.relativePerc}%
-              </ColoredText>{' '}
-              of the funding of the {fakeIncumbentOrIncumbentLabel} in this race
-            </strong>
-            {comparedIncumbentText()}
-          </>
-        );
-      }
     }
+    // GOOD OR UNKNOWN
+    if (isBigMoney || isIncumbent || isSameAsComparedIncumbent) {
+      // GOOD OR UNKNOWN INCUMBENT OR BIG MONEY
+      return (
+        <>
+          <strong>
+            {name} has raised {moneyHelper(totalRaised)} with{' '}
+            <ColoredText className={color}>
+              {moneyHelper(smallMoneyFunds)}
+            </ColoredText>{' '}
+            (<ColoredText className={colorWithGray}>{perc}%</ColoredText>) of
+            funds coming from Small Individual Donors
+          </strong>
+          , donating less than $200/each. <br /> <br />
+          This means that {lastName} is mostly being supported by large numbers
+          of ordinary people, who are banding together, each giving a little, to
+          help {name} compete with the Big Money pouring into this race. <br />{' '}
+          <br />
+          {!isIncumbent && !isSameAsComparedIncumbent && (
+            <>
+              In contrast to {name}, the incumbent in this race,{' '}
+              <strong>
+                {comparedIncumbent.name}, has raised{' '}
+                {moneyHelper(comparedIncumbent.raised)}, or{' '}
+                {numberFormatter(comparedIncumbent.xTimes)}x times more money,
+                with a{' '}
+                <ColoredText className="red">
+                  {moneyHelper(comparedIncumbent.bigMoneyFunds)}
+                </ColoredText>{' '}
+                ({percHelper(comparedIncumbent.bigFundsPerc, true)}% ) of funds
+                coming from Big Money sources
+              </strong>
+              , like Political Action Committees (PACs), Corporate Lobbyists and
+              Large Donors.
+            </>
+          )}
+          {comparedIncumbentText()}
+        </>
+      );
+    }
+    // GOOD OR UNKNOWN SMALL CANDIDATE
+    return (
+      <>
+        <strong>
+          {name} has raised just {moneyHelper(totalRaised)} in Total Funds, or{' '}
+          <ColoredText className="green">
+            {comparedIncumbent.relativePerc}%
+          </ColoredText>{' '}
+          of the funding of the {fakeIncumbentOrIncumbentLabel} in this race
+        </strong>
+        {comparedIncumbentText()}
+      </>
+    );
   };
 
   return (
