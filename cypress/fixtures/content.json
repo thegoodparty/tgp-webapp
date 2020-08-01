@@ -1,20 +1,4 @@
 {
-  "events": [
-    {
-      "id": "h2WaVMyZt4ZXPsILFmqTQ",
-      "title": "The Good Party - Livestream + Q&A",
-      "dateAndTime": "2020-08-06T17:00",
-      "description": "Learn what Good we're up to and ask us any questions, live!",
-      "timeZone": "PST",
-      "displayDate": "Thurs, Aug 6th 2020 · 5:00PM PT (8:00PM ET)",
-      "eventDuration": 1,
-      "location": "https://www.crowdcast.io/e/the-good-party",
-      "presenter": "Farhad Mohit",
-      "presenterTitle": "Founder, The Good Party",
-      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1596733200000
-    }
-  ],
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -605,6 +589,58 @@
             "content": [
               {
                 "nodeType": "text",
+                "value": "Good Party Advisors",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Navid Aslani",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/navidaslani/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "heading-4",
+            "content": [
+              {
+                "nodeType": "text",
                 "value": "Good Party Volunteers",
                 "marks": [],
                 "data": {}
@@ -686,46 +722,6 @@
               {
                 "nodeType": "text",
                 "value": " - Intern",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Navid Aslani",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/navidaslani/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Operations",
                 "marks": [],
                 "data": {}
               }
@@ -3022,6 +3018,22 @@
         ]
       },
       "id": "5YnyOUU7NVOihcos0oR1kL"
+    }
+  ],
+  "events": [
+    {
+      "id": "h2WaVMyZt4ZXPsILFmqTQ",
+      "title": "The Good Party - Livestream + Q&A",
+      "dateAndTime": "2020-08-06T17:00",
+      "description": "Learn what Good we're up to and ask us any questions, live!",
+      "timeZone": "PST",
+      "displayDate": "Thurs, Aug 6th 2020 · 5:00PM PT (8:00PM ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1596733200000
     }
   ],
   "appVersion": {

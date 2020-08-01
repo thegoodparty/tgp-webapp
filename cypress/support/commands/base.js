@@ -4,19 +4,13 @@ Cypress.Commands.add('testAmaContainer', () => {
   cy.get('[data-cy=ama]')
     .contains('Ask a Question')
     .contains('Give a Suggestion')
-    .click();
-  cy.get('[data-cy=ama-dialog-title')
-    .contains('Ask a Question')
-    .contains('Give a Suggestion');
-  cy.get('[data-cy=ama-dialog-submit').contains('Send');
-  cy.get('[data-cy=ama-dialog-submit')
+  cy.get('[data-cy=ama-dialog-submit]').contains('Send');
+  cy.get('[data-cy=ama-dialog-submit]')
     .should('have.attr', 'href')
     .and(
       'include',
       'mailto:ask@thegoodparty.org?subject=Good%20Party%20Question&body=',
     );
-  cy.get('[data-cy=ama-dialog-close').click();
-  cy.get('[data-cy=ama-dialog-title').should('not.exist');
 });
 
 Cypress.Commands.add('testTopQueSection', filter => {
