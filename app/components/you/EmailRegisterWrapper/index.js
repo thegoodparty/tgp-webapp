@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Wrapper from 'components/shared/Wrapper';
@@ -14,6 +10,7 @@ import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 import { fullFirstLastInitials } from 'helpers/userHelper';
 import Footer from 'components/shared/Footer';
+import PasswordInput from '../../shared/PasswordInput';
 
 const Input = styled(TextField)`
   && {
@@ -60,7 +57,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setshowPassword] = useState(false);
   const [showName, setShowName] = useState(false);
 
   const onChangeName = event => {
@@ -98,16 +94,8 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
     }
   };
 
-  const handleClickShowPassword = () => {
-    setshowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-
-  const onChangePassword = event => {
-    setPassword(event.target.value);
+  const onChangePassword = pwd => {
+    setPassword(pwd);
   };
 
   return (
@@ -153,30 +141,9 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             onFocus={onEmailFocus}
             data-cy="email"
           />
-          <Input
-            value={password}
-            label="Password"
-            required
-            size="medium"
-            fullWidth
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            helperText="8 characters minimum"
-            onChange={onChangePassword}
-            data-cy="password"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
+          <PasswordInput
+            onChangeCallback={onChangePassword}
+            variant="standard"
           />
 
           {!loading && (

@@ -175,6 +175,12 @@ const resetPasswordAction = (email, password, token) => ({
   token,
 });
 
+const changePasswordAction = (newPassword, oldPassword) => ({
+  type: types.CHANGE_PASSWORD,
+  newPassword,
+  oldPassword,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -189,6 +195,7 @@ export default {
   loginAction,
   forgotPasswordAction,
   resetPasswordAction,
+  changePasswordAction,
   socialLoginAction,
   updateUserAction,
   updateUserActionSuccess,

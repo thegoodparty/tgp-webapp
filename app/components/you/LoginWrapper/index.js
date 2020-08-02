@@ -3,20 +3,17 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import TextField from '@material-ui/core/TextField';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H2, H1, Body11 } from 'components/shared/typogrophy/index';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import heartImg from 'images/heart.svg';
 
-import TextField from '@material-ui/core/TextField';
 import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
 import FacebookButton from '../SocialRegisterWrapper/FacebookButton';
+import PasswordInput from '../../shared/PasswordInput';
 
 const Heart = styled.img`
   width: 64px;
@@ -85,7 +82,6 @@ const LoginWrapper = ({
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [forgotMode, setForgotMode] = useState(false);
   const onChangeEmail = event => {
     setEmail(event.target.value);
@@ -111,7 +107,6 @@ const LoginWrapper = ({
   const handleSubmit = () => {
     if (enableSubmit()) {
       if (forgotMode) {
-        console.log('forgot', email);
         forgotPasswordCallback(email);
       } else {
         loginCallback(email, password);
@@ -119,16 +114,8 @@ const LoginWrapper = ({
     }
   };
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = event => {
-    event.preventDefault();
-  };
-
-  const onChangePassword = event => {
-    setPassword(event.target.value);
+  const onChangePassword = pwd => {
+    setPassword(pwd);
   };
 
   return (
@@ -166,31 +153,7 @@ const LoginWrapper = ({
                 </ForgotLink>
               ) : (
                 <>
-                  <Input
-                    value={password}
-                    label="Password"
-                    required
-                    size="medium"
-                    fullWidth
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    onChange={onChangePassword}
-                    data-cy="password"
-                    variant="outlined"
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                          >
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
+                  <PasswordInput onChangeCallback={onChangePassword} />
                   <ForgotLink
                     onClick={() => {
                       setForgotMode(true);

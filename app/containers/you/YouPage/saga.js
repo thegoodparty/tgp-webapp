@@ -382,6 +382,49 @@ function* resetPassword(action) {
   }
 }
 
+function* changePassword({ newPassword, oldPassword }) {
+  try {
+    const api = tgpApi.changePassword;
+    const payload = {
+      newPassword,
+      oldPassword,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(
+      snackbarActions.showSnakbarAction(`Your password has been changed`),
+    );
+    AnalyticsService.sendEvent('change-password', 'success');
+  } catch (error) {
+    if (error.response?.incorrect) {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Current Password is incorrect',
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent(
+        'change-password',
+        'error - incorrect password',
+      );
+      yield put(
+        globalActions.logErrorAction(
+          'change password - incorrect password',
+          error,
+        ),
+      );
+    } else {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Error changing your password.',
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent('change-password', 'error');
+      yield put(globalActions.logErrorAction('change password error', error));
+    }
+  }
+}
+
 function* socialLogin(action) {
   try {
     /* eslint-disable no-underscore-dangle */
@@ -724,6 +767,10 @@ export default function* saga() {
   const resetPasswordAction = yield takeLatest(
     types.RESET_PASSWORD,
     resetPassword,
+  );
+  const changePasswordAction = yield takeLatest(
+    types.CHANGE_PASSWORD,
+    changePassword,
   );
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);

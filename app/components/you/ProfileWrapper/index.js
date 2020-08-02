@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -11,8 +11,6 @@ import {
   fullFirstLastInitials,
   uuidUrl,
   getUserDistrict,
-  getDisplayCrew,
-  getCrewFillers,
 } from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from 'components/shared/UserAvatar';
@@ -25,6 +23,7 @@ import {
   senateElectionLink,
   getElectionLink,
 } from 'helpers/electionsHelper';
+import ChangePasswordModal from './ChangePasswordModal';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -130,7 +129,9 @@ const ProfileWrapper = ({
   signoutCallback,
   articles,
   rankingObj,
+  changePasswordCallback
 }) => {
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
   const presidentialRank = rankingObj.presidential;
   const senateRank = rankingObj.presidential;
   const houseRank = rankingObj.house;
@@ -202,7 +203,7 @@ const ProfileWrapper = ({
               ? 'Rank Choices'
               : `${presidentialRankCount} Choice${
                   presidentialRankCount === 1 ? '' : 's'
-              } Ranked`}
+                } Ranked`}
           </ElectionData>
         </Link>
       </Election>
@@ -218,7 +219,7 @@ const ProfileWrapper = ({
                 {senateRank
                   ? `${senateRankCount} Choice${
                       senateRankCount > 1 ? 's' : ''
-                  } Ranked`
+                    } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
@@ -240,7 +241,7 @@ const ProfileWrapper = ({
                 {houseRank && houseRankCount > 0
                   ? `${houseRankCount} Choice${
                       houseRankCount > 1 ? 's' : ''
-                  } Ranked`
+                    } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
@@ -350,7 +351,14 @@ const ProfileWrapper = ({
         </BottomLink>
       </Link>
       <BottomLink
-        style={{ marginTop: '48px', marginBottom: '24px' }}
+        style={{ marginTop: '48px' }}
+        onClick={() => setShowPasswordModal(true)}
+        data-cy="change-password-link"
+      >
+        Change Password
+      </BottomLink>
+      <BottomLink
+        style={{ marginBottom: '24px' }}
         onClick={signoutCallback}
         data-cy="signout-link"
       >
@@ -358,6 +366,12 @@ const ProfileWrapper = ({
       </BottomLink>
       <TopQuestions articles={articles} />
       <AmaContainer />
+      {showPasswordModal && (
+        <ChangePasswordModal
+          closeModalCallback={() => setShowPasswordModal(false)}
+          changePasswordCallback={changePasswordCallback}
+        />
+      )}
     </PageWrapper>
   );
 };
@@ -371,6 +385,7 @@ ProfileWrapper.propTypes = {
   senateCandidatesCount: PropTypes.number,
   senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   rankingObj: PropTypes.object,
+  changePasswordCallback: PropTypes.func,
 };
 
 export default ProfileWrapper;

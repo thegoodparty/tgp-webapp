@@ -170,6 +170,12 @@ const api = {
     withAuth: true,
   },
 
+  changePassword: {
+    url: `${base}user/change-password`,
+    method: 'PUT',
+    withAuth: true,
+  },
+
   /*
    * SCRAPE
    */
