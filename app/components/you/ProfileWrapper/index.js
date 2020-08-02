@@ -129,14 +129,14 @@ const ProfileWrapper = ({
   signoutCallback,
   articles,
   rankingObj,
-  changePasswordCallback
+  changePasswordCallback,
 }) => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const presidentialRank = rankingObj.presidential;
   const senateRank = rankingObj.presidential;
   const houseRank = rankingObj.house;
 
-  const { name, feedback, zipCode, congDistrict } = user;
+  const { name, feedback, zipCode, congDistrict, hasPassword } = user;
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
 
   const shortState = stateShort ? stateShort.toUpperCase() : '';
@@ -355,7 +355,7 @@ const ProfileWrapper = ({
         onClick={() => setShowPasswordModal(true)}
         data-cy="change-password-link"
       >
-        Change Password
+        {hasPassword ? 'Change Password' : 'Add Password'}
       </BottomLink>
       <BottomLink
         style={{ marginBottom: '24px' }}
@@ -370,6 +370,7 @@ const ProfileWrapper = ({
         <ChangePasswordModal
           closeModalCallback={() => setShowPasswordModal(false)}
           changePasswordCallback={changePasswordCallback}
+          hasPassword={hasPassword}
         />
       )}
     </PageWrapper>

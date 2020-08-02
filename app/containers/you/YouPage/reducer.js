@@ -125,6 +125,7 @@ const userReducer = (state = initialState, action) =>
       case types.USER_RANKING_SUCCESS:
         draft.ranking = action.ranking;
         break;
+
     }
   });
 

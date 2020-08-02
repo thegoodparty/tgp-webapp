@@ -8,6 +8,7 @@ import PasswordInput from 'components/shared/PasswordInput';
 import { OutlinedButton } from 'components/shared/buttons';
 
 const ChangePasswordModal = ({
+  hasPassword,
   closeModalCallback,
   changePasswordCallback,
 }) => {
@@ -26,20 +27,26 @@ const ChangePasswordModal = ({
   };
 
   const enableSubmit = () => {
-    return newPassword.length >= 8 && oldPassword.length >= 8;
+    if (hasPassword) {
+      return newPassword.length >= 8 && oldPassword.length >= 8;
+    } else {
+      return newPassword.length >= 8;
+    }
   };
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      changePasswordCallback(newPassword, oldPassword);
+      changePasswordCallback(newPassword, oldPassword, hasPassword);
       closeModalCallback();
     }
   };
   return (
     <QueryModal closeModalCallback={closeModalCallback}>
-      <H2>Change Password</H2>
+      <H2>{hasPassword ? 'Change' : 'Add'} Password</H2>
       <Body style={{ marginTop: '8px', marginBottom: '24px' }}>
-        Enter a new password
+        {hasPassword
+          ? 'Enter a new password'
+          : 'Add a password to login with email and password'}
       </Body>
       <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
         <PasswordInput
@@ -47,10 +54,12 @@ const ChangePasswordModal = ({
           label="New Password"
         />
         <div style={{ margin: '24px 0' }}>
-          <PasswordInput
-            onChangeCallback={oldPasswordChange}
-            label="Current Password"
-          />
+          {hasPassword && (
+            <PasswordInput
+              onChangeCallback={oldPasswordChange}
+              label="Current Password"
+            />
+          )}
           <div className="text-right">
             <OutlinedButton
               active={enableSubmit()}
@@ -67,6 +76,7 @@ const ChangePasswordModal = ({
 };
 
 ChangePasswordModal.propTypes = {
+  hasPassword: PropTypes.bool,
   closeModalCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
 };

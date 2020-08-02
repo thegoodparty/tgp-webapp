@@ -33,7 +33,7 @@ const OutlinedButton = ({
   className = '',
   onClick,
   style = {},
-  type = '',
+  type = 'button',
 }) => {
   let buttonClass = className;
   if (white) {

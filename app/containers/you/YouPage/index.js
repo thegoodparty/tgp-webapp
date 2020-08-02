@@ -139,8 +139,12 @@ function mapDispatchToProps(dispatch) {
       dispatch(userActions.signoutAction());
       dispatch(push('/'));
     },
-    changePasswordCallback: (newPassword, oldPassword) => {
-      dispatch(userActions.changePasswordAction(newPassword, oldPassword));
+    changePasswordCallback: (newPassword, oldPassword, hasPassword) => {
+      if (hasPassword) {
+        dispatch(userActions.changePasswordAction(newPassword, oldPassword));
+      } else {
+        dispatch(userActions.addPasswordAction(newPassword));
+      }
     },
   };
 }

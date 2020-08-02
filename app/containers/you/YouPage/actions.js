@@ -181,6 +181,12 @@ const changePasswordAction = (newPassword, oldPassword) => ({
   oldPassword,
 });
 
+const addPasswordAction = newPassword => ({
+  type: types.ADD_PASSWORD,
+  newPassword,
+});
+
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -196,6 +202,7 @@ export default {
   forgotPasswordAction,
   resetPasswordAction,
   changePasswordAction,
+  addPasswordAction,
   socialLoginAction,
   updateUserAction,
   updateUserActionSuccess,

@@ -64,7 +64,7 @@ const Ama = ({ sendAmaCallback }) => {
         rows={4}
         multiline
         fullWidth
-        autofocus
+        autoFocus
         placeholder="Enter your question here"
         onChange={onChangeMessage}
         variant="outlined"
@@ -73,7 +73,7 @@ const Ama = ({ sendAmaCallback }) => {
         <Grid item xs={7} p={1}>
           <StyledTextField
             fullWidth
-            autofocus
+            autoFocus
             placeholder="Enter Email for Reploy(Optional)"
             onChange={onChangeEmail}
             variant="outlined"

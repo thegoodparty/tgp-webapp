@@ -425,6 +425,29 @@ function* changePassword({ newPassword, oldPassword }) {
   }
 }
 
+function* addPassword({ newPassword }) {
+  try {
+    const api = tgpApi.addPassword;
+    const payload = {
+      newPassword,
+    };
+    const response = yield call(requestHelper, api, payload);
+    const { user } = response;
+    yield put(actions.updateUserActionSuccess(user));
+    setUserCookie(user);
+    yield put(
+      snackbarActions.showSnakbarAction(`Your password has been added`),
+    );
+    AnalyticsService.sendEvent('add-password', 'success');
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Error adding your password.', 'error'),
+    );
+    AnalyticsService.sendEvent('add-password', 'error');
+    yield put(globalActions.logErrorAction('add password error', error));
+  }
+}
+
 function* socialLogin(action) {
   try {
     /* eslint-disable no-underscore-dangle */
@@ -772,6 +795,7 @@ export default function* saga() {
     types.CHANGE_PASSWORD,
     changePassword,
   );
+  const addPasswordAction = yield takeLatest(types.ADD_PASSWORD, addPassword);
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);

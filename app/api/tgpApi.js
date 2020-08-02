@@ -176,6 +176,12 @@ const api = {
     withAuth: true,
   },
 
+  addPassword: {
+    url: `${base}user/add-password`,
+    method: 'POST',
+    withAuth: true,
+  },
+
   /*
    * SCRAPE
    */
