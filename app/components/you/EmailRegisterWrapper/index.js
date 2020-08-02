@@ -7,6 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
