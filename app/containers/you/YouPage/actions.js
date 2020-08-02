@@ -61,12 +61,15 @@ const loginAction = (email, password) => ({
   password,
 });
 
+const forgotPasswordAction = email => ({
+  type: types.FORGOT_PASSWORD,
+  email,
+});
+
 const socialLoginAction = user => ({
   type: types.SOCIAL_LOGIN,
   user,
 });
-
-
 
 const updateUserAction = updatedFields => ({
   type: types.UPDATE_USER,
@@ -165,6 +168,13 @@ const sendMessageToCreator = messageInfo => ({
   messageInfo,
 });
 
+const resetPasswordAction = (email, password, token) => ({
+  type: types.RESET_PASSWORD,
+  email,
+  password,
+  token,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -177,6 +187,8 @@ export default {
   loadUserFromCookieAction,
   signoutAction,
   loginAction,
+  forgotPasswordAction,
+  resetPasswordAction,
   socialLoginAction,
   updateUserAction,
   updateUserActionSuccess,

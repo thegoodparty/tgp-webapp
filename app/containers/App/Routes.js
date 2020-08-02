@@ -27,6 +27,7 @@ import CrewPage from 'containers/you/CrewPage/Loadable';
 import LoginPage from 'containers/you/LoginPage/Loadable';
 import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
 import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
+import ResetPasswordPage from 'containers/you/ResetPasswordPage/Loadable';
 
 import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';
@@ -85,6 +86,8 @@ function Routes() {
         path="/email-confirmation"
         component={EmailConfirmationPage}
       />
+
+      <Route exact path="/you/reset-password" component={ResetPasswordPage} />
       <Route exact path="/you" component={YouPage} />
       <Route exact path="/you/edit" component={EditProfilePage} />
       <Route exact path="/you/crew" component={CrewPage} />
@@ -110,7 +113,11 @@ function Routes() {
       <Route exact path="/creators" component={CreatorsPage} />
 
       <Route exact path="/admin" component={AdminPage} />
-      <Route exact path="/admin/edit-candidate/:chamber/:id" component={AdminEditCandidatePage} />
+      <Route
+        exact
+        path="/admin/edit-candidate/:chamber/:id"
+        component={AdminEditCandidatePage}
+      />
 
       <Route component={NotFoundPage} />
     </Switch>

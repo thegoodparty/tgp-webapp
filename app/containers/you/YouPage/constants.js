@@ -17,6 +17,10 @@ const SIGN_OUT = '@@tgp/user/SIGN_OUT';
 const LOGIN = '@@tgp/user/LOGIN';
 const SOCIAL_LOGIN = '@@tgp/user/SOCIAL_LOGIN';
 
+const FORGOT_PASSWORD = '@@tgp/user/FORGOT_PASSWORD';
+const RESET_PASSWORD = '@@tgp/creator/RESET_PASSWORD';
+
+
 const SAVE_USER_RANKING = '@@tgp/user/SAVE_USER_RANKING';
 const DELETE_ALL_USER_RANKINGS = '@@tgp/user/DELETE_ALL_USER_RANKINGS';
 const DELETE_CANDIDATE_RANKING = '@@tgp/user/DELETE_CANDIDATE_RANKING';
@@ -42,7 +46,7 @@ const GUEST_RANKING = '@@tgp/user/GUEST_RANKING';
 const SAVE_GUEST_RANKING = '@@tgp/user/SAVE_GUEST_RANKING';
 const DELETE_GUEST_RANKING = '@@tgp/user/DELETE_GUEST_RANKING';
 
-const SEND_MESSAGE_TO_CREATOR = '@@tgp/creator/sendMessageToCreator'
+const SEND_MESSAGE_TO_CREATOR = '@@tgp/creator/sendMessageToCreator';
 
 export default {
   REGISTER,
@@ -57,6 +61,8 @@ export default {
   SIGN_OUT,
   LOGIN,
   SOCIAL_LOGIN,
+  FORGOT_PASSWORD,
+  RESET_PASSWORD,
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
   SAVE_USER_RANKING,
@@ -74,5 +80,5 @@ export default {
   USER_RANKING_SUCCESS,
   SAVE_GUEST_RANKING,
   DELETE_GUEST_RANKING,
-  SEND_MESSAGE_TO_CREATOR
+  SEND_MESSAGE_TO_CREATOR,
 };

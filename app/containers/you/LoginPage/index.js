@@ -28,6 +28,7 @@ export function LoginPage({
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
+  forgotPasswordCallback
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -43,6 +44,7 @@ export function LoginPage({
     loginCallback,
     socialLoginCallback,
     socialLoginFailureCallback,
+    forgotPasswordCallback
   };
 
   return (
@@ -62,6 +64,7 @@ LoginPage.propTypes = {
   loginCallback: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  forgotPasswordCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -69,6 +72,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     loginCallback: (email, password) => {
       dispatch(userActions.loginAction(email, password));
+    },
+    forgotPasswordCallback: (email) => {
+      dispatch(userActions.forgotPasswordAction(email));
     },
     socialLoginCallback: user => {
       dispatch(userActions.socialLoginAction(user));

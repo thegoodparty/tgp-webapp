@@ -9,7 +9,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import PageWrapper from 'components/shared/PageWrapper';
-import { Body13, H2, H1 } from 'components/shared/typogrophy/index';
+import { Body13, H2, H1, Body11 } from 'components/shared/typogrophy/index';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import heartImg from 'images/heart.svg';
 
@@ -71,19 +71,30 @@ const Input = styled(TextField)`
   }
 `;
 
+const ForgotLink = styled(Body11)`
+  color: ${({ theme }) => theme.colors.blue};
+  margin-bottom: 24px;
+  cursor: pointer;
+`;
+
 const LoginWrapper = ({
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
+  forgotPasswordCallback,
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setshowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [forgotMode, setForgotMode] = useState(false);
   const onChangeEmail = event => {
     setEmail(event.target.value);
   };
 
   const enableSubmit = () => {
+    if (forgotMode) {
+      return validateEmail();
+    }
     return password.length >= 8 && validateEmail();
   };
 
@@ -94,17 +105,22 @@ const LoginWrapper = ({
 
   const handleSubmitForm = e => {
     e.preventDefault();
-    handleSubmit();
+    // handleSubmit();
   };
 
   const handleSubmit = () => {
-    if (validateEmail()) {
-      loginCallback(email, password);
+    if (enableSubmit()) {
+      if (forgotMode) {
+        console.log('forgot', email);
+        forgotPasswordCallback(email);
+      } else {
+        loginCallback(email, password);
+      }
     }
   };
 
   const handleClickShowPassword = () => {
-    setshowPassword(!showPassword);
+    setShowPassword(!showPassword);
   };
 
   const handleMouseDownPassword = event => {
@@ -140,31 +156,50 @@ const LoginWrapper = ({
                 onChange={onChangeEmail}
                 data-cy="email-input"
               />
-              <Input
-                value={password}
-                label="Password"
-                required
-                size="medium"
-                fullWidth
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                onChange={onChangePassword}
-                data-cy="password"
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              {forgotMode ? (
+                <ForgotLink
+                  onClick={() => {
+                    setForgotMode(false);
+                  }}
+                >
+                  Back to login
+                </ForgotLink>
+              ) : (
+                <>
+                  <Input
+                    value={password}
+                    label="Password"
+                    required
+                    size="medium"
+                    fullWidth
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    onChange={onChangePassword}
+                    data-cy="password"
+                    variant="outlined"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                  <ForgotLink
+                    onClick={() => {
+                      setForgotMode(true);
+                    }}
+                  >
+                    Forgot your password?
+                  </ForgotLink>
+                </>
+              )}
 
               <OutlinedButton
                 fullWidth
@@ -172,7 +207,7 @@ const LoginWrapper = ({
                 onClick={handleSubmit}
                 type="submit"
               >
-                Submit
+                {forgotMode ? 'SEND PASSWORD RESET LINK' : 'SIGN IN'}
               </OutlinedButton>
             </form>
             <OrWrapper>
@@ -215,6 +250,7 @@ LoginWrapper.propTypes = {
   loginCallback: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  forgotPasswordCallback: PropTypes.func,
 };
 
 export default LoginWrapper;

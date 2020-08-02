@@ -93,6 +93,16 @@ const api = {
     method: 'PUT',
   },
 
+  forgotPassword: {
+    url: `${base}entrance/send-password-recovery-email`,
+    method: 'POST',
+  },
+
+  resetPassword: {
+    url: `${base}entrance/reset-password`,
+    method: 'PUT',
+  },
+
   socialLogin: {
     url: `${base}entrance/social-login`,
     method: 'PUT',

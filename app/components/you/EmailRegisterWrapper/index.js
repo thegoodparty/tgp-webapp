@@ -82,7 +82,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
   const handleSubmitForm = e => {
     console.log('here');
     e.preventDefault();
-    handleSubmit();
+    // handleSubmit();
   };
 
   const handleSubmit = () => {
@@ -180,7 +180,9 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
 
           {!loading && (
             <SubmitWrapper onClick={handleSubmit} data-cy="submit">
-              <NextButton active={enableSubmit()}>Submit</NextButton>
+              <NextButton active={enableSubmit()}>
+                Submit <ChevronRightIcon />
+              </NextButton>
               {error && error.exists && (
                 <Error>
                   {error.message}{' '}

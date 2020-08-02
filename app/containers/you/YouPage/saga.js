@@ -317,6 +317,71 @@ function* login(action) {
   }
 }
 
+function* forgotPassword(action) {
+  try {
+    const { email } = action;
+    const api = tgpApi.forgotPassword;
+    const payload = {
+      email,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(push('/login'));
+    yield put(
+      snackbarActions.showSnakbarAction(
+        `We sent an email to ${email}, which contains a link to reset your password.`,
+      ),
+    );
+    AnalyticsService.sendEvent('forgot-password', 'success');
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error sending password reset email.',
+        'error',
+      ),
+    );
+    AnalyticsService.sendEvent('forgot-password', 'error');
+    yield put(globalActions.logErrorAction('forgot password error', error));
+  }
+}
+
+function* resetPassword(action) {
+  try {
+    const { email, password, token } = action;
+    const api = tgpApi.resetPassword;
+    const payload = {
+      email,
+      password,
+      token,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(push('/login'));
+    yield put(
+      snackbarActions.showSnakbarAction(`Your password has been reset`),
+    );
+    AnalyticsService.sendEvent('reset-password', 'success');
+  } catch (error) {
+    if (error.response?.expired) {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Your token is either invalid or expired.',
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent('reset-password', 'expired token');
+      yield put(globalActions.logErrorAction('reset password expired', error));
+    } else {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Error resetting your password.',
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent('reset-password', 'error');
+      yield put(globalActions.logErrorAction('reset password error', error));
+    }
+  }
+}
+
 function* socialLogin(action) {
   try {
     /* eslint-disable no-underscore-dangle */
@@ -652,6 +717,14 @@ export default function* saga() {
   const resendAction = yield takeLatest(types.RESEND_EMAIL, resendEmail);
   const confirmAction = yield takeLatest(types.CONFIRM_EMAIL, confirmEmail);
   const loginAction = yield takeLatest(types.LOGIN, login);
+  const forgotPasswordAction = yield takeLatest(
+    types.FORGOT_PASSWORD,
+    forgotPassword,
+  );
+  const resetPasswordAction = yield takeLatest(
+    types.RESET_PASSWORD,
+    resetPassword,
+  );
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
