@@ -18,6 +18,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from '../../shared/typogrophy';
+import { numberFormatter } from '../../../helpers/numberHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -76,6 +77,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
           isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
           isMajor: candidate.isMajor ? 'yes' : 'no',
           isHidden: candidate.isHidden === true,
+          twitterFollowers: candidate.twitterFollowers,
         };
         if (chamber !== 'presidential') {
           fields.state = candidate.state
@@ -153,6 +155,15 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       accessor: 'party',
       filterMethod: customFilter,
       headerStyle,
+    },
+    {
+      Header: 'Twitter Followers',
+      accessor: 'twitterFollowers',
+      filterMethod: customFilter,
+      headerStyle,
+      Cell: row => {
+        return <div>{numberFormatter(row.original.twitterFollowers)}</div>;
+      },
     },
     {
       Header: 'Incumbent?',
