@@ -143,14 +143,6 @@ const ProfileWrapper = ({
   const userDistrict = getUserDistrict(congDistrict, cds);
   const electionLink = getElectionLink(zip);
 
-  // const displayCrew = [];
-  // if (crewPreview && crewPreview.length > 0) {
-  //   crewPreview.forEach((crewMember, index) => {
-  //     if (index < 3) {
-  //       displayCrew.push(crewMember);
-  //     }
-  //   });
-  // }
 
   let crewFillers = [];
   if (crewPreview && crewPreview.length < 3) {
@@ -264,11 +256,13 @@ const ProfileWrapper = ({
       </Body13>
 
       <CrewWrapper>
-        <CrewMember
-          crewMember={user}
-          overrideName="You"
-          overrideCount={crewCount}
-        />
+        <Link to="you/crew">
+          <CrewMember
+            crewMember={user}
+            overrideName="You"
+            overrideCount={crewCount}
+          />
+        </Link>
 
         {crewPreview &&
           crewPreview.map((crewMember, index) => (
@@ -282,18 +276,22 @@ const ProfileWrapper = ({
                   </Body13>
                 </div>
               ) : (
-                <CrewMember crewMember={crewMember} />
+                <Link to="you/crew">
+                  <CrewMember crewMember={crewMember} />
+                </Link>
               )}
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (
-          <Filler key={filler} data-cy="crew-filler">
-            {filler}
-          </Filler>
+          <Link to="you/crew">
+            <Filler key={filler} data-cy="crew-filler">
+              {filler}
+            </Filler>
+          </Link>
         ))}
       </CrewWrapper>
       <Body style={{ marginTop: '10px' }}>
-        <Link to="you/crew/leaderboard" data-cy="leaderboards-link">
+        <Link to="you/crew" data-cy="leaderboards-link">
           View Leaderboards
         </Link>
       </Body>

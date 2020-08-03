@@ -17,24 +17,18 @@ import {
   Body13,
   Body11,
   Body9,
+  H3,
 } from 'components/shared/typogrophy/index';
 import CrewMember from '../CrewMember';
 
 const TabWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 
-const Tab = styled(Link)`
-  text-align: center;
-  padding: 10px;
-  border-bottom: solid 2px ${({ theme }) => theme.colors.grayF};
-  width: 50%;
-  cursor: pointer;
-
-  &.active {
-    border-color: ${({ theme }) => theme.colors.blue};
-    cursor: default;
-  }
+const Separator = styled.div`
+  margin: 0 6px;
+  font-size: 20px;
 `;
 
 const RankedCrewWrapper = styled.div`
@@ -86,32 +80,28 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
         style={{ marginTop: '15px', marginBottom: '24px' }}
         data-cy="description"
       >
-        See where you rank among{' '}
-        <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe" data-cy="crew-article">
-          your crew
-        </Link>
-        , and{' '}
-        <Link to="/you/crew/leaderboard" data-cy="overall-link">
-          overall
-        </Link>{' '}
-        in recruiting people to The Good Party.
+        See where you rank in recruiting people to The Good Party. Invite more
+        people to improve your rank!
       </Body>
-      <TabWrapper>
-        <Tab
-          className={tab === 'crew' ? 'active' : ''}
-          to="/you/crew"
-          data-cy="crew-tab"
-        >
-          <Body11>YOUR CREW</Body11>
-        </Tab>
-        <Tab
-          className={tab !== 'crew' ? 'active' : ''}
-          to="/you/crew/leaderboard"
-          data-cy="overall-tab"
-        >
-          <Body11>OVERALL</Body11>
-        </Tab>
-      </TabWrapper>
+
+      {tab === 'crew' ? (
+        <TabWrapper>
+          <H3>Your Crew</H3>
+          <Separator>|</Separator>
+          <Body>
+            <Link to="/you/crew/leaderboard">See Overall Leaderboard</Link>
+          </Body>
+        </TabWrapper>
+      ) : (
+        <TabWrapper>
+          <H3>Overall Leaderboard</H3>
+          <Separator>|</Separator>
+          <Body>
+            <Link to="/you/crew">See your Crew</Link>
+          </Body>
+        </TabWrapper>
+      )}
+
       {!loading && crew ? (
         <>
           {tab === 'crew' && (
@@ -120,13 +110,15 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
               <CrewMember
                 crewMember={user}
                 overrideCount={user.crewCount}
-                overrideName="YOU"
+                showName={false}
               />
               <TextWrapper>
                 <NameLocation>
                   <Name data-cy="you-crew-name">YOU</Name>
 
                   <Body11 data-cy="you-location">
+                    {user.zipCode?.primaryCity &&
+                      `${user.zipCode.primaryCity}, `}
                     {user.shortState ? user.shortState.toUpperCase() : ''}
                     {user.districtNumber && `-${user.districtNumber}`}
                   </Body11>
@@ -147,26 +139,30 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
               }
               data-cy="crew-row"
             >
-              <Rank data-cy="crew-rank">{index + 2}</Rank>
-              <CrewMember crewMember={crewMember} />
+              <Rank data-cy="crew-rank">
+                {tab === 'leaderboard' ? index + 1 : index + 2}
+              </Rank>
+              <CrewMember crewMember={crewMember} showName={false} />
               <TextWrapper>
                 <NameLocation>
-                  {tab === 'leaderboard' && crewMember.uuid === user.uuid ? (
-                    <Name data-cy="crew-member-name">YOU</Name>
-                  ) : (
-                    <Name data-cy="crew-member-name">{crewMember.name}</Name>
-                  )}
+                  <Name data-cy="crew-member-name">{crewMember.name}</Name>
 
                   <Body11 data-cy="crew-location">
+                    {crewMember.city && `${crewMember.city}, `}
                     {crewMember.shortState
                       ? crewMember.shortState.toUpperCase()
                       : ''}
                     {crewMember.districtNumber &&
                       `-${crewMember.districtNumber}`}
+                    {tab === 'leaderboard' && crewMember.uuid === user.uuid && (
+                      <> (YOU)</>
+                    )}
                   </Body11>
                 </NameLocation>
                 {crewMember.feedback && (
-                  <Body11 data-cy="crew-feedback">"{crewMember.feedback}"</Body11>
+                  <Body11 data-cy="crew-feedback">
+                    "{crewMember.feedback}"
+                  </Body11>
                 )}
               </TextWrapper>
             </RankedCrewWrapper>
