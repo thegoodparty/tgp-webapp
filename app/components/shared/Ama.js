@@ -17,40 +17,77 @@ const AskQuestion = styled(Body)`
   padding-bottom: 28px;
   font-weight: 700;
 `;
-const StyledTextField = styled(TextField)`
+
+const StyleTextField = styled(TextField)`
   && {
-    // box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
-    margin: 6px 0;
+    margin-top: 20px;
+  }
+`;
+const FormGrid = styled(Grid)`
+  && {
+    margin-top: 20px;
   }
 `;
 const AmaSubmit = styled.a`
   width: 100%;
   padding-left: 1rem;
 `;
+
+const TgpDialog = styled(Dialog)`
+  && {
+    .MuiDialog-paper {
+      width: 100vw;
+      max-width: ${({ theme }) => theme.breakpoints.contentMax};
+      margin: 12px !important;
+    }
+  }
+`;
+
+const CloseWrapper = styled.div`
+  text-align: right;
+`;
+
+const TopClose = styled(CloseIcon)`
+  font-size 24px;
+  cursor: pointer;
+`;
+
+const Wrapper = styled.div`
+  padding: 12px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 24px;
+  }
+`;
+
+const Title = styled(H3)`
+  padding: 0 16px;
+`;
+
 const Ama = ({ sendAmaCallback }) => {
+  const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [replyEmail, setReplyEmail] = useState('');
-
+  const openModal = () => setOpen(true);
+  const closeModal = () => setOpen(false);
   const onChangeMessage = event => {
     setMessage(event.target.value);
   };
   const onChangeEmail = event => {
     setReplyEmail(event.target.value);
   };
-
+  const handleSubmitForm = e => {
+    e.preventDefault();
+    handleSubmit();
+  };
   const handleSubmit = () => {
     if (message !== '') {
       sendAmaCallback(message, replyEmail);
     }
   };
 
-  const mail = () =>
-    `mailto:ask@thegoodparty.org?subject=Good%20Party%20Question&body=${encodeURI(
-      message,
-    )}`;
   return (
     <>
-      <AskQuestion data-cy="ama">
+      <AskQuestion onClick={openModal} data-cy="ama">
         <span role="img" aria-label="thinker">
           🤔
         </span>{' '}
@@ -60,42 +97,63 @@ const Ama = ({ sendAmaCallback }) => {
         </span>
         Give a Suggestion
       </AskQuestion>
-      <StyledTextField
-        rows={4}
-        multiline
-        fullWidth
-        autoFocus
-        placeholder="Enter your question here"
-        onChange={onChangeMessage}
-        variant="outlined"
-      />
-      <Grid container>
-        <Grid item xs={7} p={1}>
-          <StyledTextField
-            fullWidth
-            autoFocus
-            placeholder="Enter Email for Reploy(Optional)"
-            onChange={onChangeEmail}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid
-          item
-          xs={5}
-          p={1}
-          style={{ alignItems: 'center', display: 'flex' }}
-        >
-          <AmaSubmit href={mail()} data-cy="ama-dialog-submit">
-            <OutlinedButton
+      <TgpDialog onClose={closeModal} open={open}>
+        <Wrapper>
+          <CloseWrapper>
+            <TopClose onClick={closeModal} data-cy="ama-dialog-close" />
+          </CloseWrapper>
+          <Title data-cy="ama-dialog-title">
+            <span role="img" aria-label="thinker">
+              🤔
+            </span>{' '}
+            Ask a Question or{' '}
+            <span role="img" aria-label="light-bulb">
+              💡
+            </span>
+            Give a Suggestion
+          </Title>
+          <form noValidate onSubmit={handleSubmitForm}>
+            <StyleTextField
+              rows={4}
+              multiline
               fullWidth
-              active={message !== '' && validateEmail(replyEmail)}
-              onClick={handleSubmit}
-            >
-              Send
-            </OutlinedButton>
-          </AmaSubmit>
-        </Grid>
-      </Grid>
+              autoFocus
+              placeholder="Enter your question or suggestion here"
+              onChange={onChangeMessage}
+              variant="outlined"
+            />
+            <FormGrid container>
+              <Grid item xs={7} p={1}>
+                <TextField
+                  fullWidth
+                  placeholder="For reply: Enter your Email (Optional)"
+                  onChange={onChangeEmail}
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid
+                item
+                xs={5}
+                p={1}
+                style={{ alignItems: 'center', display: 'flex' }}
+              >
+                <AmaSubmit data-cy="ama-dialog-submit">
+                  <OutlinedButton
+                    fullWidth
+                    active={
+                      message !== '' &&
+                      (replyEmail === '' || validateEmail(replyEmail))
+                    }
+                    onClick={handleSubmit}
+                  >
+                    Send
+                  </OutlinedButton>
+                </AmaSubmit>
+              </Grid>
+            </FormGrid>
+          </form>
+        </Wrapper>
+      </TgpDialog>
     </>
   );
 };
