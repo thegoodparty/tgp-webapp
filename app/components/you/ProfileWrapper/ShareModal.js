@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import LogoCapsImg from 'images/logo-caps.svg';
-import { Body, Body11 } from 'components/shared/typogrophy';
+import { Body, Body11, H3 } from 'components/shared/typogrophy';
 import UserAvatar from 'components/shared/UserAvatar';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
@@ -189,7 +189,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
 
         <AvatarWrapper>
           <UserAvatar user={user} size="large" />
-          <Body>Tell some friends...</Body>
+          <H3 style={{ marginTop: '22px' }}>Tell some friends... </H3>
         </AvatarWrapper>
         <ShareThisWrapper>
           <InlineShareButtons
