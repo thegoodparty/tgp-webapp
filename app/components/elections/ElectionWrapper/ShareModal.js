@@ -185,6 +185,7 @@ const ShareModal = ({
   const blocName = candidateBlocName(candidate);
   const blocLink = candidateBlocLink(candidate, chamber);
   let url = uuidUrl(user);
+  console.log('uuid', user);
   let queryOperator = '&';
   if (url === 'https://thegoodparty.org') {
     queryOperator = '?';
