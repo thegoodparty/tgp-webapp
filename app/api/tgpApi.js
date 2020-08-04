@@ -243,5 +243,12 @@ const api = {
       withAuth: true,
     },
   },
+
+  directory: {
+    allCandidates: {
+      url: `${base}candidates/all`,
+      method: 'GET',
+    },
+  },
 };
 export default api;

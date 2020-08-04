@@ -42,6 +42,8 @@ import CreatorsPage from 'containers/creators/CreatorsPage/Loadable';
 import AdminPage from 'containers/admin/AdminPage/Loadable';
 import AdminEditCandidatePage from 'containers/admin/AdminEditCandidatePage/Loadable';
 
+import DirectoryPage from 'containers/directory/DirectoryPage/Loadable';
+
 import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
 import ResearchPage from 'containers/shared/ResearchPage/Loadable';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
@@ -118,6 +120,8 @@ function Routes() {
         path="/admin/edit-candidate/:chamber/:id"
         component={AdminEditCandidatePage}
       />
+
+      <Route exact path="/directory" component={DirectoryPage} />
 
       <Route component={NotFoundPage} />
     </Switch>

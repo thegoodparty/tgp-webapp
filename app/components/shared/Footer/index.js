@@ -8,6 +8,8 @@ import React, { memo, useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 import history from 'utils/history';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import { Body9 } from '../typogrophy';
 
 const Wrapper = styled.div`
@@ -21,7 +23,6 @@ const Wrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.blue};
     && {
       margin-bottom: 0;
-
     }
   }
   &.withNav {
@@ -46,16 +47,20 @@ const InnerWrapper = styled(Body9)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.gray10};
+`;
+
 function Footer({ isCreators = false }) {
   const [withMobileNav, setWithMobileNav] = useState(true);
   const [currentPath, setCurrentPath] = useState(null);
   useEffect(() => {
     history.listen(location => {
       updateMobileNav(location);
-      setCurrentPath(location.pathname)
+      setCurrentPath(location.pathname);
     });
     updateMobileNav(window.location);
-    setCurrentPath(window.location.pathname)
+    setCurrentPath(window.location.pathname);
   }, []);
 
   const updateMobileNav = location => {
@@ -72,14 +77,20 @@ function Footer({ isCreators = false }) {
   };
 
   if (currentPath === '/creators' && !isCreators) {
-    return (<></>)
+    return <></>;
   }
   return (
-    <Wrapper className={(withMobileNav ? 'withNav' : '') + (isCreators ? ' creatorsFooter' : '')}>
-      <InnerWrapper className={(isCreators ? ' creatorsFooterContent' : '')}>
-        PAID FOR BY THE GOOD PARTY  | thegoodparty.org
+    <Wrapper
+      className={
+        (withMobileNav ? 'withNav' : '') + (isCreators ? ' creatorsFooter' : '')
+      }
+    >
+      <InnerWrapper className={isCreators ? ' creatorsFooterContent' : ''}>
+        PAID FOR BY THE GOOD PARTY | thegoodparty.org
         <br />
         NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
+        <br />
+        <StyledLink to="/directory">Directory</StyledLink>
       </InnerWrapper>
     </Wrapper>
   );
