@@ -116,6 +116,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             placeholder="John Smith"
             size="medium"
             name="name"
+            variant="outlined"
             fullWidth
             onChange={onChangeName}
             data-cy="full-name"
@@ -139,10 +140,11 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             onChange={onChangeEmail}
             onFocus={onEmailFocus}
             data-cy="email"
+            variant="outlined"
           />
           <PasswordInput
             onChangeCallback={onChangePassword}
-            variant="standard"
+            variant="outlined"
           />
 
           <SubmitWrapper onClick={handleSubmit} data-cy="submit">

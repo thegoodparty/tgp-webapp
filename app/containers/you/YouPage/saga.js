@@ -296,30 +296,14 @@ function* login(action) {
     yield put(push('/you'));
     AnalyticsService.sendEvent('email-login', 'success');
   } catch (error) {
-    if (error.response?.notexists) {
-      yield put(
-        snackbarActions.showSnakbarAction(
-          `The email ${
-            action.email
-          } doesn't exist in our system. Please register first.`,
-          'error',
-        ),
-      );
-      AnalyticsService.sendEvent('email-login', 'email-exists');
-      yield put(
-        globalActions.logErrorAction('email login error - email exists', error),
-      );
-    } else if (error.response?.incorrect) {
-      yield put(
-        snackbarActions.showSnakbarAction('Incorrect Password', 'error'),
-      );
-      AnalyticsService.sendEvent('email-login', 'incorrect password');
-    } else {
-      yield put(snackbarActions.showSnakbarAction('Error login in.', 'error'));
-      AnalyticsService.sendEvent('email-login', 'error');
-      yield put(globalActions.logErrorAction('email login error', error));
-    }
-    // yield put(push('/login/confirm'));
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Email or Password are incorrect.',
+        'error',
+      ),
+    );
+    AnalyticsService.sendEvent('email-login', 'error');
+    yield put(globalActions.logErrorAction('email login error', error));
   }
 }
 
