@@ -10,7 +10,8 @@ import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 import { fullFirstLastInitials } from 'helpers/userHelper';
 import Footer from 'components/shared/Footer';
-import PasswordInput from '../../shared/PasswordInput';
+import PasswordInput from 'components/shared/PasswordInput';
+import PageWrapper from 'components/shared/PageWrapper';
 
 const Input = styled(TextField)`
   && {
@@ -99,7 +100,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
   };
 
   return (
-    <div>
+    <PageWrapper white>
       <Wrapper white>
         <H2 data-cy="title">Join The Good Party</H2>
         <Body13
@@ -146,25 +147,17 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             variant="standard"
           />
 
-          {!loading && (
-            <SubmitWrapper onClick={handleSubmit} data-cy="submit">
-              <NextButton active={enableSubmit()}>
-                Submit <ChevronRightIcon />
-              </NextButton>
-              {error && error.exists && (
-                <Error>
-                  {error.message}{' '}
-                  <Login>
-                    <Link to="/login">Login</Link>
-                  </Login>
-                </Error>
-              )}
-            </SubmitWrapper>
-          )}
+          <SubmitWrapper onClick={handleSubmit} data-cy="submit">
+            <NextButton active={enableSubmit()}>Submit</NextButton>
+            {error && error.exists && <Error>{error.message} </Error>}
+          </SubmitWrapper>
+          <Body13 style={{ margin: '24px 0' }}>
+            Already have an account? <Link to="/login">Login</Link>
+          </Body13>
         </form>
       </Wrapper>
       <Footer />
-    </div>
+    </PageWrapper>
   );
 };
 
