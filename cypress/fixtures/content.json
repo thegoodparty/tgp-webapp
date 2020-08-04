@@ -135,7 +135,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=579kihjyIPloNaEw02rniq"
+                  "uri": "?article=579kihjyIPloNaEw02rniq"
                 }
               },
               {
@@ -155,7 +155,7 @@
                   }
                 ],
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs?article=U4dbmGezqNUIDdGriL5oA"
+                  "uri": "?article=U4dbmGezqNUIDdGriL5oA"
                 }
               },
               {
@@ -3020,25 +3020,6 @@
       "id": "5YnyOUU7NVOihcos0oR1kL"
     }
   ],
-  "events": [
-    {
-      "id": "h2WaVMyZt4ZXPsILFmqTQ",
-      "title": "The Good Party - Livestream + Q&A",
-      "dateAndTime": "2020-08-06T17:00",
-      "description": "Learn what Good we're up to and ask us any questions, live!",
-      "timeZone": "PST",
-      "displayDate": "Thurs, Aug 6th 2020 · 5:00PM PT (8:00PM ET)",
-      "eventDuration": 1,
-      "location": "https://www.crowdcast.io/e/the-good-party",
-      "presenter": "Farhad Mohit",
-      "presenterTitle": "Founder, The Good Party",
-      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
-      "utcTime": 1596733200000
-    }
-  ],
-  "appVersion": {
-    "version": "1.0.19"
-  },
   "partyPage": {
     "title": "Header Content",
     "content": {
@@ -3050,7 +3031,7 @@
           "content": [
             {
               "nodeType": "text",
-              "value": "What is The Good Party?",
+              "value": "About The Good Party:",
               "marks": [],
               "data": {}
             }
@@ -3094,7 +3075,19 @@
             },
             {
               "nodeType": "text",
-              "value": " major parties. We use technology to turn supporters into voters and elect bright new indie or grassroots challengers who otherwise don't have a chance.",
+              "value": " major parties. ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We use technology to turn grass-roots supporters into voters, so that anyone with great ideas can run for office and get elected, without becoming beholden to big-money sources and their special interests.",
               "marks": [],
               "data": {}
             }
@@ -3353,6 +3346,25 @@
         }
       ]
     }
+  },
+  "events": [
+    {
+      "id": "h2WaVMyZt4ZXPsILFmqTQ",
+      "title": "The Good Party - Livestream + Q&A",
+      "dateAndTime": "2020-08-06T17:00",
+      "description": "Learn what Good we're up to and ask us any questions, live!",
+      "timeZone": "PST",
+      "displayDate": "Thurs, Aug 6th 2020 · 5:00PM PT (8:00PM ET)",
+      "eventDuration": 1,
+      "location": "https://www.crowdcast.io/e/the-good-party",
+      "presenter": "Farhad Mohit",
+      "presenterTitle": "Founder, The Good Party",
+      "avatarPhoto": "//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg",
+      "utcTime": 1596733200000
+    }
+  ],
+  "appVersion": {
+    "version": "1.0.19"
   },
   "creatorsProjects": [
     {
