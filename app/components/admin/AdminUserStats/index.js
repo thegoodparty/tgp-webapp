@@ -57,6 +57,9 @@ function AdminUserStats({ users }) {
   useEffect(() => {
     let verifiedEmailCount = 0;
     let socialRegister = 0;
+    let google = 0;
+    let facebook = 0;
+    let hasPassword = 0;
     const states = {};
     const zips = {};
     users?.map(user => {
@@ -65,6 +68,14 @@ function AdminUserStats({ users }) {
       }
       if (user.socialId) {
         socialRegister++;
+        if (user.socialProvider === 'google') {
+          google++;
+        } else if (user.socialProvider === 'facebook') {
+          facebook++;
+        }
+      }
+      if (user.hasPassword) {
+        hasPassword++;
       }
       const state = user.shortState;
       if (!states[state]) {
@@ -90,10 +101,21 @@ function AdminUserStats({ users }) {
     ]);
 
     setSocialRegisterData([
-      { name: 'Social Register', value: socialRegister, fill: '#8884d8' },
+      { name: 'Social - Facebook', value: facebook, fill: '#d88d36' },
+      { name: 'Social - Google', value: google, fill: '#82ca9d' },
       {
-        name: 'Email Register',
-        value: users.length - socialRegister,
+        name: 'Social - Unknown',
+        value: socialRegister - facebook - google,
+        fill: '#8884d8',
+      },
+      {
+        name: 'Email - No Password',
+        value: users.length - socialRegister - hasPassword,
+        fill: '#ed78b8',
+      },
+      {
+        name: 'Email with password',
+        value: hasPassword,
         fill: '#83a6ed',
       },
     ]);
