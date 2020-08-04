@@ -82,6 +82,7 @@ const Ama = ({ sendAmaCallback }) => {
   const handleSubmit = () => {
     if (message !== '') {
       sendAmaCallback(message, replyEmail);
+      closeModal();
     }
   };
 
