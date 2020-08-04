@@ -21,7 +21,8 @@ import {
   CartesianGrid,
 } from 'recharts';
 
-import { H3, H1, H2 } from '../../shared/typogrophy';
+import { H3, H1, H2, Body13 } from 'components/shared/typogrophy';
+import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -46,6 +47,13 @@ const Box = styled.div`
 
 const BoxTitle = styled(H3)`
   margin: 12px auto;
+`;
+
+const StyledTooltip = styled(Body13)`
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
+  font-weight: 600;
 `;
 
 function AdminUserStats({ users }) {
@@ -138,6 +146,23 @@ function AdminUserStats({ users }) {
     setZipData(flatZips);
   }, [users]);
 
+  const customTooltip = ({ active, payload, label }) => {
+    if (active) {
+      const val = payload[0].value;
+      const fill = payload[0].payload?.fill || '#000';
+      return (
+        <StyledTooltip style={{ color: fill }}>
+          {`${payload[0].name} : ${numberFormatter(val)}`}
+          <br />
+          Percentage:{' '}
+          {val === 0 ? val : parseFloat((val * 100) / users.length).toFixed(2)}%
+        </StyledTooltip>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <Wrapper>
       <Title>User Stats</Title>
@@ -162,7 +187,7 @@ function AdminUserStats({ users }) {
                     fill="#8884d8"
                     label
                   />
-                  <Tooltip />
+                  <Tooltip content={customTooltip} />
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>
@@ -182,7 +207,7 @@ function AdminUserStats({ users }) {
                     fill="#8884d8"
                     label
                   />
-                  <Tooltip />
+                  <Tooltip content={customTooltip} />
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>
