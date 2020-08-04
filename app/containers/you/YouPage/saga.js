@@ -73,8 +73,14 @@ function* register(action) {
     AnalyticsService.sendEvent('email-register', 'success');
   } catch (error) {
     if (error.response?.exists) {
-      // user is already in our system, try login.
-      yield put(actions.loginAction(action.email));
+      yield put(
+        snackbarActions.showSnakbarAction(
+          `The email ${
+            action.email
+          } already exists in our system. Try signing in.`,
+        ),
+      );
+      yield put(push('/login'));
     } else {
       console.log(error);
       yield put(actions.registerActionError(error));

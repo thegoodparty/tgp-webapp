@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
@@ -16,7 +15,6 @@ import PageWrapper from 'components/shared/PageWrapper';
 const Input = styled(TextField)`
   && {
     margin-bottom: 48px;
-    margin-top: 40px;
 
     .MuiInputBase-input {
       line-height: 22px;
