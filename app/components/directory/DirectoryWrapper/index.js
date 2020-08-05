@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 function DirectoryWrapper({ candidates }) {
   const candidatesList = chamber => (
     <>
-      {chamber?.map(cand => <Link to={candidateRoute(cand)}>{cand.name}</Link>)}
+      {chamber?.map(cand => <Link to={candidateRoute(cand)} key={`${cand.name}${cand.id}`}>{cand.name}</Link>)}
     </>
   );
 

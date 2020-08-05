@@ -8,7 +8,6 @@ import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 import { fullFirstLastInitials } from 'helpers/userHelper';
-import Footer from 'components/shared/Footer';
 import PasswordInput from 'components/shared/PasswordInput';
 import PageWrapper from 'components/shared/PageWrapper';
 
@@ -99,7 +98,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
 
   return (
     <PageWrapper white>
-      <Wrapper white>
         <H2 data-cy="title">Join The Good Party</H2>
         <Body13
           style={{ marginTop: '16px', marginBottom: '28px' }}
@@ -155,8 +153,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             Already have an account? <Link to="/login">Login</Link>
           </Body13>
         </form>
-      </Wrapper>
-      <Footer />
     </PageWrapper>
   );
 };
