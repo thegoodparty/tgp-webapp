@@ -2960,6 +2960,18 @@
             "content": [
               {
                 "nodeType": "text",
+                "value": "The short answer, is that we need to create a bridge to something better.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
                 "value": "The current system - which is designed by the elected officials of the two major parties - makes it nearly impossible for alternative candidates to get on the ballot. In fact, they deliberately limit choice because they don't want the competition. That's why you almost never see independents or third-parties get elected. ",
                 "marks": [],
                 "data": {}
@@ -2972,7 +2984,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "That means today, good people that want to serve as honest representatives often have to pick the red or blue label just to have a reasonable shot to get on the ballot - even if they view themselves as independent or not totally aligned with Democrats and Republicans. ",
+                "value": "That means today, good people who want to serve as honest representatives often have to pick either red or blue, just to have a reasonable shot to get on the ballot - even if they view themselves as independent or not totally aligned with Democrats and Republicans. ",
                 "marks": [],
                 "data": {}
               }
@@ -2984,31 +2996,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "At The Good Party, we believe people are Good. And many of the current elected class initially ran for office because they too wanted to serve. But over time, power and money corrupts. That's where our Follow the Money and Character Check come in. If a Red or Blue candidate - including incumbents - are people-powered and not beholden to Big Money, and pass our minimum threshold of civility, they too are Potentially Good candidates to support. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Same goes for candidates challenging those incumbents. Even if they've chosen to run as red or blue, so long as they demonstrate they aren't banking on Big Money donors, they're potentially as Good as independents and third-party candidates. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Ultimately we support candidates of all stripes who are committed to remaining powered by and accountable to the actual people they serve. ",
+                "value": "That said, we believe people are generally Good, but power and money corrupt.  That's where our Follow the Money and Character Check come in. We don't care if a candidate is labelled Red or Blue, incumbent or challenger.  As long as they are civil people, trying to honestly represent their district, and are not beholden to big money sources for their funding, we'll list them as Potentially Good candidates for you to support.",
                 "marks": [],
                 "data": {}
               }
