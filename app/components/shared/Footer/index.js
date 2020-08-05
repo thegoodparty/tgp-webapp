@@ -20,7 +20,6 @@ import ShareModal from 'components/you/ProfileWrapper/ShareModal/Loadable';
 
 import { Body9, Body12 } from '../typogrophy';
 
-
 const Wrapper = styled.div`
   background-color: #fff;
   padding: 16px;
@@ -195,6 +194,7 @@ function Footer({ isCreators = false }) {
                 <WhiteLink to="/party">About</WhiteLink>
                 <WhiteLink to={electionRoute()}>Elections</WhiteLink>
                 <WhiteLink to="/you">You</WhiteLink>
+                <WhiteLink to="/creators">Creators</WhiteLink>
               </Column>
             </Grid>
             <Grid item xs={12} md={4}>
