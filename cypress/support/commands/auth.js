@@ -1,3 +1,4 @@
+import promisify from 'cypress-promise';
 import { dateUsHelper } from '../../../app/helpers/dateHelper';
 
 Cypress.Commands.add('checkRegisterText', (blocName = false) => {
@@ -65,17 +66,17 @@ Cypress.Commands.add('checkLoginPartAndPrivacySection', () => {
     .click();
   cy.checkPrivacyPage();
 });
-Cypress.Commands.add('checkPrivacyPage', () => {
+Cypress.Commands.add('checkPrivacyPage', async () => {
   cy.url().should('include', '/privacy');
   cy.get('[data-cy=page-title]').contains('Privacy Policy | The Good Party');
-  cy.getCMSContent();
-  cy.fixture('content').should(content => {
-    cy.get('[data-cy=title]').contains(content.privacyPage.title);
-    cy.get('[data-cy=last-revisioin-label]').contains('Last Revision');
-    cy.get('[data-cy=last-revisioin-date]').contains(
-      dateUsHelper(content.privacyPage.lastModified),
-    );
-  });
+  const content = await promisify(
+    cy.getCMSContent().then(response => response.body),
+  );
+  cy.get('[data-cy=title]').contains(content.privacyPage.title);
+  cy.get('[data-cy=last-revisioin-label]').contains('Last Revision');
+  cy.get('[data-cy=last-revisioin-date]').contains(
+    dateUsHelper(content.privacyPage.lastModified),
+  );
 });
 Cypress.Commands.add('checkEmailRegisterPage', () => {
   const email = Cypress.env('email');

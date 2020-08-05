@@ -329,7 +329,9 @@ const ProfileWrapper = ({
       <ShareButton
         url="http://crowdcast.thegoodparty.org"
         customElement={
-          <BottomLink data-cy="crowdcast-link">Tune into The Good Party Livestream</BottomLink>
+          <BottomLink data-cy="crowdcast-link">
+            Tune into The Good Party Livestream
+          </BottomLink>
         }
       />
       <a

@@ -50,9 +50,7 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add('getCMSContent', () => {
-  cy.sendRequest(api.content.method, api.content.url).should(response => {
-    cy.writeFile('cypress/fixtures/content.json', response.body);
-  });
+  cy.sendRequest(api.content.method, api.content.url);
 });
 
 Cypress.Commands.add('getDistrictData', zip => {
