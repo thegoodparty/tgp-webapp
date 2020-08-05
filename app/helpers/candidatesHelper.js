@@ -79,3 +79,15 @@ export const countCandidates = chamber => {
   }
   return count;
 };
+
+export const getCandidateTitle = candidate => {
+  let chamberTitle = 'President';
+  if (candidate.chamber?.toLowerCase() === 'senate') {
+    chamberTitle = `U.S. Senate from ${candidate.state?.toUpperCase()}`;
+  } else if (candidate.chamber?.toLowerCase() === 'house') {
+    chamberTitle = `U.S. House from ${candidate.state?.toUpperCase()}-${
+      candidate.id < 0 ? Math.abs(candidate.id) : candidate.district
+    }`;
+  }
+  return chamberTitle;
+}
