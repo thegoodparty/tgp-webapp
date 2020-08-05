@@ -86,18 +86,22 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
 
       {tab === 'crew' ? (
         <TabWrapper>
-          <H3>Your Crew</H3>
+          <H3 data-cy="your-crew">Your Crew</H3>
           <Separator>|</Separator>
           <Body>
-            <Link to="/you/crew/leaderboard">See Overall Leaderboard</Link>
+            <Link data-cy="overall-crew" to="/you/crew/leaderboard">
+              See Overall Leaderboard
+            </Link>
           </Body>
         </TabWrapper>
       ) : (
         <TabWrapper>
-          <H3>Overall Leaderboard</H3>
+          <H3 data-cy="overall-crew">Overall Leaderboard</H3>
           <Separator>|</Separator>
           <Body>
-            <Link to="/you/crew">See your Crew</Link>
+            <Link data-cy="your-crew" to="/you/crew">
+              See your Crew
+            </Link>
           </Body>
         </TabWrapper>
       )}

@@ -3,7 +3,7 @@ import { parseCookie } from '../../support/utils';
 
 describe('Leaderboard', () => {
   const user = parseCookie(Cypress.env('cookie'));
-  const { crewCount, shortState, districtNumber, feedback } = user;
+  const { feedback } = user;
   beforeEach(() => {
     cy.visit('/you/crew/');
     cy.get('[data-cy=page-title]').contains('Crew Page');
@@ -11,19 +11,17 @@ describe('Leaderboard', () => {
   });
   it(`finds correct text`, () => {
     cy.get('[data-cy=title]').should('contain', 'Good Party Leaders');
-    cy.get('[data-cy=description]')
-      .should('contain', 'See where you rank among')
-      .and('contain', 'in recruiting people to The Good Party.');
-    cy.get('[data-cy=crew-article]')
-      .should('contain', 'your crew')
-      .should('have.attr', 'href')
-      .and('contain', '?article=1ic6T6fhH0jZLNvX5aZkDe');
-    cy.get('[data-cy=overall-link]')
-      .should('contain', 'overall')
-      .should('have.attr', 'href')
-      .and('contain', '/you/crew/leaderboard');
+    cy.get('[data-cy=description]').should(
+      'contain',
+      'See where you rank in recruiting people to The Good Party.',
+    );
   });
   it(`check crew tab`, async () => {
+    cy.get('[data-cy=your-crew]').should('contain', 'Your Crew');
+    cy.get('[data-cy=overall-crew]')
+      .should('contain', 'See Overall Leaderboard')
+      .should('have.attr', 'href')
+      .and('contain', '/you/crew/leaderboard');
     const crew = await promisify(
       cy.getUserCrew().then(response => response.body),
     );
@@ -43,13 +41,17 @@ describe('Leaderboard', () => {
         .should('have.length', crew.crew.length)
         .each(($el, index) => {
           cy.checkCrewRow($el, crew.crew[index], user, index);
-          // cy.wrap($el).contains(textList[index]);
         });
     }
   });
   it(`check overall tab`, async () => {
-    cy.get('[data-cy=overall-tab]').click();
+    cy.get('[data-cy=overall-crew]').click();
     cy.url().should('contain', '/you/crew/leaderboard');
+    cy.get('[data-cy=overall-crew]').should('contain', 'Overall Leaderboard');
+    cy.get('[data-cy=your-crew]')
+      .should('contain', 'See your Crew')
+      .should('have.attr', 'href')
+      .and('contain', '/you/crew');
     const leaders = await promisify(
       cy.getLeaders().then(response => response.body.leaderboard),
     );

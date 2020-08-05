@@ -69,7 +69,7 @@ Cypress.Commands.add(
         presidentialRankCount === 0
           ? 'Rank Choices'
           : `${presidentialRankCount} Choice${
-          presidentialRankCount === 1 ? '' : 's'
+              presidentialRankCount === 1 ? '' : 's'
           } Ranked`,
       )
       .should('have.attr', 'href')
@@ -87,7 +87,7 @@ Cypress.Commands.add(
             'contain',
             senateRank
               ? `${senateRankCount} Choice${
-              senateRankCount > 1 ? 's' : ''
+                  senateRankCount > 1 ? 's' : ''
               } Ranked`
               : 'Rank Choices',
           )
@@ -110,7 +110,7 @@ Cypress.Commands.add(
             'contain',
             houseRank && houseRankCount > 0
               ? `${houseRankCount} Choice${
-              houseRankCount > 1 ? 's' : ''
+                  houseRankCount > 1 ? 's' : ''
               } Ranked`
               : 'Rank Choices',
           )
@@ -161,7 +161,7 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
   cy.get('[data-cy=leaderboards-link]')
     .should('contain', 'View Leaderboards')
     .should('have.attr', 'href')
-    .and('contain', 'you/crew/leaderboard');
+    .and('contain', 'you/crew');
   cy.get('[data-cy=under-crew]')
     .should('contain', 'Invite 3 or more friends to join,')
     .and('contain', 'and watch how quickly The Good Party');
@@ -276,21 +276,26 @@ Cypress.Commands.add('checkPrivateInfoEditSection', user => {
 Cypress.Commands.add('checkCrewRow', ($el, crewMember, user, index) => {
   cy.wrap($el)
     .find('[data-cy=crew-rank]')
-    .contains(index + 2);
+    .contains(index + 1);
   cy.wrap($el)
     .find('[data-cy=crew-member]')
-    .should('contain', crewMember.name)
     .and('contain', crewMember.crewCount || 1);
   cy.wrap($el)
     .find('[data-cy=crew-member-name]')
-    .should('contain', crewMember.uuid === user.uuid ? 'YOU' : crewMember.name);
+    .should('contain', crewMember.name);
   cy.wrap($el)
     .find('[data-cy=crew-location]')
-    .should('contain', crewMember.shortState ? crewMember.shortState.toUpperCase() : '')
-    .and('contain', crewMember.districtNumber ? `-${crewMember.districtNumber}` : '');
-  if(crewMember.feedback) {
+    .should(
+      'contain',
+      crewMember.shortState ? crewMember.shortState.toUpperCase() : '',
+    )
+    .and(
+      'contain',
+      crewMember.districtNumber ? `-${crewMember.districtNumber}` : '',
+    );
+  if (crewMember.feedback) {
     cy.wrap($el)
-    .find('[data-cy=crew-feedback]')
-    .should('contain', crewMember.feedback);
+      .find('[data-cy=crew-feedback]')
+      .should('contain', crewMember.feedback);
   }
 });
