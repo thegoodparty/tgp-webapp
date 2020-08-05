@@ -81,6 +81,9 @@ export const countCandidates = chamber => {
 };
 
 export const getCandidateTitle = candidate => {
+  if (!candidate) {
+    return '';
+  }
   let chamberTitle = 'President';
   if (candidate.chamber?.toLowerCase() === 'senate') {
     chamberTitle = `U.S. Senate from ${candidate.state?.toUpperCase()}`;
