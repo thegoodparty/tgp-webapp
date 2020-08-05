@@ -326,7 +326,7 @@ const ProfileWrapper = ({
         What can you do to help?
       </H3>
       <BottomLink data-cy="spread-world" onClick={onClickShareButton}>
-        Spread the world
+        Spread the word
       </BottomLink>
       <ShareButton
         url="http://crowdcast.thegoodparty.org"
