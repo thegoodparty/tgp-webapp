@@ -30,7 +30,6 @@ export function DirectoryPage({ dispatch, directoryPage }) {
       dispatch(actions.allCandidatesAction());
     }
   }, []);
-  console.log('candidates', candidates);
 
   const childProps = {
     candidates,

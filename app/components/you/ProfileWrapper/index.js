@@ -24,6 +24,7 @@ import {
   getElectionLink,
 } from 'helpers/electionsHelper';
 import ChangePasswordModal from './ChangePasswordModal';
+import ShareModal from './ShareModal/Loadable';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -132,6 +133,13 @@ const ProfileWrapper = ({
   changePasswordCallback,
 }) => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const onCloseShareModal = () => {
+    setShowShareModal(false);
+  };
+  const onClickShareButton = () => {
+    setShowShareModal(true);
+  };
   const presidentialRank = rankingObj.presidential;
   const senateRank = rankingObj.presidential;
   const houseRank = rankingObj.house;
@@ -142,7 +150,6 @@ const ProfileWrapper = ({
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   const userDistrict = getUserDistrict(congDistrict, cds);
   const electionLink = getElectionLink(zip);
-
 
   let crewFillers = [];
   if (crewPreview && crewPreview.length < 3) {
@@ -283,10 +290,8 @@ const ProfileWrapper = ({
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (
-          <Link to="you/crew">
-            <Filler key={filler} data-cy="crew-filler">
-              {filler}
-            </Filler>
+          <Link to="you/crew" key={filler}>
+            <Filler data-cy="crew-filler">{filler}</Filler>
           </Link>
         ))}
       </CrewWrapper>
@@ -295,15 +300,11 @@ const ProfileWrapper = ({
           View Leaderboards
         </Link>
       </Body>
-      <ShareButton
-        url={`Check out The Good Party.  See what's possible, before you vote. \n ${url}`}
-        customElement={
-          <UnderCrew data-cy="under-crew">
-            <strong>Invite 3 or more friends to join,</strong> and watch how
-            quickly The Good Party spreads!
-          </UnderCrew>
-        }
-      />
+
+      <UnderCrew data-cy="under-crew" onClick={onClickShareButton}>
+        <strong>Invite 3 or more friends to join,</strong> and watch how quickly
+        The Good Party spreads!
+      </UnderCrew>
 
       <H3
         style={{ marginTop: '48px', marginBottom: '8px' }}
@@ -322,20 +323,15 @@ const ProfileWrapper = ({
       >
         What can you do to help?
       </H3>
-      <BottomLink data-cy="spread-world">Spread the world</BottomLink>
+      <BottomLink data-cy="spread-world" onClick={onClickShareButton}>
+        Spread the word
+      </BottomLink>
       <ShareButton
-        url={`Check out voting blocs on The Good Party.   See what's possible, before you vote. \n ${url}`}
+        url="http://crowdcast.thegoodparty.org"
         customElement={
-          <BottomLink data-cy="invite-friends">Invite some friends</BottomLink>
+          <BottomLink>Tune into The Good Party Livestream</BottomLink>
         }
       />
-      <a
-        href="http://crowdcast.thegoodparty.org"
-        target="_blank"
-        data-cy="crowdcast-link"
-      >
-        <BottomLink>Add a share link to our crowdcast</BottomLink>
-      </a>
       <a
         href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion"
         data-cy="feedback-link"
@@ -369,6 +365,13 @@ const ProfileWrapper = ({
           closeModalCallback={() => setShowPasswordModal(false)}
           changePasswordCallback={changePasswordCallback}
           hasPassword={hasPassword}
+        />
+      )}
+      {showShareModal && (
+        <ShareModal
+          open={showShareModal}
+          closeCallback={onCloseShareModal}
+          user={user}
         />
       )}
     </PageWrapper>
