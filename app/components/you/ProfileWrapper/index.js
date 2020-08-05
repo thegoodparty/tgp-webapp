@@ -323,13 +323,13 @@ const ProfileWrapper = ({
       >
         What can you do to help?
       </H3>
-      <BottomLink data-cy="spread-world" onClick={onClickShareButton}>
+      <BottomLink data-cy="spread-word" onClick={onClickShareButton}>
         Spread the word
       </BottomLink>
       <ShareButton
         url="http://crowdcast.thegoodparty.org"
         customElement={
-          <BottomLink>Tune into The Good Party Livestream</BottomLink>
+          <BottomLink data-cy="crowdcast-link">Tune into The Good Party Livestream</BottomLink>
         }
       />
       <a
