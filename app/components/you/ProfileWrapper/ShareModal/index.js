@@ -179,7 +179,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
   return (
     <Dialog onClose={closeCallback} open={open}>
       <Wrapper>
-        <Close onClick={closeCallback}>
+        <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
         </Close>
         <div className="text-center">
@@ -189,9 +189,11 @@ const ShareModal = ({ open, user, closeCallback }) => {
 
         <AvatarWrapper>
           <UserAvatar user={user} size="large" />
-          <H3 style={{ marginTop: '22px' }}>Tell some friends... </H3>
+          <H3 data-cy="share-modal-title" style={{ marginTop: '22px' }}>
+            Tell some friends...{' '}
+          </H3>
         </AvatarWrapper>
-        <ShareThisWrapper>
+        <ShareThisWrapper data-cy="social-share">
           <InlineShareButtons
             config={{
               alignment: 'center', // alignment of buttons (left, center, right)
@@ -223,13 +225,16 @@ const ShareModal = ({ open, user, closeCallback }) => {
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
             <Grid item xs>
-              <a href={`sms:?&body=${messageBody.replace('&', '%26')}`}>
+              <a
+                href={`sms:?&body=${messageBody.replace('&', '%26')}`}
+                data-cy="sms-share"
+              >
                 <IconItem>
                   <IconWrapper className="sms">
                     <Icon src={SmsIcon} alt="sms" />
                   </IconWrapper>
                 </IconItem>
-                <IconLabel>SMS / TEXT</IconLabel>
+                <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
               </a>
             </Grid>
             <Grid item xs>
@@ -240,7 +245,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
-              <IconLabel>COPY LINK</IconLabel>
+              <IconLabel data-cy="clipboard-share-title">COPY LINK</IconLabel>
             </Grid>
             {canShare && (
               <Grid item xs>
