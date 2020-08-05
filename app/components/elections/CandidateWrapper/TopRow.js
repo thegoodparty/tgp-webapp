@@ -82,9 +82,11 @@ const RankWrapper = styled.div`
 `;
 const ShareButton = styled(Link)`
   && {
+    display: flex;
+    align-items: flex-end;
     position: absolute;
     right: 0;
-    color: #117CB6;
+    color: #117cb6;
     font-size: 17px;
     img {
       margin-right: 5px;
@@ -288,12 +290,10 @@ const TopRow = ({
   const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
     <TopRowWrapper data-cy="top-row">
-      {isGoodOrUnkwown &&
-        <ShareButton to={rank ? rankPageGrowLink() : rankPageJoinLink()}>
-          <img src={ShareIcon} alt="more" />
-          Share
-        </ShareButton>
-      }
+      <ShareButton to={rankPageGrowLink()}>
+        <img src={ShareIcon} alt="more" />
+        Share
+      </ShareButton>
       <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
       <H3 style={{ marginTop: '14px' }} data-cy="top-name">
         {name}
@@ -342,14 +342,14 @@ const TopRow = ({
               </RankWrapper>
             </>
           ) : (
-              <RankButton className="blue">
-                <Link to={rankPageJoinLink()} data-cy="rank-button">
-                  <StyledBody13 className="white">
-                    JOIN {blocName} {blocNameSuffix(blocName)}
-                  </StyledBody13>
-                </Link>
-              </RankButton>
-            )}
+            <RankButton className="blue">
+              <Link to={rankPageJoinLink()} data-cy="rank-button">
+                <StyledBody13 className="white">
+                  JOIN {blocName} {blocNameSuffix(blocName)}
+                </StyledBody13>
+              </Link>
+            </RankButton>
+          )}
         </>
       )}
     </TopRowWrapper>
