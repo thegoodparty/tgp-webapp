@@ -24,7 +24,7 @@ import {
   getElectionLink,
 } from 'helpers/electionsHelper';
 import ChangePasswordModal from './ChangePasswordModal';
-import ShareModal from './ShareModal';
+import ShareModal from './ShareModal/Loadable';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -201,8 +201,8 @@ const ProfileWrapper = ({
             {presidentialRankCount === 0
               ? 'Rank Choices'
               : `${presidentialRankCount} Choice${
-              presidentialRankCount === 1 ? '' : 's'
-              } Ranked`}
+                  presidentialRankCount === 1 ? '' : 's'
+                } Ranked`}
           </ElectionData>
         </Link>
       </Election>
@@ -217,14 +217,14 @@ const ProfileWrapper = ({
               <ElectionData>
                 {senateRank
                   ? `${senateRankCount} Choice${
-                  senateRankCount > 1 ? 's' : ''
-                  } Ranked`
+                      senateRankCount > 1 ? 's' : ''
+                    } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-              <NoElection>No Race in 2020</NoElection>
-            )}
+            <NoElection>No Race in 2020</NoElection>
+          )}
         </Election>
       )}
       {userDistrict.code && (
@@ -239,14 +239,14 @@ const ProfileWrapper = ({
               <ElectionData>
                 {houseRank && houseRankCount > 0
                   ? `${houseRankCount} Choice${
-                  houseRankCount > 1 ? 's' : ''
-                  } Ranked`
+                      houseRankCount > 1 ? 's' : ''
+                    } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-              <NoElection>No Race in 2020</NoElection>
-            )}
+            <NoElection>No Race in 2020</NoElection>
+          )}
         </Election>
       )}
       <Link to={electionLink} data-cy="all-election-link">
@@ -283,17 +283,15 @@ const ProfileWrapper = ({
                   </Body13>
                 </div>
               ) : (
-                  <Link to="you/crew">
-                    <CrewMember crewMember={crewMember} />
-                  </Link>
-                )}
+                <Link to="you/crew">
+                  <CrewMember crewMember={crewMember} />
+                </Link>
+              )}
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (
-          <Link to="you/crew">
-            <Filler key={filler} data-cy="crew-filler">
-              {filler}
-            </Filler>
+          <Link to="you/crew" key={filler}>
+            <Filler data-cy="crew-filler">{filler}</Filler>
           </Link>
         ))}
       </CrewWrapper>
@@ -304,8 +302,8 @@ const ProfileWrapper = ({
       </Body>
 
       <UnderCrew data-cy="under-crew" onClick={onClickShareButton}>
-        <strong>Invite 3 or more friends to join,</strong> and watch how
-            quickly The Good Party spreads!
+        <strong>Invite 3 or more friends to join,</strong> and watch how quickly
+        The Good Party spreads!
       </UnderCrew>
 
       <H3
@@ -369,11 +367,13 @@ const ProfileWrapper = ({
           hasPassword={hasPassword}
         />
       )}
-      <ShareModal
-        open={showShareModal}
-        closeCallback={onCloseShareModal}
-        user={user}
-      />
+      {showShareModal && (
+        <ShareModal
+          open={showShareModal}
+          closeCallback={onCloseShareModal}
+          user={user}
+        />
+      )}
     </PageWrapper>
   );
 };

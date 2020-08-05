@@ -16,8 +16,10 @@ import FacebookIcon from 'images/icons/facebook-white.svg';
 import TwitterIcon from 'images/icons/twitter.svg';
 import YouTubeIcon from 'images/icons/youtube-white.svg';
 import { getCookie, getUserCookie } from 'helpers/cookieHelper';
+import ShareModal from 'components/you/ProfileWrapper/ShareModal/Loadable';
 
 import { Body9, Body12 } from '../typogrophy';
+
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -125,6 +127,13 @@ const SocialIcon = styled.img`
 function Footer({ isCreators = false }) {
   const [withMobileNav, setWithMobileNav] = useState(true);
   const [currentPath, setCurrentPath] = useState(null);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const onCloseShareModal = () => {
+    setShowShareModal(false);
+  };
+  const onClickShareButton = () => {
+    setShowShareModal(true);
+  };
   useEffect(() => {
     history.listen(location => {
       updateMobileNav(location);
@@ -198,7 +207,9 @@ function Footer({ isCreators = false }) {
                 >
                   Nominate a Candidate
                 </WhiteHref>
-                <WhiteLink to="#">Share with Friends</WhiteLink>
+                <WhiteLink to="#" onClick={onClickShareButton}>
+                  Share with Friends
+                </WhiteLink>
                 <WhiteHref href="mailto:ask@thegoodparty.org">
                   Send Us An Email
                 </WhiteHref>
@@ -276,6 +287,13 @@ function Footer({ isCreators = false }) {
           NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
         </InnerWrapper>
       </Wrapper>
+      {showShareModal && (
+        <ShareModal
+          open={showShareModal}
+          closeCallback={onCloseShareModal}
+          user={user}
+        />
+      )}
     </>
   );
 }
