@@ -39,25 +39,7 @@ describe('Login', () => {
     cy.get('[data-cy=alert').contains('Email or Password are incorrect.');
   });
   it('find email login part with exact user credentials', () => {
-    const email = Cypress.env('email1');
-    const password = Cypress.env('password');
-    cy.get('[data-cy=email-input]')
-      .should('exist')
-      .type(email);
-    cy.get('[data-cy=login]')
-      .find('button')
-      .should('contain', 'SIGN IN')
-      .should('have.attr', 'disabled')
-      .and('contain', 'disabled');
-    cy.get('[data-cy=password]')
-      .should('exist')
-      .type(password);
-    cy.get('[data-cy=login]')
-      .find('button')
-      .should('contain', 'SIGN IN')
-      .should('not.have.attr', 'disabled');
-    cy.get('[data-cy=login]').click();
-    cy.url().should('contain', '/you');
+    cy.loginWithEmail();
   });
   it('find forgot password part', () => {
     cy.get('[data-cy=forgot-link]')

@@ -1,6 +1,27 @@
 import promisify from 'cypress-promise';
 import { dateUsHelper } from '../../../app/helpers/dateHelper';
 
+Cypress.Commands.add('loginWithEmail', () => {
+  const email = Cypress.env('email1');
+  const password = Cypress.env('password');
+  cy.get('[data-cy=email-input]')
+    .should('exist')
+    .type(email);
+  cy.get('[data-cy=login]')
+    .find('button')
+    .should('contain', 'SIGN IN')
+    .should('have.attr', 'disabled')
+    .and('contain', 'disabled');
+  cy.get('[data-cy=password]')
+    .should('exist')
+    .type(password);
+  cy.get('[data-cy=login]')
+    .find('button')
+    .should('contain', 'SIGN IN')
+    .should('not.have.attr', 'disabled');
+  cy.get('[data-cy=login]').click();
+  cy.url().should('contain', '/you');
+});
 Cypress.Commands.add('checkRegisterText', (blocName = false) => {
   if (blocName) {
     cy.get('[data-cy=title]').contains(`Join ${blocName}`);
