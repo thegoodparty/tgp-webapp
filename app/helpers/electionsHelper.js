@@ -420,3 +420,20 @@ export const rankPageJoinLink = (user, candidate, chamberName, state, district) 
   }
   return '?register=true';
 };
+
+export const electionRoute = user => {
+  let zip;
+  if (user?.zipCode) {
+    zip = user.zipCode.zip;
+  } else {
+    let cookieZip = getCookie('zip');
+    if (cookieZip) {
+      cookieZip = JSON.parse(cookieZip);
+      zip = cookieZip.zip;
+    }
+  }
+  if (zip) {
+    return `/elections/district/${zip}`;
+  }
+  return '/intro/zip-finder';
+};

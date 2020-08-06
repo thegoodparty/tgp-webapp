@@ -4,53 +4,138 @@ import {
   blocNameSuffix,
   candidateBlocLink,
   candidateBlocName,
+  electionRoute,
 } from '../../../app/helpers/electionsHelper';
-import {
-  getCandidateTitle
-} from '../../../app/helpers/candidatesHelper';
-import {
-  uuidUrl,
-} from '../../../app/helpers/userHelper';
-Cypress.Commands.add('checkGrowShareModal', (candidate, chamber, isExternalLink = false, user = {}) => {
-  let { isGood } = candidate;
-  if (candidate.unknown) {
-    isGood = null;
-  }
-  const blocName = candidateBlocName(candidate);
-  const blocLink = candidateBlocLink(candidate, chamber);
-  let url = uuidUrl(user);
-  let queryOperator = '&';
-  if (url === 'https://thegoodparty.org') {
-    queryOperator = '?';
-  }
-  url = url + queryOperator + 'b=' + blocLink;
+import { getCandidateTitle } from '../../../app/helpers/candidatesHelper';
+import { uuidUrl } from '../../../app/helpers/userHelper';
 
-  let chamberTitle = getCandidateTitle(chamber);
-  const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
+Cypress.Commands.add('checkCommonFooter', (user = {}) => {
+  cy.get('[data-cy=footer-logo]')
+    .should('have.attr', 'alt')
+    .and('contain', 'The Good Party Logo');
 
-  if(isExternalLink) {
-    cy.get('[data-cy=share-modal-subtitle]')
-      .contains('Congrats!')
-      .contains('You’ve joined');
-  } else {
-    cy.get('[data-cy=share-modal-subtitle]')
-    .contains('Please help grow')
-  }
-  cy.get('[data-cy=share-modal-title]')
-    .should('contain', `${blocName} ${blocNameSuffix(blocName)}`);
-  cy.get('[data-cy=share-modal-description]')
-    .should('contain', 'Tell some friends...');
-  cy.get('[data-cy=social-share]').should('exist');
-
-
-  cy.get('[data-cy=sms-share-title]').should('contain', 'SMS / TEXT');
-  cy.get('[data-cy=clipboard-share-title]').should('contain', 'COPY LINK');
-
-  cy.get('[data-cy=sms-share]')
+  cy.get('[data-cy=footer-link-about]')
+    .contains('About')
     .should('have.attr', 'href')
-    .and('contain', `sms:?&body=${messageBody.replace('&', '%26')}`);
-  // cy.get('[data-cy=share-modal-close]').click();
+    .and('contain', '/party');
+
+  cy.get('[data-cy=footer-link-you]')
+    .contains('You')
+    .should('have.attr', 'href')
+    .and('contain', '/you');
+
+  cy.get('[data-cy=footer-link-elections]')
+    .contains('Elections')
+    .should('have.attr', 'href')
+    .and('contain', electionRoute(user));
+
+  cy.get('[data-cy=footer-link-creators]')
+    .contains('Creators')
+    .should('have.attr', 'href')
+    .and('contain', '/creators');
+
+  cy.get('[data-cy=footer-community-title]').contains('Community');
+
+  cy.get('[data-cy=footer-link-nominate]')
+    .contains('Nominate a Candidate')
+    .should('have.attr', 'href')
+    .and('contain', 'https://forms.gle/kydnhUp6xqF6RUpb9');
+
+  cy.get('[data-cy=footer-link-share]')
+    .should('contain', 'Share with Friends')
+    .click();
+  cy.checkYouShareModal(user);
+
+  cy.get('[data-cy=footer-link-email]')
+    .contains('Send Us An Email')
+    .should('have.attr', 'href')
+    .and('contain', 'mailto:ask@thegoodparty.org');
+
+  cy.get('[data-cy=footer-team-title]').contains('Team');
+  cy.get('[data-cy=footer-team]').contains(
+    'Want to join the volunteer team? We are always looking for',
+  );
+
+  cy.get('[data-cy=footer-link-join]')
+    .should('contain', 'APPLY TO JOIN')
+    .should('have.attr', 'href')
+    .and(
+      'contain',
+      "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]",
+    );
+
+  cy.get('[data-cy=footer-link-policy]')
+    .contains('Privacy Policy')
+    .should('have.attr', 'href')
+    .and('contain', '/privacy');
+
+  cy.get('[data-cy=footer-link-directory]')
+    .contains('Directory')
+    .should('have.attr', 'href')
+    .and('contain', '/directory');
+
+  cy.get('[data-cy=footer-link-facebook]')
+    .should('have.attr', 'href')
+    .and('contain', 'https://www.facebook.com/thegoodpartyorg');
+
+  cy.get('[data-cy=footer-link-twitter]')
+    .should('have.attr', 'href')
+    .and('contain', 'https://twitter.com/thegoodpartyorg');
+
+  cy.get('[data-cy=footer-link-youtube]')
+    .should('have.attr', 'href')
+    .and('contain', 'https://www.youtube.com/channel/UCPNp46yxggs8NPeXFuMTpGQ');
+
+  cy.get('[data-cy=footer-description]')
+    .should('contain', 'PAID FOR BY THE GOOD PARTY | THEGOODPARTY.ORG')
+    .and('contain', 'NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.');
 });
+
+Cypress.Commands.add(
+  'checkGrowShareModal',
+  (candidate, chamber, isExternalLink = false, user = {}) => {
+    let { isGood } = candidate;
+    if (candidate.unknown) {
+      isGood = null;
+    }
+    const blocName = candidateBlocName(candidate);
+    const blocLink = candidateBlocLink(candidate, chamber);
+    let url = uuidUrl(user);
+    let queryOperator = '&';
+    if (url === 'https://thegoodparty.org') {
+      queryOperator = '?';
+    }
+    url = `${url + queryOperator}b=${blocLink}`;
+
+    const chamberTitle = getCandidateTitle(chamber);
+    const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
+
+    if (isExternalLink) {
+      cy.get('[data-cy=share-modal-subtitle]')
+        .contains('Congrats!')
+        .contains('You’ve joined');
+    } else {
+      cy.get('[data-cy=share-modal-subtitle]').contains('Please help grow');
+    }
+    cy.get('[data-cy=share-modal-title]').should(
+      'contain',
+      `${blocName} ${blocNameSuffix(blocName)}`,
+    );
+    cy.get('[data-cy=share-modal-description]').should(
+      'contain',
+      'Tell some friends...',
+    );
+    cy.get('[data-cy=social-share]').should('exist');
+
+    cy.get('[data-cy=sms-share-title]').should('contain', 'SMS / TEXT');
+    cy.get('[data-cy=clipboard-share-title]').should('contain', 'COPY LINK');
+
+    cy.get('[data-cy=sms-share]')
+      .should('have.attr', 'href')
+      .and('contain', `sms:?&body=${messageBody.replace('&', '%26')}`);
+    // cy.get('[data-cy=share-modal-close]').click();
+  },
+);
 Cypress.Commands.add('testAmaContainer', () => {
   cy.get('[data-cy=ama]')
     .contains('Ask a Question')
@@ -59,7 +144,6 @@ Cypress.Commands.add('testAmaContainer', () => {
   cy.get('[data-cy=ama-dialog-submit]').contains('Send');
   cy.get('[data-cy=ama-dialog-close]').click();
   cy.get('[data-cy=ama-dialog-submit]').should('not.exist');
-
 });
 
 Cypress.Commands.add('testTopQueSection', async filter => {
