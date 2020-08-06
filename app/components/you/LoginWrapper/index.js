@@ -148,7 +148,7 @@ const LoginWrapper = ({
                   onClick={() => {
                     setForgotMode(false);
                   }}
-                  data-cy="forgot-link"
+                  data-cy="back-link"
                 >
                   Back to login
                 </ForgotLink>
