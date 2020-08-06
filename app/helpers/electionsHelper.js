@@ -387,6 +387,9 @@ export const getElectionLink = zip => {
 }
 
 export const rankPageGrowLink = (candidate, chamberName, state, district) => {
+  if (!candidate) {
+    return '';
+  }
   const query = `?grow=${candidate.id}&name=${encodeURI(candidate.name)}`;
   if (chamberName === 'presidential') {
     return presidentialElectionLink() + query;
