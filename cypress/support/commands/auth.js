@@ -107,8 +107,32 @@ Cypress.Commands.add('checkEmailRegisterPage', () => {
     );
   cy.get('[data-cy=submit]')
     .find('button')
-    .should('contain', 'Submit')
-    .click();
+    .should('have.attr', 'disabled')
+    .and('contain', 'disabled');
+  cy.get('[data-cy=password]')
+    .type('12345')
+    .find('p')
+    .should('contain', '8 characters minimum');
+  cy.get('[data-cy=submit]')
+    .find('button')
+    .should('have.attr', 'disabled')
+    .and('contain', 'disabled');
+  cy.get('[data-cy=password]').type('12345');
+  cy.get('[data-cy=submit]')
+    .find('button')
+    .should('not.have.attr', 'disabled');
+  // cy.get('[data-cy=submit]')
+  //   .find('button')
+  //   .should('contain', 'Submit')
+  //   .click();
   // check login confirm page
-  cy.checkLoginConfirmPage(email);
+  cy.get('[data-cy=login-wrapper]').should(
+    'contain',
+    'Already have an account?',
+  );
+  cy.get('[data-cy=login-link]')
+    .contains('Login')
+    .should('have.attr', 'href')
+    .and('contain', '/login');
+  cy.get('[data-cy=login-link]').click();
 });
