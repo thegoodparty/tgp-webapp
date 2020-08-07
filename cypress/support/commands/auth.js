@@ -193,10 +193,6 @@ Cypress.Commands.add('checkEmailRegisterPage', () => {
   cy.get('[data-cy=submit]')
     .find('button')
     .should('not.have.attr', 'disabled');
-  // cy.get('[data-cy=submit]')
-  //   .find('button')
-  //   .should('contain', 'Submit')
-  //   .click();
   // check login confirm page
   cy.get('[data-cy=login-wrapper]').should(
     'contain',
