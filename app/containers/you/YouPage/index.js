@@ -13,7 +13,9 @@ import { push } from 'connected-react-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/YouPage/selectors';
+import makeSelectUser, {
+  makeSelectRanking,
+} from 'containers/you/YouPage/selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
@@ -31,10 +33,10 @@ import {
 } from 'helpers/cookieHelper';
 import { userDistrict } from 'helpers/userHelper';
 import articlesHelper from 'helpers/articlesHelper';
+import { countCandidates } from 'helpers/candidatesHelper';
 
 import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
 import { makeSelectContent } from '../../App/selectors';
-import { makeSelectRanking } from './selectors';
 
 export function YouPage({
   userState,
@@ -43,6 +45,7 @@ export function YouPage({
   signoutCallback,
   content,
   rankingObj,
+  changePasswordCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -50,7 +53,7 @@ export function YouPage({
   useInjectReducer({ key: 'zipFinderPage', reducer: districtReducer });
   useInjectSaga({ key: 'zipFinderPage', saga: districtSaga });
 
-  const { user, crew, ranking } = userState;
+  const { user, crewPreview, crewCount, ranking } = userState;
   const { houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
@@ -59,8 +62,8 @@ export function YouPage({
       dispatch(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     }
-    if (user && !crew) {
-      dispatch(userActions.crewAction());
+    if (user && !crewPreview) {
+      dispatch(userActions.crewAction(true));
     }
     if (user) {
       const { shortState } = user;
@@ -85,26 +88,19 @@ export function YouPage({
     articles = articlesHelper(content.faqArticles, 'party');
   }
 
-  const countCandidates = chamber => {
-    let count = 0;
-    if (chamber && typeof chamber.good !== 'undefined') {
-      count =
-        chamber.good.length + chamber.notGood.length + chamber.unknown.length;
-    }
-    return count;
-  };
-
   const senateCandidatesCount = countCandidates(senateCandidates);
   const houseCandidatesCount = countCandidates(houseCandidates);
 
   const accountProps = {
     articles,
     user,
-    crew,
+    crewPreview,
+    crewCount,
     signoutCallback,
     houseCandidatesCount,
     senateCandidatesCount,
     rankingObj,
+    changePasswordCallback,
   };
 
   const youProps = {
@@ -114,7 +110,7 @@ export function YouPage({
   return (
     <div>
       <Helmet>
-        <title>You | The Good Party</title>
+        <title data-cy="page-title">You | The Good Party</title>
         <meta name="description" content="You | The Good Party" />
       </Helmet>
       {user ? (
@@ -133,6 +129,7 @@ YouPage.propTypes = {
   districtState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rankingObj: PropTypes.object,
+  changePasswordCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -141,6 +138,13 @@ function mapDispatchToProps(dispatch) {
     signoutCallback: () => {
       dispatch(userActions.signoutAction());
       dispatch(push('/'));
+    },
+    changePasswordCallback: (newPassword, oldPassword, hasPassword) => {
+      if (hasPassword) {
+        dispatch(userActions.changePasswordAction(newPassword, oldPassword));
+      } else {
+        dispatch(userActions.addPasswordAction(newPassword));
+      }
     },
   };
 }

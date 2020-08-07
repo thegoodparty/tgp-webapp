@@ -1,14 +1,16 @@
 import types from './constants';
 
-const registerAction = (email, name) => ({
+const registerAction = (email, name, password) => ({
   type: types.REGISTER,
   email,
   name,
+  password,
 });
 
-const registerActionSuccess = user => ({
+const registerActionSuccess = (user, token) => ({
   type: types.REGISTER_SUCCESS,
   user,
+  token,
 });
 
 const registerActionError = error => ({
@@ -16,9 +18,9 @@ const registerActionError = error => ({
   error,
 });
 
-const socialRegisterAction = (user) => ({
+const socialRegisterAction = user => ({
   type: types.SOCIAL_REGISTER,
-  user
+  user,
 });
 
 const resendEmailAction = email => ({
@@ -53,32 +55,20 @@ const signoutAction = (url = '/') => ({
   url,
 });
 
-const loginAction = email => ({
+const loginAction = (email, password) => ({
   type: types.LOGIN,
+  email,
+  password,
+});
+
+const forgotPasswordAction = email => ({
+  type: types.FORGOT_PASSWORD,
   email,
 });
 
-const socialLoginAction = (user) => ({
+const socialLoginAction = user => ({
   type: types.SOCIAL_LOGIN,
-  user
-});
-
-const updatePresidentialRankAction = rank => ({
-  type: types.UPDATE_PRESIDENTIAL_RANK,
-  rank,
-});
-
-const updateSenateRankAction = (rank, state) => ({
-  type: types.UPDATE_SENATE_RANK,
-  rank,
-  state,
-});
-
-const updateHouseRankAction = (rank, state, district) => ({
-  type: types.UPDATE_HOUSE_RANK,
-  rank,
-  state,
-  district,
+  user,
 });
 
 const updateUserAction = updatedFields => ({
@@ -91,13 +81,7 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (
-  candidate,
-  rank,
-  chamber,
-  state,
-  district,
-) => ({
+const saveUserRankingAction = (candidate, rank, chamber, state, district) => ({
   type: types.SAVE_USER_RANKING,
   candidate,
   rank,
@@ -129,13 +113,29 @@ const generateUuidAction = () => ({
   type: types.GENERATE_UUID,
 });
 
-const crewAction = () => ({
+const crewAction = preview => ({
   type: types.CREW,
+  preview,
 });
 
 const crewActionSuccess = crew => ({
   type: types.CREW_SUCCESS,
   crew,
+});
+
+const crewPreviewActionSuccess = (crewPreview, crewCount) => ({
+  type: types.CREW_PREVIEW_SUCCESS,
+  crewPreview,
+  crewCount,
+});
+
+const leaderboardAction = () => ({
+  type: types.LEADERBOARD,
+});
+
+const leaderboardActionSuccess = leaderboard => ({
+  type: types.LEADERBOARD_SUCCESS,
+  leaderboard,
 });
 
 const userRankingAction = () => ({
@@ -165,8 +165,27 @@ const deleteGuestRankingAction = rankToDelete => ({
 
 const sendMessageToCreator = messageInfo => ({
   type: types.SEND_MESSAGE_TO_CREATOR,
-  messageInfo
+  messageInfo,
 });
+
+const resetPasswordAction = (email, password, token) => ({
+  type: types.RESET_PASSWORD,
+  email,
+  password,
+  token,
+});
+
+const changePasswordAction = (newPassword, oldPassword) => ({
+  type: types.CHANGE_PASSWORD,
+  newPassword,
+  oldPassword,
+});
+
+const addPasswordAction = newPassword => ({
+  type: types.ADD_PASSWORD,
+  newPassword,
+});
+
 
 export default {
   registerAction,
@@ -180,6 +199,10 @@ export default {
   loadUserFromCookieAction,
   signoutAction,
   loginAction,
+  forgotPasswordAction,
+  resetPasswordAction,
+  changePasswordAction,
+  addPasswordAction,
   socialLoginAction,
   updateUserAction,
   updateUserActionSuccess,
@@ -190,10 +213,13 @@ export default {
   generateUuidAction,
   crewAction,
   crewActionSuccess,
+  crewPreviewActionSuccess,
+  leaderboardAction,
+  leaderboardActionSuccess,
   userRankingAction,
   guestRankingAction,
   userRankingActionSuccess,
   saveGuestRankingAction,
   deleteGuestRankingAction,
-  sendMessageToCreator
+  sendMessageToCreator,
 };

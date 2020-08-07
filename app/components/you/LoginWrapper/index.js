@@ -3,16 +3,17 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
 
 import PageWrapper from 'components/shared/PageWrapper';
-import { Body13, H2, H1 } from 'components/shared/typogrophy/index';
+import { Body13, H2, H1, Body11 } from 'components/shared/typogrophy/index';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import heartImg from 'images/heart.svg';
 
-import TextField from '@material-ui/core/TextField';
 import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
 import FacebookButton from '../SocialRegisterWrapper/FacebookButton';
+import PasswordInput from '../../shared/PasswordInput';
 
 const Heart = styled.img`
   width: 64px;
@@ -67,14 +68,30 @@ const Input = styled(TextField)`
   }
 `;
 
+const ForgotLink = styled(Body11)`
+  color: ${({ theme }) => theme.colors.blue};
+  margin-bottom: 24px;
+  cursor: pointer;
+`;
+
 const LoginWrapper = ({
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
+  forgotPasswordCallback,
 }) => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [forgotMode, setForgotMode] = useState(false);
   const onChangeEmail = event => {
     setEmail(event.target.value);
+  };
+
+  const enableSubmit = () => {
+    if (forgotMode) {
+      return validateEmail();
+    }
+    return password.length >= 8 && validateEmail();
   };
 
   const validateEmail = () => {
@@ -84,26 +101,35 @@ const LoginWrapper = ({
 
   const handleSubmitForm = e => {
     e.preventDefault();
-    handleSubmit();
+    // handleSubmit();
   };
 
   const handleSubmit = () => {
-    if (validateEmail()) {
-      loginCallback(email);
+    if (enableSubmit()) {
+      if (forgotMode) {
+        forgotPasswordCallback(email);
+      } else {
+        loginCallback(email, password);
+      }
     }
   };
+
+  const onChangePassword = pwd => {
+    setPassword(pwd);
+  };
+
   return (
     <PageWrapper>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <Heart src={heartImg} />
-            <H1>Sign into your account</H1>
+            <H1 data-cy="title">Sign into your account</H1>
           </VerticalWrapper>
         </Grid>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <form noValidate onSubmit={handleSubmitForm}>
+            <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
               <Input
                 value={email}
                 label="Email Address"
@@ -115,13 +141,36 @@ const LoginWrapper = ({
                 autoComplete="email"
                 variant="outlined"
                 onChange={onChangeEmail}
+                data-cy="email-input"
               />
+              {forgotMode ? (
+                <ForgotLink
+                  onClick={() => {
+                    setForgotMode(false);
+                  }}
+                >
+                  Back to login
+                </ForgotLink>
+              ) : (
+                <>
+                  <PasswordInput onChangeCallback={onChangePassword} />
+                  <ForgotLink
+                    onClick={() => {
+                      setForgotMode(true);
+                    }}
+                  >
+                    Forgot your password?
+                  </ForgotLink>
+                </>
+              )}
+
               <OutlinedButton
                 fullWidth
-                active={validateEmail()}
+                active={enableSubmit()}
                 onClick={handleSubmit}
+                type="submit"
               >
-                Submit
+                {forgotMode ? 'SEND PASSWORD RESET LINK' : 'SIGN IN'}
               </OutlinedButton>
             </form>
             <OrWrapper>
@@ -136,19 +185,22 @@ const LoginWrapper = ({
             >
               Continue with Facebook
             </FacebookButton>
-            <SocialButton
-              channel="google"
-              provider="google"
-              appId={globals.googleAppId}
-              onLoginSuccess={socialLoginCallback}
-              onLoginFailure={socialLoginFailureCallback}
-            >
-              Continue with GOOGLE
-            </SocialButton>
-
-            <Body13 style={{ margin: '24px 0' }}>
+            <div data-cy="google-login">
+              <SocialButton
+                channel="google"
+                provider="google"
+                appId={globals.googleAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with GOOGLE
+              </SocialButton>
+            </div>
+            <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
               Don&apos;t have an account?{' '}
-              <Link to="?register=true">Create one</Link>
+              <Link to="?register=true" data-cy="register">
+                Create one
+              </Link>
             </Body13>
           </VerticalWrapper>
         </Grid>
@@ -161,6 +213,7 @@ LoginWrapper.propTypes = {
   loginCallback: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  forgotPasswordCallback: PropTypes.func,
 };
 
 export default LoginWrapper;

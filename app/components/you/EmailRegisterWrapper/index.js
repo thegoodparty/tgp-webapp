@@ -8,12 +8,12 @@ import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 import { fullFirstLastInitials } from 'helpers/userHelper';
-import Footer from 'components/shared/Footer';
+import PasswordInput from 'components/shared/PasswordInput';
+import PageWrapper from 'components/shared/PageWrapper';
 
 const Input = styled(TextField)`
   && {
     margin-bottom: 48px;
-    margin-top: 40px;
 
     .MuiInputBase-input {
       line-height: 22px;
@@ -54,6 +54,7 @@ const Login = styled.span`
 const RegisterWrapper = ({ registerCallback, loading, error }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showName, setShowName] = useState(false);
 
   const onChangeName = event => {
@@ -69,14 +70,19 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
     return validEmail.test(email);
   };
 
+  const enableSubmit = () => {
+    return name !== '' && password.length >= 8 && validateEmail();
+  };
+
   const handleSubmitForm = e => {
+    console.log('here');
     e.preventDefault();
-    handleSubmit();
+    // handleSubmit();
   };
 
   const handleSubmit = () => {
-    if (validateEmail()) {
-      registerCallback(email, name);
+    if (enableSubmit()) {
+      registerCallback(email, name, password);
     }
   };
 
@@ -86,11 +92,17 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
     }
   };
 
+  const onChangePassword = pwd => {
+    setPassword(pwd);
+  };
+
   return (
-    <div>
-      <Wrapper white>
-        <H2>Join The Good Party</H2>
-        <Body13 style={{ marginTop: '16px', marginBottom: '28px' }}>
+    <PageWrapper white>
+        <H2 data-cy="title">Join The Good Party</H2>
+        <Body13
+          style={{ marginTop: '16px', marginBottom: '28px' }}
+          data-cy="description"
+        >
           Please enter your info, so we can count your support and notify you as
           we make progress.
         </Body13>
@@ -102,8 +114,10 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             placeholder="John Smith"
             size="medium"
             name="name"
+            variant="outlined"
             fullWidth
             onChange={onChangeName}
+            data-cy="full-name"
             helperText={`We will never show your full name on our site. ${
               showName
                 ? `On our site you'll be: ${fullFirstLastInitials(name)}`
@@ -123,27 +137,23 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
             autoComplete="email"
             onChange={onChangeEmail}
             onFocus={onEmailFocus}
+            data-cy="email"
+            variant="outlined"
+          />
+          <PasswordInput
+            onChangeCallback={onChangePassword}
+            variant="outlined"
           />
 
-          {!loading && (
-            <SubmitWrapper onClick={handleSubmit}>
-              <NextButton active={validateEmail() && name !== ''}>
-                Submit
-              </NextButton>
-              {error && error.exists && (
-                <Error>
-                  {error.message}{' '}
-                  <Login>
-                    <Link to="/login">Login</Link>
-                  </Login>
-                </Error>
-              )}
-            </SubmitWrapper>
-          )}
+          <SubmitWrapper onClick={handleSubmit} data-cy="submit">
+            <NextButton active={enableSubmit()}>Submit</NextButton>
+            {error && error.exists && <Error>{error.message} </Error>}
+          </SubmitWrapper>
+          <Body13 style={{ margin: '24px 0' }}>
+            Already have an account? <Link to="/login">Login</Link>
+          </Body13>
         </form>
-      </Wrapper>
-      <Footer />
-    </div>
+    </PageWrapper>
   );
 };
 

@@ -47,9 +47,7 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
     setCode(event.target.value);
   };
 
-  const validateCode = () => {
-    return code.length === 6;
-  };
+  const validateCode = () => code.length === 6;
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -63,7 +61,9 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
   };
   return (
     <PageWrapper white>
-      <H2 style={{ marginBottom: '28px' }}>A code was sent to {email}</H2>
+      <H2 style={{ marginBottom: '28px' }} data-cy="title">
+        A code was sent to {email}
+      </H2>
       <form noValidate onSubmit={handleSubmitForm}>
         <Input
           value={code}
@@ -74,10 +74,10 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
           type="tel"
           onChange={onChangeCode}
         />
-        <Link to="/login">
+        <Link to="/login" data-cy="return-link">
           <StyledBody13>Didn’t receive the code?</StyledBody13>
         </Link>
-        <SubmitWrapper onClick={handleSubmit}>
+        <SubmitWrapper onClick={handleSubmit} data-cy="submit">
           <NextButton active={validateCode()}>Confirm</NextButton>
         </SubmitWrapper>
       </form>

@@ -42,7 +42,7 @@ export function RegisterPage({ userState, registerCallback, dispatch }) {
   return (
     <div>
       <Helmet>
-        <title>Register to the Good Party</title>
+        <title data-cy="page-title">Register to the Good Party</title>
         <meta name="description" content="Register to the Good Party" />
       </Helmet>
       <RegisterWrapper {...childPros} />
@@ -63,8 +63,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    registerCallback: (email, name) => {
-      dispatch(userActions.registerAction(email, name));
+    registerCallback: (email, name, password) => {
+      dispatch(userActions.registerAction(email, name, password));
     },
   };
 }

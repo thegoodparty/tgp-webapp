@@ -8,10 +8,11 @@ import types from './constants';
 
 function* sendAma(action) {
   try {
-    const { message } = action;
+    const { message, replyEmail } = action;
     const api = tgpApi.sendAma;
     const payload = {
       message,
+      replyEmail,
     };
     yield call(requestHelper, api, payload);
     yield put(snackbarActions.showSnakbarAction('Thank you for reaching out.'));

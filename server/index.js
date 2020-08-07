@@ -2,6 +2,7 @@
 const base = require('./base');
 const express = require('express');
 const logger = require('./logger');
+const helmet = require('helmet');
 
 const argv = require('./argv');
 const port = require('./port');
@@ -13,6 +14,7 @@ const ngrok =
     : false;
 const { resolve } = require('path');
 const app = express();
+app.use(helmet());
 
 // force non-www
 const baseUrl = base();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,11 @@ import PageWrapper from 'components/shared/PageWrapper';
 import heartImg from 'images/heart.svg';
 import { AmaContainer } from 'containers/shared/AmaContainer';
 import { Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
-import { fullFirstLastInitials, uuidUrl } from 'helpers/userHelper';
+import {
+  fullFirstLastInitials,
+  uuidUrl,
+  getUserDistrict,
+} from 'helpers/userHelper';
 import { numberNth } from 'helpers/numberHelper';
 import UserAvatar from 'components/shared/UserAvatar';
 import ShareButton from 'components/shared/ShareButton';
@@ -17,7 +21,10 @@ import {
   houseElectionLink,
   presidentialElectionLink,
   senateElectionLink,
+  getElectionLink,
 } from 'helpers/electionsHelper';
+import ChangePasswordModal from './ChangePasswordModal';
+import ShareModal from './ShareModal/Loadable';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -46,7 +53,7 @@ const NoElection = styled(Body13)`
   display: inline-block;
 `;
 
-const AllElections = styled.div`
+const AllElections = styled(Body)`
   margin-top: 16px;
   color: ${({ theme }) => theme.colors.blue};
 `;
@@ -55,6 +62,13 @@ const BottomLink = styled(Body)`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
+`;
+
+const CrewTitle = styled(Body)`
+  margin-top: 48px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
 `;
 
 const CrewWrapper = styled.div`
@@ -84,60 +98,62 @@ const UnderCrew = styled(Body)`
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.blue};
 `;
-//
+
 const InviteUrl = styled(Body)`
   color: ${({ theme }) => theme.colors.blue};
 `;
 
+const More = styled(Body13)`
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.blue};
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
+    0px 0px 16px rgba(0, 0, 0, 0.12);
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 80px;
+    width: 80px;
+  }
+`;
+
 const ProfileWrapper = ({
   user,
-  crew,
+  crewPreview,
+  crewCount,
   houseCandidatesCount,
   senateCandidatesCount,
   signoutCallback,
   articles,
   rankingObj,
+  changePasswordCallback,
 }) => {
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const onCloseShareModal = () => {
+    setShowShareModal(false);
+  };
+  const onClickShareButton = () => {
+    setShowShareModal(true);
+  };
   const presidentialRank = rankingObj.presidential;
   const senateRank = rankingObj.presidential;
   const houseRank = rankingObj.house;
 
-  const { name, feedback, zipCode, congDistrict } = user;
+  const { name, feedback, zipCode, congDistrict, hasPassword } = user;
   const { zip, stateLong, stateShort, primaryCity, cds } = zipCode || {};
 
   const shortState = stateShort ? stateShort.toUpperCase() : '';
-  let userDistrict = {};
-  if (congDistrict && cds && cds.length > 0) {
-    cds.forEach(district => {
-      if (district.id === congDistrict) {
-        userDistrict = district;
-      }
-    });
-    if (!userDistrict.code) {
-      userDistrict = cds[0];
-    }
-  } else if (cds && cds.length > 0) {
-    userDistrict = cds[0]; // eslint-disable-line
-  }
-  let electionLink;
-  if (zip) {
-    electionLink = `/elections/district/${zip}`;
-  } else {
-    electionLink = `/intro/zip-finder`;
-  }
-
-  const displayCrew = [];
-  if (crew && crew.length > 0) {
-    crew.forEach((crewMember, index) => {
-      if (index < 3) {
-        displayCrew.push(crewMember);
-      }
-    });
-  }
+  const userDistrict = getUserDistrict(congDistrict, cds);
+  const electionLink = getElectionLink(zip);
 
   let crewFillers = [];
-  if (crew && crew.length < 3) {
-    const fillerCount = 3 - crew.length;
+  if (crewPreview && crewPreview.length < 3) {
+    const fillerCount = 3 - crewPreview.length;
     crewFillers = Array.from(
       Array(fillerCount),
       (_, x) => x + 1 + 3 - fillerCount,
@@ -154,25 +170,33 @@ const ProfileWrapper = ({
 
   return (
     <PageWrapper white>
-      <Link to="/you/edit">
+      <Link to="/you/edit" data-cy="edit-profile-link">
         <EditProfile>Edit Profile</EditProfile>
       </Link>
       <Centered>
         <UserAvatar user={user} size="large" />
-        <H2 style={{ marginTop: '30px' }}>{fullFirstLastInitials(name)}</H2>
+        <H2 style={{ marginTop: '30px' }} data-cy="profile-name">
+          {fullFirstLastInitials(name)}
+        </H2>
         {shortState && (
-          <Body13 style={{ marginTop: '5px', marginBottom: '9px' }}>
+          <Body13
+            style={{ marginTop: '5px', marginBottom: '9px' }}
+            data-cy="city"
+          >
             {primaryCity}, {shortState}-{userDistrict.code}
           </Body13>
         )}
-        <Body13>{feedback}</Body13>
+        <Body13 data-cy="feedback">{feedback}</Body13>
       </Centered>
-      <H3>
+      <H3 data-cy="location">
         Your Elections for {shortState}, {zip}
       </H3>
-      <Election>
+      <Election data-cy="presidential-election">
         Presidential:{' '}
-        <Link to={presidentialElectionLink()}>
+        <Link
+          to={presidentialElectionLink()}
+          data-cy="presidential-election-link"
+        >
           <ElectionData>
             {presidentialRankCount === 0
               ? 'Rank Choices'
@@ -183,10 +207,13 @@ const ProfileWrapper = ({
         </Link>
       </Election>
       {stateLong && (
-        <Election>
+        <Election data-cy="senate-election">
           Senate {stateLong}:
           {showSenate ? (
-            <Link to={senateElectionLink(shortState)}>
+            <Link
+              to={senateElectionLink(shortState)}
+              data-cy="senate-election-link"
+            >
               <ElectionData>
                 {senateRank
                   ? `${senateRankCount} Choice${
@@ -201,11 +228,14 @@ const ProfileWrapper = ({
         </Election>
       )}
       {userDistrict.code && (
-        <Election>
+        <Election data-cy="house-election">
           House: {numberNth(userDistrict.code)} District ({shortState}-
           {userDistrict.code})
           {showHouse ? (
-            <Link to={houseElectionLink(shortState, userDistrict.code)}>
+            <Link
+              to={houseElectionLink(shortState, userDistrict.code)}
+              data-cy="house-election-link"
+            >
               <ElectionData>
                 {houseRank && houseRankCount > 0
                   ? `${houseRankCount} Choice${
@@ -219,68 +249,133 @@ const ProfileWrapper = ({
           )}
         </Election>
       )}
-      <Link to={electionLink}>
+      <Link to={electionLink} data-cy="all-election-link">
         <AllElections>See All Elections</AllElections>
       </Link>
-
-      <H3 style={{ marginTop: '48px', marginBottom: '4px' }}>Your Crew</H3>
-      <Body13 style={{ marginBottom: '8px' }}>
+      <CrewTitle data-cy="crew-title">
+        <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
+        <Body>
+          (<img src={heartImg} alt="tpg" /> people recruited)
+        </Body>
+      </CrewTitle>
+      <Body13 style={{ marginBottom: '8px' }} data-cy="invite-crew-label">
         invite people to grow your crew
       </Body13>
 
       <CrewWrapper>
-        <CrewMember
-          crewMember={user}
-          overrideName="You"
-          overrideCount={displayCrew.length}
-        />
+        <Link to="you/crew">
+          <CrewMember
+            crewMember={user}
+            overrideName="You"
+            overrideCount={crewCount}
+          />
+        </Link>
 
-        {displayCrew.map(crewMember => (
-          <CrewMember crewMember={crewMember} />
-        ))}
+        {crewPreview &&
+          crewPreview.map((crewMember, index) => (
+            <React.Fragment key={crewMember.uuid}>
+              {crewCount > 3 && index === 2 ? (
+                <div>
+                  <More>+{crewCount - 2}</More>
+
+                  <Body13 className="text-center" style={{ marginTop: '4px' }}>
+                    <Link to="you/crew">SEE ALL</Link>
+                  </Body13>
+                </div>
+              ) : (
+                <Link to="you/crew">
+                  <CrewMember crewMember={crewMember} />
+                </Link>
+              )}
+            </React.Fragment>
+          ))}
         {crewFillers.map(filler => (
-          <Filler key={filler}>{filler}</Filler>
+          <Link to="you/crew" key={filler}>
+            <Filler data-cy="crew-filler">{filler}</Filler>
+          </Link>
         ))}
       </CrewWrapper>
-      <ShareButton
-        url={url}
-        customElement={
-          <UnderCrew>
-            <strong>Invite 3 or more friends to join,</strong> and watch how
-            quickly The Good Party spreads!
-          </UnderCrew>
-        }
-      />
+      <Body style={{ marginTop: '10px' }}>
+        <Link to="you/crew" data-cy="leaderboards-link">
+          View Leaderboards
+        </Link>
+      </Body>
 
-      <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
+      <UnderCrew data-cy="under-crew" onClick={onClickShareButton}>
+        <strong>Invite 3 or more friends to join,</strong> and watch how quickly
+        The Good Party spreads!
+      </UnderCrew>
+
+      <H3
+        style={{ marginTop: '48px', marginBottom: '8px' }}
+        data-cy="invite-link-label"
+      >
         Your Unique Invite Link
       </H3>
-      <ShareButton url={url} customElement={<InviteUrl>{url}</InviteUrl>} />
-
-      <H3 style={{ marginTop: '48px', marginBottom: '8px' }}>
-        What can you do to help?
-      </H3>
       <ShareButton
         url={url}
-        customElement={<BottomLink>Invite Friends</BottomLink>}
+        customElement={<InviteUrl data-cy="invite-url">{url}</InviteUrl>}
       />
-      <a href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion">
+
+      <H3
+        style={{ marginTop: '48px', marginBottom: '8px' }}
+        data-cy="help-title"
+      >
+        What can you do to help?
+      </H3>
+      <BottomLink data-cy="spread-word" onClick={onClickShareButton}>
+        Spread the word
+      </BottomLink>
+      <ShareButton
+        url="http://crowdcast.thegoodparty.org"
+        customElement={
+          <BottomLink data-cy="crowdcast-link">
+            Tune into The Good Party Livestream
+          </BottomLink>
+        }
+      />
+      <a
+        href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion"
+        data-cy="feedback-link"
+      >
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
-      <Link to="/creators">
+      <Link to="/creators" data-cy="creators-link">
         <BottomLink>
           Creators of the World, Unite! help create{' '}
           <img src={heartImg} alt="tpg" />
         </BottomLink>
       </Link>
       <BottomLink
-        style={{ marginTop: '48px', marginBottom: '24px' }}
+        style={{ marginTop: '48px' }}
+        onClick={() => setShowPasswordModal(true)}
+        data-cy="change-password-link"
+      >
+        {hasPassword ? 'Change Password' : 'Add Password'}
+      </BottomLink>
+      <BottomLink
+        style={{ marginBottom: '24px' }}
         onClick={signoutCallback}
+        data-cy="signout-link"
       >
         Sign Out
       </BottomLink>
       <TopQuestions articles={articles} />
       <AmaContainer />
+      {showPasswordModal && (
+        <ChangePasswordModal
+          closeModalCallback={() => setShowPasswordModal(false)}
+          changePasswordCallback={changePasswordCallback}
+          hasPassword={hasPassword}
+        />
+      )}
+      {showShareModal && (
+        <ShareModal
+          open={showShareModal}
+          closeCallback={onCloseShareModal}
+          user={user}
+        />
+      )}
     </PageWrapper>
   );
 };
@@ -294,6 +389,7 @@ ProfileWrapper.propTypes = {
   senateCandidatesCount: PropTypes.number,
   senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   rankingObj: PropTypes.object,
+  changePasswordCallback: PropTypes.func,
 };
 
 export default ProfileWrapper;

@@ -5,10 +5,10 @@
 //   'http://localhost:4000': 'https://api-dev.thegoodparty.org/api/v1/',
 // };
 // export const base = apiBaseUrls[Cypress.config().baseUrl];
+import { parseCookie } from './support/utils';
 export const base = Cypress.env('API_BASE');
-console.log('base', base)
 export const isProduction = Cypress.config().baseUrl === 'https://thegoodparty.org';
-
+export const feedbackLink = 'mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion';
 export const api = {
   base,
   //
@@ -143,6 +143,12 @@ export const api = {
     withAuth: true,
   },
 
+  leaderboard: {
+    url: `${base}user/leaderboard`,
+    method: 'GET',
+    withAuth: true,
+  },
+  
   userRanking: {
     url: `${base}user/ranking`,
     method: 'GET',
@@ -205,4 +211,11 @@ export const api = {
       withAuth: true,
     },
   },
+};
+
+export const testZipcodes = {
+  '40047': '(with Senate)',
+  '90058': '(without Senate)',
+  '50321': '(with Senate)',
+  '84322': '(without Senate)',
 };

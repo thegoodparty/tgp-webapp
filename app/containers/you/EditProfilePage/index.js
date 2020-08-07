@@ -44,7 +44,7 @@ export function EditProfilePage({
   return (
     <div>
       <Helmet>
-        <title>Edit Profile | The Good Party</title>
+        <title data-cy="page-title">Edit Profile | The Good Party</title>
         <meta name="description" content="Edit Profile | The Good Party" />
       </Helmet>
       <EditProfileWrapper {...childProps} />

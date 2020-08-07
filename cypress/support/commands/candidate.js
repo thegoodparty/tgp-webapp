@@ -66,9 +66,9 @@ Cypress.Commands.add(
     const lastName = name ? nameArr[nameArr.length - 1] : '';
     const blocName = candidateBlocName(candidateData, chamber);
     const socialAccounts = [
+      { name: 'website', url: website },
       { name: 'facebook', url: facebook },
       { name: 'twitter', url: twitter },
-      { name: 'website', url: website },
     ].filter(social => social.url && social.url !== '');
     const comparedIncumbent = getComparedIncumbent(totalRaised, incumbent);
     const { isFakeIncumbent, bigFundsPerc, relativePerc } = comparedIncumbent;

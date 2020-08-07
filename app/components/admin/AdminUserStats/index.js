@@ -21,7 +21,8 @@ import {
   CartesianGrid,
 } from 'recharts';
 
-import { H3, H1, H2 } from '../../shared/typogrophy';
+import { H3, H1, H2, Body13 } from 'components/shared/typogrophy';
+import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -48,6 +49,13 @@ const BoxTitle = styled(H3)`
   margin: 12px auto;
 `;
 
+const StyledTooltip = styled(Body13)`
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
+  font-weight: 600;
+`;
+
 function AdminUserStats({ users }) {
   const [verifiedEmailData, setVerifiedEmailData] = useState([]);
   const [socialRegisterData, setSocialRegisterData] = useState([]);
@@ -57,6 +65,9 @@ function AdminUserStats({ users }) {
   useEffect(() => {
     let verifiedEmailCount = 0;
     let socialRegister = 0;
+    let google = 0;
+    let facebook = 0;
+    let hasPassword = 0;
     const states = {};
     const zips = {};
     users?.map(user => {
@@ -65,6 +76,14 @@ function AdminUserStats({ users }) {
       }
       if (user.socialId) {
         socialRegister++;
+        if (user.socialProvider === 'google') {
+          google++;
+        } else if (user.socialProvider === 'facebook') {
+          facebook++;
+        }
+      }
+      if (user.hasPassword) {
+        hasPassword++;
       }
       const state = user.shortState;
       if (!states[state]) {
@@ -90,10 +109,21 @@ function AdminUserStats({ users }) {
     ]);
 
     setSocialRegisterData([
-      { name: 'Social Register', value: socialRegister, fill: '#8884d8' },
+      { name: 'Social - Facebook', value: facebook, fill: '#d88d36' },
+      { name: 'Social - Google', value: google, fill: '#82ca9d' },
       {
-        name: 'Email Register',
-        value: users.length - socialRegister,
+        name: 'Social - Unknown',
+        value: socialRegister - facebook - google,
+        fill: '#8884d8',
+      },
+      {
+        name: 'Email - No Password',
+        value: users.length - socialRegister - hasPassword,
+        fill: '#ed78b8',
+      },
+      {
+        name: 'Email with password',
+        value: hasPassword,
         fill: '#83a6ed',
       },
     ]);
@@ -115,6 +145,23 @@ function AdminUserStats({ users }) {
     });
     setZipData(flatZips);
   }, [users]);
+
+  const customTooltip = ({ active, payload, label }) => {
+    if (active) {
+      const val = payload[0].value;
+      const fill = payload[0].payload?.fill || '#000';
+      return (
+        <StyledTooltip style={{ color: fill }}>
+          {`${payload[0].name} : ${numberFormatter(val)}`}
+          <br />
+          Percentage:{' '}
+          {val === 0 ? val : parseFloat((val * 100) / users.length).toFixed(2)}%
+        </StyledTooltip>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <Wrapper>
@@ -140,7 +187,7 @@ function AdminUserStats({ users }) {
                     fill="#8884d8"
                     label
                   />
-                  <Tooltip />
+                  <Tooltip content={customTooltip} />
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>
@@ -160,7 +207,7 @@ function AdminUserStats({ users }) {
                     fill="#8884d8"
                     label
                   />
-                  <Tooltip />
+                  <Tooltip content={customTooltip} />
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>

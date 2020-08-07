@@ -28,6 +28,7 @@ export function LoginPage({
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
+  forgotPasswordCallback
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -43,12 +44,13 @@ export function LoginPage({
     loginCallback,
     socialLoginCallback,
     socialLoginFailureCallback,
+    forgotPasswordCallback
   };
 
   return (
     <div>
       <Helmet>
-        <title>Sign into your account | TGP</title>
+        <title data-cy="page-title">Sign into your account | TGP</title>
         <meta name="description" content="Sign into your account | TGP" />
       </Helmet>
       <LoginWrapper {...childProps} />
@@ -62,13 +64,17 @@ LoginPage.propTypes = {
   loginCallback: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  forgotPasswordCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loginCallback: email => {
-      dispatch(userActions.loginAction(email));
+    loginCallback: (email, password) => {
+      dispatch(userActions.loginAction(email, password));
+    },
+    forgotPasswordCallback: (email) => {
+      dispatch(userActions.forgotPasswordAction(email));
     },
     socialLoginCallback: user => {
       dispatch(userActions.socialLoginAction(user));

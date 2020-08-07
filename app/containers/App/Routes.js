@@ -23,9 +23,11 @@ import EmailRegisterPage from 'containers/you/EmailRegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
 import YouPage from 'containers/you/YouPage/Loadable';
+import CrewPage from 'containers/you/CrewPage/Loadable';
 import LoginPage from 'containers/you/LoginPage/Loadable';
 import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
 import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
+import ResetPasswordPage from 'containers/you/ResetPasswordPage/Loadable';
 
 import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';
@@ -39,6 +41,8 @@ import CreatorsPage from 'containers/creators/CreatorsPage/Loadable';
 
 import AdminPage from 'containers/admin/AdminPage/Loadable';
 import AdminEditCandidatePage from 'containers/admin/AdminEditCandidatePage/Loadable';
+
+import DirectoryPage from 'containers/directory/DirectoryPage/Loadable';
 
 import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
 import ResearchPage from 'containers/shared/ResearchPage/Loadable';
@@ -84,8 +88,12 @@ function Routes() {
         path="/email-confirmation"
         component={EmailConfirmationPage}
       />
+
+      <Route exact path="/you/reset-password" component={ResetPasswordPage} />
       <Route exact path="/you" component={YouPage} />
       <Route exact path="/you/edit" component={EditProfilePage} />
+      <Route exact path="/you/crew" component={CrewPage} />
+      <Route exact path="/you/crew/leaderboard" component={CrewPage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/login/confirm" component={LoginConfirmPage} />
 
@@ -107,7 +115,13 @@ function Routes() {
       <Route exact path="/creators" component={CreatorsPage} />
 
       <Route exact path="/admin" component={AdminPage} />
-      <Route exact path="/admin/edit-candidate/:chamber/:id" component={AdminEditCandidatePage} />
+      <Route
+        exact
+        path="/admin/edit-candidate/:chamber/:id"
+        component={AdminEditCandidatePage}
+      />
+
+      <Route exact path="/directory" component={DirectoryPage} />
 
       <Route component={NotFoundPage} />
     </Switch>

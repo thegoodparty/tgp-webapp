@@ -29,7 +29,7 @@ import { formatToPhone } from 'helpers/phoneHelper';
 import AvatarUpload from 'components/shared/AvatarUpload/Loadable';
 import { BlueButton } from 'components/shared/buttons';
 import UserAvatar from 'components/shared/UserAvatar';
-
+import { getUserDistrictName } from 'helpers/userHelper';
 const Row = styled.div`
   display: flex;
   flex-direction: row;
@@ -182,18 +182,7 @@ const EditProfileWrapper = ({
 
   const { stateLong, cds, primaryCity } = zipCode || {};
 
-  let districtName = '';
-  if (cds && cds.length > 0) {
-    if (congDistrict) {
-      cds.forEach(district => {
-        if (district.id === congDistrict) {
-          districtName = district.name;
-        }
-      });
-    } else {
-      districtName = cds[0].name;
-    }
-  }
+  const districtName = getUserDistrictName(congDistrict, cds);
 
   const onChangeName = event => {
     setNewName(event.target.value);
@@ -279,14 +268,14 @@ const EditProfileWrapper = ({
   return (
     <PageWrapper white>
       <Hidden smDown>
-        <Link to="/you">
+        <Link to="/you" data-cy="back-link">
           <BackIcon style={{ fontSize: '34px' }} />
         </Link>
       </Hidden>
       {user && (
         <>
           <Row>
-            <H1>Edit Profile</H1>
+            <H1 data-cy="title">Edit Profile</H1>
 
             <UserInitials onClick={uploadPhoto}>
               <UserAvatar user={user} size="large" />
@@ -295,7 +284,7 @@ const EditProfileWrapper = ({
               </Camera>
             </UserInitials>
           </Row>
-          <Form noValidate onSubmit={handleSubmitForm}>
+          <Form noValidate onSubmit={handleSubmitForm} data-cy="profile-form">
             <Input
               value={newName}
               label="Name"
@@ -304,6 +293,7 @@ const EditProfileWrapper = ({
               fullWidth
               onChange={onChangeName}
               helperText="Only your last initial will ever be shown"
+              data-cy="new-name"
             />
             <Input
               value={newFeedback}
@@ -312,39 +302,60 @@ const EditProfileWrapper = ({
               multiline
               fullWidth
               onChange={onChangeFeedback}
+              data-cy="new-feedback"
             />
-            <BlueButton fullWidth disabled={!canSave()} onClick={handleSubmit}>
+            <BlueButton
+              fullWidth
+              disabled={!canSave()}
+              onClick={handleSubmit}
+              data-cy="profile-save"
+            >
               Save
             </BlueButton>
           </Form>
           <Row style={{ marginTop: '48px' }}>
-            <Body11>Congressional District</Body11>
-            <StyledBody14 onClick={handleChangeAddress}>Edit</StyledBody14>
+            <Body11 data-cy="congress-district-title">
+              Congressional District
+            </Body11>
+            <StyledBody14 onClick={handleChangeAddress} data-cy="edit-district">
+              Edit
+            </StyledBody14>
           </Row>
-          <Address>
+          <Address data-cy="address1">
             {primaryCity}
             {districtName && `, ${districtName}`}{' '}
           </Address>
-          <Address>
+          <Address data-cy="address2">
             {stateLong} {zipCode && zipCode.zip}
           </Address>
 
           <PrivateWrapper>
             <Private>
-              <H3>Private Info&nbsp;</H3>
+              <H3 data-cy="private-info-title">Private Info&nbsp;</H3>
               <LockIcon />
             </Private>
-            <Body11>Not shown anywhere, only used for login and contact</Body11>
+            <Body11 data-cy="private-info-description">
+              Not shown anywhere, only used for login and contact
+            </Body11>
             <br />
             {!phone && !editPhone && (
               <PhoneWrapper>
-                <AddPhoneLabel>Phone Number</AddPhoneLabel>
-                <AddPhone onClick={() => setEditPhone(true)}>
+                <AddPhoneLabel data-cy="phone-label">
+                  Phone Number
+                </AddPhoneLabel>
+                <AddPhone
+                  onClick={() => setEditPhone(true)}
+                  data-cy="add-phone"
+                >
                   Add Phone
                 </AddPhone>
               </PhoneWrapper>
             )}
-            <form noValidate onSubmit={handleSubmitPhoneEmailForm}>
+            <form
+              noValidate
+              onSubmit={handleSubmitPhoneEmailForm}
+              data-cy="private-info-form"
+            >
               {(phone || editPhone) && (
                 <PhoneWrapper>
                   <Input
@@ -355,6 +366,7 @@ const EditProfileWrapper = ({
                     fullWidth
                     onChange={onChangePhone}
                     style={{ marginBottom: '24px' }}
+                    data-cy="new-phone"
                   />
                 </PhoneWrapper>
               )}
@@ -365,6 +377,7 @@ const EditProfileWrapper = ({
                 size="medium"
                 fullWidth
                 style={{ marginBottom: '16px' }}
+                data-cy="new-email"
               />
               {isEmailVerified && email === initialEmail && (
                 <Verified>VERIFIED</Verified>
@@ -374,6 +387,7 @@ const EditProfileWrapper = ({
                 disabled={!canSavePhoneEmail()}
                 onClick={handlePhoneEmailSubmit}
                 style={{ margin: '24px 0' }}
+                data-cy="private-info-submit"
               >
                 Save
               </BlueButton>
@@ -385,20 +399,35 @@ const EditProfileWrapper = ({
             open={showRankAlert}
           >
             <AlertWrapper>
-              <DialogTitle id="alert-dialog-title">
+              <DialogTitle
+                id="alert-dialog-title"
+                data-cy="district-change-title"
+              >
                 <WarningIcon /> District Change
               </DialogTitle>
               <DialogContent>
-                <DialogContentText id="alert-dialog-description">
+                <DialogContentText
+                  id="alert-dialog-description"
+                  data-cy="district-change-description"
+                >
                   If you proceed, your previous district&apos;s ranked choices
                   will be discarded.
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleCloseAlert} color="primary">
+                <Button
+                  onClick={handleCloseAlert}
+                  color="primary"
+                  data-cy="modal-cancel"
+                >
                   Cancel
                 </Button>
-                <Button onClick={handleDeleteRanking} color="primary" autoFocus>
+                <Button
+                  onClick={handleDeleteRanking}
+                  color="primary"
+                  autoFocus
+                  data-cy="modal-proceed"
+                >
                   Proceed
                 </Button>
               </DialogActions>

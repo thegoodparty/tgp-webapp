@@ -21,7 +21,7 @@ export function PrivacyPage({ content }) {
   return (
     <div>
       <Helmet>
-        <title>Privacy Policy | The Good Party</title>
+        <title data-cy="page-title">Privacy Policy | The Good Party</title>
         <meta name="description" content="Privacy Policy | The Good Party" />
       </Helmet>
       <PrivacyWrapper {...childProps} />

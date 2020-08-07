@@ -93,6 +93,16 @@ const api = {
     method: 'PUT',
   },
 
+  forgotPassword: {
+    url: `${base}entrance/send-password-recovery-email`,
+    method: 'POST',
+  },
+
+  resetPassword: {
+    url: `${base}entrance/reset-password`,
+    method: 'PUT',
+  },
+
   socialLogin: {
     url: `${base}entrance/social-login`,
     method: 'PUT',
@@ -148,9 +158,27 @@ const api = {
     withAuth: true,
   },
 
+  leaderboard: {
+    url: `${base}user/leaderboard`,
+    method: 'GET',
+    withAuth: true,
+  },
+
   userRanking: {
     url: `${base}user/ranking`,
     method: 'GET',
+    withAuth: true,
+  },
+
+  changePassword: {
+    url: `${base}user/change-password`,
+    method: 'PUT',
+    withAuth: true,
+  },
+
+  addPassword: {
+    url: `${base}user/add-password`,
+    method: 'POST',
     withAuth: true,
   },
 
@@ -213,6 +241,13 @@ const api = {
       url: `${base}creators/engagement-email`,
       method: 'POST',
       withAuth: true,
+    },
+  },
+
+  directory: {
+    allCandidates: {
+      url: `${base}candidates/all`,
+      method: 'GET',
     },
   },
 };

@@ -43,13 +43,14 @@ function* sendCreatorMessage(action) {
 
 function* register(action) {
   try {
-    const { email, name } = action;
+    const { email, name, password } = action;
     const zip = yield getZipFromStateOrCookie();
     const ranking = getCookie('guestRanking') || '[]';
 
     const payload = {
       email,
       name,
+      password,
       zip,
       ranking,
     };
@@ -63,15 +64,23 @@ function* register(action) {
     }
     const api = tgpApi.register;
     const response = yield call(requestHelper, api, payload);
-    const { user } = response;
-    yield put(actions.registerActionSuccess(user));
-    yield put(push('/you/confirmation-sent'));
+    const { user, token } = response;
+    yield put(actions.registerActionSuccess(user, token));
     setUserCookie(user);
+    setCookie('token', token);
     deleteCookie('guestRanking');
+    yield put(push('/you'));
+    AnalyticsService.sendEvent('email-register', 'success');
   } catch (error) {
     if (error.response?.exists) {
-      // user is already in our system, try login.
-      yield put(actions.loginAction(action.email));
+      yield put(
+        snackbarActions.showSnakbarAction(
+          `The email ${
+            action.email
+          } already exists in our system. Try signing in.`,
+        ),
+      );
+      yield put(push('/login'));
     } else {
       console.log(error);
       yield put(actions.registerActionError(error));
@@ -272,32 +281,160 @@ function* confirmEmail(action) {
 
 function* login(action) {
   try {
-    const { email } = action;
+    const { email, password } = action;
     const api = tgpApi.login;
+    const payload = {
+      email,
+      password,
+    };
+    const response = yield call(requestHelper, api, payload);
+    const { user, token } = response;
+    yield put(actions.registerActionSuccess(user, token));
+    setUserCookie(user);
+    setCookie('token', token);
+    deleteCookie('guestRanking');
+    yield put(push('/you'));
+    AnalyticsService.sendEvent('email-login', 'success');
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Email or Password are incorrect.',
+        'error',
+      ),
+    );
+    AnalyticsService.sendEvent('email-login', 'error');
+    yield put(globalActions.logErrorAction('email login error', error));
+  }
+}
+
+function* forgotPassword(action) {
+  try {
+    const { email } = action;
+    const api = tgpApi.forgotPassword;
     const payload = {
       email,
     };
     yield call(requestHelper, api, payload);
-    yield put(push('/login/confirm'));
-    AnalyticsService.sendEvent('email-login', 'success');
+    yield put(push('/login'));
+    yield put(
+      snackbarActions.showSnakbarAction(
+        `We sent an email to ${email}, which contains a link to reset your password.`,
+      ),
+    );
+    AnalyticsService.sendEvent('forgot-password', 'success');
   } catch (error) {
-    if (error.response?.notexists) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error sending password reset email.',
+        'error',
+      ),
+    );
+    AnalyticsService.sendEvent('forgot-password', 'error');
+    yield put(globalActions.logErrorAction('forgot password error', error));
+  }
+}
+
+function* resetPassword(action) {
+  try {
+    const { email, password, token } = action;
+    const api = tgpApi.resetPassword;
+    const payload = {
+      email,
+      password,
+      token,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(push('/login'));
+    yield put(
+      snackbarActions.showSnakbarAction(`Your password has been reset`),
+    );
+    AnalyticsService.sendEvent('reset-password', 'success');
+  } catch (error) {
+    if (error.response?.expired) {
       yield put(
         snackbarActions.showSnakbarAction(
-          `The email ${
-            action.email
-          } doesn't exist in our system. Please register first.`,
+          'Your token is either invalid or expired.',
           'error',
         ),
       );
-      AnalyticsService.sendEvent('email-login', 'email-exists');
-      yield put(globalActions.logErrorAction('email login error - email exists', error));
+      AnalyticsService.sendEvent('reset-password', 'expired token');
+      yield put(globalActions.logErrorAction('reset password expired', error));
     } else {
-      yield put(snackbarActions.showSnakbarAction('Error login in.', 'error'));
-      AnalyticsService.sendEvent('email-login', 'error');
-      yield put(globalActions.logErrorAction('email login error', error));
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Error resetting your password.',
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent('reset-password', 'error');
+      yield put(globalActions.logErrorAction('reset password error', error));
     }
-    // yield put(push('/login/confirm'));
+  }
+}
+
+function* changePassword({ newPassword, oldPassword }) {
+  try {
+    const api = tgpApi.changePassword;
+    const payload = {
+      newPassword,
+      oldPassword,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(
+      snackbarActions.showSnakbarAction(`Your password has been changed`),
+    );
+    AnalyticsService.sendEvent('change-password', 'success');
+  } catch (error) {
+    if (error.response?.incorrect) {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Current Password is incorrect',
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent(
+        'change-password',
+        'error - incorrect password',
+      );
+      yield put(
+        globalActions.logErrorAction(
+          'change password - incorrect password',
+          error,
+        ),
+      );
+    } else {
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Error changing your password.',
+          'error',
+        ),
+      );
+      AnalyticsService.sendEvent('change-password', 'error');
+      yield put(globalActions.logErrorAction('change password error', error));
+    }
+  }
+}
+
+function* addPassword({ newPassword }) {
+  try {
+    const api = tgpApi.addPassword;
+    const payload = {
+      newPassword,
+    };
+    const response = yield call(requestHelper, api, payload);
+    const { user } = response;
+    yield put(actions.updateUserActionSuccess(user));
+    setUserCookie(user);
+    yield put(
+      snackbarActions.showSnakbarAction(`Your password has been added`),
+    );
+    AnalyticsService.sendEvent('add-password', 'success');
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Error adding your password.', 'error'),
+    );
+    AnalyticsService.sendEvent('add-password', 'error');
+    yield put(globalActions.logErrorAction('add password error', error));
   }
 }
 
@@ -370,7 +507,12 @@ function* socialLogin(action) {
       'error',
       action?.user?._provider,
     );
-    yield put(globalActions.logErrorAction(`social login error. provider: ${action?.user?._provider}`, error));
+    yield put(
+      globalActions.logErrorAction(
+        `social login error. provider: ${action?.user?._provider}`,
+        error,
+      ),
+    );
   }
 }
 
@@ -569,11 +711,31 @@ function* generateUuid() {
   }
 }
 
-function* crew() {
+function* crew({ preview }) {
   try {
     const api = tgpApi.crew;
+    const payload = {
+      preview,
+    };
+    const response = yield call(requestHelper, api, payload);
+    if (preview) {
+      yield put(
+        actions.crewPreviewActionSuccess(response.crew, response.crewCount),
+      );
+    } else {
+      yield put(actions.crewActionSuccess(response.crew));
+    }
+  } catch (error) {
+    console.log('crew error', JSON.stringify(error));
+  }
+}
+
+function* leaderboard() {
+  try {
+    const api = tgpApi.leaderboard;
     const response = yield call(requestHelper, api, null);
-    yield put(actions.crewActionSuccess(response.crew));
+    console.log('saga', response.leaderboard);
+    yield put(actions.leaderboardActionSuccess(response.leaderboard));
   } catch (error) {
     console.log('crew error', JSON.stringify(error));
   }
@@ -611,6 +773,19 @@ export default function* saga() {
   const resendAction = yield takeLatest(types.RESEND_EMAIL, resendEmail);
   const confirmAction = yield takeLatest(types.CONFIRM_EMAIL, confirmEmail);
   const loginAction = yield takeLatest(types.LOGIN, login);
+  const forgotPasswordAction = yield takeLatest(
+    types.FORGOT_PASSWORD,
+    forgotPassword,
+  );
+  const resetPasswordAction = yield takeLatest(
+    types.RESET_PASSWORD,
+    resetPassword,
+  );
+  const changePasswordAction = yield takeLatest(
+    types.CHANGE_PASSWORD,
+    changePassword,
+  );
+  const addPasswordAction = yield takeLatest(types.ADD_PASSWORD, addPassword);
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
@@ -633,7 +808,8 @@ export default function* saga() {
     deleteCandidateRanking,
   );
   yield takeLatest(types.GENERATE_UUID, generateUuid);
-  yield takeLatest(types.CREW, crew);
+  const crewAction = yield takeLatest(types.CREW, crew);
+  yield takeLatest(types.LEADERBOARD, leaderboard);
   yield takeLatest(types.USER_RANKING, userRanking);
   yield takeLatest(types.GUEST_RANKING, guestRanking);
   const deleteGuest = yield takeLatest(

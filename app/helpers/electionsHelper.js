@@ -375,3 +375,13 @@ export const isEmptyCandidates = candidates => {
     candidates.unknown?.length === 0
   );
 };
+
+export const getElectionLink = zip => {
+  let electionLink;
+  if (zip) {
+    electionLink = `/elections/district/${zip}`;
+  } else {
+    electionLink = `/intro/zip-finder`;
+  }
+  return electionLink;
+}

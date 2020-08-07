@@ -21,6 +21,7 @@ const NextButton = ({ children, active = false, onClick = () => {} }) => (
     endIcon={<ChevronRightIcon style={{ marginLeft: '30px' }} />}
     disabled={!active}
     onClick={onClick}
+    type="submit"
   >
     {children}
   </StyledButton>
