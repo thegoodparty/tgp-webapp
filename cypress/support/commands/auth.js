@@ -1,7 +1,58 @@
 import promisify from 'cypress-promise';
 import { dateUsHelper } from '../../../app/helpers/dateHelper';
 
-Cypress.Commands.add('loginWithEmail', () => {
+Cypress.Commands.add('checkChangePasswordModal', hasPassword => {
+  cy.get('[data-cy=change-password-link]')
+    .should('contain', hasPassword ? 'Change Password' : 'Add Password')
+    .click();
+  cy.get('[data-cy=change-password-modal-title]').should(
+    'contain',
+    hasPassword ? 'Change Password' : 'Add Password',
+  );
+  cy.get('[data-cy=change-password-modal-description]').should(
+    'contain',
+    hasPassword
+      ? 'Enter a new password'
+      : 'Add a password to login with email and password',
+  );
+
+  if (hasPassword) {
+    cy.get('[data-cy=password]').should('have.length', 2);
+  } else {
+    cy.get('[data-cy=password]').should('have.length', 1);
+  }
+  if (hasPassword) {
+    cy.get('[data-cy=password]')
+      .eq(0)
+      .type('myFirst100');
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('have.attr', 'disabled')
+      .and('contain', 'disabled');
+    cy.get('[data-cy=password]')
+      .eq(1)
+      .type('myFirst100');
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('not.have.attr', 'disabled');
+  }
+  else {
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('have.attr', 'disabled')
+      .and('contain', 'disabled');
+    cy.get('[data-cy=password]').type('myFirst100');
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('not.have.attr', 'disabled');
+  }
+});
+Cypress.Commands.add('signInWithEmail', () => {
+  cy.visit('/login');
   const email = Cypress.env('email1');
   const password = Cypress.env('password');
   cy.get('[data-cy=email-input]')

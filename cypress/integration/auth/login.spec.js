@@ -39,7 +39,7 @@ describe('Login', () => {
     cy.get('[data-cy=alert').contains('Email or Password are incorrect.');
   });
   it('find email login part with exact user credentials', () => {
-    cy.loginWithEmail();
+    cy.signInWithEmail();
   });
   it('find forgot password part', () => {
     cy.get('[data-cy=forgot-link]')

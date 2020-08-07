@@ -29,9 +29,8 @@ const ChangePasswordModal = ({
   const enableSubmit = () => {
     if (hasPassword) {
       return newPassword.length >= 8 && oldPassword.length >= 8;
-    } else {
-      return newPassword.length >= 8;
     }
+    return newPassword.length >= 8;
   };
 
   const handleSubmit = () => {
@@ -42,8 +41,13 @@ const ChangePasswordModal = ({
   };
   return (
     <QueryModal closeModalCallback={closeModalCallback}>
-      <H2>{hasPassword ? 'Change' : 'Add'} Password</H2>
-      <Body style={{ marginTop: '8px', marginBottom: '24px' }}>
+      <H2 data-cy="change-password-modal-title">
+        {hasPassword ? 'Change' : 'Add'} Password
+      </H2>
+      <Body
+        style={{ marginTop: '8px', marginBottom: '24px' }}
+        data-cy="change-password-modal-description"
+      >
         {hasPassword
           ? 'Enter a new password'
           : 'Add a password to login with email and password'}
@@ -60,7 +64,7 @@ const ChangePasswordModal = ({
               label="Current Password"
             />
           )}
-          <div className="text-right">
+          <div className="text-right" data-cy="password-submit">
             <OutlinedButton
               active={enableSubmit()}
               onClick={handleSubmit}
