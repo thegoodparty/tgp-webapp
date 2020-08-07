@@ -3,6 +3,9 @@ import {
   candidateBlocName,
   candidateCalculatedFields,
   shortToLongState,
+  rankPageLink,
+  rankPageJoinLink,
+  rankPageGrowLink
 } from '../../../app/helpers/electionsHelper';
 import { percHelper } from '../../../app/helpers/numberHelper';
 import {
@@ -13,8 +16,9 @@ import {
   getCombinedReportDate,
   getOpenSecretLink,
 } from '../../../app/helpers/candidatesHelper';
+
 import moneyHelper from '../../../app/helpers/moneyHelper';
-import { rankPageLink, rankPageJoinLink } from '../utils';
+
 
 Cypress.Commands.add(
   'testCandidateTopRow',
@@ -81,8 +85,9 @@ Cypress.Commands.add(
       isFakeIncumbent,
     );
     const openSecretLink = getOpenSecretLink(chamber, calculatedCandidateData);
-
     cy.get('[data-cy=top-row]').as('top-row');
+    
+    
     cy.get('@top-row')
       .find('[data-cy=top-name]')
       .contains(name);
@@ -141,7 +146,7 @@ Cypress.Commands.add(
         .get('[data-cy=rank-button]')
         .should('contain', `JOIN ${blocName}`)
         .and('have.attr', 'href')
-        .and('include', rankPageJoinLink(candidateData, chamber));
+        .and('include', rankPageJoinLink(null, calculatedCandidateData, chamber, state, district));
     }
     cy.get('@top-row')
       .get('[data-cy=why]')
@@ -507,6 +512,13 @@ Cypress.Commands.add(
         .should('contain', 'COMPILED BY THE GOOD PARTY VOLUNTEERS')
         .should('have.attr', 'href')
         .and('include', '?article=579kihjyIPloNaEw02rniq');
+    }
+    if(isGoodOrUnkwown) {
+      cy.get('@top-row')
+      .find('[data-cy=grow-share]')
+      .contains('Share')
+      .should('have.attr', 'href')
+      .and('contains', rankPageGrowLink(calculatedCandidateData, chamber, state, district));
     }
   },
 );

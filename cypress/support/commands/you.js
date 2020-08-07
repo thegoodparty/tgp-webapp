@@ -14,6 +14,7 @@ import {
   fullFirstLastInitials,
   getUserDistrictName,
 } from '../../../app/helpers/userHelper';
+
 import { formatToPhone } from '../../../app/helpers/phoneHelper';
 import { parseCookie } from '../utils';
 
@@ -69,7 +70,7 @@ Cypress.Commands.add(
         presidentialRankCount === 0
           ? 'Rank Choices'
           : `${presidentialRankCount} Choice${
-              presidentialRankCount === 1 ? '' : 's'
+          presidentialRankCount === 1 ? '' : 's'
           } Ranked`,
       )
       .should('have.attr', 'href')
@@ -87,7 +88,7 @@ Cypress.Commands.add(
             'contain',
             senateRank
               ? `${senateRankCount} Choice${
-                  senateRankCount > 1 ? 's' : ''
+              senateRankCount > 1 ? 's' : ''
               } Ranked`
               : 'Rank Choices',
           )
@@ -110,7 +111,7 @@ Cypress.Commands.add(
             'contain',
             houseRank && houseRankCount > 0
               ? `${houseRankCount} Choice${
-                  houseRankCount > 1 ? 's' : ''
+              houseRankCount > 1 ? 's' : ''
               } Ranked`
               : 'Rank Choices',
           )
@@ -139,10 +140,7 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
     'contain',
     'invite people to grow your crew',
   );
-  cy.get('[data-cy=invite-crew-label]').should(
-    'contain',
-    'invite people to grow your crew',
-  );
+
   cy.get('[data-cy=you-name]').should('contain', 'You');
   if (displayCrew.length > 0) {
     cy.get('[data-cy=crew-member]')
@@ -164,7 +162,8 @@ Cypress.Commands.add('checkCrewSectionInYou', (user, crew) => {
     .and('contain', 'you/crew');
   cy.get('[data-cy=under-crew]')
     .should('contain', 'Invite 3 or more friends to join,')
-    .and('contain', 'and watch how quickly The Good Party');
+    .and('contain', 'and watch how quickly The Good Party').click();
+  cy.checkYouShareModal(user);
   cy.get('[data-cy=invite-link-label]').should(
     'contain',
     'Your Unique Invite Link',
@@ -298,4 +297,18 @@ Cypress.Commands.add('checkCrewRow', ($el, crewMember, user, index) => {
       .find('[data-cy=crew-feedback]')
       .should('contain', crewMember.feedback);
   }
+});
+
+Cypress.Commands.add('checkYouShareModal', user => {
+  const url = uuidUrl(user);
+  const messageBody = `Check out The Good Party. See what’s possible, before you vote: ${url}`;
+  cy.get('[data-cy=share-modal-title]').contains('Tell some friends...');
+  cy.get('[data-cy=social-share]').should('exist');
+  cy.get('[data-cy=sms-share-title]').contains('SMS / TEXT');
+
+  cy.get('[data-cy=sms-share]')
+    .should('have.attr', 'href')
+    .and('contain', `sms:?&body=${messageBody.replace('&', '%26')}`);
+  cy.get('[data-cy=clipboard-share-title]').contains('COPY LINK');
+  cy.get('[data-cy=share-modal-close]').click();
 });

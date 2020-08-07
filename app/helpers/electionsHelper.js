@@ -385,3 +385,41 @@ export const getElectionLink = zip => {
   }
   return electionLink;
 }
+
+export const rankPageGrowLink = (candidate, chamberName, state, district) => {
+  if (!candidate) {
+    return '';
+  }
+  const query = `?grow=${candidate.id}&name=${encodeURI(candidate.name)}`;
+  if (chamberName === 'presidential') {
+    return presidentialElectionLink() + query;
+  }
+  if (chamberName === 'senate') {
+    return senateElectionLink(state) + query;
+  }
+  return houseElectionLink(state, district) + query;
+};
+
+export const rankPageLink = (chamberName, state, district) => {
+  if (chamberName === 'presidential') {
+    return presidentialElectionLink();
+  }
+  if (chamberName === 'senate') {
+    return senateElectionLink(state);
+  }
+  return houseElectionLink(state, district);
+};
+
+export const rankPageJoinLink = (user, candidate, chamberName, state, district) => {
+  if (user) {
+    const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
+    if (chamberName === 'presidential') {
+      return presidentialElectionLink() + query;
+    }
+    if (chamberName === 'senate') {
+      return senateElectionLink(state) + query;
+    }
+    return houseElectionLink(state, district) + query;
+  }
+  return '?register=true';
+};
