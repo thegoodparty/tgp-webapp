@@ -183,25 +183,23 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
               </TextWrapper>
             </RankedCrewWrapper>
           ))}
-          {tab !== 'crew' && (
-            <ShareWrapper>
-              <Body>Want to see people show up here?</Body>
-              <OutlinedButton
-                active
-                style={{ marginTop: '1.5rem' }}
-                onClick={onClickShareButton}
-              >
-                INVITE PEOPLE
-              </OutlinedButton>
-              {showShareModal && (
-                <ShareModal
-                  open={showShareModal}
-                  closeCallback={onCloseShareModal}
-                  user={user}
-                />
-              )}
-            </ShareWrapper>
-          )}
+          <ShareWrapper>
+            <Body>Want to see people show up here?</Body>
+            <OutlinedButton
+              active
+              style={{ marginTop: '1.5rem' }}
+              onClick={onClickShareButton}
+            >
+              INVITE PEOPLE
+            </OutlinedButton>
+            {showShareModal && (
+              <ShareModal
+                open={showShareModal}
+                closeCallback={onCloseShareModal}
+                user={user}
+              />
+            )}
+          </ShareWrapper>
         </>
       ) : (
         <>
