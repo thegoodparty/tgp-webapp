@@ -21,6 +21,8 @@ import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectLocation } from 'containers/App/selectors';
 import { getCookie } from 'helpers/cookieHelper';
+import { electionRoute } from 'helpers/electionsHelper';
+
 import makeSelectCandidate from '../../elections/CandidatePage/selectors';
 
 export function Nav({
@@ -78,23 +80,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     navigateCallback: (screen, user, zipCode) => {
       if (screen === '/elections') {
-        let zip;
-        if (user && user.zipCode) {
-          zip = user.zipCode.zip;
-        } else if (zipCode) {
-          zip = zipCode.zip;
-        } else {
-          let cookieZip = getCookie('zip');
-          if (cookieZip) {
-            cookieZip = JSON.parse(cookieZip);
-            zip = cookieZip.zip;
-          }
-        }
-        if (zip) {
-          dispatch(push(`/elections/district/${zip}`));
-        } else {
-          dispatch(push('/intro/zip-finder'));
-        }
+        dispatch(push(electionRoute(user, zipCode)));
       } else {
         dispatch(push(screen));
       }

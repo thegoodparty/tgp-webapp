@@ -4,7 +4,7 @@ describe('Register', () => {
     cy.checkRegisterText();
   });
   it('check social register section', () => {
-    // cy.checkSocialLoginSection();
+    cy.checkSocialLoginSection();
   });
   it('check email register section', () => {
     cy.checkEmailRegisterSection();
