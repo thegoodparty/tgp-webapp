@@ -148,6 +148,7 @@ const LoginWrapper = ({
                   onClick={() => {
                     setForgotMode(false);
                   }}
+                  data-cy="back-link"
                 >
                   Back to login
                 </ForgotLink>
@@ -158,20 +159,22 @@ const LoginWrapper = ({
                     onClick={() => {
                       setForgotMode(true);
                     }}
+                    data-cy="forgot-link"
                   >
                     Forgot your password?
                   </ForgotLink>
                 </>
               )}
-
-              <OutlinedButton
-                fullWidth
-                active={enableSubmit()}
-                onClick={handleSubmit}
-                type="submit"
-              >
-                {forgotMode ? 'SEND PASSWORD RESET LINK' : 'SIGN IN'}
-              </OutlinedButton>
+              <div data-cy="login">
+                <OutlinedButton
+                  fullWidth
+                  active={enableSubmit()}
+                  onClick={handleSubmit}
+                  type="submit"
+                >
+                  {forgotMode ? 'SEND PASSWORD RESET LINK' : 'SIGN IN'}
+                </OutlinedButton>
+              </div>
             </form>
             <OrWrapper>
               <Border />
