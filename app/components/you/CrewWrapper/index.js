@@ -76,6 +76,7 @@ const Name = styled(Body13)`
 const ShareWrapper = styled.div`
   margin: 2rem 0;
   text-align: center;
+  padding-bottom: 1.5rem;
 `;
 function CrewWrapper({ crew, tab = 'crew', loading, user }) {
   const [showShareModal, setShowShareModal] = useState(false);
