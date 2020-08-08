@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -19,7 +19,9 @@ import {
   Body9,
   H3,
 } from 'components/shared/typogrophy/index';
+import { OutlinedButton } from 'components/shared/buttons';
 import CrewMember from '../CrewMember';
+import ShareModal from '../ProfileWrapper/ShareModal/Loadable';
 
 const TabWrapper = styled.div`
   display: flex;
@@ -71,8 +73,18 @@ const Name = styled(Body13)`
     margin-right: 10px;
   }
 `;
-
+const ShareWrapper = styled.div`
+  margin: 2rem 0;
+  text-align: center;
+`;
 function CrewWrapper({ crew, tab = 'crew', loading, user }) {
+  const [showShareModal, setShowShareModal] = useState(false);
+  const onCloseShareModal = () => {
+    setShowShareModal(false);
+  };
+  const onClickShareButton = () => {
+    setShowShareModal(true);
+  };
   return (
     <PageWrapper white>
       <H1 data-cy="title">Good Party Leaders</H1>
@@ -171,6 +183,25 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
               </TextWrapper>
             </RankedCrewWrapper>
           ))}
+          {tab !== 'crew' && (
+            <ShareWrapper>
+              <Body>Want to see people show up here?</Body>
+              <OutlinedButton
+                active
+                style={{ marginTop: '1.5rem' }}
+                onClick={onClickShareButton}
+              >
+                INVITE PEOPLE
+              </OutlinedButton>
+              {showShareModal && (
+                <ShareModal
+                  open={showShareModal}
+                  closeCallback={onCloseShareModal}
+                  user={user}
+                />
+              )}
+            </ShareWrapper>
+          )}
         </>
       ) : (
         <>
