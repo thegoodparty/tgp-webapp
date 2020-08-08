@@ -25,6 +25,7 @@ import {
 } from 'helpers/electionsHelper';
 import ChangePasswordModal from './ChangePasswordModal';
 import ShareModal from './ShareModal/Loadable';
+import VerifyEmailBanner from './VerifyEmailBanner';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -169,7 +170,7 @@ const ProfileWrapper = ({
   const url = uuidUrl(user);
 
   return (
-    <PageWrapper white>
+    <PageWrapper white topBanner={<VerifyEmailBanner user={user} />}>
       <Link to="/you/edit" data-cy="edit-profile-link">
         <EditProfile>Edit Profile</EditProfile>
       </Link>
@@ -383,6 +384,8 @@ const ProfileWrapper = ({
 ProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   crew: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  crewCount: PropTypes.number,
   signoutCallback: PropTypes.func,
   articles: PropTypes.array,
   houseCandidatesCount: PropTypes.number,

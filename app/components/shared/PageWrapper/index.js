@@ -19,6 +19,11 @@ const MainWrapper = styled.div`
     background-color: #fff;
   }
 `;
+const TopBannerWrapper = styled.div`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-top: 18px;
+  }
+`;
 function PageWrapper({
   children,
   hideNav,
@@ -27,10 +32,12 @@ function PageWrapper({
   wrapperStyles = {},
   hideMobileNav,
   style = {},
+  topBanner,
 }) {
   return (
     <MainWrapper className={white ? 'white' : ''} style={style}>
       {!hideNav && <Nav hideMobileNav={hideMobileNav} />}
+      {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
       <Wrapper white={white} style={wrapperStyles} noHeader={hideNav}>
         {!hideNav && <MobileHeader {...mobileHeaderProps} />}
         {children}
@@ -45,6 +52,7 @@ PageWrapper.propTypes = {
   white: PropTypes.bool,
   wrapperStyles: PropTypes.object,
   mobileHeaderProps: PropTypes.object,
+  topBanner: PropTypes.object,
   style: PropTypes.object,
   hideMobileNav: PropTypes.bool,
 };
