@@ -1,6 +1,78 @@
 import promisify from 'cypress-promise';
 import { dateUsHelper } from '../../../app/helpers/dateHelper';
 
+Cypress.Commands.add('checkChangePasswordModal', hasPassword => {
+  cy.get('[data-cy=change-password-link]')
+    .should('contain', hasPassword ? 'Change Password' : 'Add Password')
+    .click();
+  cy.get('[data-cy=change-password-modal-title]').should(
+    'contain',
+    hasPassword ? 'Change Password' : 'Add Password',
+  );
+  cy.get('[data-cy=change-password-modal-description]').should(
+    'contain',
+    hasPassword
+      ? 'Enter a new password'
+      : 'Add a password to login with email and password',
+  );
+
+  if (hasPassword) {
+    cy.get('[data-cy=password]').should('have.length', 2);
+  } else {
+    cy.get('[data-cy=password]').should('have.length', 1);
+  }
+  if (hasPassword) {
+    cy.get('[data-cy=password]')
+      .eq(0)
+      .type('myFirst100');
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('have.attr', 'disabled')
+      .and('contain', 'disabled');
+    cy.get('[data-cy=password]')
+      .eq(1)
+      .type('myFirst100');
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('not.have.attr', 'disabled');
+  }
+  else {
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('have.attr', 'disabled')
+      .and('contain', 'disabled');
+    cy.get('[data-cy=password]').type('myFirst100');
+    cy.get('[data-cy=password-submit]')
+      .find('button')
+      .should('contain', 'SAVE NEW PASSWORD')
+      .should('not.have.attr', 'disabled');
+  }
+});
+Cypress.Commands.add('signInWithEmail', () => {
+  cy.visit('/login');
+  const email = Cypress.env('email1');
+  const password = Cypress.env('password');
+  cy.get('[data-cy=email-input]')
+    .should('exist')
+    .type(email);
+  cy.get('[data-cy=login]')
+    .find('button')
+    .should('contain', 'SIGN IN')
+    .should('have.attr', 'disabled')
+    .and('contain', 'disabled');
+  cy.get('[data-cy=password]')
+    .should('exist')
+    .type(password);
+  cy.get('[data-cy=login]')
+    .find('button')
+    .should('contain', 'SIGN IN')
+    .should('not.have.attr', 'disabled');
+  cy.get('[data-cy=login]').click();
+  cy.url().should('contain', '/you');
+});
 Cypress.Commands.add('checkRegisterText', (blocName = false) => {
   if (blocName) {
     cy.get('[data-cy=title]').contains(`Join ${blocName}`);
@@ -107,8 +179,28 @@ Cypress.Commands.add('checkEmailRegisterPage', () => {
     );
   cy.get('[data-cy=submit]')
     .find('button')
-    .should('contain', 'Submit')
-    .click();
+    .should('have.attr', 'disabled')
+    .and('contain', 'disabled');
+  cy.get('[data-cy=password]')
+    .type('12345')
+    .find('p')
+    .should('contain', '8 characters minimum');
+  cy.get('[data-cy=submit]')
+    .find('button')
+    .should('have.attr', 'disabled')
+    .and('contain', 'disabled');
+  cy.get('[data-cy=password]').type('12345');
+  cy.get('[data-cy=submit]')
+    .find('button')
+    .should('not.have.attr', 'disabled');
   // check login confirm page
-  cy.checkLoginConfirmPage(email);
+  cy.get('[data-cy=login-wrapper]').should(
+    'contain',
+    'Already have an account?',
+  );
+  cy.get('[data-cy=login-link]')
+    .contains('Login')
+    .should('have.attr', 'href')
+    .and('contain', '/login');
+  cy.get('[data-cy=login-link]').click();
 });

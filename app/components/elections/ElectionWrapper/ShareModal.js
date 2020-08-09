@@ -16,6 +16,9 @@ import {
   candidateBlocLink,
   candidateBlocName,
 } from 'helpers/electionsHelper';
+import {
+  getCandidateTitle
+} from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
@@ -191,14 +194,7 @@ const ShareModal = ({
   }
   url = url + queryOperator + 'b=' + blocLink;
 
-  let chamberTitle = 'President';
-  if (candidate.chamber?.toLowerCase() === 'senate') {
-    chamberTitle = `U.S. Senate from ${candidate.state?.toUpperCase()}`;
-  } else if (candidate.chamber?.toLowerCase() === 'house') {
-    chamberTitle = `U.S. House from ${candidate.state?.toUpperCase()}-${
-      candidate.id < 0 ? Math.abs(candidate.id) : candidate.district
-    }`;
-  }
+  let chamberTitle = getCandidateTitle(chamber);
 
   const messageTitle = `Want see if we can elect ${
     candidate.name
@@ -227,7 +223,7 @@ const ShareModal = ({
   return (
     <Dialog onClose={closeCallback} open={open}>
       <Wrapper>
-        <Close onClick={closeCallback}>
+        <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
         </Close>
         <div className="text-center">
@@ -244,7 +240,7 @@ const ShareModal = ({
           />
           {isExternalLink ? (
             <>
-              <H3 style={{ marginTop: '22px' }}>
+              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">
                 {' '}
                 Congrats!{' '}
                 <span role="img" aria-label="party">
@@ -252,21 +248,21 @@ const ShareModal = ({
                 </span>{' '}
                 You’ve joined
               </H3>
-              <H1 style={{ marginTop: '10px', marginBottom: '16px' }}>
+              <H1 style={{ marginTop: '10px', marginBottom: '16px' }} data-cy="share-modal-title">
                 {blocName} {blocNameSuffix(blocName)}
               </H1>
             </>
           ) : (
             <>
-              <H3 style={{ marginTop: '22px' }}>Please help grow </H3>
-              <H1 style={{ marginTop: '10px', marginBottom: '16px' }}>
+              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">Please help grow </H3>
+              <H1 style={{ marginTop: '10px', marginBottom: '16px' }} data-cy="share-modal-title">
                 {blocName} {blocNameSuffix(blocName)}
               </H1>
             </>
           )}
-          <Body>Tell some friends...</Body>
+          <Body data-cy="share-modal-description">Tell some friends...</Body>
         </AvatarWrapper>
-        <ShareThisWrapper>
+        <ShareThisWrapper data-cy="social-share">
           <InlineShareButtons
             config={{
               alignment: 'center', // alignment of buttons (left, center, right)
@@ -298,13 +294,13 @@ const ShareModal = ({
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
             <Grid item xs>
-              <a href={`sms:?&body=${messageBody.replace('&', '%26')}`}>
+              <a href={`sms:?&body=${messageBody.replace('&', '%26')}`} data-cy="sms-share">
                 <IconItem>
                   <IconWrapper className="sms">
                     <Icon src={SmsIcon} alt="sms" />
                   </IconWrapper>
                 </IconItem>
-                <IconLabel>SMS / TEXT</IconLabel>
+                <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
               </a>
             </Grid>
             <Grid item xs>
@@ -315,7 +311,7 @@ const ShareModal = ({
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
-              <IconLabel>COPY LINK</IconLabel>
+              <IconLabel data-cy="clipboard-share-title">COPY LINK</IconLabel>
             </Grid>
             {canShare && (
               <Grid item xs>

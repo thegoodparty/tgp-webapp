@@ -8,6 +8,7 @@ import {
   getUserCookie,
   setCookie,
   setUserCookie,
+  getSignupRedirectCookie,
 } from 'helpers/cookieHelper';
 import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
 import selectCandidate from 'containers/elections/CandidatePage/selectors';
@@ -16,14 +17,13 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 
 import tgpApi from 'api/tgpApi';
+import { candidateBlocName } from 'helpers/electionsHelper';
+import AnalyticsService from 'services/AnalyticsService';
+import globalActions from 'containers/App/actions';
 import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import { candidateBlocName } from 'helpers/electionsHelper';
-import { getSignupRedirectCookie } from 'helpers/cookieHelper';
-import AnalyticsService from 'services/AnalyticsService';
-import globalActions from 'containers/App/actions';
 
 function* sendCreatorMessage(action) {
   try {
@@ -218,7 +218,7 @@ function* resendEmail(action) {
     yield call(requestHelper, api, payload);
     yield put(
       snackbarActions.showSnakbarAction(
-        `A confirmation email was resent to  ${email}`,
+        `A verification email was resent to  ${email}`,
       ),
     );
   } catch (error) {

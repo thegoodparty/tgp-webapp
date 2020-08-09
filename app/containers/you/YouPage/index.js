@@ -46,6 +46,7 @@ export function YouPage({
   content,
   rankingObj,
   changePasswordCallback,
+  verifyEmailCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -101,6 +102,7 @@ export function YouPage({
     senateCandidatesCount,
     rankingObj,
     changePasswordCallback,
+    verifyEmailCallback,
   };
 
   const youProps = {
@@ -130,6 +132,7 @@ YouPage.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   rankingObj: PropTypes.object,
   changePasswordCallback: PropTypes.func,
+  verifyEmailCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -145,6 +148,9 @@ function mapDispatchToProps(dispatch) {
       } else {
         dispatch(userActions.addPasswordAction(newPassword));
       }
+    },
+    verifyEmailCallback: email => {
+      dispatch(userActions.resendEmailAction(email));
     },
   };
 }

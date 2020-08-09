@@ -54,19 +54,24 @@ const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
+const innerApp = (
+  <Provider store={store}>
+    <UiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
+      </ThemeProvider>
+    </UiThemeProvider>
+  </Provider>
+);
+
 const render = () => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <UiThemeProvider theme={theme}>
-        <ThemeProvider theme={theme}>
-          <ConnectedRouter history={history}>
-            <App />
-          </ConnectedRouter>
-        </ThemeProvider>
-      </UiThemeProvider>
-    </Provider>,
-    MOUNT_NODE,
-  );
+  // if (MOUNT_NODE.hasChildNodes()) {
+  //   ReactDOM.hydrate(innerApp, MOUNT_NODE);
+  // } else {
+  ReactDOM.render(innerApp, MOUNT_NODE);
+  // }
 };
 
 if (module.hot) {

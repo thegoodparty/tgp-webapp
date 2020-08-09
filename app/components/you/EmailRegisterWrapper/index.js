@@ -70,9 +70,8 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
     return validEmail.test(email);
   };
 
-  const enableSubmit = () => {
-    return name !== '' && password.length >= 8 && validateEmail();
-  };
+  const enableSubmit = () =>
+    name !== '' && password.length >= 8 && validateEmail();
 
   const handleSubmitForm = e => {
     console.log('here');
@@ -98,61 +97,61 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
 
   return (
     <PageWrapper white>
-        <H2 data-cy="title">Join The Good Party</H2>
-        <Body13
-          style={{ marginTop: '16px', marginBottom: '28px' }}
-          data-cy="description"
-        >
-          Please enter your info, so we can count your support and notify you as
-          we make progress.
+      <H2 data-cy="title">Join The Good Party</H2>
+      <Body13
+        style={{ marginTop: '16px', marginBottom: '28px' }}
+        data-cy="description"
+      >
+        Please enter your info, so we can count your support and notify you as
+        we make progress.
+      </Body13>
+      <form noValidate onSubmit={handleSubmitForm}>
+        <Input
+          value={name}
+          label="Full Name"
+          required
+          placeholder="John Smith"
+          size="medium"
+          name="name"
+          variant="outlined"
+          fullWidth
+          onChange={onChangeName}
+          data-cy="full-name"
+          helperText={`We will never show your full name on our site. ${
+            showName
+              ? `On our site you'll be: ${fullFirstLastInitials(name)}`
+              : ''
+          }`}
+        />
+
+        <Input
+          value={email}
+          label="Email Address"
+          required
+          size="medium"
+          fullWidth
+          type="email"
+          name="email"
+          helperText="We will never share or sell your information for any reason"
+          autoComplete="email"
+          onChange={onChangeEmail}
+          onFocus={onEmailFocus}
+          data-cy="email"
+          variant="outlined"
+        />
+        <PasswordInput onChangeCallback={onChangePassword} variant="outlined" />
+
+        <SubmitWrapper onClick={handleSubmit} data-cy="submit">
+          <NextButton active={enableSubmit()}>Submit</NextButton>
+          {error && error.exists && <Error>{error.message} </Error>}
+        </SubmitWrapper>
+        <Body13 style={{ margin: '24px 0' }} data-cy="login-wrapper">
+          Already have an account?{' '}
+          <Link to="/login" data-cy="login-link">
+            Login
+          </Link>
         </Body13>
-        <form noValidate onSubmit={handleSubmitForm}>
-          <Input
-            value={name}
-            label="Full Name"
-            required
-            placeholder="John Smith"
-            size="medium"
-            name="name"
-            variant="outlined"
-            fullWidth
-            onChange={onChangeName}
-            data-cy="full-name"
-            helperText={`We will never show your full name on our site. ${
-              showName
-                ? `On our site you'll be: ${fullFirstLastInitials(name)}`
-                : ''
-            }`}
-          />
-
-          <Input
-            value={email}
-            label="Email Address"
-            required
-            size="medium"
-            fullWidth
-            type="email"
-            name="email"
-            helperText="We will never share or sell your information for any reason"
-            autoComplete="email"
-            onChange={onChangeEmail}
-            onFocus={onEmailFocus}
-            data-cy="email"
-            variant="outlined"
-          />
-          <PasswordInput
-            onChangeCallback={onChangePassword}
-            variant="outlined"
-          />
-
-          <SubmitWrapper onClick={handleSubmit} data-cy="submit">
-            <NextButton active={enableSubmit()}>Submit</NextButton>
-            {error && error.exists && <Error>{error.message} </Error>}
-          </SubmitWrapper>
-          <Body13 style={{ margin: '24px 0' }}>
-            Already have an account? <Link to="/login">Login</Link>
-          </Body13>
-        </form>
+      </form>
     </PageWrapper>
   );
 };

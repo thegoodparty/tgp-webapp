@@ -17,6 +17,7 @@ import TwitterIcon from 'images/icons/twitter.svg';
 import YouTubeIcon from 'images/icons/youtube-white.svg';
 import { getCookie, getUserCookie } from 'helpers/cookieHelper';
 import ShareModal from 'components/you/ProfileWrapper/ShareModal/Loadable';
+import { electionRoute } from 'helpers/electionsHelper';
 
 import { Body9, Body12 } from '../typogrophy';
 
@@ -164,23 +165,6 @@ function Footer({ isCreators = false }) {
     user = JSON.parse(user);
   }
 
-  const electionRoute = () => {
-    let zip;
-    if (user?.zipCode) {
-      zip = user.zipCode.zip;
-    } else {
-      let cookieZip = getCookie('zip');
-      if (cookieZip) {
-        cookieZip = JSON.parse(cookieZip);
-        zip = cookieZip.zip;
-      }
-    }
-    if (zip) {
-      return `/elections/district/${zip}`;
-    } else {
-      return '/intro/zip-finder';
-    }
-  };
   return (
     <>
       <GrayWrapper>
@@ -189,39 +173,67 @@ function Footer({ isCreators = false }) {
             <Grid item xs={12} md={4}>
               <Column>
                 <ColumnHeader>
-                  <Logo src={WhiteLogo} alt="The Good Party Logo" />
+                  <Logo
+                    src={WhiteLogo}
+                    alt="The Good Party Logo"
+                    data-cy="footer-logo"
+                  />
                 </ColumnHeader>
-                <WhiteLink to="/party">About</WhiteLink>
-                <WhiteLink to={electionRoute()}>Elections</WhiteLink>
-                <WhiteLink to="/you">You</WhiteLink>
-                <WhiteLink to="/creators">Creators</WhiteLink>
+                <WhiteLink data-cy="footer-link-about" to="/party">
+                  About
+                </WhiteLink>
+                <WhiteLink
+                  data-cy="footer-link-elections"
+                  to={electionRoute(user)}
+                >
+                  Elections
+                </WhiteLink>
+                <WhiteLink data-cy="footer-link-you" to="/you">
+                  You
+                </WhiteLink>
+                <WhiteLink data-cy="footer-link-creators" to="/creators">
+                  Creators
+                </WhiteLink>
               </Column>
             </Grid>
             <Grid item xs={12} md={4}>
               <Column>
-                <ColumnHeader>Community</ColumnHeader>
+                <ColumnHeader data-cy="footer-community-title">
+                  Community
+                </ColumnHeader>
                 <WhiteHref
                   href="https://forms.gle/kydnhUp6xqF6RUpb9"
                   target="_blank"
                   rel="nofollow"
+                  data-cy="footer-link-nominate"
                 >
                   Nominate a Candidate
                 </WhiteHref>
-                <WhiteLink to="#" onClick={onClickShareButton}>
+                <WhiteLink
+                  to="#"
+                  data-cy="footer-link-share"
+                  onClick={onClickShareButton}
+                >
                   Share with Friends
                 </WhiteLink>
-                <WhiteHref href="mailto:ask@thegoodparty.org">
+                <WhiteHref
+                  href="mailto:ask@thegoodparty.org"
+                  data-cy="footer-link-email"
+                >
                   Send Us An Email
                 </WhiteHref>
               </Column>
             </Grid>
             <Grid item xs={12} md={4}>
-              <Column>
-                <ColumnHeader>Team</ColumnHeader>
+              <Column data-cy="footer-team">
+                <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
                 Want to join the volunteer team? We are always looking for
                 people  to cooperate with us on this projected!
                 <div>
-                  <a href="mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]">
+                  <a
+                    href="mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                    data-cy="footer-link-join"
+                  >
                     <Apply>APPLY TO JOIN</Apply>
                   </a>
                 </div>
@@ -232,8 +244,10 @@ function Footer({ isCreators = false }) {
             <Grid container spacing={3}>
               <Grid item xs={12} md={4}>
                 <Column>
-                  <Hidden mdDown>
-                    <WhiteLink to="/privacy">Privacy Policy</WhiteLink>
+                  <Hidden smDown>
+                    <WhiteLink to="/privacy" data-cy="footer-link-policy">
+                      Privacy Policy
+                    </WhiteLink>
                   </Hidden>
                 </Column>
               </Grid>
@@ -243,6 +257,7 @@ function Footer({ isCreators = false }) {
                     href="https://www.facebook.com/thegoodpartyorg"
                     target="_blank"
                     rel="nofollow"
+                    data-cy="footer-link-facebook"
                   >
                     <SocialIcon src={FacebookIcon} />
                   </a>
@@ -250,6 +265,7 @@ function Footer({ isCreators = false }) {
                     href="https://twitter.com/thegoodpartyorg"
                     target="_blank"
                     rel="nofollow"
+                    data-cy="footer-link-twitter"
                   >
                     <SocialIcon src={TwitterIcon} />
                   </a>
@@ -257,6 +273,7 @@ function Footer({ isCreators = false }) {
                     href="https://www.youtube.com/channel/UCPNp46yxggs8NPeXFuMTpGQ"
                     target="_blank"
                     rel="nofollow"
+                    data-cy="footer-link-youtube"
                   >
                     <SocialIcon src={YouTubeIcon} />
                   </a>
@@ -264,9 +281,13 @@ function Footer({ isCreators = false }) {
               </Grid>
               <Grid item xs={12} md={4}>
                 <Column>
-                  <WhiteLink to="/directory">Directory</WhiteLink>
+                  <WhiteLink to="/directory" data-cy="footer-link-directory">
+                    Directory
+                  </WhiteLink>
                   <Hidden mdUp>
-                    <WhiteLink to="/privacy">Privacy Policy</WhiteLink>
+                    <WhiteLink to="/privacy" data-cy="footer-link-policy">
+                      Privacy Policy
+                    </WhiteLink>
                   </Hidden>
                 </Column>
               </Grid>
@@ -281,7 +302,10 @@ function Footer({ isCreators = false }) {
           (isCreators ? ' creatorsFooter' : '')
         }
       >
-        <InnerWrapper className={isCreators ? ' creatorsFooterContent' : ''}>
+        <InnerWrapper
+          className={isCreators ? ' creatorsFooterContent' : ''}
+          data-cy="footer-description"
+        >
           PAID FOR BY THE GOOD PARTY | THEGOODPARTY.ORG
           <br />
           NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.

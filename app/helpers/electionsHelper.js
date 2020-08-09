@@ -385,3 +385,60 @@ export const getElectionLink = zip => {
   }
   return electionLink;
 }
+
+export const rankPageGrowLink = (candidate, chamberName, state, district) => {
+  if (!candidate) {
+    return '';
+  }
+  const query = `?grow=${candidate.id}&name=${encodeURI(candidate.name)}`;
+  if (chamberName === 'presidential') {
+    return presidentialElectionLink() + query;
+  }
+  if (chamberName === 'senate') {
+    return senateElectionLink(state) + query;
+  }
+  return houseElectionLink(state, district) + query;
+};
+
+export const rankPageLink = (chamberName, state, district) => {
+  if (chamberName === 'presidential') {
+    return presidentialElectionLink();
+  }
+  if (chamberName === 'senate') {
+    return senateElectionLink(state);
+  }
+  return houseElectionLink(state, district);
+};
+
+export const rankPageJoinLink = (user, candidate, chamberName, state, district) => {
+  if (user) {
+    const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
+    if (chamberName === 'presidential') {
+      return presidentialElectionLink() + query;
+    }
+    if (chamberName === 'senate') {
+      return senateElectionLink(state) + query;
+    }
+    return houseElectionLink(state, district) + query;
+  }
+  return '?register=true';
+};
+
+export const electionRoute = (user, zipCode = null) => {
+  let zip;
+  if (user?.zipCode) {
+    zip = user.zipCode.zip;
+  } else if (zipCode) {
+    zip = zipCode.zip;
+  } else {
+    let cookieZip = getCookie('zip');
+    if (cookieZip) {
+      cookieZip = JSON.parse(cookieZip);
+      zip = cookieZip.zip;
+    }
+  }
+  if (zip) {
+    return `/elections/district/${zip}`;
+  }
+  return '/intro/zip-finder';
+};

@@ -25,6 +25,7 @@ import {
 } from 'helpers/electionsHelper';
 import ChangePasswordModal from './ChangePasswordModal';
 import ShareModal from './ShareModal/Loadable';
+import VerifyEmailBanner from './VerifyEmailBanner';
 
 const EditProfile = styled(Body13)`
   color: ${({ theme }) => theme.colors.blue};
@@ -131,6 +132,7 @@ const ProfileWrapper = ({
   articles,
   rankingObj,
   changePasswordCallback,
+  verifyEmailCallback,
 }) => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -169,7 +171,15 @@ const ProfileWrapper = ({
   const url = uuidUrl(user);
 
   return (
-    <PageWrapper white>
+    <PageWrapper
+      white
+      topBanner={
+        <VerifyEmailBanner
+          user={user}
+          verifyEmailCallback={verifyEmailCallback}
+        />
+      }
+    >
       <Link to="/you/edit" data-cy="edit-profile-link">
         <EditProfile>Edit Profile</EditProfile>
       </Link>
@@ -383,6 +393,8 @@ const ProfileWrapper = ({
 ProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   crew: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  crewCount: PropTypes.number,
   signoutCallback: PropTypes.func,
   articles: PropTypes.array,
   houseCandidatesCount: PropTypes.number,
@@ -390,6 +402,7 @@ ProfileWrapper.propTypes = {
   senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   rankingObj: PropTypes.object,
   changePasswordCallback: PropTypes.func,
+  verifyEmailCallback: PropTypes.func,
 };
 
 export default ProfileWrapper;

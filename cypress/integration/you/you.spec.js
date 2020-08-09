@@ -89,7 +89,10 @@ context('You', () => {
         'contain',
         'What can you do to help?',
       );
-      cy.get('[data-cy=spread-word]').should('contain', 'Spread the word');
+      cy.get('[data-cy=spread-word]')
+        .should('contain', 'Spread the word')
+        .click();
+      cy.checkYouShareModal(user);
       cy.get('[data-cy=crowdcast-link]').should(
         'contain',
         'Tune into The Good Party Livestream',

@@ -17,6 +17,9 @@ import {
   senateElectionLink,
   shortToLongState,
   blocNameSuffix,
+  rankPageGrowLink,
+  rankPageLink,
+  rankPageJoinLink
 } from 'helpers/electionsHelper';
 import { numberNth } from 'helpers/numberHelper';
 import { getVotesNeededState } from 'helpers/candidatesHelper';
@@ -176,12 +179,12 @@ const TopRow = ({
 
   const isUnkown = isGood === null;
   const isGoodOrUnkwown = isGood || isUnkown;
-
+  const getRankPageLink = () => rankPageLink(chamberName, state, district);
   const chamberLink = () => {
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link to={rankPageLink()} data-cy="chamber-link">
+          <Link to={getRankPageLink()} data-cy="chamber-link">
             U.S. President
           </Link>
         </ChamberLink>
@@ -191,7 +194,7 @@ const TopRow = ({
       if (state) {
         return (
           <ChamberLink>
-            <Link to={rankPageLink()} data-cy="chamber-link">
+            <Link to={getRankPageLink()} data-cy="chamber-link">
               U.S. Senate for {shortToLongState[state.toUpperCase()]}
             </Link>
           </ChamberLink>
@@ -202,48 +205,13 @@ const TopRow = ({
       if (state && district) {
         return (
           <ChamberLink>
-            <Link to={rankPageLink()} data-cy="chamber-link">
+            <Link to={getRankPageLink()} data-cy="chamber-link">
               U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
         );
       }
     }
-  };
-
-  const rankPageLink = () => {
-    if (chamberName === 'presidential') {
-      return presidentialElectionLink();
-    }
-    if (chamberName === 'senate') {
-      return senateElectionLink(state);
-    }
-    return houseElectionLink(state, district);
-  };
-
-  const rankPageJoinLink = () => {
-    if (user) {
-      const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
-      if (chamberName === 'presidential') {
-        return presidentialElectionLink() + query;
-      }
-      if (chamberName === 'senate') {
-        return senateElectionLink(state) + query;
-      }
-      return houseElectionLink(state, district) + query;
-    }
-    return '?register=true';
-  };
-
-  const rankPageGrowLink = () => {
-    const query = `?grow=${candidate.id}&name=${encodeURI(candidate.name)}`;
-    if (chamberName === 'presidential') {
-      return presidentialElectionLink() + query;
-    }
-    if (chamberName === 'senate') {
-      return senateElectionLink(state) + query;
-    }
-    return houseElectionLink(state, district) + query;
   };
 
   const socialAccountSection = () => {
@@ -290,10 +258,15 @@ const TopRow = ({
   const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
     <TopRowWrapper data-cy="top-row">
-      <ShareButton to={rankPageGrowLink()}>
-        <img src={ShareIcon} alt="more" />
-        Share
-      </ShareButton>
+      {isGoodOrUnkwown &&
+        <ShareButton
+          to={rankPageGrowLink(candidate, chamberName, state, district)}
+          data-cy="grow-share"
+        >
+          <img src={ShareIcon} alt="more" />
+          Share
+        </ShareButton>
+      }
       <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
       <H3 style={{ marginTop: '14px' }} data-cy="top-name">
         {name}
@@ -322,7 +295,9 @@ const TopRow = ({
           </BlocCount>
           {rank ? (
             <>
-              <Link to={rankPageGrowLink()}>
+              <Link
+                to={rankPageGrowLink(candidate, chamberName, state, district)}
+              >
                 <RankButton>
                   <StyledBody13>
                     GROW <strong>{blocName}</strong> {blocNameSuffix(blocName)}
@@ -342,14 +317,14 @@ const TopRow = ({
               </RankWrapper>
             </>
           ) : (
-            <RankButton className="blue">
-              <Link to={rankPageJoinLink()} data-cy="rank-button">
-                <StyledBody13 className="white">
-                  JOIN {blocName} {blocNameSuffix(blocName)}
-                </StyledBody13>
-              </Link>
-            </RankButton>
-          )}
+              <RankButton className="blue">
+                <Link to={rankPageJoinLink(user, candidate, chamberName, state, district)} data-cy="rank-button">
+                  <StyledBody13 className="white">
+                    JOIN {blocName} {blocNameSuffix(blocName)}
+                  </StyledBody13>
+                </Link>
+              </RankButton>
+            )}
         </>
       )}
     </TopRowWrapper>
