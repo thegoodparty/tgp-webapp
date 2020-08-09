@@ -12,23 +12,29 @@ const InnerWrapper = styled(Body13)`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
   color: #fff;
-  display: flex;
-  justify-content: space-between;
-  a {
-    color: #fff;
-    text-decoration: underline;
-  }
 `;
 
-const VerifyEmailBanner = ({ user }) => {
+const Resend = styled.div`
+  color: #fff;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 6px;
+`;
+
+const VerifyEmailBanner = ({ user, verifyEmailCallback }) => {
   if (!user || user.isEmailVerified) {
     return <></>;
   }
+  const handleResend = () => {
+    verifyEmailCallback(user.email);
+  };
   return (
     <Wrapper>
       <InnerWrapper>
-        <span>Please verify your email so we can get you counted.</span>
-        <a href="#">Resend Email Verification</a>
+        <div>
+          Please verify the email sent to validate your account at: {user.email}
+        </div>
+        <Resend onClick={handleResend}>Resend Email Verification</Resend>
       </InnerWrapper>
     </Wrapper>
   );
@@ -36,6 +42,7 @@ const VerifyEmailBanner = ({ user }) => {
 
 VerifyEmailBanner.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  verifyEmailCallback: PropTypes.func,
 };
 
 export default VerifyEmailBanner;

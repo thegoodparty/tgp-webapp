@@ -132,6 +132,7 @@ const ProfileWrapper = ({
   articles,
   rankingObj,
   changePasswordCallback,
+  verifyEmailCallback,
 }) => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -170,7 +171,15 @@ const ProfileWrapper = ({
   const url = uuidUrl(user);
 
   return (
-    <PageWrapper white topBanner={<VerifyEmailBanner user={user} />}>
+    <PageWrapper
+      white
+      topBanner={
+        <VerifyEmailBanner
+          user={user}
+          verifyEmailCallback={verifyEmailCallback}
+        />
+      }
+    >
       <Link to="/you/edit" data-cy="edit-profile-link">
         <EditProfile>Edit Profile</EditProfile>
       </Link>
@@ -393,6 +402,7 @@ ProfileWrapper.propTypes = {
   senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   rankingObj: PropTypes.object,
   changePasswordCallback: PropTypes.func,
+  verifyEmailCallback: PropTypes.func,
 };
 
 export default ProfileWrapper;
