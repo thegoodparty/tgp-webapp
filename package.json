@@ -55,7 +55,6 @@
     "cypress:run:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress run --record",
     "cypress:run:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress run --record",
     "cypress:run:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress run --record ",
-    "postbuild": "react-snap"
   },
   "browserslist": [
     "last 2 versions",
