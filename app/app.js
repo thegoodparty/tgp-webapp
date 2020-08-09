@@ -67,11 +67,11 @@ const innerApp = (
 );
 
 const render = () => {
-  if (MOUNT_NODE.hasChildNodes()) {
-    ReactDOM.hydrate(innerApp, MOUNT_NODE);
-  } else {
-    ReactDOM.render(innerApp, MOUNT_NODE);
-  }
+  // if (MOUNT_NODE.hasChildNodes()) {
+  //   ReactDOM.hydrate(innerApp, MOUNT_NODE);
+  // } else {
+  ReactDOM.render(innerApp, MOUNT_NODE);
+  // }
 };
 
 if (module.hot) {

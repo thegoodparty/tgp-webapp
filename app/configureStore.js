@@ -27,12 +27,6 @@ export default function configureStore(initialState = {}, history) {
     /* eslint-enable */
   }
 
-  // react-snap
-  // Grab the state from a global variable injected into the server-generated HTML
-  const preloadedState = window.__PRELOADED_STATE__;
-  // Allow the passed state to be garbage-collected
-  delete window.__PRELOADED_STATE__;
-
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
 
   // Create the store with two middlewares
@@ -44,14 +38,9 @@ export default function configureStore(initialState = {}, history) {
 
   const store = createStore(
     createReducer(),
-    preloadedState || initialState,
+    initialState,
     composeEnhancers(...enhancers),
   );
-
-  // Tell react-snap how to save Redux state
-  window.snapSaveState = () => ({
-    __PRELOADED_STATE__: store.getState()
-  });
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
