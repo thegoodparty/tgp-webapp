@@ -23,7 +23,7 @@ const CreatorsWrapper = ({
     <div style={{ backgroundColor: '#FFF' }}>
       <CreatorsHeaderWrapper toggleJoin={join => setJoin(join)} user={user} />
       <Wrapper white>
-        <UniteSection toggleJoin={join => setJoin(join)} user={user} />
+        <UniteSection user={user} />
       </Wrapper>
       <Wrapper blue>
         <ProjectsSection
