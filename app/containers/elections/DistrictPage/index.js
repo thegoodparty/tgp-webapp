@@ -7,7 +7,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
@@ -25,12 +24,14 @@ import {
   makeSelectContent,
   makeSelectLocation,
 } from 'containers/App/selectors';
-import makeSelectUser from 'containers/you/YouPage/selectors';
+import makeSelectUser, {
+  makeSelectRanking,
+} from 'containers/you/YouPage/selectors';
 import userActions from 'containers/you/YouPage/actions';
-import { getRankFromUserOrState } from 'helpers/electionsHelper';
+import TgpHelmet from 'components/shared/TgpHelmet';
+
 import makeSelectCandidate from '../CandidatePage/selectors';
 import candidateActions from '../CandidatePage/actions';
-import { makeSelectRanking } from '../../you/YouPage/selectors';
 
 export function DistrictPage({
   content,
@@ -42,7 +43,6 @@ export function DistrictPage({
   deleteRankingCallback,
   changeZipCallback,
   userState,
-  candidateState,
   rankingObj,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
@@ -122,8 +122,6 @@ export function DistrictPage({
     }
   }, [zipWithDistricts, zip, cd, user]);
 
-
-
   const childProps = {
     district: zipWithDistricts,
     cdIndex,
@@ -140,10 +138,10 @@ export function DistrictPage({
 
   return (
     <div>
-      <Helmet>
-        <title data-cy="page-title">Elections | District Page</title>
-        <meta name="description" content="Elections | District Page" />
-      </Helmet>
+      <TgpHelmet
+        title="Elections | District Page"
+        description="Elections | District Page"
+      />
       <DistrictWrapper {...childProps} />
     </div>
   );

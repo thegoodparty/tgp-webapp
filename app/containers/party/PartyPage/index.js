@@ -7,7 +7,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -17,6 +16,7 @@ import {
 } from 'containers/App/selectors';
 
 import PartyWrapper from 'components/party/PartyWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
 
 export function PartyPage({ content, appVersion }) {
   const childProps = {
@@ -26,10 +26,10 @@ export function PartyPage({ content, appVersion }) {
 
   return (
     <div>
-      <Helmet>
-        <title data-cy="page-title">Party | The Good Party</title>
-        <meta name="description" content="Party | The Good Party" />
-      </Helmet>
+      <TgpHelmet
+        title="Party | The Good Party"
+        description="Party | The Good Party"
+      />
       <PartyWrapper {...childProps} />
     </div>
   );
