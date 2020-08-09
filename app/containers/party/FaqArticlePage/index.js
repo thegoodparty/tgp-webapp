@@ -7,9 +7,8 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import { goBack, push, replace } from 'connected-react-router';
+import { goBack, replace } from 'connected-react-router';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -22,11 +21,11 @@ import {
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from 'helpers/articlesHelper';
+import TgpHelmet from 'components/shared/TgpHelmet';
 
 export function FaqArticlePage({
   id,
   content,
-  dispatch,
   backButtonCallback,
   closeModalCallback,
   helpfulCallback,
@@ -52,15 +51,10 @@ export function FaqArticlePage({
 
   return (
     <div>
-      <Helmet>
-        <title data-cy="page-title">
-          {article ? article.title : 'FAQ Article'}
-        </title>
-        <meta
-          name="description"
-          content={article ? article.title : 'FAQ Article'}
-        />
-      </Helmet>
+      <TgpHelmet
+        title={article ? article.title : 'FAQ Article'}
+        description={article ? article.title : 'FAQ Article'}
+      />
       <FaqArticleWrapper {...childProps} />
     </div>
   );

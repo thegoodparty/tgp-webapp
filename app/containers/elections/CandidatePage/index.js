@@ -24,6 +24,7 @@ import saga from './saga';
 import candidateActions from './actions';
 import makeSelectUser, { makeSelectRanking } from '../../you/YouPage/selectors';
 import userActions from '../../you/YouPage/actions';
+import TgpHelmet from '../../../components/shared/TgpHelmet';
 
 export function CandidatePage({
   id,
@@ -87,22 +88,16 @@ export function CandidatePage({
       Object.keys(candidate).length === 0 && candidate.constructor === Object
     );
   };
+  const title = `${
+    candidate && !emptyCandidate() ? candidate.name : ''
+  } | ${chamberName} ${
+    candidate && !emptyCandidate() && candidate.isIncumbent
+      ? 'incumbent'
+      : 'candidate'
+  }`;
   return (
     <div>
-      <Helmet>
-        <title data-cy="page-title">
-          {candidate && !emptyCandidate() ? candidate.name : ''} | {chamberName}{' '}
-          {candidate && !emptyCandidate() && candidate.isIncumbent
-            ? 'incumbent'
-            : 'candidate'}
-        </title>
-        <meta
-          name="description"
-          content={`${candidate ? candidate.name : ''} | ${chamberName} ${
-            candidate && candidate.isIncumbent ? 'incumbent' : 'candidate'
-          }`}
-        />
-      </Helmet>
+      <TgpHelmet title={title} description={title} image={candidate?.image} />
       <CandidateWrapper {...childProps} />
       {user && user.isAdmin && <AdminMenuEditCandidate candidate={candidate} />}
     </div>
