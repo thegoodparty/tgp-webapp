@@ -108,6 +108,11 @@ const api = {
     url: `${base}entrance/social-login`,
     method: 'PUT',
   },
+
+  twitterLogin: {
+    url: `${base}entrance/twitter-login`,
+    method: 'PUT',
+  },
   //
   // USER
   //

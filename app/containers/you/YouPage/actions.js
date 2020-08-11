@@ -186,6 +186,9 @@ const addPasswordAction = newPassword => ({
   newPassword,
 });
 
+const twitterLoginAction = () => ({
+  type: types.TWITTER_LOGIN,
+});
 
 export default {
   registerAction,
@@ -222,4 +225,5 @@ export default {
   saveGuestRankingAction,
   deleteGuestRankingAction,
   sendMessageToCreator,
+  twitterRequestTokenAction: twitterLoginAction,
 };

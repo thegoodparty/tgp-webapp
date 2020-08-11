@@ -24,6 +24,7 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
+import ENV from '../../../api/ENV';
 
 function* sendCreatorMessage(action) {
   try {
@@ -763,6 +764,16 @@ function* guestRanking() {
   }
 }
 
+function* twitterLogin() {
+  try {
+    const api = tgpApi.twitterLogin;
+    const response = yield call(requestHelper, api, null);
+    console.log('twitter response', response);
+  } catch (error) {
+    console.log('user ranking ranking', JSON.stringify(error));
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
@@ -816,4 +827,5 @@ export default function* saga() {
     types.DELETE_GUEST_RANKING,
     deleteGuestRanking,
   );
+  const twitterAction = yield takeLatest(types.TWITTER_LOGIN, twitterLogin);
 }
