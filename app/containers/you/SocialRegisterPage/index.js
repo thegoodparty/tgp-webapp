@@ -115,7 +115,7 @@ function mapDispatchToProps(dispatch) {
     },
 
     twitterButtonCallback: () => {
-      dispatch(userActions.twitterRequestTokenAction());
+      dispatch(userActions.twitterLoginAction());
     },
   };
 }

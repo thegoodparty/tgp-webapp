@@ -50,6 +50,7 @@ const DELETE_GUEST_RANKING = '@@tgp/user/DELETE_GUEST_RANKING';
 const SEND_MESSAGE_TO_CREATOR = '@@tgp/user/sendMessageToCreator';
 
 const TWITTER_LOGIN = '@@tgp/creator/TWITTER_LOGIN';
+const CONFIRM_TWITTER_CALLBACK = '@@tgp/creator/CONFIRM_TWITTER_CALLBACK';
 
 export default {
   REGISTER,
@@ -86,5 +87,6 @@ export default {
   SAVE_GUEST_RANKING,
   DELETE_GUEST_RANKING,
   SEND_MESSAGE_TO_CREATOR,
-  TWITTER_LOGIN
+  TWITTER_LOGIN,
+  CONFIRM_TWITTER_CALLBACK,
 };

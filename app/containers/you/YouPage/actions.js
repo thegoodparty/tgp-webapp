@@ -190,6 +190,12 @@ const twitterLoginAction = () => ({
   type: types.TWITTER_LOGIN,
 });
 
+const confirmTwitterCallbackAction = (oauthToken, oauthVerifier) => ({
+  type: types.CONFIRM_TWITTER_CALLBACK,
+  oauthToken,
+  oauthVerifier,
+});
+
 export default {
   registerAction,
   registerActionSuccess,
@@ -225,5 +231,6 @@ export default {
   saveGuestRankingAction,
   deleteGuestRankingAction,
   sendMessageToCreator,
-  twitterRequestTokenAction: twitterLoginAction,
+  twitterLoginAction,
+  confirmTwitterCallbackAction,
 };

@@ -767,8 +767,34 @@ function* guestRanking() {
 function* twitterLogin() {
   try {
     const api = tgpApi.twitterLogin;
-    const response = yield call(requestHelper, api, null);
-    console.log('twitter response', response);
+    let uuid = getCookie('guuid');
+    if (!uuid) {
+      yield call(generateUuid);
+      uuid = getCookie('guuid');
+    }
+    const payload = {
+      uuid,
+    };
+
+    const { url } = yield call(requestHelper, api, payload);
+    window.location.href = url;
+  } catch (error) {
+    console.log('user ranking ranking', JSON.stringify(error));
+  }
+}
+
+function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
+  try {
+    const api = tgpApi.confirmTwitterCallback;
+    let uuid = getCookie('guuid');
+    const payload = {
+      uuid,
+      oauthToken,
+      oauthVerifier,
+    };
+
+    const response = yield call(requestHelper, api, payload);
+    console.log(response);
   } catch (error) {
     console.log('user ranking ranking', JSON.stringify(error));
   }
@@ -828,4 +854,8 @@ export default function* saga() {
     deleteGuestRanking,
   );
   const twitterAction = yield takeLatest(types.TWITTER_LOGIN, twitterLogin);
+  const confirmTwitterAction = yield takeLatest(
+    types.CONFIRM_TWITTER_CALLBACK,
+    confirmTwitterCallback,
+  );
 }
