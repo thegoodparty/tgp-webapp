@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { H1, H2, H3 } from 'components/shared/typogrophy';
-import { candidateRoute } from '../../../helpers/electionsHelper';
+import { candidateRoute } from 'helpers/electionsHelper';
 
 const Wrapper = styled.div`
   a {

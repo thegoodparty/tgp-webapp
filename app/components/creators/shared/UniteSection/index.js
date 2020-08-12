@@ -4,20 +4,20 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
 
-import { Body, Body15 } from '../typography';
-import { ViewProjectsButton } from '../buttons';
-import Heads from '../Heads';
-
 import LogoCaps from 'images/logo.svg';
 import UniteTitle from 'images/title--unite.svg';
 import SingleLineCreatorsTitle from 'images/title--creators_of_the_world.svg';
 import MultiLineCreatorsTitle from 'images/title--creators_of_the_world_2.svg';
+
+import { Body } from '../typography';
+import { ViewProjectsButton } from '../buttons';
+import Heads from '../Heads';
 
 const SectionWrapper = styled.div`
   padding: 3rem 8rem 0;
@@ -93,24 +93,6 @@ const LogoTitle = styled(Body)`
       theme.creators.breakpoints.creatorsMobile}) {
     font-size: 15px;
     margin: 2rem 0;
-  }
-`;
-
-const CreatorsCount = styled.p`
-  color: black;
-  font: normal 500 18px normal;
-  font-family: unset;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  margin-top: 0;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
-    font-size: 15px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    font-size: 13px;
   }
 `;
 
@@ -298,7 +280,7 @@ const CodersBr = styled.br`
     display: inline-block;
   }
 `;
-function UniteSection({ user, toggleJoin }) {
+function UniteSection({ user }) {
   return (
     <SectionWrapper>
       <Hidden xsDown>
@@ -318,23 +300,20 @@ function UniteSection({ user, toggleJoin }) {
         <VideoBr /> Videographers
       </Audience>
 
-      {/* <Audience>
-        Designers · Videographers · Podcasters · Writers · Content
-        Creators · Coders ·  Influencers · Makers
-      </Audience> */}
       <TitleImg src={UniteTitle} alt="unite" />
       <p className="text-center">
         <LogoTitle>
-          Let's all build <Logo src={LogoCaps} alt="logo" /> the good party
+          Let&apos;s all build <Logo src={LogoCaps} alt="logo" /> the good party
         </LogoTitle>
       </p>
       <div className="text-center">
         <ViewProjectsButton
           variant="contained"
           color="primary"
-          href="#projects-section"
+          target="_blank"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform"
         >
-          View Projects
+          I want to Help
         </ViewProjectsButton>
       </div>
       {!user && (
