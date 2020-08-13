@@ -1,0 +1,73 @@
+<urlSet xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+      <loc>https://dev.thegoodparty.org/</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/home</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/intro/splash</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/intro/zip-finder</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/you/register-email</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/login</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/party</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/party/faqs</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/party/events</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/privacy</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/creators</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    
+    <url>
+      <loc>https://dev.thegoodparty.org/directory</loc>
+      <lastmod>2020-08-13</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+    </urlset>
