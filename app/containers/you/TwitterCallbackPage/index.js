@@ -31,7 +31,7 @@ export function TwitterCallbackPage({ dispatch, locationState }) {
     dispatch(
       userActions.confirmTwitterCallbackAction(oauthToken, oauthVerifier),
     );
-  }, search);
+  }, []);
 
   return <LoadingAnimation />;
 }
