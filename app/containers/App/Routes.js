@@ -49,6 +49,7 @@ import ResearchPage from 'containers/shared/ResearchPage/Loadable';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import Sitemap from 'containers/Sitemap/Loadable';
 
+import TwitterCallbackPage from 'containers/you/TwitterCallbackPage/Loadable';
 
 function Routes() {
   return (
@@ -125,6 +126,7 @@ function Routes() {
       />
 
       <Route exact path="/directory" component={DirectoryPage} />
+      <Route exact path="/twitter-callback" component={TwitterCallbackPage} />
 
       <Route component={NotFoundPage} />
     </Switch>

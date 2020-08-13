@@ -30,6 +30,7 @@ export function SocialRegisterPage({
   socialLoginCallback,
   socialLoginFailureCallback,
   closeModalCallback,
+  twitterButtonCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -54,6 +55,7 @@ export function SocialRegisterPage({
     socialLoginFailureCallback,
     closeModalCallback,
     blocName,
+    twitterButtonCallback,
   };
 
   return (
@@ -73,6 +75,7 @@ SocialRegisterPage.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   closeModalCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -109,6 +112,10 @@ function mapDispatchToProps(dispatch) {
     },
     closeModalCallback: () => {
       dispatch(push(window.location.pathname));
+    },
+
+    twitterButtonCallback: () => {
+      dispatch(userActions.twitterLoginAction());
     },
   };
 }
