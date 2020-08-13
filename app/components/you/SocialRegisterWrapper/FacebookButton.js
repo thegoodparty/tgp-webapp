@@ -14,7 +14,6 @@ const StyledButton = styled(Button)`
     padding: 12px 32px;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
-    background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
     position: relative;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08),
