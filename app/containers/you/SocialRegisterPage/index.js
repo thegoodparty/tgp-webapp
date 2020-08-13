@@ -15,7 +15,6 @@ import SocialRegisterWrapper from 'components/you/SocialRegisterWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/YouPage/selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
@@ -25,8 +24,6 @@ import { push } from 'connected-react-router';
 import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 export function SocialRegisterPage({
-  userState,
-  dispatch,
   socialLoginCallback,
   socialLoginFailureCallback,
   closeModalCallback,
@@ -36,8 +33,6 @@ export function SocialRegisterPage({
   useInjectSaga({ key: 'user', saga });
 
   const [blocName, setBlocName] = useState(false);
-
-  const { user } = userState;
 
   useEffect(() => {
     // if (user) {
@@ -70,21 +65,16 @@ export function SocialRegisterPage({
 }
 
 SocialRegisterPage.propTypes = {
-  userState: PropTypes.object,
-  dispatch: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   closeModalCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  userState: makeSelectUser(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
     socialLoginCallback: user => {
       dispatch(userActions.socialRegisterAction(user));
     },
