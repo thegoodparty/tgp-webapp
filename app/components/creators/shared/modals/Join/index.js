@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Fade from '@material-ui/core/Fade';
 import LogoCaps from 'images/logo.svg';
+import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import { OutlinedButton } from 'components/shared/buttons';
@@ -29,7 +30,7 @@ const JoinTitle = styled(Title)`
   margin-bottom: 1rem;
   text-align: center;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     margin-bottom: 1.5rem;
   }
 `;
@@ -66,7 +67,7 @@ const StyledBody13 = styled(Body13)`
 const StyledBody15 = styled(Body15)`
   color: ${({ theme }) => theme.creators.colors.darkGray};
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     font-size: 13px;
   }
 `;
@@ -76,7 +77,7 @@ const StyledBody11 = styled(Body11)`
     margin-bottom: 5px !important;
     color: ${({ theme }) => theme.creators.colors.darkGray};
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
       font-size: 11px;
     }
   }
@@ -85,7 +86,7 @@ const JoinBodyWrapper = styled(BodyWrapper)`
   && {
     padding: 3rem 7rem;
     @media only screen and (max-width: ${({ theme }) =>
-        theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
       padding: 3rem;
     }
   }
@@ -97,6 +98,7 @@ function Join({
   socialLoginCallback,
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
+  twitterButtonCallback,
 }) {
   return (
     <OverlayModal
@@ -134,9 +136,15 @@ function Join({
             >
               Continue with GOOGLE
             </SocialButton>
+            <OutlinedButton active twitter auth onClick={twitterButtonCallback}>
+              <EmailInner>
+                <EmailIconImg src={TwitterIcon} />
+                <StyledBody13>CONTINUE WITH TWITTER</StyledBody13>
+              </EmailInner>
+            </OutlinedButton>
             <OutlinedButton
               active
-              style={{ marginTop: '24px', width: '100%' }}
+              auth
               onClick={() => setSignupRedirectCookie('/creators')}
             >
               <Link to="/you/register-email" style={{ width: '100%' }}>
@@ -177,6 +185,7 @@ Join.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   setSignupRedirectCookieCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 export default Join;

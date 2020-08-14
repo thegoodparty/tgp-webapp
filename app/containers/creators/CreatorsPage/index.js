@@ -42,6 +42,7 @@ export function CreatorsPage({
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
   sendMessageToCreatorCallback,
+  twitterButtonCallback
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -66,6 +67,7 @@ export function CreatorsPage({
     socialLoginFailureCallback,
     setSignupRedirectCookieCallback,
     sendMessageToCreatorCallback,
+    twitterButtonCallback,
   };
 
   return (
@@ -86,6 +88,8 @@ CreatorsPage.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   setSignupRedirectCookieCallback: PropTypes.func,
+  sendMessageToCreatorCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -107,8 +111,11 @@ function mapDispatchToProps(dispatch) {
       setSignupRedirectCookie('/creators');
       dispatch(userActions.socialRegisterAction(user));
     },
-    socialLoginFailureCallback: err => {
+    socialLoginFailureCallback: () => {
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    },
+    twitterButtonCallback: () => {
+      dispatch(userActions.twitterLoginAction());
     },
   };
 }

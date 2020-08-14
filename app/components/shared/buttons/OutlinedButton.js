@@ -23,6 +23,24 @@ const StyledButton = styled(Button)`
       border-color: #fff;
     }
   }
+  &.twitter {
+    && {
+      background-color: #64ccf1;
+      border: none;
+      p {
+        color: #fff;
+      }
+    }
+  }
+  &.auth {
+    && {
+      margin-top: 24px;
+      p {
+        font-size: 16px;
+      }
+      width: 100%;
+    }
+  }
 `;
 
 const OutlinedButton = ({
@@ -34,10 +52,18 @@ const OutlinedButton = ({
   onClick,
   style = {},
   type = 'button',
+  twitter = false,
+  auth = false
 }) => {
   let buttonClass = className;
   if (white) {
-    buttonClass = 'white';
+    buttonClass += ' white';
+  }
+  if (twitter) {
+    buttonClass += ' twitter';
+  }
+  if (auth) {
+    buttonClass += ' auth';
   }
   return (
     <StyledButton
@@ -63,6 +89,9 @@ OutlinedButton.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   style: PropTypes.object,
+  type: PropTypes.string,
+  twitter: PropTypes.bool,
+  auth: PropTypes.bool,
 };
 
 export default OutlinedButton;
