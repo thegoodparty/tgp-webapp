@@ -1,56 +1,41 @@
-import ENV, { API_ENV } from './ENV';
-//let base =  API_ENV === 'local' ? 'http://localhost:1337/api/v1/' :'https://api-dev.thegoodparty.org/api/v1/' ;
-let base;
-if (API_ENV === 'local') {
-  base = 'http://localhost:1337/api/v1/';
-} else if (API_ENV === 'dev') {
-  base = 'https://api-dev.thegoodparty.org/api/v1/';
-} else if (API_ENV === 'prod') {
-  base = 'https://api.thegoodparty.org/api/v1/';
-}
-if (ENV === 'dev') {
-  base = 'https://api-dev.thegoodparty.org/api/v1/';
-} else if (ENV === 'prod') {
-  base = 'https://api.thegoodparty.org/api/v1/';
-}
-
+import { apiBase } from 'helpers/apiHelper';
 
 const api = {
-  base,
+  base: apiBase,
   //
   // DISTRICT
   //
 
   allPresidential: {
-    url: `${base}presidential/all`,
+    url: `${apiBase}presidential/all`,
     method: 'GET',
   },
   districtIncumbent: {
-    url: `${base}incumbent/find-by-district`,
+    url: `${apiBase}incumbent/find-by-district`,
     method: 'GET',
   },
   houseCandidates: {
-    url: `${base}race-candidate/house-by-district`,
+    url: `${apiBase}race-candidate/house-by-district`,
     method: 'GET',
   },
   senateCandidates: {
-    url: `${base}race-candidate/senate-by-state`,
+    url: `${apiBase}race-candidate/senate-by-state`,
     method: 'GET',
   },
   fullAddressToDistrict: {
-    url: `${base}entrance/address-to-district`,
+    url: `${apiBase}entrance/address-to-district`,
     method: 'GET',
   },
   userCounts: {
-    url: `${base}counts/user-counts`,
+    url: `${apiBase}counts/user-counts`,
     method: 'GET',
   },
   findCandidate: {
-    url: `${base}candidates/find`,
+    url: `${apiBase}candidates/find`,
     method: 'GET',
   },
   findBlocCandidate: {
-    url: `${base}candidates/find-by-bloc`,
+    url: `${apiBase}candidates/find-by-bloc`,
     method: 'GET',
   },
 
@@ -58,11 +43,11 @@ const api = {
   // CONTENT
   //
   content: {
-    url: `${base}content/all-content`,
+    url: `${apiBase}content/all-content`,
     method: 'GET',
   },
   articleFeedback: {
-    url: `${base}content/article-feedback`,
+    url: `${apiBase}content/article-feedback`,
     method: 'POST',
   },
 
@@ -70,32 +55,32 @@ const api = {
   // ENTRANCE
   //
   register: {
-    url: `${base}entrance/register`,
+    url: `${apiBase}entrance/register`,
     method: 'POST',
   },
 
   resendEmail: {
-    url: `${base}entrance/resend-verify-email`,
+    url: `${apiBase}entrance/resend-verify-email`,
     method: 'GET',
   },
 
   confirmEmail: {
-    url: `${base}entrance/confirm-email`,
+    url: `${apiBase}entrance/confirm-email`,
     method: 'PUT',
   },
 
   zipToDistrict: {
-    url: `${base}entrance/zip-to-district`,
+    url: `${apiBase}entrance/zip-to-district`,
     method: 'GET',
   },
 
   login: {
-    url: `${base}entrance/login`,
+    url: `${apiBase}entrance/login`,
     method: 'PUT',
   },
 
   forgotPassword: {
-    url: `${base}entrance/send-password-recovery-email`,
+    url: `${apiBase}entrance/send-password-recovery-email`,
     method: 'POST',
   },
 

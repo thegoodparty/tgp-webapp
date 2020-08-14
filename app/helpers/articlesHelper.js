@@ -1,7 +1,7 @@
 const articleHash = {};
 // returns only articles that match the page.
-const articlesHelper = (articles, page) => {
-  return articles.filter(article => {
+const articlesHelper = (articles, page) =>
+  articles.filter(article => {
     let showArticle = false;
     if (!article.pages) {
       return false;
@@ -14,9 +14,11 @@ const articlesHelper = (articles, page) => {
     });
     return showArticle;
   });
-};
 
 export const slugify = text => {
+  if (!text) {
+    return '';
+  }
   return text
     .toLowerCase()
     .replace(/[^\w ]+/g, '')

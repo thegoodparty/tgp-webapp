@@ -2,6 +2,7 @@
 const { resolve } = require('path');
 const express = require('express');
 const app = express();
+const xml = require('xml');
 const base = require('./base');
 const logger = require('./logger');
 const helmet = require('helmet');
@@ -22,10 +23,8 @@ const baseUrl = base();
 
 app.get('/sitemap.xml', async (req, res) => {
   const xmlString = await generateSiteMapXML();
-  res.send(`
-    <textarea disabled rows="${xmlString.split(/\r\n|\r|\n/).length + 5}" cols="200" style="border:none;">
-      ${xmlString}
-    </textarea>`);
+  res.set('Content-Type', 'text/xml');
+  res.send(xml(xmlString));
 });
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function (req, res, next) {
