@@ -18,4 +18,5 @@ if (ENV === 'dev') {
   apiBase = 'https://api.thegoodparty.org/api/v1/';
   base = 'https://thegoodparty.org';
 }
-export default { apiBase, base };
+const apiHelper = { apiBase, base };
+export default apiHelper;

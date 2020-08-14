@@ -1,41 +1,41 @@
-import { apiBase } from 'helpers/apiHelper';
-
+import apiHelper from 'helpers/apiHelper';
+const base = apiHelper.apiBase;
 const api = {
-  base: apiBase,
+  base,
   //
   // DISTRICT
   //
 
   allPresidential: {
-    url: `${apiBase}presidential/all`,
+    url: `${base}presidential/all`,
     method: 'GET',
   },
   districtIncumbent: {
-    url: `${apiBase}incumbent/find-by-district`,
+    url: `${base}incumbent/find-by-district`,
     method: 'GET',
   },
   houseCandidates: {
-    url: `${apiBase}race-candidate/house-by-district`,
+    url: `${base}race-candidate/house-by-district`,
     method: 'GET',
   },
   senateCandidates: {
-    url: `${apiBase}race-candidate/senate-by-state`,
+    url: `${base}race-candidate/senate-by-state`,
     method: 'GET',
   },
   fullAddressToDistrict: {
-    url: `${apiBase}entrance/address-to-district`,
+    url: `${base}entrance/address-to-district`,
     method: 'GET',
   },
   userCounts: {
-    url: `${apiBase}counts/user-counts`,
+    url: `${base}counts/user-counts`,
     method: 'GET',
   },
   findCandidate: {
-    url: `${apiBase}candidates/find`,
+    url: `${base}candidates/find`,
     method: 'GET',
   },
   findBlocCandidate: {
-    url: `${apiBase}candidates/find-by-bloc`,
+    url: `${base}candidates/find-by-bloc`,
     method: 'GET',
   },
 
@@ -43,11 +43,11 @@ const api = {
   // CONTENT
   //
   content: {
-    url: `${apiBase}content/all-content`,
+    url: `${base}content/all-content`,
     method: 'GET',
   },
   articleFeedback: {
-    url: `${apiBase}content/article-feedback`,
+    url: `${base}content/article-feedback`,
     method: 'POST',
   },
 
@@ -55,32 +55,32 @@ const api = {
   // ENTRANCE
   //
   register: {
-    url: `${apiBase}entrance/register`,
+    url: `${base}entrance/register`,
     method: 'POST',
   },
 
   resendEmail: {
-    url: `${apiBase}entrance/resend-verify-email`,
+    url: `${base}entrance/resend-verify-email`,
     method: 'GET',
   },
 
   confirmEmail: {
-    url: `${apiBase}entrance/confirm-email`,
+    url: `${base}entrance/confirm-email`,
     method: 'PUT',
   },
 
   zipToDistrict: {
-    url: `${apiBase}entrance/zip-to-district`,
+    url: `${base}entrance/zip-to-district`,
     method: 'GET',
   },
 
   login: {
-    url: `${apiBase}entrance/login`,
+    url: `${base}entrance/login`,
     method: 'PUT',
   },
 
   forgotPassword: {
-    url: `${apiBase}entrance/send-password-recovery-email`,
+    url: `${base}entrance/send-password-recovery-email`,
     method: 'POST',
   },
 

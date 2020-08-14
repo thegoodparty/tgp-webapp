@@ -1,10 +1,10 @@
 import { candidateRoute } from '../app/helpers/electionsHelper';
+import apiHelper from '../app/helpers/apiHelper';
 const { default: Axios } = require('axios');
 const moment = require('moment');
 const fs = require('fs');
-const { apiBase, base } = require('../app/helpers/apiHelper');
-
 const currentDate = moment().format('YYYY-MM-DD');
+const { apiBase, base } = apiHelper;
 
 const staticUrls = [
   '/',
@@ -29,9 +29,8 @@ const generateSiteMapXML = async () => {
     allCandidates = [...allCandidates, ...candidates[key]];
   });
 
-  let xmlString = `
-    <?xml version="1.0" encoding="UTF-8"?>
-    <urlSet xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   `;
   staticUrls.forEach(link => {
     xmlString += `
