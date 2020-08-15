@@ -36,15 +36,18 @@ const TopWrapper = styled.div`
 const TopClose = styled(CloseIcon)`
   font-size 24px;
   cursor: pointer;
-  
+
 `;
 
-function QueryModal({ closeModalCallback, children, modalStyles={} }) {
+function QueryModal({ closeModalCallback, children, modalStyles = {} }) {
   return (
-    <TgpDialog onClose={closeModalCallback} open={true}>
+    <TgpDialog onClose={closeModalCallback} open>
       <Wrapper style={modalStyles.wrapper}>
         <TopWrapper>
-          <TopClose onClick={closeModalCallback} style={modalStyles.closeButton} />
+          <TopClose
+            onClick={closeModalCallback}
+            style={modalStyles.closeButton}
+          />
         </TopWrapper>
         {children}
       </Wrapper>
@@ -55,6 +58,7 @@ function QueryModal({ closeModalCallback, children, modalStyles={} }) {
 QueryModal.propTypes = {
   closeModalCallback: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  modalStyles: PropTypes.object,
 };
 
 export default QueryModal;

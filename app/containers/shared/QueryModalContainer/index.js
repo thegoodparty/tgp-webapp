@@ -17,7 +17,10 @@ export function QueryModalContainer({
   children,
 }) {
   return (
-    <QueryModal closeModalCallback={closeModalCallback} modalStyles={modalStyles}>
+    <QueryModal
+      closeModalCallback={closeModalCallback}
+      modalStyles={modalStyles}
+    >
       {children}
     </QueryModal>
   );
@@ -25,6 +28,8 @@ export function QueryModalContainer({
 
 QueryModalContainer.propTypes = {
   closeModalCallback: PropTypes.func,
+  modalStyles: PropTypes.object,
+  children: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
