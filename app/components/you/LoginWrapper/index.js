@@ -184,12 +184,17 @@ const LoginWrapper = ({
                 <Body13 style={{ color: '#767676' }}>Or</Body13>
               </Or>
             </OrWrapper>
-            <FacebookButton
-              onLoginSuccess={socialLoginCallback}
-              onLoginFailure={socialLoginFailureCallback}
-            >
-              Continue with Facebook
-            </FacebookButton>
+            <div data-cy="facebook-login">
+              <SocialButton
+                channel="facebook"
+                provider="facebook"
+                appId={globals.facebookAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with FACEBOOK
+              </SocialButton>
+            </div>
             <TwitterButton clickCallback={twitterButtonCallback}>
               Continue with Twitter
             </TwitterButton>
