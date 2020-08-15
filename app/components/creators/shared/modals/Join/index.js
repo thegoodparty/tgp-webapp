@@ -10,9 +10,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Fade from '@material-ui/core/Fade';
 import LogoCaps from 'images/logo.svg';
-import TwitterIcon from 'images/icons/twitter.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
+import TwitterButton from 'components/you/SocialRegisterWrapper/TwitterButton';
 import { OutlinedButton } from 'components/shared/buttons';
 import globals from 'globals';
 import {
@@ -136,12 +136,9 @@ function Join({
             >
               Continue with GOOGLE
             </SocialButton>
-            <OutlinedButton active twitter auth onClick={twitterButtonCallback}>
-              <EmailInner>
-                <EmailIconImg src={TwitterIcon} />
-                <StyledBody13>CONTINUE WITH TWITTER</StyledBody13>
-              </EmailInner>
-            </OutlinedButton>
+            <TwitterButton clickCallback={twitterButtonCallback}>
+              Continue with Twitter
+            </TwitterButton>
             <OutlinedButton
               active
               auth
