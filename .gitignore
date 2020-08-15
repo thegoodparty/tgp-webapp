@@ -2,7 +2,7 @@
 coverage
 build
 node_modules
-sitemaps
+sitemaps/*
 stats.json
 # Cruft
 .DS_Store
