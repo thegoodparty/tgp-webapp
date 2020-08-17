@@ -47,15 +47,12 @@ import DirectoryPage from 'containers/directory/DirectoryPage/Loadable';
 import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
 import ResearchPage from 'containers/shared/ResearchPage/Loadable';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
-import Sitemap from 'containers/Sitemap/Loadable';
-
 import TwitterCallbackPage from 'containers/you/TwitterCallbackPage/Loadable';
 
 function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <Route exact path="/sitemap.xml" component={Sitemap} />
       <Route exact path="/home" component={HomePage} />
       <Route exact path="/intro/splash" component={SplashPage} />
       <Route exact path="/intro/zip-finder" component={ZipFinderPage} />

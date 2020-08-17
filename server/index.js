@@ -1,25 +1,33 @@
 /* eslint consistent-return:0 import/order:0 */
-const base = require('./base');
+const { resolve } = require('path');
 const express = require('express');
+const app = express();
+const base = require('./base');
 const logger = require('./logger');
 const helmet = require('helmet');
-
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
+const generateSiteMapXML = require('./sitemap');
 const ngrok =
   (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
     ? require('ngrok')
     : false;
-const { resolve } = require('path');
-const app = express();
 app.use(helmet());
+
 
 // force non-www
 const baseUrl = base();
+
+app.get('/sitemap.xml', async (req, res) => {
+  const xmlString = await generateSiteMapXML();
+  console.log(xmlString)
+  res.set('Content-Type', 'text/xml');
+  res.send(xmlString);
+});
 if (process.env.NODE_ENV === 'production') {
-  app.all('*', function(req, res, next) {
+  app.all('*', function (req, res, next) {
     if (baseUrl === 'https://thegoodparty.org') {
       const str = 'www.';
       if (req.host.indexOf(str) === 0) {
@@ -66,10 +74,7 @@ app.get('*.js', (req, res, next) => {
 
 // Start your app.
 app.listen(port, host, async err => {
-  if (err) {
-    return logger.error(err.message);
-  }
-
+  generateSiteMapXML();
   // Connect to ngrok in dev mode
   if (ngrok) {
     let url;

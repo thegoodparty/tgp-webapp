@@ -2,8 +2,8 @@
 coverage
 build
 node_modules
+sitemaps/*
 stats.json
-
 # Cruft
 .DS_Store
 npm-debug.log
