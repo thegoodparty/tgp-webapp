@@ -22,7 +22,6 @@ const baseUrl = base();
 
 app.get('/sitemap.xml', async (req, res) => {
   const xmlString = await generateSiteMapXML();
-  console.log(xmlString)
   res.set('Content-Type', 'text/xml');
   res.send(xmlString);
 });

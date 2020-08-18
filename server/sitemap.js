@@ -25,7 +25,6 @@ const staticUrls = [
 ];
 
 const generateSiteMapXML = async () => {
-  console.log('apiBase', apiBase);
   try {
     const response = await Axios.get(`${apiBase}candidates/all`);
     const candidates = response.data;
