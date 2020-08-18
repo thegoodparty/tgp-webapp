@@ -3,7 +3,7 @@
 const { default: Axios } = require('axios');
 const moment = require('moment');
 const fs = require('fs');
-const candidateRoute = require('../app/helpers/electionsHelper');
+const { candidateRoute } = require('../app/helpers/electionsHelper');
 const apiHelper = require('../app/helpers/apiHelper');
 const currentDate = moment().format('YYYY-MM-DD');
 const { apiBase, base } = apiHelper.default;
@@ -57,6 +57,7 @@ const generateSiteMapXML = async () => {
     encoding: 'utf8',
     flag: 'w',
   });
+
   return xmlString;
 };
 
