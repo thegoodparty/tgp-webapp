@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import LogoCaps from 'images/logo-caps.svg';
 import { Body14, Body9 } from '../typogrophy';
@@ -70,7 +70,11 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
     <Wrapper>
       <ContentWrapper>
         <TopLink>
-          <Logo src={LogoCaps} onClick={() => handleNavigate('/home')} data-cy="logo" />
+          <Logo
+            src={LogoCaps}
+            onClick={() => handleNavigate('/home')}
+            data-cy="logo"
+          />
         </TopLink>
         {!hideLinks && (
           <>
