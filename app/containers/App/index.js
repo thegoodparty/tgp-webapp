@@ -25,9 +25,11 @@ import SnackbarContainer from 'containers/shared/SnackbarContainer';
 import ErrorBoundary from 'containers/shared/ErrorBoundry';
 
 import { fullStoryIdentify } from 'helpers/fullStoryHelper';
+import { getUserCookie } from 'helpers/cookieHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import youActions from 'containers/you/YouPage/actions';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
@@ -44,8 +46,11 @@ if (ENV === 'prod') {
 function App({ dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
-
   useEffect(() => {
+    const user = JSON.parse(getUserCookie());
+    if (user) {
+      dispatch(globalActions.refreshToken());
+    }
     if (ENV === 'prod') {
       ReactGA.pageview(window.location.pathname);
     }
@@ -81,7 +86,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+});
 
 const withConnect = connect(
   mapStateToProps,

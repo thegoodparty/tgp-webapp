@@ -178,6 +178,10 @@ const api = {
     withAuth: true,
   },
 
+  refreshToken: {
+    url: `${base}user/token-refresh`,
+    method: 'GET',
+  },
   /*
    * SCRAPE
    */

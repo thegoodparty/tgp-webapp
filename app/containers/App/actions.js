@@ -1,5 +1,9 @@
 import types from './constants';
 
+const refreshToken = () => ({
+  type: types.REFRESH_TOKEN,
+});
+
 const loadContentAction = () => ({
   type: types.LOAD_CONTENT,
 });
@@ -45,4 +49,5 @@ export default {
   clearArticleModalAction,
   sendArticleFeedbackAction,
   logErrorAction,
+  refreshToken,
 };

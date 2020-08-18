@@ -41,7 +41,6 @@ function* sendCreatorMessage(action) {
     console.log(error);
   }
 }
-
 function* register(action) {
   try {
     const { email, name, password } = action;

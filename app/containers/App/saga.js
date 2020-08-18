@@ -1,8 +1,14 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-
+import {
+  getCookie,
+  setUserCookie,
+  setCookie,
+} from 'helpers/cookieHelper';
 import requestHelper from 'helpers/requestHelper';
 import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
 import makeSelectUser from 'containers/you/YouPage/selectors';
+import youActions from 'containers/you/YouPage/actions';
+
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
@@ -39,7 +45,21 @@ function* sendArticleFeedback(action) {
     snackbarActions.showSnakbarAction('Error sending your feedback', 'error');
   }
 }
-
+function* refreshToken() {
+  try {
+    const api = tgpApi.refreshToken;
+    const currentToken = getCookie('token');
+    const { token, user } = yield call(requestHelper, api, {
+      token: currentToken,
+    });
+    yield put(youActions.registerActionSuccess(user, token));
+    setUserCookie(user);
+    setCookie('token', token);
+  } catch (error) {
+    console.log(error);
+    yield put(actions.loadContentActionError(error));
+  }
+}
 function* logError(action) {
   try {
     const user = yield call(getUserFromStateOrCookie);
@@ -60,9 +80,7 @@ function* logError(action) {
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_CONTENT, loadContent);
-  const action = yield takeLatest(
-    types.SEND_ARTICLE_FEEDBACK,
-    sendArticleFeedback,
-  );
-  const logAction = yield takeLatest(types.LOG_ERROR, logError);
+  yield takeLatest(types.SEND_ARTICLE_FEEDBACK, sendArticleFeedback);
+  yield takeLatest(types.LOG_ERROR, logError);
+  yield takeLatest(types.REFRESH_TOKEN, refreshToken);
 }
