@@ -52,6 +52,7 @@ const SEND_MESSAGE_TO_CREATOR = '@@tgp/user/sendMessageToCreator';
 const TWITTER_LOGIN = '@@tgp/creator/TWITTER_LOGIN';
 const CONFIRM_TWITTER_CALLBACK = '@@tgp/creator/CONFIRM_TWITTER_CALLBACK';
 
+
 export default {
   REGISTER,
   REGISTER_SUCCESS,
