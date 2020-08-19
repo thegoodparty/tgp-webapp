@@ -48,16 +48,12 @@ function* sendArticleFeedback(action) {
 function* refreshToken() {
   try {
     const api = tgpApi.refreshToken;
-    const currentToken = getCookie('token');
-    const { token, user } = yield call(requestHelper, api, {
-      token: currentToken,
-    });
+    const { token, user } = yield call(requestHelper, api, null);
     yield put(youActions.registerActionSuccess(user, token));
     setUserCookie(user);
     setCookie('token', token);
   } catch (error) {
     console.log(error);
-    yield put(actions.loadContentActionError(error));
   }
 }
 function* logError(action) {

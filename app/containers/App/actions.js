@@ -1,6 +1,6 @@
 import types from './constants';
 
-const refreshToken = () => ({
+const refreshTokenAction = () => ({
   type: types.REFRESH_TOKEN,
 });
 
@@ -49,5 +49,5 @@ export default {
   clearArticleModalAction,
   sendArticleFeedbackAction,
   logErrorAction,
-  refreshToken,
+  refreshTokenAction,
 };

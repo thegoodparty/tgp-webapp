@@ -29,7 +29,6 @@ import { getUserCookie } from 'helpers/cookieHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import youActions from 'containers/you/YouPage/actions';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
@@ -47,9 +46,9 @@ function App({ dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
   useEffect(() => {
-    const user = JSON.parse(getUserCookie());
+    const user = getUserCookie();
     if (user) {
-      dispatch(globalActions.refreshToken());
+      dispatch(globalActions.refreshTokenAction());
     }
     if (ENV === 'prod') {
       ReactGA.pageview(window.location.pathname);

@@ -180,7 +180,8 @@ const api = {
 
   refreshToken: {
     url: `${base}user/token-refresh`,
-    method: 'GET',
+    method: 'PUT',
+    withAuth: true,
   },
   /*
    * SCRAPE
