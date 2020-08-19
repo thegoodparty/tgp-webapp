@@ -35,6 +35,7 @@ export function AllCandidatesToScrape({
   const onlyNoData = queryHelper(search, 'onlyNoData');
   const withoutTwitter = queryHelper(search, 'withoutTwitter');
   const withPresidential = queryHelper(search, 'withPresidential');
+  const withSource = queryHelper(search, 'withSource');
   useEffect(() => {
     if (!candidates) {
       dispatch(
@@ -75,6 +76,21 @@ export function AllCandidatesToScrape({
   };
 
   const allData = candidate => {
+    if (withSource) {
+      if (!candidate.source) {
+        return <></>;
+      }
+      return (
+        <>
+          <span key={candidate.id}>
+            <a className="ballotpedia" href={candidate.source}>
+              {candidate.id}|{candidate.name}|
+              {candidate.isIncumbent && 'incumbent'}|{candidate.chamber}
+            </a>
+          </span>
+        </>
+      );
+    }
     return (
       <>
         <span key={candidate.id}>
@@ -152,6 +168,7 @@ export function AllCandidatesToScrape({
       <div>
         <h1>
           Candidates {onlyNoData ? ' without data ' : ''}
+          {withSource ? 'with ballotpedia link ' : ''}
           {withoutTwitter ? ' without twitter ' : ''}count:{' '}
           {candidates && candidates.length}
         </h1>
