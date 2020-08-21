@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoCaps from 'images/logo-caps.svg';
 import { Body14 } from 'components/shared/typogrophy';
+import { deleteSignupRedirectCookie } from 'helpers/cookieHelper';
 import Body from '../typography/Body';
-
 const Wrapper = styled.div`
   position: fixed;
   height: 8rem;
@@ -149,6 +149,7 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
     if (!user) {
       toggleJoin(true);
     }
+    deleteSignupRedirectCookie();
   };
   return (
     <Wrapper>
@@ -159,7 +160,11 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
         <MenuItemsWrapper className="desktop">
           <TopLink className="menu-item active">Creators</TopLink>
           {user ? (
-            <TopLink className="menu-item" to="/you">
+            <TopLink
+              className="menu-item"
+              to="/you"
+              onClick={deleteSignupRedirectCookie}
+            >
               You
             </TopLink>
           ) : (

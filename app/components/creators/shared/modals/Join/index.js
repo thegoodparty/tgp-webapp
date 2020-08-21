@@ -142,7 +142,7 @@ function Join({
             <OutlinedButton
               active
               auth
-              onClick={() => setSignupRedirectCookie('/creators')}
+              onClick={() => setSignupRedirectCookieCallback('/creators')}
             >
               <Link to="/you/register-email" style={{ width: '100%' }}>
                 <EmailInner>

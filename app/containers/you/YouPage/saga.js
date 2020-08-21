@@ -477,6 +477,7 @@ function* socialLogin(action) {
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
     const cookieRedirect = getSignupRedirectCookie();
+
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
     } else {
