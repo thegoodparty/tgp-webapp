@@ -15,11 +15,7 @@ import CreatorsWrapper from 'components/creators/CreatorsWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import {
-  getSignupRedirectCookie,
-  setSignupRedirectCookie,
-  deleteSignupRedirectCookie,
-} from 'helpers/cookieHelper';
+import { setSignupRedirectCookie } from 'helpers/cookieHelper';
 
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectContent } from 'containers/App/selectors';
@@ -42,17 +38,13 @@ export function CreatorsPage({
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
   sendMessageToCreatorCallback,
-  twitterButtonCallback
+  twitterButtonCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
   const stateUser = userState.user;
   const [user, setUser] = React.useState(null);
   useEffect(() => {
-    const cookieRedirect = getSignupRedirectCookie();
-    if (cookieRedirect) {
-      deleteSignupRedirectCookie();
-    }
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());
       dispatch(userActions.generateUuidAction());
@@ -115,6 +107,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
     },
     twitterButtonCallback: () => {
+      setSignupRedirectCookie('/creators');
       dispatch(userActions.twitterLoginAction());
     },
   };
