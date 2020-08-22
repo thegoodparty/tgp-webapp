@@ -24,6 +24,7 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
+import ENV from '../../../api/ENV';
 
 function* sendCreatorMessage(action) {
   try {
@@ -40,7 +41,6 @@ function* sendCreatorMessage(action) {
     console.log(error);
   }
 }
-
 function* register(action) {
   try {
     const { email, name, password } = action;
@@ -96,9 +96,7 @@ function* socialRegister(action) {
     const provider = user._provider;
     const { name, email, id, profilePicURL } = profile;
     const zip = yield getZipFromStateOrCookie();
-    const presidentialRank = yield getRankFromStateOrCookie('presidentialRank');
-    const senateRank = yield getRankFromStateOrCookie('senateRank');
-    const houseRank = yield getRankFromStateOrCookie('houseRank');
+    const ranking = getCookie('guestRanking') || '[]';
     // for facebook - get a larger image
     let socialPic = profilePicURL;
     let idToken;
@@ -132,9 +130,7 @@ function* socialRegister(action) {
       name,
       email,
       zip,
-      presidentialRank: presidentialRank || '[]',
-      senateRank: senateRank || '[]',
-      houseRank: houseRank || '[]',
+      ranking,
       socialToken: idToken,
     };
     const referrer = getCookie('referrer');
@@ -481,6 +477,7 @@ function* socialLogin(action) {
     const responseUser = response.user;
     yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
     const cookieRedirect = getSignupRedirectCookie();
+
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
     } else {
@@ -763,6 +760,63 @@ function* guestRanking() {
   }
 }
 
+function* twitterLogin() {
+  try {
+    const api = tgpApi.twitterLogin;
+
+    const { url } = yield call(requestHelper, api, null);
+    window.location.href = url;
+  } catch (error) {
+    console.log('twitter login error', JSON.stringify(error));
+    yield put(
+      snackbarActions.showSnakbarAction('Twitter Login Error', 'error'),
+    );
+  }
+}
+
+function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
+  try {
+    const api = tgpApi.confirmTwitterCallback;
+
+    const zip = yield getZipFromStateOrCookie();
+    const ranking = getCookie('guestRanking') || '[]';
+    const payload = {
+      oauthToken,
+      oauthVerifier,
+      zip,
+      ranking,
+    };
+    const referrer = getCookie('referrer');
+    if (referrer) {
+      payload.referrer = referrer;
+    }
+    const guestUuid = getCookie('guuid');
+    if (guestUuid) {
+      payload.guestUuid = guestUuid;
+    }
+
+    const { user, token } = yield call(requestHelper, api, payload);
+    yield put(actions.confirmEmailActionSuccess(user, token));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+    } else {
+      yield put(push('/you'));
+    }
+
+    setUserCookie(user);
+    setCookie('token', token);
+
+    yield put(snackbarActions.showSnakbarAction(`Welcome back ${user.name}`));
+    AnalyticsService.sendEvent('social-login', 'success', 'twitter');
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Twitter Confirmation Error', 'error'),
+    );
+    console.log('confirm Twitter Callback error', JSON.stringify(error));
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const registerAction = yield takeLatest(types.REGISTER, register);
@@ -815,5 +869,10 @@ export default function* saga() {
   const deleteGuest = yield takeLatest(
     types.DELETE_GUEST_RANKING,
     deleteGuestRanking,
+  );
+  const twitterAction = yield takeLatest(types.TWITTER_LOGIN, twitterLogin);
+  const confirmTwitterAction = yield takeLatest(
+    types.CONFIRM_TWITTER_CALLBACK,
+    confirmTwitterCallback,
   );
 }

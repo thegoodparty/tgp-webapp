@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
   }
-  
+
   html,
   body {
     min-height: 100%;
@@ -20,44 +20,44 @@ const GlobalStyle = createGlobalStyle`
   body.fontLoaded {
     font-family: 'Libre Franklin', sans-serif;
   }
-  
+
   a {
    text-decoration: none;
    color: #117CB6;
   }
-  
+
   a: hover {
    color: #21A8DD;
   }
-  
+
   .bold700 {
     font-weight: 700;
   }
-  
+
   .bold600 {
     font-weight: 600;
   }
-  
+
   .bold500 {
     font-weight: 500;
   }
-  
+
   .blue {
     color: #117CB6;
   }
-  
+
   .text-right {
     text-align: right;
   }
-  
+
   .text-center {
     text-align: center;
   }
-  
+
   .text-left {
     text-align: left;
   }
-  
+
   .pointer {
     cursor: pointer;
   },

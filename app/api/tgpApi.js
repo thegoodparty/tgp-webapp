@@ -1,20 +1,5 @@
-import ENV, { API_ENV } from './ENV';
-//let base =  API_ENV === 'local' ? 'http://localhost:1337/api/v1/' :'https://api-dev.thegoodparty.org/api/v1/' ;
-let base;
-if (API_ENV === 'local') {
-  base = 'http://localhost:1337/api/v1/';
-} else if (API_ENV === 'dev') {
-  base = 'https://api-dev.thegoodparty.org/api/v1/';
-} else if (API_ENV === 'prod') {
-  base = 'https://api.thegoodparty.org/api/v1/';
-}
-if (ENV === 'dev') {
-  base = 'https://api-dev.thegoodparty.org/api/v1/';
-} else if (ENV === 'prod') {
-  base = 'https://api.thegoodparty.org/api/v1/';
-}
-
-
+import apiHelper from 'helpers/apiHelper';
+const base = apiHelper.apiBase;
 const api = {
   base,
   //
@@ -108,6 +93,16 @@ const api = {
     url: `${base}entrance/social-login`,
     method: 'PUT',
   },
+
+  twitterLogin: {
+    url: `${base}entrance/twitter-login`,
+    method: 'PUT',
+  },
+
+  confirmTwitterCallback: {
+    url: `${base}entrance/twitter-confirm`,
+    method: 'PUT',
+  },
   //
   // USER
   //
@@ -183,6 +178,11 @@ const api = {
     withAuth: true,
   },
 
+  refreshToken: {
+    url: `${base}user/token-refresh`,
+    method: 'PUT',
+    withAuth: true,
+  },
   /*
    * SCRAPE
    */

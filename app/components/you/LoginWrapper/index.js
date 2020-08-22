@@ -14,6 +14,7 @@ import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
 import FacebookButton from '../SocialRegisterWrapper/FacebookButton';
 import PasswordInput from '../../shared/PasswordInput';
+import TwitterButton from '../SocialRegisterWrapper/TwitterButton';
 
 const Heart = styled.img`
   width: 64px;
@@ -79,6 +80,7 @@ const LoginWrapper = ({
   socialLoginCallback,
   socialLoginFailureCallback,
   forgotPasswordCallback,
+  twitterButtonCallback,
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -182,12 +184,20 @@ const LoginWrapper = ({
                 <Body13 style={{ color: '#767676' }}>Or</Body13>
               </Or>
             </OrWrapper>
-            <FacebookButton
-              onLoginSuccess={socialLoginCallback}
-              onLoginFailure={socialLoginFailureCallback}
-            >
-              Continue with Facebook
-            </FacebookButton>
+            <div data-cy="facebook-login">
+              <SocialButton
+                channel="facebook"
+                provider="facebook"
+                appId={globals.facebookAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with FACEBOOK
+              </SocialButton>
+            </div>
+            <TwitterButton clickCallback={twitterButtonCallback}>
+              Continue with Twitter
+            </TwitterButton>
             <div data-cy="google-login">
               <SocialButton
                 channel="google"
@@ -217,6 +227,7 @@ LoginWrapper.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   forgotPasswordCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 export default LoginWrapper;

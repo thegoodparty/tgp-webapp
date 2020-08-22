@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for Sitemap
+ * Asynchronously loads the component for TwitterCallbackPage
  *
  */
 

@@ -28,7 +28,8 @@ export function LoginPage({
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
-  forgotPasswordCallback
+  forgotPasswordCallback,
+  twitterButtonCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -44,7 +45,8 @@ export function LoginPage({
     loginCallback,
     socialLoginCallback,
     socialLoginFailureCallback,
-    forgotPasswordCallback
+    forgotPasswordCallback,
+    twitterButtonCallback,
   };
 
   return (
@@ -65,6 +67,7 @@ LoginPage.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   forgotPasswordCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -73,7 +76,7 @@ function mapDispatchToProps(dispatch) {
     loginCallback: (email, password) => {
       dispatch(userActions.loginAction(email, password));
     },
-    forgotPasswordCallback: (email) => {
+    forgotPasswordCallback: email => {
       dispatch(userActions.forgotPasswordAction(email));
     },
     socialLoginCallback: user => {
@@ -81,6 +84,9 @@ function mapDispatchToProps(dispatch) {
     },
     socialLoginFailureCallback: err => {
       dispatch(snackbarActions.showSnakbarAction('Sign in error', 'error'));
+    },
+    twitterButtonCallback: () => {
+      dispatch(userActions.twitterLoginAction());
     },
   };
 }

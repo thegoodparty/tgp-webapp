@@ -15,11 +15,7 @@ import CreatorsWrapper from 'components/creators/CreatorsWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import {
-  getSignupRedirectCookie,
-  setSignupRedirectCookie,
-  deleteSignupRedirectCookie,
-} from 'helpers/cookieHelper';
+import { setSignupRedirectCookie } from 'helpers/cookieHelper';
 
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectContent } from 'containers/App/selectors';
@@ -42,16 +38,13 @@ export function CreatorsPage({
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
   sendMessageToCreatorCallback,
+  twitterButtonCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
   const stateUser = userState.user;
   const [user, setUser] = React.useState(null);
   useEffect(() => {
-    const cookieRedirect = getSignupRedirectCookie();
-    if (cookieRedirect) {
-      deleteSignupRedirectCookie();
-    }
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());
       dispatch(userActions.generateUuidAction());
@@ -66,6 +59,7 @@ export function CreatorsPage({
     socialLoginFailureCallback,
     setSignupRedirectCookieCallback,
     sendMessageToCreatorCallback,
+    twitterButtonCallback,
   };
 
   return (
@@ -86,6 +80,8 @@ CreatorsPage.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
   setSignupRedirectCookieCallback: PropTypes.func,
+  sendMessageToCreatorCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -107,8 +103,12 @@ function mapDispatchToProps(dispatch) {
       setSignupRedirectCookie('/creators');
       dispatch(userActions.socialRegisterAction(user));
     },
-    socialLoginFailureCallback: err => {
+    socialLoginFailureCallback: () => {
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    },
+    twitterButtonCallback: () => {
+      setSignupRedirectCookie('/creators');
+      dispatch(userActions.twitterLoginAction());
     },
   };
 }

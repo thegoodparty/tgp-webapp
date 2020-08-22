@@ -8,6 +8,7 @@ const CLEAR_ARTICLE_MODAL = '@@tgp/global/CLEAR_ARTICLE_MODAL';
 const SEND_ARTICLE_FEEDBACK = '@@tgp/global/SEND_ARTICLE_FEEDBACK';
 
 const LOG_ERROR = '@@tgp/global/LOG_ERROR';
+const REFRESH_TOKEN = '@@tgp/global/REFRESH_TOKEN';
 
 export default {
   LOAD_CONTENT,
@@ -17,4 +18,5 @@ export default {
   CLEAR_ARTICLE_MODAL,
   SEND_ARTICLE_FEEDBACK,
   LOG_ERROR,
+  REFRESH_TOKEN,
 };

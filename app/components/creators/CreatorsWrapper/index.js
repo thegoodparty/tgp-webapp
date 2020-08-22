@@ -14,6 +14,7 @@ const CreatorsWrapper = ({
   socialLoginFailureCallback,
   setSignupRedirectCookieCallback,
   sendMessageToCreatorCallback,
+  twitterButtonCallback,
 }) => {
   const [join, setJoin] = useState(false);
   useEffect(() => {
@@ -21,19 +22,19 @@ const CreatorsWrapper = ({
   }, [user]);
   return (
     <div style={{ backgroundColor: '#FFF' }}>
-      <CreatorsHeaderWrapper toggleJoin={join => setJoin(join)} user={user} />
+      <CreatorsHeaderWrapper toggleJoin={value => setJoin(value)} user={user} />
       <Wrapper white>
         <UniteSection user={user} />
       </Wrapper>
       <Wrapper blue>
         <ProjectsSection
           projects={projects}
-          toggleJoin={join => setJoin(join)}
+          toggleJoin={value => setJoin(value)}
           user={user}
           sendMessageToCreatorCallback={sendMessageToCreatorCallback}
         />
       </Wrapper>
-      <Footer isCreators={true} />
+      <Footer isCreators />
 
       <Join
         open={join}
@@ -41,6 +42,7 @@ const CreatorsWrapper = ({
         socialLoginCallback={socialLoginCallback}
         socialLoginFailureCallback={socialLoginFailureCallback}
         setSignupRedirectCookieCallback={setSignupRedirectCookieCallback}
+        twitterButtonCallback={twitterButtonCallback}
       />
     </div>
   );
@@ -53,6 +55,7 @@ CreatorsWrapper.propTypes = {
   socialLoginFailureCallback: PropTypes.func,
   setSignupRedirectCookieCallback: PropTypes.func,
   sendMessageToCreatorCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 export default CreatorsWrapper;

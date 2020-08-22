@@ -9,8 +9,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
-import CloseIcon from '@material-ui/icons/Cancel';
-import Dialog from '@material-ui/core/Dialog';
 
 import heartImg from 'images/heart.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
@@ -22,35 +20,7 @@ import SocialButton from './SocialButton';
 import { H1, H2, Body13, Body11 } from '../../shared/typogrophy';
 import { OutlinedButton } from '../../shared/buttons';
 import FacebookButton from './FacebookButton';
-
-const TgpDialog = styled(Dialog)`
-  && {
-    .MuiDialog-paper {
-      margin: 12px !important;
-      width: 100vw;
-      max-width: ${({ theme }) => theme.breakpoints.contentMax};
-    }
-  }
-`;
-
-const Wrapper = styled.div`
-  padding: 12px;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 24px;
-  }
-`;
-
-const TopWrapper = styled.div`
-  text-align: right;
-  margin-bottom: 24px;
-`;
-
-const TopClose = styled(CloseIcon)`
-  font-size 24px;
-  cursor: pointer;
-  
-`;
+import TwitterButton from './TwitterButton';
 
 const Heart = styled.img`
   width: 64px;
@@ -67,10 +37,6 @@ const VerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpoints.md}) {
-  //   height: calc(100vh - 100px);
-  // }
 `;
 
 const OrWrapper = styled.div`
@@ -113,8 +79,8 @@ const StyledBody13 = styled(Body13)`
 function SocialRegisterWrapper({
   socialLoginCallback,
   socialLoginFailureCallback,
-  closeModalCallback,
   blocName,
+  twitterButtonCallback,
 }) {
   return (
     <QueryModalContainer>
@@ -142,12 +108,20 @@ function SocialRegisterWrapper({
         </Grid>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <FacebookButton
-              onLoginSuccess={socialLoginCallback}
-              onLoginFailure={socialLoginFailureCallback}
-            >
-              Continue with Facebook
-            </FacebookButton>
+            <div data-cy="facebook-login">
+              <SocialButton
+                channel="facebook"
+                provider="facebook"
+                appId={globals.facebookAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with FACEBOOK
+              </SocialButton>
+            </div>
+            <TwitterButton clickCallback={twitterButtonCallback}>
+              Continue with Twitter
+            </TwitterButton>
             <div data-cy="google-login">
               <SocialButton
                 channel="google"
@@ -165,11 +139,11 @@ function SocialRegisterWrapper({
                 <Body13 style={{ color: '#767676' }}>Or</Body13>
               </Or>
             </OrWrapper>
-            <Link
-              to="/you/register-email"
-              data-cy="email-register"
-            >
-              <OutlinedButton active style={{ marginTop: '24px', width: '100%' }}>
+            <Link to="/you/register-email" data-cy="email-register">
+              <OutlinedButton
+                active
+                style={{ marginTop: '24px', width: '100%' }}
+              >
                 <EmailInner>
                   <EmailIconImg src={EmailIcon} />
                   <StyledBody13>CONTINUE WITH EMAIL</StyledBody13>
@@ -198,7 +172,7 @@ function SocialRegisterWrapper({
 SocialRegisterWrapper.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
-  closeModalCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
   blocName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
