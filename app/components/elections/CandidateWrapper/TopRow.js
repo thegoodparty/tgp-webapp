@@ -19,7 +19,7 @@ import {
   blocNameSuffix,
   rankPageGrowLink,
   rankPageLink,
-  rankPageJoinLink
+  rankPageJoinLink,
 } from 'helpers/electionsHelper';
 import { numberNth } from 'helpers/numberHelper';
 import { getVotesNeededState } from 'helpers/candidatesHelper';
@@ -221,7 +221,12 @@ const TopRow = ({
           {socialAccounts.map((social, index) => (
             <React.Fragment key={`${index}-${social.url}`}>
               {social.url && social.url !== '' && (
-                <a href={social.url} target="_blank" data-cy="social-link">
+                <a
+                  href={social.url}
+                  target="_blank"
+                  data-cy="social-link"
+                  rel="nofollow"
+                >
                   <IconWrapper>
                     <img src={social.icon} alt={social.name} />
                     <SocialLabel>{social.name}</SocialLabel>
@@ -242,7 +247,7 @@ const TopRow = ({
       return (
         <>
           support{' '}
-          <a href={candidate.twitter} target="_blank">
+          <a href={candidate.twitter} target="_blank" rel="nofollow">
             <strong>{blocName}</strong>
           </a>
         </>
@@ -258,7 +263,7 @@ const TopRow = ({
   const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
     <TopRowWrapper data-cy="top-row">
-      {isGoodOrUnkwown &&
+      {isGoodOrUnkwown && (
         <ShareButton
           to={rankPageGrowLink(candidate, chamberName, state, district)}
           data-cy="grow-share"
@@ -266,7 +271,7 @@ const TopRow = ({
           <img src={ShareIcon} alt="more" />
           Share
         </ShareButton>
-      }
+      )}
       <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
       <H3 style={{ marginTop: '14px' }} data-cy="top-name">
         {name}
@@ -317,14 +322,23 @@ const TopRow = ({
               </RankWrapper>
             </>
           ) : (
-              <RankButton className="blue">
-                <Link to={rankPageJoinLink(user, candidate, chamberName, state, district)} data-cy="rank-button">
-                  <StyledBody13 className="white">
-                    JOIN {blocName} {blocNameSuffix(blocName)}
-                  </StyledBody13>
-                </Link>
-              </RankButton>
-            )}
+            <RankButton className="blue">
+              <Link
+                to={rankPageJoinLink(
+                  user,
+                  candidate,
+                  chamberName,
+                  state,
+                  district,
+                )}
+                data-cy="rank-button"
+              >
+                <StyledBody13 className="white">
+                  JOIN {blocName} {blocNameSuffix(blocName)}
+                </StyledBody13>
+              </Link>
+            </RankButton>
+          )}
         </>
       )}
     </TopRowWrapper>
