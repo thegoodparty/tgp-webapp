@@ -54,7 +54,7 @@ const generateSiteMapXML = async () => {
         <url>
           <loc>${base}/party/faqs?article=${article.id}</loc>
           <lastmod>${currentDate}</lastmod>
-          <changefreq>weekly</changefreq>
+          <changefreq>monthly</changefreq>
         </url>
       `;
     });
