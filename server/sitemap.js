@@ -5,9 +5,10 @@ const moment = require('moment');
 const path = require('path');
 const fs = require('fs');
 const { candidateRoute } = require('../app/helpers/electionsHelper');
-const apiHelper = require('../app/helpers/apiHelper');
+const apiHelper = require('../app/helpers/apiHelper').default;
+const api = require('../app/api/tgpApi').default;
 const currentDate = moment().format('YYYY-MM-DD');
-const { apiBase, base } = apiHelper.default;
+const { base } = apiHelper;
 
 const staticUrls = [
   '/',
@@ -26,7 +27,10 @@ const staticUrls = [
 
 const generateSiteMapXML = async () => {
   try {
-    const response = await Axios.get(`${apiBase}candidates/all`);
+    let response = await Axios.get(api.content.url);
+    const { faqArticles } = response.data;
+
+    response = await Axios.get(api.directory.allCandidates.url);
     const candidates = response.data;
     let allCandidates = [];
     Object.keys(candidates).forEach(key => {
@@ -34,25 +38,34 @@ const generateSiteMapXML = async () => {
     });
 
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  `;
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    `;
     staticUrls.forEach(link => {
       xmlString += `
-    <url>
-      <loc>${base}${link}</loc>
-      <lastmod>${currentDate}</lastmod>
-      <changefreq>weekly</changefreq>
-    </url>
-    `;
+        <url>
+          <loc>${base}${link}</loc>
+          <lastmod>${currentDate}</lastmod>
+          <changefreq>weekly</changefreq>
+        </url>
+      `;
+    });
+    faqArticles.forEach(article => {
+      xmlString += `
+        <url>
+          <loc>${base}/party/faqs?article=${article.id}</loc>
+          <lastmod>${currentDate}</lastmod>
+          <changefreq>monthly</changefreq>
+        </url>
+      `;
     });
     allCandidates.forEach(candidate => {
       xmlString += `
-    <url>
-      <loc>${base}${candidateRoute(candidate)}</loc>
-      <lastmod>${currentDate}</lastmod>
-      <changefreq>weekly</changefreq>
-    </url>
-    `;
+        <url>
+          <loc>${base}${candidateRoute(candidate)}</loc>
+          <lastmod>${currentDate}</lastmod>
+          <changefreq>weekly</changefreq>
+        </url>
+      `;
     });
     xmlString += '</urlset>';
     fs.writeFileSync(path.join(__dirname, 'sitemaps/sitemap.xml'), xmlString, {

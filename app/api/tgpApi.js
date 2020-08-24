@@ -1,4 +1,4 @@
-import apiHelper from 'helpers/apiHelper';
+import apiHelper from '../helpers/apiHelper';
 const base = apiHelper.apiBase;
 const api = {
   base,
