@@ -162,7 +162,7 @@ function AdminUsersList({ users, deleteUserCallback }) {
   ];
   if (ENV !== 'prod') {
     columns.push({
-      Header: 'Action',
+      Header: 'Delete',
       headerStyle,
       maxWidth: 80,
       filterable: false,
@@ -184,7 +184,6 @@ function AdminUsersList({ users, deleteUserCallback }) {
     toggleShowDeleteAlert(true);
   };
   const handleCloseAlert = () => toggleShowDeleteAlert(false);
-  console.log('render admin');
   return (
     <Wrapper>
       <Title>All Users</Title>
@@ -201,7 +200,8 @@ function AdminUsersList({ users, deleteUserCallback }) {
           open={showDeleteAlert}
           handleClose={handleCloseAlert}
           title={"Delete User"}
-          description={"If you proceed, selected user will be deleted."}
+          arialLabel={"Delete User"}
+          description={"Are you sure you want to delete the user?"}
           handleProceed={handleDeleteUser}
         />
       }

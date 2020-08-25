@@ -47,11 +47,9 @@ function* deleteUser(action) {
     yield call(requestHelper, api, payload);
     yield put(actions.deleteUserSuccess(user));
   } catch (error) {
-    console.log(error);
     yield put(
       snackbarActions.showSnakbarAction('Error Deleting User', 'error'),
     );
-    yield put(actions.deleteUserError(error));
   }
 }
 

@@ -50,10 +50,6 @@ const adminPageReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.error = false;
         break;
-      case types.DELETE_USER_ERROR:
-        draft.loading = false;
-        draft.error = action.error;
-        break;
       case types.LOAD_ALL_USERS:
         draft.users = false;
         draft.loading = true;

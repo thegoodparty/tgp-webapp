@@ -13,11 +13,11 @@ import WarningIcon from '@material-ui/icons/Warning';
 const AlertWrapper = styled.div`
   border: solid 1px red;
 `;
-function AlertDialog({ handleClose, handleProceed, open, title, description }) {
+function AlertDialog({ handleClose, handleProceed, open, title, description, ariaLabel }) {
   return (
     <Dialog
       onClose={handleClose}
-      aria-labelledby="Ranking not Allowed"
+      aria-labelledby={arialLabel}
       open={open}
     >
       <AlertWrapper>

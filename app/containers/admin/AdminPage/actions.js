@@ -62,12 +62,6 @@ function deleteUserSuccess(user) {
   };
 }
 
-function deleteUserError(error) {
-  return {
-    type: types.DELETE_USER_ERROR,
-    error,
-  };
-}
 
 function updateCandidate(
   id,
@@ -156,7 +150,6 @@ export default {
 
   deleteUser,
   deleteUserSuccess,
-  deleteUserError,
 
   updateCandidate,
   updateCandidateSuccess,
