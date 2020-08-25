@@ -29,6 +29,7 @@ export function AdminPage({
   updateCandidateCallback,
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
+  deleteUserCallback,
   userState,
   content,
   dispatch,
@@ -53,6 +54,7 @@ export function AdminPage({
     updateCandidateCallback,
     loadAllUsersCallback,
     loadArticleFeedbackCallback,
+    deleteUserCallback,
     loading,
     error,
     user,
@@ -76,6 +78,7 @@ AdminPage.propTypes = {
   updateCandidateCallback: PropTypes.func,
   loadAllUsersCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
+  deleteUserCallback: PropTypes.func,
   userState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
@@ -101,6 +104,9 @@ function mapDispatchToProps(dispatch) {
     },
     loadArticleFeedbackCallback: () => {
       dispatch(adminActions.loadArticlesFeedback());
+    },
+    deleteUserCallback: user => {
+      dispatch(adminActions.deleteUser(user));
     },
   };
 }

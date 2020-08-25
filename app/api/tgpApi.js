@@ -230,6 +230,11 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    deleteUser: {
+      url: `${base}admin/users`,
+      method: 'DELETE',
+      withAuth: true,
+    },
     articlesFeedback: {
       url: `${base}admin/articles-feedback`,
       method: 'GET',
