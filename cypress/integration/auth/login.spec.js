@@ -30,7 +30,7 @@ describe('Login', () => {
       .and('contain', 'disabled');
     cy.get('[data-cy=password]')
       .should('exist')
-      .type('myFirst100');
+      .type('myFirst1000');
     cy.get('[data-cy=login]')
       .find('button')
       .should('contain', 'SIGN IN')
