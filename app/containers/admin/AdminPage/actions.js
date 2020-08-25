@@ -6,6 +6,7 @@
 
 import types from './constants';
 
+
 function loadCandidates(chamber) {
   return {
     type: types.LOAD_CANDIDATES,
@@ -43,6 +44,27 @@ function loadAllUsersSuccess(users) {
 function loadAllUsersError(error) {
   return {
     type: types.LOAD_ALL_USERS_ERROR,
+    error,
+  };
+}
+
+function deleteUser(user) {
+  return {
+    type: types.DELETE_USER,
+    user,
+  };
+}
+
+function deleteUserSuccess(user) {
+  return {
+    type: types.DELETE_USER_SUCCESS,
+    user,
+  };
+}
+
+function deleteUserError(error) {
+  return {
+    type: types.DELETE_USER_ERROR,
     error,
   };
 }
@@ -131,6 +153,10 @@ export default {
   loadAllUsers,
   loadAllUsersSuccess,
   loadAllUsersError,
+
+  deleteUser,
+  deleteUserSuccess,
+  deleteUserError,
 
   updateCandidate,
   updateCandidateSuccess,

@@ -4,14 +4,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import Hidden from '@material-ui/core/Hidden';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import WarningIcon from '@material-ui/icons/Warning';
-
 import PageWrapper from 'components/shared/PageWrapper';
 import Nav from 'containers/shared/Nav';
 import {
@@ -29,6 +21,8 @@ import { formatToPhone } from 'helpers/phoneHelper';
 import AvatarUpload from 'components/shared/AvatarUpload/Loadable';
 import { BlueButton } from 'components/shared/buttons';
 import UserAvatar from 'components/shared/UserAvatar';
+import AlertDialog from 'components/shared/AlertDialog';
+
 import { getUserDistrictName } from 'helpers/userHelper';
 const Row = styled.div`
   display: flex;
@@ -77,7 +71,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -134,10 +128,6 @@ const AddPhone = styled(Body)`
   padding-bottom: 16px;
   border-bottom: solid 1px ${({ theme }) => theme.colors.gray9};
   cursor: pointer;
-`;
-
-const AlertWrapper = styled.div`
-  border: solid 1px red;
 `;
 
 const EditProfileWrapper = ({
@@ -393,46 +383,13 @@ const EditProfileWrapper = ({
               </BlueButton>
             </form>
           </PrivateWrapper>
-          <Dialog
-            onClose={handleCloseAlert}
-            aria-labelledby="Ranking not Allowed"
+          <AlertDialog
             open={showRankAlert}
-          >
-            <AlertWrapper>
-              <DialogTitle
-                id="alert-dialog-title"
-                data-cy="district-change-title"
-              >
-                <WarningIcon /> District Change
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText
-                  id="alert-dialog-description"
-                  data-cy="district-change-description"
-                >
-                  If you proceed, your previous district&apos;s ranked choices
-                  will be discarded.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  onClick={handleCloseAlert}
-                  color="primary"
-                  data-cy="modal-cancel"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={handleDeleteRanking}
-                  color="primary"
-                  autoFocus
-                  data-cy="modal-proceed"
-                >
-                  Proceed
-                </Button>
-              </DialogActions>
-            </AlertWrapper>
-          </Dialog>
+            handleClose={handleCloseAlert}
+            title={"District Change"}
+            description={"If you proceed, your previous district&apos;s ranked choices will be discarded."}
+            handleProceed={handleDeleteRanking}
+          />
         </>
       )}
       {showUploadPhoto && (

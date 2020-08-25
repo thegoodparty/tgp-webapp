@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Collapse from '@material-ui/core/Collapse';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import WarningIcon from '@material-ui/icons/Warning';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import AmaContainer from 'containers/shared/AmaContainer';
 import { H1, H3, Body, Body11 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
+import AlertDialog from 'components/shared/AlertDialog';
 import {
   houseElectionLink,
   isEmptyCandidates,
@@ -263,14 +257,14 @@ const DistrictWrapper = ({
                 suffixText=" (270 ELECTORS)"
               />
             ) : (
-              <VsCard
-                title="Presidential Election"
-                candidates={presidential}
-                suffixText={` IN ${upperState} (${
-                  presidential.electors
-                } ELECTORS)`}
-              />
-            )}
+                <VsCard
+                  title="Presidential Election"
+                  candidates={presidential}
+                  suffixText={` IN ${upperState} (${
+                    presidential.electors
+                    } ELECTORS)`}
+                />
+              )}
           </Link>
           {!isEmptyCandidates(senateCandidates) && (
             <Link to={senateElectionLink(shortState)} data-cy="senate">
@@ -284,12 +278,12 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                <VsCard
-                  title={`Senator - ${stateLong}`}
-                  candidates={senateCandidates}
-                  suffixText={` ${upperState}`}
-                />
-              )}
+                  <VsCard
+                    title={`Senator - ${stateLong}`}
+                    candidates={senateCandidates}
+                    suffixText={` ${upperState}`}
+                  />
+                )}
             </Link>
           )}
           {!isEmptyCandidates(houseCandidates) && (
@@ -308,45 +302,27 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                <VsCard
-                  title={`House Representative ${shortState}-${districtNumber}`}
-                  candidates={houseCandidates}
-                  suffixText={` ${upperState}-${districtNumber}`}
-                />
-              )}
+                  <VsCard
+                    title={`House Representative ${shortState}-${districtNumber}`}
+                    candidates={houseCandidates}
+                    suffixText={` ${upperState}-${districtNumber}`}
+                  />
+                )}
             </Link>
           )}
           <TopQuestions articles={articles} />
           <AmaContainer />
         </>
       ) : (
-        <LoadingAnimation />
-      )}
-      <Dialog
-        onClose={handleCloseAlert}
-        aria-labelledby="Ranking not Allowed"
+          <LoadingAnimation />
+        )}
+      <AlertDialog
         open={showRankAlert}
-      >
-        <AlertWrapper>
-          <DialogTitle id="alert-dialog-title">
-            <WarningIcon /> District Change
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              If you proceed, your previous district&apos;s ranked choices will
-              be discarded.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCloseAlert} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleDeleteRanking} color="primary" autoFocus>
-              Proceed
-            </Button>
-          </DialogActions>
-        </AlertWrapper>
-      </Dialog>
+        handleClose={handleCloseAlert}
+        title={"District Change"}
+        description={"If you proceed, your previous district&apos;s ranked choices will be discarded."}
+        handleProceed={handleDeleteRanking}
+      />
     </PageWrapper>
   );
 };

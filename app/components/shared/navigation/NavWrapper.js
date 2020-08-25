@@ -53,7 +53,6 @@ const NavWrapper = ({
 }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
   useEffect(() => {
     const electionRoute =
       pathname.includes('elections') || pathname.includes('zip-finder');
