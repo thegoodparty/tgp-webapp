@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { H3 } from '../../shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
-
+import ENV from 'api/ENV';
 import UserAvatar from '../../shared/UserAvatar';
 
 const Wrapper = styled.div`
@@ -83,7 +83,7 @@ function AdminUsersList({ users, deleteUserCallback }) {
     return rowVal.includes(str);
   };
 
-  const columns = [
+  let columns = [
     {
       Header: 'Id',
       accessor: 'id',
@@ -159,7 +159,9 @@ function AdminUsersList({ users, deleteUserCallback }) {
       filterMethod: customFilter,
       maxWidth: 80,
     },
-    {
+  ];
+  if (ENV !== 'prod') {
+    columns.push({
       Header: 'Action',
       headerStyle,
       maxWidth: 80,
@@ -171,8 +173,8 @@ function AdminUsersList({ users, deleteUserCallback }) {
           </IconButton>
         </ButtonWrapper>
       ),
-    },
-  ];
+    })
+  }
   const handleDeleteUser = () => {
     deleteUserCallback(selectedUser);
     toggleShowDeleteAlert(false);
@@ -194,13 +196,15 @@ function AdminUsersList({ users, deleteUserCallback }) {
         showPagination
         filterable
       />
-      <AlertDialog
-        open={showDeleteAlert}
-        handleClose={handleCloseAlert}
-        title={"Delete User"}
-        description={"If you proceed, selected user will be deleted."}
-        handleProceed={handleDeleteUser}
-      />
+      {ENV !== 'prod' &&
+        <AlertDialog
+          open={showDeleteAlert}
+          handleClose={handleCloseAlert}
+          title={"Delete User"}
+          description={"If you proceed, selected user will be deleted."}
+          handleProceed={handleDeleteUser}
+        />
+      }
     </Wrapper>
   );
 }
