@@ -42,8 +42,9 @@ function* deleteUser(action) {
   try {
     const { user } = action;
     yield put(snackbarActions.showSnakbarAction('Deleting User'));
-    // const api = tgpApi.admin.allUsers;
-    // const { users } = yield call(requestHelper, api, null);
+    const api = tgpApi.admin.deleteUser;
+    const payload = { id: user.id };
+    yield call(requestHelper, api, payload);
     yield put(actions.deleteUserSuccess(user));
   } catch (error) {
     console.log(error);
