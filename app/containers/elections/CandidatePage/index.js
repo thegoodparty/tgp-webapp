@@ -94,9 +94,6 @@ export function CandidatePage({
       ? 'incumbent'
       : 'candidate'
   }`;
-  if (error) {
-    return <NotFoundPage />;
-  }
   return (
     <div>
       <TgpHelmet title={title} description={title} image={candidate?.image} />
