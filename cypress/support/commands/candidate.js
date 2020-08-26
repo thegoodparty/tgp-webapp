@@ -86,8 +86,8 @@ Cypress.Commands.add(
     );
     const openSecretLink = getOpenSecretLink(chamber, calculatedCandidateData);
     cy.get('[data-cy=top-row]').as('top-row');
-    
-    
+
+
     cy.get('@top-row')
       .find('[data-cy=top-name]')
       .contains(name);
@@ -418,7 +418,7 @@ Cypress.Commands.add(
             .and('contain', `${moneyHelper(comparedIncumbent.raised)}, or`)
             .and(
               'contain',
-              `${comparedIncumbent.xTimes}x times more money, with a`,
+              `${comparedIncumbent.xTimes}x times more money, with`,
             )
             .and('contain', `${moneyHelper(comparedIncumbent.bigMoneyFunds)}`)
             .and('contain', `(${percHelper(bigFundsPerc, true)}% )`)
@@ -446,7 +446,7 @@ Cypress.Commands.add(
           .and('contain', `${moneyHelper(comparedIncumbent.raised)}, or`)
           .and(
             'contain',
-            `${comparedIncumbent.xTimes}x times more money, with a`,
+            `${comparedIncumbent.xTimes}x times more money, with`,
           )
           .and('contain', `${moneyHelper(comparedIncumbent.bigMoneyFunds)}`)
           .and('contain', `(${percHelper(bigFundsPerc, true)}% )`)

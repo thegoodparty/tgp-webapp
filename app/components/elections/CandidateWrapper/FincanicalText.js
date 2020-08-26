@@ -99,8 +99,7 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
           <strong>
             The {fakeIncumbentOrIncumbentLabel}, {comparedIncumbent.name}, has
             raised {moneyHelper(comparedIncumbent.raised)}, or{' '}
-            {numberFormatter(comparedIncumbent.xTimes)}x times more money, with
-            a{' '}
+            {numberFormatter(comparedIncumbent.xTimes)}x times more money, with{' '}
             <ColoredText className="red">
               {moneyHelper(comparedIncumbent.bigMoneyFunds)}
             </ColoredText>{' '}
@@ -180,7 +179,7 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
                 {comparedIncumbent.name}, has raised{' '}
                 {moneyHelper(comparedIncumbent.raised)}, or{' '}
                 {numberFormatter(comparedIncumbent.xTimes)}x times more money,
-                with a{' '}
+                with{' '}
                 <ColoredText className="red">
                   {moneyHelper(comparedIncumbent.bigMoneyFunds)}
                 </ColoredText>{' '}
