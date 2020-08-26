@@ -13,13 +13,16 @@ import WarningIcon from '@material-ui/icons/Warning';
 const AlertWrapper = styled.div`
   border: solid 1px red;
 `;
-function AlertDialog({ handleClose, handleProceed, open, title, description, ariaLabel }) {
+function AlertDialog({
+  handleClose,
+  handleProceed,
+  open,
+  title,
+  description,
+  ariaLabel,
+}) {
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby={arialLabel}
-      open={open}
-    >
+    <Dialog onClose={handleClose} aria-labelledby={ariaLabel} open={open}>
       <AlertWrapper>
         <DialogTitle id="alert-dialog-title">
           <WarningIcon /> {title}
@@ -32,21 +35,23 @@ function AlertDialog({ handleClose, handleProceed, open, title, description, ari
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
-            </Button>
+          </Button>
           <Button onClick={handleProceed} color="primary" autoFocus>
             Proceed
-            </Button>
+          </Button>
         </DialogActions>
       </AlertWrapper>
     </Dialog>
-  )
+  );
 }
 
 AlertDialog.propTypes = {
   open: PropTypes.bool,
-  handleCloseAlert: PropTypes.func,
+  handleClose: PropTypes.func,
   handleProceed: PropTypes.func,
-  title: PropTypes.string
+  title: PropTypes.string,
+  description: PropTypes.string,
+  ariaLabel: PropTypes.string,
 };
 
 export default AlertDialog;

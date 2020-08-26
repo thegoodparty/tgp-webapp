@@ -200,7 +200,7 @@ function AdminUsersList({ users, deleteUserCallback }) {
           open={showDeleteAlert}
           handleClose={handleCloseAlert}
           title={"Delete User"}
-          arialLabel={"Delete User"}
+          ariaLabel={"Delete User"}
           description={"Are you sure you want to delete the user?"}
           handleProceed={handleDeleteUser}
         />

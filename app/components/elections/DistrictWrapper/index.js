@@ -320,7 +320,7 @@ const DistrictWrapper = ({
         open={showRankAlert}
         handleClose={handleCloseAlert}
         title={"District Change"}
-        arialLabel={"Ranking not Allowed"}
+        ariaLabel={"Ranking not Allowed"}
         description={"If you proceed, your previous district&apos;s ranked choices will be discarded."}
         handleProceed={handleDeleteRanking}
       />
