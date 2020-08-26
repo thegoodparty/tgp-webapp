@@ -36,7 +36,6 @@ const generateSiteMapXML = async () => {
     Object.keys(candidates).forEach(key => {
       allCandidates = [...allCandidates, ...candidates[key]];
     });
-
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     `;
@@ -58,15 +57,17 @@ const generateSiteMapXML = async () => {
         </url>
       `;
     });
-    allCandidates.forEach(candidate => {
-      xmlString += `
+    allCandidates
+      .filter(candidate => candidate.isHidden !== true)
+      .forEach(candidate => {
+        xmlString += `
         <url>
           <loc>${base}${candidateRoute(candidate)}</loc>
           <lastmod>${currentDate}</lastmod>
           <changefreq>weekly</changefreq>
         </url>
       `;
-    });
+      });
     xmlString += '</urlset>';
     fs.writeFileSync(path.join(__dirname, 'sitemaps/sitemap.xml'), xmlString, {
       encoding: 'utf8',
