@@ -61,7 +61,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
       <Row>
         <div style={{ marginRight: '16px' }}>
           <Body className="bold600" data-cy="event-title">
-            <a href={locationLink} target="_blank">
+            <a href={locationLink} target="_blank" rel="nofollow">
               {title}
             </a>
           </Body>
@@ -104,7 +104,12 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
         <Photo src={avatarPhoto} />
       </Row>
       {!isPastEvent && (
-        <a href={locationLink} target="_blank" data-cy="event-interested">
+        <a
+          href={locationLink}
+          target="_blank"
+          data-cy="event-interested"
+          rel="nofollow"
+        >
           <ButtonWrapper>
             <OutlinedButton fullWidth active>
               ADD TO CALENDAR...

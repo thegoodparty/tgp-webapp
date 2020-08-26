@@ -34,7 +34,22 @@ const adminPageReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.error = action.error;
         break;
-
+      case types.DELETE_USER:
+        draft.loading = true;
+        draft.error = true;
+        break;
+      case types.DELETE_USER_SUCCESS:
+        let users = [...state.users];
+        for (let i = 0; i < users.length; i++) {
+          if (users[i].id === action.user.id) {
+            users.splice(i, 1);
+            break;
+          }
+        }
+        draft.users = users;
+        draft.loading = false;
+        draft.error = false;
+        break;
       case types.LOAD_ALL_USERS:
         draft.users = false;
         draft.loading = true;

@@ -38,6 +38,21 @@ function* loadAllUsers() {
   }
 }
 
+function* deleteUser(action) {
+  try {
+    const { user } = action;
+    yield put(snackbarActions.showSnakbarAction('Deleting User'));
+    const api = tgpApi.admin.deleteUser;
+    const payload = { id: user.id };
+    yield call(requestHelper, api, payload);
+    yield put(actions.deleteUserSuccess(user));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Error Deleting User', 'error'),
+    );
+  }
+}
+
 function* loadArticlesFeedback() {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading Articles Feedback'));
@@ -114,6 +129,8 @@ export default function* saga() {
   const candAction = yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
   yield takeLatest(types.LOAD_ALL_USERS, loadAllUsers);
   yield takeLatest(types.LOAD_ARTICLES_FEEDBACK, loadArticlesFeedback);
+
+  yield takeLatest(types.DELETE_USER, deleteUser);
   const updateCandAction = yield takeLatest(
     types.UPDATE_CANDIDATE,
     updateCandidate,

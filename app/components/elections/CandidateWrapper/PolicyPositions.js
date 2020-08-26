@@ -57,7 +57,12 @@ const PolicyPositions = ({ candidate }) => {
           <div>
             <Body13 style={{ marginTop: '12px' }}>
               The following policy positions for {name} were compiled by{' '}
-              <a href={ballotpediaLink} target="_blank" data-cy="ballot-link-1">
+              <a
+                href={ballotpediaLink}
+                target="_blank"
+                data-cy="ballot-link-1"
+                rel="nofollow"
+              >
                 Ballotpedia
               </a>{' '}
               from the candidate&apos;s survey, official campaign website,
@@ -65,7 +70,12 @@ const PolicyPositions = ({ candidate }) => {
             </Body13>
             <Body13 dangerouslySetInnerHTML={{ __html: candidateInfo }} />
             <div className="text-center" style={{ paddingBottom: '16px' }}>
-              <a href={ballotpediaLink} target="_blank" data-cy="ballot-link-2">
+              <a
+                href={ballotpediaLink}
+                target="_blank"
+                data-cy="ballot-link-2"
+                rel="nofollow"
+              >
                 <OpenSecretsLink>
                   CANDIDATE DATA COURTESY OF BALLOTPEDIA
                 </OpenSecretsLink>
@@ -83,7 +93,12 @@ const PolicyPositions = ({ candidate }) => {
           <div className="text-center">
             <BallotpediaNoData style={{ padding: '16px 0' }}>
               No data found for {name} on{' '}
-              <a href={ballotpediaLink} target="_blank" data-cy="ballot-link">
+              <a
+                href={ballotpediaLink}
+                target="_blank"
+                data-cy="ballot-link"
+                rel="nofollow"
+              >
                 Ballotpedia
               </a>
               <br />

@@ -102,6 +102,7 @@ const AdminWrapper = ({
   updateCandidateCallback,
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
+  deleteUserCallback,
   loading,
   error,
   content,
@@ -166,7 +167,9 @@ const AdminWrapper = ({
       );
     }
     if (selectedItem === 3) {
-      return <AdminUsersList users={users} />;
+      return (
+        <AdminUsersList users={users} deleteUserCallback={deleteUserCallback} />
+      );
     }
     if (selectedItem === 4) {
       return <AdminArticlesFeedback articles={articles} content={content} />;
@@ -230,6 +233,7 @@ AdminWrapper.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateCandidateCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
+  deleteUserCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 

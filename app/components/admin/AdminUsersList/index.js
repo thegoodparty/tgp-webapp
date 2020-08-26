@@ -10,8 +10,11 @@ import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { H3 } from '../../shared/typogrophy';
+import AlertDialog from '../../shared/AlertDialog';
+import ENV from 'api/ENV';
 import UserAvatar from '../../shared/UserAvatar';
 
 const Wrapper = styled.div`
@@ -36,8 +39,16 @@ const NameWrapper = styled.div`
   align-items: center;
 `;
 
-function AdminUsersList({ users }) {
+const ButtonWrapper = styled.div`
+  && {
+    text-align: center;
+  }
+`;
+
+function AdminUsersList({ users, deleteUserCallback }) {
   const [tableData, setTableData] = useState([]);
+  const [showDeleteAlert, toggleShowDeleteAlert] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   useEffect(() => {
     if (users) {
       const data = [];
@@ -52,7 +63,7 @@ function AdminUsersList({ users }) {
       });
       setTableData(data);
     }
-  }, users);
+  }, [users]);
 
   let str;
   let rowVal;
@@ -72,7 +83,7 @@ function AdminUsersList({ users }) {
     return rowVal.includes(str);
   };
 
-  const columns = [
+  let columns = [
     {
       Header: 'Id',
       accessor: 'id',
@@ -85,29 +96,23 @@ function AdminUsersList({ users }) {
       accessor: 'name',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => {
-        return (
-          <NameWrapper>
-            <span>{row.original.name}</span>
-            {row.original.avatar && (
-              <UserAvatar user={row.original} size="sm" />
-            )}
-          </NameWrapper>
-        );
-      },
+      Cell: row => (
+        <NameWrapper>
+          <span>{row.original.name}</span>
+          {row.original.avatar && <UserAvatar user={row.original} size="sm" />}
+        </NameWrapper>
+      ),
     },
     {
       Header: 'Email',
       accessor: 'email',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => {
-        return (
-          <Tooltip title={row.original.email}>
-            <a href={`mailto:${row.original.email}`}>{row.original.email}</a>
-          </Tooltip>
-        );
-      },
+      Cell: row => (
+        <Tooltip title={row.original.email}>
+          <a href={`mailto:${row.original.email}`}>{row.original.email}</a>
+        </Tooltip>
+      ),
     },
     {
       Header: 'Phone',
@@ -120,13 +125,11 @@ function AdminUsersList({ users }) {
       accessor: 'feedback',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => {
-        return (
-          <div style={{ overflow: 'auto', height: '100%' }}>
-            {row.original.feedback}
-          </div>
-        );
-      },
+      Cell: row => (
+        <div style={{ overflow: 'auto', height: '100%' }}>
+          {row.original.feedback}
+        </div>
+      ),
     },
     {
       Header: 'State',
@@ -144,7 +147,7 @@ function AdminUsersList({ users }) {
       Cell: row => {
         let { districtNumber } = row.original;
         if (districtNumber > 0 && districtNumber < 10) {
-          districtNumber = '0' + districtNumber;
+          districtNumber = `0${districtNumber}`;
         }
         return <div>{districtNumber}</div>;
       },
@@ -157,7 +160,30 @@ function AdminUsersList({ users }) {
       maxWidth: 80,
     },
   ];
-  console.log('render admin');
+  if (ENV !== 'prod') {
+    columns.push({
+      Header: 'Delete',
+      headerStyle,
+      maxWidth: 80,
+      filterable: false,
+      Cell: row => (
+        <ButtonWrapper>
+          <IconButton aria-label="delete" onClick={() => handleOpenAlert(row.original)}>
+            <DeleteIcon />
+          </IconButton>
+        </ButtonWrapper>
+      ),
+    })
+  }
+  const handleDeleteUser = () => {
+    deleteUserCallback(selectedUser);
+    toggleShowDeleteAlert(false);
+  }
+  const handleOpenAlert = user => {
+    setSelectedUser(user);
+    toggleShowDeleteAlert(true);
+  };
+  const handleCloseAlert = () => toggleShowDeleteAlert(false);
   return (
     <Wrapper>
       <Title>All Users</Title>
@@ -169,12 +195,23 @@ function AdminUsersList({ users }) {
         showPagination
         filterable
       />
+      {ENV !== 'prod' &&
+        <AlertDialog
+          open={showDeleteAlert}
+          handleClose={handleCloseAlert}
+          title={"Delete User"}
+          ariaLabel={"Delete User"}
+          description={"Are you sure you want to delete the user?"}
+          handleProceed={handleDeleteUser}
+        />
+      }
     </Wrapper>
   );
 }
 
 AdminUsersList.propTypes = {
   users: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  deleteUserCallback: PropTypes.func,
 };
 
 export default AdminUsersList;

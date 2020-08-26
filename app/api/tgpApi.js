@@ -1,4 +1,4 @@
-import apiHelper from 'helpers/apiHelper';
+import apiHelper from '../helpers/apiHelper';
 const base = apiHelper.apiBase;
 const api = {
   base,
@@ -228,6 +228,11 @@ const api = {
     allUsers: {
       url: `${base}admin/users`,
       method: 'GET',
+      withAuth: true,
+    },
+    deleteUser: {
+      url: `${base}admin/users`,
+      method: 'DELETE',
       withAuth: true,
     },
     articlesFeedback: {

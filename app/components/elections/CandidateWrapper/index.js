@@ -12,6 +12,7 @@ import FollowTheMoney from './FollowTheMoney';
 import FincanicalText from './FincanicalText';
 import PolicyPositions from './PolicyPositions';
 import CampaignWebsite from './CampaignWebsite';
+import CandidateProfile from './CandidateProfile';
 
 const CandidateWrapper = ({
   candidate,
@@ -51,6 +52,7 @@ const CandidateWrapper = ({
             incumbent={incumbent}
             chamberName={chamberName}
           />
+          <CandidateProfile candidate={candidate} />
           <PolicyPositions candidate={candidate} />
           <CampaignWebsite candidate={candidate} />
         </>
