@@ -9,13 +9,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import { CSVLink } from "react-csv/lib";
+import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
-
+import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from '../../shared/typogrophy';
 import { numberFormatter } from '../../../helpers/numberHelper';
@@ -28,6 +30,7 @@ const Wrapper = styled.div`
 const Title = styled(H3)`
   margin-bottom: 12px;
   text-align: center;
+  position: relative;
 `;
 
 const ColoredText = styled.span`
@@ -48,7 +51,12 @@ const StyledSelect = styled(Select)`
     }
   }
 `;
-
+const CSVLinkWrapper = styled(Button)`
+  && {
+    position: absolute;
+    right: 0;
+  }
+`;
 const headerStyle = {
   fontWeight: 700,
   fontSize: '1.05em',
@@ -72,8 +80,8 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
             candidate.isGood === null
               ? 'unknown'
               : candidate.isGood
-              ? 'yes'
-              : 'no',
+                ? 'yes'
+                : 'no',
           isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
           isMajor: candidate.isMajor ? 'yes' : 'no',
           isHidden: candidate.isHidden === true,
@@ -120,6 +128,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     },
     {
       Header: 'Name',
+      accessor: 'name',
       headerStyle,
       filterMethod: customFilter,
       Cell: row => {
@@ -130,7 +139,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
         const route = candidateRoute(row.original);
         const editRoute = `/admin/edit-candidate/${chamberLower}${
           row.original.isIncumbent ? '-i' : ''
-        }/${row.original.id}`;
+          }/${row.original.id}`;
         return (
           <>
             <a href={editRoute} target="_blank">
@@ -259,7 +268,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       headerStyle,
     });
   }
-
+  const csvHeader = columns.map(column => ({ label: column.Header, key: column.accessor }));
   const updateHidden = (candidate, newVal) => {
     console.log('ewVal', newVal);
     updateCandidateCallback(
@@ -281,7 +290,20 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
 
   return (
     <Wrapper>
-      <Title>{chamber} candidate list</Title>
+      <Title>
+        {chamber} candidate list
+        <CSVLinkWrapper>
+          <CSVLink
+            data={tableData}
+            filename={`${chamber}_candidates_${moment().format('YYYY_MM_DD')}.csv`}
+            headers={csvHeader}
+            target="_blank"
+          >
+            Download as a CSV
+          </CSVLink>
+        </CSVLinkWrapper>
+      </Title>
+
       <ReactTable
         className="-striped -highlight"
         data={tableData}
