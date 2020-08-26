@@ -47,16 +47,18 @@ const Icon = styled.img`
   }
 `;
 
-const TwitterButton = ({ clickCallback, children }) => {
-  return (
-    <StyledButton fullWidth onClick={clickCallback}>
-      <div data-cy="twitter-login">
-        <Icon src={TwitterIcon} alt="" />
-        <StyledBody13>{children}</StyledBody13>
-      </div>
-    </StyledButton>
-  );
-};
+const TwitterButton = ({ clickCallback, children }) => (
+  <StyledButton
+    fullWidth
+    onClick={clickCallback}
+    data-cy="twitter-social-login"
+  >
+    <div>
+      <Icon src={TwitterIcon} alt="" />
+      <StyledBody13>{children}</StyledBody13>
+    </div>
+  </StyledButton>
+);
 
 TwitterButton.propTypes = {
   clickCallback: PropTypes.func,

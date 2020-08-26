@@ -37,8 +37,7 @@ Cypress.Commands.add('checkChangePasswordModal', hasPassword => {
       .find('button')
       .should('contain', 'SAVE NEW PASSWORD')
       .should('not.have.attr', 'disabled');
-  }
-  else {
+  } else {
     cy.get('[data-cy=password-submit]')
       .find('button')
       .should('contain', 'SAVE NEW PASSWORD')
@@ -87,12 +86,15 @@ Cypress.Commands.add('checkRegisterText', (blocName = false) => {
   }
 });
 Cypress.Commands.add('checkSocialLoginSection', () => {
-  cy.get('[data-cy=facebook-login]')
-    .contains('Continue with Facebook')
+  cy.get('[data-cy=facebook-social-login]')
+    .contains('Continue with FACEBOOK')
     .click();
   cy.get('alert').should('not.exist');
-  cy.get('[data-cy=google-login]')
-    .find('div.google')
+  cy.get('[data-cy=twitter-social-login]')
+    .contains('Continue with Twitter')
+    .click();
+  cy.get('alert').should('not.exist');
+  cy.get('[data-cy=google-social-login]')
     .contains('Continue with GOOGLE')
     .click();
   cy.get('alert').should('not.exist');
@@ -164,35 +166,24 @@ Cypress.Commands.add('checkEmailRegisterPage', () => {
     .find('label')
     .should('contain', 'Full Name');
   cy.get('[data-cy=full-name]')
-    .type(fullName)
     .find('p')
     .should('contain', 'We will never show your full name on our site.');
   cy.get('[data-cy=email]')
     .find('label')
     .should('contain', 'Email');
   cy.get('[data-cy=email]')
-    .type(email)
     .find('p')
     .should(
       'contain',
       'We will never share or sell your information for any reason',
     );
-  cy.get('[data-cy=submit]')
-    .find('button')
-    .should('have.attr', 'disabled')
-    .and('contain', 'disabled');
   cy.get('[data-cy=password]')
-    .type('12345')
     .find('p')
     .should('contain', '8 characters minimum');
   cy.get('[data-cy=submit]')
     .find('button')
     .should('have.attr', 'disabled')
     .and('contain', 'disabled');
-  cy.get('[data-cy=password]').type('12345');
-  cy.get('[data-cy=submit]')
-    .find('button')
-    .should('not.have.attr', 'disabled');
   // check login confirm page
   cy.get('[data-cy=login-wrapper]').should(
     'contain',
@@ -202,5 +193,4 @@ Cypress.Commands.add('checkEmailRegisterPage', () => {
     .contains('Login')
     .should('have.attr', 'href')
     .and('contain', '/login');
-  cy.get('[data-cy=login-link]').click();
 });
