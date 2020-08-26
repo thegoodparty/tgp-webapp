@@ -78,7 +78,7 @@ function* loadSenateCandidates(action) {
     );
   } catch (error) {
     console.log(error);
-    yield put(actions.loadDistrictCandidatesActionError(error));
+    // yield put(actions.loadDistrictCandidatesActionError(error));
   }
 }
 
