@@ -10,10 +10,12 @@ const Wrapper = styled(Body14)`
   align-items: center;
 `;
 
-const Avatar = styled.img`
+const Avatar = styled.div`
   height: 40px;
   width: 40px;
   border-radius: 50%;
+  background-position: center;
+  background-size: cover;
 
   &.medium {
     height: 50px;
@@ -84,7 +86,10 @@ const UserAvatar = ({ user, size = 'small' }) => (
     {user && (
       <Wrapper>
         {user.avatar ? (
-          <Avatar src={user.avatar} className={size} />
+          <Avatar
+            className={size}
+            style={{ backgroundImage: `url(${user.avatar})` }}
+          />
         ) : (
           <>
             {size === 'small' || size === 'medium' ? (
