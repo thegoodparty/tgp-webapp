@@ -83,11 +83,9 @@ export function CandidatePage({
     deleteCandidateRankingCallback,
   };
 
-  const emptyCandidate = () => {
-    return (
-      Object.keys(candidate).length === 0 && candidate.constructor === Object
-    );
-  };
+  const emptyCandidate = () =>
+    Object.keys(candidate).length === 0 && candidate.constructor === Object;
+
   const title = `${
     candidate && !emptyCandidate() ? candidate.name : ''
   } | ${chamberName} ${
