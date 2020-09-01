@@ -16,7 +16,7 @@ pipeline {
   stages {
     stage('deploy to develop') {
       steps {
-        sh 'eb deploy tgp-site-dev'
+        sh '/var/lib/jenkins/eb deploy tgp-site-dev'
       }
     }
     // stage('deploy to develop') {
