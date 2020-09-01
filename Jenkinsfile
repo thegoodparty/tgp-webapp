@@ -36,22 +36,22 @@ pipeline {
       }
     }
   }
-  // post {
-  //   failure {
-  //     script {
-  //       GIT_COMMIT_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD')
-  //       GIT_COMMIT_AUTHOR = sh(returnStdout: true, script: "git --no-pager show -s --format='%an' $GIT_COMMIT_SHA").trim()
-  //       GIT_DESC = sh(returnStdout: true, script: 'git log --format="commit %H%nauthor %an <%aE>%n%n%B" -1').trim()
-  //     }
-  //     slackSend (color: '#ff0000', channel: "jenkins-ci", message: "*$JOB_NAME #$BUILD_NUMBER deploy FAILURE!*\n\n```$GIT_DESC```\n:point_right: <$BUILD_URL|$JOB_NAME>")
-  //   }
-  //   success {
-  //     script {
-  //       GIT_COMMIT_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD')
-  //       GIT_COMMIT_AUTHOR = sh(returnStdout: true, script: "git --no-pager show -s --format='%an' $GIT_COMMIT_SHA").trim()
-  //       GIT_DESC = sh(returnStdout: true, script: 'git log --format="commit %H%nauthor %an <%aE>%n%n%B" -1').trim()
-  //     }
-  //     slackSend (color: '#BDFFC3', channel: "jenkins-ci", message: "*$JOB_NAME #$BUILD_NUMBER deploy done!*\n\n```$GIT_DESC```\n:point_right: <$BUILD_URL|$JOB_NAME>")
-  //   }
-  // }
+  post {
+    failure {
+      script {
+        GIT_COMMIT_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD')
+        GIT_COMMIT_AUTHOR = sh(returnStdout: true, script: "git --no-pager show -s --format='%an' $GIT_COMMIT_SHA").trim()
+        GIT_DESC = sh(returnStdout: true, script: 'git log --format="commit %H%nauthor %an <%aE>%n%n%B" -1').trim()
+      }
+      slackSend (color: '#ff0000', channel: "jenkins", message: "*$JOB_NAME #$BUILD_NUMBER deploy FAILURE!*\n\n```$GIT_DESC```\n:point_right: <$BUILD_URL|$JOB_NAME>")
+    }
+    success {
+      script {
+        GIT_COMMIT_SHA = sh(returnStdout: true, script: 'git rev-parse HEAD')
+        GIT_COMMIT_AUTHOR = sh(returnStdout: true, script: "git --no-pager show -s --format='%an' $GIT_COMMIT_SHA").trim()
+        GIT_DESC = sh(returnStdout: true, script: 'git log --format="commit %H%nauthor %an <%aE>%n%n%B" -1').trim()
+      }
+      slackSend (color: '#BDFFC3', channel: "jenkins", message: "*$JOB_NAME #$BUILD_NUMBER deploy done!*\n\n```$GIT_DESC```\n:point_right: <$BUILD_URL|$JOB_NAME>")
+    }
+  }
 }
