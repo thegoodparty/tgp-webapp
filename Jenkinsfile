@@ -16,49 +16,25 @@ pipeline {
   stages {
     stage('deploy to develop') {
       steps {
-        sh '/var/lib/jenkins/aws --version'
-        sh 'pip3 install awsebcli'
-        sh '/var/lib/jenkins/eb --version'
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '	244a4e80-3587-40cb-bcf0-dbe5321fc1bf', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-          sh '/var/lib/jenkins/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile eb-cli'
-          sh '/var/lib/jenkins/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile eb-cli'
-        }
+        sh 'eb deploy tgp-site-dev'
       }
     }
-    stage('setup application dependencies') {
+    stage('deploy to develop') {
+      when {
+        branch DEVELOP_BRANCH
+      }
       steps {
-        sh '#!/bin/bash'
-        sh 'node --version'
-        sh 'yarn --version'
-        sh 'yarn --version'
-
-        sh 'yarn'
+        sh '/var/lib/jenkins/eb deploy $EB_ENV'
       }
     }
-    // stage('deploy to develop') {
-    //   when {
-    //     branch DEVELOP_BRANCH
-    //   }
-    //   steps {
-    //     sh '/var/lib/jenkins/eb deploy $EB_ENV'
-    //   }
-    // }
-    // stage('deploy to staging') {
-    //   when {
-    //     branch STAGING_BRANCH
-    //   }
-    //   steps {
-    //     sh '/var/lib/jenkins/eb deploy $EB_STAGING'
-    //   }
-    // }
-    // stage('deploy to production') {
-    //   when {
-    //     branch PROD_BRANCH
-    //   }
-    //   steps {
-    //     sh '/var/lib/jenkins/eb deploy $EB_PROD'
-    //   }
-    // }
+    stage('deploy to production') {
+      when {
+        branch PROD_BRANCH
+      }
+      steps {
+        sh '/var/lib/jenkins/eb deploy $EB_PROD'
+      }
+    }
   }
   // post {
   //   failure {
