@@ -4,33 +4,29 @@ pipeline {
     nodejs "node 12"
   }
   environment {
-    BUILD_DIR             = 'build'
-    GIT_COMMIT_AUTHOR     = ""
-    GIT_COMMIT_SHA        = ""
-    GIT_DESC              = ""
     DEVELOP_BRANCH        = "develop"
     EB_ENV                = "tgp-site-dev"
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site"
   }
   stages {
-    stage('deploy to develop') {
-      steps {
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '	244a4e80-3587-40cb-bcf0-dbe5321fc1bf', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-          sh '/var/lib/jenkins/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile eb-cli-tgp'
-          sh '/var/lib/jenkins/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile eb-cli-tgp'
-          sh '/var/lib/jenkins/eb deploy $EB_ENV'
-        }
-      }
-    }
     // stage('deploy to develop') {
-    //   when {
-    //     branch DEVELOP_BRANCH
-    //   }
     //   steps {
-    //     sh '/var/lib/jenkins/eb deploy $EB_ENV'
+    //     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '	244a4e80-3587-40cb-bcf0-dbe5321fc1bf', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+    //       sh '/var/lib/jenkins/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile eb-cli-tgp'
+    //       sh '/var/lib/jenkins/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile eb-cli-tgp'
+    //       sh '/var/lib/jenkins/eb deploy $EB_ENV'
+    //     }
     //   }
     // }
+    stage('deploy to develop') {
+      when {
+        branch DEVELOP_BRANCH
+      }
+      steps {
+        sh '/var/lib/jenkins/eb deploy $EB_ENV'
+      }
+    }
     stage('deploy to production') {
       when {
         branch PROD_BRANCH
