@@ -16,7 +16,11 @@ pipeline {
   stages {
     stage('deploy to develop') {
       steps {
-        sh '/var/lib/jenkins/eb deploy tgp-site-dev'
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '	244a4e80-3587-40cb-bcf0-dbe5321fc1bf', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+          sh '/var/lib/jenkins/aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile eb-cli-tgp'
+          sh '/var/lib/jenkins/aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile eb-cli-tgp'
+          sh '/var/lib/jenkins/eb deploy $DEVELOP_EB_ENV'
+        }
       }
     }
     // stage('deploy to develop') {
