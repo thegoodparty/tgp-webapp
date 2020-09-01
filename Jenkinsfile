@@ -19,14 +19,14 @@ pipeline {
         sh 'eb deploy tgp-site-dev'
       }
     }
-    stage('deploy to develop') {
-      when {
-        branch DEVELOP_BRANCH
-      }
-      steps {
-        sh '/var/lib/jenkins/eb deploy $EB_ENV'
-      }
-    }
+    // stage('deploy to develop') {
+    //   when {
+    //     branch DEVELOP_BRANCH
+    //   }
+    //   steps {
+    //     sh '/var/lib/jenkins/eb deploy $EB_ENV'
+    //   }
+    // }
     stage('deploy to production') {
       when {
         branch PROD_BRANCH
