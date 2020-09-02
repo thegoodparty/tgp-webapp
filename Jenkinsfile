@@ -11,7 +11,7 @@ pipeline {
     EB_TEST               = "tgp-site-test"
     
   }
-  // stages {
+  stages {
     // stage('deploy to develop') {
     //   steps {
     //     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '	244a4e80-3587-40cb-bcf0-dbe5321fc1bf', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
@@ -33,23 +33,19 @@ pipeline {
     //     sh 'npm run cypress:run:dev'
     //   }
     // }
-    node {
-      stage('deploy to EBS') {
-        if(env.BRANCH_NAME == "master") {
-          sh '/var/lib/jenkins/eb deploy $EB_PROD'
-        } else if(env.BRANCH_NAME == "develop") {
-          sh '/var/lib/jenkins/eb deploy $EB_DEV'
-        } else {
-          sh '/var/lib/jenkins/eb deploy $EB_TEST'
+    stage('deploy to EBS') {
+      steps {
+          script {
+            if(env.BRANCH_NAME == "master") {
+            sh '/var/lib/jenkins/eb deploy $EB_PROD'
+          } else if(env.BRANCH_NAME == "develop") {
+            sh '/var/lib/jenkins/eb deploy $EB_DEV'
+          } else {
+            sh '/var/lib/jenkins/eb deploy $EB_TEST'
+          }
         }
       }
     }
-    
-    // } else if(env.BRANCH_NAME == "develop") {
-    //       sh '/var/lib/jenkins/eb deploy $EB_DEV'
-    //     } else {
-    //       sh '/var/lib/jenkins/eb deploy $EB_TEST'
-    //     }
     // stage('deploy to test') {
     //   when {
     //     not {
@@ -108,7 +104,7 @@ pipeline {
     //     sh 'npm run cypress:run:prod'
     //   }
     // }
-  // }
+  }
   post {
     failure {
       script {
