@@ -11,7 +11,7 @@ pipeline {
     EB_TEST               = "tgp-site-test"
     
   }
-  stages {
+  // stages {
     // stage('deploy to develop') {
     //   steps {
     //     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '	244a4e80-3587-40cb-bcf0-dbe5321fc1bf', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
@@ -108,7 +108,7 @@ pipeline {
     //     sh 'npm run cypress:run:prod'
     //   }
     // }
-  }
+  // }
   post {
     failure {
       script {
