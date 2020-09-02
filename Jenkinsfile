@@ -8,6 +8,8 @@ pipeline {
     EB_ENV                = "tgp-site-dev"
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site"
+    EB_TEST               = "tgp-site-test"
+
   }
   stages {
     // stage('deploy to develop') {
@@ -19,6 +21,19 @@ pipeline {
     //     }
     //   }
     // }
+    stage('deploy to test') {
+      when {
+        not {
+          anyOf {
+            branch DEVELOP_BRANCH;
+            branch PROD_BRANCH
+          }
+       }
+      }
+      steps {
+        sh '/var/lib/jenkins/eb deploy $EB_TEST'
+      }
+    }
     stage('deploy to develop') {
       when {
         branch DEVELOP_BRANCH
