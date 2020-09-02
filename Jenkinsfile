@@ -21,10 +21,17 @@ pipeline {
     //     }
     //   }
     // }
-
-
-
-    
+    stage('setup cypress') {
+      steps {
+        sh 'npm install cypress'
+        sh 'npm install cross-env'
+      }
+    }
+    stage('cypress test for test env') {
+      steps {
+        sh 'npm run cypress:run:dev'
+      }
+    }
     stage('deploy to test') {
       when {
         not {
