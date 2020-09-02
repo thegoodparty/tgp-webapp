@@ -33,21 +33,18 @@ pipeline {
     //     sh 'npm run cypress:run:dev'
     //   }
     // }
-    stage('deploy to EBS') {
-      if(env.BRANCH_NAME == "master") {
-        steps {
-            sh '/var/lib/jenkins/eb deploy $EB_PROD'
-        }
-      } else if(env.BRANCH_NAME == "develop") {
-        steps {
-            sh '/var/lib/jenkins/eb deploy $EB_DEV'
-        }
-      } else {
-        steps {
-            sh '/var/lib/jenkins/eb deploy $EB_TEST'
+    node {
+      stage('deploy to EBS') {
+        if(env.BRANCH_NAME == "master") {
+          sh '/var/lib/jenkins/eb deploy $EB_PROD'
+        } else if(env.BRANCH_NAME == "develop") {
+          sh '/var/lib/jenkins/eb deploy $EB_DEV'
+        } else {
+          sh '/var/lib/jenkins/eb deploy $EB_TEST'
         }
       }
     }
+    
     // } else if(env.BRANCH_NAME == "develop") {
     //       sh '/var/lib/jenkins/eb deploy $EB_DEV'
     //     } else {
