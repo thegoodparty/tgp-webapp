@@ -88,18 +88,20 @@ function AdminEditCandidate({
     website,
     order,
     source,
+    likelyVoters,
   } = candidate;
 
   useEffect(() => {
     if (candidate) {
       const initData = {
-        openSecretsId: openSecretsId,
-        blocName: blocName,
-        source: source,
-        facebook: facebook,
-        twitter: twitter,
-        website: website,
-        order: order,
+        openSecretsId,
+        blocName,
+        source,
+        facebook,
+        twitter,
+        website,
+        order,
+        likelyVoters,
       };
       setInitialData(initData);
       setEditableValues(initData);
@@ -153,6 +155,11 @@ function AdminEditCandidate({
         value: website,
         key: 'website',
       },
+      {
+        name: 'Likely Voters',
+        value: likelyVoters,
+        key: 'likelyVoters',
+      },
       { name: 'Order', value: order, key: 'order' },
     ];
   }
@@ -181,7 +188,6 @@ function AdminEditCandidate({
 
   const saveCandidate = () => {
     const data = {};
-    console.log('html', editedInfo.toString('html'));
     if (infoEdited) {
       data.info = editedInfo.toString('html');
       if (data.info === '<p><br></p>') {
@@ -201,6 +207,7 @@ function AdminEditCandidate({
     addIfEdited('facebook', data);
     addIfEdited('twitter', data);
     addIfEdited('website', data);
+    addIfEdited('likelyVoters', data);
     addIfEdited('order', data);
 
     saveCandidateCallback(data, candidate);
@@ -299,6 +306,8 @@ AdminEditCandidate.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   uploadImageCallback: PropTypes.func,
   loading: PropTypes.bool,
+  chamber: PropTypes.string,
+  saveCandidateCallback: PropTypes.func,
 };
 
 export default AdminEditCandidate;
