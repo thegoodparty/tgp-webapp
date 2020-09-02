@@ -32,6 +32,7 @@ pipeline {
         sh 'npm run cypress:run:dev'
       }
     }
+
     stage('deploy to test') {
       when {
         not {
