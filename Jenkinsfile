@@ -23,8 +23,9 @@ pipeline {
     // }
     stage('setup cypress') {
       steps {
-        sh 'npm install cypress'
-        sh 'npm install cross-env'
+        // sh 'npm install cypress'
+        // sh 'npm install cross-env'
+        sh 'npm install xvfb'
       }
     }
     stage('cypress test for test env') {
