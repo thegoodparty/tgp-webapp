@@ -9,7 +9,7 @@ pipeline {
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site"
     EB_TEST               = "tgp-site-test"
-    EB_ENV                 = env.BRANCH_NAME == "master" ? "tgp-site" : (env.BRANCH_NAME == 'develop' ? "tgp-site-dev" : "tgp-stie-test")
+    
   }
   stages {
     // stage('deploy to develop') {
@@ -35,7 +35,13 @@ pipeline {
     // }
     stage('deploy to EBS') {
       steps {
-        sh '/var/lib/jenkins/eb deploy $EB_ENV'
+        if(env.BRANCH_NAME == "master") {
+          sh '/var/lib/jenkins/eb deploy $EB_PROD'
+        } else if(env.BRANCH_NAME == "develop") {
+          sh '/var/lib/jenkins/eb deploy $EB_DEV'
+        } else {
+          sh '/var/lib/jenkins/eb deploy $EB_TEST'
+        }
       }
     }
     // stage('deploy to test') {
