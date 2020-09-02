@@ -4,7 +4,7 @@ pipeline {
     nodejs "node 12"
   }
   environment {
-    DEVELOP_BRANCH        = "develop"
+    DEV_BRANCH        = "develop"
     EB_DEV                = "tgp-site-dev"
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site"
@@ -36,9 +36,9 @@ pipeline {
     stage('deploy to EBS') {
       steps {
           script {
-            if(env.BRANCH_NAME == "master") {
+            if(env.BRANCH_NAME == PROD_BRANCH) {
             sh '/var/lib/jenkins/eb deploy $EB_PROD'
-          } else if(env.BRANCH_NAME == "develop") {
+          } else if(env.BRANCH_NAME == DEV_BRANCH) {
             sh '/var/lib/jenkins/eb deploy $EB_DEV'
           } else {
             sh '/var/lib/jenkins/eb deploy $EB_TEST'
@@ -46,64 +46,19 @@ pipeline {
         }
       }
     }
-    // stage('deploy to test') {
-    //   when {
-    //     not {
-    //       anyOf {
-    //         branch DEVELOP_BRANCH;
-    //         branch PROD_BRANCH
-    //       }
-    //    }
-    //   }
-    //   steps {
-    //     sh '/var/lib/jenkins/eb deploy $EB_TEST'
-    //   }
-    // }
-    // stage('deploy to develop') {
-    //   when {
-    //     branch DEVELOP_BRANCH
-    //   }
-    //   steps {
-    //     sh '/var/lib/jenkins/eb deploy $EB_DEV'
-    //   }
-    // }
-    // stage('deploy to production') {
-    //   when {
-    //     branch PROD_BRANCH
-    //   }
-    //   steps {
-    //     sh '/var/lib/jenkins/eb deploy $EB_PROD'
-    //   }
-    // }
-    // stage('run cypress for test env') {
-    //   when {
-    //     not {
-    //       anyOf {
-    //         branch DEVELOP_BRANCH;
-    //         branch PROD_BRANCH
-    //       }
-    //    }
-    //   }
-    //   steps {
-    //     sh 'npm run cypress:run:test'
-    //   }
-    // }
-    // stage('run cypress for dev env') {
-    //   when {
-    //     branch DEVELOP_BRANCH
-    //   }
-    //   steps {
-    //     sh 'npm run cypress:run:dev'
-    //   }
-    // }
-    // stage('run cypress for prod env') {
-    //   when {
-    //     branch PROD_BRANCH
-    //   }
-    //   steps {
-    //     sh 'npm run cypress:run:prod'
-    //   }
-    // }
+    stage('run cypress test for deployed site') {
+      steps {
+          script {
+            if(env.BRANCH_NAME == PROD_BRANCH) {
+            sh 'npm run cypress:run:prod'
+          } else if(env.BRANCH_NAME == DEV_BRANCH) {
+            sh 'npm run cypress:run:dev'
+          } else {
+            sh 'npm run cypress:run:test'
+          }
+        }
+      }
+    }
   }
   post {
     failure {
