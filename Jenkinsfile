@@ -38,6 +38,14 @@ pipeline {
         steps {
             sh '/var/lib/jenkins/eb deploy $EB_PROD'
         }
+      } else if(env.BRANCH_NAME == "develop") {
+        steps {
+            sh '/var/lib/jenkins/eb deploy $EB_DEV'
+        }
+      } else {
+        steps {
+            sh '/var/lib/jenkins/eb deploy $EB_TEST'
+        }
       }
     }
     // } else if(env.BRANCH_NAME == "develop") {
