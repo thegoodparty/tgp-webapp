@@ -34,16 +34,17 @@ pipeline {
     //   }
     // }
     stage('deploy to EBS') {
-      steps {
-        if(env.BRANCH_NAME == "master") {
-          sh '/var/lib/jenkins/eb deploy $EB_PROD'
-        } else if(env.BRANCH_NAME == "develop") {
-          sh '/var/lib/jenkins/eb deploy $EB_DEV'
-        } else {
-          sh '/var/lib/jenkins/eb deploy $EB_TEST'
+      if(env.BRANCH_NAME == "master") {
+        steps {
+            sh '/var/lib/jenkins/eb deploy $EB_PROD'
         }
       }
     }
+    // } else if(env.BRANCH_NAME == "develop") {
+    //       sh '/var/lib/jenkins/eb deploy $EB_DEV'
+    //     } else {
+    //       sh '/var/lib/jenkins/eb deploy $EB_TEST'
+    //     }
     // stage('deploy to test') {
     //   when {
     //     not {
