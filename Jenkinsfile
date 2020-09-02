@@ -5,11 +5,11 @@ pipeline {
   }
   environment {
     DEVELOP_BRANCH        = "develop"
-    EB_ENV                = "tgp-site-dev"
+    EB_DEV                = "tgp-site-dev"
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site"
     EB_TEST               = "tgp-site-test"
-
+    EB_ENV                 = env.BRANCH_NAME == "master" ? "tgp-site" : (env.BRANCH_NAME == 'develop' ? "tgp-site-dev" : "tgp-stie-test")
   }
   stages {
     // stage('deploy to develop') {
@@ -21,48 +21,81 @@ pipeline {
     //     }
     //   }
     // }
-    stage('setup cypress') {
-      steps {
-        // sh 'npm install cypress'
-        // sh 'npm install cross-env'
-        sh 'npm install xvfb'
-      }
-    }
-    stage('cypress test for test env') {
-      steps {
-        sh 'npm run cypress:run:dev'
-      }
-    }
-
-    stage('deploy to test') {
-      when {
-        not {
-          anyOf {
-            branch DEVELOP_BRANCH;
-            branch PROD_BRANCH
-          }
-       }
-      }
-      steps {
-        sh '/var/lib/jenkins/eb deploy $EB_TEST'
-      }
-    }
-    stage('deploy to develop') {
-      when {
-        branch DEVELOP_BRANCH
-      }
+    // stage('setup cypress') {
+    //   steps {
+    //     // sh 'npm install cypress'
+    //     // sh 'npm install cross-env'
+    //     sh 'npm install xvfb'
+    //   }
+    // }
+    // stage('cypress test for test env') {
+    //   steps {
+    //     sh 'npm run cypress:run:dev'
+    //   }
+    // }
+    stage('deploy to EBS') {
       steps {
         sh '/var/lib/jenkins/eb deploy $EB_ENV'
       }
     }
-    stage('deploy to production') {
-      when {
-        branch PROD_BRANCH
-      }
-      steps {
-        sh '/var/lib/jenkins/eb deploy $EB_PROD'
-      }
-    }
+    // stage('deploy to test') {
+    //   when {
+    //     not {
+    //       anyOf {
+    //         branch DEVELOP_BRANCH;
+    //         branch PROD_BRANCH
+    //       }
+    //    }
+    //   }
+    //   steps {
+    //     sh '/var/lib/jenkins/eb deploy $EB_TEST'
+    //   }
+    // }
+    // stage('deploy to develop') {
+    //   when {
+    //     branch DEVELOP_BRANCH
+    //   }
+    //   steps {
+    //     sh '/var/lib/jenkins/eb deploy $EB_DEV'
+    //   }
+    // }
+    // stage('deploy to production') {
+    //   when {
+    //     branch PROD_BRANCH
+    //   }
+    //   steps {
+    //     sh '/var/lib/jenkins/eb deploy $EB_PROD'
+    //   }
+    // }
+    // stage('run cypress for test env') {
+    //   when {
+    //     not {
+    //       anyOf {
+    //         branch DEVELOP_BRANCH;
+    //         branch PROD_BRANCH
+    //       }
+    //    }
+    //   }
+    //   steps {
+    //     sh 'npm run cypress:run:test'
+    //   }
+    // }
+    // stage('run cypress for dev env') {
+    //   when {
+    //     branch DEVELOP_BRANCH
+    //   }
+    //   steps {
+    //     sh 'npm run cypress:run:dev'
+    //   }
+    // }
+    // stage('run cypress for prod env') {
+    //   when {
+    //     branch PROD_BRANCH
+    //   }
+    //   steps {
+    //     sh 'npm run cypress:run:prod'
+    //   }
+    // }
   }
   post {
     failure {

@@ -54,7 +54,8 @@
     "cypress:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress open",
     "cypress:run:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress run",
     "cypress:run:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress run",
-    "cypress:run:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress run"
+    "cypress:run:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress run",
+    "cypress:run:test": "cross-env CYPRESS_BASE_URL=https://test.thegoodparty.org ./node_modules/.bin/cypress run"
   },
   "browserslist": [
     "last 2 versions",
