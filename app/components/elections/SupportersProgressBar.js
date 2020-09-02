@@ -69,9 +69,7 @@ const SupportersProgressBar = ({
     >
       {showSupporters && (
         <BarBody11 data-cy="people-so-far">
-          {numberFormatter(peopleSoFar)}{' '}
-          {peopleSoFar === 1 ? 'person ' : 'people '}
-          {prefixText}
+          {numberFormatter(peopleSoFar)} {prefixText}
         </BarBody11>
       )}
       <BarBg>
@@ -91,7 +89,6 @@ SupportersProgressBar.propTypes = {
   votesNeeded: PropTypes.number,
   showSupporters: PropTypes.bool,
   alignLeft: PropTypes.bool,
-  showElectorsCount: PropTypes.bool,
   userState: PropTypes.string,
   prefixText: PropTypes.string,
   suffixText: PropTypes.string,

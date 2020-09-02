@@ -358,7 +358,7 @@ const VsList = ({
 
   const blocCountSection = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
-    let rank = candidate.ranking;
+    let rank = candidate.ranking + candidate.likelyVoters;
 
     if (candidateRank && !user) {
       // no user - need to add the guest count
@@ -367,7 +367,7 @@ const VsList = ({
 
     return (
       <BlocCount data-cy="block-count">
-        {numberFormatter(rank)} people support {candidateBlocName(candidate)}
+        {numberFormatter(rank)} likely voters for {candidateBlocName(candidate)}
       </BlocCount>
     );
   };

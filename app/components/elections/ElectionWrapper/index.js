@@ -273,7 +273,7 @@ const ElectionWrapper = ({
 
   const suffixText =
     chamber === 'presidential'
-      ? " (270 ELECTORS)"
+      ? ' (270 ELECTORS)'
       : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
 
   return (
@@ -376,7 +376,9 @@ const ElectionWrapper = ({
         candidate={choiceModalCandidate}
         // candidate={candidates.good ? candidates.good[0] : null}
         votesNeeded={votesNeeded}
-        chamberCount={choiceModalCandidate.ranking}
+        chamberCount={
+          choiceModalCandidate.ranking + choiceModalCandidate.likelyVoters
+        }
         user={user}
         animateCount={!isExternalLink}
         userState={candidates.userState}

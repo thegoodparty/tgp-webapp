@@ -232,7 +232,6 @@ const ChoiceModal = ({
                 >
                   <SupportersIcon src={SupportersImg} alt="tgp" />
                   {numberFormatter(chamberCount)}{' '}
-                  {/*{chamberCount === 0 ? 'person' : 'people'}*/}
                 </SupportersCount>
                 <SupportersCount
                   style={{
@@ -247,13 +246,12 @@ const ChoiceModal = ({
             ) : (
               <SupportersCount>
                 <SupportersIcon src={SupportersImg} alt="tgp" />
-                {numberFormatter(chamberCount ? chamberCount : 0)}{' '}
-                {/*{chamberCount === 1 ? 'person' : 'people'}*/}
+                {numberFormatter(chamberCount || 0)}{' '}
               </SupportersCount>
             )}
           </SupportersRow>
           <SuppoetersBody13>
-            people support <strong>{blocName}</strong>{' '}
+            likely voters for <strong>{blocName}</strong>{' '}
             {state ? `in ${state.toUpperCase()}` : ''}
             {district ? `-${district}` : ''}
           </SuppoetersBody13>

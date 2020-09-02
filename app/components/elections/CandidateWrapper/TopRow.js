@@ -175,6 +175,7 @@ const TopRow = ({
     state,
     district,
     rankingCount,
+    likelyVoters,
   } = candidate;
 
   const isUnkown = isGood === null;
@@ -241,24 +242,6 @@ const TopRow = ({
   };
 
   const blocName = candidateBlocName(candidate);
-  const isTwitter = blocName.charAt(0) === '@';
-  const prefixText = () => {
-    if (isTwitter) {
-      return (
-        <>
-          support{' '}
-          <a href={candidate.twitter} target="_blank" rel="nofollow">
-            <strong>{blocName}</strong>
-          </a>
-        </>
-      );
-    }
-    return (
-      <>
-        support <strong>{blocName}</strong>
-      </>
-    );
-  };
 
   const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
@@ -289,10 +272,10 @@ const TopRow = ({
         <>
           <BlocCount data-cy="bloc-count">
             <SupportersProgressBar
-              peopleSoFar={rankingCount}
+              peopleSoFar={rankingCount + likelyVoters}
               votesNeeded={candidate.votesNeeded}
               userState={votesNeededState}
-              prefixText={prefixText()}
+              prefixText={`likely voters for ${blocName}`}
               suffixText={
                 chamberName === 'presidential' ? ' (270 ELECTORS)' : ''
               }
