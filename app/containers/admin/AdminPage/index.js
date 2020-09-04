@@ -53,12 +53,14 @@ export function AdminPage({
     divisions,
     loading,
     error,
+    isUpdated,
   } = adminState;
 
   const childProps = {
     candidates,
     users,
     divisions,
+    isUpdated,
     articles: articlesFeedback,
     loadCandidatesCallback,
     updateCandidateCallback,
@@ -124,7 +126,7 @@ function mapDispatchToProps(dispatch) {
     },
     loadDivisionsCallback: () => dispatch(adminActions.loadDivisions()),
     updateDivisionCallback: division =>
-      dispatch(adminActions.updateDivision(division)),
+      dispatch(adminActions.updateDivisionAction(division)),
   };
 }
 

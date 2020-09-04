@@ -157,17 +157,17 @@ function loadDivisionsError(error) {
   };
 }
 
-function updateDivision(division) {
+function updateDivisionAction(division) {
   return {
     type: types.UPDATE_DIVISION,
     division,
   };
 }
 
-function updateDivisionSuccess(division) {
+function updateDivisionActionSuccess(divisions) {
   return {
     type: types.UPDATE_DIVISION_SUCCESS,
-    division,
+    divisions,
   };
 }
 
@@ -197,6 +197,6 @@ export default {
   loadDivisions,
   loadDivisionsSuccess,
   loadDivisionsError,
-  updateDivision,
-  updateDivisionSuccess,
+  updateDivisionAction,
+  updateDivisionActionSuccess,
 };

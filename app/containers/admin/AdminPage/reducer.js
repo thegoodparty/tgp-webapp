@@ -14,6 +14,7 @@ export const initialState = {
   articlesFeedback: false,
   candidate: false,
   divisions: false,
+  isUpdated: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -124,22 +125,13 @@ const adminPageReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.error = action.error;
         break;
+      case types.UPDATE_DIVISION:
+        draft.isUpdated = false;
+        break;
       case types.UPDATE_DIVISION_SUCCESS:
-        const updatedDivisions = [...state.divisions];
-        const { division } = action;
-        for (let i = 0; i < updatedDivisions.length; i++) {
-          const originDivision = updatedDivisions[i];
-          if (
-            originDivision.id == division.id &&
-            originDivision.isSenate === division.isSenate
-          ) {
-            
-            updatedDivisions[i] = division;
-            break;
-          }
-        }
-        draft.divisions = updatedDivisions;
+        draft.divisions = action.divisions;
         draft.loading = false;
+        draft.isUpdated = true;
     }
   });
 

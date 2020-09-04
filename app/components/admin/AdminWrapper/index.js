@@ -102,6 +102,7 @@ const AdminWrapper = ({
   users,
   divisions,
   articles,
+  isUpdated,
   loadCandidatesCallback,
   updateCandidateCallback,
   loadAllUsersCallback,
@@ -191,6 +192,7 @@ const AdminWrapper = ({
         <AdminDivisionList
           divisions={divisions}
           updateDivisionCallback={updateDivisionCallback}
+          isUpdated={isUpdated}
         />
       );
     }
@@ -254,6 +256,7 @@ AdminWrapper.propTypes = {
   loadDivisionsCallback: PropTypes.func,
   updateDivisionCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  isUpdated: PropTypes.bool,
 };
 
 export default AdminWrapper;

@@ -64,10 +64,11 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function AdminDivisionList({ divisions, updateDivisionCallback }) {
+function AdminDivisionList({ divisions, isUpdated, updateDivisionCallback }) {
   const [tableData, setTableData] = useState([]);
   const [selectedDivision, setSelectedDivision] = useState(null);
   useEffect(() => {
+    debugger;
     if (divisions) {
       const data = [];
       divisions.map(division => {
@@ -79,7 +80,7 @@ function AdminDivisionList({ divisions, updateDivisionCallback }) {
       });
       setTableData(data);
     }
-  }, divisions);
+  }, [divisions, isUpdated]);
   let str;
   let rowVal;
   let columnName;
@@ -100,15 +101,19 @@ function AdminDivisionList({ divisions, updateDivisionCallback }) {
   const updateDivision = (ev, key) => {
     setSelectedDivision({
       ...selectedDivision,
-      [key]: ev.target.value
+      [key]: ev.target.value,
     });
-  }
+  };
   const saveDivision = () => {
     updateDivisionCallback(selectedDivision);
     setSelectedDivision(null);
-  }
+  };
   const renderWriteInThresold = row => {
-    if (selectedDivision?.id === row.original.id && selectedDivision?.isSenate === row.original.isSenate && !selectedDivision.isThresoldWithPresident) {
+    if (
+      selectedDivision?.id === row.original.id &&
+      selectedDivision?.isSenate === row.original.isSenate &&
+      !selectedDivision.isThresoldWithPresident
+    ) {
       return (
         <>
           <IconButton color="primary" onClick={saveDivision}>
@@ -117,26 +122,40 @@ function AdminDivisionList({ divisions, updateDivisionCallback }) {
           <IconButton onClick={() => setSelectedDivision(null)}>
             <CloseIcon />
           </IconButton>
-          &nbsp;&nbsp;&nbsp;
-          <TextField id="outlined-basic" autoFocus type="number" value={selectedDivision.writeInThreshold} onChange={ev => updateDivision(ev, 'writeInThreshold')} />
+          <TextField
+            id="outlined-basic"
+            autoFocus
+            type="number"
+            value={selectedDivision.writeInThreshold}
+            onChange={ev => updateDivision(ev, 'writeInThreshold')}
+          />
         </>
-      )
+      );
     }
-    else {
-      return (
-        <>
-          <IconButton onClick={() => setSelectedDivision({ ...row.original, isThresoldWithPresident: false })}>
-            <EditIcon />
-          </IconButton>
-          &nbsp;&nbsp;&nbsp;
-          {row.original.writeInThreshold}
-        </>
-      )
-    }
-  }
+
+    return (
+      <>
+        <IconButton
+          onClick={() =>
+            setSelectedDivision({
+              ...row.original,
+              isThresoldWithPresident: false,
+            })
+          }
+        >
+          <EditIcon />
+        </IconButton>
+        {row.original.writeInThreshold}
+      </>
+    );
+  };
 
   const renderWriteInThresholdWithPresident = row => {
-    if (selectedDivision?.id === row.original.id && selectedDivision?.isSenate === row.original.isSenate && selectedDivision.isThresoldWithPresident) {
+    if (
+      selectedDivision?.id === row.original.id &&
+      selectedDivision?.isSenate === row.original.isSenate &&
+      selectedDivision.isThresoldWithPresident
+    ) {
       return (
         <>
           <IconButton color="primary" onClick={saveDivision}>
@@ -145,22 +164,32 @@ function AdminDivisionList({ divisions, updateDivisionCallback }) {
           <IconButton onClick={() => setSelectedDivision(null)}>
             <CloseIcon />
           </IconButton>
-          &nbsp;&nbsp;&nbsp;
-          <TextField id="outlined-basic" autoFocus type="number" value={selectedDivision.writeInThresholdWithPresident} onChange={ev => updateDivision(ev, 'writeInThresholdWithPresident')} />
+          <TextField
+            id="outlined-basic"
+            autoFocus
+            type="number"
+            value={selectedDivision.writeInThresholdWithPresident}
+            onChange={ev => updateDivision(ev, 'writeInThresholdWithPresident')}
+          />
         </>
-      )
+      );
     }
-    else {
-      return (
-        <>
-          <IconButton onClick={() => setSelectedDivision({ ...row.original, isThresoldWithPresident: true })}>
-            <EditIcon />
-          </IconButton>
-          &nbsp;&nbsp;&nbsp;
-          {row.original.writeInThresholdWithPresident}
-        </>
-      )
-    }
+
+    return (
+      <>
+        <IconButton
+          onClick={() =>
+            setSelectedDivision({
+              ...row.original,
+              isThresoldWithPresident: true,
+            })
+          }
+        >
+          <EditIcon />
+        </IconButton>
+        {row.original.writeInThresholdWithPresident}
+      </>
+    );
   };
   const columns = [
     {
@@ -187,28 +216,28 @@ function AdminDivisionList({ divisions, updateDivisionCallback }) {
       accessor: 'writeInThreshold',
       filterMethod: customFilter,
       headerStyle,
-      Cell: renderWriteInThresold
+      Cell: renderWriteInThresold,
     },
     {
       Header: 'writeInThresholdWithPresident',
       accessor: 'writeInThresholdWithPresident',
       filterMethod: customFilter,
       headerStyle,
-      Cell: renderWriteInThresholdWithPresident
+      Cell: renderWriteInThresholdWithPresident,
     },
     {
       Header: 'Chamber',
       accessor: 'chamber',
       filterMethod: customFilter,
       headerStyle,
-    }
+    },
   ];
 
   const csvHeader = columns.map(column => ({
     label: column.Header,
     key: column.accessor,
   }));
-  
+
   return (
     <Wrapper>
       <Title>
@@ -240,6 +269,7 @@ function AdminDivisionList({ divisions, updateDivisionCallback }) {
 AdminDivisionList.propTypes = {
   divisions: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   updateDivisionCallback: PropTypes.func,
+  isUpdated: PropTypes.bool,
 };
 
 export default AdminDivisionList;

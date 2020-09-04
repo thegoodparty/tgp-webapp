@@ -1,10 +1,12 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
+import { selectAdminPageDomain } from './selectors';
+
 
 function* loadCandidates(action) {
   try {
@@ -142,11 +144,23 @@ function* loadDivisions() {
 function* updateDivision(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Division'));
+    const { divisions } = yield select(selectAdminPageDomain);
     let { division } = action;
     const api = tgpApi.admin.updateDivision;
     const payload = { updatedDivision: division };
     const response = yield call(requestHelper, api, payload);
-    yield put(actions.updateDivisionSuccess(response.division));
+    division = response.division;
+    for (let i = 0; i < divisions.length; i++) {
+      const originDivision = divisions[i];
+      if (
+        originDivision.id === division.id &&
+        originDivision.isSenate === division.isSenate
+      ) {
+        divisions[i] = division;
+        break;
+      }
+    }
+    yield put(actions.updateDivisionActionSuccess(divisions));
   } catch (error) {
     console.log(error);
     yield put(
