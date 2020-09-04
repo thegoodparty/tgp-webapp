@@ -208,24 +208,7 @@ function AdminDivisionList({ divisions, updateDivisionCallback }) {
     label: column.Header,
     key: column.accessor,
   }));
-  // const updateHidden = (candidate, newVal) => {
-  //   updateCandidateCallback(
-  //     candidate.id,
-  //     { isHidden: newVal },
-  //     chamber,
-  //     candidate.incumbent === 'yes',
-  //   );
-  // };
-
-  // const updateAlignment = (candidate, newVal) => {
-  //   updateCandidateCallback(
-  //     candidate.id,
-  //     { isAligned: newVal },
-  //     chamber,
-  //     candidate.incumbent === 'yes',
-  //   );
-  // };
-
+  
   return (
     <Wrapper>
       <Title>
