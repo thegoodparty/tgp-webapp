@@ -124,6 +124,37 @@ function* loadCandidate(action) {
   }
 }
 
+function* loadDivisions() {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading Divisions'));
+    const api = tgpApi.admin.divisions;
+    const { divisions } = yield call(requestHelper, api, null);
+    yield put(actions.loadDivisionsSuccess(divisions));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Loading Divisions', 'error'),
+    );
+    yield put(actions.loadDivisionsError(error));
+  }
+}
+
+function* updateDivision(action) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Updating Division'));
+    let { division } = action;
+    const api = tgpApi.admin.updateDivision;
+    const payload = { updatedDivision: division };
+    const response = yield call(requestHelper, api, payload);
+    yield put(actions.updateDivisionSuccess(response.division));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Updating Division', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const candAction = yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
@@ -141,4 +172,8 @@ export default function* saga() {
   );
 
   const loadCandAction = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
+
+  yield takeLatest(types.LOAD_DIVISIONS, loadDivisions);
+  yield takeLatest(types.UPDATE_DIVISION, updateDivision);
+
 }

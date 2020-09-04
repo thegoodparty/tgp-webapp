@@ -240,6 +240,16 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    divisions: {
+      url: `${base}admin/divisions`,
+      method: 'GET',
+      withAuth: true,
+    },
+    updateDivision: {
+      url: `${base}admin/division`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
 
   creator: {

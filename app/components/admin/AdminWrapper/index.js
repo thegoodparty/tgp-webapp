@@ -12,6 +12,7 @@ import OpenIcon from '@material-ui/icons/ChevronRight';
 import UserIcon from '@material-ui/icons/Person';
 import ArticletIcon from '@material-ui/icons/Assignment';
 import StatsIcon from '@material-ui/icons/Equalizer';
+import HowToVoteIcon from '@material-ui/icons/HowToVote';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -22,6 +23,7 @@ import AdminCandidateList from '../AdminCandidateList/Loadable';
 import AdminUsersList from '../AdminUsersList/Loadable';
 import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 import AdminUserStats from '../AdminUserStats/Loadable';
+import AdminDivisionList from '../AdminDivisionList/Loadable';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -91,17 +93,21 @@ const leftMenuItems = [
   { icon: <UserIcon />, label: 'Users' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },
+  { icon: <HowToVoteIcon />, label: 'Divisions' },
 ];
 
 const AdminWrapper = ({
   user,
   candidates,
   users,
+  divisions,
   articles,
   loadCandidatesCallback,
   updateCandidateCallback,
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
+  loadDivisionsCallback,
+  updateDivisionCallback,
   deleteUserCallback,
   loading,
   error,
@@ -123,6 +129,9 @@ const AdminWrapper = ({
     }
     if (index === 4) {
       loadArticleFeedbackCallback();
+    }
+    if(index === 6) {
+      loadDivisionsCallback();
     }
   };
 
@@ -177,7 +186,14 @@ const AdminWrapper = ({
     if (selectedItem === 5) {
       return <AdminUserStats users={users} />;
     }
-
+    if (selectedItem === 6) {
+      return (
+        <AdminDivisionList
+          divisions={divisions}
+          updateDivisionCallback={updateDivisionCallback}
+        />
+      );
+    }
     return (
       <MainPanelPlaceholder>
         <H1>Admin Dashboard</H1>
@@ -225,6 +241,7 @@ const AdminWrapper = ({
 AdminWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  divisions: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loadCandidatesCallback: PropTypes.func,
   users: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   articles: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -234,6 +251,8 @@ AdminWrapper.propTypes = {
   updateCandidateCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
   deleteUserCallback: PropTypes.func,
+  loadDivisionsCallback: PropTypes.func,
+  updateDivisionCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 

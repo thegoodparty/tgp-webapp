@@ -13,6 +13,7 @@ export const initialState = {
   error: false,
   articlesFeedback: false,
   candidate: false,
+  divisions: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -39,7 +40,7 @@ const adminPageReducer = (state = initialState, action) =>
         draft.error = true;
         break;
       case types.DELETE_USER_SUCCESS:
-        let users = [...state.users];
+        const users = [...state.users];
         for (let i = 0; i < users.length; i++) {
           if (users[i].id === action.user.id) {
             users.splice(i, 1);
@@ -108,6 +109,37 @@ const adminPageReducer = (state = initialState, action) =>
       case types.UPDATE_CANDIDATE_IMAGE:
         draft.loading = true;
         break;
+      case types.LOAD_DIVISIONS:
+        draft.divisions = false;
+        draft.loading = true;
+        draft.error = false;
+        break;
+      case types.LOAD_DIVISIONS_SUCCESS:
+        draft.divisions = action.divisions;
+        draft.loading = false;
+        draft.error = false;
+        break;
+      case types.LOAD_DIVISIONS_ERROR:
+        draft.divisions = false;
+        draft.loading = false;
+        draft.error = action.error;
+        break;
+      case types.UPDATE_DIVISION_SUCCESS:
+        const updatedDivisions = [...state.divisions];
+        const { division } = action;
+        for (let i = 0; i < updatedDivisions.length; i++) {
+          const originDivision = updatedDivisions[i];
+          if (
+            originDivision.id == division.id &&
+            originDivision.isSenate === division.isSenate
+          ) {
+            
+            updatedDivisions[i] = division;
+            break;
+          }
+        }
+        draft.divisions = updatedDivisions;
+        draft.loading = false;
     }
   });
 
