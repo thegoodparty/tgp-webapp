@@ -131,13 +131,13 @@ function* loadDivisions() {
     yield put(snackbarActions.showSnakbarAction('Loading Divisions'));
     const api = tgpApi.admin.divisions;
     const { divisions } = yield call(requestHelper, api, null);
-    yield put(actions.loadDivisionsSuccess(divisions));
+    yield put(actions.loadDivisionsActionSuccess(divisions));
   } catch (error) {
     console.log(error);
     yield put(
       snackbarActions.showSnakbarAction('Error Loading Divisions', 'error'),
     );
-    yield put(actions.loadDivisionsError(error));
+    yield put(actions.loadDivisionsActionError(error));
   }
 }
 

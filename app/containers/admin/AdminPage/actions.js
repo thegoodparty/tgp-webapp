@@ -137,20 +137,20 @@ function loadCandidateActionSuccess(candidate) {
   };
 }
 
-function loadDivisions() {
+function loadDivisionsAction() {
   return {
     type: types.LOAD_DIVISIONS,
   };
 }
 
-function loadDivisionsSuccess(divisions) {
+function loadDivisionsActionSuccess(divisions) {
   return {
     type: types.LOAD_DIVISIONS_SUCCESS,
     divisions,
   };
 }
 
-function loadDivisionsError(error) {
+function loadDivisionsActionError(error) {
   return {
     type: types.LOAD_DIVISIONS_ERROR,
     error,
@@ -194,9 +194,9 @@ export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
 
-  loadDivisions,
-  loadDivisionsSuccess,
-  loadDivisionsError,
+  loadDivisionsAction,
+  loadDivisionsActionSuccess,
+  loadDivisionsActionError,
   updateDivisionAction,
   updateDivisionActionSuccess,
 };

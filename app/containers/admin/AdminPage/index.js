@@ -124,7 +124,7 @@ function mapDispatchToProps(dispatch) {
     deleteUserCallback: user => {
       dispatch(adminActions.deleteUser(user));
     },
-    loadDivisionsCallback: () => dispatch(adminActions.loadDivisions()),
+    loadDivisionsCallback: () => dispatch(adminActions.loadDivisionsAction()),
     updateDivisionCallback: division =>
       dispatch(adminActions.updateDivisionAction(division)),
   };
