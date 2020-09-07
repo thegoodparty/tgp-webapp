@@ -30,6 +30,8 @@ export function AdminPage({
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
   deleteUserCallback,
+  loadDivisionsCallback,
+  updateDivisionCallback,
   userState,
   content,
   dispatch,
@@ -44,17 +46,29 @@ export function AdminPage({
     }
   });
 
-  const { candidates, users, articlesFeedback, loading, error } = adminState;
+  const {
+    candidates,
+    users,
+    articlesFeedback,
+    divisions,
+    loading,
+    error,
+    isUpdated,
+  } = adminState;
 
   const childProps = {
     candidates,
     users,
+    divisions,
+    isUpdated,
     articles: articlesFeedback,
     loadCandidatesCallback,
     updateCandidateCallback,
     loadAllUsersCallback,
     loadArticleFeedbackCallback,
     deleteUserCallback,
+    loadDivisionsCallback,
+    updateDivisionCallback,
     loading,
     error,
     user,
@@ -79,6 +93,8 @@ AdminPage.propTypes = {
   loadAllUsersCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
   deleteUserCallback: PropTypes.func,
+  loadDivisionsCallback: PropTypes.func,
+  updateDivisionCallback: PropTypes.func,
   userState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
@@ -108,6 +124,9 @@ function mapDispatchToProps(dispatch) {
     deleteUserCallback: user => {
       dispatch(adminActions.deleteUser(user));
     },
+    loadDivisionsCallback: () => dispatch(adminActions.loadDivisionsAction()),
+    updateDivisionCallback: division =>
+      dispatch(adminActions.updateDivisionAction(division)),
   };
 }
 

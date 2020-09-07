@@ -1,10 +1,12 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
+import { selectAdminPageDomain } from './selectors';
+
 
 function* loadCandidates(action) {
   try {
@@ -124,6 +126,49 @@ function* loadCandidate(action) {
   }
 }
 
+function* loadDivisions() {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading Divisions'));
+    const api = tgpApi.admin.divisions;
+    const { divisions } = yield call(requestHelper, api, null);
+    yield put(actions.loadDivisionsActionSuccess(divisions));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Loading Divisions', 'error'),
+    );
+    yield put(actions.loadDivisionsActionError(error));
+  }
+}
+
+function* updateDivision(action) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Updating Division'));
+    const { divisions } = yield select(selectAdminPageDomain);
+    let { division } = action;
+    const api = tgpApi.admin.updateDivision;
+    const payload = { updatedDivision: division };
+    const response = yield call(requestHelper, api, payload);
+    division = response.division;
+    for (let i = 0; i < divisions.length; i++) {
+      const originDivision = divisions[i];
+      if (
+        originDivision.id === division.id &&
+        originDivision.isSenate === division.isSenate
+      ) {
+        divisions[i] = division;
+        break;
+      }
+    }
+    yield put(actions.updateDivisionActionSuccess(divisions));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Updating Division', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const candAction = yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
@@ -141,4 +186,8 @@ export default function* saga() {
   );
 
   const loadCandAction = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
+
+  yield takeLatest(types.LOAD_DIVISIONS, loadDivisions);
+  yield takeLatest(types.UPDATE_DIVISION, updateDivision);
+
 }
