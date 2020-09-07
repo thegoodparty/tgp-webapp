@@ -26,6 +26,7 @@ export function VoterizePage({ userState, mode, dispatch }) {
   useInjectSaga({ key: 'voterizePage', saga });
   const voteMode = mode || 'verify';
 
+
   const { user } = userState;
   useEffect(() => {
     if (user) {
