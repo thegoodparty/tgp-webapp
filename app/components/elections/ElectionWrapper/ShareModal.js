@@ -195,7 +195,6 @@ const ShareModal = ({
   url = `${url + queryOperator}b=${blocLink}`;
 
   const chamberTitle = getCandidateTitle(chamber);
-  console.log(chamber)
   const messageTitle = `Let's see if we can elect ${candidate.name} ${
     chamberTitle.includes('President') ? '' : 'to '
   }${chamberTitle}.`;
