@@ -27,6 +27,7 @@ pipeline {
     //     sh 'npm install cross-env'
     //   }
     // }
+
     
     stage('deploy to EBS') {
       steps {
