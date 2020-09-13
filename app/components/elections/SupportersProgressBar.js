@@ -53,7 +53,7 @@ const SupportersProgressBar = ({
   showSupporters = true,
   alignLeft = false,
   suffixText,
-  prefixText = 'support top candidate so far',
+  prefixText = 'likely voters for top candidate',
 }) => {
   let progress = 3;
   if (peopleSoFar && votesNeeded) {

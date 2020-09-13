@@ -290,7 +290,7 @@ const ElectionWrapper = ({
                 </SupportersCount>
               </SupportersRow>
               <SuppoetersBody data-cy="supporters-body">
-                people support top candidate so far
+                likely voters for top candidate
               </SuppoetersBody>
               <SupportersProgressBar
                 votesNeeded={votesNeeded}
