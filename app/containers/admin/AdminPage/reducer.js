@@ -14,6 +14,7 @@ export const initialState = {
   articlesFeedback: false,
   candidate: false,
   divisions: false,
+  voterizeList: false,
   isUpdated: false,
 };
 
@@ -130,6 +131,29 @@ const adminPageReducer = (state = initialState, action) =>
         break;
       case types.UPDATE_DIVISION_SUCCESS:
         draft.divisions = action.divisions;
+        draft.loading = false;
+        draft.isUpdated = true;
+
+      case types.LOAD_VOTERIZE:
+        draft.voterizeList = false;
+        draft.loading = true;
+        draft.error = false;
+        break;
+      case types.LOAD_VOTERIZE_SUCCESS:
+        draft.voterizeList = action.voterize;
+        draft.loading = false;
+        draft.error = false;
+        break;
+      case types.LOAD_VOTERIZE_ERROR:
+        draft.voterizeList = false;
+        draft.loading = false;
+        draft.error = action.error;
+        break;
+      case types.UPDATE_VOTERIZE:
+        draft.isUpdated = false;
+        break;
+      case types.UPDATE_VOTERIZE_SUCCESS:
+        draft.voterizeList = action.voterize;
         draft.loading = false;
         draft.isUpdated = true;
     }

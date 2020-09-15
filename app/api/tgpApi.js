@@ -250,6 +250,16 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    voterize: {
+      url: `${base}admin/voterize`,
+      method: 'GET',
+      withAuth: true,
+    },
+    updateVoterize: {
+      url: `${base}admin/voterize`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
 
   creator: {
