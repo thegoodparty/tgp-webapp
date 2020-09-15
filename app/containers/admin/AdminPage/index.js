@@ -32,6 +32,8 @@ export function AdminPage({
   deleteUserCallback,
   loadDivisionsCallback,
   updateDivisionCallback,
+  loadVoterizeCallback,
+  updateVoterizeCallback,
   userState,
   content,
   dispatch,
@@ -51,6 +53,7 @@ export function AdminPage({
     users,
     articlesFeedback,
     divisions,
+    voterizeList,
     loading,
     error,
     isUpdated,
@@ -60,6 +63,7 @@ export function AdminPage({
     candidates,
     users,
     divisions,
+    voterizeList,
     isUpdated,
     articles: articlesFeedback,
     loadCandidatesCallback,
@@ -69,6 +73,8 @@ export function AdminPage({
     deleteUserCallback,
     loadDivisionsCallback,
     updateDivisionCallback,
+    loadVoterizeCallback,
+    updateVoterizeCallback,
     loading,
     error,
     user,
@@ -127,6 +133,9 @@ function mapDispatchToProps(dispatch) {
     loadDivisionsCallback: () => dispatch(adminActions.loadDivisionsAction()),
     updateDivisionCallback: division =>
       dispatch(adminActions.updateDivisionAction(division)),
+    loadVoterizeCallback: () => dispatch(adminActions.loadVoterizeAction()),
+    updateVoterizeCallback: voterize =>
+      dispatch(adminActions.updateVoterizeAction(voterize)),
   };
 }
 

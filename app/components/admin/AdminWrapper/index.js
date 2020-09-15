@@ -24,6 +24,7 @@ import AdminUsersList from '../AdminUsersList/Loadable';
 import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 import AdminUserStats from '../AdminUserStats/Loadable';
 import AdminDivisionList from '../AdminDivisionList/Loadable';
+import AdminVoterizeList from '../AdminVoterizeList/Loadable';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -93,7 +94,8 @@ const leftMenuItems = [
   { icon: <UserIcon />, label: 'Users' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },
-  { icon: <HowToVoteIcon />, label: 'Divisions' },
+  // { icon: <HowToVoteIcon />, label: 'Divisions' },
+  { icon: <HowToVoteIcon />, label: 'Voterize' },
 ];
 
 const AdminWrapper = ({
@@ -101,6 +103,7 @@ const AdminWrapper = ({
   candidates,
   users,
   divisions,
+  voterizeList,
   articles,
   isUpdated,
   loadCandidatesCallback,
@@ -109,6 +112,8 @@ const AdminWrapper = ({
   loadArticleFeedbackCallback,
   loadDivisionsCallback,
   updateDivisionCallback,
+  loadVoterizeCallback,
+  updateVoterizeCallback,
   deleteUserCallback,
   loading,
   error,
@@ -132,7 +137,8 @@ const AdminWrapper = ({
       loadArticleFeedbackCallback();
     }
     if(index === 6) {
-      loadDivisionsCallback();
+      // loadDivisionsCallback();
+      loadVoterizeCallback();
     }
   };
 
@@ -189,9 +195,14 @@ const AdminWrapper = ({
     }
     if (selectedItem === 6) {
       return (
-        <AdminDivisionList
-          divisions={divisions}
-          updateDivisionCallback={updateDivisionCallback}
+        // <AdminDivisionList
+        //   divisions={divisions}
+        //   updateDivisionCallback={updateDivisionCallback}
+        //   isUpdated={isUpdated}
+        // />
+        <AdminVoterizeList
+          voterizeList={voterizeList}
+          updateVoterizeCallback={updateVoterizeCallback}
           isUpdated={isUpdated}
         />
       );
@@ -244,6 +255,7 @@ AdminWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   divisions: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  voterizeList: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   loadCandidatesCallback: PropTypes.func,
   users: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   articles: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -255,6 +267,8 @@ AdminWrapper.propTypes = {
   deleteUserCallback: PropTypes.func,
   loadDivisionsCallback: PropTypes.func,
   updateDivisionCallback: PropTypes.func,
+  loadVoterizeCallback: PropTypes.func,
+  updateVoterizeCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   isUpdated: PropTypes.bool,
 };
