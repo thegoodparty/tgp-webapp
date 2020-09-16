@@ -56,29 +56,31 @@ context('You', () => {
       }`, async () => {
         cy.chooseCorrectZipcode(zipcode);
         cy.visit('/you');
-        user = await promisify(
-          cy.getCookie('user').then(cookie => parseCookie(cookie.value)),
-        );
-        districtNumber = userDistrict(user);
-        const { shortState } = user;
-        houseCandidates = await promisify(
-          cy
-            .getHouseCandidateData(shortState, districtNumber)
-            .then(res => res.body.houseCandidates),
-        );
-        senateCandidates = await promisify(
-          cy
-            .getSenateCandidateData(shortState)
-            .then(res => res.body.senateCandidates),
-        );
-        senateCandidatesCount = countCandidates(senateCandidates);
-        houseCandidatesCount = countCandidates(houseCandidates);
-        cy.checkElectionSectionInYou(
-          user,
-          senateCandidatesCount,
-          houseCandidatesCount,
-          getRankingObj(ranking),
-        );
+        if ( Cypress.browser.isHeaded ) {
+          user = await promisify(
+            cy.getCookie('user').then(cookie => parseCookie(cookie.value)),
+          );
+          districtNumber = userDistrict(user);
+          const { shortState } = user;
+          houseCandidates = await promisify(
+            cy
+              .getHouseCandidateData(shortState, districtNumber)
+              .then(res => res.body.houseCandidates),
+          );
+          senateCandidates = await promisify(
+            cy
+              .getSenateCandidateData(shortState)
+              .then(res => res.body.senateCandidates),
+          );
+          senateCandidatesCount = countCandidates(senateCandidates);
+          houseCandidatesCount = countCandidates(houseCandidates);
+          cy.checkElectionSectionInYou(
+            user,
+            senateCandidatesCount,
+            houseCandidatesCount,
+            getRankingObj(ranking),
+          );
+        }
       });
     });
     it('check crew section', () => {

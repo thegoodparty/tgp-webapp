@@ -52,10 +52,11 @@
     "cypress:local-prod": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api.thegoodparty.org/api/v1/ ./node_modules/.bin/cypress open",
     "cypress:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress open",
     "cypress:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress open",
+    "cypress:run:local-dev": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api-dev.thegoodparty.org/api/v1/ ./node_modules/.bin/cypress run",
     "cypress:run:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress run",
-    "cypress:run:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress run",
+    "cypress:run:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org CYPRESS_API_BASE=https://api-dev.thegoodparty.org/api/v1/ ./node_modules/.bin/cypress run",
     "cypress:run:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress run",
-    "cypress:run:test": "cross-env CYPRESS_BASE_URL=https://test.thegoodparty.org ./node_modules/.bin/cypress run"
+    "cypress:run:test": "cross-env CYPRESS_BASE_URL=https://test.thegoodparty.org CYPRESS_API_BASE=https://api-dev.thegoodparty.org/api/v1/ ./node_modules/.bin/cypress run"
   },
   "browserslist": [
     "last 2 versions",

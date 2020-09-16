@@ -1,6 +1,9 @@
 {
     "chromeWebSecurity": false,
     "record_key": "fad4fb6b-1318-4ba0-883b-8606925d150d",
+    "defaultCommandTimeout": 30000,
+    "screenshotOnRunFailure": false,
+    "video": false,
     "env": {
         "email": "blueshark0811@gmail.com",
         "newEmail": "peter@tikken.com",
