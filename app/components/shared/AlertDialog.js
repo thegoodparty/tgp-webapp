@@ -24,19 +24,19 @@ function AlertDialog({
   return (
     <Dialog onClose={handleClose} aria-labelledby={ariaLabel} open={open}>
       <AlertWrapper>
-        <DialogTitle id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title" data-cy="alert-dialog-title">
           <WarningIcon /> {title}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText id="alert-dialog-description" data-cy="alert-dialog-description">
             {description}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary" data-cy="alert-dialog-cancel">
             Cancel
           </Button>
-          <Button onClick={handleProceed} color="primary" autoFocus>
+          <Button onClick={handleProceed} color="primary" autoFocus data-cy="alert-dialog-proceed">
             Proceed
           </Button>
         </DialogActions>

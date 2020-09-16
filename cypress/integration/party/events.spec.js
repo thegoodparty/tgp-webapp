@@ -7,17 +7,21 @@ describe('Events', () => {
     cy.get('[data-cy=page-title]').contains('EventsPage');
   });
   it('finds upcoming events', async () => {
-    cy.get('[data-cy=upcoming-events-title]').contains(
-      'Upcoming Online Events',
-    );
     content = await promisify(
       cy.getCMSContent().then(response => response.body),
     );
-    cy.get('[data-cy=upcoming-events] > [data-cy=event]')
-      .should('have.length', content.events.length)
-      .each(($el, index) => {
-        cy.testEventSnippet($el, content.events[index]);
-      });
+    console.log(content);
+    if (content.events.length > 0) {
+      cy.get('[data-cy=upcoming-events-title]').contains(
+        'Upcoming Online Events',
+      );
+
+      cy.get('[data-cy=upcoming-events] > [data-cy=event]')
+        .should('have.length', content.events.length)
+        .each(($el, index) => {
+          cy.testEventSnippet($el, content.events[index]);
+        });
+    }
   });
   it('finds past events', () => {
     cy.get('[data-cy=past-events-title]').contains('Past Events');

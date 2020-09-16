@@ -56,7 +56,7 @@ Cypress.Commands.add(
     cy.get('[data-cy=feedback]').should('contain', feedback);
     cy.get('[data-cy=location]').should(
       'contain',
-      `Your Elections for ${shortState || ''}, ${zip || ''}`,
+      `Your Elections for ${shortState ? (shortState + ', ') : ''}${zip || ''}`,
     );
 
     // Presidential Election
@@ -245,16 +245,16 @@ Cypress.Commands.add('checkCongressionalDistrictEditSection', () => {
       .click();
   });
 
-  cy.get('[data-cy=district-change-title]').should(
+  cy.get('[data-cy=alert-dialog-title]').should(
     'contain',
     'District Change',
   );
-  cy.get('[data-cy=district-change-description]').should(
+  cy.get('[data-cy=alert-dialog-description]').should(
     'contain',
     'If you proceed, your previous district',
   );
-  cy.get('[data-cy=modal-cancel]').should('contain', 'Cancel');
-  cy.get('[data-cy=modal-proceed]').should('contain', 'Proceed');
+  cy.get('[data-cy=alert-dialog-cancel]').should('contain', 'Cancel');
+  cy.get('[data-cy=alert-dialog-proceed]').should('contain', 'Proceed');
 });
 
 Cypress.Commands.add('checkPrivateInfoEditSection', user => {
