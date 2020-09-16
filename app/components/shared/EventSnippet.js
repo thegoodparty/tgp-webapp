@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
+import ReactPlayer from 'react-player/lazy';
+import Grid from '@material-ui/core/Grid';
 import { Body, Body12 } from 'components/shared/typogrophy/index';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
 
@@ -46,6 +47,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
     presenterTitle,
     avatarPhoto,
     location,
+    video,
   } = event;
   let isLocationLink;
   let locationLink;
@@ -59,49 +61,68 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
   return (
     <Wrapper key={id} data-cy="event">
       <Row>
-        <div style={{ marginRight: '16px' }}>
-          <Body className="bold600" data-cy="event-title">
-            <a href={locationLink} target="_blank" rel="nofollow">
-              {title}
-            </a>
-          </Body>
-          {displayDate && (
-            <StyledBody12 data-cy="event-date">{displayDate}</StyledBody12>
-          )}
-          {description && (
-            <StyledBody12 data-cy="event-description">
-              {description}
-            </StyledBody12>
-          )}
-          {location && (
-            <StyledBody12 data-cy="event-location">
-              <strong data-cy="event-location-label">Location: </strong>
-              {isLocationLink ? (
-                <a
-                  href={locationLink}
-                  target="_blank"
-                  data-cy="event-location-link"
-                >
-                  {location}
+        <Grid container>
+          <Grid item container xs={12} md={video ? 8 : 12}>
+            <div style={{ marginRight: '16px' }}>
+              <Body className="bold600" data-cy="event-title">
+                <a href={locationLink} target="_blank" rel="nofollow">
+                  {title}
                 </a>
-              ) : (
-                <>{location}</>
+              </Body>
+              {displayDate && (
+                <StyledBody12 data-cy="event-date">{displayDate}</StyledBody12>
               )}
-            </StyledBody12>
-          )}
-          {presenter && (
-            <StyledBody12 data-cy="event-presenter">
-              <span
-                className="bold500 spacing05"
-                data-cy="event-presenter-name"
-              >
-                {presenter}
-              </span>{' '}
-              {presenterTitle}
-            </StyledBody12>
-          )}
-        </div>
-        <Photo src={avatarPhoto} />
+              {description && (
+                <StyledBody12 data-cy="event-description">
+                  {description}
+                </StyledBody12>
+              )}
+              {location && (
+                <StyledBody12 data-cy="event-location">
+                  <strong data-cy="event-location-label">Location: </strong>
+                  {isLocationLink ? (
+                    <a
+                      href={locationLink}
+                      target="_blank"
+                      data-cy="event-location-link"
+                    >
+                      {location}
+                    </a>
+                  ) : (
+                    <>{location}</>
+                  )}
+                </StyledBody12>
+              )}
+
+              {presenter && (
+                <StyledBody12 data-cy="event-presenter">
+                  <span
+                    className="bold500 spacing05"
+                    data-cy="event-presenter-name"
+                  >
+                    {presenter}
+                  </span>{' '}
+                  {presenterTitle}
+                </StyledBody12>
+              )}
+            </div>
+            <br />
+            {!video && <Photo src={avatarPhoto} />}
+          </Grid>
+
+          <Grid item xs={12} md={video ? 4 : 0}>
+            <br />
+            {video && (
+              <ReactPlayer
+                url={video}
+                playing={false}
+                controls={true}
+                width="100"
+                height="100"
+              />
+            )}
+          </Grid>
+        </Grid>
       </Row>
       {!isPastEvent && (
         <a
