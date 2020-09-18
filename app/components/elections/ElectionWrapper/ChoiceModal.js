@@ -240,7 +240,6 @@ const ChoiceModal = ({
                 >
                   <SupportersIcon src={SupportersImg} alt="tgp" />
                   {numberFormatter(chamberCount + 1)}{' '}
-                  {/*{chamberCount === 1 ? 'person' : 'people'}*/}
                 </SupportersCount>
               </>
             ) : (
