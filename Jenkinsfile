@@ -5,11 +5,11 @@ pipeline {
   }
   environment {
     DEV_BRANCH        = "develop"
-    EB_DEV                = "tgp-site-dev"
+    EB_DEV                = "tgp-dev-web"
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site"
     EB_TEST               = "tgp-site-test"
-    
+
   }
   stages {
     // stage('deploy to develop') {
@@ -28,7 +28,7 @@ pipeline {
     //   }
     // }
 
-    
+
     stage('deploy to EBS') {
       steps {
           script {
