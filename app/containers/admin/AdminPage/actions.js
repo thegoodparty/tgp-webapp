@@ -137,41 +137,6 @@ function loadCandidateActionSuccess(candidate) {
   };
 }
 
-function loadDivisionsAction() {
-  return {
-    type: types.LOAD_DIVISIONS,
-  };
-}
-
-function loadDivisionsActionSuccess(divisions) {
-  return {
-    type: types.LOAD_DIVISIONS_SUCCESS,
-    divisions,
-  };
-}
-
-function loadDivisionsActionError(error) {
-  return {
-    type: types.LOAD_DIVISIONS_ERROR,
-    error,
-  };
-}
-
-function updateDivisionAction(division) {
-  return {
-    type: types.UPDATE_DIVISION,
-    division,
-  };
-}
-
-function updateDivisionActionSuccess(divisions) {
-  return {
-    type: types.UPDATE_DIVISION_SUCCESS,
-    divisions,
-  };
-}
-
-
 function loadVoterizeAction() {
   return {
     type: types.LOAD_VOTERIZE,
@@ -228,12 +193,6 @@ export default {
 
   loadCandidateAction,
   loadCandidateActionSuccess,
-
-  loadDivisionsAction,
-  loadDivisionsActionSuccess,
-  loadDivisionsActionError,
-  updateDivisionAction,
-  updateDivisionActionSuccess,
 
   loadVoterizeAction,
   loadVoterizeActionSuccess,
