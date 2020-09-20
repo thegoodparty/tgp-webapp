@@ -30,8 +30,6 @@ export function AdminPage({
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
   deleteUserCallback,
-  loadDivisionsCallback,
-  updateDivisionCallback,
   loadVoterizeCallback,
   updateVoterizeCallback,
   userState,
@@ -52,7 +50,6 @@ export function AdminPage({
     candidates,
     users,
     articlesFeedback,
-    divisions,
     voterizeList,
     loading,
     error,
@@ -62,7 +59,6 @@ export function AdminPage({
   const childProps = {
     candidates,
     users,
-    divisions,
     voterizeList,
     isUpdated,
     articles: articlesFeedback,
@@ -71,8 +67,6 @@ export function AdminPage({
     loadAllUsersCallback,
     loadArticleFeedbackCallback,
     deleteUserCallback,
-    loadDivisionsCallback,
-    updateDivisionCallback,
     loadVoterizeCallback,
     updateVoterizeCallback,
     loading,
@@ -99,8 +93,6 @@ AdminPage.propTypes = {
   loadAllUsersCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
   deleteUserCallback: PropTypes.func,
-  loadDivisionsCallback: PropTypes.func,
-  updateDivisionCallback: PropTypes.func,
   userState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
@@ -130,9 +122,6 @@ function mapDispatchToProps(dispatch) {
     deleteUserCallback: user => {
       dispatch(adminActions.deleteUser(user));
     },
-    loadDivisionsCallback: () => dispatch(adminActions.loadDivisionsAction()),
-    updateDivisionCallback: division =>
-      dispatch(adminActions.updateDivisionAction(division)),
     loadVoterizeCallback: () => dispatch(adminActions.loadVoterizeAction()),
     updateVoterizeCallback: voterize =>
       dispatch(adminActions.updateVoterizeAction(voterize)),

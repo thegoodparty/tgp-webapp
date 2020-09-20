@@ -13,7 +13,6 @@ export const initialState = {
   error: false,
   articlesFeedback: false,
   candidate: false,
-  divisions: false,
   voterizeList: false,
   isUpdated: false,
 };
@@ -111,28 +110,6 @@ const adminPageReducer = (state = initialState, action) =>
       case types.UPDATE_CANDIDATE_IMAGE:
         draft.loading = true;
         break;
-      case types.LOAD_DIVISIONS:
-        draft.divisions = false;
-        draft.loading = true;
-        draft.error = false;
-        break;
-      case types.LOAD_DIVISIONS_SUCCESS:
-        draft.divisions = action.divisions;
-        draft.loading = false;
-        draft.error = false;
-        break;
-      case types.LOAD_DIVISIONS_ERROR:
-        draft.divisions = false;
-        draft.loading = false;
-        draft.error = action.error;
-        break;
-      case types.UPDATE_DIVISION:
-        draft.isUpdated = false;
-        break;
-      case types.UPDATE_DIVISION_SUCCESS:
-        draft.divisions = action.divisions;
-        draft.loading = false;
-        draft.isUpdated = true;
 
       case types.LOAD_VOTERIZE:
         draft.voterizeList = false;
