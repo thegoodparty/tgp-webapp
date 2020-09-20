@@ -181,7 +181,7 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
         data-cy="fund"
         className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
       >
-        <ColoredBodyText className={colorWithGray}>{perc}%</ColoredBodyText>
+        <ColoredBodyText className={color}>{perc}%</ColoredBodyText>
         <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
       </Fund>
     );

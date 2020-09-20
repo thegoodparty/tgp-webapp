@@ -500,6 +500,7 @@ const VsList = ({
                   incumbent={incumbent}
                   layout="vertical"
                 />
+                <WhyNot data-cy="why-not">Why not good enough?</WhyNot>
               </CandidateWrapper>
             </Link>
           ))}

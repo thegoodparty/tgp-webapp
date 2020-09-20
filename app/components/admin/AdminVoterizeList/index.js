@@ -101,9 +101,13 @@ function AdminVoterizeList({
     return rowVal.includes(str);
   };
   const updateVoterize = (ev, key) => {
+    let val = ev.target.value;
+    if (key === 'likelyVoters') {
+      val = parseInt(val, 10);
+    }
     setSelectedVoterize({
       ...selectedVoterize,
-      [key]: ev.target.value,
+      [key]: val,
     });
   };
   const saveVoterize = key => {
