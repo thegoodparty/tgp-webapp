@@ -109,6 +109,7 @@ const ElectionWrapper = ({
   clearJoinCandidateCallback,
   clearGrowCandidateCallback,
   postRegisterJoin,
+  incumbent,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -341,6 +342,8 @@ const ElectionWrapper = ({
             chamber={chamber}
             state={stateUpper}
             user={user}
+            votesNeeded={votesNeeded}
+            incumbent={incumbent}
           />
 
           <TopQuestions articles={articles} />
@@ -421,6 +424,7 @@ ElectionWrapper.propTypes = {
   clearJoinCandidateCallback: PropTypes.func,
   clearGrowCandidateCallback: PropTypes.func,
   postRegisterJoin: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ElectionWrapper;

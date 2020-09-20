@@ -19,6 +19,8 @@ import {
 import { numberFormatter, numberNth } from 'helpers/numberHelper';
 
 import LoadingAnimation from '../shared/LoadingAnimation';
+import SupportersProgressBar from './SupportersProgressBar';
+import FollowTheMoney from './CandidateWrapper/FollowTheMoney';
 
 const Row = styled.div`
   display: flex;
@@ -232,6 +234,10 @@ const UnknownWrapper = styled.div`
   border-radius: 8px;
   padding: 24px;
   margin-top: 48px;
+
+  .bar-bg {
+    background-color: ${({ theme }) => theme.colors.grayBg};
+  }
 `;
 
 const NominateWrapper = styled.div`
@@ -268,7 +274,10 @@ const VsList = ({
   districtNumber,
   handleGrowCallback,
   user,
+  votesNeeded,
+  incumbent,
 }) => {
+  console.log('incumbent vslist', incumbent);
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
     return <LoadingAnimation />;
@@ -367,9 +376,33 @@ const VsList = ({
 
     return (
       <BlocCount data-cy="block-count">
-        {numberFormatter(rank)} likely voters for {candidateBlocName(candidate)}
+        {((rank * 100) / votesNeeded).toFixed(2)}% of{' '}
+        {numberFormatter(votesNeeded)} votes needed to win {inText(candidate)}
+        <SupportersProgressBar
+          peopleSoFar={rank}
+          votesNeeded={votesNeeded}
+          showSupporters={false}
+          alignLeft
+          showSuffix={false}
+          color="green"
+        />
+        <FollowTheMoney
+          candidate={candidate}
+          incumbent={incumbent}
+          layout="vertical"
+        />
       </BlocCount>
     );
+  };
+
+  const inText = candidate => {
+    if (chamber === 'house') {
+      return `${candidate.state.toUpperCase()}-${candidate.district}`;
+    }
+    if (chamber === 'senate') {
+      return `${candidate.state.toUpperCase()}`;
+    }
+    return '';
   };
 
   let displayBloc = goodBloc;
@@ -462,7 +495,11 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
-                <WhyNot data-cy="why-not">Why not good enough?</WhyNot>
+                <FollowTheMoney
+                  candidate={candidate}
+                  incumbent={incumbent}
+                  layout="vertical"
+                />
               </CandidateWrapper>
             </Link>
           ))}
@@ -519,6 +556,7 @@ VsList.propTypes = {
     PropTypes.bool,
   ]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
   handleGrowCallback: PropTypes.func,
@@ -527,6 +565,7 @@ VsList.propTypes = {
   districtNumber: PropTypes.string,
   chamber: PropTypes.string,
   state: PropTypes.string,
+  votesNeeded: PropTypes.number,
 };
 
 export default VsList;
