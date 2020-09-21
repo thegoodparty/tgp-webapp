@@ -5,7 +5,7 @@ import { initialState } from './reducer';
  * Direct selector to the creatorsPage state domain
  */
 
-const selectCreatorsPageDomain = state => state.creatorsPage || initialState;
+const selectHomePageDomain = state => state.homePage || initialState;
 
 /**
  * Other specific selectors
@@ -15,11 +15,11 @@ const selectCreatorsPageDomain = state => state.creatorsPage || initialState;
  * Default selector used by CreatorsPage
  */
 
-const makeSelectCreatorsPage = () =>
+const makeSelectHomePage = () =>
   createSelector(
-    selectCreatorsPageDomain,
+    selectHomePageDomain,
     substate => substate,
   );
 
-export default makeSelectCreatorsPage;
-export { selectCreatorsPageDomain };
+export default makeSelectHomePage;
+export { selectHomePageDomain };

@@ -16,15 +16,22 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectHomePage from './selectors';
 import HomePageWrapper from 'components/home/HomePageWrapper';
+import homeActions from './actions';
 
-export function HomePage({ dispatch, homeState }) {
+export function HomePage({
+  dispatch,
+  homeState,
+}) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
   const { goodChallengers } = homeState;
   const childProps = {
     goodChallengers,
   };
-
+  useEffect(() => {
+    // loadChallengersCallback();
+    dispatch(homeActions.loadChallengersAction())
+  }, []);
   return (
     <div>
       <Helmet>

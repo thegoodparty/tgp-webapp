@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { H1, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
-import { rankPageLink } from 'helpers/electionsHelper';
+import { rankPageLink, partyResolver } from 'helpers/electionsHelper';
+import { candidateCalculatedFields } from 'helpers/electionsHelper';
+import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import ChallengerAvatar from './ChallengerAvatar';
 
-const ResponsiveLink = styled(Link)`
-  display: block;
+const ChallengerItemWrapper = styled.div`
   width: 100%;
   padding: 1rem;
   margin-top: 1.5rem;
@@ -81,60 +81,64 @@ const LineWrapper = styled.div`
   padding: 0 12px;
 `;
 
-// const ResponsiveLink = styled(Link)`
-//   width: 100%;
-//   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-//     width: auto;
-//   }
-// `;
 const ChallengerItem = ({ challenger }) => {
+  const calculatedChallanger = candidateCalculatedFields(challenger);
   const {
-    avatar,
+    image,
     party,
     name,
     state,
     district,
     likelyVoters,
     votesNeeded,
-    funding,
-    disadvantage,
+    raised,
+    incumbentRaised,
     chamber,
-  } = challenger;
-  const districtInfo = `${state}${district ? `-${district}` : ' Senate'}`;
-  const challengerInfo = `${party} for ${districtInfo}`;
+    smallFunding,
+    xTimes,
+    smallDonorPerc
+  } = calculatedChallanger;
+  const perc = percHelper(smallDonorPerc, true);
+  console.log(calculatedChallanger)
+  const partyString = partyResolver(party);
+  const funding = perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
+  const districtInfo = `${state.toUpperCase()}${district ? `-${district}` : ' Senate'}`;
+  const challengerInfo = `${partyString} for ${districtInfo}`;
   const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
   const neededVotes = `${neededPercent}% of ${numberFormatter(
     votesNeeded,
   )} votes needed to win in ${districtInfo}`;
-
+  const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
   return (
-    <ResponsiveLink to={getRankPageLink()}>
-      <ChallengerAvatar avatar={avatar} party={party} />
-      <ChallengerName>{name}</ChallengerName>
-      <ChallengerInfo>{challengerInfo}</ChallengerInfo>
-      <Grid container>
-        <Grid item xs={6}>
-          <ChallengeStats className="value">
-            {numberFormatter(funding)}%
-          </ChallengeStats>
-          <ChallengeStatsSmall>Small Donor Funding</ChallengeStatsSmall>
+    <ChallengerItemWrapper>
+      <Link to={getRankPageLink()}>
+        <ChallengerAvatar avatar={image} party={party} />
+        <ChallengerName>{name}</ChallengerName>
+        <ChallengerInfo>{challengerInfo}</ChallengerInfo>
+        <Grid container>
+          <Grid item xs={6}>
+            <ChallengeStats className="value">
+              {numberFormatter(funding)}%
+            </ChallengeStats>
+            <ChallengeStatsSmall>Small Donor Funding</ChallengeStatsSmall>
+          </Grid>
+          <Grid item xs={6}>
+            <ChallengeStats className="value">
+              {numberFormatter(disadvantage)}x
+            </ChallengeStats>
+            <ChallengeStatsSmall>Funding Disadvantage</ChallengeStatsSmall>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <ChallengeStats className="value">
-            {numberFormatter(disadvantage)}x
-          </ChallengeStats>
-          <ChallengeStatsSmall>Funding Disadvantage</ChallengeStatsSmall>
-        </Grid>
-      </Grid>
-      <NeededVotesWrapper>
-        <NeededVotes>{neededVotes}</NeededVotes>
-        <LineWrapper>
-          <FullLine />
-          <PercentLine percent={neededPercent + '%'} />
-        </LineWrapper>
-      </NeededVotesWrapper>
-    </ResponsiveLink>
+        <NeededVotesWrapper>
+          <NeededVotes>{neededVotes}</NeededVotes>
+          <LineWrapper>
+            <FullLine />
+            <PercentLine percent={neededPercent + '%'} />
+          </LineWrapper>
+        </NeededVotesWrapper>
+      </Link>
+    </ChallengerItemWrapper>
   );
 };
 

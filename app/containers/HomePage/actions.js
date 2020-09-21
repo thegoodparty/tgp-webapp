@@ -4,10 +4,30 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
+function loadChallengersAction() {
   return {
-    type: DEFAULT_ACTION,
+    type: types.LOAD_CHALLENGERS,
   };
 }
+
+function loadChallengersActionSuccess(challengers) {
+  return {
+    type: types.LOAD_CHALLENGERS_SUCCESS,
+    challengers,
+  };
+}
+
+function loadChallengersActionError(error) {
+  return {
+    type: types.LOAD_CHALLENGERS_ERROR,
+    error,
+  };
+}
+
+export default {
+	loadChallengersAction,
+	loadChallengersActionSuccess,
+	loadChallengersActionError
+};

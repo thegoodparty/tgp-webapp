@@ -22,6 +22,10 @@ const api = {
     url: `${base}race-candidate/senate-by-state`,
     method: 'GET',
   },
+  goodChallengers: {
+    url: `${base}race-candidate/good-challengers`,
+    method: 'GET',
+  },
   fullAddressToDistrict: {
     url: `${base}entrance/address-to-district`,
     method: 'GET',
