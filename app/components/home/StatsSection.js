@@ -20,20 +20,21 @@ const StatsSection = ({}) => {
       <Grid item xs={12} md={4}>
         <ColTitle>99%</ColTitle>
         <ColDescription>
-          of members of Congress <br/> recieve a <u>majority</u> of funding <br/> from
-          big-money sources
+          of members of Congress <br /> recieve a <u>majority</u> of funding{' '}
+          <br /> from big-money sources
         </ColDescription>
       </Grid>
       <Grid item xs={12} md={4}>
         <ColTitle>only 18%</ColTitle>
         <ColDescription>
-          of Americans <br/> approve of Congress <br/> (but nothing changes)
+          of Americans <br /> approve of Congress <br /> (but nothing changes)
         </ColDescription>
       </Grid>
       <Grid item xs={12} md={4}>
         <ColTitle>over 90%</ColTitle>
         <ColDescription>
-          of Congress gets <br/> reelected based on <br/> amount of funds raised
+          of Congress gets <br /> reelected based on <br /> amount of funds
+          raised
         </ColDescription>
       </Grid>
     </Grid>

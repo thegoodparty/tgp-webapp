@@ -1,4 +1,4 @@
-  /**
+/**
  *
  * HomePage
  *
@@ -27,7 +27,7 @@ export function HomePage({
   useInjectSaga({ key: 'homePage', saga });
   const { goodChallengers } = homeState;
   const childProps = {
-    goodChallengers
+    goodChallengers,
   };
   useEffect(() => {
     loadChallengersCallback();

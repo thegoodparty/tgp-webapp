@@ -119,6 +119,10 @@ const ElectionWrapper = ({
   const [isExternalLink, setIsExternalLink] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (blocCandidate) {
       setIsExternalLink(true);
       setChoiceModalCandidate(blocCandidate);

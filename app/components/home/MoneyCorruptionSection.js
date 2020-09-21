@@ -26,7 +26,8 @@ const MoneyCorruptionSection = ({}) => {
       <Grid container>
         <LeftCol item xs={12} md={6}>
           <SectionTitle>
-            Money has corrupted <br/>BOTH major U.S.parties
+            Money has corrupted <br />
+            BOTH major U.S.parties
           </SectionTitle>
           <Subtitle>
             We need to take back Congress from corrupt career politicians before
@@ -34,7 +35,12 @@ const MoneyCorruptionSection = ({}) => {
           </Subtitle>
         </LeftCol>
         <Grid item xs={12} md={6}>
-          <LazyLoadImage src={WhiteHouseImg} alt="white-house-dollar" width="100%" height="100%" />
+          <LazyLoadImage
+            src={WhiteHouseImg}
+            alt="white-house-dollar"
+            width="100%"
+            height="100%"
+          />
         </Grid>
       </Grid>
     </MoneyCorruptionSectionWrapper>

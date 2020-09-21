@@ -14,32 +14,31 @@ const ChallengerAvatarWrapper = styled.div`
   min-height: 7rem;
   margin: 0 auto;
   border-radius: 3.5rem;
-  box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12), 0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
+    0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
   position: relative;
 `;
 
 const PartyIcon = styled.img`
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	border: 4px solid white;
-	background: white;
-	border-radius: 20px;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  border: 4px solid white;
+  background: white;
+  border-radius: 50%;
 `;
-const ChallengerAvatar = ({ avatar, party, ...props}) => {
-	let PartyImg;
-	if(party[0] === 'D') {
-		PartyImg = DemocratImg;
-	} else if(party[0] === 'R') {
-		PartyImg = RepublicanImg;
-	} else if(party[0] === 'I') {
+const ChallengerAvatar = ({ avatar, party, ...props }) => {
+  let PartyImg;
+  if (party === 'D') {
+    PartyImg = DemocratImg;
+  } else if (party === 'R') {
+    PartyImg = RepublicanImg;
+  } else if (party === 'I') {
     PartyImg = IndependentImg;
   }
   return (
-    <ChallengerAvatarWrapper avatar={avatar} >
-    	{PartyImg && 
-    		<PartyIcon src={PartyImg} />
-    	}
+    <ChallengerAvatarWrapper avatar={avatar}>
+      {PartyImg && <PartyIcon src={PartyImg} />}
     </ChallengerAvatarWrapper>
   );
 };

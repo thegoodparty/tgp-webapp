@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Button from '@material-ui/core/Button';
-
-import Input from '@material-ui/core/Input';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CreatorsImg from 'images/creators.png';
@@ -44,15 +40,14 @@ const CreatorsSection = ({}) => {
     <CreatorsSectionWrapper>
       <Grid container>
         <LeftCol item xs={12} md={6}>
-          <SectionTitle>
-            Calling All Creators!
-          </SectionTitle>
+          <SectionTitle>Calling All Creators!</SectionTitle>
           <SectionDescription>
-            Join us and to build free open source software and to tell the stories we need to mobilize people and change everything for Good!
+            Join us and to build free open source software and to tell the
+            stories we need to mobilize people and change everything for Good!
           </SectionDescription>
-          <LearnMore className="outline">
-            Learn More
-          </LearnMore>
+          <Link to="/creators">
+            <LearnMore className="outline">Learn More</LearnMore>
+          </Link>
         </LeftCol>
         <Grid item xs={12} md={6}>
           <LazyLoadImage
