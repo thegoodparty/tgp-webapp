@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { H1, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
 import { rankPageLink, partyResolver } from 'helpers/electionsHelper';
+import { candidateCalculatedFields } from 'helpers/electionsHelper';
+import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import ChallengerAvatar from './ChallengerAvatar';
 
 const ChallengerItemWrapper = styled.div`
@@ -81,6 +82,7 @@ const LineWrapper = styled.div`
 `;
 
 const ChallengerItem = ({ challenger }) => {
+  const calculatedChallanger = candidateCalculatedFields(challenger);
   const {
     image,
     party,
@@ -93,10 +95,13 @@ const ChallengerItem = ({ challenger }) => {
     incumbentRaised,
     chamber,
     smallFunding,
-    xTimes
-  } = challenger;
+    xTimes,
+    smallDonorPerc
+  } = calculatedChallanger;
+  const perc = percHelper(smallDonorPerc, true);
+  console.log(calculatedChallanger)
   const partyString = partyResolver(party);
-  const funding = smallFunding || ((raised * 100) / incumbentRaised).toFixed(2);
+  const funding = perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
   const districtInfo = `${state.toUpperCase()}${district ? `-${district}` : ' Senate'}`;
   const challengerInfo = `${partyString} for ${districtInfo}`;
   const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
