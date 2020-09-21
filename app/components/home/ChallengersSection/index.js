@@ -48,8 +48,8 @@ const ChallengersSection = ({ challengers, ...props }) => {
         voting blocs to see if we can get them enough votes to win!
       </SectionDescription>
       <ChallengersList>
-        {showedChallengers.map(challenger => (
-          <ChallengerItem challenger={challenger} />
+        {showedChallengers.map((challenger, index) => (
+          <ChallengerItem key={index} challenger={challenger} />
         ))}
       </ChallengersList>
       <BlueButton
