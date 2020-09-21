@@ -17,7 +17,6 @@ const WrapperDiv = styled.div`
   &.white {
     background-color: #fff;
   }
-
   &.no-header {
     min-height: calc(100vh);
     min-height: calc(var(--vh, 1vh) * 100);
