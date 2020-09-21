@@ -42,7 +42,7 @@ const CreatorsSection = ({}) => {
         <LeftCol item xs={12} md={6}>
           <SectionTitle>Calling All Creators!</SectionTitle>
           <SectionDescription>
-            Join us and to build free open source software and to tell the
+            Join us to build free open source software and to tell the
             stories we need to mobilize people and change everything for Good!
           </SectionDescription>
           <Link to="/creators">
