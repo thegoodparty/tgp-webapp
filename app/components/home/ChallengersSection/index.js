@@ -25,18 +25,13 @@ const SectionDescription = styled(Body14)`
 `;
 
 const ChallengersList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
   margin-bottom: 3rem;
 `;
 
-const SeeMore = styled(BlueButton)`
-  margin-top: 3rem;
-  display: inherit;
-  margin: 0 auto;
-`;
-const ChallengersSection = ({ challengers, ...props }) => {
+const ChallengersSection = ({ challengers }) => {
   const [showMore, setShowMore] = useState(false);
   const showedChallengers = showMore ? challengers : challengers.slice(0, 3);
   return (
@@ -47,10 +42,15 @@ const ChallengersSection = ({ challengers, ...props }) => {
         ideas, not money. We’re mobilizing voters to join these candidates’
         voting blocs to see if we can get them enough votes to win!
       </SectionDescription>
+
       <ChallengersList>
-        {showedChallengers.map((challenger, index) => (
-          <ChallengerItem key={index} challenger={challenger} />
-        ))}
+        <Grid container spacing={3}>
+          {showedChallengers.map((challenger, index) => (
+            <Grid item xs={12} md={6} lg={4} key={challenger.id}>
+              <ChallengerItem challenger={challenger} />
+            </Grid>
+          ))}
+        </Grid>
       </ChallengersList>
       <BlueButton
         className="outline center"
@@ -60,6 +60,10 @@ const ChallengersSection = ({ challengers, ...props }) => {
       </BlueButton>
     </ChallengersSectionWrapper>
   );
+};
+
+ChallengerItem.propTypes = {
+  challengers: PropTypes.object,
 };
 
 export default ChallengersSection;

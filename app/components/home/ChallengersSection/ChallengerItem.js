@@ -10,15 +10,12 @@ import { numberFormatter } from 'helpers/numberHelper';
 import { rankPageLink } from 'helpers/electionsHelper';
 import ChallengerAvatar from './ChallengerAvatar';
 
-const ChallengerItemWrapper = styled.div`
+const ResponsiveLink = styled.div`
   width: 100%;
   padding: 1rem;
   margin-top: 1.5rem;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 343px;
-  }
 `;
 
 const ChallengerName = styled(H1)`
@@ -82,6 +79,13 @@ const PercentLine = styled.div`
 const LineWrapper = styled.div`
   padding: 0 12px;
 `;
+
+// const ResponsiveLink = styled(Link)`
+//   width: 100%;
+//   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+//     width: auto;
+//   }
+// `;
 const ChallengerItem = ({ challenger }) => {
   const {
     avatar,
@@ -104,34 +108,32 @@ const ChallengerItem = ({ challenger }) => {
 
   const getRankPageLink = () => rankPageLink(chamber, state, district);
   return (
-    <Link to={getRankPageLink()} style={{ width: '100%' }}>
-      <ChallengerItemWrapper>
-        <ChallengerAvatar avatar={avatar} party={party} />
-        <ChallengerName>{name}</ChallengerName>
-        <ChallengerInfo>{challengerInfo}</ChallengerInfo>
-        <Grid container>
-          <Grid item xs={6}>
-            <ChallengeStats className="value">
-              {numberFormatter(funding)}%
-            </ChallengeStats>
-            <ChallengeStatsSmall>Small Donor Funding</ChallengeStatsSmall>
-          </Grid>
-          <Grid item xs={6}>
-            <ChallengeStats className="value">
-              {numberFormatter(disadvantage)}x
-            </ChallengeStats>
-            <ChallengeStatsSmall>Funding Disadvantage</ChallengeStatsSmall>
-          </Grid>
+    <ResponsiveLink to={getRankPageLink()}>
+      <ChallengerAvatar avatar={avatar} party={party} />
+      <ChallengerName>{name}</ChallengerName>
+      <ChallengerInfo>{challengerInfo}</ChallengerInfo>
+      <Grid container>
+        <Grid item xs={6}>
+          <ChallengeStats className="value">
+            {numberFormatter(funding)}%
+          </ChallengeStats>
+          <ChallengeStatsSmall>Small Donor Funding</ChallengeStatsSmall>
         </Grid>
-        <NeededVotesWrapper>
-          <NeededVotes>{neededVotes}</NeededVotes>
-          <LineWrapper>
-            <FullLine />
-            <PercentLine percent={neededPercent + '%'} />
-          </LineWrapper>
-        </NeededVotesWrapper>
-      </ChallengerItemWrapper>
-    </Link>
+        <Grid item xs={6}>
+          <ChallengeStats className="value">
+            {numberFormatter(disadvantage)}x
+          </ChallengeStats>
+          <ChallengeStatsSmall>Funding Disadvantage</ChallengeStatsSmall>
+        </Grid>
+      </Grid>
+      <NeededVotesWrapper>
+        <NeededVotes>{neededVotes}</NeededVotes>
+        <LineWrapper>
+          <FullLine />
+          <PercentLine percent={neededPercent + '%'} />
+        </LineWrapper>
+      </NeededVotesWrapper>
+    </ResponsiveLink>
   );
 };
 
