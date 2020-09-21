@@ -43,7 +43,6 @@ export const initialState = {
     {
       name: 'Lisa Savage',
       state: 'ME',
-      district: 4,
       party: 'Independent',
       likelyVoters: 8453,
       votesNeeded: 444301,
