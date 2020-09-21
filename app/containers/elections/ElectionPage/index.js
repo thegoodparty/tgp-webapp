@@ -172,35 +172,6 @@ export function ElectionPage({
     dispatch(userActions.guestRankingAction());
   }
 
-  let rankingAllowed = true;
-  if (chamber === 'senate') {
-    if (user) {
-      const userShortState = user.shortState;
-      if (state !== userShortState) {
-        rankingAllowed = false;
-      }
-    }
-  } else if (chamber === 'house') {
-    if (user) {
-      const userDistrict = `${user.districtNumber}`;
-      const userShortState = user.shortState;
-      if (user.districtNumber === null) {
-        // if district not set - take the first district in cds array.
-        if (user.zipCode && user.zipCode.cds && user.zipCode.cds.length > 0) {
-          if (
-            state !== userShortState ||
-            !isDistrictInCds(district, user.zipCode.cds)
-          ) {
-            rankingAllowed = false;
-          } else {
-            rankingAllowed = true;
-          }
-        }
-      } else if (state !== userShortState || district !== userDistrict) {
-        rankingAllowed = false;
-      }
-    }
-  }
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
   const blocCandidateMatch =
@@ -267,7 +238,6 @@ export function ElectionPage({
     ranking: rankingObj[chamber],
     state,
     districtNumber: district,
-    rankingAllowed,
     saveRankingCallback,
     refreshCountCallback,
     deleteCandidateRankingCallback,
