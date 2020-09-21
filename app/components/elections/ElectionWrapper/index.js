@@ -286,30 +286,30 @@ const ElectionWrapper = ({
       {candidates ? (
         <>
           <H1 data-cy="title">{title}</H1>
-          <Row>
-            <SupportersWrapper data-cy="supporters">
-              <SupportersRow>
-                <SupportersImg src={supportersImg} alt="tgp" />
-                <SupportersCount data-cy="supporters-count">
-                  {numberFormatter(topRank)}{' '}
-                </SupportersCount>
-              </SupportersRow>
-              <SuppoetersBody data-cy="supporters-body">
-                likely voters for top candidate
-              </SuppoetersBody>
-              <SupportersProgressBar
-                votesNeeded={votesNeeded}
-                peopleSoFar={topRank}
-                userState={candidates.userState}
-                showSupporters={false}
-                suffixText={suffixText}
-                alignLeft
-              />
-            </SupportersWrapper>
-            <MapWrapper>
-              <img src={UsMapImage} alt="" />
-            </MapWrapper>
-          </Row>
+          {/*<Row>*/}
+          {/*  <SupportersWrapper data-cy="supporters">*/}
+          {/*    <SupportersRow>*/}
+          {/*      <SupportersImg src={supportersImg} alt="tgp" />*/}
+          {/*      <SupportersCount data-cy="supporters-count">*/}
+          {/*        {numberFormatter(topRank)}{' '}*/}
+          {/*      </SupportersCount>*/}
+          {/*    </SupportersRow>*/}
+          {/*    <SuppoetersBody data-cy="supporters-body">*/}
+          {/*      likely voters for top candidate*/}
+          {/*    </SuppoetersBody>*/}
+          {/*    <SupportersProgressBar*/}
+          {/*      votesNeeded={votesNeeded}*/}
+          {/*      peopleSoFar={topRank}*/}
+          {/*      userState={candidates.userState}*/}
+          {/*      showSupporters={false}*/}
+          {/*      suffixText={suffixText}*/}
+          {/*      alignLeft*/}
+          {/*    />*/}
+          {/*  </SupportersWrapper>*/}
+          {/*  <MapWrapper>*/}
+          {/*    <img src={UsMapImage} alt="" />*/}
+          {/*  </MapWrapper>*/}
+          {/*</Row>*/}
           <Description data-cy="description">
             {candidates.good.length > 0 ? (
               <>
