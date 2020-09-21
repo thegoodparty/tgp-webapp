@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { H1, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
-import ChallengerAvatar from './ChallengerAvatar';
 import { numberFormatter } from 'helpers/numberHelper';
-import { rankPageLink } from '../../../helpers/electionsHelper';
+import { rankPageLink } from 'helpers/electionsHelper';
+import ChallengerAvatar from './ChallengerAvatar';
 
 const ChallengerItemWrapper = styled.div`
   width: 100%;
@@ -104,7 +104,7 @@ const ChallengerItem = ({ challenger }) => {
 
   const getRankPageLink = () => rankPageLink(chamber, state, district);
   return (
-    <Link to={getRankPageLink()}>
+    <Link to={getRankPageLink()} style={{ width: '100%' }}>
       <ChallengerItemWrapper>
         <ChallengerAvatar avatar={avatar} party={party} />
         <ChallengerName>{name}</ChallengerName>
