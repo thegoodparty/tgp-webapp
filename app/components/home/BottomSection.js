@@ -57,27 +57,20 @@ const CreatorsSection = ({}) => {
     <CreatorsSectionWrapper>
       <Grid container>
         <LeftCol item xs={12} md={6}>
-          <ColTitle>
-            Stay Connected
-          </ColTitle>
+          <ColTitle>Stay Connected</ColTitle>
           <ColDescription>
-            We're just getting started. Stay in the loop for updates as we build a better infrastructure for our democracy.
+            We're just getting started. Stay in the loop for updates as we build
+            a better infrastructure for our democracy.
           </ColDescription>
-          <SubmitButton>
-            Join our Mailing List
-          </SubmitButton>
+          <SubmitButton>Join our Mailing List</SubmitButton>
         </LeftCol>
         <RightCol item xs={12} md={6}>
-          <ColTitle>
-            Search Candidates
-          </ColTitle>
+          <ColTitle>Search Candidates</ColTitle>
           <ColDescription>
             Curious to see other good candidates?
-            <br/>
+            <br />
           </ColDescription>
-          <SubmitButton>
-            Find Candidate
-          </SubmitButton>
+          <SubmitButton>Find Candidate</SubmitButton>
         </RightCol>
       </Grid>
     </CreatorsSectionWrapper>

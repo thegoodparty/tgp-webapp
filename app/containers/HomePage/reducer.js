@@ -7,7 +7,7 @@ import produce from 'immer';
 import { DEFAULT_ACTION } from './constants';
 
 export const initialState = {
-	goodChallengers: [
+  goodChallengers: [
     {
       name: 'Jaime Harrison',
       state: 'SC',
@@ -18,9 +18,11 @@ export const initialState = {
       voterizeMargin: 359924,
       tgpLink:
         'https://thegoodparty.org/elections/candidate/senate/jaime-harrison/161',
-      avatar: 'https://assets.thegoodparty.org/candidates/jaime-harrison-161-j5woly.jpeg',
+      avatar:
+        'https://assets.thegoodparty.org/candidates/jaime-harrison-161-j5woly.jpeg',
       funding: 59,
       disadvantage: 1,
+      chamber: 'senate',
     },
     {
       name: 'Alek Skarlatos',
@@ -32,9 +34,11 @@ export const initialState = {
       voterizeMargin: 32971,
       tgpLink:
         'https://thegoodparty.org/elections/candidate/house/alek-skarlatos/421',
-      avatar: 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alek_Skarlatos.jpg',
+      avatar:
+        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alek_Skarlatos.jpg',
       funding: 67,
       disadvantage: 2,
+      chamber: 'house',
     },
     {
       name: 'Lisa Savage',
@@ -46,9 +50,11 @@ export const initialState = {
       voterizeMargin: null,
       tgpLink:
         'https://thegoodparty.org/elections/candidate/senate/lisa-savage/859',
-      avatar: 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/lisasavage.jpg',
+      avatar:
+        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/lisasavage.jpg',
       funding: 0.51,
       disadvantage: 200,
+      chamber: 'senate',
     },
     {
       name: 'Donna Imam',
@@ -60,9 +66,11 @@ export const initialState = {
       voterizeMargin: 53311,
       tgpLink:
         'https://thegoodparty.org/elections/candidate/house/donna-imam/86',
-      avatar: 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Donna_ImamTX.png',
+      avatar:
+        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Donna_ImamTX.png',
       funding: 16,
       disadvantage: 6,
+      chamber: 'house',
     },
     {
       name: 'Stephanie Bice',
@@ -74,9 +82,11 @@ export const initialState = {
       voterizeMargin: 5000,
       tgpLink:
         'https://thegoodparty.org/elections/candidate/house/stephanie-bice/656',
-      avatar: 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Stephanie_Bice.jpg',
+      avatar:
+        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Stephanie_Bice.jpg',
       funding: 40,
       disadvantage: 3,
+      chamber: 'house',
     },
     {
       name: 'Pam Kieth',
@@ -88,9 +98,11 @@ export const initialState = {
       voterizeMargin: 26396,
       tgpLink:
         'https://thegoodparty.org/elections/candidate/house/pam-keith/1132',
-      avatar: 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/PamKeith.jpg',
+      avatar:
+        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/PamKeith.jpg',
       funding: 7,
       disadvantage: 14,
+      chamber: 'house',
     },
     {
       name: 'David Kim',
@@ -102,9 +114,11 @@ export const initialState = {
       voterizeMargin: 73286,
       tgpLink:
         'https://thegoodparty.org/elections/candidate/house/david-kim/503',
-      avatar: 'https://assets.thegoodparty.org/candidates/david-kim-503-g9nsur.jpeg',
+      avatar:
+        'https://assets.thegoodparty.org/candidates/david-kim-503-g9nsur.jpeg',
       funding: 7.8,
       disadvantage: 13,
+      chamber: 'house',
     },
     {
       name: 'Adam Christensen',
@@ -118,9 +132,11 @@ export const initialState = {
         'https://thegoodparty.org/elections/candidate/house/adam-christensen/1239',
       funding: 6.4,
       disadvantage: 17,
-      avatar: 'https://assets.thegoodparty.org/candidates/adam-christensen-1239-b8b9ep.jpeg'
+      avatar:
+        'https://assets.thegoodparty.org/candidates/adam-christensen-1239-b8b9ep.jpeg',
+      chamber: 'house',
     },
-  ]
+  ],
 };
 
 /* eslint-disable default-case, no-param-reassign */

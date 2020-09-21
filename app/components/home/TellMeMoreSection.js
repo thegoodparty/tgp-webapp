@@ -28,7 +28,6 @@ const RightCol = styled(Grid)`
   justify-content: center;
 `;
 
-
 const LeftCol = styled(Grid)`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-right: 5rem;
@@ -85,7 +84,6 @@ const EamilSubmitButton = styled(Button)`
       outline: none;
     }
   }
-    
 `;
 const TellMeMoreSection = ({}) => {
   return (
@@ -108,14 +106,14 @@ const TellMeMoreSection = ({}) => {
             with good ideas to gather supporters and to turn them into the votes
             needed to win.
           </SectionDescription>
-          <TellMeMoreForm container>
-            <Grid item xs={8}>
-              <EmailInput placeholder="your@email.org" type="email" />
-            </Grid>
-            <Grid item xs={4}>
-              <EamilSubmitButton>Tell Me More</EamilSubmitButton>
-            </Grid>
-          </TellMeMoreForm>
+          {/*<TellMeMoreForm container>*/}
+          {/*  <Grid item xs={8}>*/}
+          {/*    <EmailInput placeholder="your@email.org" type="email" />*/}
+          {/*  </Grid>*/}
+          {/*  <Grid item xs={4}>*/}
+          {/*    <EamilSubmitButton>Tell Me More</EamilSubmitButton>*/}
+          {/*  </Grid>*/}
+          {/*</TellMeMoreForm>*/}
         </RightCol>
       </Grid>
     </TellMeMoreSectionWrapper>

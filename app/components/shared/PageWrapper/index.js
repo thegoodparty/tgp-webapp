@@ -25,7 +25,7 @@ const TopBannerWrapper = styled.div`
   }
 `;
 
-const HomeWrapper=styled.div`
+const HomeWrapper = styled.div`
   width: 100%;
 `;
 function PageWrapper({
@@ -37,7 +37,7 @@ function PageWrapper({
   hideMobileNav,
   style = {},
   topBanner,
-  isHome = false
+  isHome = false,
 }) {
   const WrapperComp = isHome ? HomeWrapper : Wrapper;
   return (
@@ -61,6 +61,7 @@ PageWrapper.propTypes = {
   topBanner: PropTypes.object,
   style: PropTypes.object,
   hideMobileNav: PropTypes.bool,
+  ishome: PropTypes.bool,
 };
 
 export default PageWrapper;

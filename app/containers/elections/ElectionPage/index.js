@@ -143,7 +143,7 @@ export function ElectionPage({
       );
       dispatch(push(pathname));
     }
-  }, []);
+  }, [candidates]);
 
   useEffect(() => {
     const cookieRedirect = getSignupRedirectCookie();

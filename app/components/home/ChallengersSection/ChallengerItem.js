@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Body19, Subtitle } from 'components/shared/typogrophy';
+
+import { Link } from 'react-router-dom';
+
+import { H1, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
 import ChallengerAvatar from './ChallengerAvatar';
 import { numberFormatter } from 'helpers/numberHelper';
+import { rankPageLink } from '../../../helpers/electionsHelper';
 
 const ChallengerItemWrapper = styled.div`
   width: 100%;
@@ -17,31 +21,30 @@ const ChallengerItemWrapper = styled.div`
   }
 `;
 
-
-const ChallengerName = styled.h4`
-  font: normal bold 27px/35px normal;
-  font-family: unset;
-  line-height: 35px;
-  color: ${({ theme }) => theme.colors.gray4};
+const ChallengerName = styled(H1)`
   margin-top: 1rem;
   margin-bottom: 0rem;
   text-align: center;
 `;
 
-const ChallengerInfo = styled.h4`
-  font: normal normal 16px/22px normal;
-  font-family: unset;
-  line-height: 22px;
-  color: ${({ theme }) => theme.colors.gray4};
+const ChallengerInfo = styled(Body)`
   margin-bottom: 1.5rem;
   margin-top: 0;
   text-align: center;
 `;
 
-const ChallengeStats = styled.p`
-  font: normal normal 12px/25px normal;
+const ChallengeStats = styled(Body12)`
   color: ${({ theme }) => theme.colors.gray7};
-  font-family: unset;
+  text-align: center;
+  margin: 0;
+  &.value {
+    font-weight: bold;
+    color: ${({ theme }) => theme.colors.green};
+  }
+`;
+
+const ChallengeStatsSmall = styled(Body9)`
+  color: ${({ theme }) => theme.colors.gray7};
   text-align: center;
   margin: 0;
   &.value {
@@ -77,40 +80,63 @@ const PercentLine = styled.div`
 `;
 
 const LineWrapper = styled.div`
-  padding: 0 12px; 
+  padding: 0 12px;
 `;
-const ChallengerItem = ({ challenger, ...props}) => {
-	const { avatar, party, name, state, district, likelyVoters, votesNeeded, funding, disadvantage } = challenger;
-  const districtInfo = `${state}${district ? `-${district}` :' Senate'}`;
+const ChallengerItem = ({ challenger }) => {
+  const {
+    avatar,
+    party,
+    name,
+    state,
+    district,
+    likelyVoters,
+    votesNeeded,
+    funding,
+    disadvantage,
+    chamber,
+  } = challenger;
+  const districtInfo = `${state}${district ? `-${district}` : ' Senate'}`;
   const challengerInfo = `${party} for ${districtInfo}`;
-  const neededPercent = parseInt((likelyVoters * 100) / votesNeeded);
-  const neededVotes = `${neededPercent}% of ${numberFormatter(votesNeeded)} votes needed to win in ${districtInfo}`;
+  const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
+  const neededVotes = `${neededPercent}% of ${numberFormatter(
+    votesNeeded,
+  )} votes needed to win in ${districtInfo}`;
+
+  const getRankPageLink = () => rankPageLink(chamber, state, district);
   return (
-    <ChallengerItemWrapper>
-    	<ChallengerAvatar avatar={avatar} party={party} />
-      <ChallengerName>{name}</ChallengerName>
-      <ChallengerInfo>{challengerInfo}</ChallengerInfo>
-      <Grid container>
-        <Grid item xs={6}>
-          <ChallengeStats className="value">{numberFormatter(funding)}%</ChallengeStats>
-          <ChallengeStats>Small Donor Funding</ChallengeStats>
+    <Link to={getRankPageLink()}>
+      <ChallengerItemWrapper>
+        <ChallengerAvatar avatar={avatar} party={party} />
+        <ChallengerName>{name}</ChallengerName>
+        <ChallengerInfo>{challengerInfo}</ChallengerInfo>
+        <Grid container>
+          <Grid item xs={6}>
+            <ChallengeStats className="value">
+              {numberFormatter(funding)}%
+            </ChallengeStats>
+            <ChallengeStatsSmall>Small Donor Funding</ChallengeStatsSmall>
+          </Grid>
+          <Grid item xs={6}>
+            <ChallengeStats className="value">
+              {numberFormatter(disadvantage)}x
+            </ChallengeStats>
+            <ChallengeStatsSmall>Funding Disadvantage</ChallengeStatsSmall>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <ChallengeStats className="value">{numberFormatter(disadvantage)}x</ChallengeStats>
-          <ChallengeStats>Funding Disadvantage</ChallengeStats>
-        </Grid>
-      </Grid>
-      <NeededVotesWrapper>
-        <NeededVotes>
-          {neededVotes}
-        </NeededVotes>
-        <LineWrapper>
-          <FullLine />
-          <PercentLine percent={neededPercent + '%'} />
-        </LineWrapper>
-      </NeededVotesWrapper>
-    </ChallengerItemWrapper>
+        <NeededVotesWrapper>
+          <NeededVotes>{neededVotes}</NeededVotes>
+          <LineWrapper>
+            <FullLine />
+            <PercentLine percent={neededPercent + '%'} />
+          </LineWrapper>
+        </NeededVotesWrapper>
+      </ChallengerItemWrapper>
+    </Link>
   );
+};
+
+ChallengerItem.propTypes = {
+  challenger: PropTypes.object,
 };
 
 export default ChallengerItem;
