@@ -29,8 +29,6 @@ const Wrapper = ({
   children,
   style,
   white,
-  noHeader = false,
-  creators = false,
   blue,
 }) => {
   let className = '';
@@ -40,7 +38,7 @@ const Wrapper = ({
     className = 'blue';
   }
   return (
-    <WrapperDiv style={style} className={className} creators={creators}>
+    <WrapperDiv style={style} className={className}>
       {children}
     </WrapperDiv>
   );
@@ -50,7 +48,6 @@ Wrapper.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   style: PropTypes.object,
   white: PropTypes.bool,
-  noHeader: PropTypes.bool,
   blue: PropTypes.bool,
 };
 

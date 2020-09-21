@@ -100,6 +100,11 @@ const BlocCount = styled(Body11)`
   margin-top: 4px;
 `;
 
+const PercWrapper = styled(Body13)`
+  font-weight: 700;
+  display: inline-block;
+`;
+
 const JoinButton = styled(Body11)`
   padding: 0.8rem 0.6rem;
   width: 100%;
@@ -373,10 +378,12 @@ const VsList = ({
       // no user - need to add the guest count
       rank++;
     }
-
+    const percNeeded = (rank * 100) / votesNeeded;
     return (
       <BlocCount data-cy="block-count">
-        {((rank * 100) / votesNeeded).toFixed(2)}% of{' '}
+        <span title={`${numberFormatter(rank)} Votes`}>
+          <PercWrapper>{percNeeded.toFixed(1)}%</PercWrapper> of{' '}
+        </span>
         {numberFormatter(votesNeeded)} votes needed to win {inText(candidate)}
         <SupportersProgressBar
           peopleSoFar={rank}
@@ -495,12 +502,13 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                <WhyNot data-cy="why-not">Why not good enough?</WhyNot>
+                <div style={{ height: '16px' }} />
                 <FollowTheMoney
                   candidate={candidate}
                   incumbent={incumbent}
                   layout="vertical"
                 />
-                <WhyNot data-cy="why-not">Why not good enough?</WhyNot>
               </CandidateWrapper>
             </Link>
           ))}

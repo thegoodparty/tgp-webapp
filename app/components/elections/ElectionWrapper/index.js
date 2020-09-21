@@ -97,9 +97,7 @@ const ElectionWrapper = ({
   content,
   state,
   districtNumber,
-  rankingAllowed,
   saveRankingCallback,
-  editModeCallback,
   refreshCountCallback,
   deleteCandidateRankingCallback,
   clearBlocCandidateCallback,
@@ -112,11 +110,14 @@ const ElectionWrapper = ({
   incumbent,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
-  const [showRankAlert, setShowRankAlert] = React.useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
   const [isExternalLink, setIsExternalLink] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (blocCandidate) {
@@ -169,10 +170,6 @@ const ElectionWrapper = ({
     articles = articlesHelper(content.faqArticles, 'election');
   }
 
-  const handleCloseAlert = () => {
-    setShowRankAlert(false);
-  };
-
   let title = `${displayChamber} Elections`;
   if (chamber === 'senate' && state) {
     const stateLong = shortToLongState[state.toUpperCase()];
@@ -192,20 +189,15 @@ const ElectionWrapper = ({
   }
 
   const handleChoiceCallback = (candidate, rank) => {
-    if (rankingAllowed) {
-      if (candidate.id < 0) {
-        candidate.ranking = candidates.goodEmptyBloc;
-      }
-      if (user) {
-        setChoiceModalCandidate(candidate);
-        setShowChoiceModal(true);
-        setShowShareModal(false);
-      }
-      selectCandidate(candidate, rank);
-    } else {
-      // ranking not allowed
-      setShowRankAlert(true);
+    if (candidate.id < 0) {
+      candidate.ranking = candidates.goodEmptyBloc;
     }
+    if (user) {
+      setChoiceModalCandidate(candidate);
+      setShowChoiceModal(true);
+      setShowShareModal(false);
+    }
+    selectCandidate(candidate, rank);
   };
 
   const handleDeselectCandidate = rank => {
@@ -282,30 +274,30 @@ const ElectionWrapper = ({
       {candidates ? (
         <>
           <H1 data-cy="title">{title}</H1>
-          <Row>
-            <SupportersWrapper data-cy="supporters">
-              <SupportersRow>
-                <SupportersImg src={supportersImg} alt="tgp" />
-                <SupportersCount data-cy="supporters-count">
-                  {numberFormatter(topRank)}{' '}
-                </SupportersCount>
-              </SupportersRow>
-              <SuppoetersBody data-cy="supporters-body">
-                likely voters for top candidate
-              </SuppoetersBody>
-              <SupportersProgressBar
-                votesNeeded={votesNeeded}
-                peopleSoFar={topRank}
-                userState={candidates.userState}
-                showSupporters={false}
-                suffixText={suffixText}
-                alignLeft
-              />
-            </SupportersWrapper>
-            <MapWrapper>
-              <img src={UsMapImage} alt="" />
-            </MapWrapper>
-          </Row>
+          {/*<Row>*/}
+          {/*  <SupportersWrapper data-cy="supporters">*/}
+          {/*    <SupportersRow>*/}
+          {/*      <SupportersImg src={supportersImg} alt="tgp" />*/}
+          {/*      <SupportersCount data-cy="supporters-count">*/}
+          {/*        {numberFormatter(topRank)}{' '}*/}
+          {/*      </SupportersCount>*/}
+          {/*    </SupportersRow>*/}
+          {/*    <SuppoetersBody data-cy="supporters-body">*/}
+          {/*      likely voters for top candidate*/}
+          {/*    </SuppoetersBody>*/}
+          {/*    <SupportersProgressBar*/}
+          {/*      votesNeeded={votesNeeded}*/}
+          {/*      peopleSoFar={topRank}*/}
+          {/*      userState={candidates.userState}*/}
+          {/*      showSupporters={false}*/}
+          {/*      suffixText={suffixText}*/}
+          {/*      alignLeft*/}
+          {/*    />*/}
+          {/*  </SupportersWrapper>*/}
+          {/*  <MapWrapper>*/}
+          {/*    <img src={UsMapImage} alt="" />*/}
+          {/*  </MapWrapper>*/}
+          {/*</Row>*/}
           <Description data-cy="description">
             {candidates.good.length > 0 ? (
               <>
@@ -355,21 +347,6 @@ const ElectionWrapper = ({
       ) : (
         <LoadingAnimation />
       )}
-      <Dialog
-        onClose={handleCloseAlert}
-        aria-labelledby="Ranking not Allowed"
-        open={showRankAlert}
-      >
-        <AlertWrapper>
-          <CloseWrapper onClick={handleCloseAlert}>
-            <CloseIcon />
-          </CloseWrapper>
-          <H3>
-            You are not allowed to to Rank Candidates for an election that is
-            not in your district.
-          </H3>
-        </AlertWrapper>
-      </Dialog>
 
       <ChoiceModal
         open={showChoiceModal}
@@ -416,7 +393,6 @@ ElectionWrapper.propTypes = {
   blocCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   joinCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   growCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  rankingAllowed: PropTypes.bool,
   saveRankingCallback: PropTypes.func,
   refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,

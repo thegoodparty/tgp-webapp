@@ -10,7 +10,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/intro/HomePage/Loadable';
+// import HomePage from 'containers/intro/HomePage/Loadable';
 
 import SplashPage from 'containers/intro/SplashPage/Loadable';
 import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
@@ -49,6 +49,7 @@ import ResearchPage from 'containers/shared/ResearchPage/Loadable';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import TwitterCallbackPage from 'containers/you/TwitterCallbackPage/Loadable';
 import VoterizePage from 'containers/voterize/VoterizePage/Loadable';
+import HomePage from 'containers/HomePage/Loadable';
 
 function Routes() {
   return (
