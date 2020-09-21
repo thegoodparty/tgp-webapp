@@ -11,6 +11,7 @@ const ChallengerItemWrapper = styled.div`
   padding: 1rem;
   margin-top: 1.5rem;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 343px;
   }
