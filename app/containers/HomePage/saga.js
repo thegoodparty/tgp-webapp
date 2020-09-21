@@ -12,13 +12,13 @@ function* loadChallengers(action) {
     yield put(snackbarActions.showSnakbarAction('Loading Good Challengers'));
     const api = tgpApi.goodChallengers;
     const { goodChallengers } = yield call(requestHelper, api, null);
-    yield put(actions.loadChallengersSuccess(goodChallengers));
+    yield put(actions.loadChallengersActionSuccess(goodChallengers));
   } catch (error) {
     console.log(error);
     yield put(
       snackbarActions.showSnakbarAction('Error Loading Good Challengers', 'error'),
     );
-    yield put(actions.loadChallengersError(error));
+    yield put(actions.loadChallengersActionError(error));
   }
 }
 

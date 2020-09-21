@@ -21,7 +21,6 @@ import homeActions from './actions';
 export function HomePage({
   dispatch,
   homeState,
-  loadChallengersCallback
 }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
@@ -30,7 +29,8 @@ export function HomePage({
     goodChallengers,
   };
   useEffect(() => {
-    loadChallengersCallback();
+    // loadChallengersCallback();
+    dispatch(homeActions.loadChallengersAction())
   }, []);
   return (
     <div>
@@ -46,7 +46,6 @@ export function HomePage({
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   homeState: PropTypes.object,
-  loadChallengersCallback: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -56,8 +55,6 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadChallengersCallback: () =>
-      dispatch(homeActions.loadChallengers()),
   };
 }
 

@@ -92,16 +92,18 @@ const ChallengerItem = ({ challenger }) => {
     raised,
     incumbentRaised,
     chamber,
+    smallFunding,
+    xTimes
   } = challenger;
   const partyString = partyResolver(party);
-  const funding = ((raised * 100) / incumbentRaised).toFixed(2);
+  const funding = smallFunding || ((raised * 100) / incumbentRaised).toFixed(2);
   const districtInfo = `${state.toUpperCase()}${district ? `-${district}` : ' Senate'}`;
   const challengerInfo = `${partyString} for ${districtInfo}`;
   const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
   const neededVotes = `${neededPercent}% of ${numberFormatter(
     votesNeeded,
   )} votes needed to win in ${districtInfo}`;
-  const disadvantage = (incumbentRaised / raised).toFixed(2);
+  const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
   return (
     <ChallengerItemWrapper>

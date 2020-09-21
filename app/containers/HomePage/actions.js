@@ -6,20 +6,20 @@
 
 import types from './constants';
 
-function loadChallengers() {
+function loadChallengersAction() {
   return {
     type: types.LOAD_CHALLENGERS,
   };
 }
 
-function loadChallengersSuccess(challengers) {
+function loadChallengersActionSuccess(challengers) {
   return {
     type: types.LOAD_CHALLENGERS_SUCCESS,
     challengers,
   };
 }
 
-function loadChallengersError(error) {
+function loadChallengersActionError(error) {
   return {
     type: types.LOAD_CHALLENGERS_ERROR,
     error,
@@ -27,7 +27,7 @@ function loadChallengersError(error) {
 }
 
 export default {
-	loadChallengers,
-	loadChallengersSuccess,
-	loadChallengersError
+	loadChallengersAction,
+	loadChallengersActionSuccess,
+	loadChallengersActionError
 };
