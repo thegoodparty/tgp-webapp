@@ -45,10 +45,14 @@ const Fund = styled.div`
 
   &.vertical {
     text-align: left;
-    margin: 24px 10px 32px;
+    margin: 16px 10px;
+    color: ${({ theme }) => theme.colors.gray7};
 
     &.notgood {
       text-align: right;
+    }
+    .light-gray {
+      color: ${({ theme }) => theme.colors.gray7};
     }
   }
 `;
@@ -142,7 +146,7 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
       >
         {moneyHelper(totalRaised)}
       </ColoredBodyText>
-      <StyledBody9>TOTAL FUNDS RAISED</StyledBody9>
+      <StyledBody9 className="light-gray">TOTAL FUNDS RAISED</StyledBody9>
     </Fund>
   );
   const secondFund = () => {
@@ -154,7 +158,9 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
             className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
           >
             <ColoredBodyText className="green">{perc}%</ColoredBodyText>
-            <StyledBody9>FROM SMALL INDIV DONORS &lt;$200</StyledBody9>
+            <StyledBody9 className="light-gray">
+              FROM SMALL INDIV DONORS &lt;$200
+            </StyledBody9>
           </Fund>
         );
       }
@@ -166,7 +172,7 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
           <ColoredBodyText className="green">
             {comparedIncumbent.relativePerc}%
           </ColoredBodyText>
-          <StyledBody9>
+          <StyledBody9 className="light-gray">
             FUNDING RELATIVE TO{' '}
             {comparedIncumbent.isFakeIncumbent
               ? 'BIG MONEY CANDIDATE'
@@ -182,7 +188,7 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
         className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
       >
         <ColoredBodyText className={color}>{perc}%</ColoredBodyText>
-        <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
+        <StyledBody9 className="light-gray">FROM BIG MONEY SOURCES</StyledBody9>
       </Fund>
     );
   };
@@ -196,7 +202,9 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
             className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
           >
             <ColoredBodyText className="gray">N/A</ColoredBodyText>
-            <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
+            <StyledBody9 className="light-gray">
+              FUNDING DISADVANTAGE
+            </StyledBody9>
           </Fund>
         );
       }
@@ -209,7 +217,7 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
           <ColoredBodyText className="green">
             {numberFormatter(comparedIncumbent.xTimes)}x
           </ColoredBodyText>
-          <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
+          <StyledBody9 className="light-gray">FUNDING DISADVANTAGE</StyledBody9>
         </Fund>
       );
     }
@@ -220,7 +228,7 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
         className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
       >
         <ColoredBodyText className={color}>{perHour}/hr</ColoredBodyText>
-        <StyledBody9>
+        <StyledBody9 className="light-gray">
           BIG MONEY
           <SmallBr /> FUNDING RATE
         </StyledBody9>
