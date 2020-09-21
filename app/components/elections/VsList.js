@@ -376,7 +376,7 @@ const VsList = ({
 
     return (
       <BlocCount data-cy="block-count">
-        {((rank * 100) / votesNeeded).toFixed(2)}% of{' '}
+        {((rank * 100) / votesNeeded).toFixed(0)}% of{' '}
         {numberFormatter(votesNeeded)} votes needed to win {inText(candidate)}
         <SupportersProgressBar
           peopleSoFar={rank}
@@ -495,6 +495,7 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                <div style={{ height: '36px' }} />
                 <FollowTheMoney
                   candidate={candidate}
                   incumbent={incumbent}
