@@ -10,7 +10,8 @@ import { numberFormatter } from 'helpers/numberHelper';
 import { rankPageLink } from 'helpers/electionsHelper';
 import ChallengerAvatar from './ChallengerAvatar';
 
-const ResponsiveLink = styled.div`
+const ResponsiveLink = styled(Link)`
+  display: block;
   width: 100%;
   padding: 1rem;
   margin-top: 1.5rem;
