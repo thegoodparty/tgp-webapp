@@ -9,7 +9,7 @@ import types from './constants';
 export const initialState = {
   goodChallengers: [
     {
-      district: 2,
+      district: null,
       image: "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/jaimeharrison.jpg",
       incumbentRaised: 1010460,
       likelyVoters: 806228,
@@ -64,7 +64,7 @@ export const initialState = {
       votesNeeded: 96341,
     },
     {
-      district: 2,
+      district: null,
       image: "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/lisasavage.jpg",
       incumbentRaised: 2787080,
       likelyVoters: 113131,
