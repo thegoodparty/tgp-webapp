@@ -11,6 +11,16 @@ const StyledButton = styled(Button)`
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     background-color: ${({ theme }) => theme.colors.blue};
+    &.outline {
+      background-color: white;
+      border: 2px solid ${({ theme }) => theme.colors.blue};
+      color: ${({ theme }) => theme.colors.blue};
+      font-size: 1rem;
+    }
+    &.center {
+      display: inherit;
+      margin: 0 auto;
+    }
     color: #fff;
   }
 `;
@@ -21,6 +31,7 @@ const BlueButton = ({
   children,
   disabled = false,
   style = {},
+  className
 }) => (
   <StyledButton
     color="primary"
@@ -29,6 +40,7 @@ const BlueButton = ({
     variant="contained"
     disabled={disabled}
     style={style}
+    className={className}
   >
     {children}
   </StyledButton>

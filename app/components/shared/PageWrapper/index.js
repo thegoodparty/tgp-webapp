@@ -24,6 +24,10 @@ const TopBannerWrapper = styled.div`
     margin-top: 18px;
   }
 `;
+
+const HomeWrapper=styled.div`
+  width: 100%;
+`;
 function PageWrapper({
   children,
   hideNav,
@@ -33,15 +37,17 @@ function PageWrapper({
   hideMobileNav,
   style = {},
   topBanner,
+  isHome = false
 }) {
+  const WrapperComp = isHome ? HomeWrapper : Wrapper;
   return (
     <MainWrapper className={white ? 'white' : ''} style={style}>
       {!hideNav && <Nav hideMobileNav={hideMobileNav} />}
       {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
-      <Wrapper white={white} style={wrapperStyles} noHeader={hideNav}>
+      <WrapperComp white={white} style={wrapperStyles} noHeader={hideNav}>
         {!hideNav && <MobileHeader {...mobileHeaderProps} />}
         {children}
-      </Wrapper>
+      </WrapperComp>
       <Footer />
     </MainWrapper>
   );
