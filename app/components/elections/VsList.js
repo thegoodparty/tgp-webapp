@@ -373,10 +373,12 @@ const VsList = ({
       // no user - need to add the guest count
       rank++;
     }
-
+    const percNeeded = (rank * 100) / votesNeeded;
     return (
       <BlocCount data-cy="block-count">
-        {((rank * 100) / votesNeeded).toFixed(0)}% of{' '}
+        <span title={`${numberFormatter(rank)} Votes`}>
+          {percNeeded.toFixed(1)}% of{' '}
+        </span>
         {numberFormatter(votesNeeded)} votes needed to win {inText(candidate)}
         <SupportersProgressBar
           peopleSoFar={rank}
