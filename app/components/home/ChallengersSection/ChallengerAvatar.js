@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Body19, Subtitle } from 'components/shared/typogrophy';
 import DemocratImg from 'images/democrat.png';
 import RepublicanImg from 'images/republican.png';
-
+import IndependentImg from 'images/independent.png';
 
 const ChallengerAvatarWrapper = styled.div`
   background: url(${props => props.avatar});
@@ -32,7 +32,9 @@ const ChallengerAvatar = ({ avatar, party, ...props}) => {
 		PartyImg = DemocratImg;
 	} else if(party[0] === 'R') {
 		PartyImg = RepublicanImg;
-	}
+	} else if(party[0] === 'I') {
+    PartyImg = IndependentImg;
+  }
   return (
     <ChallengerAvatarWrapper avatar={avatar} >
     	{PartyImg && 
