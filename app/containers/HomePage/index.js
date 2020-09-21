@@ -16,10 +16,12 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectHomePage from './selectors';
 import HomePageWrapper from 'components/home/HomePageWrapper';
+import homeActions from './actions';
 
 export function HomePage({
   dispatch,
-  homeState
+  homeState,
+  loadChallengersCallback
 }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
@@ -27,7 +29,9 @@ export function HomePage({
   const childProps = {
     goodChallengers
   };
-
+  useEffect(() => {
+    loadChallengersCallback();
+  }, []);
   return (
     <div>
       <Helmet>
@@ -42,6 +46,7 @@ export function HomePage({
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   homeState: PropTypes.object,
+  loadChallengersCallback: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -51,6 +56,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    loadChallengersCallback: () =>
+      dispatch(homeActions.loadChallengers()),
   };
 }
 
