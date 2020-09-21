@@ -22,7 +22,7 @@ Cypress.Commands.add(
       numberFormatter(topRank),
     );
     cy.get('[data-cy=supporters-body]').contains(
-      'people support top candidate so far',
+      'likely voters for top candidate',
     );
     cy.testSupportersProgressBar(
       'supporters',
@@ -123,7 +123,7 @@ Cypress.Commands.add(
     userState,
     showSupporters = true,
     suffixText,
-    prefixText = 'people support top candidate so far',
+    prefixText = 'likely voters for top candidate',
   ) => {
     let progress = 3;
     if (peopleSoFar && votesNeeded) {

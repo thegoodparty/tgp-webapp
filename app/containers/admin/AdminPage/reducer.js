@@ -13,6 +13,8 @@ export const initialState = {
   error: false,
   articlesFeedback: false,
   candidate: false,
+  voterizeList: false,
+  isUpdated: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -39,7 +41,7 @@ const adminPageReducer = (state = initialState, action) =>
         draft.error = true;
         break;
       case types.DELETE_USER_SUCCESS:
-        let users = [...state.users];
+        const users = [...state.users];
         for (let i = 0; i < users.length; i++) {
           if (users[i].id === action.user.id) {
             users.splice(i, 1);
@@ -108,6 +110,29 @@ const adminPageReducer = (state = initialState, action) =>
       case types.UPDATE_CANDIDATE_IMAGE:
         draft.loading = true;
         break;
+
+      case types.LOAD_VOTERIZE:
+        draft.voterizeList = false;
+        draft.loading = true;
+        draft.error = false;
+        break;
+      case types.LOAD_VOTERIZE_SUCCESS:
+        draft.voterizeList = action.voterize;
+        draft.loading = false;
+        draft.error = false;
+        break;
+      case types.LOAD_VOTERIZE_ERROR:
+        draft.voterizeList = false;
+        draft.loading = false;
+        draft.error = action.error;
+        break;
+      case types.UPDATE_VOTERIZE:
+        draft.isUpdated = false;
+        break;
+      case types.UPDATE_VOTERIZE_SUCCESS:
+        draft.voterizeList = action.voterize;
+        draft.loading = false;
+        draft.isUpdated = true;
     }
   });
 

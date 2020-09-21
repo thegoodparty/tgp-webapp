@@ -1,5 +1,5 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-
+import { push } from 'connected-react-router';
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
@@ -15,6 +15,7 @@ function* loadCandidate(action) {
   } catch (error) {
     console.log(error);
     yield put(actions.loadCandidateActionError(error));
+    yield put(push('/404'));
   }
 }
 

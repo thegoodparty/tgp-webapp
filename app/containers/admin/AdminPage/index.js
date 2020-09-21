@@ -30,6 +30,8 @@ export function AdminPage({
   loadAllUsersCallback,
   loadArticleFeedbackCallback,
   deleteUserCallback,
+  loadVoterizeCallback,
+  updateVoterizeCallback,
   userState,
   content,
   dispatch,
@@ -44,17 +46,29 @@ export function AdminPage({
     }
   });
 
-  const { candidates, users, articlesFeedback, loading, error } = adminState;
+  const {
+    candidates,
+    users,
+    articlesFeedback,
+    voterizeList,
+    loading,
+    error,
+    isUpdated,
+  } = adminState;
 
   const childProps = {
     candidates,
     users,
+    voterizeList,
+    isUpdated,
     articles: articlesFeedback,
     loadCandidatesCallback,
     updateCandidateCallback,
     loadAllUsersCallback,
     loadArticleFeedbackCallback,
     deleteUserCallback,
+    loadVoterizeCallback,
+    updateVoterizeCallback,
     loading,
     error,
     user,
@@ -108,6 +122,9 @@ function mapDispatchToProps(dispatch) {
     deleteUserCallback: user => {
       dispatch(adminActions.deleteUser(user));
     },
+    loadVoterizeCallback: () => dispatch(adminActions.loadVoterizeAction()),
+    updateVoterizeCallback: voterize =>
+      dispatch(adminActions.updateVoterizeAction(voterize)),
   };
 }
 

@@ -32,6 +32,7 @@ import {
 } from 'containers/App/selectors';
 import {
   candidateBlocName,
+  candidateCalculatedFields,
   findBlocCandidate,
   generateEmptyBlocCandidate,
   isDistrictInCds,
@@ -51,6 +52,7 @@ import {
   getSignupRedirectCookie,
   setSignupRedirectCookie,
 } from 'helpers/cookieHelper';
+import candidateActions from '../CandidatePage/actions';
 
 export function ElectionPage({
   content,
@@ -84,6 +86,7 @@ export function ElectionPage({
 
   const { user, ranking } = userState;
   const { blocCandidate, joinCandidate, growCandidate } = districtState;
+  const { incumbent } = candidateState;
 
   let candidates;
   if (chamber === 'presidential') {
@@ -155,6 +158,15 @@ export function ElectionPage({
       dispatch(userActions.userRankingAction());
     }
   }, [user]);
+
+  // loading district incumbent
+  useEffect(() => {
+    if (chamber === 'Senate') {
+      dispatch(candidateActions.loadDistrictIncumbentAction(state));
+    } else {
+      dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
+    }
+  }, [candidates]);
 
   if (!user && !ranking) {
     dispatch(userActions.guestRankingAction());
@@ -228,9 +240,26 @@ export function ElectionPage({
       }
     }
   }
+  const candidatesWithFields = candidates;
+
+  if (candidates) {
+    const { good, notGood, unknown } = candidates;
+    const goodWithFields = good.map(candidate =>
+      candidateCalculatedFields(candidate),
+    );
+    const notGoodWithFields = notGood.map(candidate =>
+      candidateCalculatedFields(candidate),
+    );
+    const unknownWithFields = unknown.map(candidate =>
+      candidateCalculatedFields(candidate),
+    );
+    candidatesWithFields.good = goodWithFields;
+    candidatesWithFields.notGood = notGoodWithFields;
+    candidatesWithFields.unknown = unknownWithFields;
+  }
 
   const childProps = {
-    candidates,
+    candidates: candidatesWithFields,
     user,
     content,
     chamber,
@@ -249,6 +278,7 @@ export function ElectionPage({
     clearJoinCandidateCallback,
     clearGrowCandidateCallback,
     postRegisterJoin,
+    incumbent,
   };
 
   return (

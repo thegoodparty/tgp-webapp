@@ -9,16 +9,17 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import { CSVLink } from 'react-csv/lib';
+import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
-
+import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
-import { H3 } from '../../shared/typogrophy';
-import { numberFormatter } from '../../../helpers/numberHelper';
+import { H3 } from 'components/shared/typogrophy';
+import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -28,17 +29,7 @@ const Wrapper = styled.div`
 const Title = styled(H3)`
   margin-bottom: 12px;
   text-align: center;
-`;
-
-const ColoredText = styled.span`
-  color: ${({ theme }) => theme.colors.gray4};
-  &.green {
-    color: ${({ theme }) => theme.colors.green};
-  }
-
-  &.red {
-    color: ${({ theme }) => theme.colors.red};
-  }
+  position: relative;
 `;
 
 const StyledSelect = styled(Select)`
@@ -48,7 +39,12 @@ const StyledSelect = styled(Select)`
     }
   }
 `;
-
+const CSVLinkWrapper = styled(Button)`
+  && {
+    position: absolute;
+    right: 0;
+  }
+`;
 const headerStyle = {
   fontWeight: 700,
   fontSize: '1.05em',
@@ -120,6 +116,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     },
     {
       Header: 'Name',
+      accessor: 'name',
       headerStyle,
       filterMethod: customFilter,
       Cell: row => {
@@ -259,9 +256,11 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       headerStyle,
     });
   }
-
+  const csvHeader = columns.map(column => ({
+    label: column.Header,
+    key: column.accessor,
+  }));
   const updateHidden = (candidate, newVal) => {
-    console.log('ewVal', newVal);
     updateCandidateCallback(
       candidate.id,
       { isHidden: newVal },
@@ -281,7 +280,22 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
 
   return (
     <Wrapper>
-      <Title>{chamber} candidate list</Title>
+      <Title>
+        {chamber} candidate list
+        <CSVLinkWrapper variant="contained" color="primary">
+          <CSVLink
+            data={tableData}
+            filename={`${chamber}_candidates_${moment().format(
+              'YYYY_MM_DD',
+            )}.csv`}
+            headers={csvHeader}
+            target="_blank"
+          >
+            <span style={{ color: '#FFF' }}>Download as a CSV</span>
+          </CSVLink>
+        </CSVLinkWrapper>
+      </Title>
+
       <ReactTable
         className="-striped -highlight"
         data={tableData}

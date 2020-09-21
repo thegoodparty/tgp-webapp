@@ -32,7 +32,10 @@ export const numberNth = number => {
 };
 
 export const numberFormatter = num => {
-  if (!num) return num;
+  if (isNaN(num)) {
+    return 0;
+  }
+  if (!num) return 0;
   if (typeof num !== 'number') {
     num = parseFloat(num);
   }

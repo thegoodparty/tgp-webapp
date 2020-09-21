@@ -6,7 +6,6 @@
 
 import types from './constants';
 
-
 function loadCandidates(chamber) {
   return {
     type: types.LOAD_CANDIDATES,
@@ -61,7 +60,6 @@ function deleteUserSuccess(user) {
     user,
   };
 }
-
 
 function updateCandidate(
   id,
@@ -139,6 +137,40 @@ function loadCandidateActionSuccess(candidate) {
   };
 }
 
+function loadVoterizeAction() {
+  return {
+    type: types.LOAD_VOTERIZE,
+  };
+}
+
+function loadVoterizeActionSuccess(voterize) {
+  return {
+    type: types.LOAD_VOTERIZE_SUCCESS,
+    voterize,
+  };
+}
+
+function loadVoterizeActionError(error) {
+  return {
+    type: types.LOAD_VOTERIZE_ERROR,
+    error,
+  };
+}
+
+function updateVoterizeAction(voterize) {
+  return {
+    type: types.UPDATE_VOTERIZE,
+    voterize,
+  };
+}
+
+function updateVoterizeActionSuccess(voterize) {
+  return {
+    type: types.UPDATE_VOTERIZE_SUCCESS,
+    voterize,
+  };
+}
+
 export default {
   loadCandidates,
   loadCandidatesSuccess,
@@ -161,4 +193,10 @@ export default {
 
   loadCandidateAction,
   loadCandidateActionSuccess,
+
+  loadVoterizeAction,
+  loadVoterizeActionSuccess,
+  loadVoterizeActionError,
+  updateVoterizeAction,
+  updateVoterizeActionSuccess,
 };

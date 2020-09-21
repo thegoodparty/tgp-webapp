@@ -17,7 +17,7 @@ import {
   candidateBlocName,
 } from 'helpers/electionsHelper';
 import {
-  getCandidateTitle
+  getCandidateTitle,
 } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
@@ -192,13 +192,12 @@ const ShareModal = ({
   if (url === 'https://thegoodparty.org') {
     queryOperator = '?';
   }
-  url = url + queryOperator + 'b=' + blocLink;
+  url = `${url + queryOperator}b=${blocLink}`;
 
-  let chamberTitle = getCandidateTitle(chamber);
-
-  const messageTitle = `Want see if we can elect ${
-    candidate.name
-  } for ${chamberTitle}?`;
+  const chamberTitle = getCandidateTitle(chamber);
+  const messageTitle = `Let's see if we can elect ${candidate.name} ${
+    chamberTitle.includes('President') ? '' : 'to '
+  }${chamberTitle}.`;
   const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
 
   const sendSms = () => {
@@ -248,14 +247,22 @@ const ShareModal = ({
                 </span>{' '}
                 You’ve joined
               </H3>
-              <H1 style={{ marginTop: '10px', marginBottom: '16px' }} data-cy="share-modal-title">
+              <H1
+                style={{ marginTop: '10px', marginBottom: '16px' }}
+                data-cy="share-modal-title"
+              >
                 {blocName} {blocNameSuffix(blocName)}
               </H1>
             </>
           ) : (
             <>
-              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">Please help grow </H3>
-              <H1 style={{ marginTop: '10px', marginBottom: '16px' }} data-cy="share-modal-title">
+              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">
+                Please help grow{' '}
+              </H3>
+              <H1
+                style={{ marginTop: '10px', marginBottom: '16px' }}
+                data-cy="share-modal-title"
+              >
                 {blocName} {blocNameSuffix(blocName)}
               </H1>
             </>
@@ -294,7 +301,10 @@ const ShareModal = ({
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
             <Grid item xs>
-              <a href={`sms:?&body=${messageBody.replace('&', '%26')}`} data-cy="sms-share">
+              <a
+                href={`sms:?&body=${messageBody.replace('&', '%26')}`}
+                data-cy="sms-share"
+              >
                 <IconItem>
                   <IconWrapper className="sms">
                     <Icon src={SmsIcon} alt="sms" />

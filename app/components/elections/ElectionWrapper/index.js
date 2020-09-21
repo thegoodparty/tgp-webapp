@@ -109,6 +109,7 @@ const ElectionWrapper = ({
   clearJoinCandidateCallback,
   clearGrowCandidateCallback,
   postRegisterJoin,
+  incumbent,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showRankAlert, setShowRankAlert] = React.useState(false);
@@ -273,7 +274,7 @@ const ElectionWrapper = ({
 
   const suffixText =
     chamber === 'presidential'
-      ? " (270 ELECTORS)"
+      ? ' (270 ELECTORS)'
       : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
 
   return (
@@ -290,7 +291,7 @@ const ElectionWrapper = ({
                 </SupportersCount>
               </SupportersRow>
               <SuppoetersBody data-cy="supporters-body">
-                people support top candidate so far
+                likely voters for top candidate
               </SuppoetersBody>
               <SupportersProgressBar
                 votesNeeded={votesNeeded}
@@ -341,6 +342,8 @@ const ElectionWrapper = ({
             chamber={chamber}
             state={stateUpper}
             user={user}
+            votesNeeded={votesNeeded}
+            incumbent={incumbent}
           />
 
           <TopQuestions articles={articles} />
@@ -376,7 +379,9 @@ const ElectionWrapper = ({
         candidate={choiceModalCandidate}
         // candidate={candidates.good ? candidates.good[0] : null}
         votesNeeded={votesNeeded}
-        chamberCount={choiceModalCandidate.ranking}
+        chamberCount={
+          choiceModalCandidate.ranking + choiceModalCandidate.likelyVoters
+        }
         user={user}
         animateCount={!isExternalLink}
         userState={candidates.userState}
@@ -419,6 +424,7 @@ ElectionWrapper.propTypes = {
   clearJoinCandidateCallback: PropTypes.func,
   clearGrowCandidateCallback: PropTypes.func,
   postRegisterJoin: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ElectionWrapper;

@@ -24,7 +24,6 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import ENV from '../../../api/ENV';
 
 function* sendCreatorMessage(action) {
   try {
@@ -78,6 +77,7 @@ function* register(action) {
           `The email ${
             action.email
           } already exists in our system. Try signing in.`,
+          'error',
         ),
       );
       yield put(push('/login'));

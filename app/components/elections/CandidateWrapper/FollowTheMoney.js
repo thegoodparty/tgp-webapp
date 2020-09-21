@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Body13, Body, Body11 } from 'components/shared/typogrophy';
+import { Body13, Body, Body11, Body9 } from 'components/shared/typogrophy';
 
 import moneyHelper from 'helpers/moneyHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
@@ -11,7 +11,6 @@ import {
   getComparedIncumbent,
   getCombinedReportDate,
 } from 'helpers/candidatesHelper';
-import { Body9 } from '../../shared/typogrophy';
 
 const FollowWrapper = styled.div`
   margin-top: 24px;
@@ -26,6 +25,15 @@ const FundsWrapper = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
+
+  &.vertical {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    &.notgood {
+      align-items: flex-end;
+    }
+  }
 `;
 
 const Fund = styled.div`
@@ -33,6 +41,15 @@ const Fund = styled.div`
   margin: 0 4px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin: 0 10px;
+  }
+
+  &.vertical {
+    text-align: left;
+    margin: 24px 10px 32px;
+
+    &.notgood {
+      text-align: right;
+    }
   }
 `;
 
@@ -69,20 +86,12 @@ const StyledBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
 
-const FollowTheMoney = ({ candidate, incumbent }) => {
+const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
   const [comparedIncumbent, setComparedIncumbent] = useState({});
   let isGood;
   if (candidate) {
     ({ isGood } = candidate);
   }
-
-  useEffect(() => {
-    if (incumbent) {
-      setComparedIncumbent(getComparedIncumbent(totalRaised, incumbent));
-    } else {
-      setComparedIncumbent({});
-    }
-  }, [incumbent]);
 
   const {
     totalRaised,
@@ -95,6 +104,14 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
     reportDate,
     isBigMoney,
   } = candidate;
+
+  useEffect(() => {
+    if (incumbent) {
+      setComparedIncumbent(getComparedIncumbent(totalRaised, incumbent));
+    } else {
+      setComparedIncumbent({});
+    }
+  }, [incumbent]);
 
   const isUnkown = isGood === null;
   const isGoodOrUnkwown = isGood || isUnkown;
@@ -116,7 +133,10 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
   const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
 
   const firstFund = () => (
-    <Fund data-cy="total-fund">
+    <Fund
+      data-cy="total-fund"
+      className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+    >
       <ColoredBodyText
         className={!isBigMoney && isGoodOrUnkwown ? 'green' : 'gray'}
       >
@@ -129,14 +149,20 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
     if (isGoodOrUnkwown) {
       if (isIncumbent || isBigMoney || perc > 50) {
         return (
-          <Fund data-cy="fund">
+          <Fund
+            data-cy="fund"
+            className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+          >
             <ColoredBodyText className="green">{perc}%</ColoredBodyText>
             <StyledBody9>FROM SMALL INDIV DONORS &lt;$200</StyledBody9>
           </Fund>
         );
       }
       return (
-        <Fund data-cy="fund">
+        <Fund
+          data-cy="fund"
+          className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+        >
           <ColoredBodyText className="green">
             {comparedIncumbent.relativePerc}%
           </ColoredBodyText>
@@ -151,8 +177,11 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
     }
     // NOT GOOD ENOUGH
     return (
-      <Fund data-cy="fund">
-        <ColoredBodyText className={colorWithGray}>{perc}%</ColoredBodyText>
+      <Fund
+        data-cy="fund"
+        className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+      >
+        <ColoredBodyText className={color}>{perc}%</ColoredBodyText>
         <StyledBody9>FROM BIG MONEY SOURCES</StyledBody9>
       </Fund>
     );
@@ -162,7 +191,10 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
     if (isGoodOrUnkwown) {
       if (isIncumbent || isSameAsComparedIncumbent) {
         return (
-          <Fund data-cy="fund-disadvantage">
+          <Fund
+            data-cy="fund-disadvantage"
+            className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+          >
             <ColoredBodyText className="gray">N/A</ColoredBodyText>
             <StyledBody9>FUNDING DISADVANTAGE</StyledBody9>
           </Fund>
@@ -170,7 +202,10 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
       }
       // NON INCUMBENT GOOD OR UNKNOWN
       return (
-        <Fund data-cy="fund-disadvantage">
+        <Fund
+          data-cy="fund-disadvantage"
+          className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+        >
           <ColoredBodyText className="green">
             {numberFormatter(comparedIncumbent.xTimes)}x
           </ColoredBodyText>
@@ -180,7 +215,10 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
     }
     // NOT GOOD ENOUGH
     return (
-      <Fund data-cy="fund-disadvantage">
+      <Fund
+        data-cy="fund-disadvantage"
+        className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+      >
         <ColoredBodyText className={color}>{perHour}/hr</ColoredBodyText>
         <StyledBody9>
           BIG MONEY
@@ -192,13 +230,17 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
 
   return (
     <>
-      <FollowWrapper data-cy="follow-wrapper">
-        <Body className="bold600">Follow the Money</Body>
-        <Body11 style={{ marginLeft: '5px' }}>
-          (FEC DATA as of {combinedReportDate})
-        </Body11>
-      </FollowWrapper>
-      <FundsWrapper>
+      {layout === 'horizontal' && (
+        <FollowWrapper data-cy="follow-wrapper">
+          <Body className="bold600">Follow the Money</Body>
+          <Body11 style={{ marginLeft: '5px' }}>
+            (FEC DATA as of {combinedReportDate})
+          </Body11>
+        </FollowWrapper>
+      )}
+      <FundsWrapper
+        className={`${layout} ${!isGoodOrUnkwown ? ' notgood' : ''}`}
+      >
         {firstFund()}
         {secondFund()}
         {thirdFund()}
@@ -210,6 +252,7 @@ const FollowTheMoney = ({ candidate, incumbent }) => {
 FollowTheMoney.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  layout: PropTypes.string,
 };
 
 export default FollowTheMoney;

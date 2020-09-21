@@ -1,10 +1,11 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
+import { selectAdminPageDomain } from './selectors';
 
 function* loadCandidates(action) {
   try {
@@ -124,6 +125,70 @@ function* loadCandidate(action) {
   }
 }
 
+function* loadVoterizeList() {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading Voterize List'));
+    const api = tgpApi.admin.voterize;
+    const { candidates } = yield call(requestHelper, api, null);
+    yield put(actions.loadVoterizeActionSuccess(candidates));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Loading Voterize List', 'error'),
+    );
+    yield put(actions.loadVoterizeActionError(error));
+  }
+}
+
+function* updateVoterize(action) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Updating Voterize'));
+    const { voterizeList } = yield select(selectAdminPageDomain);
+    let { voterize } = action;
+    const api = tgpApi.admin.updateVoterize;
+    const payload = voterize;
+    const { newVotesNeeded } = yield call(requestHelper, api, payload);
+
+    const { candidate, likeyVoters, votesNeeded } = voterize;
+    if (likeyVoters) {
+      for (let i = 0; i < voterizeList.length; i++) {
+        const originalVoterize = voterizeList[i];
+        if (
+          originalVoterize.name === candidate.name &&
+          originalVoterize.id === candidate.id &&
+          originalVoterize.chamber === candidate.chamber
+        ) {
+          voterizeList[i] = candidate;
+          break;
+        }
+      }
+    } else {
+      const { chamber, state, district } = candidate;
+      const lowerChamber = chamber.toLowerCase();
+      for (let i = 0; i < voterizeList.length; i++) {
+        const originalVoterize = voterizeList[i];
+        if (originalVoterize.chamber === chamber) {
+          if (lowerChamber === 'senate') {
+            if (originalVoterize.state === state) {
+              voterizeList[i].votesNeeded = newVotesNeeded;
+            }
+          } else {
+            if (originalVoterize.state === state && originalVoterize.district === district) {
+              voterizeList[i].votesNeeded = newVotesNeeded;
+            }
+          }
+        }
+      }
+    }
+
+    yield put(actions.updateVoterizeActionSuccess(voterizeList));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Error Updating Voterize', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   const candAction = yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
@@ -141,4 +206,7 @@ export default function* saga() {
   );
 
   const loadCandAction = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
+
+  yield takeLatest(types.LOAD_VOTERIZE, loadVoterizeList);
+  yield takeLatest(types.UPDATE_VOTERIZE, updateVoterize);
 }

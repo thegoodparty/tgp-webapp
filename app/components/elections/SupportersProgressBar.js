@@ -31,7 +31,7 @@ const Bar = styled.div`
   position: absolute;
   height: 5px;
   border-radius: 3px;
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: ${({ theme }) => theme.colors.green};
   left: 0;
   top: 0;
   width: 3%;
@@ -53,7 +53,8 @@ const SupportersProgressBar = ({
   showSupporters = true,
   alignLeft = false,
   suffixText,
-  prefixText = 'support top candidate so far',
+  prefixText = 'likely voters for top candidate',
+  showSuffix = true,
 }) => {
   let progress = 3;
   if (peopleSoFar && votesNeeded) {
@@ -69,19 +70,19 @@ const SupportersProgressBar = ({
     >
       {showSupporters && (
         <BarBody11 data-cy="people-so-far">
-          {numberFormatter(peopleSoFar)}{' '}
-          {peopleSoFar === 1 ? 'person ' : 'people '}
-          {prefixText}
+          {numberFormatter(peopleSoFar)} {prefixText}
         </BarBody11>
       )}
-      <BarBg>
+      <BarBg className="bar-bg">
         <Bar style={{ width: `${progress}%` }} />
       </BarBg>
-      <BarBody9 data-cy="votes-needed">
-        {numberFormatter(votesNeeded)} VOTES NEEDED TO WIN
-        {userState && <> IN {userState.toUpperCase()}</>}
-        {suffixText}
-      </BarBody9>
+      {showSuffix && (
+        <BarBody9 data-cy="votes-needed">
+          {numberFormatter(votesNeeded)} VOTES NEEDED TO WIN
+          {userState && <> IN {userState.toUpperCase()}</>}
+          {suffixText}
+        </BarBody9>
+      )}
     </ProgressBarWrapper>
   );
 };
@@ -91,7 +92,7 @@ SupportersProgressBar.propTypes = {
   votesNeeded: PropTypes.number,
   showSupporters: PropTypes.bool,
   alignLeft: PropTypes.bool,
-  showElectorsCount: PropTypes.bool,
+  showSuffix: PropTypes.bool,
   userState: PropTypes.string,
   prefixText: PropTypes.string,
   suffixText: PropTypes.string,
