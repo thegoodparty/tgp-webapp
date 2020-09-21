@@ -99,7 +99,7 @@ const TellMeMoreSection = ({}) => {
         </LeftCol>
         <RightCol item xs={12} md={7}>
           <SectionTitle>
-            The Good Party makes votes <br /> matter more than money
+            The Good Party is here to make votes matter more than money
           </SectionTitle>
           <SectionDescription>
             We are building free open-source systems to enable any candidate
