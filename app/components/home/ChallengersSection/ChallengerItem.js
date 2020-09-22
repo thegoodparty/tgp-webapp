@@ -81,6 +81,10 @@ const LineWrapper = styled.div`
   padding: 0 12px;
 `;
 
+const TitleCase = styled.span`
+  text-transform: capitalize;
+`;
+
 const ChallengerItem = ({ challenger }) => {
   const calculatedChallanger = candidateCalculatedFields(challenger);
   const {
@@ -94,16 +98,21 @@ const ChallengerItem = ({ challenger }) => {
     raised,
     incumbentRaised,
     chamber,
-    smallFunding,
     xTimes,
-    smallDonorPerc
+    smallDonorPerc,
   } = calculatedChallanger;
   const perc = percHelper(smallDonorPerc, true);
-  console.log(calculatedChallanger)
   const partyString = partyResolver(party);
-  const funding = perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
-  const districtInfo = `${state.toUpperCase()}${district ? `-${district}` : ' Senate'}`;
-  const challengerInfo = `${partyString} for ${districtInfo}`;
+  const funding =
+    perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
+  const districtInfo = `${state.toUpperCase()}${
+    district ? `-${district}` : ' Senate'
+  }`;
+  const challengerInfo = (
+    <>
+      <TitleCase>{partyString.toLowerCase()}</TitleCase> for {districtInfo}
+    </>
+  );
   const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
   const neededVotes = `${neededPercent}% of ${numberFormatter(
     votesNeeded,
