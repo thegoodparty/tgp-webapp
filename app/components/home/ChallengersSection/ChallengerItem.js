@@ -110,6 +110,7 @@ const ChallengerItem = ({ challenger }) => {
   )} votes needed to win in ${districtInfo}`;
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
+  console.log(chamber, state, district, getRankPageLink())
   return (
     <ChallengerItemWrapper>
       <Link to={getRankPageLink()}>
