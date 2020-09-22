@@ -12,16 +12,15 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+
+import HomePageWrapper from 'components/home/HomePageWrapper';
+
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectHomePage from './selectors';
-import HomePageWrapper from 'components/home/HomePageWrapper';
 import homeActions from './actions';
 
-export function HomePage({
-  dispatch,
-  homeState,
-}) {
+export function HomePage({ dispatch, homeState }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
   const { goodChallengers } = homeState;
@@ -29,8 +28,7 @@ export function HomePage({
     goodChallengers,
   };
   useEffect(() => {
-    // loadChallengersCallback();
-    dispatch(homeActions.loadChallengersAction())
+    dispatch(homeActions.loadChallengersAction());
   }, []);
   return (
     <div>
