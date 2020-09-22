@@ -26,8 +26,16 @@ function loadChallengersActionError(error) {
   };
 }
 
+function subscribeEmailAction(email) {
+  return {
+    type: types.SUBSCRIBE_EMAIL,
+    email,
+  }
+}
+
 export default {
 	loadChallengersAction,
 	loadChallengersActionSuccess,
-	loadChallengersActionError
+	loadChallengersActionError,
+  subscribeEmailAction
 };

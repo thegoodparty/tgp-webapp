@@ -99,7 +99,6 @@ const ChallengerItem = ({ challenger }) => {
     smallDonorPerc
   } = calculatedChallanger;
   const perc = percHelper(smallDonorPerc, true);
-  console.log(calculatedChallanger)
   const partyString = partyResolver(party);
   const funding = perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
   const districtInfo = `${state.toUpperCase()}${district ? `-${district}` : ' Senate'}`;
@@ -110,7 +109,7 @@ const ChallengerItem = ({ challenger }) => {
   )} votes needed to win in ${districtInfo}`;
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
-  console.log(chamber, state, district, getRankPageLink())
+
   return (
     <ChallengerItemWrapper>
       <Link to={getRankPageLink()}>

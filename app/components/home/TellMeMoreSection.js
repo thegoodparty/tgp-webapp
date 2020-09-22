@@ -85,7 +85,8 @@ const EamilSubmitButton = styled(Button)`
     }
   }
 `;
-const TellMeMoreSection = ({}) => {
+const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
+  const [email, setEmail] = useState('');
   return (
     <TellMeMoreSectionWrapper>
       <Grid container>
@@ -106,15 +107,15 @@ const TellMeMoreSection = ({}) => {
             with good ideas to gather supporters and to turn them into the votes
             needed to win.
           </SectionDescription>
-          <form
-            action="https://thegoodparty.us17.list-manage.com/subscribe/post?u=1c1c045626882dd6f60b4d496&amp;id=21429e5bd1"
-            method="post"
-            id="mc-embedded-subscribe-form"
-            name="mc-embedded-subscribe-form"
-            class="validate"
-            target="_blank"
-            novalidate
-          >
+          {/* <form */}
+          {/*   action="https://thegoodparty.us17.list-manage.com/subscribe/post?u=1c1c045626882dd6f60b4d496&amp;id=21429e5bd1" */}
+          {/*   method="post" */}
+          {/*   id="mc-embedded-subscribe-form" */}
+          {/*   name="mc-embedded-subscribe-form" */}
+          {/*   class="validate" */}
+          {/*   target="_blank" */}
+          {/*   novalidate */}
+          {/* > */}
             <TellMeMoreForm container>
               <Grid item xs={8}>
                 <EmailInput
@@ -122,6 +123,8 @@ const TellMeMoreSection = ({}) => {
                   type="email"
                   name="EMAIL"
                   class="required email"
+                  value={email}
+                  onChange={ev => setEmail(ev.target.value)}
                 />
 
                 <div
@@ -137,12 +140,12 @@ const TellMeMoreSection = ({}) => {
                 </div>
               </Grid>
               <Grid item xs={4}>
-                <EamilSubmitButton type="submit" name="subscribe">
+                <EamilSubmitButton type="submit" name="subscribe" onClick={() => subscribeEmailCallback(email)}>
                   Tell Me More
                 </EamilSubmitButton>
               </Grid>
             </TellMeMoreForm>
-          </form>
+          {/* </form> */}
         </RightCol>
       </Grid>
     </TellMeMoreSectionWrapper>
