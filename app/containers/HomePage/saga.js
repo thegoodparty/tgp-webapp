@@ -25,7 +25,7 @@ function* subscribeEmail(action) {
     const api = tgpApi.subscribeEmail;
     const payload = { email: email };
     const res = yield call(requestHelper, api, payload);
-    yield put(snackbarActions.showSnakbarAction('Email is Subscribed'));
+    yield put(snackbarActions.showSnakbarAction('You have subscribed to our mailing list successfully'));
   } catch (error) {
     console.log(error);
     yield put(snackbarActions.showSnakbarAction('Error Subscribing Email'));
@@ -37,5 +37,4 @@ function* subscribeEmail(action) {
 export default function* saga() {
   yield takeLatest(types.LOAD_CHALLENGERS, loadChallengers);
   yield takeLatest(types.SUBSCRIBE_EMAIL, subscribeEmail);
-
 }
