@@ -17,21 +17,25 @@ function* loadChallengers() {
   }
 }
 
-
 function* subscribeEmail(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Subscribing Your Email'));
-  	const { email } = action;
+    const { email } = action;
     const api = tgpApi.subscribeEmail;
-    const payload = { email: email };
-    const res = yield call(requestHelper, api, payload);
-    yield put(snackbarActions.showSnakbarAction('You have subscribed to our mailing list successfully'));
+    const payload = { email };
+    yield call(requestHelper, api, payload);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'You have subscribed to our mailing list successfully',
+      ),
+    );
   } catch (error) {
     console.log(error);
-    yield put(snackbarActions.showSnakbarAction('Error Subscribing Email'));
+    yield put(
+      snackbarActions.showSnakbarAction('Error Subscribing Email', 'error'),
+    );
   }
 }
-
 
 // Individual exports for testing
 export default function* saga() {
