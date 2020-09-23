@@ -12,19 +12,25 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+
+import HomePageWrapper from 'components/home/HomePageWrapper';
+
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectHomePage from './selectors';
-import HomePageWrapper from 'components/home/HomePageWrapper';
+import homeActions from './actions';
 
-export function HomePage({ dispatch, homeState }) {
+export function HomePage({ dispatch, homeState, subscribeEmailCallback }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
   const { goodChallengers } = homeState;
   const childProps = {
     goodChallengers,
+    subscribeEmailCallback,
   };
-
+  useEffect(() => {
+    dispatch(homeActions.loadChallengersAction());
+  }, []);
   return (
     <div>
       <Helmet>
@@ -39,6 +45,7 @@ export function HomePage({ dispatch, homeState }) {
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   homeState: PropTypes.object,
+  subscribeEmailCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -48,6 +55,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    subscribeEmailCallback: email => dispatch(homeActions.subscribeEmailAction(email))
   };
 }
 

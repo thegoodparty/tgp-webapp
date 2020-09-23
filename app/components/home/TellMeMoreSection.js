@@ -85,7 +85,8 @@ const EamilSubmitButton = styled(Button)`
     }
   }
 `;
-const TellMeMoreSection = ({}) => {
+const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
+  const [email, setEmail] = useState('');
   return (
     <TellMeMoreSectionWrapper>
       <Grid container>
@@ -106,14 +107,24 @@ const TellMeMoreSection = ({}) => {
             with good ideas to gather supporters and to turn them into the votes
             needed to win.
           </SectionDescription>
-          {/*<TellMeMoreForm container>*/}
-          {/*  <Grid item xs={8}>*/}
-          {/*    <EmailInput placeholder="your@email.org" type="email" />*/}
-          {/*  </Grid>*/}
-          {/*  <Grid item xs={4}>*/}
-          {/*    <EamilSubmitButton>Tell Me More</EamilSubmitButton>*/}
-          {/*  </Grid>*/}
-          {/*</TellMeMoreForm>*/}
+            <TellMeMoreForm container>
+              <Grid item xs={8}>
+                <EmailInput
+                  placeholder="your@email.org"
+                  type="email"
+                  name="EMAIL"
+                  class="required email"
+                  value={email}
+                  onChange={ev => setEmail(ev.target.value)}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <EamilSubmitButton type="submit" name="subscribe" onClick={() => subscribeEmailCallback(email)}>
+                  Tell Me More
+                </EamilSubmitButton>
+              </Grid>
+            </TellMeMoreForm>
+          {/* </form> */}
         </RightCol>
       </Grid>
     </TellMeMoreSectionWrapper>

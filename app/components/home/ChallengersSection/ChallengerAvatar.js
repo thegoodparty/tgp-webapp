@@ -29,11 +29,11 @@ const PartyIcon = styled.img`
 `;
 const ChallengerAvatar = ({ avatar, party, ...props }) => {
   let PartyImg;
-  if (party[0] === 'D') {
+  if (party === 'D') {
     PartyImg = DemocratImg;
-  } else if (party[0] === 'R') {
+  } else if (party === 'R') {
     PartyImg = RepublicanImg;
-  } else if (party[0] === 'I') {
+  } else if (party === 'I') {
     PartyImg = IndependentImg;
   }
   return (

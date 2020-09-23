@@ -22,6 +22,10 @@ const api = {
     url: `${base}race-candidate/senate-by-state`,
     method: 'GET',
   },
+  goodChallengers: {
+    url: `${base}race-candidate/good-challengers`,
+    method: 'GET',
+  },
   fullAddressToDistrict: {
     url: `${base}entrance/address-to-district`,
     method: 'GET',
@@ -265,6 +269,11 @@ const api = {
       url: `${base}candidates/all`,
       method: 'GET',
     },
+  },
+
+  subscribeEmail: {
+    url: `${base}subscribe/email`,
+    method: 'GET',
   },
 };
 export default api;

@@ -1,148 +1,99 @@
 /*
  *
- * CreatorsPage reducer
+ * HomePage reducer
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
 export const initialState = {
   goodChallengers: [
     {
-      name: 'Jaime Harrison',
-      state: 'SC',
       district: null,
-      party: 'Democrat',
+      image: "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/jaimeharrison.jpg",
+      incumbentRaised: 1010460,
       likelyVoters: 806228,
-      votesNeeded: 1166152,
-      voterizeMargin: 359924,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/senate/jaime-harrison/161',
-      avatar:
-        'https://assets.thegoodparty.org/candidates/jaime-harrison-161-j5woly.jpeg',
-      funding: 59,
-      disadvantage: 1,
-      chamber: 'senate',
+      name: "Jaime Harrison",
+      party: "D",
+      raised: 28641500,
+      state: "sc",
+      votesNeeded: 1166151
     },
     {
-      name: 'Alek Skarlatos',
-      state: 'OR',
-      district: 4,
-      party: 'Republican',
-      likelyVoters: 160109,
-      votesNeeded: 192506,
-      voterizeMargin: 32971,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/house/alek-skarlatos/421',
-      avatar:
-        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alek_Skarlatos.jpg',
-      funding: 67,
-      disadvantage: 2,
-      chamber: 'house',
-    },
-    {
-      name: 'Lisa Savage',
-      state: 'ME',
-      party: 'Independent',
-      likelyVoters: 8453,
-      votesNeeded: 444301,
-      voterizeMargin: null,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/senate/lisa-savage/859',
-      avatar:
-        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/lisasavage.jpg',
-      funding: 0.51,
-      disadvantage: 200,
-      chamber: 'senate',
-    },
-    {
-      name: 'Donna Imam',
-      state: 'TX',
-      district: 31,
-      party: 'Democrat',
-      likelyVoters: 115794,
-      votesNeeded: 169105,
-      voterizeMargin: 53311,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/house/donna-imam/86',
-      avatar:
-        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Donna_ImamTX.png',
-      funding: 16,
-      disadvantage: 6,
-      chamber: 'house',
-    },
-    {
-      name: 'Stephanie Bice',
-      state: 'OK',
       district: 5,
-      party: 'Republican',
+      image: "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Stephanie_Bice.jpg",
+      incumbentRaised: 3656100,
       likelyVoters: 144746,
+      name: "Stephanie Bice",
+      party: "R",
+      raised: 1454920,
+      state: "ok",
       votesNeeded: 149746,
-      voterizeMargin: 5000,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/house/stephanie-bice/656',
-      avatar:
-        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Stephanie_Bice.jpg',
-      funding: 40,
-      disadvantage: 3,
-      chamber: 'house',
     },
     {
-      name: 'Pam Kieth',
-      state: 'FL',
-      district: 18,
-      party: 'Democrat',
-      likelyVoters: 171633,
-      votesNeeded: 198029,
-      voterizeMargin: 26396,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/house/pam-keith/1132',
-      avatar:
-        'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/PamKeith.jpg',
-      funding: 7,
-      disadvantage: 14,
-      chamber: 'house',
+      district: 4,
+      image: "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alek_Skarlatos.jpg",
+      incumbentRaised: 2190660,
+      likelyVoters: 160109,
+      name: "Alek Skarlatos",
+      party: "R",
+      raised: 1299850,
+      state: "or",
+      votesNeeded: 192506,
     },
     {
-      name: 'David Kim',
-      state: 'CA',
+      district: 31,
+      image: "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Donna_ImamTX.png",
+      incumbentRaised: 1602200,
+      likelyVoters: 115794,
+      name: "Donna Imam",
+      party: "D",
+      raised: 249274,
+      state: "tx",
+      votesNeeded: 169105
+    },
+    {
       district: 34,
-      party: 'Democrat',
+      image: "",
+      incumbentRaised: 1009520,
       likelyVoters: 23055,
+      name: "David Kim",
+      party: "D",
+      raised: 79188,
+      state: "ca",
       votesNeeded: 96341,
-      voterizeMargin: 73286,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/house/david-kim/503',
-      avatar:
-        'https://assets.thegoodparty.org/candidates/david-kim-503-g9nsur.jpeg',
-      funding: 7.8,
-      disadvantage: 13,
-      chamber: 'house',
     },
     {
-      name: 'Adam Christensen',
-      state: 'FL',
-      district: 3,
-      party: 'Democrat',
-      likelyVoters: 137481,
-      votesNeeded: 190658,
-      voterizeMargin: 53177,
-      tgpLink:
-        'https://thegoodparty.org/elections/candidate/house/adam-christensen/1239',
-      funding: 6.4,
-      disadvantage: 17,
-      avatar:
-        'https://assets.thegoodparty.org/candidates/adam-christensen-1239-b8b9ep.jpeg',
-      chamber: 'house',
-    },
+      district: null,
+      image: "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/lisasavage.jpg",
+      incumbentRaised: 2787080,
+      likelyVoters: 113131,
+      name: "Lisa Savage",
+      party: "I",
+      raised: 92228,
+      state: "me",
+      votesNeeded: 444301,
+    }
   ],
+  loading: false,
+  error: false
 };
+
+
 
 /* eslint-disable default-case, no-param-reassign */
 const homePageReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case types.LOAD_CHALLENGERS_SUCCESS:
+        draft.goodChallengers = action.challengers;
+        draft.loading = false;
+        draft.error = false;
+        break;
+      case types.LOAD_CHALLENGERS_ERROR:
+        draft.goodChallengers = false;
+        draft.loading = false;
+        draft.error = action.error;
         break;
     }
   });
