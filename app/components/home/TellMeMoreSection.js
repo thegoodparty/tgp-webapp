@@ -107,15 +107,6 @@ const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
             with good ideas to gather supporters and to turn them into the votes
             needed to win.
           </SectionDescription>
-          {/* <form */}
-          {/*   action="https://thegoodparty.us17.list-manage.com/subscribe/post?u=1c1c045626882dd6f60b4d496&amp;id=21429e5bd1" */}
-          {/*   method="post" */}
-          {/*   id="mc-embedded-subscribe-form" */}
-          {/*   name="mc-embedded-subscribe-form" */}
-          {/*   class="validate" */}
-          {/*   target="_blank" */}
-          {/*   novalidate */}
-          {/* > */}
             <TellMeMoreForm container>
               <Grid item xs={8}>
                 <EmailInput
@@ -126,18 +117,6 @@ const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
                   value={email}
                   onChange={ev => setEmail(ev.target.value)}
                 />
-
-                <div
-                  style={{ position: 'absolute', left: '-5000px' }}
-                  aria-hidden="true"
-                >
-                  <input
-                    type="text"
-                    name="b_1c1c045626882dd6f60b4d496_21429e5bd1"
-                    tabindex="-1"
-                    value=""
-                  />
-                </div>
               </Grid>
               <Grid item xs={4}>
                 <EamilSubmitButton type="submit" name="subscribe" onClick={() => subscribeEmailCallback(email)}>
