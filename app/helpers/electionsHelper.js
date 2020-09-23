@@ -401,10 +401,11 @@ export const rankPageGrowLink = (candidate, chamberName, state, district) => {
 };
 
 export const rankPageLink = (chamberName, state, district) => {
-  if (chamberName === 'presidential') {
+  const chamber = chamberName && chamberName.toLowerCase();
+  if (chamber === 'presidential') {
     return presidentialElectionLink();
   }
-  if (chamberName === 'senate') {
+  if (chamber === 'senate') {
     return senateElectionLink(state);
   }
   return houseElectionLink(state, district);

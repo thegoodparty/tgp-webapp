@@ -270,5 +270,10 @@ const api = {
       method: 'GET',
     },
   },
+
+  subscribeEmail: {
+    url: `${base}subscribe/email`,
+    method: 'GET',
+  },
 };
 export default api;
