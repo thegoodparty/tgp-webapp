@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-import { H2, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
+import { H2, Body, Body12, Body9 } from 'components/shared/typogrophy';
 import { rankPageLink, partyResolver } from 'helpers/electionsHelper';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
@@ -84,6 +84,10 @@ const LineWrapper = styled.div`
 const TitleCase = styled.span`
   text-transform: capitalize;
 `;
+const PercWrapper = styled(Body12)`
+  font-weight: 700;
+  display: inline-block;
+`;
 
 const ChallengerItem = ({ challenger }) => {
   const calculatedChallanger = candidateCalculatedFields(challenger);
@@ -101,6 +105,7 @@ const ChallengerItem = ({ challenger }) => {
     xTimes,
     smallDonorPerc,
   } = calculatedChallanger;
+  console.log('smallDonorPerc', smallDonorPerc)
   const perc = percHelper(smallDonorPerc, true);
   const partyString = partyResolver(party);
 
@@ -113,9 +118,15 @@ const ChallengerItem = ({ challenger }) => {
     </>
   );
   const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
-  const neededVotes = `${neededPercent}% of ${numberFormatter(
-    votesNeeded,
-  )} votes needed to win in ${districtInfo}`;
+  const neededVotes = (
+    <>
+      <PercWrapper>{neededPercent}%</PercWrapper> of{' '}
+      {numberFormatter(votesNeeded)} votes needed
+      <br />
+      to win in {districtInfo}
+    </>
+  );
+
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
   const fundingText =
