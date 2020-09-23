@@ -92,6 +92,7 @@ const Name = styled(Body13)`
 
 const Role = styled(Body9)`
   opacity: 0.8;
+  margin-bottom: 18px;
 `;
 
 const BlocCount = styled(Body11)`

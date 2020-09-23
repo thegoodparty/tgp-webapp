@@ -29,10 +29,6 @@ const MoneyCorruptionSection = ({}) => {
             Money has corrupted <br />
             BOTH major U.S. parties
           </SectionTitle>
-          <Subtitle>
-            We need to take back Congress from corrupt career politicians before
-            we can fix any other issue.
-          </Subtitle>
         </LeftCol>
         <Grid item xs={12} md={6}>
           <LazyLoadImage
