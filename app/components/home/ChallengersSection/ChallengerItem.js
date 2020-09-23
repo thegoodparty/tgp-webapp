@@ -103,8 +103,7 @@ const ChallengerItem = ({ challenger }) => {
   } = calculatedChallanger;
   const perc = percHelper(smallDonorPerc, true);
   const partyString = partyResolver(party);
-  const funding =
-    perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
+
   const districtInfo = `${state.toUpperCase()}${
     district ? `-${district}` : ' Senate'
   }`;
@@ -119,6 +118,10 @@ const ChallengerItem = ({ challenger }) => {
   )} votes needed to win in ${districtInfo}`;
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
+  const fundingText =
+    perc > 50 ? 'Small Donor Funding' : 'Relative Funding Rate';
+  const funding =
+    perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
 
   return (
     <ChallengerItemWrapper>
@@ -129,9 +132,9 @@ const ChallengerItem = ({ challenger }) => {
         <Grid container>
           <Grid item xs={6}>
             <ChallengeStats className="value">
-              {numberFormatter(funding)}%
+              {funding < 1 ? funding : numberFormatter(funding)}%
             </ChallengeStats>
-            <ChallengeStatsSmall>Small Donor Funding</ChallengeStatsSmall>
+            <ChallengeStatsSmall>{fundingText}</ChallengeStatsSmall>
           </Grid>
           <Grid item xs={6}>
             <ChallengeStats className="value">
