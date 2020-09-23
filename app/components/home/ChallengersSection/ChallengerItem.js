@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-import { H1, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
+import { H2, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
 import { rankPageLink, partyResolver } from 'helpers/electionsHelper';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
@@ -19,7 +19,7 @@ const ChallengerItemWrapper = styled.div`
   border-radius: 8px;
 `;
 
-const ChallengerName = styled(H1)`
+const ChallengerName = styled(H2)`
   margin-top: 1rem;
   margin-bottom: 0rem;
   text-align: center;
