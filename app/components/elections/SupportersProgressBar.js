@@ -21,19 +21,18 @@ const BarBg = styled.div`
   margin: 10px 0;
   width: 80%;
   position: relative;
-  height: 5px;
+  height: 2px;
   background-color: ${({ theme }) => theme.colors.grayC};
   border-radius: 3px;
-  overflow: hidden;
 `;
 
 const Bar = styled.div`
   position: absolute;
-  height: 5px;
+  height: 6px;
   border-radius: 3px;
   background-color: ${({ theme }) => theme.colors.green};
   left: 0;
-  top: 0;
+  top: -2px;
   width: 3%;
   transition: width 0.5s;
 `;

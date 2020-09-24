@@ -10,7 +10,7 @@
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -35,7 +35,6 @@ import {
   candidateCalculatedFields,
   findBlocCandidate,
   generateEmptyBlocCandidate,
-  isDistrictInCds,
 } from 'helpers/electionsHelper';
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
@@ -97,17 +96,17 @@ export function ElectionPage({
     candidates = districtState.houseCandidates;
   }
   const { search, pathname } = locationState;
+  useEffect(() => {
+    if (chamber === 'presidential') {
+      dispatch(districtActions.loadAllPresidentialAction());
+    } else if (chamber === 'senate') {
+      dispatch(districtActions.loadSenateCandidatesAction(state));
+    } else {
+      dispatch(districtActions.loadHouseCandidatesAction(state, district));
+    }
+  }, [pathname]);
 
   useEffect(() => {
-    if (!candidates) {
-      if (chamber === 'presidential') {
-        dispatch(districtActions.loadAllPresidentialAction());
-      } else if (chamber === 'senate') {
-        dispatch(districtActions.loadSenateCandidatesAction(state));
-      } else {
-        dispatch(districtActions.loadHouseCandidatesAction(state, district));
-      }
-    }
     const bloc = queryHelper(search, 'b');
     if (bloc) {
       if (bloc.includes('GoodBloc')) {
@@ -325,7 +324,6 @@ function mapDispatchToProps(dispatch, ownProps) {
           rank,
           blocName: candidateBlocName(candidate),
         };
-        console.log('setting redirect cookie');
         setSignupRedirectCookie(route, options);
         // dispatch(userActions.saveGuestRankingAction(candidate, rank, chamber));
         dispatch(push('?register=true'));
@@ -366,7 +364,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(
-  withConnect,
-  memo,
-)(ElectionPage);
+export default compose(withConnect)(ElectionPage);

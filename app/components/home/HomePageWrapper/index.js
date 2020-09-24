@@ -25,24 +25,22 @@ const ContentWrapper = styled.div`
 const GrayWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray11};
 `;
-const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback, ...props }) => {
-  return (
-    <PageWrapper isHome white>
-      <ContentWrapper>
-        <MoneyCorruptionSection />
-        <StatsSection />
-        <TellMeMoreSection subscribeEmailCallback={subscribeEmailCallback} />
-      </ContentWrapper>
-      <GrayWrapper>
-        <RockTheVoteSection />
-      </GrayWrapper>
-      <ContentWrapper>
-        <ChallengersSection challengers={goodChallengers} />
-        <CreatorsSection />
-      </ContentWrapper>
-    </PageWrapper>
-  );
-};
+const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => (
+  <PageWrapper isHome white>
+    <ContentWrapper>
+      <MoneyCorruptionSection />
+      <StatsSection />
+      <TellMeMoreSection subscribeEmailCallback={subscribeEmailCallback} />
+    </ContentWrapper>
+    <GrayWrapper>
+      <RockTheVoteSection />
+    </GrayWrapper>
+    <ContentWrapper>
+      <ChallengersSection challengers={goodChallengers} />
+      <CreatorsSection />
+    </ContentWrapper>
+  </PageWrapper>
+);
 
 HomePageWrapper.propTypes = {
   goodChallengers: PropTypes.object,

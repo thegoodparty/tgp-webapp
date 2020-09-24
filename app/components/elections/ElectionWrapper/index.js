@@ -2,14 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Dialog from '@material-ui/core/Dialog';
-import CloseIcon from '@material-ui/icons/Close';
 
 import PageWrapper from 'components/shared/PageWrapper';
-import supportersImg from 'images/icons/supporters.svg';
-import UsMapImage from 'images/us-map.svg';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
-import { Body, H1, H3 } from 'components/shared/typogrophy';
+import { Body, H1 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
 import articlesHelper from 'helpers/articlesHelper';
@@ -17,8 +13,7 @@ import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
 import BottomPopup from '../../shared/BottomPopup';
 import { shortToLongState } from '../../../helpers/electionsHelper';
-import { numberFormatter, numberNth } from '../../../helpers/numberHelper';
-import SupportersProgressBar from '../SupportersProgressBar';
+import { numberNth } from '../../../helpers/numberHelper';
 import ChoiceModal from './ChoiceModal';
 import ShareModal from './ShareModal';
 
@@ -28,64 +23,6 @@ const Description = styled(Body)`
 const GoodCandidate = styled.span`
   color: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
-`;
-
-const AlertWrapper = styled.div`
-  position: relative;
-  padding: 1.5rem 2rem;
-  border: solid 1px red;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 2rem 4rem;
-  }
-`;
-
-const CloseWrapper = styled.div`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-`;
-
-const Row = styled.div`
-  margin: 24px 0;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-`;
-
-const SupportersWrapper = styled.div`
-  flex: 6;
-`;
-
-const SupportersRow = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-`;
-
-const SupportersCount = styled(H1)`
-  color: ${({ theme }) => theme.colors.gray7};
-`;
-
-const SupportersImg = styled.img`
-  height: auto;
-  width: 36px;
-  margin-right: 8px;
-`;
-
-const SuppoetersBody = styled(Body)`
-  color: ${({ theme }) => theme.colors.gray7};
-`;
-
-const MapWrapper = styled.div`
-  flex: 4;
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex: 3;
-  }
 `;
 
 const ElectionWrapper = ({
@@ -150,8 +87,6 @@ const ElectionWrapper = ({
       handleChoiceCallback(postRegisterJoin.candidate, postRegisterJoin.rank);
     }
   }, [postRegisterJoin]);
-
-  const { topRank } = candidates;
 
   const selectCandidate = (candidate, rank) => {
     saveRankingCallback(user, candidate, rank, chamber, state, districtNumber);
@@ -274,30 +209,6 @@ const ElectionWrapper = ({
       {candidates ? (
         <>
           <H1 data-cy="title">{title}</H1>
-          {/*<Row>*/}
-          {/*  <SupportersWrapper data-cy="supporters">*/}
-          {/*    <SupportersRow>*/}
-          {/*      <SupportersImg src={supportersImg} alt="tgp" />*/}
-          {/*      <SupportersCount data-cy="supporters-count">*/}
-          {/*        {numberFormatter(topRank)}{' '}*/}
-          {/*      </SupportersCount>*/}
-          {/*    </SupportersRow>*/}
-          {/*    <SuppoetersBody data-cy="supporters-body">*/}
-          {/*      likely voters for top candidate*/}
-          {/*    </SuppoetersBody>*/}
-          {/*    <SupportersProgressBar*/}
-          {/*      votesNeeded={votesNeeded}*/}
-          {/*      peopleSoFar={topRank}*/}
-          {/*      userState={candidates.userState}*/}
-          {/*      showSupporters={false}*/}
-          {/*      suffixText={suffixText}*/}
-          {/*      alignLeft*/}
-          {/*    />*/}
-          {/*  </SupportersWrapper>*/}
-          {/*  <MapWrapper>*/}
-          {/*    <img src={UsMapImage} alt="" />*/}
-          {/*  </MapWrapper>*/}
-          {/*</Row>*/}
           <Description data-cy="description">
             {candidates.good.length > 0 ? (
               <>
@@ -372,7 +283,6 @@ const ElectionWrapper = ({
         open={showShareModal}
         closeCallback={onCloseShareModal}
         candidate={choiceModalCandidate}
-        // candidate={candidates.good ? candidates.good[0] : null}
         user={user}
         chamber={chamber}
         isExternalLink={isExternalLink}

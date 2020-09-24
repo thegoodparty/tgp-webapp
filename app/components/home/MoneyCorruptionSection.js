@@ -13,6 +13,12 @@ const MoneyCorruptionSectionWrapper = styled.div`
 `;
 const SectionTitle = styled(Title)`
   margin-bottom: 0.5rem;
+  text-align: center;
+  margin-bottom: 16px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: left;
+    margin-bottom: 0;
+  }
 `;
 const LeftCol = styled(Grid)`
   display: flex;
@@ -29,10 +35,6 @@ const MoneyCorruptionSection = ({}) => {
             Money has corrupted <br />
             BOTH major U.S. parties
           </SectionTitle>
-          <Subtitle>
-            We need to take back Congress from corrupt career politicians before
-            we can fix any other issue.
-          </Subtitle>
         </LeftCol>
         <Grid item xs={12} md={6}>
           <LazyLoadImage

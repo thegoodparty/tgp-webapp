@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-import { H1, Body, Body12, Body13, Body9 } from 'components/shared/typogrophy';
+import { H2, Body, Body12, Body9 } from 'components/shared/typogrophy';
 import { rankPageLink, partyResolver } from 'helpers/electionsHelper';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
@@ -19,7 +19,7 @@ const ChallengerItemWrapper = styled.div`
   border-radius: 8px;
 `;
 
-const ChallengerName = styled(H1)`
+const ChallengerName = styled(H2)`
   margin-top: 1rem;
   margin-bottom: 0rem;
   text-align: center;
@@ -65,15 +65,15 @@ const NeededVotes = styled.p`
 `;
 
 const FullLine = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grayC};
-  border-radius: 1px;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.grayC};
+  border-radius: 3px;
 `;
 
 const PercentLine = styled.div`
-  border-bottom: 3px solid ${({ theme }) => theme.colors.green};
+  border-bottom: 6px solid ${({ theme }) => theme.colors.green};
   border-radius: 3px;
   width: ${props => props.percent};
-  top: -2px;
+  top: -4px;
   position: relative;
 `;
 
@@ -83,6 +83,10 @@ const LineWrapper = styled.div`
 
 const TitleCase = styled.span`
   text-transform: capitalize;
+`;
+const PercWrapper = styled(Body12)`
+  font-weight: 700;
+  display: inline-block;
 `;
 
 const ChallengerItem = ({ challenger }) => {
@@ -113,9 +117,14 @@ const ChallengerItem = ({ challenger }) => {
     </>
   );
   const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
-  const neededVotes = `${neededPercent}% of ${numberFormatter(
-    votesNeeded,
-  )} votes needed to win in ${districtInfo}`;
+  const neededVotes = (
+    <>
+      <PercWrapper>{neededPercent}%</PercWrapper> of{' '}
+      {numberFormatter(votesNeeded)} votes needed to win{' '}
+      {chamber === 'House' && 'in'} {districtInfo}
+    </>
+  );
+
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
   const fundingText =
