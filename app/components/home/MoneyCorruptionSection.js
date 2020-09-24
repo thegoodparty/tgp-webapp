@@ -13,6 +13,12 @@ const MoneyCorruptionSectionWrapper = styled.div`
 `;
 const SectionTitle = styled(Title)`
   margin-bottom: 0.5rem;
+  text-align: center;
+  margin-bottom: 16px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: left;
+    margin-bottom: 0;
+  }
 `;
 const LeftCol = styled(Grid)`
   display: flex;

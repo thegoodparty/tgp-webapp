@@ -65,7 +65,7 @@ const NeededVotes = styled.p`
 `;
 
 const FullLine = styled.div`
-  border-bottom: 6px solid ${({ theme }) => theme.colors.grayC};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.grayC};
   border-radius: 3px;
 `;
 
@@ -73,7 +73,7 @@ const PercentLine = styled.div`
   border-bottom: 6px solid ${({ theme }) => theme.colors.green};
   border-radius: 3px;
   width: ${props => props.percent};
-  top: -6px;
+  top: -4px;
   position: relative;
 `;
 
@@ -105,7 +105,6 @@ const ChallengerItem = ({ challenger }) => {
     xTimes,
     smallDonorPerc,
   } = calculatedChallanger;
-  console.log('smallDonorPerc', smallDonorPerc)
   const perc = percHelper(smallDonorPerc, true);
   const partyString = partyResolver(party);
 
@@ -121,9 +120,8 @@ const ChallengerItem = ({ challenger }) => {
   const neededVotes = (
     <>
       <PercWrapper>{neededPercent}%</PercWrapper> of{' '}
-      {numberFormatter(votesNeeded)} votes needed
-      <br />
-      to win in {districtInfo}
+      {numberFormatter(votesNeeded)} votes needed to win{' '}
+      {chamber === 'House' && 'in'} {districtInfo}
     </>
   );
 

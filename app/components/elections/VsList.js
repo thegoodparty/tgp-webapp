@@ -283,7 +283,6 @@ const VsList = ({
   votesNeeded,
   incumbent,
 }) => {
-  console.log('incumbent vslist', incumbent);
   const { good, notGood, unknown } = candidates;
   if (!candidates || (!good && !notGood && !unknown)) {
     return <LoadingAnimation />;

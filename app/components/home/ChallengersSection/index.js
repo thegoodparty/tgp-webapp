@@ -31,39 +31,29 @@ const ChallengersList = styled.div`
   margin-bottom: 3rem;
 `;
 
-const ChallengersSection = ({ challengers }) => {
-  const [showMore, setShowMore] = useState(false);
-  const showedChallengers = showMore ? challengers : challengers.slice(0, 3);
-  return (
-    <ChallengersSectionWrapper>
-      <SectionTitle>Good Challengers for 2020</SectionTitle>
-      <SectionDescription>
-        Good candidates of all stripes are challenging the status quo with fresh
-        ideas, not money. We’re mobilizing voters to join these candidates’
-        voting blocs to see if we can get them enough votes to win!
-      </SectionDescription>
+const ChallengersSection = ({ challengers }) => (
+  <ChallengersSectionWrapper>
+    <SectionTitle>Good Challengers for 2020</SectionTitle>
+    <SectionDescription>
+      Good candidates of all stripes are challenging the status quo with fresh
+      ideas, not money. We’re mobilizing voters to join these candidates’ voting
+      blocs to see if we can get them enough votes to win!
+    </SectionDescription>
 
-      <ChallengersList>
-        <Grid container spacing={3}>
-          {showedChallengers.map((challenger, index) => (
-            <Grid item xs={12} md={6} lg={4} key={challenger.id}>
-              <ChallengerItem challenger={challenger} />
-            </Grid>
-          ))}
-        </Grid>
-      </ChallengersList>
-      <BlueButton
-        className="outline center"
-        onClick={() => setShowMore(!showMore)}
-      >
-        {showMore ? 'Less Good Candidates' : 'See More Good Candidates'}
-      </BlueButton>
-    </ChallengersSectionWrapper>
-  );
-};
+    <ChallengersList>
+      <Grid container spacing={3}>
+        {challengers.map(challenger => (
+          <Grid item xs={12} md={6} lg={4} key={challenger.id}>
+            <ChallengerItem challenger={challenger} />
+          </Grid>
+        ))}
+      </Grid>
+    </ChallengersList>
+  </ChallengersSectionWrapper>
+);
 
 ChallengerItem.propTypes = {
-  challengers: PropTypes.object,
+  challengers: PropTypes.array,
 };
 
 export default ChallengersSection;
