@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import WhiteHouseImg from 'images/white-house.png';
-import { Title, Subtitle } from 'components/shared/typogrophy';
+import { Title } from 'components/shared/typogrophy';
 
 const MoneyCorruptionSectionWrapper = styled.div`
   margin-top: 4rem;

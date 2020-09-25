@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { Body19, Subtitle } from 'components/shared/typogrophy';
 
 const ColTitle = styled(Subtitle)`

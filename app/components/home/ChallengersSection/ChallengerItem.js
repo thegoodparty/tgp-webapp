@@ -89,7 +89,7 @@ const PercWrapper = styled(Body12)`
   display: inline-block;
 `;
 
-const ChallengerItem = ({ challenger }) => {
+const ChallengerItem = ({ challenger, id }) => {
   const calculatedChallanger = candidateCalculatedFields(challenger);
   const {
     image,
@@ -131,9 +131,9 @@ const ChallengerItem = ({ challenger }) => {
     perc > 50 ? 'Small Donor Funding' : 'Relative Funding Rate';
   const funding =
     perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
-
+  console.log('id', id)
   return (
-    <ChallengerItemWrapper>
+    <ChallengerItemWrapper id={id}>
       <Link to={getRankPageLink()}>
         <ChallengerAvatar avatar={image} party={party} />
         <ChallengerName>{name}</ChallengerName>
@@ -166,6 +166,7 @@ const ChallengerItem = ({ challenger }) => {
 
 ChallengerItem.propTypes = {
   challenger: PropTypes.object,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default ChallengerItem;

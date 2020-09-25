@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Button from '@material-ui/core/Button';
-
-import Input from '@material-ui/core/Input';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import CreatorsImg from 'images/creators.png';
 import { Body14 } from 'components/shared/typogrophy';
 import { BlueButton } from 'components/shared/buttons';
 
