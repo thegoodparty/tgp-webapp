@@ -26,6 +26,35 @@ const ContentWrapper = styled.div`
 `;
 const StyledH2 = styled(H2)`
   padding: 40px 0 6px;
+
+  &.smaller {
+    font-size: 19px;
+    line-height: 22px;
+    padding-top: 6px;
+  }
+`;
+const StyledBody = styled(Body)`
+  margin-bottom: 24px;
+
+  &.smaller {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 12px;
+  }
+`;
+const StyledBody2 = styled(Body)`
+  font-weight: 600;
+
+  &.smaller {
+    font-size: 16px;
+    line-height: 22px;
+  }
+`;
+const StyledBody11 = styled(Body11)`
+  &.smaller {
+    font-size: 10px;
+    line-height: 12px;
+  }
 `;
 
 const LocationWrapper = styled.div`
@@ -76,6 +105,7 @@ function ZipFinderWrapper({
   currentLocationCallback,
   geoError,
   user,
+  cardDisplay,
 }) {
   const [zip, setZip] = useState('');
   const [valid, setValid] = useState(false);
@@ -105,55 +135,66 @@ function ZipFinderWrapper({
   const getLocation = () => {
     setFindGeoLocation(true);
   };
+
+  const wrapper = ({ children }) =>
+    cardDisplay ? (
+      <div>{children}</div>
+    ) : (
+      <PageWrapper hideMobileNav={user ? false : true}>
+        <ContentWrapper>{children}</ContentWrapper>
+      </PageWrapper>
+    );
   return (
-    <PageWrapper hideMobileNav={user ? false : true}>
-      <ContentWrapper>
-        <StyledH2 data-cy="title">
-          Enter your zip code to see your Federal elections
-        </StyledH2>
-        <Body style={{ marginBottom: '24px' }}>
-          See if your vote can be used in voting blocs to elect someone good!
-        </Body>
-        <Body className="bold600" data-cy="form-label">
-          Enter Home Zip Code
-        </Body>
-        <Form noValidate onSubmit={handleSubmitForm}>
-          <StyledInput
-            value={zip}
-            onChange={onChangeText}
-            maxLength={5}
-            autoFocus
-            inputProps={{ autoFocus: true }}
-            type="tel"
-            placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;"
-            data-cy="zipcode"
-          />
-        </Form>
-        <Body11>
-          We only use this information to find your voting district
-        </Body11>
-        <LocationWrapper onClick={getLocation}>
-          <img
-            src="https://assets.thegoodparty.org/icons/location-user.svg"
-            alt="location"
-          />
-          <Location data-cy="geo-location-button">
-            I’m Home, Use my Current Location
-          </Location>
-        </LocationWrapper>
-        {findGeoLocation && (
-          <GeoLocator
-            currentLocationCallback={currentLocationCallback}
-            geoError={geoError}
-          />
-        )}
-        <ButtonWrapper onClick={handleNextStep} data-cy="submit">
-          <NextButton active={valid}>
-            <Next className={valid ? 'active' : ''}>SUBMIT</Next>
-          </NextButton>
-        </ButtonWrapper>
-      </ContentWrapper>
-    </PageWrapper>
+    <wrapper>
+      <StyledH2 data-cy="title" className={cardDisplay && 'smaller'}>
+        Enter your zip code to see your Federal elections
+      </StyledH2>
+      <StyledBody className={cardDisplay && 'smaller'}>
+        See if your vote can be used in voting blocs to elect someone good!
+      </StyledBody>
+      <StyledBody2 data-cy="form-label" className={cardDisplay && 'smaller'}>
+        Enter Home Zip Code
+      </StyledBody2>
+      <Form noValidate onSubmit={handleSubmitForm}>
+        <StyledInput
+          value={zip}
+          onChange={onChangeText}
+          maxLength={5}
+          autoFocus={!cardDisplay}
+          inputProps={{ autoFocus: !cardDisplay }}
+          type="tel"
+          placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;"
+          data-cy="zipcode"
+        />
+      </Form>
+      <StyledBody11 className={cardDisplay && 'smaller'}>
+        We only use this information to find your voting district
+      </StyledBody11>
+      {!cardDisplay && (
+        <>
+          <LocationWrapper onClick={getLocation}>
+            <img
+              src="https://assets.thegoodparty.org/icons/location-user.svg"
+              alt="location"
+            />
+            <Location data-cy="geo-location-button">
+              I’m Home, Use my Current Location
+            </Location>
+          </LocationWrapper>
+          {findGeoLocation && (
+            <GeoLocator
+              currentLocationCallback={currentLocationCallback}
+              geoError={geoError}
+            />
+          )}
+        </>
+      )}
+      <ButtonWrapper onClick={handleNextStep} data-cy="submit">
+        <NextButton active={valid}>
+          <Next className={valid ? 'active' : ''}>SUBMIT</Next>
+        </NextButton>
+      </ButtonWrapper>
+    </wrapper>
   );
 }
 
@@ -162,6 +203,7 @@ ZipFinderWrapper.propTypes = {
   currentLocationCallback: PropTypes.func,
   geoError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  cardDisplay: PropTypes.bool,
 };
 
 export default ZipFinderWrapper;

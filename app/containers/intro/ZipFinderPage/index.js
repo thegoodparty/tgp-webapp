@@ -28,6 +28,7 @@ export function ZipFinderPage({
   currentLocationCallback,
   districtState,
   userState,
+  cardDisplay,
 }) {
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
@@ -40,14 +41,17 @@ export function ZipFinderPage({
     currentLocationCallback,
     geoError,
     user,
+    cardDisplay,
   };
 
   return (
     <div>
-      <Helmet>
-        <title>Zip Finder</title>
-        <meta name="description" content="Zip Finder" />
-      </Helmet>
+      {!cardDisplay && (
+        <Helmet>
+          <title>Zip Finder</title>
+          <meta name="description" content="Zip Finder" />
+        </Helmet>
+      )}
       <ZipFinderWrapper {...childProps} />
     </div>
   );
@@ -58,6 +62,7 @@ ZipFinderPage.propTypes = {
   currentLocationCallback: PropTypes.func,
   districtState: PropTypes.object,
   userState: PropTypes.object,
+  cardDisplay: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({

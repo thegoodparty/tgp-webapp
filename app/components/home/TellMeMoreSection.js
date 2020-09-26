@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
 
-import Input from '@material-ui/core/Input';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ShareImg from 'images/share.png';
@@ -107,23 +103,27 @@ const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
             with good ideas to gather supporters and to turn them into the votes
             needed to win.
           </SectionDescription>
-            <TellMeMoreForm container>
-              <Grid item xs={8}>
-                <EmailInput
-                  placeholder="your@email.org"
-                  type="email"
-                  name="EMAIL"
-                  class="required email"
-                  value={email}
-                  onChange={ev => setEmail(ev.target.value)}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <EamilSubmitButton type="submit" name="subscribe" onClick={() => subscribeEmailCallback(email)}>
-                  Tell Me More
-                </EamilSubmitButton>
-              </Grid>
-            </TellMeMoreForm>
+          <TellMeMoreForm container>
+            <Grid item xs={8}>
+              <EmailInput
+                placeholder="your@email.org"
+                type="email"
+                name="EMAIL"
+                class="required email"
+                value={email}
+                onChange={ev => setEmail(ev.target.value)}
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <EamilSubmitButton
+                type="submit"
+                name="subscribe"
+                onClick={() => subscribeEmailCallback(email)}
+              >
+                Tell Me More
+              </EamilSubmitButton>
+            </Grid>
+          </TellMeMoreForm>
           {/* </form> */}
         </RightCol>
       </Grid>
