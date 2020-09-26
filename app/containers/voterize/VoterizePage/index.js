@@ -21,29 +21,14 @@ import makeSelectVoterizePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export function VoterizePage({ userState, mode, dispatch }) {
+export function VoterizePage({ userState, dispatch }) {
   useInjectReducer({ key: 'voterizePage', reducer });
   useInjectSaga({ key: 'voterizePage', saga });
-  const voteMode = mode || 'verify';
-
 
   const { user } = userState;
-  useEffect(() => {
-    if (user) {
-      const { name, email } = user;
-      const nameArr = name.split(' ');
-      const firstName = nameArr[0];
-      const lastName = nameArr[nameArr.length - 1];
-      dispatch(
-        push(
-          `/voterize/${voteMode}?first_name=${firstName}&last_name=${lastName}&email=${email}`,
-        ),
-      );
-    }
-  }, [user]);
 
   const childPros = {
-    voteMode,
+    user,
   };
 
   return (
@@ -60,7 +45,6 @@ export function VoterizePage({ userState, mode, dispatch }) {
 VoterizePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
-  mode: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -68,10 +52,9 @@ const mapStateToProps = createStructuredSelector({
   userState: makeSelectUser(),
 });
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    mode: ownProps.match.params.mode,
   };
 }
 
