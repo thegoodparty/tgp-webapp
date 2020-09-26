@@ -10,7 +10,10 @@ import { Body19, H2 } from 'components/shared/typogrophy';
 import { BlueButton } from 'components/shared/buttons';
 
 const CreatorsSectionWrapper = styled.div`
-  margin: 5rem 0;
+  margin: 0 0 5rem;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 5rem 0;
+  }
 `;
 
 const SectionTitle = styled(H2)`
@@ -35,31 +38,29 @@ const LearnMore = styled(BlueButton)`
     width: 11rem;
   }
 `;
-const CreatorsSection = ({}) => {
-  return (
-    <CreatorsSectionWrapper>
-      <Grid container>
-        <LeftCol item xs={12} md={6}>
-          <SectionTitle>Calling All Creators!</SectionTitle>
-          <SectionDescription>
-            Join us to build free open source software and to tell the
-            stories we need to mobilize people and change everything for Good!
-          </SectionDescription>
-          <Link to="/creators">
-            <LearnMore className="outline">Learn More</LearnMore>
-          </Link>
-        </LeftCol>
-        <Grid item xs={12} md={6}>
-          <LazyLoadImage
-            src={CreatorsImg}
-            alt="calling-creators"
-            width="100%"
-            height="100%"
-          />
-        </Grid>
+const CreatorsSection = () => (
+  <CreatorsSectionWrapper>
+    <Grid container>
+      <LeftCol item xs={12} md={6}>
+        <SectionTitle>Calling All Creators!</SectionTitle>
+        <SectionDescription>
+          Join us to build free open source software and to tell the stories we
+          need to mobilize people and change everything for Good!
+        </SectionDescription>
+        <Link to="/creators">
+          <LearnMore className="outline">Learn More</LearnMore>
+        </Link>
+      </LeftCol>
+      <Grid item xs={12} md={6}>
+        <LazyLoadImage
+          src={CreatorsImg}
+          alt="calling-creators"
+          width="100%"
+          height="100%"
+        />
       </Grid>
-    </CreatorsSectionWrapper>
-  );
-};
+    </Grid>
+  </CreatorsSectionWrapper>
+);
 
 export default CreatorsSection;
