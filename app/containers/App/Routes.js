@@ -129,7 +129,7 @@ function Routes() {
       <Route exact path="/twitter-callback" component={TwitterCallbackPage} />
 
       <Route exact path="/voterize/register" component={VoterizePage} />
-      <Route exact path="/voterize/verify-vote" component={VerifyVotePage} />
+      <Route exact path="/voterize/verify" component={VerifyVotePage} />
 
       <Route component={NotFoundPage} />
     </Switch>

@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Grid from '@material-ui/core/Grid';
+import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Body19, Subtitle } from 'components/shared/typogrophy';
+
 import DemocratImg from 'images/democrat.png';
 import RepublicanImg from 'images/republican.png';
 import IndependentImg from 'images/independent.png';
