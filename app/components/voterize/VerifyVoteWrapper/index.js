@@ -135,7 +135,7 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
   }, [user]);
   const [error, setError] = useState(false);
 
-  const required = ['firstName', 'lastName', 'address', 'city', 'state', 'zip'];
+  const required = ['firstName', 'lastName', 'address', 'city', 'state', 'zip', 'email'];
   const validateForm = (key, value) => {
     if (required.includes(key)) {
       if (value === '' || (key === 'state' && value === 'None')) {
@@ -146,8 +146,9 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
       } else {
         setError({ ...error, [key]: null });
       }
-    } else if (key === 'email') {
-      if (value === '' || validateEmail(value)) {
+    } 
+    if (key === 'email' && value !== '') {
+      if (validateEmail(value)) {
         setError({ ...error, [key]: null });
       } else {
         setError({ ...error, [key]: `Email is invalid.` });
