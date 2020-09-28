@@ -13,37 +13,53 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import makeSelectUser from 'containers/you/YouPage/selectors';
 import makeSelectVerifyVotePage from './selectors';
+import userReducer from 'containers/you/YouPage/reducer';
 import reducer from './reducer';
 import saga from './saga';
 import VerifyVoteWrapper from '../../../components/voterize/VerifyVoteWrapper';
+import verifyVoterActions from './actions';
 
-export function VerifyVotePage() {
+export function VerifyVotePage({ verifyVoterCallback, userState }) {
+  useInjectReducer({ key: 'user', reducer: userReducer });
+
   useInjectReducer({ key: 'verifyVotePage', reducer });
   useInjectSaga({ key: 'verifyVotePage', saga });
-
+  const { user } = userState;
+  const childProps = {
+    verifyVoterCallback,
+    user
+  };
   return (
     <div>
       <Helmet>
         <title>Verify Your Vote | The Good Party</title>
         <meta name="description" content="Verify Your Vote | The Good Party" />
       </Helmet>
-      <VerifyVoteWrapper />
+      <VerifyVoteWrapper { ...childProps } />
     </div>
   );
 }
 
 VerifyVotePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  verifyVoterCallback: PropTypes.func,
+  userState: PropTypes.object
 };
 
 const mapStateToProps = createStructuredSelector({
   verifyVotePage: makeSelectVerifyVotePage(),
+  userState: makeSelectUser()
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    verifyVoterCallback: voter => {
+      console.log(verifyVoterActions);
+      dispatch(verifyVoterActions.verifyVoter(voter))
+    }
   };
 }
 

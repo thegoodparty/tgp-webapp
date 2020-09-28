@@ -56,3 +56,10 @@ export const cleanPhone = phone => {
   }
   return phone;
 };
+
+
+export const validatePhone = phone => {
+  const expression = /^([0-9]{3})\-([0-9]{3})\-([0-9]{4})$/;
+
+  return expression.test(phone)
+}

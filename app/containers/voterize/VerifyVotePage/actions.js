@@ -4,10 +4,15 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
+function verifyVoter(voter) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.VERIFY_VOTER,
+    voter,
   };
 }
+
+export default {
+	verifyVoter,
+};

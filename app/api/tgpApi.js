@@ -275,5 +275,9 @@ const api = {
     url: `${base}subscribe/email`,
     method: 'GET',
   },
+  verifyVote: {
+    url: `${base}voterize/verify-vote`,
+    method: 'GET',
+  }
 };
 export default api;

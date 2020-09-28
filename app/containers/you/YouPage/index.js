@@ -56,7 +56,6 @@ export function YouPage({
 
   const { user, crewPreview, crewCount, ranking } = userState;
   const { houseCandidates, senateCandidates } = districtState;
-
   useEffect(() => {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {

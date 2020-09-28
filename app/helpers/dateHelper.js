@@ -19,6 +19,11 @@ export const dateUsHelper = orgDate => {
   }
 };
 
+export const validateDate = date => {
+  const expression = /^([0-9]{4})\-([0-9]{2})\-([0-9]{2})$/;
+
+  return expression.test(date)
+}
 // // returns December 12, 2020 * 4 AM PST
 // export const formatDateFromUtc = orgDate => {
 //   if (!orgDate) {
