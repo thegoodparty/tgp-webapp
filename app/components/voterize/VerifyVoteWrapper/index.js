@@ -368,9 +368,7 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
                 size="medium"
                 fullWidth
                 error={error.dob}
-                helperText={`${
-                  error.dob ? error.dob : ''
-                } Format: YYYY-DD-MM`}
+                helperText={`${error.dob ? error.dob : ''} Format: YYYY-DD-MM`}
                 onChange={e => onChange(e, 'dob')}
               />
             </Grid>
@@ -399,7 +397,8 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
 };
 
 VerifyVoteWrapper.propTypes = {
-  voteMode: PropTypes.string,
+  verifyVoterCallback: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default VerifyVoteWrapper;

@@ -11,11 +11,12 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import userReducer from 'containers/you/YouPage/reducer';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 import makeSelectVerifyVotePage from './selectors';
-import userReducer from 'containers/you/YouPage/reducer';
 import reducer from './reducer';
 import saga from './saga';
 import VerifyVoteWrapper from '../../../components/voterize/VerifyVoteWrapper';
@@ -29,7 +30,7 @@ export function VerifyVotePage({ verifyVoterCallback, userState }) {
   const { user } = userState;
   const childProps = {
     verifyVoterCallback,
-    user
+    user,
   };
   return (
     <div>
@@ -37,7 +38,7 @@ export function VerifyVotePage({ verifyVoterCallback, userState }) {
         <title>Verify Your Vote | The Good Party</title>
         <meta name="description" content="Verify Your Vote | The Good Party" />
       </Helmet>
-      <VerifyVoteWrapper { ...childProps } />
+      <VerifyVoteWrapper {...childProps} />
     </div>
   );
 }
@@ -45,18 +46,19 @@ export function VerifyVotePage({ verifyVoterCallback, userState }) {
 VerifyVotePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   verifyVoterCallback: PropTypes.func,
-  userState: PropTypes.object
+  userState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   verifyVotePage: makeSelectVerifyVotePage(),
-  userState: makeSelectUser()
+  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    verifyVoterCallback: voter => dispatch(verifyVoterActions.verifyVoter(voter))
+    verifyVoterCallback: voter =>
+      dispatch(verifyVoterActions.verifyVoter(voter)),
   };
 }
 
