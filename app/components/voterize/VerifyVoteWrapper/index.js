@@ -48,7 +48,7 @@ const StyledBody = styled(Body)`
 const RightWrapper = styled.div`
   min-height: 100vh;
   overflow-y: auto;
-  padding: 24px;
+  padding: 80px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,6 +91,7 @@ const Skip = styled.div`
   color: ${props => props.theme.colors.blue};
   background-color: #fff;
   cursor: pointer;
+  z-index: 1000;
 `;
 
 const NextButtonWrapper = styled.div`
@@ -117,23 +118,22 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
     email: '',
   });
   useEffect(() => {
-    if(user) {
+    if (user) {
       const { name, email, phone, shortState, zipCode } = user;
-      const splittedName = user.name.split(' ');
+      const splittedName = name.split(' ');
       setState(prevState => ({
         ...prevState,
-        firstName: splittedName[0],
-        lastName: splittedName.length == 2 && splittedName[1],
-        email,
-        phone,
-        state: shortState.toUpperCase(),
-        city: zipCode?.primaryCity,
-        zip: zipCode?.zip
-      }))
+        firstName: splittedName[0] || '',
+        lastName: (splittedName.length === 2 && splittedName[1]) || '',
+        email: email || '',
+        phone: phone || '',
+        state: shortState?.toUpperCase() || '',
+        city: zipCode?.primaryCity || '',
+        zip: zipCode?.zip || '',
+      }));
     }
   }, [user]);
   const [error, setError] = useState(false);
-  const [submitActive, setSubmitActive] = useState(false);
 
   const required = ['firstName', 'lastName', 'address', 'city', 'state', 'zip'];
   const validateForm = (key, value) => {
@@ -146,25 +146,23 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
       } else {
         setError({ ...error, [key]: null });
       }
-    } else {
-      if (key === 'email') {
-        if (value === '' || validateEmail(value)) {
-          setError({ ...error, [key]: null });
-        } else {
-          setError({ ...error, [key]: `Email is invalid.` });
-        }
-      } else if (key === 'dob') {
-        if (value === '' || validateDate(value)) {
-          setError({ ...error, [key]: null });
-        } else {
-          setError({ ...error, [key]: `Date of Birth is invalid.` });
-        }
-      } else if (key === 'phone') {
-        if (value === '' || validatePhone(value)) {
-          setError({ ...error, [key]: null });
-        } else {
-          setError({ ...error, [key]: `Phone Number is invalid.` });
-        }
+    } else if (key === 'email') {
+      if (value === '' || validateEmail(value)) {
+        setError({ ...error, [key]: null });
+      } else {
+        setError({ ...error, [key]: `Email is invalid.` });
+      }
+    } else if (key === 'dob') {
+      if (value === '' || validateDate(value)) {
+        setError({ ...error, [key]: null });
+      } else {
+        setError({ ...error, [key]: `Date of Birth is invalid.` });
+      }
+    } else if (key === 'phone') {
+      if (value === '' || validatePhone(value)) {
+        setError({ ...error, [key]: null });
+      } else {
+        setError({ ...error, [key]: `Phone Number is invalid.` });
       }
     }
   };
@@ -177,28 +175,35 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
   };
 
   const submitForm = () => {
-    if(canSubmit()) {
+    if (canSubmit()) {
       verifyVoterCallback(state);
     }
   };
 
   const canSubmit = () => {
     let isValid = true;
-    let currentError = { ...error };
+    const currentError = { ...error };
     for (let i = 0; i < required.length; i++) {
       const requiredField = required[i];
       if (state[requiredField] === '') {
-        // setError(requiredField);
         isValid = false;
-        currentError[requiredField] = `${requiredField.charAt(0).toUpperCase() +
-          requiredField.slice(1)} is required.`;
+        let displayKey;
+        if (requiredField === 'firstName') {
+          displayKey = 'First name';
+        } else if (requiredField === 'lastName') {
+          displayKey = 'Last name';
+        } else {
+          displayKey =
+            requiredField.charAt(0).toUpperCase() + requiredField.slice(1);
+        }
+        currentError[requiredField] = `${displayKey} is required.`;
       }
     }
     if (state.state === 'None') {
       currentError.state = 'State is required.';
       isValid = false;
     }
-    Object.keys(error).forEach((key, index) => {
+    Object.keys(error).forEach(key => {
       if (error[key]) {
         isValid = false;
       }
@@ -348,7 +353,9 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
                 name="Phone Number"
                 size="medium"
                 error={error.phone}
-                helperText={error.phone}
+                helperText={`${
+                  error.phone ? error.phone : ''
+                } Format: XXX-XXX-XXXX`}
                 fullWidth
                 onChange={e => onChange(e, 'phone')}
               />
@@ -361,7 +368,9 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
                 size="medium"
                 fullWidth
                 error={error.dob}
-                helperText={error.dob}
+                helperText={`${
+                  error.dob ? error.dob : ''
+                } Format: YYYY-DD-MM`}
                 onChange={e => onChange(e, 'dob')}
               />
             </Grid>
