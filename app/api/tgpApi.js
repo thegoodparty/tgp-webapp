@@ -278,6 +278,7 @@ const api = {
   verifyVote: {
     url: `${base}voterize/verify-vote`,
     method: 'GET',
-  }
+    withAuth: true,
+  },
 };
 export default api;
