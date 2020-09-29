@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Dialog from '@material-ui/core/Dialog';
 import MenuItem from '@material-ui/core/MenuItem';
 import { validateEmail } from 'helpers/emailHelper';
 import { validateDate } from 'helpers/dateHelper';
@@ -103,7 +104,7 @@ const NextButtonWrapper = styled.div`
   cursor: pointer;
 `;
 
-const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
+const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user, open }) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -135,7 +136,15 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
   }, [user]);
   const [error, setError] = useState(false);
 
-  const required = ['firstName', 'lastName', 'address', 'city', 'state', 'zip', 'email'];
+  const required = [
+    'firstName',
+    'lastName',
+    'address',
+    'city',
+    'state',
+    'zip',
+    'email',
+  ];
   const validateForm = (key, value) => {
     if (required.includes(key)) {
       if (value === '' || (key === 'state' && value === 'None')) {
@@ -146,7 +155,7 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
       } else {
         setError({ ...error, [key]: null });
       }
-    } 
+    }
     if (key === 'email' && value !== '') {
       if (validateEmail(value)) {
         setError({ ...error, [key]: null });
@@ -222,184 +231,194 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, user }) => {
     </>
   );
   return (
-    <Grid container spacing={0}>
-      <Hidden smDown>
-        <Grid item xs={false} md={5}>
-          <LeftWrapper>
-            <Logo src={LogoCaps} alt="logo" />
-            {message}
-          </LeftWrapper>
-        </Grid>
-      </Hidden>
-      <Grid item xs={12} md={7}>
-        <RightWrapper>
-          <Skip>Skip</Skip>
-          <Hidden mdUp>{message}</Hidden>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <Input
-                error={error.firstName}
-                helperText={error.firstName}
-                value={state.firstName}
-                label="First Name"
-                name="First Name"
-                required
-                size="medium"
-                fullWidth
-                onChange={e => onChange(e, 'firstName')}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Input
-                value={state.lastName}
-                label="Last Name"
-                name="Last Name"
-                required
-                error={error.lastName}
-                helperText={error.lastName}
-                size="medium"
-                fullWidth
-                onChange={e => onChange(e, 'lastName')}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Input
-                value={state.middleName}
-                label="Middle Name"
-                name="Middle Name"
-                size="medium"
-                fullWidth
-                onChange={e => onChange(e, 'middleName')}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Input
-                value={state.suffix}
-                label="Suffix"
-                name="Suffix"
-                size="medium"
-                fullWidth
-                onChange={e => onChange(e, 'suffix')}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Input
-                value={state.address}
-                label="Street Address"
-                name="Address"
-                size="medium"
-                required
-                error={error.address}
-                helperText={error.address}
-                fullWidth
-                onChange={e => onChange(e, 'address')}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Input
-                value={state.city}
-                label="City"
-                name="City"
-                size="medium"
-                required
-                fullWidth
-                error={error.city}
-                helperText={error.city}
-                onChange={e => onChange(e, 'city')}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Grid container spacing={3}>
-                <Grid item xs={6}>
-                  <FormControl error={error.state}>
-                    <StyledSelect
-                      value={state.state}
-                      label="State"
-                      name="State"
+    <Dialog
+      fullScreen
+      aria-labelledby="Verify Voter Registration"
+      open={open}
+    >
+      <Grid container spacing={0}>
+        <Hidden smDown>
+          <Grid item xs={false} md={5}>
+            <LeftWrapper>
+              <Logo src={LogoCaps} alt="logo" />
+              {message}
+            </LeftWrapper>
+          </Grid>
+        </Hidden>
+        <Grid item xs={12} md={7}>
+          <RightWrapper>
+            <Skip onClick={skipVerifyVoterCallback}>Skip</Skip>
+            <Hidden mdUp>{message}</Hidden>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <Input
+                  error={error.firstName}
+                  helperText={error.firstName}
+                  value={state.firstName}
+                  label="First Name"
+                  name="First Name"
+                  required
+                  size="medium"
+                  fullWidth
+                  onChange={e => onChange(e, 'firstName')}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Input
+                  value={state.lastName}
+                  label="Last Name"
+                  name="Last Name"
+                  required
+                  error={error.lastName}
+                  helperText={error.lastName}
+                  size="medium"
+                  fullWidth
+                  onChange={e => onChange(e, 'lastName')}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Input
+                  value={state.middleName}
+                  label="Middle Name"
+                  name="Middle Name"
+                  size="medium"
+                  fullWidth
+                  onChange={e => onChange(e, 'middleName')}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Input
+                  value={state.suffix}
+                  label="Suffix"
+                  name="Suffix"
+                  size="medium"
+                  fullWidth
+                  onChange={e => onChange(e, 'suffix')}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Input
+                  value={state.address}
+                  label="Street Address"
+                  name="Address"
+                  size="medium"
+                  required
+                  error={error.address}
+                  helperText={error.address}
+                  fullWidth
+                  onChange={e => onChange(e, 'address')}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Input
+                  value={state.city}
+                  label="City"
+                  name="City"
+                  size="medium"
+                  required
+                  fullWidth
+                  error={error.city}
+                  helperText={error.city}
+                  onChange={e => onChange(e, 'city')}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Grid container spacing={3}>
+                  <Grid item xs={6}>
+                    <FormControl error={error.state}>
+                      <StyledSelect
+                        value={state.state}
+                        label="State"
+                        name="State"
+                        size="medium"
+                        required
+                        onChange={e => onChange(e, 'state')}
+                      >
+                        <MenuItem value="None">Select A State</MenuItem>
+                        {states.map(stateItem => (
+                          <MenuItem
+                            value={stateItem.abbreviation}
+                            key={stateItem.abbreviation}
+                          >
+                            {stateItem.name}
+                          </MenuItem>
+                        ))}
+                      </StyledSelect>
+                      <FormHelperText>{error.state}</FormHelperText>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Input
+                      value={state.zip}
+                      label="Zip"
+                      name="Zip"
                       size="medium"
                       required
-                      onChange={e => onChange(e, 'state')}
-                    >
-                      <MenuItem value="None">Select A State</MenuItem>
-                      {states.map(stateItem => (
-                        <MenuItem
-                          value={stateItem.abbreviation}
-                          key={stateItem.abbreviation}
-                        >
-                          {stateItem.name}
-                        </MenuItem>
-                      ))}
-                    </StyledSelect>
-                    <FormHelperText>{error.state}</FormHelperText>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={6}>
-                  <Input
-                    value={state.zip}
-                    label="Zip"
-                    name="Zip"
-                    size="medium"
-                    required
-                    error={error.zip}
-                    helperText={error.zip}
-                    onChange={e => onChange(e, 'zip')}
-                  />
+                      error={error.zip}
+                      helperText={error.zip}
+                      onChange={e => onChange(e, 'zip')}
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
+              <Grid item xs={12} md={6}>
+                <Input
+                  value={state.phone}
+                  label="Phone Number"
+                  name="Phone Number"
+                  size="medium"
+                  error={error.phone}
+                  helperText={`${
+                    error.phone ? error.phone : ''
+                  } Format: XXX-XXX-XXXX`}
+                  fullWidth
+                  onChange={e => onChange(e, 'phone')}
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Input
+                  value={state.dob}
+                  label="Date of Birth (YYYY-MM-DD)"
+                  name="Date of Birth"
+                  size="medium"
+                  fullWidth
+                  error={error.dob}
+                  helperText={`${
+                    error.dob ? error.dob : ''
+                  } Format: YYYY-DD-MM`}
+                  onChange={e => onChange(e, 'dob')}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Input
+                  value={state.email}
+                  label="Email"
+                  name="Email"
+                  size="medium"
+                  fullWidth
+                  error={error.email}
+                  helperText={error.email}
+                  onChange={e => onChange(e, 'email')}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Input
-                value={state.phone}
-                label="Phone Number"
-                name="Phone Number"
-                size="medium"
-                error={error.phone}
-                helperText={`${
-                  error.phone ? error.phone : ''
-                } Format: XXX-XXX-XXXX`}
-                fullWidth
-                onChange={e => onChange(e, 'phone')}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Input
-                value={state.dob}
-                label="Date of Birth (YYYY-MM-DD)"
-                name="Date of Birth"
-                size="medium"
-                fullWidth
-                error={error.dob}
-                helperText={`${error.dob ? error.dob : ''} Format: YYYY-DD-MM`}
-                onChange={e => onChange(e, 'dob')}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Input
-                value={state.email}
-                label="Email"
-                name="Email"
-                size="medium"
-                fullWidth
-                error={error.email}
-                helperText={error.email}
-                onChange={e => onChange(e, 'email')}
-              />
-            </Grid>
-          </Grid>
-          <NextButtonWrapper>
-            <NextButton active onClick={submitForm}>
-              Submit
-            </NextButton>
-          </NextButtonWrapper>
-        </RightWrapper>
+            <NextButtonWrapper>
+              <NextButton active onClick={submitForm}>
+                Submit
+              </NextButton>
+            </NextButtonWrapper>
+          </RightWrapper>
+        </Grid>
       </Grid>
-    </Grid>
+    </Dialog>
   );
 };
 
 VerifyVoteWrapper.propTypes = {
   verifyVoterCallback: PropTypes.func,
+  skipVerifyVoterCallback: PropTypes.func,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  open: PropTypes.bool
 };
 
 export default VerifyVoteWrapper;

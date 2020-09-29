@@ -4,15 +4,21 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export const initialState = {};
+export const initialState = {
+	isVoterRegistered: null
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const verifyVotePageReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case types.VERIFY_VOTER_SUCCESS:
+      	draft.isVoterRegistered = true;
+        break;
+      case types.SKIP_VERIFY_VOTER:
+      	draft.isVoterRegistered = false;
         break;
     }
   });
