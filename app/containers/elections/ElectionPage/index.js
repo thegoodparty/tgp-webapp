@@ -22,6 +22,9 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/intro/ZipFinderPage/reducer';
 import saga from 'containers/intro/ZipFinderPage/saga';
+import verifyVoterActions from 'containers/voterize/VerifyVotePage/actions';
+import verifyVoterSaga from 'containers/voterize/VerifyVotePage/saga';
+import verifyVoterReducer from 'containers/voterize/VerifyVotePage/reducer';
 
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 import ElectionWrapper from 'components/elections/ElectionWrapper';
@@ -39,6 +42,7 @@ import {
 import candidateReducer from 'containers/elections/CandidatePage/reducer';
 import candidateSaga from 'containers/elections/CandidatePage/saga';
 import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
+import makeSelectVerifyVotePage from 'containers/voterize/VerifyVotePage/selectors';
 import makeSelectUser, {
   makeSelectRanking,
 } from 'containers/you/YouPage/selectors';
@@ -61,6 +65,7 @@ export function ElectionPage({
   districtState,
   candidateState,
   locationState,
+  verifyVotePage,
   userState,
   rankingObj,
   dispatch,
@@ -70,7 +75,13 @@ export function ElectionPage({
   clearBlocCandidateCallback,
   clearJoinCandidateCallback,
   clearGrowCandidateCallback,
+  skipVerifyVoterCallback,
+  verifyVoterCallback,
+  verifyVotePageState
 }) {
+  useInjectReducer({ key: 'verifyVotePage', reducer: verifyVoterReducer });
+  useInjectSaga({ key: 'verifyVotePage', saga: verifyVoterSaga });
+
   useInjectReducer({ key: 'zipFinderPage', reducer });
   useInjectSaga({ key: 'zipFinderPage', saga });
   useInjectReducer({
@@ -86,6 +97,7 @@ export function ElectionPage({
   const { user, ranking } = userState;
   const { blocCandidate, joinCandidate, growCandidate } = districtState;
   const { incumbent } = candidateState;
+  const { isVoterRegistered } = verifyVotePageState;
 
   let candidates;
   if (chamber === 'presidential') {
@@ -246,8 +258,11 @@ export function ElectionPage({
     growCandidate: growCandidateMatch,
     clearJoinCandidateCallback,
     clearGrowCandidateCallback,
+    isVoterRegistered,
+    verifyVoterCallback,
     postRegisterJoin,
     incumbent,
+    skipVerifyVoterCallback
   };
 
   return (
@@ -284,6 +299,9 @@ ElectionPage.propTypes = {
   clearBlocCandidateCallback: PropTypes.func,
   clearJoinCandidateCallback: PropTypes.func,
   clearGrowCandidateCallback: PropTypes.func,
+  verifyVoterCallback: PropTypes.func,
+  verifyVotePageState: PropTypes.object,
+  skipVerifyVoterCallback: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -293,6 +311,7 @@ const mapStateToProps = createStructuredSelector({
   userState: makeSelectUser(),
   rankingObj: makeSelectRanking(),
   locationState: makeSelectLocation(),
+  verifyVotePageState: makeSelectVerifyVotePage(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -356,6 +375,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     clearGrowCandidateCallback: () => {
       dispatch(districtActions.clearGrowCandidateAction());
     },
+    verifyVoterCallback: voter =>
+      dispatch(verifyVoterActions.verifyVoter(voter)),
+    skipVerifyVoterCallback: () => dispatch(verifyVoterActions.skipVerifyVoterAction())
   };
 }
 

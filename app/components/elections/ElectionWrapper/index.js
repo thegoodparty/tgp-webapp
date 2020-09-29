@@ -8,6 +8,7 @@ import LoadingAnimation from 'components/shared/LoadingAnimation';
 import { Body, H1 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
+import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
 import articlesHelper from 'helpers/articlesHelper';
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
@@ -43,19 +44,24 @@ const ElectionWrapper = ({
   growCandidate,
   clearJoinCandidateCallback,
   clearGrowCandidateCallback,
+  skipVerifyVoterCallback,
   postRegisterJoin,
+  isVoterRegistered,
+  verifyVoterCallback,
   incumbent,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showVoterVerify, setShowVoterVerify] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
   const [isExternalLink, setIsExternalLink] = useState(false);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [candidateRanking, setCandidateRanking] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   useEffect(() => {
     if (blocCandidate) {
       setIsExternalLink(true);
@@ -63,14 +69,26 @@ const ElectionWrapper = ({
       setShowChoiceModal(true);
     }
   }, [blocCandidate]);
-
+  useEffect(() => {
+    if (isVoterRegistered !== null && showVoterVerify) {
+      selectCandidate(selectedCandidate, candidateRanking);
+      setChoiceModalCandidate(selectedCandidate);
+      setShowChoiceModal(true);
+      setShowVoterVerify(false);
+    }
+  }, [isVoterRegistered]);
   useEffect(() => {
     if (joinCandidate) {
       const rank = findNextRank(joinCandidate);
-      selectCandidate(joinCandidate, rank);
-      setChoiceModalCandidate(joinCandidate);
-      setShowChoiceModal(true);
+      if (user) {
+        setShowVoterVerify(true);
+      } else {
+        selectCandidate(joinCandidate, rank);
+      }
+      setSelectedCandidate(joinCandidate);
+      setCandidateRanking(rank);
       clearJoinCandidateCallback();
+      
     }
   }, [joinCandidate]);
 
@@ -127,12 +145,15 @@ const ElectionWrapper = ({
     if (candidate.id < 0) {
       candidate.ranking = candidates.goodEmptyBloc;
     }
+
     if (user) {
-      setChoiceModalCandidate(candidate);
-      setShowChoiceModal(true);
+      setShowVoterVerify(true);
+      setSelectedCandidate(candidate);
+      setCandidateRanking(rank);
       setShowShareModal(false);
+    } else {
+      selectCandidate(candidate, rank);
     }
-    selectCandidate(candidate, rank);
   };
 
   const handleDeselectCandidate = rank => {
@@ -287,6 +308,12 @@ const ElectionWrapper = ({
         chamber={chamber}
         isExternalLink={isExternalLink}
       />
+      <VerifyVoteWrapper
+        open={showVoterVerify}
+        user={user}
+        verifyVoterCallback={verifyVoterCallback}
+        skipVerifyVoterCallback={skipVerifyVoterCallback}
+      />
     </PageWrapper>
   );
 };
@@ -311,6 +338,9 @@ ElectionWrapper.propTypes = {
   clearGrowCandidateCallback: PropTypes.func,
   postRegisterJoin: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  verifyVoterCallback: PropTypes.func,
+  skipVerifyVoterCallback: PropTypes.func,
+  isVoterRegistered: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default ElectionWrapper;

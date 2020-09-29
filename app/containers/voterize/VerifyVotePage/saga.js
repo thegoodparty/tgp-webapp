@@ -21,6 +21,7 @@ function* verifyVoter(action) {
         ),
       );
     }
+    yield put(actions.verifyVoterSuccessAction());
   } catch (error) {
     console.log(error);
     yield put(

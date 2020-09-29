@@ -19,7 +19,7 @@ import makeSelectUser from 'containers/you/YouPage/selectors';
 import makeSelectVerifyVotePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import VerifyVoteWrapper from '../../../components/voterize/VerifyVoteWrapper';
+import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
 import verifyVoterActions from './actions';
 
 export function VerifyVotePage({ verifyVoterCallback, userState }) {
