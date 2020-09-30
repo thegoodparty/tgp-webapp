@@ -31,16 +31,15 @@
   </head>
 
   <body>
-    <!-- Display a message if JS has been disabled on the browser. -->
     <noscript
       >If you're seeing this message, that means
       <strong>JavaScript has been disabled on your browser</strong>, please
-      <strong>enable JS</strong> to make this app work.</noscript
-    >
+      <strong>enable JS</strong> to make this app work.
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BXM3DQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
 
     <!-- The app hooks into this div -->
     <div id="app"></div>
-    <!-- A lot of magic happens in this file. HtmlWebpackPlugin automatically injects all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this file. Don't add any assets here! (Check out webpack.dev.babel.js and webpack.prod.babel.js if you want to know more) -->
     <link
       href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500,600,700"
       rel="stylesheet"
@@ -68,6 +67,15 @@
             if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
             g._v="1.2.0";
         })(window,document,window['_fs_namespace'],'script','user');
+
+          // gtm propsper group
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5BXM3DQ');
+
+
       }
       </script>
 
