@@ -33,6 +33,7 @@ export function SocialRegisterPage({
   useInjectSaga({ key: 'user', saga });
 
   const [blocName, setBlocName] = useState(false);
+  const [candidateName, setCandidateName] = useState(false);
 
   useEffect(() => {
     // if (user) {
@@ -42,6 +43,7 @@ export function SocialRegisterPage({
     const blocCookie = getSignupRedirectCookie();
     if (blocCookie) {
       setBlocName(blocCookie.options?.blocName);
+      setCandidateName(blocCookie.options?.name);
     }
   }, []);
 
@@ -50,6 +52,7 @@ export function SocialRegisterPage({
     socialLoginFailureCallback,
     closeModalCallback,
     blocName,
+    candidateName,
     twitterButtonCallback,
   };
 

@@ -60,7 +60,6 @@ export function YouPage({
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       dispatch(push(cookieRedirect.route));
-      deleteSignupRedirectCookie();
     }
     if (user && !crewPreview) {
       dispatch(userActions.crewAction(true));
