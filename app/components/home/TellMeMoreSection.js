@@ -109,7 +109,7 @@ const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
                 placeholder="your@email.org"
                 type="email"
                 name="EMAIL"
-                class="required email"
+                className="required email"
                 value={email}
                 onChange={ev => setEmail(ev.target.value)}
               />

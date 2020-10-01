@@ -60,16 +60,17 @@ const ChallengersSection = ({ challengers }) => {
 
       <ChallengersList>
         <Grid container spacing={3}>
-          {challengers.map((challenger, index) => (
-            <Grid item xs={12} md={6} lg={4} key={challenger.id}>
-              <ChallengerItem
-                challenger={challenger}
-                id={
-                  index === challengers.length - 1 ? 'last-challenger' : false
-                }
-              />
-            </Grid>
-          ))}
+          {challengers &&
+            challengers.map((challenger, index) => (
+              <Grid item xs={12} md={6} lg={4} key={challenger.id}>
+                <ChallengerItem
+                  challenger={challenger}
+                  id={
+                    index === challengers.length - 1 ? 'last-challenger' : false
+                  }
+                />
+              </Grid>
+            ))}
 
           <Grid item xs={12} md={6} lg={4}>
             <ZipFinderWrapper style={{ height: `${cardHeight}px` }}>
