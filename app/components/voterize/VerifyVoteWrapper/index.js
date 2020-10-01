@@ -121,7 +121,6 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user,
   useEffect(() => {
     if (user) {
       const { name, email, phone, shortState, zipCode } = user;
-      debugger;
       const splittedName = name.split(' ');
       setState(prevState => ({
         ...prevState,

@@ -131,7 +131,6 @@ const ChallengerItem = ({ challenger, id }) => {
     perc > 50 ? 'Small Donor Funding' : 'Relative Funding Rate';
   const funding =
     perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
-  console.log('id', id)
   return (
     <ChallengerItemWrapper id={id}>
       <Link to={getRankPageLink()}>
