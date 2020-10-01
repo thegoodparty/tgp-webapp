@@ -10,6 +10,10 @@ import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
 import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
 import articlesHelper from 'helpers/articlesHelper';
+import {
+  deleteSignupRedirectCookie,
+  getSignupRedirectCookie,
+} from 'helpers/cookieHelper';
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
 import BottomPopup from '../../shared/BottomPopup';
@@ -61,6 +65,16 @@ const ElectionWrapper = ({
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const cookieRedirect = getSignupRedirectCookie();
+    if(cookieRedirect && candidates.length > 0) {
+      const { candidateId, rank } = cookieRedirect.options;
+      const candidate = candidates?.find(item => item.id === candidateId);
+      setShowVoterVerify(true);
+      setSelectedCandidate(candidate);
+      setCandidateRanking(rank);
+      setShowShareModal(false);
+      deleteSignupRedirectCookie();
+    }
   }, []);
   useEffect(() => {
     if (blocCandidate) {
