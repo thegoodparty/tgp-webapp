@@ -8,7 +8,7 @@ import LoadingAnimation from 'components/shared/LoadingAnimation';
 import { Body, H1 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
-import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
+import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
 import articlesHelper from 'helpers/articlesHelper';
 import {
   deleteSignupRedirectCookie,
@@ -48,12 +48,11 @@ const ElectionWrapper = ({
   growCandidate,
   clearJoinCandidateCallback,
   clearGrowCandidateCallback,
-  skipVerifyVoterCallback,
   postRegisterJoin,
-  isVoterRegistered,
-  verifyVoterCallback,
   incumbent,
 }) => {
+  console.log('user', user);
+
   const [showFilters, setShowFilters] = useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -66,7 +65,7 @@ const ElectionWrapper = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     const cookieRedirect = getSignupRedirectCookie();
-    if(cookieRedirect && candidates.length > 0) {
+    if (cookieRedirect && candidates.length > 0) {
       const { candidateId, rank } = cookieRedirect.options;
       const candidate = candidates?.find(item => item.id === candidateId);
       setShowVoterVerify(true);
@@ -84,17 +83,18 @@ const ElectionWrapper = ({
     }
   }, [blocCandidate]);
   useEffect(() => {
-    if (isVoterRegistered !== null && showVoterVerify) {
+    const { voteStatus } = user;
+    if (voteStatus === 'verified' && showVoterVerify) {
       selectCandidate(selectedCandidate, candidateRanking);
       setChoiceModalCandidate(selectedCandidate);
       setShowChoiceModal(true);
       setShowVoterVerify(false);
     }
-  }, [isVoterRegistered]);
+  }, [user]);
   useEffect(() => {
     if (joinCandidate) {
       const rank = findNextRank(joinCandidate);
-      if (user) {
+      if (user?.voteStatus !== 'verified') {
         setShowVoterVerify(true);
       } else {
         selectCandidate(joinCandidate, rank);
@@ -102,7 +102,6 @@ const ElectionWrapper = ({
       setSelectedCandidate(joinCandidate);
       setCandidateRanking(rank);
       clearJoinCandidateCallback();
-      
     }
   }, [joinCandidate]);
 
@@ -160,7 +159,12 @@ const ElectionWrapper = ({
       candidate.ranking = candidates.goodEmptyBloc;
     }
 
-    if (user) {
+    if (user?.voteStatus === 'verified') {
+      setChoiceModalCandidate(candidate);
+      setShowChoiceModal(true);
+      setShowShareModal(false);
+      selectCandidate(candidate, rank);
+    } else if (user) {
       setShowVoterVerify(true);
       setSelectedCandidate(candidate);
       setCandidateRanking(rank);
@@ -239,6 +243,16 @@ const ElectionWrapper = ({
       ? ' (270 ELECTORS)'
       : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
 
+  const skipVerifyVoterCallback = () => {
+    openJoinModal();
+  };
+
+  const openJoinModal = () => {
+    selectCandidate(selectedCandidate, candidateRanking);
+    setChoiceModalCandidate(selectedCandidate);
+    setShowChoiceModal(true);
+    setShowVoterVerify(false);
+  };
   return (
     <PageWrapper>
       {candidates ? (
@@ -322,12 +336,9 @@ const ElectionWrapper = ({
         chamber={chamber}
         isExternalLink={isExternalLink}
       />
-      <VerifyVoteWrapper
-        open={showVoterVerify}
-        user={user}
-        verifyVoterCallback={verifyVoterCallback}
-        skipVerifyVoterCallback={skipVerifyVoterCallback}
-      />
+      {showVoterVerify && (
+        <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
+      )}
     </PageWrapper>
   );
 };
@@ -352,9 +363,6 @@ ElectionWrapper.propTypes = {
   clearGrowCandidateCallback: PropTypes.func,
   postRegisterJoin: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  verifyVoterCallback: PropTypes.func,
-  skipVerifyVoterCallback: PropTypes.func,
-  isVoterRegistered: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default ElectionWrapper;

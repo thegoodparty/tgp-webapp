@@ -280,5 +280,10 @@ const api = {
     method: 'GET',
     withAuth: true,
   },
+  registerVote: {
+    url: `${base}voterize/register-vote`,
+    method: 'GET',
+    withAuth: true,
+  },
 };
 export default api;

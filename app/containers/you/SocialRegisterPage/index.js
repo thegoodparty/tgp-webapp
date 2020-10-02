@@ -21,7 +21,7 @@ import userActions from 'containers/you/YouPage/actions';
 import globalActions from 'containers/App/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-react-router';
-import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
+import { getSignupRedirectCookie } from 'helpers/cookieHelper';
 
 export function SocialRegisterPage({
   socialLoginCallback,

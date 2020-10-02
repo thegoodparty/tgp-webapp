@@ -13,6 +13,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import MenuItem from '@material-ui/core/MenuItem';
+import Markdown from 'markdown-to-jsx';
+
 import { validateEmail } from 'helpers/emailHelper';
 import { validateDate } from 'helpers/dateHelper';
 import { validatePhone } from 'helpers/phoneHelper';
@@ -21,9 +23,15 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 import LogoCaps from 'images/logo-caps.svg';
-import { H1, Body } from 'components/shared/typogrophy';
+import { H1, H2, H3, Body, Body9 } from 'components/shared/typogrophy';
 import { states } from 'helpers/statesHelper';
-import { NextButton } from '../../shared/buttons';
+import {
+  NextButton,
+  OutlinedButton,
+  BlueButton,
+} from 'components/shared/buttons';
+import LoadingAnimation from 'components/shared/LoadingAnimation';
+import HorizontalStepper from 'components/shared/Stepper';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
@@ -104,7 +112,23 @@ const NextButtonWrapper = styled.div`
   cursor: pointer;
 `;
 
-const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user, open }) => {
+const NotFoundWrapper = styled.div`
+  margin-top: 12px;
+`;
+
+const Uppercase = styled.span`
+  text-transform: uppercase;
+`;
+
+const VerifyVoteWrapper = ({
+  verifyVoterCallback,
+  skipVerifyVoterCallback,
+  registerToVoteCallback,
+  vaResponse,
+  user,
+  voteStatus,
+  loading,
+}) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -118,6 +142,8 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user,
     dob: '',
     email: '',
   });
+  const [showRegister, setShowRegister] = useState(false);
+  const [registerResponse, setRegisterResponse] = useState(false);
   useEffect(() => {
     if (user) {
       const { name, email, phone, shortState, zipCode } = user;
@@ -133,7 +159,19 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user,
         zip: zipCode?.zip || '',
       }));
     }
-  }, [user]);
+  }, []);
+
+  useEffect(() => {
+    if (voteStatus !== false && voteStatus !== 'Active') {
+      setShowRegister(true);
+    }
+  }, [voteStatus]);
+
+  useEffect(() => {
+    if (vaResponse !== false) {
+      setRegisterResponse(vaResponse);
+    }
+  }, [vaResponse]);
   const [error, setError] = useState(false);
 
   const required = [
@@ -144,6 +182,7 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user,
     'state',
     'zip',
     'email',
+    'dob',
   ];
   const validateForm = (key, value) => {
     if (required.includes(key)) {
@@ -190,6 +229,10 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user,
     }
   };
 
+  const registerToVote = () => {
+    registerToVoteCallback(state);
+  };
+
   const canSubmit = () => {
     let isValid = true;
     const currentError = { ...error };
@@ -221,192 +264,299 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user,
     setError(currentError);
     return isValid;
   };
-  const message = (
-    <>
-      <H1>Check Your Voter Registration</H1>
-      <StyledBody className="text-center">
-        In order to check your voter registration with the state database we
-        need some information to confirm your identity
-      </StyledBody>
-    </>
-  );
+  const message = () => {
+    if (registerResponse) {
+      return <H2>Register To Vote</H2>;
+    }
+    if (showRegister) {
+      return <H2>Looks like you aren&apos;t registered right now</H2>;
+    }
+    return (
+      <>
+        <H1>Check Your Voter Registration</H1>
+        <StyledBody className="text-center">
+          In order to check your voter registration with the state database we
+          need some information to confirm your identity
+        </StyledBody>
+      </>
+    );
+  };
+
+  const camelToSentence = text => text.replace(/([A-Z])/g, ' $1');
+
   return (
-    <Dialog
-      fullScreen
-      aria-labelledby="Verify Voter Registration"
-      open={open}
-    >
+    <Dialog fullScreen aria-labelledby="Verify Voter Registration" open>
       <Grid container spacing={0}>
         <Hidden smDown>
           <Grid item xs={false} md={5}>
             <LeftWrapper>
               <Logo src={LogoCaps} alt="logo" />
-              {message}
+              {message()}
             </LeftWrapper>
           </Grid>
         </Hidden>
         <Grid item xs={12} md={7}>
           <RightWrapper>
-            <Skip onClick={skipVerifyVoterCallback}>Skip</Skip>
-            <Hidden mdUp>{message}</Hidden>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <Input
-                  error={error.firstName}
-                  helperText={error.firstName}
-                  value={state.firstName}
-                  label="First Name"
-                  name="First Name"
-                  required
-                  size="medium"
-                  fullWidth
-                  onChange={e => onChange(e, 'firstName')}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Input
-                  value={state.lastName}
-                  label="Last Name"
-                  name="Last Name"
-                  required
-                  error={error.lastName}
-                  helperText={error.lastName}
-                  size="medium"
-                  fullWidth
-                  onChange={e => onChange(e, 'lastName')}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Input
-                  value={state.middleName}
-                  label="Middle Name"
-                  name="Middle Name"
-                  size="medium"
-                  fullWidth
-                  onChange={e => onChange(e, 'middleName')}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Input
-                  value={state.suffix}
-                  label="Suffix"
-                  name="Suffix"
-                  size="medium"
-                  fullWidth
-                  onChange={e => onChange(e, 'suffix')}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Input
-                  value={state.address}
-                  label="Street Address"
-                  name="Address"
-                  size="medium"
-                  required
-                  error={error.address}
-                  helperText={error.address}
-                  fullWidth
-                  onChange={e => onChange(e, 'address')}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Input
-                  value={state.city}
-                  label="City"
-                  name="City"
-                  size="medium"
-                  required
-                  fullWidth
-                  error={error.city}
-                  helperText={error.city}
-                  onChange={e => onChange(e, 'city')}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Grid container spacing={3}>
-                  <Grid item xs={6}>
-                    <FormControl error={error.state}>
-                      <StyledSelect
-                        value={state.state}
-                        label="State"
-                        name="State"
-                        size="medium"
-                        required
-                        onChange={e => onChange(e, 'state')}
-                      >
-                        <MenuItem value="None">Select A State</MenuItem>
-                        {states.map(stateItem => (
-                          <MenuItem
-                            value={stateItem.abbreviation}
-                            key={stateItem.abbreviation}
-                          >
-                            {stateItem.name}
-                          </MenuItem>
+            <HorizontalStepper
+              steps={['Sign Up', 'Voterize', 'Tell Others']}
+              activeStep={1}
+            />
+            <br />
+            <br />
+            {loading ? (
+              <LoadingAnimation />
+            ) : (
+              <>
+                <Skip onClick={skipVerifyVoterCallback}>Skip</Skip>
+                <Hidden mdUp>{message()}</Hidden>
+                {registerResponse ? (
+                  <div>
+                    {registerResponse.message_markdown && (
+                      <Markdown>{registerResponse.message_markdown}</Markdown>
+                    )}
+                    <br />
+                    <br />
+                    {registerResponse.buttons && (
+                      <Grid container spacing={3}>
+                        {registerResponse.buttons.map(button => (
+                          <Grid item xs={6} key={button.url}>
+                            <a href={button.url} target="_blank">
+                              {button.primary ? (
+                                <BlueButton fullWidth>
+                                  {button.message_text}
+                                </BlueButton>
+                              ) : (
+                                <OutlinedButton fullWidth active>
+                                  {button.message_text}
+                                </OutlinedButton>
+                              )}
+                            </a>
+                          </Grid>
                         ))}
-                      </StyledSelect>
-                      <FormHelperText>{error.state}</FormHelperText>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Input
-                      value={state.zip}
-                      label="Zip"
-                      name="Zip"
-                      size="medium"
-                      required
-                      error={error.zip}
-                      helperText={error.zip}
-                      onChange={e => onChange(e, 'zip')}
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Input
-                  value={state.phone}
-                  label="Phone Number"
-                  name="Phone Number"
-                  size="medium"
-                  error={error.phone}
-                  helperText={`${
-                    error.phone ? error.phone : ''
-                  } Format: XXX-XXX-XXXX`}
-                  fullWidth
-                  onChange={e => onChange(e, 'phone')}
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Input
-                  value={state.dob}
-                  label="Date of Birth (YYYY-MM-DD)"
-                  name="Date of Birth"
-                  size="medium"
-                  fullWidth
-                  error={error.dob}
-                  helperText={`${
-                    error.dob ? error.dob : ''
-                  } Format: YYYY-DD-MM`}
-                  onChange={e => onChange(e, 'dob')}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Input
-                  value={state.email}
-                  label="Email"
-                  name="Email"
-                  size="medium"
-                  fullWidth
-                  error={error.email}
-                  helperText={error.email}
-                  onChange={e => onChange(e, 'email')}
-                />
-              </Grid>
-            </Grid>
-            <NextButtonWrapper>
-              <NextButton active onClick={submitForm}>
-                Submit
-              </NextButton>
-            </NextButtonWrapper>
+                      </Grid>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    {showRegister ? (
+                      <div>
+                        <H3>
+                          We did not find anyone registered with this
+                          information
+                        </H3>
+                        <br />
+                        <br />
+                        <Grid container spacing={3}>
+                          {Object.keys(state).map(key => (
+                            <React.Fragment key={key}>
+                              {state[key] !== '' && (
+                                <>
+                                  <Grid item xs={3}>
+                                    <NotFoundWrapper>
+                                      <Body9>
+                                        <Uppercase>
+                                          {camelToSentence(key)}
+                                        </Uppercase>
+                                      </Body9>
+                                    </NotFoundWrapper>
+                                  </Grid>
+                                  <Grid item xs={9}>
+                                    <NotFoundWrapper>
+                                      <Body>{state[key]}</Body>
+                                    </NotFoundWrapper>
+                                  </Grid>
+                                </>
+                              )}
+                            </React.Fragment>
+                          ))}
+                          <br />
+                          <br />
+                          <Grid item xs={6}>
+                            <OutlinedButton
+                              fullWidth
+                              active
+                              onClick={() => setShowRegister(false)}
+                            >
+                              EDIT INFO
+                            </OutlinedButton>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <BlueButton fullWidth onClick={registerToVote}>
+                              REGISTER TO VOTE
+                            </BlueButton>
+                          </Grid>
+                        </Grid>
+                      </div>
+                    ) : (
+                      <>
+                        <Grid container spacing={3}>
+                          <Grid item xs={12} md={6}>
+                            <Input
+                              error={error.firstName}
+                              helperText={error.firstName}
+                              value={state.firstName}
+                              label="First Name"
+                              name="First Name"
+                              required
+                              size="medium"
+                              fullWidth
+                              onChange={e => onChange(e, 'firstName')}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Input
+                              value={state.lastName}
+                              label="Last Name"
+                              name="Last Name"
+                              required
+                              error={error.lastName}
+                              helperText={error.lastName}
+                              size="medium"
+                              fullWidth
+                              onChange={e => onChange(e, 'lastName')}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Input
+                              value={state.middleName}
+                              label="Middle Name"
+                              name="Middle Name"
+                              size="medium"
+                              fullWidth
+                              onChange={e => onChange(e, 'middleName')}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Input
+                              value={state.suffix}
+                              label="Suffix"
+                              name="Suffix"
+                              size="medium"
+                              fullWidth
+                              onChange={e => onChange(e, 'suffix')}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Input
+                              value={state.address}
+                              label="Street Address"
+                              name="Address"
+                              size="medium"
+                              required
+                              error={error.address}
+                              helperText={error.address}
+                              fullWidth
+                              onChange={e => onChange(e, 'address')}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Input
+                              value={state.city}
+                              label="City"
+                              name="City"
+                              size="medium"
+                              required
+                              fullWidth
+                              error={error.city}
+                              helperText={error.city}
+                              onChange={e => onChange(e, 'city')}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Grid container spacing={3}>
+                              <Grid item xs={6}>
+                                <FormControl error={error.state}>
+                                  <StyledSelect
+                                    value={state.state}
+                                    label="State"
+                                    name="State"
+                                    size="medium"
+                                    required
+                                    onChange={e => onChange(e, 'state')}
+                                  >
+                                    <MenuItem value="None">
+                                      Select A State
+                                    </MenuItem>
+                                    {states.map(stateItem => (
+                                      <MenuItem
+                                        value={stateItem.abbreviation}
+                                        key={stateItem.abbreviation}
+                                      >
+                                        {stateItem.name}
+                                      </MenuItem>
+                                    ))}
+                                  </StyledSelect>
+                                  <FormHelperText>{error.state}</FormHelperText>
+                                </FormControl>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Input
+                                  value={state.zip}
+                                  label="Zip"
+                                  name="Zip"
+                                  size="medium"
+                                  required
+                                  error={error.zip}
+                                  helperText={error.zip}
+                                  onChange={e => onChange(e, 'zip')}
+                                />
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Input
+                              value={state.phone}
+                              label="Phone Number"
+                              name="Phone Number"
+                              size="medium"
+                              error={error.phone}
+                              helperText={`${
+                                error.phone ? error.phone : ''
+                              } Format: XXX-XXX-XXXX`}
+                              fullWidth
+                              onChange={e => onChange(e, 'phone')}
+                            />
+                          </Grid>
+                          <Grid item xs={12} md={6}>
+                            <Input
+                              value={state.dob}
+                              label="Date of Birth (YYYY-MM-DD)"
+                              name="Date of Birth"
+                              size="medium"
+                              required
+                              fullWidth
+                              error={error.dob}
+                              helperText={`${
+                                error.dob ? error.dob : ''
+                              } Format: YYYY-DD-MM`}
+                              onChange={e => onChange(e, 'dob')}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Input
+                              value={state.email}
+                              label="Email"
+                              name="Email"
+                              size="medium"
+                              fullWidth
+                              error={error.email}
+                              helperText={error.email}
+                              onChange={e => onChange(e, 'email')}
+                            />
+                          </Grid>
+                        </Grid>
+
+                        <NextButtonWrapper>
+                          <NextButton active onClick={submitForm}>
+                            Submit
+                          </NextButton>
+                        </NextButtonWrapper>
+                      </>
+                    )}
+                  </>
+                )}
+              </>
+            )}
           </RightWrapper>
         </Grid>
       </Grid>
@@ -417,8 +567,11 @@ const VerifyVoteWrapper = ({ verifyVoterCallback, skipVerifyVoterCallback, user,
 VerifyVoteWrapper.propTypes = {
   verifyVoterCallback: PropTypes.func,
   skipVerifyVoterCallback: PropTypes.func,
+  registerToVoteCallback: PropTypes.func,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  open: PropTypes.bool
+  vaResponse: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  voteStatus: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  loading: PropTypes.bool,
 };
 
 export default VerifyVoteWrapper;

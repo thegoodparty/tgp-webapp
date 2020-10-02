@@ -43,7 +43,7 @@ const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => (
 );
 
 HomePageWrapper.propTypes = {
-  goodChallengers: PropTypes.object,
+  goodChallengers: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   subscribeEmailCallback: PropTypes.func,
 };
 

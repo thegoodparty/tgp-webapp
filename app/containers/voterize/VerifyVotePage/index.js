@@ -16,21 +16,34 @@ import userReducer from 'containers/you/YouPage/reducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectUser from 'containers/you/YouPage/selectors';
+import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
+
 import makeSelectVerifyVotePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
-import verifyVoterActions from './actions';
+import actions from './actions';
 
-export function VerifyVotePage({ verifyVoterCallback, userState }) {
+export function VerifyVotePage({
+  verifyVoterCallback,
+  skipVerifyVoterCallback,
+  registerToVoteCallback,
+  userState,
+  verifyVotePage,
+}) {
   useInjectReducer({ key: 'user', reducer: userReducer });
 
   useInjectReducer({ key: 'verifyVotePage', reducer });
   useInjectSaga({ key: 'verifyVotePage', saga });
   const { user } = userState;
+  const { loading, voteStatus, vaResponse } = verifyVotePage;
   const childProps = {
     verifyVoterCallback,
+    skipVerifyVoterCallback,
+    registerToVoteCallback,
     user,
+    voteStatus,
+    vaResponse,
+    loading,
   };
   return (
     <div>
@@ -46,7 +59,10 @@ export function VerifyVotePage({ verifyVoterCallback, userState }) {
 VerifyVotePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   verifyVoterCallback: PropTypes.func,
+  skipVerifyVoterCallback: PropTypes.func,
   userState: PropTypes.object,
+  verifyVotePage: PropTypes.object,
+  registerToVoteCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -57,8 +73,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    verifyVoterCallback: voter =>
-      dispatch(verifyVoterActions.verifyVoter(voter)),
+    verifyVoterCallback: voter => dispatch(actions.verifyVoterAction(voter)),
+    registerToVoteCallback: voter =>
+      dispatch(actions.registerVoterAction(voter)),
   };
 }
 

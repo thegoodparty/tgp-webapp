@@ -84,7 +84,7 @@ const ChallengersSection = ({ challengers }) => {
 };
 
 ChallengersSection.propTypes = {
-  challengers: PropTypes.array,
+  challengers: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ChallengersSection;
