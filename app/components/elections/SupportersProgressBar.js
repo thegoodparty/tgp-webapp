@@ -24,6 +24,10 @@ const BarBg = styled.div`
   height: 2px;
   background-color: ${({ theme }) => theme.colors.grayC};
   border-radius: 3px;
+
+  &.full-width {
+    width: 100%;
+  }
 `;
 
 const Bar = styled.div`
@@ -54,6 +58,7 @@ const SupportersProgressBar = ({
   suffixText,
   prefixText = 'likely voters for top candidate',
   showSuffix = true,
+  fullWidth = false,
 }) => {
   let progress = 3;
   if (peopleSoFar && votesNeeded) {
@@ -72,7 +77,7 @@ const SupportersProgressBar = ({
           {numberFormatter(peopleSoFar)} {prefixText}
         </BarBody11>
       )}
-      <BarBg className="bar-bg">
+      <BarBg className={`bar-bg ${fullWidth && 'full-width'}`}>
         <Bar style={{ width: `${progress}%` }} />
       </BarBg>
       {showSuffix && (

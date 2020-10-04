@@ -10,6 +10,7 @@ import { rankPageLink, partyResolver } from 'helpers/electionsHelper';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import ChallengerAvatar from './ChallengerAvatar';
+import VotesNeeded from './VotesNeeded';
 
 const ChallengerItemWrapper = styled.div`
   width: 100%;
@@ -84,10 +85,7 @@ const LineWrapper = styled.div`
 const TitleCase = styled.span`
   text-transform: capitalize;
 `;
-const PercWrapper = styled(Body12)`
-  font-weight: 700;
-  display: inline-block;
-`;
+
 
 const ChallengerItem = ({ challenger, id }) => {
   const calculatedChallanger = candidateCalculatedFields(challenger);
@@ -117,13 +115,6 @@ const ChallengerItem = ({ challenger, id }) => {
     </>
   );
   const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
-  const neededVotes = (
-    <>
-      <PercWrapper>{neededPercent}%</PercWrapper> of{' '}
-      {numberFormatter(votesNeeded)} votes needed to win{' '}
-      {chamber === 'House' && 'in'} {districtInfo}
-    </>
-  );
 
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
@@ -152,7 +143,9 @@ const ChallengerItem = ({ challenger, id }) => {
           </Grid>
         </Grid>
         <NeededVotesWrapper>
-          <NeededVotes>{neededVotes}</NeededVotes>
+          <NeededVotes>
+            <VotesNeeded candidate={challenger} />
+          </NeededVotes>
           <LineWrapper>
             <FullLine />
             <PercentLine percent={neededPercent + '%'} />
