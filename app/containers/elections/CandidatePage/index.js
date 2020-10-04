@@ -29,6 +29,7 @@ import TgpHelmet from '../../../components/shared/TgpHelmet';
 export function CandidatePage({
   id,
   chamber,
+  tab,
   candidateState,
   dispatch,
   userState,
@@ -74,6 +75,8 @@ export function CandidatePage({
     dispatch(userActions.guestRankingAction());
   }
 
+  const resolvedTab = tab === 'info' ? 'info' : 'campaign';
+
   const childProps = {
     candidate: candidateWithFields,
     chamberRank: rankingObj[chamber],
@@ -81,6 +84,7 @@ export function CandidatePage({
     incumbent,
     user,
     deleteCandidateRankingCallback,
+    tab: resolvedTab,
   };
 
   const emptyCandidate = () =>
@@ -106,6 +110,7 @@ CandidatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
+  tab: PropTypes.string,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
   rankingObj: PropTypes.object,
@@ -123,6 +128,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
+    tab: ownProps.match.params.tab,
     deleteCandidateRankingCallback: (rank, user) => {
       if (user) {
         dispatch(userActions.deleteCandidateRankingAction(rank.id));

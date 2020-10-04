@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Hidden from '@material-ui/core/Hidden';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
@@ -14,22 +15,25 @@ import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { kFormatter, numberNth } from 'helpers/numberHelper';
 import { BlueButton, OutlinedButton } from 'components/shared/buttons';
-import SupportersProgressBar from '../SupportersProgressBar';
-import Body from '../../shared/typogrophy/Body';
+import Body from 'components/shared/typogrophy/Body';
 import {
-  blocNameSuffix,
   candidateRanking,
   candidateRankObj,
+  candidateRoute,
   rankPageGrowLink,
   rankPageJoinLink,
-} from '../../../helpers/electionsHelper';
+} from 'helpers/electionsHelper';
+import SupportersProgressBar from '../SupportersProgressBar';
 
 const Wrapper = styled.div`
-  background-color: #fff;
-  padding: 50px 30px;
-  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  margin-top: 65px;
+  margin-top: 12px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 50px 30px;
+    margin-top: 65px;
+    background-color: #fff;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 const VotesNeededWrapper = styled(Body11)`
@@ -54,20 +58,23 @@ const RankWrapper = styled.div`
   justify-content: center;
   margin-top: 12px;
   cursor: pointer;
-  padding: 20px 0 12px;
+  padding: 20px 0 0;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 20px 0 12px;
+  }
 `;
 
 const CheckMark = styled(CheckIcon)`
   color: ${({ theme }) => theme.colors.lightBlue};
   && {
-    font-size: 9px;
+    font-size: 13px;
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 12px;
+      font-size: 16px;
     }
   }
 `;
 
-const ChosenCand = styled(Body9)`
+const ChosenCand = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray7};
   display: inline-block;
   margin: 0 6px;
@@ -78,9 +85,9 @@ const CloseIcon = styled(HighlightOffIcon)`
   color: ${({ theme }) => theme.colors.gray7};
   display: inline-block;
   && {
-    font-size: 9px;
+    font-size: 13px;
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 12px;
+      font-size: 16px;
     }
   }
 `;
@@ -141,10 +148,10 @@ const StyledBody14 = styled.div`
 const RightCard = ({
   user,
   candidate,
-  tabOn = 'campaign',
   chamberName,
   chamberRank,
   deleteCandidateRankingCallback,
+  tab,
 }) => {
   const {
     name,
@@ -154,10 +161,11 @@ const RightCard = ({
     state,
     district,
     recentlyJoined,
+    shares,
   } = candidate;
   const rank = candidateRanking(chamberRank, candidate);
   const rankObj = candidateRankObj(chamberRank, candidate);
-
+  const route = candidateRoute(candidate);
   return (
     <Wrapper>
       <VotesNeededWrapper>
@@ -178,11 +186,15 @@ const RightCard = ({
           Campaign Stats
         </Body14>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={4} className="text-center">
             <Body11>{kFormatter(likelyVoters + rankingCount)}</Body11>
             <Gray7>likely voters</Gray7>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={4} className="text-center">
+            <Body11>{kFormatter(shares)}</Body11>
+            <Gray7>shares</Gray7>
+          </Grid>
+          <Grid item xs={4} className="text-center">
             <Body11>{kFormatter(twitterFollowers)}</Body11>
             <Gray7>followers</Gray7>
           </Grid>
@@ -221,32 +233,41 @@ const RightCard = ({
           </BlueButton>
         </Link>
       )}
-      <TabText>
-        {tabOn === 'campaign' ? 'Learn more about ' : 'See campaign for  '}
-        {name}
-      </TabText>
-      <Body className="bold600" style={{ marginBottom: '12px' }}>
-        Recently Joined
-      </Body>
-      <JoinedItem className="no-border">
-        <JoinedImg src={GraphIcon} alt="joined" />
-        <div>
-          {kFormatter(rankingCount)} {rankingCount === 1 ? 'person' : 'people'}{' '}
-          joined
-        </div>
-      </JoinedItem>
-      {recentlyJoined.map(joined => (
-        <JoinedItem key={joined.name}>
-          <JoinedImg src={JoinedIcon} alt="joined" />
+
+      {tab === 'campaign' ? (
+        <Link to={`${route}/info`}>
+          <TabText>Learn more about {name}</TabText>
+        </Link>
+      ) : (
+        <Link to={route}>
+          <TabText>See campaign for {name}</TabText>
+        </Link>
+      )}
+
+      <Hidden smDown>
+        <Body className="bold600" style={{ marginBottom: '12px' }}>
+          Recently Joined
+        </Body>
+        <JoinedItem className="no-border">
+          <JoinedImg src={GraphIcon} alt="joined" />
           <div>
-            <Row>
-              <StyledBody14>{joined.name}</StyledBody14>
-              <Body13>{joined.district}</Body13>
-            </Row>
-            {joined.timeAgo}
+            {kFormatter(rankingCount)}{' '}
+            {rankingCount === 1 ? 'person' : 'people'} joined
           </div>
         </JoinedItem>
-      ))}
+        {recentlyJoined.map((joined, index) => (
+          <JoinedItem key={`${joined.name}-${index}`}>
+            <JoinedImg src={JoinedIcon} alt="joined" />
+            <div>
+              <Row>
+                <StyledBody14>{joined.name}</StyledBody14>
+                <Body13>{joined.district}</Body13>
+              </Row>
+              {joined.timeAgo}
+            </div>
+          </JoinedItem>
+        ))}
+      </Hidden>
     </Wrapper>
   );
 };
@@ -255,9 +276,9 @@ RightCard.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamberRank: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamberName: PropTypes.string,
-  tabOn: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
+  tab: PropTypes.string,
 };
 
 export default RightCard;

@@ -66,6 +66,11 @@ function Routes() {
       />
       <Route
         exact
+        path="/elections/candidate/:chamber/:name/:id/:tab"
+        component={CandidatePage}
+      />
+      <Route
+        exact
         path="/elections/candidate/:chamber/:name/:id"
         component={CandidatePage}
       />
