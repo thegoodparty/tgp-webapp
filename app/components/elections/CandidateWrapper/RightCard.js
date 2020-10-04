@@ -8,6 +8,7 @@ import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import { Body11, Body13, Body14, Body9 } from 'components/shared/typogrophy';
 import ShareIcon from 'images/icons/share-icon.svg';
 import JoinedIcon from 'images/icons/joined-icon.svg';
+import GraphIcon from 'images/icons/graph-icon.svg';
 import HeartIcon from 'images/white-heart.svg';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -114,7 +115,11 @@ const JoinedItem = styled(Body14)`
   align-items: center;
   color: ${props => props.theme.colors.gray7};
   padding: 13px 0;
-  border-bottom: solid 1px #ddd;
+  border-top: solid 1px #ddd;
+
+  &.no-border {
+    border-top: none;
+  }
 `;
 
 const JoinedImg = styled.img`
@@ -148,6 +153,7 @@ const RightCard = ({
     twitterFollowers,
     state,
     district,
+    recentlyJoined,
   } = candidate;
   const rank = candidateRanking(chamberRank, candidate);
   const rankObj = candidateRankObj(chamberRank, candidate);
@@ -173,7 +179,7 @@ const RightCard = ({
         </Body14>
         <Grid container spacing={3}>
           <Grid item xs={6}>
-            <Body11>{kFormatter(likelyVoters)}</Body11>
+            <Body11>{kFormatter(likelyVoters + rankingCount)}</Body11>
             <Gray7>likely voters</Gray7>
           </Grid>
           <Grid item xs={6}>
@@ -222,23 +228,25 @@ const RightCard = ({
       <Body className="bold600" style={{ marginBottom: '12px' }}>
         Recently Joined
       </Body>
-      <JoinedItem>
-        <JoinedImg src={JoinedIcon} alt="joined" />
+      <JoinedItem className="no-border">
+        <JoinedImg src={GraphIcon} alt="joined" />
         <div>
           {kFormatter(rankingCount)} {rankingCount === 1 ? 'person' : 'people'}{' '}
           joined
         </div>
       </JoinedItem>
-      <JoinedItem>
-        <JoinedImg src={JoinedIcon} alt="joined" />
-        <div>
-          <Row>
-            <StyledBody14>Michele C.</StyledBody14>
-            <Body13>Beverly Hills CA-33</Body13>
-          </Row>
-          13 mins ago
-        </div>
-      </JoinedItem>
+      {recentlyJoined.map(joined => (
+        <JoinedItem key={joined.name}>
+          <JoinedImg src={JoinedIcon} alt="joined" />
+          <div>
+            <Row>
+              <StyledBody14>{joined.name}</StyledBody14>
+              <Body13>{joined.district}</Body13>
+            </Row>
+            {joined.timeAgo}
+          </div>
+        </JoinedItem>
+      ))}
     </Wrapper>
   );
 };
@@ -249,7 +257,7 @@ RightCard.propTypes = {
   chamberName: PropTypes.string,
   tabOn: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  deleteCandidateRankingCallback: PropTypes.func
+  deleteCandidateRankingCallback: PropTypes.func,
 };
 
 export default RightCard;

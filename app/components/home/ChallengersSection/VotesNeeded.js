@@ -28,7 +28,10 @@ const VotesNeeded = ({ candidate }) => {
     }`;
   }
 
-  const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
+  const neededPercent =
+    votesNeeded && votesNeeded !== 0
+      ? parseInt((likelyVoters * 100) / votesNeeded, 10)
+      : 0;
 
   return (
     <>
