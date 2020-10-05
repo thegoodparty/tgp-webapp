@@ -51,7 +51,6 @@ const ElectionWrapper = ({
   postRegisterJoin,
   incumbent,
 }) => {
-  console.log('user', user);
 
   const [showFilters, setShowFilters] = useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
@@ -61,6 +60,7 @@ const ElectionWrapper = ({
   const [isExternalLink, setIsExternalLink] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [candidateRanking, setCandidateRanking] = useState(null);
+  const [shareModalType, setShareModalType] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -201,6 +201,7 @@ const ElectionWrapper = ({
   const onShareChoiceModal = () => {
     setShowChoiceModal(false);
     setShowShareModal(true);
+    setShareModalType(true);
     refreshCountCallback(state, districtNumber);
   };
 
@@ -332,9 +333,15 @@ const ElectionWrapper = ({
         open={showShareModal}
         closeCallback={onCloseShareModal}
         candidate={choiceModalCandidate}
+        shareModalType={shareModalType}
         user={user}
+        userState={candidates.userState}
+        chamberCount={
+          choiceModalCandidate.ranking + choiceModalCandidate.likelyVoters
+        }
         chamber={chamber}
         isExternalLink={isExternalLink}
+        votesNeeded={votesNeeded}
       />
       {showVoterVerify && (
         <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />

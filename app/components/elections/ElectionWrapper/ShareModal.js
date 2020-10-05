@@ -7,18 +7,18 @@ import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
 import LogoCapsImg from 'images/logo-caps.svg';
 import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
+import Stepper from 'components/shared/Stepper';
+import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
+import SupportersProgressBar from 'components/elections/SupportersProgressBar';
 import {
   blocNameSuffix,
   candidateBlocLink,
   candidateBlocName,
 } from 'helpers/electionsHelper';
-import {
-  getCandidateTitle,
-} from 'helpers/candidatesHelper';
+import { getCandidateTitle } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
@@ -37,6 +37,11 @@ const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 24px 24px 32px;
   }
+`;
+
+const CenterBar = styled(Body)`
+  margin-bottom: 32px;
+  width: 100%;
 `;
 
 const Close = styled.div`
@@ -122,7 +127,7 @@ const IconItem = styled.div`
 `;
 
 const Logo = styled.img`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   min-width: 170px;
 `;
 
@@ -154,6 +159,25 @@ const IconLabel = styled.div`
   margin-top: 12px;
 `;
 
+const TitleH3 = styled(H3)`
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  color: ${({ theme }) => theme.colors.gray7};
+  span.big {
+    font-size: 27px;
+    color: ${({ theme }) => theme.colors.gray4};
+    font-weight: bold;
+  }
+  &.mb-20 {
+    margin-bottom: 20px;
+  }
+`;
+
+const TitleH1 = styled(H1)`
+  text-align: center;
+`;
+
 const CopiedWrapper = styled.div`
   margin-top: 36px;
   display: flex;
@@ -168,6 +192,8 @@ const Copied = styled(Body11)`
   margin-left: 6px;
 `;
 
+const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
+
 const ShareModal = ({
   candidate,
   open,
@@ -175,13 +201,17 @@ const ShareModal = ({
   chamber,
   isExternalLink,
   closeCallback,
+  shareModalType,
+  votesNeeded,
+  chamberCount,
+  userState,
 }) => {
   const [copied, setCopied] = useState(false);
   if (!candidate) {
     return <> </>;
   }
 
-  let { isGood } = candidate;
+  let { isGood, name } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
@@ -218,7 +248,7 @@ const ShareModal = ({
       })
       .then(() => console.log('Successful share'));
   };
-
+  candidate.votesNeeded = votesNeeded;
   return (
     <Dialog onClose={closeCallback} open={open}>
       <Wrapper>
@@ -229,7 +259,9 @@ const ShareModal = ({
           {' '}
           <Logo src={LogoCapsImg} />
         </div>
-
+        {shareModalType && (
+          <Stepper steps={defaultRegisterSteps} activeStep={2} />
+        )}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
@@ -239,34 +271,37 @@ const ShareModal = ({
           />
           {isExternalLink ? (
             <>
-              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">
+              <TitleH3>
                 {' '}
                 Congrats!{' '}
                 <span role="img" aria-label="party">
                   🎉
                 </span>{' '}
                 You’ve joined
-              </H3>
-              <H1
-                style={{ marginTop: '10px', marginBottom: '16px' }}
-                data-cy="share-modal-title"
-              >
-                {blocName} {blocNameSuffix(blocName)}
-              </H1>
+              </TitleH3>
+              <TitleH1>{name} Campaign!</TitleH1>
             </>
           ) : (
             <>
-              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">
-                Please help grow{' '}
-              </H3>
-              <H1
-                style={{ marginTop: '10px', marginBottom: '16px' }}
-                data-cy="share-modal-title"
-              >
-                {blocName} {blocNameSuffix(blocName)}
-              </H1>
+              <TitleH3>Spread the word about the</TitleH3>
+              <TitleH1>{name} Campaign!</TitleH1>
             </>
           )}
+          <TitleH3 className="mb-20">
+            <span class="big">{chamberCount}</span> people and growing!
+          </TitleH3>
+          <div style={{ textAlign: 'center' }}>
+            <VotesNeeded candidate={candidate} />
+          </div>
+          <CenterBar>
+            <SupportersProgressBar
+              votesNeeded={votesNeeded}
+              peopleSoFar={chamberCount}
+              showSupporters={false}
+              showSuffix={false}
+              userState={userState}
+            />
+          </CenterBar>
           <Body data-cy="share-modal-description">Tell some friends...</Body>
         </AvatarWrapper>
         <ShareThisWrapper data-cy="social-share">
@@ -355,6 +390,9 @@ ShareModal.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamber: PropTypes.string,
   isExternalLink: PropTypes.bool,
+  chamberCount: PropTypes.number,
+  votesNeeded: PropTypes.number,
+  userState: PropTypes.string,
 };
 
 export default ShareModal;
