@@ -89,6 +89,7 @@ function AdminEditCandidate({
     order,
     source,
     likelyVoters,
+    initialShares,
   } = candidate;
 
   useEffect(() => {
@@ -102,6 +103,7 @@ function AdminEditCandidate({
         website,
         order,
         likelyVoters,
+        initialShares,
       };
       setInitialData(initData);
       setEditableValues(initData);
@@ -160,6 +162,11 @@ function AdminEditCandidate({
         value: likelyVoters,
         key: 'likelyVoters',
       },
+      {
+        name: 'Initial Shares',
+        value: initialShares,
+        key: 'initialShares',
+      },
       { name: 'Order', value: order, key: 'order' },
     ];
   }
@@ -208,6 +215,7 @@ function AdminEditCandidate({
     addIfEdited('twitter', data);
     addIfEdited('website', data);
     addIfEdited('likelyVoters', data);
+    addIfEdited('initialShares', data);
     addIfEdited('order', data);
 
     saveCandidateCallback(data, candidate);

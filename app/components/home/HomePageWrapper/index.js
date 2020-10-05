@@ -26,7 +26,7 @@ const GrayWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray11};
 `;
 const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => (
-  <PageWrapper isHome white>
+  <PageWrapper isFullWidth white>
     <ContentWrapper>
       <MoneyCorruptionSection />
       <StatsSection />
