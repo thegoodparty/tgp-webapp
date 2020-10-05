@@ -283,9 +283,12 @@ const VerifyVoteWrapper = ({
     );
   };
 
-  const capitalizeSentence = text => text.charAt(0).toUpperCase() + text.slice(1);
+  const capitalizeSentence = text =>
+    text.charAt(0).toUpperCase() + text.slice(1);
   const showData = { name: `${state.firstName} ${state.lastName}`, ...state };
-  console.log('state1', state, showData);
+  const showDataKeys = Object.keys(showData).filter(
+    item => !item.includes('Name'),
+  );
 
   return (
     <Dialog fullScreen aria-labelledby="Verify Voter Registration" open>
@@ -311,7 +314,9 @@ const VerifyVoteWrapper = ({
             ) : (
               <>
                 <Skip onClick={skipVerifyVoterCallback}>Skip</Skip>
-                <Hidden mdUp><WarningWrapper>{message()}</WarningWrapper></Hidden>
+                <Hidden mdUp>
+                  <WarningWrapper>{message()}</WarningWrapper>
+                </Hidden>
                 {registerResponse ? (
                   <div>
                     {registerResponse.message_markdown && (
@@ -343,23 +348,28 @@ const VerifyVoteWrapper = ({
                   <>
                     {showRegister ? (
                       <div>
-                        <H3 style={{textAlign: "center"}}>
+                        <H3 style={{ textAlign: 'center' }}>
                           We did not find anyone registered with this
                           information
                         </H3>
                         <br />
                         <br />
                         <Grid container spacing={3}>
-                          {Object.keys(showData).filter(item => !item.includes('Name')).map(key => (
+                          {showDataKeys.map(key => (
                             <React.Fragment key={key}>
                               {showData[key] !== '' && (
                                 <>
-                                  <Grid item xs={4} md={4} style={{textAlign: 'right'}}>
+                                  <Grid
+                                    item
+                                    xs={4}
+                                    md={4}
+                                    style={{ textAlign: 'right' }}
+                                  >
                                     <StyledBody>
-                                        {capitalizeSentence(key)}
+                                      {capitalizeSentence(key)}
                                     </StyledBody>
                                   </Grid>
-                                  <Grid item xs={1} md={1}></Grid>
+                                  <Grid item xs={1} md={1} />
                                   <Grid item xs={7} md={7}>
                                     <StyledBody>{showData[key]}</StyledBody>
                                   </Grid>
@@ -384,7 +394,18 @@ const VerifyVoteWrapper = ({
                             </BlueButton>
                           </Grid>
                           <Grid item xs={12}>
-                            <StyledBody>Powered by VoteAmerica. By hitting register to vote, you agree to VoteAmerica’s <a href="#">Terms</a> and <a href="#">Privacy</a>. You will receive occasional emails from VoteAmerica. You can unsubscribe at any time. If you provide your cell phone number, you agree to receive occasional text messages from VoteAmerica. Message and data rates may apply. Message frequency varies. Text STOP to cancel and HELP for more info.</StyledBody>
+                            <StyledBody>
+                              Powered by VoteAmerica. By hitting register to
+                              vote, you agree to VoteAmerica’s{' '}
+                              <a href="#">Terms</a> and <a href="#">Privacy</a>.
+                              You will receive occasional emails from
+                              VoteAmerica. You can unsubscribe at any time. If
+                              you provide your cell phone number, you agree to
+                              receive occasional text messages from VoteAmerica.
+                              Message and data rates may apply. Message
+                              frequency varies. Text STOP to cancel and HELP for
+                              more info.
+                            </StyledBody>
                           </Grid>
                         </Grid>
                       </div>
