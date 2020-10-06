@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
-import { Body13 } from 'components/shared/typogrophy';
 
 import TopRow from './TopRow';
 import MoneyAndCharacter from './MoneyAndCharacter';
@@ -18,7 +16,8 @@ import PolicyPositions from './PolicyPositions';
 import CampaignWebsite from './CampaignWebsite';
 import CandidateProfile from './CandidateProfile';
 import RightCard from './RightCard';
-import { candidateRoute } from '../../../helpers/electionsHelper';
+import Tabs from './Tabs';
+import CampaignStatus from './CampaignStatus';
 
 const ContentWrapper = styled.div`
   max-width: 1280px;
@@ -29,27 +28,6 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const TabsWrapper = styled.div`
-  margin: 23px 0 35px;
-  display: flex;
-  justify-content: center;
-  border-bottom: solid ${({ theme }) => theme.colors.grayC} 1px;
-`;
-
-const Tab = styled(Body13)`
-  padding: 12px 30px;
-  font-weight: 500;
-  cursor: pointer;
-  &:hover {
-    color: ${({ theme }) => theme.colors.blue};
-  }
-
-  &.active {
-    border-bottom: solid ${({ theme }) => theme.colors.blue} 2px;
-    color: ${({ theme }) => theme.colors.blue};
-  }
-`;
-
 const CandidateWrapper = ({
   candidate,
   chamberRank,
@@ -57,14 +35,24 @@ const CandidateWrapper = ({
   incumbent,
   user,
   deleteCandidateRankingCallback,
-  tab = 'campaign',
+  routeTab = 'campaign',
+  content,
 }) => {
   let isGood;
+  let campaignSummary;
+  let campaignUpdates;
   if (candidate) {
-    ({ isGood } = candidate);
+    ({ isGood, campaignSummary, campaignUpdates } = candidate);
   }
   const isUnknown = isGood === null;
   const isGoodOrUnknown = isGood || isUnknown;
+
+  let tab = routeTab;
+  let hideTab = false;
+  if (!campaignSummary && !campaignUpdates?.length > 0) {
+    tab = 'info';
+    hideTab = true;
+  }
 
   const mobileHeaderProps = {
     showGood: true,
@@ -72,7 +60,18 @@ const CandidateWrapper = ({
     showShare: true,
     user,
   };
-  const route = candidateRoute(candidate);
+
+  const rightCard = (
+    <RightCard
+      candidate={candidate}
+      chamberName={chamberName}
+      user={user}
+      chamberRank={chamberRank}
+      deleteCandidateRankingCallback={deleteCandidateRankingCallback}
+      tab={tab}
+      hideTab={hideTab}
+    />
+  );
   return (
     <PageWrapper mobileHeaderProps={mobileHeaderProps} isFullWidth white>
       <ContentWrapper>
@@ -83,33 +82,13 @@ const CandidateWrapper = ({
               {isGoodOrUnknown && (
                 <Hidden mdUp>
                   <Grid item xs={12}>
-                    <RightCard
-                      candidate={candidate}
-                      chamberName={chamberName}
-                      user={user}
-                      chamberRank={chamberRank}
-                      deleteCandidateRankingCallback={
-                        deleteCandidateRankingCallback
-                      }
-                      tab={tab}
-                    />
+                    {rightCard}
                   </Grid>
                 </Hidden>
               )}
-              <TabsWrapper>
-                <Link to={route}>
-                  <Tab className={tab === 'campaign' ? 'active' : ''}>
-                    CAMPAIGN STATUS
-                  </Tab>
-                </Link>
-                <Link to={`${route}/info`}>
-                  <Tab className={tab !== 'campaign' ? 'active' : ''}>
-                    CANDIDATE INFO
-                  </Tab>
-                </Link>
-              </TabsWrapper>
+              {!hideTab && <Tabs candidate={candidate} tab={tab} />}
               {tab === 'campaign' ? (
-                <div>Campaign Status</div>
+                <CampaignStatus candidate={candidate} content={content} />
               ) : (
                 <>
                   <MoneyAndCharacter
@@ -131,16 +110,7 @@ const CandidateWrapper = ({
             {isGoodOrUnknown && (
               <Hidden smDown>
                 <Grid item xs={4}>
-                  <RightCard
-                    candidate={candidate}
-                    chamberName={chamberName}
-                    user={user}
-                    chamberRank={chamberRank}
-                    deleteCandidateRankingCallback={
-                      deleteCandidateRankingCallback
-                    }
-                    tab={tab}
-                  />
+                  {rightCard}
                 </Grid>
               </Hidden>
             )}
@@ -160,7 +130,8 @@ CandidateWrapper.propTypes = {
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
-  tab: PropTypes.string,
+  routeTab: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default CandidateWrapper;

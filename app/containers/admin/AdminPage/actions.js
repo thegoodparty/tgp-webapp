@@ -67,6 +67,7 @@ function updateCandidate(
   chamber,
   isIncumbent,
   isEdit = false,
+  updates,
 ) {
   return {
     type: types.UPDATE_CANDIDATE,
@@ -75,6 +76,7 @@ function updateCandidate(
     chamber,
     isIncumbent,
     isEdit,
+    updates,
   };
 }
 
