@@ -14,7 +14,7 @@ import GraphIcon from 'images/icons/graph-icon.svg';
 import HeartIcon from 'images/white-heart.svg';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { kFormatter, numberNth } from 'helpers/numberHelper';
+import { kFormatter, numberFormatter, numberNth } from 'helpers/numberHelper';
 import { BlueButton, OutlinedButton } from 'components/shared/buttons';
 import Body from 'components/shared/typogrophy/Body';
 import {
@@ -190,15 +190,23 @@ const RightCard = ({
         </Body14>
         <Grid container spacing={3}>
           <Grid item xs={4} className="text-center">
-            <Body11>{kFormatter(likelyVoters + rankingCount)}</Body11>
+            <Body11 title={numberFormatter(likelyVoters + rankingCount)}>
+              {kFormatter(likelyVoters + rankingCount)}
+            </Body11>
             <Gray7>likely voters</Gray7>
           </Grid>
           <Grid item xs={4} className="text-center">
-            <Body11>{kFormatter(shares)}</Body11>
+            <Body11 title={numberFormatter(shares)}>
+              {kFormatter(shares)}
+            </Body11>
             <Gray7>shares</Gray7>
           </Grid>
           <Grid item xs={4} className="text-center">
-            <Body11>
+            <Body11
+              title={numberFormatter(
+                likelyVoters + twitterFollowers + rankingCount,
+              )}
+            >
               {kFormatter(likelyVoters + twitterFollowers + rankingCount)}
             </Body11>
             <Gray7>supporters</Gray7>

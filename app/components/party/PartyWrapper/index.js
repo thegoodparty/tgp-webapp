@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -36,6 +36,9 @@ const LearnMore = styled(Body13)`
 `;
 
 const PartyWrapper = ({ content, appVersion }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const events = content ? content.events : [];
 
   let articles = [];

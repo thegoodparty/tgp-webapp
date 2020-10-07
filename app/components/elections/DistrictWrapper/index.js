@@ -68,6 +68,9 @@ const DistrictWrapper = ({
   user,
   ranking = {},
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   let districtNumber;
   const presidentialRank = ranking.presidential;
   const senateRank = ranking.senate;
@@ -257,14 +260,14 @@ const DistrictWrapper = ({
                 suffixText=" (270 ELECTORS)"
               />
             ) : (
-                <VsCard
-                  title="Presidential Election"
-                  candidates={presidential}
-                  suffixText={` IN ${upperState} (${
-                    presidential.electors
-                    } ELECTORS)`}
-                />
-              )}
+              <VsCard
+                title="Presidential Election"
+                candidates={presidential}
+                suffixText={` IN ${upperState} (${
+                  presidential.electors
+                } ELECTORS)`}
+              />
+            )}
           </Link>
           {!isEmptyCandidates(senateCandidates) && (
             <Link to={senateElectionLink(shortState)} data-cy="senate">
@@ -278,12 +281,12 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                  <VsCard
-                    title={`Senator - ${stateLong}`}
-                    candidates={senateCandidates}
-                    suffixText={` ${upperState}`}
-                  />
-                )}
+                <VsCard
+                  title={`Senator - ${stateLong}`}
+                  candidates={senateCandidates}
+                  suffixText={` ${upperState}`}
+                />
+              )}
             </Link>
           )}
           {!isEmptyCandidates(houseCandidates) && (
@@ -302,26 +305,28 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                  <VsCard
-                    title={`House Representative ${shortState}-${districtNumber}`}
-                    candidates={houseCandidates}
-                    suffixText={` ${upperState}-${districtNumber}`}
-                  />
-                )}
+                <VsCard
+                  title={`House Representative ${shortState}-${districtNumber}`}
+                  candidates={houseCandidates}
+                  suffixText={` ${upperState}-${districtNumber}`}
+                />
+              )}
             </Link>
           )}
           <TopQuestions articles={articles} />
           <AmaContainer />
         </>
       ) : (
-          <LoadingAnimation />
-        )}
+        <LoadingAnimation />
+      )}
       <AlertDialog
         open={showRankAlert}
         handleClose={handleCloseAlert}
-        title={"District Change"}
-        ariaLabel={"Ranking not Allowed"}
-        description={"If you proceed, your previous district&apos;s ranked choices will be discarded."}
+        title={'District Change'}
+        ariaLabel={'Ranking not Allowed'}
+        description={
+          'If you proceed, your previous district&apos;s ranked choices will be discarded.'
+        }
         handleProceed={handleDeleteRanking}
       />
     </PageWrapper>
