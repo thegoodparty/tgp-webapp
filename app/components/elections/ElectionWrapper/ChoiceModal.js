@@ -9,13 +9,16 @@ import SupportersImg from 'images/icons/supporters.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
 import { Body, H1, Body13, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { candidateBlocName, partyResolver } from 'helpers/electionsHelper';
+import {
+  candidateBlocName,
+  partyResolver,
+  blocNameSuffix,
+} from 'helpers/electionsHelper';
+import { getCandidateChmaberDistrict } from 'helpers/candidatesHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import { BlueButton } from '../../shared/buttons';
 import Stepper from '../../shared/Stepper';
-import { blocNameSuffix } from '../../../helpers/electionsHelper';
-import { getCandidateChmaberDistrict } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -204,7 +207,9 @@ const ChoiceModal = ({
             <>
               <Spread>Tell others about this campaign!</Spread>
               <TitleH1>
-                {name} for {getCandidateChmaberDistrict(candidate)}
+                {name}
+                <br />
+                for {getCandidateChmaberDistrict(candidate)}
               </TitleH1>
             </>
           )}

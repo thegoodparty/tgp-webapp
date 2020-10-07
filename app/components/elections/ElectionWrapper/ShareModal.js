@@ -315,7 +315,9 @@ const ShareModal = ({
             <>
               <Spread>Tell others about this campaign!</Spread>
               <TitleH1>
-                {name} for {getCandidateChmaberDistrict(candidate)}
+                {name}
+                <br />
+                for {getCandidateChmaberDistrict(candidate)}
               </TitleH1>
             </>
           )}
