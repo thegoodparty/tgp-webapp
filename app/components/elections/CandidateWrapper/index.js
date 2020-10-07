@@ -102,8 +102,8 @@ const CandidateWrapper = ({
                     chamberName={chamberName}
                   />
                   <CandidateProfile candidate={candidate} />
-                  <PolicyPositions candidate={candidate} />
                   <CampaignWebsite candidate={candidate} />
+                  <PolicyPositions candidate={candidate} />
                 </>
               )}
             </Grid>
