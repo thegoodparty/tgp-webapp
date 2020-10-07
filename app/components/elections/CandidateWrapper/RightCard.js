@@ -197,8 +197,8 @@ const RightCard = ({
             <Gray7>shares</Gray7>
           </Grid>
           <Grid item xs={4} className="text-center">
-            <Body11>{kFormatter(twitterFollowers)}</Body11>
-            <Gray7>followers</Gray7>
+            <Body11>{kFormatter(twitterFollowers + rankingCount)}</Body11>
+            <Gray7>supporters</Gray7>
           </Grid>
         </Grid>
       </Stats>
