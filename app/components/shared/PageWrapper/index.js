@@ -54,7 +54,7 @@ function PageWrapper({
 }
 
 PageWrapper.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   hideNav: PropTypes.bool,
   white: PropTypes.bool,
   wrapperStyles: PropTypes.object,

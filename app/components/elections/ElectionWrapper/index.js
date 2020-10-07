@@ -60,7 +60,7 @@ const ElectionWrapper = ({
   const [isExternalLink, setIsExternalLink] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [candidateRanking, setCandidateRanking] = useState(null);
-  const [shareModalType, setShareModalType] = useState(false);
+  const [showShareModalStepper, setShowShareModalStepper] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -201,7 +201,7 @@ const ElectionWrapper = ({
   const onShareChoiceModal = () => {
     setShowChoiceModal(false);
     setShowShareModal(true);
-    setShareModalType(true);
+    setShowShareModalStepper(true);
     refreshCountCallback(state, districtNumber);
   };
 
@@ -333,7 +333,7 @@ const ElectionWrapper = ({
         open={showShareModal}
         closeCallback={onCloseShareModal}
         candidate={choiceModalCandidate}
-        shareModalType={shareModalType}
+        showShareModalStepper={showShareModalStepper}
         user={user}
         userState={candidates.userState}
         chamberCount={

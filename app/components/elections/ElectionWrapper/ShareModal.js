@@ -3,27 +3,23 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
-import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import LogoCapsImg from 'images/logo-caps.svg';
-import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
+import { Body, H1, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import Stepper from 'components/shared/Stepper';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import SupportersProgressBar from 'components/elections/SupportersProgressBar';
-import {
-  blocNameSuffix,
-  candidateBlocLink,
-  candidateBlocName,
-} from 'helpers/electionsHelper';
+import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
 import { getCandidateTitle } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
 import SmsIcon from 'images/icons/sms-icon.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
+import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -64,7 +60,7 @@ const ShareThisWrapper = styled.div`
   padding: 36px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 36px 60px;
+    padding: 16px 60px 30px;
   }
 
   .st-inline-share-buttons {
@@ -173,6 +169,34 @@ const TitleH3 = styled(H3)`
     margin-bottom: 20px;
   }
 `;
+const Spread = styled(Body)`
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+const StyledBody = styled(Body)`
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
+
+  span.big {
+    font-size: 23px;
+    font-weight: bold;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 28px;
+    }
+  }
+`;
+
+const VotesNeededWrapper = styled(Body11)`
+  margin-top: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
 
 const TitleH1 = styled(H1)`
   text-align: center;
@@ -191,6 +215,9 @@ const CopiedWrapper = styled.div`
 const Copied = styled(Body11)`
   margin-left: 6px;
 `;
+const Gray6 = styled.span`
+  color: ${({ theme }) => theme.colors.gray6};
+`;
 
 const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
 
@@ -201,7 +228,7 @@ const ShareModal = ({
   chamber,
   isExternalLink,
   closeCallback,
-  shareModalType,
+  showShareModalStepper,
   votesNeeded,
   chamberCount,
   userState,
@@ -259,7 +286,7 @@ const ShareModal = ({
           {' '}
           <Logo src={LogoCapsImg} />
         </div>
-        {shareModalType && (
+        {showShareModalStepper && (
           <Stepper steps={defaultRegisterSteps} activeStep={2} />
         )}
         <AvatarWrapper>
@@ -283,16 +310,17 @@ const ShareModal = ({
             </>
           ) : (
             <>
-              <TitleH3>Spread the word about the</TitleH3>
+              <Spread>Spread the word about the</Spread>
               <TitleH1>{name} Campaign!</TitleH1>
             </>
           )}
-          <TitleH3 className="mb-20">
-            <span className="big">{chamberCount}</span> people and growing!
-          </TitleH3>
-          <div style={{ textAlign: 'center' }}>
+          <StyledBody className="mb-20">
+            <span className="big">{numberFormatter(chamberCount)}</span>&nbsp;
+            people and growing!
+          </StyledBody>
+          <VotesNeededWrapper>
             <VotesNeeded candidate={candidate} />
-          </div>
+          </VotesNeededWrapper>
           <CenterBar>
             <SupportersProgressBar
               votesNeeded={votesNeeded}
@@ -302,7 +330,9 @@ const ShareModal = ({
               userState={userState}
             />
           </CenterBar>
-          <Body data-cy="share-modal-description">Tell some friends...</Body>
+          <Body data-cy="share-modal-description">
+            <Gray6>Please tell some friends!</Gray6>
+          </Body>
         </AvatarWrapper>
         <ShareThisWrapper data-cy="social-share">
           <InlineShareButtons
@@ -393,6 +423,7 @@ ShareModal.propTypes = {
   chamberCount: PropTypes.number,
   votesNeeded: PropTypes.number,
   userState: PropTypes.string,
+  showShareModalStepper: PropTypes.bool,
 };
 
 export default ShareModal;
