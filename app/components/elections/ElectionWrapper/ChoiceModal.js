@@ -232,7 +232,7 @@ const ChoiceModal = ({
             </>
           )}
         </AvatarWrapper>
-        <TitleH3 className="mb-20"><span class="big">{chamberCount}</span> people and growing!</TitleH3>
+        <TitleH3 className="mb-20"><span className="big">{chamberCount}</span> people and growing!</TitleH3>
         <div style={{textAlign: "center"}}>
           <VotesNeeded candidate={candidate} />
         </div>
