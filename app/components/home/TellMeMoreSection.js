@@ -94,6 +94,10 @@ const EamilSubmitButton = styled(Button)`
 const TellMeMoreSection = ({ subscribeEmailCallback }) => {
   const [email, setEmail] = useState('');
   const onSubmitForm = e => e.preventDefault();
+  const submitForm = () => {
+    subscribeEmailCallback(email);
+    setEmail('');
+  };
   return (
     <TellMeMoreSectionWrapper>
       <Grid container>
@@ -131,7 +135,7 @@ const TellMeMoreSection = ({ subscribeEmailCallback }) => {
                 <EamilSubmitButton
                   type="submit"
                   name="subscribe"
-                  onClick={() => subscribeEmailCallback(email)}
+                  onClick={submitForm}
                 >
                   Tell Me More
                 </EamilSubmitButton>
@@ -145,8 +149,8 @@ const TellMeMoreSection = ({ subscribeEmailCallback }) => {
   );
 };
 
-TellMeMoreForm.propTypes = {
-  subscribeEmailCallback: PropTypes.func
-}
+TellMeMoreSection.propTypes = {
+  subscribeEmailCallback: PropTypes.func,
+};
 
 export default TellMeMoreSection;

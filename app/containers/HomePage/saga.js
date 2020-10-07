@@ -32,15 +32,11 @@ function* subscribeEmail(action) {
         ),
       );
     } else {
-      yield put(
-        snackbarActions.showSnakbarAction('Invalid Email', 'error'),
-      );
+      yield put(snackbarActions.showSnakbarAction('Invalid Email', 'error'));
     }
   } catch (error) {
     console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error Subscribing Email', 'error'),
-    );
+    yield put(snackbarActions.showSnakbarAction(error.message, 'error'));
   }
 }
 
