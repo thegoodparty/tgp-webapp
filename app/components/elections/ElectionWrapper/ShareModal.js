@@ -13,7 +13,10 @@ import Stepper from 'components/shared/Stepper';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import SupportersProgressBar from 'components/elections/SupportersProgressBar';
 import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
-import { getCandidateTitle } from 'helpers/candidatesHelper';
+import {
+  getCandidateChmaberDistrict,
+  getCandidateTitle,
+} from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
 import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
@@ -310,8 +313,10 @@ const ShareModal = ({
             </>
           ) : (
             <>
-              <Spread>Spread the word about the</Spread>
-              <TitleH1>{name} Campaign!</TitleH1>
+              <Spread>Tell others about this campaign!</Spread>
+              <TitleH1>
+                {name} for {getCandidateChmaberDistrict(candidate)}
+              </TitleH1>
             </>
           )}
           <StyledBody className="mb-20">

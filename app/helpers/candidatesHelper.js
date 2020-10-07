@@ -1,9 +1,5 @@
 import { toPrecision } from './numberHelper';
-export const getVotesNeededState = (
-  chamberName,
-  district,
-  state,
-) => {
+export const getVotesNeededState = (chamberName, district, state) => {
   let votesNeededState;
   if (chamberName === 'presidential') {
     votesNeededState = '';
@@ -69,7 +65,7 @@ export const getOpenSecretLink = (chamber, candidate) => {
     openSecretLink += `races/candidates?cycle=2020&id=${stateDistrict}&spec=N`;
   }
   return openSecretLink;
-}
+};
 
 export const countCandidates = chamber => {
   let count = 0;
@@ -91,4 +87,17 @@ export const getCandidateTitle = chamber => {
     chamberTitle = 'the U.S. House of Representatives';
   }
   return chamberTitle;
-}
+};
+
+export const getCandidateChmaberDistrict = candidate => {
+  const { chamber } = candidate;
+  let chamberTitle = 'President';
+  if (chamber.toLowerCase() === 'senate') {
+    chamberTitle = `${candidate.state.toUpperCase()} Senate`;
+  } else if (chamber.toLowerCase() === 'house') {
+    chamberTitle = `${candidate.state.toUpperCase()}-${
+      candidate.district
+    } House`;
+  }
+  return chamberTitle;
+};

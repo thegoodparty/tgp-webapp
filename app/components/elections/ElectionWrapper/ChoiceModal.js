@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import SupportersImg from 'images/icons/supporters.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
-import { Body, H1, Body13, H3 } from 'components/shared/typogrophy';
+import { Body, H1, Body13, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { candidateBlocName, partyResolver } from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';
@@ -15,6 +15,7 @@ import SupportersProgressBar from '../SupportersProgressBar';
 import { BlueButton } from '../../shared/buttons';
 import Stepper from '../../shared/Stepper';
 import { blocNameSuffix } from '../../../helpers/electionsHelper';
+import { getCandidateChmaberDistrict } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -83,55 +84,34 @@ const AvatarWrapper = styled(Body)`
   align-items: center;
 `;
 
-const SupportersRow = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  position: relative;
-  width: 100%;
-  min-height: 40px;
-`;
-
-const SupportersCount = styled(H1)`
-  color: ${({ theme }) => theme.colors.gray7};
-  position: absolute;
-  width: 100%;
+const Spread = styled(Body)`
   text-align: center;
-  top: -5px;
-  animation-fill-mode: forwards;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
 
-  @keyframes animate-in {
-    0% {
-      opacity: 0;
-      top: -25px;
-    }
-    100% {
-      opacity: 1;
-      top: -5px;
-    }
-  }
+const StyledBody = styled(Body)`
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
 
-  @keyframes animate-out {
-    0% {
-      opacity: 1;
-      top: -5px;
-    }
-    100% {
-      opacity: 0;
-      top: 15px;
+  span.big {
+    font-size: 23px;
+    font-weight: bold;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 28px;
     }
   }
 `;
 
-const SupportersIcon = styled.img`
-  height: auto;
-  width: 36px;
-  margin-right: 8px;
-`;
-
-const SuppoetersBody13 = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray6};
-  margin-top: 5px;
+const VotesNeededWrapper = styled(Body11)`
+  margin-top: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.gray7};
 `;
 
 const Footer = styled(Body13)`
@@ -146,15 +126,12 @@ const ChoiceModal = ({
   candidate,
   open,
   votesNeeded,
-  user,
   chamberCount,
-  animateCount,
   userState,
   suffixText,
   closeCallback,
   shareCallback,
   joinCallback,
-  chamber,
   state,
   district,
   isExternalLink,
@@ -225,17 +202,20 @@ const ChoiceModal = ({
             </>
           ) : (
             <>
-              <TitleH3>You're now part of</TitleH3>
+              <Spread>Tell others about this campaign!</Spread>
               <TitleH1>
-                {name} Campaign!
+                {name} for {getCandidateChmaberDistrict(candidate)}
               </TitleH1>
             </>
           )}
         </AvatarWrapper>
-        <TitleH3 className="mb-20"><span className="big">{chamberCount}</span> people and growing!</TitleH3>
-        <div style={{textAlign: "center"}}>
+        <StyledBody className="mb-20">
+          <span className="big">{numberFormatter(chamberCount)}</span>&nbsp;
+          people and growing!
+        </StyledBody>
+        <VotesNeededWrapper>
           <VotesNeeded candidate={candidate} />
-        </div>
+        </VotesNeededWrapper>
         <CenterBar>
           <SupportersProgressBar
             votesNeeded={votesNeeded}
