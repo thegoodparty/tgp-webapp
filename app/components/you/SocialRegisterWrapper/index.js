@@ -107,7 +107,7 @@ function SocialRegisterWrapper({
               <>
                 <H1 data-cy="title">Join The Good Party</H1>
                 <StyledH2 data-cy="description">
-                  Have your choices count and let&apos;s fix politics for Good!
+                  Check your voter registration and get ready to vote and fix politics for Good!
                 </StyledH2>
               </>
             )}
