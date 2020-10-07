@@ -6,8 +6,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { H2, Body, Body12, Body9 } from 'components/shared/typogrophy';
-import { rankPageLink, partyResolver } from 'helpers/electionsHelper';
-import { candidateCalculatedFields } from 'helpers/electionsHelper';
+import {
+  rankPageLink,
+  partyResolver,
+  candidateCalculatedFields,
+} from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import ChallengerAvatar from './ChallengerAvatar';
 import VotesNeeded from './VotesNeeded';
@@ -15,7 +18,6 @@ import VotesNeeded from './VotesNeeded';
 const ChallengerItemWrapper = styled.div`
   width: 100%;
   padding: 1rem;
-  margin-top: 1.5rem;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
 `;
@@ -85,7 +87,6 @@ const LineWrapper = styled.div`
 const TitleCase = styled.span`
   text-transform: capitalize;
 `;
-
 
 const ChallengerItem = ({ challenger, id }) => {
   const calculatedChallanger = candidateCalculatedFields(challenger);
