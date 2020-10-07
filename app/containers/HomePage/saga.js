@@ -24,7 +24,7 @@ function* subscribeEmail(action) {
     const { email } = action;
     if (validateEmail(email)) {
       const api = tgpApi.subscribeEmail;
-      const payload = { email };
+      const payload = { email: encodeURIComponent(email) };
       yield call(requestHelper, api, payload);
       yield put(
         snackbarActions.showSnakbarAction(
