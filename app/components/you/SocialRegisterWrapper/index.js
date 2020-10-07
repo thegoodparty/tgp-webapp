@@ -20,7 +20,6 @@ import SocialButton from './SocialButton';
 import { H1, H2, Body13, Body11 } from '../../shared/typogrophy';
 import { OutlinedButton } from '../../shared/buttons';
 import Stepper from '../../shared/Stepper';
-import FacebookButton from './FacebookButton';
 import TwitterButton from './TwitterButton';
 
 const Heart = styled.img`
