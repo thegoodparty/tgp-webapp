@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import { Body11, Body13, Body14, Body9 } from 'components/shared/typogrophy';
 import ShareIcon from 'images/icons/share-icon.svg';
+import ShareIconWhite from 'images/icons/share-icon-white.svg';
 import JoinedIcon from 'images/icons/joined-icon.svg';
 import GraphIcon from 'images/icons/graph-icon.svg';
 import HeartIcon from 'images/white-heart.svg';
@@ -202,12 +203,21 @@ const RightCard = ({
         </Grid>
       </Stats>
       <Link to={rankPageGrowLink(candidate, chamberName, state, district)}>
-        <OutlinedButton active fullWidth>
-          <InnerButton>
-            <Img src={ShareIcon} alt="share" />
-            SHARE
-          </InnerButton>
-        </OutlinedButton>
+        {rank ? (
+          <BlueButton fullWidth>
+            <InnerButton>
+              <Img src={ShareIconWhite} alt="share" />
+              SHARE
+            </InnerButton>
+          </BlueButton>
+        ) : (
+          <OutlinedButton active fullWidth>
+            <InnerButton>
+              <Img src={ShareIcon} alt="share" />
+              SHARE
+            </InnerButton>
+          </OutlinedButton>
+        )}
       </Link>
       {rank ? (
         <RankWrapper
