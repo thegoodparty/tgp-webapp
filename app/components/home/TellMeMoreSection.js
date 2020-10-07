@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
 import styled from 'styled-components';
@@ -90,8 +91,9 @@ const EamilSubmitButton = styled(Button)`
     }
   }
 `;
-const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
+const TellMeMoreSection = ({ subscribeEmailCallback }) => {
   const [email, setEmail] = useState('');
+  const onSubmitForm = e => e.preventDefault();
   return (
     <TellMeMoreSectionWrapper>
       <Grid container>
@@ -113,32 +115,38 @@ const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
             with good ideas to gather supporters and to turn them into the votes
             needed to win.
           </SectionDescription>
-          <TellMeMoreForm container>
-            <Grid item xs={8}>
-              <EmailInput
-                placeholder="your@email.org"
-                type="email"
-                name="EMAIL"
-                className="required email"
-                value={email}
-                onChange={ev => setEmail(ev.target.value)}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <EamilSubmitButton
-                type="submit"
-                name="subscribe"
-                onClick={() => subscribeEmailCallback(email)}
-              >
-                Tell Me More
-              </EamilSubmitButton>
-            </Grid>
-          </TellMeMoreForm>
+          <form noValidate onSubmit={onSubmitForm}>
+            <TellMeMoreForm container>
+              <Grid item xs={8}>
+                <EmailInput
+                  placeholder="your@email.org"
+                  type="email"
+                  name="EMAIL"
+                  className="required email"
+                  value={email}
+                  onChange={ev => setEmail(ev.target.value)}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <EamilSubmitButton
+                  type="submit"
+                  name="subscribe"
+                  onClick={() => subscribeEmailCallback(email)}
+                >
+                  Tell Me More
+                </EamilSubmitButton>
+              </Grid>
+            </TellMeMoreForm>
+          </form>
           {/* </form> */}
         </RightCol>
       </Grid>
     </TellMeMoreSectionWrapper>
   );
 };
+
+TellMeMoreForm.propTypes = {
+  subscribeEmailCallback: PropTypes.func
+}
 
 export default TellMeMoreSection;
