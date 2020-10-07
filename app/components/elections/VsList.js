@@ -113,8 +113,8 @@ const JoinButton = styled(Body11)`
   border-radius: 40px;
   margin-top: 8px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.blue};
-  color: #fff;
+  border: solid 2px ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.blue};
   text-align: center;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 0.8rem 2rem;
@@ -341,16 +341,19 @@ const VsList = ({
     }
     return (
       <GrowWrapper>
-        <JoinButton
-          onClick={e => handleChoice(candidate, e)}
-          data-cy="join-button"
-        >
-          JOIN{' '}
-          {candidate.id === noneYetCandidate.id
-            ? '#GoodBloc'
-            : candidateBlocName(candidate)}{' '}
-          {blocNameSuffix(blocName)}
-        </JoinButton>
+        {candidate.id === noneYetCandidate.id ? (
+          <JoinButton
+            onClick={e => handleChoice(candidate, e)}
+            data-cy="join-button"
+          >
+            JOIN #GoodBloc
+            {blocNameSuffix(blocName)}
+          </JoinButton>
+        ) : (
+          <Link to={candidateRoute(candidate)}>
+            <JoinButton>See Campaign</JoinButton>
+          </Link>
+        )}
       </GrowWrapper>
     );
   };
