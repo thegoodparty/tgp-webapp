@@ -134,6 +134,7 @@ const JoinedImg = styled.img`
   width: 40px;
   height: 40px;
   margin-right: 20px;
+  border-radius: 50%;
 `;
 
 const Row = styled.div`
@@ -276,7 +277,7 @@ const RightCard = ({
         </JoinedItem>
         {recentlyJoined.map((joined, index) => (
           <JoinedItem key={`${joined.name}-${index}`}>
-            <JoinedImg src={JoinedIcon} alt="joined" />
+            <JoinedImg src={joined.avatar || JoinedIcon} alt="joined" />
             <div>
               <Row>
                 <StyledBody14>{joined.name}</StyledBody14>
