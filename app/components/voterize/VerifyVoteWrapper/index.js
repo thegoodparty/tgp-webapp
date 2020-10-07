@@ -362,15 +362,14 @@ const VerifyVoteWrapper = ({
                                   <Grid
                                     item
                                     xs={4}
-                                    md={4}
                                     style={{ textAlign: 'right' }}
                                   >
                                     <StyledBody>
                                       {capitalizeSentence(key)}
                                     </StyledBody>
                                   </Grid>
-                                  <Grid item xs={1} md={1} />
-                                  <Grid item xs={7} md={7}>
+                                  <Grid item xs={1} />
+                                  <Grid item xs={7}>
                                     <StyledBody>{showData[key]}</StyledBody>
                                   </Grid>
                                 </>
@@ -397,8 +396,20 @@ const VerifyVoteWrapper = ({
                             <StyledBody>
                               Powered by VoteAmerica. By hitting register to
                               vote, you agree to VoteAmerica’s{' '}
-                              <a href="#">Terms</a> and <a href="#">Privacy</a>.
-                              You will receive occasional emails from
+                              <a
+                                href="https://www.voteamerica.com/terms/sms/"
+                                target="_blank"
+                              >
+                                Terms
+                              </a>{' '}
+                              and{' '}
+                              <a
+                                href="https://www.voteamerica.com/privacy/"
+                                target="_blank"
+                              >
+                                Privacy
+                              </a>
+                              . You will receive occasional emails from
                               VoteAmerica. You can unsubscribe at any time. If
                               you provide your cell phone number, you agree to
                               receive occasional text messages from VoteAmerica.

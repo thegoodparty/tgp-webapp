@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
 import { Link } from 'react-router-dom';
-
+import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import SupportersImg from 'images/icons/supporters.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
 import { Body, H1, Body13, H3 } from 'components/shared/typogrophy';
@@ -13,6 +13,7 @@ import { candidateBlocName, partyResolver } from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import { BlueButton } from '../../shared/buttons';
+import Stepper from '../../shared/Stepper';
 import { blocNameSuffix } from '../../../helpers/electionsHelper';
 
 const Wrapper = styled.div`
@@ -40,7 +41,7 @@ const Close = styled.div`
 `;
 
 const Logo = styled.img`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   min-width: 170px;
 `;
 
@@ -51,13 +52,21 @@ const CenterBar = styled(Body)`
 
 const TitleH1 = styled(H1)`
   text-align: center;
-  margin-top: 8px;
-  margin-bottom: 36px;
 `;
 
 const TitleH3 = styled(H3)`
   text-align: center;
-  margin-top: 18px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  color: ${({ theme }) => theme.colors.gray7};
+  span.big {
+    font-size: 27px;
+    color: ${({ theme }) => theme.colors.gray4};
+    font-weight: bold;
+  }
+  &.mb-20 {
+    margin-bottom: 20px;
+  }
 `;
 
 const SubTitle = styled(Body13)`
@@ -131,6 +140,8 @@ const Footer = styled(Body13)`
   text-align: center;
 `;
 
+const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
+
 const ChoiceModal = ({
   candidate,
   open,
@@ -152,7 +163,7 @@ const ChoiceModal = ({
     return <> </>;
   }
 
-  let { isGood } = candidate;
+  let { isGood, name } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
@@ -164,10 +175,9 @@ const ChoiceModal = ({
   } else {
     displayChamber = `HOUSE OF REPRESENTATIVES FROM ${state?.toUpperCase()}-${district}`;
   }
-
+  candidate.votesNeeded = votesNeeded;
   const blocName = candidateBlocName(candidate);
   const blocSuffix = blocNameSuffix(blocName);
-
   return (
     <Dialog
       onClose={closeCallback}
@@ -182,7 +192,7 @@ const ChoiceModal = ({
           {' '}
           <Logo src={LogoCapsImg} />
         </div>
-
+        <Stepper steps={defaultRegisterSteps} activeStep={2} />
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
@@ -217,49 +227,21 @@ const ChoiceModal = ({
             <>
               <TitleH3>You're now part of</TitleH3>
               <TitleH1>
-                {blocName} {blocSuffix}
+                {name} Campaign!
               </TitleH1>
             </>
           )}
-
-          <SupportersRow>
-            {animateCount ? (
-              <>
-                <SupportersCount
-                  style={{
-                    animation: `animate-out 1s ease-in-out forwards`,
-                  }}
-                >
-                  <SupportersIcon src={SupportersImg} alt="tgp" />
-                  {numberFormatter(chamberCount)}{' '}
-                </SupportersCount>
-                <SupportersCount
-                  style={{
-                    animation: `animate-in 1s ease-in-out forwards`,
-                  }}
-                >
-                  <SupportersIcon src={SupportersImg} alt="tgp" />
-                  {numberFormatter(chamberCount + 1)}{' '}
-                </SupportersCount>
-              </>
-            ) : (
-              <SupportersCount>
-                <SupportersIcon src={SupportersImg} alt="tgp" />
-                {numberFormatter(chamberCount || 0)}{' '}
-              </SupportersCount>
-            )}
-          </SupportersRow>
-          <SuppoetersBody13>
-            likely voters for <strong>{blocName}</strong>{' '}
-            {state ? `in ${state.toUpperCase()}` : ''}
-            {district ? `-${district}` : ''}
-          </SuppoetersBody13>
         </AvatarWrapper>
+        <TitleH3 className="mb-20"><span className="big">{chamberCount}</span> people and growing!</TitleH3>
+        <div style={{textAlign: "center"}}>
+          <VotesNeeded candidate={candidate} />
+        </div>
         <CenterBar>
           <SupportersProgressBar
             votesNeeded={votesNeeded}
             peopleSoFar={chamberCount}
             showSupporters={false}
+            showSuffix={false}
             userState={userState}
             suffixText={suffixText}
           />
