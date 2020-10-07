@@ -24,7 +24,7 @@ const VotesNeeded = ({ candidate }) => {
   let districtInfo = '';
   if (state) {
     districtInfo = `${state.toUpperCase()}${
-      district ? `-${district}` : ' Senate'
+      chamber === 'House' && district ? `-${district}` : ' Senate'
     }`;
   }
 
