@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import CreatorsImg from 'images/creators.png';
+import CreatorsImg from 'images/creators.svg';
 import { Body19, H2 } from 'components/shared/typogrophy';
 import { BlueButton } from 'components/shared/buttons';
 
