@@ -86,10 +86,13 @@ function SocialRegisterWrapper({
   candidateName,
   twitterButtonCallback,
 }) {
-  const registerSteps = blocName ? defaultRegisterSteps : defaultRegisterSteps.slice(0, 2);
+  // const registerSteps = blocName
+  //   ? defaultRegisterSteps
+  //   : defaultRegisterSteps.slice(0, 2);
+
   return (
     <QueryModalContainer>
-      <Stepper steps={registerSteps} />
+      <Stepper steps={defaultRegisterSteps} />
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
