@@ -322,11 +322,9 @@ const DistrictWrapper = ({
       <AlertDialog
         open={showRankAlert}
         handleClose={handleCloseAlert}
-        title={'District Change'}
-        ariaLabel={'Ranking not Allowed'}
-        description={
-          'If you proceed, your previous district&apos;s ranked choices will be discarded.'
-        }
+        title="District Change"
+        ariaLabel="Ranking not Allowed"
+        description="If you proceed, your previous district's ranked choices will be discarded."
         handleProceed={handleDeleteRanking}
       />
     </PageWrapper>

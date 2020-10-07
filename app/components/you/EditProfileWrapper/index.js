@@ -71,7 +71,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
 
       @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpoints.md}) {
+          theme.breakpoints.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -386,9 +386,9 @@ const EditProfileWrapper = ({
           <AlertDialog
             open={showRankAlert}
             handleClose={handleCloseAlert}
-            title={"District Change"}
-            ariaLabel={"Ranking not Allowed"}
-            description={"If you proceed, your previous district&apos;s ranked choices will be discarded."}
+            title="District Change"
+            ariaLabel="Ranking not Allowed"
+            description="If you proceed, your previous district's ranked choices will be discarded."
             handleProceed={handleDeleteRanking}
           />
         </>
