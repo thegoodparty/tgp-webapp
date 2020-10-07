@@ -13,7 +13,7 @@ import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import SupportersProgressBar from 'components/elections/SupportersProgressBar';
 import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
 import {
-  getCandidateChmaberDistrict,
+  getCandidateChamberDistrict,
   getCandidateTitle,
 } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
@@ -319,7 +319,7 @@ const ShareModal = ({
               <TitleH2>
                 {name}
                 <br />
-                for {getCandidateChmaberDistrict(candidate)}
+                for {getCandidateChamberDistrict(candidate)}
               </TitleH2>
             </>
           )}

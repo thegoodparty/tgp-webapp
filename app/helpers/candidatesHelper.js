@@ -89,12 +89,12 @@ export const getCandidateTitle = chamber => {
   return chamberTitle;
 };
 
-export const getCandidateChmaberDistrict = candidate => {
+export const getCandidateChamberDistrict = candidate => {
   const { chamber } = candidate;
   let chamberTitle = 'President';
-  if (chamber.toLowerCase() === 'senate') {
+  if (chamber?.toLowerCase() === 'senate') {
     chamberTitle = `${candidate.state.toUpperCase()} Senate`;
-  } else if (chamber.toLowerCase() === 'house') {
+  } else if (chamber?.toLowerCase() === 'house') {
     chamberTitle = `${candidate.state.toUpperCase()}-${
       candidate.district
     } House`;

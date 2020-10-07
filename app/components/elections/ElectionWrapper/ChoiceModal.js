@@ -14,7 +14,7 @@ import {
   partyResolver,
   blocNameSuffix,
 } from 'helpers/electionsHelper';
-import { getCandidateChmaberDistrict } from 'helpers/candidatesHelper';
+import { getCandidateChamberDistrict } from 'helpers/candidatesHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import { BlueButton } from '../../shared/buttons';
@@ -192,7 +192,7 @@ const ChoiceModal = ({
               <TitleH1>
                 {name}
                 <br />
-                for {getCandidateChmaberDistrict(candidate)}
+                for {getCandidateChamberDistrict(candidate)}
               </TitleH1>
             </>
           )}
