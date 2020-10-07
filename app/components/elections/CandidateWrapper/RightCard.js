@@ -152,6 +152,7 @@ const RightCard = ({
   chamberRank,
   deleteCandidateRankingCallback,
   tab,
+  hideTab,
 }) => {
   const {
     name,
@@ -233,15 +234,23 @@ const RightCard = ({
           </BlueButton>
         </Link>
       )}
-
-      {tab === 'campaign' ? (
-        <Link to={`${route}/info`}>
-          <TabText>Learn more about {name}</TabText>
-        </Link>
+      {hideTab ? (
+        <>
+          <br />
+          <br />
+        </>
       ) : (
-        <Link to={route}>
-          <TabText>See campaign for {name}</TabText>
-        </Link>
+        <>
+          {tab === 'campaign' ? (
+            <Link to={`${route}/info`}>
+              <TabText>Learn more about {name}</TabText>
+            </Link>
+          ) : (
+            <Link to={route}>
+              <TabText>See campaign for {name}</TabText>
+            </Link>
+          )}
+        </>
       )}
 
       <Hidden smDown>
@@ -279,6 +288,7 @@ RightCard.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
   tab: PropTypes.string,
+  hideTab: PropTypes.bool,
 };
 
 export default RightCard;

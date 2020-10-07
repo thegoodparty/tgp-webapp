@@ -19,8 +19,11 @@ const StatsSection = ({}) => {
       <Grid item xs={12} md={4}>
         <ColTitle>99%</ColTitle>
         <ColDescription>
-          of members of Congress <br /> recieve a <u>majority</u> of funding{' '}
-          <br /> from big-money sources
+          of Congress members
+          <br />
+          raise <u>majority</u> of funds
+          <br />
+          from big-money donors
         </ColDescription>
       </Grid>
       <Grid item xs={12} md={4}>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Grid from '@material-ui/core/Grid';
 import { Body13, Body } from 'components/shared/typogrophy';
 
 import { percHelper } from 'helpers/numberHelper';
@@ -114,8 +115,8 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             <CheckboxImg src={GrayCheckbox} />
             <Body13 data-cy="is-big-money">
               <strong>Follow the Money:</strong> Candidate has raised most of
-              funding (>50%) from Small Indiv. Donors (&lt;$200). This is
-              good, but not enough because of failing the character check.
+              funding (>50%) from Small Indiv. Donors (&lt;$200). This is good,
+              but not enough because of failing the character check.
             </Body13>
           </CheckboxRow>
         );
@@ -292,11 +293,17 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
 
   return (
     <>
-      <Body style={{ marginTop: '32px' }} data-cy="why">
+      <Body style={{ margin: '32px 0' }} data-cy="why">
         Why {lastName} is {coloredGood()}
       </Body>
-      {followTheMoney()}
-      {characterCheck()}
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          {followTheMoney()}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          {characterCheck()}
+        </Grid>
+      </Grid>
     </>
   );
 };

@@ -20,10 +20,11 @@ import CandidateAvatar from 'components/shared/CandidateAvatar';
 
 import RtfEditor from './RtfEditor';
 import ImageCrop from '../../shared/ImageCrop';
+import Body from '../../shared/typogrophy/Body';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
-  padding-top: 36px;
+  padding: 36px 0;
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
 `;
@@ -79,6 +80,16 @@ function AdminEditCandidate({
   const [editedCampaign, setEditedCampaign] = useState('');
   const [editedInfo, setEditedInfo] = useState('');
 
+  const [campaignSummary, setCampaignSummary] = useState('');
+  const [summaryEdited, setSummaryEdited] = useState(false);
+  const [editedSummary, setEditedSummary] = useState('');
+
+  const [updates, setUpdates] = useState([]);
+  const [updatesEdited, setUpdatesEdited] = useState([]);
+  const [editedUpdates, setEditedUpdates] = useState([]);
+
+  const [newUpdates, setNewUpdates] = useState([]);
+
   const {
     openSecretsId,
     name,
@@ -121,6 +132,14 @@ function AdminEditCandidate({
           setInfo(candidate.info);
         }
       }
+      if (candidate.campaignSummary) {
+        if (candidate.campaignSummary.charAt(0) === '%') {
+          setCampaignSummary(decodeURIComponent(candidate.campaignSummary));
+        } else {
+          setCampaignSummary(candidate.campaignSummary);
+        }
+      }
+      setUpdates(candidate.campaignUpdates);
     }
   }, [candidate]);
 
@@ -181,6 +200,9 @@ function AdminEditCandidate({
   const showSave =
     infoEdited ||
     campaignEdited ||
+    summaryEdited ||
+    updatesEdited.length > 0 ||
+    newUpdates.length > 0 ||
     JSON.stringify(initialData) !== JSON.stringify(editableValues);
 
   const editInfo = value => {
@@ -193,8 +215,34 @@ function AdminEditCandidate({
     setCampaignEdited(true);
   };
 
+  const editCampaignSummary = value => {
+    setEditedSummary(value);
+    setSummaryEdited(true);
+  };
+
+  const editUpdate = (value, index, updateId) => {
+    const newUpdatesEdit = [...editedUpdates];
+    newUpdatesEdit[index] = { id: updateId, text: value };
+    setEditedUpdates(newUpdatesEdit);
+
+    const newUpdatesEdited = [...updatesEdited];
+    newUpdatesEdited.push(index);
+    setUpdatesEdited(newUpdatesEdited);
+  };
+
+  const editNewUpdate = (value, index) => {
+    newUpdates[index] = value;
+  };
+
+  const addNewUpdate = () => {
+    const tempUpdates = [...newUpdates];
+    tempUpdates.push('');
+    setNewUpdates(tempUpdates);
+  };
+
   const saveCandidate = () => {
     const data = {};
+    const returnUpdates = {};
     if (infoEdited) {
       data.info = editedInfo.toString('html');
       if (data.info === '<p><br></p>') {
@@ -207,6 +255,32 @@ function AdminEditCandidate({
         data.campaignWebsite = '';
       }
     }
+    if (summaryEdited) {
+      data.campaignSummary = editedSummary.toString('html');
+      if (data.campaignSummary === '<p><br></p>') {
+        data.campaignSummary = '';
+      }
+    }
+    if (updatesEdited.length > 0) {
+      updatesEdited.forEach(updateIndex => {
+        const { text } = editedUpdates[updateIndex];
+        editedUpdates[updateIndex].text = text.toString('html');
+        if (editedUpdates[updateIndex].text === '<p><br></p>') {
+          editedUpdates[updateIndex].text = '';
+        }
+      });
+      returnUpdates.existing = editedUpdates;
+    }
+    if (newUpdates.length > 0) {
+      const htmlUpdates = [];
+      newUpdates.forEach((update, index) => {
+        htmlUpdates.push(update.toString('html'));
+        if (htmlUpdates[index] === '<p><br></p>') {
+          htmlUpdates[index] = '';
+        }
+      });
+      returnUpdates.newUpdates = htmlUpdates;
+    }
 
     addIfEdited('openSecretsId', data);
     addIfEdited('blocName', data);
@@ -218,7 +292,8 @@ function AdminEditCandidate({
     addIfEdited('initialShares', data);
     addIfEdited('order', data);
 
-    saveCandidateCallback(data, candidate);
+    saveCandidateCallback(data, candidate, returnUpdates);
+    setNewUpdates([]);
   };
 
   const addIfEdited = (key, data) => {
@@ -302,6 +377,61 @@ function AdminEditCandidate({
             initialText={campaignWebsite}
             onChangeCallback={editCampaignWebsite}
           />
+          <br />
+          <br />
+          <hr />
+          <H2>Campaign Status</H2>
+          <br />
+          <br />
+
+          <H3>Campaign Summary:</H3>
+          <br />
+          <RtfEditor
+            initialText={campaignSummary}
+            onChangeCallback={editCampaignSummary}
+          />
+
+          <br />
+          <br />
+
+          <H3>Updates:</H3>
+          <hr />
+          <br />
+
+          {updates &&
+            updates.map((update, index) => (
+              <>
+                <br />
+                <br />
+                <RtfEditor
+                  key={update.id}
+                  initialText={update.text}
+                  onChangeCallback={value => {
+                    editUpdate(value, index, update.id);
+                  }}
+                />
+              </>
+            ))}
+
+          {newUpdates.map((update, index) => (
+            <React.Fragment key={`new-update-${index}`}>
+              <br />
+              <br />
+              <Body>New Update #{index + 1}</Body>
+              <RtfEditor
+                initialText=""
+                onChangeCallback={value => {
+                  editNewUpdate(value, index);
+                }}
+              />
+              <br />
+            </React.Fragment>
+          ))}
+          <br />
+          <div className="text-center">
+            <BlueButton onClick={addNewUpdate}>Add New Update</BlueButton>
+          </div>
+          <br />
         </Wrapper>
       ) : (
         <LoadingAnimation />
