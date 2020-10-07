@@ -5,8 +5,8 @@ import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
 import { Link } from 'react-router-dom';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
-import SupportersImg from 'images/icons/supporters.svg';
-import LogoCapsImg from 'images/logo-caps.svg';
+// import SupportersImg from 'images/icons/supporters.svg';
+// import LogoCapsImg from 'images/logo-caps.svg';
 import { Body, H1, Body13, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
@@ -44,10 +44,7 @@ const Close = styled.div`
   cursor: pointer;
 `;
 
-const Logo = styled.img`
-  margin-bottom: 30px;
-  min-width: 170px;
-`;
+
 
 const CenterBar = styled(Body)`
   margin-bottom: 32px;
@@ -58,20 +55,6 @@ const TitleH1 = styled(H1)`
   text-align: center;
 `;
 
-const TitleH3 = styled(H3)`
-  text-align: center;
-  margin-top: 8px;
-  margin-bottom: 10px;
-  color: ${({ theme }) => theme.colors.gray7};
-  span.big {
-    font-size: 27px;
-    color: ${({ theme }) => theme.colors.gray4};
-    font-weight: bold;
-  }
-  &.mb-20 {
-    margin-bottom: 20px;
-  }
-`;
 
 const SubTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray9};
@@ -168,10 +151,10 @@ const ChoiceModal = ({
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        <div className="text-center">
-          {' '}
-          <Logo src={LogoCapsImg} />
-        </div>
+        {/*<div className="text-center">*/}
+        {/*  {' '}*/}
+        {/*  <Logo src={LogoCapsImg} />*/}
+        {/*</div>*/}
         <Stepper steps={defaultRegisterSteps} activeStep={2} />
         <AvatarWrapper>
           <CandidateAvatar

@@ -6,8 +6,7 @@ import CloseIcon from '@material-ui/icons/Cancel';
 import Grid from '@material-ui/core/Grid';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import LogoCapsImg from 'images/logo-caps.svg';
-import { Body, H1, H3, Body11 } from 'components/shared/typogrophy';
+import { Body, H3, Body11, H2 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import Stepper from 'components/shared/Stepper';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
@@ -39,8 +38,11 @@ const Wrapper = styled.div`
 `;
 
 const CenterBar = styled(Body)`
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   width: 100%;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-bottom: 32px;
+  }
 `;
 
 const Close = styled.div`
@@ -60,7 +62,7 @@ const AvatarWrapper = styled(Body)`
 `;
 
 const ShareThisWrapper = styled.div`
-  padding: 36px 0;
+  padding: 16px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 16px 60px 30px;
@@ -201,7 +203,7 @@ const VotesNeededWrapper = styled(Body11)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
-const TitleH1 = styled(H1)`
+const TitleH2 = styled(H2)`
   text-align: center;
 `;
 
@@ -285,10 +287,10 @@ const ShareModal = ({
         <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
         </Close>
-        <div className="text-center">
-          {' '}
-          <Logo src={LogoCapsImg} />
-        </div>
+        {/*<div className="text-center">*/}
+        {/*  {' '}*/}
+        {/*  <Logo src={LogoCapsImg} />*/}
+        {/*</div>*/}
         {showShareModalStepper && (
           <Stepper steps={defaultRegisterSteps} activeStep={2} />
         )}
@@ -309,16 +311,16 @@ const ShareModal = ({
                 </span>{' '}
                 You’ve joined
               </TitleH3>
-              <TitleH1>{name} Campaign!</TitleH1>
+              <TitleH2>{name} Campaign!</TitleH2>
             </>
           ) : (
             <>
               <Spread>Tell others about this campaign!</Spread>
-              <TitleH1>
+              <TitleH2>
                 {name}
                 <br />
                 for {getCandidateChmaberDistrict(candidate)}
-              </TitleH1>
+              </TitleH2>
             </>
           )}
           <StyledBody className="mb-20">
