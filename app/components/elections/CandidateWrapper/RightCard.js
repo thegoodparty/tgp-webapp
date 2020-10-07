@@ -6,7 +6,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
-import { Body11, Body13, Body14, Body9 } from 'components/shared/typogrophy';
+import { Body11, Body13, Body14 } from 'components/shared/typogrophy';
 import ShareIcon from 'images/icons/share-icon.svg';
 import ShareIconWhite from 'images/icons/share-icon-white.svg';
 import JoinedIcon from 'images/icons/joined-icon.svg';
@@ -198,7 +198,9 @@ const RightCard = ({
             <Gray7>shares</Gray7>
           </Grid>
           <Grid item xs={4} className="text-center">
-            <Body11>{kFormatter(twitterFollowers + rankingCount)}</Body11>
+            <Body11>
+              {kFormatter(likelyVoters + twitterFollowers + rankingCount)}
+            </Body11>
             <Gray7>supporters</Gray7>
           </Grid>
         </Grid>
