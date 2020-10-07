@@ -18,9 +18,6 @@ const ContentWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.gray11};
   }
   padding: 0 10px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 100px;
-  }
 `;
 const GrayWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray11};

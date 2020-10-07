@@ -9,8 +9,10 @@ import ShareImg from 'images/share.png';
 import { Body19, Subtitle } from 'components/shared/typogrophy';
 
 const TellMeMoreSectionWrapper = styled.div`
-  margin-top: 10rem;
-  margin-bottom: 8rem;
+  margin: 24px 0;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 10rem 0 4rem;
+  }
 `;
 
 const SectionTitle = styled(Subtitle)`
@@ -27,6 +29,13 @@ const RightCol = styled(Grid)`
 const LeftCol = styled(Grid)`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-right: 5rem;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  padding: 24px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0;
   }
 `;
 
@@ -87,12 +96,13 @@ const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
     <TellMeMoreSectionWrapper>
       <Grid container>
         <LeftCol item xs={12} md={5}>
-          <LazyLoadImage
-            src={ShareImg}
-            alt="share-tgp"
-            width="100%"
-            height="100%"
-          />
+          <ImageWrapper>
+            <LazyLoadImage
+              src={ShareImg}
+              alt="share-tgp"
+              className="faq-image"
+            />
+          </ImageWrapper>
         </LeftCol>
         <RightCol item xs={12} md={7}>
           <SectionTitle>
