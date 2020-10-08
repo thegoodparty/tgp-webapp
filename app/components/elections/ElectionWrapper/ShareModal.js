@@ -25,10 +25,10 @@ import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
-  padding: 24px 18px 32px;
+  padding: 24px 0 32px;
   border-radius: 8px;
   position: relative;
-  width: 85vw;
+  width: 85%;
   margin: 0 auto;
   max-width: 500px;
 
@@ -47,9 +47,9 @@ const CenterBar = styled(Body)`
 
 const Close = styled.div`
   position: absolute;
-  padding: 16px;
+  padding: 4px;
   top: 0;
-  right: 0;
+  right: -20px;
   color: ${({ theme }) => theme.colors.gray4};
   cursor: pointer;
 `;
@@ -166,9 +166,12 @@ const TitleH3 = styled(H3)`
   margin-bottom: 10px;
   color: ${({ theme }) => theme.colors.gray7};
   span.big {
-    font-size: 27px;
-    color: ${({ theme }) => theme.colors.gray4};
+    font-size: 16px;
     font-weight: bold;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 28px;
+    }
   }
   &.mb-20 {
     margin-bottom: 20px;
@@ -297,7 +300,7 @@ const ShareModal = ({
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
-            size="xl"
+            size="responsive"
             src={candidate.image}
             name={candidate.name}
           />

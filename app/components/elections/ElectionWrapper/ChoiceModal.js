@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 // import SupportersImg from 'images/icons/supporters.svg';
 // import LogoCapsImg from 'images/logo-caps.svg';
-import { Body, H1, Body13, H3, Body11 } from 'components/shared/typogrophy';
+import { Body, Body13, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
   candidateBlocName,
@@ -22,10 +22,10 @@ import Stepper from '../../shared/Stepper';
 
 const Wrapper = styled.div`
   background-color: #fff;
-  padding: 24px 18px 32px;
+  padding: 24px 0 32px;
   border-radius: 8px;
   position: relative;
-  width: 85vw;
+  width: 85%;
   margin: 0 auto;
   max-width: 500px;
   padding-top: 24px;
@@ -37,24 +37,21 @@ const Wrapper = styled.div`
 
 const Close = styled.div`
   position: absolute;
-  padding: 16px;
+  padding: 4px;
   top: 0;
-  right: 0;
+  right: -20px;
   color: ${({ theme }) => theme.colors.gray4};
   cursor: pointer;
 `;
-
-
 
 const CenterBar = styled(Body)`
   margin-bottom: 32px;
   width: 100%;
 `;
 
-const TitleH1 = styled(H1)`
+const TitleH3 = styled(H3)`
   text-align: center;
 `;
-
 
 const SubTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray9};
@@ -70,7 +67,7 @@ const AvatarWrapper = styled(Body)`
   align-items: center;
 `;
 
-const Spread = styled(Body)`
+const Spread = styled(Body13)`
   text-align: center;
   margin-top: 20px;
   margin-bottom: 4px;
@@ -84,7 +81,7 @@ const StyledBody = styled(Body)`
   color: ${({ theme }) => theme.colors.gray7};
 
   span.big {
-    font-size: 23px;
+    font-size: 16px;
     font-weight: bold;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -159,16 +156,16 @@ const ChoiceModal = ({
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
-            size="xl"
+            size="responsive"
             src={candidate.image}
             name={candidate.name}
           />
 
           {isExternalLink ? (
             <>
-              <TitleH1 style={{ marginBottom: '12px' }}>
+              <TitleH3 style={{ marginBottom: '12px' }}>
                 Want to try and elect {candidate.name}?
-              </TitleH1>
+              </TitleH3>
               {candidate.chamber === 'presidential' || !candidate.chamber ? (
                 <SubTitle>
                   {candidate.party === 'W' ? '' : 'AS A'}{' '}
@@ -189,11 +186,11 @@ const ChoiceModal = ({
           ) : (
             <>
               <Spread>Tell others about this campaign!</Spread>
-              <TitleH1>
+              <TitleH3>
                 {name}
                 <br />
                 for {getCandidateChamberDistrict(candidate)}
-              </TitleH1>
+              </TitleH3>
             </>
           )}
         </AvatarWrapper>
