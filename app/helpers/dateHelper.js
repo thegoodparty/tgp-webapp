@@ -28,7 +28,6 @@ export const validateDate = date => {
 }
 
 export const parseDob = dob => {
-  console.log('parsedob1', dob)
   if(dob.length === 8) {
     const dobString = `${dob.substr(4, 4)}-${dob.substr(0, 2)}-${dob.substr(2, 2)}`
     const dobObj = moment(dobString, 'YYYY-MM-DD');
