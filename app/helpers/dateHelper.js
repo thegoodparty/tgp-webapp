@@ -28,17 +28,14 @@ export const validateDate = date => {
 }
 
 export const parseDob = dob => {
-  let dobString = dob.replace(/\s/g,'').split('/');
-  const year = parseInt(dobString[2]);
-  const month =dobString[0];
-  const day = dobString[1];
-  if(year >= 1900 && year <= 2100 && month.length > 0 && day.length > 0) {
-    const originalDob = moment(dob.replace(/\s/g,''), 'M/D/YYYY');
-    const parsedDob = originalDob.format('YYYY-MM-DD')
-    if(parsedDob.includes('Invalid')) {
+  console.log('parsedob1', dob)
+  if(dob.length === 8) {
+    const dobString = `${dob.substr(4, 4)}-${dob.substr(0, 2)}-${dob.substr(2, 2)}`
+    const dobObj = moment(dobString, 'YYYY-MM-DD');
+    if(!dobObj.isValid() || dobObj.year() < 1900 || dobObj.year() >= 2100) {
       return false;
     }
-    return parsedDob;
+    return dobString;
   }
   return false;
 }

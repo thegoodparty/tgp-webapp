@@ -14,7 +14,7 @@ const DobFormat = ({ inputRef, onChange, ...other }) => {
           },
         });
       }}
-      format="+1 (###)-###-####"
+      format="+1 (###) ###-####"
       mask="_"
       isNumericString
     />
