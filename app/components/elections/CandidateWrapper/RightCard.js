@@ -48,8 +48,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const VotesNeededWrapper = styled(Body9)`
+const VotesNeededWrapper = styled(Body13)`
   color: ${props => props.theme.colors.gray7};
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 const Stats = styled.div`
@@ -139,6 +143,10 @@ const JoinedItem = styled(Body14)`
   &.no-border {
     border-top: none;
   }
+`;
+
+const Ago = styled(Body11)`
+  color: ${props => props.theme.colors.gray7};
 `;
 
 const JoinedImg = styled.img`
@@ -319,7 +327,7 @@ const RightCard = ({
                       <StyledBody14>{joined.name}</StyledBody14>
                       <Body13>{joined.district}</Body13>
                     </Row>
-                    {joined.timeAgo}
+                    <Ago>{joined.timeAgo}</Ago>
                   </div>
                 </JoinedItem>
               ))}
