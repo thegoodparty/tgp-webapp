@@ -34,6 +34,7 @@ const Wrapper = styled.div`
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 24px 24px 32px;
+    width: 85vw;
   }
 `;
 
@@ -52,6 +53,10 @@ const Close = styled.div`
   right: -20px;
   color: ${({ theme }) => theme.colors.gray4};
   cursor: pointer;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 16px;
+    right: 0;
+  }
 `;
 
 const AvatarWrapper = styled(Body)`
@@ -65,7 +70,7 @@ const ShareThisWrapper = styled.div`
   padding: 16px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 16px 60px 30px;
+    padding: 16px 0 30px;
   }
 
   .st-inline-share-buttons {
@@ -127,10 +132,6 @@ const IconItem = styled.div`
   justify-content: center;
 `;
 
-const Logo = styled.img`
-  margin-bottom: 30px;
-  min-width: 170px;
-`;
 
 const IconWrapper = styled.div`
   height: 56px;

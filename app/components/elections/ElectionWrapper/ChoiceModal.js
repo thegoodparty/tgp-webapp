@@ -32,6 +32,7 @@ const Wrapper = styled.div`
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 24px 24px 32px;
+    width: 85vw;
   }
 `;
 
@@ -42,6 +43,11 @@ const Close = styled.div`
   right: -20px;
   color: ${({ theme }) => theme.colors.gray4};
   cursor: pointer;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 16px;
+    right: 0;
+  }
 `;
 
 const CenterBar = styled(Body)`
