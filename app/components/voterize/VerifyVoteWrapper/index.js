@@ -105,7 +105,7 @@ const Skip = styled.div`
   color: ${props => props.theme.colors.blue};
   background-color: #fff;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 2010;
 `;
 
 const NextButtonWrapper = styled.div`
@@ -560,7 +560,7 @@ const VerifyVoteWrapper = ({
                               fullWidth
                               InputProps={{
                                 inputComponent: PhoneNumberFormat,
-                                inputMode: 'numeric' 
+                                inputMode: 'numeric'
                               }}
                               onChange={e => onChange(e, 'phone')}
                             />
