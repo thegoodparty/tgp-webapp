@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   width: 85%;
   margin: 0 auto;
   max-width: 500px;
+  min-width: 300px;
   padding-top: 24px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -38,15 +39,14 @@ const Wrapper = styled.div`
 
 const Close = styled.div`
   position: absolute;
-  padding: 4px;
+  padding: 4px 0 4px 4px;
   top: 0;
-  right: -20px;
+  right: 0;
   color: ${({ theme }) => theme.colors.gray4};
   cursor: pointer;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 16px;
-    right: 0;
   }
 `;
 
