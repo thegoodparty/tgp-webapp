@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const ONE_HOUR = 60 * 60 * 1000;
 
 export const dateUsHelper = orgDate => {
@@ -24,6 +26,24 @@ export const validateDate = date => {
 
   return expression.test(date)
 }
+
+export const parseDob = dob => {
+  let dobString = dob.replace(/\s/g,'').split('/');
+  const year = parseInt(dobString[2]);
+  const month =dobString[0];
+  const day = dobString[1];
+  if(year >= 1900 && year <= 2100 && month.length > 0 && day.length > 0) {
+    const originalDob = moment(dob.replace(/\s/g,''), 'M/D/YYYY');
+    const parsedDob = originalDob.format('YYYY-MM-DD')
+    if(parsedDob.includes('Invalid')) {
+      return false;
+    }
+    return parsedDob;
+  }
+  return false;
+}
+
+
 // // returns December 12, 2020 * 4 AM PST
 // export const formatDateFromUtc = orgDate => {
 //   if (!orgDate) {

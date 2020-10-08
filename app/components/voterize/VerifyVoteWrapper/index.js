@@ -16,6 +16,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Markdown from 'markdown-to-jsx';
 
 import { validateEmail } from 'helpers/emailHelper';
+import { parseDob } from 'helpers/dateHelper';
+
 
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -34,7 +36,7 @@ import HorizontalStepper from 'components/shared/Stepper';
 import {
   DobFormat,
   PhoneNumberFormat,
-} from 'components/shared/customNumberFormat';
+} from 'components/shared/customInputFormat';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
@@ -206,7 +208,7 @@ const VerifyVoteWrapper = ({
         setError({ ...error, [key]: `Email is invalid.` });
       }
     } else if (key === 'dob') {
-      if (value === '' || value.length === 8) {
+      if (value === '' || parseDob(value)) {
         setError({ ...error, [key]: null });
       } else {
         setError({ ...error, [key]: `Date of Birth is invalid.` });
@@ -232,7 +234,7 @@ const VerifyVoteWrapper = ({
       const { phone, dob } = state;
       const voterFormState = {
         ...state,
-        phone: `${phone.substr(0, 3)}-${phone.substr(3, 4)}-${phone.substr(6, 4)}`,
+        phone: parseDob(phone),
         dob: `${dob.substr(0, 4)}-${dob.substr(4, 2)}-${dob.substr(6, 2)}`,
       };
       verifyVoterCallback(voterFormState);
@@ -556,8 +558,10 @@ const VerifyVoteWrapper = ({
                                 error.phone ? error.phone : ''
                               } Format: XXX-XXX-XXXX`}
                               fullWidth
+
                               InputProps={{
                                 inputComponent: PhoneNumberFormat,
+                                inputMode: 'numeric' 
                               }}
                               onChange={e => onChange(e, 'phone')}
                             />
@@ -565,17 +569,19 @@ const VerifyVoteWrapper = ({
                           <Grid item xs={12} md={6}>
                             <Input
                               value={state.dob}
-                              label="Date of Birth (YYYY-MM-DD)"
+                              label="Date of Birth (MM/DD/YYYY)"
                               name="Date of Birth"
                               size="medium"
                               required
                               fullWidth
                               error={error.dob}
+                              inputMode='numeric' 
                               helperText={`${
                                 error.dob ? error.dob : ''
-                              } Format: YYYY-DD-MM`}
+                              } Format: MM/DD/YYYY`}
                               InputProps={{
                                 inputComponent: DobFormat,
+                                inputMode: 'numeric'
                               }}
                               onChange={e => onChange(e, 'dob')}
                             />
