@@ -24,6 +24,7 @@ const SectionDescription = styled(Body14)`
   text-align: center;
   white-space: pre-line;
   color: ${({ theme }) => theme.colors.gray4};
+  margin-bottom: 2rem;
 `;
 
 const ChallengersList = styled.div`
@@ -53,9 +54,9 @@ const ChallengersSection = ({ challengers }) => {
     <ChallengersSectionWrapper>
       <SectionTitle>Good Challengers for 2020</SectionTitle>
       <SectionDescription>
-        Good candidates of all stripes are challenging the status quo with fresh
-        ideas, not money. We’re mobilizing voters to join these candidates’
-        voting blocs to see if we can get them enough votes to win!
+        Good candidates of all stripes are challenging the status-quo with fresh
+        ideas, not money. We&apos;re mobilizing people to join together in
+        crowd-voting campaigns to see if we can get them enough votes to win!
       </SectionDescription>
 
       <ChallengersList>
