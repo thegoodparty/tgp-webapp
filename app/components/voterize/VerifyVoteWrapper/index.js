@@ -16,8 +16,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Markdown from 'markdown-to-jsx';
 
 import { validateEmail } from 'helpers/emailHelper';
-import { validateDate } from 'helpers/dateHelper';
-import { validatePhone } from 'helpers/phoneHelper';
 
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -25,6 +23,7 @@ import Hidden from '@material-ui/core/Hidden';
 import LogoCaps from 'images/logo-caps.svg';
 import { H1, H2, H3, Body, Body9 } from 'components/shared/typogrophy';
 import { states } from 'helpers/statesHelper';
+import NumberFormat from 'react-number-format';
 import {
   NextButton,
   OutlinedButton,
@@ -32,6 +31,10 @@ import {
 } from 'components/shared/buttons';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import HorizontalStepper from 'components/shared/Stepper';
+import {
+  DobFormat,
+  PhoneNumberFormat,
+} from 'components/shared/customNumberFormat';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
@@ -203,13 +206,13 @@ const VerifyVoteWrapper = ({
         setError({ ...error, [key]: `Email is invalid.` });
       }
     } else if (key === 'dob') {
-      if (value === '' || validateDate(value)) {
+      if (value === '' || value.length === 8) {
         setError({ ...error, [key]: null });
       } else {
         setError({ ...error, [key]: `Date of Birth is invalid.` });
       }
     } else if (key === 'phone') {
-      if (value === '' || validatePhone(value)) {
+      if (value === '' || value.length === 10) {
         setError({ ...error, [key]: null });
       } else {
         setError({ ...error, [key]: `Phone Number is invalid.` });
@@ -226,7 +229,13 @@ const VerifyVoteWrapper = ({
 
   const submitForm = () => {
     if (canSubmit()) {
-      verifyVoterCallback(state);
+      const { phone, dob } = state;
+      const voterFormState = {
+        ...state,
+        phone: `${phone.substr(0, 3)}-${phone.substr(3, 4)}-${phone.substr(6, 4)}`,
+        dob: `${dob.substr(0, 4)}-${dob.substr(4, 2)}-${dob.substr(6, 2)}`,
+      };
+      verifyVoterCallback(voterFormState);
     }
   };
 
@@ -547,6 +556,9 @@ const VerifyVoteWrapper = ({
                                 error.phone ? error.phone : ''
                               } Format: XXX-XXX-XXXX`}
                               fullWidth
+                              InputProps={{
+                                inputComponent: PhoneNumberFormat,
+                              }}
                               onChange={e => onChange(e, 'phone')}
                             />
                           </Grid>
@@ -562,6 +574,9 @@ const VerifyVoteWrapper = ({
                               helperText={`${
                                 error.dob ? error.dob : ''
                               } Format: YYYY-DD-MM`}
+                              InputProps={{
+                                inputComponent: DobFormat,
+                              }}
                               onChange={e => onChange(e, 'dob')}
                             />
                           </Grid>
