@@ -39,7 +39,14 @@ const PartyWrapper = ({ content, appVersion }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const events = content ? content.events : [];
+  let events = [];
+  if (content) {
+    if (content.events.length > 0) {
+      events = content.events;
+    } else {
+      events = content.pastEvents.slice(0, 2);
+    }
+  }
 
   let articles = [];
   if (content && content.faqArticles) {
@@ -64,7 +71,10 @@ const PartyWrapper = ({ content, appVersion }) => {
       {events.length > 0 && (
         <EventsWrapper>
           <Row>
-            <H3 data-cy="events">Upcoming Online Events</H3>
+            <H3 data-cy="events">
+              {content?.events?.length > 0 ? 'Upcoming' : 'Previous'} Online
+              Events
+            </H3>
             <Link to="/party/events" data-cy="events-link">
               <LearnMore>See All</LearnMore>
             </Link>
@@ -74,6 +84,7 @@ const PartyWrapper = ({ content, appVersion }) => {
           ))}
         </EventsWrapper>
       )}
+
       <TopQuestions articles={articles} />
       <AmaContainer />
       <AppVersion>
