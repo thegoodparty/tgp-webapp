@@ -18,7 +18,13 @@ const Error = styled.div`
   font-weight: 700;
 `;
 
-function GeoLocator({ currentLocationCallback, coords, geoError }) {
+function GeoLocator({
+  currentLocationCallback,
+  coords,
+  geoError,
+  isGeolocationEnabled,
+  isGeolocationAvailable,
+}) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (coords) {
@@ -26,6 +32,11 @@ function GeoLocator({ currentLocationCallback, coords, geoError }) {
       setLoading(false);
     }
   }, [coords]);
+  useEffect(() => {
+    if (!isGeolocationEnabled || !isGeolocationAvailable) {
+      setLoading(false);
+    }
+  }, [isGeolocationEnabled, isGeolocationAvailable]);
 
   return (
     <Wrapper>
@@ -35,6 +46,8 @@ function GeoLocator({ currentLocationCallback, coords, geoError }) {
         <Error>
           {geoError &&
             'Error occurred while using your Geo Location. Please enter your zip code above.'}
+          {isGeolocationEnabled && 'Your Geo Location is not enabled.'}
+          {isGeolocationAvailable && 'Your Geo Location is not available.'}
         </Error>
       )}
     </Wrapper>
@@ -45,6 +58,8 @@ GeoLocator.propTypes = {
   currentLocationCallback: PropTypes.func,
   coords: PropTypes.object,
   geoError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  isGeolocationEnabled: PropTypes.bool,
+  isGeolocationAvailable: PropTypes.bool,
 };
 
 export default geolocated({
