@@ -57,7 +57,7 @@ const StyledBody = styled(Body)`
 const RightWrapper = styled.div`
   min-height: 100vh;
   overflow-y: auto;
-  padding: 80px 24px;
+  padding: 5% 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,7 +96,7 @@ const Skip = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  padding: 24px;
+  padding: 18px 12px;
   color: ${props => props.theme.colors.blue};
   background-color: #fff;
   cursor: pointer;

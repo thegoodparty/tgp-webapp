@@ -9,7 +9,13 @@ import StepLabel from '@material-ui/core/StepLabel';
 const TgpStepper = styled(Stepper)`
   && {
     &.MuiStepper-root {
-      padding: 24px 0;
+      width: 100%;
+      margin-top: 16px;
+      padding: 0 0 12px;
+    }
+
+    .MuiTypography-body2 {
+      font-size: 10px;
     }
   }
 `;
