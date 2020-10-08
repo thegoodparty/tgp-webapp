@@ -126,6 +126,7 @@
     "react-select-material-ui": "^6.5.0",
     "react-slick": "^0.25.2",
     "react-social-login": "^3.4.7",
+    "react-sticky-el": "^2.0.5",
     "react-table": "^6.10.0",
     "recharts": "^1.8.5",
     "redux": "4.0.1",

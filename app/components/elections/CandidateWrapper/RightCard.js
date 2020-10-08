@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Sticky from 'react-sticky-el';
 import Hidden from '@material-ui/core/Hidden';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
@@ -26,14 +27,24 @@ import {
 } from 'helpers/electionsHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 
+const ScrollArea = styled.div`
+  height: calc(100% - 60px - 65px);
+  position: relative;
+  top: 0;
+`;
+
+const Inner = styled.div`
+  padding-top: 65px;
+`;
 const Wrapper = styled.div`
   border-radius: 8px;
   margin-top: 12px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 50px 30px;
-    margin-top: 65px;
     background-color: #fff;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+    max-height: calc(100% - 60px - 65px);
+    overflow: auto;
   }
 `;
 
@@ -170,135 +181,153 @@ const RightCard = ({
   const rankObj = candidateRankObj(chamberRank, candidate);
   const route = candidateRoute(candidate);
   return (
-    <Wrapper>
-      <VotesNeededWrapper>
-        <VotesNeeded candidate={candidate} />
-      </VotesNeededWrapper>
-      <SupportersProgressBar
-        peopleSoFar={likelyVoters}
-        votesNeeded={candidate.votesNeeded}
-        showSupporters={false}
-        showSuffix={false}
-        fullWidth
-      />
-      <Stats>
-        <Body14
-          className="bold600"
-          style={{ marginBottom: '12px', color: '#333' }}
-        >
-          Campaign Stats
-        </Body14>
-        <Grid container spacing={3}>
-          <Grid item xs={4} className="text-center">
-            <Body11 title={numberFormatter(likelyVoters + rankingCount)}>
-              {kFormatter(likelyVoters + rankingCount)}
-            </Body11>
-            <Gray7>likely voters</Gray7>
-          </Grid>
-          <Grid item xs={4} className="text-center">
-            <Body11 title={numberFormatter(shares)}>
-              {kFormatter(shares)}
-            </Body11>
-            <Gray7>shares</Gray7>
-          </Grid>
-          <Grid item xs={4} className="text-center">
-            <Body11
-              title={numberFormatter(
-                likelyVoters + twitterFollowers + rankingCount,
-              )}
+    <ScrollArea className="scroll-area">
+      <Sticky
+        boundaryElement=".scroll-area"
+        hideOnBoundaryHit={false}
+        dontUpdateHolderHeightWhenSticky
+      >
+        <Inner>
+          <Wrapper>
+            <VotesNeededWrapper>
+              <VotesNeeded candidate={candidate} />
+            </VotesNeededWrapper>
+            <SupportersProgressBar
+              peopleSoFar={likelyVoters}
+              votesNeeded={candidate.votesNeeded}
+              showSupporters={false}
+              showSuffix={false}
+              fullWidth
+            />
+            <Stats>
+              <Body14
+                className="bold600"
+                style={{ marginBottom: '12px', color: '#333' }}
+              >
+                Campaign Stats
+              </Body14>
+              <Grid container spacing={3}>
+                <Grid item xs={4} className="text-center">
+                  <Body11 title={numberFormatter(likelyVoters + rankingCount)}>
+                    {kFormatter(likelyVoters + rankingCount)}
+                  </Body11>
+                  <Gray7>likely voters</Gray7>
+                </Grid>
+                <Grid item xs={4} className="text-center">
+                  <Body11 title={numberFormatter(shares)}>
+                    {kFormatter(shares)}
+                  </Body11>
+                  <Gray7>shares</Gray7>
+                </Grid>
+                <Grid item xs={4} className="text-center">
+                  <Body11
+                    title={numberFormatter(
+                      likelyVoters + twitterFollowers + rankingCount,
+                    )}
+                  >
+                    {kFormatter(likelyVoters + twitterFollowers + rankingCount)}
+                  </Body11>
+                  <Gray7>supporters</Gray7>
+                </Grid>
+              </Grid>
+            </Stats>
+            <Link
+              to={rankPageGrowLink(candidate, chamberName, state, district)}
             >
-              {kFormatter(likelyVoters + twitterFollowers + rankingCount)}
-            </Body11>
-            <Gray7>supporters</Gray7>
-          </Grid>
-        </Grid>
-      </Stats>
-      <Link to={rankPageGrowLink(candidate, chamberName, state, district)}>
-        {rank ? (
-          <BlueButton fullWidth>
-            <InnerButton>
-              <Img src={ShareIconWhite} alt="share" />
-              SHARE
-            </InnerButton>
-          </BlueButton>
-        ) : (
-          <OutlinedButton active fullWidth>
-            <InnerButton>
-              <Img src={ShareIcon} alt="share" />
-              SHARE
-            </InnerButton>
-          </OutlinedButton>
-        )}
-      </Link>
-      {rank ? (
-        <RankWrapper
-          onClick={() =>
-            deleteCandidateRankingCallback(
-              { ...rankObj, chamber: chamberName },
-              user,
-            )
-          }
-        >
-          <CheckMark /> <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>
-          <CloseIcon />
-        </RankWrapper>
-      ) : (
-        <Link
-          to={rankPageJoinLink(user, candidate, chamberName, state, district)}
-          data-cy="rank-button"
-        >
-          <BlueButton fullWidth style={{ marginTop: '24px' }}>
-            <InnerButton>
-              <Img src={HeartIcon} alt="vote" className="heart" />
-              ADD YOUR VOTE
-            </InnerButton>
-          </BlueButton>
-        </Link>
-      )}
-      {hideTab ? (
-        <>
-          <br />
-          <br />
-        </>
-      ) : (
-        <>
-          {tab === 'campaign' ? (
-            <Link to={`${route}/info`}>
-              <TabText>Learn more about {name}</TabText>
+              {rank ? (
+                <BlueButton fullWidth>
+                  <InnerButton>
+                    <Img src={ShareIconWhite} alt="share" />
+                    SHARE
+                  </InnerButton>
+                </BlueButton>
+              ) : (
+                <OutlinedButton active fullWidth>
+                  <InnerButton>
+                    <Img src={ShareIcon} alt="share" />
+                    SHARE
+                  </InnerButton>
+                </OutlinedButton>
+              )}
             </Link>
-          ) : (
-            <Link to={route}>
-              <TabText>See campaign for {name}</TabText>
-            </Link>
-          )}
-        </>
-      )}
+            {rank ? (
+              <RankWrapper
+                onClick={() =>
+                  deleteCandidateRankingCallback(
+                    { ...rankObj, chamber: chamberName },
+                    user,
+                  )
+                }
+              >
+                <CheckMark /> <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>
+                <CloseIcon />
+              </RankWrapper>
+            ) : (
+              <Link
+                to={rankPageJoinLink(
+                  user,
+                  candidate,
+                  chamberName,
+                  state,
+                  district,
+                )}
+                data-cy="rank-button"
+              >
+                <BlueButton fullWidth style={{ marginTop: '24px' }}>
+                  <InnerButton>
+                    <Img src={HeartIcon} alt="vote" className="heart" />
+                    ADD YOUR VOTE
+                  </InnerButton>
+                </BlueButton>
+              </Link>
+            )}
+            {hideTab ? (
+              <>
+                <br />
+                <br />
+              </>
+            ) : (
+              <>
+                {tab === 'campaign' ? (
+                  <Link to={`${route}/info`}>
+                    <TabText>Learn more about {name}</TabText>
+                  </Link>
+                ) : (
+                  <Link to={route}>
+                    <TabText>See campaign for {name}</TabText>
+                  </Link>
+                )}
+              </>
+            )}
 
-      <Hidden smDown>
-        <Body className="bold600" style={{ marginBottom: '12px' }}>
-          Recently Joined
-        </Body>
-        <JoinedItem className="no-border">
-          <JoinedImg src={GraphIcon} alt="joined" />
-          <div>
-            {kFormatter(rankingCount)}{' '}
-            {rankingCount === 1 ? 'person' : 'people'} joined
-          </div>
-        </JoinedItem>
-        {recentlyJoined.map((joined, index) => (
-          <JoinedItem key={`${joined.name}-${index}`}>
-            <JoinedImg src={joined.avatar || JoinedIcon} alt="joined" />
-            <div>
-              <Row>
-                <StyledBody14>{joined.name}</StyledBody14>
-                <Body13>{joined.district}</Body13>
-              </Row>
-              {joined.timeAgo}
-            </div>
-          </JoinedItem>
-        ))}
-      </Hidden>
-    </Wrapper>
+            <Hidden smDown>
+              <Body className="bold600" style={{ marginBottom: '12px' }}>
+                Recently Joined
+              </Body>
+              <JoinedItem className="no-border">
+                <JoinedImg src={GraphIcon} alt="joined" />
+                <div>
+                  {kFormatter(rankingCount)}{' '}
+                  {rankingCount === 1 ? 'person' : 'people'} joined
+                </div>
+              </JoinedItem>
+              {recentlyJoined.map((joined, index) => (
+                <JoinedItem key={`${joined.name}-${index}`}>
+                  <JoinedImg src={joined.avatar || JoinedIcon} alt="joined" />
+                  <div>
+                    <Row>
+                      <StyledBody14>{joined.name}</StyledBody14>
+                      <Body13>{joined.district}</Body13>
+                    </Row>
+                    {joined.timeAgo}
+                  </div>
+                </JoinedItem>
+              ))}
+            </Hidden>
+          </Wrapper>
+        </Inner>
+      </Sticky>
+    </ScrollArea>
   );
 };
 
