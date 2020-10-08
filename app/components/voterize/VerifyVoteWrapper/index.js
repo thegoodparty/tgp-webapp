@@ -234,8 +234,8 @@ const VerifyVoteWrapper = ({
       const { phone, dob } = state;
       const voterFormState = {
         ...state,
-        phone: parseDob(phone),
-        dob: `${dob.substr(0, 4)}-${dob.substr(4, 2)}-${dob.substr(6, 2)}`,
+        phone: `${phone.substr(0, 3)}-${phone.substr(3, 3)}-${phone.substr(6, 4)}`,
+        dob: parseDob(dob),
       };
       verifyVoterCallback(voterFormState);
     }
@@ -558,7 +558,6 @@ const VerifyVoteWrapper = ({
                                 error.phone ? error.phone : ''
                               } Format: XXX-XXX-XXXX`}
                               fullWidth
-
                               InputProps={{
                                 inputComponent: PhoneNumberFormat,
                                 inputMode: 'numeric' 
@@ -575,7 +574,6 @@ const VerifyVoteWrapper = ({
                               required
                               fullWidth
                               error={error.dob}
-                              inputMode='numeric' 
                               helperText={`${
                                 error.dob ? error.dob : ''
                               } Format: MM/DD/YYYY`}
