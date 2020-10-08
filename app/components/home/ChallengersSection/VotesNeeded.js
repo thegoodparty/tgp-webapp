@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Body12 } from 'components/shared/typogrophy';
+import { Body13 } from 'components/shared/typogrophy';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 
-const PercWrapper = styled(Body12)`
+const PercWrapper = styled(Body13)`
   font-weight: 700;
   display: inline-block;
   color: ${props => props.theme.colors.green};
@@ -35,7 +35,7 @@ const VotesNeeded = ({ candidate }) => {
 
   return (
     <>
-      <PercWrapper>{neededPercent}%</PercWrapper> of{' '}
+      <PercWrapper>{neededPercent}%</PercWrapper> of {'  '}
       {numberFormatter(votesNeeded)} votes needed to win{' '}
       {chamber === 'House' && 'in'} {districtInfo}
     </>

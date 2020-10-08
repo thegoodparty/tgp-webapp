@@ -7,7 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
-import { Body11, Body13, Body14 } from 'components/shared/typogrophy';
+import { Body11, Body13, Body14, Body9 } from 'components/shared/typogrophy';
 import ShareIcon from 'images/icons/share-icon.svg';
 import ShareIconWhite from 'images/icons/share-icon-white.svg';
 import JoinedIcon from 'images/icons/joined-icon.svg';
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const VotesNeededWrapper = styled(Body11)`
+const VotesNeededWrapper = styled(Body9)`
   color: ${props => props.theme.colors.gray7};
 `;
 
