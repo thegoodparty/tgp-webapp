@@ -556,7 +556,7 @@ const VerifyVoteWrapper = ({
                               error={error.phone}
                               helperText={`${
                                 error.phone ? error.phone : ''
-                              } Format: XXX-XXX-XXXX`}
+                              } Format: (XXX) XXX-XXXX`}
                               fullWidth
                               InputProps={{
                                 inputComponent: PhoneNumberFormat,
