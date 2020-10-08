@@ -30,7 +30,7 @@ const CandidateWrapper = ({ candidate }) => {
       {campaignWebsite && campaignWebsite !== 'null' && (
         <div data-cy="campaign-website">
           <Body className="bold600" style={{ margin: '48px 0 16px' }}>
-            Campaign Website &amp; Other Info
+            Candidate Policy Positions
           </Body>
           <Body13 dangerouslySetInnerHTML={{ __html: campaignWebsite }} />
           <div className="text-center">

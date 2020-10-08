@@ -477,7 +477,7 @@ Cypress.Commands.add(
 
     cy.get('@top-row')
       .get('[data-cy=info-wrapper]')
-      .should('contain', 'Candidate Policy Positions:');
+      .should('contain', 'Other Candidate Info:');
     if (candidateInfo && candidateInfo !== 'null') {
       cy.get('@top-row')
         .get('[data-cy=info-wrapper]')
@@ -506,7 +506,7 @@ Cypress.Commands.add(
     if (campWebsite && campWebsite !== 'null') {
       cy.get('@top-row')
         .get('[data-cy=campaign-website]')
-        .should('contain', 'Campaign Website');
+        .should('contain', 'Candidate Policy Positions');
       cy.get('@top-row')
         .get('[data-cy=volunteer-article]')
         .should('contain', 'COMPILED BY THE GOOD PARTY VOLUNTEERS')

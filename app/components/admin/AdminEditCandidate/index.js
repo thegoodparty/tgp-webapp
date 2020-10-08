@@ -365,13 +365,13 @@ function AdminEditCandidate({
           <br />
           <br />
 
-          <H3>Candidate Policy Position:</H3>
+          <H3>Other Candidate Info:</H3>
           <br />
           <RtfEditor initialText={info} onChangeCallback={editInfo} />
           <br />
           <br />
 
-          <H3>Campaign Website &amp; Other Info:</H3>
+          <H3>Candidate Policy Positions:</H3>
           <br />
           <RtfEditor
             initialText={campaignWebsite}

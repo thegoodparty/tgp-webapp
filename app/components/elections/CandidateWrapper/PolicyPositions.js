@@ -51,7 +51,7 @@ const PolicyPositions = ({ candidate }) => {
   return (
     <InfoWrapper data-cy="info-wrapper">
       <Body className="bold600" style={{ marginTop: '48px' }}>
-        Candidate Policy Positions:
+        Other Candidate Info:
       </Body>
       {candidateInfo && candidateInfo !== 'null' ? (
         <div>
