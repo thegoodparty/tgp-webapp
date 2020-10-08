@@ -25,7 +25,7 @@ import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
-  padding: 48px 18px 32px;
+  padding: 24px 18px 32px;
   border-radius: 8px;
   position: relative;
   width: 85vw;

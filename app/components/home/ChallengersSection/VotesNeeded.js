@@ -36,8 +36,7 @@ const VotesNeeded = ({ candidate }) => {
   return (
     <>
       <PercWrapper>{neededPercent}%</PercWrapper> of {'  '}
-      {numberFormatter(votesNeeded)} votes needed to win{' '}
-      {chamber === 'House' && 'in'} {districtInfo}
+      {numberFormatter(votesNeeded)} votes needed to win
     </>
   );
 };
