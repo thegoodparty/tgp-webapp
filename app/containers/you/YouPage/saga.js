@@ -153,7 +153,7 @@ function* socialRegister(action) {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
-      deleteSignupRedirectCookie()
+      deleteSignupRedirectCookie();
     } else {
       yield put(push(location.pathname));
     }

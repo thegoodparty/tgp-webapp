@@ -20,7 +20,7 @@ import ShareIconWhite from 'images/icons/share-icon-white.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
 import { numberNth } from 'helpers/numberHelper';
 import HeartIcon from 'images/white-heart.svg';
-import { setSignupRedirectCookie } from '../../../helpers/cookieHelper';
+import { setSignupRedirectCookie } from 'helpers/cookieHelper';
 
 const RankWrapper = styled.div`
   display: flex;
