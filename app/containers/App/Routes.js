@@ -48,8 +48,6 @@ import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
 import ResearchPage from 'containers/shared/ResearchPage/Loadable';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import TwitterCallbackPage from 'containers/you/TwitterCallbackPage/Loadable';
-import VoterizePage from 'containers/voterize/VoterizePage/Loadable';
-import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
 
 function Routes() {
@@ -65,6 +63,11 @@ function Routes() {
         exact
         path="/elections/district/:zip/:cd"
         component={DistrictPage}
+      />
+      <Route
+        exact
+        path="/elections/candidate/:chamber/:name/:id/:tab"
+        component={CandidatePage}
       />
       <Route
         exact
@@ -127,9 +130,6 @@ function Routes() {
 
       <Route exact path="/directory" component={DirectoryPage} />
       <Route exact path="/twitter-callback" component={TwitterCallbackPage} />
-
-      <Route exact path="/voterize/register" component={VoterizePage} />
-      <Route exact path="/voterize/verify-vote" component={VerifyVotePage} />
 
       <Route component={NotFoundPage} />
     </Switch>

@@ -2,33 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import CheckIcon from '@material-ui/icons/Check';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import Button from '@material-ui/core/Button';
-import { H3, Body13, Body9, Body11 } from 'components/shared/typogrophy';
+import { H3, Body9, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
-  candidateBlocName,
-  candidateRankObj,
-  houseElectionLink,
   partyResolver,
-  presidentialElectionLink,
-  candidateRanking,
-  senateElectionLink,
   shortToLongState,
-  blocNameSuffix,
-  rankPageGrowLink,
   rankPageLink,
-  rankPageJoinLink,
 } from 'helpers/electionsHelper';
-import { numberNth } from 'helpers/numberHelper';
-import { getVotesNeededState } from 'helpers/candidatesHelper';
 import FacebookIcon from 'images/icons/facebook-icon.svg';
 import WebsiteIcon from 'images/icons/website-icon.svg';
 import TwitterIcon from 'images/icons/twitter-icon.svg';
-import ShareIcon from 'images/icons/share-icon.svg';
-import { IconButton } from '@material-ui/core';
-import SupportersProgressBar from '../SupportersProgressBar';
 
 const TopRowWrapper = styled.div`
   display: flex;
@@ -55,103 +38,17 @@ const SocialLabel = styled(Body9)`
   flex-wrap: no-wrap;
 `;
 
-const BlocCount = styled(Body13)`
-  margin-top: 20px;
-  color: ${({ theme }) => theme.colors.gray7};
-  text-align: center;
-`;
-
-const RankButton = styled(Body9)`
-  border: solid 2px ${({ theme }) => theme.colors.blue};
-  padding: 14px 24px;
-  border-radius: 30px;
-  margin-top: 20px;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.blue};
-  cursor: pointer;
-
-  &.blue {
-    background-color: ${({ theme }) => theme.colors.blue};
-    color: #fff;
-  }
-`;
-
-const RankWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 12px;
-  cursor: pointer;
-`;
-const ShareButton = styled(Link)`
-  && {
-    display: flex;
-    align-items: flex-end;
-    position: absolute;
-    right: 0;
-    color: #117cb6;
-    font-size: 17px;
-    img {
-      margin-right: 5px;
-    }
-  }
-`;
-const CheckMark = styled(CheckIcon)`
-  color: ${({ theme }) => theme.colors.lightBlue};
-  && {
-    font-size: 9px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 12px;
-    }
-  }
-`;
-
-const CloseIcon = styled(HighlightOffIcon)`
-  color: ${({ theme }) => theme.colors.gray7};
-  display: inline-block;
-  && {
-    font-size: 9px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 12px;
-    }
-  }
-`;
-
-const ChosenCand = styled(Body9)`
-  color: ${({ theme }) => theme.colors.gray7};
-  display: inline-block;
-  margin: 0 6px;
-  text-transform: uppercase;
-`;
-
-const StyledBody13 = styled(Body13)`
-  font-weight: 400;
-  padding: 0 2rem;
-  color: ${({ theme }) => theme.colors.blue};
-  &.white {
-    color: #fff;
-  }
-`;
-
 const ChamberLink = styled(Body11)`
   margin-top: 5px;
   text-transform: capitalize;
 `;
 
-const TopRow = ({
-  candidate,
-  chamberRank,
-  chamberName,
-  user,
-  deleteCandidateRankingCallback,
-}) => {
+const TopRow = ({ candidate, chamberName }) => {
   const [socialAccounts, setSocialAccounts] = useState([]);
   let isGood;
   if (candidate) {
     ({ isGood } = candidate);
   }
-  const rank = candidateRanking(chamberRank, candidate);
-  const rankObj = candidateRankObj(chamberRank, candidate);
 
   useEffect(() => {
     if (candidate) {
@@ -167,19 +64,8 @@ const TopRow = ({
     }
   }, [candidate]);
 
-  const {
-    name,
-    image,
-    party,
-    isIncumbent,
-    state,
-    district,
-    rankingCount,
-    likelyVoters,
-  } = candidate;
+  const { name, image, party, isIncumbent, state, district } = candidate;
 
-  const isUnkown = isGood === null;
-  const isGoodOrUnkwown = isGood || isUnkown;
   const getRankPageLink = () => rankPageLink(chamberName, state, district);
   const chamberLink = () => {
     if (chamberName === 'presidential') {
@@ -213,6 +99,7 @@ const TopRow = ({
         );
       }
     }
+    return <></>;
   };
 
   const socialAccountSection = () => {
@@ -241,20 +128,8 @@ const TopRow = ({
     }
   };
 
-  const blocName = candidateBlocName(candidate);
-
-  const votesNeededState = getVotesNeededState(chamberName, district, state);
   return (
     <TopRowWrapper data-cy="top-row">
-      {isGoodOrUnkwown && (
-        <ShareButton
-          to={rankPageGrowLink(candidate, chamberName, state, district)}
-          data-cy="grow-share"
-        >
-          <img src={ShareIcon} alt="more" />
-          Share
-        </ShareButton>
-      )}
       <CandidateAvatar src={image} good={isGood} name={name} size="xl" />
       <H3 style={{ marginTop: '14px' }} data-cy="top-name">
         {name}
@@ -268,72 +143,13 @@ const TopRow = ({
       </Body11>
       {chamberLink()}
       {socialAccountSection()}
-      {isGoodOrUnkwown && (
-        <>
-          <BlocCount data-cy="bloc-count">
-            <SupportersProgressBar
-              peopleSoFar={rankingCount + likelyVoters}
-              votesNeeded={candidate.votesNeeded}
-              userState={votesNeededState}
-              prefixText={`likely voters for ${blocName}`}
-              suffixText={
-                chamberName === 'presidential' ? ' (270 ELECTORS)' : ''
-              }
-            />
-          </BlocCount>
-          {rank ? (
-            <>
-              <Link
-                to={rankPageGrowLink(candidate, chamberName, state, district)}
-              >
-                <RankButton>
-                  <StyledBody13>
-                    GROW <strong>{blocName}</strong> {blocNameSuffix(blocName)}
-                  </StyledBody13>
-                </RankButton>
-              </Link>
-              <RankWrapper
-                onClick={() =>
-                  deleteCandidateRankingCallback(
-                    { ...rankObj, chamber: chamberName },
-                    user,
-                  )
-                }
-              >
-                <CheckMark /> <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>
-                <CloseIcon />
-              </RankWrapper>
-            </>
-          ) : (
-            <RankButton className="blue">
-              <Link
-                to={rankPageJoinLink(
-                  user,
-                  candidate,
-                  chamberName,
-                  state,
-                  district,
-                )}
-                data-cy="rank-button"
-              >
-                <StyledBody13 className="white">
-                  JOIN {blocName} {blocNameSuffix(blocName)}
-                </StyledBody13>
-              </Link>
-            </RankButton>
-          )}
-        </>
-      )}
     </TopRowWrapper>
   );
 };
 
 TopRow.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  chamberRank: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   chamberName: PropTypes.string,
-  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  deleteCandidateRankingCallback: PropTypes.func,
 };
 
 export default TopRow;

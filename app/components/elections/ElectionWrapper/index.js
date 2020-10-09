@@ -8,7 +8,12 @@ import LoadingAnimation from 'components/shared/LoadingAnimation';
 import { Body, H1 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
+import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
 import articlesHelper from 'helpers/articlesHelper';
+import {
+  deleteSignupRedirectCookie,
+  getSignupRedirectCookie,
+} from 'helpers/cookieHelper';
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
 import BottomPopup from '../../shared/BottomPopup';
@@ -46,16 +51,30 @@ const ElectionWrapper = ({
   postRegisterJoin,
   incumbent,
 }) => {
+
   const [showFilters, setShowFilters] = useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showVoterVerify, setShowVoterVerify] = useState(false);
   const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
   const [isExternalLink, setIsExternalLink] = useState(false);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [candidateRanking, setCandidateRanking] = useState(null);
+  const [showShareModalStepper, setShowShareModalStepper] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect && candidates.length > 0) {
+      const { candidateId, rank } = cookieRedirect.options;
+      const candidate = candidates?.find(item => item.id === candidateId);
+      setShowVoterVerify(true);
+      setSelectedCandidate(candidate);
+      setCandidateRanking(rank);
+      setShowShareModal(false);
+      deleteSignupRedirectCookie();
+    }
   }, []);
-
   useEffect(() => {
     if (blocCandidate) {
       setIsExternalLink(true);
@@ -63,13 +82,25 @@ const ElectionWrapper = ({
       setShowChoiceModal(true);
     }
   }, [blocCandidate]);
-
+  useEffect(() => {
+    const { voteStatus } = user;
+    if (voteStatus === 'verified' && showVoterVerify) {
+      selectCandidate(selectedCandidate, candidateRanking);
+      setChoiceModalCandidate(selectedCandidate);
+      setShowChoiceModal(true);
+      setShowVoterVerify(false);
+    }
+  }, [user]);
   useEffect(() => {
     if (joinCandidate) {
       const rank = findNextRank(joinCandidate);
-      selectCandidate(joinCandidate, rank);
-      setChoiceModalCandidate(joinCandidate);
-      setShowChoiceModal(true);
+      if (user?.voteStatus !== 'verified') {
+        setShowVoterVerify(true);
+      } else {
+        selectCandidate(joinCandidate, rank);
+      }
+      setSelectedCandidate(joinCandidate);
+      setCandidateRanking(rank);
       clearJoinCandidateCallback();
     }
   }, [joinCandidate]);
@@ -127,12 +158,20 @@ const ElectionWrapper = ({
     if (candidate.id < 0) {
       candidate.ranking = candidates.goodEmptyBloc;
     }
-    if (user) {
+
+    if (user?.voteStatus === 'verified') {
       setChoiceModalCandidate(candidate);
       setShowChoiceModal(true);
       setShowShareModal(false);
+      selectCandidate(candidate, rank);
+    } else if (user) {
+      setShowVoterVerify(true);
+      setSelectedCandidate(candidate);
+      setCandidateRanking(rank);
+      setShowShareModal(false);
+    } else {
+      selectCandidate(candidate, rank);
     }
-    selectCandidate(candidate, rank);
   };
 
   const handleDeselectCandidate = rank => {
@@ -162,6 +201,7 @@ const ElectionWrapper = ({
   const onShareChoiceModal = () => {
     setShowChoiceModal(false);
     setShowShareModal(true);
+    setShowShareModalStepper(true);
     refreshCountCallback(state, districtNumber);
   };
 
@@ -204,6 +244,16 @@ const ElectionWrapper = ({
       ? ' (270 ELECTORS)'
       : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
 
+  const skipVerifyVoterCallback = () => {
+    openJoinModal();
+  };
+
+  const openJoinModal = () => {
+    selectCandidate(selectedCandidate, candidateRanking);
+    setChoiceModalCandidate(selectedCandidate);
+    setShowChoiceModal(true);
+    setShowVoterVerify(false);
+  };
   return (
     <PageWrapper>
       {candidates ? (
@@ -283,10 +333,19 @@ const ElectionWrapper = ({
         open={showShareModal}
         closeCallback={onCloseShareModal}
         candidate={choiceModalCandidate}
+        showShareModalStepper={showShareModalStepper}
         user={user}
+        userState={candidates.userState}
+        chamberCount={
+          choiceModalCandidate.ranking + choiceModalCandidate.likelyVoters
+        }
         chamber={chamber}
         isExternalLink={isExternalLink}
+        votesNeeded={votesNeeded}
       />
+      {showVoterVerify && (
+        <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
+      )}
     </PageWrapper>
   );
 };

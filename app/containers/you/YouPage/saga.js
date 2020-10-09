@@ -9,6 +9,7 @@ import {
   setCookie,
   setUserCookie,
   getSignupRedirectCookie,
+  deleteSignupRedirectCookie,
 } from 'helpers/cookieHelper';
 import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
 import selectCandidate from 'containers/elections/CandidatePage/selectors';
@@ -152,6 +153,7 @@ function* socialRegister(action) {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
+      deleteSignupRedirectCookie();
     } else {
       yield put(push(location.pathname));
     }
@@ -262,6 +264,7 @@ function* confirmEmail(action) {
       const cookieRedirect = getSignupRedirectCookie();
       if (cookieRedirect) {
         yield put(push(cookieRedirect.route));
+        deleteSignupRedirectCookie();
       } else {
         yield put(push('/you'));
       }
@@ -480,6 +483,7 @@ function* socialLogin(action) {
 
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
+      deleteSignupRedirectCookie();
     } else {
       yield put(push('/you'));
     }
@@ -585,7 +589,7 @@ function* saveUserRanking(action) {
     const { ranking } = yield call(requestHelper, api, payload);
     yield put(actions.userRankingActionSuccess(ranking));
 
-    yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
+    yield put(snackbarActions.showSnakbarAction('Your choice was saved'));
 
     if (chamber === 'presidential') {
       yield put(districtActions.loadAllPresidentialAction());
@@ -800,6 +804,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
+      deleteSignupRedirectCookie();
     } else {
       yield put(push('/you'));
     }

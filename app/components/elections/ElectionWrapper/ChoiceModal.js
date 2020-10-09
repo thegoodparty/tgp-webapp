@@ -4,44 +4,50 @@ import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
 import { Link } from 'react-router-dom';
-
-import SupportersImg from 'images/icons/supporters.svg';
-import LogoCapsImg from 'images/logo-caps.svg';
-import { Body, H1, Body13, H3 } from 'components/shared/typogrophy';
+import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
+// import SupportersImg from 'images/icons/supporters.svg';
+// import LogoCapsImg from 'images/logo-caps.svg';
+import { Body, Body13, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { candidateBlocName, partyResolver } from 'helpers/electionsHelper';
+import {
+  candidateBlocName,
+  partyResolver,
+  blocNameSuffix,
+} from 'helpers/electionsHelper';
+import { getCandidateChamberDistrict } from 'helpers/candidatesHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import { BlueButton } from '../../shared/buttons';
-import { blocNameSuffix } from '../../../helpers/electionsHelper';
+import Stepper from '../../shared/Stepper';
 
 const Wrapper = styled.div`
   background-color: #fff;
-  padding: 48px 18px 32px;
+  padding: 24px 0 32px;
   border-radius: 8px;
   position: relative;
-  width: 85vw;
+  width: 85%;
   margin: 0 auto;
   max-width: 500px;
+  min-width: 300px;
   padding-top: 24px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 24px 24px 32px;
+    width: 85vw;
   }
 `;
 
 const Close = styled.div`
   position: absolute;
-  padding: 16px;
+  padding: 4px 0 4px 4px;
   top: 0;
   right: 0;
   color: ${({ theme }) => theme.colors.gray4};
   cursor: pointer;
-`;
 
-const Logo = styled.img`
-  margin-bottom: 50px;
-  min-width: 170px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 16px;
+  }
 `;
 
 const CenterBar = styled(Body)`
@@ -49,15 +55,8 @@ const CenterBar = styled(Body)`
   width: 100%;
 `;
 
-const TitleH1 = styled(H1)`
-  text-align: center;
-  margin-top: 8px;
-  margin-bottom: 36px;
-`;
-
 const TitleH3 = styled(H3)`
   text-align: center;
-  margin-top: 18px;
 `;
 
 const SubTitle = styled(Body13)`
@@ -74,55 +73,34 @@ const AvatarWrapper = styled(Body)`
   align-items: center;
 `;
 
-const SupportersRow = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  position: relative;
-  width: 100%;
-  min-height: 40px;
-`;
-
-const SupportersCount = styled(H1)`
-  color: ${({ theme }) => theme.colors.gray7};
-  position: absolute;
-  width: 100%;
+const Spread = styled(Body13)`
   text-align: center;
-  top: -5px;
-  animation-fill-mode: forwards;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
 
-  @keyframes animate-in {
-    0% {
-      opacity: 0;
-      top: -25px;
-    }
-    100% {
-      opacity: 1;
-      top: -5px;
-    }
-  }
+const StyledBody = styled(Body)`
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
 
-  @keyframes animate-out {
-    0% {
-      opacity: 1;
-      top: -5px;
-    }
-    100% {
-      opacity: 0;
-      top: 15px;
+  span.big {
+    font-size: 16px;
+    font-weight: bold;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 28px;
     }
   }
 `;
 
-const SupportersIcon = styled.img`
-  height: auto;
-  width: 36px;
-  margin-right: 8px;
-`;
-
-const SuppoetersBody13 = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray6};
-  margin-top: 5px;
+const VotesNeededWrapper = styled(Body11)`
+  margin-top: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.gray7};
 `;
 
 const Footer = styled(Body13)`
@@ -131,19 +109,18 @@ const Footer = styled(Body13)`
   text-align: center;
 `;
 
+const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
+
 const ChoiceModal = ({
   candidate,
   open,
   votesNeeded,
-  user,
   chamberCount,
-  animateCount,
   userState,
   suffixText,
   closeCallback,
   shareCallback,
   joinCallback,
-  chamber,
   state,
   district,
   isExternalLink,
@@ -152,7 +129,7 @@ const ChoiceModal = ({
     return <> </>;
   }
 
-  let { isGood } = candidate;
+  let { isGood, name } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
@@ -164,10 +141,9 @@ const ChoiceModal = ({
   } else {
     displayChamber = `HOUSE OF REPRESENTATIVES FROM ${state?.toUpperCase()}-${district}`;
   }
-
+  candidate.votesNeeded = votesNeeded;
   const blocName = candidateBlocName(candidate);
   const blocSuffix = blocNameSuffix(blocName);
-
   return (
     <Dialog
       onClose={closeCallback}
@@ -178,24 +154,26 @@ const ChoiceModal = ({
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        <div className="text-center">
-          {' '}
-          <Logo src={LogoCapsImg} />
-        </div>
-
+        {/*<div className="text-center">*/}
+        {/*  {' '}*/}
+        {/*  <Logo src={LogoCapsImg} />*/}
+        {/*</div>*/}
+        {!isExternalLink && (
+          <Stepper steps={defaultRegisterSteps} activeStep={2} />
+        )}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
-            size="xl"
+            size="responsive"
             src={candidate.image}
             name={candidate.name}
           />
 
           {isExternalLink ? (
             <>
-              <TitleH1 style={{ marginBottom: '12px' }}>
+              <TitleH3 style={{ marginBottom: '12px' }}>
                 Want to try and elect {candidate.name}?
-              </TitleH1>
+              </TitleH3>
               {candidate.chamber === 'presidential' || !candidate.chamber ? (
                 <SubTitle>
                   {candidate.party === 'W' ? '' : 'AS A'}{' '}
@@ -215,51 +193,28 @@ const ChoiceModal = ({
             </>
           ) : (
             <>
-              <TitleH3>You're now part of</TitleH3>
-              <TitleH1>
-                {blocName} {blocSuffix}
-              </TitleH1>
+              <Spread>Tell others about this campaign!</Spread>
+              <TitleH3>
+                {name}
+                <br />
+                for {getCandidateChamberDistrict(candidate)}
+              </TitleH3>
             </>
           )}
-
-          <SupportersRow>
-            {animateCount ? (
-              <>
-                <SupportersCount
-                  style={{
-                    animation: `animate-out 1s ease-in-out forwards`,
-                  }}
-                >
-                  <SupportersIcon src={SupportersImg} alt="tgp" />
-                  {numberFormatter(chamberCount)}{' '}
-                </SupportersCount>
-                <SupportersCount
-                  style={{
-                    animation: `animate-in 1s ease-in-out forwards`,
-                  }}
-                >
-                  <SupportersIcon src={SupportersImg} alt="tgp" />
-                  {numberFormatter(chamberCount + 1)}{' '}
-                </SupportersCount>
-              </>
-            ) : (
-              <SupportersCount>
-                <SupportersIcon src={SupportersImg} alt="tgp" />
-                {numberFormatter(chamberCount || 0)}{' '}
-              </SupportersCount>
-            )}
-          </SupportersRow>
-          <SuppoetersBody13>
-            likely voters for <strong>{blocName}</strong>{' '}
-            {state ? `in ${state.toUpperCase()}` : ''}
-            {district ? `-${district}` : ''}
-          </SuppoetersBody13>
         </AvatarWrapper>
+        <StyledBody className="mb-20">
+          <span className="big">{numberFormatter(chamberCount)}</span>&nbsp;
+          people and growing!
+        </StyledBody>
+        <VotesNeededWrapper>
+          <VotesNeeded candidate={candidate} />
+        </VotesNeededWrapper>
         <CenterBar>
           <SupportersProgressBar
             votesNeeded={votesNeeded}
             peopleSoFar={chamberCount}
             showSupporters={false}
+            showSuffix={false}
             userState={userState}
             suffixText={suffixText}
           />

@@ -19,7 +19,7 @@ import SocialButton from './SocialButton';
 
 import { H1, H2, Body13, Body11 } from '../../shared/typogrophy';
 import { OutlinedButton } from '../../shared/buttons';
-import FacebookButton from './FacebookButton';
+import Stepper from '../../shared/Stepper';
 import TwitterButton from './TwitterButton';
 
 const Heart = styled.img`
@@ -76,31 +76,38 @@ const StyledBody13 = styled(Body13)`
   font-weight: 500;
 `;
 
+const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
+
 function SocialRegisterWrapper({
   socialLoginCallback,
   socialLoginFailureCallback,
   blocName,
+  candidateName,
   twitterButtonCallback,
 }) {
+  // const registerSteps = blocName
+  //   ? defaultRegisterSteps
+  //   : defaultRegisterSteps.slice(0, 2);
+
   return (
     <QueryModalContainer>
+      <Stepper steps={defaultRegisterSteps} />
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <Heart src={heartImg} />
             {blocName ? (
               <>
-                <H1 data-cy="title">Join {blocName}</H1>
+                <H1 data-cy="title">Add Your Vote!</H1>
                 <StyledH2 data-cy="description">
-                  Sign-up to be counted, and we&apos;ll notify you if we can
-                  win!
+                  Sign up to join this crowd-voting campaign for {candidateName}
                 </StyledH2>
               </>
             ) : (
               <>
                 <H1 data-cy="title">Join The Good Party</H1>
                 <StyledH2 data-cy="description">
-                  Have your choices count and let&apos;s fix politics for Good!
+                  Check your voter registration and get ready to vote and fix politics for Good!
                 </StyledH2>
               </>
             )}
@@ -174,6 +181,7 @@ SocialRegisterWrapper.propTypes = {
   socialLoginFailureCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
   blocName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  candidateName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export default SocialRegisterWrapper;

@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
-import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
-import LogoCapsImg from 'images/logo-caps.svg';
-import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
+import { Body, H3, Body11, H2 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
+import Stepper from 'components/shared/Stepper';
+import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
+import SupportersProgressBar from 'components/elections/SupportersProgressBar';
+import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
 import {
-  blocNameSuffix,
-  candidateBlocLink,
-  candidateBlocName,
-} from 'helpers/electionsHelper';
-import {
+  getCandidateChamberDistrict,
   getCandidateTitle,
 } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
@@ -24,28 +21,42 @@ import CopyPasteIcon from 'images/icons/copy-paste.svg';
 import LinkIcon from 'images/icons/link-icon.svg';
 import SmsIcon from 'images/icons/sms-icon.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
+import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   background-color: #fff;
-  padding: 48px 18px 32px;
+  padding: 24px 0 32px;
   border-radius: 8px;
   position: relative;
-  width: 85vw;
+  width: 85%;
   margin: 0 auto;
   max-width: 500px;
+  min-width: 300px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 24px 24px 32px;
+    width: 85vw;
+  }
+`;
+
+const CenterBar = styled(Body)`
+  margin-bottom: 12px;
+  width: 100%;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-bottom: 32px;
   }
 `;
 
 const Close = styled.div`
   position: absolute;
-  padding: 16px;
+  padding: 4px 0 4px 4px;
   top: 0;
   right: 0;
   color: ${({ theme }) => theme.colors.gray4};
   cursor: pointer;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 16px;
+  }
 `;
 
 const AvatarWrapper = styled(Body)`
@@ -56,10 +67,10 @@ const AvatarWrapper = styled(Body)`
 `;
 
 const ShareThisWrapper = styled.div`
-  padding: 36px 0;
+  padding: 16px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 36px 60px;
+    padding: 16px 0 30px;
   }
 
   .st-inline-share-buttons {
@@ -121,11 +132,6 @@ const IconItem = styled.div`
   justify-content: center;
 `;
 
-const Logo = styled.img`
-  margin-bottom: 50px;
-  min-width: 170px;
-`;
-
 const IconWrapper = styled.div`
   height: 56px;
   width: 56px;
@@ -154,6 +160,56 @@ const IconLabel = styled.div`
   margin-top: 12px;
 `;
 
+const TitleH3 = styled(H3)`
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  color: ${({ theme }) => theme.colors.gray7};
+  span.big {
+    font-size: 16px;
+    font-weight: bold;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 28px;
+    }
+  }
+  &.mb-20 {
+    margin-bottom: 20px;
+  }
+`;
+const Spread = styled(Body)`
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+const StyledBody = styled(Body)`
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
+
+  span.big {
+    font-size: 23px;
+    font-weight: bold;
+
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      font-size: 28px;
+    }
+  }
+`;
+
+const VotesNeededWrapper = styled(Body11)`
+  margin-top: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const TitleH2 = styled(H2)`
+  text-align: center;
+`;
+
 const CopiedWrapper = styled.div`
   margin-top: 36px;
   display: flex;
@@ -167,6 +223,11 @@ const CopiedWrapper = styled.div`
 const Copied = styled(Body11)`
   margin-left: 6px;
 `;
+const Gray6 = styled.span`
+  color: ${({ theme }) => theme.colors.gray6};
+`;
+
+const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
 
 const ShareModal = ({
   candidate,
@@ -175,13 +236,17 @@ const ShareModal = ({
   chamber,
   isExternalLink,
   closeCallback,
+  showShareModalStepper,
+  votesNeeded,
+  chamberCount,
+  userState,
 }) => {
   const [copied, setCopied] = useState(false);
   if (!candidate) {
     return <> </>;
   }
 
-  let { isGood } = candidate;
+  let { isGood, name } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
@@ -218,56 +283,68 @@ const ShareModal = ({
       })
       .then(() => console.log('Successful share'));
   };
-
+  candidate.votesNeeded = votesNeeded;
   return (
     <Dialog onClose={closeCallback} open={open}>
       <Wrapper>
         <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
         </Close>
-        <div className="text-center">
-          {' '}
-          <Logo src={LogoCapsImg} />
-        </div>
-
+        {/*<div className="text-center">*/}
+        {/*  {' '}*/}
+        {/*  <Logo src={LogoCapsImg} />*/}
+        {/*</div>*/}
+        {showShareModalStepper && (
+          <Stepper steps={defaultRegisterSteps} activeStep={2} />
+        )}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
-            size="xl"
+            size="responsive"
             src={candidate.image}
             name={candidate.name}
           />
           {isExternalLink ? (
             <>
-              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">
+              <TitleH3>
                 {' '}
                 Congrats!{' '}
                 <span role="img" aria-label="party">
                   🎉
                 </span>{' '}
                 You’ve joined
-              </H3>
-              <H1
-                style={{ marginTop: '10px', marginBottom: '16px' }}
-                data-cy="share-modal-title"
-              >
-                {blocName} {blocNameSuffix(blocName)}
-              </H1>
+              </TitleH3>
+              <TitleH2>{name} Campaign!</TitleH2>
             </>
           ) : (
             <>
-              <H3 style={{ marginTop: '22px' }} data-cy="share-modal-subtitle">
-                Please help grow{' '}
-              </H3>
-              <H1
-                style={{ marginTop: '10px', marginBottom: '16px' }}
-                data-cy="share-modal-title"
-              >
-                {blocName} {blocNameSuffix(blocName)}
-              </H1>
+              <Spread>Tell others about this campaign!</Spread>
+              <TitleH2>
+                {name}
+                <br />
+                for {getCandidateChamberDistrict(candidate)}
+              </TitleH2>
             </>
           )}
-          <Body data-cy="share-modal-description">Tell some friends...</Body>
+          <StyledBody className="mb-20">
+            <span className="big">{numberFormatter(chamberCount)}</span>&nbsp;
+            people and growing!
+          </StyledBody>
+          <VotesNeededWrapper>
+            <VotesNeeded candidate={candidate} />
+          </VotesNeededWrapper>
+          <CenterBar>
+            <SupportersProgressBar
+              votesNeeded={votesNeeded}
+              peopleSoFar={chamberCount}
+              showSupporters={false}
+              showSuffix={false}
+              userState={userState}
+            />
+          </CenterBar>
+          <Body data-cy="share-modal-description">
+            <Gray6>Please tell some friends!</Gray6>
+          </Body>
         </AvatarWrapper>
         <ShareThisWrapper data-cy="social-share">
           <InlineShareButtons
@@ -355,6 +432,10 @@ ShareModal.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamber: PropTypes.string,
   isExternalLink: PropTypes.bool,
+  chamberCount: PropTypes.number,
+  votesNeeded: PropTypes.number,
+  userState: PropTypes.string,
+  showShareModalStepper: PropTypes.bool,
 };
 
 export default ShareModal;

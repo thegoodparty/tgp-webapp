@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
 import styled from 'styled-components';
@@ -9,8 +10,10 @@ import ShareImg from 'images/share.png';
 import { Body19, Subtitle } from 'components/shared/typogrophy';
 
 const TellMeMoreSectionWrapper = styled.div`
-  margin-top: 10rem;
-  margin-bottom: 8rem;
+  margin: 24px 0;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 10rem 0 4rem;
+  }
 `;
 
 const SectionTitle = styled(Subtitle)`
@@ -27,6 +30,15 @@ const RightCol = styled(Grid)`
 const LeftCol = styled(Grid)`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-right: 5rem;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  text-align: center;
+  padding: 24px;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0;
   }
 `;
 
@@ -81,20 +93,26 @@ const EamilSubmitButton = styled(Button)`
     }
   }
 `;
-const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
+const TellMeMoreSection = ({ subscribeEmailCallback }) => {
   const [email, setEmail] = useState('');
+  const onSubmitForm = e => e.preventDefault();
+  const submitForm = () => {
+    subscribeEmailCallback(email);
+    setEmail('');
+  };
   return (
     <TellMeMoreSectionWrapper>
       <Grid container>
-        <LeftCol item xs={12} md={5}>
-          <LazyLoadImage
-            src={ShareImg}
-            alt="share-tgp"
-            width="100%"
-            height="100%"
-          />
+        <LeftCol item xs={12} sm={4} md={5}>
+          <ImageWrapper>
+            <LazyLoadImage
+              src={ShareImg}
+              alt="share-tgp"
+              className="faq-image"
+            />
+          </ImageWrapper>
         </LeftCol>
-        <RightCol item xs={12} md={7}>
+        <RightCol item xs={12} sm={8} md={7}>
           <SectionTitle>
             The Good Party is here to make votes matter more than money
           </SectionTitle>
@@ -103,32 +121,38 @@ const TellMeMoreSection = ({ subscribeEmailCallback, ...props }) => {
             with good ideas to gather supporters and to turn them into the votes
             needed to win.
           </SectionDescription>
-          <TellMeMoreForm container>
-            <Grid item xs={8}>
-              <EmailInput
-                placeholder="your@email.org"
-                type="email"
-                name="EMAIL"
-                class="required email"
-                value={email}
-                onChange={ev => setEmail(ev.target.value)}
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <EamilSubmitButton
-                type="submit"
-                name="subscribe"
-                onClick={() => subscribeEmailCallback(email)}
-              >
-                Tell Me More
-              </EamilSubmitButton>
-            </Grid>
-          </TellMeMoreForm>
+          <form noValidate onSubmit={onSubmitForm}>
+            <TellMeMoreForm container>
+              <Grid item xs={8}>
+                <EmailInput
+                  placeholder="your@email.org"
+                  type="email"
+                  name="EMAIL"
+                  className="required email"
+                  value={email}
+                  onChange={ev => setEmail(ev.target.value)}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <EamilSubmitButton
+                  type="submit"
+                  name="subscribe"
+                  onClick={submitForm}
+                >
+                  Tell Me More
+                </EamilSubmitButton>
+              </Grid>
+            </TellMeMoreForm>
+          </form>
           {/* </form> */}
         </RightCol>
       </Grid>
     </TellMeMoreSectionWrapper>
   );
+};
+
+TellMeMoreSection.propTypes = {
+  subscribeEmailCallback: PropTypes.func,
 };
 
 export default TellMeMoreSection;

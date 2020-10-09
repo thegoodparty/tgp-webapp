@@ -4,10 +4,55 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
+function verifyVoterAction(voter) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.VERIFY_VOTER,
+    voter,
   };
 }
+
+function verifyVoterActionSuccess(voteStatus) {
+  return {
+    type: types.VERIFY_VOTER_SUCCESS,
+    voteStatus,
+  };
+}
+
+function verifyVoterActionError(error) {
+  return {
+    type: types.VERIFY_VOTER_ERROR,
+    error,
+  };
+}
+
+function registerVoterAction(voter) {
+  return {
+    type: types.REGISTER_VOTER,
+    voter,
+  };
+}
+
+function registerVoterActionSuccess(vaResponse) {
+  return {
+    type: types.REGISTER_VOTER_SUCCESS,
+    vaResponse,
+  };
+}
+
+function registerVoterActionError(error) {
+  return {
+    type: types.REGISTER_VOTER_ERROR,
+    error,
+  };
+}
+
+export default {
+  verifyVoterAction,
+  verifyVoterActionSuccess,
+  verifyVoterActionError,
+  registerVoterAction,
+  registerVoterActionSuccess,
+  registerVoterActionError,
+};

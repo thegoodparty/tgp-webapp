@@ -136,16 +136,9 @@ function ZipFinderWrapper({
     setFindGeoLocation(true);
   };
 
-  const wrapper = ({ children }) =>
-    cardDisplay ? (
-      <div>{children}</div>
-    ) : (
-      <PageWrapper hideMobileNav={user ? false : true}>
-        <ContentWrapper>{children}</ContentWrapper>
-      </PageWrapper>
-    );
-  return (
-    <wrapper>
+
+  const InnerContent = (
+    <>
       <StyledH2 data-cy="title" className={cardDisplay && 'smaller'}>
         Enter your zip code to see your Federal elections
       </StyledH2>
@@ -194,7 +187,15 @@ function ZipFinderWrapper({
           <Next className={valid ? 'active' : ''}>SUBMIT</Next>
         </NextButton>
       </ButtonWrapper>
-    </wrapper>
+    </>
+  );
+  if (cardDisplay) {
+    return <div>{InnerContent}</div>;
+  }
+  return (
+    <PageWrapper hideMobileNav={!!user}>
+      <ContentWrapper>{InnerContent}</ContentWrapper>
+    </PageWrapper>
   );
 }
 

@@ -13,14 +13,14 @@ import {
 } from 'helpers/candidatesHelper';
 
 const FollowWrapper = styled.div`
-  margin-top: 24px;
+  margin-top: 64px;
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
 const FundsWrapper = styled.div`
-  margin-top: 24px;
+  margin: 32px 0;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

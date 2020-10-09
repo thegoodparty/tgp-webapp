@@ -384,7 +384,7 @@ export const getElectionLink = zip => {
     electionLink = `/intro/zip-finder`;
   }
   return electionLink;
-}
+};
 
 export const rankPageGrowLink = (candidate, chamberName, state, district) => {
   if (!candidate) {
@@ -411,8 +411,15 @@ export const rankPageLink = (chamberName, state, district) => {
   return houseElectionLink(state, district);
 };
 
-export const rankPageJoinLink = (user, candidate, chamberName, state, district) => {
-  if (user) {
+export const rankPageJoinLink = (
+  user,
+  candidate,
+  chamberName,
+  state,
+  district,
+  allowGuest = false,
+) => {
+  if (user || allowGuest) {
     const query = `?join=${candidate.id}&name=${encodeURI(candidate.name)}`;
     if (chamberName === 'presidential') {
       return presidentialElectionLink() + query;

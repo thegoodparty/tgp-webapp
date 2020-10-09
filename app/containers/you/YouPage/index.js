@@ -56,12 +56,10 @@ export function YouPage({
 
   const { user, crewPreview, crewCount, ranking } = userState;
   const { houseCandidates, senateCandidates } = districtState;
-
   useEffect(() => {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       dispatch(push(cookieRedirect.route));
-      deleteSignupRedirectCookie();
     }
     if (user && !crewPreview) {
       dispatch(userActions.crewAction(true));

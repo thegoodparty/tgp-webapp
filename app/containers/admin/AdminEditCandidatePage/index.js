@@ -56,7 +56,7 @@ export function AdminEditCandidatePage({
     chamber,
     saveCandidateCallback,
     uploadImageCallback,
-    loading
+    loading,
   };
 
   return (
@@ -93,7 +93,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
-    saveCandidateCallback: (updatedFields, candidate) => {
+    saveCandidateCallback: (updatedFields, candidate, updates) => {
       const { id, chamber, isIncumbent } = candidate;
       dispatch(
         adminActions.updateCandidate(
@@ -102,6 +102,7 @@ function mapDispatchToProps(dispatch, ownProps) {
           chamber ? chamber.toLowerCase() : 'presidential',
           isIncumbent,
           true,
+          updates,
         ),
       );
     },

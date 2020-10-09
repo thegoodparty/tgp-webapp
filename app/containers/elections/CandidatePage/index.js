@@ -7,10 +7,8 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-react-router';
 
 import CandidateWrapper from 'components/elections/CandidateWrapper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
@@ -18,22 +16,28 @@ import { candidateCalculatedFields } from 'helpers/electionsHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+
+import makeSelectUser, {
+  makeSelectRanking,
+} from 'containers/you/YouPage/selectors';
+import userActions from 'containers/you/YouPage/actions';
+import TgpHelmet from 'components/shared/TgpHelmet';
+import { makeSelectContent } from 'containers/App/selectors';
 import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
-import makeSelectUser, { makeSelectRanking } from '../../you/YouPage/selectors';
-import userActions from '../../you/YouPage/actions';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
 
 export function CandidatePage({
   id,
   chamber,
+  tab,
   candidateState,
   dispatch,
   userState,
   rankingObj,
   deleteCandidateRankingCallback,
+  content,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
@@ -74,6 +78,8 @@ export function CandidatePage({
     dispatch(userActions.guestRankingAction());
   }
 
+  const routeTab = tab === 'info' ? 'info' : 'campaign';
+
   const childProps = {
     candidate: candidateWithFields,
     chamberRank: rankingObj[chamber],
@@ -81,6 +87,8 @@ export function CandidatePage({
     incumbent,
     user,
     deleteCandidateRankingCallback,
+    routeTab,
+    content,
   };
 
   const emptyCandidate = () =>
@@ -106,16 +114,19 @@ CandidatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
+  tab: PropTypes.string,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
   rankingObj: PropTypes.object,
   deleteCandidateRankingCallback: PropTypes.func,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 const mapStateToProps = createStructuredSelector({
   candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
   rankingObj: makeSelectRanking(),
+  content: makeSelectContent(),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -123,6 +134,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     dispatch,
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
+    tab: ownProps.match.params.tab,
     deleteCandidateRankingCallback: (rank, user) => {
       if (user) {
         dispatch(userActions.deleteCandidateRankingAction(rank.id));

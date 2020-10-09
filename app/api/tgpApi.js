@@ -275,5 +275,15 @@ const api = {
     url: `${base}subscribe/email`,
     method: 'GET',
   },
+  verifyVote: {
+    url: `${base}voterize/verify-vote`,
+    method: 'GET',
+    withAuth: true,
+  },
+  registerVote: {
+    url: `${base}voterize/register-vote`,
+    method: 'GET',
+    withAuth: true,
+  },
 };
 export default api;

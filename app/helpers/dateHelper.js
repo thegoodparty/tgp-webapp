@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const ONE_HOUR = 60 * 60 * 1000;
 
 export const dateUsHelper = orgDate => {
@@ -18,6 +20,25 @@ export const dateUsHelper = orgDate => {
     return orgDate;
   }
 };
+
+export const validateDate = date => {
+  const expression = /^([0-9]{4})\-([0-9]{2})\-([0-9]{2})$/;
+
+  return expression.test(date)
+}
+
+export const parseDob = dob => {
+  if(dob.length === 8) {
+    const dobString = `${dob.substr(4, 4)}-${dob.substr(0, 2)}-${dob.substr(2, 2)}`
+    const dobObj = moment(dobString, 'YYYY-MM-DD');
+    if(!dobObj.isValid() || dobObj.year() < 1900 || dobObj.year() >= 2100) {
+      return false;
+    }
+    return dobString;
+  }
+  return false;
+}
+
 
 // // returns December 12, 2020 * 4 AM PST
 // export const formatDateFromUtc = orgDate => {

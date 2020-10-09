@@ -37,9 +37,9 @@ function PageWrapper({
   hideMobileNav,
   style = {},
   topBanner,
-  isHome = false,
+  isFullWidth = false,
 }) {
-  const WrapperComp = isHome ? HomeWrapper : Wrapper;
+  const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
   return (
     <MainWrapper className={white ? 'white' : ''} style={style}>
       {!hideNav && <Nav hideMobileNav={hideMobileNav} />}
@@ -54,6 +54,7 @@ function PageWrapper({
 }
 
 PageWrapper.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   hideNav: PropTypes.bool,
   white: PropTypes.bool,
   wrapperStyles: PropTypes.object,
@@ -61,7 +62,7 @@ PageWrapper.propTypes = {
   topBanner: PropTypes.object,
   style: PropTypes.object,
   hideMobileNav: PropTypes.bool,
-  ishome: PropTypes.bool,
+  isFullWidth: PropTypes.bool,
 };
 
 export default PageWrapper;

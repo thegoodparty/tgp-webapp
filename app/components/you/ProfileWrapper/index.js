@@ -351,10 +351,7 @@ const ProfileWrapper = ({
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
       <Link to="/creators" data-cy="creators-link">
-        <BottomLink>
-          Creators of the World, Unite! help create{' '}
-          <img src={heartImg} alt="tpg" />
-        </BottomLink>
+        <BottomLink>Creators of the World, Unite!</BottomLink>
       </Link>
       <BottomLink
         style={{ marginTop: '48px' }}

@@ -71,9 +71,9 @@ function* loadArticlesFeedback() {
 function* updateCandidate(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Candidate'));
-    const { id, updatedFields, chamber, isIncumbent, isEdit } = action;
+    const { id, updatedFields, chamber, isIncumbent, isEdit, updates } = action;
     const api = tgpApi.admin.updateCandidate;
-    const payload = { id, updatedFields, chamber, isIncumbent };
+    const payload = { id, updatedFields, chamber, isIncumbent, updates };
     const { candidate } = yield call(requestHelper, api, payload);
     if (isEdit) {
       yield put(actions.editCandidateSuccess(candidate));
@@ -173,7 +173,10 @@ function* updateVoterize(action) {
               voterizeList[i].votesNeeded = newVotesNeeded;
             }
           } else {
-            if (originalVoterize.state === state && originalVoterize.district === district) {
+            if (
+              originalVoterize.state === state &&
+              originalVoterize.district === district
+            ) {
               voterizeList[i].votesNeeded = newVotesNeeded;
             }
           }

@@ -24,7 +24,7 @@ function* subscribeEmail(action) {
     const { email } = action;
     if (validateEmail(email)) {
       const api = tgpApi.subscribeEmail;
-      const payload = { email };
+      const payload = { email: encodeURIComponent(email) };
       yield call(requestHelper, api, payload);
       yield put(
         snackbarActions.showSnakbarAction(
@@ -32,15 +32,11 @@ function* subscribeEmail(action) {
         ),
       );
     } else {
-      yield put(
-        snackbarActions.showSnakbarAction('Invalid Email', 'error'),
-      );
+      yield put(snackbarActions.showSnakbarAction('Invalid Email', 'error'));
     }
   } catch (error) {
     console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error Subscribing Email', 'error'),
-    );
+    yield put(snackbarActions.showSnakbarAction(error.message, 'error'));
   }
 }
 

@@ -21,7 +21,7 @@ import userActions from 'containers/you/YouPage/actions';
 import globalActions from 'containers/App/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-react-router';
-import { getSignupRedirectCookie } from '../../../helpers/cookieHelper';
+import { getSignupRedirectCookie } from 'helpers/cookieHelper';
 
 export function SocialRegisterPage({
   socialLoginCallback,
@@ -33,6 +33,7 @@ export function SocialRegisterPage({
   useInjectSaga({ key: 'user', saga });
 
   const [blocName, setBlocName] = useState(false);
+  const [candidateName, setCandidateName] = useState(false);
 
   useEffect(() => {
     // if (user) {
@@ -42,6 +43,7 @@ export function SocialRegisterPage({
     const blocCookie = getSignupRedirectCookie();
     if (blocCookie) {
       setBlocName(blocCookie.options?.blocName);
+      setCandidateName(blocCookie.options?.name);
     }
   }, []);
 
@@ -50,6 +52,7 @@ export function SocialRegisterPage({
     socialLoginFailureCallback,
     closeModalCallback,
     blocName,
+    candidateName,
     twitterButtonCallback,
   };
 

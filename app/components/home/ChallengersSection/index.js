@@ -9,8 +9,12 @@ import { Body14, Subtitle } from 'components/shared/typogrophy';
 import ChallengerItem from './ChallengerItem';
 
 const ChallengersSectionWrapper = styled.div`
-  padding-top: 7rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding-top: 7rem;
+    padding-bottom: 5rem;
+  }
 `;
 
 const SectionTitle = styled(Subtitle)`
@@ -24,6 +28,7 @@ const SectionDescription = styled(Body14)`
   text-align: center;
   white-space: pre-line;
   color: ${({ theme }) => theme.colors.gray4};
+  margin-bottom: 2rem;
 `;
 
 const ChallengersList = styled.div`
@@ -34,7 +39,6 @@ const ZipFinderWrapper = styled.div`
   width: 100%;
   padding: 1rem;
   margin-top: 1.5rem;
-  // box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
 `;
 
@@ -54,25 +58,26 @@ const ChallengersSection = ({ challengers }) => {
     <ChallengersSectionWrapper>
       <SectionTitle>Good Challengers for 2020</SectionTitle>
       <SectionDescription>
-        Good candidates of all stripes are challenging the status quo with fresh
-        ideas, not money. We’re mobilizing voters to join these candidates’
-        voting blocs to see if we can get them enough votes to win!
+        Good candidates of all stripes are challenging the status-quo with fresh
+        ideas, not money. We&apos;re mobilizing people to join together in
+        crowd-voting campaigns to see if we can get them enough votes to win!
       </SectionDescription>
 
       <ChallengersList>
         <Grid container spacing={3}>
-          {challengers.map((challenger, index) => (
-            <Grid item xs={12} md={6} lg={4} key={challenger.id}>
-              <ChallengerItem
-                challenger={challenger}
-                id={
-                  index === challengers.length - 1 ? 'last-challenger' : false
-                }
-              />
-            </Grid>
-          ))}
+          {challengers &&
+            challengers.map((challenger, index) => (
+              <Grid item xs={12} sm={6} lg={4} key={challenger.id}>
+                <ChallengerItem
+                  challenger={challenger}
+                  id={
+                    index === challengers.length - 1 ? 'last-challenger' : false
+                  }
+                />
+              </Grid>
+            ))}
 
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4}>
             <ZipFinderWrapper style={{ height: `${cardHeight}px` }}>
               <ZipFinderPage cardDisplay />
             </ZipFinderWrapper>
@@ -84,7 +89,7 @@ const ChallengersSection = ({ challengers }) => {
 };
 
 ChallengersSection.propTypes = {
-  challengers: PropTypes.array,
+  challengers: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ChallengersSection;

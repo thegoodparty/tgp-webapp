@@ -29,7 +29,7 @@ export function QueryModalContainer({
 QueryModalContainer.propTypes = {
   closeModalCallback: PropTypes.func,
   modalStyles: PropTypes.object,
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 function mapDispatchToProps(dispatch) {
