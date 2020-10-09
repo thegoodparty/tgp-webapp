@@ -158,7 +158,9 @@ const ChoiceModal = ({
         {/*  {' '}*/}
         {/*  <Logo src={LogoCapsImg} />*/}
         {/*</div>*/}
-        <Stepper steps={defaultRegisterSteps} activeStep={2} />
+        {!isExternalLink && (
+          <Stepper steps={defaultRegisterSteps} activeStep={2} />
+        )}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
