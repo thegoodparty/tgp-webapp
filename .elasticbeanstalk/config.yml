@@ -2,7 +2,7 @@ branch-defaults:
   master:
     environment: tgp-site
   develop:
-    environment: tgp-site-dev-new
+    environment: tgp-site-dev-1
 environment-defaults:
   tgp-api-test:
     branch: null
@@ -11,7 +11,7 @@ global:
   application_name: TGP-SITE
   default_ec2_keyname: null
   default_platform: arn:aws:elasticbeanstalk:us-west-2::platform/Node.js running on
-    64bit Amazon Linux/4.16.0
+    64bit Amazon Linux/4.10.1
   default_region: us-west-2
   include_git_submodules: true
   instance_profile: null
