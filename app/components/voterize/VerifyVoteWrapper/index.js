@@ -141,7 +141,7 @@ const VerifyVoteWrapper = ({
     suffix: '',
     address: '',
     city: '',
-    state: 'None',
+    state: '',
     zip: '',
     phone: '',
     dob: '',
@@ -191,7 +191,7 @@ const VerifyVoteWrapper = ({
   ];
   const validateForm = (key, value) => {
     if (required.includes(key)) {
-      if (value === '' || (key === 'state' && value === 'None')) {
+      if (value === '' || (key === 'state' && value === '')) {
         setError({
           ...error,
           [key]: `${key.charAt(0).toUpperCase() + key.slice(1)} is required.`,
@@ -270,7 +270,7 @@ const VerifyVoteWrapper = ({
         currentError[requiredField] = `${displayKey} is required.`;
       }
     }
-    if (state.state === 'None') {
+    if (state.state === '') {
       currentError.state = 'State is required.';
       isValid = false;
     }
@@ -522,6 +522,7 @@ const VerifyVoteWrapper = ({
                               <Grid item xs={6}>
                                 <FormControl error={error.state}>
                                   <StyledSelect
+                                    native
                                     value={state.state}
                                     label="State"
                                     name="State"
@@ -529,16 +530,16 @@ const VerifyVoteWrapper = ({
                                     required
                                     onChange={e => onChange(e, 'state')}
                                   >
-                                    <MenuItem value="None">
+                                    <option value="">
                                       Select A State
-                                    </MenuItem>
+                                    </option>
                                     {states.map(stateItem => (
-                                      <MenuItem
+                                      <option
                                         value={stateItem.abbreviation}
                                         key={stateItem.abbreviation}
                                       >
                                         {stateItem.name}
-                                      </MenuItem>
+                                      </option>
                                     ))}
                                   </StyledSelect>
                                   <FormHelperText>{error.state}</FormHelperText>
