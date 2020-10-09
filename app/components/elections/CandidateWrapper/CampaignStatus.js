@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Body13, H2 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import articlesHelper from 'helpers/articlesHelper';
+import BottomButtons from './BottomButtons';
 
 const Wrapper = styled.div`
   margin: 24px 0 48px;
@@ -12,7 +13,7 @@ const UpdateWrapper = styled.div`
   margin: 24px 0;
 `;
 
-const CampaignStatus = ({ candidate, content }) => {
+const CampaignStatus = ({ candidate, content, showButtons, buttonsProps }) => {
   const { campaignSummary, campaignUpdates } = candidate;
   let articles = [];
   if (content?.faqArticles) {
@@ -33,6 +34,7 @@ const CampaignStatus = ({ candidate, content }) => {
           ))}
         </>
       )}
+      {showButtons && <BottomButtons {...buttonsProps} />}
       <TopQuestions articles={articles} />
     </Wrapper>
   );
@@ -41,6 +43,8 @@ const CampaignStatus = ({ candidate, content }) => {
 CampaignStatus.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  showButtons: PropTypes.bool,
+  buttonsProps: PropTypes.object,
 };
 
 export default CampaignStatus;

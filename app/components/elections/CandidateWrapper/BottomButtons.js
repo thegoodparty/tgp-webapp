@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Sticky from 'react-sticky-el';
 
 import ShareButtons from './ShareButtons';
 
 const Wrapper = styled.div`
   background-color: #fff;
   text-align: center;
-  padding: 10px 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 20px 5px;
+
   width: 100%;
-  margin-bottom: 60px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 10px;
-    margin-bottom: 0;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .share-button {
-    flex-basis: calc(50% - 10px);
     margin: 0 5px;
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
       flex-basis: calc(50% - 20px);
@@ -29,7 +26,10 @@ const Wrapper = styled.div`
     }
 
     button {
-      margin-top: 0 !important;
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpoints.md}) {
+        margin-top: 0 !important;
+      }
     }
   }
 `;
@@ -43,20 +43,17 @@ const BottomButtons = ({
   chamberRank,
   user,
 }) => (
-  <Sticky mode="bottom" boundaryElement=".bottom-boundry-element">
-    <Wrapper>
-      <ShareButtons
-        candidate={candidate}
-        chamberRank={chamberRank}
-        district={district}
-        chamberName={chamberName}
-        user={user}
-        deleteCandidateRankingCallback={deleteCandidateRankingCallback}
-        state={state}
-        withIcons={false}
-      />
-    </Wrapper>
-  </Sticky>
+  <Wrapper>
+    <ShareButtons
+      candidate={candidate}
+      chamberRank={chamberRank}
+      district={district}
+      chamberName={chamberName}
+      user={user}
+      deleteCandidateRankingCallback={deleteCandidateRankingCallback}
+      state={state}
+    />
+  </Wrapper>
 );
 
 BottomButtons.propTypes = {

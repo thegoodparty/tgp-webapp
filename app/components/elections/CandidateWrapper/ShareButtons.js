@@ -100,14 +100,14 @@ const ShareButtons = ({
         {rank ? (
           <BlueButton fullWidth>
             <InnerButton>
-              {withIcons && <Img src={ShareIconWhite} alt="share" />}
+              <Img src={ShareIconWhite} alt="share" />
               SHARE
             </InnerButton>
           </BlueButton>
         ) : (
           <OutlinedButton active fullWidth>
             <InnerButton>
-              {withIcons && <Img src={ShareIcon} alt="share" />}
+              <Img src={ShareIcon} alt="share" />
               SHARE
             </InnerButton>
           </OutlinedButton>
@@ -134,9 +134,7 @@ const ShareButtons = ({
         >
           <BlueButton fullWidth style={{ marginTop: '24px' }}>
             <InnerButton>
-              {withIcons && (
-                <Img src={HeartIcon} alt="vote" className="heart" />
-              )}
+              <Img src={HeartIcon} alt="vote" className="heart" />
               ADD YOUR VOTE
             </InnerButton>
           </BlueButton>

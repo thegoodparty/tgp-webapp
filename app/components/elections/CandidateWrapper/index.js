@@ -64,18 +64,15 @@ const CandidateWrapper = ({
     showShare: true,
     user,
   };
+  const buttonsProps = {
+    candidate,
+    chamberName,
+    user,
+    chamberRank,
+    deleteCandidateRankingCallback,
+  };
 
-  const rightCard = (
-    <RightCard
-      candidate={candidate}
-      chamberName={chamberName}
-      user={user}
-      chamberRank={chamberRank}
-      deleteCandidateRankingCallback={deleteCandidateRankingCallback}
-      tab={tab}
-      hideTab={hideTab}
-    />
-  );
+  const rightCard = <RightCard {...buttonsProps} tab={tab} hideTab={hideTab} />;
   return (
     <PageWrapper mobileHeaderProps={mobileHeaderProps} isFullWidth white>
       <ContentWrapper>
@@ -91,41 +88,33 @@ const CandidateWrapper = ({
                 </Hidden>
               )}
               {!hideTab && <Tabs candidate={candidate} tab={tab} />}
-              <div className="bottom-boundry-element">
-                {tab === 'campaign' ? (
-                  <CampaignStatus candidate={candidate} content={content} />
-                ) : (
-                  <>
-                    <MoneyAndCharacter
-                      candidate={candidate}
-                      incumbent={incumbent}
-                    />
-                    <FollowTheMoney
-                      candidate={candidate}
-                      incumbent={incumbent}
-                    />
-                    <FinancialText
-                      candidate={candidate}
-                      incumbent={incumbent}
-                      chamberName={chamberName}
-                    />
-                    <CandidateProfile candidate={candidate} />
-                    <CampaignWebsite candidate={candidate} />
-                    <PolicyPositions candidate={candidate} />
-                  </>
-                )}
-                {isGoodOrUnknown && (
-                  <BottomButtons
+              {tab === 'campaign' ? (
+                <>
+                  <CampaignStatus
                     candidate={candidate}
-                    chamberName={chamberName}
-                    user={user}
-                    chamberRank={chamberRank}
-                    deleteCandidateRankingCallback={
-                      deleteCandidateRankingCallback
-                    }
+                    content={content}
+                    showButtons={isGoodOrUnknown}
+                    buttonsProps={buttonsProps}
                   />
-                )}
-              </div>
+                </>
+              ) : (
+                <>
+                  <MoneyAndCharacter
+                    candidate={candidate}
+                    incumbent={incumbent}
+                  />
+                  <FollowTheMoney candidate={candidate} incumbent={incumbent} />
+                  <FinancialText
+                    candidate={candidate}
+                    incumbent={incumbent}
+                    chamberName={chamberName}
+                  />
+                  <CandidateProfile candidate={candidate} />
+                  <CampaignWebsite candidate={candidate} />
+                  <PolicyPositions candidate={candidate} />
+                  {isGoodOrUnknown && <BottomButtons {...buttonsProps} />}
+                </>
+              )}
             </Grid>
             {isGoodOrUnknown && (
               <Hidden smDown>
