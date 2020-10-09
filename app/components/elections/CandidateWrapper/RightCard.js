@@ -7,25 +7,14 @@ import Hidden from '@material-ui/core/Hidden';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
-import { Body11, Body13, Body14, Body9 } from 'components/shared/typogrophy';
-import ShareIcon from 'images/icons/share-icon.svg';
-import ShareIconWhite from 'images/icons/share-icon-white.svg';
+import { Body11, Body13, Body14 } from 'components/shared/typogrophy';
 import JoinedIcon from 'images/icons/joined-icon.svg';
 import GraphIcon from 'images/icons/graph-icon.svg';
-import HeartIcon from 'images/white-heart.svg';
-import CheckIcon from '@material-ui/icons/Check';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { kFormatter, numberFormatter, numberNth } from 'helpers/numberHelper';
-import { BlueButton, OutlinedButton } from 'components/shared/buttons';
+import { kFormatter, numberFormatter } from 'helpers/numberHelper';
 import Body from 'components/shared/typogrophy/Body';
-import {
-  candidateRanking,
-  candidateRankObj,
-  candidateRoute,
-  rankPageGrowLink,
-  rankPageJoinLink,
-} from 'helpers/electionsHelper';
+import { candidateRoute } from 'helpers/electionsHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
+import ShareButtons from './ShareButtons';
 
 const ScrollArea = styled.div`
   height: calc(100% - 60px - 65px);
@@ -65,65 +54,6 @@ const Stats = styled.div`
 
 const Gray7 = styled(Body11)`
   color: ${props => props.theme.colors.gray7};
-`;
-
-const RankWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 12px;
-  cursor: pointer;
-  padding: 20px 0 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 20px 0 12px;
-  }
-`;
-
-const CheckMark = styled(CheckIcon)`
-  color: ${({ theme }) => theme.colors.lightBlue};
-  && {
-    font-size: 13px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 16px;
-    }
-  }
-`;
-
-const ChosenCand = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray7};
-  display: inline-block;
-  margin: 0 6px;
-  text-transform: uppercase;
-`;
-
-const CloseIcon = styled(HighlightOffIcon)`
-  color: ${({ theme }) => theme.colors.gray7};
-  display: inline-block;
-  && {
-    font-size: 13px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 16px;
-    }
-  }
-`;
-
-const InnerButton = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-const Img = styled.img`
-  position: absolute;
-  top: 0;
-  left: 24px;
-  width: 16px;
-  height: auto;
-
-  &.heart {
-    top: 4px;
-    width: 24px;
-  }
 `;
 
 const TabText = styled(Body14)`
@@ -185,8 +115,6 @@ const RightCard = ({
     recentlyJoined,
     shares,
   } = candidate;
-  const rank = candidateRanking(chamberRank, candidate);
-  const rankObj = candidateRankObj(chamberRank, candidate);
   const route = candidateRoute(candidate);
   return (
     <ScrollArea className="scroll-area">
@@ -239,56 +167,15 @@ const RightCard = ({
                 </Grid>
               </Grid>
             </Stats>
-            <Link
-              to={rankPageGrowLink(candidate, chamberName, state, district)}
-            >
-              {rank ? (
-                <BlueButton fullWidth>
-                  <InnerButton>
-                    <Img src={ShareIconWhite} alt="share" />
-                    SHARE
-                  </InnerButton>
-                </BlueButton>
-              ) : (
-                <OutlinedButton active fullWidth>
-                  <InnerButton>
-                    <Img src={ShareIcon} alt="share" />
-                    SHARE
-                  </InnerButton>
-                </OutlinedButton>
-              )}
-            </Link>
-            {rank ? (
-              <RankWrapper
-                onClick={() =>
-                  deleteCandidateRankingCallback(
-                    { ...rankObj, chamber: chamberName },
-                    user,
-                  )
-                }
-              >
-                <CheckMark /> <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>
-                <CloseIcon />
-              </RankWrapper>
-            ) : (
-              <Link
-                to={rankPageJoinLink(
-                  user,
-                  candidate,
-                  chamberName,
-                  state,
-                  district,
-                )}
-                data-cy="rank-button"
-              >
-                <BlueButton fullWidth style={{ marginTop: '24px' }}>
-                  <InnerButton>
-                    <Img src={HeartIcon} alt="vote" className="heart" />
-                    ADD YOUR VOTE
-                  </InnerButton>
-                </BlueButton>
-              </Link>
-            )}
+            <ShareButtons
+              candidate={candidate}
+              chamberRank={chamberRank}
+              district={district}
+              chamberName={chamberName}
+              user={user}
+              deleteCandidateRankingCallback={deleteCandidateRankingCallback}
+              state={state}
+            />
             {hideTab ? (
               <>
                 <br />

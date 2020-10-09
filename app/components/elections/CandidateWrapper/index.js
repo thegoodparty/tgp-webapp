@@ -18,6 +18,7 @@ import CandidateProfile from './CandidateProfile';
 import RightCard from './RightCard';
 import Tabs from './Tabs';
 import CampaignStatus from './CampaignStatus';
+import BottomButtons from './BottomButtons';
 
 const ContentWrapper = styled.div`
   max-width: 1280px;
@@ -90,25 +91,41 @@ const CandidateWrapper = ({
                 </Hidden>
               )}
               {!hideTab && <Tabs candidate={candidate} tab={tab} />}
-              {tab === 'campaign' ? (
-                <CampaignStatus candidate={candidate} content={content} />
-              ) : (
-                <>
-                  <MoneyAndCharacter
+              <div className="bottom-boundry-element">
+                {tab === 'campaign' ? (
+                  <CampaignStatus candidate={candidate} content={content} />
+                ) : (
+                  <>
+                    <MoneyAndCharacter
+                      candidate={candidate}
+                      incumbent={incumbent}
+                    />
+                    <FollowTheMoney
+                      candidate={candidate}
+                      incumbent={incumbent}
+                    />
+                    <FinancialText
+                      candidate={candidate}
+                      incumbent={incumbent}
+                      chamberName={chamberName}
+                    />
+                    <CandidateProfile candidate={candidate} />
+                    <CampaignWebsite candidate={candidate} />
+                    <PolicyPositions candidate={candidate} />
+                  </>
+                )}
+                {isGoodOrUnknown && (
+                  <BottomButtons
                     candidate={candidate}
-                    incumbent={incumbent}
-                  />
-                  <FollowTheMoney candidate={candidate} incumbent={incumbent} />
-                  <FinancialText
-                    candidate={candidate}
-                    incumbent={incumbent}
                     chamberName={chamberName}
+                    user={user}
+                    chamberRank={chamberRank}
+                    deleteCandidateRankingCallback={
+                      deleteCandidateRankingCallback
+                    }
                   />
-                  <CandidateProfile candidate={candidate} />
-                  <CampaignWebsite candidate={candidate} />
-                  <PolicyPositions candidate={candidate} />
-                </>
-              )}
+                )}
+              </div>
             </Grid>
             {isGoodOrUnknown && (
               <Hidden smDown>
