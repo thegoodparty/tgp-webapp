@@ -585,7 +585,7 @@ function* saveUserRanking(action) {
     const { ranking } = yield call(requestHelper, api, payload);
     yield put(actions.userRankingActionSuccess(ranking));
 
-    yield put(snackbarActions.showSnakbarAction('Your ranking were saved'));
+    yield put(snackbarActions.showSnakbarAction('Your choice was saved'));
 
     if (chamber === 'presidential') {
       yield put(districtActions.loadAllPresidentialAction());
