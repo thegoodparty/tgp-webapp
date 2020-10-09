@@ -1,7 +1,8 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
+import PropTypes from 'prop-types';
 
-const DobFormat = ({ inputRef, onChange, ...other }) => {
+const PhoneNumberFormat = ({ inputRef, onChange, name, ...other }) => {
   return (
     <NumberFormat
       {...other}
@@ -21,4 +22,10 @@ const DobFormat = ({ inputRef, onChange, ...other }) => {
   );
 };
 
-export default DobFormat;
+PhoneNumberFormat.propTypes = {
+  inputRef: PropTypes.object,
+  onChange: PropTypes.func,
+  name: PropTypes.string,
+};
+
+export default PhoneNumberFormat;
