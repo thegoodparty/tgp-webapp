@@ -34,7 +34,9 @@ const LeftCol = styled(Grid)`
 `;
 
 const ImageWrapper = styled.div`
+  text-align: center;
   padding: 24px;
+
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 0;
   }
@@ -101,7 +103,7 @@ const TellMeMoreSection = ({ subscribeEmailCallback }) => {
   return (
     <TellMeMoreSectionWrapper>
       <Grid container>
-        <LeftCol item xs={12} md={5}>
+        <LeftCol item xs={12} sm={4} md={5}>
           <ImageWrapper>
             <LazyLoadImage
               src={ShareImg}
@@ -110,7 +112,7 @@ const TellMeMoreSection = ({ subscribeEmailCallback }) => {
             />
           </ImageWrapper>
         </LeftCol>
-        <RightCol item xs={12} md={7}>
+        <RightCol item xs={12} sm={8} md={7}>
           <SectionTitle>
             The Good Party is here to make votes matter more than money
           </SectionTitle>

@@ -10,8 +10,8 @@ import { Body19, H2 } from 'components/shared/typogrophy';
 import { BlueButton } from 'components/shared/buttons';
 
 const CreatorsSectionWrapper = styled.div`
-  margin: 0 0 5rem;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  margin: 0 0 2rem;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin: 5rem 0;
   }
 `;
@@ -41,7 +41,7 @@ const LearnMore = styled(BlueButton)`
 const CreatorsSection = () => (
   <CreatorsSectionWrapper>
     <Grid container>
-      <LeftCol item xs={12} md={6}>
+      <LeftCol item xs={12} sm={8} md={6}>
         <SectionTitle>Calling All Creators!</SectionTitle>
         <SectionDescription>
           Join us to build free open source software and to tell the stories we
@@ -51,7 +51,7 @@ const CreatorsSection = () => (
           <LearnMore className="outline">Learn More</LearnMore>
         </Link>
       </LeftCol>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} sm={4} md={6}>
         <LazyLoadImage
           src={CreatorsImg}
           alt="calling-creators"

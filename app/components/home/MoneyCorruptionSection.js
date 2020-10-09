@@ -36,13 +36,13 @@ const MoneyCorruptionSection = ({}) => {
   return (
     <MoneyCorruptionSectionWrapper>
       <Grid container>
-        <LeftCol item xs={12} md={6}>
+        <LeftCol item xs={12} sm={7} md={6}>
           <SectionTitle>
             Money has corrupted <br />
             BOTH major U.S. parties
           </SectionTitle>
         </LeftCol>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={5} md={6}>
           <LazyLoadImage
             src={WhiteHouseImg}
             alt="white-house-dollar"

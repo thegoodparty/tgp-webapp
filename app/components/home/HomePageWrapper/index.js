@@ -10,7 +10,6 @@ import CreatorsSection from '../CreatorsSection';
 import ChallengersSection from '../ChallengersSection';
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - 140px);
   max-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent};
   margin: 0 auto;
   &.gray {

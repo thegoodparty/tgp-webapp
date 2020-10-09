@@ -9,8 +9,12 @@ import { Body14, Subtitle } from 'components/shared/typogrophy';
 import ChallengerItem from './ChallengerItem';
 
 const ChallengersSectionWrapper = styled.div`
-  padding-top: 7rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding-top: 7rem;
+    padding-bottom: 5rem;
+  }
 `;
 
 const SectionTitle = styled(Subtitle)`
@@ -63,7 +67,7 @@ const ChallengersSection = ({ challengers }) => {
         <Grid container spacing={3}>
           {challengers &&
             challengers.map((challenger, index) => (
-              <Grid item xs={12} md={6} lg={4} key={challenger.id}>
+              <Grid item xs={12} sm={6} lg={4} key={challenger.id}>
                 <ChallengerItem
                   challenger={challenger}
                   id={
@@ -73,7 +77,7 @@ const ChallengersSection = ({ challengers }) => {
               </Grid>
             ))}
 
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4}>
             <ZipFinderWrapper style={{ height: `${cardHeight}px` }}>
               <ZipFinderPage cardDisplay />
             </ZipFinderWrapper>
