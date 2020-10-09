@@ -20,6 +20,7 @@ import ShareIconWhite from 'images/icons/share-icon-white.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
 import { numberNth } from 'helpers/numberHelper';
 import HeartIcon from 'images/white-heart.svg';
+import { setSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 const RankWrapper = styled.div`
   display: flex;
@@ -86,11 +87,19 @@ const ShareButtons = ({
   deleteCandidateRankingCallback,
   chamberRank,
   user,
-  withIcons = true,
 }) => {
   const { state, district } = candidate;
   const rank = candidateRanking(chamberRank, candidate);
   const rankObj = candidateRankObj(chamberRank, candidate);
+  const route = rankPageJoinLink(user, candidate, chamberName, state, district);
+  const cookieRoute = rankPageJoinLink(
+    user,
+    candidate,
+    chamberName,
+    state,
+    district,
+    true,
+  );
   return (
     <>
       <Link
@@ -128,9 +137,13 @@ const ShareButtons = ({
         </RankWrapper>
       ) : (
         <Link
-          to={rankPageJoinLink(user, candidate, chamberName, state, district)}
+          to={route}
           data-cy="rank-button"
           className="share-button"
+          onClick={() => {
+            console.log('cooking', cookieRoute);
+            setSignupRedirectCookie(cookieRoute);
+          }}
         >
           <BlueButton fullWidth style={{ marginTop: '24px' }}>
             <InnerButton>
@@ -150,7 +163,6 @@ ShareButtons.propTypes = {
   chamberName: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
-  withIcons: PropTypes.bool,
 };
 
 export default ShareButtons;
