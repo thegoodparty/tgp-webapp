@@ -2,14 +2,14 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 
-const DobFormat = ({ inputRef, onChange, ...props }) => (
+const DobFormat = ({ inputRef, onChange, name, ...props }) => (
   <NumberFormat
     {...props}
     getInputRef={inputRef}
     onValueChange={values => {
       onChange({
         target: {
-          name: values.name,
+          name,
           value: values.value,
         },
       });
@@ -24,6 +24,7 @@ const DobFormat = ({ inputRef, onChange, ...props }) => (
 DobFormat.propTypes = {
   inputRef: PropTypes.object,
   onChange: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default DobFormat;
