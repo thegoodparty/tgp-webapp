@@ -227,8 +227,8 @@ function Footer({ isCreators = false }) {
             <Grid item xs={12} md={4}>
               <Column data-cy="footer-team">
                 <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
-                Want to join the volunteer team? We are always looking for
-                people  to cooperate with us on this projected!
+                Want to join The Good Party? We are always looking for good
+                people to collaborate with.
                 <div>
                   <a
                     href="mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
