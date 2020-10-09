@@ -18,7 +18,6 @@ import Markdown from 'markdown-to-jsx';
 import { validateEmail } from 'helpers/emailHelper';
 import { parseDob } from 'helpers/dateHelper';
 
-
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
@@ -231,18 +230,25 @@ const VerifyVoteWrapper = ({
 
   const submitForm = () => {
     if (canSubmit()) {
-      const { phone, dob } = state;
-      const voterFormState = {
-        ...state,
-        phone: `${phone.substr(0, 3)}-${phone.substr(3, 3)}-${phone.substr(6, 4)}`,
-        dob: parseDob(dob),
-      };
-      verifyVoterCallback(voterFormState);
+      verifyVoterCallback(formattedState());
     }
   };
 
   const registerToVote = () => {
-    registerToVoteCallback(state);
+    registerToVoteCallback(formattedState());
+  };
+
+  const formattedState = () => {
+    const { phone, dob } = state;
+    const voterFormState = {
+      ...state,
+      phone: `${phone.substr(0, 3)}-${phone.substr(3, 3)}-${phone.substr(
+        6,
+        4,
+      )}`,
+      dob: parseDob(dob),
+    };
+    return voterFormState;
   };
 
   const canSubmit = () => {
@@ -331,7 +337,12 @@ const VerifyVoteWrapper = ({
                 {registerResponse ? (
                   <div>
                     {registerResponse.message_markdown && (
-                      <Markdown>{registerResponse.message_markdown}</Markdown>
+                      <Markdown>
+                        {registerResponse.message_markdown.replace(
+                          '&#39;',
+                          "'",
+                        )}
+                      </Markdown>
                     )}
                     <br />
                     <br />
@@ -560,7 +571,7 @@ const VerifyVoteWrapper = ({
                               fullWidth
                               InputProps={{
                                 inputComponent: PhoneNumberFormat,
-                                inputMode: 'numeric'
+                                inputMode: 'numeric',
                               }}
                               onChange={e => onChange(e, 'phone')}
                             />
@@ -579,7 +590,7 @@ const VerifyVoteWrapper = ({
                               } Format: MM/DD/YYYY`}
                               InputProps={{
                                 inputComponent: DobFormat,
-                                inputMode: 'numeric'
+                                inputMode: 'numeric',
                               }}
                               onChange={e => onChange(e, 'dob')}
                             />
