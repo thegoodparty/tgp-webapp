@@ -6,18 +6,16 @@ import CloseIcon from '@material-ui/icons/Cancel';
 import { Link } from 'react-router-dom';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 // import SupportersImg from 'images/icons/supporters.svg';
-// import LogoCapsImg from 'images/logo-caps.svg';
+import LogoCapsImg from 'images/logo-caps.svg';
+
+import HeartIcon from 'images/white-heart.svg';
 import { Body, Body13, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import {
-  candidateBlocName,
-  partyResolver,
-  blocNameSuffix,
-} from 'helpers/electionsHelper';
+import { candidateBlocName, candidateRoute } from 'helpers/electionsHelper';
 import { getCandidateChamberDistrict } from 'helpers/candidatesHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
-import { BlueButton } from '../../shared/buttons';
+import { BlueButton, OutlinedButton } from '../../shared/buttons';
 import Stepper from '../../shared/Stepper';
 
 const Wrapper = styled.div`
@@ -59,11 +57,17 @@ const TitleH3 = styled(H3)`
   text-align: center;
 `;
 
-const SubTitle = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray9};
-  text-transform: uppercase;
-  margin-bottom: 32px;
-  text-align: center;
+const AddVoteInner = styled.div`
+  width: 100%;
+  position: relative;
+`;
+// http://localhost:4000/?b=@GreenPartyUS
+const Img = styled.img`
+  position: absolute;
+  top: 3px;
+  left: 16px;
+  width: 26px;
+  height: auto;
 `;
 
 const AvatarWrapper = styled(Body)`
@@ -121,8 +125,6 @@ const ChoiceModal = ({
   closeCallback,
   shareCallback,
   joinCallback,
-  state,
-  district,
   isExternalLink,
 }) => {
   if (!candidate) {
@@ -133,17 +135,9 @@ const ChoiceModal = ({
   if (candidate.unknown) {
     isGood = null;
   }
-  let displayChamber;
-  if (candidate.chamber === 'Presidential') {
-    displayChamber = 'PRESIDENT';
-  } else if (candidate.chamber === 'Senate') {
-    displayChamber = `SENATE FROM ${state?.toUpperCase()}`;
-  } else {
-    displayChamber = `HOUSE OF REPRESENTATIVES FROM ${state?.toUpperCase()}-${district}`;
-  }
+
   candidate.votesNeeded = votesNeeded;
   const blocName = candidateBlocName(candidate);
-  const blocSuffix = blocNameSuffix(blocName);
   return (
     <Dialog
       onClose={closeCallback}
@@ -154,10 +148,6 @@ const ChoiceModal = ({
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        {/*<div className="text-center">*/}
-        {/*  {' '}*/}
-        {/*  <Logo src={LogoCapsImg} />*/}
-        {/*</div>*/}
         {!isExternalLink && (
           <Stepper steps={defaultRegisterSteps} activeStep={2} />
         )}
@@ -171,25 +161,12 @@ const ChoiceModal = ({
 
           {isExternalLink ? (
             <>
-              <TitleH3 style={{ marginBottom: '12px' }}>
-                Want to try and elect {candidate.name}?
+              <Spread>Join the crowd-voting campaign for</Spread>
+              <TitleH3>
+                {name}
+                <br />
+                for {getCandidateChamberDistrict(candidate)}
               </TitleH3>
-              {candidate.chamber === 'presidential' || !candidate.chamber ? (
-                <SubTitle>
-                  {candidate.party === 'W' ? '' : 'AS A'}{' '}
-                  {partyResolver(candidate.party)} CANDIDATE FOR
-                  <br />
-                  U.S. PRESIDENT
-                </SubTitle>
-              ) : (
-                <SubTitle>
-                  {candidate.id < 0
-                    ? 'TO THE '
-                    : `${partyResolver(candidate.party)} CANDIDATE `}
-                  <br />
-                  U.S. {displayChamber}
-                </SubTitle>
-              )}
             </>
           ) : (
             <>
@@ -221,15 +198,22 @@ const ChoiceModal = ({
         </CenterBar>
         {isExternalLink ? (
           <>
+            <Link to={candidateRoute(candidate)}>
+              <OutlinedButton active fullWidth style={{ marginBottom: '16px' }}>
+                SEE CAMPAIGN
+              </OutlinedButton>
+            </Link>
             <BlueButton fullWidth onClick={() => joinCallback(candidate)}>
-              <H3 style={{ color: '#FFF', textTransform: 'none' }}>
-                JOIN {blocName} {blocSuffix}
-              </H3>
+              <AddVoteInner>
+                <Img src={HeartIcon} alt="" />
+                ADD YOUR VOTE
+              </AddVoteInner>
             </BlueButton>
             <Footer>
               <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
                 What is the {blocName} in The Good Party?
               </Link>
+              <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
             </Footer>
           </>
         ) : (
@@ -242,7 +226,7 @@ const ChoiceModal = ({
               <Link to="?article=prGq4SAFpfT7qzBFM1HDy">
                 never waste your vote
               </Link>
-              .
+              <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
             </Footer>
           </>
         )}
@@ -259,13 +243,8 @@ ChoiceModal.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   votesNeeded: PropTypes.number,
   chamberCount: PropTypes.number,
-  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  animateCount: PropTypes.bool,
   userState: PropTypes.string,
   suffixText: PropTypes.string,
-  chamber: PropTypes.string,
-  state: PropTypes.string,
-  district: PropTypes.number,
   isExternalLink: PropTypes.bool,
 };
 

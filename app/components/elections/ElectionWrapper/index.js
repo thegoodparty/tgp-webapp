@@ -208,7 +208,7 @@ const ElectionWrapper = ({
   const onJoinChoiceModal = candidateJoined => {
     setShowChoiceModal(false);
 
-    setShowShareModal(true);
+    // setShowShareModal(true);
     const rank = findNextRank(candidateJoined);
     selectCandidate(candidateJoined, rank);
 

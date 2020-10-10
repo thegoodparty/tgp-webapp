@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
+import ShareIcon from 'images/icons/share-icon-white.svg';
 import { Body9, Body11, Body13, Body } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
@@ -136,9 +137,11 @@ const GrowWrapperUnknown = styled.div`
 
 const GrowButtonWrapper = styled.div`
   padding: 0.8rem 0.6rem;
+  position: relative;
   width: 100%;
   min-width: 140px;
-  border: solid 2px ${({ theme }) => theme.colors.blue};
+  background-color: ${({ theme }) => theme.colors.blue};
+  color: #fff;
   border-radius: 40px;
   margin-top: 8px;
   cursor: pointer;
@@ -149,8 +152,16 @@ const GrowButtonWrapper = styled.div`
   }
 `;
 const BlueBody11 = styled(Body11)`
-  color: ${({ theme }) => theme.colors.blue};
   font-weight: 500;
+  color: #fff;
+`;
+
+const Img = styled.img`
+  position: absolute;
+  top: 9px;
+  left: 24px;
+  width: 16px;
+  height: auto;
 `;
 const WhyNot = styled(BlueBody11)`
   margin-top: 8px;
@@ -323,13 +334,9 @@ const VsList = ({
       return (
         <GrowWrapper>
           <GrowButtonWrapper onClick={e => onGrow(candidate, e)}>
-            {candidate.id === noneYetCandidate.id ? (
-              <BlueBody11>GROW #GoodBloc</BlueBody11>
-            ) : (
-              <BlueBody11>
-                GROW <strong>{blocName}</strong> {blocNameSuffix(blocName)}
-              </BlueBody11>
-            )}
+            <BlueBody11>
+              <Img src={ShareIcon} alt="share" /> SHARE
+            </BlueBody11>
           </GrowButtonWrapper>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
             <CheckMark />{' '}
