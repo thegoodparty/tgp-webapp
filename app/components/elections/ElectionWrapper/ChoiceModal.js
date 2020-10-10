@@ -226,6 +226,7 @@ const ChoiceModal = ({
               <Link to="?article=prGq4SAFpfT7qzBFM1HDy">
                 never waste your vote
               </Link>
+              <br />
               <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
             </Footer>
           </>
