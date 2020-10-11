@@ -211,7 +211,7 @@ const ChoiceModal = ({
             </BlueButton>
             <Footer>
               <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
-                What is the {blocName} in The Good Party?
+                What is a crowd-voting campaign?
               </Link>
               <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
             </Footer>

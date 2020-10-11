@@ -153,6 +153,9 @@ const GrowButtonWrapper = styled.div`
 `;
 const BlueBody11 = styled(Body11)`
   font-weight: 500;
+`;
+const WhiteBody11 = styled(Body11)`
+  font-weight: 500;
   color: #fff;
 `;
 
@@ -334,9 +337,9 @@ const VsList = ({
       return (
         <GrowWrapper>
           <GrowButtonWrapper onClick={e => onGrow(candidate, e)}>
-            <BlueBody11>
+            <WhiteBody11>
               <Img src={ShareIcon} alt="share" /> SHARE
-            </BlueBody11>
+            </WhiteBody11>
           </GrowButtonWrapper>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
             <CheckMark />{' '}

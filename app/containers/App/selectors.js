@@ -13,7 +13,7 @@ const selectGlobal = state => state.global;
 const makeSelectContent = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState ? globalState.content : false,
+    globalState => (globalState ? globalState.content : false),
   );
 
 const makeSelectAppVersion = () =>
@@ -28,4 +28,9 @@ const makeSelectModalArticleId = () =>
     globalState => globalState.modalArticleId,
   );
 
-export { makeSelectLocation, makeSelectContent, makeSelectAppVersion, makeSelectModalArticleId };
+export {
+  makeSelectLocation,
+  makeSelectContent,
+  makeSelectAppVersion,
+  makeSelectModalArticleId,
+};
