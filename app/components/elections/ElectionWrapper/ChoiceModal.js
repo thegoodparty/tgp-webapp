@@ -213,6 +213,7 @@ const ChoiceModal = ({
               <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
                 What is a crowd-voting campaign?
               </Link>
+              <br />
               <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
             </Footer>
           </>
