@@ -352,11 +352,18 @@ const VerifyVoteWrapper = ({
                           <Grid item xs={6} key={button.url}>
                             <a href={button.url} target="_blank">
                               {button.primary ? (
-                                <BlueButton fullWidth>
+                                <BlueButton
+                                  fullWidth
+                                  onClick={skipVerifyVoterCallback}
+                                >
                                   {button.message_text}
                                 </BlueButton>
                               ) : (
-                                <OutlinedButton fullWidth active>
+                                <OutlinedButton
+                                  fullWidth
+                                  active
+                                  onClick={skipVerifyVoterCallback}
+                                >
                                   {button.message_text}
                                 </OutlinedButton>
                               )}
@@ -530,9 +537,7 @@ const VerifyVoteWrapper = ({
                                     required
                                     onChange={e => onChange(e, 'state')}
                                   >
-                                    <option value="">
-                                      Select A State
-                                    </option>
+                                    <option value="">Select A State</option>
                                     {states.map(stateItem => (
                                       <option
                                         value={stateItem.abbreviation}

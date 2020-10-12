@@ -9,14 +9,12 @@
 
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import history from 'utils/history';
 import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
-import { push } from 'connected-react-router';
 import { Helmet } from 'react-helmet';
 
 import GlobalStyle from 'global-styles';

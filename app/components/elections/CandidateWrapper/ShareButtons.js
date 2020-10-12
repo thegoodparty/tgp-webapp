@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Sticky from 'react-sticky-el';
 
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -141,7 +140,6 @@ const ShareButtons = ({
           data-cy="rank-button"
           className="share-button"
           onClick={() => {
-            console.log('cooking', cookieRoute);
             setSignupRedirectCookie(cookieRoute);
           }}
         >

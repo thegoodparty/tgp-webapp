@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Body, H3, Body11, H2 } from 'components/shared/typogrophy';
+import { Body, H3, Body11, H2, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import Stepper from 'components/shared/Stepper';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
@@ -22,6 +23,7 @@ import LinkIcon from 'images/icons/link-icon.svg';
 import SmsIcon from 'images/icons/sms-icon.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
 import { numberFormatter } from 'helpers/numberHelper';
+import LogoCapsImg from '../../../images/logo-caps.svg';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -227,6 +229,12 @@ const Gray6 = styled.span`
   color: ${({ theme }) => theme.colors.gray6};
 `;
 
+const Footer = styled(Body13)`
+  color: ${({ theme }) => theme.colors.gray6};
+  margin-top: 24px;
+  text-align: center;
+`;
+
 const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
 
 const ShareModal = ({
@@ -414,6 +422,13 @@ const ShareModal = ({
             )}
           </Grid>
         </AdditionalSharesWrapper>
+        <Footer>
+          <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
+            What is a crowd-voting campaign?
+          </Link>
+          <br />
+          <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
+        </Footer>
         {copied && (
           <CopiedWrapper>
             <Icon src={CopyPasteIcon} alt="copy link" />
