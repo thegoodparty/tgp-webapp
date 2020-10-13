@@ -131,7 +131,7 @@ function Routes() {
       <Route exact path="/directory" component={DirectoryPage} />
       <Route exact path="/twitter-callback" component={TwitterCallbackPage} />
 
-      <Route component={NotFoundPage} />
+      <Route component={NotFoundPage} status={404} />
     </Switch>
   );
 }
