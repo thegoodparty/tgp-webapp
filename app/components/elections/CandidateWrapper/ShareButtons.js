@@ -86,6 +86,7 @@ const ShareButtons = ({
   deleteCandidateRankingCallback,
   chamberRank,
   user,
+  addVoteCallback,
 }) => {
   const { state, district } = candidate;
   const rank = candidateRanking(chamberRank, candidate);
@@ -135,21 +136,18 @@ const ShareButtons = ({
           <CloseIcon />
         </RankWrapper>
       ) : (
-        <Link
-          to={route}
-          data-cy="rank-button"
-          className="share-button"
-          onClick={() => {
-            setSignupRedirectCookie(cookieRoute);
-          }}
-        >
-          <BlueButton fullWidth style={{ marginTop: '24px' }}>
+        <div className="share-button">
+          <BlueButton
+            fullWidth
+            style={{ marginTop: '24px' }}
+            onClick={addVoteCallback}
+          >
             <InnerButton>
               <Img src={HeartIcon} alt="vote" className="heart" />
               ADD YOUR VOTE
             </InnerButton>
           </BlueButton>
-        </Link>
+        </div>
       )}
     </>
   );
@@ -161,6 +159,7 @@ ShareButtons.propTypes = {
   chamberName: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
+  addVoteCallback: PropTypes.func,
 };
 
 export default ShareButtons;

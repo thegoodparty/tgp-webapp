@@ -50,6 +50,23 @@ const loadDistrictIncumbentActionSuccess = incumbent => ({
   incumbent,
 });
 
+const loadCandidateRankingAction = (id, chamber, isIncumbent) => ({
+  type: types.LOAD_CANDIDATE_RANKING,
+  id,
+  chamber,
+  isIncumbent,
+});
+
+const loadCandidateRankingActionSuccess = rank => ({
+  type: types.LOAD_CANDIDATE_RANKING_SUCCESS,
+  rank,
+});
+
+const loadCandidateRankingActionError = error => ({
+  type: types.LOAD_CANDIDATE_RANKING_ERROR,
+  error,
+});
+
 export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
@@ -60,4 +77,8 @@ export default {
   loadRankingFromCookieAction,
   loadDistrictIncumbentAction,
   loadDistrictIncumbentActionSuccess,
+
+  loadCandidateRankingAction,
+  loadCandidateRankingActionSuccess,
+  loadCandidateRankingActionError,
 };

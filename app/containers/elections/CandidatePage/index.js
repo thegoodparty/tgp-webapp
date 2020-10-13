@@ -9,10 +9,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { push } from 'connected-react-router';
 
 import CandidateWrapper from 'components/elections/CandidateWrapper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
+import { deleteSignupRedirectCookie } from 'helpers/cookieHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -38,6 +40,8 @@ export function CandidatePage({
   rankingObj,
   deleteCandidateRankingCallback,
   content,
+  showRegisterCallback,
+  saveRankingCallback,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
@@ -52,6 +56,13 @@ export function CandidatePage({
     if (id) {
       dispatch(
         candidateActions.loadCandidateAction(id, chamberName, isIncumbent),
+      );
+      dispatch(
+        candidateActions.loadCandidateRankingAction(
+          id,
+          chamberName,
+          isIncumbent,
+        ),
       );
     }
   }, [id, chamber]);
@@ -89,6 +100,8 @@ export function CandidatePage({
     deleteCandidateRankingCallback,
     routeTab,
     content,
+    showRegisterCallback,
+    saveRankingCallback,
   };
 
   const emptyCandidate = () =>
@@ -120,6 +133,8 @@ CandidatePage.propTypes = {
   rankingObj: PropTypes.object,
   deleteCandidateRankingCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  showRegisterCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -140,6 +155,25 @@ function mapDispatchToProps(dispatch, ownProps) {
         dispatch(userActions.deleteCandidateRankingAction(rank.id));
       } else {
         dispatch(userActions.deleteGuestRankingAction(rank));
+      }
+    },
+    showRegisterCallback: () => {
+      dispatch(push('?register=true'));
+    },
+    saveRankingCallback: (user, candidate, rank) => {
+      if (user) {
+        const { chamber, state, district } = candidate;
+        console.log('here', chamber, state, district);
+        dispatch(
+          userActions.saveUserRankingAction(
+            candidate,
+            rank,
+            chamber.toLowerCase(),
+            state,
+            district,
+          ),
+        );
+        deleteSignupRedirectCookie();
       }
     },
   };

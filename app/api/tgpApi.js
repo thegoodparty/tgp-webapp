@@ -187,6 +187,12 @@ const api = {
     method: 'PUT',
     withAuth: true,
   },
+
+  loadCandidateRanking: {
+    url: `${base}user/ranking/candidate-ranking`,
+    method: 'GET',
+    withAuth: true,
+  },
   /*
    * SCRAPE
    */

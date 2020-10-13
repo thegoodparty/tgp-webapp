@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
+import AddVoteContainer from 'containers/elections/AddVoteContainer/Loadable';
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 
@@ -19,6 +20,9 @@ import RightCard from './RightCard';
 import Tabs from './Tabs';
 import CampaignStatus from './CampaignStatus';
 import BottomButtons from './BottomButtons';
+import { setSignupRedirectCookie } from '../../../helpers/cookieHelper';
+import { candidateRoute } from '../../../helpers/electionsHelper';
+import VerifyVotePage from '../../../containers/voterize/VerifyVotePage/Loadable';
 
 const ContentWrapper = styled.div`
   max-width: 1280px;
@@ -38,10 +42,30 @@ const CandidateWrapper = ({
   deleteCandidateRankingCallback,
   routeTab = 'campaign',
   content,
+  showRegisterCallback,
+  saveRankingCallback,
 }) => {
+  const [state, setState] = useState({
+    showVoterVerify: false,
+    showAddVote: false,
+    showShare: false,
+  });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const { voteStatus } = user;
+    if (voteStatus === 'verified' && state.showVoterVerify) {
+      setState({
+        ...state,
+        showVoterVerify: false,
+        showShare: false,
+        showAddVote: true,
+      });
+    }
+  }, [user]);
+
   let isGood;
   let campaignSummary;
   let campaignUpdates;
@@ -64,12 +88,62 @@ const CandidateWrapper = ({
     showShare: true,
     user,
   };
+  const route = candidateRoute(candidate);
+  const addVoteCallback = () => {
+    if (!user) {
+      setSignupRedirectCookie(route);
+      showRegisterCallback();
+    } else if (user.voteStatus === 'verified') {
+      saveRank();
+      setState({
+        ...state,
+        showAddVote: true,
+      });
+    } else {
+      setState({
+        ...state,
+        showVoterVerify: true,
+      });
+    }
+  };
+
   const buttonsProps = {
     candidate,
     chamberName,
     user,
     chamberRank,
     deleteCandidateRankingCallback,
+    addVoteCallback,
+  };
+
+  const closeModal = () => {
+    setState({
+      ...state,
+      showShare: false,
+      showAddVote: false,
+    });
+  };
+
+  const goToShareCallback = () => {
+    setState({
+      ...state,
+      showShare: true,
+      showAddVote: false,
+    });
+  };
+
+  const skipVerifyVoterCallback = () => {
+    setState({
+      ...state,
+      showAddVote: true,
+      showVoterVerify: false,
+    });
+    saveRank();
+  };
+
+  const saveRank = () => {
+    const rank = 1;
+    saveRankingCallback(user, candidate, rank);
   };
 
   const rightCard = <RightCard {...buttonsProps} tab={tab} hideTab={hideTab} />;
@@ -128,6 +202,15 @@ const CandidateWrapper = ({
           <LoadingAnimation />
         )}
       </ContentWrapper>
+      {state.showAddVote && (
+        <AddVoteContainer
+          closeCallback={closeModal}
+          goToShareCallback={goToShareCallback}
+        />
+      )}
+      {state.showVoterVerify && (
+        <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
+      )}
     </PageWrapper>
   );
 };
@@ -141,6 +224,8 @@ CandidateWrapper.propTypes = {
   deleteCandidateRankingCallback: PropTypes.func,
   routeTab: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  showRegisterCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
 };
 
 export default CandidateWrapper;
