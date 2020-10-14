@@ -57,13 +57,6 @@ export function CandidatePage({
       dispatch(
         candidateActions.loadCandidateAction(id, chamberName, isIncumbent),
       );
-      dispatch(
-        candidateActions.loadCandidateRankingAction(
-          id,
-          chamberName,
-          isIncumbent,
-        ),
-      );
     }
   }, [id, chamber]);
 

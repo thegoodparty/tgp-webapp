@@ -38,25 +38,6 @@ function* loadDistrictIncumbent(action) {
   }
 }
 
-function* loadCandidateRanking(action) {
-  try {
-    console.log('here');
-    const user = yield call(getUserFromStateOrCookie, makeSelectUser);
-    console.log('here1', user);
-    if (!user) {
-      return;
-    }
-    const api = tgpApi.loadCandidateRanking;
-    const { id, chamber, isIncumbent } = action;
-    const payload = { id, chamber, isIncumbent };
-    const { rank } = yield call(requestHelper, api, payload);
-    yield put(actions.loadCandidateRankingActionSuccess(rank));
-  } catch (error) {
-    console.log(error);
-    yield put(actions.loadCandidateRankingActionError(error));
-  }
-}
-
 // Individual exports for testing
 export default function* saga() {
   let action = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
@@ -64,5 +45,4 @@ export default function* saga() {
     types.LOAD_DISTRICT_INCUMBENT,
     loadDistrictIncumbent,
   );
-  action = yield takeLatest(types.LOAD_CANDIDATE_RANKING, loadCandidateRanking);
 }

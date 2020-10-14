@@ -11,7 +11,6 @@ export const initialState = {
   senateRank: false,
   houseRank: false,
   incumbent: false,
-  candidateRank: false,
 };
 
 const districtReducer = (state = initialState, action) =>
@@ -81,18 +80,6 @@ const districtReducer = (state = initialState, action) =>
           const cookie = getCookie('houseRank');
           draft.houseRank = JSON.parse(cookie);
         }
-        break;
-
-      case types.LOAD_CANDIDATE_RANKING:
-        draft.candidateRank = false;
-        break;
-
-      case types.LOAD_CANDIDATE_RANKING_SUCCESS:
-        draft.candidateRank = action.rank;
-        break;
-
-      case types.LOAD_CANDIDATE_RANKING_ERROR:
-        draft.candidateRank = false;
         break;
     }
   });
