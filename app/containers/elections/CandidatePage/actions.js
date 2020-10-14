@@ -50,7 +50,6 @@ const loadDistrictIncumbentActionSuccess = incumbent => ({
   incumbent,
 });
 
-
 export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
@@ -61,5 +60,4 @@ export default {
   loadRankingFromCookieAction,
   loadDistrictIncumbentAction,
   loadDistrictIncumbentActionSuccess,
-
 };

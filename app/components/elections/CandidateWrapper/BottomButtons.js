@@ -42,6 +42,7 @@ const BottomButtons = ({
   deleteCandidateRankingCallback,
   chamberRank,
   user,
+  addVoteCallback,
 }) => (
   <Wrapper>
     <ShareButtons
@@ -52,6 +53,7 @@ const BottomButtons = ({
       user={user}
       deleteCandidateRankingCallback={deleteCandidateRankingCallback}
       state={state}
+      addVoteCallback={addVoteCallback}
     />
   </Wrapper>
 );
@@ -64,6 +66,7 @@ BottomButtons.propTypes = {
   district: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
+  addVoteCallback: PropTypes.func,
 };
 
 export default BottomButtons;
