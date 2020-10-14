@@ -21,6 +21,7 @@ import tgpApi from 'api/tgpApi';
 import { candidateBlocName } from 'helpers/electionsHelper';
 import AnalyticsService from 'services/AnalyticsService';
 import globalActions from 'containers/App/actions';
+import candidateActions from 'containers/elections/CandidatePage/actions';
 import types from './constants';
 import actions from './actions';
 
@@ -590,14 +591,20 @@ function* saveUserRanking(action) {
     yield put(actions.userRankingActionSuccess(ranking));
 
     yield put(snackbarActions.showSnakbarAction('Your choice was saved'));
-
-    if (chamber === 'presidential') {
-      yield put(districtActions.loadAllPresidentialAction());
-    } else if (chamber === 'senate') {
-      yield put(districtActions.loadSenateCandidatesAction(state));
-    } else {
-      yield put(districtActions.loadHouseCandidatesAction(state, district));
-    }
+    yield put(
+      candidateActions.loadCandidateAction(
+        candidate.id,
+        chamber.toLowerCase(),
+        !!candidate.isIncumbent,
+      ),
+    );
+    // if (chamber === 'presidential') {
+    //   yield put(districtActions.loadAllPresidentialAction());
+    // } else if (chamber === 'senate') {
+    //   yield put(districtActions.loadSenateCandidatesAction(state));
+    // } else {
+    //   yield put(districtActions.loadHouseCandidatesAction(state, district));
+    // }
   } catch (error) {
     console.log(error);
     yield put(
@@ -653,19 +660,19 @@ function* deleteAllUserRankings() {
 
 function* deleteCandidateRanking(action) {
   try {
-    const { id, chamber, state, district } = action;
+    const { id, candidate } = action;
     const payload = { id };
     const api = tgpApi.deleteCandidateRanking;
     yield call(requestHelper, api, payload);
     yield put(actions.userRankingAction());
     yield put(snackbarActions.showSnakbarAction('Your ranking was deleted'));
-    if (chamber === 'presidential') {
-      yield put(districtActions.loadAllPresidentialAction());
-    } else if (chamber === 'senate') {
-      yield put(districtActions.loadSenateCandidatesAction(state));
-    } else {
-      yield put(districtActions.loadHouseCandidatesAction(state, district));
-    }
+    yield put(
+      candidateActions.loadCandidateAction(
+        candidate.id,
+        candidate.chamber?.toLowerCase(),
+        !!candidate.isIncumbent,
+      ),
+    );
   } catch (error) {
     console.log(error);
     yield put(

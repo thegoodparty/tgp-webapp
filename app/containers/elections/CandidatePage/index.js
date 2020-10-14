@@ -29,6 +29,7 @@ import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
+import queryHelper from '../../../helpers/queryHelper';
 
 export function CandidatePage({
   id,
@@ -42,6 +43,7 @@ export function CandidatePage({
   content,
   showRegisterCallback,
   saveRankingCallback,
+  removeQueryCallback,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
@@ -51,6 +53,7 @@ export function CandidatePage({
   const isIncumbent = chamberIncumbent === 'i';
 
   const { state, district } = candidate || {};
+  const queryAddVote = queryHelper(window.location.search, 'addVote');
 
   useEffect(() => {
     if (id) {
@@ -95,6 +98,8 @@ export function CandidatePage({
     content,
     showRegisterCallback,
     saveRankingCallback,
+    queryAddVote,
+    removeQueryCallback,
   };
 
   const emptyCandidate = () =>
@@ -128,6 +133,7 @@ CandidatePage.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   showRegisterCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
+  removeQueryCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -143,9 +149,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
     tab: ownProps.match.params.tab,
-    deleteCandidateRankingCallback: (rank, user) => {
+    deleteCandidateRankingCallback: (rank, user, candidate) => {
       if (user) {
-        dispatch(userActions.deleteCandidateRankingAction(rank.id));
+        dispatch(userActions.deleteCandidateRankingAction(rank.id, candidate));
       } else {
         dispatch(userActions.deleteGuestRankingAction(rank));
       }
@@ -156,7 +162,6 @@ function mapDispatchToProps(dispatch, ownProps) {
     saveRankingCallback: (user, candidate, rank) => {
       if (user) {
         const { chamber, state, district } = candidate;
-        console.log('here', chamber, state, district);
         dispatch(
           userActions.saveUserRankingAction(
             candidate,
@@ -168,6 +173,9 @@ function mapDispatchToProps(dispatch, ownProps) {
         );
         deleteSignupRedirectCookie();
       }
+    },
+    removeQueryCallback: () => {
+      dispatch(push(window.location.pathname));
     },
   };
 }

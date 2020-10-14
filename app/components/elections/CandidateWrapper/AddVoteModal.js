@@ -104,16 +104,17 @@ const AddVoteModal = ({
   userState,
   closeCallback,
   goToShareCallback,
+  showStepper,
 }) => {
   if (!candidate) {
     return <> </>;
   }
-  const { name, ranking, likelyVoters, chamber, district, state } = candidate;
+  const { name, rankingCount, likelyVoters, chamber, district, state } = candidate;
   let { isGood } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
-  const chamberCount = ranking + likelyVoters;
+  const chamberCount = likelyVoters + rankingCount;
   const stateUpper = state ? state.toUpperCase() : '';
   const suffixText =
     chamber === 'presidential'
@@ -126,7 +127,7 @@ const AddVoteModal = ({
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        <Stepper steps={defaultRegisterSteps} activeStep={2} />
+        {showStepper && <Stepper steps={defaultRegisterSteps} activeStep={2} />}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
@@ -179,6 +180,7 @@ AddVoteModal.propTypes = {
   votesNeeded: PropTypes.number,
   userState: PropTypes.string,
   goToShareCallback: PropTypes.func,
+  showStepper: PropTypes.bool,
 };
 
 export default AddVoteModal;

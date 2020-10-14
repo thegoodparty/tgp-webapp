@@ -105,6 +105,7 @@ const RightCard = ({
   tab,
   hideTab,
   addVoteCallback,
+  openShareCallback,
 }) => {
   const {
     name,
@@ -177,6 +178,7 @@ const RightCard = ({
               deleteCandidateRankingCallback={deleteCandidateRankingCallback}
               state={state}
               addVoteCallback={addVoteCallback}
+              openShareCallback={openShareCallback}
             />
             {hideTab ? (
               <>
@@ -237,6 +239,7 @@ RightCard.propTypes = {
   tab: PropTypes.string,
   hideTab: PropTypes.bool,
   addVoteCallback: PropTypes.func,
+  openShareCallback: PropTypes.func,
 };
 
 export default RightCard;

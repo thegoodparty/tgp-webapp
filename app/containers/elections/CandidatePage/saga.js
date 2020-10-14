@@ -1,11 +1,8 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
-import { getUserFromStateOrCookie } from '../../../helpers/userHelper';
-import makeSelectUser from '../../you/YouPage/selectors';
 
 function* loadCandidate(action) {
   try {

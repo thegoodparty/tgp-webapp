@@ -19,7 +19,6 @@ import ShareIconWhite from 'images/icons/share-icon-white.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
 import { numberNth } from 'helpers/numberHelper';
 import HeartIcon from 'images/white-heart.svg';
-import { setSignupRedirectCookie } from 'helpers/cookieHelper';
 
 const RankWrapper = styled.div`
   display: flex;
@@ -87,41 +86,30 @@ const ShareButtons = ({
   chamberRank,
   user,
   addVoteCallback,
+  openShareCallback,
 }) => {
-  const { state, district } = candidate;
   const rank = candidateRanking(chamberRank, candidate);
   const rankObj = candidateRankObj(chamberRank, candidate);
-  const route = rankPageJoinLink(user, candidate, chamberName, state, district);
-  const cookieRoute = rankPageJoinLink(
-    user,
-    candidate,
-    chamberName,
-    state,
-    district,
-    true,
-  );
+
   return (
     <>
-      <Link
-        to={rankPageGrowLink(candidate, chamberName, state, district)}
-        className="share-button"
-      >
+      <div className="share-button">
         {rank ? (
-          <BlueButton fullWidth>
+          <BlueButton fullWidth onClick={openShareCallback}>
             <InnerButton>
               <Img src={ShareIconWhite} alt="share" />
               SHARE
             </InnerButton>
           </BlueButton>
         ) : (
-          <OutlinedButton active fullWidth>
+          <OutlinedButton active fullWidth onClick={openShareCallback}>
             <InnerButton>
               <Img src={ShareIcon} alt="share" />
               SHARE
             </InnerButton>
           </OutlinedButton>
         )}
-      </Link>
+      </div>
       {rank ? (
         <RankWrapper
           className="share-button"
@@ -129,6 +117,7 @@ const ShareButtons = ({
             deleteCandidateRankingCallback(
               { ...rankObj, chamber: chamberName },
               user,
+              candidate,
             )
           }
         >
@@ -160,6 +149,7 @@ ShareButtons.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
   addVoteCallback: PropTypes.func,
+  openShareCallback: PropTypes.func,
 };
 
 export default ShareButtons;

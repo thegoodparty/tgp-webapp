@@ -6,8 +6,12 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 import AddVoteContainer from 'containers/elections/AddVoteContainer/Loadable';
+import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
+
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
+import { setSignupRedirectCookie } from 'helpers/cookieHelper';
+import { candidateRoute } from 'helpers/electionsHelper';
 
 import TopRow from './TopRow';
 import MoneyAndCharacter from './MoneyAndCharacter';
@@ -20,9 +24,7 @@ import RightCard from './RightCard';
 import Tabs from './Tabs';
 import CampaignStatus from './CampaignStatus';
 import BottomButtons from './BottomButtons';
-import { setSignupRedirectCookie } from '../../../helpers/cookieHelper';
-import { candidateRoute } from '../../../helpers/electionsHelper';
-import VerifyVotePage from '../../../containers/voterize/VerifyVotePage/Loadable';
+import ShareModal from './ShareModal';
 
 const ContentWrapper = styled.div`
   max-width: 1280px;
@@ -44,11 +46,14 @@ const CandidateWrapper = ({
   content,
   showRegisterCallback,
   saveRankingCallback,
+  queryAddVote = false,
+  removeQueryCallback,
 }) => {
   const [state, setState] = useState({
     showVoterVerify: false,
-    showAddVote: false,
+    showAddVote: !!queryAddVote,
     showShare: false,
+    showStepper: false,
   });
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -88,11 +93,15 @@ const CandidateWrapper = ({
     showShare: true,
     user,
   };
-  const route = candidateRoute(candidate);
+  const route = `${candidateRoute(candidate)}?addVote=true`;
   const addVoteCallback = () => {
     if (!user) {
       setSignupRedirectCookie(route);
       showRegisterCallback();
+      setState({
+        ...state,
+        showStepper: true,
+      });
     } else if (user.voteStatus === 'verified') {
       saveRank();
       setState({
@@ -107,6 +116,13 @@ const CandidateWrapper = ({
     }
   };
 
+  const openShareCallback = () => {
+    setState({
+      ...state,
+      showShare: true,
+    });
+  };
+
   const buttonsProps = {
     candidate,
     chamberName,
@@ -114,6 +130,7 @@ const CandidateWrapper = ({
     chamberRank,
     deleteCandidateRankingCallback,
     addVoteCallback,
+    openShareCallback,
   };
 
   const closeModal = () => {
@@ -121,7 +138,11 @@ const CandidateWrapper = ({
       ...state,
       showShare: false,
       showAddVote: false,
+      showStepper: false,
     });
+    if (!!queryAddVote) {
+      removeQueryCallback();
+    }
   };
 
   const goToShareCallback = () => {
@@ -130,6 +151,9 @@ const CandidateWrapper = ({
       showShare: true,
       showAddVote: false,
     });
+    if (!!queryAddVote) {
+      removeQueryCallback();
+    }
   };
 
   const skipVerifyVoterCallback = () => {
@@ -206,10 +230,19 @@ const CandidateWrapper = ({
         <AddVoteContainer
           closeCallback={closeModal}
           goToShareCallback={goToShareCallback}
+          showStepper={state.showStepper}
         />
       )}
       {state.showVoterVerify && (
         <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
+      )}
+      {state.showShare && (
+        <ShareModal
+          closeCallback={closeModal}
+          user={user}
+          candidate={candidate}
+          showStepper={state.showStepper}
+        />
       )}
     </PageWrapper>
   );
@@ -226,6 +259,8 @@ CandidateWrapper.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   showRegisterCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
+  queryAddVote: PropTypes.bool,
+  removeQueryCallback: PropTypes.bool,
 };
 
 export default CandidateWrapper;
