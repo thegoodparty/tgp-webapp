@@ -578,16 +578,16 @@ function* uploadAvatar(action) {
 
 function* saveUserRanking(action) {
   try {
-    const { candidate, rank, chamber, state, district } = action;
+    const { candidate, chamber, state } = action;
     const api = tgpApi.rankCandidate;
     const payload = {
-      rank,
       candidateId: candidate.id,
       chamber,
       state,
       isIncumbent: candidate.isIncumbent,
     };
-    const { ranking } = yield call(requestHelper, api, payload);
+    const { ranking, rank } = yield call(requestHelper, api, payload);
+    console.log('rank', rank);
     yield put(actions.userRankingActionSuccess(ranking));
 
     yield put(snackbarActions.showSnakbarAction('Your choice was saved'));

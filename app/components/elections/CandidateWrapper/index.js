@@ -167,8 +167,7 @@ const CandidateWrapper = ({
   };
 
   const saveRank = () => {
-    const rank = 1;
-    saveRankingCallback(user, candidate, rank);
+    saveRankingCallback(user, candidate);
   };
 
   const rightCard = <RightCard {...buttonsProps} tab={tab} hideTab={hideTab} />;

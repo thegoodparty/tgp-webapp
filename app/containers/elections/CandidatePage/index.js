@@ -161,16 +161,14 @@ function mapDispatchToProps(dispatch, ownProps) {
     showRegisterCallback: () => {
       dispatch(push('?register=true'));
     },
-    saveRankingCallback: (user, candidate, rank) => {
+    saveRankingCallback: (user, candidate) => {
       if (user) {
-        const { chamber, state, district } = candidate;
+        const { chamber, state } = candidate;
         dispatch(
           userActions.saveUserRankingAction(
             candidate,
-            rank,
             chamber ? chamber.toLowerCase() : 'presidential',
             state,
-            district,
           ),
         );
         deleteSignupRedirectCookie();
