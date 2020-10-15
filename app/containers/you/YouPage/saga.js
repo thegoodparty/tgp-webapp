@@ -586,8 +586,7 @@ function* saveUserRanking(action) {
       state,
       isIncumbent: candidate.isIncumbent,
     };
-    const { ranking, rank } = yield call(requestHelper, api, payload);
-    console.log('rank', rank);
+    const { ranking } = yield call(requestHelper, api, payload);
     yield put(actions.userRankingActionSuccess(ranking));
 
     yield put(snackbarActions.showSnakbarAction('Your choice was saved'));
@@ -598,13 +597,6 @@ function* saveUserRanking(action) {
         !!candidate.isIncumbent,
       ),
     );
-    // if (chamber === 'presidential') {
-    //   yield put(districtActions.loadAllPresidentialAction());
-    // } else if (chamber === 'senate') {
-    //   yield put(districtActions.loadSenateCandidatesAction(state));
-    // } else {
-    //   yield put(districtActions.loadHouseCandidatesAction(state, district));
-    // }
   } catch (error) {
     console.log(error);
     yield put(

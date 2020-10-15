@@ -84,52 +84,6 @@ export function ElectionPage({
     }
   }, [pathname]);
 
-  // useEffect(() => {
-  //   const bloc = queryHelper(search, 'b');
-  //   if (bloc) {
-  //     if (bloc.includes('GoodBloc')) {
-  //       setEmptyBlocCandidate(
-  //         generateEmptyBlocCandidate(district, chamber, state),
-  //       );
-  //       dispatch(push(pathname));
-  //     } else {
-  //       dispatch(districtActions.loadBlocCandidateAction(bloc));
-  //       dispatch(push(pathname));
-  //     }
-  //   }
-  //
-  //   const joinDeepLinkId = queryHelper(search, 'join');
-  //   const joinDeepLinkName = queryHelper(search, 'name');
-  //   if (joinDeepLinkId) {
-  //     dispatch(
-  //       districtActions.setJoinCandidateAction({
-  //         id: parseInt(joinDeepLinkId, 10),
-  //         name: joinDeepLinkName,
-  //       }),
-  //     );
-  //     dispatch(push(pathname));
-  //   }
-  //
-  //   const growDeepLinkId = queryHelper(search, 'grow');
-  //   if (growDeepLinkId) {
-  //     dispatch(
-  //       districtActions.setGrowCandidateAction({
-  //         id: parseInt(growDeepLinkId, 10),
-  //         name: joinDeepLinkName,
-  //       }),
-  //     );
-  //     dispatch(push(pathname));
-  //   }
-  // }, [candidates]);
-
-  // useEffect(() => {
-  //   const cookieRedirect = getSignupRedirectCookie();
-  //   if (cookieRedirect) {
-  //     setPostRegisterCookie(cookieRedirect.options);
-  //     // deleteSignupRedirectCookie();
-  //   }
-  // }, [pathname, search]);
-
   useEffect(() => {
     if (user && !ranking) {
       dispatch(userActions.userRankingAction());
@@ -151,43 +105,6 @@ export function ElectionPage({
 
   const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
 
-  // const blocCandidateMatch =
-  //   emptyBlocCandidate || findBlocCandidate(candidates, blocCandidate);
-  // let joinCandidateMatch;
-  // if (joinCandidate) {
-  //   joinCandidateMatch = findBlocCandidate(candidates, joinCandidate);
-  // }
-
-  // let growCandidateMatch;
-  // if (growCandidate) {
-  //   growCandidateMatch = findBlocCandidate(candidates, growCandidate);
-  // }
-
-  // let postRegisterCandidate;
-  // if (postRegisterCookie) {
-  //   const { candidateId, name, rank } = postRegisterCookie;
-  //   if (candidateId && name) {
-  //     if (candidateId < 0) {
-  //       postRegisterCandidate = generateEmptyBlocCandidate(
-  //         district,
-  //         chamber,
-  //         state,
-  //       );
-  //     } else {
-  //       postRegisterCandidate = findBlocCandidate(candidates, {
-  //         id: candidateId,
-  //         name,
-  //       });
-  //     }
-  //     if (postRegisterCandidate) {
-  //       setPostRegisterJoin({
-  //         rank,
-  //         candidate: postRegisterCandidate,
-  //       });
-  //       setPostRegisterCookie(false);
-  //     }
-  //   }
-  // }
   const candidatesWithFields = candidates;
 
   if (candidates) {
