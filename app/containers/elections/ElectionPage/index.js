@@ -186,16 +186,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     state: ownProps.match.params.state,
     district: ownProps.match.params.district,
 
-    deleteCandidateRankingCallback: (rank, user, chamber, state, district) => {
+    deleteCandidateRankingCallback: (rank, user) => {
       if (user) {
-        dispatch(
-          userActions.deleteCandidateRankingAction(
-            rank.id,
-            chamber,
-            state,
-            district,
-          ),
-        );
+        dispatch(userActions.deleteCandidateRankingAction(rank.id));
       } else {
         dispatch(userActions.deleteGuestRankingAction(rank));
       }

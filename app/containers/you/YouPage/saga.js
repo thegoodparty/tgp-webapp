@@ -586,17 +586,15 @@ function* saveUserRanking(action) {
       state,
       isIncumbent: candidate.isIncumbent,
     };
-    const { ranking } = yield call(requestHelper, api, payload);
+    const { ranking, candidateWithFields } = yield call(
+      requestHelper,
+      api,
+      payload,
+    );
     yield put(actions.userRankingActionSuccess(ranking));
 
     yield put(snackbarActions.showSnakbarAction('Your choice was saved'));
-    yield put(
-      candidateActions.loadCandidateAction(
-        candidate.id,
-        chamber.toLowerCase(),
-        !!candidate.isIncumbent,
-      ),
-    );
+    yield put(candidateActions.loadCandidateActionSuccess(candidateWithFields));
   } catch (error) {
     console.log(error);
     yield put(
@@ -652,19 +650,13 @@ function* deleteAllUserRankings() {
 
 function* deleteCandidateRanking(action) {
   try {
-    const { id, candidate } = action;
+    const { id } = action;
     const payload = { id };
     const api = tgpApi.deleteCandidateRanking;
-    yield call(requestHelper, api, payload);
+    const { candidate } = yield call(requestHelper, api, payload);
     yield put(actions.userRankingAction());
     yield put(snackbarActions.showSnakbarAction('Your ranking was deleted'));
-    yield put(
-      candidateActions.loadCandidateAction(
-        candidate.id,
-        candidate.chamber ? candidate.chamber.toLowerCase() : 'presidential',
-        !!candidate.isIncumbent,
-      ),
-    );
+    yield put(candidateActions.loadCandidateActionSuccess(candidate));
   } catch (error) {
     console.log(error);
     yield put(

@@ -74,13 +74,7 @@ const ElectionWrapper = ({
   }
 
   const handleDeselectCandidate = rank => {
-    deleteCandidateRankingCallback(
-      { ...rank, chamber },
-      user,
-      chamber,
-      state,
-      districtNumber,
-    );
+    deleteCandidateRankingCallback(rank, user);
   };
 
   const stateUpper = state ? state.toUpperCase() : '';

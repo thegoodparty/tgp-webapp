@@ -92,10 +92,9 @@ const deleteAllUserRankingsAction = () => ({
   type: types.DELETE_ALL_USER_RANKINGS,
 });
 
-const deleteCandidateRankingAction = (id, candidate) => ({
+const deleteCandidateRankingAction = id => ({
   type: types.DELETE_CANDIDATE_RANKING,
   id,
-  candidate,
 });
 
 const uploadAvatarAction = (fileName, fileData, withRedirect = true) => ({

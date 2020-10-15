@@ -113,13 +113,7 @@ const ShareButtons = ({
       {rank ? (
         <RankWrapper
           className="share-button"
-          onClick={() =>
-            deleteCandidateRankingCallback(
-              { ...rankObj, chamber: chamberName },
-              user,
-              candidate,
-            )
-          }
+          onClick={() => deleteCandidateRankingCallback(rankObj)}
         >
           <CheckMark /> <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>
           <CloseIcon />

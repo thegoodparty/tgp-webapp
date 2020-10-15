@@ -66,7 +66,7 @@ export function CandidatePage({
 
   useEffect(() => {
     if (!isIncumbent) {
-      if (candidate.chamber === 'Senate') {
+      if (candidate?.chamber === 'Senate') {
         dispatch(candidateActions.loadDistrictIncumbentAction(state));
       } else {
         dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
@@ -151,12 +151,8 @@ function mapDispatchToProps(dispatch, ownProps) {
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
     tab: ownProps.match.params.tab,
-    deleteCandidateRankingCallback: (rank, user, candidate) => {
-      if (user) {
-        dispatch(userActions.deleteCandidateRankingAction(rank.id, candidate));
-      } else {
-        dispatch(userActions.deleteGuestRankingAction(rank));
-      }
+    deleteCandidateRankingCallback: rank => {
+      dispatch(userActions.deleteCandidateRankingAction(rank.id));
     },
     showRegisterCallback: () => {
       dispatch(push('?register=true'));
