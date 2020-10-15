@@ -54,6 +54,7 @@ export function CandidatePage({
 
   const { state, district } = candidate || {};
   const queryAddVote = queryHelper(window.location.search, 'addVote');
+  const queryShare = queryHelper(window.location.search, 'share');
 
   useEffect(() => {
     if (id) {
@@ -99,6 +100,7 @@ export function CandidatePage({
     showRegisterCallback,
     saveRankingCallback,
     queryAddVote,
+    queryShare,
     removeQueryCallback,
   };
 
@@ -166,7 +168,7 @@ function mapDispatchToProps(dispatch, ownProps) {
           userActions.saveUserRankingAction(
             candidate,
             rank,
-            chamber.toLowerCase(),
+            chamber ? chamber.toLowerCase() : 'presidential',
             state,
             district,
           ),

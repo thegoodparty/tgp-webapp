@@ -47,12 +47,13 @@ const CandidateWrapper = ({
   showRegisterCallback,
   saveRankingCallback,
   queryAddVote = false,
+  queryShare = false,
   removeQueryCallback,
 }) => {
   const [state, setState] = useState({
     showVoterVerify: false,
     showAddVote: !!queryAddVote,
-    showShare: false,
+    showShare: !!queryShare,
     showStepper: false,
   });
   useEffect(() => {
@@ -140,7 +141,7 @@ const CandidateWrapper = ({
       showAddVote: false,
       showStepper: false,
     });
-    if (!!queryAddVote) {
+    if (!!queryAddVote || !!queryShare) {
       removeQueryCallback();
     }
   };
@@ -260,7 +261,8 @@ CandidateWrapper.propTypes = {
   showRegisterCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
   queryAddVote: PropTypes.bool,
-  removeQueryCallback: PropTypes.bool,
+  queryShare: PropTypes.bool,
+  removeQueryCallback: PropTypes.func,
 };
 
 export default CandidateWrapper;

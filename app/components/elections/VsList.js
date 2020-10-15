@@ -292,7 +292,6 @@ const VsList = ({
   chamber,
   state,
   districtNumber,
-  handleGrowCallback,
   user,
   votesNeeded,
   incumbent,
@@ -323,11 +322,11 @@ const VsList = ({
     nextChoice++;
   }
 
-  const onGrow = (candidate, e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    handleGrowCallback(candidate);
-  };
+  // const onGrow = (candidate, e) => {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   handleGrowCallback(candidate);
+  // };
 
   const choiceButton = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
@@ -336,11 +335,13 @@ const VsList = ({
     if (candidateRank) {
       return (
         <GrowWrapper>
-          <GrowButtonWrapper onClick={e => onGrow(candidate, e)}>
-            <WhiteBody11>
-              <Img src={ShareIcon} alt="share" /> SHARE
-            </WhiteBody11>
-          </GrowButtonWrapper>
+          <Link to={`${candidateRoute(candidate)}?share=true`}>
+            <GrowButtonWrapper>
+              <WhiteBody11>
+                <Img src={ShareIcon} alt="share" /> SHARE
+              </WhiteBody11>
+            </GrowButtonWrapper>
+          </Link>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
             <CheckMark />{' '}
             <ChosenCand>{numberNth(candidateRank)} CHOICE </ChosenCand>
@@ -581,7 +582,7 @@ VsList.propTypes = {
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   openFiltersCallback: PropTypes.func,
   handleChoiceCallback: PropTypes.func,
-  handleGrowCallback: PropTypes.func,
+  ranking: PropTypes.object,
   handleDeselectCandidate: PropTypes.func,
   goodBloc: PropTypes.string,
   districtNumber: PropTypes.string,

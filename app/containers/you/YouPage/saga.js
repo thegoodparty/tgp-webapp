@@ -669,7 +669,7 @@ function* deleteCandidateRanking(action) {
     yield put(
       candidateActions.loadCandidateAction(
         candidate.id,
-        candidate.chamber?.toLowerCase(),
+        candidate.chamber ? candidate.chamber.toLowerCase() : 'presidential',
         !!candidate.isIncumbent,
       ),
     );

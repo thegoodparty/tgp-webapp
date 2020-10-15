@@ -51,7 +51,6 @@ const ElectionWrapper = ({
   postRegisterJoin,
   incumbent,
 }) => {
-
   const [showFilters, setShowFilters] = useState(false);
   const [showChoiceModal, setShowChoiceModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -184,12 +183,6 @@ const ElectionWrapper = ({
     );
   };
 
-  const handleGrowCallback = candidate => {
-    setChoiceModalCandidate(candidate);
-    setShowChoiceModal(false);
-    setShowShareModal(true);
-  };
-
   const onCloseChoiceModal = () => {
     setShowChoiceModal(false);
     setChoiceModalCandidate(false);
@@ -288,7 +281,6 @@ const ElectionWrapper = ({
             openFiltersCallback={openFiltersCallback}
             ranking={ranking}
             handleChoiceCallback={handleChoiceCallback}
-            handleGrowCallback={handleGrowCallback}
             handleDeselectCandidate={handleDeselectCandidate}
             goodBloc={`${stateUpper}${districtNumber || ''}`}
             districtNumber={districtNumber}
