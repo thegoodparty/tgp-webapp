@@ -897,12 +897,12 @@ function* trackFbRegister() {
     const candidateState = yield select(selectCandidate());
     if (candidateState && candidateState.candidate) {
       const candidateName = candidateState.candidate.uuid.replace('_', '-');
-      fbq('track', 'completeRegistration', {
+      fbq('track', 'CompleteRegistration', {
         status: true,
         content_name: candidateName,
       });
     } else {
-      fbq('track', 'completeRegistration', {
+      fbq('track', 'CompleteRegistration', {
         status: true,
       });
     }
