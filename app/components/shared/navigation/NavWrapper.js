@@ -70,6 +70,8 @@ const NavWrapper = ({
   };
 
   const handleChange = (event, newValue) => {
+    event.stopPropagation();
+    event.preventDefault();
     setValue(newValue);
     if (newValue === 0) {
       navigateCallback('/party', user, zipCode);
