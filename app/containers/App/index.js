@@ -37,6 +37,9 @@ if (ENV === 'prod') {
   history.listen(location => {
     ReactGA.set({ page: location.pathname });
     ReactGA.pageview(location.pathname);
+    if (typeof fbq === 'function') {
+      fbq('track', 'PageView');
+    }
   });
 }
 
@@ -83,8 +86,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-});
+const mapStateToProps = createStructuredSelector({});
 
 const withConnect = connect(
   mapStateToProps,
