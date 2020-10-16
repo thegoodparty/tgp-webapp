@@ -21,7 +21,6 @@ import tgpApi from 'api/tgpApi';
 import { candidateBlocName } from 'helpers/electionsHelper';
 import AnalyticsService from 'services/AnalyticsService';
 import globalActions from 'containers/App/actions';
-import candidateActions from 'containers/elections/CandidatePage/actions';
 import types from './constants';
 import actions from './actions';
 
@@ -70,7 +69,15 @@ function* register(action) {
     setUserCookie(user);
     setCookie('token', token);
     deleteCookie('guestRanking');
-    yield put(push('/you'));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+      trackFbRegister(cookieRedirect.route);
+      deleteSignupRedirectCookie();
+    } else {
+      trackFbRegister(window.location.pathname);
+      yield put(push('/you'));
+    }
     AnalyticsService.sendEvent('email-register', 'success');
   } catch (error) {
     if (error.response?.exists) {
@@ -154,9 +161,11 @@ function* socialRegister(action) {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
+      trackFbRegister(cookieRedirect.route);
       deleteSignupRedirectCookie();
     } else {
-      yield put(push(location.pathname));
+      trackFbRegister(window.location.pathname);
+      yield put(push(window.location.pathname));
     }
 
     setUserCookie(responseUser);
@@ -578,23 +587,27 @@ function* uploadAvatar(action) {
 
 function* saveUserRanking(action) {
   try {
-    const { candidate, chamber, state } = action;
+    const { candidate, rank, chamber, state, district } = action;
     const api = tgpApi.rankCandidate;
     const payload = {
+      rank,
       candidateId: candidate.id,
       chamber,
       state,
       isIncumbent: candidate.isIncumbent,
     };
-    const { ranking, candidateWithFields } = yield call(
-      requestHelper,
-      api,
-      payload,
-    );
+    const { ranking } = yield call(requestHelper, api, payload);
     yield put(actions.userRankingActionSuccess(ranking));
 
     yield put(snackbarActions.showSnakbarAction('Your choice was saved'));
-    yield put(candidateActions.loadCandidateActionSuccess(candidateWithFields));
+
+    if (chamber === 'presidential') {
+      yield put(districtActions.loadAllPresidentialAction());
+    } else if (chamber === 'senate') {
+      yield put(districtActions.loadSenateCandidatesAction(state));
+    } else {
+      yield put(districtActions.loadHouseCandidatesAction(state, district));
+    }
   } catch (error) {
     console.log(error);
     yield put(
@@ -650,13 +663,19 @@ function* deleteAllUserRankings() {
 
 function* deleteCandidateRanking(action) {
   try {
-    const { id } = action;
+    const { id, chamber, state, district } = action;
     const payload = { id };
     const api = tgpApi.deleteCandidateRanking;
-    const { candidate } = yield call(requestHelper, api, payload);
+    yield call(requestHelper, api, payload);
     yield put(actions.userRankingAction());
     yield put(snackbarActions.showSnakbarAction('Your ranking was deleted'));
-    yield put(candidateActions.loadCandidateActionSuccess(candidate));
+    if (chamber === 'presidential') {
+      yield put(districtActions.loadAllPresidentialAction());
+    } else if (chamber === 'senate') {
+      yield put(districtActions.loadSenateCandidatesAction(state));
+    } else {
+      yield put(districtActions.loadHouseCandidatesAction(state, district));
+    }
   } catch (error) {
     console.log(error);
     yield put(
@@ -872,3 +891,12 @@ export default function* saga() {
     confirmTwitterCallback,
   );
 }
+
+const trackFbRegister = route => {
+  if (typeof fbq === 'function') {
+    fbq('track', 'completeRegistration', {
+      status: true,
+      content_name: route,
+    });
+  }
+};
