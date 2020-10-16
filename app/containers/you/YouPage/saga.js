@@ -69,7 +69,15 @@ function* register(action) {
     setUserCookie(user);
     setCookie('token', token);
     deleteCookie('guestRanking');
-    yield put(push('/you'));
+    const cookieRedirect = getSignupRedirectCookie();
+    if (cookieRedirect) {
+      yield put(push(cookieRedirect.route));
+      trackFbRegister(cookieRedirect.route);
+      deleteSignupRedirectCookie();
+    } else {
+      trackFbRegister(window.location.pathname);
+      yield put(push('/you'));
+    }
     AnalyticsService.sendEvent('email-register', 'success');
   } catch (error) {
     if (error.response?.exists) {
@@ -153,9 +161,11 @@ function* socialRegister(action) {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
+      trackFbRegister(cookieRedirect.route);
       deleteSignupRedirectCookie();
     } else {
-      yield put(push(location.pathname));
+      trackFbRegister(window.location.pathname);
+      yield put(push(window.location.pathname));
     }
 
     setUserCookie(responseUser);
@@ -881,3 +891,12 @@ export default function* saga() {
     confirmTwitterCallback,
   );
 }
+
+const trackFbRegister = route => {
+  if (typeof fbq === 'function') {
+    fbq('track', 'completeRegistration', {
+      status: true,
+      content_name: route,
+    });
+  }
+};
