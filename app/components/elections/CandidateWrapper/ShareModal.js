@@ -224,7 +224,7 @@ const ShareModal = ({
   candidate,
   user,
   closeCallback,
-  showShareModalStepper,
+  registerFlowShareMode,
   userState,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -264,7 +264,7 @@ const ShareModal = ({
         <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
         </Close>
-        {showShareModalStepper && (
+        {registerFlowShareMode && (
           <Stepper steps={defaultRegisterSteps} activeStep={2} />
         )}
         <AvatarWrapper>
@@ -275,7 +275,11 @@ const ShareModal = ({
             name={candidate.name}
           />
 
-          <Spread>Tell others about this campaign!</Spread>
+          <Spread>
+            {registerFlowShareMode
+              ? "You're now part of the"
+              : 'Tell others about this campaign!'}
+          </Spread>
           <TitleH2>
             {name}
             <br />
@@ -393,7 +397,7 @@ ShareModal.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamber: PropTypes.string,
   userState: PropTypes.string,
-  showShareModalStepper: PropTypes.bool,
+  registerFlowShareMode: PropTypes.bool,
 };
 
 export default ShareModal;
