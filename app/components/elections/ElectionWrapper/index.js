@@ -89,9 +89,9 @@ const ElectionWrapper = ({
               <>
                 Join any{' '}
                 <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe" data-cy="article">
-                  candidate voting blocs
+                  crowd-voting campaign
                 </Link>{' '}
-                and we&apos;ll let you know if they grow big enough to win!
+                and we&apos;ll let you know if it grows big enough to win!
               </>
             ) : (
               <>

@@ -234,14 +234,14 @@ const DistrictWrapper = ({
           <Spacer>
             <Body data-cy="federal-election">
               You have <strong data-cy="election-count">{electionCount}</strong>{' '}
-              relevant Federal Elections. Join{' '}
+              relevant Federal Elections. Join any{' '}
               <Link
                 to="?article=1ic6T6fhH0jZLNvX5aZkDe"
                 data-cy="candidate-article"
               >
-                candidate voting blocs
+                crowd-voting campaign
               </Link>{' '}
-              to see if, by voting as a group, we can{' '}
+              to see if we can rally enough votes to{' '}
               <Link
                 to="?article=5KnBx42FOEVDJNUFpoU1PX"
                 data-cy="potentially-good-article"
