@@ -51,10 +51,10 @@ const CandidateWrapper = ({
   removeQueryCallback,
 }) => {
   const [state, setState] = useState({
-    showVoterVerify: false,
-    showAddVote: !!queryAddVote,
+    showVoterVerify: user && user.voteStatus !== 'verified' && !!queryAddVote,
+    showAddVote: user?.voteStatus === 'verified' && !!queryAddVote,
     showShare: !!queryShare,
-    showStepper: false,
+    showStepper: !!queryAddVote,
   });
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -135,11 +135,16 @@ const CandidateWrapper = ({
   };
 
   const closeModal = () => {
+    if (state.showShare) {
+      setState({
+        ...state,
+        showStepper: false,
+      });
+    }
     setState({
       ...state,
       showShare: false,
       showAddVote: false,
-      showStepper: false,
     });
     if (!!queryAddVote || !!queryShare) {
       removeQueryCallback();
