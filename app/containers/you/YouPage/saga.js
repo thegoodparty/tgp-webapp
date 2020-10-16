@@ -25,6 +25,7 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
+import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
 
 function* sendCreatorMessage(action) {
   try {
@@ -72,12 +73,12 @@ function* register(action) {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
-      trackFbRegister(cookieRedirect.route);
       deleteSignupRedirectCookie();
     } else {
-      trackFbRegister(window.location.pathname);
       yield put(push('/you'));
     }
+    yield call(trackFbRegister);
+
     AnalyticsService.sendEvent('email-register', 'success');
   } catch (error) {
     if (error.response?.exists) {
@@ -161,12 +162,11 @@ function* socialRegister(action) {
     const cookieRedirect = getSignupRedirectCookie();
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
-      trackFbRegister(cookieRedirect.route);
       deleteSignupRedirectCookie();
     } else {
-      trackFbRegister(window.location.pathname);
       yield put(push(window.location.pathname));
     }
+    yield call(trackFbRegister);
 
     setUserCookie(responseUser);
     setCookie('token', access_token);
@@ -892,11 +892,19 @@ export default function* saga() {
   );
 }
 
-const trackFbRegister = route => {
+function* trackFbRegister() {
   if (typeof fbq === 'function') {
-    fbq('track', 'completeRegistration', {
-      status: true,
-      content_name: route,
-    });
+    const candidateState = yield select(selectCandidate());
+    if (candidateState && candidateState.candidate) {
+      const candidateName = candidateState.candidate.uuid.replace('_', '-');
+      fbq('track', 'completeRegistration', {
+        status: true,
+        content_name: candidateName,
+      });
+    } else {
+      fbq('track', 'completeRegistration', {
+        status: true,
+      });
+    }
   }
-};
+}
