@@ -25,12 +25,26 @@ import ShareIcon from 'images/icons/share-icon.svg';
 import { numberFormatter } from 'helpers/numberHelper';
 import LogoCapsImg from 'images/logo-caps.svg';
 
+const StyledDialog = styled(Dialog)`
+  && {
+    .MuiDialog-paperScrollPaper {
+      width: calc(100% - 40px);
+      margin: 20px;
+
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpoints.md}) {
+        width: auto;
+      }
+    }
+  }
+`;
+
 const Wrapper = styled.div`
   background-color: #fff;
   padding: 24px 0 32px;
   border-radius: 8px;
   position: relative;
-  width: 85%;
+  width: calc(100% - 12px);
   margin: 0 auto;
   max-width: 500px;
   min-width: 300px;
@@ -51,7 +65,7 @@ const CenterBar = styled(Body)`
 
 const Close = styled.div`
   position: absolute;
-  padding: 4px 0 4px 4px;
+  padding: 8px 0 4px 4px;
   top: 0;
   right: 0;
   color: ${({ theme }) => theme.colors.gray4};
@@ -240,7 +254,10 @@ const ShareModal = ({
   }
   const blocName = candidateBlocName(candidate);
   const url = uuidUrl(user, window.location.href);
-  const chamberCount = ranking + likelyVoters;
+  let chamberCount = likelyVoters;
+  if (ranking) {
+    chamberCount += ranking;
+  }
 
   const chamberTitle = getCandidateTitle(chamber);
   const messageTitle = `Let's see if we can elect ${candidate.name} ${
@@ -259,7 +276,7 @@ const ShareModal = ({
   };
   candidate.votesNeeded = votesNeeded;
   return (
-    <Dialog onClose={closeCallback} open>
+    <StyledDialog onClose={closeCallback} open>
       <Wrapper>
         <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
@@ -290,12 +307,12 @@ const ShareModal = ({
             people and growing!
           </StyledBody>
           <VotesNeededWrapper>
-            <VotesNeeded candidate={candidate} />
+            <VotesNeeded candidate={candidate} truncateSmall />
           </VotesNeededWrapper>
           <CenterBar>
             <SupportersProgressBar
               votesNeeded={votesNeeded}
-              peopleSoFar={chamberCount}
+              peopleSoFar={likelyVoters}
               showSupporters={false}
               showSuffix={false}
               userState={userState}
@@ -387,7 +404,7 @@ const ShareModal = ({
           </CopiedWrapper>
         )}
       </Wrapper>
-    </Dialog>
+    </StyledDialog>
   );
 };
 
