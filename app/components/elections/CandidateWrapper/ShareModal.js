@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Body, H3, Body11, H2, Body13 } from 'components/shared/typogrophy';
+import { Body, Body11, H2, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import Stepper from 'components/shared/Stepper';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
@@ -83,7 +83,10 @@ const AvatarWrapper = styled(Body)`
 `;
 
 const ShareThisWrapper = styled.div`
-  padding: 16px 0;
+  padding: 16px 0 0;
+  &.email {
+    padding: 0;
+  }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 16px 0 30px;
@@ -129,7 +132,7 @@ const ShareThisWrapper = styled.div`
 `;
 
 const AdditionalSharesWrapper = styled.div`
-  padding: 0 25px;
+  padding: 16px 25px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 0 115px;
@@ -157,6 +160,7 @@ const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-top: 18px;
 
   &.sms {
     background: linear-gradient(#67ff81, #03b521);
@@ -228,8 +232,11 @@ const Gray6 = styled.span`
 
 const Footer = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray6};
-  margin-top: 24px;
+  margin-top: 18px;
   text-align: center;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-top: 0;
+  }
 `;
 
 const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
@@ -322,35 +329,7 @@ const ShareModal = ({
             <Gray6>Please tell some friends!</Gray6>
           </Body>
         </AvatarWrapper>
-        <ShareThisWrapper data-cy="social-share">
-          <InlineShareButtons
-            config={{
-              alignment: 'center', // alignment of buttons (left, center, right)
-              color: 'social', // set the color of buttons (social, white)
-              enabled: true, // show/hide buttons (true, false)
-              font_size: 16, // font size for the buttons
-              labels: 'null', // button labels (cta, counts, null)
-              language: 'en', // which language to use (see LANGUAGES)
-              networks: [
-                // which networks to include (see SHARING NETWORKS)
-                'facebook',
-                'twitter',
-                'email',
-              ],
-              padding: 12, // padding within buttons (INTEGER)
-              radius: 4, // the corner radius on each button (INTEGER)
-              show_total: false,
-              size: 56, // the size of each button (INTEGER)
 
-              // OPTIONAL PARAMETERS
-              url,
-              description: messageBody,
-              title: messageTitle, // (defaults to og:title or twitter:title)
-              message: messageBody, // (only for email sharing)
-              subject: messageTitle, // (only for email sharing)
-            }}
-          />
-        </ShareThisWrapper>
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
             <Grid item xs>
@@ -365,6 +344,35 @@ const ShareModal = ({
                 </IconItem>
                 <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
               </a>
+            </Grid>
+            <Grid item xs>
+              <ShareThisWrapper className="email">
+                <InlineShareButtons
+                  config={{
+                    alignment: 'center', // alignment of buttons (left, center, right)
+                    color: 'social', // set the color of buttons (social, white)
+                    enabled: true, // show/hide buttons (true, false)
+                    font_size: 16, // font size for the buttons
+                    labels: 'null', // button labels (cta, counts, null)
+                    language: 'en', // which language to use (see LANGUAGES)
+                    networks: [
+                      // which networks to include (see SHARING NETWORKS)
+                      'email',
+                    ],
+                    padding: 12, // padding within buttons (INTEGER)
+                    radius: 4, // the corner radius on each button (INTEGER)
+                    show_total: false,
+                    size: 56, // the size of each button (INTEGER)
+
+                    // OPTIONAL PARAMETERS
+                    url,
+                    description: messageBody,
+                    title: messageTitle, // (defaults to og:title or twitter:title)
+                    message: messageBody, // (only for email sharing)
+                    subject: messageTitle, // (only for email sharing)
+                  }}
+                />
+              </ShareThisWrapper>
             </Grid>
             <Grid item xs>
               <IconItem>
@@ -390,6 +398,34 @@ const ShareModal = ({
             )}
           </Grid>
         </AdditionalSharesWrapper>
+        <ShareThisWrapper data-cy="social-share">
+          <InlineShareButtons
+            config={{
+              alignment: 'center', // alignment of buttons (left, center, right)
+              color: 'social', // set the color of buttons (social, white)
+              enabled: true, // show/hide buttons (true, false)
+              font_size: 16, // font size for the buttons
+              labels: 'null', // button labels (cta, counts, null)
+              language: 'en', // which language to use (see LANGUAGES)
+              networks: [
+                // which networks to include (see SHARING NETWORKS)
+                'facebook',
+                'twitter',
+              ],
+              padding: 12, // padding within buttons (INTEGER)
+              radius: 4, // the corner radius on each button (INTEGER)
+              show_total: false,
+              size: 56, // the size of each button (INTEGER)
+
+              // OPTIONAL PARAMETERS
+              url,
+              description: messageBody,
+              title: messageTitle, // (defaults to og:title or twitter:title)
+              message: messageBody, // (only for email sharing)
+              subject: messageTitle, // (only for email sharing)
+            }}
+          />
+        </ShareThisWrapper>
         <Footer>
           <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
             What is a crowd-voting campaign?
