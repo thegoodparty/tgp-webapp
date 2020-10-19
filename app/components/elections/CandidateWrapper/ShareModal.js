@@ -83,21 +83,21 @@ const AvatarWrapper = styled(Body)`
 `;
 
 const ShareThisWrapper = styled.div`
-  padding: 16px 0 0;
+  margin-bottom: 1rem;
   &.email {
     padding: 0;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 16px 0 30px;
-  }
+  // @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  //   padding: 16px 0 30px;
+  // }
 
   .st-inline-share-buttons {
     // display: flex !important;
   }
 
   .st-btn {
-    margin: 20px !important;
+    margin: 15px 19px !important;
     border-radius: 50% !important;
     &:after {
       top: 45px;
@@ -135,14 +135,15 @@ const AdditionalSharesWrapper = styled.div`
   padding: 16px 25px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 115px;
+    padding: 0 90px;
   }
 
   &.with-native {
     padding: 0 8px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      padding: 0 90px;
-    }
+    // @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpoints.md}) {
+    //   padding: 0 90px;
+    // }
   }
 `;
 
@@ -160,7 +161,7 @@ const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-top: 18px;
+  margin-top: 14px;
 
   &.sms {
     background: linear-gradient(#67ff81, #03b521);
@@ -332,7 +333,7 @@ const ShareModal = ({
 
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
-            <Grid item xs>
+            <Grid item xs={4}>
               <a
                 href={`sms:?&body=${messageBody.replace('&', '%26')}`}
                 data-cy="sms-share"
@@ -345,7 +346,7 @@ const ShareModal = ({
                 <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
               </a>
             </Grid>
-            <Grid item xs>
+            <Grid item xs={4}>
               <ShareThisWrapper className="email">
                 <InlineShareButtons
                   config={{
@@ -374,7 +375,7 @@ const ShareModal = ({
                 />
               </ShareThisWrapper>
             </Grid>
-            <Grid item xs>
+            <Grid item xs={4}>
               <IconItem>
                 <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
                   <IconWrapper>
@@ -384,48 +385,53 @@ const ShareModal = ({
               </IconItem>
               <IconLabel data-cy="clipboard-share-title">COPY LINK</IconLabel>
             </Grid>
-            {canShare && (
-              <Grid item xs>
-                <IconItem>
-                  <IconItem onClick={nativeShare}>
-                    <IconWrapper className="native-share">
-                      <Icon src={ShareIcon} alt="more" />
-                    </IconWrapper>
-                  </IconItem>
-                </IconItem>
-                <IconLabel>MORE</IconLabel>
-              </Grid>
-            )}
           </Grid>
-        </AdditionalSharesWrapper>
-        <ShareThisWrapper data-cy="social-share">
-          <InlineShareButtons
-            config={{
-              alignment: 'center', // alignment of buttons (left, center, right)
-              color: 'social', // set the color of buttons (social, white)
-              enabled: true, // show/hide buttons (true, false)
-              font_size: 16, // font size for the buttons
-              labels: 'null', // button labels (cta, counts, null)
-              language: 'en', // which language to use (see LANGUAGES)
-              networks: [
-                // which networks to include (see SHARING NETWORKS)
-                'facebook',
-                'twitter',
-              ],
-              padding: 12, // padding within buttons (INTEGER)
-              radius: 4, // the corner radius on each button (INTEGER)
-              show_total: false,
-              size: 56, // the size of each button (INTEGER)
+          <ShareThisWrapper data-cy="social-share">
+            <Grid container spacing={0}>
+              <Grid item xs={canShare ? 8 : 12}>
+                <InlineShareButtons
+                  config={{
+                    alignment: 'center', // alignment of buttons (left, center, right)
+                    color: 'social', // set the color of buttons (social, white)
+                    enabled: true, // show/hide buttons (true, false)
+                    font_size: 16, // font size for the buttons
+                    labels: 'null', // button labels (cta, counts, null)
+                    language: 'en', // which language to use (see LANGUAGES)
+                    networks: [
+                      // which networks to include (see SHARING NETWORKS)
+                      'facebook',
+                      'twitter',
+                    ],
+                    padding: 12, // padding within buttons (INTEGER)
+                    radius: 4, // the corner radius on each button (INTEGER)
+                    show_total: false,
+                    size: 56, // the size of each button (INTEGER)
 
-              // OPTIONAL PARAMETERS
-              url,
-              description: messageBody,
-              title: messageTitle, // (defaults to og:title or twitter:title)
-              message: messageBody, // (only for email sharing)
-              subject: messageTitle, // (only for email sharing)
-            }}
-          />
-        </ShareThisWrapper>
+                    // OPTIONAL PARAMETERS
+                    url,
+                    description: messageBody,
+                    title: messageTitle, // (defaults to og:title or twitter:title)
+                    message: messageBody, // (only for email sharing)
+                    subject: messageTitle, // (only for email sharing)
+                  }}
+                />
+              </Grid>
+              {canShare && (
+                <Grid xs={4}>
+                  <IconItem>
+                    <IconItem onClick={nativeShare}>
+                      <IconWrapper className="native-share">
+                        <Icon src={ShareIcon} alt="more" />
+                      </IconWrapper>
+                    </IconItem>
+                  </IconItem>
+                  <IconLabel>MORE</IconLabel>
+                </Grid>
+              )}
+            </Grid>
+          </ShareThisWrapper>
+        </AdditionalSharesWrapper>
+
         <Footer>
           <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
             What is a crowd-voting campaign?
