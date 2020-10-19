@@ -9,10 +9,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { push } from 'connected-react-router';
 
 import CandidateWrapper from 'components/elections/CandidateWrapper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
+import { deleteSignupRedirectCookie } from 'helpers/cookieHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -27,6 +29,7 @@ import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import candidateActions from './actions';
+import queryHelper from '../../../helpers/queryHelper';
 
 export function CandidatePage({
   id,
@@ -38,6 +41,9 @@ export function CandidatePage({
   rankingObj,
   deleteCandidateRankingCallback,
   content,
+  showRegisterCallback,
+  saveRankingCallback,
+  removeQueryCallback,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
@@ -47,6 +53,8 @@ export function CandidatePage({
   const isIncumbent = chamberIncumbent === 'i';
 
   const { state, district } = candidate || {};
+  const queryAddVote = queryHelper(window.location.search, 'addVote');
+  const queryShare = queryHelper(window.location.search, 'share');
 
   useEffect(() => {
     if (id) {
@@ -58,7 +66,7 @@ export function CandidatePage({
 
   useEffect(() => {
     if (!isIncumbent) {
-      if (candidate.chamber === 'Senate') {
+      if (candidate?.chamber === 'Senate') {
         dispatch(candidateActions.loadDistrictIncumbentAction(state));
       } else {
         dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
@@ -89,6 +97,11 @@ export function CandidatePage({
     deleteCandidateRankingCallback,
     routeTab,
     content,
+    showRegisterCallback,
+    saveRankingCallback,
+    queryAddVote,
+    queryShare,
+    removeQueryCallback,
   };
 
   const emptyCandidate = () =>
@@ -120,6 +133,9 @@ CandidatePage.propTypes = {
   rankingObj: PropTypes.object,
   deleteCandidateRankingCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  showRegisterCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
+  removeQueryCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -135,12 +151,27 @@ function mapDispatchToProps(dispatch, ownProps) {
     id: ownProps.match.params.id,
     chamber: ownProps.match.params.chamber,
     tab: ownProps.match.params.tab,
-    deleteCandidateRankingCallback: (rank, user) => {
+    deleteCandidateRankingCallback: rank => {
+      dispatch(userActions.deleteCandidateRankingAction(rank.id));
+    },
+    showRegisterCallback: () => {
+      dispatch(push('?register=true'));
+    },
+    saveRankingCallback: (user, candidate) => {
       if (user) {
-        dispatch(userActions.deleteCandidateRankingAction(rank.id));
-      } else {
-        dispatch(userActions.deleteGuestRankingAction(rank));
+        const { chamber, state } = candidate;
+        dispatch(
+          userActions.saveUserRankingAction(
+            candidate,
+            chamber ? chamber.toLowerCase() : 'presidential',
+            state,
+          ),
+        );
+        deleteSignupRedirectCookie();
       }
+    },
+    removeQueryCallback: () => {
+      dispatch(push(window.location.pathname));
     },
   };
 }

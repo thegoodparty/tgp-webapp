@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
+// import AddVoteContainer from 'containers/elections/AddVoteContainer/Loadable';
+import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
+
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
+import { setSignupRedirectCookie } from 'helpers/cookieHelper';
+import { candidateRoute } from 'helpers/electionsHelper';
 
 import TopRow from './TopRow';
 import MoneyAndCharacter from './MoneyAndCharacter';
@@ -19,6 +24,7 @@ import RightCard from './RightCard';
 import Tabs from './Tabs';
 import CampaignStatus from './CampaignStatus';
 import BottomButtons from './BottomButtons';
+import ShareModal from './ShareModal';
 
 const ContentWrapper = styled.div`
   max-width: 1280px;
@@ -38,10 +44,34 @@ const CandidateWrapper = ({
   deleteCandidateRankingCallback,
   routeTab = 'campaign',
   content,
+  showRegisterCallback,
+  saveRankingCallback,
+  queryAddVote = false,
+  queryShare = false,
+  removeQueryCallback,
 }) => {
+  const [state, setState] = useState({
+    showVoterVerify: user && user.voteStatus !== 'verified' && !!queryAddVote,
+    registerFlowShareMode: user?.voteStatus === 'verified' && !!queryAddVote,
+    showShare: !!queryShare,
+    showStepper: !!queryAddVote,
+  });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const { voteStatus } = user;
+    if (voteStatus === 'verified' && state.showVoterVerify) {
+      setState({
+        ...state,
+        showVoterVerify: false,
+        showShare: false,
+        registerFlowShareMode: true,
+      });
+    }
+  }, [user]);
+
   let isGood;
   let campaignSummary;
   let campaignUpdates;
@@ -64,12 +94,85 @@ const CandidateWrapper = ({
     showShare: true,
     user,
   };
+  const route = `${candidateRoute(candidate)}?addVote=true`;
+  const addVoteCallback = () => {
+    if (!user) {
+      setSignupRedirectCookie(route);
+      showRegisterCallback();
+      setState({
+        ...state,
+        showStepper: true,
+      });
+    } else if (user.voteStatus === 'verified') {
+      saveRank();
+      setState({
+        ...state,
+        registerFlowShareMode: true,
+      });
+    } else {
+      setState({
+        ...state,
+        showVoterVerify: true,
+      });
+    }
+  };
+
+  const openShareCallback = () => {
+    setState({
+      ...state,
+      showShare: true,
+    });
+  };
+
   const buttonsProps = {
     candidate,
     chamberName,
     user,
     chamberRank,
     deleteCandidateRankingCallback,
+    addVoteCallback,
+    openShareCallback,
+  };
+
+  const closeModal = () => {
+    if (state.showShare) {
+      setState({
+        ...state,
+        showStepper: false,
+      });
+    }
+    setState({
+      ...state,
+      showShare: false,
+      registerFlowShareMode: false,
+    });
+    if (!!queryAddVote || !!queryShare) {
+      removeQueryCallback();
+    }
+  };
+
+  // const goToShareCallback = () => {
+  //   setState({
+  //     ...state,
+  //     showShare: true,
+  //     registerFlowShareMode: false,
+  //   });
+  //   if (!!queryAddVote) {
+  //     removeQueryCallback();
+  //   }
+  // };
+
+  const skipVerifyVoterCallback = () => {
+    setState({
+      ...state,
+      registerFlowShareMode: true,
+      showVoterVerify: false,
+    });
+    saveRank();
+  };
+
+  const saveRank = () => {
+    saveRankingCallback(user, candidate);
   };
 
   const rightCard = <RightCard {...buttonsProps} tab={tab} hideTab={hideTab} />;
@@ -128,6 +231,25 @@ const CandidateWrapper = ({
           <LoadingAnimation />
         )}
       </ContentWrapper>
+      {/*{state.registerFlowShareMode && (*/}
+      {/*  <AddVoteContainer*/}
+      {/*    closeCallback={closeModal}*/}
+      {/*    goToShareCallback={goToShareCallback}*/}
+      {/*    showStepper={state.showStepper}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {state.showVoterVerify && (
+        <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
+      )}
+      {(state.showShare || state.registerFlowShareMode) && (
+        <ShareModal
+          closeCallback={closeModal}
+          user={user}
+          candidate={candidate}
+          // showStepper={state.showStepper}
+          registerFlowShareMode={state.registerFlowShareMode}
+        />
+      )}
     </PageWrapper>
   );
 };
@@ -141,6 +263,11 @@ CandidateWrapper.propTypes = {
   deleteCandidateRankingCallback: PropTypes.func,
   routeTab: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  showRegisterCallback: PropTypes.func,
+  saveRankingCallback: PropTypes.func,
+  queryAddVote: PropTypes.bool,
+  queryShare: PropTypes.bool,
+  removeQueryCallback: PropTypes.func,
 };
 
 export default CandidateWrapper;

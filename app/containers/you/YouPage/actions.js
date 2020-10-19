@@ -81,25 +81,20 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
-const saveUserRankingAction = (candidate, rank, chamber, state, district) => ({
+const saveUserRankingAction = (candidate, chamber, state) => ({
   type: types.SAVE_USER_RANKING,
   candidate,
-  rank,
   chamber,
   state,
-  district,
 });
 
 const deleteAllUserRankingsAction = () => ({
   type: types.DELETE_ALL_USER_RANKINGS,
 });
 
-const deleteCandidateRankingAction = (id, chamber, state, district) => ({
+const deleteCandidateRankingAction = id => ({
   type: types.DELETE_CANDIDATE_RANKING,
   id,
-  chamber,
-  state,
-  district,
 });
 
 const uploadAvatarAction = (fileName, fileData, withRedirect = true) => ({

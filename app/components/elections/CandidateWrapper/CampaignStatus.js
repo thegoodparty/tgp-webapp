@@ -34,7 +34,7 @@ const CampaignStatus = ({ candidate, content, showButtons, buttonsProps }) => {
           ))}
         </>
       )}
-      {showButtons && <BottomButtons {...buttonsProps} />}
+      {showButtons && <BottomButtons buttonsProps={buttonsProps} />}
       <TopQuestions articles={articles} />
     </Wrapper>
   );

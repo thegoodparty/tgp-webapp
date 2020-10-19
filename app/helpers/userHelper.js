@@ -117,7 +117,12 @@ export const getCrewFillers = crew => {
 
 export function* getUserFromStateOrCookie(makeSelectUser) {
   const userState = yield select(makeSelectUser);
-  return userState?.user || null;
+  let user = userState?.user || null;
+  if (user) {
+    return user;
+  }
+  user = getUserCookie();
+  return user;
 }
 
 export const getUserDistrictName = (congDistrict, cds) => {

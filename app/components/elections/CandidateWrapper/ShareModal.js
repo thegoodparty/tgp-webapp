@@ -7,12 +7,12 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Body, H3, Body11, H2, Body13 } from 'components/shared/typogrophy';
+import { Body, Body11, H2, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import Stepper from 'components/shared/Stepper';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import SupportersProgressBar from 'components/elections/SupportersProgressBar';
-import { candidateBlocLink, candidateBlocName } from 'helpers/electionsHelper';
+import { candidateBlocName } from 'helpers/electionsHelper';
 import {
   getCandidateChamberDistrict,
   getCandidateTitle,
@@ -23,14 +23,28 @@ import LinkIcon from 'images/icons/link-icon.svg';
 import SmsIcon from 'images/icons/sms-icon.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
 import { numberFormatter } from 'helpers/numberHelper';
-import LogoCapsImg from '../../../images/logo-caps.svg';
+import LogoCapsImg from 'images/logo-caps.svg';
+
+const StyledDialog = styled(Dialog)`
+  && {
+    .MuiDialog-paperScrollPaper {
+      width: calc(100% - 40px);
+      margin: 20px;
+
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpoints.md}) {
+        width: auto;
+      }
+    }
+  }
+`;
 
 const Wrapper = styled.div`
   background-color: #fff;
   padding: 24px 0 32px;
   border-radius: 8px;
   position: relative;
-  width: 85%;
+  width: calc(100% - 12px);
   margin: 0 auto;
   max-width: 500px;
   min-width: 300px;
@@ -51,7 +65,7 @@ const CenterBar = styled(Body)`
 
 const Close = styled.div`
   position: absolute;
-  padding: 4px 0 4px 4px;
+  padding: 8px 0 4px 4px;
   top: 0;
   right: 0;
   color: ${({ theme }) => theme.colors.gray4};
@@ -69,18 +83,21 @@ const AvatarWrapper = styled(Body)`
 `;
 
 const ShareThisWrapper = styled.div`
-  padding: 16px 0;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 16px 0 30px;
+  margin-bottom: 1rem;
+  &.email {
+    padding: 0;
   }
+
+  // @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  //   padding: 16px 0 30px;
+  // }
 
   .st-inline-share-buttons {
     // display: flex !important;
   }
 
   .st-btn {
-    margin: 20px !important;
+    margin: 15px 19px !important;
     border-radius: 50% !important;
     &:after {
       top: 45px;
@@ -115,17 +132,18 @@ const ShareThisWrapper = styled.div`
 `;
 
 const AdditionalSharesWrapper = styled.div`
-  padding: 0 25px;
+  padding: 16px 25px 0;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 115px;
+    padding: 0 90px;
   }
 
   &.with-native {
     padding: 0 8px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      padding: 0 90px;
-    }
+    // @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpoints.md}) {
+    //   padding: 0 90px;
+    // }
   }
 `;
 
@@ -143,6 +161,7 @@ const IconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-top: 14px;
 
   &.sms {
     background: linear-gradient(#67ff81, #03b521);
@@ -162,23 +181,6 @@ const IconLabel = styled.div`
   margin-top: 12px;
 `;
 
-const TitleH3 = styled(H3)`
-  text-align: center;
-  margin-top: 8px;
-  margin-bottom: 10px;
-  color: ${({ theme }) => theme.colors.gray7};
-  span.big {
-    font-size: 16px;
-    font-weight: bold;
-
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      font-size: 28px;
-    }
-  }
-  &.mb-20 {
-    margin-bottom: 20px;
-  }
-`;
 const Spread = styled(Body)`
   text-align: center;
   margin-top: 20px;
@@ -231,22 +233,20 @@ const Gray6 = styled.span`
 
 const Footer = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray6};
-  margin-top: 24px;
+  margin-top: 18px;
   text-align: center;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-top: 0;
+  }
 `;
 
 const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
 
 const ShareModal = ({
   candidate,
-  open,
   user,
-  chamber,
-  isExternalLink,
   closeCallback,
-  showShareModalStepper,
-  votesNeeded,
-  chamberCount,
+  registerFlowShareMode,
   userState,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -254,33 +254,24 @@ const ShareModal = ({
     return <> </>;
   }
 
-  let { isGood, name } = candidate;
+  const { name, ranking, likelyVoters, votesNeeded } = candidate;
+  const { chamber } = candidate;
+  let { isGood } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
   const blocName = candidateBlocName(candidate);
-  const blocLink = candidateBlocLink(candidate, chamber);
-  let url = uuidUrl(user);
-  let queryOperator = '&';
-  if (url === 'https://thegoodparty.org') {
-    queryOperator = '?';
+  const url = uuidUrl(user, window.location.href);
+  let chamberCount = likelyVoters;
+  if (ranking) {
+    chamberCount += ranking;
   }
-  url = `${url + queryOperator}b=${blocLink}`;
 
   const chamberTitle = getCandidateTitle(chamber);
   const messageTitle = `Let's see if we can elect ${candidate.name} ${
     chamberTitle.includes('President') ? '' : 'to '
   }${chamberTitle}.`;
   const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
-
-  const sendSms = () => {
-    // if (navigator.userAgent.match(/Android/i)) {
-    //   window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
-    // } else {
-    //   window.open(`sms:?&body=${messageBody.replace('&', '%26')}`, '_blank');
-    // }
-    window.open(`sms:;?&body=${messageBody.replace('&', '%26')}`, '_blank');
-  };
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   const nativeShare = () => {
@@ -293,16 +284,12 @@ const ShareModal = ({
   };
   candidate.votesNeeded = votesNeeded;
   return (
-    <Dialog onClose={closeCallback} open={open}>
+    <StyledDialog onClose={closeCallback} open>
       <Wrapper>
         <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
         </Close>
-        {/*<div className="text-center">*/}
-        {/*  {' '}*/}
-        {/*  <Logo src={LogoCapsImg} />*/}
-        {/*</div>*/}
-        {showShareModalStepper && (
+        {registerFlowShareMode && (
           <Stepper steps={defaultRegisterSteps} activeStep={2} />
         )}
         <AvatarWrapper>
@@ -312,39 +299,28 @@ const ShareModal = ({
             src={candidate.image}
             name={candidate.name}
           />
-          {isExternalLink ? (
-            <>
-              <TitleH3>
-                {' '}
-                Congrats!{' '}
-                <span role="img" aria-label="party">
-                  🎉
-                </span>{' '}
-                You’ve joined
-              </TitleH3>
-              <TitleH2>{name} Campaign!</TitleH2>
-            </>
-          ) : (
-            <>
-              <Spread>Tell others about this campaign!</Spread>
-              <TitleH2>
-                {name}
-                <br />
-                for {getCandidateChamberDistrict(candidate)}
-              </TitleH2>
-            </>
-          )}
+
+          <Spread>
+            {registerFlowShareMode
+              ? "You're now part of the"
+              : 'Tell others about this campaign!'}
+          </Spread>
+          <TitleH2>
+            {name}
+            <br />
+            for {getCandidateChamberDistrict(candidate)}
+          </TitleH2>
           <StyledBody className="mb-20">
             <span className="big">{numberFormatter(chamberCount)}</span>&nbsp;
             people and growing!
           </StyledBody>
           <VotesNeededWrapper>
-            <VotesNeeded candidate={candidate} />
+            <VotesNeeded candidate={candidate} truncateSmall />
           </VotesNeededWrapper>
           <CenterBar>
             <SupportersProgressBar
               votesNeeded={votesNeeded}
-              peopleSoFar={chamberCount}
+              peopleSoFar={likelyVoters}
               showSupporters={false}
               showSuffix={false}
               userState={userState}
@@ -354,38 +330,10 @@ const ShareModal = ({
             <Gray6>Please tell some friends!</Gray6>
           </Body>
         </AvatarWrapper>
-        <ShareThisWrapper data-cy="social-share">
-          <InlineShareButtons
-            config={{
-              alignment: 'center', // alignment of buttons (left, center, right)
-              color: 'social', // set the color of buttons (social, white)
-              enabled: true, // show/hide buttons (true, false)
-              font_size: 16, // font size for the buttons
-              labels: 'null', // button labels (cta, counts, null)
-              language: 'en', // which language to use (see LANGUAGES)
-              networks: [
-                // which networks to include (see SHARING NETWORKS)
-                'facebook',
-                'twitter',
-                'email',
-              ],
-              padding: 12, // padding within buttons (INTEGER)
-              radius: 4, // the corner radius on each button (INTEGER)
-              show_total: false,
-              size: 56, // the size of each button (INTEGER)
 
-              // OPTIONAL PARAMETERS
-              url,
-              description: messageBody,
-              title: messageTitle, // (defaults to og:title or twitter:title)
-              message: messageBody, // (only for email sharing)
-              subject: messageTitle, // (only for email sharing)
-            }}
-          />
-        </ShareThisWrapper>
         <AdditionalSharesWrapper className={canShare ? 'with-native' : ''}>
           <Grid container spacing={0}>
-            <Grid item xs>
+            <Grid item xs={4}>
               <a
                 href={`sms:?&body=${messageBody.replace('&', '%26')}`}
                 data-cy="sms-share"
@@ -398,7 +346,36 @@ const ShareModal = ({
                 <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
               </a>
             </Grid>
-            <Grid item xs>
+            <Grid item xs={4}>
+              <ShareThisWrapper className="email">
+                <InlineShareButtons
+                  config={{
+                    alignment: 'center', // alignment of buttons (left, center, right)
+                    color: 'social', // set the color of buttons (social, white)
+                    enabled: true, // show/hide buttons (true, false)
+                    font_size: 16, // font size for the buttons
+                    labels: 'null', // button labels (cta, counts, null)
+                    language: 'en', // which language to use (see LANGUAGES)
+                    networks: [
+                      // which networks to include (see SHARING NETWORKS)
+                      'email',
+                    ],
+                    padding: 12, // padding within buttons (INTEGER)
+                    radius: 4, // the corner radius on each button (INTEGER)
+                    show_total: false,
+                    size: 56, // the size of each button (INTEGER)
+
+                    // OPTIONAL PARAMETERS
+                    url,
+                    description: messageBody,
+                    title: messageTitle, // (defaults to og:title or twitter:title)
+                    message: messageBody, // (only for email sharing)
+                    subject: messageTitle, // (only for email sharing)
+                  }}
+                />
+              </ShareThisWrapper>
+            </Grid>
+            <Grid item xs={4}>
               <IconItem>
                 <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
                   <IconWrapper>
@@ -408,20 +385,53 @@ const ShareModal = ({
               </IconItem>
               <IconLabel data-cy="clipboard-share-title">COPY LINK</IconLabel>
             </Grid>
-            {canShare && (
-              <Grid item xs>
-                <IconItem>
-                  <IconItem onClick={nativeShare}>
-                    <IconWrapper className="native-share">
-                      <Icon src={ShareIcon} alt="more" />
-                    </IconWrapper>
-                  </IconItem>
-                </IconItem>
-                <IconLabel>MORE</IconLabel>
-              </Grid>
-            )}
           </Grid>
+          <ShareThisWrapper data-cy="social-share">
+            <Grid container spacing={0}>
+              <Grid item xs={canShare ? 8 : 12}>
+                <InlineShareButtons
+                  config={{
+                    alignment: 'center', // alignment of buttons (left, center, right)
+                    color: 'social', // set the color of buttons (social, white)
+                    enabled: true, // show/hide buttons (true, false)
+                    font_size: 16, // font size for the buttons
+                    labels: 'null', // button labels (cta, counts, null)
+                    language: 'en', // which language to use (see LANGUAGES)
+                    networks: [
+                      // which networks to include (see SHARING NETWORKS)
+                      'facebook',
+                      'twitter',
+                    ],
+                    padding: 12, // padding within buttons (INTEGER)
+                    radius: 4, // the corner radius on each button (INTEGER)
+                    show_total: false,
+                    size: 56, // the size of each button (INTEGER)
+
+                    // OPTIONAL PARAMETERS
+                    url,
+                    description: messageBody,
+                    title: messageTitle, // (defaults to og:title or twitter:title)
+                    message: messageBody, // (only for email sharing)
+                    subject: messageTitle, // (only for email sharing)
+                  }}
+                />
+              </Grid>
+              {canShare && (
+                <Grid xs={4}>
+                  <IconItem>
+                    <IconItem onClick={nativeShare}>
+                      <IconWrapper className="native-share">
+                        <Icon src={ShareIcon} alt="more" />
+                      </IconWrapper>
+                    </IconItem>
+                  </IconItem>
+                  <IconLabel>MORE</IconLabel>
+                </Grid>
+              )}
+            </Grid>
+          </ShareThisWrapper>
         </AdditionalSharesWrapper>
+
         <Footer>
           <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
             What is a crowd-voting campaign?
@@ -436,21 +446,17 @@ const ShareModal = ({
           </CopiedWrapper>
         )}
       </Wrapper>
-    </Dialog>
+    </StyledDialog>
   );
 };
 
 ShareModal.propTypes = {
-  open: PropTypes.bool,
   closeCallback: PropTypes.func,
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamber: PropTypes.string,
-  isExternalLink: PropTypes.bool,
-  chamberCount: PropTypes.number,
-  votesNeeded: PropTypes.number,
   userState: PropTypes.string,
-  showShareModalStepper: PropTypes.bool,
+  registerFlowShareMode: PropTypes.bool,
 };
 
 export default ShareModal;

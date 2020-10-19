@@ -43,6 +43,7 @@ if (ENV === 'prod') {
   });
 }
 
+
 function App({ dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });

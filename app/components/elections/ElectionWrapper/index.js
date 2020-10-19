@@ -8,19 +8,13 @@ import LoadingAnimation from 'components/shared/LoadingAnimation';
 import { Body, H1 } from 'components/shared/typogrophy';
 import TopQuestions from 'components/shared/TopQuestions';
 import AmaContainer from 'containers/shared/AmaContainer';
-import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
 import articlesHelper from 'helpers/articlesHelper';
-import {
-  deleteSignupRedirectCookie,
-  getSignupRedirectCookie,
-} from 'helpers/cookieHelper';
+import BottomPopup from 'components/shared/BottomPopup';
+import { shortToLongState } from 'helpers/electionsHelper';
+import { numberNth } from 'helpers/numberHelper';
+
 import VsList from '../VsList';
 import FiltersPopup from './FiltersPopup';
-import BottomPopup from '../../shared/BottomPopup';
-import { shortToLongState } from '../../../helpers/electionsHelper';
-import { numberNth } from '../../../helpers/numberHelper';
-import ChoiceModal from './ChoiceModal';
-import ShareModal from './ShareModal';
 
 const Description = styled(Body)`
   margin: 10px 0 22px;
@@ -39,89 +33,14 @@ const ElectionWrapper = ({
   content,
   state,
   districtNumber,
-  saveRankingCallback,
-  refreshCountCallback,
   deleteCandidateRankingCallback,
-  clearBlocCandidateCallback,
-  blocCandidate,
-  joinCandidate,
-  growCandidate,
-  clearJoinCandidateCallback,
-  clearGrowCandidateCallback,
-  postRegisterJoin,
+
   incumbent,
 }) => {
-
   const [showFilters, setShowFilters] = useState(false);
-  const [showChoiceModal, setShowChoiceModal] = useState(false);
-  const [showShareModal, setShowShareModal] = useState(false);
-  const [showVoterVerify, setShowVoterVerify] = useState(false);
-  const [choiceModalCandidate, setChoiceModalCandidate] = useState(false);
-  const [isExternalLink, setIsExternalLink] = useState(false);
-  const [selectedCandidate, setSelectedCandidate] = useState(null);
-  const [candidateRanking, setCandidateRanking] = useState(null);
-  const [showShareModalStepper, setShowShareModalStepper] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    const cookieRedirect = getSignupRedirectCookie();
-    if (cookieRedirect && candidates.length > 0) {
-      const { candidateId, rank } = cookieRedirect.options;
-      const candidate = candidates?.find(item => item.id === candidateId);
-      setShowVoterVerify(true);
-      setSelectedCandidate(candidate);
-      setCandidateRanking(rank);
-      setShowShareModal(false);
-      deleteSignupRedirectCookie();
-    }
   }, []);
-  useEffect(() => {
-    if (blocCandidate) {
-      setIsExternalLink(true);
-      setChoiceModalCandidate(blocCandidate);
-      setShowChoiceModal(true);
-    }
-  }, [blocCandidate]);
-  useEffect(() => {
-    const { voteStatus } = user;
-    if (voteStatus === 'verified' && showVoterVerify) {
-      selectCandidate(selectedCandidate, candidateRanking);
-      setChoiceModalCandidate(selectedCandidate);
-      setShowChoiceModal(true);
-      setShowVoterVerify(false);
-    }
-  }, [user]);
-  useEffect(() => {
-    if (joinCandidate) {
-      const rank = findNextRank(joinCandidate);
-      if (user?.voteStatus !== 'verified') {
-        setShowVoterVerify(true);
-      } else {
-        selectCandidate(joinCandidate, rank);
-      }
-      setSelectedCandidate(joinCandidate);
-      setCandidateRanking(rank);
-      clearJoinCandidateCallback();
-    }
-  }, [joinCandidate]);
-
-  useEffect(() => {
-    if (growCandidate) {
-      setChoiceModalCandidate(growCandidate);
-      setShowShareModal(true);
-      clearGrowCandidateCallback();
-    }
-  }, [growCandidate]);
-
-  useEffect(() => {
-    if (user && postRegisterJoin?.candidate) {
-      handleChoiceCallback(postRegisterJoin.candidate, postRegisterJoin.rank);
-    }
-  }, [postRegisterJoin]);
-
-  const selectCandidate = (candidate, rank) => {
-    saveRankingCallback(user, candidate, rank, chamber, state, districtNumber);
-  };
 
   const openFiltersCallback = () => {
     setShowFilters(true);
@@ -154,106 +73,12 @@ const ElectionWrapper = ({
     votesNeeded = candidates.threshold;
   }
 
-  const handleChoiceCallback = (candidate, rank) => {
-    if (candidate.id < 0) {
-      candidate.ranking = candidates.goodEmptyBloc;
-    }
-
-    if (user?.voteStatus === 'verified') {
-      setChoiceModalCandidate(candidate);
-      setShowChoiceModal(true);
-      setShowShareModal(false);
-      selectCandidate(candidate, rank);
-    } else if (user) {
-      setShowVoterVerify(true);
-      setSelectedCandidate(candidate);
-      setCandidateRanking(rank);
-      setShowShareModal(false);
-    } else {
-      selectCandidate(candidate, rank);
-    }
-  };
-
   const handleDeselectCandidate = rank => {
-    deleteCandidateRankingCallback(
-      { ...rank, chamber },
-      user,
-      chamber,
-      state,
-      districtNumber,
-    );
-  };
-
-  const handleGrowCallback = candidate => {
-    setChoiceModalCandidate(candidate);
-    setShowChoiceModal(false);
-    setShowShareModal(true);
-  };
-
-  const onCloseChoiceModal = () => {
-    setShowChoiceModal(false);
-    setChoiceModalCandidate(false);
-    setIsExternalLink(false);
-    clearBlocCandidateCallback();
-    refreshCountCallback(state, districtNumber);
-  };
-
-  const onShareChoiceModal = () => {
-    setShowChoiceModal(false);
-    setShowShareModal(true);
-    setShowShareModalStepper(true);
-    refreshCountCallback(state, districtNumber);
-  };
-
-  const onJoinChoiceModal = candidateJoined => {
-    setShowChoiceModal(false);
-
-    // setShowShareModal(true);
-    const rank = findNextRank(candidateJoined);
-    selectCandidate(candidateJoined, rank);
-
-    refreshCountCallback(state, districtNumber);
-  };
-
-  const findNextRank = candidate => {
-    let nextChoice = 1;
-    const { good, notGood, unknown } = candidates;
-    [...good, ...notGood, ...unknown].forEach(candidate => {
-      if (
-        ranking[candidate.id] &&
-        ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
-      ) {
-        nextChoice++;
-      }
-    });
-    return nextChoice;
-  };
-
-  const onCloseShareModal = () => {
-    setShowShareModal(false);
-    setChoiceModalCandidate(false);
-    clearBlocCandidateCallback();
-    setIsExternalLink(false);
-    // refreshCountCallback(state, districtNumber);
+    deleteCandidateRankingCallback(rank, user);
   };
 
   const stateUpper = state ? state.toUpperCase() : '';
 
-  const suffixText =
-    chamber === 'presidential'
-      ? ' (270 ELECTORS)'
-      : ` IN ${stateUpper}${districtNumber ? `-${districtNumber}` : ''}`;
-
-  const skipVerifyVoterCallback = () => {
-    openJoinModal();
-  };
-
-  const openJoinModal = () => {
-    selectCandidate(selectedCandidate, candidateRanking);
-    setChoiceModalCandidate(selectedCandidate);
-    setShowChoiceModal(true);
-    setShowVoterVerify(false);
-  };
   return (
     <PageWrapper>
       {candidates ? (
@@ -264,9 +89,9 @@ const ElectionWrapper = ({
               <>
                 Join any{' '}
                 <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe" data-cy="article">
-                  candidate voting blocs
+                  crowd-voting campaign
                 </Link>{' '}
-                and we&apos;ll let you know if they grow big enough to win!
+                and we&apos;ll let you know if it grows big enough to win!
               </>
             ) : (
               <>
@@ -287,10 +112,7 @@ const ElectionWrapper = ({
             candidates={candidates}
             openFiltersCallback={openFiltersCallback}
             ranking={ranking}
-            handleChoiceCallback={handleChoiceCallback}
-            handleGrowCallback={handleGrowCallback}
             handleDeselectCandidate={handleDeselectCandidate}
-            goodBloc={`${stateUpper}${districtNumber || ''}`}
             districtNumber={districtNumber}
             chamber={chamber}
             state={stateUpper}
@@ -308,44 +130,6 @@ const ElectionWrapper = ({
       ) : (
         <LoadingAnimation />
       )}
-
-      <ChoiceModal
-        open={showChoiceModal}
-        closeCallback={onCloseChoiceModal}
-        shareCallback={onShareChoiceModal}
-        joinCallback={onJoinChoiceModal}
-        candidate={choiceModalCandidate}
-        // candidate={candidates.good ? candidates.good[0] : null}
-        votesNeeded={votesNeeded}
-        chamberCount={
-          choiceModalCandidate.ranking + choiceModalCandidate.likelyVoters
-        }
-        user={user}
-        animateCount={!isExternalLink}
-        userState={candidates.userState}
-        suffixText={suffixText}
-        chamber={chamber}
-        state={state}
-        district={districtNumber}
-        isExternalLink={isExternalLink}
-      />
-      <ShareModal
-        open={showShareModal}
-        closeCallback={onCloseShareModal}
-        candidate={choiceModalCandidate}
-        showShareModalStepper={showShareModalStepper}
-        user={user}
-        userState={candidates.userState}
-        chamberCount={
-          choiceModalCandidate.ranking + choiceModalCandidate.likelyVoters
-        }
-        chamber={chamber}
-        isExternalLink={isExternalLink}
-        votesNeeded={votesNeeded}
-      />
-      {showVoterVerify && (
-        <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
-      )}
     </PageWrapper>
   );
 };
@@ -359,16 +143,7 @@ ElectionWrapper.propTypes = {
   districtNumber: PropTypes.string,
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  blocCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  joinCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  growCandidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  saveRankingCallback: PropTypes.func,
-  refreshCountCallback: PropTypes.func,
   deleteCandidateRankingCallback: PropTypes.func,
-  clearBlocCandidateCallback: PropTypes.func,
-  clearJoinCandidateCallback: PropTypes.func,
-  clearGrowCandidateCallback: PropTypes.func,
-  postRegisterJoin: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 

@@ -14,8 +14,7 @@ function* verifyVoter({ voter }) {
     const api = tgpApi.verifyVote;
     const payload = voter;
     const { voteStatus } = yield call(requestHelper, api, payload);
-    console.log(voteStatus);
-    if (voteStatus) {
+    if (voteStatus !== '') {
       yield put(
         snackbarActions.showSnakbarAction(`Registration Status: ${voteStatus}`),
       );

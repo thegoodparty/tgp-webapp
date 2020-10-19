@@ -13,9 +13,7 @@ import {
   partyResolver,
   candidateRoute,
   candidateRanking,
-  candidateBlocName,
   generateEmptyBlocCandidate,
-  blocNameSuffix,
 } from 'helpers/electionsHelper';
 import { numberFormatter, numberNth } from 'helpers/numberHelper';
 
@@ -286,13 +284,10 @@ const VsList = ({
   candidates = {},
   openFiltersCallback = () => {},
   ranking,
-  handleChoiceCallback,
   handleDeselectCandidate,
-  goodBloc,
   chamber,
   state,
   districtNumber,
-  handleGrowCallback,
   user,
   votesNeeded,
   incumbent,
@@ -307,40 +302,19 @@ const VsList = ({
     state,
   );
 
-  let nextChoice = 1;
-  if (candidates) {
-    [...good, ...notGood, ...unknown].forEach(candidate => {
-      if (
-        ranking[candidate.id] &&
-        ranking[candidate.id].isIncumbent === !!candidate.isIncumbent
-      ) {
-        nextChoice++;
-      }
-    });
-  }
-
-  if (good.length === 0 && ranking[(noneYetCandidate?.id)]) {
-    nextChoice++;
-  }
-
-  const onGrow = (candidate, e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    handleGrowCallback(candidate);
-  };
-
   const choiceButton = candidate => {
     const candidateRank = candidateRanking(ranking, candidate);
-    const blocName = candidateBlocName(candidate);
 
     if (candidateRank) {
       return (
         <GrowWrapper>
-          <GrowButtonWrapper onClick={e => onGrow(candidate, e)}>
-            <WhiteBody11>
-              <Img src={ShareIcon} alt="share" /> SHARE
-            </WhiteBody11>
-          </GrowButtonWrapper>
+          <Link to={`${candidateRoute(candidate)}?share=true`}>
+            <GrowButtonWrapper>
+              <WhiteBody11>
+                <Img src={ShareIcon} alt="share" /> SHARE
+              </WhiteBody11>
+            </GrowButtonWrapper>
+          </Link>
           <ChosenCandWrapper onClick={e => handleDeselect(candidate, e)}>
             <CheckMark />{' '}
             <ChosenCand>{numberNth(candidateRank)} CHOICE </ChosenCand>
@@ -351,27 +325,11 @@ const VsList = ({
     }
     return (
       <GrowWrapper>
-        {candidate.id === noneYetCandidate.id ? (
-          <JoinButton
-            onClick={e => handleChoice(candidate, e)}
-            data-cy="join-button"
-          >
-            JOIN #GoodBloc
-            {blocNameSuffix(blocName)}
-          </JoinButton>
-        ) : (
-          <Link to={candidateRoute(candidate)}>
-            <JoinButton>See Campaign</JoinButton>
-          </Link>
-        )}
+        <Link to={candidateRoute(candidate)}>
+          <JoinButton>See Campaign</JoinButton>
+        </Link>
       </GrowWrapper>
     );
-  };
-
-  const handleChoice = (candidate, e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    handleChoiceCallback(candidate, nextChoice);
   };
 
   const handleDeselect = (candidate, e) => {
@@ -425,18 +383,6 @@ const VsList = ({
     return '';
   };
 
-  let displayBloc = goodBloc;
-  if (chamber === 'house') {
-    displayBloc = `${goodBloc.substring(0, 2)}-${goodBloc.substring(
-      2,
-      goodBloc.length,
-    )}`;
-  }
-
-  let { goodEmptyBloc } = candidates;
-  if (!user && ranking[(noneYetCandidate?.id)]) {
-    goodEmptyBloc++;
-  }
   return (
     <div data-cy="vs-list">
       <Row>
@@ -477,12 +423,6 @@ const VsList = ({
                 NONE YET
               </Name>
               <Role data-cy="candidate-role">GOOD PARTY APPROVED</Role>
-              <BlocCount data-cy="block-count">
-                {numberFormatter(goodEmptyBloc)}{' '}
-                {goodEmptyBloc === 1 ? 'is' : 'are'} in #GoodBloc of{' '}
-                {displayBloc}
-              </BlocCount>
-              {choiceButton(noneYetCandidate)}
             </CandidateWrapper>
           )}
         </Side>
@@ -580,10 +520,8 @@ VsList.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   openFiltersCallback: PropTypes.func,
-  handleChoiceCallback: PropTypes.func,
-  handleGrowCallback: PropTypes.func,
+  ranking: PropTypes.object,
   handleDeselectCandidate: PropTypes.func,
-  goodBloc: PropTypes.string,
   districtNumber: PropTypes.string,
   chamber: PropTypes.string,
   state: PropTypes.string,

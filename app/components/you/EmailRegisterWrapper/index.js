@@ -74,7 +74,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
     name !== '' && password.length >= 8 && validateEmail();
 
   const handleSubmitForm = e => {
-    console.log('here');
     e.preventDefault();
     // handleSubmit();
   };

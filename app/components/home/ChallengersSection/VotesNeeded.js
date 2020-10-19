@@ -17,8 +17,17 @@ const PercWrapper = styled(Body)`
   display: inline-block;
   color: ${props => props.theme.colors.green};
 `;
+const DistrictInfo = styled.span`
+  &.truncate-small {
+    display: none;
+    text-align: center;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      display: inline;
+    }
+  }
+`;
 
-const VotesNeeded = ({ candidate }) => {
+const VotesNeeded = ({ candidate, truncateSmall = false }) => {
   const calculatedChallanger = candidateCalculatedFields(candidate);
   const {
     state,
@@ -42,7 +51,11 @@ const VotesNeeded = ({ candidate }) => {
   return (
     <OneLine>
       <PercWrapper>{neededPercent}%</PercWrapper> of {'  '}
-      {numberFormatter(votesNeeded)} votes needed to win {districtInfo}
+      {numberFormatter(votesNeeded)} votes needed to win
+      <DistrictInfo className={truncateSmall ? 'truncate-small' : ''}>
+        {' '}
+        {districtInfo}
+      </DistrictInfo>
     </OneLine>
   );
 };

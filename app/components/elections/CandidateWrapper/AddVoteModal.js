@@ -5,18 +5,15 @@ import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
 import { Link } from 'react-router-dom';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
-// import SupportersImg from 'images/icons/supporters.svg';
 import LogoCapsImg from 'images/logo-caps.svg';
 
-import HeartIcon from 'images/white-heart.svg';
 import { Body, Body13, H3, Body11 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import { candidateBlocName, candidateRoute } from 'helpers/electionsHelper';
 import { getCandidateChamberDistrict } from 'helpers/candidatesHelper';
 import { numberFormatter } from 'helpers/numberHelper';
+import { BlueButton } from 'components/shared/buttons';
+import Stepper from 'components/shared/Stepper';
 import SupportersProgressBar from '../SupportersProgressBar';
-import { BlueButton, OutlinedButton } from '../../shared/buttons';
-import Stepper from '../../shared/Stepper';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -55,19 +52,6 @@ const CenterBar = styled(Body)`
 
 const TitleH3 = styled(H3)`
   text-align: center;
-`;
-
-const AddVoteInner = styled.div`
-  width: 100%;
-  position: relative;
-`;
-// http://localhost:4000/?b=@GreenPartyUS
-const Img = styled.img`
-  position: absolute;
-  top: 3px;
-  left: 16px;
-  width: 26px;
-  height: auto;
 `;
 
 const AvatarWrapper = styled(Body)`
@@ -115,42 +99,35 @@ const Footer = styled(Body13)`
 
 const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
 
-const ChoiceModal = ({
+const AddVoteModal = ({
   candidate,
-  open,
-  votesNeeded,
-  chamberCount,
   userState,
-  suffixText,
   closeCallback,
-  shareCallback,
-  joinCallback,
-  isExternalLink,
+  goToShareCallback,
+  showStepper,
 }) => {
   if (!candidate) {
     return <> </>;
   }
-
-  let { isGood, name } = candidate;
+  const { name, rankingCount, likelyVoters, chamber, district, state } = candidate;
+  let { isGood } = candidate;
   if (candidate.unknown) {
     isGood = null;
   }
+  const chamberCount = likelyVoters + rankingCount;
+  const stateUpper = state ? state.toUpperCase() : '';
+  const suffixText =
+    chamber === 'presidential'
+      ? ' (270 ELECTORS)'
+      : ` IN ${stateUpper}${district ? `-${district}` : ''}`;
 
-  candidate.votesNeeded = votesNeeded;
-  const blocName = candidateBlocName(candidate);
   return (
-    <Dialog
-      onClose={closeCallback}
-      aria-labelledby="Ranking not Allowed"
-      open={open}
-    >
+    <Dialog onClose={closeCallback} aria-labelledby="Ranking not Allowed" open>
       <Wrapper>
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        {!isExternalLink && (
-          <Stepper steps={defaultRegisterSteps} activeStep={2} />
-        )}
+        {showStepper && <Stepper steps={defaultRegisterSteps} activeStep={2} />}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
@@ -158,26 +135,12 @@ const ChoiceModal = ({
             src={candidate.image}
             name={candidate.name}
           />
-
-          {isExternalLink ? (
-            <>
-              <Spread>Join the crowd-voting campaign for</Spread>
-              <TitleH3>
-                {name}
-                <br />
-                for {getCandidateChamberDistrict(candidate)}
-              </TitleH3>
-            </>
-          ) : (
-            <>
-              <Spread>Tell others about this campaign!</Spread>
-              <TitleH3>
-                {name}
-                <br />
-                for {getCandidateChamberDistrict(candidate)}
-              </TitleH3>
-            </>
-          )}
+          <Spread>Tell others about this campaign!</Spread>
+          <TitleH3>
+            {name}
+            <br />
+            for {getCandidateChamberDistrict(candidate)}
+          </TitleH3>
         </AvatarWrapper>
         <StyledBody className="mb-20">
           <span className="big">{numberFormatter(chamberCount)}</span>&nbsp;
@@ -188,7 +151,7 @@ const ChoiceModal = ({
         </VotesNeededWrapper>
         <CenterBar>
           <SupportersProgressBar
-            votesNeeded={votesNeeded}
+            votesNeeded={candidate.votesNeeded}
             peopleSoFar={chamberCount}
             showSupporters={false}
             showSuffix={false}
@@ -196,58 +159,28 @@ const ChoiceModal = ({
             suffixText={suffixText}
           />
         </CenterBar>
-        {isExternalLink ? (
-          <>
-            <Link to={candidateRoute(candidate)}>
-              <OutlinedButton active fullWidth style={{ marginBottom: '16px' }}>
-                SEE CAMPAIGN
-              </OutlinedButton>
-            </Link>
-            <BlueButton fullWidth onClick={() => joinCallback(candidate)}>
-              <AddVoteInner>
-                <Img src={HeartIcon} alt="" />
-                ADD YOUR VOTE
-              </AddVoteInner>
-            </BlueButton>
-            <Footer>
-              <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
-                What is a crowd-voting campaign?
-              </Link>
-              <br />
-              <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
-            </Footer>
-          </>
-        ) : (
-          <>
-            <BlueButton fullWidth onClick={shareCallback}>
-              <H3 style={{ color: '#FFF' }}>SHARE THIS...</H3>
-            </BlueButton>
-            <Footer>
-              Don&apos;t worry, we will{' '}
-              <Link to="?article=prGq4SAFpfT7qzBFM1HDy">
-                never waste your vote
-              </Link>
-              <br />
-              <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
-            </Footer>
-          </>
-        )}
+
+        <BlueButton fullWidth onClick={goToShareCallback}>
+          <H3 style={{ color: '#FFF' }}>SHARE THIS...</H3>
+        </BlueButton>
+        <Footer>
+          Don&apos;t worry, we will{' '}
+          <Link to="?article=prGq4SAFpfT7qzBFM1HDy">never waste your vote</Link>
+          <br />
+          <img src={LogoCapsImg} alt="logo" style={{ marginTop: '16px' }} />
+        </Footer>
       </Wrapper>
     </Dialog>
   );
 };
 
-ChoiceModal.propTypes = {
-  open: PropTypes.bool,
+AddVoteModal.propTypes = {
   closeCallback: PropTypes.func,
-  shareCallback: PropTypes.func,
-  joinCallback: PropTypes.func,
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   votesNeeded: PropTypes.number,
-  chamberCount: PropTypes.number,
   userState: PropTypes.string,
-  suffixText: PropTypes.string,
-  isExternalLink: PropTypes.bool,
+  goToShareCallback: PropTypes.func,
+  showStepper: PropTypes.bool,
 };
 
-export default ChoiceModal;
+export default AddVoteModal;
