@@ -11,6 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-react-router';
 
+import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import CandidateWrapper from 'components/elections/CandidateWrapper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
@@ -48,7 +49,7 @@ export function CandidatePage({
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
-  const { candidate, incumbent } = candidateState;
+  const { candidate, incumbent, loading, error } = candidateState;
   const [chamberName, chamberIncumbent] = chamber.split('-');
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -114,6 +115,10 @@ export function CandidatePage({
       ? 'incumbent'
       : 'candidate'
   }`;
+  if(!candidate && error && !loading ) {
+    return <NotFoundPage />
+  }
+  
   return (
     <div>
       <TgpHelmet title={title} description={title} image={candidate?.image} />
