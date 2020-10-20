@@ -49,6 +49,7 @@ const CandidateWrapper = ({
   queryAddVote = false,
   queryShare = false,
   removeQueryCallback,
+  trackShareCallback,
 }) => {
   const [state, setState] = useState({
     showVoterVerify: user && user.voteStatus !== 'verified' && !!queryAddVote,
@@ -231,13 +232,6 @@ const CandidateWrapper = ({
           <LoadingAnimation />
         )}
       </ContentWrapper>
-      {/*{state.registerFlowShareMode && (*/}
-      {/*  <AddVoteContainer*/}
-      {/*    closeCallback={closeModal}*/}
-      {/*    goToShareCallback={goToShareCallback}*/}
-      {/*    showStepper={state.showStepper}*/}
-      {/*  />*/}
-      {/*)}*/}
       {state.showVoterVerify && (
         <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
       )}
@@ -248,6 +242,7 @@ const CandidateWrapper = ({
           candidate={candidate}
           // showStepper={state.showStepper}
           registerFlowShareMode={state.registerFlowShareMode}
+          trackShareCallback={trackShareCallback}
         />
       )}
     </PageWrapper>
@@ -268,6 +263,7 @@ CandidateWrapper.propTypes = {
   queryAddVote: PropTypes.bool,
   queryShare: PropTypes.bool,
   removeQueryCallback: PropTypes.func,
+  trackShareCallback: PropTypes.func,
 };
 
 export default CandidateWrapper;

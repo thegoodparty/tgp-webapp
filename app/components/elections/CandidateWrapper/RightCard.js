@@ -106,6 +106,7 @@ const RightCard = ({
   hideTab,
   addVoteCallback,
   openShareCallback,
+  trackShareCallback
 }) => {
   const {
     name,
@@ -179,6 +180,7 @@ const RightCard = ({
               state={state}
               addVoteCallback={addVoteCallback}
               openShareCallback={openShareCallback}
+              trackShareCallback={trackShareCallback}
             />
             {hideTab ? (
               <>

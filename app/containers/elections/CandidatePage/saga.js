@@ -35,6 +35,27 @@ function* loadDistrictIncumbent(action) {
   }
 }
 
+function* trackShare({ candidate }) {
+  try {
+    const api = tgpApi.trackShare;
+    const { id, chamber, isIncumbent } = candidate;
+    const payload = {
+      candidateId: id,
+      chamber: chamber ? chamber.toLowerCase() : chamber,
+      isIncumbent: !!isIncumbent,
+    };
+    const response = yield call(requestHelper, api, payload);
+    const updateCandidate = {
+      ...candidate,
+      shares: response.shares,
+    }
+    yield put(actions.loadCandidateActionSuccess(updateCandidate));
+  } catch (error) {
+    console.log(error);
+    // yield put(actions.loadCandidateActionError(error));
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   let action = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
@@ -42,4 +63,5 @@ export default function* saga() {
     types.LOAD_DISTRICT_INCUMBENT,
     loadDistrictIncumbent,
   );
+  action = yield takeLatest(types.TRACK_SHARE, trackShare);
 }
