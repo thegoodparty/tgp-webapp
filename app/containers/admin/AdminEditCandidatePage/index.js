@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
 
 import AdminEditCandidate from 'components/admin/AdminEditCandidate';
-
+import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectUser from 'containers/you/YouPage/selectors';
@@ -34,7 +34,7 @@ export function AdminEditCandidatePage({
   useInjectReducer({ key: 'adminPage', reducer });
   useInjectSaga({ key: 'adminPage', saga });
 
-  const { candidate, loading } = adminState;
+  const { candidate, loading, error } = adminState;
   const [chamberName, chamberIncumbent] = chamber?.split('-');
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -58,7 +58,9 @@ export function AdminEditCandidatePage({
     uploadImageCallback,
     loading,
   };
-
+  if(!candidate && error && !loading ) {
+    return <NotFoundPage />
+  }
   return (
     <div>
       <Helmet>
