@@ -135,7 +135,7 @@ const api = {
   },
 
   trackShare: {
-    url: `${base}race-candidate/track-share-candidate`,
+    url: `${base}candidates/track-share`,
     method: 'POST',
   },
 

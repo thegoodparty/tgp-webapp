@@ -1,5 +1,9 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
+
 import requestHelper from 'helpers/requestHelper';
+import { getCookie } from 'helpers/cookieHelper';
+import makeSelectUser from 'containers/you/YouPage/selectors';
+
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
@@ -39,16 +43,24 @@ function* trackShare({ candidate }) {
   try {
     const api = tgpApi.trackShare;
     const { id, chamber, isIncumbent } = candidate;
+    let uuid;
+    const userState = yield select(makeSelectUser());
+    if (userState.user) {
+      ({ uuid } = userState.user);
+    } else {
+      uuid = getCookie('guuid');
+    }
     const payload = {
       candidateId: id,
       chamber: chamber ? chamber.toLowerCase() : chamber,
       isIncumbent: !!isIncumbent,
+      uuid,
     };
     const response = yield call(requestHelper, api, payload);
     const updateCandidate = {
       ...candidate,
       shares: response.shares,
-    }
+    };
     yield put(actions.loadCandidateActionSuccess(updateCandidate));
   } catch (error) {
     console.log(error);
