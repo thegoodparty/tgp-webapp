@@ -56,10 +56,10 @@ function* trackShare({ candidate }) {
       isIncumbent: !!isIncumbent,
       uuid,
     };
-    const response = yield call(requestHelper, api, payload);
+    yield call(requestHelper, api, payload);
     const updateCandidate = {
       ...candidate,
-      shares: response.shares,
+      shares: candidate.shares + 1,
     };
     yield put(actions.loadCandidateActionSuccess(updateCandidate));
   } catch (error) {
