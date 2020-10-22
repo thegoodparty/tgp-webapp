@@ -106,7 +106,6 @@ const RightCard = ({
   hideTab,
   addVoteCallback,
   openShareCallback,
-  trackShareCallback
 }) => {
   const {
     name,
@@ -115,8 +114,9 @@ const RightCard = ({
     twitterFollowers,
     state,
     district,
-    recentlyJoined,
+    recentActivity,
     shares,
+    activityCount,
   } = candidate;
   const route = candidateRoute(candidate);
   return (
@@ -180,7 +180,6 @@ const RightCard = ({
               state={state}
               addVoteCallback={addVoteCallback}
               openShareCallback={openShareCallback}
-              trackShareCallback={trackShareCallback}
             />
             {hideTab ? (
               <>
@@ -203,16 +202,16 @@ const RightCard = ({
 
             <Hidden smDown>
               <Body className="bold600" style={{ marginBottom: '12px' }}>
-                Recently Joined
+                Recent Activity
               </Body>
               <JoinedItem className="no-border">
                 <JoinedImg src={GraphIcon} alt="joined" />
                 <div>
-                  {kFormatter(rankingCount)}{' '}
-                  {rankingCount === 1 ? 'person' : 'people'} joined
+                  {kFormatter(activityCount)}{' '}
+                  {activityCount === 1 ? 'person' : 'people'} joined or shared
                 </div>
               </JoinedItem>
-              {recentlyJoined.map((joined, index) => (
+              {recentActivity.map((joined, index) => (
                 <JoinedItem key={`${joined.name}-${index}`}>
                   <JoinedImg src={joined.avatar || JoinedIcon} alt="joined" />
                   <div>
@@ -220,7 +219,9 @@ const RightCard = ({
                       <StyledBody14>{joined.name}</StyledBody14>
                       <Body13>{joined.district}</Body13>
                     </Row>
-                    <Ago>{joined.timeAgo}</Ago>
+                    <Ago>
+                      {joined.type} {joined.timeAgo}
+                    </Ago>
                   </div>
                 </JoinedItem>
               ))}
