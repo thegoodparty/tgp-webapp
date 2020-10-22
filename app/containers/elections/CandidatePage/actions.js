@@ -50,6 +50,11 @@ const loadDistrictIncumbentActionSuccess = incumbent => ({
   incumbent,
 });
 
+const trackShare = candidate => ({
+  type: types.TRACK_SHARE,
+  candidate,
+});
+
 export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
@@ -60,4 +65,5 @@ export default {
   loadRankingFromCookieAction,
   loadDistrictIncumbentAction,
   loadDistrictIncumbentActionSuccess,
+  trackShare,
 };

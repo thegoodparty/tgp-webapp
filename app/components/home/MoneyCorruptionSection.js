@@ -43,11 +43,10 @@ const MoneyCorruptionSection = ({}) => {
           </SectionTitle>
         </LeftCol>
         <Grid item xs={12} sm={5} md={6}>
-          <LazyLoadImage
+          <img
             src={WhiteHouseImg}
             alt="white-house-dollar"
             width="100%"
-            height="100%"
           />
         </Grid>
       </Grid>

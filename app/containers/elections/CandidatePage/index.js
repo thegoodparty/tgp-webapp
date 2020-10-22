@@ -29,7 +29,7 @@ import { makeSelectContent } from 'containers/App/selectors';
 import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import candidateActions from './actions';
+import actions from './actions';
 import queryHelper from '../../../helpers/queryHelper';
 
 export function CandidatePage({
@@ -45,6 +45,7 @@ export function CandidatePage({
   showRegisterCallback,
   saveRankingCallback,
   removeQueryCallback,
+  trackShareCallback,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
@@ -59,18 +60,16 @@ export function CandidatePage({
 
   useEffect(() => {
     if (id) {
-      dispatch(
-        candidateActions.loadCandidateAction(id, chamberName, isIncumbent),
-      );
+      dispatch(actions.loadCandidateAction(id, chamberName, isIncumbent));
     }
   }, [id, chamber]);
 
   useEffect(() => {
     if (!isIncumbent) {
       if (candidate?.chamber === 'Senate') {
-        dispatch(candidateActions.loadDistrictIncumbentAction(state));
+        dispatch(actions.loadDistrictIncumbentAction(state));
       } else {
-        dispatch(candidateActions.loadDistrictIncumbentAction(state, district));
+        dispatch(actions.loadDistrictIncumbentAction(state, district));
       }
     }
   }, [candidate]);
@@ -103,6 +102,7 @@ export function CandidatePage({
     queryAddVote,
     queryShare,
     removeQueryCallback,
+    trackShareCallback,
   };
 
   const emptyCandidate = () =>
@@ -115,10 +115,10 @@ export function CandidatePage({
       ? 'incumbent'
       : 'candidate'
   }`;
-  if(!candidate && error && !loading ) {
-    return <NotFoundPage />
+  if (!candidate && error && !loading) {
+    return <NotFoundPage />;
   }
-  
+
   return (
     <div>
       <TgpHelmet title={title} description={title} image={candidate?.image} />
@@ -141,6 +141,7 @@ CandidatePage.propTypes = {
   showRegisterCallback: PropTypes.func,
   saveRankingCallback: PropTypes.func,
   removeQueryCallback: PropTypes.func,
+  trackShareCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -177,6 +178,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     removeQueryCallback: () => {
       dispatch(push(window.location.pathname));
+    },
+    trackShareCallback: candidate => {
+      dispatch(actions.trackShare(candidate));
     },
   };
 }

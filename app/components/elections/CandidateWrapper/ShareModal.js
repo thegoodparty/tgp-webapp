@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
@@ -88,7 +88,8 @@ const ShareThisWrapper = styled.div`
     padding: 0;
   }
 
-  // @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  // @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpoints.md}) {
   //   padding: 16px 0 30px;
   // }
 
@@ -248,8 +249,18 @@ const ShareModal = ({
   closeCallback,
   registerFlowShareMode,
   userState,
+  trackShareCallback,
 }) => {
   const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    const sharebtns = document.getElementsByClassName('st-btn');
+    for (let i = 0; i < sharebtns.length; i++) {
+      sharebtns[i].onclick = () => {
+        trackShare();
+      };
+    }
+  });
+
   if (!candidate) {
     return <> </>;
   }
@@ -280,9 +291,18 @@ const ShareModal = ({
         title: messageTitle,
         text: messageBody,
       })
-      .then(() => console.log('Successful share'));
+      .then(() => {
+        trackShare();
+      });
   };
   candidate.votesNeeded = votesNeeded;
+  const handleCopy = () => {
+    setCopied(true);
+    trackShare();
+  };
+  const trackShare = () => {
+    trackShareCallback(candidate);
+  };
   return (
     <StyledDialog onClose={closeCallback} open>
       <Wrapper>
@@ -337,6 +357,7 @@ const ShareModal = ({
               <a
                 href={`sms:?&body=${messageBody.replace('&', '%26')}`}
                 data-cy="sms-share"
+                onClick={trackShare}
               >
                 <IconItem>
                   <IconWrapper className="sms">
@@ -377,7 +398,7 @@ const ShareModal = ({
             </Grid>
             <Grid item xs={4}>
               <IconItem>
-                <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
+                <CopyToClipboard text={url} onCopy={handleCopy}>
                   <IconWrapper>
                     <Icon src={LinkIcon} alt="copy" />
                   </IconWrapper>
@@ -414,6 +435,7 @@ const ShareModal = ({
                     message: messageBody, // (only for email sharing)
                     subject: messageTitle, // (only for email sharing)
                   }}
+                  onClick={trackShare}
                 />
               </Grid>
               {canShare && (
@@ -457,6 +479,7 @@ ShareModal.propTypes = {
   chamber: PropTypes.string,
   userState: PropTypes.string,
   registerFlowShareMode: PropTypes.bool,
+  trackShareCallback: PropTypes.func,
 };
 
 export default ShareModal;

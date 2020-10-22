@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import DemocratImg from 'images/icons/democrat.png';
 import RepublicanImg from 'images/icons/republican.png';
@@ -8,8 +9,6 @@ import IndependentImg from 'images/icons/independent.png';
 import LibertarianImg from 'images/icons/libertarian.png';
 
 const ChallengerAvatarWrapper = styled.div`
-  background: url(${props => props.avatar});
-  background-size: 100%;
   width: 7rem;
   min-height: 7rem;
   margin: 0 auto;
@@ -17,6 +16,17 @@ const ChallengerAvatarWrapper = styled.div`
   box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
     0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
   position: relative;
+`;
+
+const ImageWrapper = styled.div`
+  width: 7rem;
+  height: 7rem;
+  overflow: hidden;
+  border-radius: 50%;
+  img {
+    object-fit: cover;
+    object-position: top center;
+  }
 `;
 
 const PartyIcon = styled.img`
@@ -41,7 +51,10 @@ const ChallengerAvatar = ({ avatar, party }) => {
     PartyImg = LibertarianImg;
   }
   return (
-    <ChallengerAvatarWrapper avatar={avatar}>
+    <ChallengerAvatarWrapper>
+      <ImageWrapper>
+        <LazyLoadImage src={avatar} alt="" width="100%" height="100%" />
+      </ImageWrapper>
       {PartyImg && <PartyIcon src={PartyImg} />}
     </ChallengerAvatarWrapper>
   );

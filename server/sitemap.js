@@ -66,6 +66,15 @@ const generateSiteMapXML = async () => {
           <changefreq>weekly</changefreq>
         </url>
       `;
+      if (candidate.campaignUpdates && candidate.campaignUpdates.length > 0) {
+        xmlString += `
+        <url>
+          <loc>${base}${candidateRoute(candidate)}/info</loc>
+          <lastmod>${currentDate}</lastmod>
+          <changefreq>weekly</changefreq>
+        </url>
+      `;
+      }
     });
     xmlString += '</urlset>';
     fs.writeFileSync(path.join(__dirname, 'sitemaps/sitemap.xml'), xmlString, {

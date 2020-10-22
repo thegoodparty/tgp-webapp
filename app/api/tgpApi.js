@@ -134,6 +134,11 @@ const api = {
     withAuth: true,
   },
 
+  trackShare: {
+    url: `${base}candidates/track-share`,
+    method: 'POST',
+  },
+
   deleteCandidateRanking: {
     url: `${base}user/rank-candidate`,
     method: 'DELETE',

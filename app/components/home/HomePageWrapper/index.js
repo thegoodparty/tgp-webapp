@@ -17,9 +17,12 @@ const ContentWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.gray11};
   }
   padding: 0 10px;
+  overflow-x: hidden;
 `;
 const GrayWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray11};
+  width: 100%;
+  overflow-x: hidden;
 `;
 const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => {
   useEffect(() => {
