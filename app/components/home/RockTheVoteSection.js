@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import JeffAvatar from 'images/jeff.png';
 import { Quote, Body14 } from 'components/shared/typogrophy';
 
 const RockTheVoteSectionWrapper = styled.div`
@@ -54,7 +53,7 @@ const RockTheVoteSection = ({}) => {
         </LeftCol>
         <RightCol item xs={12} md={6}>
           <LazyLoadImage
-            src={JeffAvatar}
+            src="http://assets.thegoodparty.org/jeff.png"
             alt="jeff-ayeroff"
             width="100%"
             height="100%"
