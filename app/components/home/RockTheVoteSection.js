@@ -6,7 +6,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Quote, Body14 } from 'components/shared/typogrophy';
 
 const RockTheVoteSectionWrapper = styled.div`
-  margin-top: 1rem;
   padding-top: 2rem;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding-top: 0;
