@@ -166,7 +166,7 @@ function SocialRegisterWrapper({
             <Body11 style={{ margin: '24px 0' }} data-cy="policy-wrapper">
               By signing up, you agree to the{' '}
               <a href="/privacy" className="blue" data-cy="policy">
-                Privacy Policy &amp; Terms of Service.
+                Privacy Policy.
               </a>
             </Body11>
           </VerticalWrapper>

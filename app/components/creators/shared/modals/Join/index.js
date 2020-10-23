@@ -164,7 +164,7 @@ function Join({
           <StyledBody11 style={{ margin: '24px 0' }}>
             By signing up, you agree to the{' '}
             <a href="/privacy" className="blue">
-              Privacy Policy &amp; Terms of Service.
+              Privacy Policy.
             </a>
           </StyledBody11>
           <FooterMessage>
