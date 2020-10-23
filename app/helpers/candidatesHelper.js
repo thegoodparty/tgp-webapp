@@ -101,3 +101,17 @@ export const getCandidateChamberDistrict = candidate => {
   }
   return chamberTitle;
 };
+
+export const getCandidateChamberDistrictOnly = candidate => {
+  if (!candidate) {
+    return '';
+  }
+  const { chamber } = candidate;
+  let chamberTitle = 'US';
+  if (chamber?.toLowerCase() === 'senate') {
+    chamberTitle = `${candidate.state.toUpperCase()}`;
+  } else if (chamber?.toLowerCase() === 'house') {
+    chamberTitle = `${candidate.state.toUpperCase()}-${candidate.district}`;
+  }
+  return chamberTitle;
+};
