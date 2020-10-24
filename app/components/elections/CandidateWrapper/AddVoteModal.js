@@ -97,7 +97,7 @@ const Footer = styled(Body13)`
   text-align: center;
 `;
 
-const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
+const defaultRegisterSteps = ['Sign Up', 'Tell Others'];
 
 const AddVoteModal = ({
   candidate,
@@ -109,7 +109,14 @@ const AddVoteModal = ({
   if (!candidate) {
     return <> </>;
   }
-  const { name, rankingCount, likelyVoters, chamber, district, state } = candidate;
+  const {
+    name,
+    rankingCount,
+    likelyVoters,
+    chamber,
+    district,
+    state,
+  } = candidate;
   let { isGood } = candidate;
   if (candidate.unknown) {
     isGood = null;

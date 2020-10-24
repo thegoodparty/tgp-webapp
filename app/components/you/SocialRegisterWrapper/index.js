@@ -76,7 +76,7 @@ const StyledBody13 = styled(Body13)`
   font-weight: 500;
 `;
 
-const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
+const defaultRegisterSteps = ['Sign Up', 'Tell Others'];
 
 function SocialRegisterWrapper({
   socialLoginCallback,

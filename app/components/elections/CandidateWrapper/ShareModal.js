@@ -241,7 +241,7 @@ const Footer = styled(Body13)`
   }
 `;
 
-const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
+const defaultRegisterSteps = ['Sign Up','Tell Others'];
 
 const ShareModal = ({
   candidate,
