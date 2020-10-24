@@ -40,6 +40,46 @@ const ElectionWrapper = ({
   const [showFilters, setShowFilters] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // voterX pixel
+    (function(w, d, t, r, u) {
+      w[u] = w[u] || [];
+      w[u].push({ projectId: '10000', properties: { pixelId: '10137705' } });
+      var s = d.createElement(t);
+      s.src = r;
+      s.async = true;
+      s.onload = s.onreadystatechange = function() {
+        var y,
+          rs = this.readyState,
+          c = w[u];
+        if (rs && rs != 'complete' && rs != 'loaded') {
+          return;
+        }
+        try {
+          y = YAHOO.ywa.I13N.fireBeacon;
+          w[u] = [];
+          w[u].push = function(p) {
+            y([p]);
+          };
+          y(c);
+        } catch (e) {}
+      };
+      var scr = d.getElementsByTagName(t)[0],
+        par = scr.parentNode;
+      par.insertBefore(s, scr);
+    })(window, document, 'script', 'https://s.yimg.com/wi/ytc.js', 'dotq');
+    window.dotq = window.dotq || [];
+    window.dotq.push({
+      projectId: '10000',
+      properties: {
+        pixelId: '10137705',
+        qstrings: {
+          et: 'custom',
+          ec: 'see',
+        },
+      },
+    });
+    // end voterX
   }, []);
 
   const openFiltersCallback = () => {
@@ -81,6 +121,13 @@ const ElectionWrapper = ({
 
   return (
     <PageWrapper>
+      <img
+        height="1"
+        width="1"
+        style={{ borderStyle: 'none' }}
+        alt=""
+        src="https://insight.adsrvr.org/track/pxl/?adv=kwzncc1&ct=0:25fh0r8&fmt=3"
+      />
       {candidates ? (
         <>
           <H1 data-cy="title">{title}</H1>

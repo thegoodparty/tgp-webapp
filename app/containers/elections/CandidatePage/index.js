@@ -16,6 +16,9 @@ import CandidateWrapper from 'components/elections/CandidateWrapper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
 import { deleteSignupRedirectCookie } from 'helpers/cookieHelper';
+import queryHelper from 'helpers/queryHelper';
+import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
+import { uuidUrl } from 'helpers/userHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -30,7 +33,6 @@ import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
-import queryHelper from '../../../helpers/queryHelper';
 
 export function CandidatePage({
   id,
@@ -115,13 +117,26 @@ export function CandidatePage({
       ? 'incumbent'
       : 'candidate'
   }`;
+
+  const url = uuidUrl(user, window.location.href);
+
+  const description = `${
+    candidate && !emptyCandidate() ? candidate.name : ''
+  } could win in ${getCandidateChamberDistrictOnly(
+    candidate,
+  )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
+
   if (!candidate && error && !loading) {
     return <NotFoundPage />;
   }
 
   return (
     <div>
-      <TgpHelmet title={title} description={title} image={candidate?.image} />
+      <TgpHelmet
+        title={title}
+        description={description}
+        image={candidate?.image}
+      />
       <CandidateWrapper {...childProps} />
       {user && user.isAdmin && <AdminMenuEditCandidate candidate={candidate} />}
     </div>
