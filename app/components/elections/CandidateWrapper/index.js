@@ -5,9 +5,6 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
-// import AddVoteContainer from 'containers/elections/AddVoteContainer/Loadable';
-import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
-
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import { setSignupRedirectCookie } from 'helpers/cookieHelper';
@@ -52,10 +49,9 @@ const CandidateWrapper = ({
   trackShareCallback,
 }) => {
   const [state, setState] = useState({
-    showVoterVerify: user && user.voteStatus !== 'verified' && !!queryAddVote,
-    registerFlowShareMode: user?.voteStatus === 'verified' && !!queryAddVote,
+    registerFlowShareMode: !!user,
     showShare: !!queryShare,
-    showStepper: !!queryAddVote,
+    showStepper: !!queryShare,
   });
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -102,12 +98,19 @@ const CandidateWrapper = ({
   }, []);
 
   useEffect(() => {
-    const { voteStatus } = user;
-    if (voteStatus === 'verified' && state.showVoterVerify) {
+    if (user && state.showVoterVerify) {
       setState({
         ...state,
-        showVoterVerify: false,
         showShare: false,
+        registerFlowShareMode: true,
+      });
+    }
+    if (user && !!queryAddVote) {
+      removeQueryCallback();
+      saveRank();
+      setState({
+        ...state,
+        showShare: true,
         registerFlowShareMode: true,
       });
     }
@@ -143,17 +146,14 @@ const CandidateWrapper = ({
       setState({
         ...state,
         showStepper: true,
-      });
-    } else if (user.voteStatus === 'verified') {
-      saveRank();
-      setState({
-        ...state,
         registerFlowShareMode: true,
       });
     } else {
+      saveRank();
       setState({
         ...state,
-        showVoterVerify: true,
+        registerFlowShareMode: false,
+        showShare: true,
       });
     }
   };
@@ -190,26 +190,6 @@ const CandidateWrapper = ({
     if (!!queryAddVote || !!queryShare) {
       removeQueryCallback();
     }
-  };
-
-  // const goToShareCallback = () => {
-  //   setState({
-  //     ...state,
-  //     showShare: true,
-  //     registerFlowShareMode: false,
-  //   });
-  //   if (!!queryAddVote) {
-  //     removeQueryCallback();
-  //   }
-  // };
-
-  const skipVerifyVoterCallback = () => {
-    setState({
-      ...state,
-      registerFlowShareMode: true,
-      showVoterVerify: false,
-    });
-    saveRank();
   };
 
   const saveRank = () => {
@@ -279,10 +259,7 @@ const CandidateWrapper = ({
           <LoadingAnimation />
         )}
       </ContentWrapper>
-      {state.showVoterVerify && (
-        <VerifyVotePage skipVerifyVoterCallback={skipVerifyVoterCallback} />
-      )}
-      {(state.showShare || state.registerFlowShareMode) && (
+      {state.showShare && (
         <ShareModal
           closeCallback={closeModal}
           user={user}

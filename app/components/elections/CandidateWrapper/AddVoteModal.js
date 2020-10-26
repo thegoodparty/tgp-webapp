@@ -12,7 +12,6 @@ import CandidateAvatar from 'components/shared/CandidateAvatar';
 import { getCandidateChamberDistrict } from 'helpers/candidatesHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import { BlueButton } from 'components/shared/buttons';
-import Stepper from 'components/shared/Stepper';
 import SupportersProgressBar from '../SupportersProgressBar';
 
 const Wrapper = styled.div`
@@ -97,19 +96,24 @@ const Footer = styled(Body13)`
   text-align: center;
 `;
 
-const defaultRegisterSteps = ['Sign Up', 'Voterize', 'Tell Others'];
 
 const AddVoteModal = ({
   candidate,
   userState,
   closeCallback,
   goToShareCallback,
-  showStepper,
 }) => {
   if (!candidate) {
     return <> </>;
   }
-  const { name, rankingCount, likelyVoters, chamber, district, state } = candidate;
+  const {
+    name,
+    rankingCount,
+    likelyVoters,
+    chamber,
+    district,
+    state,
+  } = candidate;
   let { isGood } = candidate;
   if (candidate.unknown) {
     isGood = null;
@@ -127,7 +131,6 @@ const AddVoteModal = ({
         <Close onClick={closeCallback}>
           <CloseIcon />
         </Close>
-        {showStepper && <Stepper steps={defaultRegisterSteps} activeStep={2} />}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}
@@ -180,7 +183,6 @@ AddVoteModal.propTypes = {
   votesNeeded: PropTypes.number,
   userState: PropTypes.string,
   goToShareCallback: PropTypes.func,
-  showStepper: PropTypes.bool,
 };
 
 export default AddVoteModal;
