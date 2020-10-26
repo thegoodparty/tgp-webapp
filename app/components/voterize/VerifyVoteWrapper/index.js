@@ -12,7 +12,6 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
-import MenuItem from '@material-ui/core/MenuItem';
 import Markdown from 'markdown-to-jsx';
 
 import { validateEmail } from 'helpers/emailHelper';
@@ -22,16 +21,14 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 import LogoCaps from 'images/logo-caps.svg';
-import { H1, H2, H3, Body, Body9 } from 'components/shared/typogrophy';
+import { H1, H2, H3, Body } from 'components/shared/typogrophy';
 import { states } from 'helpers/statesHelper';
-import NumberFormat from 'react-number-format';
 import {
   NextButton,
   OutlinedButton,
   BlueButton,
 } from 'components/shared/buttons';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
-import HorizontalStepper from 'components/shared/Stepper';
 import {
   DobFormat,
   PhoneNumberFormat,
@@ -320,12 +317,6 @@ const VerifyVoteWrapper = ({
         </Hidden>
         <Grid item xs={12} md={7}>
           <RightWrapper>
-            <HorizontalStepper
-              steps={['Sign Up', 'Voterize', 'Tell Others']}
-              activeStep={1}
-            />
-            <br />
-            <br />
             {loading ? (
               <LoadingAnimation />
             ) : (

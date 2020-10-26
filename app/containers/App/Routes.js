@@ -9,9 +9,6 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-// import HomePage from 'containers/intro/HomePage/Loadable';
-
 import SplashPage from 'containers/intro/SplashPage/Loadable';
 import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 
@@ -38,6 +35,7 @@ import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loa
 import Races from 'containers/scraping/Races/Loadable';
 
 import CreatorsPage from 'containers/creators/CreatorsPage/Loadable';
+import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
 
 import AdminPage from 'containers/admin/AdminPage/Loadable';
 import AdminEditCandidatePage from 'containers/admin/AdminEditCandidatePage/Loadable';
@@ -120,6 +118,7 @@ function Routes() {
       <Route exact path="/research" component={ResearchPage} />
 
       <Route exact path="/creators" component={CreatorsPage} />
+      <Route exact path="/verify-vote" component={VerifyVotePage} />
 
       <Route exact path="/admin" component={AdminPage} />
       <Route
