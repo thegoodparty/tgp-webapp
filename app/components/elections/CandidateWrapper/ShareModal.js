@@ -9,7 +9,6 @@ import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Body, Body11, H2, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
-import Stepper from 'components/shared/Stepper';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import SupportersProgressBar from 'components/elections/SupportersProgressBar';
 import {
@@ -241,8 +240,6 @@ const Footer = styled(Body13)`
   }
 `;
 
-const defaultRegisterSteps = ['Sign Up','Tell Others'];
-
 const ShareModal = ({
   candidate,
   user,
@@ -314,9 +311,6 @@ const ShareModal = ({
         <Close onClick={closeCallback} data-cy="share-modal-close">
           <CloseIcon />
         </Close>
-        {registerFlowShareMode && (
-          <Stepper steps={defaultRegisterSteps} activeStep={2} />
-        )}
         <AvatarWrapper>
           <CandidateAvatar
             good={isGood}

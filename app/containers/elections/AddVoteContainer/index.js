@@ -25,8 +25,6 @@ export function AddVoteContainer({
   closeCallback,
   goToShareCallback,
   candidateState,
-  showStepper,
-  // userState,
 }) {
   useInjectReducer({ key: 'addVoteContainer', reducer });
   useInjectSaga({ key: 'addVoteContainer', saga });
@@ -35,15 +33,12 @@ export function AddVoteContainer({
     reducer: candidateReducer,
   });
 
-  // const { user } = userState;
   const { candidate } = candidateState;
 
   const childProps = {
     closeCallback,
     goToShareCallback,
     candidate,
-    showStepper,
-    // user,
   };
 
   return <AddVoteModal {...childProps} />;
@@ -53,7 +48,6 @@ AddVoteContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   closeCallback: PropTypes.func,
   goToShareCallback: PropTypes.func,
-  showStepper: PropTypes.bool,
   candidateState: PropTypes.object,
   userState: PropTypes.object,
 };

@@ -19,7 +19,6 @@ import SocialButton from './SocialButton';
 
 import { H1, H2, Body13, Body11 } from '../../shared/typogrophy';
 import { OutlinedButton } from '../../shared/buttons';
-import Stepper from '../../shared/Stepper';
 import TwitterButton from './TwitterButton';
 
 const Heart = styled.img`
@@ -76,7 +75,6 @@ const StyledBody13 = styled(Body13)`
   font-weight: 500;
 `;
 
-const defaultRegisterSteps = ['Sign Up', 'Tell Others'];
 
 function SocialRegisterWrapper({
   socialLoginCallback,
@@ -91,7 +89,6 @@ function SocialRegisterWrapper({
 
   return (
     <QueryModalContainer>
-      <Stepper steps={defaultRegisterSteps} />
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
