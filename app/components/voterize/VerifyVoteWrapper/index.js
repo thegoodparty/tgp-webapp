@@ -228,7 +228,7 @@ const VerifyVoteWrapper = ({
 
   const submitForm = () => {
     if (canSubmit()) {
-      verifyVoterCallback(formattedState());
+      verifyVoterCallback(formattedState(), user);
     }
   };
 

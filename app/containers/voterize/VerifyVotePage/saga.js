@@ -8,8 +8,9 @@ import globalActions from 'containers/App/actions';
 
 import types from './constants';
 import actions from './actions';
+import { electionRoute } from '../../../helpers/electionsHelper';
 
-function* verifyVoter({ voter }) {
+function* verifyVoter({ voter, user }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Checking Voter Registration'));
     const api = tgpApi.verifyVote;
@@ -24,7 +25,7 @@ function* verifyVoter({ voter }) {
     yield put(globalActions.refreshTokenAction());
     yield put(actions.verifyVoterActionSuccess(voteStatus));
     if (voteStatus === 'verified') {
-      yield put(push('/you'));
+      yield put(push(electionRoute(user)));
     }
   } catch (error) {
     console.log(error);

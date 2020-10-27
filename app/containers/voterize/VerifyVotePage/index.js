@@ -85,7 +85,13 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    verifyVoterCallback: voter => dispatch(actions.verifyVoterAction(voter)),
+    verifyVoterCallback: (voter, user) => {
+      if (user) {
+        dispatch(actions.verifyVoterAction(voter, user));
+      } else {
+        dispatch(push('?register=true'));
+      }
+    },
     registerToVoteCallback: voter =>
       dispatch(actions.registerVoterAction(voter)),
   };

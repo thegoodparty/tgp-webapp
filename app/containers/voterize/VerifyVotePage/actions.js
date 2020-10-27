@@ -6,10 +6,11 @@
 
 import types from './constants';
 
-function verifyVoterAction(voter) {
+function verifyVoterAction(voter, user) {
   return {
     type: types.VERIFY_VOTER,
     voter,
+    user,
   };
 }
 
