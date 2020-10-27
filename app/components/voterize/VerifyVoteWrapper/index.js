@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import Markdown from 'markdown-to-jsx';
+import { Link } from 'react-router-dom';
 
 import { validateEmail } from 'helpers/emailHelper';
 import { parseDob } from 'helpers/dateHelper';
@@ -161,7 +162,7 @@ const VerifyVoteWrapper = ({
         zip: zipCode?.zip || '',
       }));
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (voteStatus !== false && voteStatus !== 'Active') {
@@ -321,7 +322,9 @@ const VerifyVoteWrapper = ({
               <LoadingAnimation />
             ) : (
               <>
-                <Skip onClick={skipVerifyVoterCallback}>Skip</Skip>
+                <Link to="you">
+                  <Skip>Close</Skip>
+                </Link>
                 <Hidden mdUp>
                   <WarningWrapper>{message()}</WarningWrapper>
                 </Hidden>

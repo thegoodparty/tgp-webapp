@@ -4,12 +4,13 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { push } from 'connected-react-router';
 
 import userReducer from 'containers/you/YouPage/reducer';
 
@@ -22,8 +23,10 @@ import makeSelectVerifyVotePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import queryHelper from '../../../helpers/queryHelper';
 
 export function VerifyVotePage({
+  dispatch,
   verifyVoterCallback,
   skipVerifyVoterCallback,
   registerToVoteCallback,
@@ -35,6 +38,14 @@ export function VerifyVotePage({
   useInjectReducer({ key: 'verifyVotePage', reducer });
   useInjectSaga({ key: 'verifyVotePage', saga });
   const { user } = userState;
+  useEffect(() => {
+    const registerQuery = queryHelper(window.location.search, 'register');
+    if (user && registerQuery === 'true') {
+      dispatch(push(window.location.pathname));
+    } else if (!user && registerQuery !== 'true') {
+      dispatch(push('?register=true'));
+    }
+  }, [user]);
   const { loading, voteStatus, vaResponse } = verifyVotePage;
   const childProps = {
     verifyVoterCallback,
@@ -45,6 +56,7 @@ export function VerifyVotePage({
     vaResponse,
     loading,
   };
+
   return (
     <div>
       <Helmet>

@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
@@ -22,6 +23,9 @@ function* verifyVoter({ voter }) {
     // this will update the user
     yield put(globalActions.refreshTokenAction());
     yield put(actions.verifyVoterActionSuccess(voteStatus));
+    if (voteStatus === 'verified') {
+      yield put(push('/you'));
+    }
   } catch (error) {
     console.log(error);
     yield put(
