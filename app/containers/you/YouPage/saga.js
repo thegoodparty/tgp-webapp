@@ -25,7 +25,6 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import makeSelectCandidate from 'containers/elections/CandidatePage/selectors';
 
 function* sendCreatorMessage(action) {
   try {
@@ -58,6 +57,7 @@ function* register(action) {
     const referrer = getCookie('referrer');
     if (referrer) {
       payload.referrer = referrer;
+      AnalyticsService.sendEvent('voting', 'Join Crew');
     }
     const guestUuid = getCookie('guuid');
     if (guestUuid) {
@@ -79,7 +79,7 @@ function* register(action) {
     }
     yield call(trackFbRegister);
 
-    AnalyticsService.sendEvent('email-register', 'success');
+    AnalyticsService.sendEvent('Signup', 'Complete Account Signup', 'Email');
   } catch (error) {
     if (error.response?.exists) {
       yield put(
@@ -146,6 +146,7 @@ function* socialRegister(action) {
     const referrer = getCookie('referrer');
     if (referrer) {
       payload.referrer = referrer;
+      AnalyticsService.sendEvent('voting', 'Join Crew');
     }
     const guestUuid = getCookie('guuid');
     if (guestUuid) {
@@ -170,7 +171,7 @@ function* socialRegister(action) {
 
     setUserCookie(responseUser);
     setCookie('token', access_token);
-    AnalyticsService.sendEvent('social-register', 'success');
+    AnalyticsService.sendEvent('Signup', 'Complete Account Signup', provider);
   } catch (error) {
     if (error.response?.exists) {
       // user is already in our system, try login.

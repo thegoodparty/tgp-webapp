@@ -14,6 +14,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import HomePageWrapper from 'components/home/HomePageWrapper';
+import AnalyticsService from 'services/AnalyticsService';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -55,7 +56,13 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    subscribeEmailCallback: email => dispatch(homeActions.subscribeEmailAction(email))
+    subscribeEmailCallback: email => {
+      AnalyticsService.sendEvent(
+        'Email & Marketing',
+        'Subscribe to Newsletter',
+      );
+      dispatch(homeActions.subscribeEmailAction(email));
+    },
   };
 }
 

@@ -34,6 +34,7 @@ import {
   DobFormat,
   PhoneNumberFormat,
 } from 'components/shared/customInputFormat';
+import AnalyticsService from 'services/AnalyticsService';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
@@ -305,6 +306,10 @@ const VerifyVoteWrapper = ({
     item => !item.includes('Name'),
   );
 
+  const trackClose = () => {
+    AnalyticsService.sendEvent('Voter Registration', 'Close Voterize Form');
+  };
+
   return (
     <Dialog fullScreen aria-labelledby="Verify Voter Registration" open>
       <Grid container spacing={0}>
@@ -322,7 +327,7 @@ const VerifyVoteWrapper = ({
               <LoadingAnimation />
             ) : (
               <>
-                <Link to="you">
+                <Link to="you" onClick={trackClose}>
                   <Skip>Close</Skip>
                 </Link>
                 <Hidden mdUp>

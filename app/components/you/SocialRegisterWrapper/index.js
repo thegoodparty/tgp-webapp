@@ -14,6 +14,7 @@ import heartImg from 'images/heart.svg';
 import EmailIcon from 'images/icons/email-icon.svg';
 import globals from 'globals';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
+import AnalyticsService from 'services/AnalyticsService';
 
 import SocialButton from './SocialButton';
 
@@ -75,7 +76,6 @@ const StyledBody13 = styled(Body13)`
   font-weight: 500;
 `;
 
-
 function SocialRegisterWrapper({
   socialLoginCallback,
   socialLoginFailureCallback,
@@ -87,6 +87,13 @@ function SocialRegisterWrapper({
   //   ? defaultRegisterSteps
   //   : defaultRegisterSteps.slice(0, 2);
 
+  const trackEmail = () => {
+    AnalyticsService.sendEvent(
+      'Signup',
+      'Click Signup Method',
+      `Click Email Signup`,
+    );
+  };
   return (
     <QueryModalContainer>
       <Grid container spacing={3}>
@@ -104,7 +111,8 @@ function SocialRegisterWrapper({
               <>
                 <H1 data-cy="title">Join The Good Party</H1>
                 <StyledH2 data-cy="description">
-                  Check your voter registration and get ready to vote and fix politics for Good!
+                  Check your voter registration and get ready to vote and fix
+                  politics for Good!
                 </StyledH2>
               </>
             )}
@@ -143,7 +151,11 @@ function SocialRegisterWrapper({
                 <Body13 style={{ color: '#767676' }}>Or</Body13>
               </Or>
             </OrWrapper>
-            <Link to="/you/register-email" data-cy="email-register">
+            <Link
+              to="/you/register-email"
+              data-cy="email-register"
+              onClick={trackEmail}
+            >
               <OutlinedButton
                 active
                 style={{ marginTop: '24px', width: '100%' }}

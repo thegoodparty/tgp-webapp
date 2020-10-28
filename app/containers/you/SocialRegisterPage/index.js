@@ -18,10 +18,10 @@ import { useInjectReducer } from 'utils/injectReducer';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
-import globalActions from 'containers/App/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-react-router';
 import { getSignupRedirectCookie } from 'helpers/cookieHelper';
+import AnalyticsService from 'services/AnalyticsService';
 
 export function SocialRegisterPage({
   socialLoginCallback,
@@ -79,6 +79,11 @@ const mapStateToProps = createStructuredSelector({});
 function mapDispatchToProps(dispatch) {
   return {
     socialLoginCallback: user => {
+      AnalyticsService.sendEvent(
+        'Signup',
+        'Click Signup Method',
+        `Click ${user._provider} Signup`,
+      );
       dispatch(userActions.socialRegisterAction(user));
     },
     socialLoginFailureCallback: err => {
@@ -89,18 +94,11 @@ function mapDispatchToProps(dispatch) {
             'error',
           ),
         );
-        dispatch(
-          globalActions.logErrorAction(
-            'Error in social register - google sdk is blocked',
-            err,
-          ),
-        );
       } else {
         console.log('error social register', err);
         dispatch(
           snackbarActions.showSnakbarAction('Error Registering', 'error'),
         );
-        dispatch(globalActions.logErrorAction('Error in social register', err));
       }
     },
     closeModalCallback: () => {

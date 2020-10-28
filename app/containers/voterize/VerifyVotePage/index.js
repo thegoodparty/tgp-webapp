@@ -13,6 +13,8 @@ import { compose } from 'redux';
 import { push } from 'connected-react-router';
 
 import userReducer from 'containers/you/YouPage/reducer';
+import queryHelper from 'helpers/queryHelper';
+import AnalyticsService from 'services/AnalyticsService';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -23,7 +25,6 @@ import makeSelectVerifyVotePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
-import queryHelper from '../../../helpers/queryHelper';
 
 export function VerifyVotePage({
   dispatch,
@@ -45,6 +46,7 @@ export function VerifyVotePage({
     } else if (!user && registerQuery !== 'true') {
       dispatch(push('?register=true'));
     }
+    AnalyticsService.sendEvent('Voter Registration', 'View Voterize Page');
   }, [user]);
   const { loading, voteStatus, vaResponse } = verifyVotePage;
   const childProps = {
