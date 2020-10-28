@@ -13,7 +13,7 @@ import makeSelectUser from 'containers/you/YouPage/selectors';
 import types from './constants';
 import actions from './actions';
 
-function* verifyVoter({ voter, user }) {
+function* verifyVoter({ voter }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Checking Voter Registration'));
     AnalyticsService.sendEvent('Voter Registration', 'Submit Voterize Form');
@@ -29,8 +29,7 @@ function* verifyVoter({ voter, user }) {
     yield put(globalActions.refreshTokenAction());
     yield put(actions.verifyVoterActionSuccess(voteStatus));
     if (voteStatus === 'verified') {
-      const updatedUser = yield call(getUserFromStateOrCookie, makeSelectUser);
-      yield put(push(electionRoute(updatedUser)));
+      yield put(push(`/elections/district/${voter.zip}`));
     }
     AnalyticsService.sendEvent(
       'Voter Registration',
