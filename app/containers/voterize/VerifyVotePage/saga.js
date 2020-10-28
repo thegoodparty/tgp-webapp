@@ -7,6 +7,8 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import globalActions from 'containers/App/actions';
 import { electionRoute } from 'helpers/electionsHelper';
 import AnalyticsService from 'services/AnalyticsService';
+import { getUserFromStateOrCookie } from 'helpers/userHelper';
+import makeSelectUser from 'containers/you/YouPage/selectors';
 
 import types from './constants';
 import actions from './actions';
@@ -27,7 +29,8 @@ function* verifyVoter({ voter, user }) {
     yield put(globalActions.refreshTokenAction());
     yield put(actions.verifyVoterActionSuccess(voteStatus));
     if (voteStatus === 'verified') {
-      yield put(push(electionRoute(user)));
+      const updatedUser = yield call(getUserFromStateOrCookie, makeSelectUser);
+      yield put(push(electionRoute(updatedUser)));
     }
     AnalyticsService.sendEvent(
       'Voter Registration',

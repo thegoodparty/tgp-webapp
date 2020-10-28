@@ -71,6 +71,7 @@ function* register(action) {
     setCookie('token', token);
     deleteCookie('guestRanking');
     const cookieRedirect = getSignupRedirectCookie();
+    console.log('saga cookieRedirect', cookieRedirect);
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();

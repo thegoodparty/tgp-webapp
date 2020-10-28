@@ -25,6 +25,7 @@ import makeSelectVerifyVotePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import { setSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 export function VerifyVotePage({
   dispatch,
@@ -44,6 +45,7 @@ export function VerifyVotePage({
     if (user && registerQuery === 'true') {
       dispatch(push(window.location.pathname));
     } else if (!user && registerQuery !== 'true') {
+      setSignupRedirectCookie('/verify-vote');
       dispatch(push('?register=true'));
     }
     AnalyticsService.sendEvent('Voter Registration', 'View Voterize Page');
@@ -91,6 +93,7 @@ function mapDispatchToProps(dispatch) {
       if (user) {
         dispatch(actions.verifyVoterAction(voter, user));
       } else {
+        setSignupRedirectCookie('/verify-vote');
         dispatch(push('?register=true'));
       }
     },
