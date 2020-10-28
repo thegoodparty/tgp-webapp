@@ -15,7 +15,7 @@ import WhiteLogo from 'images/white-logo.svg';
 import FacebookIcon from 'images/icons/facebook-white.svg';
 import TwitterIcon from 'images/icons/twitter.svg';
 import YouTubeIcon from 'images/icons/youtube-white.svg';
-import { getCookie, getUserCookie } from 'helpers/cookieHelper';
+import { getUserCookie } from 'helpers/cookieHelper';
 import ShareModal from 'components/you/ProfileWrapper/ShareModal/Loadable';
 import { electionRoute } from 'helpers/electionsHelper';
 
@@ -201,14 +201,6 @@ function Footer({ isCreators = false }) {
                 <ColumnHeader data-cy="footer-community-title">
                   Community
                 </ColumnHeader>
-                <WhiteHref
-                  href="https://forms.gle/kydnhUp6xqF6RUpb9"
-                  target="_blank"
-                  rel="nofollow"
-                  data-cy="footer-link-nominate"
-                >
-                  Nominate a Candidate
-                </WhiteHref>
                 <WhiteLink
                   to="#"
                   data-cy="footer-link-share"

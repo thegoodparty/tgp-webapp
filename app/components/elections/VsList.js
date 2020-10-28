@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 import ShareIcon from 'images/icons/share-icon-white.svg';
-import { Body9, Body11, Body13, Body } from 'components/shared/typogrophy';
+import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
   partyResolver,
@@ -258,22 +257,6 @@ const UnknownWrapper = styled.div`
   }
 `;
 
-const NominateWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.blue};
-  cursor: pointer;
-  margin-top: 32px;
-`;
-
-const NominateText = styled(Body)`
-  color: ${({ theme }) => theme.colors.blue};
-  font-weight: 600;
-  margin-left: 4px;
-`;
-
 const UnknownTitle = styled(Body9)`
   letter-spacing: 0.5px;
   font-weight: 500;
@@ -467,15 +450,6 @@ const VsList = ({
           ))}
         </Side>
       </Row>
-      <a
-        href="https://forms.gle/kydnhUp6xqF6RUpb9"
-        target="_blank"
-        data-cy="nominate-candidate"
-      >
-        <NominateWrapper>
-          <MailOutlineIcon /> <NominateText>Nominate a candidate</NominateText>
-        </NominateWrapper>
-      </a>
       {unknown && unknown.length > 0 && (
         <UnknownWrapper data-cy="unknown-side">
           <UnknownTitle data-cy="side-title">NOT YET RATED</UnknownTitle>
