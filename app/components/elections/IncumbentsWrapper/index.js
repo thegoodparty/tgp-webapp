@@ -13,16 +13,16 @@ import { Link } from 'react-router-dom';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { H1, Body, Body13 } from 'components/shared/typogrophy';
-import LoadingAnimation from '../../shared/LoadingAnimation';
-import { numberFormatter, percHelper } from '../../../helpers/numberHelper';
+import LoadingAnimation from 'components/shared/LoadingAnimation';
+import { numberFormatter, percHelper } from 'helpers/numberHelper';
 import {
   candidateCalculatedFields,
   candidateRoute,
-} from '../../../helpers/electionsHelper';
+} from 'helpers/electionsHelper';
 
 const ContentWrapper = styled.div`
   max-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent};
-  margin: 0 auto;
+  margin: 0 auto 60px;
   padding: 0 10px;
   overflow-x: hidden;
 
@@ -34,6 +34,12 @@ const ContentWrapper = styled.div`
 const StyledH1 = styled(H1)`
   text-align: center;
   margin-bottom: 18px;
+`;
+
+const CellBody13 = styled(Body13)`
+  &.bold {
+    font-weight: 700;
+  }
 `;
 const TableWrapper = styled.div`
   margin-top: 60px;
@@ -95,10 +101,16 @@ const TableWrapper = styled.div`
         margin-left: 10px;
       }
     }
+    .-pagination {
+      box-shadow: none;
+      border: none;
+      margin-top: 20px;
+    }
   }
 `;
 
 const Colored = styled.span`
+  color: ${({ theme }) => theme.colors.green};
   &.orange {
     color: ${({ theme }) => theme.colors.orange};
   }
@@ -115,6 +127,7 @@ const headerStyleRight = {
 
 function IncumbentsWrapper({ incumbents, loading }) {
   const [tableData, setTableData] = useState([]);
+  const [sortColumn, setSortColumn] = useState('largeDonorPerc');
   useEffect(() => {
     if (incumbents) {
       const data = [];
@@ -128,7 +141,6 @@ function IncumbentsWrapper({ incumbents, loading }) {
           totalRaised: incumbent.totalRaised,
           largeDonorPerc: incumbent.largeDonorPerc,
           largeDonorPerHour: incumbent.largeDonorPerHour,
-          isGood: incumbent.isGood,
           route: candidateRoute(incumbent),
         };
 
@@ -145,7 +157,9 @@ function IncumbentsWrapper({ incumbents, loading }) {
       headerStyle,
       Cell: row => (
         <Link to={row.original.route}>
-          <Body13>{row.original.name}</Body13>
+          <CellBody13 className={sortColumn === 'name' ? 'bold' : ''}>
+            {row.original.name}
+          </CellBody13>
         </Link>
       ),
     },
@@ -156,7 +170,9 @@ function IncumbentsWrapper({ incumbents, loading }) {
       maxWidth: 100,
       Cell: row => (
         <Link to={row.original.route}>
-          <Body13>{row.original.race}</Body13>
+          <CellBody13 className={sortColumn === 'race' ? 'bold' : ''}>
+            {row.original.race}
+          </CellBody13>
         </Link>
       ),
     },
@@ -166,30 +182,33 @@ function IncumbentsWrapper({ incumbents, loading }) {
       headerStyle: headerStyleRight,
       Cell: row => (
         <Link to={row.original.route}>
-          <Body13 className="text-right">
+          <CellBody13
+            className={`text-right ${
+              sortColumn === 'totalRaised' ? 'bold' : ''
+            }`}
+          >
             ${numberFormatter(row.original.totalRaised)}
-          </Body13>
+          </CellBody13>
         </Link>
       ),
     },
     {
-      Header: 'Big Money Funding',
+      Header: '% From Big Money',
       accessor: 'largeDonorPerc',
       headerStyle: headerStyleRight,
       Cell: row => (
         <Link to={row.original.route}>
-          <Body13 className="text-right">
+          <CellBody13
+            className={`text-right ${
+              sortColumn === 'largeDonorPerc' ? 'bold' : ''
+            }`}
+          >
             <Colored
-              className={
-                row.original.isGood === false ||
-                row.original.largeDonorPerc > 0.5
-                  ? 'orange'
-                  : ''
-              }
+              className={row.original.largeDonorPerc > 0.5 ? 'orange' : ''}
             >
-              {percHelper(row.original.largeDonorPerc)}%
+              {percHelper(row.original.largeDonorPerc, true)}%
             </Colored>
-          </Body13>
+          </CellBody13>
         </Link>
       ),
     },
@@ -199,30 +218,49 @@ function IncumbentsWrapper({ incumbents, loading }) {
       headerStyle: headerStyleRight,
       Cell: row => (
         <Link to={row.original.route}>
-          <Body13 className="text-right">
+          <CellBody13
+            className={`text-right ${
+              sortColumn === 'largeDonorPerHour' ? 'bold' : ''
+            }`}
+          >
             <Colored
-              className={
-                row.original.isGood === false ||
-                row.original.largeDonorPerc > 0.5
-                  ? 'orange'
-                  : ''
-              }
+              className={row.original.largeDonorPerc > 0.5 ? 'orange' : ''}
             >
               ${numberFormatter(row.original.largeDonorPerHour)}/hr
             </Colored>
-          </Body13>
+          </CellBody13>
         </Link>
       ),
     },
   ];
 
+  const onSortedChange = props => {
+    console.log('onSortedChange', props);
+    if (props?.length > 0) {
+      setSortColumn(props[0].id);
+    }
+  };
+
   return (
     <PageWrapper isFullWidth>
       <ContentWrapper>
-        <StyledH1>Congressional Funding</StyledH1>
+        <StyledH1>Big Money Funding Rates for 2020 Congress</StyledH1>
         <Body className="text-center">
-          We tracked the funding for all 535 members of congress to see who is
-          funded by normal people.
+          <a href="https://www.opensecrets.org/" target="_blank">
+            Open Secrets
+          </a>{' '}
+          tracks fundraising sources using FEC filings for all 435
+          Representatives and 100 Senators in Congress. We analyze this data to
+          show what percentage comes from Big Money sources—like PACs, corporate
+          lobbyists, and individual donations over $200. To calculate the{' '}
+          <strong>Big Money Funding Rate</strong>, we use the{' '}
+          <strong>
+            percent of Total Funding from Big Money divided by hours in office
+            this term
+          </strong>
+          . In other words, the Big Money Funding Rate shows how much Big Money
+          pays to influence our elected representatives{' '}
+          <i>for every hour they&apos;re in Congress!</i>
         </Body>
         {loading && !incumbents && <LoadingAnimation />}
         {incumbents && (
@@ -231,14 +269,16 @@ function IncumbentsWrapper({ incumbents, loading }) {
               className=""
               data={tableData}
               columns={columns}
-              defaultPageSize={incumbents.length}
-              showPagination={false}
+              defaultPageSize={25}
+              showPagination
               defaultSorted={[
                 {
-                  id: 'largeDonorPerc',
+                  id: sortColumn,
                   desc: true,
                 },
               ]}
+              resizable={false}
+              onSortedChange={onSortedChange}
             />
           </TableWrapper>
         )}

@@ -39,7 +39,7 @@ export function IncumbentsPage({ incumbentsPage, dispatch }) {
   return (
     <div>
       <TgpHelmet
-        title="Congressional Funding"
+        title="Big Money Funding Rates for 2020 Congress | The Good Party"
         description="We tracked the funding for all 535 members of congress to see who is funded by normal people."
       />
       <IncumbentsWrapper {...childProps} />
