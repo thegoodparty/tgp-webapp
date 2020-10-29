@@ -19,6 +19,7 @@ import makeSelectIncumbentsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import TgpHelmet from '../../../components/shared/TgpHelmet';
 
 export function IncumbentsPage({ incumbentsPage, dispatch }) {
   useInjectReducer({ key: 'incumbentsPage', reducer });
@@ -37,10 +38,10 @@ export function IncumbentsPage({ incumbentsPage, dispatch }) {
   };
   return (
     <div>
-      <Helmet>
-        <title>IncumbentsPage</title>
-        <meta name="description" content="Description of IncumbentsPage" />
-      </Helmet>
+      <TgpHelmet
+        title="Congressional Funding"
+        description="We tracked the funding for all 535 members of congress to see who is funded by normal people."
+      />
       <IncumbentsWrapper {...childProps} />
     </div>
   );
