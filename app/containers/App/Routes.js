@@ -15,6 +15,7 @@ import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
 import DistrictPage from 'containers/elections/DistrictPage/Loadable';
 import ElectionPage from 'containers/elections/ElectionPage/Loadable';
 import CandidatePage from 'containers/elections/CandidatePage/Loadable';
+import IncumbentsPage from 'containers/elections/IncumbentsPage/Loadable';
 
 import EmailRegisterPage from 'containers/you/EmailRegisterPage/Loadable';
 import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
@@ -64,6 +65,11 @@ function Routes() {
       />
       <Route
         exact
+        path="/elections/incumbents"
+        component={IncumbentsPage}
+      />
+      <Route
+        exact
         path="/elections/candidate/:chamber/:name/:id/:tab"
         component={CandidatePage}
       />
@@ -72,6 +78,7 @@ function Routes() {
         path="/elections/candidate/:chamber/:name/:id"
         component={CandidatePage}
       />
+
 
       <Route exact path="/elections/:chamber" component={ElectionPage} />
       <Route exact path="/elections/:chamber/:state" component={ElectionPage} />
