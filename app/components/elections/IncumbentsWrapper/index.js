@@ -110,9 +110,11 @@ const TableWrapper = styled.div`
 `;
 
 const Colored = styled.span`
-  color: ${({ theme }) => theme.colors.green};
   &.orange {
     color: ${({ theme }) => theme.colors.orange};
+  }
+  &.green {
+    color: ${({ theme }) => theme.colors.green};
   }
 `;
 
@@ -139,7 +141,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
             incumbent.chamber === 'Senate' ? 'Senate' : incumbent.district
           }`,
           totalRaised: incumbent.totalRaised,
-          largeDonorPerc: incumbent.largeDonorPerc,
+          largeDonorPerc: percHelper(incumbent.largeDonorPerc, true),
           largeDonorPerHour: incumbent.largeDonorPerHour,
           route: candidateRoute(incumbent),
         };
@@ -204,9 +206,9 @@ function IncumbentsWrapper({ incumbents, loading }) {
             }`}
           >
             <Colored
-              className={row.original.largeDonorPerc > 0.5 ? 'orange' : ''}
+              className={row.original.largeDonorPerc > 50 ? 'orange' : 'green'}
             >
-              {percHelper(row.original.largeDonorPerc, true)}%
+              {row.original.largeDonorPerc}%
             </Colored>
           </CellBody13>
         </Link>
@@ -224,7 +226,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
             }`}
           >
             <Colored
-              className={row.original.largeDonorPerc > 0.5 ? 'orange' : ''}
+              className={row.original.largeDonorPerc > 50 ? 'orange' : ''}
             >
               ${numberFormatter(row.original.largeDonorPerHour)}/hr
             </Colored>
@@ -273,7 +275,11 @@ function IncumbentsWrapper({ incumbents, loading }) {
               showPagination
               defaultSorted={[
                 {
-                  id: sortColumn,
+                  id: 'largeDonorPerc',
+                  desc: true,
+                },
+                {
+                  id: 'totalRaised',
                   desc: true,
                 },
               ]}
