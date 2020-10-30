@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-import { Body19, Subtitle, Body } from 'components/shared/typogrophy';
+import { Body19, Subtitle, Body, Body11 } from 'components/shared/typogrophy';
 import { Link } from 'react-router-dom';
 import { OutlinedButton } from '../shared/buttons';
 
@@ -31,16 +31,16 @@ const ColDescription = styled(Body19)`
 
 const ButtonWrapper = styled.div`
   text-align: center;
-  width: 200px;
   margin: 30px auto;
 `;
 
-const LinkBody = styled(Body)`
-  margin: 40px auto;
+const LinkBody11 = styled(Body11)`
+  margin: 30px auto;
   display: block;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray6};
   font-weight: 400;
+  font-style: italic;
 `;
 const StatsSection = () => (
   <Wrapper>
@@ -56,8 +56,8 @@ const StatsSection = () => (
           <br />
           <ButtonWrapper>
             <Link to="/elections/incumbents">
-              <OutlinedButton active fullWidth>
-                SEE RANKINGS
+              <OutlinedButton active>
+                SEE BIG-MONEY RANKINGS
               </OutlinedButton>
             </Link>
           </ButtonWrapper>
@@ -72,7 +72,7 @@ const StatsSection = () => (
             target="_blank"
             rel="nofollow"
           >
-            <LinkBody>Source: Gallup</LinkBody>
+            <LinkBody11>Source: Gallup</LinkBody11>
           </a>
         </ColDescription>
       </Grid>
@@ -86,7 +86,7 @@ const StatsSection = () => (
             target="_blank"
             rel="nofollow"
           >
-            <LinkBody>Source: Open Secrets</LinkBody>
+            <LinkBody11>Source: Open Secrets</LinkBody11>
           </a>
         </ColDescription>
       </Grid>
