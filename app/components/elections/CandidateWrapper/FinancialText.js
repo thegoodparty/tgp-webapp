@@ -216,7 +216,12 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
         election cycle, as of {combinedReportDate}, {text()}
       </Body13>
       <div className="text-center" data-cy="report">
-        <a href={openSecretLink} target="_blank" data-cy="secret-link">
+        <a
+          href={openSecretLink}
+          target="_blank"
+          data-cy="secret-link"
+          rel="nofollow"
+        >
           <OpenSecretsLink>
             FEC DATA COURTESY OF OPENSECRETS.ORG
           </OpenSecretsLink>

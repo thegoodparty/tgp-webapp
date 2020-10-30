@@ -262,6 +262,9 @@ const ProfileWrapper = ({
       <Link to={electionLink} data-cy="all-election-link">
         <AllElections>See All Elections</AllElections>
       </Link>
+      <Link to="verify-vote" data-cy="verify-vote-link">
+        <AllElections>Check Voter Registration</AllElections>
+      </Link>
       <CrewTitle data-cy="crew-title">
         <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
         <Body>

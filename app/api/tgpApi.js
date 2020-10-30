@@ -42,6 +42,10 @@ const api = {
     url: `${base}candidates/find-by-bloc`,
     method: 'GET',
   },
+  loadIncumbents: {
+    url: `${base}incumbents`,
+    method: 'GET',
+  },
 
   //
   // CONTENT

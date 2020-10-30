@@ -27,6 +27,7 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectContent, makeSelectLocation } from './selectors';
+import AnalyticsService from '../../services/AnalyticsService';
 
 function QueryRoutes({ locationState, content, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
@@ -56,6 +57,9 @@ function QueryRoutes({ locationState, content, dispatch }) {
 
     const queryRegister = queryHelper(search, 'register');
     setShowRegister(queryRegister === 'true');
+    if (queryRegister === 'true') {
+      AnalyticsService.sendEvent('signup', 'View Account Signup Page');
+    }
   }, [search]);
 
   const blocRedirect = bloc => {

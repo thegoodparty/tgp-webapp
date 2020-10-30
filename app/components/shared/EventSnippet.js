@@ -88,6 +88,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
                         href={locationLink}
                         target="_blank"
                         data-cy="event-location-link"
+                        rel="nofollow"
                       >
                         {location}
                       </a>

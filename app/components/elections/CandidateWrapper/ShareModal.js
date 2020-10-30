@@ -23,6 +23,7 @@ import SmsIcon from 'images/icons/sms-icon.svg';
 import ShareIcon from 'images/icons/share-icon.svg';
 import { numberFormatter } from 'helpers/numberHelper';
 import LogoCapsImg from 'images/logo-caps.svg';
+import AnalyticsService from 'services/AnalyticsService';
 
 const StyledDialog = styled(Dialog)`
   && {
@@ -250,10 +251,21 @@ const ShareModal = ({
 }) => {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
+    AnalyticsService.sendEvent('Sharing', 'Open Share Modal', candidate?.name);
+  }, []);
+  useEffect(() => {
     const sharebtns = document.getElementsByClassName('st-btn');
     for (let i = 0; i < sharebtns.length; i++) {
       sharebtns[i].onclick = () => {
-        trackShare();
+        let label = '';
+        if (i === 0) {
+          label = 'Email';
+        } else if (i === 1) {
+          label = 'Facebook';
+        } else if (i === 2) {
+          label = 'Twitter';
+        }
+        trackShare(label);
       };
     }
   });
@@ -294,15 +306,17 @@ const ShareModal = ({
         text: messageBody,
       })
       .then(() => {
-        trackShare();
+        trackShare('Native Share');
       });
   };
   candidate.votesNeeded = votesNeeded;
   const handleCopy = () => {
     setCopied(true);
-    trackShare();
+
+    trackShare('Copy to Clipboard');
   };
-  const trackShare = () => {
+  const trackShare = (shareType = '') => {
+    AnalyticsService.sendEvent('Sharing', 'Click Share Method', shareType);
     trackShareCallback(candidate);
   };
   return (
@@ -356,7 +370,9 @@ const ShareModal = ({
               <a
                 href={`sms:?&body=${messageBody.replace('&', '%26')}`}
                 data-cy="sms-share"
-                onClick={trackShare}
+                onClick={() => {
+                  trackShare('sms');
+                }}
               >
                 <IconItem>
                   <IconWrapper className="sms">
@@ -434,7 +450,9 @@ const ShareModal = ({
                     message: messageBody, // (only for email sharing)
                     subject: messageTitle, // (only for email sharing)
                   }}
-                  onClick={trackShare}
+                  onClick={() => {
+                    trackShare('');
+                  }}
                 />
               </Grid>
               {canShare && (

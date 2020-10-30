@@ -10,9 +10,10 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-react-router';
 
 import ZipFinderWrapper from 'components/intro/ZipFinderWrapper';
+import AnalyticsService from 'services/AnalyticsService';
+
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -80,9 +81,11 @@ function mapDispatchToProps(dispatch) {
       // } else {
       dispatch(districtActions.loadZipAction(zip, true));
       // }
+      AnalyticsService.sendEvent('Location', 'Submit ZIP Location');
     },
     currentLocationCallback: coords => {
       dispatch(districtActions.geolocationToDistrictAction(coords));
+      AnalyticsService.sendEvent('Location', 'Submit Device Location');
     },
   };
 }

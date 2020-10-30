@@ -19,6 +19,7 @@ import { deleteSignupRedirectCookie } from 'helpers/cookieHelper';
 import queryHelper from 'helpers/queryHelper';
 import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
+import AnalyticsService from 'services/AnalyticsService';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -179,6 +180,11 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch(push('?register=true'));
     },
     saveRankingCallback: (user, candidate) => {
+      AnalyticsService.sendEvent(
+        'voting',
+        'Join Candidate Bloc',
+        candidate.name,
+      );
       if (user) {
         const { chamber, state } = candidate;
         dispatch(

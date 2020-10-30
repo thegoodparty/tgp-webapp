@@ -12,8 +12,8 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
-import MenuItem from '@material-ui/core/MenuItem';
 import Markdown from 'markdown-to-jsx';
+import { Link } from 'react-router-dom';
 
 import { validateEmail } from 'helpers/emailHelper';
 import { parseDob } from 'helpers/dateHelper';
@@ -22,20 +22,19 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 import LogoCaps from 'images/logo-caps.svg';
-import { H1, H2, H3, Body, Body9 } from 'components/shared/typogrophy';
+import { H1, H2, H3, Body } from 'components/shared/typogrophy';
 import { states } from 'helpers/statesHelper';
-import NumberFormat from 'react-number-format';
 import {
   NextButton,
   OutlinedButton,
   BlueButton,
 } from 'components/shared/buttons';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
-import HorizontalStepper from 'components/shared/Stepper';
 import {
   DobFormat,
   PhoneNumberFormat,
 } from 'components/shared/customInputFormat';
+import AnalyticsService from 'services/AnalyticsService';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
@@ -164,7 +163,7 @@ const VerifyVoteWrapper = ({
         zip: zipCode?.zip || '',
       }));
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (voteStatus !== false && voteStatus !== 'Active') {
@@ -230,7 +229,7 @@ const VerifyVoteWrapper = ({
 
   const submitForm = () => {
     if (canSubmit()) {
-      verifyVoterCallback(formattedState());
+      verifyVoterCallback(formattedState(), user);
     }
   };
 
@@ -307,6 +306,10 @@ const VerifyVoteWrapper = ({
     item => !item.includes('Name'),
   );
 
+  const trackClose = () => {
+    AnalyticsService.sendEvent('Voter Registration', 'Close Voterize Form');
+  };
+
   return (
     <Dialog fullScreen aria-labelledby="Verify Voter Registration" open>
       <Grid container spacing={0}>
@@ -320,17 +323,13 @@ const VerifyVoteWrapper = ({
         </Hidden>
         <Grid item xs={12} md={7}>
           <RightWrapper>
-            <HorizontalStepper
-              steps={['Sign Up', 'Voterize', 'Tell Others']}
-              activeStep={1}
-            />
-            <br />
-            <br />
             {loading ? (
               <LoadingAnimation />
             ) : (
               <>
-                <Skip onClick={skipVerifyVoterCallback}>Skip</Skip>
+                <Link to="you" onClick={trackClose}>
+                  <Skip>Close</Skip>
+                </Link>
                 <Hidden mdUp>
                   <WarningWrapper>{message()}</WarningWrapper>
                 </Hidden>
