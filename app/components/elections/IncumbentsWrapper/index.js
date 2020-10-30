@@ -237,7 +237,6 @@ function IncumbentsWrapper({ incumbents, loading }) {
   ];
 
   const onSortedChange = props => {
-    console.log('onSortedChange', props);
     if (props?.length > 0) {
       setSortColumn(props[0].id);
     }
@@ -247,7 +246,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
     <PageWrapper isFullWidth>
       <ContentWrapper>
         <StyledH1>Big Money Funding Rates for 2020 Congress</StyledH1>
-        <Body className="text-center">
+        <Body>
           <a href="https://www.opensecrets.org/" target="_blank" rel="nofollow">
             Open Secrets
           </a>{' '}

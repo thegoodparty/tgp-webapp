@@ -35,7 +35,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const LinkBody11 = styled(Body11)`
-  margin: 30px auto;
+  margin: 10px auto 30px;
   display: block;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray6};
