@@ -72,13 +72,17 @@ const calcHours = candidate => {
   // if (!isIncumbent && typeof chamber !== 'undefined') {
   //   return 1;
   // }
-  const date = reportDate || outsideReportDate || '02/12/2020';
+  let date = reportDate || outsideReportDate || '10/23/2020';
+  if (date === 'SuperPAC') {
+    date = '10/23/2020';
+  }
   let dateInOffice = '01/20/2016';
   if (chamber === 'Senate') {
     dateInOffice = '01/03/2014';
   } else if (chamber === 'House') {
     dateInOffice = '01/03/2018';
   }
+
   const months = monthsDiff(dateInOffice, date);
   return months * hoursPerMonth;
 };
