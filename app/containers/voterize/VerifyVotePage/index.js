@@ -20,12 +20,13 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
+import { setSignupRedirectCookie } from 'helpers/cookieHelper';
+import userActions from 'containers/you/YouPage/actions';
 
 import makeSelectVerifyVotePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
-import { setSignupRedirectCookie } from '../../../helpers/cookieHelper';
 
 export function VerifyVotePage({
   dispatch,
@@ -39,6 +40,17 @@ export function VerifyVotePage({
 
   useInjectReducer({ key: 'verifyVotePage', reducer });
   useInjectSaga({ key: 'verifyVotePage', saga });
+
+  const { search } = window.location;
+  const email = queryHelper(search, 'email');
+  const token = queryHelper(search, 'token');
+  useEffect(() => {
+    if (email && token) {
+      setSignupRedirectCookie('/verify-vote');
+      dispatch(userActions.confirmEmailAction(email, token));
+    }
+  }, []);
+
   const { user } = userState;
   useEffect(() => {
     const registerQuery = queryHelper(window.location.search, 'register');
