@@ -246,7 +246,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
       <ContentWrapper>
         <StyledH1>Big Money Funding Rates for 2020 Congress</StyledH1>
         <Body className="text-center">
-          <a href="https://www.opensecrets.org/" target="_blank">
+          <a href="https://www.opensecrets.org/" target="_blank" rel="nofollow">
             Open Secrets
           </a>{' '}
           tracks fundraising sources using FEC filings for all 435

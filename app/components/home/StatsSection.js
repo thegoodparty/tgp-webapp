@@ -2,6 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
 import { Body19, Subtitle } from 'components/shared/typogrophy';
+import { Link } from 'react-router-dom';
+import { OutlinedButton } from '../shared/buttons';
 
 const Wrapper = styled.div`
   margin-bottom: 48px;
@@ -11,6 +13,7 @@ const ColTitle = styled(Subtitle)`
   color: ${({ theme }) => theme.colors.orange};
   text-align: center;
 `;
+
 const ColDescription = styled(Body19)`
   font-weight: bold;
   text-align: center;
@@ -25,6 +28,12 @@ const ColDescription = styled(Body19)`
     line-height: 30px;
   }
 `;
+
+const ButtonWrapper = styled.div`
+  text-align: center;
+  width: 200px;
+  margin: 30px auto;
+`;
 const StatsSection = () => (
   <Wrapper>
     <Grid container spacing={2}>
@@ -36,12 +45,31 @@ const StatsSection = () => (
           raise <u>majority</u> of funds
           <br />
           from big-money donors
+          <br />
+          <ButtonWrapper>
+            <Link to="/elections/incumbents">
+              <OutlinedButton active fullWidth>
+                SEE RANKINGS
+              </OutlinedButton>
+            </Link>
+          </ButtonWrapper>
         </ColDescription>
       </Grid>
       <Grid item xs={12} sm={4}>
         <ColTitle>only 18%</ColTitle>
         <ColDescription>
           of Americans <br /> approve of Congress <br /> (but nothing changes)
+          <ButtonWrapper>
+            <a
+              href="https://news.gallup.com/poll/316448/congress-approval-drops-trump-steady.aspx"
+              target="_blank"
+              rel="nofollow"
+            >
+              <OutlinedButton active fullWidth>
+                CHECK SOURCE
+              </OutlinedButton>
+            </a>
+          </ButtonWrapper>
         </ColDescription>
       </Grid>
       <Grid item xs={12} sm={4}>
@@ -49,6 +77,17 @@ const StatsSection = () => (
         <ColDescription>
           of Congress gets <br /> reelected based on <br /> amount of funds
           raised
+          <ButtonWrapper>
+            <a
+              href="https://www.opensecrets.org/elections-overview/winning-vs-spending?cycle=2020"
+              target="_blank"
+              rel="nofollow"
+            >
+              <OutlinedButton active fullWidth>
+                LEARN WHY
+              </OutlinedButton>
+            </a>
+          </ButtonWrapper>
         </ColDescription>
       </Grid>
     </Grid>
