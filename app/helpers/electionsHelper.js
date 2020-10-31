@@ -67,18 +67,27 @@ export const rankText = number => {
 const hoursPerMonth = 2000 / 12;
 
 const calcHours = candidate => {
-  const { isIncumbent, chamber, outsideReportDate, reportDate } = candidate;
-  // presidential has chamber undeifned
-  // if (!isIncumbent && typeof chamber !== 'undefined') {
-  //   return 1;
-  // }
-  const date = reportDate || outsideReportDate || '02/12/2020';
+  const {
+    chamber,
+    outsideReportDate,
+    reportDate,
+    dateCampaign,
+    campaignReportDate,
+  } = candidate;
+  const date =
+    reportDate ||
+    campaignReportDate ||
+    dateCampaign ||
+    outsideReportDate ||
+    '10/23/2020';
+
   let dateInOffice = '01/20/2016';
   if (chamber === 'Senate') {
     dateInOffice = '01/03/2014';
   } else if (chamber === 'House') {
     dateInOffice = '01/03/2018';
   }
+
   const months = monthsDiff(dateInOffice, date);
   return months * hoursPerMonth;
 };

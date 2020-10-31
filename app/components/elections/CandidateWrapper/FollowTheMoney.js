@@ -121,13 +121,14 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
   const isGoodOrUnkwown = isGood || isUnkown;
 
   const color = isGoodOrUnkwown ? 'green' : 'red';
-  const colorWithGray = isGoodOrUnkwown ? 'green' : isBigMoney ? 'red' : 'gray';
   const perc = isGoodOrUnkwown
     ? percHelper(smallDonorPerc, true)
     : percHelper(largeDonorPerc, true);
   const perHour = isGoodOrUnkwown
     ? moneyHelper(smallDonorPerHour)
     : moneyHelper(largeDonorPerHour);
+  if (!isGoodOrUnkwown) {
+  }
 
   const combinedReportDate = getCombinedReportDate(
     { reportDate, outsideReportDate },

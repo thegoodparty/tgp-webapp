@@ -110,9 +110,11 @@ const TableWrapper = styled.div`
 `;
 
 const Colored = styled.span`
-  color: ${({ theme }) => theme.colors.green};
   &.orange {
     color: ${({ theme }) => theme.colors.orange};
+  }
+  &.green {
+    color: ${({ theme }) => theme.colors.green};
   }
 `;
 
@@ -139,7 +141,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
             incumbent.chamber === 'Senate' ? 'Senate' : incumbent.district
           }`,
           totalRaised: incumbent.totalRaised,
-          largeDonorPerc: incumbent.largeDonorPerc,
+          largeDonorPerc: percHelper(incumbent.largeDonorPerc, true),
           largeDonorPerHour: incumbent.largeDonorPerHour,
           route: candidateRoute(incumbent),
         };
@@ -204,9 +206,9 @@ function IncumbentsWrapper({ incumbents, loading }) {
             }`}
           >
             <Colored
-              className={row.original.largeDonorPerc > 0.5 ? 'orange' : ''}
+              className={row.original.largeDonorPerc > 50 ? 'orange' : 'green'}
             >
-              {percHelper(row.original.largeDonorPerc, true)}%
+              {row.original.largeDonorPerc}%
             </Colored>
           </CellBody13>
         </Link>
@@ -224,7 +226,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
             }`}
           >
             <Colored
-              className={row.original.largeDonorPerc > 0.5 ? 'orange' : ''}
+              className={row.original.largeDonorPerc > 50 ? 'orange' : ''}
             >
               ${numberFormatter(row.original.largeDonorPerHour)}/hr
             </Colored>
@@ -235,7 +237,6 @@ function IncumbentsWrapper({ incumbents, loading }) {
   ];
 
   const onSortedChange = props => {
-    console.log('onSortedChange', props);
     if (props?.length > 0) {
       setSortColumn(props[0].id);
     }
@@ -245,7 +246,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
     <PageWrapper isFullWidth>
       <ContentWrapper>
         <StyledH1>Big Money Funding Rates for 2020 Congress</StyledH1>
-        <Body className="text-center">
+        <Body13>
           <a href="https://www.opensecrets.org/" target="_blank" rel="nofollow">
             Open Secrets
           </a>{' '}
@@ -261,7 +262,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
           . In other words, the Big Money Funding Rate shows how much Big Money
           pays to influence our elected representatives{' '}
           <i>for every hour they&apos;re in Congress!</i>
-        </Body>
+        </Body13>
         {loading && !incumbents && <LoadingAnimation />}
         {incumbents && (
           <TableWrapper>
@@ -273,7 +274,11 @@ function IncumbentsWrapper({ incumbents, loading }) {
               showPagination
               defaultSorted={[
                 {
-                  id: sortColumn,
+                  id: 'largeDonorPerc',
+                  desc: true,
+                },
+                {
+                  id: 'totalRaised',
                   desc: true,
                 },
               ]}
