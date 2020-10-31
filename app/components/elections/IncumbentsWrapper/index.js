@@ -246,7 +246,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
     <PageWrapper isFullWidth>
       <ContentWrapper>
         <StyledH1>Big Money Funding Rates for 2020 Congress</StyledH1>
-        <Body>
+        <Body13>
           <a href="https://www.opensecrets.org/" target="_blank" rel="nofollow">
             Open Secrets
           </a>{' '}
@@ -262,7 +262,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
           . In other words, the Big Money Funding Rate shows how much Big Money
           pays to influence our elected representatives{' '}
           <i>for every hour they&apos;re in Congress!</i>
-        </Body>
+        </Body13>
         {loading && !incumbents && <LoadingAnimation />}
         {incumbents && (
           <TableWrapper>
