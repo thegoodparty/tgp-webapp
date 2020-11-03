@@ -99,6 +99,7 @@ function AdminEditCandidate({
     website,
     order,
     source,
+    votesReceived,
     likelyVoters,
     initialShares,
   } = candidate;
@@ -113,6 +114,7 @@ function AdminEditCandidate({
         twitter,
         website,
         order,
+        votesReceived,
         likelyVoters,
         initialShares,
       };
@@ -177,6 +179,11 @@ function AdminEditCandidate({
         key: 'website',
       },
       {
+        name: 'Votes Received',
+        value: votesReceived,
+        key: 'votesReceived',
+      },
+      {
         name: 'Likely Voters',
         value: likelyVoters,
         key: 'likelyVoters',
@@ -191,6 +198,7 @@ function AdminEditCandidate({
   }
 
   const onChangeField = (event, key) => {
+    console.log('onChange field', event.target.value, key)
     setEditableValues({
       ...editableValues,
       [key]: event.target.value,
@@ -288,10 +296,11 @@ function AdminEditCandidate({
     addIfEdited('facebook', data);
     addIfEdited('twitter', data);
     addIfEdited('website', data);
+    addIfEdited('votesReceived', data);
     addIfEdited('likelyVoters', data);
     addIfEdited('initialShares', data);
     addIfEdited('order', data);
-
+    console.log('save cand', data);
     saveCandidateCallback(data, candidate, returnUpdates);
     setNewUpdates([]);
   };

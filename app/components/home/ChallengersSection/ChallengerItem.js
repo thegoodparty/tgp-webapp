@@ -14,12 +14,14 @@ import {
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import ChallengerAvatar from './ChallengerAvatar';
 import VotesNeeded from './VotesNeeded';
+import WonLostElection from '../../shared/WonLostElection';
 
 const ChallengerItemWrapper = styled.div`
   width: 100%;
   padding: 1rem;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
+  overflow: hidden;
 `;
 
 const ChallengerName = styled(H2)`
@@ -70,18 +72,21 @@ const NeededVotes = styled.p`
 const FullLine = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.colors.grayC};
   border-radius: 3px;
+  position: relative;
+  top: 4px;
 `;
 
 const PercentLine = styled.div`
   border-bottom: 6px solid ${({ theme }) => theme.colors.green};
   border-radius: 3px;
   width: ${props => props.percent};
-  top: -4px;
   position: relative;
+  max-width: 100%;
 `;
 
 const LineWrapper = styled.div`
   padding: 0 12px;
+  overflow: hidden;
 `;
 
 const TitleCase = styled.span`
@@ -97,6 +102,7 @@ const ChallengerItem = ({ challenger, id }) => {
     state,
     district,
     likelyVoters,
+    votesReceived,
     votesNeeded,
     raised,
     incumbentRaised,
@@ -115,7 +121,8 @@ const ChallengerItem = ({ challenger, id }) => {
       <TitleCase>{partyString.toLowerCase()}</TitleCase> for {districtInfo}
     </>
   );
-  const neededPercent = parseInt((likelyVoters * 100) / votesNeeded, 10);
+  const votes = votesReceived || likelyVoters;
+  const neededPercent = parseInt((votes * 100) / votesNeeded, 10);
 
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
   const getRankPageLink = () => rankPageLink(chamber, state, district);
@@ -152,6 +159,7 @@ const ChallengerItem = ({ challenger, id }) => {
             <PercentLine percent={neededPercent + '%'} />
           </LineWrapper>
         </NeededVotesWrapper>
+        <WonLostElection candidate={challenger} />
       </Link>
     </ChallengerItemWrapper>
   );

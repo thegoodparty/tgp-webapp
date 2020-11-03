@@ -19,6 +19,7 @@ import { numberFormatter, numberNth } from 'helpers/numberHelper';
 import LoadingAnimation from '../shared/LoadingAnimation';
 import SupportersProgressBar from './SupportersProgressBar';
 import FollowTheMoney from './CandidateWrapper/FollowTheMoney';
+import WonLostElection from '../shared/WonLostElection';
 
 const Row = styled.div`
   display: flex;
@@ -271,8 +272,6 @@ const VsList = ({
   chamber,
   state,
   districtNumber,
-  user,
-  votesNeeded,
   incumbent,
 }) => {
   const { good, notGood, unknown } = candidates;
@@ -325,22 +324,16 @@ const VsList = ({
   };
 
   const blocCountSection = candidate => {
-    const candidateRank = candidateRanking(ranking, candidate);
-    let rank = candidate.ranking + candidate.likelyVoters;
-
-    if (candidateRank && !user) {
-      // no user - need to add the guest count
-      rank++;
-    }
-    const percNeeded = (rank * 100) / votesNeeded;
+    const { votesReceived, votesNeeded } = candidate;
+    const percNeeded = (votesReceived * 100) / votesNeeded;
     return (
       <BlocCount data-cy="block-count">
-        <span title={`${numberFormatter(rank)} Votes`}>
+        <span title={`${numberFormatter(votesReceived)} Votes`}>
           <PercWrapper>{percNeeded.toFixed(1)}%</PercWrapper> of{' '}
         </span>
         {numberFormatter(votesNeeded)} votes needed to win {inText(candidate)}
         <SupportersProgressBar
-          peopleSoFar={rank}
+          peopleSoFar={votesReceived}
           votesNeeded={votesNeeded}
           showSupporters={false}
           alignLeft
@@ -390,6 +383,7 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                <WonLostElection candidate={candidate} />
                 {blocCountSection(candidate)}
                 {choiceButton(candidate)}
               </CandidateWrapper>
@@ -472,6 +466,10 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
+                <WonLostElection
+                  candidate={candidate}
+                  whiteBorder
+                />
                 {blocCountSection(candidate)}
                 <GrowWrapperUnknown>
                   {choiceButton(candidate)}
@@ -491,7 +489,7 @@ VsList.propTypes = {
     PropTypes.array,
     PropTypes.bool,
   ]),
-  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+
   incumbent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   openFiltersCallback: PropTypes.func,
   ranking: PropTypes.object,
@@ -499,7 +497,6 @@ VsList.propTypes = {
   districtNumber: PropTypes.string,
   chamber: PropTypes.string,
   state: PropTypes.string,
-  votesNeeded: PropTypes.number,
 };
 
 export default VsList;

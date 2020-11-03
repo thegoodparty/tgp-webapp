@@ -106,13 +106,6 @@ const ElectionWrapper = ({
     )} District ${displayChamber} Election`;
   }
 
-  // let chamberCount = 0;
-  let votesNeeded = 0;
-
-  if (candidates) {
-    votesNeeded = candidates.threshold;
-  }
-
   const handleDeselectCandidate = rank => {
     deleteCandidateRankingCallback(rank, user);
   };
@@ -164,7 +157,6 @@ const ElectionWrapper = ({
             chamber={chamber}
             state={stateUpper}
             user={user}
-            votesNeeded={votesNeeded}
             incumbent={incumbent}
           />
 

@@ -34,6 +34,7 @@ const VotesNeeded = ({ candidate, truncateSmall = false }) => {
     district,
     likelyVoters,
     votesNeeded,
+    votesReceived,
     chamber,
   } = calculatedChallanger;
   let districtInfo = '';
@@ -42,16 +43,17 @@ const VotesNeeded = ({ candidate, truncateSmall = false }) => {
       chamber === 'House' && district ? `-${district}` : ' Senate'
     }`;
   }
+  const votes = votesReceived || likelyVoters;
 
   const neededPercent =
     votesNeeded && votesNeeded !== 0
-      ? parseInt((likelyVoters * 100) / votesNeeded, 10)
+      ? parseInt((votes * 100) / votesNeeded, 10)
       : 0;
 
   return (
     <OneLine>
       <PercWrapper>{neededPercent}%</PercWrapper> of {'  '}
-      {numberFormatter(votesNeeded)} votes needed to win
+      {numberFormatter(votes)} votes needed to win
       <DistrictInfo className={truncateSmall ? 'truncate-small' : ''}>
         {' '}
         {districtInfo}
@@ -62,6 +64,7 @@ const VotesNeeded = ({ candidate, truncateSmall = false }) => {
 
 VotesNeeded.propTypes = {
   candidate: PropTypes.object,
+  truncateSmall: PropTypes.bool,
 };
 
 export default VotesNeeded;

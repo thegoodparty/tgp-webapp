@@ -15,6 +15,7 @@ import Body from 'components/shared/typogrophy/Body';
 import { candidateRoute } from 'helpers/electionsHelper';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ShareButtons from './ShareButtons';
+import WonLostElection from '../../shared/WonLostElection';
 
 const ScrollArea = styled.div`
   height: calc(100% - 60px - 65px);
@@ -117,6 +118,8 @@ const RightCard = ({
     recentActivity,
     shares,
     activityCount,
+    votesNeeded,
+    votesReceived,
   } = candidate;
   const route = candidateRoute(candidate);
   return (
@@ -128,12 +131,17 @@ const RightCard = ({
       >
         <Inner>
           <Wrapper>
+            <WonLostElection candidate={candidate} style={{ marginTop: 0 }} />
             <VotesNeededWrapper>
               <VotesNeeded candidate={candidate} />
             </VotesNeededWrapper>
             <SupportersProgressBar
-              peopleSoFar={likelyVoters}
-              votesNeeded={candidate.votesNeeded}
+              peopleSoFar={
+                votesReceived && votesReceived !== 0
+                  ? votesReceived
+                  : likelyVoters
+              }
+              votesNeeded={votesNeeded}
               showSupporters={false}
               showSuffix={false}
               fullWidth
