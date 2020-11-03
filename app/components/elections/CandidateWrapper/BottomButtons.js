@@ -32,6 +32,12 @@ const Wrapper = styled.div`
       }
     }
   }
+
+  .ended {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      margin-top: 0;
+    }
+  }
 `;
 
 const BottomButtons = ({

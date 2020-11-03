@@ -79,12 +79,17 @@ const Img = styled.img`
   }
 `;
 
+const Ended = styled(Body13)`
+  margin-top: 36px;
+  color: ${({ theme }) => theme.colors.orange};
+  font-weight: 600;
+  text-align: center;
+`;
+
 const ShareButtons = ({
   candidate,
-  chamberName,
   deleteCandidateRankingCallback,
   chamberRank,
-  user,
   addVoteCallback,
   openShareCallback,
 }) => {
@@ -110,28 +115,29 @@ const ShareButtons = ({
           </OutlinedButton>
         )}
       </div>
-      {rank ? (
-        <RankWrapper
-          className="share-button"
-          onClick={() => deleteCandidateRankingCallback(rankObj)}
-        >
-          <CheckMark /> <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>
-          <CloseIcon />
-        </RankWrapper>
-      ) : (
-        <div className="share-button">
-          <BlueButton
-            fullWidth
-            style={{ marginTop: '24px' }}
-            onClick={addVoteCallback}
-          >
-            <InnerButton>
-              <Img src={HeartIcon} alt="vote" className="heart" />
-              ADD YOUR VOTE
-            </InnerButton>
-          </BlueButton>
-        </div>
-      )}
+      <Ended className="ended">Crowd-Voting Campaign has Ended</Ended>
+      {/*{rank ? (*/}
+      {/*  <RankWrapper*/}
+      {/*    className="share-button"*/}
+      {/*    onClick={() => deleteCandidateRankingCallback(rankObj)}*/}
+      {/*  >*/}
+      {/*    <CheckMark /> <ChosenCand>{numberNth(rank)} CHOICE </ChosenCand>*/}
+      {/*    <CloseIcon />*/}
+      {/*  </RankWrapper>*/}
+      {/*) : (*/}
+      {/*  <div className="share-button">*/}
+      {/*    <BlueButton*/}
+      {/*      fullWidth*/}
+      {/*      style={{ marginTop: '24px' }}*/}
+      {/*      onClick={addVoteCallback}*/}
+      {/*    >*/}
+      {/*      <InnerButton>*/}
+      {/*        <Img src={HeartIcon} alt="vote" className="heart" />*/}
+      {/*        ADD YOUR VOTE*/}
+      {/*      </InnerButton>*/}
+      {/*    </BlueButton>*/}
+      {/*  </div>*/}
+      {/*)}*/}
     </>
   );
 };
@@ -139,8 +145,6 @@ const ShareButtons = ({
 ShareButtons.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   chamberRank: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  chamberName: PropTypes.string,
-  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   deleteCandidateRankingCallback: PropTypes.func,
   addVoteCallback: PropTypes.func,
   openShareCallback: PropTypes.func,
