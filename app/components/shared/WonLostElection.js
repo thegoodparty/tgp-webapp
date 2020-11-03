@@ -18,8 +18,6 @@ const Pill = styled(Body12)`
 
 const WonLostElection = ({ candidate, style = {} }) => {
   let resultStatus;
-  console.log('candidate.votesReceived', candidate.votesReceived);
-  console.log('candidate.votesNeeded', candidate.votesNeeded);
   if (
     !candidate.votesReceived ||
     candidate.votesReceived === 0 ||

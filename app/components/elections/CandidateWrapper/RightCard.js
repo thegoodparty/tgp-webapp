@@ -122,6 +122,8 @@ const RightCard = ({
     votesReceived,
   } = candidate;
   const route = candidateRoute(candidate);
+  const votes =
+    votesReceived !== 0 ? votesReceived : likelyVoters + rankingCount;
   return (
     <ScrollArea className="scroll-area">
       <Sticky
@@ -136,11 +138,7 @@ const RightCard = ({
               <VotesNeeded candidate={candidate} />
             </VotesNeededWrapper>
             <SupportersProgressBar
-              peopleSoFar={
-                votesReceived && votesReceived !== 0
-                  ? votesReceived
-                  : likelyVoters
-              }
+              peopleSoFar={votes}
               votesNeeded={votesNeeded}
               showSupporters={false}
               showSuffix={false}
@@ -155,10 +153,12 @@ const RightCard = ({
               </Body14>
               <Grid container spacing={3}>
                 <Grid item xs={4} className="text-center">
-                  <Body11 title={numberFormatter(likelyVoters + rankingCount)}>
-                    {kFormatter(likelyVoters + rankingCount)}
+                  <Body11 title={numberFormatter(votes)}>
+                    {kFormatter(votes)}
                   </Body11>
-                  <Gray7>likely voters</Gray7>
+                  <Gray7>
+                    {votesReceived !== 0 ? '2020 Votes' : 'likely voters'}
+                  </Gray7>
                 </Grid>
                 <Grid item xs={4} className="text-center">
                   <Body11 title={numberFormatter(shares)}>
