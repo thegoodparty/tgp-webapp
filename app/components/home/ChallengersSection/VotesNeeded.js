@@ -53,7 +53,7 @@ const VotesNeeded = ({ candidate, truncateSmall = false }) => {
   return (
     <OneLine>
       <PercWrapper>{neededPercent}%</PercWrapper> of {'  '}
-      {numberFormatter(votes)} votes needed to win
+      {numberFormatter(votesNeeded)} votes needed to win
       <DistrictInfo className={truncateSmall ? 'truncate-small' : ''}>
         {' '}
         {districtInfo}
