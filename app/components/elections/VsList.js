@@ -324,16 +324,18 @@ const VsList = ({
   };
 
   const blocCountSection = candidate => {
-    const { votesReceived, votesNeeded } = candidate;
-    const percNeeded = (votesReceived * 100) / votesNeeded;
+    const { votesReceived, votesNeeded, likelyVoters } = candidate;
+    const votes = votesReceived === 0 ? likelyVoters : votesReceived;
+    const percNeeded = (votes * 100) / votesNeeded;
+
     return (
       <BlocCount data-cy="block-count">
-        <span title={`${numberFormatter(votesReceived)} Votes`}>
+        <span title={`${numberFormatter(votes)} Votes`}>
           <PercWrapper>{percNeeded.toFixed(1)}%</PercWrapper> of{' '}
         </span>
         {numberFormatter(votesNeeded)} votes needed to win {inText(candidate)}
         <SupportersProgressBar
-          peopleSoFar={votesReceived}
+          peopleSoFar={votes}
           votesNeeded={votesNeeded}
           showSupporters={false}
           alignLeft
@@ -466,10 +468,7 @@ const VsList = ({
                   <br />
                   {candidate.isIncumbent && 'INCUMBENT'}
                 </Role>
-                <WonLostElection
-                  candidate={candidate}
-                  whiteBorder
-                />
+                <WonLostElection candidate={candidate} whiteBorder />
                 {blocCountSection(candidate)}
                 <GrowWrapperUnknown>
                   {choiceButton(candidate)}
