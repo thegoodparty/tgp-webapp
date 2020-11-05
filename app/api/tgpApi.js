@@ -269,6 +269,11 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    deleteUpdate: {
+      url: `${base}admin/candidate-update`,
+      method: 'DELETE',
+      withAuth: true,
+    },
   },
 
   creator: {

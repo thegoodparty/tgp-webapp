@@ -140,6 +140,27 @@ function* loadVoterizeList() {
   }
 }
 
+function* deleteUpdate({ candidateId, chamber, isIncumbent, updateId }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Deleting Update'));
+    const api = tgpApi.admin.deleteUpdate;
+    const payload = {
+      candidateId,
+      chamber,
+      isIncumbent,
+      updateId,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(actions.loadCandidateAction(candidateId, chamber, isIncumbent));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting update', 'error'),
+    );
+    yield put(actions.loadVoterizeActionError(error));
+  }
+}
+
 function* updateVoterize(action) {
   try {
     yield put(snackbarActions.showSnakbarAction('Updating Voterize'));
@@ -212,4 +233,5 @@ export default function* saga() {
 
   yield takeLatest(types.LOAD_VOTERIZE, loadVoterizeList);
   yield takeLatest(types.UPDATE_VOTERIZE, updateVoterize);
+  let action = yield takeLatest(types.DELETE_UPDATE, deleteUpdate);
 }

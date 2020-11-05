@@ -80,6 +80,16 @@ function updateCandidate(
   };
 }
 
+function deleteUpdate(candidateId, chamber, isIncumbent, updateId) {
+  return {
+    type: types.DELETE_UPDATE,
+    candidateId,
+    chamber,
+    isIncumbent,
+    updateId,
+  };
+}
+
 function updateCandidateSuccess(candidate) {
   return {
     type: types.UPDATE_CANDIDATE_SUCCESS,
@@ -201,4 +211,6 @@ export default {
   loadVoterizeActionError,
   updateVoterizeAction,
   updateVoterizeActionSuccess,
+
+  deleteUpdate,
 };

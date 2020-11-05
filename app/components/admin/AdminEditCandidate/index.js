@@ -64,11 +64,19 @@ const Input = styled(TextField)`
   }
 `;
 
+const DeleteUpdate = styled.div`
+  margin-top: 10px;
+  color: red;
+  text-align: right;
+  cursor: pointer;
+`;
+
 function AdminEditCandidate({
   candidate,
   chamber,
   saveCandidateCallback,
   uploadImageCallback,
+  deleteUpdateCallback,
   loading,
 }) {
   const [editableValues, setEditableValues] = useState(false);
@@ -198,7 +206,7 @@ function AdminEditCandidate({
   }
 
   const onChangeField = (event, key) => {
-    console.log('onChange field', event.target.value, key)
+    console.log('onChange field', event.target.value, key);
     setEditableValues({
       ...editableValues,
       [key]: event.target.value,
@@ -300,7 +308,7 @@ function AdminEditCandidate({
     addIfEdited('likelyVoters', data);
     addIfEdited('initialShares', data);
     addIfEdited('order', data);
-    console.log('save cand', data);
+
     saveCandidateCallback(data, candidate, returnUpdates);
     setNewUpdates([]);
   };
@@ -410,8 +418,21 @@ function AdminEditCandidate({
           {updates &&
             updates.map((update, index) => (
               <>
+                {console.log('update', update)}
                 <br />
                 <br />
+                <DeleteUpdate
+                  onClick={() => {
+                    deleteUpdateCallback(
+                      candidate.id,
+                      chamber,
+                      !!candidate.isIncumbent,
+                      update.id,
+                    );
+                  }}
+                >
+                  Delete This Update
+                </DeleteUpdate>
                 <RtfEditor
                   key={update.id}
                   initialText={update.text}
@@ -455,6 +476,7 @@ AdminEditCandidate.propTypes = {
   loading: PropTypes.bool,
   chamber: PropTypes.string,
   saveCandidateCallback: PropTypes.func,
+  deleteUpdateCallback: PropTypes.func,
 };
 
 export default AdminEditCandidate;

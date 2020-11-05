@@ -28,6 +28,7 @@ export function AdminEditCandidatePage({
   id,
   chamber,
   saveCandidateCallback,
+  deleteUpdateCallback,
   uploadImageCallback,
   dispatch,
 }) {
@@ -55,11 +56,12 @@ export function AdminEditCandidatePage({
     candidate,
     chamber,
     saveCandidateCallback,
+    deleteUpdateCallback,
     uploadImageCallback,
     loading,
   };
-  if(!candidate && error && !loading ) {
-    return <NotFoundPage />
+  if (!candidate && error && !loading) {
+    return <NotFoundPage />;
   }
   return (
     <div>
@@ -82,6 +84,7 @@ AdminEditCandidatePage.propTypes = {
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
   saveCandidateCallback: PropTypes.func,
+  deleteUpdateCallback: PropTypes.func,
   uploadImageCallback: PropTypes.func,
 };
 
@@ -110,6 +113,11 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     uploadImageCallback: (base64, candidate, chamber) => {
       dispatch(adminActions.updateCandidateImage(base64, candidate, chamber));
+    },
+    deleteUpdateCallback: (candidateId, chamber, isIncumbent, updateId) => {
+      dispatch(
+        adminActions.deleteUpdate(candidateId, chamber, isIncumbent, updateId),
+      );
     },
   };
 }
