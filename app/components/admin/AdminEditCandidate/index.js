@@ -18,7 +18,7 @@ import { candidateRoute } from 'helpers/electionsHelper';
 import { BlueButton } from 'components/shared/buttons';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 
-import RtfEditor from './RtfEditor';
+import JoditEditorWrapper from './JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
 import Body from '../../shared/typogrophy/Body';
 
@@ -56,7 +56,7 @@ const Input = styled(TextField)`
       line-height: 15px;
       letter-spacing: 0.5px;
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         font-size: 14px;
         line-height: 18px;
       }
@@ -322,7 +322,6 @@ function AdminEditCandidate({
   const handleUpload = base64 => {
     uploadImageCallback(base64, candidate, chamber);
   };
-
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
@@ -335,22 +334,22 @@ function AdminEditCandidate({
               <CircularProgress />
             </AvatarWrapper>
           ) : (
-            <>
-              <AvatarWrapper>
-                <CandidateAvatar
-                  src={candidate.image}
-                  good={candidate.isGood}
-                  name={candidate.name}
-                  size="xl"
+              <>
+                <AvatarWrapper>
+                  <CandidateAvatar
+                    src={candidate.image}
+                    good={candidate.isGood}
+                    name={candidate.name}
+                    size="xl"
+                  />
+                </AvatarWrapper>
+                <ImageCrop
+                  uploadImageCallback={handleUpload}
+                  loading={loading}
+                  currentImage={candidate.image}
                 />
-              </AvatarWrapper>
-              <ImageCrop
-                uploadImageCallback={handleUpload}
-                loading={loading}
-                currentImage={candidate.image}
-              />
-            </>
-          )}
+              </>
+            )}
           <H2 className="text-center">
             <a href={candidateRoute(candidate)} target="_blank">
               {name}
@@ -384,13 +383,13 @@ function AdminEditCandidate({
 
           <H3>Other Candidate Info:</H3>
           <br />
-          <RtfEditor initialText={info} onChangeCallback={editInfo} />
+          <JoditEditorWrapper initialText={info} onChangeCallback={editInfo} />
           <br />
           <br />
 
           <H3>Candidate Policy Positions:</H3>
           <br />
-          <RtfEditor
+          <JoditEditorWrapper
             initialText={campaignWebsite}
             onChangeCallback={editCampaignWebsite}
           />
@@ -403,7 +402,7 @@ function AdminEditCandidate({
 
           <H3>Campaign Summary:</H3>
           <br />
-          <RtfEditor
+          <JoditEditorWrapper
             initialText={campaignSummary}
             onChangeCallback={editCampaignSummary}
           />
@@ -433,7 +432,7 @@ function AdminEditCandidate({
                 >
                   Delete This Update
                 </DeleteUpdate>
-                <RtfEditor
+                <JoditEditorWrapper
                   key={update.id}
                   initialText={update.text}
                   onChangeCallback={value => {
@@ -448,7 +447,7 @@ function AdminEditCandidate({
               <br />
               <br />
               <Body>New Update #{index + 1}</Body>
-              <RtfEditor
+              <JoditEditorWrapper
                 initialText=""
                 onChangeCallback={value => {
                   editNewUpdate(value, index);
@@ -464,8 +463,8 @@ function AdminEditCandidate({
           <br />
         </Wrapper>
       ) : (
-        <LoadingAnimation />
-      )}
+          <LoadingAnimation />
+        )}
     </div>
   );
 }
