@@ -396,7 +396,7 @@ const ShareModal = ({
                       // which networks to include (see SHARING NETWORKS)
                       'email',
                     ],
-                    padding: 12, // padding within buttons (INTEGER)
+                    padding: 14, // padding within buttons (INTEGER)
                     radius: 4, // the corner radius on each button (INTEGER)
                     show_total: false,
                     size: 56, // the size of each button (INTEGER)
@@ -438,7 +438,7 @@ const ShareModal = ({
                       'facebook',
                       'twitter',
                     ],
-                    padding: 12, // padding within buttons (INTEGER)
+                    padding: 14, // padding within buttons (INTEGER)
                     radius: 4, // the corner radius on each button (INTEGER)
                     show_total: false,
                     size: 56, // the size of each button (INTEGER)
