@@ -65,6 +65,7 @@ function MobileHeader({
   showShare = false,
   whiteBackButton = false,
   user,
+  hideBack = false,
 }) {
   const routeBack = () => {
     dispatch(goBack());
@@ -87,7 +88,7 @@ function MobileHeader({
   return (
     <Hidden mdUp>
       <Wrapper>
-        {showBack ? (
+        {showBack && !hideBack ? (
           <BackIconWrapper
             onClick={routeBack}
             className={whiteBackButton ? 'white' : ''}
