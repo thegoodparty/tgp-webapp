@@ -11,6 +11,7 @@ const StyledButton = styled(Button)`
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     background-color: ${({ theme }) => theme.colors.blue};
+    box-shadow: none;
     &.outline {
       background-color: white;
       border: 2px solid ${({ theme }) => theme.colors.blue};
