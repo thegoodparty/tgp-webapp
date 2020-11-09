@@ -36,6 +36,7 @@ import {
 } from 'components/shared/customInputFormat';
 import AnalyticsService from 'services/AnalyticsService';
 import { formatToPhone } from '../../../helpers/phoneHelper';
+import { deleteCookie } from '../../../helpers/cookieHelper';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
@@ -113,7 +114,6 @@ const NextButtonWrapper = styled.div`
   bottom: 0;
   right: 0;
   padding: 24px;
-  background-color: #fff;
   cursor: pointer;
 `;
 
@@ -314,6 +314,7 @@ const VerifyVoteWrapper = ({
 
   const trackClose = () => {
     AnalyticsService.sendEvent('Voter Registration', 'Close Voterize Form');
+    deleteCookie('signupRedirect');
   };
 
   return (

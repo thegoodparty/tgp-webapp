@@ -29,7 +29,7 @@ const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <PageWrapper isFullWidth white mobileHeaderProps={{ hideBack: true }}>
+    <PageWrapper isFullWidth mobileHeaderProps={{ hideBack: true }}>
       <ContentWrapper>
         <MoneyCorruptionSection />
         <StatsSection />

@@ -11,6 +11,7 @@ const StyledButton = styled(Button)`
     border: solid 2px;
     justify-content: flex-end;
     align-self: flex-end;
+    background-color: #fff;
   }
 `;
 
