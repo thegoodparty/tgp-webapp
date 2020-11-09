@@ -38,7 +38,8 @@ import AnalyticsService from 'services/AnalyticsService';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,7 +68,7 @@ const RightWrapper = styled.div`
   justify-content: center;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 5% 10%;
+    padding: 5% 20%;
   }
 `;
 
@@ -451,7 +452,7 @@ const VerifyVoteWrapper = ({
                     ) : (
                       <>
                         <Grid container spacing={3}>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12}>
                             <Input
                               error={error.firstName}
                               helperText={error.firstName}
@@ -464,7 +465,7 @@ const VerifyVoteWrapper = ({
                               onChange={e => onChange(e, 'firstName')}
                             />
                           </Grid>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12}>
                             <Input
                               value={state.lastName}
                               label="Last Name"
@@ -477,7 +478,7 @@ const VerifyVoteWrapper = ({
                               onChange={e => onChange(e, 'lastName')}
                             />
                           </Grid>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12}>
                             <Input
                               value={state.middleName}
                               label="Middle Name"
@@ -487,7 +488,7 @@ const VerifyVoteWrapper = ({
                               onChange={e => onChange(e, 'middleName')}
                             />
                           </Grid>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12}>
                             <Input
                               value={state.suffix}
                               label="Suffix"
@@ -510,7 +511,7 @@ const VerifyVoteWrapper = ({
                               onChange={e => onChange(e, 'address')}
                             />
                           </Grid>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12}>
                             <Input
                               value={state.city}
                               label="City"
@@ -523,47 +524,50 @@ const VerifyVoteWrapper = ({
                               onChange={e => onChange(e, 'city')}
                             />
                           </Grid>
-                          <Grid item xs={12} md={6}>
-                            <Grid container spacing={3}>
-                              <Grid item xs={6}>
-                                <FormControl error={error.state}>
-                                  <StyledSelect
-                                    native
-                                    value={state.state}
-                                    label="State"
-                                    name="State"
-                                    size="medium"
-                                    required
-                                    onChange={e => onChange(e, 'state')}
+
+                          <Grid item xs={12}>
+                            <FormControl
+                              error={error.state}
+                              style={{ width: '100%' }}
+                            >
+                              <StyledSelect
+                                native
+                                value={state.state}
+                                label="State"
+                                name="State"
+                                size="medium"
+                                required
+                                onChange={e => onChange(e, 'state')}
+                                fullWidth
+                              >
+                                <option value="">Select A State</option>
+                                {states.map(stateItem => (
+                                  <option
+                                    value={stateItem.abbreviation}
+                                    key={stateItem.abbreviation}
                                   >
-                                    <option value="">Select A State</option>
-                                    {states.map(stateItem => (
-                                      <option
-                                        value={stateItem.abbreviation}
-                                        key={stateItem.abbreviation}
-                                      >
-                                        {stateItem.name}
-                                      </option>
-                                    ))}
-                                  </StyledSelect>
-                                  <FormHelperText>{error.state}</FormHelperText>
-                                </FormControl>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <Input
-                                  value={state.zip}
-                                  label="Zip"
-                                  name="Zip"
-                                  size="medium"
-                                  required
-                                  error={error.zip}
-                                  helperText={error.zip}
-                                  onChange={e => onChange(e, 'zip')}
-                                />
-                              </Grid>
-                            </Grid>
+                                    {stateItem.name}
+                                  </option>
+                                ))}
+                              </StyledSelect>
+                              <FormHelperText>{error.state}</FormHelperText>
+                            </FormControl>
                           </Grid>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12}>
+                            <Input
+                              value={state.zip}
+                              label="Zip"
+                              name="Zip"
+                              size="medium"
+                              required
+                              error={error.zip}
+                              helperText={error.zip}
+                              onChange={e => onChange(e, 'zip')}
+                              fullWidth
+                            />
+                          </Grid>
+
+                          <Grid item xs={12}>
                             <Input
                               value={state.phone}
                               label="Phone Number"
@@ -581,7 +585,7 @@ const VerifyVoteWrapper = ({
                               onChange={e => onChange(e, 'phone')}
                             />
                           </Grid>
-                          <Grid item xs={12} md={6}>
+                          <Grid item xs={12}>
                             <Input
                               value={state.dob}
                               label="Date of Birth (MM/DD/YYYY)"
