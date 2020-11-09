@@ -24,21 +24,30 @@ export const dateUsHelper = orgDate => {
 export const validateDate = date => {
   const expression = /^([0-9]{4})\-([0-9]{2})\-([0-9]{2})$/;
 
-  return expression.test(date)
-}
+  return expression.test(date);
+};
 
 export const parseDob = dob => {
-  if(dob.length === 8) {
-    const dobString = `${dob.substr(4, 4)}-${dob.substr(0, 2)}-${dob.substr(2, 2)}`
+  if (dob.length === 8) {
+    const dobString = `${dob.substr(4, 4)}-${dob.substr(0, 2)}-${dob.substr(
+      2,
+      2,
+    )}`;
     const dobObj = moment(dobString, 'YYYY-MM-DD');
-    if(!dobObj.isValid() || dobObj.year() < 1900 || dobObj.year() >= 2100) {
+    if (!dobObj.isValid() || dobObj.year() < 1900 || dobObj.year() >= 2100) {
       return false;
     }
     return dobString;
   }
   return false;
-}
+};
 
+export const parseDobUS = dob => {
+  if (dob.length === 8) {
+    return `${dob.substr(0, 2)}/${dob.substr(2, 2)}/${dob.substr(4, 4)}`;
+  }
+  return dob;
+};
 
 // // returns December 12, 2020 * 4 AM PST
 // export const formatDateFromUtc = orgDate => {

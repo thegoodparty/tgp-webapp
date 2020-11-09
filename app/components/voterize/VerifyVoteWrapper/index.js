@@ -16,7 +16,7 @@ import Markdown from 'markdown-to-jsx';
 import { Link } from 'react-router-dom';
 
 import { validateEmail } from 'helpers/emailHelper';
-import { parseDob } from 'helpers/dateHelper';
+import { parseDob, parseDobUS } from 'helpers/dateHelper';
 
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -35,6 +35,7 @@ import {
   PhoneNumberFormat,
 } from 'components/shared/customInputFormat';
 import AnalyticsService from 'services/AnalyticsService';
+import { formatToPhone } from '../../../helpers/phoneHelper';
 
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
@@ -287,7 +288,11 @@ const VerifyVoteWrapper = ({
       return <H2>Register To Vote</H2>;
     }
     if (showRegister) {
-      return <H2>Looks like you aren&apos;t registered right now</H2>;
+      return (
+        <WarningWrapper>
+          <H2>Looks like you aren&apos;t registered right now</H2>
+        </WarningWrapper>
+      );
     }
     return (
       <>
@@ -378,8 +383,7 @@ const VerifyVoteWrapper = ({
                     {showRegister ? (
                       <div>
                         <H3 style={{ textAlign: 'center' }}>
-                          We did not find anyone registered with this
-                          information
+                          Edit your info to try again, or Register to Vote
                         </H3>
                         <br />
                         <br />
@@ -399,7 +403,23 @@ const VerifyVoteWrapper = ({
                                   </Grid>
                                   <Grid item xs={1} />
                                   <Grid item xs={7}>
-                                    <StyledBody>{showData[key]}</StyledBody>
+                                    {key === 'phone' ? (
+                                      <StyledBody>
+                                        {formatToPhone(showData[key])}
+                                      </StyledBody>
+                                    ) : (
+                                      <>
+                                        {key === 'dob' ? (
+                                          <StyledBody>
+                                            {parseDobUS(showData[key])}
+                                          </StyledBody>
+                                        ) : (
+                                          <StyledBody>
+                                            {showData[key]}
+                                          </StyledBody>
+                                        )}
+                                      </>
+                                    )}
                                   </Grid>
                                 </>
                               )}
