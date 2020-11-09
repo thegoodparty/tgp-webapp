@@ -339,14 +339,6 @@ const ProfileWrapper = ({
       <BottomLink data-cy="spread-word" onClick={onClickShareButton}>
         Spread the word
       </BottomLink>
-      <ShareButton
-        url="http://crowdcast.thegoodparty.org"
-        customElement={
-          <BottomLink data-cy="crowdcast-link">
-            Tune into The Good Party Livestream
-          </BottomLink>
-        }
-      />
       <a
         href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion"
         data-cy="feedback-link"
