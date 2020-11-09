@@ -11,12 +11,12 @@ const StyledButton = styled(Button)`
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     background-color: ${({ theme }) => theme.colors.blue};
-    box-shadow: none;
     &.outline {
       background-color: white;
       border: 2px solid ${({ theme }) => theme.colors.blue};
       color: ${({ theme }) => theme.colors.blue};
       font-size: 1rem;
+      box-shadow: none;
     }
     &.center {
       display: inherit;
@@ -32,7 +32,7 @@ const BlueButton = ({
   children,
   disabled = false,
   style = {},
-  className
+  className,
 }) => (
   <StyledButton
     color="primary"
