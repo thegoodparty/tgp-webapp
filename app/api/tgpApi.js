@@ -54,6 +54,14 @@ const api = {
     url: `${base}content/all-content`,
     method: 'GET',
   },
+  uploadedImages: {
+    url: `${base}content/uploaded-images`,
+    method: 'POST',
+  },
+  uploadImage: {
+    url: `${base}content/upload-image`,
+    method: 'POST',
+  },
   articleFeedback: {
     url: `${base}content/article-feedback`,
     method: 'POST',
@@ -305,5 +313,8 @@ const api = {
     method: 'GET',
     withAuth: true,
   },
+  uploadFile: {
+
+  }
 };
 export default api;
