@@ -75,7 +75,10 @@ const FinancialText = ({ candidate, chamberName, incumbent }) => {
     : moneyHelper(largeDonorPerHour);
 
   const nameArr = name ? name.split(' ') : [];
-  const lastName = name ? nameArr[nameArr.length - 1] : '';
+  let lastName = name ? nameArr[nameArr.length - 1] : '';
+  if ((lastName === 'Jr.' || lastName === 'Sr.') && nameArr.length > 2) {
+    lastName = nameArr[nameArr.length - 2];
+  }
 
   const openSecretLink = getOpenSecretLink(chamberName, candidate);
   const combinedReportDate = getCombinedReportDate(

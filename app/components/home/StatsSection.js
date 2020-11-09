@@ -18,6 +18,7 @@ const ColDescription = styled(Body19)`
   font-weight: bold;
   text-align: center;
   white-space: pre-line;
+  margin-bottom: 64px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     font-size: 16px;

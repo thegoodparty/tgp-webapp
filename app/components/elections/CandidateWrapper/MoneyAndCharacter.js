@@ -68,7 +68,10 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
     : percHelper(largeDonorPerc, true);
 
   const nameArr = name ? name.split(' ') : [];
-  const lastName = name ? nameArr[nameArr.length - 1] : '';
+  let lastName = name ? nameArr[nameArr.length - 1] : '';
+  if ((lastName === 'Jr.' || lastName === 'Sr.') && nameArr.length > 2) {
+    lastName = nameArr[nameArr.length - 2];
+  }
 
   const coloredGood = () => {
     if (isGood) {
