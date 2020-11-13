@@ -19,14 +19,14 @@ const JoditEditorWrapper = ({
     enableDragAndDropFileToEditor: true,
     filebrowser: {
       ajax: {
-        url: tgpApi.uploadedImages.url,
+        url: tgpApi.admin.uploadedImages.url,
       },
       uploader: {
-        url: tgpApi.uploadImage.url,
+        url: tgpApi.admin.uploadImage.url,
       },
     },
     uploader: {
-      url: tgpApi.uploadImage.url,
+      url: tgpApi.admin.uploadImage.url,
       format: 'json',
       pathVariableName: 'path',
     },
