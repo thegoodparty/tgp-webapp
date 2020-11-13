@@ -6,8 +6,8 @@ import {
   rankPageLink,
   rankPageJoinLink,
   rankPageGrowLink
-} from '../../../app/helpers/electionsHelper';
-import { percHelper } from '../../../app/helpers/numberHelper';
+} from '../../../old-app/helpers/electionsHelper';
+import { percHelper } from '../../../old-app/helpers/numberHelper';
 import {
   getVotesNeededState,
   convertURI,
@@ -15,9 +15,9 @@ import {
   getFakeIncumbentOrIncumbentLabel,
   getCombinedReportDate,
   getOpenSecretLink,
-} from '../../../app/helpers/candidatesHelper';
+} from '../../../old-app/helpers/candidatesHelper';
 
-import moneyHelper from '../../../app/helpers/moneyHelper';
+import moneyHelper from '../../../old-app/helpers/moneyHelper';
 
 
 Cypress.Commands.add(

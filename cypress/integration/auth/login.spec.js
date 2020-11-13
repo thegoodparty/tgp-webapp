@@ -1,6 +1,6 @@
 import { before } from 'lodash';
 
-export { userDistrict } from '../../../app/helpers/userHelper';
+export { userDistrict } from '../../../old-app/helpers/userHelper';
 
 describe('Login', () => {
   beforeEach(() => {

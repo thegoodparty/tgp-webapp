@@ -18,6 +18,7 @@ import theme from '../theme';
 function MyApp({ Component, pageProps }) {
   return (
     <UiThemeProvider theme={theme}>
+      <GlobalStyles />
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>

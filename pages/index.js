@@ -1,5 +1,6 @@
 import Head from 'next/head';
+import HomePage from '../containers/HomePage';
 
 export default function Home() {
-  return <div className="container">Hi</div>;
+  return <HomePage />;
 }
