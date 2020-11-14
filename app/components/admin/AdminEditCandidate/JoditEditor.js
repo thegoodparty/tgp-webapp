@@ -1,15 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { getCookie } from 'helpers/cookieHelper';
 import PropTypes from 'prop-types';
 import JoditEditor from 'jodit-react';
 import tgpApi from 'api/tgpApi';
 
 const JoditEditorWrapper = ({
   initialText = '',
-  onChangeCallback = () => {},
+  onChangeCallback = () => { },
 }) => {
   const editor = useRef(null);
   const [content, setContent] = useState('');
-
+  const token = getCookie('token');
   useEffect(() => {
     setContent(initialText);
   }, [initialText]);
@@ -20,8 +21,14 @@ const JoditEditorWrapper = ({
     filebrowser: {
       ajax: {
         url: tgpApi.admin.uploadedImages.url,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
       uploader: {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         url: tgpApi.admin.uploadImage.url,
       },
     },
@@ -29,6 +36,9 @@ const JoditEditorWrapper = ({
       url: tgpApi.admin.uploadImage.url,
       format: 'json',
       pathVariableName: 'path',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
   };
 
