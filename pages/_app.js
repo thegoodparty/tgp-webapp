@@ -1,6 +1,7 @@
-import App from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
+import { ConnectedRouter } from 'connected-next-router';
+
 import GlobalStyles from './shared/GlobalStyles';
 import store from '../redux/store';
 
@@ -17,12 +18,14 @@ import theme from '../theme';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <UiThemeProvider theme={theme}>
-      <GlobalStyles />
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </UiThemeProvider>
+    <ConnectedRouter>
+      <UiThemeProvider theme={theme}>
+        <GlobalStyles />
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </UiThemeProvider>
+    </ConnectedRouter>
   );
 }
 

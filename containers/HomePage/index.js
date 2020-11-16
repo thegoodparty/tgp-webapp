@@ -7,7 +7,7 @@
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -16,14 +16,14 @@ import { useInjectReducer } from 'utils/injectReducer';
 import HomePageWrapper from 'components/home/HomePageWrapper';
 import AnalyticsService from 'services/AnalyticsService';
 
-// import reducer from './reducer';
-// import saga from './saga';
+import reducer from './reducer';
+import saga from './saga';
 import makeSelectHomePage from './selectors';
 import homeActions from './actions';
 
 export function HomePage({ dispatch, homeState, subscribeEmailCallback }) {
-  // useInjectReducer({ key: 'homePage', reducer });
-  // useInjectSaga({ key: 'homePage', saga });
+  useInjectReducer({ key: 'homePage', reducer });
+  useInjectSaga({ key: 'homePage', saga });
   const { goodChallengers } = homeState;
   const childProps = {
     goodChallengers,
@@ -34,10 +34,10 @@ export function HomePage({ dispatch, homeState, subscribeEmailCallback }) {
   }, []);
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>The Good Party</title>
         <meta name="description" content="The Good Party" />
-      </Helmet>
+      </Head>
       <HomePageWrapper {...childProps} />
     </div>
   );
