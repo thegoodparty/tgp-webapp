@@ -1,9 +1,5 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
-import {
-  getCookie,
-  setUserCookie,
-  setCookie,
-} from 'helpers/cookieHelper';
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import { getCookie, setUserCookie, setCookie } from 'helpers/cookieHelper';
 import requestHelper from 'helpers/requestHelper';
 import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
 import makeSelectUser from 'containers/you/YouPage/selectors';
@@ -18,6 +14,7 @@ function* loadContent() {
   try {
     const api = tgpApi.content;
     const content = yield call(requestHelper, api, null);
+    console.log('loading content saga');
     yield put(actions.loadContentActionSuccess(content));
   } catch (error) {
     console.log(error);
@@ -75,8 +72,10 @@ function* logError(action) {
 
 // Individual exports for testing
 export default function* saga() {
-  yield takeLatest(types.LOAD_CONTENT, loadContent);
-  yield takeLatest(types.SEND_ARTICLE_FEEDBACK, sendArticleFeedback);
-  yield takeLatest(types.LOG_ERROR, logError);
-  yield takeLatest(types.REFRESH_TOKEN, refreshToken);
+  yield all([
+    takeLatest(types.LOAD_CONTENT, loadContent),
+    takeLatest(types.SEND_ARTICLE_FEEDBACK, sendArticleFeedback),
+    takeLatest(types.LOG_ERROR, logError),
+    takeLatest(types.REFRESH_TOKEN, refreshToken),
+  ]);
 }

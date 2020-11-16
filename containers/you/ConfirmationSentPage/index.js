@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 
 import ConfirmationSentWrapper from 'components/you/ConfirmationSentWrapper';
 

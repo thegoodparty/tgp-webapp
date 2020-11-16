@@ -19,7 +19,7 @@ import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 import { getSignupRedirectCookie } from 'helpers/cookieHelper';
 import AnalyticsService from 'services/AnalyticsService';
 

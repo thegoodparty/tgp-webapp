@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
 
 import styled from 'styled-components';
 import { Body14, Body9 } from '../typogrophy';

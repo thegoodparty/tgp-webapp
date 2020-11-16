@@ -19,13 +19,13 @@ const makeSelectContent = () =>
 const makeSelectAppVersion = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.appVersion,
+    globalState => (globalState ? globalState.appVersion : false),
   );
 
 const makeSelectModalArticleId = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.modalArticleId,
+    globalState => (globalState ? globalState.modalArticleId : false),
   );
 
 export {

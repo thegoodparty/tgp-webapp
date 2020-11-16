@@ -4,11 +4,13 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+
+import { loadInitialState, loadContent } from 'pages/loadInitialState';
 
 import {
   makeSelectAppVersion,
@@ -18,7 +20,13 @@ import {
 import PartyWrapper from 'components/party/PartyWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 
-export function PartyPage({ content, appVersion }) {
+export function PartyPage({ content, appVersion, dispatch }) {
+  loadInitialState();
+  // useEffect(() => {
+  //   if (!content) {
+  //     loadContent(dispatch);
+  //   }
+  // }, [content]);
   const childProps = {
     content,
     appVersion,

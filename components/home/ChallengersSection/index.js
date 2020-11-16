@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-// import ZipFinderPage from 'containers/intro/ZipFinderPage';
+import ZipFinderPage from 'containers/intro/ZipFinderPage';
 
 import { Body14, Subtitle } from 'components/shared/typogrophy';
 import ChallengerItem from './ChallengerItem';
@@ -79,7 +79,7 @@ const ChallengersSection = ({ challengers }) => {
 
           <Grid item xs={12} sm={6} lg={4}>
             <ZipFinderWrapper style={{ height: `${cardHeight}px` }}>
-              {/*<ZipFinderPage cardDisplay />*/}
+              <ZipFinderPage cardDisplay />
             </ZipFinderWrapper>
           </Grid>
         </Grid>

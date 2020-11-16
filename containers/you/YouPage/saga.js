@@ -1,5 +1,5 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 
 import requestHelper from 'helpers/requestHelper';
 import {

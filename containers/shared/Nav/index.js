@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -32,8 +32,8 @@ export function Nav({
   navigateCallback,
   hideMobileNav = false,
 }) {
-  // useInjectReducer({ key: 'user', reducer });
-  // useInjectSaga({ key: 'user', saga });
+  useInjectReducer({ key: 'user', reducer });
+  useInjectSaga({ key: 'user', saga });
 
   const [user, setUser] = React.useState(null);
   const [zipCode, setZipCode] = React.useState(null);

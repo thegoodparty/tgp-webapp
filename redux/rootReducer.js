@@ -1,28 +1,26 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'connected-next-router';
 import { HYDRATE } from 'next-redux-wrapper';
-
-const combinedReducer = combineReducers({});
+import globalReducer from 'containers/App/reducer';
 
 const reducer = (state, action) => {
   if (action.type === HYDRATE) {
+    console.log('hydrate state', state);
+    console.log('hydrate payload', action.payload);
     const nextState = {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     };
-    if (typeof window !== 'undefined' && state?.router) {
-      // preserve router value on client side navigation
-      nextState.router = state.router;
-    }
+
     return nextState;
   }
-  return combinedReducer(state, action);
+  return globalReducer(state, action);
 };
 
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     router: routerReducer,
-    root: reducer,
+    global: reducer,
     ...injectedReducers,
   });
 

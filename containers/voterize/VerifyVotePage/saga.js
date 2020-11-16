@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';

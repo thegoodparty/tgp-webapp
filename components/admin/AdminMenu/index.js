@@ -7,9 +7,7 @@
 import React, { memo } from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import Image from 'next/image';
-
+import Link from 'next/link';
 
 const MenuWrapper = styled.div`
   position: fixed;
@@ -31,7 +29,7 @@ const HeartWrapper = styled.div`
   cursor: pointer;
 `;
 
-const Heart = styled(Image)`
+const Heart = styled.img`
   width: 30px;
   height: auto;
 `;
@@ -40,7 +38,7 @@ function AdminMenu() {
   return (
     <>
       <MenuWrapper>
-        <Link to="/admin">
+        <Link href="/admin">
           <HeartWrapper>
             <Heart src="images/heart.svg" alt="admin menu" />
           </HeartWrapper>

@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 import QueryModal from 'components/shared/QueryModal';
 
 export function QueryModalContainer({

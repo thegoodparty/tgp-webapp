@@ -13,7 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 
 import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
 import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';

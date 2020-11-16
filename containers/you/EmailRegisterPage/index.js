@@ -19,7 +19,7 @@ import makeSelectUser from 'containers/you/YouPage/selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
 import userActions from 'containers/you/YouPage/actions';
-import { push } from 'connected-react-router';
+import { push } from 'connected-next-router';
 
 export function RegisterPage({ userState, registerCallback, dispatch }) {
   useInjectReducer({ key: 'user', reducer });

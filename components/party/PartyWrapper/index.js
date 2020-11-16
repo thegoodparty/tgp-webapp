@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { Body13, Body9, H3 } from 'components/shared/typogrophy/index';
 import EventSnippet from 'components/shared/EventSnippet';
@@ -75,28 +75,30 @@ const PartyWrapper = ({ content, appVersion }) => {
               {content?.events?.length > 0 ? 'Upcoming' : 'Previous'} Online
               Events
             </H3>
-            <Link to="/party/events" data-cy="events-link">
-              <LearnMore>See All</LearnMore>
+            <Link href="/party/events" data-cy="events-link">
+              <a>
+                <LearnMore>See All</LearnMore>
+              </a>
             </Link>
           </Row>
-          {events.map(event => (
-            <EventSnippet event={event} key={event.id} />
-          ))}
+          {/*{events.map(event => (*/}
+          {/*  <EventSnippet event={event} key={event.id} />*/}
+          {/*))}*/}
         </EventsWrapper>
       )}
 
-      <TopQuestions articles={articles} />
-      <AmaContainer />
-      <AppVersion>
-        The Good Party V.{appVersion} {ENV !== 'prod' && ENV}
-        {productionVersion ? (
-          <div style={{ marginTop: '8px' }}>
-            Latest version: {productionVersion}
-          </div>
-        ) : (
-          ''
-        )}
-      </AppVersion>
+      {/*<TopQuestions articles={articles} />*/}
+      {/*<AmaContainer />*/}
+      {/*<AppVersion>*/}
+      {/*  The Good Party V.{appVersion} {ENV !== 'prod' && ENV}*/}
+      {/*  {productionVersion ? (*/}
+      {/*    <div style={{ marginTop: '8px' }}>*/}
+      {/*      Latest version: {productionVersion}*/}
+      {/*    </div>*/}
+      {/*  ) : (*/}
+      {/*    ''*/}
+      {/*  )}*/}
+      {/*</AppVersion>*/}
     </PageWrapper>
   );
 };
