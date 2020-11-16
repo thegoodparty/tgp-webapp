@@ -274,6 +274,14 @@ const api = {
       method: 'DELETE',
       withAuth: true,
     },
+    uploadedImages: {
+      url: `${base}admin/uploaded-images`,
+      method: 'POST',
+    },
+    uploadImage: {
+      url: `${base}admin/upload-image`,
+      method: 'POST',
+    },
   },
 
   creator: {
