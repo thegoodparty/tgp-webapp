@@ -2,8 +2,8 @@ import {
   presidentialElectionLink,
   senateElectionLink,
   houseElectionLink,
-} from '../../app/helpers/electionsHelper';
-export { userDistrict } from '../../app/helpers/userHelper';
+} from '../../old-app/helpers/electionsHelper';
+export { userDistrict } from '../../old-app/helpers/userHelper';
 export const getElectionCount = (senateCandidates, houseCandidates) => {
   let electionCount = 3;
   if (

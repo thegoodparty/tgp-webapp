@@ -1,5 +1,5 @@
 import promisify from 'cypress-promise';
-import { dateUsHelper } from '../../../app/helpers/dateHelper';
+import { dateUsHelper } from '../../../old-app/helpers/dateHelper';
 
 Cypress.Commands.add('checkChangePasswordModal', hasPassword => {
   cy.get('[data-cy=change-password-link]')

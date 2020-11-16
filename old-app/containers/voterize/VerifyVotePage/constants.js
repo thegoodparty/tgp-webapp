@@ -1,0 +1,22 @@
+/*
+ *
+ * VerifyVotePage constants
+ *
+ */
+
+const VERIFY_VOTER = '@@tgpVerifyVotePage/VERIFY_VOTER';
+const VERIFY_VOTER_SUCCESS = '@@tgpVerifyVotePage/VERIFY_VOTER_SUCCESS';
+const VERIFY_VOTER_ERROR = '@@tgpVerifyVotePage/VERIFY_VOTER_ERROR';
+
+const REGISTER_VOTER = '@@tgpVerifyVotePage/REGISTER_VOTER';
+const REGISTER_VOTER_SUCCESS = '@@tgpVerifyVotePage/REGISTER_VOTER_SUCCESS';
+const REGISTER_VOTER_ERROR = '@@tgpVerifyVotePage/REGISTER_VOTER_ERROR';
+
+export default {
+  VERIFY_VOTER,
+  VERIFY_VOTER_SUCCESS,
+  VERIFY_VOTER_ERROR,
+  REGISTER_VOTER,
+  REGISTER_VOTER_SUCCESS,
+  REGISTER_VOTER_ERROR,
+};

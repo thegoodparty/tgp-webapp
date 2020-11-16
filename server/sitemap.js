@@ -4,9 +4,9 @@ const { default: Axios } = require('axios');
 const moment = require('moment');
 const path = require('path');
 const fs = require('fs');
-const { candidateRoute } = require('../app/helpers/electionsHelper');
-const apiHelper = require('../app/helpers/apiHelper').default;
-const api = require('../app/api/tgpApi').default;
+const { candidateRoute } = require('../old-app/helpers/electionsHelper');
+const apiHelper = require('../old-app/helpers/apiHelper').default;
+const api = require('../old-app/api/tgpApi').default;
 const currentDate = moment().format('YYYY-MM-DD');
 const { base } = apiHelper;
 
