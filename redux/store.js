@@ -42,11 +42,11 @@ export const configureStore = context => {
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
-  // if (module.hot) {
-  //   module.hot.accept('./rootReducer', () => {
-  //     store.replaceReducer(createReducer(store.injectedReducers));
-  //   });
-  // }
+  if (module.hot) {
+    module.hot.accept('./rootReducer', () => {
+      store.replaceReducer(createReducer(store.injectedReducers));
+    });
+  }
 
   return store;
 };

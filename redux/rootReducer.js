@@ -9,7 +9,7 @@ const reducer = (state, action) => {
     console.log('hydrate payload', action.payload);
     const nextState = {
       ...state, // use previous state
-      ...action.payload, // apply delta from hydration
+      ...action.payload.global, // apply delta from hydration
     };
 
     return nextState;
@@ -23,6 +23,5 @@ export default function createReducer(injectedReducers = {}) {
     global: reducer,
     ...injectedReducers,
   });
-
   return rootReducer;
 }

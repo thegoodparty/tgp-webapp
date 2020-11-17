@@ -29,7 +29,6 @@ const Wrapper = styled.div`
     margin-bottom: 0;
   }
   &.creatorsFooter {
-    background-color: ${({ theme }) => theme.colors.blue};
     && {
       margin-bottom: 0;
     }
