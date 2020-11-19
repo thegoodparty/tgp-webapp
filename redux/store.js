@@ -12,11 +12,11 @@ import globalSaga from '../containers/App/saga';
 import createReducer from './rootReducer';
 
 const bindMiddleware = middleware => {
-  if (process.env.NODE_ENV !== 'production') {
+  // if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line global-require
     const { composeWithDevTools } = require('redux-devtools-extension');
     return composeWithDevTools(applyMiddleware(...middleware));
-  }
+  // }
 };
 
 export const configureStore = context => {
@@ -35,10 +35,11 @@ export const configureStore = context => {
     initialState,
     bindMiddleware([sagaMiddleware, routerMiddleware]),
   );
-
+  console.log(process.env.NODE_ENV)
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.global = sagaMiddleware.run(globalSaga);
+
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 

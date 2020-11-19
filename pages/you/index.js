@@ -1,7 +1,7 @@
 import { END } from 'redux-saga';
 import YouPage from '../../containers/you/YouPage';
 import wrapper from '../../redux/store';
-import { loadContent } from '../loadInitialState';
+import { loadContent } from '../../utils/loadInitialState';
 
 export default function You() {
   return <YouPage />;
@@ -13,5 +13,7 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   loadContent(store.dispatch);
   store.dispatch(END);
   console.log('store.getState()', store.getState());
-  await store.global.toPromise();
+  if (store.global) {
+    await store.global.toPromise();
+  }
 });

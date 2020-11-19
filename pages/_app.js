@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
 import { ConnectedRouter } from 'connected-next-router';
 
-import GlobalStyles from './shared/GlobalStyles';
+import GlobalStyles from '../theme/GlobalStyles';
 import store from '../redux/store';
 
 import theme from '../theme';

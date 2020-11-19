@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { loadInitialState, loadContent } from 'pages/loadInitialState';
+import { loadInitialState } from 'utils/loadInitialState';
 
 import {
   makeSelectAppVersion,
@@ -31,7 +31,7 @@ export function PartyPage({ content, appVersion, dispatch }) {
     content,
     appVersion,
   };
-
+  console.log('partypage1', content, appVersion)
   return (
     <div>
       <TgpHelmet
