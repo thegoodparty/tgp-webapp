@@ -4,7 +4,7 @@ pipeline {
     nodejs "node 12"
   }
   environment {
-    DEV_BRANCH        = "next-text"
+    DEV_BRANCH        = "next-inject-reducers"
     EB_DEV                = "tgp-site-dev"
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site"
