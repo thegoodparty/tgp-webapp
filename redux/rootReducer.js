@@ -18,10 +18,11 @@ const reducer = (state, action) => {
 };
 
 export default function createReducer(injectedReducers = {}) {
+  console.log('injectReducers', injectedReducers)
   const rootReducer = combineReducers({
     router: routerReducer,
-    global: reducer,
     ...injectedReducers,
+    global: reducer,
   });
   return rootReducer;
 }
