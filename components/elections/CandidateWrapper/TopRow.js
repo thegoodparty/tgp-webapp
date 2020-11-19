@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { H3, Body9, Body11 } from 'components/shared/typogrophy';
@@ -71,7 +71,7 @@ const TopRow = ({ candidate, chamberName }) => {
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link to={getRankPageLink()} data-cy="chamber-link">
+          <Link href={getRankPageLink()} data-cy="chamber-link">
             U.S. President
           </Link>
         </ChamberLink>
@@ -81,7 +81,7 @@ const TopRow = ({ candidate, chamberName }) => {
       if (state) {
         return (
           <ChamberLink>
-            <Link to={getRankPageLink()} data-cy="chamber-link">
+            <Link href={getRankPageLink()} data-cy="chamber-link">
               U.S. Senate for {shortToLongState[state.toUpperCase()]}
             </Link>
           </ChamberLink>
@@ -92,7 +92,7 @@ const TopRow = ({ candidate, chamberName }) => {
       if (state && district) {
         return (
           <ChamberLink>
-            <Link to={getRankPageLink()} data-cy="chamber-link">
+            <Link href={getRankPageLink()} data-cy="chamber-link">
               U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>

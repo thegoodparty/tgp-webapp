@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import heartImg from 'public/images/heart.svg';
@@ -180,7 +180,7 @@ const ProfileWrapper = ({
         />
       }
     >
-      <Link to="/you/edit" data-cy="edit-profile-link">
+      <Link href="/you/edit" data-cy="edit-profile-link">
         <EditProfile>Edit Profile</EditProfile>
       </Link>
       <Centered>
@@ -204,7 +204,7 @@ const ProfileWrapper = ({
       <Election data-cy="presidential-election">
         Presidential:{' '}
         <Link
-          to={presidentialElectionLink()}
+          href={presidentialElectionLink()}
           data-cy="presidential-election-link"
         >
           <ElectionData>
@@ -221,7 +221,7 @@ const ProfileWrapper = ({
           Senate {stateLong}:
           {showSenate ? (
             <Link
-              to={senateElectionLink(shortState)}
+              href={senateElectionLink(shortState)}
               data-cy="senate-election-link"
             >
               <ElectionData>
@@ -243,7 +243,7 @@ const ProfileWrapper = ({
           {userDistrict.code})
           {showHouse ? (
             <Link
-              to={houseElectionLink(shortState, userDistrict.code)}
+              href={houseElectionLink(shortState, userDistrict.code)}
               data-cy="house-election-link"
             >
               <ElectionData>
@@ -259,10 +259,10 @@ const ProfileWrapper = ({
           )}
         </Election>
       )}
-      <Link to={electionLink} data-cy="all-election-link">
+      <Link href={electionLink} data-cy="all-election-link">
         <AllElections>See All Elections</AllElections>
       </Link>
-      <Link to="verify-vote" data-cy="verify-vote-link">
+      <Link href="verify-vote" data-cy="verify-vote-link">
         <AllElections>Check Voter Registration</AllElections>
       </Link>
       <CrewTitle data-cy="crew-title">
@@ -276,7 +276,7 @@ const ProfileWrapper = ({
       </Body13>
 
       <CrewWrapper>
-        <Link to="you/crew">
+        <Link href="you/crew">
           <CrewMember
             crewMember={user}
             overrideName="You"
@@ -292,24 +292,24 @@ const ProfileWrapper = ({
                   <More>+{crewCount - 2}</More>
 
                   <Body13 className="text-center" style={{ marginTop: '4px' }}>
-                    <Link to="you/crew">SEE ALL</Link>
+                    <Link href="you/crew">SEE ALL</Link>
                   </Body13>
                 </div>
               ) : (
-                <Link to="you/crew">
+                <Link href="you/crew">
                   <CrewMember crewMember={crewMember} />
                 </Link>
               )}
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (
-          <Link to="you/crew" key={filler}>
+          <Link href="you/crew" key={filler}>
             <Filler data-cy="crew-filler">{filler}</Filler>
           </Link>
         ))}
       </CrewWrapper>
       <Body style={{ marginTop: '10px' }}>
-        <Link to="you/crew" data-cy="leaderboards-link">
+        <Link href="you/crew" data-cy="leaderboards-link">
           View Leaderboards
         </Link>
       </Body>
@@ -345,7 +345,7 @@ const ProfileWrapper = ({
       >
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
-      <Link to="/creators" data-cy="creators-link">
+      <Link href="/creators" data-cy="creators-link">
         <BottomLink>Creators of the World, Unite!</BottomLink>
       </Link>
       <BottomLink

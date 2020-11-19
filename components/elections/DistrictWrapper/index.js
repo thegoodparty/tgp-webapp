@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Collapse from '@material-ui/core/Collapse';
 
@@ -236,14 +236,14 @@ const DistrictWrapper = ({
               You have <strong data-cy="election-count">{electionCount}</strong>{' '}
               relevant Federal Elections. Join any{' '}
               <Link
-                to="?article=1ic6T6fhH0jZLNvX5aZkDe"
+                href="?article=1ic6T6fhH0jZLNvX5aZkDe"
                 data-cy="candidate-article"
               >
                 crowd-voting campaign
               </Link>{' '}
               to see if we can rally enough votes to{' '}
               <Link
-                to="?article=5KnBx42FOEVDJNUFpoU1PX"
+                href="?article=5KnBx42FOEVDJNUFpoU1PX"
                 data-cy="potentially-good-article"
               >
                 elect someone good
@@ -251,7 +251,7 @@ const DistrictWrapper = ({
               .
             </Body>
           </Spacer>
-          <Link to={presidentialElectionLink()} data-cy="presidential">
+          <Link href={presidentialElectionLink()} data-cy="presidential">
             {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
               <RankedCard
                 title="Presidential Election"
@@ -270,7 +270,7 @@ const DistrictWrapper = ({
             )}
           </Link>
           {!isEmptyCandidates(senateCandidates) && (
-            <Link to={senateElectionLink(shortState)} data-cy="senate">
+            <Link href={senateElectionLink(shortState)} data-cy="senate">
               {senateRank && Object.keys(senateRank).length > 0 ? (
                 <RankedCard
                   title={`Senator - ${stateLong}`}
@@ -291,7 +291,7 @@ const DistrictWrapper = ({
           )}
           {!isEmptyCandidates(houseCandidates) && (
             <Link
-              to={houseElectionLink(shortState, districtNumber)}
+              href={houseElectionLink(shortState, districtNumber)}
               data-cy="district"
             >
               {houseRank && Object.keys(houseRank).length > 0 ? (

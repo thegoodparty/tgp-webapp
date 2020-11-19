@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { Body9, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
@@ -39,7 +39,7 @@ const BlueBody13 = styled(Body13)`
 const RankedCandidate = ({ candidate, index, withLink = true }) => {
   const Wrapper = ({ children }) => {
     if (withLink) {
-      return <Link to={candidateRoute(candidate)}>{children}</Link>;
+      return <Link href={candidateRoute(candidate)}>{children}</Link>;
     }
     return <div>{children}</div>;
   };

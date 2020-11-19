@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { Body13 } from 'components/shared/typogrophy';
 
@@ -34,12 +34,12 @@ const Tabs = ({ candidate, tab }) => {
 
   return (
     <TabsWrapper>
-      <Link to={route}>
+      <Link href={route}>
         <Tab className={tab === 'campaign' ? 'active' : ''}>
           CAMPAIGN STATUS
         </Tab>
       </Link>
-      <Link to={`${route}/info`}>
+      <Link href={`${route}/info`}>
         <Tab className={tab !== 'campaign' ? 'active' : ''}>CANDIDATE INFO</Tab>
       </Link>
     </TabsWrapper>

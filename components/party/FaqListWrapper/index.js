@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 
@@ -41,7 +41,7 @@ const FaqListWrapper = ({ content, backButtonCallback }) => {
       <H2 style={{ marginBottom: '24px' }} data-cy="faqs-page-title">Frequently Asked Q’s</H2>
       {articles &&
         articles.map(article => (
-          <Link to={`?article=${article.id}`} key={article.id} data-cy="faq">
+          <Link href={`?article=${article.id}`} key={article.id} data-cy="faq">
             <ArticleWrapper>
               <Body className="article-title" data-cy="faq-title">{article.title}</Body>
               <div>

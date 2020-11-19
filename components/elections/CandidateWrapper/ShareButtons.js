@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { Body13 } from 'components/shared/typogrophy';
 import {

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { H1, Body, Body13 } from 'components/shared/typogrophy';
@@ -158,7 +158,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
       accessor: 'name',
       headerStyle,
       Cell: row => (
-        <Link to={row.original.route}>
+        <Link href={row.original.route}>
           <CellBody13 className={sortColumn === 'name' ? 'bold' : ''}>
             {row.original.name}
           </CellBody13>
@@ -171,7 +171,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
       headerStyle,
       maxWidth: 100,
       Cell: row => (
-        <Link to={row.original.route}>
+        <Link href={row.original.route}>
           <CellBody13 className={sortColumn === 'race' ? 'bold' : ''}>
             {row.original.race}
           </CellBody13>
@@ -183,7 +183,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
       accessor: 'totalRaised',
       headerStyle: headerStyleRight,
       Cell: row => (
-        <Link to={row.original.route}>
+        <Link href={row.original.route}>
           <CellBody13
             className={`text-right ${
               sortColumn === 'totalRaised' ? 'bold' : ''
@@ -199,7 +199,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
       accessor: 'largeDonorPerc',
       headerStyle: headerStyleRight,
       Cell: row => (
-        <Link to={row.original.route}>
+        <Link href={row.original.route}>
           <CellBody13
             className={`text-right ${
               sortColumn === 'largeDonorPerc' ? 'bold' : ''
@@ -219,7 +219,7 @@ function IncumbentsWrapper({ incumbents, loading }) {
       accessor: 'largeDonorPerHour',
       headerStyle: headerStyleRight,
       Cell: row => (
-        <Link to={row.original.route}>
+        <Link href={row.original.route}>
           <CellBody13
             className={`text-right ${
               sortColumn === 'largeDonorPerHour' ? 'bold' : ''

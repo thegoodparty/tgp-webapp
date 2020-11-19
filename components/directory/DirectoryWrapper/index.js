@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { H1, H2, H3 } from 'components/shared/typogrophy';
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 function DirectoryWrapper({ candidates }) {
   const candidatesList = chamber => (
     <>
-      {chamber?.map(cand => <Link to={candidateRoute(cand)} key={`${cand.name}${cand.id}`}>{cand.name}</Link>)}
+      {chamber?.map(cand => <Link href={candidateRoute(cand)} key={`${cand.name}${cand.id}`}>{cand.name}</Link>)}
     </>
   );
 

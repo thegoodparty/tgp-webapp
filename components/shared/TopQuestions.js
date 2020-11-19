@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 import { H3, Body, Body13 } from 'components/shared/typogrophy';
@@ -36,14 +36,14 @@ const TopQuestions = ({ articles }) => {
     <Wrapper>
       <Row>
         <H3 data-cy="faqs">Top Questions</H3>
-        <Link to="/party/faqs" data-cy="faqs-link">
+        <Link href="/party/faqs" data-cy="faqs-link">
           <SeeFaq className="blue">See FAQ</SeeFaq>
         </Link>
       </Row>
       {articles &&
         articles.map((article, index) => (
           <Link
-            to={`?article=${article.id}`}
+            href={`?article=${article.id}`}
             key={article.id}
             data-cy="faq"
           >

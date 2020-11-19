@@ -7,7 +7,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import PageWrapper from 'components/shared/PageWrapper';
 
@@ -136,7 +136,7 @@ function SplashWrapper() {
           </Body14>
         </TextWrapper>
       </Card>
-      <Link to="/intro/zip-finder" data-cy="start-link">
+      <Link href="/intro/zip-finder" data-cy="start-link">
         <ButtonWrppaer>
           <NextButton active>
             <SeeHow data-cy="start-button">GET STARTED</SeeHow>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { H1, Body, H3, Body13 } from 'components/shared/typogrophy';
 import checkboxImg from 'public/images/icons/checkbox-gray.svg';
@@ -89,7 +89,7 @@ const FiltersPopup = () => (
         <Body13 data-cy="character-check-body">
           Candidate has not engaged in a pattern of activities or{' '}
           <Link
-            to="?article=5bwvf0PwsbpFEe8IJ9sHhX"
+            href="?article=5bwvf0PwsbpFEe8IJ9sHhX"
             data-cy="character-check-link"
           >
             hate-speech

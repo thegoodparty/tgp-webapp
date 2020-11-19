@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Hidden from '@material-ui/core/Hidden';
 import Menu from '@material-ui/icons/Menu';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 import LogoCaps from 'public/images/logo-caps.svg';
 import { Body14 } from 'components/shared/typogrophy';
@@ -154,7 +154,7 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
   return (
     <Wrapper>
       <ContentWrapper>
-        <TopLink className="logo" to="/">
+        <TopLink className="logo" href="/">
           <Logo src={LogoCaps} alt="logo" />
         </TopLink>
         <MenuItemsWrapper className="desktop">
@@ -162,7 +162,7 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
           {user ? (
             <TopLink
               className="menu-item"
-              to="/you"
+              href="/you"
               onClick={deleteSignupRedirectCookie}
             >
               You
@@ -190,7 +190,7 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
               </ListItem>
               {user ? (
                 <ListItem button>
-                  <TopLink className="menu-item" to="/you">
+                  <TopLink className="menu-item" href="/you">
                     You
                   </TopLink>
                 </ListItem>

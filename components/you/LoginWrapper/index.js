@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 
 import PageWrapper from 'components/shared/PageWrapper';
@@ -211,7 +211,7 @@ const LoginWrapper = ({
             </div>
             <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
               Don&apos;t have an account?{' '}
-              <Link to="?register=true" data-cy="register">
+              <Link href="?register=true" data-cy="register">
                 Create one
               </Link>
             </Body13>

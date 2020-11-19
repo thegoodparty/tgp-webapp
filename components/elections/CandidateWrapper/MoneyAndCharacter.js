@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -179,7 +179,7 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             <CheckboxImg src={GrayCheckbox} />
             <Body13 data-cy="character-check">
               <strong>Character Check:</strong> Candidate passes{' '}
-              <Link to="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link">
+              <Link href="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link">
                 our minimum standard of civility
               </Link>
               .
@@ -197,11 +197,11 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
                   <ColoredText>Character Check:</ColoredText>{' '}
                 </strong>
                 Candidate fails to meet{' '}
-                <Link to="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link1">
+                <Link href="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link1">
                   our minimum standard of civility
                 </Link>
                 . Candidate has engaged in a pattern of activities or{' '}
-                <Link to="?article=5bwvf0PwsbpFEe8IJ9sHhX" data-cy="link2">
+                <Link href="?article=5bwvf0PwsbpFEe8IJ9sHhX" data-cy="link2">
                   hate-speech
                 </Link>{' '}
                 encouraging intolerance, discrimination or hostility towards a
@@ -246,7 +246,7 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
                 <ColoredText className="green">Character Check:</ColoredText>
               </strong>{' '}
               Candidate passes{' '}
-              <Link to="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link">
+              <Link href="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link">
                 minimum standard of civility
               </Link>
               .
@@ -263,7 +263,7 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
                 <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
               </strong>
               Candidate positions are not aligned with{' '}
-              <Link to="?article=2Pv9KNb6rng0sMfqwu1xKm" data-cy="link">
+              <Link href="?article=2Pv9KNb6rng0sMfqwu1xKm" data-cy="link">
                 The Good Party Platform.
               </Link>
             </Body13>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import Hidden from '@material-ui/core/Hidden';
 import PageWrapper from 'components/shared/PageWrapper';
@@ -258,7 +258,7 @@ const EditProfileWrapper = ({
   return (
     <PageWrapper white>
       <Hidden smDown>
-        <Link to="/you" data-cy="back-link">
+        <Link href="/you" data-cy="back-link">
           <BackIcon style={{ fontSize: '34px' }} />
         </Link>
       </Hidden>

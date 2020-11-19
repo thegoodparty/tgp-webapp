@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import Image from 'next/image';
 
@@ -167,7 +167,7 @@ const AddVoteModal = ({
         </BlueButton>
         <Footer>
           Don&apos;t worry, we will{' '}
-          <Link to="?article=prGq4SAFpfT7qzBFM1HDy">never waste your vote</Link>
+          <Link href="?article=prGq4SAFpfT7qzBFM1HDy">never waste your vote</Link>
           <br />
           <Image
             src="images/logo-caps.svg'"

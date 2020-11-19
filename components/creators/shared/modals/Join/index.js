@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Fade from '@material-ui/core/Fade';
@@ -144,7 +144,7 @@ function Join({
               auth
               onClick={() => setSignupRedirectCookieCallback('/creators')}
             >
-              <Link to="/you/register-email" style={{ width: '100%' }}>
+              <Link href="/you/register-email" style={{ width: '100%' }}>
                 <EmailInner>
                   <EmailIconImg src={EmailIcon} />
                   <StyledBody13>CONTINUE WITH EMAIL</StyledBody13>
@@ -157,7 +157,7 @@ function Join({
             onClick={() => setSignupRedirectCookieCallback('/creators')}
           >
             Have an account?{' '}
-            <Link to="/login">
+            <Link href="/login">
               <b>Sign In</b>
             </Link>
           </StyledBody15>

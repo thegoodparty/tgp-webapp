@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import PageWrapper from 'components/shared/PageWrapper';

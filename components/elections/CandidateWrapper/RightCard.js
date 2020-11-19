@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Sticky from 'react-sticky-el';
 import Hidden from '@material-ui/core/Hidden';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import { Body11, Body13, Body14 } from 'components/shared/typogrophy';
@@ -197,11 +197,11 @@ const RightCard = ({
             ) : (
               <>
                 {tab === 'campaign' ? (
-                  <Link to={`${route}/info`}>
+                  <Link href={`${route}/info`}>
                     <TabText>Learn more about {name}</TabText>
                   </Link>
                 ) : (
-                  <Link to={route}>
+                  <Link href={route}>
                     <TabText>See campaign for {name}</TabText>
                   </Link>
                 )}
