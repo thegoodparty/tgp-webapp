@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { H3 } from '../../shared/typogrophy';
 import { getArticleById } from '../../../helpers/articlesHelper';
@@ -93,7 +93,7 @@ function AdminArticlesFeedback({ articles, content }) {
 
       Cell: row => {
         return (
-          <Link to={`?article=${row.original.id}`}>{row.original.title}</Link>
+          <Link href={`?article=${row.original.id}`}>{row.original.title}</Link>
         );
       },
     },

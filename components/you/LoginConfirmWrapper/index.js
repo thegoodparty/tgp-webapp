@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
@@ -74,7 +74,7 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
           type="tel"
           onChange={onChangeCode}
         />
-        <Link to="/login" data-cy="return-link">
+        <Link href="/login" data-cy="return-link">
           <StyledBody13>Didn’t receive the code?</StyledBody13>
         </Link>
         <SubmitWrapper onClick={handleSubmit} data-cy="submit">

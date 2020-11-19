@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import CloseIcon from '@material-ui/icons/Cancel';
 import Dialog from '@material-ui/core/Dialog';

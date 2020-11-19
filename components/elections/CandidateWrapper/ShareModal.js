@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Image from 'next/image';
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -473,7 +473,7 @@ const ShareModal = ({
         </AdditionalSharesWrapper>
 
         <Footer>
-          <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe">
+          <Link href="?article=1ic6T6fhH0jZLNvX5aZkDe">
             What is a crowd-voting campaign?
           </Link>
           <br />

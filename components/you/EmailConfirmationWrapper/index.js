@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 
 import PageWrapper from 'components/shared/PageWrapper';

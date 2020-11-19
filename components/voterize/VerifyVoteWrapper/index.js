@@ -13,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import Markdown from 'markdown-to-jsx';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { validateEmail } from 'helpers/emailHelper';
 import { parseDob, parseDobUS } from 'helpers/dateHelper';
@@ -334,7 +334,7 @@ const VerifyVoteWrapper = ({
               <LoadingAnimation />
             ) : (
               <>
-                <Link to="you" onClick={trackClose}>
+                <Link href="you" onClick={trackClose}>
                   <Skip>Close</Skip>
                 </Link>
                 <Hidden mdUp>

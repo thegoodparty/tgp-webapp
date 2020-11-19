@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 
 import Wrapper from 'components/shared/Wrapper';
@@ -146,7 +146,7 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
         </SubmitWrapper>
         <Body13 style={{ margin: '24px 0' }} data-cy="login-wrapper">
           Already have an account?{' '}
-          <Link to="/login" data-cy="login-link">
+          <Link href="/login" data-cy="login-link">
             Login
           </Link>
         </Body13>

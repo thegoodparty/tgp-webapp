@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
 import BackIcon from '@material-ui/icons/ChevronLeft';
@@ -106,7 +106,7 @@ function MobileHeader({
             )}
           </>
         ) : (
-          <Link to="/home" className="text-center">
+          <Link href="/home" className="text-center">
             {whiteBackButton ? (
               <Logo
                 src="images/white-logo.svg"

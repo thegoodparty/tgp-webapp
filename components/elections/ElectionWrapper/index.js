@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
@@ -128,7 +128,7 @@ const ElectionWrapper = ({
             {candidates.good.length > 0 ? (
               <>
                 Join any{' '}
-                <Link to="?article=1ic6T6fhH0jZLNvX5aZkDe" data-cy="article">
+                <Link href="?article=1ic6T6fhH0jZLNvX5aZkDe" data-cy="article">
                   crowd-voting campaign
                 </Link>{' '}
                 and we&apos;ll let you know if it grows big enough to win!

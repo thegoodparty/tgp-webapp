@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Image from 'next/image';
 
 import globals from 'globals';
@@ -151,7 +151,7 @@ function SocialRegisterWrapper({
               </Or>
             </OrWrapper>
             <Link
-              to="/you/register-email"
+              href="/you/register-email"
               data-cy="email-register"
               onClick={trackEmail}
             >
@@ -167,7 +167,7 @@ function SocialRegisterWrapper({
             </Link>
             <Body13 style={{ marginTop: '24px' }} data-cy="login-wrapper">
               Have an account?{' '}
-              <Link to="/login" data-cy="login">
+              <Link href="/login" data-cy="login">
                 Sign In
               </Link>
             </Body13>

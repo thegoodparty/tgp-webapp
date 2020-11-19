@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import { numberFormatter } from 'helpers/numberHelper';

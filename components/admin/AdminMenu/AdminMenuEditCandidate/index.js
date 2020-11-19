@@ -7,7 +7,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -43,7 +43,7 @@ function AdminMenuEditCandidate({ candidate }) {
   return (
     <>
       <MenuWrapper>
-        <Link to={editRoute}>
+        <Link href={editRoute}>
           <EditWrapper>
             <EditIcon />
           </EditWrapper>

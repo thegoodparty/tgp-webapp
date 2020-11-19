@@ -6,7 +6,7 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -102,7 +102,7 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
           <H3 data-cy="your-crew">Your Crew</H3>
           <Separator>|</Separator>
           <Body>
-            <Link data-cy="overall-crew" to="/you/crew/leaderboard">
+            <Link data-cy="overall-crew" href="/you/crew/leaderboard">
               See Overall Leaderboard
             </Link>
           </Body>
@@ -112,7 +112,7 @@ function CrewWrapper({ crew, tab = 'crew', loading, user }) {
           <H3 data-cy="overall-crew">Overall Leaderboard</H3>
           <Separator>|</Separator>
           <Body>
-            <Link data-cy="your-crew" to="/you/crew">
+            <Link data-cy="your-crew" href="/you/crew">
               See your Crew
             </Link>
           </Body>

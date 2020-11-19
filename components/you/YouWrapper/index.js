@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { H3 } from 'components/shared/typogrophy/index';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
-import CapitalImage from 'public/images/capital.svg';
+// import CapitalImage from 'public/images/capital.svg';
 import TopQuestions from 'components/shared/TopQuestions';
 import { AmaContainer } from 'containers/shared/AmaContainer';
 
@@ -62,26 +62,25 @@ const YouWrapper = ({ articles }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   return (
     <PageWrapper white>
       <Login>
-        <Link to="?register=true" data-cy="sign-up">
+        <Link href="?register=true" data-cy="sign-up">
           Sign-Up
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link to="login" data-cy="log-in">
+        <Link href="login" data-cy="log-in">
           Login
         </Link>
       </Login>
       <InnerWrapper>
-        <Img src={CapitalImage} alt="Capital" aria-label="Capital" />
+        <Img src="images/capital.svg" alt="Capital" aria-label="Capital" />
         <H3Title data-cy="title">Create a profile and get counted!</H3Title>
         <H3Body data-cy="description">
           First we count the people needed for a good indy candidate to win,
           then we all vote to get them in.
         </H3Body>
-        <ButtonWrapper to="?register=true" data-cy="count-in">
+        <ButtonWrapper href="?register=true" data-cy="count-in">
           <OutlinedButton active fullWidth>
             COUNT ME IN!
           </OutlinedButton>

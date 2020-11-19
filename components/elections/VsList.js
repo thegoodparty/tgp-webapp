@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
@@ -290,7 +290,7 @@ const VsList = ({
     if (candidateRank) {
       return (
         <GrowWrapper>
-          <Link to={`${candidateRoute(candidate)}?share=true`}>
+          <Link href={`${candidateRoute(candidate)}?share=true`}>
             <GrowButtonWrapper>
               <WhiteBody11>
                 <Img src={ShareIcon} alt="share" /> SHARE
@@ -307,7 +307,7 @@ const VsList = ({
     }
     return (
       <GrowWrapper>
-        <Link to={candidateRoute(candidate)}>
+        <Link href={candidateRoute(candidate)}>
           <JoinButton>See Campaign</JoinButton>
         </Link>
       </GrowWrapper>
@@ -368,7 +368,7 @@ const VsList = ({
           <GoodTitle data-cy="side-title">POTENTIALLY GOOD</GoodTitle>
           {good.map(candidate => (
             <Link
-              to={candidateRoute(candidate)}
+              href={candidateRoute(candidate)}
               key={candidate.id}
               data-cy="candidate"
             >
@@ -418,7 +418,7 @@ const VsList = ({
           <NotGoodTitle data-cy="side-title">NOT GOOD ENOUGH</NotGoodTitle>
           {notGood.map(candidate => (
             <Link
-              to={candidateRoute(candidate)}
+              href={candidateRoute(candidate)}
               key={candidate.id}
               data-cy="candidate"
             >
@@ -451,7 +451,7 @@ const VsList = ({
           <UnknownTitle data-cy="side-title">NOT YET RATED</UnknownTitle>
           {unknown.map(candidate => (
             <Link
-              to={candidateRoute(candidate)}
+              href={candidateRoute(candidate)}
               key={candidate.id}
               data-cy="candidate"
             >

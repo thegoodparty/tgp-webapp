@@ -7,7 +7,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Button from '@material-ui/core/Button';
 import Image from 'next/image';
 
@@ -68,11 +68,11 @@ function HomePageWrapper() {
     <PageWrapper white wrapperStyles={wrapperStyles} hideNav>
       <div>
         <LoginLink>
-          <Link to="?register=true" data-cy="register">
+          <Link href="?register=true" data-cy="register">
             Sign-Up
           </Link>
           &nbsp;&nbsp;|&nbsp;&nbsp;
-          <Link to="/login" data-cy="login">
+          <Link href="/login" data-cy="login">
             Login
           </Link>
         </LoginLink>
@@ -87,7 +87,7 @@ function HomePageWrapper() {
           politicians with someone new and <strong>Good!</strong>
         </StyledH2>
         <ButtonWrapper>
-          <Link to="/intro/splash" data-cy="enter-link">
+          <Link href="/intro/splash" data-cy="enter-link">
             <BlueButton
               variant="contained"
               color="primary"
