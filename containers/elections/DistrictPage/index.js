@@ -66,7 +66,7 @@ export function DistrictPage({
   const { presidential, houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
-    if (!zipWithDistricts) {
+    if (!zipWithDistricts && zip) {
       dispatch(districtActions.loadZipAction(zip));
     }
     if (!presidential) {
@@ -93,7 +93,7 @@ export function DistrictPage({
       let tempCd = 0;
       const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];
 
-      if (typeof cd !== 'undefined') {
+      if (typeof cd !== 'undefined' && !!cd) {
         setCdIndex(parseInt(cd, 10));
         tempCd = parseInt(cd, 10);
       } else if (user && user.congDistrict && cds.length > 0) {
@@ -141,6 +141,8 @@ export function DistrictPage({
     user,
     ranking: rankingObj,
   };
+
+  console.log('childProps', childProps);
 
   return (
     <div>
