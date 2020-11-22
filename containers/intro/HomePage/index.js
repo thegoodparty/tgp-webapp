@@ -8,7 +8,7 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
@@ -39,10 +39,10 @@ function HomePage({ userState, dispatch }) {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>The Good Party</title>
         <meta name="description" content="The Good Party" />
-      </Helmet>
+      </Head>
       <HomePageWrapper />
     </div>
   );

@@ -7,13 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { push } from 'connected-next-router';
 
 import ZipFinderWrapper from 'components/intro/ZipFinderWrapper';
 import AnalyticsService from 'services/AnalyticsService';
-
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -48,10 +48,10 @@ export function ZipFinderPage({
   return (
     <div>
       {!cardDisplay && (
-        <Helmet>
+        <Head>
           <title>Zip Finder</title>
           <meta name="description" content="Zip Finder" />
-        </Helmet>
+        </Head>
       )}
       <ZipFinderWrapper {...childProps} />
     </div>
@@ -77,10 +77,8 @@ function mapDispatchToProps(dispatch) {
       if (user) {
         dispatch(userActions.updateUserAction({ zip }));
       }
-      //   dispatch(push('/you'));
-      // } else {
-      dispatch(districtActions.loadZipAction(zip, true));
-      // }
+
+      dispatch(push(`/elections/district/${zip}`));
       AnalyticsService.sendEvent('Location', 'Submit ZIP Location');
     },
     currentLocationCallback: coords => {

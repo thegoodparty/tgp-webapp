@@ -8,11 +8,8 @@ export default function You() {
 }
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  console.log('get static props', store);
-  console.log('store.getState()', store.getState());
   loadContent(store.dispatch);
   store.dispatch(END);
-  console.log('store.getState()', store.getState());
   if (store.global) {
     await store.global.toPromise();
   }

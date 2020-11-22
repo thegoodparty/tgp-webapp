@@ -7,7 +7,7 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -41,10 +41,10 @@ export function RegisterPage({ userState, registerCallback, dispatch }) {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title data-cy="page-title">Register to the Good Party</title>
         <meta name="description" content="Register to the Good Party" />
-      </Helmet>
+      </Head>
       <RegisterWrapper {...childPros} />
     </div>
   );

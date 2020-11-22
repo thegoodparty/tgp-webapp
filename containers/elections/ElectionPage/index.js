@@ -13,7 +13,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -140,7 +140,7 @@ export function ElectionPage({
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title data-cy="page-title">
           {displayChamber} Election | The Good Party
         </title>
@@ -148,7 +148,7 @@ export function ElectionPage({
           name="description"
           content={`${chamber} Election | The Good Party`}
         />
-      </Helmet>
+      </Head>
       <ElectionWrapper {...childProps} />
     </div>
   );

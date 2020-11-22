@@ -7,7 +7,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { goBack } from 'connected-react-router';
@@ -23,10 +23,10 @@ export function EventsPage({ content, backButtonCallback }) {
   };
   return (
     <div>
-      <Helmet>
+      <Head>
         <title data-cy="page-title">EventsPage</title>
         <meta name="description" content="Description of EventsPage" />
-      </Helmet>
+      </Head>
       <EventsWrapper {...childProps} />
     </div>
   );

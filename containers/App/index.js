@@ -15,7 +15,7 @@ import { createStructuredSelector } from 'reselect';
 import history from 'utils/history';
 import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 
 import GlobalStyle from 'global-styles';
 import SnackbarContainer from 'containers/shared/SnackbarContainer';
@@ -63,9 +63,9 @@ function App({ dispatch }) {
   return (
     <div>
       {ENV !== 'prod' && (
-        <Helmet>
+        <Head>
           <meta name="robots" content="noindex, nofollow" />
-        </Helmet>
+        </Head>
       )}
       <ErrorBoundary>
         <Routes />

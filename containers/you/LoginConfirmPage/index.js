@@ -7,7 +7,7 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
@@ -42,10 +42,10 @@ export function LoginConfirmPage({
   };
   return (
     <div>
-      <Helmet>
+      <Head>
         <title data-cy="page-title">Login Code Confirmation</title>
         <meta name="description" content="Login Code Confirmation" />
-      </Helmet>
+      </Head>
       <LoginConfirmWrapper {...childProps} />
     </div>
   );

@@ -7,7 +7,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -20,10 +20,10 @@ export function ResearchPage({ content }) {
   };
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Research | The Good Party</title>
         <meta name="description" content="Research | The Good Party" />
-      </Helmet>
+      </Head>
       <ResearchWrapper {...childProps} />
     </div>
   );

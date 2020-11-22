@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
@@ -34,10 +34,10 @@ export function RegisterStep2Page({ userState, submitCallback, location }) {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Register 2nd Step</title>
         <meta name="description" content="Register 2nd Step" />
-      </Helmet>
+      </Head>
       <RegisterStep2Wrapper {...childProps} />
     </div>
   );

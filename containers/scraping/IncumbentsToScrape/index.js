@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -32,10 +32,10 @@ export function IncumbentsToScrape({ scrapeState, dispatch }) {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>IncumbentsToScrape</title>
         <meta name="description" content="Description of IncumbentsToScrape" />
-      </Helmet>
+      </Head>
       <div>
         {incumbents &&
           incumbents.map(incumbent => (

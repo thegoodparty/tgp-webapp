@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
@@ -76,10 +76,10 @@ export function AdminPage({
   };
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Admin Dashboard</title>
         <meta name="description" content="Admin Dashboard" />
-      </Helmet>
+      </Head>
       <AdminWrapper {...childProps} />
     </div>
   );

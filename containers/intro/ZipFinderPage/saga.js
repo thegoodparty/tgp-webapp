@@ -14,14 +14,17 @@ import actions from './actions';
 function* loadZip(action) {
   try {
     const { zip, redirect } = action;
-    const api = tgpApi.zipToDistrict;
-    const payload = { zip };
-    const zipWithDistricts = yield call(requestHelper, api, payload);
-    yield put(actions.loadZipActionSuccess(zipWithDistricts));
+    // const api = tgpApi.zipToDistrict;
+    // const payload = { zip };
+    // console.log('loadZip1',zip);
+    // const zipWithDistricts = yield call(requestHelper, api, payload);
+    // console.log('loadZip2',zipWithDistricts);
+    // yield put(actions.loadZipActionSuccess(zipWithDistricts));
     if (redirect) {
+      console.log('loadZip2');
       yield put(push(`/elections/district/${zip}`));
     }
-    setCookie('zip', JSON.stringify(zipWithDistricts));
+    // setCookie('zip', JSON.stringify(zipWithDistricts));
   } catch (error) {
     console.log(error);
     yield put(actions.loadZipActionError(error));
