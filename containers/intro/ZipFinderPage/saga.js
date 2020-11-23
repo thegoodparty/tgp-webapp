@@ -3,9 +3,7 @@ import { push } from 'connected-next-router';
 
 import requestHelper from 'helpers/requestHelper';
 import { getCookie, setCookie } from 'helpers/cookieHelper';
-import { getUserFromStateOrCookie } from 'helpers/userHelper';
 import { GOOGLE_API_KEY } from 'api/ENV';
-import makeSelectUser from 'containers/you/YouPage/selectors';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import tgpApi from 'api/tgpApi';
 import types from './constants';

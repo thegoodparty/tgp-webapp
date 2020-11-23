@@ -5,17 +5,17 @@
  */
 
 import React, { memo } from 'react';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 
 import SplashWrapper from 'components/intro/SplashWrapper';
 
 function SplashPage() {
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Splash | TGP</title>
         <meta name="description" content="Description of Splash" />
-      </Helmet>
+      </Head>
       <SplashWrapper />
     </div>
   );

@@ -98,7 +98,7 @@ function SocialRegisterWrapper({
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <Heart src="images/heart.svg" />
+            <Heart src="/images/heart.svg" />
             {blocName ? (
               <>
                 <H1 data-cy="title">Add Your Vote!</H1>

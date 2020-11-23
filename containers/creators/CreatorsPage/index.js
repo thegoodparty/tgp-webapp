@@ -7,7 +7,7 @@
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -64,10 +64,10 @@ export function CreatorsPage({
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Creators of The World, Unite!</title>
         <meta name="description" content="Creators of The World, Unite!" />
-      </Helmet>
+      </Head>
       <CreatorsWrapper {...childProps} />
     </div>
   );

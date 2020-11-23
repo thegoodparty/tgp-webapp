@@ -7,10 +7,11 @@ import Hidden from '@material-ui/core/Hidden';
 import Menu from '@material-ui/icons/Menu';
 import Link from 'next/link';
 import styled from 'styled-components';
-import LogoCaps from 'public/images/logo-caps.svg';
 import { Body14 } from 'components/shared/typogrophy';
 import { deleteSignupRedirectCookie } from 'helpers/cookieHelper';
 import Body from '../typography/Body';
+
+const LogoCaps = '/images/logo-caps.svg';
 const Wrapper = styled.div`
   position: fixed;
   height: 8rem;
@@ -21,11 +22,11 @@ const Wrapper = styled.div`
   background-color: #fff;
   z-index: 100;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     height: 88px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     height: 64px;
   }
 `;
@@ -40,12 +41,12 @@ const ContentWrapper = styled.div`
   height: 132px;
 
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     height: 88px;
     padding: 0 2rem 0 0.5rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     height: 64px;
     padding: 0 1rem;
   }
@@ -59,7 +60,7 @@ const MenuItemsWrapper = styled.div`
     display: flex;
   }
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTabletValue - 250}px) {
+    theme.creators.breakpoints.creatorsTabletValue - 250}px) {
     &.desktop {
       display: flex;
     }
@@ -75,12 +76,12 @@ const Logo = styled.img`
   width: 343px;
   height: 32px;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     width: 343px;
     height: 32px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     width: 220px;
     height: 24px;
   }
@@ -88,16 +89,16 @@ const Logo = styled.img`
 
 const LogoTitle = styled(Body)`
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     font-size: 1.3rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     font-size: 1.5rem;
   }
 `;
 
-const TopLink = styled(Link)`
+const TopLink = styled.a`
   cursor: pointer;
   height: 58px;
   border-bottom: solid 2px #fff;
@@ -125,7 +126,7 @@ const TopLink = styled(Link)`
   }
 
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     &.menu-item {
       font-size: 20px;
       margin-left: 1.5rem;
@@ -154,24 +155,29 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
   return (
     <Wrapper>
       <ContentWrapper>
-        <TopLink className="logo" href="/">
-          <Logo src={LogoCaps} alt="logo" />
-        </TopLink>
+        <Link href="/">
+          <TopLink className="logo">
+            <Logo src={LogoCaps} alt="logo" />
+          </TopLink>
+        </Link>
         <MenuItemsWrapper className="desktop">
-          <TopLink className="menu-item active">Creators</TopLink>
+          <Link href="/creators">
+            <TopLink className="menu-item active">Creators</TopLink>
+          </Link>
           {user ? (
-            <TopLink
-              className="menu-item"
-              href="/you"
-              onClick={deleteSignupRedirectCookie}
-            >
-              You
+            <Link href="/you">
+              <TopLink
+                className="menu-item"
+                onClick={deleteSignupRedirectCookie}
+              >
+                You
             </TopLink>
+            </Link>
           ) : (
-            <TopLink className="menu-item" onClick={onClickJoin}>
-              Join
-            </TopLink>
-          )}
+              <TopLink className="menu-item" onClick={onClickJoin}>
+                Join
+              </TopLink>
+            )}
         </MenuItemsWrapper>
         <MenuItemsWrapper className="mobile">
           <TopLink className="menu-item" onClick={() => setMenu(true)}>
@@ -190,15 +196,17 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
               </ListItem>
               {user ? (
                 <ListItem button>
-                  <TopLink className="menu-item" href="/you">
-                    You
+                  <Link href="/you">
+                    <TopLink className="menu-item" >
+                      You
                   </TopLink>
+                  </Link>
                 </ListItem>
               ) : (
-                <ListItem button onClick={onClickJoin}>
-                  <TopLink className="menu-item">Join</TopLink>
-                </ListItem>
-              )}
+                  <ListItem button onClick={onClickJoin}>
+                    <TopLink className="menu-item">Join</TopLink>
+                  </ListItem>
+                )}
             </List>
           </Drawer>
         </Hidden>

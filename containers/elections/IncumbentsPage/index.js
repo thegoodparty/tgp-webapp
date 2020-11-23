@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 

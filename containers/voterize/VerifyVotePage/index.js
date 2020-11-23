@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
@@ -75,10 +75,10 @@ export function VerifyVotePage({
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Verify Your Vote | The Good Party</title>
         <meta name="description" content="Verify Your Vote | The Good Party" />
-      </Helmet>
+      </Head>
       <VerifyVoteWrapper {...childProps} />
     </div>
   );

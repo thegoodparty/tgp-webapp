@@ -82,7 +82,7 @@ const ColumnHeader = styled.div`
   }
 `;
 
-const Logo = styled.img`
+const Logo = styled(Image)`
   width: 130px;
   height: auto;
 `;
@@ -174,7 +174,8 @@ function Footer({ isCreators = false }) {
                     src="/images/white-logo.svg"
                     alt="The Good Party Logo"
                     data-cy="footer-logo"
-                    layout="fill"
+                    width="130px"
+                    height="15px"
                   />
                 </ColumnHeader>
 

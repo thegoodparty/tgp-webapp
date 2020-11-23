@@ -81,24 +81,24 @@ const PartyWrapper = ({ content, appVersion }) => {
               </a>
             </Link>
           </Row>
-          {/*{events.map(event => (*/}
-          {/*  <EventSnippet event={event} key={event.id} />*/}
-          {/*))}*/}
+          {events.map(event => (
+            <EventSnippet event={event} key={event.id} />
+          ))}
         </EventsWrapper>
       )}
 
-      {/*<TopQuestions articles={articles} />*/}
-      {/*<AmaContainer />*/}
-      {/*<AppVersion>*/}
-      {/*  The Good Party V.{appVersion} {ENV !== 'prod' && ENV}*/}
-      {/*  {productionVersion ? (*/}
-      {/*    <div style={{ marginTop: '8px' }}>*/}
-      {/*      Latest version: {productionVersion}*/}
-      {/*    </div>*/}
-      {/*  ) : (*/}
-      {/*    ''*/}
-      {/*  )}*/}
-      {/*</AppVersion>*/}
+      <TopQuestions articles={articles} />
+      <AmaContainer />
+      <AppVersion>
+        The Good Party V.{appVersion} {ENV !== 'prod' && ENV}
+        {productionVersion ? (
+          <div style={{ marginTop: '8px' }}>
+            Latest version: {productionVersion}
+          </div>
+        ) : (
+          ''
+        )}
+      </AppVersion>
     </PageWrapper>
   );
 };

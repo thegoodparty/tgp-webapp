@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -36,8 +37,8 @@ import candidateActions from '../CandidatePage/actions';
 export function DistrictPage({
   content,
   districtState,
-  zip,
-  cd,
+  // zip,
+  // cd,
   dispatch,
   changeDistrictCallback,
   deleteRankingCallback,
@@ -53,6 +54,11 @@ export function DistrictPage({
     reducer: candidateReducer,
   });
 
+  const router = useRouter();
+  const { zipCd } = router.query;
+  const zip = zipCd?.length > 0 ? zipCd[0] : false;
+  const cd = zipCd?.length > 1 ? zipCd[1] : false;
+
   const [cdIndex, setCdIndex] = useState(0);
   const { user, ranking } = userState;
 
@@ -60,7 +66,7 @@ export function DistrictPage({
   const { presidential, houseCandidates, senateCandidates } = districtState;
 
   useEffect(() => {
-    if (!zipWithDistricts) {
+    if (!zipWithDistricts && zip) {
       dispatch(districtActions.loadZipAction(zip));
     }
     if (!presidential) {
@@ -87,7 +93,7 @@ export function DistrictPage({
       let tempCd = 0;
       const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];
 
-      if (typeof cd !== 'undefined') {
+      if (typeof cd !== 'undefined' && !!cd) {
         setCdIndex(parseInt(cd, 10));
         tempCd = parseInt(cd, 10);
       } else if (user && user.congDistrict && cds.length > 0) {
@@ -136,6 +142,8 @@ export function DistrictPage({
     ranking: rankingObj,
   };
 
+  console.log('childProps', childProps);
+
   return (
     <div>
       <TgpHelmet
@@ -151,8 +159,8 @@ DistrictPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
-  zip: PropTypes.string,
-  cd: PropTypes.string,
+  // zip: PropTypes.string,
+  // cd: PropTypes.string,
   changeDistrictCallback: PropTypes.func,
   deleteRankingCallback: PropTypes.func,
   changeZipCallback: PropTypes.func,
@@ -164,8 +172,8 @@ DistrictPage.propTypes = {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
-    zip: ownProps.match.params.zip,
-    cd: ownProps.match.params.cd,
+    // zip: ownProps.match.params.zip,
+    // cd: ownProps.match.params.cd,
     changeDistrictCallback: (districtId, districtIndex, zip, user) => {
       dispatch(push(`/elections/district/${zip}/${districtIndex}`));
       if (user && districtId) {

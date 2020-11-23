@@ -16,7 +16,6 @@ export function injectReducerFactory(store, isValid) {
     );
 
     // Check `store.injectedReducers[key] === reducer` for hot reloading when a key is the same but a reducer is different
-    console.log('store.injectedReducers, key', store,  store.injectedReducers, key);
     if (
       Reflect.has(store.injectedReducers, key) &&
       store.injectedReducers[key] === reducer

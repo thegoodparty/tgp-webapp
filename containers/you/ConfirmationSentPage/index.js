@@ -7,7 +7,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-next-router';
@@ -47,13 +47,13 @@ export function ConfirmationSentPage({
   const childProps = { email, emailSendCallback };
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Email Confirmation Sent | The Good Party</title>
         <meta
           name="description"
           content="Email Confirmation Sent | The Good Party"
         />
-      </Helmet>
+      </Head>
       <ConfirmationSentWrapper {...childProps} />
     </div>
   );

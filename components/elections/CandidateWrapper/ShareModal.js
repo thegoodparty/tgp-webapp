@@ -18,14 +18,13 @@ import {
   getCandidateTitle,
 } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
-import CopyPasteIcon from 'public/images/icons/copy-paste.svg';
-import LinkIcon from 'public/images/icons/link-icon.svg';
-import SmsIcon from 'public/images/icons/sms-icon.svg';
-import ShareIcon from 'public/images/icons/share-icon.svg';
 import { numberFormatter } from 'helpers/numberHelper';
-import LogoCapsImg from 'public/images/logo-caps.svg';
 import AnalyticsService from 'services/AnalyticsService';
 
+const CopyPasteIcon = 'public/images/icons/copy-paste.svg';
+const LinkIcon = 'public/images/icons/link-icon.svg';
+const SmsIcon = 'public/images/icons/sms-icon.svg';
+const ShareIcon = 'public/images/icons/share-icon.svg';
 const StyledDialog = styled(Dialog)`
   && {
     .MuiDialog-paperScrollPaper {
@@ -33,7 +32,7 @@ const StyledDialog = styled(Dialog)`
       margin: 20px;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         width: auto;
       }
     }
@@ -143,7 +142,7 @@ const AdditionalSharesWrapper = styled.div`
   &.with-native {
     padding: 0 8px;
     // @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
     //   padding: 0 90px;
     // }
   }
@@ -288,16 +287,14 @@ const ShareModal = ({
   }
 
   const chamberTitle = getCandidateTitle(chamber);
-  const messageTitle = `Let's see if we can elect ${candidate.name} ${
-    chamberTitle.includes('President') ? '' : 'to '
-  }${chamberTitle}.`;
+  const messageTitle = `Let's see if we can elect ${candidate.name} ${chamberTitle.includes('President') ? '' : 'to '
+    }${chamberTitle}.`;
   const emailTitle = `Help me elect ${candidate.name}`;
   // const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
-  const messageBody = `${
-    candidate.name
-  } could win in ${getCandidateChamberDistrictOnly(
-    candidate,
-  )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
+  const messageBody = `${candidate.name
+    } could win in ${getCandidateChamberDistrictOnly(
+      candidate,
+    )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   const nativeShare = () => {

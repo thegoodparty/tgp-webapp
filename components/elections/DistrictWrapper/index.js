@@ -95,7 +95,9 @@ const DistrictWrapper = ({
   const shortState = stateShort ? stateShort.toUpperCase() : '';
   const approxPct = approxPctArr ? JSON.parse(approxPctArr) : [];
   if (cds?.length > 0) {
-    const { districtId } = approxPct[cdIndex];
+    const districtId = approxPct[cdIndex]
+      ? approxPct[cdIndex].districtId
+      : false;
     cds.forEach(dist => {
       if (dist.id === districtId) {
         districtNumber = dist.code;

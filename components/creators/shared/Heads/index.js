@@ -7,18 +7,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import SampleAvatarImg1 from 'public/images/avatars/ellipse_1.png';
-import SampleAvatarImg2 from 'public/images/avatars/ellipse_5.png';
-import SampleAvatarImg3 from 'public/images/avatars/ellipse_8.png';
-import SampleAvatarImg4 from 'public/images/avatars/ellipse_7.png';
-import SampleAvatarImg5 from 'public/images/avatars/ellipse_2.png';
-import SampleAvatarImg6 from 'public/images/avatars/ellipse_6.png';
-import SampleAvatarImg7 from 'public/images/avatars/ellipse_4.png';
-import SampleAvatarImg8 from 'public/images/avatars/ellipse_3.png';
-import SampleAvatarImg9 from 'public/images/avatars/ellipse_9.png';
-import SampleAvatarImg10 from 'public/images/avatars/ellipse_10.png';
-import SampleAvatarImg11 from 'public/images/avatars/ellipse_11.png';
-
 const AvatarsWrapper = styled.div`
   display: flex;
   max-width: 20rem;
@@ -27,7 +15,7 @@ const AvatarsWrapper = styled.div`
   margin: 0 auto;
   margin-top: 4rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     padding: 0 1.5rem;
     margin-bottom: 2.5rem;
   }
@@ -40,7 +28,7 @@ const Avatar = styled(LazyLoadImage)`
   margin-right: 1rem;
   margin-bottom: 0.5rem;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     width: 24px;
     height: 24px;
     margin-right: 0.7rem;
@@ -48,19 +36,13 @@ const Avatar = styled(LazyLoadImage)`
 `;
 
 function Heads() {
+  const avatars = [];
+  for (let i = 0; i < 12; i++) {
+    avatars.push(<Avatar key={i} src={`/images/avatars/ellipse_${i}.png`} alt={`avatar${i}`} />)
+  }
   return (
     <AvatarsWrapper>
-      <Avatar src={SampleAvatarImg1} alt="avatar" />
-      <Avatar src={SampleAvatarImg2} alt="avatar" />
-      <Avatar src={SampleAvatarImg3} alt="avatar" />
-      <Avatar src={SampleAvatarImg4} alt="avatar" />
-      <Avatar src={SampleAvatarImg5} alt="avatar" />
-      <Avatar src={SampleAvatarImg6} alt="avatar" />
-      <Avatar src={SampleAvatarImg7} alt="avatar" />
-      <Avatar src={SampleAvatarImg8} alt="avatar" />
-      <Avatar src={SampleAvatarImg9} alt="avatar" />
-      <Avatar src={SampleAvatarImg10} alt="avatar" />
-      <Avatar src={SampleAvatarImg11} alt="avatar" />
+      {avatars}
     </AvatarsWrapper>
   );
 }

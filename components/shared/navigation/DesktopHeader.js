@@ -70,8 +70,8 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
       <ContentWrapper>
         <TopLink>
           <Logo
-            src="images/logo-caps.svg"
-            onClick={() => handleNavigate('/home')}
+            src="/images/logo-caps.svg"
+            onClick={() => handleNavigate('/')}
             data-cy="logo"
           />
         </TopLink>

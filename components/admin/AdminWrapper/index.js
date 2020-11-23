@@ -162,7 +162,7 @@ const AdminWrapper = ({
       return (
         <MainPanelPlaceholder>
           <H1>Admin Dashboard</H1>
-          <Heart src="images/heart.svg" />
+          <Heart src="/images/heart.svg" width="auto" height="auto" />
         </MainPanelPlaceholder>
       );
     }
@@ -199,7 +199,7 @@ const AdminWrapper = ({
     return (
       <MainPanelPlaceholder>
         <H1>Admin Dashboard</H1>
-        <Heart src="images/heart.svg" />
+        <Heart src="/images/heart.svg" width="auto" height="auto" />
       </MainPanelPlaceholder>
     );
   };

@@ -9,16 +9,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
-
-import LogoCaps from 'public/images/logo.svg';
-import UniteTitle from 'public/images/title--unite.svg';
-import SingleLineCreatorsTitle from 'public/images/title--creators_of_the_world.svg';
-import MultiLineCreatorsTitle from 'public/images/title--creators_of_the_world_2.svg';
-
 import { Body } from '../typography';
 import { ViewProjectsButton } from '../buttons';
 import Heads from '../Heads';
 
+const UniteTitle = '/images/title--unite.svg';
+const SingleLineCreatorsTitle = '/images/title--creators_of_the_world.svg';
+const MultiLineCreatorsTitle = '/images/title--creators_of_the_world_2.svg';
+const LogoCaps = '/images/logo.svg';
 const SectionWrapper = styled.div`
   padding: 3rem 8rem 0;
   @media only screen and (max-width: ${({ theme }) =>
@@ -82,21 +80,7 @@ const Logo = styled.img`
   }
 `;
 
-const LogoTitle = styled(Body)`
-  margin: 60px 0;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
-    font-size: 24px;
-    margin: 3rem 0;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    font-size: 15px;
-    margin: 2rem 0;
-  }
-`;
-
-const Description = styled.p`
+const Description = styled.h5`
   max-width: 45rem;
   margin: 0 auto;
   margin-top: 5rem;
@@ -122,6 +106,21 @@ const Description = styled.p`
     padding: 0;
   }
 `;
+
+const LogoTitle = styled(Body)`
+  margin: 60px 0;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsTablet}) {
+    font-size: 24px;
+    margin: 3rem 0;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.creators.breakpoints.creatorsMobile}) {
+    font-size: 15px;
+    margin: 2rem 0;
+  }
+`;
+
 
 const TitleImg = styled.img`
   width: 100%;

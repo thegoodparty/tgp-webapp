@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
@@ -109,10 +109,10 @@ export function YouPage({
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title data-cy="page-title">You | The Good Party</title>
         <meta name="description" content="You | The Good Party" />
-      </Helmet>
+      </Head>
       {user ? (
         <ProfileWrapper {...accountProps} />
       ) : (

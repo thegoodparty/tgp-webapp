@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -158,13 +158,13 @@ export function AllCandidatesToScrape({
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>AllCandidatesToScrape</title>
         <meta
           name="description"
           content="Description of AllCandidatesToScrape"
         />
-      </Helmet>
+      </Head>
       <div>
         <h1>
           Candidates {onlyNoData ? ' without data ' : ''}

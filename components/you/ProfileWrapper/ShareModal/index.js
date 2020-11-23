@@ -180,7 +180,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
         </Close>
         <div className="text-center">
           {' '}
-          <Logo src="images/logo-caps.svg" />
+          <Logo src="/images/logo-caps.svg" width="170px" height="50px" />
         </div>
 
         <AvatarWrapper>
@@ -227,7 +227,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
               >
                 <IconItem>
                   <IconWrapper className="sms">
-                    <Icon src="images/icons/sms-icon.svg" alt="sms" />
+                    <Icon src="/images/icons/sms-icon.svg" alt="sms" width="36px" height="auto" />
                   </IconWrapper>
                 </IconItem>
                 <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
@@ -237,7 +237,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
               <IconItem>
                 <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
                   <IconWrapper>
-                    <Icon src="images/icons/link-icon.svg" alt="copy" />
+                    <Icon src="/images/icons/link-icon.svg" alt="copy" width="36px" height="auto" />
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
@@ -248,7 +248,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
                 <IconItem>
                   <IconItem onClick={nativeShare}>
                     <IconWrapper className="native-share">
-                      <Icon src="images/icons/share-icon.svg" alt="more" />
+                      <Icon src="/images/icons/share-icon.svg" alt="more" width="36px" height="auto" />
                     </IconWrapper>
                   </IconItem>
                 </IconItem>
@@ -259,7 +259,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
         </AdditionalSharesWrapper>
         {copied && (
           <CopiedWrapper>
-            <Icon src="images/icons/copy-paste.svg" alt="copy link" />
+            <Icon src="/images/icons/copy-paste.svg" alt="copy link" width="auto" height="auto" />
             <Copied>TEXT LINK COPIED TO CLIPBOARD</Copied>
           </CopiedWrapper>
         )}

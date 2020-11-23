@@ -3,6 +3,8 @@ branch-defaults:
     environment: tgp-site
   develop:
     environment: tgp-site-dev
+  nextjs:
+    environment: tgp-site-dev
 environment-defaults:
   tgp-api-test:
     branch: null

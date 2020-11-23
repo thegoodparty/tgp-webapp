@@ -19,8 +19,5 @@ if (ENV === 'dev') {
   base = 'https://thegoodparty.org';
 }
 
-apiBase = 'http://localhost:1337/api/v1/';
-base = 'http://localhost:1337';
-
 const apiHelper = { apiBase, base };
 export default apiHelper;

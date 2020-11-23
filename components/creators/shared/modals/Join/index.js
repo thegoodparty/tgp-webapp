@@ -9,8 +9,6 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Fade from '@material-ui/core/Fade';
-import LogoCaps from 'public/images/logo.svg';
-import EmailIcon from 'public/images/icons/email-icon.svg';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
 import TwitterButton from 'components/you/SocialRegisterWrapper/TwitterButton';
 import { OutlinedButton } from 'components/shared/buttons';
@@ -25,6 +23,8 @@ import {
 } from '../shared';
 import { Body13, Body15, Body11 } from '../../typography';
 import Heads from '../../Heads';
+const LogoCaps = '/images/logo.svg';
+const EmailIcon = '/images/icons/email-icon.svg';
 
 const JoinTitle = styled(Title)`
   margin-bottom: 1rem;

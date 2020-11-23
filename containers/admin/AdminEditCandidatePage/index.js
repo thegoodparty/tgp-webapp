@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-next-router';
@@ -65,13 +65,13 @@ export function AdminEditCandidatePage({
   }
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Admin Edit Candidate Page</title>
         <meta
           name="description"
           content="Description of AdminEditCandidatePage"
         />
-      </Helmet>
+      </Head>
       <AdminEditCandidate {...childProps} />
     </div>
   );
