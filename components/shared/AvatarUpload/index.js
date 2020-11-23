@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Backdrop from '@material-ui/core/Backdrop';
 import ImageUploader from 'react-images-upload';
-
+import 'react-images-upload/index.css'
 const Wrapper = styled(Backdrop)`
   && {
     z-index: 1001;

@@ -53,7 +53,7 @@ const H3Body = styled(H3)`
   font-weight: 400;
 `;
 
-const ButtonWrapper = styled(Link)`
+const ButtonWrapper = styled.div`
   margin: 24px 0;
   width: 100%;
 `;
@@ -80,10 +80,12 @@ const YouWrapper = ({ articles }) => {
           First we count the people needed for a good indy candidate to win,
           then we all vote to get them in.
         </H3Body>
-        <ButtonWrapper href="?register=true" data-cy="count-in">
-          <OutlinedButton active fullWidth>
-            COUNT ME IN!
-          </OutlinedButton>
+        <ButtonWrapper>
+          <Link href="?register=true" data-cy="count-in">
+            <OutlinedButton active fullWidth>
+              COUNT ME IN!
+            </OutlinedButton>
+          </Link>
         </ButtonWrapper>
       </InnerWrapper>
       <TopQuestions articles={articles} />

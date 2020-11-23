@@ -1,7 +1,7 @@
 import { END } from 'redux-saga';
-import PartyPage from '../../containers/party/PartyPage';
-import wrapper from '../../redux/store';
-import { loadContent } from '../../utils/loadInitialState';
+import PartyPage from 'containers/party/PartyPage';
+import wrapper from 'redux/store';
+import { loadContent } from 'utils/loadInitialState';
 
 export default function Party() {
   return <PartyPage />;
