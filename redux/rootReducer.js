@@ -18,7 +18,6 @@ const reducer = (state, action) => {
 };
 
 export default function createReducer(injectedReducers = {}) {
-  console.log('injectReducers', injectedReducers)
   const rootReducer = combineReducers({
     router: routerReducer,
     ...injectedReducers,

@@ -9,7 +9,7 @@ export default function Party() {
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   loadContent(store.dispatch);
-  store.dispatch(END)
+  store.dispatch(END);
   if (store.global) {
     await store.global.toPromise();
   }

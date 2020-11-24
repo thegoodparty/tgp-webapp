@@ -189,7 +189,7 @@ const DistrictWrapper = ({
 
   return (
     <PageWrapper>
-      {district && presidential ? (
+      {presidential ? (
         <>
           <Row data-cy="location">
             <H1>{primaryCity},</H1>

@@ -276,7 +276,7 @@ function Footer({ isCreators = false }) {
                     rel="nofollow"
                     data-cy="footer-link-twitter"
                   >
-                    <SocialIcon src="images/icons/twitter.svg" />
+                    <SocialIcon src="/images/icons/twitter.svg" />
                   </a>
                   <a
                     href="https://www.youtube.com/channel/UCPNp46yxggs8NPeXFuMTpGQ"
@@ -284,7 +284,7 @@ function Footer({ isCreators = false }) {
                     rel="nofollow"
                     data-cy="footer-link-youtube"
                   >
-                    <SocialIcon src="images/icons/youtube-white.svg" />
+                    <SocialIcon src="/images/icons/youtube-white.svg" />
                   </a>
                 </Column>
               </Grid>
