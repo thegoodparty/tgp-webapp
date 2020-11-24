@@ -37,6 +37,7 @@ import candidateActions from '../CandidatePage/actions';
 export function DistrictPage({
   content,
   districtState,
+  ssrState,
   // zip,
   // cd,
   dispatch,
@@ -54,6 +55,13 @@ export function DistrictPage({
     reducer: candidateReducer,
   });
 
+  if (ssrState) {
+    console.log('here');
+    dispatch(
+      districtActions.loadAllPresidentialActionSuccess(ssrState.presidential),
+    );
+  }
+
   const router = useRouter();
   const { zipCd } = router.query;
   const zip = zipCd?.length > 0 ? zipCd[0] : false;
@@ -64,6 +72,7 @@ export function DistrictPage({
 
   const { zipWithDistricts } = districtState;
   const { presidential, houseCandidates, senateCandidates } = districtState;
+  console.log('district page presidential', presidential);
 
   useEffect(() => {
     if (!zipWithDistricts && zip) {
@@ -131,10 +140,10 @@ export function DistrictPage({
   const childProps = {
     district: zipWithDistricts,
     cdIndex,
-    presidential,
+    presidential: presidential || ssrState.presidential,
     houseCandidates,
     senateCandidates,
-    content,
+    content: content || ssrState.content,
     changeDistrictCallback,
     deleteRankingCallback,
     changeZipCallback,

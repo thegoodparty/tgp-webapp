@@ -1,16 +1,28 @@
-// import { END } from 'redux-saga';
 import Page from 'containers/elections/DistrictPage';
-// import wrapper from '../../redux/store';
-// import { loadContent } from '../../utils/loadInitialState';
+import tgpApi from 'api/tgpApi';
 
-export default function Party() {
-  return <Page />;
+export default function Party({ ssrState }) {
+  console.log('page props', ssrState);
+  return <Page ssrState={ssrState} />;
 }
-//
-// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-//   loadContent(store.dispatch);
-//   store.dispatch(END)
-//   if (store.global) {
-//     await store.global.toPromise();
-//   }
-// });
+
+export async function getServerSideProps(context) {
+  const api = tgpApi.allPresidential;
+  const res = await fetch(api.url);
+  const data = await res.json();
+
+  const api2 = tgpApi.content;
+  const res2 = await fetch(api2.url);
+  const data2 = await res2.json();
+  const content = {
+    faqArticles: data2.faqArticles,
+  };
+  return {
+    props: {
+      ssrState: {
+        presidential: data.presidential,
+        content,
+      },
+    }, // will be passed to the page component as props
+  };
+}
