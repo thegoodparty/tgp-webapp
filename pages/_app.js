@@ -4,6 +4,7 @@ import { ConnectedRouter } from 'connected-next-router';
 
 import GlobalStyles from 'theme/GlobalStyles';
 import store from 'redux/store';
+import QueryRoutes from 'containers/App/QueryRoutes';
 
 import theme from 'theme';
 
@@ -21,6 +22,9 @@ function MyApp({ Component, pageProps }) {
     <ConnectedRouter>
       <UiThemeProvider theme={theme}>
         <GlobalStyles />
+        <ThemeProvider theme={theme}>
+          <QueryRoutes />
+        </ThemeProvider>
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>

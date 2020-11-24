@@ -13,6 +13,11 @@ import { Body, Body11, H3 } from 'components/shared/typogrophy';
 import UserAvatar from 'components/shared/UserAvatar';
 import { uuidUrl } from 'helpers/userHelper';
 
+const CopyPasteIcon = '/images/icons/copy-paste.svg';
+const LinkIcon = '/images/icons/link-icon.svg';
+const SmsIcon = '/images/icons/sms-icon.svg';
+const ShareIcon = '/images/icons/share-icon.svg';
+
 const Wrapper = styled.div`
   background-color: #fff;
   padding: 48px 18px 32px;
@@ -227,7 +232,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
               >
                 <IconItem>
                   <IconWrapper className="sms">
-                    <Icon src="/images/icons/sms-icon.svg" alt="sms" width="36px" height="auto" />
+                    <Icon src={SmsIcon} alt="sms" width="36px" height="auto" />
                   </IconWrapper>
                 </IconItem>
                 <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
@@ -237,7 +242,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
               <IconItem>
                 <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
                   <IconWrapper>
-                    <Icon src="/images/icons/link-icon.svg" alt="copy" width="36px" height="auto" />
+                    <Icon src={LinkIcon} alt="copy" width="36px" height="auto" />
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
@@ -248,7 +253,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
                 <IconItem>
                   <IconItem onClick={nativeShare}>
                     <IconWrapper className="native-share">
-                      <Icon src="/images/icons/share-icon.svg" alt="more" width="36px" height="auto" />
+                      <Icon src={ShareIcon} alt="more" width="36px" height="auto" />
                     </IconWrapper>
                   </IconItem>
                 </IconItem>
@@ -259,7 +264,7 @@ const ShareModal = ({ open, user, closeCallback }) => {
         </AdditionalSharesWrapper>
         {copied && (
           <CopiedWrapper>
-            <Icon src="/images/icons/copy-paste.svg" alt="copy link" width="auto" height="auto" />
+            <Icon src={CopyPasteIcon} alt="copy link" width="auto" height="auto" />
             <Copied>TEXT LINK COPIED TO CLIPBOARD</Copied>
           </CopiedWrapper>
         )}

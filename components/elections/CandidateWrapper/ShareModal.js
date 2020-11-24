@@ -21,10 +21,10 @@ import { uuidUrl } from 'helpers/userHelper';
 import { numberFormatter } from 'helpers/numberHelper';
 import AnalyticsService from 'services/AnalyticsService';
 
-const CopyPasteIcon = 'public/images/icons/copy-paste.svg';
-const LinkIcon = 'public/images/icons/link-icon.svg';
-const SmsIcon = 'public/images/icons/sms-icon.svg';
-const ShareIcon = 'public/images/icons/share-icon.svg';
+const CopyPasteIcon = '/images/icons/copy-paste.svg';
+const LinkIcon = '/images/icons/link-icon.svg';
+const SmsIcon = '/images/icons/sms-icon.svg';
+const ShareIcon = '/images/icons/share-icon.svg';
 const StyledDialog = styled(Dialog)`
   && {
     .MuiDialog-paperScrollPaper {
@@ -173,7 +173,7 @@ const IconWrapper = styled.div`
   }
 `;
 
-const Icon = styled.img``;
+const Icon = styled(Image)``;
 
 const IconLabel = styled.div`
   font-size: 10px;
@@ -374,7 +374,7 @@ const ShareModal = ({
               >
                 <IconItem>
                   <IconWrapper className="sms">
-                    <Icon src={SmsIcon} alt="sms" />
+                    <Icon src={SmsIcon} alt="sms" width="36px" height="auto" />
                   </IconWrapper>
                 </IconItem>
                 <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
@@ -413,7 +413,7 @@ const ShareModal = ({
               <IconItem>
                 <CopyToClipboard text={url} onCopy={handleCopy}>
                   <IconWrapper>
-                    <Icon src={LinkIcon} alt="copy" />
+                    <Icon src={LinkIcon} alt="copy" width="36px" height="auto" />
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
@@ -458,7 +458,7 @@ const ShareModal = ({
                   <IconItem>
                     <IconItem onClick={nativeShare}>
                       <IconWrapper className="native-share">
-                        <Icon src={ShareIcon} alt="more" />
+                        <Icon src={ShareIcon} alt="more" width="36px" height="auto" />
                       </IconWrapper>
                     </IconItem>
                   </IconItem>
@@ -482,7 +482,7 @@ const ShareModal = ({
         </Footer>
         {copied && (
           <CopiedWrapper>
-            <Icon src={CopyPasteIcon} alt="copy link" />
+            <Icon src={CopyPasteIcon} alt="copy link" width="36px" height="auto" />
             <Copied>TEXT LINK COPIED TO CLIPBOARD</Copied>
           </CopiedWrapper>
         )}
