@@ -442,9 +442,6 @@ export const rankPageJoinLink = (
 };
 
 export const electionRoute = (user, zipCode = null) => {
-  if (typeof window !== 'undefined') {
-    return '/intro/zip-finder';
-  }
   let zip;
   if (user?.zipCode) {
     zip = user.zipCode.zip;
