@@ -11,13 +11,6 @@ if (API_ENV === 'local') {
   apiBase = 'https://api.thegoodparty.org/api/v1/';
   base = 'https://thegoodparty.org';
 }
-if (ENV === 'dev') {
-  apiBase = 'https://api-dev.thegoodparty.org/api/v1/';
-  base = 'https://dev.thegoodparty.org';
-} else if (ENV === 'prod') {
-  apiBase = 'https://api.thegoodparty.org/api/v1/';
-  base = 'https://thegoodparty.org';
-}
 
 const apiHelper = { apiBase, base };
 export default apiHelper;
