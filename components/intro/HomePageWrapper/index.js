@@ -77,7 +77,7 @@ function HomePageWrapper() {
           </Link>
         </LoginLink>
         <div>
-          <Logo src="images/heart.svg" />
+          <Logo src="/images/heart.svg" />
         </div>
         <H1 data-cy="title">
           Power and Money have corrupted <u>both</u> major political parties

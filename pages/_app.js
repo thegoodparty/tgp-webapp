@@ -2,10 +2,11 @@ import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
 import { ConnectedRouter } from 'connected-next-router';
 
-import GlobalStyles from '../theme/GlobalStyles';
-import store from '../redux/store';
+import GlobalStyles from 'theme/GlobalStyles';
+import store from 'redux/store';
+import QueryRoutes from 'containers/App/QueryRoutes';
 
-import theme from '../theme';
+import theme from 'theme';
 
 /**
  * @param {object} initialState The store's initial state (on the client side, the state of the server-side store is passed here)
@@ -21,6 +22,9 @@ function MyApp({ Component, pageProps }) {
     <ConnectedRouter>
       <UiThemeProvider theme={theme}>
         <GlobalStyles />
+        <ThemeProvider theme={theme}>
+          <QueryRoutes />
+        </ThemeProvider>
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-
+import Image from 'next/image';
 import PageWrapper from 'components/shared/PageWrapper';
-import heartImg from 'public/images/heart.svg';
 import { AmaContainer } from 'containers/shared/AmaContainer';
 import { Body, H2, Body13, H3 } from 'components/shared/typogrophy/index';
 import {
@@ -66,10 +65,12 @@ const BottomLink = styled(Body)`
 `;
 
 const CrewTitle = styled(Body)`
-  margin-top: 48px;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
+  && {
+    margin-top: 48px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+  }  
 `;
 
 const CrewWrapper = styled.div`
@@ -181,7 +182,7 @@ const ProfileWrapper = ({
       }
     >
       <Link href="/you/edit" data-cy="edit-profile-link">
-        <EditProfile>Edit Profile</EditProfile>
+        <a><EditProfile>Edit Profile</EditProfile></a>
       </Link>
       <Centered>
         <UserAvatar user={user} size="large" />
@@ -210,9 +211,8 @@ const ProfileWrapper = ({
           <ElectionData>
             {presidentialRankCount === 0
               ? 'Rank Choices'
-              : `${presidentialRankCount} Choice${
-                  presidentialRankCount === 1 ? '' : 's'
-                } Ranked`}
+              : `${presidentialRankCount} Choice${presidentialRankCount === 1 ? '' : 's'
+              } Ranked`}
           </ElectionData>
         </Link>
       </Election>
@@ -226,15 +226,14 @@ const ProfileWrapper = ({
             >
               <ElectionData>
                 {senateRank
-                  ? `${senateRankCount} Choice${
-                      senateRankCount > 1 ? 's' : ''
-                    } Ranked`
+                  ? `${senateRankCount} Choice${senateRankCount > 1 ? 's' : ''
+                  } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-            <NoElection>No Race in 2020</NoElection>
-          )}
+              <NoElection>No Race in 2020</NoElection>
+            )}
         </Election>
       )}
       {userDistrict.code && (
@@ -248,15 +247,14 @@ const ProfileWrapper = ({
             >
               <ElectionData>
                 {houseRank && houseRankCount > 0
-                  ? `${houseRankCount} Choice${
-                      houseRankCount > 1 ? 's' : ''
-                    } Ranked`
+                  ? `${houseRankCount} Choice${houseRankCount > 1 ? 's' : ''
+                  } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-            <NoElection>No Race in 2020</NoElection>
-          )}
+              <NoElection>No Race in 2020</NoElection>
+            )}
         </Election>
       )}
       <Link href={electionLink} data-cy="all-election-link">
@@ -268,7 +266,7 @@ const ProfileWrapper = ({
       <CrewTitle data-cy="crew-title">
         <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
         <Body>
-          (<img src={heartImg} alt="tpg" /> people recruited)
+          (<Image src="/images/heart.svg" alt="tpg" width="21" height="19" /> people recruited)
         </Body>
       </CrewTitle>
       <Body13 style={{ marginBottom: '8px' }} data-cy="invite-crew-label">
@@ -296,10 +294,10 @@ const ProfileWrapper = ({
                   </Body13>
                 </div>
               ) : (
-                <Link href="you/crew">
-                  <CrewMember crewMember={crewMember} />
-                </Link>
-              )}
+                  <Link href="you/crew">
+                    <CrewMember crewMember={crewMember} />
+                  </Link>
+                )}
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (

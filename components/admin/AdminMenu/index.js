@@ -40,7 +40,7 @@ function AdminMenu() {
       <MenuWrapper>
         <Link href="/admin">
           <HeartWrapper>
-            <Heart src="images/heart.svg" alt="admin menu" />
+            <Heart src="/images/heart.svg" alt="admin menu" />
           </HeartWrapper>
         </Link>
       </MenuWrapper>

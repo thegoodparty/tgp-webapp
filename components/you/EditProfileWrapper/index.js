@@ -18,7 +18,7 @@ import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import TextField from '@material-ui/core/TextField';
 import LockIcon from '@material-ui/icons/Lock';
 import { formatToPhone } from 'helpers/phoneHelper';
-import AvatarUpload from 'components/shared/AvatarUpload/Loadable';
+import AvatarUpload from 'components/shared/AvatarUpload';
 import { BlueButton } from 'components/shared/buttons';
 import UserAvatar from 'components/shared/UserAvatar';
 import AlertDialog from 'components/shared/AlertDialog';

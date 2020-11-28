@@ -115,7 +115,7 @@ function MobileHeader({
               />
             ) : (
               <Logo
-                src="images/logo-caps.svg"
+                src="/images/logo-caps.svg"
                 alt="The Good Party"
                 data-cy="logo"
               />
@@ -127,6 +127,8 @@ function MobileHeader({
             src="images/icons/share.svg"
             alt="Share"
             onClick={nativeShare}
+            width="auto"
+            height="auto"
           />
         ) : (
           <BackIconWrapperHidden>

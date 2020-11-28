@@ -173,6 +173,8 @@ const AddVoteModal = ({
             src="images/logo-caps.svg'"
             alt="logo"
             style={{ marginTop: '16px' }}
+            width="auto"
+            height="auto"
           />
         </Footer>
       </Wrapper>

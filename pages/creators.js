@@ -1,10 +1,9 @@
 import { END } from 'redux-saga';
-import PartyPage from 'containers/party/PartyPage';
 import wrapper from 'redux/store';
 import { loadContent } from 'utils/loadInitialState';
-
-export default function Party() {
-  return <PartyPage />;
+import CreatorsPage from 'containers/creators/CreatorsPage';
+export default function Creators() {
+  return <CreatorsPage />;
 }
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {

@@ -7,23 +7,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Share from 'public/images/icons/share_square.svg';
-import Plus from 'public/images/icons/suggest_plus.svg';
 import { ProjectButton } from '../buttons';
 import { ListProject, ShareModal } from '../modals';
 import Project from '../Project';
-
+const Share = '/images/icons/share_square.svg';
+const Plus = '/images/icons/suggest_plus.svg';
 const SectionWrapper = styled.div`
   padding: 6rem 8rem;
   background-color: ${({ theme }) => theme.colors.blue};
   max-width: ${({ theme }) => theme.creators.breakpoints.creatorsContent};
   margin: 0 auto;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     padding: 4rem 4.5rem;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     padding: 2.5rem 1rem;
   }
 `;
@@ -31,12 +30,12 @@ const SectionHeader = styled.div`
   margin-bottom: 2rem;
   align-items: center;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     display: flex;
     justify-content: space-between;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     padding: 0 1rem;
   }
 `;
@@ -47,24 +46,24 @@ const Title = styled.h2`
   text-transform: uppercase;
   margin: 0;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsContent}) {
+    theme.creators.breakpoints.creatorsContent}) {
     font-size: 40px;
     margin-bottom: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsTablet}) {
+    theme.creators.breakpoints.creatorsTablet}) {
     font-size: 27px;
     margin-bottom: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     margin-bottom: 1.5rem;
   }
 `;
 
 const SectionHeaderActions = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     align-items: center;
   }
 `;
@@ -72,13 +71,13 @@ const SectionHeaderActions = styled.div`
 const ProjectIcon = styled.img`
   display: block;
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     display: none;
   }
 `;
 const ProjectButtonLink = styled.a`
   @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     width: 100%;
   }
 `;

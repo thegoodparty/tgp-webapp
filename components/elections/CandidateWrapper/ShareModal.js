@@ -18,14 +18,13 @@ import {
   getCandidateTitle,
 } from 'helpers/candidatesHelper';
 import { uuidUrl } from 'helpers/userHelper';
-import CopyPasteIcon from 'public/images/icons/copy-paste.svg';
-import LinkIcon from 'public/images/icons/link-icon.svg';
-import SmsIcon from 'public/images/icons/sms-icon.svg';
-import ShareIcon from 'public/images/icons/share-icon.svg';
 import { numberFormatter } from 'helpers/numberHelper';
-import LogoCapsImg from 'public/images/logo-caps.svg';
 import AnalyticsService from 'services/AnalyticsService';
 
+const CopyPasteIcon = '/images/icons/copy-paste.svg';
+const LinkIcon = '/images/icons/link-icon.svg';
+const SmsIcon = '/images/icons/sms-icon.svg';
+const ShareIcon = '/images/icons/share-icon.svg';
 const StyledDialog = styled(Dialog)`
   && {
     .MuiDialog-paperScrollPaper {
@@ -33,7 +32,7 @@ const StyledDialog = styled(Dialog)`
       margin: 20px;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         width: auto;
       }
     }
@@ -143,7 +142,7 @@ const AdditionalSharesWrapper = styled.div`
   &.with-native {
     padding: 0 8px;
     // @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
     //   padding: 0 90px;
     // }
   }
@@ -174,7 +173,7 @@ const IconWrapper = styled.div`
   }
 `;
 
-const Icon = styled.img``;
+const Icon = styled(Image)``;
 
 const IconLabel = styled.div`
   font-size: 10px;
@@ -288,16 +287,14 @@ const ShareModal = ({
   }
 
   const chamberTitle = getCandidateTitle(chamber);
-  const messageTitle = `Let's see if we can elect ${candidate.name} ${
-    chamberTitle.includes('President') ? '' : 'to '
-  }${chamberTitle}.`;
+  const messageTitle = `Let's see if we can elect ${candidate.name} ${chamberTitle.includes('President') ? '' : 'to '
+    }${chamberTitle}.`;
   const emailTitle = `Help me elect ${candidate.name}`;
   // const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
-  const messageBody = `${
-    candidate.name
-  } could win in ${getCandidateChamberDistrictOnly(
-    candidate,
-  )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
+  const messageBody = `${candidate.name
+    } could win in ${getCandidateChamberDistrictOnly(
+      candidate,
+    )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   const nativeShare = () => {
@@ -377,7 +374,7 @@ const ShareModal = ({
               >
                 <IconItem>
                   <IconWrapper className="sms">
-                    <Icon src={SmsIcon} alt="sms" />
+                    <Icon src={SmsIcon} alt="sms" width="36px" height="auto" />
                   </IconWrapper>
                 </IconItem>
                 <IconLabel data-cy="sms-share-title">SMS / TEXT</IconLabel>
@@ -416,7 +413,7 @@ const ShareModal = ({
               <IconItem>
                 <CopyToClipboard text={url} onCopy={handleCopy}>
                   <IconWrapper>
-                    <Icon src={LinkIcon} alt="copy" />
+                    <Icon src={LinkIcon} alt="copy" width="36px" height="auto" />
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
@@ -461,7 +458,7 @@ const ShareModal = ({
                   <IconItem>
                     <IconItem onClick={nativeShare}>
                       <IconWrapper className="native-share">
-                        <Icon src={ShareIcon} alt="more" />
+                        <Icon src={ShareIcon} alt="more" width="36px" height="auto" />
                       </IconWrapper>
                     </IconItem>
                   </IconItem>
@@ -485,7 +482,7 @@ const ShareModal = ({
         </Footer>
         {copied && (
           <CopiedWrapper>
-            <Icon src={CopyPasteIcon} alt="copy link" />
+            <Icon src={CopyPasteIcon} alt="copy link" width="36px" height="auto" />
             <Copied>TEXT LINK COPIED TO CLIPBOARD</Copied>
           </CopiedWrapper>
         )}

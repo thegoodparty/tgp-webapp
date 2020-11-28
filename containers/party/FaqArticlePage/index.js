@@ -9,7 +9,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { goBack, replace } from 'connected-react-router';
-
+import { useRouter } from 'next/router'
+import Head from 'next/head';
+import queryHelper from 'helpers/queryHelper';
 import { createStructuredSelector } from 'reselect';
 
 import globalActions from 'containers/App/actions';
@@ -17,6 +19,7 @@ import globalActions from 'containers/App/actions';
 import {
   makeSelectContent,
   makeSelectModalArticleId,
+  makeSelectLocation
 } from 'containers/App/selectors';
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
@@ -24,14 +27,13 @@ import { getArticleById } from 'helpers/articlesHelper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 
 export function FaqArticlePage({
-  id,
   content,
-  backButtonCallback,
-  closeModalCallback,
   helpfulCallback,
+  locationState
 }) {
   const [article, setArticle] = useState(null);
-
+  const { search } = locationState;
+  const id = queryHelper(search, 'article');
   useEffect(() => {
     if (content) {
       setArticle(getArticleById(content.faqArticles, id));
@@ -41,20 +43,20 @@ export function FaqArticlePage({
   if (!id) {
     return <></>;
   }
-
+  const router = useRouter()
   const childProps = {
     article,
-    backButtonCallback,
-    closeModalCallback,
+    backButtonCallback: () => router.back(),
+    closeModalCallback: () => router.push(window.location.pathname),
     helpfulCallback,
   };
 
   return (
     <div>
-      <TgpHelmet
-        title={article ? article.title : 'FAQ Article'}
-        description={article ? article.title : 'FAQ Article'}
-      />
+      <Head>
+        <title data-cy="page-title">FAQ Article</title>
+        <meta name="description" content="FAQ Article" />
+      </Head>
       <FaqArticleWrapper {...childProps} />
     </div>
   );
@@ -62,26 +64,14 @@ export function FaqArticlePage({
 
 FaqArticlePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  backButtonCallback: PropTypes.func.isRequired,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  closeModalCallback: PropTypes.func,
   helpfulCallback: PropTypes.func,
+  locationState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    backButtonCallback: () => {
-      dispatch(goBack());
-    },
-    closeModalCallback: () => {
-      if (document.referrer && !document.referrer.includes(location.host)) {
-        dispatch(replace(window.location.pathname));
-      } else {
-        dispatch(goBack());
-      }
-    },
     helpfulCallback: (id, title, isHelpful, feedback) => {
       dispatch(
         globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback),
@@ -92,7 +82,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
-  id: makeSelectModalArticleId(),
+  locationState: makeSelectLocation(),
 });
 
 const withConnect = connect(

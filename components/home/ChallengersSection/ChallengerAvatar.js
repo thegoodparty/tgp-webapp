@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import Image from 'next/image';
 
 const ChallengerAvatarWrapper = styled.div`
   width: 7rem;

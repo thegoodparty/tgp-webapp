@@ -1,14 +1,14 @@
-import NotionIcon from 'images/icons/notion.svg';
-import FigmaIcon from 'images/icons/figma.svg';
-import GoogleIcon from 'images/icons/icons8-google.svg';
-import GoogleDriveIcon from 'images/icons/icons8-google-drive.svg';
-import GoogleDocsIcon from 'images/icons/icons8-google-docs.svg';
-import GooglePptIcon from 'images/icons/icons8-google-slides.svg';
-import GoogleSheetIcon from 'images/icons/icons8-google-sheets.svg';
-import AirtableIcon from 'images/icons/icons8-airtable.svg';
-import GithubIcon from 'images/icons/icons8-github.svg';
-import VimeoIcon from 'images/icons/icons8-vimeo.svg';
-import YoutubeIcon from 'images/icons/icons8-youtube.svg';
+import NotionIcon from 'public/images/icons/notion.svg';
+import FigmaIcon from 'public/images/icons/figma.svg';
+import GoogleIcon from 'public/images/icons/icons8-google.svg';
+import GoogleDriveIcon from 'public/images/icons/icons8-google-drive.svg';
+import GoogleDocsIcon from 'public/images/icons/icons8-google-docs.svg';
+import GooglePptIcon from 'public/images/icons/icons8-google-slides.svg';
+import GoogleSheetIcon from 'public/images/icons/icons8-google-sheets.svg';
+import AirtableIcon from 'public/images/icons/icons8-airtable.svg';
+import GithubIcon from 'public/images/icons/icons8-github.svg';
+import VimeoIcon from 'public/images/icons/icons8-vimeo.svg';
+import YoutubeIcon from 'public/images/icons/icons8-youtube.svg';
 
 const NOTION = 'https://notion.so';
 const FIGMA = 'https://www.figma.com';
@@ -39,12 +39,12 @@ const ICONS_LIST = {
     [YOUTUBE]: YoutubeIcon
 }
 export const getBaseUrl = (link) => {
-    let pathArray = link.split( '/' );
+    let pathArray = link.split('/');
     let protocol = pathArray[0];
     let host = pathArray[2];
     let firstParam = pathArray[3];
     let url = protocol + '//' + host;
-    if(url === GOOGLE_DOCS_BASE) {
+    if (url === GOOGLE_DOCS_BASE) {
         url += '/' + firstParam;
     }
     return url

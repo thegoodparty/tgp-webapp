@@ -15,8 +15,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-next-router';
 
-import SocialRegisterPage from 'containers/you/SocialRegisterPage/Loadable';
-import FaqArticlePage from 'containers/party/FaqArticlePage/Loadable';
+import SocialRegisterPage from 'containers/you/SocialRegisterPage';
+import FaqArticlePage from 'containers/party/FaqArticlePage';
 
 import queryHelper from 'helpers/queryHelper';
 import { setCookie } from 'helpers/cookieHelper';
@@ -33,7 +33,7 @@ function QueryRoutes({ locationState, content, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
   const { search } = locationState;
-
+  
   const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {
@@ -49,6 +49,7 @@ function QueryRoutes({ locationState, content, dispatch }) {
 
   useEffect(() => {
     const modalArticleId = queryHelper(search, 'article');
+
     if (modalArticleId) {
       dispatch(globalActions.setArticleModalAction(modalArticleId));
     } else {

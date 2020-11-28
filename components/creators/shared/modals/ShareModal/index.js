@@ -6,13 +6,8 @@ import Grid from '@material-ui/core/Grid';
 
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import LogoCaps from 'public/images/logo.svg';
 import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
 import { uuidUrl } from 'helpers/userHelper';
-import CopyPasteIcon from 'public/images/icons/copy-paste.svg';
-import LinkIcon from 'public/images/icons/link-icon.svg';
-import SmsIcon from 'public/images/icons/sms-icon.svg';
-import ShareIcon from 'public/images/icons/share-icon.svg';
 import {
   Title,
   BodyWrapper,
@@ -22,6 +17,12 @@ import {
   Blurb,
   Logo,
 } from '../shared';
+const LogoCaps = '/images/logo.svg';
+const CopyPasteIcon = '/images/icons/copy-paste.svg';
+const LinkIcon = '/images/icons/link-icon.svg';
+const SmsIcon = '/images/icons/sms-icon.svg';
+const ShareIcon = '/images/icons/share-icon.svg';
+
 
 const ModalTitle = styled(Title)`
   margin-bottom: 1rem;
