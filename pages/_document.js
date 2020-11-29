@@ -39,7 +39,7 @@ class CustomDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta charset="utf-8" />
+          <meta charSet="utf-8" />
 
           <meta name="mobile-web-app-capable" content="yes" />
 
