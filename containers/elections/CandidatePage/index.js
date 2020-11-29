@@ -23,6 +23,7 @@ import AnalyticsService from 'services/AnalyticsService';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { useRouter } from 'next/router';
 
 import makeSelectUser, {
   makeSelectRanking,
@@ -36,9 +37,6 @@ import saga from './saga';
 import actions from './actions';
 
 export function CandidatePage({
-  id,
-  chamber,
-  tab,
   candidateState,
   dispatch,
   userState,
@@ -53,13 +51,26 @@ export function CandidatePage({
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
+  const router = useRouter();
+  const { chamberNameIdTab } = router.query;
+  const chamber = chamberNameIdTab?.length > 0 ? chamberNameIdTab[0] : false;
+  // const name = chamberNameIdTab?.length > 1 ? chamberNameIdTab[1] : false;
+  const id = chamberNameIdTab?.length > 2 ? chamberNameIdTab[2] : false;
+  const tab = chamberNameIdTab?.length > 3 ? chamberNameIdTab[3] : false;
+
   const { candidate, incumbent, loading, error } = candidateState;
-  const [chamberName, chamberIncumbent] = chamber.split('-');
+  const [chamberName, chamberIncumbent] = chamber ? chamber.split('-') : '';
   const isIncumbent = chamberIncumbent === 'i';
 
   const { state, district } = candidate || {};
-  const queryAddVote = queryHelper(window.location.search, 'addVote');
-  const queryShare = queryHelper(window.location.search, 'share');
+  const queryAddVote =
+    typeof window !== 'undefined'
+      ? queryHelper(window.location.search, 'addVote')
+      : false;
+  const queryShare =
+    typeof window !== 'undefined'
+      ? queryHelper(window.location.search, 'share')
+      : false;
 
   useEffect(() => {
     if (id) {
@@ -119,7 +130,8 @@ export function CandidatePage({
       : 'candidate'
   }`;
 
-  const url = uuidUrl(user, window.location.href);
+  const url =
+    typeof window !== 'undefined' ? uuidUrl(user, window.location.href) : '';
 
   const description = `${
     candidate && !emptyCandidate() ? candidate.name : ''
@@ -170,9 +182,6 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
-    id: ownProps.match.params.id,
-    chamber: ownProps.match.params.chamber,
-    tab: ownProps.match.params.tab,
     deleteCandidateRankingCallback: rank => {
       dispatch(userActions.deleteCandidateRankingAction(rank.id));
     },

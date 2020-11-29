@@ -62,8 +62,6 @@ export function ElectionPage({
 
   const router = useRouter();
   const { chamberStateDistrict } = router.query;
-  console.log('router', router);
-  console.log('router.query', router.query);
   const chamber =
     chamberStateDistrict?.length > 0 ? chamberStateDistrict[0] : false;
   const state =

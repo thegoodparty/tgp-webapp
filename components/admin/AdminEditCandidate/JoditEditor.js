@@ -1,12 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { getCookie } from 'helpers/cookieHelper';
 import PropTypes from 'prop-types';
-import JoditEditor from 'jodit-react';
 import tgpApi from 'api/tgpApi';
+import dynamic from 'next/dynamic';
+
+const JoditEditor = dynamic(() => import('jodit-react').default, {
+  ssr: false,
+});
 
 const JoditEditorWrapper = ({
   initialText = '',
-  onChangeCallback = () => { },
+  onChangeCallback = () => {},
 }) => {
   const editor = useRef(null);
   const [content, setContent] = useState('');

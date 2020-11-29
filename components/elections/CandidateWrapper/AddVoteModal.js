@@ -170,7 +170,7 @@ const AddVoteModal = ({
           <Link href="?article=prGq4SAFpfT7qzBFM1HDy">never waste your vote</Link>
           <br />
           <Image
-            src="images/logo-caps.svg'"
+            src="images/logo-caps.svg"
             alt="logo"
             style={{ marginTop: '16px' }}
             width="auto"

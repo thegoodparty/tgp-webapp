@@ -31,7 +31,6 @@ export function PartyPage({ content, appVersion, dispatch }) {
     content,
     appVersion,
   };
-  console.log('partypage1', content, appVersion)
   return (
     <div>
       <TgpHelmet

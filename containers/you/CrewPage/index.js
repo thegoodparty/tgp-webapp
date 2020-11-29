@@ -25,7 +25,8 @@ export function CrewPage({ userState, dispatch }) {
   useInjectSaga({ key: 'user', saga });
 
   const { user, crew, leaderboard, loading } = userState;
-  const { pathname } = location;
+  const pathname =
+    typeof window !== 'undefined' ? window.location.pathname : 'crew';
 
   const isLeaderboard = pathname.includes('leaderboard');
   console.log(pathname, isLeaderboard);

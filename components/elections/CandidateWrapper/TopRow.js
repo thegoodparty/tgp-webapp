@@ -9,9 +9,7 @@ import {
   shortToLongState,
   rankPageLink,
 } from 'helpers/electionsHelper';
-import FacebookIcon from 'public/images/icons/facebook-icon.svg';
-import WebsiteIcon from 'public/images/icons/website-icon.svg';
-import TwitterIcon from 'public/images/icons/twitter-icon.svg';
+import Image from 'next/image';
 
 const TopRowWrapper = styled.div`
   display: flex;
@@ -55,9 +53,21 @@ const TopRow = ({ candidate, chamberName }) => {
       const { facebook, twitter, website } = candidate;
 
       setSocialAccounts([
-        { name: 'website', url: website, icon: WebsiteIcon },
-        { name: 'facebook', url: facebook, icon: FacebookIcon },
-        { name: 'twitter', url: twitter, icon: TwitterIcon },
+        {
+          name: 'website',
+          url: website,
+          icon: '/public/images/icons/website-icon.svg',
+        },
+        {
+          name: 'facebook',
+          url: facebook,
+          icon: '/public/images/icons/facebook-icon.svg',
+        },
+        {
+          name: 'twitter',
+          url: twitter,
+          icon: '/public/images/icons/twitter-icon.svg',
+        },
       ]);
     } else {
       setSocialAccounts([]);
@@ -72,7 +82,7 @@ const TopRow = ({ candidate, chamberName }) => {
       return (
         <ChamberLink>
           <Link href={getRankPageLink()} data-cy="chamber-link">
-            U.S. President
+            <a>U.S. President</a>
           </Link>
         </ChamberLink>
       );
@@ -82,7 +92,7 @@ const TopRow = ({ candidate, chamberName }) => {
         return (
           <ChamberLink>
             <Link href={getRankPageLink()} data-cy="chamber-link">
-              U.S. Senate for {shortToLongState[state.toUpperCase()]}
+              <a>U.S. Senate for {shortToLongState[state.toUpperCase()]}</a>
             </Link>
           </ChamberLink>
         );
@@ -93,7 +103,9 @@ const TopRow = ({ candidate, chamberName }) => {
         return (
           <ChamberLink>
             <Link href={getRankPageLink()} data-cy="chamber-link">
-              U.S. House for District {state.toUpperCase()}-{district}
+              <a>
+                U.S. House for District {state.toUpperCase()}-{district}
+              </a>
             </Link>
           </ChamberLink>
         );
@@ -116,7 +128,12 @@ const TopRow = ({ candidate, chamberName }) => {
                   rel="nofollow"
                 >
                   <IconWrapper>
-                    <img src={social.icon} alt={social.name} />
+                    <Image
+                      src={social.icon}
+                      alt={social.name}
+                      width="auto"
+                      height="auto"
+                    />
                     <SocialLabel>{social.name}</SocialLabel>
                   </IconWrapper>
                 </a>
