@@ -1,12 +1,13 @@
 import produce from 'immer';
 import types from './constants';
+import content from './content';
 
 const initialState = {
-  content: false,
+  content,
   loading: false,
   error: false,
   appVersion: '1.0.19',
-  modalArticleId: false
+  modalArticleId: false,
 };
 
 const globalReducer = (state = initialState, action) =>

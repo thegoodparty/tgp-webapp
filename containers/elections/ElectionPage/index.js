@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { useRouter } from 'next/router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -43,9 +44,6 @@ import candidateActions from '../CandidatePage/actions';
 
 export function ElectionPage({
   content,
-  chamber,
-  state,
-  district,
   districtState,
   candidateState,
   locationState,
@@ -61,6 +59,17 @@ export function ElectionPage({
     reducer: candidateReducer,
   });
   useInjectSaga({ key: 'candidate', saga: candidateSaga });
+
+  const router = useRouter();
+  const { chamberStateDistrict } = router.query;
+  console.log('router', router);
+  console.log('router.query', router.query);
+  const chamber =
+    chamberStateDistrict?.length > 0 ? chamberStateDistrict[0] : false;
+  const state =
+    chamberStateDistrict?.length > 1 ? chamberStateDistrict[1] : false;
+  const district =
+    chamberStateDistrict?.length > 2 ? chamberStateDistrict[2] : false;
 
   const { user, ranking } = userState;
   const { incumbent } = candidateState;
@@ -103,7 +112,10 @@ export function ElectionPage({
     dispatch(userActions.guestRankingAction());
   }
 
-  const displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
+  let displayChamber = '';
+  if (chamber) {
+    displayChamber = chamber.charAt(0).toUpperCase() + chamber.substring(1);
+  }
 
   const candidatesWithFields = candidates;
 
@@ -156,9 +168,6 @@ export function ElectionPage({
 
 ElectionPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  chamber: PropTypes.string.isRequired,
-  state: PropTypes.string,
-  district: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
   candidateState: PropTypes.object,
@@ -179,12 +188,9 @@ const mapStateToProps = createStructuredSelector({
   locationState: makeSelectLocation(),
 });
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    chamber: ownProps.match.params.chamber,
-    state: ownProps.match.params.state,
-    district: ownProps.match.params.district,
 
     deleteCandidateRankingCallback: (rank, user) => {
       if (user) {

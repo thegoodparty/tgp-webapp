@@ -151,7 +151,6 @@ export function DistrictPage({
     ranking: rankingObj,
   };
 
-  console.log('childProps', childProps);
 
   return (
     <div>

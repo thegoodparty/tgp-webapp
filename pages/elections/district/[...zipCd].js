@@ -2,7 +2,6 @@ import Page from 'containers/elections/DistrictPage';
 import tgpApi from 'api/tgpApi';
 
 export default function Party({ ssrState }) {
-  console.log('page props', ssrState);
   return <Page ssrState={ssrState} />;
 }
 
