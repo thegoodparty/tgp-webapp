@@ -99,11 +99,13 @@ const Filler = styled(Body13)`
 `;
 
 const UnderCrew = styled(Body)`
+  cursor:pointer;
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.blue};
 `;
 
 const InviteUrl = styled(Body)`
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
 `;
 

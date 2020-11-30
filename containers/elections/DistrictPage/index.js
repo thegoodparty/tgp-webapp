@@ -38,8 +38,6 @@ export function DistrictPage({
   content,
   districtState,
   ssrState,
-  // zip,
-  // cd,
   dispatch,
   changeDistrictCallback,
   deleteRankingCallback,
@@ -167,8 +165,6 @@ DistrictPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   districtState: PropTypes.object,
-  // zip: PropTypes.string,
-  // cd: PropTypes.string,
   changeDistrictCallback: PropTypes.func,
   deleteRankingCallback: PropTypes.func,
   changeZipCallback: PropTypes.func,
@@ -180,8 +176,6 @@ DistrictPage.propTypes = {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
-    // zip: ownProps.match.params.zip,
-    // cd: ownProps.match.params.cd,
     changeDistrictCallback: (districtId, districtIndex, zip, user) => {
       dispatch(push(`/elections/district/${zip}/${districtIndex}`));
       if (user && districtId) {
