@@ -40,10 +40,11 @@ export function VerifyVotePage({
 
   useInjectReducer({ key: 'verifyVotePage', reducer });
   useInjectSaga({ key: 'verifyVotePage', saga });
-
-  const { search } = window.location;
-  const email = queryHelper(search, 'email');
-  const token = queryHelper(search, 'token');
+  if (typeof window !== 'undefined') {
+    const { search } = window.location;
+    const email = queryHelper(search, 'email');
+    const token = queryHelper(search, 'token');
+  }
   useEffect(() => {
     if (email && token) {
       setSignupRedirectCookie('/verify-vote');

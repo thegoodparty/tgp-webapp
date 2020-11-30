@@ -11,7 +11,7 @@ import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-next-router';
-
+import { useRouter } from 'next/router';
 import AdminEditCandidate from 'components/admin/AdminEditCandidate';
 import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -25,8 +25,6 @@ import adminActions from '../AdminPage/actions';
 export function AdminEditCandidatePage({
   userState,
   adminState,
-  id,
-  chamber,
   saveCandidateCallback,
   deleteUpdateCallback,
   uploadImageCallback,
@@ -34,7 +32,10 @@ export function AdminEditCandidatePage({
 }) {
   useInjectReducer({ key: 'adminPage', reducer });
   useInjectSaga({ key: 'adminPage', saga });
-
+  const router = useRouter();
+  const { chamberId } = router.query;
+  const chamber = chamberId?.length > 0 ? chamberId[0] : '';
+  const id = chamberId?.length > 1 ? chamberId[1] : '';
   const { candidate, loading, error } = adminState;
   const [chamberName, chamberIncumbent] = chamber?.split('-');
   const isIncumbent = chamberIncumbent === 'i';
@@ -81,8 +82,6 @@ AdminEditCandidatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
   adminState: PropTypes.object,
-  id: PropTypes.string.isRequired,
-  chamber: PropTypes.string.isRequired,
   saveCandidateCallback: PropTypes.func,
   deleteUpdateCallback: PropTypes.func,
   uploadImageCallback: PropTypes.func,
@@ -96,8 +95,6 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
-    id: ownProps.match.params.id,
-    chamber: ownProps.match.params.chamber,
     saveCandidateCallback: (updatedFields, candidate, updates) => {
       const { id, chamber, isIncumbent } = candidate;
       dispatch(

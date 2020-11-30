@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-
-import FacebookIcon from 'public/images/icons/facebook-white.svg';
 import tgpTheme from 'theme/index';
 import { Body13 } from '../../shared/typogrophy';
 
+const FacebookIcon = '/images/icons/facebook-white.svg';
 const StyledButton = styled(Button)`
   && {
     margin-top: 18px;

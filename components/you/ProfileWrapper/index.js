@@ -44,6 +44,7 @@ const Election = styled(Body)`
 
 const ElectionData = styled.span`
   margin-left: 6px;
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
 `;
 
@@ -55,6 +56,7 @@ const NoElection = styled(Body13)`
 
 const AllElections = styled(Body)`
   margin-top: 16px;
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
 `;
 
@@ -97,11 +99,13 @@ const Filler = styled(Body13)`
 `;
 
 const UnderCrew = styled(Body)`
+  cursor:pointer;
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.blue};
 `;
 
 const InviteUrl = styled(Body)`
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
 `;
 

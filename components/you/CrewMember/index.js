@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import heartImg from 'public/images/heart.svg';
-
 import { Body13, Body11 } from 'components/shared/typogrophy/index';
 import UserAvatar from 'components/shared/UserAvatar';
 
+const heartImg = '/images/heart.svg';
 const Wrapper = styled(Body13)`
   text-align: center;
 `;

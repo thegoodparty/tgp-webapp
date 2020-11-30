@@ -15,11 +15,11 @@ import {
   rankPageJoinLink,
 } from 'helpers/electionsHelper';
 import { BlueButton, OutlinedButton } from 'components/shared/buttons';
-import ShareIconWhite from 'public/images/icons/share-icon-white.svg';
-import ShareIcon from 'public/images/icons/share-icon.svg';
 import { numberNth } from 'helpers/numberHelper';
-import HeartIcon from 'public/images/white-heart.svg';
 
+const HeartIcon = '/images/white-heart.svg';
+const ShareIconWhite = '/images/icons/share-icon-white.svg';
+const ShareIcon = '/images/icons/share-icon.svg';
 const RankWrapper = styled.div`
   display: flex;
   flex-direction: row;

@@ -92,35 +92,6 @@ const NavWrapper = ({
         />
         <RegisterBannerContainer />
       </Hidden>
-      {!hideMobileNav && (
-        <Hidden mdUp>
-          {/*<BottomNavigation*/}
-          {/*  value={value}*/}
-          {/*  onChange={handleChange}*/}
-          {/*  showLabels*/}
-          {/*  className={classes.bottomNav}*/}
-          {/*>*/}
-          {/*  <BottomNavigationAction*/}
-          {/*    label="ABOUT"*/}
-          {/*    icon={icon(PartyIcon, PartyIconGray, 0)}*/}
-          {/*    className={classes.bottomNavItem}*/}
-          {/*    data-cy="party"*/}
-          {/*  />*/}
-          {/*  <BottomNavigationAction*/}
-          {/*    label="ELECTIONS"*/}
-          {/*    icon={icon(ElectionIcon, ElectionIconGray, 1)}*/}
-          {/*    className={classes.bottomNavItem}*/}
-          {/*    data-cy="elections"*/}
-          {/*  />*/}
-          {/*  <BottomNavigationAction*/}
-          {/*    label="YOU"*/}
-          {/*    icon={icon(YouIcon, YouIconGray, 2)}*/}
-          {/*    className={classes.bottomNavItem}*/}
-          {/*    data-cy="you"*/}
-          {/*  />*/}
-          {/*</BottomNavigation>*/}
-        </Hidden>
-      )}
       {user && user.isAdmin && <AdminMenu />}
     </>
   );

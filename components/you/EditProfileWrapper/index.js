@@ -6,6 +6,7 @@ import BackIcon from '@material-ui/icons/ChevronLeft';
 import Hidden from '@material-ui/core/Hidden';
 import PageWrapper from 'components/shared/PageWrapper';
 import Nav from 'containers/shared/Nav';
+import dynamic from 'next/dynamic'
 import {
   H1,
   Body11,
@@ -18,12 +19,16 @@ import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import TextField from '@material-ui/core/TextField';
 import LockIcon from '@material-ui/icons/Lock';
 import { formatToPhone } from 'helpers/phoneHelper';
-import AvatarUpload from 'components/shared/AvatarUpload';
 import { BlueButton } from 'components/shared/buttons';
 import UserAvatar from 'components/shared/UserAvatar';
 import AlertDialog from 'components/shared/AlertDialog';
-
 import { getUserDistrictName } from 'helpers/userHelper';
+
+const AvatarUpload = dynamic(
+  () => import('components/shared/AvatarUpload'),
+  { ssr: false }
+)
+
 const Row = styled.div`
   display: flex;
   flex-direction: row;
@@ -84,6 +89,7 @@ const Form = styled.form`
 `;
 
 const StyledBody14 = styled(Body14)`
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
 `;
 

@@ -10,16 +10,17 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { goBack } from 'connected-react-router';
+import { useRouter } from 'next/router'
 
 import { makeSelectContent } from 'containers/App/selectors';
 
 import FaqListWrapper from 'components/party/FaqListWrapper';
 
-export function FaqListPage({ content, backButtonCallback }) {
+export function FaqListPage({ content }) {
+  const router = useRouter();
   const childProps = {
     content,
-    backButtonCallback,
+    backButtonCallback: () => router.back(),
   };
   return (
     <div>
@@ -41,9 +42,6 @@ FaqListPage.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    backButtonCallback: () => {
-      dispatch(goBack());
-    },
   };
 }
 

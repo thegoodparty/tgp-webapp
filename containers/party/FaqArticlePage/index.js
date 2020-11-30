@@ -8,23 +8,19 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { goBack, replace } from 'connected-react-router';
 import { useRouter } from 'next/router'
 import Head from 'next/head';
 import queryHelper from 'helpers/queryHelper';
 import { createStructuredSelector } from 'reselect';
-
 import globalActions from 'containers/App/actions';
 
 import {
   makeSelectContent,
-  makeSelectModalArticleId,
   makeSelectLocation
 } from 'containers/App/selectors';
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from 'helpers/articlesHelper';
-import TgpHelmet from 'components/shared/TgpHelmet';
 
 export function FaqArticlePage({
   content,

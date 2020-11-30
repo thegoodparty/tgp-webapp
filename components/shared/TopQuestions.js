@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router'
 
 import { H3, Body, Body13 } from 'components/shared/typogrophy';
 
@@ -32,6 +33,7 @@ const ArticleTitle = styled(Body)`
 `;
 
 const TopQuestions = ({ articles }) => {
+  const router = useRouter()
   return (
     <Wrapper>
       <Row>
@@ -43,7 +45,7 @@ const TopQuestions = ({ articles }) => {
       {articles &&
         articles.map((article, index) => (
           <Link
-            href={`?article=${article.id}`}
+            href={`${router.asPath}?article=${article.id}`}
             key={article.id}
             data-cy="faq"
           >

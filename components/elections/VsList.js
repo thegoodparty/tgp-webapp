@@ -5,7 +5,6 @@ import Link from 'next/link';
 import CheckIcon from '@material-ui/icons/Check';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-import ShareIcon from 'public/images/icons/share-icon-white.svg';
 import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
 import CandidateAvatar from 'components/shared/CandidateAvatar';
 import {
@@ -21,6 +20,7 @@ import SupportersProgressBar from './SupportersProgressBar';
 import FollowTheMoney from './CandidateWrapper/FollowTheMoney';
 import WonLostElection from '../shared/WonLostElection';
 
+const ShareIcon = '/images/icons/share-icon-white.svg';
 const Row = styled.div`
   display: flex;
   flex-direction: row;

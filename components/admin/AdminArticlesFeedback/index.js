@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Link from 'next/link';
-
+import { useRouter } from 'next/router'
 import { H3 } from '../../shared/typogrophy';
 import { getArticleById } from '../../../helpers/articlesHelper';
 
@@ -31,6 +31,7 @@ const headerStyle = {
 
 function AdminArticlesFeedback({ articles, content }) {
   const [tableData, setTableData] = useState([]);
+  const router = useRouter();
   useEffect(() => {
     if (articles) {
       const feedbackByArticle = {};
@@ -93,7 +94,7 @@ function AdminArticlesFeedback({ articles, content }) {
 
       Cell: row => {
         return (
-          <Link href={`?article=${row.original.id}`}>{row.original.title}</Link>
+          <Link href={`${router.asPath}?article=${row.original.id}`}>{row.original.title}</Link>
         );
       },
     },

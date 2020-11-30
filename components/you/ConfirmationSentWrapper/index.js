@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2, H3 } from 'components/shared/typogrophy/index';
-import EmailConfirmationImage from 'public/images/email-confirmation.svg';
 import tgpTheme from 'theme/index';
 
+const EmailConfirmationImage = '/images/email-confirmation.svg';
 const PageWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.blue};
   position: relative;

@@ -474,8 +474,8 @@ const ShareModal = ({
             What is a crowd-voting campaign?
           </Link>
           <br />
-          <Image
-            src="images/logo-caps.svg"
+          <img
+            src="/images/logo-caps.svg"
             alt="logo"
             style={{ marginTop: '16px' }}
           />
