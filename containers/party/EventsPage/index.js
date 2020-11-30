@@ -10,16 +10,15 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { goBack } from 'connected-react-router';
-
+import { useRouter } from 'next/router'
 import { makeSelectContent } from 'containers/App/selectors';
-
 import EventsWrapper from 'components/party/EventsWrapper';
 
-export function EventsPage({ content, backButtonCallback }) {
+export function EventsPage({ content }) {
+  const router = useRouter()
   const childProps = {
     content,
-    backButtonCallback,
+    backButtonCallback: () => router.back(),
   };
   return (
     <div>
@@ -34,16 +33,12 @@ export function EventsPage({ content, backButtonCallback }) {
 
 EventsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  backButtonCallback: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    backButtonCallback: () => {
-      dispatch(goBack());
-    },
   };
 }
 

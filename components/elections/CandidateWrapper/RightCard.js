@@ -8,8 +8,6 @@ import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import VotesNeeded from 'components/home/ChallengersSection/VotesNeeded';
 import { Body11, Body13, Body14 } from 'components/shared/typogrophy';
-import JoinedIcon from 'public/images/icons/joined-icon.svg';
-import GraphIcon from 'public/images/icons/graph-icon.svg';
 import { kFormatter, numberFormatter } from 'helpers/numberHelper';
 import Body from 'components/shared/typogrophy/Body';
 import { candidateRoute } from 'helpers/electionsHelper';
@@ -17,6 +15,8 @@ import SupportersProgressBar from '../SupportersProgressBar';
 import ShareButtons from './ShareButtons';
 import WonLostElection from '../../shared/WonLostElection';
 
+const JoinedIcon = '/images/icons/joined-icon.svg';
+const GraphIcon = '/images/icons/graph-icon.svg';
 const ScrollArea = styled.div`
   height: calc(100% - 60px - 65px);
   position: relative;

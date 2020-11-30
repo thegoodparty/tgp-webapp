@@ -84,6 +84,7 @@ const Form = styled.form`
 `;
 
 const StyledBody14 = styled(Body14)`
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
 `;
 

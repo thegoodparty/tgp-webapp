@@ -14,14 +14,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Dialog from '@material-ui/core/Dialog';
 import Markdown from 'markdown-to-jsx';
 import Link from 'next/link';
-
 import { validateEmail } from 'helpers/emailHelper';
 import { parseDob, parseDobUS } from 'helpers/dateHelper';
-
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-
-import LogoCaps from 'public/images/logo-caps.svg';
 import { H1, H2, H3, Body } from 'components/shared/typogrophy';
 import { states } from 'helpers/statesHelper';
 import {
@@ -38,6 +34,7 @@ import AnalyticsService from 'services/AnalyticsService';
 import { formatToPhone } from '../../../helpers/phoneHelper';
 import { deleteCookie } from '../../../helpers/cookieHelper';
 
+const LogoCaps = '/images/logo-caps.svg';
 const LeftWrapper = styled.div`
   background: radial-gradient(#ffffff, ${props => props.theme.colors.grayF});
   min-height: 100vh;

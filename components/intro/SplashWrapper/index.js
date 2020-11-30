@@ -10,14 +10,12 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 import PageWrapper from 'components/shared/PageWrapper';
-
-import heartImg from 'public/images/heart.svg';
-import peopleImg from 'public/images/icons/people.svg';
-import writeinImg from 'public/images/icons/writein.svg';
-
 import { H1, Body14, Body12 } from 'components/shared/typogrophy';
 import { NextButton } from 'components/shared/buttons';
 
+const heartImg = '/images/heart.svg';
+const peopleImg = '/images/icons/people.svg';
+const writeinImg = '/images/icons/writein.svg';
 const Logo = styled.img`
   width: 63px;
   height: auto;

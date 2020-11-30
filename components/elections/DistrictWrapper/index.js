@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Collapse from '@material-ui/core/Collapse';
-
+import { useRouter } from 'next/router'
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import AmaContainer from 'containers/shared/AmaContainer';
@@ -71,6 +71,7 @@ const DistrictWrapper = ({
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const router = useRouter();
   let districtNumber;
   const presidentialRank = ranking.presidential;
   const senateRank = ranking.senate;
@@ -238,14 +239,14 @@ const DistrictWrapper = ({
               You have <strong data-cy="election-count">{electionCount}</strong>{' '}
               relevant Federal Elections. Join any{' '}
               <Link
-                href="?article=1ic6T6fhH0jZLNvX5aZkDe"
+                href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
                 data-cy="candidate-article"
               >
                 crowd-voting campaign
               </Link>{' '}
               to see if we can rally enough votes to{' '}
               <Link
-                href="?article=5KnBx42FOEVDJNUFpoU1PX"
+                href={`${router.asPath}?article=5KnBx42FOEVDJNUFpoU1PX`}
                 data-cy="potentially-good-article"
               >
                 elect someone good
@@ -262,14 +263,13 @@ const DistrictWrapper = ({
                 suffixText=" (270 ELECTORS)"
               />
             ) : (
-              <VsCard
-                title="Presidential Election"
-                candidates={presidential}
-                suffixText={` IN ${upperState} (${
-                  presidential.electors
-                } ELECTORS)`}
-              />
-            )}
+                <VsCard
+                  title="Presidential Election"
+                  candidates={presidential}
+                  suffixText={` IN ${upperState} (${presidential.electors
+                    } ELECTORS)`}
+                />
+              )}
           </Link>
           {!isEmptyCandidates(senateCandidates) && (
             <Link href={senateElectionLink(shortState)} data-cy="senate">
@@ -283,12 +283,12 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                <VsCard
-                  title={`Senator - ${stateLong}`}
-                  candidates={senateCandidates}
-                  suffixText={` ${upperState}`}
-                />
-              )}
+                  <VsCard
+                    title={`Senator - ${stateLong}`}
+                    candidates={senateCandidates}
+                    suffixText={` ${upperState}`}
+                  />
+                )}
             </Link>
           )}
           {!isEmptyCandidates(houseCandidates) && (
@@ -307,20 +307,20 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                <VsCard
-                  title={`House Representative ${shortState}-${districtNumber}`}
-                  candidates={houseCandidates}
-                  suffixText={` ${upperState}-${districtNumber}`}
-                />
-              )}
+                  <VsCard
+                    title={`House Representative ${shortState}-${districtNumber}`}
+                    candidates={houseCandidates}
+                    suffixText={` ${upperState}-${districtNumber}`}
+                  />
+                )}
             </Link>
           )}
           <TopQuestions articles={articles} />
           <AmaContainer />
         </>
       ) : (
-        <LoadingAnimation />
-      )}
+          <LoadingAnimation />
+        )}
       <AlertDialog
         open={showRankAlert}
         handleClose={handleCloseAlert}

@@ -8,9 +8,9 @@ import { H1, H3 } from 'components/shared/typogrophy/index';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import tgpTheme from 'theme/index';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
-import ExpiredTokenImage from 'public/images/expired-token.svg';
-import EmailErrorImage from 'public/images/email-error.svg';
 
+const ExpiredTokenImage = '/images/expired-token.svg';
+const EmailErrorImage = '/images/email-error.svg';
 const Img = styled.div`
   height: 50px;
   background-repeat: no-repeat;

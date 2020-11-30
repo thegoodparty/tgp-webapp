@@ -8,14 +8,13 @@ import TextField from '@material-ui/core/TextField';
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H2, H1, Body11 } from 'components/shared/typogrophy/index';
 import SocialButton from 'components/you/SocialRegisterWrapper/SocialButton';
-import heartImg from 'public/images/heart.svg';
-
 import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
 import FacebookButton from '../SocialRegisterWrapper/FacebookButton';
 import PasswordInput from '../../shared/PasswordInput';
 import TwitterButton from '../SocialRegisterWrapper/TwitterButton';
 
+const heartImg = '/images/heart.svg';
 const Heart = styled.img`
   width: 64px;
   height: auto;

@@ -56,17 +56,17 @@ const TopRow = ({ candidate, chamberName }) => {
         {
           name: 'website',
           url: website,
-          icon: '/public/images/icons/website-icon.svg',
+          icon: '/images/icons/website-icon.svg',
         },
         {
           name: 'facebook',
           url: facebook,
-          icon: '/public/images/icons/facebook-icon.svg',
+          icon: '/images/icons/facebook-icon.svg',
         },
         {
           name: 'twitter',
           url: twitter,
-          icon: '/public/images/icons/twitter-icon.svg',
+          icon: '/images/icons/twitter-icon.svg',
         },
       ]);
     } else {
@@ -131,8 +131,8 @@ const TopRow = ({ candidate, chamberName }) => {
                     <Image
                       src={social.icon}
                       alt={social.name}
-                      width="auto"
-                      height="auto"
+                      width="32px"
+                      height="32px"
                     />
                     <SocialLabel>{social.name}</SocialLabel>
                   </IconWrapper>

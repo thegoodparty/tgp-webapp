@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-
-import TwitterIcon from 'public/images/icons/twitter.svg';
 import tgpTheme from 'theme/index';
 import { Body13 } from '../../shared/typogrophy';
 
+const TwitterIcon = '/images/icons/twitter.svg';
 const StyledButton = styled(Button)`
   && {
     margin-top: 18px;

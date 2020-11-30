@@ -8,10 +8,10 @@ import { Body13, Body } from 'components/shared/typogrophy';
 
 import { percHelper } from 'helpers/numberHelper';
 import { getComparedIncumbent } from 'helpers/candidatesHelper';
-import GrayCheckbox from 'public/images/icons/checkbox-gray.svg';
-import RedCheckbox from 'public/images/icons/checkbox-red.svg';
-import GreenCheckbox from 'public/images/icons/checkbox-green.svg';
-import QuestionMarkGray from 'public/images/icons/question-mark.svg';
+const GrayCheckbox = '/images/icons/checkbox-gray.svg';
+const RedCheckbox = '/images/icons/checkbox-red.svg';
+const GreenCheckbox = '/images/icons/checkbox-green.svg';
+const QuestionMarkGray = '/images/icons/question-mark.svg';
 
 const CheckboxRow = styled.div`
   display: flex;

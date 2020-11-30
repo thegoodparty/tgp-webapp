@@ -7,14 +7,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body, Body13, H2, Body11 } from 'components/shared/typogrophy/index';
-import heartImg from 'public/images/heart.svg';
-import addPhotoImg from 'public/images/icons/add-photo.svg';
-
 import TextField from '@material-ui/core/TextField';
 import UserAvatar from 'components/shared/UserAvatar';
 import AvatarUpload from 'components/shared/AvatarUpload/Loadable';
 import { NextButton } from 'components/shared/buttons';
 
+const heartImg = '/images/heart.svg';
+const addPhotoImg = '/images/icons/add-photo.svg';
 const Heart = styled.img`
   width: 64px;
   height: auto;
