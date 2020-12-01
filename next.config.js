@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   webpack(config) {
     config.module.rules.push({
@@ -9,5 +11,12 @@ module.exports = {
     });
 
     return config;
+  },
+  env: {
+    API_ENV: process.env.API_ENV,
+    CONTENFUL_SPACE_ID: process.env.CONTENFUL_SPACE_ID,
+    NPM_USE_PRODUCTION: process.env.NPM_USE_PRODUCTION,
+    PORT: process.env.PORT,
+    PRERENDER_TOKEN: process.env.PRERENDER_TOKEN,
   },
 };
