@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import BackIcon from '@material-ui/icons/ChevronLeft';
-
 import { Body, H2 } from 'components/shared/typogrophy';
 import PageWrapper from 'components/shared/PageWrapper';
 
@@ -38,12 +37,16 @@ const FaqListWrapper = ({ content, backButtonCallback }) => {
       <BackIconWrapper onClick={backButtonCallback}>
         <BackIcon style={{ fontSize: '34px' }} />
       </BackIconWrapper>
-      <H2 style={{ marginBottom: '24px' }} data-cy="faqs-page-title">Frequently Asked Q’s</H2>
+      <H2 style={{ marginBottom: '24px' }} data-cy="faqs-page-title">
+        Frequently Asked Q’s
+      </H2>
       {articles &&
         articles.map(article => (
           <Link href={`?article=${article.id}`} key={article.id} data-cy="faq">
             <ArticleWrapper>
-              <Body className="article-title" data-cy="faq-title">{article.title}</Body>
+              <Body className="article-title" data-cy="faq-title">
+                {article.title}
+              </Body>
               <div>
                 <ChevronRightIcon
                   style={{ fontSize: '30px', marginLeft: '10px' }}

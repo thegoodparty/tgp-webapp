@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
     button {
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         margin-top: 0 !important;
       }
     }

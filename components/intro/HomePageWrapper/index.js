@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Button from '@material-ui/core/Button';
 import Image from 'next/image';
-
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H2 } from 'components/shared/typogrophy';
 

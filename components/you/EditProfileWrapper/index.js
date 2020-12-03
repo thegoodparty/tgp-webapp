@@ -6,7 +6,6 @@ import BackIcon from '@material-ui/icons/ChevronLeft';
 import Hidden from '@material-ui/core/Hidden';
 import PageWrapper from 'components/shared/PageWrapper';
 import Nav from 'containers/shared/Nav';
-import dynamic from 'next/dynamic'
 import {
   H1,
   Body11,
@@ -23,11 +22,7 @@ import { BlueButton } from 'components/shared/buttons';
 import UserAvatar from 'components/shared/UserAvatar';
 import AlertDialog from 'components/shared/AlertDialog';
 import { getUserDistrictName } from 'helpers/userHelper';
-
-const AvatarUpload = dynamic(
-  () => import('components/shared/AvatarUpload'),
-  { ssr: false }
-)
+import AvatarUpload from 'components/shared/AvatarUpload';
 
 const Row = styled.div`
   display: flex;
@@ -142,14 +137,6 @@ const EditProfileWrapper = ({
   updatePhotoCallback,
   deleteRankingCallback,
 }) => {
-  if (!user) {
-    return (
-      <div>
-        <Nav />
-        <LoadingAnimation />
-      </div>
-    );
-  }
   const { name, feedback, zipCode, isEmailVerified, congDistrict } = user;
   const initialPhone = user.phone ? formatToPhone(user.phone) : false;
   const initialEmail = user.email;
@@ -175,7 +162,14 @@ const EditProfileWrapper = ({
       setDigitsPhone(false);
     }
   };
-
+  if (!user) {
+    return (
+      <div>
+        <Nav />
+        <LoadingAnimation />
+      </div>
+    );
+  }
   const { stateLong, cds, primaryCity } = zipCode || {};
 
   const districtName = getUserDistrictName(congDistrict, cds);

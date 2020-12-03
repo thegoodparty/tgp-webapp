@@ -8,7 +8,6 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
-
 import PageWrapper from 'components/shared/PageWrapper';
 import { H1, Body14, Body12 } from 'components/shared/typogrophy';
 import { NextButton } from 'components/shared/buttons';

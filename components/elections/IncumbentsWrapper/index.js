@@ -55,7 +55,7 @@ const TableWrapper = styled.div`
         line-height: 18px;
         letter-spacing: 0.1px;
         @media only screen and (min-width: ${({ theme }) =>
-            theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
           font-size: 16px;
           line-height: 24px;
         }
@@ -137,9 +137,8 @@ function IncumbentsWrapper({ incumbents, loading }) {
         const incumbent = candidateCalculatedFields(candidate);
         const fields = {
           name: `${incumbent.name} (${incumbent.party})`,
-          race: `${incumbent.state?.toUpperCase()}-${
-            incumbent.chamber === 'Senate' ? 'Senate' : incumbent.district
-          }`,
+          race: `${incumbent.state?.toUpperCase()}-${incumbent.chamber === 'Senate' ? 'Senate' : incumbent.district
+            }`,
           totalRaised: incumbent.totalRaised,
           largeDonorPerc: percHelper(incumbent.largeDonorPerc, true),
           largeDonorPerHour: incumbent.largeDonorPerHour,
@@ -185,9 +184,8 @@ function IncumbentsWrapper({ incumbents, loading }) {
       Cell: row => (
         <Link href={row.original.route}>
           <CellBody13
-            className={`text-right ${
-              sortColumn === 'totalRaised' ? 'bold' : ''
-            }`}
+            className={`text-right ${sortColumn === 'totalRaised' ? 'bold' : ''
+              }`}
           >
             ${numberFormatter(row.original.totalRaised)}
           </CellBody13>
@@ -201,9 +199,8 @@ function IncumbentsWrapper({ incumbents, loading }) {
       Cell: row => (
         <Link href={row.original.route}>
           <CellBody13
-            className={`text-right ${
-              sortColumn === 'largeDonorPerc' ? 'bold' : ''
-            }`}
+            className={`text-right ${sortColumn === 'largeDonorPerc' ? 'bold' : ''
+              }`}
           >
             <Colored
               className={row.original.largeDonorPerc > 50 ? 'orange' : 'green'}
@@ -221,9 +218,8 @@ function IncumbentsWrapper({ incumbents, loading }) {
       Cell: row => (
         <Link href={row.original.route}>
           <CellBody13
-            className={`text-right ${
-              sortColumn === 'largeDonorPerHour' ? 'bold' : ''
-            }`}
+            className={`text-right ${sortColumn === 'largeDonorPerHour' ? 'bold' : ''
+              }`}
           >
             <Colored
               className={row.original.largeDonorPerc > 50 ? 'orange' : ''}

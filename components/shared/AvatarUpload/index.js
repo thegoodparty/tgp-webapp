@@ -7,8 +7,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 import Backdrop from '@material-ui/core/Backdrop';
+import 'react-images-upload/index.css';
 // import ImageUploader from 'react-images-upload';
+const ImageUploader = dynamic(() => import('react-images-upload/compiled'), {
+  ssr: false,
+});
+
 const Wrapper = styled(Backdrop)`
   && {
     z-index: 1001;
@@ -43,14 +49,14 @@ function AvatarUpload({ closeCallback, selectImageCallback }) {
   return (
     <Wrapper open={open} onClick={handleClose}>
       <Inner onClick={e => e.stopPropagation()}>
-        {/* <ImageUploader
+        <ImageUploader
           withIcon
           onChange={onDrop}
           imgExtension={['.jpg', '.jpeg', '.gif', '.png', '.gif']}
           maxFileSize={1048576}
           singleImage
           label="Please upload a profile image."
-        /> */}
+        />
       </Inner>
     </Wrapper>
   );

@@ -13,8 +13,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import { useWindowSize } from 'customHooks/useWindowSize';
-import { BlueButton, GrayButton } from '../../buttons';
 import { MultipleSelect } from 'react-select-material-ui';
+import { BlueButton, GrayButton } from '../../buttons';
 import {
   BodyWrapper,
   FooterWrapper,
@@ -64,7 +64,7 @@ function FirstStep({
   closeModal,
   updateProject,
 }) {
-  const [width, height] = useWindowSize();
+  const [width] = useWindowSize();
   return (
     <OverlayModal
       key="first-modal"
@@ -133,7 +133,9 @@ function FirstStep({
                   options={topics}
                   values={topics}
                   variant="outlined"
-                  onChange={topics => updateProject(topics, 'topics')}
+                  onChange={selectedTopics =>
+                    updateProject(selectedTopics, 'topics')
+                  }
                   SelectProps={{
                     isCreatable: true,
                     msgNoOptionsAvailable: 'Enter Topics',

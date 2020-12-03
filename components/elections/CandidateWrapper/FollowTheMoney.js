@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -127,8 +126,6 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
   const perHour = isGoodOrUnkwown
     ? moneyHelper(smallDonorPerHour)
     : moneyHelper(largeDonorPerHour);
-  if (!isGoodOrUnkwown) {
-  }
 
   const combinedReportDate = getCombinedReportDate(
     { reportDate, outsideReportDate },

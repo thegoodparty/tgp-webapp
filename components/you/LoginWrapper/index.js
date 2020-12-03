@@ -6,10 +6,9 @@ import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic'
 import PageWrapper from 'components/shared/PageWrapper';
-import { Body13, H2, H1, Body11 } from 'components/shared/typogrophy/index';
+import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
 import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
-import FacebookButton from '../SocialRegisterWrapper/FacebookButton';
 import PasswordInput from '../../shared/PasswordInput';
 import TwitterButton from '../SocialRegisterWrapper/TwitterButton';
 const SocialButton = dynamic(
@@ -219,7 +218,6 @@ const LoginWrapper = ({
           </VerticalWrapper>
         </Grid>
       </Grid>
-    
     </PageWrapper>
   );
 };

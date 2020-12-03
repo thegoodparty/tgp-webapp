@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-import Image from 'next/image';
 import { Title } from 'components/shared/typogrophy';
 
 const MoneyCorruptionSectionWrapper = styled.div`
@@ -30,26 +29,24 @@ const LeftCol = styled(Grid)`
   justify-content: center;
 `;
 
-const MoneyCorruptionSection = ({}) => {
-  return (
-    <MoneyCorruptionSectionWrapper>
-      <Grid container>
-        <LeftCol item xs={12} sm={7} md={6}>
-          <SectionTitle>
-            Money has corrupted <br />
-            BOTH major U.S. parties
-          </SectionTitle>
-        </LeftCol>
-        <Grid item xs={12} sm={5} md={6}>
-          <img
-            src="/images/white-house.png"
-            alt="white-house-dollar"
-            className="full-image"
-          />
-        </Grid>
+const MoneyCorruptionSection = () => (
+  <MoneyCorruptionSectionWrapper>
+    <Grid container>
+      <LeftCol item xs={12} sm={7} md={6}>
+        <SectionTitle>
+          Money has corrupted <br />
+          BOTH major U.S. parties
+        </SectionTitle>
+      </LeftCol>
+      <Grid item xs={12} sm={5} md={6}>
+        <img
+          src="/images/white-house.png"
+          alt="white-house-dollar"
+          className="full-image"
+        />
       </Grid>
-    </MoneyCorruptionSectionWrapper>
-  );
-};
+    </Grid>
+  </MoneyCorruptionSectionWrapper>
+);
 
 export default MoneyCorruptionSection;

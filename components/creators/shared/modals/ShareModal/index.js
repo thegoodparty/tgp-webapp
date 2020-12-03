@@ -6,13 +6,12 @@ import Grid from '@material-ui/core/Grid';
 
 import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Body, H1, H3, Body9, Body11 } from 'components/shared/typogrophy';
+import { Body11 } from 'components/shared/typogrophy';
 import { uuidUrl } from 'helpers/userHelper';
 import {
   Title,
   BodyWrapper,
   OverlayModal,
-  FooterWrapper,
   CloseIcon,
   Blurb,
   Logo,
@@ -22,7 +21,6 @@ const CopyPasteIcon = '/images/icons/copy-paste.svg';
 const LinkIcon = '/images/icons/link-icon.svg';
 const SmsIcon = '/images/icons/sms-icon.svg';
 const ShareIcon = '/images/icons/share-icon.svg';
-
 
 const ModalTitle = styled(Title)`
   margin-bottom: 1rem;
@@ -138,7 +136,7 @@ const CREATORS_URL = 'https://dev.thegoodparty.org/creators';
 const ShareModal = ({ open, user, handleClose }) => {
   const [copied, setCopied] = useState(false);
 
-  let url = user ? uuidUrl(user, CREATORS_URL) : CREATORS_URL;
+  const url = user ? uuidUrl(user, CREATORS_URL) : CREATORS_URL;
 
   const messageTitle = `Creators of the World — Unite!`;
   const messageBody = `The Good Party is a non-profit to take back democracy from big-money donors and crooked career politicians. Please help us create the technology, messaging, visuals, audio, and stories that can reach and inspire millions of people: ${url}`;

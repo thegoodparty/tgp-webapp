@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 
 import PageWrapper from 'components/shared/PageWrapper';
-import { Body, H2 } from 'components/shared/typogrophy';
+import { H2 } from 'components/shared/typogrophy';
 import EventSnippet from 'components/shared/EventSnippet';
 
 const BackIconWrapper = styled.div`
@@ -32,7 +32,9 @@ function EventsWrapper({ content, backButtonCallback }) {
         <BackIcon style={{ fontSize: '34px' }} />
       </BackIconWrapper>
       {events.length > 0 && (
-        <H2 style={{ marginBottom: '24px' }} data-cy="upcoming-events-title">Upcoming Online Events</H2>
+        <H2 style={{ marginBottom: '24px' }} data-cy="upcoming-events-title">
+          Upcoming Online Events
+        </H2>
       )}
       <div data-cy="upcoming-events">
         {events.map(event => (
@@ -40,7 +42,9 @@ function EventsWrapper({ content, backButtonCallback }) {
         ))}
       </div>
       {pastEvents.length > 0 && (
-        <H2 style={{ margin: '24px 0' }} data-cy="past-events-title">Past Events</H2>
+        <H2 style={{ margin: '24px 0' }} data-cy="past-events-title">
+          Past Events
+        </H2>
       )}
       <div data-cy="past-events">
         {pastEvents.map(event => (

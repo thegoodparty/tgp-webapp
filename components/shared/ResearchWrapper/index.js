@@ -8,7 +8,7 @@ import Nav from 'containers/shared/Nav';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import { H1, Body11, Body } from '../typogrophy';
+import { H1 } from '../typogrophy';
 import { OutlinedButton } from '../buttons';
 
 const PageWrapper = styled.div`

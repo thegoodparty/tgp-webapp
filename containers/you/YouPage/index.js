@@ -26,11 +26,7 @@ import districtActions from 'containers/intro/ZipFinderPage/actions';
 
 import YouWrapper from 'components/you/YouWrapper';
 import ProfileWrapper from 'components/you/ProfileWrapper/Loadable';
-
-import {
-  deleteSignupRedirectCookie,
-  getSignupRedirectCookie,
-} from 'helpers/cookieHelper';
+import { getSignupRedirectCookie } from 'helpers/cookieHelper';
 import { userDistrict } from 'helpers/userHelper';
 import articlesHelper from 'helpers/articlesHelper';
 import { countCandidates } from 'helpers/candidatesHelper';

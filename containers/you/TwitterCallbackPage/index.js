@@ -38,6 +38,7 @@ export function TwitterCallbackPage({ dispatch, locationState }) {
 
 TwitterCallbackPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  locationState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {

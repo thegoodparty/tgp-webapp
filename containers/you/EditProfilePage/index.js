@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /**
  *
  * EditProfilePage
@@ -20,7 +21,6 @@ import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
 import EditProfileWrapper from 'components/you/EditProfileWrapper';
-import LoadingAnimation from '../../../components/shared/LoadingAnimation';
 import candidateActions from '../../elections/CandidatePage/actions';
 
 export function EditProfilePage({

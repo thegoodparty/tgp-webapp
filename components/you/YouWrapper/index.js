@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import PageWrapper from 'components/shared/PageWrapper';
 import { H3 } from 'components/shared/typogrophy/index';
 import OutlinedButton from 'components/shared/buttons/OutlinedButton';
-// import CapitalImage from 'public/images/capital.svg';
 import TopQuestions from 'components/shared/TopQuestions';
 import { AmaContainer } from 'containers/shared/AmaContainer';
 

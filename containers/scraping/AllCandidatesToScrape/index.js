@@ -117,7 +117,7 @@ export function AllCandidatesToScrape({
                 candidate.source
                   ? candidate.source
                   : `https://ballotpedia.org/${underScoreNameNoMiddle(
-                      candidate.name,
+                    candidate.name,
                     )}`
               }
               // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
@@ -133,28 +133,26 @@ export function AllCandidatesToScrape({
     );
   };
 
-  const showOnlyData = candidate => {
-    return (
-      <span key={candidate.id}>
-        <a
-          className="ballotpedia"
-          href={
-            candidate.source
-              ? candidate.source
-              : `https://ballotpedia.org/${underScoreNameNoMiddle(
-                  candidate.name,
-                )}`
-          }
-          // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
-          //   candidate.name,
-          // )}`}
-        >
-          {candidate.id}|{candidate.name}|{candidate.isIncumbent && 'incumbent'}
-          |{candidate.chamber}
-        </a>
-      </span>
-    );
-  };
+  const showOnlyData = candidate => (
+    <span key={candidate.id}>
+      <a
+        className="ballotpedia"
+        href={
+          candidate.source
+            ? candidate.source
+            : `https://ballotpedia.org/${underScoreNameNoMiddle(
+                candidate.name,
+            )}`
+        }
+        // href={`https://ballotpedia.org/${underScoreNameNoMiddle(
+        //   candidate.name,
+        // )}`}
+      >
+        {candidate.id}|{candidate.name}|{candidate.isIncumbent && 'incumbent'}
+        {candidate.chamber}
+      </a>
+    </span>
+  );
 
   return (
     <div>
@@ -175,7 +173,7 @@ export function AllCandidatesToScrape({
         {!withPresidential &&
           !withoutTwitter &&
           candidates &&
-          candidates.map((candidate, index) => (
+          candidates.map(candidate => (
             <div>
               <>
                 {!onlyNoData && <>{allData(candidate)}</>}
@@ -202,7 +200,7 @@ export function AllCandidatesToScrape({
 
         {withPresidential &&
           candidates &&
-          candidates.map((candidate, index) => (
+          candidates.map(candidate => (
             <div>
               {candidate.twitter && (
                 <span key={candidate.id}>

@@ -68,8 +68,8 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
             candidate.isGood === null
               ? 'unknown'
               : candidate.isGood
-              ? 'yes'
-              : 'no',
+                ? 'yes'
+                : 'no',
           isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
           isMajor: candidate.isMajor ? 'yes' : 'no',
           isHidden: candidate.isHidden === true,
@@ -125,9 +125,8 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
           : 'presidential';
 
         const route = candidateRoute(row.original);
-        const editRoute = `/admin/edit-candidate/${chamberLower}${
-          row.original.isIncumbent ? '-i' : ''
-        }/${row.original.id}`;
+        const editRoute = `/admin/edit-candidate/${chamberLower}${row.original.isIncumbent ? '-i' : ''
+          }/${row.original.id}`;
         return (
           <>
             <a href={editRoute} target="_blank">

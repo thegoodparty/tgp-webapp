@@ -11,14 +11,12 @@ const Spacer = styled.div`
   }
 `;
 
-const CreatorsHeaderWrapper = ({ toggleJoin, user }) => {
-  return (
-    <>
-      <CreatorsDesktopHeader toggleJoin={toggleJoin} user={user} />
-      <Spacer />
-    </>
-  );
-};
+const CreatorsHeaderWrapper = ({ toggleJoin, user }) => (
+  <>
+    <CreatorsDesktopHeader toggleJoin={toggleJoin} user={user} />
+    <Spacer />
+  </>
+);
 
 CreatorsHeaderWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),

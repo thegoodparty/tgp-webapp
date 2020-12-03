@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Collapse from '@material-ui/core/Collapse';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import AmaContainer from 'containers/shared/AmaContainer';
@@ -263,13 +263,14 @@ const DistrictWrapper = ({
                 suffixText=" (270 ELECTORS)"
               />
             ) : (
-                <VsCard
-                  title="Presidential Election"
-                  candidates={presidential}
-                  suffixText={` IN ${upperState} (${presidential.electors
-                    } ELECTORS)`}
-                />
-              )}
+              <VsCard
+                title="Presidential Election"
+                candidates={presidential}
+                suffixText={` IN ${upperState} (${
+                  presidential.electors
+                } ELECTORS)`}
+              />
+            )}
           </Link>
           {!isEmptyCandidates(senateCandidates) && (
             <Link href={senateElectionLink(shortState)} data-cy="senate">
@@ -283,12 +284,12 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                  <VsCard
-                    title={`Senator - ${stateLong}`}
-                    candidates={senateCandidates}
-                    suffixText={` ${upperState}`}
-                  />
-                )}
+                <VsCard
+                  title={`Senator - ${stateLong}`}
+                  candidates={senateCandidates}
+                  suffixText={` ${upperState}`}
+                />
+              )}
             </Link>
           )}
           {!isEmptyCandidates(houseCandidates) && (
@@ -307,20 +308,20 @@ const DistrictWrapper = ({
                   state={shortState}
                 />
               ) : (
-                  <VsCard
-                    title={`House Representative ${shortState}-${districtNumber}`}
-                    candidates={houseCandidates}
-                    suffixText={` ${upperState}-${districtNumber}`}
-                  />
-                )}
+                <VsCard
+                  title={`House Representative ${shortState}-${districtNumber}`}
+                  candidates={houseCandidates}
+                  suffixText={` ${upperState}-${districtNumber}`}
+                />
+              )}
             </Link>
           )}
           <TopQuestions articles={articles} />
           <AmaContainer />
         </>
       ) : (
-          <LoadingAnimation />
-        )}
+        <LoadingAnimation />
+      )}
       <AlertDialog
         open={showRankAlert}
         handleClose={handleCloseAlert}
@@ -335,7 +336,6 @@ const DistrictWrapper = ({
 
 DistrictWrapper.propTypes = {
   district: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  geoLocation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   presidential: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   senateCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   houseCandidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
@@ -345,9 +345,6 @@ DistrictWrapper.propTypes = {
   changeDistrictCallback: PropTypes.func,
   deleteRankingCallback: PropTypes.func,
   changeZipCallback: PropTypes.func,
-  presidentialRank: PropTypes.array,
-  senateRank: PropTypes.array,
-  houseRank: PropTypes.array,
 };
 
 export default DistrictWrapper;

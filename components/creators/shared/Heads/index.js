@@ -38,13 +38,15 @@ const Avatar = styled(LazyLoadImage)`
 function Heads() {
   const avatars = [];
   for (let i = 0; i < 12; i++) {
-    avatars.push(<Avatar key={i} src={`/images/avatars/ellipse_${i}.png`} alt={`avatar${i}`} />)
+    avatars.push(
+      <Avatar
+        key={i}
+        src={`/images/avatars/ellipse_${i}.png`}
+        alt={`avatar${i}`}
+      />,
+    );
   }
-  return (
-    <AvatarsWrapper>
-      {avatars}
-    </AvatarsWrapper>
-  );
+  return <AvatarsWrapper>{avatars}</AvatarsWrapper>;
 }
 
 Heads.propTypes = {};

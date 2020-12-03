@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { H1, Body, H3, Body13 } from 'components/shared/typogrophy';
 

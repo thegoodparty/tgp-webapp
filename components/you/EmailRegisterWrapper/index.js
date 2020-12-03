@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 
-import Wrapper from 'components/shared/Wrapper';
 import { Body13, H2 } from 'components/shared/typogrophy/index';
 import NextButton from 'components/shared/buttons/NextButton';
 import { fullFirstLastInitials } from 'helpers/userHelper';
@@ -21,7 +20,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -42,16 +41,7 @@ const Error = styled(Body13)`
   margin-top: 12px;
 `;
 
-const Login = styled.span`
-  a {
-    color: ${({ theme }) => theme.colors.blue};
-  }
-  font-weight: 600;
-  text-decoration: underline;
-  margin-left: 4px;
-`;
-
-const RegisterWrapper = ({ registerCallback, loading, error }) => {
+const RegisterWrapper = ({ registerCallback, error }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -157,7 +147,6 @@ const RegisterWrapper = ({ registerCallback, loading, error }) => {
 
 RegisterWrapper.propTypes = {
   registerCallback: PropTypes.func,
-  loading: PropTypes.bool,
   error: PropTypes.bool,
 };
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-
 import Link from 'next/link';
-
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Body19, H2 } from 'components/shared/typogrophy';
 import { BlueButton } from 'components/shared/buttons';
@@ -33,6 +31,7 @@ const SectionDescription = styled(Body19)`
 
 const LearnMore = styled(BlueButton)`
   && {
+    cursor: pointer;
     margin-top: 2rem;
     width: 11rem;
   }
@@ -47,9 +46,7 @@ const CreatorsSection = () => (
           need to mobilize people and change everything for Good!
         </SectionDescription>
         <Link href="/creators">
-          <a>
-            <LearnMore className="outline">Learn More</LearnMore>
-          </a>
+          <LearnMore className="outline">Learn More</LearnMore>
         </Link>
       </LeftCol>
       <Grid item xs={12} sm={4} md={6}>

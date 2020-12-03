@@ -287,14 +287,16 @@ const ShareModal = ({
   }
 
   const chamberTitle = getCandidateTitle(chamber);
-  const messageTitle = `Let's see if we can elect ${candidate.name} ${chamberTitle.includes('President') ? '' : 'to '
-    }${chamberTitle}.`;
+  const messageTitle = `Let's see if we can elect ${candidate.name} ${
+    chamberTitle.includes('President') ? '' : 'to '
+  }${chamberTitle}.`;
   const emailTitle = `Help me elect ${candidate.name}`;
   // const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
-  const messageBody = `${candidate.name
-    } could win in ${getCandidateChamberDistrictOnly(
-      candidate,
-    )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
+  const messageBody = `${
+    candidate.name
+  } could win in ${getCandidateChamberDistrictOnly(
+    candidate,
+  )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   const nativeShare = () => {
@@ -413,7 +415,12 @@ const ShareModal = ({
               <IconItem>
                 <CopyToClipboard text={url} onCopy={handleCopy}>
                   <IconWrapper>
-                    <Icon src={LinkIcon} alt="copy" width="36px" height="auto" />
+                    <Icon
+                      src={LinkIcon}
+                      alt="copy"
+                      width="36px"
+                      height="auto"
+                    />
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
@@ -458,7 +465,12 @@ const ShareModal = ({
                   <IconItem>
                     <IconItem onClick={nativeShare}>
                       <IconWrapper className="native-share">
-                        <Icon src={ShareIcon} alt="more" width="36px" height="auto" />
+                        <Icon
+                          src={ShareIcon}
+                          alt="more"
+                          width="36px"
+                          height="auto"
+                        />
                       </IconWrapper>
                     </IconItem>
                   </IconItem>
@@ -482,7 +494,12 @@ const ShareModal = ({
         </Footer>
         {copied && (
           <CopiedWrapper>
-            <Icon src={CopyPasteIcon} alt="copy link" width="36px" height="auto" />
+            <Icon
+              src={CopyPasteIcon}
+              alt="copy link"
+              width="36px"
+              height="auto"
+            />
             <Copied>TEXT LINK COPIED TO CLIPBOARD</Copied>
           </CopiedWrapper>
         )}

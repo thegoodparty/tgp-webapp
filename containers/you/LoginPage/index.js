@@ -82,7 +82,7 @@ function mapDispatchToProps(dispatch) {
     socialLoginCallback: user => {
       dispatch(userActions.socialLoginAction(user));
     },
-    socialLoginFailureCallback: err => {
+    socialLoginFailureCallback: () => {
       dispatch(snackbarActions.showSnakbarAction('Sign in error', 'error'));
     },
     twitterButtonCallback: () => {

@@ -8,7 +8,7 @@ import fetchHelper from './fetchHelper';
 import snackbarActions from '../containers/shared/SnackbarContainer/actions';
 import { getCookie } from './cookieHelper';
 
-export default function* requestHelper(api, data) {
+export default function* requestHelper(api, data, isFormData = false) {
   let { url } = api;
   const { method, withAuth } = api;
   if ((method === 'GET' || method === 'DELETE') && data) {
@@ -21,7 +21,7 @@ export default function* requestHelper(api, data) {
     url = url.slice(0, -1);
   }
   let body = data;
-  if ((method === 'POST' || method === 'PUT') && data) {
+  if ((method === 'POST' || method === 'PUT') && data && !isFormData) {
     body = JSON.stringify(data);
   }
   let token;

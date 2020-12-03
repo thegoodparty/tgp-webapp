@@ -566,8 +566,7 @@ function* uploadAvatar(action) {
     const data = new FormData();
     data.append('avatar', fileData);
     data.append('fileExt', fileExt);
-
-    const response = yield call(requestHelper, api, data);
+    const response = yield call(requestHelper, api, data, true);
     const { user } = response;
     yield put(actions.updateUserActionSuccess(user));
     setUserCookie(user);

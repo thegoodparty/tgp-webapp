@@ -2,9 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
 import Link from 'next/link';
-
 import { H2, Body, Body12, Body9 } from 'components/shared/typogrophy';
 import {
   rankPageLink,
@@ -17,6 +15,7 @@ import VotesNeeded from './VotesNeeded';
 import WonLostElection from '../../shared/WonLostElection';
 
 const ChallengerItemWrapper = styled.div`
+  cursor: pointer;
   width: 100%;
   padding: 1rem;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
@@ -113,9 +112,8 @@ const ChallengerItem = ({ challenger, id }) => {
   const perc = percHelper(smallDonorPerc, true);
   const partyString = partyResolver(party);
 
-  const districtInfo = `${state.toUpperCase()}${
-    district ? `-${district}` : ' Senate'
-  }`;
+  const districtInfo = `${state.toUpperCase()}${district ? `-${district}` : ' Senate'
+    }`;
   const challengerInfo = (
     <>
       <TitleCase>{partyString.toLowerCase()}</TitleCase> for {districtInfo}
@@ -133,7 +131,7 @@ const ChallengerItem = ({ challenger, id }) => {
   return (
     <ChallengerItemWrapper id={id}>
       <Link href={getRankPageLink()}>
-        <a>
+        <>
           <ChallengerAvatar avatar={image} party={party} />
           <ChallengerName>{name}</ChallengerName>
           <ChallengerInfo>{challengerInfo}</ChallengerInfo>
@@ -141,13 +139,13 @@ const ChallengerItem = ({ challenger, id }) => {
             <Grid item xs={6}>
               <ChallengeStats className="value">
                 {funding < 1 ? funding : numberFormatter(funding)}%
-              </ChallengeStats>
+            </ChallengeStats>
               <ChallengeStatsSmall>{fundingText}</ChallengeStatsSmall>
             </Grid>
             <Grid item xs={6}>
               <ChallengeStats className="value">
                 {numberFormatter(disadvantage)}x
-              </ChallengeStats>
+            </ChallengeStats>
               <ChallengeStatsSmall>Funding Disadvantage</ChallengeStatsSmall>
             </Grid>
           </Grid>
@@ -157,11 +155,11 @@ const ChallengerItem = ({ challenger, id }) => {
             </NeededVotes>
             <LineWrapper>
               <FullLine />
-              <PercentLine percent={neededPercent + '%'} />
+              <PercentLine percent={`${neededPercent}%`} />
             </LineWrapper>
           </NeededVotesWrapper>
           <WonLostElection candidate={challenger} />
-        </a>
+        </>
       </Link>
     </ChallengerItemWrapper>
   );

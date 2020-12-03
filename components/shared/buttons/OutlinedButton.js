@@ -6,6 +6,7 @@ import tgpTheme from 'theme/index';
 
 const StyledButton = styled(Button)`
   && {
+    cursor: pointer;
     border-radius: 30px;
     padding: 12px 18px;
     font-family: ${tgpTheme.typography.fontFamily};
@@ -53,7 +54,7 @@ const OutlinedButton = ({
   style = {},
   type = 'button',
   twitter = false,
-  auth = false
+  auth = false,
 }) => {
   let buttonClass = className;
   if (white) {

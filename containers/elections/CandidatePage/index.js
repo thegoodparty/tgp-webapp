@@ -179,7 +179,7 @@ const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
 });
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     deleteCandidateRankingCallback: rank => {

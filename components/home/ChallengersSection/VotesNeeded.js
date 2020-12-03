@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
 import { Body } from 'components/shared/typogrophy';
 import { candidateCalculatedFields } from 'helpers/electionsHelper';
 import { numberFormatter } from 'helpers/numberHelper';

@@ -10,12 +10,12 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { makeSelectContent } from 'containers/App/selectors';
 import EventsWrapper from 'components/party/EventsWrapper';
 
 export function EventsPage({ content }) {
-  const router = useRouter()
+  const router = useRouter();
   const childProps = {
     content,
     backButtonCallback: () => router.back(),

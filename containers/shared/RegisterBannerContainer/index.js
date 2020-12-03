@@ -10,16 +10,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { useInjectReducer } from 'utils/injectReducer';
-import reducer from 'containers/intro/ZipFinderPage/reducer';
-
 import RegisterBannerWrapper, {
   Spacer,
 } from 'components/shared/RegisterBannerWrapper';
 import makeSelectUser, { makeSelectRanking } from '../../you/YouPage/selectors';
 import { makeSelectLocation } from '../../App/selectors';
 import userActions from '../../you/YouPage/actions';
-import { candidateFirstName } from '../../../helpers/electionsHelper';
 
 export function RegisterBannerContainer({
   userState,
@@ -42,9 +38,9 @@ export function RegisterBannerContainer({
 
   const pathname = locationState?.pathname || '';
 
-  const presidentialRank = rankingObj['presidential'];
-  const senateRank = rankingObj['senate'];
-  const houseRank = rankingObj['house'];
+  const presidentialRank = rankingObj.presidential;
+  const senateRank = rankingObj.senate;
+  const houseRank = rankingObj.house;
 
   const presidentialRankArr = Object.keys(presidentialRank);
   const senateRankArr = Object.keys(senateRank);
@@ -54,15 +50,15 @@ export function RegisterBannerContainer({
   const senateCount = senateRankArr.length;
   const houseCount = houseRankArr.length;
 
-  let blocName = '';
+  let chamberObj;
   if (presidentialCount > 0) {
-    blocName = rankingObj.presidential[presidentialRankArr[0]].blocName;
+    chamberObj = rankingObj.presidential[presidentialRankArr[0]];
   } else if (senateCount > 0) {
-    blocName = rankingObj.senate[senateRankArr[0]].blocName;
+    chamberObj = rankingObj.senate[senateRankArr[0]];
   } else if (houseCount > 0) {
-    blocName = rankingObj.house[houseRankArr[0]].blocName;
+    chamberObj = rankingObj.house[houseRankArr[0]];
   }
-
+  const { blocName } = chamberObj;
   const count = presidentialCount + senateCount + houseCount;
 
   let showBanner = true;

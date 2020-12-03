@@ -334,22 +334,22 @@ function AdminEditCandidate({
               <CircularProgress />
             </AvatarWrapper>
           ) : (
-              <>
-                <AvatarWrapper>
-                  <CandidateAvatar
-                    src={candidate.image}
-                    good={candidate.isGood}
-                    name={candidate.name}
-                    size="xl"
-                  />
-                </AvatarWrapper>
-                <ImageCrop
-                  uploadImageCallback={handleUpload}
-                  loading={loading}
-                  currentImage={candidate.image}
+            <>
+              <AvatarWrapper>
+                <CandidateAvatar
+                  src={candidate.image}
+                  good={candidate.isGood}
+                  name={candidate.name}
+                  size="xl"
                 />
-              </>
-            )}
+              </AvatarWrapper>
+              <ImageCrop
+                uploadImageCallback={handleUpload}
+                loading={loading}
+                currentImage={candidate.image}
+              />
+            </>
+          )}
           <H2 className="text-center">
             <a href={candidateRoute(candidate)} target="_blank">
               {name}
@@ -463,8 +463,8 @@ function AdminEditCandidate({
           <br />
         </Wrapper>
       ) : (
-          <LoadingAnimation />
-        )}
+        <LoadingAnimation />
+      )}
     </div>
   );
 }

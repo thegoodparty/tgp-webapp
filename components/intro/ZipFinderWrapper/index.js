@@ -8,7 +8,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from '@material-ui/core/Input';
-
 import PageWrapper from 'components/shared/PageWrapper';
 import { H2, Body, Body11, Body13, Body12 } from 'components/shared/typogrophy';
 import NextButton from 'components/shared/buttons/NextButton';
@@ -135,7 +134,6 @@ function ZipFinderWrapper({
   const getLocation = () => {
     setFindGeoLocation(true);
   };
-
 
   const InnerContent = (
     <>

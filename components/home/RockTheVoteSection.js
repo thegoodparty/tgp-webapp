@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Quote, Body14 } from 'components/shared/typogrophy';
 
@@ -39,28 +38,26 @@ const Author = styled(Body14)`
     font-weight: bold;
   }
 `;
-const RockTheVoteSection = ({}) => {
-  return (
-    <RockTheVoteSectionWrapper>
-      <Grid container>
-        <LeftCol item xs={12} md={6}>
-          <SectionTitle>
-            “The Good Party is like Rock The Vote on steroids!”
-          </SectionTitle>
-          <Author className="name">Jeff Ayeroff</Author>
-          <Author>Founder of Rock The Vote</Author>
-        </LeftCol>
-        <RightCol item xs={12} md={6}>
-          <LazyLoadImage
-            src="http://assets.thegoodparty.org/jeff.png"
-            alt="jeff-ayeroff"
-            width="100%"
-            height="100%"
-          />
-        </RightCol>
-      </Grid>
-    </RockTheVoteSectionWrapper>
-  );
-};
+const RockTheVoteSection = () => (
+  <RockTheVoteSectionWrapper>
+    <Grid container>
+      <LeftCol item xs={12} md={6}>
+        <SectionTitle>
+          “The Good Party is like Rock The Vote on steroids!”
+        </SectionTitle>
+        <Author className="name">Jeff Ayeroff</Author>
+        <Author>Founder of Rock The Vote</Author>
+      </LeftCol>
+      <RightCol item xs={12} md={6}>
+        <LazyLoadImage
+          src="http://assets.thegoodparty.org/jeff.png"
+          alt="jeff-ayeroff"
+          width="100%"
+          height="100%"
+        />
+      </RightCol>
+    </Grid>
+  </RockTheVoteSectionWrapper>
+);
 
 export default RockTheVoteSection;

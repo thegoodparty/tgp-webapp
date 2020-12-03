@@ -8,7 +8,7 @@ import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import queryHelper from 'helpers/queryHelper';
 import { createStructuredSelector } from 'reselect';
@@ -16,19 +16,16 @@ import globalActions from 'containers/App/actions';
 
 import {
   makeSelectContent,
-  makeSelectLocation
+  makeSelectLocation,
 } from 'containers/App/selectors';
 
 import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from 'helpers/articlesHelper';
 
-export function FaqArticlePage({
-  content,
-  helpfulCallback,
-  locationState
-}) {
+export function FaqArticlePage({ content, helpfulCallback, locationState }) {
   const [article, setArticle] = useState(null);
   const { search } = locationState;
+  const router = useRouter();
   const id = queryHelper(search, 'article');
   useEffect(() => {
     if (content) {
@@ -39,7 +36,6 @@ export function FaqArticlePage({
   if (!id) {
     return <></>;
   }
-  const router = useRouter()
   const childProps = {
     article,
     backButtonCallback: () => router.back(),

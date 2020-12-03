@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router'
-
+import { useRouter } from 'next/router';
 import { H3, Body, Body13 } from 'components/shared/typogrophy';
 
 const Wrapper = styled.div`
@@ -33,7 +32,7 @@ const ArticleTitle = styled(Body)`
 `;
 
 const TopQuestions = ({ articles }) => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <Wrapper>
       <Row>
@@ -49,7 +48,10 @@ const TopQuestions = ({ articles }) => {
             key={article.id}
             data-cy="faq"
           >
-            <ArticleTitle className={index === 0 ? 'first' : ''} data-cy="faq-title">
+            <ArticleTitle
+              className={index === 0 ? 'first' : ''}
+              data-cy="faq-title"
+            >
               {article.title}
             </ArticleTitle>
           </Link>

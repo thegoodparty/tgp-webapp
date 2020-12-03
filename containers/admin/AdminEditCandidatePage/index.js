@@ -92,7 +92,7 @@ const mapStateToProps = createStructuredSelector({
   userState: makeSelectUser(),
 });
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     saveCandidateCallback: (updatedFields, candidate, updates) => {

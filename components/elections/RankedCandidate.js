@@ -61,7 +61,9 @@ const RankedCandidate = ({ candidate, index, withLink = true }) => {
               ? 'GOOD PARTY APPROVED'
               : partyResolver(candidate.party)}
           </Party>
-          <Supporters>{numberFormatter(candidate.ranking)} Supporters</Supporters>
+          <Supporters>
+            {numberFormatter(candidate.ranking)} Supporters
+          </Supporters>
         </CandName>
       </Row>
     </Wrapper>

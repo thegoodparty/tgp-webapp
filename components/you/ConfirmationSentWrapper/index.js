@@ -47,24 +47,22 @@ const wrapperStyles = {
   backgroundColor: tgpTheme.colors.blue,
 };
 
-const ConfirmationSentWrapper = ({ email, emailSendCallback }) => {
-  return (
-    <PageWrapper>
-      <Wrapper style={wrapperStyles}>
-        <div className="text-center">
-          <Img src={EmailConfirmationImage} />
-        </div>
-        <ContentWrapper>
-          <StyledH2>Sign-in link sent {email && <>to {email}</>}</StyledH2>
-          <StyledH3>
-            Tap on the link sent in your email to automatically sign -in
-          </StyledH3>
-          <Resend onClick={emailSendCallback}>Resend Email</Resend>
-        </ContentWrapper>
-      </Wrapper>
-    </PageWrapper>
-  );
-};
+const ConfirmationSentWrapper = ({ email, emailSendCallback }) => (
+  <PageWrapper>
+    <Wrapper style={wrapperStyles}>
+      <div className="text-center">
+        <Img src={EmailConfirmationImage} />
+      </div>
+      <ContentWrapper>
+        <StyledH2>Sign-in link sent {email && <>to {email}</>}</StyledH2>
+        <StyledH3>
+          Tap on the link sent in your email to automatically sign -in
+        </StyledH3>
+        <Resend onClick={emailSendCallback}>Resend Email</Resend>
+      </ContentWrapper>
+    </Wrapper>
+  </PageWrapper>
+);
 
 ConfirmationSentWrapper.propTypes = {
   email: PropTypes.string,

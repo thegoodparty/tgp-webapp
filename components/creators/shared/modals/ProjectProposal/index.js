@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import Collaborators from '../../Collaborators';
-import { Body18, Body13 } from '../../typography';
+import { Body13 } from '../../typography';
 import { BlueButton } from '../../buttons';
 import {
   Title,
@@ -49,7 +49,6 @@ function ProjectProposal({
   open,
   handleClose,
   project,
-  user,
   sendMessageToCreatorCallback,
 }) {
   const [message, setMessage] = useState('');

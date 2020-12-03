@@ -56,6 +56,8 @@ BlueButton.propTypes = {
   fullWidth: PropTypes.bool,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export default BlueButton;

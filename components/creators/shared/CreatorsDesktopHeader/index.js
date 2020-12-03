@@ -7,9 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Menu from '@material-ui/icons/Menu';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { Body14 } from 'components/shared/typogrophy';
 import { deleteSignupRedirectCookie } from 'helpers/cookieHelper';
-import Body from '../typography/Body';
 
 const LogoCaps = '/images/logo-caps.svg';
 const Wrapper = styled.div`
@@ -87,17 +85,6 @@ const Logo = styled.img`
   }
 `;
 
-const LogoTitle = styled(Body)`
-  @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
-    font-size: 1.3rem;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsTablet}) {
-    font-size: 1.5rem;
-  }
-`;
-
 const TopLink = styled.a`
   cursor: pointer;
   height: 58px;
@@ -133,15 +120,6 @@ const TopLink = styled.a`
     }
   }
 `;
-const AvatarWrapper = styled(Body14)`
-  height: 58px;
-  cursor: pointer;
-
-  &:hover,
-  &.showBorder {
-    border-bottom: solid 2px ${({ theme }) => theme.colors.lightBlue};
-  }
-`;
 
 const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
   const [menu, setMenu] = useState(false);
@@ -171,13 +149,13 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
                 onClick={deleteSignupRedirectCookie}
               >
                 You
-            </TopLink>
+              </TopLink>
             </Link>
           ) : (
-              <TopLink className="menu-item" onClick={onClickJoin}>
-                Join
-              </TopLink>
-            )}
+            <TopLink className="menu-item" onClick={onClickJoin}>
+              Join
+            </TopLink>
+          )}
         </MenuItemsWrapper>
         <MenuItemsWrapper className="mobile">
           <TopLink className="menu-item" onClick={() => setMenu(true)}>
@@ -197,16 +175,14 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
               {user ? (
                 <ListItem button>
                   <Link href="/you">
-                    <TopLink className="menu-item" >
-                      You
-                  </TopLink>
+                    <TopLink className="menu-item">You</TopLink>
                   </Link>
                 </ListItem>
               ) : (
-                  <ListItem button onClick={onClickJoin}>
-                    <TopLink className="menu-item">Join</TopLink>
-                  </ListItem>
-                )}
+                <ListItem button onClick={onClickJoin}>
+                  <TopLink className="menu-item">Join</TopLink>
+                </ListItem>
+              )}
             </List>
           </Drawer>
         </Hidden>

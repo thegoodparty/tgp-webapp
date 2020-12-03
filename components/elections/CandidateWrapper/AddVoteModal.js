@@ -167,7 +167,9 @@ const AddVoteModal = ({
         </BlueButton>
         <Footer>
           Don&apos;t worry, we will{' '}
-          <Link href="?article=prGq4SAFpfT7qzBFM1HDy">never waste your vote</Link>
+          <Link href="?article=prGq4SAFpfT7qzBFM1HDy">
+            never waste your vote
+          </Link>
           <br />
           <Image
             src="images/logo-caps.svg"
