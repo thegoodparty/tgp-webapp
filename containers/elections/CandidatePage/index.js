@@ -23,7 +23,6 @@ import AnalyticsService from 'services/AnalyticsService';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { useRouter } from 'next/router';
 
 import makeSelectUser, {
   makeSelectRanking,
@@ -31,13 +30,11 @@ import makeSelectUser, {
 import userActions from 'containers/you/YouPage/actions';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import { makeSelectContent } from 'containers/App/selectors';
-import makeSelectCandidate from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
 export function CandidatePage({
-  candidateState,
   dispatch,
   userState,
   rankingObj,
@@ -63,10 +60,8 @@ export function CandidatePage({
       dispatch(actions.loadDistrictIncumbentActionSuccess(incumbent));
     }
   }
-  const [chamberName, chamberIncumbent] = chamber ? chamber.split('-') : '';
-  const isIncumbent = chamberIncumbent === 'i';
+  const [chamberName] = chamber ? chamber.split('-') : '';
 
-  const { state, district } = candidate || {};
   const queryAddVote =
     typeof window !== 'undefined'
       ? queryHelper(window.location.search, 'addVote')
@@ -149,7 +144,6 @@ CandidatePage.propTypes = {
   id: PropTypes.string.isRequired,
   chamber: PropTypes.string.isRequired,
   tab: PropTypes.string,
-  candidateState: PropTypes.object,
   userState: PropTypes.object,
   rankingObj: PropTypes.object,
   deleteCandidateRankingCallback: PropTypes.func,
@@ -162,13 +156,12 @@ CandidatePage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  candidateState: makeSelectCandidate(),
   userState: makeSelectUser(),
   rankingObj: makeSelectRanking(),
   content: makeSelectContent(),
 });
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     deleteCandidateRankingCallback: rank => {
