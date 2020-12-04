@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import PageWrapper from 'components/shared/PageWrapper';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import { Body, H1 } from 'components/shared/typogrophy';
@@ -39,50 +39,6 @@ const ElectionWrapper = ({
 }) => {
   const [showFilters, setShowFilters] = useState(false);
   const router = useRouter();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-
-    // voterX pixel
-    (function (w, d, t, r, u) {
-      w[u] = w[u] || [];
-      w[u].push({ projectId: '10000', properties: { pixelId: '10137705' } });
-      var s = d.createElement(t);
-      s.src = r;
-      s.async = true;
-      s.onload = s.onreadystatechange = function () {
-        var y,
-          rs = this.readyState,
-          c = w[u];
-        if (rs && rs != 'complete' && rs != 'loaded') {
-          return;
-        }
-        try {
-          y = YAHOO.ywa.I13N.fireBeacon;
-          w[u] = [];
-          w[u].push = function (p) {
-            y([p]);
-          };
-          y(c);
-        } catch (e) { }
-      };
-      var scr = d.getElementsByTagName(t)[0],
-        par = scr.parentNode;
-      par.insertBefore(s, scr);
-    })(window, document, 'script', 'https://s.yimg.com/wi/ytc.js', 'dotq');
-    window.dotq = window.dotq || [];
-    window.dotq.push({
-      projectId: '10000',
-      properties: {
-        pixelId: '10137705',
-        qstrings: {
-          et: 'custom',
-          ec: 'see',
-        },
-      },
-    });
-    // end voterX
-  }, []);
-
   const openFiltersCallback = () => {
     setShowFilters(true);
   };
@@ -129,24 +85,27 @@ const ElectionWrapper = ({
             {candidates.good.length > 0 ? (
               <>
                 Join any{' '}
-                <Link href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`} data-cy="article">
+                <Link
+                  href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                  data-cy="article"
+                >
                   crowd-voting campaign
                 </Link>{' '}
                 and we&apos;ll let you know if it grows big enough to win!
               </>
             ) : (
-                <>
-                  We&apos;re looking for{' '}
-                  <GoodCandidate
-                    onClick={openFiltersCallback}
-                    data-cy="good-candidate-option"
-                  >
-                    good candidate options
+              <>
+                We&apos;re looking for{' '}
+                <GoodCandidate
+                  onClick={openFiltersCallback}
+                  data-cy="good-candidate-option"
+                >
+                  good candidate options
                 </GoodCandidate>{' '}
                 in this race. Join #GoodBloc to be notified as soon as we find
                 any good candidates.
               </>
-              )}
+            )}
           </Description>
 
           <VsList
@@ -168,8 +127,8 @@ const ElectionWrapper = ({
           </BottomPopup>
         </>
       ) : (
-          <LoadingAnimation />
-        )}
+        <LoadingAnimation />
+      )}
     </PageWrapper>
   );
 };

@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-import { Body13, Body, Body9 } from 'components/shared/typogrophy';
-
-import { convertURI } from 'helpers/candidatesHelper';
-
-const ReportError = styled(Body9)`
-  color: ${({ theme }) => theme.colors.gray7};
-  text-transform: uppercase;
-`;
-
-const OpenSecretsLink = styled(Body9)`
-  margin: 16px 0;
-  color: ${({ theme }) => theme.colors.gray7};
-`;
-
-const BallotpediaNoData = styled(Body9)`
-  color: ${({ theme }) => theme.colors.gray7};
-`;
+import { Body13, Body } from 'components/shared/typogrophy';
 
 const CandidateProfile = ({ candidate }) => {
   const { candidateInfo, keyMessages, name } = candidate;

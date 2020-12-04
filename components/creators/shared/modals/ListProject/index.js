@@ -28,7 +28,7 @@ function ListProject({ open, handleClose }) {
     }));
   };
   const updateLink = (value, index) => {
-    let { links } = state;
+    const { links } = state;
     links[index] = value;
     if (value === '' && links.length !== 1) {
       links.splice(index, 1);
@@ -44,7 +44,7 @@ function ListProject({ open, handleClose }) {
     handleClose();
   };
   const addLink = value => {
-    let { links } = state;
+    const { links } = state;
     if (links[links.length - 1] === '') {
       return;
     }

@@ -76,9 +76,7 @@ const PartyWrapper = ({ content, appVersion }) => {
               Events
             </H3>
             <Link href="/party/events" data-cy="events-link">
-              <a>
-                <LearnMore>See All</LearnMore>
-              </a>
+              <LearnMore>See All</LearnMore>
             </Link>
           </Row>
           {events.map(event => (

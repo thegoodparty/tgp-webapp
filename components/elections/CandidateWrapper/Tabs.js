@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import Link from 'next/link';
-
 import { Body13 } from 'components/shared/typogrophy';
-
 import { candidateRoute } from 'helpers/electionsHelper';
 
 const TabsWrapper = styled.div`

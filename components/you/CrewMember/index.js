@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { Body13, Body11 } from 'components/shared/typogrophy/index';
 import UserAvatar from 'components/shared/UserAvatar';
 

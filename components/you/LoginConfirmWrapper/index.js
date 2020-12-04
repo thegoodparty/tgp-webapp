@@ -19,7 +19,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -86,7 +86,8 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
 };
 
 LoginConfirmWrapper.propTypes = {
-  loginCallback: PropTypes.func,
+  confirmLoginCallback: PropTypes.func,
+  email: PropTypes.string,
 };
 
 export default LoginConfirmWrapper;

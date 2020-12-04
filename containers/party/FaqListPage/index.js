@@ -10,8 +10,7 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { useRouter } from 'next/router'
-
+import { useRouter } from 'next/router';
 import { makeSelectContent } from 'containers/App/selectors';
 
 import FaqListWrapper from 'components/party/FaqListWrapper';

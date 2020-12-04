@@ -40,10 +40,12 @@ export function VerifyVotePage({
 
   useInjectReducer({ key: 'verifyVotePage', reducer });
   useInjectSaga({ key: 'verifyVotePage', saga });
+  let email;
+  let token;
   if (typeof window !== 'undefined') {
     const { search } = window.location;
-    const email = queryHelper(search, 'email');
-    const token = queryHelper(search, 'token');
+    email = queryHelper(search, 'email');
+    token = queryHelper(search, 'token');
   }
   useEffect(() => {
     if (email && token) {

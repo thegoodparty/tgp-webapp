@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-
 import { Body14 } from 'components/shared/typogrophy';
 import { BlueButton } from 'components/shared/buttons';
 
@@ -44,29 +43,27 @@ const ColTitle = styled(Body14)`
   font-weight: 600;
 `;
 
-const CreatorsSection = ({}) => {
-  return (
-    <CreatorsSectionWrapper>
-      <Grid container>
-        <LeftCol item xs={12} md={6}>
-          <ColTitle>Stay Connected</ColTitle>
-          <ColDescription>
-            We're just getting started. Stay in the loop for updates as we build
-            a better infrastructure for our democracy.
-          </ColDescription>
-          <SubmitButton>Join our Mailing List</SubmitButton>
-        </LeftCol>
-        <RightCol item xs={12} md={6}>
-          <ColTitle>Search Candidates</ColTitle>
-          <ColDescription>
-            Curious to see other good candidates?
-            <br />
-          </ColDescription>
-          <SubmitButton>Find Candidate</SubmitButton>
-        </RightCol>
-      </Grid>
-    </CreatorsSectionWrapper>
-  );
-};
+const CreatorsSection = () => (
+  <CreatorsSectionWrapper>
+    <Grid container>
+      <LeftCol item xs={12} md={6}>
+        <ColTitle>Stay Connected</ColTitle>
+        <ColDescription>
+          We're just getting started. Stay in the loop for updates as we build a
+          better infrastructure for our democracy.
+        </ColDescription>
+        <SubmitButton>Join our Mailing List</SubmitButton>
+      </LeftCol>
+      <RightCol item xs={12} md={6}>
+        <ColTitle>Search Candidates</ColTitle>
+        <ColDescription>
+          Curious to see other good candidates?
+          <br />
+        </ColDescription>
+        <SubmitButton>Find Candidate</SubmitButton>
+      </RightCol>
+    </Grid>
+  </CreatorsSectionWrapper>
+);
 
 export default CreatorsSection;

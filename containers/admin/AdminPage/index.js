@@ -93,6 +93,8 @@ AdminPage.propTypes = {
   loadAllUsersCallback: PropTypes.func,
   loadArticleFeedbackCallback: PropTypes.func,
   deleteUserCallback: PropTypes.func,
+  loadVoterizeCallback: PropTypes.func,
+  updateVoterizeCallback: PropTypes.func,
   userState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };

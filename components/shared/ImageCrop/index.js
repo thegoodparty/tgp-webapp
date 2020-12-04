@@ -121,8 +121,8 @@ function ImageCrop({ uploadImageCallback, loading, currentImage }) {
             <Grid item xs={12} md={4}>
               <CanvasWrapper
                 style={{
-                  width: canvasWidth + 'px',
-                  height: canvasWidth + 'px',
+                  width: `${canvasWidth}px`,
+                  height: `${canvasWidth}px`,
                 }}
               >
                 <canvas

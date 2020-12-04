@@ -120,7 +120,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
               <ReactPlayer
                 url={video}
                 playing={false}
-                controls={true}
+                controls
                 width="100"
                 height="100"
               />

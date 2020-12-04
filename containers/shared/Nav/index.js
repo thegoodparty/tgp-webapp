@@ -20,7 +20,6 @@ import saga from 'containers/you/YouPage/saga';
 import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
 import { makeSelectLocation } from 'containers/App/selectors';
-import { getCookie } from 'helpers/cookieHelper';
 import { electionRoute } from 'helpers/electionsHelper';
 
 import makeSelectCandidate from '../../elections/CandidatePage/selectors';

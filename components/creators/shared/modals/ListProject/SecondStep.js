@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
+import { DropzoneArea } from 'material-ui-dropzone';
 import { Body15 } from '../../typography';
 import { BlueButton, GrayButton } from '../../buttons';
-import { DropzoneArea } from 'material-ui-dropzone';
 import {
   BodyWrapper,
   OverlayModal,
@@ -51,8 +51,6 @@ const ProjectImagesDropzoneWrapper = styled.div`
 function SecondStep({
   open,
   toggleModal,
-  video,
-  images,
   links,
   closeModal,
   updateProject,
@@ -61,7 +59,7 @@ function SecondStep({
   return (
     <>
       <OverlayModal
-        open={true}
+        open
         onClose={closeModal}
         key="second-modal"
         aria-labelledby="second-modal-title"
@@ -111,7 +109,7 @@ function SecondStep({
                       variant="outlined"
                       value={link}
                       placeHolder="Paste URL"
-                      onChange={ev => updateLink(ev.target.value, index)}
+                      // onChange={ev => updateLink(ev.target.value, index)}
                     />
                   ))}
                   <AddProjectLink onClick={addLink} className="text-left">
@@ -142,8 +140,6 @@ function SecondStep({
 SecondStep.propTypes = {
   open: PropTypes.bool,
   toggleModal: PropTypes.func,
-  video: PropTypes.string,
-  images: PropTypes.array,
   links: PropTypes.array,
   closeModal: PropTypes.func,
   updateProject: PropTypes.func,

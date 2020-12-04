@@ -242,7 +242,12 @@ const ShareModal = ({ open, user, closeCallback }) => {
               <IconItem>
                 <CopyToClipboard text={url} onCopy={() => setCopied(true)}>
                   <IconWrapper>
-                    <Icon src={LinkIcon} alt="copy" width="36px" height="auto" />
+                    <Icon
+                      src={LinkIcon}
+                      alt="copy"
+                      width="36px"
+                      height="auto"
+                    />
                   </IconWrapper>
                 </CopyToClipboard>
               </IconItem>
@@ -253,7 +258,12 @@ const ShareModal = ({ open, user, closeCallback }) => {
                 <IconItem>
                   <IconItem onClick={nativeShare}>
                     <IconWrapper className="native-share">
-                      <Icon src={ShareIcon} alt="more" width="36px" height="auto" />
+                      <Icon
+                        src={ShareIcon}
+                        alt="more"
+                        width="36px"
+                        height="auto"
+                      />
                     </IconWrapper>
                   </IconItem>
                 </IconItem>
@@ -264,7 +274,12 @@ const ShareModal = ({ open, user, closeCallback }) => {
         </AdditionalSharesWrapper>
         {copied && (
           <CopiedWrapper>
-            <Icon src={CopyPasteIcon} alt="copy link" width="auto" height="auto" />
+            <Icon
+              src={CopyPasteIcon}
+              alt="copy link"
+              width="auto"
+              height="auto"
+            />
             <Copied>TEXT LINK COPIED TO CLIPBOARD</Copied>
           </CopiedWrapper>
         )}

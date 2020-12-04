@@ -32,7 +32,7 @@ const CollaboratorsCount = styled.span`
     color: black;
   }
   @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+    theme.creators.breakpoints.creatorsMobile}) {
     font-size: 13px;
     line-height: 20px;
   }

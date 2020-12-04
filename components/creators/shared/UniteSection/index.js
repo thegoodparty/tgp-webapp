@@ -121,7 +121,6 @@ const LogoTitle = styled(Body)`
   }
 `;
 
-
 const TitleImg = styled.img`
   width: 100%;
   height: 100%;
@@ -130,13 +129,6 @@ const TitleImg = styled.img`
   }
 `;
 
-const SmPunct = styled.span`
-  display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
-    display: inline;
-  }
-`;
 const VideoPunct = styled.span`
   display: inline;
   @media only screen and (min-width: 466px) and (max-width: 530px) {

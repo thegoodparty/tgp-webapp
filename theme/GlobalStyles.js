@@ -72,6 +72,9 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     height: auto;
   }
+  .uploadIcon {
+    display: none;
+  }
 `;
 
 export default GlobalStyles;

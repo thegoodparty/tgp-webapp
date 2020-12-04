@@ -44,7 +44,6 @@ const WonLostElection = ({ candidate, style = {} }) => {
 WonLostElection.propTypes = {
   style: PropTypes.object,
   candidate: PropTypes.object,
-  whiteBorder: PropTypes.bool,
 };
 
 export default WonLostElection;

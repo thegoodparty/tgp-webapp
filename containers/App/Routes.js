@@ -63,11 +63,7 @@ function Routes() {
         path="/elections/district/:zip/:cd"
         component={DistrictPage}
       />
-      <Route
-        exact
-        path="/elections/incumbents"
-        component={IncumbentsPage}
-      />
+      <Route exact path="/elections/incumbents" component={IncumbentsPage} />
       <Route
         exact
         path="/elections/candidate/:chamber/:name/:id/:tab"
@@ -78,7 +74,6 @@ function Routes() {
         path="/elections/candidate/:chamber/:name/:id"
         component={CandidatePage}
       />
-
 
       <Route exact path="/elections/:chamber" component={ElectionPage} />
       <Route exact path="/elections/:chamber/:state" component={ElectionPage} />

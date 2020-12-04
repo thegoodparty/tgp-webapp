@@ -16,9 +16,7 @@ import PasswordInput from '../../shared/PasswordInput';
 function ResetPasswordWrapper({ email, token, resetPasswordCallback }) {
   const [password, setPassword] = useState('');
 
-  const enableSubmit = () => {
-    return password.length >= 8;
-  };
+  const enableSubmit = () => password.length >= 8;
 
   const handleSubmitForm = e => {
     e.preventDefault();

@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import styled from 'styled-components';
-import { Body19, Subtitle, Body, Body11 } from 'components/shared/typogrophy';
+import { Body19, Subtitle, Body11 } from 'components/shared/typogrophy';
 import Link from 'next/link';
 import { OutlinedButton } from '../shared/buttons';
 
@@ -57,9 +57,7 @@ const StatsSection = () => (
           <br />
           <ButtonWrapper>
             <Link href="/elections/incumbents">
-              <a>
-                <OutlinedButton active>SEE BIG-MONEY RANKINGS</OutlinedButton>
-              </a>
+              <OutlinedButton active>SEE BIG-MONEY RANKINGS</OutlinedButton>
             </Link>
           </ButtonWrapper>
         </ColDescription>

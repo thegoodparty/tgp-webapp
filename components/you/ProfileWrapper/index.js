@@ -27,6 +27,7 @@ import ShareModal from './ShareModal/Loadable';
 import VerifyEmailBanner from './VerifyEmailBanner';
 
 const EditProfile = styled(Body13)`
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
   text-align: right;
 `;
@@ -72,7 +73,7 @@ const CrewTitle = styled(Body)`
     margin-bottom: 4px;
     display: flex;
     align-items: center;
-  }  
+  }
 `;
 
 const CrewWrapper = styled.div`
@@ -99,7 +100,7 @@ const Filler = styled(Body13)`
 `;
 
 const UnderCrew = styled(Body)`
-  cursor:pointer;
+  cursor: pointer;
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.blue};
 `;
@@ -186,7 +187,7 @@ const ProfileWrapper = ({
       }
     >
       <Link href="/you/edit" data-cy="edit-profile-link">
-        <a><EditProfile>Edit Profile</EditProfile></a>
+        <EditProfile>Edit Profile</EditProfile>
       </Link>
       <Centered>
         <UserAvatar user={user} size="large" />
@@ -215,7 +216,8 @@ const ProfileWrapper = ({
           <ElectionData>
             {presidentialRankCount === 0
               ? 'Rank Choices'
-              : `${presidentialRankCount} Choice${presidentialRankCount === 1 ? '' : 's'
+              : `${presidentialRankCount} Choice${
+                  presidentialRankCount === 1 ? '' : 's'
               } Ranked`}
           </ElectionData>
         </Link>
@@ -230,14 +232,15 @@ const ProfileWrapper = ({
             >
               <ElectionData>
                 {senateRank
-                  ? `${senateRankCount} Choice${senateRankCount > 1 ? 's' : ''
+                  ? `${senateRankCount} Choice${
+                    senateRankCount > 1 ? 's' : ''
                   } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-              <NoElection>No Race in 2020</NoElection>
-            )}
+            <NoElection>No Race in 2020</NoElection>
+          )}
         </Election>
       )}
       {userDistrict.code && (
@@ -251,14 +254,15 @@ const ProfileWrapper = ({
             >
               <ElectionData>
                 {houseRank && houseRankCount > 0
-                  ? `${houseRankCount} Choice${houseRankCount > 1 ? 's' : ''
+                  ? `${houseRankCount} Choice${
+                    houseRankCount > 1 ? 's' : ''
                   } Ranked`
                   : 'Rank Choices'}
               </ElectionData>
             </Link>
           ) : (
-              <NoElection>No Race in 2020</NoElection>
-            )}
+            <NoElection>No Race in 2020</NoElection>
+          )}
         </Election>
       )}
       <Link href={electionLink} data-cy="all-election-link">
@@ -270,7 +274,8 @@ const ProfileWrapper = ({
       <CrewTitle data-cy="crew-title">
         <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
         <Body>
-          (<Image src="/images/heart.svg" alt="tpg" width="21" height="19" /> people recruited)
+          (<Image src="/images/heart.svg" alt="tpg" width="21" height="19" />{' '}
+          people recruited)
         </Body>
       </CrewTitle>
       <Body13 style={{ marginBottom: '8px' }} data-cy="invite-crew-label">
@@ -298,10 +303,10 @@ const ProfileWrapper = ({
                   </Body13>
                 </div>
               ) : (
-                  <Link href="you/crew">
-                    <CrewMember crewMember={crewMember} />
-                  </Link>
-                )}
+                <Link href="you/crew">
+                  <CrewMember crewMember={crewMember} />
+                </Link>
+              )}
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (
@@ -386,14 +391,12 @@ const ProfileWrapper = ({
 
 ProfileWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  crew: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   crewCount: PropTypes.number,
   signoutCallback: PropTypes.func,
   articles: PropTypes.array,
   houseCandidatesCount: PropTypes.number,
   senateCandidatesCount: PropTypes.number,
-  senateCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   rankingObj: PropTypes.object,
   changePasswordCallback: PropTypes.func,
   verifyEmailCallback: PropTypes.func,

@@ -43,18 +43,15 @@ const RankedCard = ({
 
   useEffect(() => {
     const rank = Object.keys(rankObj);
-    rank.sort((a, b) => {
-      return rankObj[a].rank - rankObj[b].rank;
-    });
+    rank.sort((a, b) => rankObj[a].rank - rankObj[b].rank);
     setSortedRank(rank);
   }, [rankObj]);
 
   const { topRank } = candidates;
 
   const votesNeeded = candidates.threshold;
-  let hasEmptyUser = false;
 
-  const candidateRow = (userRank, index) => {
+  const candidateRow = userRank => {
     // empty candidate
     if (userRank?.candidateId < 0) {
       const emptyCandidate = generateEmptyBlocCandidate(
@@ -62,7 +59,6 @@ const RankedCard = ({
         chamber,
         state,
       );
-      hasEmptyUser = true;
       return (
         <RankedCandidate
           candidate={emptyCandidate}
@@ -72,7 +68,7 @@ const RankedCard = ({
       );
     }
     if (candidatesHash !== {}) {
-      const candidate = candidatesHash[userRank?.candidateId];
+      const candidate = candidatesHash[(userRank?.candidateId)];
       if (candidate) {
         return (
           <RankedCandidate
@@ -95,9 +91,7 @@ const RankedCard = ({
         suffixText={suffixText}
         userState={candidates.userState}
       />
-      <YourChoices>
-        YOUR CHOICE{sortedRank.length > 1 && 'S'}
-      </YourChoices>
+      <YourChoices>YOUR CHOICE{sortedRank.length > 1 && 'S'}</YourChoices>
       {sortedRank.map((rankedId, index) => (
         <React.Fragment key={rankedId}>
           {candidateRow(rankObj[rankedId], index)}
@@ -111,8 +105,11 @@ const RankedCard = ({
 RankedCard.propTypes = {
   title: PropTypes.string,
   candidates: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  rank: PropTypes.array,
   suffixText: PropTypes.string,
+  rankObj: PropTypes.object,
+  chamber: PropTypes.string,
+  district: PropTypes.string,
+  state: PropTypes.string,
 };
 
 export default RankedCard;

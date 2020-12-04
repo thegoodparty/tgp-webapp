@@ -1,6 +1,8 @@
 require('dotenv').config();
+const withCSS = require('@zeit/next-css');
 
-module.exports = {
+
+module.exports = withCSS({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -18,4 +20,7 @@ module.exports = {
     NPM_USE_PRODUCTION: process.env.NPM_USE_PRODUCTION,
     PORT: process.env.PORT,
   },
-};
+  cssLoaderOptions: {
+    url: false
+  }
+});

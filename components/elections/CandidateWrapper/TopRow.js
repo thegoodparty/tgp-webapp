@@ -37,6 +37,7 @@ const SocialLabel = styled(Body9)`
 `;
 
 const ChamberLink = styled(Body11)`
+  cursor: pointer;
   margin-top: 5px;
   text-transform: capitalize;
 `;
@@ -81,7 +82,7 @@ const TopRow = ({ candidate, chamberName }) => {
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link href={getRankPageLink()} data-cy="chamber-link">
+          <Link href={getRankPageLink()} data-cy="chamber-link" passHref>
             <a>U.S. President</a>
           </Link>
         </ChamberLink>
@@ -91,7 +92,7 @@ const TopRow = ({ candidate, chamberName }) => {
       if (state) {
         return (
           <ChamberLink>
-            <Link href={getRankPageLink()} data-cy="chamber-link">
+            <Link href={getRankPageLink()} data-cy="chamber-link" passHref>
               <a>U.S. Senate for {shortToLongState[state.toUpperCase()]}</a>
             </Link>
           </ChamberLink>
@@ -103,9 +104,7 @@ const TopRow = ({ candidate, chamberName }) => {
         return (
           <ChamberLink>
             <Link href={getRankPageLink()} data-cy="chamber-link">
-              <a>
-                U.S. House for District {state.toUpperCase()}-{district}
-              </a>
+              U.S. House for District {state.toUpperCase()}-{district}
             </Link>
           </ChamberLink>
         );

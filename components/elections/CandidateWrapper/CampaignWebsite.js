@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import { Body13, Body, Body9 } from 'components/shared/typogrophy';
-
 import { convertURI } from 'helpers/candidatesHelper';
 
 const OpenSecretsLink = styled(Body9)`

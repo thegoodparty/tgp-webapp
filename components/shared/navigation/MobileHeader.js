@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
 import BackIcon from '@material-ui/icons/ChevronLeft';
 import styled from 'styled-components';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
 import Image from 'next/image';
 // import history from 'utils/history';
@@ -57,7 +57,6 @@ const GoodNoGood = styled(Body13)`
 `;
 
 function MobileHeader({
-  dispatch,
   showGood = false,
   isGood = false,
   showShare = false,
@@ -65,7 +64,7 @@ function MobileHeader({
   user,
   hideBack = false,
 }) {
-  const router = useRouter()
+  const router = useRouter();
   const routeBack = () => {
     router.back();
   };
@@ -93,8 +92,8 @@ function MobileHeader({
             <BackIcon />
           </BackIconWrapper>
         ) : (
-            <div>&nbsp;</div>
-          )}
+          <div>&nbsp;</div>
+        )}
         {showGood ? (
           <>
             {isGood === true && (
@@ -105,24 +104,24 @@ function MobileHeader({
             )}
           </>
         ) : (
-            <Link href="/home" className="text-center">
-              <span>
-                {whiteBackButton ? (
-                  <Logo
-                    src="images/white-logo.svg"
-                    alt="The Good Party"
-                    data-cy="logo"
-                  />
-                ) : (
-                    <Logo
-                      src="/images/logo-caps.svg"
-                      alt="The Good Party"
-                      data-cy="logo"
-                    />
-                  )}
-              </span>
-            </Link>
-          )}
+          <Link href="/home" className="text-center">
+            <span>
+              {whiteBackButton ? (
+                <Logo
+                  src="images/white-logo.svg"
+                  alt="The Good Party"
+                  data-cy="logo"
+                />
+              ) : (
+                <Logo
+                  src="/images/logo-caps.svg"
+                  alt="The Good Party"
+                  data-cy="logo"
+                />
+              )}
+            </span>
+          </Link>
+        )}
         {showShare && canShare ? (
           <Image
             src="images/icons/share.svg"
@@ -132,10 +131,10 @@ function MobileHeader({
             height="auto"
           />
         ) : (
-            <BackIconWrapperHidden>
-              <BackIcon />
-            </BackIconWrapperHidden>
-          )}
+          <BackIconWrapperHidden>
+            <BackIcon />
+          </BackIconWrapperHidden>
+        )}
       </Wrapper>
       <RegisterBannerContainer />
     </Hidden>
@@ -143,12 +142,12 @@ function MobileHeader({
 }
 
 MobileHeader.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   showGood: PropTypes.bool,
   isGood: PropTypes.bool,
   showShare: PropTypes.bool,
   whiteBackButton: PropTypes.bool,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  hideBack: PropTypes.bool,
 };
 
 function mapDispatchToProps(dispatch) {

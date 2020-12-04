@@ -111,20 +111,20 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             </Body13>
           </CheckboxRow>
         );
-      } else {
-        // NOT ALIGNED SMALL MONEY.
-        return (
-          <CheckboxRow>
-            <CheckboxImg src={GrayCheckbox} />
-            <Body13 data-cy="is-big-money">
-              <strong>Follow the Money:</strong> Candidate has raised most of
-              funding (>50%) from Small Indiv. Donors (&lt;$200). This is good,
-              but not enough because of failing the character check.
-            </Body13>
-          </CheckboxRow>
-        );
       }
-    } else if (isGood) {
+      // NOT ALIGNED SMALL MONEY.
+      return (
+        <CheckboxRow>
+          <CheckboxImg src={GrayCheckbox} />
+          <Body13 data-cy="is-big-money">
+            <strong>Follow the Money:</strong> Candidate has raised most of
+            funding (>50%) from Small Indiv. Donors (&lt;$200). This is good,
+            but not enough because of failing the character check.
+          </Body13>
+        </CheckboxRow>
+      );
+    }
+    if (isGood) {
       // GOOD ENOUGH
       let goodText;
       if (isBigMoney || isIncumbent || perc > 50) {
@@ -147,27 +147,26 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
           </Body13>
         </CheckboxRow>
       );
-    } else {
-      // GOODNESS UNKNOWN
-      return (
-        <CheckboxRow>
-          <CheckboxImg src={GreenCheckbox} />
-          <Body13 data-cy="is-big-money">
-            <strong>
-              <ColoredText className="green">Follow the Money:</ColoredText>
-            </strong>{' '}
-            {comparedIncumbent.relativePerc < 50 ? (
-              'Candidate has raised less than 50% of the total funding of the incumbent in this race.'
-            ) : (
-              <>
-                Candidate has raised most of funding (&gt;50%) from Small Indiv.
-                Donors (&lt;$200).
-              </>
-            )}
-          </Body13>
-        </CheckboxRow>
-      );
     }
+    // GOODNESS UNKNOWN
+    return (
+      <CheckboxRow>
+        <CheckboxImg src={GreenCheckbox} />
+        <Body13 data-cy="is-big-money">
+          <strong>
+            <ColoredText className="green">Follow the Money:</ColoredText>
+          </strong>{' '}
+          {comparedIncumbent.relativePerc < 50 ? (
+            'Candidate has raised less than 50% of the total funding of the incumbent in this race.'
+          ) : (
+            <>
+              Candidate has raised most of funding (&gt;50%) from Small Indiv.
+              Donors (&lt;$200).
+            </>
+          )}
+        </Body13>
+      </CheckboxRow>
+    );
   };
 
   const characterCheck = () => {
@@ -186,53 +185,51 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             </Body13>
           </CheckboxRow>
         );
-      } else {
-        if (isAligned === 'no') {
-          // NOT ALIGNED AND NOT GOOD ENOUGH
-          return (
-            <CheckboxRow>
-              <CheckboxImg src={RedCheckbox} />
-              <Body13 data-cy="character-check">
-                <strong>
-                  <ColoredText>Character Check:</ColoredText>{' '}
-                </strong>
-                Candidate fails to meet{' '}
-                <Link href="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link1">
-                  our minimum standard of civility
-                </Link>
-                . Candidate has engaged in a pattern of activities or{' '}
-                <Link href="?article=5bwvf0PwsbpFEe8IJ9sHhX" data-cy="link2">
-                  hate-speech
-                </Link>{' '}
-                encouraging intolerance, discrimination or hostility towards a
-                constitutionally or state-protected group or class.
-              </Body13>
-            </CheckboxRow>
-          );
-        } else {
-          // UNKNOWN AND NOT GOOD ENOUGH
-          return (
-            <CheckboxRow>
-              <CheckboxImg src={QuestionMarkGray} />
-              <Body13 data-cy="character-check">
-                <strong>
-                  <ColoredText className="gray">Character Check:</ColoredText>{' '}
-                </strong>
-                Candidate has not yet been vetted. Do you have factual info
-                about this candidate we should consider?{' '}
-                <a
-                  href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
-                    window.location.href
-                  }`}
-                  data-cy="link"
-                >
-                  Please let us know
-                </a>
-              </Body13>
-            </CheckboxRow>
-          );
-        }
       }
+      if (isAligned === 'no') {
+        // NOT ALIGNED AND NOT GOOD ENOUGH
+        return (
+          <CheckboxRow>
+            <CheckboxImg src={RedCheckbox} />
+            <Body13 data-cy="character-check">
+              <strong>
+                <ColoredText>Character Check:</ColoredText>{' '}
+              </strong>
+              Candidate fails to meet{' '}
+              <Link href="?article=66i4vRRLkX1yf8MnCQvYSb" data-cy="link1">
+                our minimum standard of civility
+              </Link>
+              . Candidate has engaged in a pattern of activities or{' '}
+              <Link href="?article=5bwvf0PwsbpFEe8IJ9sHhX" data-cy="link2">
+                hate-speech
+              </Link>{' '}
+              encouraging intolerance, discrimination or hostility towards a
+              constitutionally or state-protected group or class.
+            </Body13>
+          </CheckboxRow>
+        );
+      }
+      // UNKNOWN AND NOT GOOD ENOUGH
+      return (
+        <CheckboxRow>
+          <CheckboxImg src={QuestionMarkGray} />
+          <Body13 data-cy="character-check">
+            <strong>
+              <ColoredText className="gray">Character Check:</ColoredText>{' '}
+            </strong>
+            Candidate has not yet been vetted. Do you have factual info about
+            this candidate we should consider?{' '}
+            <a
+              href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
+                window.location.href
+              }`}
+              data-cy="link"
+            >
+              Please let us know
+            </a>
+          </Body13>
+        </CheckboxRow>
+      );
     }
 
     if (isGood) {
@@ -253,23 +250,22 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             </Body13>
           </CheckboxRow>
         );
-      } else {
-        // GOOD AND NOT ALIGNED
-        return (
-          <CheckboxRow>
-            <CheckboxImg src={RedCheckbox} />
-            <Body13 data-cy="character-check">
-              <strong>
-                <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
-              </strong>
-              Candidate positions are not aligned with{' '}
-              <Link href="?article=2Pv9KNb6rng0sMfqwu1xKm" data-cy="link">
-                The Good Party Platform.
-              </Link>
-            </Body13>
-          </CheckboxRow>
-        );
       }
+      // GOOD AND NOT ALIGNED
+      return (
+        <CheckboxRow>
+          <CheckboxImg src={RedCheckbox} />
+          <Body13 data-cy="character-check">
+            <strong>
+              <ColoredText>Candidate Policy Positions:</ColoredText>{' '}
+            </strong>
+            Candidate positions are not aligned with{' '}
+            <Link href="?article=2Pv9KNb6rng0sMfqwu1xKm" data-cy="link">
+              The Good Party Platform.
+            </Link>
+          </Body13>
+        </CheckboxRow>
+      );
     }
 
     if (isUnkown) {

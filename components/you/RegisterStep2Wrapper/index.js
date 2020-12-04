@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import Link from 'next/link';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import PageWrapper from 'components/shared/PageWrapper';
@@ -127,9 +126,7 @@ const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
     setUploadedPhoto(photo);
   };
 
-  const submitActive = () => {
-    return comments !== '' || uploadedPhoto;
-  };
+  const submitActive = () => comments !== '' || uploadedPhoto;
 
   const handleSubmit = () => {
     submitCallback(comments, uploadedPhoto);
@@ -161,7 +158,7 @@ const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
             ) : (
               <PhotoRow onClick={uploadPhoto}>
                 <AddPhotoWrapper>
-                  <img src={addPhotoImg} />
+                  <img src={addPhotoImg} alt="add" />
                 </AddPhotoWrapper>
                 <PhotoAction>Add a Photo</PhotoAction>
               </PhotoRow>

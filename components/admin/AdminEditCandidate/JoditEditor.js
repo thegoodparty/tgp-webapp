@@ -10,7 +10,7 @@ const JoditEditor = dynamic(() => import('jodit-react').default, {
 
 const JoditEditorWrapper = ({
   initialText = '',
-  onChangeCallback = () => {},
+  onChangeCallback = () => { },
 }) => {
   const editor = useRef(null);
   const [content, setContent] = useState('');

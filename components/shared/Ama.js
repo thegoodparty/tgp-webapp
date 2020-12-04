@@ -5,7 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/Cancel';
 import Dialog from '@material-ui/core/Dialog';
 import Grid from '@material-ui/core/Grid';
-
 import { Body, H3 } from 'components/shared/typogrophy';
 import { validateEmail } from 'helpers/emailHelper';
 import { OutlinedButton } from './buttons';

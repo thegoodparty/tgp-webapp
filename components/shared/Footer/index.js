@@ -87,7 +87,8 @@ const Logo = styled(Image)`
   height: auto;
 `;
 
-const WhiteLink = styled.a`
+const WhiteLink = styled.span`
+  cursor: pointer;
   display: block;
   color: #fff;
   text-decoration: underline;
@@ -178,29 +179,20 @@ function Footer({ isCreators = false }) {
                     height="15px"
                   />
                 </ColumnHeader>
-
                 <Link href="/party" passHref>
-                  <WhiteLink data-cy="footer-link-about" href="/party">
-                    About
-                  </WhiteLink>
+                  <WhiteLink data-cy="footer-link-about">About</WhiteLink>
                 </Link>
+
                 <Link href={electionRoute(user)} passHref>
-                  <WhiteLink
-                    data-cy="footer-link-elections"
-                    href={electionRoute(user)}
-                  >
+                  <WhiteLink data-cy="footer-link-elections">
                     Elections
                   </WhiteLink>
                 </Link>
                 <Link href="/you" passHref>
-                  <WhiteLink data-cy="footer-link-you" href="/you">
-                    You
-                  </WhiteLink>
+                  <WhiteLink data-cy="footer-link-you">You</WhiteLink>
                 </Link>
                 <Link data-cy="footer-link-creators" href="/creators" passHref>
-                  <WhiteLink data-cy="footer-link-creators" href="/creators">
-                    Creators
-                  </WhiteLink>
+                  <WhiteLink data-cy="footer-link-creators">Creators</WhiteLink>
                 </Link>
               </Column>
             </Grid>
@@ -209,26 +201,20 @@ function Footer({ isCreators = false }) {
                 <ColumnHeader data-cy="footer-community-title">
                   Community
                 </ColumnHeader>
-                <Link
-                  href="#"
+                <WhiteLink
                   data-cy="footer-link-share"
                   onClick={onClickShareButton}
-                  passHref
                 >
-                  <WhiteLink
-                    href="#"
-                    data-cy="footer-link-share"
-                    onClick={onClickShareButton}
+                  Share with Friends
+                </WhiteLink>
+                <WhiteLink>
+                  <WhiteHref
+                    href="mailto:ask@thegoodparty.org"
+                    data-cy="footer-link-email"
                   >
-                    Share with Friends
-                  </WhiteLink>
-                </Link>
-                <WhiteHref
-                  href="mailto:ask@thegoodparty.org"
-                  data-cy="footer-link-email"
-                >
-                  Send Us An Email
-                </WhiteHref>
+                    Send Us An Email
+                  </WhiteHref>
+                </WhiteLink>
               </Column>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -253,7 +239,7 @@ function Footer({ isCreators = false }) {
                 <Column>
                   <Hidden smDown>
                     <Link href="/privacy" passHref>
-                      <WhiteLink href="/privacy" data-cy="footer-link-policy">
+                      <WhiteLink data-cy="footer-link-policy">
                         Privacy Policy
                       </WhiteLink>
                     </Link>
@@ -291,17 +277,14 @@ function Footer({ isCreators = false }) {
               <Grid item xs={12} md={4}>
                 <Column>
                   <Link href="/directory" passHref>
-                    <WhiteLink
-                      href="/directory"
-                      data-cy="footer-link-directory"
-                    >
+                    <WhiteLink data-cy="footer-link-directory">
                       Directory
                     </WhiteLink>
                   </Link>
                   <Hidden mdUp>
-                    <Link href="/privacy" passHref>
-                      <WhiteLink href="/privacy" data-cy="footer-link-policy">
-                        <a>Privacy Policy</a>
+                    <Link href="/privacy">
+                      <WhiteLink data-cy="footer-link-policy">
+                        Privacy Policy
                       </WhiteLink>
                     </Link>
                   </Hidden>

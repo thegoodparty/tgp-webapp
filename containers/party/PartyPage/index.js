@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -20,7 +20,7 @@ import {
 import PartyWrapper from 'components/party/PartyWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 
-export function PartyPage({ content, appVersion, dispatch }) {
+export function PartyPage({ content, appVersion }) {
   loadInitialState();
   // useEffect(() => {
   //   if (!content) {

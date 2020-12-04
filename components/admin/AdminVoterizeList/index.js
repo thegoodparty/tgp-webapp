@@ -11,19 +11,15 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { CSVLink } from 'react-csv/lib';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
-import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import CloseIcon from '@material-ui/icons/Close';
 import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -40,23 +36,11 @@ const Title = styled(H3)`
   position: relative;
 `;
 
-const StyledSelect = styled(Select)`
-  && {
-    .MuiOutlinedInput-input {
-      padding: 8px 32px 8px 14px;
-    }
-  }
-`;
 const CSVLinkWrapper = styled(Button)`
   && {
     position: absolute;
     right: 0;
   }
-`;
-const ThresoldWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
 `;
 
 const headerStyle = {
@@ -213,9 +197,8 @@ function AdminVoterizeList({
       : 'presidential';
 
     const route = candidateRoute(row.original);
-    const editRoute = `/admin/edit-candidate/${chamberLower}${
-      row.original.isIncumbent ? '-i' : ''
-    }/${row.original.id}`;
+    const editRoute = `/admin/edit-candidate/${chamberLower}${row.original.isIncumbent ? '-i' : ''
+      }/${row.original.id}`;
     return (
       <>
         <a href={editRoute} target="_blank">

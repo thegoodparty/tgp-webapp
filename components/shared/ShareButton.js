@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import BlueButton from 'components/shared/buttons/BlueButton';
-import { Body, Body13 } from './typogrophy';
+import { Body13 } from './typogrophy';
 
 const StyledBody = styled(Body13)`
   color: #fff;
