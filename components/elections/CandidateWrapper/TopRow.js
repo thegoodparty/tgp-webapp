@@ -82,8 +82,8 @@ const TopRow = ({ candidate, chamberName }) => {
     if (chamberName === 'presidential') {
       return (
         <ChamberLink>
-          <Link href={getRankPageLink()} data-cy="chamber-link">
-            U.S. President
+          <Link href={getRankPageLink()} data-cy="chamber-link" passHref>
+            <a>U.S. President</a>
           </Link>
         </ChamberLink>
       );
@@ -92,8 +92,8 @@ const TopRow = ({ candidate, chamberName }) => {
       if (state) {
         return (
           <ChamberLink>
-            <Link href={getRankPageLink()} data-cy="chamber-link">
-              U.S. Senate for {shortToLongState[state.toUpperCase()]}
+            <Link href={getRankPageLink()} data-cy="chamber-link" passHref>
+              <a>U.S. Senate for {shortToLongState[state.toUpperCase()]}</a>
             </Link>
           </ChamberLink>
         );
