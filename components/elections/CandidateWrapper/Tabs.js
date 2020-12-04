@@ -31,13 +31,19 @@ const Tabs = ({ candidate, tab }) => {
 
   return (
     <TabsWrapper>
-      <Link href={route}>
-        <Tab className={tab === 'campaign' ? 'active' : ''}>
-          CAMPAIGN STATUS
-        </Tab>
+      <Link href={route} passHref>
+        <a>
+          <Tab className={tab === 'campaign' ? 'active' : ''}>
+            CAMPAIGN STATUS
+          </Tab>
+        </a>
       </Link>
-      <Link href={`${route}/info`}>
-        <Tab className={tab !== 'campaign' ? 'active' : ''}>CANDIDATE INFO</Tab>
+      <Link href={`${route}/info`} passHref>
+        <a>
+          <Tab className={tab !== 'campaign' ? 'active' : ''}>
+            CANDIDATE INFO
+          </Tab>
+        </a>
       </Link>
     </TabsWrapper>
   );

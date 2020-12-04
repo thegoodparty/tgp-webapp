@@ -80,7 +80,7 @@ const PolicyPositions = ({ candidate }) => {
             </a>
             <a
               href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
-                window.location.href
+                typeof window !== 'undefined' ? window.location.href : ''
               }`}
             >
               <ReportError>Report an error</ReportError>
@@ -103,7 +103,7 @@ const PolicyPositions = ({ candidate }) => {
             <br />
             <a
               href={`mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body=${
-                window.location.href
+                typeof window !== 'undefined' ? window.location.href : ''
               }`}
             >
               <ReportError>Report an error</ReportError>
