@@ -58,7 +58,7 @@ export function RegisterBannerContainer({
   } else if (houseCount > 0) {
     chamberObj = rankingObj.house[houseRankArr[0]];
   }
-  const blocName = chamberObj ? chamberObj.chamberObj : '';
+  const blocName = chamberObj ? chamberObj.blocName : '';
   const count = presidentialCount + senateCount + houseCount;
 
   let showBanner = true;
