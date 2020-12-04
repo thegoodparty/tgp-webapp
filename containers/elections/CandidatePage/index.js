@@ -47,18 +47,22 @@ export function CandidatePage({
   saveRankingCallback,
   removeQueryCallback,
   trackShareCallback,
+  ssrState,
 }) {
   useInjectReducer({ key: 'candidate', reducer });
   useInjectSaga({ key: 'candidate', saga });
 
-  const router = useRouter();
-  const { chamberNameIdTab } = router.query;
-  const chamber = chamberNameIdTab?.length > 0 ? chamberNameIdTab[0] : false;
-  // const name = chamberNameIdTab?.length > 1 ? chamberNameIdTab[1] : false;
-  const id = chamberNameIdTab?.length > 2 ? chamberNameIdTab[2] : false;
-  const tab = chamberNameIdTab?.length > 3 ? chamberNameIdTab[3] : false;
-
-  const { candidate, incumbent, loading, error } = candidateState;
+  let candidate;
+  let chamber;
+  let tab;
+  let incumbent;
+  if (ssrState) {
+    ({ candidate, chamber, tab, incumbent } = ssrState);
+    dispatch(actions.loadCandidateActionSuccess(candidate));
+    if (incumbent) {
+      dispatch(actions.loadDistrictIncumbentActionSuccess(incumbent));
+    }
+  }
   const [chamberName, chamberIncumbent] = chamber ? chamber.split('-') : '';
   const isIncumbent = chamberIncumbent === 'i';
 
@@ -72,21 +76,15 @@ export function CandidatePage({
       ? queryHelper(window.location.search, 'share')
       : false;
 
-  useEffect(() => {
-    if (id) {
-      dispatch(actions.loadCandidateAction(id, chamberName, isIncumbent));
-    }
-  }, [id, chamber]);
-
-  useEffect(() => {
-    if (!isIncumbent) {
-      if (candidate?.chamber === 'Senate') {
-        dispatch(actions.loadDistrictIncumbentAction(state));
-      } else {
-        dispatch(actions.loadDistrictIncumbentAction(state, district));
-      }
-    }
-  }, [candidate]);
+  // useEffect(() => {
+  //   if (!isIncumbent) {
+  //     if (candidate?.chamber === 'Senate') {
+  //       dispatch(actions.loadDistrictIncumbentAction(state));
+  //     } else {
+  //       dispatch(actions.loadDistrictIncumbentAction(state, district));
+  //     }
+  //   }
+  // }, [candidate]);
 
   const candidateWithFields = candidateCalculatedFields(candidate);
 
@@ -139,7 +137,7 @@ export function CandidatePage({
     candidate,
   )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
 
-  if (!candidate && error && !loading) {
+  if (!candidate) {
     return <NotFoundPage />;
   }
 
@@ -170,6 +168,7 @@ CandidatePage.propTypes = {
   saveRankingCallback: PropTypes.func,
   removeQueryCallback: PropTypes.func,
   trackShareCallback: PropTypes.func,
+  ssrState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

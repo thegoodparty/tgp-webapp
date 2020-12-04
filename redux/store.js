@@ -35,7 +35,6 @@ export const configureStore = context => {
     initialState,
     bindMiddleware([sagaMiddleware, routerMiddleware]),
   );
-  console.log(process.env.NODE_ENV)
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.global = sagaMiddleware.run(globalSaga);

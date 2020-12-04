@@ -54,7 +54,6 @@ export function DistrictPage({
   });
 
   if (ssrState) {
-    console.log('here');
     dispatch(
       districtActions.loadAllPresidentialActionSuccess(ssrState.presidential),
     );
@@ -70,7 +69,6 @@ export function DistrictPage({
 
   const { zipWithDistricts } = districtState;
   const { presidential, houseCandidates, senateCandidates } = districtState;
-  console.log('district page presidential', presidential);
 
   useEffect(() => {
     if (!zipWithDistricts && zip) {

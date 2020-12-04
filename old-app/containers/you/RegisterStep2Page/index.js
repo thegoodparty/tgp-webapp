@@ -57,7 +57,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     submitCallback: (feedback, photo) => {
-      console.log('callback1');
       if (feedback) {
         dispatch(
           userActions.updateUserAction({

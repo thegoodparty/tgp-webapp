@@ -14,7 +14,6 @@ function* loadContent() {
   try {
     const api = tgpApi.content;
     const content = yield call(requestHelper, api, null);
-    console.log('loading content saga');
     yield put(actions.loadContentActionSuccess(content));
   } catch (error) {
     console.log(error);

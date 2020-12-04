@@ -85,8 +85,10 @@ export function ElectionPage({
     if (chamber === 'presidential') {
       dispatch(districtActions.loadAllPresidentialAction());
     } else if (chamber === 'senate') {
-      dispatch(districtActions.loadSenateCandidatesAction(state));
-    } else {
+      if (state) {
+        dispatch(districtActions.loadSenateCandidatesAction(state));
+      }
+    } else if (state && district) {
       dispatch(districtActions.loadHouseCandidatesAction(state, district));
     }
   }, [pathname]);

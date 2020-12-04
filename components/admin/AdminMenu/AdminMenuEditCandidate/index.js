@@ -31,15 +31,13 @@ const EditWrapper = styled.div`
   cursor: pointer;
 `;
 
-
-
 function AdminMenuEditCandidate({ candidate }) {
-  const chamberLower = candidate.chamber
+  const chamberLower = candidate?.chamber
     ? candidate.chamber.toLowerCase()
     : 'presidential';
   const editRoute = `/admin/edit-candidate/${chamberLower}${
-    candidate.isIncumbent ? '-i' : ''
-  }/${candidate.id}`;
+    candidate?.isIncumbent ? '-i' : ''
+  }/${candidate?.id}`;
   return (
     <>
       <MenuWrapper>
