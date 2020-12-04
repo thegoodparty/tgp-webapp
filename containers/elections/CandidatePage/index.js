@@ -76,16 +76,6 @@ export function CandidatePage({
       ? queryHelper(window.location.search, 'share')
       : false;
 
-  // useEffect(() => {
-  //   if (!isIncumbent) {
-  //     if (candidate?.chamber === 'Senate') {
-  //       dispatch(actions.loadDistrictIncumbentAction(state));
-  //     } else {
-  //       dispatch(actions.loadDistrictIncumbentAction(state, district));
-  //     }
-  //   }
-  // }, [candidate]);
-
   const candidateWithFields = candidateCalculatedFields(candidate);
 
   const { user, ranking } = userState;
