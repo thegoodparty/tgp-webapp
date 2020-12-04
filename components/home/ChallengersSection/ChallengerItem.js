@@ -130,8 +130,8 @@ const ChallengerItem = ({ challenger, id }) => {
     perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
   return (
     <ChallengerItemWrapper id={id}>
-      <Link href={getRankPageLink()}>
-        <>
+      <Link href={getRankPageLink()} passHref>
+        <a>
           <ChallengerAvatar avatar={image} party={party} />
           <ChallengerName>{name}</ChallengerName>
           <ChallengerInfo>{challengerInfo}</ChallengerInfo>
@@ -159,7 +159,7 @@ const ChallengerItem = ({ challenger, id }) => {
             </LineWrapper>
           </NeededVotesWrapper>
           <WonLostElection candidate={challenger} />
-        </>
+        </a>
       </Link>
     </ChallengerItemWrapper>
   );
