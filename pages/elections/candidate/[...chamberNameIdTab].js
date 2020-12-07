@@ -23,19 +23,22 @@ export async function getServerSideProps(context) {
 
     const res = await fetch(url);
     const candidate = await res.json();
-    let incumbent;
+    let incumbent = {};
 
     const { state, district } = candidate || {};
     if (!isIncumbent) {
-      if (candidate?.chamber === 'Senate') {
+      if (chamberName === 'presidential') {
+        url = tgpApi.districtIncumbent.url;
+      } else if (candidate?.chamber === 'Senate') {
         url = `${tgpApi.districtIncumbent.url}?state=${state}`;
       } else {
         url = `${
           tgpApi.districtIncumbent.url
-        }?state=${state}&district=${district}`;
+        }?state=${state}&district=${district} `;
       }
       const res2 = await fetch(url);
       incumbent = await res2.json();
+      incumbent = incumbent.incumbent;
     }
 
     return {

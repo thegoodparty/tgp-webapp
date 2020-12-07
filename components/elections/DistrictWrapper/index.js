@@ -254,66 +254,81 @@ const DistrictWrapper = ({
               .
             </Body>
           </Spacer>
-          <Link href={presidentialElectionLink()} data-cy="presidential">
-            {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
-              <RankedCard
-                title="Presidential Election"
-                candidates={presidential}
-                rankObj={presidentialRank}
-                suffixText=" (270 ELECTORS)"
-              />
-            ) : (
-              <VsCard
-                title="Presidential Election"
-                candidates={presidential}
-                suffixText={` IN ${upperState} (${
-                  presidential.electors
-                } ELECTORS)`}
-              />
-            )}
-          </Link>
-          {!isEmptyCandidates(senateCandidates) && (
-            <Link href={senateElectionLink(shortState)} data-cy="senate">
-              {senateRank && Object.keys(senateRank).length > 0 ? (
+          <Link
+            href={presidentialElectionLink()}
+            data-cy="presidential"
+            passHref
+          >
+            <a>
+              {presidentialRank && Object.keys(presidentialRank).length > 0 ? (
                 <RankedCard
-                  title={`Senator - ${stateLong}`}
-                  candidates={senateCandidates}
-                  rankObj={senateRank}
-                  suffixText={` ${upperState}`}
-                  chamber="senate"
-                  state={shortState}
+                  title="Presidential Election"
+                  candidates={presidential}
+                  rankObj={presidentialRank}
+                  suffixText=" (270 ELECTORS)"
                 />
               ) : (
                 <VsCard
-                  title={`Senator - ${stateLong}`}
-                  candidates={senateCandidates}
-                  suffixText={` ${upperState}`}
+                  title="Presidential Election"
+                  candidates={presidential}
+                  suffixText={` IN ${upperState} (${
+                    presidential.electors
+                  } ELECTORS)`}
                 />
               )}
+            </a>
+          </Link>
+          {!isEmptyCandidates(senateCandidates) && (
+            <Link
+              href={senateElectionLink(shortState)}
+              data-cy="senate"
+              passHref
+            >
+              <a>
+                {senateRank && Object.keys(senateRank).length > 0 ? (
+                  <RankedCard
+                    title={`Senator - ${stateLong}`}
+                    candidates={senateCandidates}
+                    rankObj={senateRank}
+                    suffixText={` ${upperState}`}
+                    chamber="senate"
+                    state={shortState}
+                  />
+                ) : (
+                  <VsCard
+                    title={`Senator - ${stateLong}`}
+                    candidates={senateCandidates}
+                    suffixText={` ${upperState}`}
+                  />
+                )}
+              </a>
             </Link>
           )}
           {!isEmptyCandidates(houseCandidates) && (
             <Link
               href={houseElectionLink(shortState, districtNumber)}
               data-cy="district"
+              passHref
             >
-              {houseRank && Object.keys(houseRank).length > 0 ? (
-                <RankedCard
-                  title={`House Representative ${shortState}-${districtNumber}`}
-                  candidates={houseCandidates}
-                  rankObj={houseRank}
-                  suffixText={` ${upperState}-${districtNumber}`}
-                  chamber="house"
-                  district={districtNumber}
-                  state={shortState}
-                />
-              ) : (
-                <VsCard
-                  title={`House Representative ${shortState}-${districtNumber}`}
-                  candidates={houseCandidates}
-                  suffixText={` ${upperState}-${districtNumber}`}
-                />
-              )}
+              <a>
+                {houseRank && Object.keys(houseRank).length > 0 ? (
+                  <RankedCard
+                    title={`House Representative ${shortState}-${districtNumber}`}
+                    candidates={houseCandidates}
+                    rankObj={houseRank}
+                    suffixText={` ${upperState}-${districtNumber}`}
+                    chamber="house"
+                    district={districtNumber}
+                    state={shortState}
+                  />
+                ) : (
+                  <VsCard
+                    title={`House Representative ${shortState}-${districtNumber}`}
+                    candidates={houseCandidates}
+                    suffixText={` ${upperState}-${districtNumber}`}
+                  />
+                )}
+              </a>
             </Link>
           )}
           <TopQuestions articles={articles} />

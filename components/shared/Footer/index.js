@@ -87,7 +87,7 @@ const Logo = styled(Image)`
   height: auto;
 `;
 
-const WhiteLink = styled.span`
+const WhiteLink = styled.a`
   cursor: pointer;
   display: block;
   color: #fff;

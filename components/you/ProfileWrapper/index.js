@@ -43,7 +43,7 @@ const Election = styled(Body)`
   margin-top: 8px;
 `;
 
-const ElectionData = styled.span`
+const ElectionData = styled.a`
   margin-left: 6px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.blue};
@@ -212,12 +212,13 @@ const ProfileWrapper = ({
         <Link
           href={presidentialElectionLink()}
           data-cy="presidential-election-link"
+          passHref
         >
           <ElectionData>
             {presidentialRankCount === 0
               ? 'Rank Choices'
               : `${presidentialRankCount} Choice${
-                  presidentialRankCount === 1 ? '' : 's'
+                presidentialRankCount === 1 ? '' : 's'
               } Ranked`}
           </ElectionData>
         </Link>
@@ -229,6 +230,7 @@ const ProfileWrapper = ({
             <Link
               href={senateElectionLink(shortState)}
               data-cy="senate-election-link"
+              passHref
             >
               <ElectionData>
                 {senateRank
@@ -251,6 +253,7 @@ const ProfileWrapper = ({
             <Link
               href={houseElectionLink(shortState, userDistrict.code)}
               data-cy="house-election-link"
+              passHref
             >
               <ElectionData>
                 {houseRank && houseRankCount > 0
@@ -266,10 +269,14 @@ const ProfileWrapper = ({
         </Election>
       )}
       <Link href={electionLink} data-cy="all-election-link">
-        <AllElections>See All Elections</AllElections>
+        <a>
+          <AllElections>See All Elections</AllElections>
+        </a>
       </Link>
       <Link href="verify-vote" data-cy="verify-vote-link">
-        <AllElections>Check Voter Registration</AllElections>
+        <a>
+          <AllElections>Check Voter Registration</AllElections>
+        </a>
       </Link>
       <CrewTitle data-cy="crew-title">
         <H3 style={{ marginRight: '6px' }}>Your Crew </H3>
@@ -310,14 +317,16 @@ const ProfileWrapper = ({
             </React.Fragment>
           ))}
         {crewFillers.map(filler => (
-          <Link href="you/crew" key={filler}>
-            <Filler data-cy="crew-filler">{filler}</Filler>
+          <Link href="you/crew" key={filler} passHref>
+            <a>
+              <Filler data-cy="crew-filler">{filler}</Filler>
+            </a>
           </Link>
         ))}
       </CrewWrapper>
       <Body style={{ marginTop: '10px' }}>
-        <Link href="you/crew" data-cy="leaderboards-link">
-          View Leaderboards
+        <Link href="you/crew" data-cy="leaderboards-link" passHref>
+          <a>View Leaderboards</a>
         </Link>
       </Body>
 
@@ -352,7 +361,7 @@ const ProfileWrapper = ({
       >
         <BottomLink>Give Feedback or Suggestions</BottomLink>
       </a>
-      <Link href="/creators" data-cy="creators-link">
+      <Link href="/creators" data-cy="creators-link" passHref>
         <BottomLink>Creators of the World, Unite!</BottomLink>
       </Link>
       <BottomLink

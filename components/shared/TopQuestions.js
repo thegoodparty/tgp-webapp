@@ -38,7 +38,9 @@ const TopQuestions = ({ articles }) => {
       <Row>
         <H3 data-cy="faqs">Top Questions</H3>
         <Link href="/party/faqs" data-cy="faqs-link">
-          <SeeFaq className="blue">See FAQ</SeeFaq>
+          <a>
+            <SeeFaq className="blue">See FAQ</SeeFaq>
+          </a>
         </Link>
       </Row>
       {articles &&
@@ -48,12 +50,14 @@ const TopQuestions = ({ articles }) => {
             key={article.id}
             data-cy="faq"
           >
-            <ArticleTitle
-              className={index === 0 ? 'first' : ''}
-              data-cy="faq-title"
-            >
-              {article.title}
-            </ArticleTitle>
+            <a>
+              <ArticleTitle
+                className={index === 0 ? 'first' : ''}
+                data-cy="faq-title"
+              >
+                {article.title}
+              </ArticleTitle>
+            </a>
           </Link>
         ))}
     </Wrapper>

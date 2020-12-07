@@ -133,7 +133,7 @@ const FollowTheMoney = ({ candidate, incumbent, layout = 'horizontal' }) => {
   );
 
   const isSameAsComparedIncumbent = comparedIncumbent.name === candidate.name;
-
+    console.log(incumbent, comparedIncumbent, totalRaised)
   const firstFund = () => (
     <Fund
       data-cy="total-fund"

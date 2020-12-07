@@ -104,7 +104,9 @@ const TopRow = ({ candidate, chamberName }) => {
         return (
           <ChamberLink>
             <Link href={getRankPageLink()} data-cy="chamber-link">
-              U.S. House for District {state.toUpperCase()}-{district}
+              <a>
+                U.S. House for District {state.toUpperCase()}-{district}
+              </a>
             </Link>
           </ChamberLink>
         );
