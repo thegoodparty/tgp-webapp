@@ -56,8 +56,10 @@ const StatsSection = () => (
           from big-money donors
           <br />
           <ButtonWrapper>
-            <Link href="/elections/incumbents">
-              <OutlinedButton active>SEE BIG-MONEY RANKINGS</OutlinedButton>
+            <Link href="/elections/incumbents" passHref>
+              <a>
+                <OutlinedButton active>SEE BIG-MONEY RANKINGS</OutlinedButton>
+              </a>
             </Link>
           </ButtonWrapper>
         </ColDescription>

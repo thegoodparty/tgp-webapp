@@ -7,7 +7,7 @@ import BackIcon from '@material-ui/icons/ChevronLeft';
 import { Body, H2 } from 'components/shared/typogrophy';
 import PageWrapper from 'components/shared/PageWrapper';
 
-const ArticleWrapper = styled.div`
+const ArticleWrapper = styled.a`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -42,7 +42,12 @@ const FaqListWrapper = ({ content, backButtonCallback }) => {
       </H2>
       {articles &&
         articles.map(article => (
-          <Link href={`?article=${article.id}`} key={article.id} data-cy="faq">
+          <Link
+            href={`?article=${article.id}`}
+            key={article.id}
+            data-cy="faq"
+            passHref
+          >
             <ArticleWrapper>
               <Body className="article-title" data-cy="faq-title">
                 {article.title}

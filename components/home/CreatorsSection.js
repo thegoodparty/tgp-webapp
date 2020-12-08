@@ -46,7 +46,9 @@ const CreatorsSection = () => (
           need to mobilize people and change everything for Good!
         </SectionDescription>
         <Link href="/creators">
-          <LearnMore className="outline">Learn More</LearnMore>
+          <a>
+            <LearnMore className="outline">Learn More</LearnMore>
+          </a>
         </Link>
       </LeftCol>
       <Grid item xs={12} sm={4} md={6}>

@@ -266,7 +266,7 @@ const UnknownTitle = styled(Body9)`
 
 const VsList = ({
   candidates = {},
-  openFiltersCallback = () => {},
+  openFiltersCallback = () => { },
   ranking,
   handleDeselectCandidate,
   chamber,
@@ -371,24 +371,27 @@ const VsList = ({
               href={candidateRoute(candidate)}
               key={candidate.id}
               data-cy="candidate"
+              passHref
             >
-              <CandidateWrapper>
-                <CandidateAvatar
-                  size="responsive"
-                  src={candidate.image}
-                  name={candidate.name}
-                  good
-                />
-                <Name data-cy="candidate-name">{candidate.name}</Name>
-                <Role data-cy="candidate-role">
-                  {partyResolver(candidate.party)}
-                  <br />
-                  {candidate.isIncumbent && 'INCUMBENT'}
-                </Role>
-                <WonLostElection candidate={candidate} />
-                {blocCountSection(candidate)}
-                {choiceButton(candidate)}
-              </CandidateWrapper>
+              <a>
+                <CandidateWrapper>
+                  <CandidateAvatar
+                    size="responsive"
+                    src={candidate.image}
+                    name={candidate.name}
+                    good
+                  />
+                  <Name data-cy="candidate-name">{candidate.name}</Name>
+                  <Role data-cy="candidate-role">
+                    {partyResolver(candidate.party)}
+                    <br />
+                    {candidate.isIncumbent && 'INCUMBENT'}
+                  </Role>
+                  <WonLostElection candidate={candidate} />
+                  {blocCountSection(candidate)}
+                  {choiceButton(candidate)}
+                </CandidateWrapper>
+              </a>
             </Link>
           ))}
           {good.length === 0 && (
@@ -421,27 +424,30 @@ const VsList = ({
               href={candidateRoute(candidate)}
               key={candidate.id}
               data-cy="candidate"
+              passHref
             >
-              <CandidateWrapper className="right">
-                <CandidateAvatar
-                  size="responsive"
-                  src={candidate.image}
-                  name={candidate.name}
-                />
-                <Name data-cy="candidate-name">{candidate.name}</Name>
-                <Role className="text-right" data-cy="candidate-role">
-                  {partyResolver(candidate.party)}
-                  <br />
-                  {candidate.isIncumbent && 'INCUMBENT'}
-                </Role>
-                <WhyNot data-cy="why-not">Why not good enough?</WhyNot>
-                <div style={{ height: '16px' }} />
-                <FollowTheMoney
-                  candidate={candidate}
-                  incumbent={incumbent}
-                  layout="vertical"
-                />
-              </CandidateWrapper>
+              <a>
+                <CandidateWrapper className="right">
+                  <CandidateAvatar
+                    size="responsive"
+                    src={candidate.image}
+                    name={candidate.name}
+                  />
+                  <Name data-cy="candidate-name">{candidate.name}</Name>
+                  <Role className="text-right" data-cy="candidate-role">
+                    {partyResolver(candidate.party)}
+                    <br />
+                    {candidate.isIncumbent && 'INCUMBENT'}
+                  </Role>
+                  <WhyNot data-cy="why-not">Why not good enough?</WhyNot>
+                  <div style={{ height: '16px' }} />
+                  <FollowTheMoney
+                    candidate={candidate}
+                    incumbent={incumbent}
+                    layout="vertical"
+                  />
+                </CandidateWrapper>
+              </a>
             </Link>
           ))}
         </Side>
@@ -454,26 +460,29 @@ const VsList = ({
               href={candidateRoute(candidate)}
               key={candidate.id}
               data-cy="candidate"
+              passHref
             >
-              <CandidateWrapper className="center">
-                <CandidateAvatar
-                  size="responsive"
-                  src={candidate.image}
-                  good={null}
-                  name={candidate.name}
-                />
-                <Name data-cy="candidate-name">{candidate.name}</Name>
-                <Role data-cy="candidate-role">
-                  {partyResolver(candidate.party)}
-                  <br />
-                  {candidate.isIncumbent && 'INCUMBENT'}
-                </Role>
-                <WonLostElection candidate={candidate} whiteBorder />
-                {blocCountSection(candidate)}
-                <GrowWrapperUnknown>
-                  {choiceButton(candidate)}
-                </GrowWrapperUnknown>
-              </CandidateWrapper>
+              <a>
+                <CandidateWrapper className="center">
+                  <CandidateAvatar
+                    size="responsive"
+                    src={candidate.image}
+                    good={null}
+                    name={candidate.name}
+                  />
+                  <Name data-cy="candidate-name">{candidate.name}</Name>
+                  <Role data-cy="candidate-role">
+                    {partyResolver(candidate.party)}
+                    <br />
+                    {candidate.isIncumbent && 'INCUMBENT'}
+                  </Role>
+                  <WonLostElection candidate={candidate} whiteBorder />
+                  {blocCountSection(candidate)}
+                  <GrowWrapperUnknown>
+                    {choiceButton(candidate)}
+                  </GrowWrapperUnknown>
+                </CandidateWrapper>
+              </a>
             </Link>
           ))}
         </UnknownWrapper>

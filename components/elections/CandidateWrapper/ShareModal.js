@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Cancel';
@@ -250,6 +251,7 @@ const ShareModal = ({
   trackShareCallback,
 }) => {
   const [copied, setCopied] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     AnalyticsService.sendEvent('Sharing', 'Open Share Modal', candidate?.name);
   }, []);
@@ -482,8 +484,11 @@ const ShareModal = ({
         </AdditionalSharesWrapper>
 
         <Footer>
-          <Link href="?article=1ic6T6fhH0jZLNvX5aZkDe">
-            What is a crowd-voting campaign?
+          <Link
+            href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+            passHref
+          >
+            <a>What is a crowd-voting campaign?</a>
           </Link>
           <br />
           <img

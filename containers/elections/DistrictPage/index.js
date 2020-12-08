@@ -175,7 +175,9 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     dispatch,
     changeDistrictCallback: (districtId, districtIndex, zip, user) => {
-      dispatch(push(`/elections/district/${zip}/${districtIndex}`));
+      if(districtIndex) {
+        dispatch(push(`/elections/district/${zip}/${districtIndex}`));
+      }
       if (user && districtId) {
         dispatch(userActions.updateUserAction({ districtId }));
       }
