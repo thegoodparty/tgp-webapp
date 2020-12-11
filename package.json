@@ -49,7 +49,7 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write",
-    "deploy-dev": "eb deploy",
+    "deploy-dev": "git checkout develop && eb deploy",
     "deploy-prod": "git checkout master  && eb deploy",
     "cypress:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000  CYPRESS_API_BASE=http://localhost:1337/api/v1/ ./node_modules/.bin/cypress open",
     "cypress:local-dev": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api-dev.thegoodparty.org/api/v1/ ./node_modules/.bin/cypress open",
