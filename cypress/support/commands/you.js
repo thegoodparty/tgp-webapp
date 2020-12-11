@@ -4,8 +4,8 @@ import {
   houseElectionLink,
   presidentialElectionLink,
   senateElectionLink,
-} from '../../../app/helpers/electionsHelper';
-import { numberNth } from '../../../app/helpers/numberHelper';
+} from '../../../old-app/helpers/electionsHelper';
+import { numberNth } from '../../../old-app/helpers/numberHelper';
 import {
   getUserDistrict,
   getDisplayCrew,
@@ -13,9 +13,9 @@ import {
   uuidUrl,
   fullFirstLastInitials,
   getUserDistrictName,
-} from '../../../app/helpers/userHelper';
+} from '../../../old-app/helpers/userHelper';
 
-import { formatToPhone } from '../../../app/helpers/phoneHelper';
+import { formatToPhone } from '../../../old-app/helpers/phoneHelper';
 import { parseCookie } from '../utils';
 
 Cypress.Commands.add(

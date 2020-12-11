@@ -4,7 +4,7 @@ import {
   isEmptyCandidates,
   presidentialElectionLink,
   senateElectionLink,
-} from '../../../app/helpers/electionsHelper';
+} from '../../../old-app/helpers/electionsHelper';
 import { getElectionCount, getCdsWithPerc } from '../../support/utils';
 import { testZipcodes } from '../../constants';
 

@@ -2,7 +2,7 @@
 
 To remove `sanitize.css` you will need to remove it from both:
 
-- [`app.js`](../../app/app.js)
+- [`app.js`](../../old-app/app.js)
 
 ```diff
 import FontFaceObserver from 'fontfaceobserver';

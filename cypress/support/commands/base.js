@@ -1,13 +1,13 @@
 import promisify from 'cypress-promise';
-import articlesHelper from '../../../app/helpers/articlesHelper';
+import articlesHelper from '../../../old-app/helpers/articlesHelper';
 import {
   blocNameSuffix,
   candidateBlocLink,
   candidateBlocName,
   electionRoute,
-} from '../../../app/helpers/electionsHelper';
-import { getCandidateTitle } from '../../../app/helpers/candidatesHelper';
-import { uuidUrl } from '../../../app/helpers/userHelper';
+} from '../../../old-app/helpers/electionsHelper';
+import { getCandidateTitle } from '../../../old-app/helpers/candidatesHelper';
+import { uuidUrl } from '../../../old-app/helpers/userHelper';
 
 Cypress.Commands.add('checkCommonFooter', (user = {}) => {
   cy.get('[data-cy=footer-logo]')
