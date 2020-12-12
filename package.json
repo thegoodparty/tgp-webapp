@@ -2,10 +2,6 @@
   "name": "Good-Party",
   "version": "1.0.0",
   "description": "Power and money have corrupted both major U.S. Political parties.We're working on a truly Good alternative!",
-  "engines": {
-    "npm": ">=5",
-    "node": ">=8.15.1"
-  },
   "author": "Tomer Almog",
   "license": "MIT",
   "scripts": {
