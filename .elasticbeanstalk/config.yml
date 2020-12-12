@@ -2,7 +2,7 @@ branch-defaults:
   master:
     environment: tgp-site
   develop:
-    environment: tgp-site-dev
+    environment: tgp-site
 environment-defaults:
   tgp-api-test:
     branch: null
