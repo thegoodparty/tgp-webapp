@@ -4,10 +4,10 @@ pipeline {
     nodejs "node 12"
   }
   environment {
-    DEV_BRANCH        = "nextjs"
+    DEV_BRANCH        = "develop"
     EB_DEV                = "tgp-site-dev"
     PROD_BRANCH           = "master"
-    EB_PROD               = "tgp-site"
+    EB_PROD               = "tgp-site-prod"
     EB_TEST               = "tgp-site-test"
 
   }
