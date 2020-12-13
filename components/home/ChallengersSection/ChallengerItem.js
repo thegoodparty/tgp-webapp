@@ -7,7 +7,7 @@ import { H2, Body, Body12, Body9 } from 'components/shared/typogrophy';
 import {
   rankPageLink,
   partyResolver,
-  candidateCalculatedFields,
+  candidateCalculatedFields, candidateRoute,
 } from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import ChallengerAvatar from './ChallengerAvatar';
@@ -112,8 +112,9 @@ const ChallengerItem = ({ challenger, id }) => {
   const perc = percHelper(smallDonorPerc, true);
   const partyString = partyResolver(party);
 
-  const districtInfo = `${state.toUpperCase()}${district ? `-${district}` : ' Senate'
-    }`;
+  const districtInfo = `${state.toUpperCase()}${
+    district ? `-${district}` : ' Senate'
+  }`;
   const challengerInfo = (
     <>
       <TitleCase>{partyString.toLowerCase()}</TitleCase> for {districtInfo}
@@ -123,14 +124,14 @@ const ChallengerItem = ({ challenger, id }) => {
   const neededPercent = parseInt((votes * 100) / votesNeeded, 10);
 
   const disadvantage = xTimes || (incumbentRaised / raised).toFixed(2);
-  const getRankPageLink = () => rankPageLink(chamber, state, district);
+  const candidateLink = () => candidateRoute(challenger);
   const fundingText =
     perc > 50 ? 'Small Donor Funding' : 'Relative Funding Rate';
   const funding =
     perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
   return (
     <ChallengerItemWrapper id={id}>
-      <Link href={getRankPageLink()} passHref>
+      <Link href={candidateLink()} passHref>
         <a>
           <ChallengerAvatar avatar={image} party={party} />
           <ChallengerName>{name}</ChallengerName>
@@ -139,13 +140,13 @@ const ChallengerItem = ({ challenger, id }) => {
             <Grid item xs={6}>
               <ChallengeStats className="value">
                 {funding < 1 ? funding : numberFormatter(funding)}%
-            </ChallengeStats>
+              </ChallengeStats>
               <ChallengeStatsSmall>{fundingText}</ChallengeStatsSmall>
             </Grid>
             <Grid item xs={6}>
               <ChallengeStats className="value">
                 {numberFormatter(disadvantage)}x
-            </ChallengeStats>
+              </ChallengeStats>
               <ChallengeStatsSmall>Funding Disadvantage</ChallengeStatsSmall>
             </Grid>
           </Grid>
