@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
-// import BottomNavigation from '@material-ui/core/BottomNavigation';
-// import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
 import AdminMenu from 'components/admin/AdminMenu/Loadable';
-
-// import PartyIcon from 'images/icons/heart.svg';
-// import PartyIconGray from 'images/icons/heart-gray.svg';
-// import ElectionIcon from 'images/icons/elections.svg';
-// import ElectionIconGray from 'images/icons/elections-gray.svg';
-// import YouIcon from 'images/icons/you.svg';
-// import YouIconGray from 'images/icons/you-gray.svg';
-
 import DesktopHeader from './DesktopHeader';
+
+const PartyIcon = '/images/icons/heart.svg';
+const PartyIconGray = '/images/icons/heart-gray.svg';
+const ElectionIcon = '/images/icons/elections.svg';
+const ElectionIconGray = '/images/icons/elections-gray.svg';
+const YouIcon = '/images/icons/you.svg';
+const YouIconGray = '/images/icons/you-gray.svg';
 
 const useStyles = makeStyles(theme => ({
   appbar: {
@@ -92,35 +91,35 @@ const NavWrapper = ({
         />
         <RegisterBannerContainer />
       </Hidden>
-      {/*{!hideMobileNav && (*/}
-      {/*  <Hidden mdUp>*/}
-      {/*    <BottomNavigation*/}
-      {/*      value={value}*/}
-      {/*      onChange={handleChange}*/}
-      {/*      showLabels*/}
-      {/*      className={classes.bottomNav}*/}
-      {/*    >*/}
-      {/*      <BottomNavigationAction*/}
-      {/*        label="ABOUT"*/}
-      {/*        icon={icon(PartyIcon, PartyIconGray, 0)}*/}
-      {/*        className={classes.bottomNavItem}*/}
-      {/*        data-cy="party"*/}
-      {/*      />*/}
-      {/*      <BottomNavigationAction*/}
-      {/*        label="ELECTIONS"*/}
-      {/*        icon={icon(ElectionIcon, ElectionIconGray, 1)}*/}
-      {/*        className={classes.bottomNavItem}*/}
-      {/*        data-cy="elections"*/}
-      {/*      />*/}
-      {/*      <BottomNavigationAction*/}
-      {/*        label="YOU"*/}
-      {/*        icon={icon(YouIcon, YouIconGray, 2)}*/}
-      {/*        className={classes.bottomNavItem}*/}
-      {/*        data-cy="you"*/}
-      {/*      />*/}
-      {/*    </BottomNavigation>*/}
-      {/*  </Hidden>*/}
-      {/*)}*/}
+      {!hideMobileNav && (
+        <Hidden mdUp>
+          <BottomNavigation
+            value={value}
+            onChange={handleChange}
+            showLabels
+            className={classes.bottomNav}
+          >
+            <BottomNavigationAction
+              label="ABOUT"
+              icon={icon(PartyIcon, PartyIconGray, 0)}
+              className={classes.bottomNavItem}
+              data-cy="party"
+            />
+            <BottomNavigationAction
+              label="ELECTIONS"
+              icon={icon(ElectionIcon, ElectionIconGray, 1)}
+              className={classes.bottomNavItem}
+              data-cy="elections"
+            />
+            <BottomNavigationAction
+              label="YOU"
+              icon={icon(YouIcon, YouIconGray, 2)}
+              className={classes.bottomNavItem}
+              data-cy="you"
+            />
+          </BottomNavigation>
+        </Hidden>
+      )}
       {user && user.isAdmin && <AdminMenu />}
     </>
   );

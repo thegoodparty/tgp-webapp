@@ -21,7 +21,7 @@ import { H1, H2, Body13, Body11 } from '../../shared/typogrophy';
 import { OutlinedButton } from '../../shared/buttons';
 import TwitterButton from './TwitterButton';
 
-const Heart = styled(Image)`
+const Heart = styled.img`
   width: 64px;
   height: auto;
   margin-bottom: 12px;
@@ -62,7 +62,7 @@ const EmailInner = styled.div`
   width: 100%;
 `;
 
-const EmailIconImg = styled(Image)`
+const EmailIconImg = styled.img`
   width: 20px;
   height: auto;
   position: absolute;
