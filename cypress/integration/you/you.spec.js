@@ -1,7 +1,7 @@
 import promisify from 'cypress-promise';
 import { testZipcodes, feedbackLink } from '../../constants';
 import { parseCookie, getRankingObj, userDistrict } from '../../support/utils';
-import { countCandidates } from '../../../app/helpers/candidatesHelper';
+import { countCandidates } from '../../../old-app/helpers/candidatesHelper';
 
 context('You', () => {
   describe(`check You Page for guest user`, () => {

@@ -1,6 +1,6 @@
 import promisify from 'cypress-promise';
-import { shortToLongState } from '../../../app/helpers/electionsHelper';
-import { numberNth } from '../../../app/helpers/numberHelper';
+import { shortToLongState } from '../../../old-app/helpers/electionsHelper';
+import { numberNth } from '../../../old-app/helpers/numberHelper';
 
 context('Election', () => {
   const elections = [

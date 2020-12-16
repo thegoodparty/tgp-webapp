@@ -63,6 +63,7 @@ module.exports = {
     'no-unused-vars': 2,
     'no-use-before-define': 0,
     'prefer-template': 2,
+    'react/react-in-jsx-scope': 0,
     'react/destructuring-assignment': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react/jsx-closing-tag-location': 0,

@@ -1,10 +1,10 @@
-import { numberFormatter } from '../../../app/helpers/numberHelper';
+import { numberFormatter } from '../../../old-app/helpers/numberHelper';
 import {
   partyResolver,
   candidateRoute,
   candidateBlocName,
   generateEmptyBlocCandidate,
-} from '../../../app/helpers/electionsHelper';
+} from '../../../old-app/helpers/electionsHelper';
 
 Cypress.Commands.add(
   'testElectionHeaderSection',

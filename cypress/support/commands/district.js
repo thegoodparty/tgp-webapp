@@ -1,4 +1,4 @@
-import { partyResolver } from '../../../app/helpers/electionsHelper';
+import { partyResolver } from '../../../old-app/helpers/electionsHelper';
 
 
 Cypress.Commands.add('testVSCard', (el, title, candidates, suffixText) => {
