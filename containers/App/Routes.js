@@ -40,6 +40,7 @@ import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
 
 import AdminPage from 'containers/admin/AdminPage/Loadable';
 import AdminEditCandidatePage from 'containers/admin/AdminEditCandidatePage/Loadable';
+import AdminAddCandidatePage from 'containers/admin/AdminAddCandidatePage/Loadable';
 
 import DirectoryPage from 'containers/directory/DirectoryPage/Loadable';
 
@@ -127,6 +128,11 @@ function Routes() {
         exact
         path="/admin/edit-candidate/:chamber/:id"
         component={AdminEditCandidatePage}
+      />
+      <Route
+        exact
+        path="/admin/add-candidate"
+        component={AdminAddCandidatePage}
       />
 
       <Route exact path="/directory" component={DirectoryPage} />

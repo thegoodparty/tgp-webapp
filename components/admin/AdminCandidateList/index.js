@@ -16,6 +16,8 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import Link from 'next/link';
 import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
@@ -39,11 +41,10 @@ const StyledSelect = styled(Select)`
     }
   }
 `;
-const CSVLinkWrapper = styled(Button)`
-  && {
-    position: absolute;
-    right: 0;
-  }
+const CSVLinkWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
 `;
 const headerStyle = {
   fontWeight: 700,
@@ -68,8 +69,8 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
             candidate.isGood === null
               ? 'unknown'
               : candidate.isGood
-                ? 'yes'
-                : 'no',
+              ? 'yes'
+              : 'no',
           isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
           isMajor: candidate.isMajor ? 'yes' : 'no',
           isHidden: candidate.isHidden === true,
@@ -125,8 +126,9 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
           : 'presidential';
 
         const route = candidateRoute(row.original);
-        const editRoute = `/admin/edit-candidate/${chamberLower}${row.original.isIncumbent ? '-i' : ''
-          }/${row.original.id}`;
+        const editRoute = `/admin/edit-candidate/${chamberLower}${
+          row.original.isIncumbent ? '-i' : ''
+        }/${row.original.id}`;
         return (
           <>
             <a href={editRoute} target="_blank">
@@ -281,17 +283,25 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
     <Wrapper>
       <Title>
         {chamber} candidate list
-        <CSVLinkWrapper variant="contained" color="primary">
-          <CSVLink
-            data={tableData}
-            filename={`${chamber}_candidates_${moment().format(
-              'YYYY_MM_DD',
-            )}.csv`}
-            headers={csvHeader}
-            target="_blank"
-          >
-            <span style={{ color: '#FFF' }}>Download as a CSV</span>
-          </CSVLink>
+        <CSVLinkWrapper>
+          <Button variant="contained" color="primary">
+            <CSVLink
+              data={tableData}
+              filename={`${chamber}_candidates_${moment().format(
+                'YYYY_MM_DD',
+              )}.csv`}
+              headers={csvHeader}
+              target="_blank"
+            >
+              <span style={{ color: '#FFF' }}>Download as a CSV</span>
+            </CSVLink>
+          </Button>
+          &nbsp; &nbsp;
+          <Link href="/admin/add-candidate">
+            <Button variant="contained" color="secondary">
+              <PersonAddIcon /> &nbsp; &nbsp; Add a candidate
+            </Button>
+          </Link>
         </CSVLinkWrapper>
       </Title>
 

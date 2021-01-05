@@ -14,6 +14,7 @@ import UserIcon from '@material-ui/icons/Person';
 import ArticletIcon from '@material-ui/icons/Assignment';
 import StatsIcon from '@material-ui/icons/Equalizer';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
 
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
@@ -80,16 +81,18 @@ const MainPanelPlaceholder = styled.div`
   flex-direction: column;
 `;
 
-const Heart = styled(Image)`
-  width: 80px;
-  height: auto;
-  margin-top: 12px;
+const Heart = styled.div`
+  width: 84px;
+  height: 76px;
+  margin: 12px auto;
+  position: relative;
 `;
 
 const leftMenuItems = [
   { icon: <StarsIcon />, label: 'Presidential Candidates' },
   { icon: <AccountBalanceIcon />, label: 'Senate Candidates' },
   { icon: <HomeIcon />, label: 'House Candidates' },
+  { icon: <LocationCityIcon />, label: 'Local Candidates' },
   { icon: <UserIcon />, label: 'Users' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },
@@ -123,15 +126,15 @@ const AdminWrapper = ({
       const chamber = mapChamber(index);
       loadCandidatesCallback(chamber);
     }
-    if (index === 3 || index === 5) {
+    if (index === 4 || index === 6) {
       if (!users) {
         loadAllUsersCallback();
       }
     }
-    if (index === 4) {
+    if (index === 5) {
       loadArticleFeedbackCallback();
     }
-    if (index === 6) {
+    if (index === 7) {
       loadVoterizeCallback();
     }
   };
@@ -145,6 +148,9 @@ const AdminWrapper = ({
     }
     if (index === 2) {
       return 'house';
+    }
+    if (index === 3) {
+      return 'local';
     }
     return null;
   };
@@ -162,11 +168,13 @@ const AdminWrapper = ({
       return (
         <MainPanelPlaceholder>
           <H1>Admin Dashboard</H1>
-          <Heart src="/images/heart.svg" width="auto" height="auto" />
+          <Heart>
+            <Image src="/images/heart.svg" layout="fill" />
+          </Heart>
         </MainPanelPlaceholder>
       );
     }
-    if (selectedItem < 3) {
+    if (selectedItem < 4) {
       const chamber = mapChamber(selectedItem);
       return (
         <AdminCandidateList
@@ -176,18 +184,18 @@ const AdminWrapper = ({
         />
       );
     }
-    if (selectedItem === 3) {
+    if (selectedItem === 4) {
       return (
         <AdminUsersList users={users} deleteUserCallback={deleteUserCallback} />
       );
     }
-    if (selectedItem === 4) {
+    if (selectedItem === 5) {
       return <AdminArticlesFeedback articles={articles} content={content} />;
     }
-    if (selectedItem === 5) {
+    if (selectedItem === 6) {
       return <AdminUserStats users={users} />;
     }
-    if (selectedItem === 6) {
+    if (selectedItem === 7) {
       return (
         <AdminVoterizeList
           voterizeList={voterizeList}
