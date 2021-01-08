@@ -3,7 +3,6 @@ import { getCookie } from 'helpers/cookieHelper';
 import PropTypes from 'prop-types';
 import tgpApi from 'api/tgpApi';
 import dynamic from 'next/dynamic';
-
 const JoditEditor = dynamic(() => import('jodit-react').default, {
   ssr: false,
 });
