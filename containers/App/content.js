@@ -26,7 +26,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=33lnRLO7M0gvfqVkoVxADO' },
+                data: {
+                  uri: '?article=33lnRLO7M0gvfqVkoVxADO',
+                },
               },
               {
                 nodeType: 'text',
@@ -44,7 +46,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=1ic6T6fhH0jZLNvX5aZkDe' },
+                data: {
+                  uri: '?article=1ic6T6fhH0jZLNvX5aZkDe',
+                },
               },
               {
                 nodeType: 'text',
@@ -102,7 +106,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=33lnRLO7M0gvfqVkoVxADO' },
+                data: {
+                  uri: '?article=33lnRLO7M0gvfqVkoVxADO',
+                },
               },
               {
                 nodeType: 'text',
@@ -145,7 +151,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=579kihjyIPloNaEw02rniq' },
+                data: {
+                  uri: '?article=579kihjyIPloNaEw02rniq',
+                },
               },
               {
                 nodeType: 'text',
@@ -157,9 +165,16 @@ const content = {
               {
                 nodeType: 'hyperlink',
                 content: [
-                  { nodeType: 'text', value: 'Our logo', marks: [], data: {} },
+                  {
+                    nodeType: 'text',
+                    value: 'Our logo',
+                    marks: [],
+                    data: {},
+                  },
                 ],
-                data: { uri: '?article=U4dbmGezqNUIDdGriL5oA' },
+                data: {
+                  uri: '?article=U4dbmGezqNUIDdGriL5oA',
+                },
               },
               {
                 nodeType: 'text',
@@ -183,7 +198,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'pro bono',
-                marks: [{ type: 'italic' }],
+                marks: [
+                  {
+                    type: 'italic',
+                  },
+                ],
                 data: {},
               },
               {
@@ -246,8 +265,17 @@ const content = {
               },
               {
                 nodeType: 'hyperlink',
-                content: [{ nodeType: 'text', value: '', marks: [], data: {} }],
-                data: { uri: 'https://farhadmohit.com' },
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: '',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+                data: {
+                  uri: 'https://farhadmohit.com',
+                },
               },
               {
                 nodeType: 'text',
@@ -266,7 +294,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.fec.gov/data/committee/C00707398/' },
+                data: {
+                  uri: 'https://www.fec.gov/data/committee/C00707398/',
+                },
               },
               {
                 nodeType: 'text',
@@ -302,7 +332,12 @@ const content = {
                     "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]",
                 },
               },
-              { nodeType: 'text', value: '', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
             ],
             data: {},
           },
@@ -323,7 +358,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'The Good Party Crew',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -335,7 +374,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -344,7 +387,11 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Tomer Almog',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
@@ -367,7 +414,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -376,7 +427,11 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Peter Asaro',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
@@ -399,7 +454,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -408,11 +467,17 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Kai Gradert',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/kaigradert/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/kaigradert/',
+                },
               },
               {
                 nodeType: 'text',
@@ -426,20 +491,36 @@ const content = {
           {
             nodeType: 'paragraph',
             content: [
-              { nodeType: 'text', value: '', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'hyperlink',
                 content: [
                   {
                     nodeType: 'text',
                     value: 'Nick Greene',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/njdgx/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/njdgx/',
+                },
               },
-              { nodeType: 'text', value: ' - Product', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: ' - Product',
+                marks: [],
+                data: {},
+              },
             ],
             data: {},
           },
@@ -449,7 +530,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -458,13 +543,24 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Farhad Mohit',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/farhad667/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/farhad667/',
+                },
               },
-              { nodeType: 'text', value: ' - Product', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: ' - Product',
+                marks: [],
+                data: {},
+              },
             ],
             data: {},
           },
@@ -474,7 +570,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -483,7 +583,11 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Cameron Sadeghi',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
@@ -503,18 +607,29 @@ const content = {
           {
             nodeType: 'paragraph',
             content: [
-              { nodeType: 'text', value: '', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'hyperlink',
                 content: [
                   {
                     nodeType: 'text',
                     value: 'Dan Shipley',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/danielshipley/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/danielshipley/',
+                },
               },
               {
                 nodeType: 'text',
@@ -531,7 +646,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -540,11 +659,17 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Zak Tomich',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/zaktomich/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/zaktomich/',
+                },
               },
               {
                 nodeType: 'text',
@@ -573,7 +698,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -582,7 +711,11 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Jared Alper',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
@@ -605,7 +738,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -614,16 +751,26 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Navid Aslani',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/navidaslani/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/navidaslani/',
+                },
               },
               {
                 nodeType: 'text',
                 value: ' ',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -641,7 +788,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -650,11 +801,17 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Kam Kafi',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/kamkafi/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/kamkafi/',
+                },
               },
               {
                 nodeType: 'text',
@@ -671,7 +828,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -680,7 +841,11 @@ const content = {
                   {
                     nodeType: 'text',
                     value: "Brian O'Neil",
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
@@ -700,23 +865,38 @@ const content = {
           {
             nodeType: 'paragraph',
             content: [
-              { nodeType: 'text', value: '', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'hyperlink',
                 content: [
                   {
                     nodeType: 'text',
                     value: 'Jean Rousseau',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://www.linkedin.com/in/jeanrousseau/' },
+                data: {
+                  uri: 'https://www.linkedin.com/in/jeanrousseau/',
+                },
               },
               {
                 nodeType: 'text',
                 value: ' ',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -740,7 +920,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: ' ',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -749,7 +933,11 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Get in touch! ',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
@@ -761,7 +949,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -783,7 +975,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'Red, Bright and Blue!',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -808,7 +1004,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'Our shapes: Heart and Star',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -826,7 +1026,11 @@ const content = {
                       {
                         nodeType: 'text',
                         value: 'Heart as in Human ❤️',
-                        marks: [{ type: 'bold' }],
+                        marks: [
+                          {
+                            type: 'bold',
+                          },
+                        ],
                         data: {},
                       },
                     ],
@@ -892,7 +1096,11 @@ const content = {
                       {
                         nodeType: 'text',
                         value: 'Star as in Freedom ☆ ',
-                        marks: [{ type: 'bold' }],
+                        marks: [
+                          {
+                            type: 'bold',
+                          },
+                        ],
                         data: {},
                       },
                     ],
@@ -952,7 +1160,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'Our colors: Bright and White',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -970,7 +1182,11 @@ const content = {
                       {
                         nodeType: 'text',
                         value: 'Bright as in Light 🌈',
-                        marks: [{ type: 'bold' }],
+                        marks: [
+                          {
+                            type: 'bold',
+                          },
+                        ],
                         data: {},
                       },
                     ],
@@ -1022,7 +1238,12 @@ const content = {
                   {
                     nodeType: 'paragraph',
                     content: [
-                      { nodeType: 'text', value: '', marks: [], data: {} },
+                      {
+                        nodeType: 'text',
+                        value: '',
+                        marks: [],
+                        data: {},
+                      },
                     ],
                     data: {},
                   },
@@ -1038,7 +1259,11 @@ const content = {
                       {
                         nodeType: 'text',
                         value: 'White as in Peace 🕊',
-                        marks: [{ type: 'bold' }],
+                        marks: [
+                          {
+                            type: 'bold',
+                          },
+                        ],
                         data: {},
                       },
                     ],
@@ -1139,7 +1364,10 @@ const content = {
                       '//images.ctfassets.net/g08ybc4r0f4b/5ltogLmmGOq0CkJCCvqHpt/6651d14467ed29ad01852d0b21c2e5ef/For_FAQ.png',
                     details: {
                       size: 106715,
-                      image: { width: 727, height: 316 },
+                      image: {
+                        width: 727,
+                        height: 316,
+                      },
                     },
                     fileName: 'For FAQ.png',
                     contentType: 'image/png',
@@ -1151,26 +1379,52 @@ const content = {
           {
             nodeType: 'paragraph',
             content: [
-              { nodeType: 'text', value: '', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'hyperlink',
                 content: [
                   {
                     nodeType: 'text',
                     value: 'Which do you like better?',
-                    marks: [{ type: 'bold' }, { type: 'underline' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                      {
+                        type: 'underline',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://forms.gle/TGLLL5gqaZadFMCN8' },
+                data: {
+                  uri: 'https://forms.gle/TGLLL5gqaZadFMCN8',
+                },
               },
-              { nodeType: 'text', value: '', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
             ],
             data: {},
           },
           {
             nodeType: 'paragraph',
-            content: [{ nodeType: 'text', value: '', marks: [], data: {} }],
+            content: [
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
+            ],
             data: {},
           },
         ],
@@ -1180,128 +1434,151 @@ const content = {
     {
       title: 'What is a crowd-voting campaign?',
       articleBody: {
-        nodeType: 'document',
         data: {},
         content: [
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   'A crowd-voting campaign is a way to make votes matter more than money.  ',
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   "Crowd-voting empowers people to rally around all candidates they like to see if it's possible to get them elected by spreading the word and enlisting others to pledge their votes, rather than just asking people to donate money and then cast their votes in isolation.",
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   'Each crowd-voting campaign brings much needed transparency to an election by showing ',
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
               {
-                nodeType: 'hyperlink',
+                data: {
+                  uri: '?article=4qI5UjYbJmivzBOy1y74Z4',
+                },
                 content: [
                   {
-                    nodeType: 'text',
-                    value: 'how many votes are needed to win',
-                    marks: [],
                     data: {},
+                    marks: [],
+                    value: 'how many votes are needed to win',
+                    nodeType: 'text',
                   },
                 ],
-                data: { uri: '?article=4qI5UjYbJmivzBOy1y74Z4' },
+                nodeType: 'hyperlink',
               },
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   ', and how many other likely voters there are for a candidate.  ',
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
-              { nodeType: 'text', value: 'In this way, ', marks: [], data: {} },
               {
-                nodeType: 'hyperlink',
+                data: {},
+                marks: [],
+                value: 'In this way, ',
+                nodeType: 'text',
+              },
+              {
+                data: {
+                  uri: '?article=prGq4SAFpfT7qzBFM1HDy',
+                },
                 content: [
                   {
-                    nodeType: 'text',
-                    value: 'nobody ever has to worry about wasting their vote',
-                    marks: [],
                     data: {},
+                    marks: [],
+                    value: 'nobody ever has to worry about wasting their vote',
+                    nodeType: 'text',
                   },
                 ],
-                data: { uri: '?article=prGq4SAFpfT7qzBFM1HDy' },
+                nodeType: 'hyperlink',
               },
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   ', because everyone knows if a candidate they like can can win ',
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
               {
-                nodeType: 'text',
-                value: 'before anyone goes out and actually votes!',
-                marks: [{ type: 'italic' }, { type: 'bold' }],
                 data: {},
+                marks: [
+                  {
+                    type: 'italic',
+                  },
+                  {
+                    type: 'bold',
+                  },
+                ],
+                value: 'before anyone goes out and actually votes!',
+                nodeType: 'text',
               },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their  options -- not just pick the 'lesser of two evil' candidates approved by red or blue.  ",
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   "It's important to note that there is no cost or downside to joining a crowd-voting campaign using The Good Party.  Every crowd-voting campaign on The Good Party is absolutely free for both people and candidates.",
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
         ],
+        nodeType: 'document',
       },
       pages: ['election', 'district'],
+      category: {
+        id: '4CrRDuyTqip7XK7DdK4tq7',
+        fields: {
+          name: 'How The Good Party Works',
+          order: 5,
+        },
+      },
       id: '1ic6T6fhH0jZLNvX5aZkDe',
     },
     {
@@ -1329,7 +1606,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'Our Data & Model:',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -1338,7 +1619,12 @@ const content = {
           {
             nodeType: 'paragraph',
             content: [
-              { nodeType: 'text', value: 'Thanks to ', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: 'Thanks to ',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'hyperlink',
                 content: [
@@ -1349,7 +1635,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: 'https://electionlab.mit.edu/data' },
+                data: {
+                  uri: 'https://electionlab.mit.edu/data',
+                },
               },
               {
                 nodeType: 'text',
@@ -1402,7 +1690,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'Good spot to help if you can: ',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -1427,7 +1719,12 @@ const content = {
                     'mailto:info@thegoodparty.org?subject=Data%20Model%20Team',
                 },
               },
-              { nodeType: 'text', value: '!', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '!',
+                marks: [],
+                data: {},
+              },
             ],
             data: {},
           },
@@ -1453,7 +1750,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'not',
-                marks: [{ type: 'italic' }],
+                marks: [
+                  {
+                    type: 'italic',
+                  },
+                ],
                 data: {},
               },
               {
@@ -1466,7 +1767,14 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'before',
-                marks: [{ type: 'bold' }, { type: 'italic' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                  {
+                    type: 'italic',
+                  },
+                ],
                 data: {},
               },
               {
@@ -1485,9 +1793,16 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=prGq4SAFpfT7qzBFM1HDy' },
+                data: {
+                  uri: '?article=prGq4SAFpfT7qzBFM1HDy',
+                },
               },
-              { nodeType: 'text', value: '.', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '.',
+                marks: [],
+                data: {},
+              },
             ],
             data: {},
           },
@@ -1707,7 +2022,14 @@ const content = {
           },
           {
             nodeType: 'paragraph',
-            content: [{ nodeType: 'text', value: '', marks: [], data: {} }],
+            content: [
+              {
+                nodeType: 'text',
+                value: '',
+                marks: [],
+                data: {},
+              },
+            ],
             data: {},
           },
         ],
@@ -1739,12 +2061,26 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=1ic6T6fhH0jZLNvX5aZkDe' },
+                data: {
+                  uri: '?article=1ic6T6fhH0jZLNvX5aZkDe',
+                },
               },
-              { nodeType: 'text', value: ' ', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: ' ',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'hyperlink',
-                content: [{ nodeType: 'text', value: '', marks: [], data: {} }],
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: '',
+                    marks: [],
+                    data: {},
+                  },
+                ],
                 data: {
                   uri:
                     'https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe',
@@ -1760,7 +2096,14 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'before',
-                marks: [{ type: 'bold' }, { type: 'italic' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                  {
+                    type: 'italic',
+                  },
+                ],
                 data: {},
               },
               {
@@ -1867,7 +2210,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=1ic6T6fhH0jZLNvX5aZkDe' },
+                data: {
+                  uri: '?article=1ic6T6fhH0jZLNvX5aZkDe',
+                },
               },
               {
                 nodeType: 'text',
@@ -1913,43 +2258,62 @@ const content = {
       title:
         'Does joining The Good Party app impact my ability to vote in primaries or for other candidates?',
       articleBody: {
-        nodeType: 'document',
         data: {},
         content: [
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   'No. Your party affiliation and vote are always yours and you always have the choice to vote for whomever you like in the primaries or General Election. The Good Party app just allows you to see your options ',
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
               {
-                nodeType: 'text',
-                value: 'before ',
-                marks: [{ type: 'italic' }, { type: 'bold' }],
                 data: {},
+                marks: [
+                  {
+                    type: 'italic',
+                  },
+                  {
+                    type: 'bold',
+                  },
+                ],
+                value: 'before ',
+                nodeType: 'text',
               },
-              { nodeType: 'text', value: 'you vote.  ', marks: [], data: {} },
+              {
+                data: {},
+                marks: [],
+                value: 'you vote.  ',
+                nodeType: 'text',
+              },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
           {
-            nodeType: 'paragraph',
+            data: {},
             content: [
               {
-                nodeType: 'text',
+                data: {},
+                marks: [],
                 value:
                   'This way you can see whether your vote can be combined with others to enable you to elect a Good grass-roots or indie candidate you might like more than the establishment candidates who are offered.',
-                marks: [],
-                data: {},
+                nodeType: 'text',
               },
             ],
-            data: {},
+            nodeType: 'paragraph',
           },
         ],
+        nodeType: 'document',
+      },
+      category: {
+        id: '7jOZqjB2BBfvymyAJ4IQWe',
+        fields: {
+          name: 'Joining The Good Party',
+          order: 2,
+        },
       },
       id: '7Mrfo6spgrgpwAFe83Oph4',
     },
@@ -1999,11 +2363,20 @@ const content = {
           {
             nodeType: 'paragraph',
             content: [
-              { nodeType: 'text', value: 'To be a ', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: 'To be a ',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'text',
                 value: 'Potentially Good ',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2015,21 +2388,43 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'both',
-                marks: [{ type: 'underline' }],
+                marks: [
+                  {
+                    type: 'underline',
+                  },
+                ],
                 data: {},
               },
-              { nodeType: 'text', value: ' our ', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: ' our ',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'text',
                 value: 'Follow the Money',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
-              { nodeType: 'text', value: ' and ', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: ' and ',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'text',
                 value: 'Character Check',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2059,7 +2454,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'Mostly Funded by Small Donors (<$200).',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2074,7 +2473,14 @@ const content = {
           },
           {
             nodeType: 'paragraph',
-            content: [{ nodeType: 'text', value: 'or ', marks: [], data: {} }],
+            content: [
+              {
+                nodeType: 'text',
+                value: 'or ',
+                marks: [],
+                data: {},
+              },
+            ],
             data: {},
           },
           {
@@ -2083,7 +2489,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'Relatively Small Amount of Funding.',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2121,7 +2531,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'not',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2140,7 +2554,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=5bwvf0PwsbpFEe8IJ9sHhX' },
+                data: {
+                  uri: '?article=5bwvf0PwsbpFEe8IJ9sHhX',
+                },
               },
               {
                 nodeType: 'text',
@@ -2175,7 +2591,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'not',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2194,7 +2614,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=5bwvf0PwsbpFEe8IJ9sHhX' },
+                data: {
+                  uri: '?article=5bwvf0PwsbpFEe8IJ9sHhX',
+                },
               },
               {
                 nodeType: 'text',
@@ -2271,7 +2693,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: 'https://en.wikipedia.org/wiki/Protected_group' },
+                data: {
+                  uri: 'https://en.wikipedia.org/wiki/Protected_group',
+                },
               },
               {
                 nodeType: 'text',
@@ -2305,7 +2729,11 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'write-in',
-                marks: [{ type: 'italic' }],
+                marks: [
+                  {
+                    type: 'italic',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2351,7 +2779,9 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=1ic6T6fhH0jZLNvX5aZkDe' },
+                data: {
+                  uri: '?article=1ic6T6fhH0jZLNvX5aZkDe',
+                },
               },
               {
                 nodeType: 'text',
@@ -2363,7 +2793,14 @@ const content = {
               {
                 nodeType: 'text',
                 value: 'before anyone fills out their ballot, ',
-                marks: [{ type: 'bold' }, { type: 'italic' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                  {
+                    type: 'italic',
+                  },
+                ],
                 data: {},
               },
               {
@@ -2420,7 +2857,9 @@ const content = {
                 nodeType: 'text',
               },
               {
-                data: { uri: '?article=1ic6T6fhH0jZLNvX5aZkDe' },
+                data: {
+                  uri: '?article=1ic6T6fhH0jZLNvX5aZkDe',
+                },
                 content: [
                   {
                     data: {},
@@ -2440,7 +2879,14 @@ const content = {
               },
               {
                 data: {},
-                marks: [{ type: 'bold' }, { type: 'italic' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                  {
+                    type: 'italic',
+                  },
+                ],
                 value: 'before any actual votes are cast! ',
                 nodeType: 'text',
               },
@@ -2544,9 +2990,16 @@ const content = {
                     data: {},
                   },
                 ],
-                data: { uri: '?article=579kihjyIPloNaEw02rniq' },
+                data: {
+                  uri: '?article=579kihjyIPloNaEw02rniq',
+                },
               },
-              { nodeType: 'text', value: '.  ', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: '.  ',
+                marks: [],
+                data: {},
+              },
             ],
             data: {},
           },
@@ -2601,16 +3054,26 @@ const content = {
                   {
                     nodeType: 'text',
                     value: 'Livestream + Q&A or Watch a Replay',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://thegoodparty.org/party/events' },
+                data: {
+                  uri: 'https://thegoodparty.org/party/events',
+                },
               },
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -2618,29 +3081,51 @@ const content = {
           },
           {
             nodeType: 'paragraph',
-            content: [{ nodeType: 'text', value: 'or', marks: [], data: {} }],
+            content: [
+              {
+                nodeType: 'text',
+                value: 'or',
+                marks: [],
+                data: {},
+              },
+            ],
             data: {},
           },
           {
             nodeType: 'paragraph',
             content: [
-              { nodeType: 'text', value: 'Read our ', marks: [], data: {} },
+              {
+                nodeType: 'text',
+                value: 'Read our ',
+                marks: [],
+                data: {},
+              },
               {
                 nodeType: 'hyperlink',
                 content: [
                   {
                     nodeType: 'text',
                     value: 'FAQ',
-                    marks: [{ type: 'bold' }],
+                    marks: [
+                      {
+                        type: 'bold',
+                      },
+                    ],
                     data: {},
                   },
                 ],
-                data: { uri: 'https://thegoodparty.org/party/faqs' },
+                data: {
+                  uri: 'https://thegoodparty.org/party/faqs',
+                },
               },
               {
                 nodeType: 'text',
                 value: '',
-                marks: [{ type: 'bold' }],
+                marks: [
+                  {
+                    type: 'bold',
+                  },
+                ],
                 data: {},
               },
             ],
@@ -2715,6 +3200,35 @@ const content = {
       id: '5YnyOUU7NVOihcos0oR1kL',
     },
   ],
+  articleCategories: [
+    {
+      fields: {
+        name: 'Joining The Good Party',
+        order: 2,
+      },
+      id: '7jOZqjB2BBfvymyAJ4IQWe',
+      articles: [
+        {
+          title:
+            'Does joining The Good Party app impact my ability to vote in primaries or for other candidates?',
+          id: '7Mrfo6spgrgpwAFe83Oph4',
+        },
+      ],
+    },
+    {
+      fields: {
+        name: 'How The Good Party Works',
+        order: 5,
+      },
+      id: '4CrRDuyTqip7XK7DdK4tq7',
+      articles: [
+        {
+          title: 'What is a crowd-voting campaign?',
+          id: '1ic6T6fhH0jZLNvX5aZkDe',
+        },
+      ],
+    },
+  ],
   partyPage: {
     title: 'Header Content',
     content: {
@@ -2745,7 +3259,11 @@ const content = {
             {
               nodeType: 'text',
               value: 'not',
-              marks: [{ type: 'italic' }],
+              marks: [
+                {
+                  type: 'italic',
+                },
+              ],
               data: {},
             },
             {
@@ -2758,7 +3276,11 @@ const content = {
             {
               nodeType: 'text',
               value: 'both',
-              marks: [{ type: 'underline' }],
+              marks: [
+                {
+                  type: 'underline',
+                },
+              ],
               data: {},
             },
             {
@@ -2790,7 +3312,9 @@ const content = {
                   data: {},
                 },
               ],
-              data: { uri: '?article=1ic6T6fhH0jZLNvX5aZkDe' },
+              data: {
+                uri: '?article=1ic6T6fhH0jZLNvX5aZkDe',
+              },
             },
             {
               nodeType: 'text',
@@ -2822,7 +3346,9 @@ const content = {
                   data: {},
                 },
               ],
-              data: { uri: 'https://thegoodparty.org/creators' },
+              data: {
+                uri: 'https://thegoodparty.org/creators',
+              },
             },
             {
               nodeType: 'text',
@@ -2893,11 +3419,23 @@ const content = {
                   'https://thegoodparty.org/party?article=4qI5UjYbJmivzBOy1y74Z4',
               },
             },
-            { nodeType: 'text', value: ', ', marks: [], data: {} },
+            {
+              nodeType: 'text',
+              value: ', ',
+              marks: [],
+              data: {},
+            },
             {
               nodeType: 'text',
               value: 'before',
-              marks: [{ type: 'italic' }, { type: 'bold' }],
+              marks: [
+                {
+                  type: 'italic',
+                },
+                {
+                  type: 'bold',
+                },
+              ],
               data: {},
             },
             {
@@ -2922,17 +3460,34 @@ const content = {
             {
               nodeType: 'text',
               value: 'Good!',
-              marks: [{ type: 'bold' }, { type: 'italic' }],
+              marks: [
+                {
+                  type: 'bold',
+                },
+                {
+                  type: 'italic',
+                },
+              ],
               data: {},
             },
-            { nodeType: 'text', value: ' ', marks: [], data: {} },
+            {
+              nodeType: 'text',
+              value: ' ',
+              marks: [],
+              data: {},
+            },
           ],
           data: {},
         },
         {
           nodeType: 'heading-3',
           content: [
-            { nodeType: 'text', value: 'How it works:', marks: [], data: {} },
+            {
+              nodeType: 'text',
+              value: 'How it works:',
+              marks: [],
+              data: {},
+            },
           ],
           data: {},
         },
@@ -3001,14 +3556,23 @@ const content = {
         },
         {
           nodeType: 'paragraph',
-          content: [{ nodeType: 'text', value: '', marks: [], data: {} }],
+          content: [
+            {
+              nodeType: 'text',
+              value: '',
+              marks: [],
+              data: {},
+            },
+          ],
           data: {},
         },
       ],
     },
   },
   events: [],
-  appVersion: { version: '1.0.19' },
+  appVersion: {
+    version: '1.0.19',
+  },
   creatorsProjects: [
     {
       title: 'Candidate Video Introductions',
@@ -3207,7 +3771,14 @@ const content = {
               nodeType: 'text',
               value:
                 '$60 (for 60 minutes) or $30 (for 30 minutes) Amazon Gift Card',
-              marks: [{ type: 'italic' }, { type: 'bold' }],
+              marks: [
+                {
+                  type: 'italic',
+                },
+                {
+                  type: 'bold',
+                },
+              ],
               data: {},
             },
             {
@@ -3295,7 +3866,12 @@ const content = {
         {
           data: {},
           content: [
-            { data: {}, marks: [], value: 'Children', nodeType: 'text' },
+            {
+              data: {},
+              marks: [],
+              value: 'Children',
+              nodeType: 'text',
+            },
           ],
           nodeType: 'heading-4',
         },
@@ -3450,7 +4026,12 @@ const content = {
         {
           data: {},
           content: [
-            { data: {}, marks: [], value: 'Petitions', nodeType: 'text' },
+            {
+              data: {},
+              marks: [],
+              value: 'Petitions',
+              nodeType: 'text',
+            },
           ],
           nodeType: 'heading-4',
         },
@@ -3950,7 +4531,9 @@ const content = {
               nodeType: 'text',
             },
             {
-              data: { uri: 'mailto:info@thegoodparty.org' },
+              data: {
+                uri: 'mailto:info@thegoodparty.org',
+              },
               content: [
                 {
                   data: {},
@@ -4019,7 +4602,9 @@ const content = {
               nodeType: 'text',
             },
             {
-              data: { uri: 'mailto:info@thegoodparty.org' },
+              data: {
+                uri: 'mailto:info@thegoodparty.org',
+              },
               content: [
                 {
                   data: {},
@@ -4030,7 +4615,12 @@ const content = {
               ],
               nodeType: 'hyperlink',
             },
-            { data: {}, marks: [], value: '.', nodeType: 'text' },
+            {
+              data: {},
+              marks: [],
+              value: '.',
+              nodeType: 'text',
+            },
           ],
           nodeType: 'paragraph',
         },
@@ -4050,7 +4640,12 @@ const content = {
         {
           data: {},
           content: [
-            { data: {}, marks: [], value: 'Account Closure', nodeType: 'text' },
+            {
+              data: {},
+              marks: [],
+              value: 'Account Closure',
+              nodeType: 'text',
+            },
           ],
           nodeType: 'heading-4',
         },
@@ -4065,7 +4660,9 @@ const content = {
               nodeType: 'text',
             },
             {
-              data: { uri: 'mailto:info@thegoodparty.org' },
+              data: {
+                uri: 'mailto:info@thegoodparty.org',
+              },
               content: [
                 {
                   data: {},
@@ -4212,7 +4809,9 @@ const content = {
               nodeType: 'text',
             },
             {
-              data: { uri: 'mailto:info@thegoodparty.org' },
+              data: {
+                uri: 'mailto:info@thegoodparty.org',
+              },
               content: [
                 {
                   data: {},
@@ -4223,7 +4822,12 @@ const content = {
               ],
               nodeType: 'hyperlink',
             },
-            { data: {}, marks: [], value: '.', nodeType: 'text' },
+            {
+              data: {},
+              marks: [],
+              value: '.',
+              nodeType: 'text',
+            },
           ],
           nodeType: 'paragraph',
         },
@@ -4275,7 +4879,9 @@ const content = {
               nodeType: 'text',
             },
             {
-              data: { uri: 'mailto:info@thegoodparty.org' },
+              data: {
+                uri: 'mailto:info@thegoodparty.org',
+              },
               content: [
                 {
                   data: {},
@@ -4286,7 +4892,12 @@ const content = {
               ],
               nodeType: 'hyperlink',
             },
-            { data: {}, marks: [], value: '', nodeType: 'text' },
+            {
+              data: {},
+              marks: [],
+              value: '',
+              nodeType: 'text',
+            },
           ],
           nodeType: 'paragraph',
         },
@@ -4308,7 +4919,7 @@ const content = {
       presenterTitle: 'Writer. Actress. Creator of #KatLovesLA',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/135mfnF7NAnYoffq9WwCNe/cb9be11f94bf25a5c727e56579101b1b/undefined',
-      utcTime: 1600182000000,
+      utcTime: 1600207200000,
     },
     {
       id: '34cXpKF58K6v0M7ANHfvIt',
@@ -4324,7 +4935,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1598461200000,
+      utcTime: 1598486400000,
     },
     {
       id: '7lPcqnsIV57JwqjhZr90aN',
@@ -4340,7 +4951,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1597856400000,
+      utcTime: 1597881600000,
     },
     {
       id: 'h2WaVMyZt4ZXPsILFmqTQ',
@@ -4356,7 +4967,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1597251600000,
+      utcTime: 1597276800000,
     },
     {
       id: 'kzQdSmGDWygkx0AMZSB4O',
@@ -4372,7 +4983,7 @@ const content = {
       presenterTitle: 'Nerds for Humanity',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/1sFTbKG2aeT5i4B4ovY3mh/c4e712af4e99fd151a1aee2027c5221a/nerds-for-humanity-tom-leung-B5jg4RqrPAa-znC2QTwWEba.1400x1400.jpg',
-      utcTime: 1596974400000,
+      utcTime: 1596999600000,
     },
     {
       id: '2mQ653btWiiDfgA2KWAmDM',
@@ -4388,7 +4999,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1596880800000,
+      utcTime: 1596906000000,
     },
     {
       id: '2gcX2qW4192bVAlM40saZ8',
@@ -4404,7 +5015,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1596042000000,
+      utcTime: 1596067200000,
     },
     {
       id: '3IWsmL227uDT0MKhqBwurB',
@@ -4420,7 +5031,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1595437200000,
+      utcTime: 1595462400000,
     },
     {
       id: '7vf3x4T8q3jhlIzxJsCRWb',
@@ -4436,7 +5047,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1594832400000,
+      utcTime: 1594857600000,
     },
     {
       id: '1sshfrfXZan94SvZuKZF0g',
@@ -4452,7 +5063,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1594227600000,
+      utcTime: 1594252800000,
     },
     {
       id: '6JrcTKnx2WqWg6dbj6iAXI',
@@ -4468,7 +5079,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1593622800000,
+      utcTime: 1593648000000,
     },
     {
       id: '5QNyF0YhTP7RcLaaaVEjSQ',
@@ -4484,7 +5095,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1593018000000,
+      utcTime: 1593043200000,
     },
     {
       id: '21NWFkt7J5sIsnDZNE27UW',
@@ -4500,7 +5111,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1592413200000,
+      utcTime: 1592438400000,
     },
     {
       id: '3v0K2DGDN9sIBhoILg1dgY',
@@ -4516,7 +5127,7 @@ const content = {
       presenterTitle: 'Founder, The Good Party',
       avatarPhoto:
         '//images.ctfassets.net/g08ybc4r0f4b/7JFCpApSXrygLTODRTW6NQ/a66257b4dec68db9894ff9c6e7a7829c/053_LK1_2704.jpg',
-      utcTime: 1591203600000,
+      utcTime: 1591228800000,
     },
   ],
 };

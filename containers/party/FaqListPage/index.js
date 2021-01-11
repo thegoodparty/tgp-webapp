@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
@@ -14,9 +14,14 @@ import { useRouter } from 'next/router';
 import { makeSelectContent } from 'containers/App/selectors';
 
 import FaqListWrapper from 'components/party/FaqListWrapper';
+import globalActions from '../../App/actions';
 
-export function FaqListPage({ content }) {
+export function FaqListPage({ dispatch, content }) {
   const router = useRouter();
+  useEffect(() => {
+    dispatch(globalActions.loadContentAction());
+  }, []);
+
   const childProps = {
     content,
     backButtonCallback: () => router.back(),

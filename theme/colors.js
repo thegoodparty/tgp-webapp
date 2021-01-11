@@ -17,6 +17,7 @@ const colors = {
   lightBlue: '#21A8DD',
   lighterBlue: '#E1F3F8',
   green: '#00A91C',
+  purple: '#5C00C7',
 };
 
 export default colors;
