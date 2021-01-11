@@ -5,7 +5,7 @@ pipeline {
   }
   environment {
     DEV_BRANCH        = "develop"
-    EB_DEV                = "tgp-site-prod"
+    EB_DEV                = "tgp-site-dev"
     PROD_BRANCH           = "master"
     EB_PROD               = "tgp-site-prod"
     EB_TEST               = "tgp-site-test"
