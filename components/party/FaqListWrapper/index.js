@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { Body, Body19, H1 } from 'components/shared/typogrophy';
 import PageWrapper from 'components/shared/PageWrapper';
+import Breadcrumbs from '../../shared/Breadcrumbs';
 
 const ArticleWrapper = styled.a`
   .article-title {
@@ -66,6 +67,13 @@ const ContentWrapper = styled.div`
   padding: 10px 20px;
 `;
 
+const breadcrumbsLinks = [
+  { href: '/', label: 'The Good Party' },
+  {
+    label: 'Frequently asked questions',
+  },
+];
+
 const FaqListWrapper = ({ content }) => {
   const categories = content.articleCategories || [];
 
@@ -78,7 +86,8 @@ const FaqListWrapper = ({ content }) => {
         </ContentWrapper>
       </Hero>
       <ContentWrapper>
-        <H1 style={{ marginBottom: '24px' }} data-cy="faqs-page-title">
+        <Breadcrumbs links={breadcrumbsLinks} />
+        <H1 style={{ margin: '24px 0 26px' }} data-cy="faqs-page-title">
           Frequently Asked Questions
         </H1>
         {categories &&

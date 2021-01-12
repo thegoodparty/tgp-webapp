@@ -10,6 +10,7 @@ const colors = {
   grayE: '#e5e5e5',
   grayF: '#F0F0F0',
   gray11: '#EBEBEB',
+  grayBE: '#BEBEBE',
   gray10: 'rgba(100,100,100,.37)',
   red: '#bb001e',
   orange: '#D63E04',
