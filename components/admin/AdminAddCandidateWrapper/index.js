@@ -7,7 +7,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import dynamic from 'next/dynamic';
 import TextField from '@material-ui/core/TextField';
 import Nav from 'containers/shared/Nav';
 import MobileHeader from 'components/shared/navigation/MobileHeader';

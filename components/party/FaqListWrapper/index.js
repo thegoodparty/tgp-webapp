@@ -9,13 +9,17 @@ import Breadcrumbs from '../../shared/Breadcrumbs';
 
 const ArticleWrapper = styled.a`
   .article-title {
-    padding: 8px 0 8px 30px;
+    padding: 8px 0 8px 40px;
     color: ${({ theme }) => theme.colors.purple};
   }
 `;
 
 const Category = styled(Body19)`
   margin: 8px 0 48px;
+`;
+
+const CategoryName = styled(Body19)`
+  margin-bottom: 8px;
 `;
 
 const Hero = styled.div`
@@ -93,7 +97,7 @@ const FaqListWrapper = ({ content }) => {
         {categories &&
           categories.map(category => (
             <Category>
-              {category.fields.name}
+              <CategoryName>{category.fields.name}</CategoryName>
               {category.articles &&
                 category.articles.map(article => (
                   <Link
