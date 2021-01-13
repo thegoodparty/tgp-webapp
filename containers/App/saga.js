@@ -12,6 +12,7 @@ import snackbarActions from '../shared/SnackbarContainer/actions';
 
 function* loadContent() {
   try {
+    console.log('================loading content')
     const api = tgpApi.content;
     const content = yield call(requestHelper, api, null);
     yield put(actions.loadContentActionSuccess(content));

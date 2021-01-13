@@ -13,6 +13,7 @@ import MobileHeader from 'components/shared/navigation/MobileHeader';
 import { H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 
+
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
   padding: 36px 0;
@@ -52,7 +53,7 @@ function AdminAddCandidateWrapper() {
     { label: 'Election', key: 'election' },
     { label: 'Likely Voters', key: 'likelyVoters' },
     { label: 'Votes Needed', key: 'votesNeeded' },
-    // { label: 'About', key: 'about', rte: true },
+    { label: 'About', key: 'about', rte: true },
   ];
   return (
     <div style={{ backgroundColor: '#FFF' }}>

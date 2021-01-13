@@ -232,7 +232,7 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             this candidate we should consider?{' '}
             <a
               href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
-                window.location.href
+                typeof window !== 'undefined' ? window.location.href : ''
               }`}
               data-cy="link"
             >
@@ -295,7 +295,7 @@ const MoneyAndCharacter = ({ candidate, incumbent }) => {
             this candidate we should consider?{' '}
             <a
               href={`mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=${
-                window.location.href
+                typeof window !== 'undefined' ? window.location.href : ''
               }`}
               data-cy="link"
             >
