@@ -7,11 +7,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 import TextField from '@material-ui/core/TextField';
 import Nav from 'containers/shared/Nav';
 import MobileHeader from 'components/shared/navigation/MobileHeader';
 import { H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
+
+// const JoditEditorWrapper = dynamic(
+//   () => import('../AdminEditCandidate/JoditEditor').default,
+//   {
+//     ssr: false,
+//   },
+// );
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -52,7 +60,7 @@ function AdminAddCandidateWrapper() {
     { label: 'Election', key: 'election' },
     { label: 'Likely Voters', key: 'likelyVoters' },
     { label: 'Votes Needed', key: 'votesNeeded' },
-    // { label: 'About', key: 'about', rte: true },
+    { label: 'About', key: 'about', rte: true },
   ];
   return (
     <div style={{ backgroundColor: '#FFF' }}>
