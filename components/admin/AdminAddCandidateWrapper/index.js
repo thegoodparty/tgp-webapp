@@ -14,12 +14,6 @@ import MobileHeader from 'components/shared/navigation/MobileHeader';
 import { H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 
-// const JoditEditorWrapper = dynamic(
-//   () => import('../AdminEditCandidate/JoditEditor').default,
-//   {
-//     ssr: false,
-//   },
-// );
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
