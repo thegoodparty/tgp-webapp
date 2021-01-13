@@ -9,13 +9,19 @@ import Breadcrumbs from '../../shared/Breadcrumbs';
 
 const ArticleWrapper = styled.a`
   .article-title {
-    padding: 8px 0 8px 40px;
+    padding: 6px 0 6px 40px;
     color: ${({ theme }) => theme.colors.purple};
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      padding: 8px 0 8px 40px;
+    }
   }
 `;
 
 const Category = styled(Body19)`
-  margin: 8px 0 48px;
+  margin: 6px 0 32px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 8px 0 48px;
+  }
 `;
 
 const CategoryName = styled(Body19)`
@@ -32,7 +38,6 @@ const Hero = styled.div`
   background: url(http://assets.thegoodparty.org/faq-hero.jpeg)
     no-repeat center center;
   background-size: cover;
-  margin-bottom: 30px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-top: 18px;
     height: 360px;
@@ -56,19 +61,30 @@ const Shadow = styled.div`
 const HeroText = styled(H1)`
   font-size: 40px;
   position: absolute;
-  bottom: 20px;
+  bottom: 16px;
 
   color: #fff;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: 94px;
-    bottom: 50px;
+    bottom: 64px;
   }
 `;
 
 const ContentWrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 24px 18px 16px;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 32px 20px 16px;
+  }
+`;
+
+const StyledH1 = styled(H1)`
+  margin: 24px 0;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 32px 0;
+  }
 `;
 
 const breadcrumbsLinks = [
@@ -91,12 +107,12 @@ const FaqListWrapper = ({ content }) => {
       </Hero>
       <ContentWrapper>
         <Breadcrumbs links={breadcrumbsLinks} />
-        <H1 style={{ margin: '24px 0 26px' }} data-cy="faqs-page-title">
+        <StyledH1 data-cy="faqs-page-title">
           Frequently Asked Questions
-        </H1>
+        </StyledH1>
         {categories &&
           categories.map(category => (
-            <Category>
+            <Category key={category.id}>
               <CategoryName>{category.fields.name}</CategoryName>
               {category.articles &&
                 category.articles.map(article => (
