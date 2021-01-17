@@ -88,7 +88,7 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       });
       setTableData(data);
     }
-  }, candidates);
+  }, [candidates]);
   let str;
   let rowVal;
   let columnName;

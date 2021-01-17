@@ -17,23 +17,29 @@ import makeSelectAdminAddCandidatePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import AdminAddCandidateWrapper from '../../../components/admin/AdminAddCandidateWrapper';
+import actions from './actions';
 
-export function AdminAddCandidatePage() {
+export function AdminAddCandidatePage({ createCandidateCallback }) {
   useInjectReducer({ key: 'adminAddCandidatePage', reducer });
   useInjectSaga({ key: 'adminAddCandidatePage', saga });
+
+  const childProps = {
+    createCandidateCallback,
+  };
 
   return (
     <div>
       <Helmet>
         <title>Admin Add Candidate</title>
       </Helmet>
-      <AdminAddCandidateWrapper />
+      <AdminAddCandidateWrapper {...childProps} />
     </div>
   );
 }
 
 AdminAddCandidatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  createCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -43,6 +49,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    createCandidateCallback: candidate => {
+      dispatch(actions.createCandidateAction(candidate));
+    },
   };
 }
 

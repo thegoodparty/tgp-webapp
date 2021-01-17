@@ -4,4 +4,8 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/AdminAddCandidatePage/DEFAULT_ACTION';
+const CREATE_CANDIDATE = 'app/AdminAddCandidatePage/CREATE_CANDIDATE';
+
+export default {
+  CREATE_CANDIDATE,
+};

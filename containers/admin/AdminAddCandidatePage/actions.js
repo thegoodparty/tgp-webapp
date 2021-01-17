@@ -4,10 +4,15 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
+function createCandidateAction(candidate) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.CREATE_CANDIDATE,
+    candidate,
   };
 }
+
+export default {
+  createCandidateAction,
+};

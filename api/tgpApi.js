@@ -234,6 +234,11 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    createCandidate: {
+      url: `${base}admin/candidate`,
+      method: 'POST',
+      withAuth: true,
+    },
     updateCandidate: {
       url: `${base}admin/candidate`,
       method: 'PUT',
