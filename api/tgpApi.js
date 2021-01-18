@@ -38,6 +38,10 @@ const api = {
     url: `${base}candidates/find`,
     method: 'GET',
   },
+  findNewCandidate: {
+    url: `${base}new-candidate`,
+    method: 'GET',
+  },
   findBlocCandidate: {
     url: `${base}candidates/find-by-bloc`,
     method: 'GET',

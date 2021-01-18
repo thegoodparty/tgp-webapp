@@ -71,13 +71,7 @@ const ElectionWrapper = ({
 
   return (
     <PageWrapper>
-      <img
-        height="1"
-        width="1"
-        style={{ borderStyle: 'none' }}
-        alt=""
-        src="https://insight.adsrvr.org/track/pxl/?adv=kwzncc1&ct=0:25fh0r8&fmt=3"
-      />
+
       {candidates ? (
         <>
           <H1 data-cy="title">{title}</H1>

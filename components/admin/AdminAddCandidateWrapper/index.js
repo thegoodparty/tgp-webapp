@@ -26,6 +26,10 @@ const Slug = styled.div`
   margin: 2rem 0;
 `;
 
+const CropWrapper = styled.div`
+  position: relative;
+`;
+
 const Input = styled(TextField)`
   && {
     margin-top: 2rem;
@@ -39,7 +43,6 @@ const Label = styled(Body)`
 const fields = [
   { label: 'First Name', key: 'firstName', initialValue: '' },
   { label: 'Last Name', key: 'lastName', initialValue: '' },
-  { label: 'Election', key: 'election', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
   { label: 'Chamber', key: 'chamber', initialValue: 'local' },
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
@@ -94,7 +97,9 @@ function AdminAddCandidateWrapper({ createCandidateCallback }) {
           Slug: {`elections/local/${formState.firstName}-${formState.lastName}`}
         </Slug>
         {!formState.imageBase64 ? (
-          <ImageCrop uploadImageCallback={handleUpload} />
+          <CropWrapper>
+            <ImageCrop uploadImageCallback={handleUpload} />
+          </CropWrapper>
         ) : (
           <Body>Image Selected</Body>
         )}
