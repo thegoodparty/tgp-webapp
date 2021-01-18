@@ -10,6 +10,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
 import AdminMenu from 'components/admin/AdminMenu/Loadable';
 import DesktopHeader from './DesktopHeader';
+import MobileHeader from './MobileHeader';
 
 const PartyIcon = '/images/icons/heart.svg';
 const PartyIconGray = '/images/icons/heart-gray.svg';
@@ -90,6 +91,9 @@ const NavWrapper = ({
           navigateCallback={navigateCallback}
         />
         <RegisterBannerContainer />
+      </Hidden>
+      <Hidden mdUp>
+        <MobileHeader user={user} navigateCallback={navigateCallback} />
       </Hidden>
       {!hideMobileNav && (
         <Hidden mdUp>

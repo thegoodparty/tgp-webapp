@@ -41,7 +41,7 @@ const ResearchWrapper = ({ content }) => {
     <div>
       <Nav />
       <Wrapper white>
-        <MobileHeader />
+        {/* <MobileHeader /> */}
         {content && content.researchPage && (
           <PageWrapper>
             <H1>{content.researchPage.title}</H1>

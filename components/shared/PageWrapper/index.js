@@ -45,7 +45,7 @@ function PageWrapper({
       {!hideNav && <Nav hideMobileNav={hideMobileNav} />}
       {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
       <WrapperComp white={white} style={wrapperStyles} noHeader={hideNav}>
-        {!hideNav && <MobileHeader {...mobileHeaderProps} />}
+        {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
         {children}
       </WrapperComp>
       <Footer />

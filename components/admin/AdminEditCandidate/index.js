@@ -325,7 +325,7 @@ function AdminEditCandidate({
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       {candidate ? (
         <Wrapper>
           <StyledH1>Edit Candidate</StyledH1>
