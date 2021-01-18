@@ -50,7 +50,9 @@ export function CandidateNewPage({ ssrState, dispatch }) {
   const url = typeof window !== 'undefined' ? window.location.href : '';
 
   const description = `${
-    candidate && !emptyCandidate() ? candidate.name : ''
+    candidate && !emptyCandidate()
+      ? `${candidate.firstName} ${candidate.lastName}`
+      : ''
   } could win in ${getCandidateChamberDistrictOnly(
     candidate,
   )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
@@ -60,11 +62,13 @@ export function CandidateNewPage({ ssrState, dispatch }) {
   };
   return (
     <div>
-      <TgpHelmet
-        title={title}
-        description={description}
-        image={candidate?.image}
-      />
+      {candidate && !emptyCandidate() && (
+        <TgpHelmet
+          title={title}
+          description={description}
+          image={candidate?.image}
+        />
+      )}
       <CandidateNewWrapper {...childProps} />
     </div>
   );
