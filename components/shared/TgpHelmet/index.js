@@ -6,11 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head'
 
 function TgpHelmet({ title, description, image }) {
   return (
-    <Helmet>
+    <Head>
       {title && <title data-cy="page-title">{title}</title>}
       {title && <meta property="og:title" content={title} />}
       {description && (
@@ -22,7 +22,7 @@ function TgpHelmet({ title, description, image }) {
       )}
       {description && <meta property="og:description" content={description} />}
       {image && <meta property="og:image" content={image} />}
-    </Helmet>
+    </Head>
   );
 }
 
