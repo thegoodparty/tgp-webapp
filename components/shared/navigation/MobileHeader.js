@@ -86,6 +86,7 @@ const MenuItemWrapper = styled(Drawer)`
   && {
     .MuiDrawer-paper {
       height: 100%;
+      width: 100%;
     }
   }
 `;
@@ -129,7 +130,11 @@ function MobileHeader({ user, navigateCallback }) {
           </TopLink>
         </LinkContainer>
       </Wrapper>
-      <MenuItemWrapper anchor="top" open={open} onClose={() => setOpen(false)}>
+      <MenuItemWrapper
+        anchor="right"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
         <Wrapper style={{ marginBottom: 10 }}>
           <Link href="/home" className="text-center">
             <Logo
