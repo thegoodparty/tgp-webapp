@@ -43,23 +43,10 @@ class CustomDocument extends Document {
 
           <meta name="mobile-web-app-capable" content="yes" />
 
-          <meta
-            name="description"
-            content="The Good Party is a way to take back our democracy from corrupt big-money politicians of both major parties, and to replace them with good capable indie or grass-roots candidates that wouldn't ordinarily have a chance."
-            data-react-helmet="true"
-          />
+
           <meta property="og:site_name" content="THE GOOD PARTY" />
           <meta property="og:type" content="website" />
-          <meta
-            property="og:title"
-            content="THE GOOD PARTY"
-            data-react-helmet="true"
-          />
-          <meta
-            property="og:description"
-            content="The Good Party is a way to take back our democracy from corrupt big-money politicians of both major parties, and to replace them with good capable indie or grass-roots candidates that wouldn't ordinarily have a chance."
-            data-react-helmet="true"
-          />
+
           <meta
             property="og:image"
             content="https://assets.thegoodparty.org/share.jpg?v=4"
@@ -74,7 +61,6 @@ class CustomDocument extends Document {
           />
 
           <link rel="icon" href="/favicon.ico" />
-          <title data-react-helmet="true">THE GOOD PARTY</title>
 
           {this.props.styles}
           {/* google tag manager */}
