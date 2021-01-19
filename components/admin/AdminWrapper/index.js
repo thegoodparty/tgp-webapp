@@ -231,7 +231,7 @@ const AdminWrapper = ({
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       {user && user.isAdmin && (
         <Wrapper>
           <LeftPanel className={leftOpen ? 'open' : 'close'}>

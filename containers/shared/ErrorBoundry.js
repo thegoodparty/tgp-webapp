@@ -30,7 +30,7 @@ class ErrorBoundary extends React.Component {
         <div style={{ backgroundColor: '#FFF' }}>
           <Nav />
           <Wrapper white>
-            <MobileHeader />
+            {/* <MobileHeader /> */}
             <div style={{ textAlign: 'center' }}>
               <H1 style={{ margin: '2rem 0' }}>Something went wrong.</H1>
               <a href="/">Please click here to reload the app</a>

@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Hidden from '@material-ui/core/Hidden';
-import BackIcon from '@material-ui/icons/ChevronLeft';
+import MenuItem from '@material-ui/core/MenuItem';
+import Drawer from '@material-ui/core/Drawer';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
-import Image from 'next/image';
-// import history from 'utils/history';
-
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
+import UserAvatar from '../UserAvatar';
 
-import { uuidUrl } from 'helpers/userHelper';
-import { Body13 } from '../typogrophy';
+import { Body9, Body14 } from '../typogrophy';
 
 const Wrapper = styled.div`
-  padding: 20px 0;
+  padding: 20px 18px;
+  padding-bottom: none;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,131 +23,186 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 100%;
+  height: 10px;
   height: auto;
   align-self: center;
   justify-self: center;
 `;
 
-const BackIconWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.blue};
+const AuthButtonWrapper = styled.div`
+  display: flex;
+  padding: 10px 0px;
+  &.auth-button {
+    justify-content: space-around;
+  }
+`;
+const MenuIconButton = styled(MenuIcon)`
+  && {
+    color: ${({ theme }) => theme.colors.purple};
+    font-size: 2rem;
+  }
+`;
+const CloseIconButton = styled(CloseIcon)`
+  && {
+    color: ${({ theme }) => theme.colors.purple};
+    font-size: 2rem;
+  }
+`;
+const TopLink = styled(Body9)`
   cursor: pointer;
-  & > svg {
-    font-size: 30px;
+  font-size: 12px;
+  border-bottom: solid 2px #fff;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.purple};
+  &.menu-items {
+    font-size: 1rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
-  &.hidden {
-    opacity: 0;
+  &.button {
+    color: white;
+    padding: 15px 20px;
+    border-radius: 20px;
+    background: linear-gradient(
+        103.63deg,
+        rgba(255, 15, 19, 0.15) -3.51%,
+        rgba(191, 0, 32, 0) 94.72%
+      ),
+      linear-gradient(
+        257.82deg,
+        rgba(67, 0, 211, 0.25) -11.17%,
+        rgba(67, 0, 211, 0) 96.34%
+      ),
+      linear-gradient(0deg, #5c00c7, #5c00c7), #117cb6;
   }
-  &.white {
-    color: #fff;
+  &.button:hover {
+    border-bottom: solid 2px #fff;
   }
 `;
-
-const BackIconWrapperHidden = styled.div`
-  opacity: 0;
-`;
-
-const GoodNoGood = styled(Body13)`
-  color: ${({ theme }) => theme.colors.orange};
-  font-weight: 500;
-
-  &.good {
-    color: ${({ theme }) => theme.colors.green};
+const MenuItemWrapper = styled(Drawer)`
+  && {
+    inset: auto !important;
+    .MuiBackdrop-root {
+      display: none;
+    }
+    .MuiDrawer-paper {
+      top: 70px;
+    }
   }
 `;
+const AvatarWrapper = styled(Body14)`
+  height: 58px;
+  cursor: pointer;
+  display: flex;
+  margin-left: 2rem;
+`;
 
-function MobileHeader({
-  showGood = false,
-  isGood = false,
-  showShare = false,
-  whiteBackButton = false,
-  user,
-  hideBack = false,
-}) {
-  const router = useRouter();
-  const routeBack = () => {
-    router.back();
-  };
-
-  const canShare = typeof navigator !== 'undefined' && navigator.share;
-  const url = uuidUrl(user);
-
-  const nativeShare = () => {
-    navigator
-      .share({
-        title: 'The Good Party',
-        text: 'Check out The Good Party!',
-        url,
-      })
-      .then(() => console.log('Successful share'));
+const LinkContainer = styled.div`
+  display: flex;
+`;
+function MobileHeader({ user, navigateCallback }) {
+  const [open, setOpen] = useState(false);
+  const handleNavigate = screen => {
+    navigateCallback(screen, user);
   };
   return (
     <Hidden mdUp>
       <Wrapper>
-        {!hideBack ? (
-          <BackIconWrapper
-            onClick={routeBack}
-            className={whiteBackButton ? 'white' : ''}
-          >
-            <BackIcon />
-          </BackIconWrapper>
-        ) : (
-          <div>&nbsp;</div>
-        )}
-        {showGood ? (
-          <>
-            {isGood === true && (
-              <GoodNoGood className="good">GOOD OPTION</GoodNoGood>
-            )}
-            {isGood === false && (
-              <GoodNoGood className="notgood">NOT GOOD ENOUGH</GoodNoGood>
-            )}
-          </>
-        ) : (
-          <Link href="/home" className="text-center">
-            <span>
-              {whiteBackButton ? (
-                <Logo
-                  src="images/white-logo.svg"
-                  alt="The Good Party"
-                  data-cy="logo"
-                />
-              ) : (
-                <Logo
-                  src="/images/logo-caps.svg"
-                  alt="The Good Party"
-                  data-cy="logo"
-                />
-              )}
-            </span>
-          </Link>
-        )}
-        {showShare && canShare ? (
-          <Image
-            src="images/icons/share.svg"
-            alt="Share"
-            onClick={nativeShare}
-            width="auto"
-            height="auto"
+        <Link href="/home" className="text-center">
+          <Logo
+            src="/images/new-logo.svg"
+            alt="The Good Party"
+            data-cy="logo"
           />
-        ) : (
-          <BackIconWrapperHidden>
-            <BackIcon />
-          </BackIconWrapperHidden>
-        )}
+        </Link>
+        <LinkContainer>
+          {!(user && user.name) && !open && (
+            <TopLink
+              onClick={() => handleNavigate('/you?register=true')}
+              data-cy="you"
+              className="button"
+            >
+              SIGN UP
+            </TopLink>
+          )}
+          <TopLink data-cy="you">
+            {open ? (
+              <CloseIconButton onClick={() => setOpen(false)} />
+            ) : (
+              <MenuIconButton onClick={() => setOpen(true)} />
+            )}
+          </TopLink>
+        </LinkContainer>
       </Wrapper>
+      <MenuItemWrapper
+        transitionDuration={{ appear: 0, enter: 0, exit: 0 }}
+        anchor="top"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <MenuItem>
+          <TopLink
+            onClick={() => handleNavigate('/party')}
+            data-cy="party"
+            className="menu-items"
+          >
+            CANDIDATES
+          </TopLink>
+        </MenuItem>
+        <MenuItem>
+          <TopLink
+            onClick={() => handleNavigate('/party')}
+            data-cy="party"
+            className="menu-items"
+          >
+            ABOUT
+          </TopLink>
+        </MenuItem>
+        <AuthButtonWrapper className={!user?.name && 'auth-button'}>
+          {user?.name ? (
+            <MenuItem style={{ width: '100%' }}>
+              <AvatarWrapper
+                onClick={() => handleNavigate('/you')}
+                style={{ marginLeft: 20 }}
+              >
+                <UserAvatar
+                  user={user}
+                  onClick={() => handleNavigate('/you')}
+                />
+                <TopLink className="menu-items">{user.name}</TopLink>
+              </AvatarWrapper>
+            </MenuItem>
+          ) : (
+            <>
+              <TopLink
+                onClick={() => handleNavigate('/you?register=true')}
+                data-cy="you"
+                className="button menu-items"
+              >
+                SIGN UP
+              </TopLink>
+              <TopLink
+                onClick={() => handleNavigate('/login')}
+                data-cy="you"
+                className="button menu-items"
+              >
+                LOG IN
+              </TopLink>
+            </>
+          )}
+        </AuthButtonWrapper>
+      </MenuItemWrapper>
+
       <RegisterBannerContainer />
     </Hidden>
   );
 }
 
 MobileHeader.propTypes = {
-  showGood: PropTypes.bool,
-  isGood: PropTypes.bool,
-  showShare: PropTypes.bool,
-  whiteBackButton: PropTypes.bool,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  hideBack: PropTypes.bool,
+  navigateCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {

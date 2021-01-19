@@ -89,7 +89,7 @@ function AdminAddCandidateWrapper({ createCandidateCallback }) {
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       <Wrapper>
         <H2>Admin add candidate</H2>
         <br />
