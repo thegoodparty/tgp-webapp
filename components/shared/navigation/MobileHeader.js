@@ -24,7 +24,6 @@ const Wrapper = styled.div`
 
 const Logo = styled.img`
   height: 10px;
-  height: auto;
   align-self: center;
   justify-self: center;
 `;
@@ -32,9 +31,6 @@ const Logo = styled.img`
 const AuthButtonWrapper = styled.div`
   display: flex;
   padding: 10px 0px;
-  &.auth-button {
-    justify-content: space-around;
-  }
 `;
 const MenuIconButton = styled(MenuIcon)`
   && {
@@ -58,8 +54,13 @@ const TopLink = styled(Body9)`
   color: ${({ theme }) => theme.colors.purple};
   &.menu-items {
     font-size: 1rem;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin-left: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    &.button {
+      margin-left: 18px;
+      margin-right: 24px;
+    }
   }
   &.button {
     color: white;
@@ -83,17 +84,13 @@ const TopLink = styled(Body9)`
 `;
 const MenuItemWrapper = styled(Drawer)`
   && {
-    inset: auto !important;
-    .MuiBackdrop-root {
-      display: none;
-    }
     .MuiDrawer-paper {
-      top: 70px;
+      height: 100%;
     }
   }
 `;
 const AvatarWrapper = styled(Body14)`
-  height: 58px;
+  height: 80px;
   cursor: pointer;
   display: flex;
   margin-left: 2rem;
@@ -128,20 +125,23 @@ function MobileHeader({ user, navigateCallback }) {
             </TopLink>
           )}
           <TopLink data-cy="you">
-            {open ? (
-              <CloseIconButton onClick={() => setOpen(false)} />
-            ) : (
-              <MenuIconButton onClick={() => setOpen(true)} />
-            )}
+            <MenuIconButton onClick={() => setOpen(true)} />
           </TopLink>
         </LinkContainer>
       </Wrapper>
-      <MenuItemWrapper
-        transitionDuration={{ appear: 0, enter: 0, exit: 0 }}
-        anchor="top"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
+      <MenuItemWrapper anchor="top" open={open} onClose={() => setOpen(false)}>
+        <Wrapper style={{ marginBottom: 10 }}>
+          <Link href="/home" className="text-center">
+            <Logo
+              src="/images/new-logo.svg"
+              alt="The Good Party"
+              data-cy="logo"
+            />
+          </Link>
+          <TopLink data-cy="you">
+            <CloseIconButton onClick={() => setOpen(false)} />
+          </TopLink>
+        </Wrapper>
         <MenuItem>
           <TopLink
             onClick={() => handleNavigate('/party')}
@@ -165,13 +165,15 @@ function MobileHeader({ user, navigateCallback }) {
             <MenuItem style={{ width: '100%' }}>
               <AvatarWrapper
                 onClick={() => handleNavigate('/you')}
-                style={{ marginLeft: 20 }}
+                style={{ marginLeft: 0 }}
               >
                 <UserAvatar
                   user={user}
                   onClick={() => handleNavigate('/you')}
                 />
-                <TopLink className="menu-items">{user.name}</TopLink>
+                <TopLink style={{ marginLeft: 6 }} className="menu-items">
+                  {user.name}
+                </TopLink>
               </AvatarWrapper>
             </MenuItem>
           ) : (
@@ -186,7 +188,7 @@ function MobileHeader({ user, navigateCallback }) {
               <TopLink
                 onClick={() => handleNavigate('/login')}
                 data-cy="you"
-                className="button menu-items"
+                className="menu-items"
               >
                 LOG IN
               </TopLink>
