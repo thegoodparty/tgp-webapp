@@ -25,6 +25,7 @@ import AdminUsersList from '../AdminUsersList/Loadable';
 import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 import AdminUserStats from '../AdminUserStats/Loadable';
 import AdminVoterizeList from '../AdminVoterizeList/Loadable';
+import NewCandidateList from '../AdminCandidateList/NewCandidateList';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -122,7 +123,7 @@ const AdminWrapper = ({
 
   const handleSelectedItem = index => {
     setSelectedItem(index);
-    if (index === 0 || index === 1 || index === 2) {
+    if (index < 4) {
       const chamber = mapChamber(index);
       loadCandidatesCallback(chamber);
     }
@@ -174,10 +175,21 @@ const AdminWrapper = ({
         </MainPanelPlaceholder>
       );
     }
-    if (selectedItem < 4) {
+    if (selectedItem < 3) {
       const chamber = mapChamber(selectedItem);
       return (
         <AdminCandidateList
+          candidates={candidates}
+          updateCandidateCallback={updateCandidateCallback}
+          chamber={chamber}
+        />
+      );
+    }
+
+    if (selectedItem < 4) {
+      const chamber = mapChamber(selectedItem);
+      return (
+        <NewCandidateList
           candidates={candidates}
           updateCandidateCallback={updateCandidateCallback}
           chamber={chamber}

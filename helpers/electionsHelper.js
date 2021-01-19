@@ -37,12 +37,16 @@ export const candidateRoute = candidate => {
   if (!candidate) {
     return '/';
   }
-  const { isIncumbent, chamber } = candidate;
+  const { isIncumbent, chamber, id } = candidate;
   const chamberLower = chamber ? chamber.toLowerCase() : 'presidential';
+  if (chamberLower === 'local') {
+    const name = slugify(`${candidate.firstName} ${candidate.lastName}`);
+    return `/candidate/${name}/${id}`;
+  }
   const name = slugify(candidate.name);
   return `/elections/candidate/${chamberLower}${
     isIncumbent ? '-i' : ''
-  }/${name}/${candidate.id}`;
+  }/${name}/${id}`;
 };
 
 export const rankText = number => {
