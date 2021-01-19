@@ -7,11 +7,10 @@ import UserAvatar from '../UserAvatar';
 
 const Wrapper = styled.div`
   position: fixed;
-  height: 68px;
+  height: 80px;
   top: 0;
   left: 0;
   width: 100%;
-  padding-top: 10px;
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   z-index: 100;
@@ -24,7 +23,7 @@ const ContentWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 58px;
+  height: 80px;
 `;
 
 const Logo = styled.img`
@@ -32,14 +31,20 @@ const Logo = styled.img`
   height: auto;
   cursor: pointer;
 `;
-
+const Divider = styled.div`
+  height: 80px;
+  width: 1px;
+  background-color: ${({ theme }) => theme.colors.grayE};
+`;
 const TopLink = styled(Body12)`
   cursor: pointer;
-  height: 58px;
+  height: 80px;
   font-size: 1rem;
   border-bottom: solid 2px #fff;
-  padding: 0 1rem;
-  margin-left: 2rem;
+  padding: 0 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  letter-spacing: 2px;
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.purple};
@@ -48,9 +53,11 @@ const TopLink = styled(Body12)`
     border-bottom: solid 2px ${({ theme }) => theme.colors.lightBlue};
   }
   &.button {
+    height: 56px;
     color: white;
+    margin: 0.75rem 0 0.75rem 1.5rem;
     padding: 15px 30px;
-    border-radius: 20px;
+    border-radius: 40px;
     background: linear-gradient(
         103.63deg,
         rgba(255, 15, 19, 0.15) -3.51%,
@@ -69,9 +76,9 @@ const TopLink = styled(Body12)`
 `;
 
 const AvatarWrapper = styled(Body14)`
-  height: 58px;
+  height: 80px;
   cursor: pointer;
-  margin-left: 2rem;
+  margin-left: 0.5rem;
   &:hover,
   &.showBorder {
     border-bottom: solid 2px ${({ theme }) => theme.colors.lightBlue};
@@ -110,6 +117,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
               >
                 CANDIDATES
               </TopLink>
+              <Divider />
               <TopLink
                 className={partyRoute ? 'showBorder' : ''}
                 onClick={() => handleNavigate('/party')}
@@ -129,6 +137,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
                 </AvatarWrapper>
               ) : (
                 <>
+                  <Divider />
                   <TopLink
                     onClick={() => handleNavigate('/you?register=true')}
                     data-cy="you"
