@@ -117,14 +117,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
               >
                 ABOUT
               </TopLink>
-              {/* <TopLink
-                className={electionRoute ? 'showBorder' : ''}
-                onClick={() => handleNavigate('/elections')}
-                data-cy="elections"
-              >
-                ELECTIONS 
-            </TopLink> */}
-              {user && user.name ? (
+              {user?.name ? (
                 <AvatarWrapper
                   className={youRoute ? 'showBorder' : ''}
                   onClick={() => handleNavigate('/you')}

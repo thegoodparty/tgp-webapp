@@ -30,12 +30,10 @@ const Logo = styled.img`
 `;
 
 const AuthButtonWrapper = styled.div`
-  && {
-    display: flex;
-    padding: 10px 0px;
-    &.auth-button {
-      justify-content: space-around;
-    }
+  display: flex;
+  padding: 10px 0px;
+  &.auth-button {
+    justify-content: space-around;
   }
 `;
 const MenuIconButton = styled(MenuIcon)`
@@ -162,8 +160,8 @@ function MobileHeader({ user, navigateCallback }) {
             ABOUT
           </TopLink>
         </MenuItem>
-        <AuthButtonWrapper className={!(user && user.name) && 'auth-button'}>
-          {user && user.name ? (
+        <AuthButtonWrapper className={!user?.name && 'auth-button'}>
+          {user?.name ? (
             <MenuItem style={{ width: '100%' }}>
               <AvatarWrapper
                 onClick={() => handleNavigate('/you')}
