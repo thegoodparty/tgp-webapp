@@ -1,15 +1,12 @@
-import CandidatePage from 'containers/elections/CandidateNewPage';
+import Page from 'containers/admin/AdminAddCandidatePage';
 import tgpApi from 'api/tgpApi';
-export default function Candidate({ ssrState }) {
-  return <CandidatePage ssrState={ssrState} />;
+
+export default function Admin({ ssrState }) {
+  return <Page ssrState={ssrState} />;
 }
 
 export async function getServerSideProps(context) {
-  const { NameIdTab } = context.params;
-  // const name = NameIdTab?.length > 1 ? NameIdTab[0] : false;
-  const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
-  const tab = NameIdTab?.length > 2 ? NameIdTab[2] : false;
-
+  const { id } = context.params;
   if (id) {
     const api = tgpApi.newCandidate.find;
     const url = `${api.url}?id=${id}`;
@@ -20,13 +17,16 @@ export async function getServerSideProps(context) {
       props: {
         ssrState: {
           candidate: candidate.candidate,
-          id,
-          tab,
         },
       }, // will be passed to the page component as props
     };
   }
+
   return {
-    props: {},
+    props: {
+      ssrState: {
+        candidate: false,
+      },
+    }, // will be passed to the page component as props
   };
 }

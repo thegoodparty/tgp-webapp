@@ -13,6 +13,14 @@ function createCandidateAction(candidate) {
   };
 }
 
+function editCandidateAction(candidate) {
+  return {
+    type: types.EDIT_CANDIDATE,
+    candidate,
+  };
+}
+
 export default {
   createCandidateAction,
+  editCandidateAction,
 };

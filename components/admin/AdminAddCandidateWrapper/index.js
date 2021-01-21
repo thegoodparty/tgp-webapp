@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Nav from 'containers/shared/Nav';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
@@ -59,12 +58,20 @@ const fields = [
   },
   { label: 'About', key: 'about', rte: true, initialValue: '' },
 ];
-const initialState = {};
-fields.forEach(field => {
-  initialState[field.key] = field.initialValue;
-});
 
-function AdminAddCandidateWrapper({ createCandidateCallback }) {
+function AdminAddCandidateWrapper({
+  createCandidateCallback,
+  editCandidateCallback,
+  candidate,
+  mode,
+}) {
+  const initialState = {};
+  fields.forEach(field => {
+    initialState[field.key] = candidate
+      ? candidate[field.key]
+      : field.initialValue;
+  });
+  console.log('initialState', initialState);
   const [formState, setFormState] = useState(initialState);
 
   const onChangeField = (key, value) => {
@@ -83,7 +90,11 @@ function AdminAddCandidateWrapper({ createCandidateCallback }) {
   };
 
   const createCandidate = () => {
-    createCandidateCallback(formState);
+    if (mode === 'add') {
+      createCandidateCallback(formState);
+    } else {
+      editCandidateCallback({ ...formState, id: candidate.id });
+    }
   };
 
   return (
@@ -110,6 +121,7 @@ function AdminAddCandidateWrapper({ createCandidateCallback }) {
                 <Label>{field.label}</Label>
                 <JoditEditorWrapper
                   onChangeCallback={value => onChangeField(field.key, value)}
+                  initialText={formState[field.key]}
                 />
               </>
             ) : (
@@ -126,7 +138,7 @@ function AdminAddCandidateWrapper({ createCandidateCallback }) {
         <br />
         <br />
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>
-          CREATE CANDIDATE
+          {mode === 'add' ? 'CREATE' : 'EDIT'} CANDIDATE
         </BlueButton>
       </Wrapper>
     </div>
@@ -135,6 +147,9 @@ function AdminAddCandidateWrapper({ createCandidateCallback }) {
 
 AdminAddCandidateWrapper.propTypes = {
   createCandidateCallback: PropTypes.func,
+  editCandidateCallback: PropTypes.func,
+  candidate: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  mode: PropTypes.string,
 };
 
 export default AdminAddCandidateWrapper;

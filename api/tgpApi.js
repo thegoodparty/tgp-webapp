@@ -38,10 +38,7 @@ const api = {
     url: `${base}candidates/find`,
     method: 'GET',
   },
-  findNewCandidate: {
-    url: `${base}new-candidate`,
-    method: 'GET',
-  },
+
   findBlocCandidate: {
     url: `${base}candidates/find-by-bloc`,
     method: 'GET',
@@ -290,6 +287,20 @@ const api = {
     uploadImage: {
       url: `${base}admin/upload-image`,
       method: 'POST',
+    },
+  },
+  newCandidate: {
+    create: {
+      url: `${base}new-candidate`,
+      method: 'POST',
+    },
+    find: {
+      url: `${base}new-candidate`,
+      method: 'GET',
+    },
+    update: {
+      url: `${base}new-candidate`,
+      method: 'PUT',
     },
   },
 

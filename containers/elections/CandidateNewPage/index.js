@@ -19,7 +19,7 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from '../CandidatePage/actions';
 import TgpHelmet from '../../../components/shared/TgpHelmet';
-import { uuidUrl } from '../../../helpers/userHelper';
+
 import { getCandidateChamberDistrictOnly } from '../../../helpers/candidatesHelper';
 
 export function CandidateNewPage({ ssrState, dispatch }) {

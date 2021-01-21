@@ -7,7 +7,8 @@ import { H2, Body, Body12, Body9 } from 'components/shared/typogrophy';
 import {
   rankPageLink,
   partyResolver,
-  candidateCalculatedFields, candidateRoute,
+  candidateCalculatedFields,
+  candidateRoute,
 } from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
 import ChallengerAvatar from './ChallengerAvatar';
@@ -130,7 +131,7 @@ const ChallengerItem = ({ challenger, id }) => {
   const funding =
     perc > 50 ? perc : ((raised * 100) / incumbentRaised).toFixed(2);
   return (
-    <ChallengerItemWrapper id={id}>
+    <ChallengerItemWrapper id={id ? id : undefined}>
       <Link href={candidateLink()} passHref>
         <a>
           <ChallengerAvatar avatar={image} party={party} />

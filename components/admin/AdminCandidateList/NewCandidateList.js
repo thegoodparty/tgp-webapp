@@ -115,14 +115,14 @@ function NewCandidateList({ candidates, updateCandidateCallback, chamber }) {
           : 'presidential';
 
         const route = candidateRoute(row.original);
-        const editRoute = `/admin/edit-candidate/${chamberLower}${
-          row.original.isIncumbent ? '-i' : ''
-        }/${row.original.id}`;
+        const editRoute = `/admin/add-candidate/${row.original.id}`;
         return (
           <>
-            <a href={editRoute} target="_blank">
+            <Link href={editRoute} target="_blank" passHref>
+              <a>
               <EditIcon />
-            </a>
+              </a>
+            </Link>
             &nbsp;&nbsp;&nbsp;
             <a
               href={route}

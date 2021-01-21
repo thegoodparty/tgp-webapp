@@ -9,7 +9,23 @@ import types from './constants';
 function* createCandidate({ candidate }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Creating Candidate'));
-    const api = tgpApi.admin.createCandidate;
+    const api = tgpApi.newCandidate.create;
+    const payload = { candidate };
+    yield call(requestHelper, api, payload);
+    yield put(push('/admin'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error creating candidate', 'error'),
+    );
+  }
+}
+
+function* editCandidate({ candidate }) {
+  try {
+    console.log('at saga');
+    yield put(snackbarActions.showSnakbarAction('Creating Candidate'));
+    const api = tgpApi.newCandidate.update;
     const payload = { candidate };
     yield call(requestHelper, api, payload);
     yield put(push('/admin'));
@@ -23,5 +39,6 @@ function* createCandidate({ candidate }) {
 
 // Individual exports for testing
 export default function* saga() {
-  const action = yield takeLatest(types.CREATE_CANDIDATE, createCandidate);
+  let action = yield takeLatest(types.CREATE_CANDIDATE, createCandidate);
+  action = yield takeLatest(types.EDIT_CANDIDATE, editCandidate);
 }
