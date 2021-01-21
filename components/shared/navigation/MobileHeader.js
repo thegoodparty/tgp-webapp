@@ -19,6 +19,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   justify-content: space-between;
 `;
 
@@ -65,7 +67,11 @@ const TopLink = styled(Body9)`
   &.button {
     color: white;
     padding: 15px 20px;
-    border-radius: 20px;
+    border-radius: 39px;
+    &.big {
+      height: 56px;
+      padding: 18px 30px;
+    }
     background: linear-gradient(
         103.63deg,
         rgba(255, 15, 19, 0.15) -3.51%,
@@ -125,7 +131,7 @@ function MobileHeader({ user, navigateCallback }) {
               SIGN UP
             </TopLink>
           )}
-          <TopLink data-cy="you">
+          <TopLink data-cy="you" style={{ borderBottom: 'none' }}>
             <MenuIconButton onClick={() => setOpen(true)} />
           </TopLink>
         </LinkContainer>
@@ -182,23 +188,23 @@ function MobileHeader({ user, navigateCallback }) {
               </AvatarWrapper>
             </MenuItem>
           ) : (
-            <>
-              <TopLink
-                onClick={() => handleNavigate('/you?register=true')}
-                data-cy="you"
-                className="button menu-items"
-              >
-                SIGN UP
+              <>
+                <TopLink
+                  onClick={() => handleNavigate('/you?register=true')}
+                  data-cy="you"
+                  className="button menu-items big"
+                >
+                  SIGN UP
               </TopLink>
-              <TopLink
-                onClick={() => handleNavigate('/login')}
-                data-cy="you"
-                className="menu-items"
-              >
-                LOG IN
+                <TopLink
+                  onClick={() => handleNavigate('/login')}
+                  data-cy="you"
+                  className="menu-items"
+                >
+                  LOG IN
               </TopLink>
-            </>
-          )}
+              </>
+            )}
         </AuthButtonWrapper>
       </MenuItemWrapper>
 
