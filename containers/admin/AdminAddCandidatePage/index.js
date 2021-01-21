@@ -27,7 +27,7 @@ export function AdminAddCandidatePage({
   useInjectReducer({ key: 'adminAddCandidatePage', reducer });
   useInjectSaga({ key: 'adminAddCandidatePage', saga });
 
-  const { candidate } = ssrState;
+  const { candidate } = ssrState || {};
   const mode = candidate ? 'edit' : 'add';
 
   console.log('candidate', candidate);
@@ -67,7 +67,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.createCandidateAction(candidate));
     },
     editCandidateCallback: candidate => {
-      console.log('here')
+      console.log('here');
       dispatch(actions.editCandidateAction(candidate));
     },
   };
