@@ -19,10 +19,11 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from '../CandidatePage/actions';
 import TgpHelmet from '../../../components/shared/TgpHelmet';
+import { makeSelectContent } from '../../App/selectors';
 
 import { getCandidateChamberDistrictOnly } from '../../../helpers/candidatesHelper';
 
-export function CandidateNewPage({ ssrState, dispatch }) {
+export function CandidateNewPage({ ssrState, content, dispatch }) {
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
 
@@ -59,6 +60,7 @@ export function CandidateNewPage({ ssrState, dispatch }) {
 
   const childProps = {
     candidate,
+    content,
   };
   return (
     <div>
@@ -77,9 +79,12 @@ export function CandidateNewPage({ ssrState, dispatch }) {
 CandidateNewPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  content: makeSelectContent()
+});
 
 function mapDispatchToProps(dispatch) {
   return {

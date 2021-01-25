@@ -21,9 +21,11 @@ const BarBg = styled.div`
   margin: 10px 0;
   width: 80%;
   position: relative;
-  height: 2px;
+  height: 12px;
   background-color: ${({ theme }) => theme.colors.grayC};
-  border-radius: 3px;
+
+  // border-radius: 3px;
+  border-radius: 12px;
 
   &.full-width {
     width: 100%;
@@ -32,11 +34,13 @@ const BarBg = styled.div`
 
 const Bar = styled.div`
   position: absolute;
-  height: 6px;
-  border-radius: 3px;
-  background-color: ${({ theme }) => theme.colors.green};
+  height: 12px;
+  // border-radius: 3px;
+  border-radius: 12px;
+
+  // background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.purple};
   left: 0;
-  top: -2px;
   width: 3%;
   transition: width 0.5s;
 `;
@@ -82,7 +86,8 @@ const SupportersProgressBar = ({
       </BarBg>
       {showSuffix && (
         <BarBody9 data-cy="votes-needed">
-          {numberFormatter(votesNeeded)} VOTES NEEDED TO WIN
+          {`${progress}% of `}
+          {numberFormatter(votesNeeded)} votes needed to win
           {userState && <> IN {userState.toUpperCase()}</>}
           {suffixText}
         </BarBody9>
