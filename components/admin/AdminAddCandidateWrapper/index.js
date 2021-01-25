@@ -136,7 +136,7 @@ function AdminAddCandidateWrapper({
         <Slug>
           Slug: {`elections/local/${formState.firstName}-${formState.lastName}`}
         </Slug>
-        {candidate.image && (
+        {candidate && candidate.image && (
           <div className="flex-center">
             <CandidateAvatar
               src={candidate.image}
