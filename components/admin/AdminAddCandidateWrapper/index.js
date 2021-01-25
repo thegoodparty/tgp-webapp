@@ -9,10 +9,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Nav from 'containers/shared/Nav';
+import { BlueButton } from 'components/shared/buttons';
+
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
-import { BlueButton } from 'components/shared/buttons';
+import ComparedCandidates from './ComparedCandidates';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -71,8 +73,8 @@ function AdminAddCandidateWrapper({
       ? candidate[field.key]
       : field.initialValue;
   });
-  console.log('initialState', initialState);
   const [formState, setFormState] = useState(initialState);
+  const [comparedCandidates, setComparedCandidates] = useState(false);
 
   const onChangeField = (key, value) => {
     setFormState({
@@ -91,10 +93,17 @@ function AdminAddCandidateWrapper({
 
   const createCandidate = () => {
     if (mode === 'add') {
-      createCandidateCallback(formState);
+      createCandidateCallback({ ...formState, comparedCandidates });
     } else {
-      editCandidateCallback({ ...formState, id: candidate.id });
+      editCandidateCallback({
+        ...formState,
+        comparedCandidates,
+        id: candidate.id,
+      });
     }
+  };
+  const compareCandidatesCallback = comparedCands => {
+    setComparedCandidates(comparedCands);
   };
 
   return (
@@ -135,6 +144,14 @@ function AdminAddCandidateWrapper({
             )}
           </React.Fragment>
         ))}
+        <br />
+        <br />
+        <Label>Compare Candidates</Label>
+        <ComparedCandidates
+          candidate={candidate}
+          candidatesCallback={compareCandidatesCallback}
+        />
+        <br />
         <br />
         <br />
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>

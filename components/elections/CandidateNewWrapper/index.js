@@ -24,12 +24,30 @@ function CandidateNewWrapper({ candidate }) {
   if (!candidate) {
     return <NotFound />;
   }
-  console.log('cand', candidate)
+
+  const renderVal = val => {
+    if (typeof val === 'string') {
+      return val;
+    }
+    if (typeof val === 'number') {
+      return val;
+    }
+    if (Array.isArray(val)) {
+      return JSON.stringify(val);
+    }
+  };
+  console.log('cand', candidate);
   return (
     <PageWrapper isFullWidth white>
       <ContentWrapper>
         New Candidate Page
-        {candidate.firstName} {candidate.lastName}
+        {Object.keys(candidate).map((key) => (
+          <div>
+            {key} : {renderVal(candidate[key])}
+            <br/>
+            <br/>
+          </div>
+        ))}
       </ContentWrapper>
     </PageWrapper>
   );
