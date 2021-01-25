@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
   display: flex;
   flex-direction: row;
-  padding-top: 18px;
+  padding-top: 38px;
 `;
 
 const LeftPanel = styled.div`

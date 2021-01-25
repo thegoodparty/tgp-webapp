@@ -8,7 +8,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
-import AdminMenu from 'components/admin/AdminMenu/Loadable';
+import AdminMenu from 'components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
@@ -124,7 +124,7 @@ const NavWrapper = ({
           </BottomNavigation>
         </Hidden>
       )}
-      {user && user.isAdmin && <AdminMenu />}
+      {user?.isAdmin && <AdminMenu />}
     </>
   );
 };
