@@ -16,6 +16,14 @@ import theme from 'theme';
  * @param {boolean} options.debug User-defined debug flag
  * @param {string} options.storeKey The key that will be used to persist the store in the browser's `window` object for safe HMR
  */
+if (typeof window !== 'undefined' && navigator) {
+  console.log('removing service worker');
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for (let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
 
 function MyApp({ Component, pageProps }) {
   return (

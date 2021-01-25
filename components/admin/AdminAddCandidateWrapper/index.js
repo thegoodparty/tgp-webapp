@@ -15,6 +15,7 @@ import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
 import ComparedCandidates from './ComparedCandidates';
+import CandidateAvatar from '../../shared/CandidateAvatar';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -74,7 +75,12 @@ function AdminAddCandidateWrapper({
       : field.initialValue;
   });
   const [formState, setFormState] = useState(initialState);
-  const [comparedCandidates, setComparedCandidates] = useState(false);
+  const [comparedCandidates, setComparedCandidates] = useState(
+    candidate ? candidate.comparedCandidates : false,
+  );
+  const [updates, setUpdates] = useState(
+    candidate?.updates ? candidate.updates : [],
+  );
 
   const onChangeField = (key, value) => {
     setFormState({
@@ -93,17 +99,31 @@ function AdminAddCandidateWrapper({
 
   const createCandidate = () => {
     if (mode === 'add') {
-      createCandidateCallback({ ...formState, comparedCandidates });
+      createCandidateCallback({ ...formState, comparedCandidates, updates });
     } else {
       editCandidateCallback({
         ...formState,
         comparedCandidates,
+        updates,
         id: candidate.id,
+        image: candidate.image,
       });
     }
   };
   const compareCandidatesCallback = comparedCands => {
     setComparedCandidates(comparedCands);
+  };
+
+  const addUpdate = () => {
+    const existingUpdates = [...updates];
+    existingUpdates.push('');
+    setUpdates(existingUpdates);
+  };
+
+  const onChangeUpdates = (val, index) => {
+    const existingUpdates = [...updates];
+    existingUpdates[index] = val;
+    setUpdates(existingUpdates);
   };
 
   return (
@@ -116,6 +136,17 @@ function AdminAddCandidateWrapper({
         <Slug>
           Slug: {`elections/local/${formState.firstName}-${formState.lastName}`}
         </Slug>
+        {candidate.image && (
+          <div className="flex-center">
+            <CandidateAvatar
+              src={candidate.image}
+              name={candidate.firstName}
+              good
+              size="xl"
+            />
+          </div>
+        )}
+
         {!formState.imageBase64 ? (
           <CropWrapper>
             <ImageCrop uploadImageCallback={handleUpload} />
@@ -146,12 +177,29 @@ function AdminAddCandidateWrapper({
         ))}
         <br />
         <br />
+        <hr />
+        <br />
         <Label>Compare Candidates</Label>
         <ComparedCandidates
           candidate={candidate}
           candidatesCallback={compareCandidatesCallback}
         />
         <br />
+        <br />
+        <hr />
+        <br />
+        {updates.map((update, index) => (
+          <>
+            Update #{index + 1}
+            <JoditEditorWrapper
+              onChangeCallback={value => onChangeUpdates(value, index)}
+              initialText={update}
+            />
+            <br />
+            <br />
+          </>
+        ))}
+        <BlueButton onClick={addUpdate}>Add update</BlueButton>
         <br />
         <br />
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>

@@ -4,8 +4,7 @@
  *
  */
 
-import React, { useState, useCallback } from 'react';
-import { debounce } from 'lodash.debounce';
+import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -24,10 +23,17 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
       party: candidate ? candidate.party : '',
     },
   ]);
-  const [criteria, setCriteria] = useState([
-    { name: 'Name', key: 'name' },
-    { name: 'Party', key: 'party' },
-  ]);
+  const [criteria, setCriteria] = useState(['name', 'party']);
+  useEffect(() => {
+    console.log('in effect');
+    if (
+      candidate?.comparedCandidates &&
+      candidate.comparedCandidates.length > 0
+    ) {
+      setCriteria(Object.keys(candidate.comparedCandidates[0]));
+      setCandidates(candidate.comparedCandidates);
+    }
+  }, [candidate]);
 
   const addCandidate = () => {
     const newCandidates = [...candidates];
@@ -39,7 +45,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
 
   const addCriteria = () => {
     const newCriteria = [...criteria];
-    newCriteria.push({ name: 'New Criteria', key: 'New Criteria' });
+    newCriteria.push('New Criteria');
     setCriteria(newCriteria);
   };
 
@@ -47,14 +53,15 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     const newCandidates = [...candidates];
     newCandidates[index][key] = val;
     setCandidates(newCandidates);
-    updateResult();
+    // updateResult();
   };
 
   const onChangeCriteria = (val, index) => {
     const newCriteria = [...criteria];
-    newCriteria[index] = { name: val, key: val };
+    newCriteria[index] = val;
     setCriteria(newCriteria);
-    updateResult();
+    // updateResult();
+    console.log('newCriteria', newCriteria)
   };
 
   const updateResult = () => {
@@ -64,24 +71,24 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
   return (
     <Wrapper>
       {criteria.map((crit, index) => (
-        <Grid container spacing={3} key={crit.name}>
-          <Grid item xs style={{ border: 'solid 1px #BBB' }}>
+        <Grid container spacing={3}>
+          <Grid item xs>
             <TextField
               fullWidth
               variant="outlined"
-              value={crit.name}
+              value={crit}
               onChange={e => onChangeCriteria(e.target.value, index)}
               disabled={index === 0 || index === 1}
             />
           </Grid>
           {candidates.map((cand, index2) => (
-            <Grid item xs style={{ border: 'solid 1px #EEE' }} key={cand.key}>
+            <Grid item xs>
               <TextField
                 fullWidth
-                label={crit.name}
+                label={crit}
                 variant="outlined"
-                value={cand[crit.key]}
-                onChange={e => onChangeCand(crit.key, e.target.value, index2)}
+                value={cand[crit]}
+                onChange={e => onChangeCand(crit, e.target.value, index2)}
                 disabled={index2 === 0 && index < 2}
               />
             </Grid>
