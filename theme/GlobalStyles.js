@@ -75,6 +75,12 @@ const GlobalStyles = createGlobalStyle`
   .uploadIcon {
     display: none;
   }
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export default GlobalStyles;

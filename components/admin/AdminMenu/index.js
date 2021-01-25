@@ -23,6 +23,7 @@ const HeartWrapper = styled.div`
   border-radius: 50%;
   height: 40px;
   width: 40px;
+  margin: 10px 10px 0 0 ;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,10 +39,12 @@ function AdminMenu() {
   return (
     <>
       <MenuWrapper>
-        <Link href="/admin">
-          <HeartWrapper>
-            <Heart src="/images/heart.svg" alt="admin menu" />
-          </HeartWrapper>
+        <Link href="/admin" passHref>
+          <a>
+            <HeartWrapper>
+              <Heart src="/images/heart.svg" alt="admin menu" />
+            </HeartWrapper>
+          </a>
         </Link>
       </MenuWrapper>
     </>

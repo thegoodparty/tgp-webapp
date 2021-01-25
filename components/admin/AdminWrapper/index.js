@@ -16,7 +16,6 @@ import StatsIcon from '@material-ui/icons/Equalizer';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 
-import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
 import { Body13, H1 } from 'components/shared/typogrophy/index';
 
@@ -31,7 +30,7 @@ const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
   display: flex;
   flex-direction: row;
-  padding-top: 18px;
+  padding-top: 38px;
 `;
 
 const LeftPanel = styled.div`
