@@ -11,6 +11,8 @@ const colors = {
   grayF: '#F0F0F0',
   gray11: '#EBEBEB',
   grayBE: '#BEBEBE',
+  gray70: '#706C64',
+  grayD: '#DDD',
   gray10: 'rgba(100,100,100,.37)',
   red: '#bb001e',
   orange: '#D63E04',
@@ -19,6 +21,7 @@ const colors = {
   lighterBlue: '#E1F3F8',
   green: '#00A91C',
   purple: '#5C00C7',
+  purple2: '#6E26DB',
 };
 
 export default colors;
