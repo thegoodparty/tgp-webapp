@@ -12,15 +12,17 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import CandidateNewWrapper from 'components/elections/CandidateNewWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
+import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
+
+
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import actions from '../CandidatePage/actions';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
 
-import { getCandidateChamberDistrictOnly } from '../../../helpers/candidatesHelper';
 
 export function CandidateNewPage({ ssrState, dispatch }) {
   useInjectReducer({ key: 'candidateNewPage', reducer });

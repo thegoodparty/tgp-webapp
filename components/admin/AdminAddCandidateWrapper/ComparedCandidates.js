@@ -20,8 +20,8 @@ const Wrapper = styled.div`
 function ComparedCandidates({ candidate, candidatesCallback }) {
   const [candidates, setCandidates] = useState([
     {
-      name: `${candidate.firstName} ${candidate.lastName}`,
-      party: candidate.party,
+      name: candidate ? `${candidate.firstName} ${candidate.lastName}` : '',
+      party: candidate ? candidate.party : '',
     },
   ]);
   const [criteria, setCriteria] = useState([
@@ -71,7 +71,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
               variant="outlined"
               value={crit.name}
               onChange={e => onChangeCriteria(e.target.value, index)}
-              disabled={index === 0}
+              disabled={index === 0 || index === 1}
             />
           </Grid>
           {candidates.map((cand, index2) => (
@@ -82,7 +82,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
                 variant="outlined"
                 value={cand[crit.key]}
                 onChange={e => onChangeCand(crit.key, e.target.value, index2)}
-                // disabled={index2 === 0 && index === 0}
+                disabled={index2 === 0 && index < 2}
               />
             </Grid>
           ))}
