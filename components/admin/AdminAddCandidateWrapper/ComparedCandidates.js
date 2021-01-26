@@ -53,14 +53,14 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     const newCandidates = [...candidates];
     newCandidates[index][key] = val;
     setCandidates(newCandidates);
-    // updateResult();
+    updateResult();
   };
 
   const onChangeCriteria = (val, index) => {
     const newCriteria = [...criteria];
     newCriteria[index] = val;
     setCriteria(newCriteria);
-    // updateResult();
+    updateResult();
     console.log('newCriteria', newCriteria)
   };
 

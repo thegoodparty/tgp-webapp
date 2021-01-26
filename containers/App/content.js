@@ -330,6 +330,47 @@ const content = {
       ]
     }
   },
+  "articleCategories": [
+    {
+      "fields": {
+        "name": "How The Good Party Works",
+        "order": 10
+      },
+      "id": "4CrRDuyTqip7XK7DdK4tq7",
+      "articles": [
+        {
+          "title": "What is a crowd-voting campaign?",
+          "id": "1ic6T6fhH0jZLNvX5aZkDe"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "Joining The Good Party",
+        "order": 20
+      },
+      "id": "7jOZqjB2BBfvymyAJ4IQWe",
+      "articles": [
+        {
+          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
+          "id": "7Mrfo6spgrgpwAFe83Oph4"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "About Us",
+        "order": 300
+      },
+      "id": "1x8sreeqPN0PK929WRNw4I",
+      "articles": [
+        {
+          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
+          "id": "5YnyOUU7NVOihcos0oR1kL"
+        }
+      ]
+    }
+  ],
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -3081,143 +3122,6 @@ const content = {
       "id": "3yMjX3IPC2yIF3fj5rtbrq"
     },
     {
-      "title": "Why is Bernie Sanders listed as a Write-in Candidate?",
-      "articleBody": {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Bernie Sanders is listed \"As a Write-in,\" because regardless of what the two major parties would have you believe, the election does not only happen during their primaries! ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Under the current system, the choices on the November ballot are basically decided by the two major parties' power brokers who limit the number of real choices. This cuts third-party, independent and even promising red and blue candidates out of the process months before most voters even begin paying attention to the election. ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "However, we are offering a ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "crowd-voting campaign",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": " for Bernie Sanders to see if he can get enough likely votes to win the real election on November 3rd, 2020, ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  },
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "value": "before any actual votes are cast! ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "This way, without wasting a single vote, \"we the people\" get to see if Bernie is truly electable before we vote. And rest assured that we will only activate a voting bloc to vote, if we doubly confirm that we have all the votes we need to win the election.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "That said, if the Bernie crowd-voting campaign doesn't get enough votes to win, we stand down and let people know, so they can vote \"the lessor of two evils\" between red or blue mainstream candidates, or stay on the sidelines, if they choose.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Growing any write-in presidential candidate's crowd-voting campaign enough to ensure a win would be totally unprecedented in modern times. However, good ideas do spread quickly online. ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "So, why not try?  What have we got to lose?",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          }
-        ],
-        "nodeType": "document"
-      },
-      "pages": [
-        "election"
-      ],
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How The Good Party Works",
-          "order": 10
-        }
-      },
-      "id": "5rNQ7AbDebbvsm0078gPXg"
-    },
-    {
       "title": "Will I be asked to donate money to participate in The Good Party?",
       "articleBody": {
         "nodeType": "document",
@@ -3466,51 +3370,6 @@ const content = {
         }
       },
       "id": "5YnyOUU7NVOihcos0oR1kL"
-    }
-  ],
-  "articleCategories": [
-    {
-      "fields": {
-        "name": "How The Good Party Works",
-        "order": 10
-      },
-      "id": "4CrRDuyTqip7XK7DdK4tq7",
-      "articles": [
-        {
-          "title": "What is a crowd-voting campaign?",
-          "id": "1ic6T6fhH0jZLNvX5aZkDe"
-        },
-        {
-          "title": "Why is Bernie Sanders listed as a Write-in Candidate?",
-          "id": "5rNQ7AbDebbvsm0078gPXg"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "Joining The Good Party",
-        "order": 20
-      },
-      "id": "7jOZqjB2BBfvymyAJ4IQWe",
-      "articles": [
-        {
-          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
-          "id": "7Mrfo6spgrgpwAFe83Oph4"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "About Us",
-        "order": 300
-      },
-      "id": "1x8sreeqPN0PK929WRNw4I",
-      "articles": [
-        {
-          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
-          "id": "5YnyOUU7NVOihcos0oR1kL"
-        }
-      ]
     }
   ],
   "events": [],
