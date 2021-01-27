@@ -131,8 +131,10 @@ function ProfileInfo({ candidate }) {
   return (
     <ProfileInfoWrapper>
       <ChallengerAvatar avatar={image} party={party} />
-      <CandidateName>{`${firstName} ${lastName}`}</CandidateName>
-      <PartyName>{`Running as ${party}`}</PartyName>
+      <CandidateName>
+        {firstName} {lastName}
+      </CandidateName>
+      <PartyName>Running as {party}</PartyName>
       <RaceName>{race}</RaceName>
       <Grid container>
         <Grid row xs={6}>

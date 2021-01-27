@@ -11,11 +11,10 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import NotFound from 'containers/shared/NotFoundPage';
 import ReactPlayer from 'react-player/lazy';
+import articlesHelper from 'helpers/articlesHelper';
 import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
 import { H3, H1, Body19, Body13 } from '../../shared/typogrophy';
-import TopQuestions from 'components/shared/TopQuestions';
-import articlesHelper from 'helpers/articlesHelper';
 import CompareCandidate from './CompareCandidate.js';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
@@ -69,6 +68,11 @@ const SocialLink = styled.a`
 const HowTo = styled.div`
   padding-right: 90px;
   padding-left: 90px;
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.creators.breakpoints.creatorsMobile}) {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
   & > div {
     text-align: center;
     margin-top: 50px;
@@ -77,28 +81,38 @@ const HowTo = styled.div`
     }
   }
 `;
+const YoutubePlayer = styled(ReactPlayer)`
+  width: unset !important;
+`;
 const HowToTitle = styled(H3)`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.purple};
 `;
-function MainWrapper({ content, candidate }) {
+function MainWrapper({ candidate }) {
   if (!candidate) {
     return <NotFound />;
   }
-  let articles = [];
-  if (content?.faqArticles) {
-    articles = articlesHelper(content.faqArticles, 'election');
-  }
-  const { firstName, lastName, campaignSummary, about, comparedCandidates, facebook, twitter, } = candidate;
+  const {
+    firstName,
+    lastName,
+    campaignSummary,
+    about,
+    comparedCandidates,
+    facebook,
+    twitter,
+    heroVideo,
+  } = candidate;
   return (
     <>
-      <ReactPlayer
-        url={`https://youtu.be/${candidate.heroVideo}`}
-        playing={false}
-      />
+      {heroVideo && (
+        <YoutubePlayer
+          url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
+          playing={false}
+        />
+      )}
       <SectionWrapper>
         <CampaignSummaryHeadLine>
-          {`Help ${firstName} ${lastName} take back Los Angeles city hall`}
+          Help {firstName} {lastName} take back Los Angeles city hall
         </CampaignSummaryHeadLine>
         <SectionContent dangerouslySetInnerHTML={{ __html: campaignSummary }} />
       </SectionWrapper>
@@ -108,7 +122,7 @@ function MainWrapper({ content, candidate }) {
       </SectionWrapper>
       <SectionWrapper>
         <SectionHeader>Compare Candidates</SectionHeader>
-        <Grid container>
+        <Grid container style={{ justifyContent: "space-around" }}>
           {comparedCandidates.map(cand => (
             <CompareCandidate candidate={cand} />
           ))}
@@ -135,14 +149,18 @@ function MainWrapper({ content, candidate }) {
         </Grid>
       </SectionWrapper>
       <SectionWrapper>
-        <SectionHeader>{`Connect with ${firstName}`}</SectionHeader>
+        <SectionHeader>Connect with {firstName}</SectionHeader>
         <div>
-          <SocialLink href={facebook}>
-            <img src="/images/icons/facebook-icon.svg" alt="facebook" />
-          </SocialLink>
-          <SocialLink href={twitter}>
-            <img src="/images/icons/twitter-icon.svg" alt="twitter" />
-          </SocialLink>
+          {facebook && (
+            <SocialLink href={facebook}>
+              <img src="/images/icons/facebook-icon.svg" alt="facebook" />
+            </SocialLink>
+          )}
+          {twitter && (
+            <SocialLink href={twitter}>
+              <img src="/images/icons/twitter-icon.svg" alt="twitter" />
+            </SocialLink>
+          )}
         </div>
       </SectionWrapper>
       <SectionWrapper>
@@ -152,33 +170,46 @@ function MainWrapper({ content, candidate }) {
         </SectionHeader>
         <HowTo>
           <div>
-            <img src="/images/thank-you.png" alt="thank-you" />
+            <img
+              src="/images/thank-you.png"
+              alt="thank-you"
+              width="100%"
+              height="100%"
+            />
             <HowToTitle>
               {' '}
               See Good Candidates challenging THE status quo
             </HowToTitle>
           </div>
           <div>
-            <img src="/images/slide12.png" alt="thank-you" />
+            <img
+              src="/images/slide12.png"
+              alt="thank-you"
+              width="100%"
+              height="100%"
+            />
             <HowToTitle>
               {' '}
               Add your vote to their crowd-voting campaigns
             </HowToTitle>
           </div>
           <div>
-            <img src="/images/slide13.png" alt="thank-you" />
+            <img
+              src="/images/slide13.png"
+              alt="thank-you"
+              width="100%"
+              height="100%"
+            />
             <HowToTitle> spread the word and if they can win, vote!</HowToTitle>
           </div>
         </HowTo>
       </SectionWrapper>
-      <TopQuestions articles={articles} />
     </>
   );
 }
 
 MainWrapper.propTypes = {
   candidate: PropTypes.object,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default MainWrapper;

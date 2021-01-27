@@ -7,17 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import NotFound from 'containers/shared/NotFoundPage';
-import ReactPlayer from 'react-player/lazy';
-import PageWrapper from '../../shared/PageWrapper';
-import ProfileInfo from './ProfileInfo';
-import { H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
+import { H1, Body11 } from '../../shared/typogrophy';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 
 const Wrapper = styled.div`
   width: 170px;
-  margin-right: 30px;
+  // margin-right: 30px;
+  margin-top: 25px;
 `;
 const CandidateName = styled(H1)`
   font-size: 27px;
@@ -37,6 +33,7 @@ const CandidateNameWrapper = styled.div`
 
 const WebsiteLink = styled(Body11)`
   text-transform: uppercase;
+  text-align: center;
   color: ${({ theme }) => theme.colors.purple};
 `;
 
@@ -64,8 +61,7 @@ function ComparedCandidate({ candidate }) {
   const comparedFactors = { ...candidate };
   delete comparedFactors['name'];
   delete comparedFactors['party'];
-  console.log('cand', candidate, image);
-  const factors = Object.keys(comparedFactors).sort();
+  const factors = Object.keys(comparedFactors);
   return (
     <Wrapper>
       <ChallengerAvatar
