@@ -12,10 +12,18 @@ import Grid from '@material-ui/core/Grid';
 import { BlueButton } from 'components/shared/buttons';
 import TextField from '@material-ui/core/TextField';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import ImageCrop from '../../shared/ImageCrop';
 
 const Wrapper = styled.div`
   margin: 1rem 0;
 `;
+
+const Img = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+`;
+
 const Delete = styled.div`
   padding: 0.8rem 0;
   cursor: pointer;
@@ -35,12 +43,14 @@ const Delete = styled.div`
 function ComparedCandidates({ candidate, candidatesCallback }) {
   const [candidates, setCandidates] = useState([
     {
+      image: candidate ? candidate.image : '',
       name: candidate ? `${candidate.firstName} ${candidate.lastName}` : '',
       party: candidate ? candidate.party : '',
     },
   ]);
-  const [criteria, setCriteria] = useState(['name', 'party']);
+  const [criteria, setCriteria] = useState(['image', 'name', 'party']);
   const [updateParent, setUpdateParent] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState({});
 
   useEffect(() => {
     if (
@@ -48,16 +58,20 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
       candidate.comparedCandidates.length > 0
     ) {
       setCriteria(Object.keys(candidate.comparedCandidates[0]));
+      const compared = candidate.comparedCandidates;
+      compared[0].name = `${candidate.firstName} ${candidate.lastName}`;
+      compared[0].party = candidate.party;
+      compared[0].image = candidate.image;
       setCandidates(candidate.comparedCandidates);
     }
   }, [candidate]);
 
-  useEffect(()=>{
-    if(updateParent){
-      candidatesCallback(candidates);
+  useEffect(() => {
+    if (updateParent) {
+      candidatesCallback({...candidates, uploadedImages});
       setUpdateParent(false);
     }
-  },[updateParent])
+  }, [updateParent]);
 
   const addCandidate = () => {
     const newCandidates = [...candidates];
@@ -87,8 +101,6 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     setUpdateParent(true);
   };
 
-
-
   const deleteCriteria = index => {
     const newCriteria = [...criteria];
     const newCandidates = [...candidates];
@@ -109,12 +121,16 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     setUpdateParent(true);
   };
 
+  const handleUploadImage = (index, base64) => {
+    setUploadedImages({ ...uploadedImages, index: { index, base64 } });
+  };
+
   return (
     <Wrapper>
       {criteria.map((crit, index) => (
         <Grid container spacing={3}>
           <Grid item xs style={{ flex: 0 }}>
-            {index > 1 ? (
+            {index > 2 ? (
               <Delete>
                 <DeleteForeverIcon onClick={() => deleteCriteria(index)} />
               </Delete>
@@ -135,7 +151,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
               variant="outlined"
               value={crit}
               onChange={e => onChangeCriteria(e.target.value, index)}
-              disabled={index === 0 || index === 1}
+              disabled={index < 3}
             />
           </Grid>
           {candidates.map((cand, index2) => (
@@ -154,14 +170,29 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
                   <DeleteForeverIcon />
                 </Delete>
               )}
-              <TextField
-                fullWidth
-                label={crit}
-                variant="outlined"
-                value={cand[crit]}
-                onChange={e => onChangeCand(crit, e.target.value, index2)}
-                disabled={index2 === 0 && index < 2}
-              />
+              {crit === 'image' ? (
+                <div className="text-center">
+                  {cand[crit] ? (
+                    <Img src={cand[crit]} />
+                  ) : (
+                    <ImageCrop
+                      currentImage={cand[crit]}
+                      uploadImageCallback={base64 => {
+                        handleUploadImage(index2, base64);
+                      }}
+                    />
+                  )}
+                </div>
+              ) : (
+                <TextField
+                  fullWidth
+                  label={crit}
+                  variant="outlined"
+                  value={cand[crit]}
+                  onChange={e => onChangeCand(crit, e.target.value, index2)}
+                  disabled={index2 === 0 && index < 3}
+                />
+              )}
             </Grid>
           ))}
         </Grid>
