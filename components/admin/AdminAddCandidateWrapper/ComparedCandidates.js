@@ -11,9 +11,25 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { BlueButton } from 'components/shared/buttons';
 import TextField from '@material-ui/core/TextField';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const Wrapper = styled.div`
   margin: 1rem 0;
+`;
+const Delete = styled.div`
+  padding: 0.8rem 0;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+
+  &.disabled {
+    color: #fff;
+    cursor: default;
+    &:hover {
+      color: #fff;
+    }
+  }
 `;
 
 function ComparedCandidates({ candidate, candidatesCallback }) {
@@ -24,8 +40,9 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     },
   ]);
   const [criteria, setCriteria] = useState(['name', 'party']);
+  const [updateParent, setUpdateParent] = useState(false);
+
   useEffect(() => {
-    console.log('in effect');
     if (
       candidate?.comparedCandidates &&
       candidate.comparedCandidates.length > 0
@@ -34,6 +51,13 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
       setCandidates(candidate.comparedCandidates);
     }
   }, [candidate]);
+
+  useEffect(()=>{
+    if(updateParent){
+      candidatesCallback(candidates);
+      setUpdateParent(false);
+    }
+  },[updateParent])
 
   const addCandidate = () => {
     const newCandidates = [...candidates];
@@ -53,26 +77,59 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     const newCandidates = [...candidates];
     newCandidates[index][key] = val;
     setCandidates(newCandidates);
-    updateResult();
+    setUpdateParent(true);
   };
 
   const onChangeCriteria = (val, index) => {
     const newCriteria = [...criteria];
     newCriteria[index] = val;
     setCriteria(newCriteria);
-    updateResult();
-    console.log('newCriteria', newCriteria)
+    setUpdateParent(true);
   };
 
-  const updateResult = () => {
-    candidatesCallback(candidates);
+
+
+  const deleteCriteria = index => {
+    const newCriteria = [...criteria];
+    const newCandidates = [...candidates];
+
+    const [removed] = newCriteria.splice(index, 1);
+    newCandidates.forEach(candidate => {
+      delete candidate[removed];
+    });
+    setCriteria(newCriteria);
+    setCandidates(newCandidates);
+    setUpdateParent(true);
+  };
+
+  const deleteCandidate = index => {
+    const newCandidates = [...candidates];
+    newCandidates.splice(index, 1);
+    setCandidates(newCandidates);
+    setUpdateParent(true);
   };
 
   return (
     <Wrapper>
       {criteria.map((crit, index) => (
         <Grid container spacing={3}>
+          <Grid item xs style={{ flex: 0 }}>
+            {index > 1 ? (
+              <Delete>
+                <DeleteForeverIcon onClick={() => deleteCriteria(index)} />
+              </Delete>
+            ) : (
+              <Delete className="disabled">
+                <DeleteForeverIcon />
+              </Delete>
+            )}
+          </Grid>
           <Grid item xs>
+            {index === 0 && (
+              <Delete className="disabled">
+                <DeleteForeverIcon />
+              </Delete>
+            )}
             <TextField
               fullWidth
               variant="outlined"
@@ -83,6 +140,20 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
           </Grid>
           {candidates.map((cand, index2) => (
             <Grid item xs>
+              {index === 0 && index2 !== 0 && (
+                <Delete className="text-center">
+                  <DeleteForeverIcon
+                    onClick={() => {
+                      deleteCandidate(index2);
+                    }}
+                  />
+                </Delete>
+              )}
+              {index === 0 && index2 === 0 && (
+                <Delete className="disabled">
+                  <DeleteForeverIcon />
+                </Delete>
+              )}
               <TextField
                 fullWidth
                 label={crit}
