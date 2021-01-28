@@ -51,6 +51,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
   const [criteria, setCriteria] = useState(['image', 'name', 'party']);
   const [updateParent, setUpdateParent] = useState(false);
   const [uploadedImages, setUploadedImages] = useState({});
+  console.log('canidadtes', candidates);
 
   useEffect(() => {
     if (
@@ -68,7 +69,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
 
   useEffect(() => {
     if (updateParent) {
-      candidatesCallback({...candidates, uploadedImages});
+      candidatesCallback({ ...candidates, uploadedImages });
       setUpdateParent(false);
     }
   }, [updateParent]);
