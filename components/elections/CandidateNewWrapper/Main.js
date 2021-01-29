@@ -69,7 +69,7 @@ const HowTo = styled.div`
   padding-right: 90px;
   padding-left: 90px;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+      theme.creators.breakpoints.creatorsMobile}) {
     padding-right: 18px;
     padding-left: 18px;
   }
@@ -122,10 +122,11 @@ function MainWrapper({ candidate }) {
       </SectionWrapper>
       <SectionWrapper>
         <SectionHeader>Compare Candidates</SectionHeader>
-        <Grid container style={{ justifyContent: "space-around" }}>
-          {comparedCandidates.map(cand => (
-            <CompareCandidate candidate={cand} />
-          ))}
+        <Grid container style={{ justifyContent: 'space-around' }}>
+          {comparedCandidates?.candidates &&
+            comparedCandidates.candidates.map(cand => (
+              <CompareCandidate candidate={cand} />
+            ))}
         </Grid>
       </SectionWrapper>
       <SectionWrapper>

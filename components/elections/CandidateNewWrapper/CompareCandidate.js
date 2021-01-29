@@ -47,11 +47,11 @@ const InfoWrapper = styled(Body11)`
   }
 `;
 const ICONS = {
-  'X': "/images/no.svg",
-  'x': "/images/no.svg",
-  'V': "/images/checkmark.svg",
-  'v': "/images/checkmark.svg",
-  '?': "/images/question.svg",
+  X: '/images/no.svg',
+  x: '/images/no.svg',
+  V: '/images/checkmark.svg',
+  v: '/images/checkmark.svg',
+  '?': '/images/question.svg',
 };
 function ComparedCandidate({ candidate }) {
   if (!candidate) {
@@ -59,31 +59,33 @@ function ComparedCandidate({ candidate }) {
   }
   const { image, name, party } = candidate;
   const comparedFactors = { ...candidate };
-  delete comparedFactors['name'];
-  delete comparedFactors['party'];
+  delete comparedFactors.name;
+  delete comparedFactors.party;
+  delete comparedFactors.image;
   const factors = Object.keys(comparedFactors);
   return (
     <Wrapper>
-      <ChallengerAvatar
-        party="L"
-        avatar="https://assets.thegoodparty.org/candidates/david-kim-503-g9nsur.jpeg"
-      />
+      <ChallengerAvatar party={party} avatar={image} />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
       </CandidateNameWrapper>
       <WebsiteLink>
-        CAmpaign Website <img src="/images/linkopen.svg" />
+        Campaign Website <img src="/images/linkopen.svg" alt={name} />
       </WebsiteLink>
       <InfoWrapper>
-        $175/HR <br /> hOURLY FUNDING
+        $175/HR <br /> HOURLY FUNDING
       </InfoWrapper>
       <InfoWrapper>
-        7.8%  <br /> relative Funding
+        7.8% <br /> Relative Funding
       </InfoWrapper>
       {factors.map(factor => (
         <InfoWrapper>
-          <img src={ICONS[comparedFactors[factor]]} alt="icon" /> <br />{' '}
-          {factor}
+          {ICONS[comparedFactors[factor]] ? (
+            <img src={ICONS[comparedFactors[factor]]} alt="icon" />
+          ) : (
+            <>{comparedFactors[factor]}</>
+          )}{' '}
+          <br /> {factor}
         </InfoWrapper>
       ))}
     </Wrapper>

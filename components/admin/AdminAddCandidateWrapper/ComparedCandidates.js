@@ -40,6 +40,13 @@ const Delete = styled.div`
   }
 `;
 
+const CropWrapper = styled.div`
+  position: relative;
+  input[type='file'] {
+    width: 100%;
+  }
+`;
+
 function ComparedCandidates({ candidate, candidatesCallback }) {
   const [candidates, setCandidates] = useState([
     {
@@ -51,25 +58,26 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
   const [criteria, setCriteria] = useState(['image', 'name', 'party']);
   const [updateParent, setUpdateParent] = useState(false);
   const [uploadedImages, setUploadedImages] = useState({});
-  console.log('canidadtes', candidates);
 
   useEffect(() => {
     if (
       candidate?.comparedCandidates &&
-      candidate.comparedCandidates.length > 0
+      candidate.comparedCandidates.candidates.length > 0
     ) {
-      setCriteria(Object.keys(candidate.comparedCandidates[0]));
-      const compared = candidate.comparedCandidates;
+      setCriteria(Object.keys(candidate.comparedCandidates.candidates[0]));
+      const compared = candidate.comparedCandidates.candidates;
       compared[0].name = `${candidate.firstName} ${candidate.lastName}`;
       compared[0].party = candidate.party;
       compared[0].image = candidate.image;
-      setCandidates(candidate.comparedCandidates);
+      console.log('compared ', compared);
+      setCandidates(compared);
     }
   }, [candidate]);
+  console.log('candidates ', candidates);
 
   useEffect(() => {
     if (updateParent) {
-      candidatesCallback({ ...candidates, uploadedImages });
+      candidatesCallback({ candidates, uploadedImages });
       setUpdateParent(false);
     }
   }, [updateParent]);
@@ -123,7 +131,8 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
   };
 
   const handleUploadImage = (index, base64) => {
-    setUploadedImages({ ...uploadedImages, index: { index, base64 } });
+    setUploadedImages({ ...uploadedImages, [index]: { index, base64 } });
+    setUpdateParent(true);
   };
 
   return (
@@ -171,17 +180,26 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
                   <DeleteForeverIcon />
                 </Delete>
               )}
+              {console.log('crit', crit)}
               {crit === 'image' ? (
                 <div className="text-center">
+                  {console.log('cand[crit', cand[crit])}
                   {cand[crit] ? (
                     <Img src={cand[crit]} />
                   ) : (
-                    <ImageCrop
-                      currentImage={cand[crit]}
-                      uploadImageCallback={base64 => {
-                        handleUploadImage(index2, base64);
-                      }}
-                    />
+                    <>
+                      {index2 > 0 && (
+                        <CropWrapper>
+                          <ImageCrop
+                            currentImage={cand[crit]}
+                            uploadImageCallback={base64 => {
+                              handleUploadImage(index2, base64);
+                            }}
+                            showTitle={false}
+                          />
+                        </CropWrapper>
+                      )}
+                    </>
                   )}
                 </div>
               ) : (
