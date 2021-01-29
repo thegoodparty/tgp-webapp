@@ -61,7 +61,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
 
   useEffect(() => {
     if (
-      candidate?.comparedCandidates &&
+      candidate?.comparedCandidates?.candidate &&
       candidate.comparedCandidates.candidates.length > 0
     ) {
       setCriteria(Object.keys(candidate.comparedCandidates.candidates[0]));
