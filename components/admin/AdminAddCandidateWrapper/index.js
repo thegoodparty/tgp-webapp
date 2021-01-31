@@ -28,10 +28,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Slug = styled.div`
-  margin: 2rem 0;
-`;
-
 const CropWrapper = styled.div`
   position: relative;
 `;
@@ -157,9 +153,6 @@ function AdminAddCandidateWrapper({
       <Wrapper>
         <H2>Admin add candidate</H2>
         <br />
-        <Slug>
-          Slug: {`elections/local/${formState.firstName}-${formState.lastName}`}
-        </Slug>
         {candidate && candidate.image && (
           <div className="flex-center">
             <CandidateAvatar

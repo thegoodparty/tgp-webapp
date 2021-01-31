@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
 import styled from 'styled-components';
 import { Body14, Body12 } from '../typogrophy';
@@ -101,57 +102,68 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
     <Wrapper>
       <ContentWrapper>
         <TopLink>
-          <Logo
-            src="/images/new-logo.svg"
-            onClick={() => handleNavigate('/')}
-            data-cy="logo"
-          />
+          <Link href="/" passHref>
+            <a>
+              <Logo
+                src="/images/new-logo.svg"
+                // onClick={() => handleNavigate('/')}
+                data-cy="logo"
+              />
+            </a>
+          </Link>
         </TopLink>
         <LinkContainer>
           {!hideLinks && (
             <>
-              <TopLink
-                className={partyRoute ? 'showBorder' : ''}
-                onClick={() => handleNavigate('/party')}
-                data-cy="party"
-              >
-                CANDIDATES
-              </TopLink>
+              <Link href="/party" passHref>
+                <a>
+                  <TopLink
+                    className={partyRoute ? 'showBorder' : ''}
+                    data-cy="party"
+                  >
+                    CANDIDATES
+                  </TopLink>
+                </a>
+              </Link>
               <Divider />
-              <TopLink
-                className={partyRoute ? 'showBorder' : ''}
-                onClick={() => handleNavigate('/party')}
-                data-cy="party"
-              >
-                ABOUT
-              </TopLink>
+              <Link href="/party" passHref>
+                <a>
+                  <TopLink
+                    className={partyRoute ? 'showBorder' : ''}
+                    data-cy="party"
+                  >
+                    ABOUT
+                  </TopLink>
+                </a>
+              </Link>
               {user?.name ? (
-                <AvatarWrapper
-                  className={youRoute ? 'showBorder' : ''}
-                  onClick={() => handleNavigate('/you')}
-                >
-                  <UserAvatar
-                    user={user}
-                    onClick={() => handleNavigate('/you')}
-                  />
-                </AvatarWrapper>
+                <Link href="/you" passHref>
+                  <a>
+                    <AvatarWrapper className={youRoute ? 'showBorder' : ''}>
+                      <UserAvatar user={user} />
+                    </AvatarWrapper>
+                  </a>
+                </Link>
               ) : (
                 <>
                   <Divider />
-                  <TopLink
-                    onClick={() => handleNavigate('/you?register=true')}
-                    data-cy="you"
-                    className="button"
-                  >
-                    SIGN UP
-                  </TopLink>
-                  <TopLink
-                    className={youRoute ? 'showBorder' : ''}
-                    onClick={() => handleNavigate('/login')}
-                    data-cy="you"
-                  >
-                    LOG IN
-                  </TopLink>
+                  <Link href="/you?register=true" passHref>
+                    <a>
+                      <TopLink data-cy="you" className="button">
+                        SIGN UP
+                      </TopLink>
+                    </a>
+                  </Link>
+                  <Link href="/login" passHref>
+                    <a>
+                      <TopLink
+                        className={youRoute ? 'showBorder' : ''}
+                        data-cy="you"
+                      >
+                        LOG IN
+                      </TopLink>
+                    </a>
+                  </Link>
                 </>
               )}
             </>
