@@ -180,10 +180,8 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
                   <DeleteForeverIcon />
                 </Delete>
               )}
-              {console.log('crit', crit)}
               {crit === 'image' ? (
                 <div className="text-center">
-                  {console.log('cand[crit', cand[crit])}
                   {cand[crit] ? (
                     <Img src={cand[crit]} />
                   ) : (

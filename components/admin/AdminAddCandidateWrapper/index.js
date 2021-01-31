@@ -10,12 +10,17 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Nav from 'containers/shared/Nav';
 import { BlueButton } from 'components/shared/buttons';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
 import ComparedCandidates from './ComparedCandidates';
 import CandidateAvatar from '../../shared/CandidateAvatar';
+import { states } from '../../../helpers/statesHelper';
+import { partyResolver } from '../../../helpers/electionsHelper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -42,13 +47,27 @@ const Label = styled(Body)`
   margin: 2rem 0 1rem;
 `;
 
+const partyOptions = [
+  { key: 'D', value: 'Democrat' },
+  { key: 'R', value: 'Republican' },
+  { key: 'GP', value: 'Green Party' },
+  { key: 'L', value: 'Libertarian' },
+  { key: 'I', value: 'Independent' },
+];
+
 const fields = [
   { label: 'First Name', key: 'firstName', initialValue: '' },
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
   { label: 'Chamber', key: 'chamber', initialValue: 'local' },
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
-  { label: 'Party', key: 'party', initialValue: '' },
+  {
+    label: 'Party',
+    key: 'party',
+    initialValue: '',
+    isSelect: true,
+    options: partyOptions,
+  },
   { label: 'Facebook', key: 'facebook', initialValue: '' },
   { label: 'Twitter', key: 'twitter', initialValue: '' },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
@@ -68,12 +87,14 @@ function AdminAddCandidateWrapper({
   candidate,
   mode,
 }) {
+  console.log('candidate', candidate);
   const initialState = {};
   fields.forEach(field => {
     initialState[field.key] = candidate
       ? candidate[field.key]
       : field.initialValue;
   });
+  console.log('initial', initialState);
   const [formState, setFormState] = useState(initialState);
   const [comparedCandidates, setComparedCandidates] = useState(
     candidate ? candidate.comparedCandidates : false,
@@ -164,10 +185,31 @@ function AdminAddCandidateWrapper({
                   initialText={formState[field.key]}
                 />
               </>
+            ) : field.isSelect ? (
+              <FormControl style={{ width: '100%' }}>
+                <InputLabel id={field.key}>{field.label}</InputLabel>
+                <Select
+                  native
+                  value={formState[field.key]}
+                  labelId={field.key}
+                  onChange={e => onChangeField(field.key, e.target.value)}
+                  fullWidth
+                  variant="outlined"
+                  style={{ marginTop: '2rem' }}
+                >
+                  <option value="">Select A Party</option>
+                  {field.options?.map(item => (
+                    <option value={item.key} key={item.key}>
+                      {item.value}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
             ) : (
               <Input
                 fullWidth
                 label={field.label}
+                name={field.label}
                 variant="outlined"
                 value={formState[field.key]}
                 onChange={e => onChangeField(field.key, e.target.value)}
