@@ -13,14 +13,13 @@ import { BlueButton } from 'components/shared/buttons';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
 import ComparedCandidates from './ComparedCandidates';
 import CandidateAvatar from '../../shared/CandidateAvatar';
-import { states } from '../../../helpers/statesHelper';
-import { partyResolver } from '../../../helpers/electionsHelper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -56,6 +55,12 @@ const partyOptions = [
 ];
 
 const fields = [
+  {
+    label: 'Show on Homepage?',
+    key: 'onHomepage',
+    initialValue: false,
+    isCheckbox: true,
+  },
   { label: 'First Name', key: 'firstName', initialValue: '' },
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
@@ -87,14 +92,12 @@ function AdminAddCandidateWrapper({
   candidate,
   mode,
 }) {
-  console.log('candidate', candidate);
   const initialState = {};
   fields.forEach(field => {
     initialState[field.key] = candidate
       ? candidate[field.key]
       : field.initialValue;
   });
-  console.log('initial', initialState);
   const [formState, setFormState] = useState(initialState);
   const [comparedCandidates, setComparedCandidates] = useState(
     candidate ? candidate.comparedCandidates : false,
@@ -205,6 +208,14 @@ function AdminAddCandidateWrapper({
                   ))}
                 </Select>
               </FormControl>
+            ) : field.isCheckbox ? (
+              <>
+                {field.label}: <br />
+                <Checkbox
+                  checked={formState[field.key]}
+                  onChange={e => onChangeField(field.key, e.target.checked)}
+                />
+              </>
             ) : (
               <Input
                 fullWidth
@@ -231,7 +242,7 @@ function AdminAddCandidateWrapper({
         <hr />
         <br />
         {updates.map((update, index) => (
-          <>
+          <React.Fragment>
             Update #{index + 1}
             <JoditEditorWrapper
               onChangeCallback={value => onChangeUpdates(value, index)}
@@ -239,7 +250,7 @@ function AdminAddCandidateWrapper({
             />
             <br />
             <br />
-          </>
+          </React.Fragment>
         ))}
         <BlueButton onClick={addUpdate}>Add update</BlueButton>
         <br />
