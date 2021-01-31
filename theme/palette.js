@@ -1,6 +1,6 @@
 const palette = {
   primary: {
-    main: '#117CB6',
+    main: '#5C00C7',
   },
 };
 

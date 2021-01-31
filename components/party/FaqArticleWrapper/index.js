@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import BackIcon from '@material-ui/icons/ChevronLeft';
-import CloseIcon from '@material-ui/icons/Cancel';
+import CloseIcon from '@material-ui/icons/HighlightOff';
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 import { Body, Body11, H1, Body13 } from 'components/shared/typogrophy';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
@@ -13,7 +15,7 @@ import { BlueButton } from '../../shared/buttons';
 const TgpDialog = styled(Dialog)`
   && {
     .MuiDialog-paper {
-      margin: 12px !important;
+      //margin: 12px !important;
     }
   }
 `;
@@ -26,22 +28,20 @@ const Wrapper = styled.div`
 `;
 
 const TopWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+  display: none;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 24px;
+  }
 `;
 
 const TopClose = styled(CloseIcon)`
-  font-size 24px;
+  font-size: 24px;
   cursor: pointer;
-  
-`;
 
-const BackIconWrapper = styled.div`
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.blue};
 `;
 
 const WasHelpul = styled(Body)`
@@ -73,14 +73,15 @@ const FeedbackButton = styled(Body11)`
   margin: 0 20px;
   cursor: pointer;
 
-  &.blue {
-    border-color: ${({ theme }) => theme.colors.blue};
+  &.purple {
+    border-color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.purple};
   }
 `;
 
 const Close = styled(Body13)`
   text-align: center;
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.purple};
   cursor: pointer;
   padding: 10px;
 `;
@@ -93,13 +94,13 @@ const HELPFUL_STATES = {
 
 const FaqArticleWrapper = ({
   article,
-  backButtonCallback,
   closeModalCallback,
   helpfulCallback,
 }) => {
   const [feedback, setFeedback] = useState('');
   const [isHelpful, setIsHelpful] = useState(HELPFUL_STATES.notSelected);
-
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   useEffect(() => {
     if (isHelpful === HELPFUL_STATES.helpful) {
       handleSubmit();
@@ -135,15 +136,15 @@ const FaqArticleWrapper = ({
     <>
       {article ? (
         <>
-          <TgpDialog onClose={closeModalCallback} open>
+          <TgpDialog onClose={closeModalCallback} open fullScreen={fullScreen}>
             <Wrapper>
               <TopWrapper>
-                <BackIconWrapper onClick={backButtonCallback}>
-                  <BackIcon
-                    style={{ fontSize: '34px' }}
-                    data-cy="article-back"
-                  />
-                </BackIconWrapper>
+                {/*<BackIconWrapper onClick={backButtonCallback}>*/}
+                {/*  <BackIcon*/}
+                {/*    style={{ fontSize: '34px' }}*/}
+                {/*    data-cy="article-back"*/}
+                {/*  />*/}
+                {/*</BackIconWrapper>*/}
                 <TopClose
                   onClick={closeModalCallback}
                   data-cy="article-top-close"
@@ -160,7 +161,7 @@ const FaqArticleWrapper = ({
               {isHelpful === HELPFUL_STATES.notSelected && (
                 <ButtonsWrapper>
                   <FeedbackButton
-                    className="blue"
+                    className="purple"
                     onClick={() => handleHelpful(true)}
                     data-cy="helpful-yes"
                   >

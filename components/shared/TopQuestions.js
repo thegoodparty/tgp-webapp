@@ -18,12 +18,12 @@ const Row = styled.div`
 
 const SeeFaq = styled(Body13)`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.purple};
 `;
 
 const ArticleTitle = styled(Body)`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.purple};
   margin-top: 28px;
 
   &.first: {
@@ -39,7 +39,7 @@ const TopQuestions = ({ articles }) => {
         <H3 data-cy="faqs">Top Questions</H3>
         <Link href="/party/faqs" data-cy="faqs-link">
           <a>
-            <SeeFaq className="blue">See FAQ</SeeFaq>
+            <SeeFaq>See FAQ</SeeFaq>
           </a>
         </Link>
       </Row>
