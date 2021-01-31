@@ -61,7 +61,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
 
   useEffect(() => {
     if (
-      candidate?.comparedCandidates?.candidate &&
+      candidate?.comparedCandidates?.candidates &&
       candidate.comparedCandidates.candidates.length > 0
     ) {
       setCriteria(Object.keys(candidate.comparedCandidates.candidates[0]));
@@ -69,11 +69,9 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
       compared[0].name = `${candidate.firstName} ${candidate.lastName}`;
       compared[0].party = candidate.party;
       compared[0].image = candidate.image;
-      console.log('compared ', compared);
       setCandidates(compared);
     }
   }, [candidate]);
-  console.log('candidates ', candidates);
 
   useEffect(() => {
     if (updateParent) {
