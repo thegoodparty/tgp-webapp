@@ -38,12 +38,10 @@ function CandidateNewWrapper({ content, candidate }) {
         <Grid container spacing={4}>
           <Grid row item xs={12} sm={7} style={{ marginBottom: 50 }}>
             <Main candidate={candidate} />
-          </Grid>
-          <Grid row item xs={12} sm={5}>
-            <ProfileInfo candidate={candidate} />
-          </Grid>
-          <Grid row item xs={12} sm={7} style={{ marginBottom: 50 }}>
             <TopQuestions articles={articles} />
+          </Grid>
+          <Grid row item xs={0} sm={5}>
+            <ProfileInfo candidate={candidate} />
           </Grid>
         </Grid>
       </ContentWrapper>
