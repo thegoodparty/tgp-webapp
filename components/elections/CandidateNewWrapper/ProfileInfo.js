@@ -33,7 +33,7 @@ const CandidateName = styled(Body19)`
   margin-top: 12px;
   margin-bottom: 10px;
   font-weight: 800;
-  &.mobile {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin-top: 0;
     margin-bottom: 0;
     text-align: left;
@@ -46,7 +46,7 @@ const PartyName = styled(Body11)`
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 8px;
-  &.mobile {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin-top: 0;
     margin-bottom: 0;
     text-align: left;
@@ -59,7 +59,7 @@ const RaceName = styled(Body11)`
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 24px;
-  &.mobile {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin-top: 0;
     margin-bottom: 0;
     text-align: left;
@@ -96,6 +96,21 @@ const EndorsementDescription = styled(Body11)`
   margin-top: 18px;
   color: ${({ theme }) => theme.colors.gray7};
 `;
+
+const AvatarWrapper = styled(Grid)`
+  && {
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+      margin-bottom: 20px;
+    }
+  }
+`;
+const NameWrapper = styled(Grid)`
+  && {
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+      padding-left: 20px;
+    }
+  }
+`;
 function ProfileInfo({ candidate, isMobile }) {
   console.log('cand', candidate);
   const {
@@ -110,20 +125,18 @@ function ProfileInfo({ candidate, isMobile }) {
   } = candidate;
   return (
     <ProfileInfoWrapper>
-      <Grid container style={{ marginBottom: isMobile && 20 }}>
+      <AvatarWrapper container>
         <Grid item xs={3} sm={12}>
-          <ChallengerAvatar avatar={image} party={party} isSmall={isMobile} />
+          <ChallengerAvatar avatar={image} party={party} isFull={isMobile} />
         </Grid>
-        <Grid item xs={9} sm={12} style={{ paddingLeft: isMobile && 20 }}>
-          <CandidateName className={isMobile && 'mobile'}>
+        <NameWrapper item xs={9} sm={12}>
+          <CandidateName>
             {firstName} {lastName}
           </CandidateName>
-          <PartyName className={isMobile && 'mobile'}>
-            Running as {party}
-          </PartyName>
-          <RaceName className={isMobile && 'mobile'}>{race}</RaceName>
-        </Grid>
-      </Grid>
+          <PartyName>Running as {party}</PartyName>
+          <RaceName>{race}</RaceName>
+        </NameWrapper>
+      </AvatarWrapper>
       <Grid container>
         <Grid row xs={6}>
           <LikelyVoters>

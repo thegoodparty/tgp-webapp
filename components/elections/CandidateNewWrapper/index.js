@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 import articlesHelper from 'helpers/articlesHelper';
 import NotFound from 'containers/shared/NotFoundPage';
 import TopQuestions from 'components/shared/TopQuestions';
@@ -40,8 +41,10 @@ function CandidateNewWrapper({ content, candidate }) {
             <Main candidate={candidate} />
             <TopQuestions articles={articles} />
           </Grid>
-          <Grid row item xs={0} sm={5}>
-            <ProfileInfo candidate={candidate} />
+          <Grid row item xs={12} sm={5}>
+            <Hidden xsDown>
+              <ProfileInfo candidate={candidate} />
+            </Hidden>
           </Grid>
         </Grid>
       </ContentWrapper>

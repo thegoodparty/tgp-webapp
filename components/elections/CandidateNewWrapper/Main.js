@@ -70,8 +70,7 @@ const SocialLink = styled.a`
 const HowTo = styled.div`
   padding-right: 90px;
   padding-left: 90px;
-  @media only screen and (max-width: ${({ theme }) =>
-    theme.creators.breakpoints.creatorsMobile}) {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding-right: 18px;
     padding-left: 18px;
   }
@@ -187,15 +186,15 @@ function MainWrapper({ candidate }) {
       </SectionWrapper>
       <SectionWrapper>
         <SectionHeader>Updates({updates.length})</SectionHeader>
-        {updates.map(update => (
-          <>
+        {updates.map((update, index) => (
+          <React.Fragment key={index}>
             <UpdatedDate>August 4, 2020</UpdatedDate>
             <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
             <SectionContent
               dangerouslySetInnerHTML={{ __html: update }}
               style={{ marginBottom: 20 }}
             />
-          </>
+          </React.Fragment>
         ))}
         <div style={{ textAlign: 'center' }}>
           <PurpleButton

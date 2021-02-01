@@ -11,7 +11,7 @@ const ChallengerAvatarWrapper = styled.div`
   box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
     0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
   position: relative;
-  &.small {
+  &.full {
     width: unset;
     height: unset;
   }
@@ -37,12 +37,12 @@ const PartyIcon = styled.img`
   border-radius: 50%;
   height: 45px;
   width: 45px;
-  &.small {
+  &.full {
     width: 31px;
     height: 31px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isSmall }) => {
+const ChallengerAvatar = ({ avatar, party, isFull }) => {
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -54,7 +54,7 @@ const ChallengerAvatar = ({ avatar, party, isSmall }) => {
     PartyImg = '/images/icons/libertarian.png';
   }
   return (
-    <ChallengerAvatarWrapper className={isSmall && 'small'}>
+    <ChallengerAvatarWrapper className={isFull && 'full'}>
       <ImageWrapper>
         <LazyLoadImage
           src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
@@ -66,7 +66,7 @@ const ChallengerAvatar = ({ avatar, party, isSmall }) => {
       {PartyImg && (
         <PartyIcon
           src={PartyImg}
-          className={`full-image ${isSmall && 'small'}`}
+          className={`full-image ${isFull && 'full'}`}
         />
       )}
     </ChallengerAvatarWrapper>
