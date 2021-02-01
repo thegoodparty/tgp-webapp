@@ -86,7 +86,7 @@ const SupportersProgressBar = ({
       </BarBg>
       {showSuffix && (
         <BarBody9 data-cy="votes-needed">
-          {`${progress}% of `}
+          {`${progress.toFixed(2)}% of `}
           <strong>{numberFormatter(votesNeeded)}</strong> votes needed to win
           {userState && <> IN {userState.toUpperCase()}</>}
           {suffixText}

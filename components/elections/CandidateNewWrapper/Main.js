@@ -9,13 +9,15 @@ import PropTypes from 'prop-types';
 import { PurpleButton } from 'components/shared/buttons';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 import NotFound from 'containers/shared/NotFoundPage';
 import ReactPlayer from 'react-player/lazy';
 import articlesHelper from 'helpers/articlesHelper';
 import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
-import { H3, H1, Body19, Body13 } from '../../shared/typogrophy';
+import { H3, H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
 import CompareCandidate from './CompareCandidate.js';
+import RecentlyJoined from './RecentlyJoined';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
 const SectionWrapper = styled.div`
@@ -68,8 +70,7 @@ const SocialLink = styled.a`
 const HowTo = styled.div`
   padding-right: 90px;
   padding-left: 90px;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.creators.breakpoints.creatorsMobile}) {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding-right: 18px;
     padding-left: 18px;
   }
@@ -88,6 +89,17 @@ const HowToTitle = styled(H3)`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.purple};
 `;
+const UpdatedDate = styled(Body13)`
+  color: ${({ theme }) => theme.colors.gray3};
+  font-size: 19px;
+  margin-top: 24px;
+  line-height: 25px;
+`;
+const UpdatedBy = styled(Body11)`
+  color: ${({ theme }) => theme.colors.gray7};
+  font-size: 16px;
+  margin-bottom: 12px;
+`;
 function MainWrapper({ candidate }) {
   if (!candidate) {
     return <NotFound />;
@@ -101,6 +113,7 @@ function MainWrapper({ candidate }) {
     facebook,
     twitter,
     heroVideo,
+    updates,
   } = candidate;
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
@@ -114,6 +127,9 @@ function MainWrapper({ candidate }) {
           playing={false}
         />
       )}
+      <Hidden smUp>
+        <ProfileInfo candidate={candidate} isMobile />
+      </Hidden>
       <SectionWrapper>
         <CampaignSummaryHeadLine>
           Help {firstName} {lastName} take back Los Angeles city hall
@@ -168,6 +184,34 @@ function MainWrapper({ candidate }) {
           )}
         </div>
       </SectionWrapper>
+      <SectionWrapper>
+        <SectionHeader>Updates({updates.length})</SectionHeader>
+        {updates.map((update, index) => (
+          <React.Fragment key={index}>
+            <UpdatedDate>August 4, 2020</UpdatedDate>
+            <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
+            <SectionContent
+              dangerouslySetInnerHTML={{ __html: update }}
+              style={{ marginBottom: 20 }}
+            />
+          </React.Fragment>
+        ))}
+        <div style={{ textAlign: 'center' }}>
+          <PurpleButton
+            className="outline"
+            style={{ paddingRight: 60, paddingLeft: 60 }}
+          >
+            <InnerButton>
+              <span>READ MORE UPDATES</span>
+            </InnerButton>
+          </PurpleButton>
+        </div>
+      </SectionWrapper>
+      <Hidden smUp>
+        <SectionWrapper>
+          <RecentlyJoined />
+        </SectionWrapper>
+      </Hidden>
       <SectionWrapper>
         <SectionHeader className="center">
           How The Good Party Works <br />

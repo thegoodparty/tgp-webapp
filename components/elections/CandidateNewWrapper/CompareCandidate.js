@@ -51,6 +51,8 @@ const ICONS = {
   x: '/images/no.svg',
   V: '/images/checkmark.svg',
   v: '/images/checkmark.svg',
+  Y: '/images/checkmark.svg',
+  y: '/images/checkmark.svg',
   '?': '/images/question.svg',
 };
 function ComparedCandidate({ candidate }) {
