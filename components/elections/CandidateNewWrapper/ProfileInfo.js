@@ -185,6 +185,7 @@ function ProfileInfo({ candidate, isMobile }) {
 
 ProfileInfo.propTypes = {
   candidate: PropTypes.object,
+  isMobile: PropTypes.bool,
 };
 
 export default ProfileInfo;

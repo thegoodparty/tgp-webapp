@@ -76,7 +76,7 @@ const ChallengerAvatar = ({ avatar, party, isFull }) => {
 ChallengerAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
-  isSmall: PropTypes.bool,
+  isFull: PropTypes.bool,
 };
 
 export default ChallengerAvatar;
