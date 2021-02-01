@@ -13,7 +13,6 @@ import NotFound from 'containers/shared/NotFoundPage';
 import TopQuestions from 'components/shared/TopQuestions';
 import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
-import ReactPlayer from 'react-player/lazy';
 import Main from './Main';
 
 const ContentWrapper = styled.div`

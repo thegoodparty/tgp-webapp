@@ -102,6 +102,10 @@ function MainWrapper({ candidate }) {
     twitter,
     heroVideo,
   } = candidate;
+  if (candidate.comparedCandidates?.candidates?.length > 0) {
+    candidate.comparedCandidates.candidates[0].image = candidate.image;
+  }
+  console.log('after', candidate.comparedCandidates);
   return (
     <>
       {heroVideo && (

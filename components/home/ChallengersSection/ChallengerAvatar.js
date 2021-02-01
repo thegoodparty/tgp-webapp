@@ -20,7 +20,7 @@ const ImageWrapper = styled.div`
   border-radius: 50%;
   img {
     object-fit: cover;
-    object-position: top center;
+    object-position: center center;
   }
 `;
 
@@ -48,7 +48,12 @@ const ChallengerAvatar = ({ avatar, party }) => {
   return (
     <ChallengerAvatarWrapper>
       <ImageWrapper>
-        <LazyLoadImage src={avatar} alt="" width="100%" height="100%" />
+        <LazyLoadImage
+          src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
+          alt=""
+          width="100%"
+          height="100%"
+        />
       </ImageWrapper>
       {PartyImg && <PartyIcon src={PartyImg} className="full-image" />}
     </ChallengerAvatarWrapper>
