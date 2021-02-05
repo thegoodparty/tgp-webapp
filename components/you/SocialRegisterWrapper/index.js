@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -58,6 +58,13 @@ const ButtonText = styled(Body)`
   font-weight: 500;
 `;
 
+const Error = styled(Body11)`
+  color: ${({ theme }) => theme.colors.red};
+  font-weight: 500;
+  margin-bottom: 18px;
+  margin-left: 16px;
+`;
+
 const Input = styled(TextField)`
   && {
     margin-bottom: 12px;
@@ -89,10 +96,28 @@ function SocialRegisterWrapper({
   blocName,
   candidateName,
   twitterButtonCallback,
+  emailRegisterCallback,
 }) {
   // const registerSteps = blocName
   //   ? defaultRegisterSteps
   //   : defaultRegisterSteps.slice(0, 2);
+
+  const initState = {
+    name: '',
+    email: '',
+  };
+  const [state, setState] = useState(initState);
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+  });
+
+  const onChangeField = (event, key) => {
+    setState({
+      ...state,
+      [key]: event.target.value,
+    });
+  };
 
   const trackEmail = () => {
     AnalyticsService.sendEvent(
@@ -101,6 +126,35 @@ function SocialRegisterWrapper({
       `Click Email Signup`,
     );
   };
+
+  const validateEmail = () => {
+    const validEmail = /\S+@\S+\.\S+/;
+    const isValid = validEmail.test(state.email);
+
+    return isValid;
+  };
+
+  const handleSubmitForm = e => {
+    e.preventDefault();
+  };
+  const enableSubmit = () => {
+    return state.name !== '' && validateEmail();
+  };
+
+  const handleSubmit = () => {
+    if (enableSubmit()) {
+      trackEmail();
+      emailRegisterCallback(state.name, state.email);
+    } else if (state.name === '' && !validateEmail()) {
+      setErrors({ email: true, name: true });
+    } else if (state.name === '') {
+      console.log('empty name');
+      setErrors({ email: false, name: true });
+    } else {
+      setErrors({ email: true, name: false });
+    }
+  };
+
   return (
     <QueryModalContainer>
       <Body13 data-cy="login-wrapper">
@@ -115,7 +169,7 @@ function SocialRegisterWrapper({
         create your profile
       </StyledH1>
 
-      <form noValidate>
+      <form noValidate onSubmit={handleSubmitForm}>
         <Input
           label="Full name"
           required
@@ -124,17 +178,24 @@ function SocialRegisterWrapper({
           variant="outlined"
           fullWidth
           data-cy="full-name"
+          onChange={e => onChangeField(e, 'name')}
+          error={errors.name}
         />
+        {errors.name && <Error>Please enter your name</Error>}
         <Input
           label="Email address"
           required
           size="medium"
-          name="name"
+          name="email"
           variant="outlined"
           fullWidth
           data-cy="email"
+          onChange={e => onChangeField(e, 'email')}
+          error={errors.email}
+          type="email"
         />
-        <PurpleButton fullWidth>
+        {errors.email && <Error>Please enter a valid email address</Error>}
+        <PurpleButton fullWidth onClick={handleSubmit} type="submit">
           <ButtonText>CONTINUE</ButtonText>
         </PurpleButton>
       </form>
@@ -145,7 +206,7 @@ function SocialRegisterWrapper({
         </Or>
       </OrWrapper>
       <Tap>ONE TAP BELOW</Tap>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs>
           <div data-cy="facebook-login">
             <SocialButton
@@ -193,6 +254,7 @@ function SocialRegisterWrapper({
 SocialRegisterWrapper.propTypes = {
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
+  emailRegisterCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
   blocName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   candidateName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),

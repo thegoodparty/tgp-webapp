@@ -1,10 +1,9 @@
 import types from './constants';
 
-const registerAction = (email, name, password) => ({
+const registerAction = (email, name) => ({
   type: types.REGISTER,
   email,
   name,
-  password,
 });
 
 const registerActionSuccess = (user, token) => ({

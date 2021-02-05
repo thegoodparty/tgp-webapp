@@ -147,7 +147,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
               ) : (
                 <>
                   <Divider />
-                  <Link href="/you?register=true" passHref>
+                  <Link href="?register=true" passHref>
                     <a>
                       <TopLink data-cy="you" className="button">
                         SIGN UP

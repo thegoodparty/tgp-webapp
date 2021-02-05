@@ -43,14 +43,13 @@ function* sendCreatorMessage(action) {
 }
 function* register(action) {
   try {
-    const { email, name, password } = action;
+    const { email, name } = action;
     const zip = yield getZipFromStateOrCookie();
     const ranking = getCookie('guestRanking') || '[]';
 
     const payload = {
       email,
       name,
-      password,
       zip,
       ranking,
     };

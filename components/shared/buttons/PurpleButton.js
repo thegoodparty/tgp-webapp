@@ -33,6 +33,7 @@ const PurpleButton = ({
   disabled = false,
   style = {},
   className,
+  type = 'button',
 }) => (
   <StyledButton
     color="primary"
@@ -42,6 +43,7 @@ const PurpleButton = ({
     disabled={disabled}
     style={style}
     className={className}
+    type={type}
   >
     {children}
   </StyledButton>
@@ -57,6 +59,7 @@ PurpleButton.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  type: PropTypes.string,
   style: PropTypes.object,
 };
 

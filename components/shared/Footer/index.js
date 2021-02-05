@@ -207,14 +207,12 @@ function Footer({ isCreators = false }) {
                 >
                   Share with Friends
                 </WhiteLink>
-                <WhiteLink>
-                  <WhiteHref
-                    href="mailto:ask@thegoodparty.org"
-                    data-cy="footer-link-email"
-                  >
-                    Send Us An Email
-                  </WhiteHref>
-                </WhiteLink>
+                <WhiteHref
+                  href="mailto:ask@thegoodparty.org"
+                  data-cy="footer-link-email"
+                >
+                  Send Us An Email
+                </WhiteHref>
               </Column>
             </Grid>
             <Grid item xs={12} md={4}>

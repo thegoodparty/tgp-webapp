@@ -6,12 +6,12 @@ import Button from '@material-ui/core/Button';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import tgpTheme from 'theme/index';
-import { Body13 } from '../../shared/typogrophy';
+import { Body11 } from '../../shared/typogrophy';
 
 const StyledButton = styled(Button)`
   && {
     border-radius: 30px;
-    padding: 12px 6px;
+    padding: 16px 6px;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     background-color: ${({ theme }) => theme.colors.blue};
@@ -30,7 +30,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StyledBody13 = styled(Body13)`
+const StyledBody11 = styled(Body11)`
   color: #fff;
   font-weight: 500;
   padding-left: 16px;
@@ -94,9 +94,9 @@ const SocialButton = ({ triggerLogin, children, channel, ...props }) => {
       data-cy={`${channel}-social-login`}
     >
       <div className="text-center">
-        <StyledBody13 className={channel}>
+        <StyledBody11 className={channel}>
           {icon()} {children}
-        </StyledBody13>
+        </StyledBody11>
       </div>
     </StyledButton>
   );
