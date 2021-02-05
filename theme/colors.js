@@ -22,6 +22,7 @@ const colors = {
   green: '#00A91C',
   purple: '#5C00C7',
   purple2: '#6E26DB',
+  purple3: '#F0ECF3',
 };
 
 export default colors;

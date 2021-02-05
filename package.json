@@ -125,6 +125,7 @@
     "react-ga": "^2.7.0",
     "react-geolocated": "^3.0.1",
     "react-helmet": "6.0.0-beta",
+    "react-icons": "^4.1.0",
     "react-image-crop": "^8.6.4",
     "react-images-upload": "^1.2.8",
     "react-intl": "2.8.0",
