@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { PurpleButton } from 'components/shared/buttons';
 import styled from 'styled-components';
@@ -20,8 +20,32 @@ import CompareCandidate from './CompareCandidate.js';
 import RecentlyJoined from './RecentlyJoined';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
+const CarouselPrevIcon = '/images/carousel-prev.png';
+const CarouselNextIcon = '/images/carousel-next.png';
 const SectionWrapper = styled.div`
   margin-top: 64px;
+  span.carousel-prev {
+    position: absolute;
+    // top: 180px;
+    height: 100%;
+    left: 0;
+    cursor: pointer;
+    z-index: 1000;
+    img {
+      margin-top: 180px;
+    }
+  }
+  span.carousel-next {
+    position: absolute;
+    // top: 180px;
+    height: 100%;
+    right: -40px;
+    cursor: pointer;
+    z-index: 1000;
+    img {
+      margin-top: 180px;
+    }
+  }
 `;
 
 const CampaignSummaryHeadLine = styled(H1)`
@@ -100,10 +124,26 @@ const UpdatedBy = styled(Body11)`
   font-size: 16px;
   margin-bottom: 12px;
 `;
+
+const ComparedCandidateWrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+ 
+`;
+const ComparedCandidateCarousel = styled(Grid)`
+  && {
+    width: 10000px;
+    flex-wrap: nowrap;
+    padding-left: 27px;
+  }
+`;
+
 function MainWrapper({ candidate }) {
   if (!candidate) {
     return <NotFound />;
   }
+  const [carouselPos, setCarouselPos] = useState(0);
   const {
     firstName,
     lastName,
@@ -119,6 +159,11 @@ function MainWrapper({ candidate }) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
   }
   console.log('after', candidate.comparedCandidates);
+  const candidates = [
+    ...comparedCandidates.candidates,
+    ...comparedCandidates.candidates,
+  ];
+  console.log(carouselPos);
   return (
     <>
       {heroVideo && (
@@ -140,14 +185,32 @@ function MainWrapper({ candidate }) {
         <SectionHeader>About</SectionHeader>
         <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper style={{ marginRight: 30, position: 'relative' }}>
         <SectionHeader>Compare Candidates</SectionHeader>
-        <Grid container style={{ justifyContent: 'space-around' }}>
-          {comparedCandidates?.candidates &&
-            comparedCandidates.candidates.map(cand => (
-              <CompareCandidate candidate={cand} />
-            ))}
-        </Grid>
+        {carouselPos > 0 &&
+          <span
+            className="carousel-prev"
+            onClick={() => setCarouselPos(carouselPos - 1)}
+          >
+            <img src={CarouselPrevIcon} alt="carousel-prev" />
+          </span>
+        }
+        {carouselPos < candidates.length - 1 &&
+          <span className="carousel-next" onClick={() => setCarouselPos(carouselPos + 1)}>
+            <img src={CarouselNextIcon} alt="carousel-next" />
+          </span>
+        }
+        <ComparedCandidateWrapper>
+          <ComparedCandidateCarousel container>
+            {candidates &&
+              candidates.map((cand, index) => index >= carouselPos ? (
+                <CompareCandidate candidate={cand} />
+              ) : (
+                  <></>
+                ),
+              )}
+          </ComparedCandidateCarousel>
+        </ComparedCandidateWrapper>
       </SectionWrapper>
       <SectionWrapper>
         <Grid container spacing={3}>

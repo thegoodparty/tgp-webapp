@@ -12,7 +12,8 @@ import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 
 const Wrapper = styled.div`
   width: 170px;
-  // margin-right: 30px;
+  margin-right: 15px;
+  margin-left: 15px;
   margin-top: 25px;
 `;
 const CandidateName = styled(H1)`
