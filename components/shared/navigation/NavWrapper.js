@@ -95,7 +95,7 @@ const NavWrapper = ({
       <Hidden mdUp>
         <MobileHeader user={user} navigateCallback={navigateCallback} />
       </Hidden>
-      {!hideMobileNav && (
+      {/* {!hideMobileNav && (
         <Hidden mdUp>
           <BottomNavigation
             value={value}
@@ -123,7 +123,7 @@ const NavWrapper = ({
             />
           </BottomNavigation>
         </Hidden>
-      )}
+      )} */}
       {user?.isAdmin && <AdminMenu />}
     </>
   );
