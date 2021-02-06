@@ -39,11 +39,21 @@ const SectionWrapper = styled.div`
     position: absolute;
     // top: 180px;
     height: 100%;
-    right: -40px;
+    right: -29px;
     cursor: pointer;
     z-index: 1000;
     img {
       margin-top: 180px;
+    }
+  }
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    padding-left: 18px;
+    padding-right: 18px;
+    span.carousel-next {
+      right: -19px;
+    }
+    span.carousel-prev {
+      left: 10px;
     }
   }
 `;
@@ -196,7 +206,10 @@ function MainWrapper({ candidate }) {
           </span>
         }
         {carouselPos < candidates.length - 1 &&
-          <span className="carousel-next" onClick={() => setCarouselPos(carouselPos + 1)}>
+          <span
+            className="carousel-next"
+            onClick={() => setCarouselPos(carouselPos + 1)}
+          >
             <img src={CarouselNextIcon} alt="carousel-next" />
           </span>
         }
@@ -213,8 +226,8 @@ function MainWrapper({ candidate }) {
         </ComparedCandidateWrapper>
       </SectionWrapper>
       <SectionWrapper>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={7}>
+        <Grid container>
+          <Grid item xs={6}>
             <PurpleButton fullWidth className="outline">
               <InnerButton>
                 <Img src={ShareIconPurple} alt="share" />
@@ -222,7 +235,8 @@ function MainWrapper({ candidate }) {
               </InnerButton>
             </PurpleButton>
           </Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={1}></Grid>
+          <Grid item xs={5}>
             <PurpleButton fullWidth>
               <InnerButton>
                 <Img src={HeartIconWhite} alt="share" />
