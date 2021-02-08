@@ -128,9 +128,7 @@ const UpdatedBy = styled(Body11)`
   font-size: 16px;
   margin-bottom: 12px;
 `;
-
-
-function MainWrapper({ candidate }) {
+function MainWrapper({ candidate, endorseCallback }) {
   if (!candidate) {
     return <NotFound />;
   }
@@ -183,9 +181,9 @@ function MainWrapper({ candidate }) {
               </InnerButton>
             </PurpleButton>
           </Grid>
-          <Grid item xs={1}></Grid>
+          <Grid item xs={1} />
           <Grid item xs={5}>
-            <PurpleButton fullWidth>
+            <PurpleButton fullWidth onClick={endorseCallback}>
               <InnerButton>
                 <Img src={HeartIconWhite} alt="share" />
                 <span>ENDORSE</span>
@@ -284,6 +282,7 @@ function MainWrapper({ candidate }) {
 
 MainWrapper.propTypes = {
   candidate: PropTypes.object,
+  endorseCallback: PropTypes.func,
 };
 
 export default MainWrapper;

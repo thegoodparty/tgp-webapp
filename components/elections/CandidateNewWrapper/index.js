@@ -15,6 +15,8 @@ import TopQuestions from 'components/shared/TopQuestions';
 import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
 import Main from './Main';
+import EndorsementPreviewModal from './EndorsementPreviewModal';
+import ShareModal from './ShareModal';
 
 const ContentWrapper = styled.div`
   max-width: 100%;
@@ -53,7 +55,14 @@ const LeftCol = styled(Grid)`
   }
 `;
 
-function CandidateNewWrapper({ content, candidate }) {
+function CandidateNewWrapper({
+  content,
+  candidate,
+  endorseCallback,
+  showPreviewModal,
+  showShareModal,
+  user,
+}) {
   if (!candidate) {
     return <NotFound />;
   }
@@ -71,11 +80,20 @@ function CandidateNewWrapper({ content, candidate }) {
           </RightCol>
           <LeftCol row item>
             <Hidden xsDown>
-              <ProfileInfo candidate={candidate} />
+              <ProfileInfo
+                candidate={candidate}
+                endorseCallback={() => {
+                  endorseCallback(user);
+                }}
+              />
             </Hidden>
           </LeftCol>
         </Grid>
       </ContentWrapper>
+      {showPreviewModal && (
+        <EndorsementPreviewModal candidate={candidate} user={user} />
+      )}
+      {showShareModal && <ShareModal candidate={candidate} user={user} />}
     </PageWrapper>
   );
 }
@@ -83,6 +101,10 @@ function CandidateNewWrapper({ content, candidate }) {
 CandidateNewWrapper.propTypes = {
   candidate: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  endorseCallback: PropTypes.func,
+  showPreviewModal: PropTypes.bool,
+  showShareModal: PropTypes.bool,
 };
 
 export default CandidateNewWrapper;

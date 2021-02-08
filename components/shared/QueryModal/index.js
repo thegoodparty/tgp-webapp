@@ -37,6 +37,17 @@ const TgpDialog = styled(Dialog)`
       background: rgba(240, 236, 243, 0.9);
       backdrop-filter: blur(5px);
     }
+
+    &.purple {
+      .MuiDialog-paper {
+        background: linear-gradient(
+            0deg,
+            rgba(110, 38, 219, 0.8),
+            rgba(110, 38, 219, 0.8)
+          ),
+          #ffffff;
+      }
+    }
   }
 `;
 
@@ -50,17 +61,26 @@ const TopClose = styled(CloseIcon)`
   font-size: 24px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.purple};
+  &.purple {
+    color: #fff;
+  }
 `;
 
-function QueryModal({ closeModalCallback, children, modalStyles = {} }) {
+function QueryModal({ closeModalCallback, children, modalStyles = {}, mode }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
-    <TgpDialog onClose={closeModalCallback} open fullScreen={fullScreen}>
+    <TgpDialog
+      onClose={closeModalCallback}
+      open
+      fullScreen={fullScreen}
+      className={mode}
+    >
       <TopWrapper>
         <TopClose
           onClick={closeModalCallback}
           style={modalStyles.closeButton}
+          className={mode}
         />
       </TopWrapper>
       {children}
@@ -72,6 +92,7 @@ QueryModal.propTypes = {
   closeModalCallback: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   modalStyles: PropTypes.object,
+  mode: PropTypes.string,
 };
 
 export default QueryModal;
