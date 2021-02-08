@@ -10,9 +10,19 @@ const StyledButton = styled(Button)`
     padding: 12px 18px;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
-    background-color: ${({ theme }) => theme.colors.purple};
+    background: linear-gradient(
+        103.63deg,
+        rgba(255, 15, 19, 0.15) -3.51%,
+        rgba(191, 0, 32, 0) 94.72%
+      ),
+      linear-gradient(
+        257.82deg,
+        rgba(67, 0, 211, 0.25) -11.17%,
+        rgba(67, 0, 211, 0) 96.34%
+      ),
+      ${({ theme }) => theme.colors.purple};
     &.outline {
-      background-color: white;
+      background: white;
       border: 2px solid ${({ theme }) => theme.colors.purple};
       color: ${({ theme }) => theme.colors.purple};
       font-size: 1rem;

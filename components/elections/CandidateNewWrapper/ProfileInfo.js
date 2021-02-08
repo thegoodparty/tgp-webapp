@@ -111,7 +111,7 @@ const NameWrapper = styled(Grid)`
     }
   }
 `;
-function ProfileInfo({ candidate, isMobile }) {
+function ProfileInfo({ candidate, isMobile, endorseCallback }) {
   console.log('cand', candidate);
   const {
     firstName,
@@ -165,7 +165,7 @@ function ProfileInfo({ candidate, isMobile }) {
         </PurpleButton>
       </Box>
       <Box style={{ marginTop: 24 }}>
-        <PurpleButton fullWidth>
+        <PurpleButton fullWidth onClick={endorseCallback}>
           <InnerButton>
             <Img src={HeartIconWhite} alt="share" />
             <span>ENDORSE</span>
@@ -186,6 +186,7 @@ function ProfileInfo({ candidate, isMobile }) {
 ProfileInfo.propTypes = {
   candidate: PropTypes.object,
   isMobile: PropTypes.bool,
+  endorseCallback: PropTypes.func,
 };
 
 export default ProfileInfo;

@@ -15,6 +15,8 @@ import TopQuestions from 'components/shared/TopQuestions';
 import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
 import Main from './Main';
+import EndorsementPreviewModal from './EndorsementPreviewModal';
+import ShareModal from './ShareModal';
 
 const ContentWrapper = styled.div`
   max-width: 1280px;
@@ -25,7 +27,14 @@ const ContentWrapper = styled.div`
   }
 `;
 
-function CandidateNewWrapper({ content, candidate }) {
+function CandidateNewWrapper({
+  content,
+  candidate,
+  endorseCallback,
+  showPreviewModal,
+  showShareModal,
+  user,
+}) {
   if (!candidate) {
     return <NotFound />;
   }
@@ -38,16 +47,30 @@ function CandidateNewWrapper({ content, candidate }) {
       <ContentWrapper>
         <Grid container spacing={4}>
           <Grid row item xs={12} sm={7} style={{ marginBottom: 50 }}>
-            <Main candidate={candidate} />
+            <Main
+              candidate={candidate}
+              endorseCallback={() => {
+                endorseCallback(user);
+              }}
+            />
             <TopQuestions articles={articles} />
           </Grid>
           <Grid row item xs={12} sm={5}>
             <Hidden xsDown>
-              <ProfileInfo candidate={candidate} />
+              <ProfileInfo
+                candidate={candidate}
+                endorseCallback={() => {
+                  endorseCallback(user);
+                }}
+              />
             </Hidden>
           </Grid>
         </Grid>
       </ContentWrapper>
+      {showPreviewModal && (
+        <EndorsementPreviewModal candidate={candidate} user={user} />
+      )}
+      {showShareModal && <ShareModal candidate={candidate} user={user} />}
     </PageWrapper>
   );
 }
@@ -55,6 +78,10 @@ function CandidateNewWrapper({ content, candidate }) {
 CandidateNewWrapper.propTypes = {
   candidate: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  endorseCallback: PropTypes.func,
+  showPreviewModal: PropTypes.bool,
+  showShareModal: PropTypes.bool,
 };
 
 export default CandidateNewWrapper;
