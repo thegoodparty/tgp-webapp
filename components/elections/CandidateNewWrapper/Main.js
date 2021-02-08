@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { PurpleButton } from 'components/shared/buttons';
 import styled from 'styled-components';
@@ -12,21 +12,16 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import NotFound from 'containers/shared/NotFoundPage';
 import ReactPlayer from 'react-player/lazy';
-import articlesHelper from 'helpers/articlesHelper';
-import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
 import { H3, H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
-import CompareCandidate from './CompareCandidate.js';
+import ComparedCandidateCarousel from './ComparedCandidateCarousel';
 import RecentlyJoined from './RecentlyJoined';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
-const CarouselPrevIcon = '/images/carousel-prev.png';
-const CarouselNextIcon = '/images/carousel-next.png';
 const SectionWrapper = styled.div`
   margin-top: 64px;
   span.carousel-prev {
     position: absolute;
-    // top: 180px;
     height: 100%;
     left: 0;
     cursor: pointer;
@@ -37,7 +32,6 @@ const SectionWrapper = styled.div`
   }
   span.carousel-next {
     position: absolute;
-    // top: 180px;
     height: 100%;
     right: -29px;
     cursor: pointer;
@@ -135,25 +129,11 @@ const UpdatedBy = styled(Body11)`
   margin-bottom: 12px;
 `;
 
-const ComparedCandidateWrapper = styled.div`
-  width: 100%;
-  overflow: hidden;
-  position: relative;
- 
-`;
-const ComparedCandidateCarousel = styled(Grid)`
-  && {
-    width: 10000px;
-    flex-wrap: nowrap;
-    padding-left: 27px;
-  }
-`;
 
 function MainWrapper({ candidate }) {
   if (!candidate) {
     return <NotFound />;
   }
-  const [carouselPos, setCarouselPos] = useState(0);
   const {
     firstName,
     lastName,
@@ -168,12 +148,6 @@ function MainWrapper({ candidate }) {
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
   }
-  console.log('after', candidate.comparedCandidates);
-  const candidates = [
-    ...comparedCandidates.candidates,
-    ...comparedCandidates.candidates,
-  ];
-  console.log(carouselPos);
   return (
     <>
       {heroVideo && (
@@ -197,33 +171,7 @@ function MainWrapper({ candidate }) {
       </SectionWrapper>
       <SectionWrapper style={{ marginRight: 30, position: 'relative' }}>
         <SectionHeader>Compare Candidates</SectionHeader>
-        {carouselPos > 0 &&
-          <span
-            className="carousel-prev"
-            onClick={() => setCarouselPos(carouselPos - 1)}
-          >
-            <img src={CarouselPrevIcon} alt="carousel-prev" />
-          </span>
-        }
-        {carouselPos < candidates.length - 1 &&
-          <span
-            className="carousel-next"
-            onClick={() => setCarouselPos(carouselPos + 1)}
-          >
-            <img src={CarouselNextIcon} alt="carousel-next" />
-          </span>
-        }
-        <ComparedCandidateWrapper>
-          <ComparedCandidateCarousel container>
-            {candidates &&
-              candidates.map((cand, index) => index >= carouselPos ? (
-                <CompareCandidate candidate={cand} />
-              ) : (
-                  <></>
-                ),
-              )}
-          </ComparedCandidateCarousel>
-        </ComparedCandidateWrapper>
+        <ComparedCandidateCarousel candidates={comparedCandidates.candidates} />
       </SectionWrapper>
       <SectionWrapper>
         <Grid container>
