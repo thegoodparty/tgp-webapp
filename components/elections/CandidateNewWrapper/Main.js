@@ -174,12 +174,22 @@ function MainWrapper({ candidate, endorseCallback }) {
         <div>
           {facebook && (
             <SocialLink href={facebook}>
-              <img src="/images/icons/facebook-icon.svg" alt="facebook" />
+              <img
+                src="/images/icons/facebook-icon.svg"
+                alt="facebook"
+                rel="nofollow"
+                target="_blank"
+              />
             </SocialLink>
           )}
           {twitter && (
             <SocialLink href={twitter}>
-              <img src="/images/icons/twitter-icon.svg" alt="twitter" />
+              <img
+                src="/images/icons/twitter-icon.svg"
+                alt="twitter"
+                rel="nofollow"
+                target="_blank"
+              />
             </SocialLink>
           )}
         </div>
