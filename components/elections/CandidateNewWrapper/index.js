@@ -19,11 +19,39 @@ import EndorsementPreviewModal from './EndorsementPreviewModal';
 import ShareModal from './ShareModal';
 
 const ContentWrapper = styled.div`
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 5rem 16px 0;
+    padding-top: 5rem;
+  }
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    max-width: 980px;
+  }
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+    max-width: 1080px;
+  }
+`;
+
+const RightCol = styled(Grid)`
+  && {
+    max-width: 100%;
+    margin-bottom: 50px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+      max-width: calc(100% - 448px);
+    }
+  }
+`;
+
+const LeftCol = styled(Grid)`
+  && {
+    max-width: 100%;
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+      max-width: 416px;
+    }
   }
 `;
 
@@ -45,17 +73,12 @@ function CandidateNewWrapper({
   return (
     <PageWrapper isFullWidth white>
       <ContentWrapper>
-        <Grid container spacing={4}>
-          <Grid row item xs={12} sm={7} style={{ marginBottom: 50 }}>
-            <Main
-              candidate={candidate}
-              endorseCallback={() => {
-                endorseCallback(user);
-              }}
-            />
+        <Grid container justify="space-between">
+          <RightCol row item>
+            <Main candidate={candidate} />
             <TopQuestions articles={articles} />
-          </Grid>
-          <Grid row item xs={12} sm={5}>
+          </RightCol>
+          <LeftCol row item>
             <Hidden xsDown>
               <ProfileInfo
                 candidate={candidate}
@@ -64,7 +87,7 @@ function CandidateNewWrapper({
                 }}
               />
             </Hidden>
-          </Grid>
+          </LeftCol>
         </Grid>
       </ContentWrapper>
       {showPreviewModal && (

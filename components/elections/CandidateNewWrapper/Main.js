@@ -12,16 +12,44 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import NotFound from 'containers/shared/NotFoundPage';
 import ReactPlayer from 'react-player/lazy';
-import articlesHelper from 'helpers/articlesHelper';
-import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
 import { H3, H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
-import CompareCandidate from './CompareCandidate.js';
+import ComparedCandidateCarousel from './ComparedCandidateCarousel';
 import RecentlyJoined from './RecentlyJoined';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
 const SectionWrapper = styled.div`
   margin-top: 64px;
+  span.carousel-prev {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    cursor: pointer;
+    z-index: 1000;
+    img {
+      margin-top: 180px;
+    }
+  }
+  span.carousel-next {
+    position: absolute;
+    height: 100%;
+    right: -29px;
+    cursor: pointer;
+    z-index: 1000;
+    img {
+      margin-top: 180px;
+    }
+  }
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    padding-left: 18px;
+    padding-right: 18px;
+    span.carousel-next {
+      right: -19px;
+    }
+    span.carousel-prev {
+      left: 10px;
+    }
+  }
 `;
 
 const CampaignSummaryHeadLine = styled(H1)`
@@ -118,7 +146,6 @@ function MainWrapper({ candidate, endorseCallback }) {
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
   }
-  console.log('after', candidate.comparedCandidates);
   return (
     <>
       {heroVideo && (
@@ -140,18 +167,13 @@ function MainWrapper({ candidate, endorseCallback }) {
         <SectionHeader>About</SectionHeader>
         <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper style={{ marginRight: 30, position: 'relative' }}>
         <SectionHeader>Compare Candidates</SectionHeader>
-        <Grid container style={{ justifyContent: 'space-around' }}>
-          {comparedCandidates?.candidates &&
-            comparedCandidates.candidates.map(cand => (
-              <CompareCandidate candidate={cand} />
-            ))}
-        </Grid>
+        <ComparedCandidateCarousel candidates={comparedCandidates.candidates} />
       </SectionWrapper>
       <SectionWrapper>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={7}>
+        <Grid container>
+          <Grid item xs={6}>
             <PurpleButton fullWidth className="outline">
               <InnerButton>
                 <Img src={ShareIconPurple} alt="share" />
@@ -159,7 +181,8 @@ function MainWrapper({ candidate, endorseCallback }) {
               </InnerButton>
             </PurpleButton>
           </Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={1} />
+          <Grid item xs={5}>
             <PurpleButton fullWidth onClick={endorseCallback}>
               <InnerButton>
                 <Img src={HeartIconWhite} alt="share" />

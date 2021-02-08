@@ -12,8 +12,7 @@ import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 
 const Wrapper = styled.div`
   width: 170px;
-  // margin-right: 30px;
-  margin-top: 25px;
+  margin: 25px 15px 0;
 `;
 const CandidateName = styled(H1)`
   font-size: 27px;
@@ -85,8 +84,8 @@ function ComparedCandidate({ candidate }) {
           {ICONS[comparedFactors[factor]] ? (
             <img src={ICONS[comparedFactors[factor]]} alt="icon" />
           ) : (
-            <>{comparedFactors[factor]}</>
-          )}{' '}
+              <>{comparedFactors[factor]}</>
+            )}{' '}
           <br /> {factor}
         </InfoWrapper>
       ))}
