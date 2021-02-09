@@ -293,6 +293,7 @@ const api = {
     create: {
       url: `${base}new-candidate`,
       method: 'POST',
+      withAuth: true,
     },
     find: {
       url: `${base}new-candidate`,
@@ -301,6 +302,7 @@ const api = {
     update: {
       url: `${base}new-candidate`,
       method: 'PUT',
+      withAuth: true,
     },
   },
 
