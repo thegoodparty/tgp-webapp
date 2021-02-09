@@ -38,7 +38,7 @@ function ComparedCandidateCarousel({ candidates }) {
           <img src={CarouselPrevIcon} alt="carousel-prev" />
         </span>
       )}
-      {carouselPos < candidates.length - 1 && (
+      {carouselPos < candidates?.length - 1 && (
         <span
           className="carousel-next"
           onClick={() => setCarouselPos(carouselPos + 1)}
