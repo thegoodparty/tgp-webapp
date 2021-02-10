@@ -75,7 +75,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected - without having to depend on big money sources or toxic partisan politics. We do this by showcasing grass-roots candidates, and providing a crowd-voting platform that helps people spread the word and turn social media supporters into actual voters.",
+                "value": "Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected. By providing free, open-source software, those candidates do not have to depend on big money sources to spread their ideas and gather supporters. We do this by showcasing grass-roots candidates, and providing a crowd-voting platform that helps people spread the word and turn social media supporters into actual voters.",
                 "marks": [],
                 "data": {}
               }
@@ -414,7 +414,7 @@ const content = {
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Peter Asaro",
+                    "value": "Jared Alper",
                     "marks": [
                       {
                         "type": "bold"
@@ -424,12 +424,12 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "https://www.linkedin.com/in/peter-asaro-a0a725191/"
+                  "uri": "https://www.linkedin.com/in/jared-alper-00606093/"
                 }
               },
               {
                 "nodeType": "text",
-                "value": " - Engineering",
+                "value": " - Political ",
                 "marks": [],
                 "data": {}
               }
@@ -454,7 +454,7 @@ const content = {
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Kai Gradert",
+                    "value": "Peter Asaro",
                     "marks": [
                       {
                         "type": "bold"
@@ -464,12 +464,12 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "https://www.linkedin.com/in/kaigradert/"
+                  "uri": "https://www.linkedin.com/in/peter-asaro-a0a725191/"
                 }
               },
               {
                 "nodeType": "text",
-                "value": " - Product / Design",
+                "value": " - Engineering",
                 "marks": [],
                 "data": {}
               }
@@ -634,6 +634,38 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Whitney Smith",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/whitney-smith-599802143/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Digital Marketing",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
                 "marks": [
                   {
                     "type": "bold"
@@ -661,7 +693,7 @@ const content = {
               },
               {
                 "nodeType": "text",
-                "value": " - Political Strategy / Operations",
+                "value": " - Strategy / Operations",
                 "marks": [],
                 "data": {}
               }
@@ -674,46 +706,6 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "Good Party Volunteers",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Jared Alper",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/jared-alper-00606093/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Political Data",
                 "marks": [],
                 "data": {}
               }
@@ -764,6 +756,46 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "- HR / Operations",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Kai Gradert",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/kaigradert/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Product / Design",
                 "marks": [],
                 "data": {}
               }
@@ -1417,95 +1449,97 @@ const content = {
     {
       "title": "What is a crowd-voting campaign?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "A crowd-voting campaign is a way to make votes matter more than money. It makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against the establishment politicians.  ",
                 "marks": [],
-                "value": "A crowd-voting campaign is a way to make votes matter more than money.  ",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Crowd-voting empowers people to endorse candidates they like to see if it's possible to get them elected by spreading the word and enlisting others' support, rather than just asking people to donate money.",
                 "marks": [],
-                "value": "Crowd-voting empowers people to rally around all candidates they like to see if it's possible to get them elected by spreading the word and enlisting others to pledge their votes, rather than just asking people to donate money and then cast their votes in isolation.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Each crowd-voting campaign brings much needed transparency to an election by showing how many people are endorsing a candidate, ",
                 "marks": [],
-                "value": "Each crowd-voting campaign brings much needed transparency to an election by showing ",
-                "nodeType": "text"
+                "data": {}
               },
               {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "how many votes are needed to win",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
                 "data": {
                   "uri": "?article=4qI5UjYbJmivzBOy1y74Z4"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "how many votes are needed to win",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
+                }
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": ", and how many other likely voters there are for a candidate.",
                 "marks": [],
-                "value": ", and how many other likely voters there are for a candidate.  ",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "In this way, ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {
-                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
-                },
+                "nodeType": "hyperlink",
                 "content": [
                   {
-                    "data": {},
-                    "marks": [],
+                    "nodeType": "text",
                     "value": "nobody ever has to worry about wasting their vote",
-                    "nodeType": "text"
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "nodeType": "hyperlink"
+                "data": {
+                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
+                }
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": ", because everyone knows if a candidate they like can can win ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "before anyone goes out and actually votes!",
                 "marks": [
                   {
                     "type": "italic"
@@ -1514,38 +1548,36 @@ const content = {
                     "type": "bold"
                   }
                 ],
-                "value": "before anyone goes out and actually votes!",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their  options -- not just pick the 'lesser of two evil' candidates approved by red or blue.  ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "It's important to note that there is no cost or downside to joining a crowd-voting campaign using The Good Party.  Every crowd-voting campaign on The Good Party is absolutely free for both people and candidates.",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "pages": [
         "election",
@@ -1555,7 +1587,7 @@ const content = {
         "id": "4CrRDuyTqip7XK7DdK4tq7",
         "fields": {
           "name": "How The Good Party Works",
-          "order": 10
+          "order": 0
         }
       },
       "id": "1ic6T6fhH0jZLNvX5aZkDe"
@@ -1804,7 +1836,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "As people join crowd-voting campaigns, we help them get voterized and get ready to vote by:",
+                "value": "As people join crowd-voting campaigns, we get them ready to vote by helping with:",
                 "marks": [],
                 "data": {}
               }
@@ -1858,7 +1890,7 @@ const content = {
                     "content": [
                       {
                         "nodeType": "text",
-                        "value": "Request their vote by mail ballots, or find their nearest polling locations.",
+                        "value": "Requesting their vote by mail ballots, or find their nearest polling locations.",
                         "marks": [],
                         "data": {}
                       }
@@ -2091,7 +2123,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Otherwise, we just notify everyone that the crowd-voting campaign came up short, and let everyone vote for the lesser of two evils between other candidates.",
+                "value": "Otherwise, we just notify everyone that the crowd-voting campaign came up short, and encourage everyone to vote their conscience - be it a protest vote for the Indie candidate or choosing lesser of two evils.",
                 "marks": [],
                 "data": {}
               }
@@ -2113,7 +2145,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Not yet. We are a small team and have decided to focus on just the Federal level, General Elections, where we can prove the voting blocs concept and have most impact.   ",
+                "value": "It's in the works. In 2021-2022 we intend to engage in elections at all levels and all stages. From local to federal, and from gathering signatures to get on the ballot to General Elections. ",
                 "marks": [],
                 "data": {}
               }
@@ -2125,19 +2157,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "So for this election we're focused on the U.S President, U.S. Senate, and U.S. House of Representatives races. That still represents over 470 races, and thousands of candidates.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "That said, our mission is to build an open-source, free, decentralized and non-commercial democracy that can be used by people across the whole world.  ",
+                "value": "We are building an open-source, free, decentralized and non-commercial democracy that can be used by people across the whole world.  ",
                 "marks": [],
                 "data": {}
               }
@@ -2181,18 +2201,6 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "So, yes, we plan to have U.S. state and local elections, plus all their associated primaries are on our roadmap down the line.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
                 "value": "We're hopeful that as this good idea spreads, volunteer developers from all over will join us and help us build out The Good Party to what it must be: a freely available, decentralized, non-commercial public good that helps upgrade democracy for all.",
                 "marks": [],
                 "data": {}
@@ -2207,19 +2215,21 @@ const content = {
     {
       "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "No. We are NOT a political party. Your party affiliation and vote are always yours and you always have the choice to vote for whomever you like. The Good Party app just allows you to see more options ",
                 "marks": [],
-                "value": "No. Your party affiliation and vote are always yours and you always have the choice to vote for whomever you like in the primaries or General Election. The Good Party app just allows you to see your options ",
-                "nodeType": "text"
+                "data": {}
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "before ",
                 "marks": [
                   {
                     "type": "italic"
@@ -2228,32 +2238,30 @@ const content = {
                     "type": "bold"
                   }
                 ],
-                "value": "before ",
-                "nodeType": "text"
+                "data": {}
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "you vote.  ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "This way you can see whether your vote can be combined with others to enable you to elect a Good grass-roots or indie candidate you might like more than the establishment candidates who get reelected over and over again.",
                 "marks": [],
-                "value": "This way you can see whether your vote can be combined with others to enable you to elect a Good grass-roots or indie candidate you might like more than the establishment candidates who are offered.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "category": {
         "id": "7jOZqjB2BBfvymyAJ4IQWe",
@@ -2275,7 +2283,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "No. Your party affiliations are not affected in any way. The Good Party is not an official political party. We're a technology platform that shows you voting blocs of the Potentially Good grassroots and indie candidates are in your area, so you can quickly check whether they have enough votes to get elected. ",
+                "value": "No. Your party affiliations are not affected in any way. The Good Party is not an official political party. We're a technology platform that allows you to endorse Potentially Good grassroots and indie candidates in your area, so you can quickly check whether they have enough votes to get elected. ",
                 "marks": [],
                 "data": {}
               }
@@ -2649,244 +2657,6 @@ const content = {
       "id": "5bwvf0PwsbpFEe8IJ9sHhX"
     },
     {
-      "title": "What is the Write-in Vote?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The Write-in Vote is a rarely used feature of the election system in the United States, which has been with us since the founding of the country. Just as it sounds, the write-in vote allows people to literally ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "write-in",
-                "marks": [
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " the name of a preferred candidate if they don't like the names who are on the ballot.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The reason this feature is infrequently used is that it is very hard to coordinate enough people to write-in the same name and actually get someone elected, and many voters fear it's a wasted vote. However, the power of the write-in vote is that in elections where the two-party system has effectively locked out good grass-roots or indie candidates, we can still write-in any legit candidate's name and get them elected.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Now, for the first time in history, by using The Good Party's app and joining ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "crowd-voting campaigns",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ", we will finally be able to coordinate an effective write-in vote, and be sure that, ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "before anyone fills out their ballot, ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  },
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "we have enough votes to guarantee a win.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "id": "3yMjX3IPC2yIF3fj5rtbrq"
-    },
-    {
-      "title": "Why is Bernie Sanders listed as a Write-in Candidate?",
-      "articleBody": {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Bernie Sanders is listed \"As a Write-in,\" because regardless of what the two major parties would have you believe, the election does not only happen during their primaries! ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Under the current system, the choices on the November ballot are basically decided by the two major parties' power brokers who limit the number of real choices. This cuts third-party, independent and even promising red and blue candidates out of the process months before most voters even begin paying attention to the election. ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "However, we are offering a ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "crowd-voting campaign",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": " for Bernie Sanders to see if he can get enough likely votes to win the real election on November 3rd, 2020, ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  },
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "value": "before any actual votes are cast! ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "This way, without wasting a single vote, \"we the people\" get to see if Bernie is truly electable before we vote. And rest assured that we will only activate a voting bloc to vote, if we doubly confirm that we have all the votes we need to win the election.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "That said, if the Bernie crowd-voting campaign doesn't get enough votes to win, we stand down and let people know, so they can vote \"the lessor of two evils\" between red or blue mainstream candidates, or stay on the sidelines, if they choose.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Growing any write-in presidential candidate's crowd-voting campaign enough to ensure a win would be totally unprecedented in modern times. However, good ideas do spread quickly online. ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "So, why not try?  What have we got to lose?",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          }
-        ],
-        "nodeType": "document"
-      },
-      "pages": [
-        "election"
-      ],
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How The Good Party Works",
-          "order": 10
-        }
-      },
-      "id": "5rNQ7AbDebbvsm0078gPXg"
-    },
-    {
       "title": "Will I be asked to donate money to participate in The Good Party?",
       "articleBody": {
         "nodeType": "document",
@@ -2897,7 +2667,19 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "No. The Good Party is free for both users and candidates. We view our service as a vital public good that must stay free, open and non-commercial.",
+                "value": "No. Our mission is to make voters matter more than money in our democracy. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Good Party is free for both users and candidates. We view our service as a vital public good that must stay free, open and non-commercial.",
                 "marks": [],
                 "data": {}
               }
@@ -3072,60 +2854,113 @@ const content = {
       "id": "7D3TGoveRpv3RjgAWnefCy"
     },
     {
-      "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
+      "title": "What does it mean to \"endorse\" a candidate?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Endorsements are an easy way to show your support for Good, Independent and 3rd party candidates. Then you can share your endorsement either privately with family and friends or publicly via social channels. ",
                 "marks": [],
-                "value": "The short answer is that we need to create a bridge to something better.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Establishment politicians typically tout endorsements from big money donors and others career politicians interested in maintaining the status quo. Good Party endorsements are a way for the people to take back the power. ",
                 "marks": [],
-                "value": "The current system - which is designed by the elected officials of the two major parties - makes it nearly impossible for alternative candidates to get on the ballot. In fact, they deliberately limit choice because they don't want the competition. That's why you almost never see independents or third-parties get elected. ",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "By endorsing and sharing, people can organically get behind good, indie candidates and quickly grow the support needed to show those candidates are viable and can win. ",
                 "marks": [],
-                "value": "That means today, good people who want to serve as honest representatives often have to pick either red or blue, just to have a reasonable shot to get on the ballot - even if they view themselves as independent or not totally aligned with Democrats and Republicans. ",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "That said, we believe people are generally Good, but power and money corrupt. That's where our Follow the Money and Character Check come in. We don't care if a candidate is labelled Red or Blue, incumbent or challenger. As long as they are civil people, trying to honestly represent their district, and are not beholden to big money sources for their funding, we'll list them as Potentially Good candidates for you to support.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How The Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "3IWiTNf7gKItHkLB0Sm6q3"
+    },
+    {
+      "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The short answer is that it was an experiment we ran in 2020. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The current system - which is designed by the elected officials of the two major parties - makes it nearly impossible for alternative candidates to get on the ballot. In fact, they deliberately limit choice because they don't want the competition. That's why you almost never see independents or third-parties get elected. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "That means today, good people who want to serve as honest representatives often have to pick either red or blue, just to have a reasonable shot to get on the ballot - even if they view themselves as independent or not totally aligned with Democrats and Republicans. Unfortunately, even though we believe people are Good, the two-party Duopoly has designed a system strictly interested in serving itself. Meaning those that choose to run as Red or Blue are eventually destined to serve the system rather than the people. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Good news is going forward our focus is on helping truly Independent and 3rd party candidates finally be able to compete and win against the establishment politicians.  ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
       },
       "category": {
         "id": "1x8sreeqPN0PK929WRNw4I",
@@ -3135,6 +2970,51 @@ const content = {
         }
       },
       "id": "5YnyOUU7NVOihcos0oR1kL"
+    }
+  ],
+  "articleCategories": [
+    {
+      "fields": {
+        "name": "Joining The Good Party",
+        "order": 20
+      },
+      "id": "7jOZqjB2BBfvymyAJ4IQWe",
+      "articles": [
+        {
+          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
+          "id": "7Mrfo6spgrgpwAFe83Oph4"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "About Us",
+        "order": 300
+      },
+      "id": "1x8sreeqPN0PK929WRNw4I",
+      "articles": [
+        {
+          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
+          "id": "5YnyOUU7NVOihcos0oR1kL"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "How The Good Party Works",
+        "order": 0
+      },
+      "id": "4CrRDuyTqip7XK7DdK4tq7",
+      "articles": [
+        {
+          "title": "What is a crowd-voting campaign?",
+          "id": "1ic6T6fhH0jZLNvX5aZkDe"
+        },
+        {
+          "title": "What does it mean to \"endorse\" a candidate?",
+          "id": "3IWiTNf7gKItHkLB0Sm6q3"
+        }
+      ]
     }
   ],
   "partyPage": {
@@ -3468,51 +3348,6 @@ const content = {
       ]
     }
   },
-  "articleCategories": [
-    {
-      "fields": {
-        "name": "How The Good Party Works",
-        "order": 10
-      },
-      "id": "4CrRDuyTqip7XK7DdK4tq7",
-      "articles": [
-        {
-          "title": "What is a crowd-voting campaign?",
-          "id": "1ic6T6fhH0jZLNvX5aZkDe"
-        },
-        {
-          "title": "Why is Bernie Sanders listed as a Write-in Candidate?",
-          "id": "5rNQ7AbDebbvsm0078gPXg"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "Joining The Good Party",
-        "order": 20
-      },
-      "id": "7jOZqjB2BBfvymyAJ4IQWe",
-      "articles": [
-        {
-          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
-          "id": "7Mrfo6spgrgpwAFe83Oph4"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "About Us",
-        "order": 300
-      },
-      "id": "1x8sreeqPN0PK929WRNw4I",
-      "articles": [
-        {
-          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
-          "id": "5YnyOUU7NVOihcos0oR1kL"
-        }
-      ]
-    }
-  ],
   "events": [],
   "appVersion": {
     "version": "1.0.19"

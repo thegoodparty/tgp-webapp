@@ -136,6 +136,7 @@ function MainWrapper({ candidate, endorseCallback }) {
     firstName,
     lastName,
     campaignSummary,
+    race,
     about,
     comparedCandidates,
     facebook,
@@ -159,7 +160,7 @@ function MainWrapper({ candidate, endorseCallback }) {
       </Hidden>
       <SectionWrapper>
         <CampaignSummaryHeadLine>
-          Help {firstName} {lastName} take back Los Angeles city hall
+          Help {firstName} {lastName} take back {race}
         </CampaignSummaryHeadLine>
         <SectionContent dangerouslySetInnerHTML={{ __html: campaignSummary }} />
       </SectionWrapper>

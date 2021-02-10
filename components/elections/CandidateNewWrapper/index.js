@@ -93,7 +93,13 @@ function CandidateNewWrapper({
       {showPreviewModal && (
         <EndorsementPreviewModal candidate={candidate} user={user} />
       )}
-      {showShareModal && <ShareModal candidate={candidate} user={user} />}
+      {showShareModal && (
+        <ShareModal
+          candidate={candidate}
+          user={user}
+          message={showShareModal}
+        />
+      )}
     </PageWrapper>
   );
 }

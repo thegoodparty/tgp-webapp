@@ -199,14 +199,14 @@ const CopiedWrapper = styled.div`
   margin-top: 24px;
   text-align: center;
   padding: 10px;
-  border: solid 1px #FFF;
+  border: solid 1px #fff;
   border-radius: 6px;
 `;
 const Copied = styled(Body11)`
   color: #fff;
 `;
 
-const ShareModal = ({ candidate, user, trackShareCallback }) => {
+const ShareModal = ({ candidate, user, message }) => {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
     AnalyticsService.sendEvent('Sharing', 'Open Share Modal', candidate?.name);
@@ -232,17 +232,12 @@ const ShareModal = ({ candidate, user, trackShareCallback }) => {
     return <> </>;
   }
 
-  const { firstName, lastName } = candidate;
-  const url = uuidUrl(user, window.location.href);
+  const { firstName, lastName, race } = candidate;
+  const url = uuidUrl(user, window.location.origin + window.location.pathname);
 
-  const messageTitle = `Let's see if we can elect ${firstName}  ${lastName} `;
-  const emailTitle = `Help me elect ${firstName} ${lastName}`;
+  const messageTitle = `Help ${firstName} ${lastName} take back ${race}.`;
   // const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
-  const messageBody = `${
-    candidate.name
-  } could win in ${getCandidateChamberDistrictOnly(
-    candidate,
-  )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
+  const messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${message}`;
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   const nativeShare = () => {
@@ -276,7 +271,7 @@ const ShareModal = ({ candidate, user, trackShareCallback }) => {
       label: 'Email',
       icon: <IoIosMail />,
       className: 'email',
-      link: ``,
+      link: `mailto:?body=${messageBody}&subject=${messageTitle}`,
     },
     {
       label: 'Messenger',
@@ -392,7 +387,7 @@ const ShareModal = ({ candidate, user, trackShareCallback }) => {
 ShareModal.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  trackShareCallback: PropTypes.func,
+  message: PropTypes.string,
 };
 
 export default ShareModal;
