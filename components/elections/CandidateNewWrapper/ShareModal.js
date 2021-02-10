@@ -275,7 +275,7 @@ const ShareModal = ({ candidate, user, message }) => {
     },
     {
       label: 'Messenger',
-      icon: <IoIosMail />,
+      icon: <img src="/images/icons/messenger-icon.svg" alt="messenger" />,
       className: 'messenger',
       link: ``,
     },
@@ -283,7 +283,7 @@ const ShareModal = ({ candidate, user, message }) => {
       label: 'WhatsApp',
       icon: <ImWhatsapp />,
       className: 'whatsapp',
-      link: ``,
+      link: `https://api.whatsapp.com/send?text=${messageBody}`,
     },
   ];
 
@@ -352,6 +352,11 @@ const ShareModal = ({ candidate, user, message }) => {
                 <IconLabel data-cy="clipboard-share-title">Copy Link</IconLabel>
               </IconItem>
             </CopyToClipboard>
+            <div
+              className="fb-send-to-messenger"
+              messenger_app_id="1530862867115121"
+              color="blue"
+            />
           </Grid>
 
           <Grid item xs={6}>
