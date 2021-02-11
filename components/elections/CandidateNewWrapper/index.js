@@ -75,7 +75,7 @@ function CandidateNewWrapper({
     <PageWrapper isFullWidth white>
       <ContentWrapper>
         <Grid container justify="space-between">
-          <RightCol row item>
+          <RightCol row item xs>
             <Main
               candidate={candidate}
               endorseCallback={() => {
@@ -84,7 +84,7 @@ function CandidateNewWrapper({
             />
             <TopQuestions articles={articles} />
           </RightCol>
-          <LeftCol row item>
+          <LeftCol row item xs>
             <Hidden xsDown>
               <ProfileInfo
                 candidate={candidate}
