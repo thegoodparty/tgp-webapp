@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
   max-width: 100%;
   margin: 0 auto;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding-top: 5rem;
+    padding-top: 60px;
   }
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     max-width: 980px;

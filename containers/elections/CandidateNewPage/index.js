@@ -22,6 +22,7 @@ import actions from '../CandidatePage/actions';
 import { makeSelectContent } from '../../App/selectors';
 import { getUserCookie, setCookie } from '../../../helpers/cookieHelper';
 import queryHelper from '../../../helpers/queryHelper';
+import AdminMenuEditCandidate from '../../../components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
 
 export function CandidateNewPage({
   ssrState,
@@ -91,6 +92,7 @@ export function CandidateNewPage({
         />
       )}
       <CandidateNewWrapper {...childProps} />
+      {user?.isAdmin && <AdminMenuEditCandidate candidate={candidate} />}
     </div>
   );
 }
