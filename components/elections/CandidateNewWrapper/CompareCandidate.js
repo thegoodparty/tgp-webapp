@@ -52,6 +52,8 @@ const ICONS = {
   v: '/images/checkmark.svg',
   Y: '/images/checkmark.svg',
   y: '/images/checkmark.svg',
+  No: '/images/no.svg',
+  Yes: '/images/checkmark.svg',
   '?': '/images/question.svg',
 };
 function ComparedCandidate({ candidate }) {
@@ -70,22 +72,14 @@ function ComparedCandidate({ candidate }) {
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
       </CandidateNameWrapper>
-      <WebsiteLink>
-        Campaign Website <img src="/images/linkopen.svg" alt={name} />
-      </WebsiteLink>
-      <InfoWrapper>
-        $175/HR <br /> HOURLY FUNDING
-      </InfoWrapper>
-      <InfoWrapper>
-        7.8% <br /> Relative Funding
-      </InfoWrapper>
+
       {factors.map(factor => (
         <InfoWrapper>
           {ICONS[comparedFactors[factor]] ? (
             <img src={ICONS[comparedFactors[factor]]} alt="icon" />
           ) : (
-              <>{comparedFactors[factor]}</>
-            )}{' '}
+            <>{comparedFactors[factor]}</>
+          )}{' '}
           <br /> {factor}
         </InfoWrapper>
       ))}

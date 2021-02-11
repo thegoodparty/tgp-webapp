@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import { PurpleButton } from 'components/shared/buttons';
+import { partyResolver } from 'helpers/electionsHelper';
+
 import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
@@ -133,7 +135,7 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
           <CandidateName>
             {firstName} {lastName}
           </CandidateName>
-          <PartyName>Running as {party}</PartyName>
+          <PartyName>Running as {partyResolver(party)}</PartyName>
           <RaceName>{race}</RaceName>
         </NameWrapper>
       </AvatarWrapper>

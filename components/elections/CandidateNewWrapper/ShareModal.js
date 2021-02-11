@@ -292,7 +292,9 @@ const ShareModal = ({ candidate, user, message }) => {
       label: 'Twitter',
       icon: <IoLogoTwitter />,
       className: 'twitter',
-      link: ``,
+      link: `https://twitter.com/share?url=${encodeURIComponent(
+        url,
+      )}&text=${messageBody}`,
     },
     {
       label: 'Instagram',
@@ -332,6 +334,7 @@ const ShareModal = ({ candidate, user, message }) => {
                 onClick={() => {
                   trackShare(channel.label);
                 }}
+                target="_blank"
               >
                 <IconItem>
                   <IconWrapper className={channel.className}>
