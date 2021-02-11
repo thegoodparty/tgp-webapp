@@ -59,18 +59,6 @@ const ShareThisWrapper = styled.div`
   }
 `;
 
-const AdditionalSharesWrapper = styled.div`
-  padding: 16px 25px 0;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 90px;
-  }
-
-  &.with-native {
-    padding: 0 8px;
-  }
-`;
-
 const IconItem = styled.div`
   display: flex;
   align-items: center;
@@ -318,7 +306,9 @@ const ShareModal = ({ candidate, user, message }) => {
       label: 'Facebook',
       icon: <FaFacebookF />,
       className: 'facebook',
-      link: ``,
+      link: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        url,
+      )}`,
     },
   ];
   return (

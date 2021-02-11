@@ -75,7 +75,12 @@ function CandidateNewWrapper({
       <ContentWrapper>
         <Grid container justify="space-between">
           <RightCol row item>
-            <Main candidate={candidate} />
+            <Main
+              candidate={candidate}
+              endorseCallback={() => {
+                endorseCallback(user);
+              }}
+            />
             <TopQuestions articles={articles} />
           </RightCol>
           <LeftCol row item>

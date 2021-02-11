@@ -30,12 +30,6 @@ const CandidateNameWrapper = styled.div`
   margin-top: 15px;
 `;
 
-const WebsiteLink = styled(Body11)`
-  text-transform: uppercase;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.purple};
-`;
-
 const InfoWrapper = styled(Body11)`
   && {
     margin-top: 32px;

@@ -118,7 +118,6 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
   const {
     firstName,
     lastName,
-    chamber,
     image,
     race,
     party,
