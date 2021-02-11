@@ -66,6 +66,7 @@ function CandidateNewWrapper({
   if (!candidate) {
     return <NotFound />;
   }
+  console.log('New Candidae Data', candidate);
   let articles = [];
   if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');

@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 0px 12px rgb(0 0 0 / 20%);
   background-color: #fff;
   justify-content: space-between;
 `;
@@ -67,7 +67,7 @@ const TopLink = styled(Body9)`
   &.button {
     color: white;
     padding: 15px 20px;
-    border-radius: 39px;
+    border-radius: 8px;
     &.big {
       height: 56px;
       padding: 18px 30px;

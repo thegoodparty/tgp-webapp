@@ -27,6 +27,14 @@ const ProfileInfoWrapper = styled.div`
   box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
   padding: 24px 24px 32px 24px;
   text-align: center;
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    margin-top: 40px;
+    box-shadow: none;
+  }
+  @media only screen and (max-width: 500px) {
+    margin-top: 77px;
+    box-shadow: none;
+  }
 `;
 
 const CandidateName = styled(Body19)`
@@ -95,14 +103,15 @@ const InnerButton = styled.div`
 `;
 
 const EndorsementDescription = styled(Body11)`
-  margin-top: 18px;
+  margin-top: 12px;
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
 const AvatarWrapper = styled(Grid)`
   && {
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-      margin-bottom: 20px;
+      margin-bottom: 50px;
+      align-items: center;
     }
   }
 `;
@@ -110,6 +119,11 @@ const NameWrapper = styled(Grid)`
   && {
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
       padding-left: 20px;
+      & > div {
+        color: #fff;
+        line-height: 25px;
+      }
+      z-index: 1000;
     }
   }
 `;
@@ -165,7 +179,7 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
           </InnerButton>
         </PurpleButton>
       </Box>
-      <Box style={{ marginTop: 24 }}>
+      <Box style={{ marginTop: 8 }}>
         <PurpleButton fullWidth onClick={endorseCallback}>
           <InnerButton>
             <Img src={HeartIconWhite} alt="share" />

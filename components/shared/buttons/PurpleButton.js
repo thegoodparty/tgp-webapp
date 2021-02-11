@@ -6,7 +6,7 @@ import tgpTheme from 'theme/index';
 
 const StyledButton = styled(Button)`
   && {
-    border-radius: 30px;
+    border-radius: 8px;
     padding: 12px 18px;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
