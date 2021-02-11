@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 0px 12px rgb(0 0 0 / 20%);
   background-color: #fff;
   z-index: 100;
 `;
@@ -58,7 +58,7 @@ const TopLink = styled(Body12)`
     color: white;
     margin: 0.75rem 0 0.75rem 1.5rem;
     padding: 15px 30px;
-    border-radius: 40px;
+    border-radius: 8px;
     background: linear-gradient(
         103.63deg,
         rgba(255, 15, 19, 0.15) -3.51%,

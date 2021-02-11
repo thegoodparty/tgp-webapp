@@ -156,10 +156,19 @@ function MainWrapper({ candidate, endorseCallback }) {
         />
       )}
       <Hidden smUp>
+        <div
+          style={{
+            height: 200,
+            background:
+              'linear-gradient(rgba(17, 17, 17, 0.16) 11.98%, rgba(17, 17, 17, 0.8) 68.9%)',
+            position: 'absolute',
+            width: '100%',
+          }}
+        />
         <ProfileInfo candidate={candidate} isMobile />
       </Hidden>
-      <SectionWrapper>
-        <CampaignSummaryHeadLine>
+      <SectionWrapper style={{ marginTop: !heroVideo && 0 }}>
+        <CampaignSummaryHeadLine style={{ marginTop: !heroVideo && 0 }}>
           Help {firstName} {lastName} take back {race}
         </CampaignSummaryHeadLine>
         <SectionContent dangerouslySetInnerHTML={{ __html: campaignSummary }} />

@@ -40,6 +40,8 @@ const PartyIcon = styled.img`
   &.full {
     width: 31px;
     height: 31px;
+    bottom: -5px;
+    left: -5px;
   }
 `;
 const ChallengerAvatar = ({ avatar, party, isFull }) => {
