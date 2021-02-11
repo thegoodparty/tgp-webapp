@@ -138,6 +138,8 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
     likelyVoters,
     votesNeeded,
   } = candidate;
+
+  const endorsingCount = 0;
   return (
     <ProfileInfoWrapper>
       <AvatarWrapper container>
@@ -155,19 +157,19 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
       <Grid container>
         <Grid row xs={6}>
           <LikelyVoters>
-            <span>{likelyVoters}</span> likely voters
+            <span>{likelyVoters + endorsingCount}</span> likely voters
           </LikelyVoters>
         </Grid>
         <Grid row xs={6}>
           <LikelyVoters>
-            <span /> people endorsing
+            <span>{endorsingCount}</span> people endorsing
           </LikelyVoters>
         </Grid>
       </Grid>
       <SupportersProgressBar
         showSupporters={false}
         votesNeeded={votesNeeded}
-        peopleSoFar={900}
+        peopleSoFar={endorsingCount + likelyVoters}
         fullWidth
       />
 
