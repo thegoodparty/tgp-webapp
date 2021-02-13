@@ -10,10 +10,6 @@ import styled from 'styled-components';
 import { H3, Body11 } from '../../shared/typogrophy';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 
-const Wrapper = styled.div`
-  width: 170px;
-  margin: 25px 15px 0;
-`;
 const CandidateName = styled(H3)`
   font-weight: bold;
   text-align: center;
@@ -21,12 +17,10 @@ const CandidateName = styled(H3)`
 `;
 
 const CandidateNameWrapper = styled.div`
-  min-height: 100px;
   display: flex;
   align-items: center;
   text-align: center;
-  margin-bottom: 25px;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 const InfoWrapper = styled(Body11)`
@@ -38,6 +32,10 @@ const InfoWrapper = styled(Body11)`
   img {
     display: inline-block;
     margin-bottom: 5px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-top: 36px;
   }
 `;
 const ICONS = {
@@ -63,7 +61,7 @@ function ComparedCandidate({ candidate }) {
   const factors = Object.keys(comparedFactors);
   const cleanParty = party ? party.charAt(0) : '';
   return (
-    <Wrapper>
+    <>
       <ChallengerAvatar party={cleanParty} avatar={image} />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
@@ -79,7 +77,7 @@ function ComparedCandidate({ candidate }) {
           <br /> {factor}
         </InfoWrapper>
       ))}
-    </Wrapper>
+    </>
   );
 }
 

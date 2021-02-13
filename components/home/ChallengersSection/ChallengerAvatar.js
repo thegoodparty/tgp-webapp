@@ -4,16 +4,19 @@ import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ChallengerAvatarWrapper = styled.div`
-  width: 7rem;
-  height: 7rem;
+  width: 70px;
+  height: 70px;
   margin: 0 auto;
-  border-radius: 3.5rem;
-  box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
-    0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
+  box-shadow: inset 0px 0px 16.5455px rgba(255, 255, 255, 0.25);
   position: relative;
-  &.full {
-    width: unset;
-    height: unset;
+  border-radius: 50%;
+  //&.small {
+  //  width: unset;
+  //  height: unset;
+  //}
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 100px;
+    height: 100px;
   }
 `;
 
@@ -36,18 +39,25 @@ const PartyIcon = styled.img`
   border: 4px solid white;
   background: white;
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  height: 25px;
+  width: 25px;
   box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
     0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
-  &.full {
-    width: 31px;
-    height: 31px;
+  //&.small {
+  //  width: 31px;
+  //  height: 31px;
+  //  bottom: -5px;
+  //  right: -5px;
+  //}
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 36px;
+    width: 36px;
     bottom: -5px;
     right: -5px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isFull }) => {
+const ChallengerAvatar = ({ avatar, party, isSmall }) => {
+  console.log('isSmall', isSmall);
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -61,7 +71,7 @@ const ChallengerAvatar = ({ avatar, party, isFull }) => {
     PartyImg = '/images/icons/progressive.png';
   }
   return (
-    <ChallengerAvatarWrapper className={isFull && 'full'}>
+    <ChallengerAvatarWrapper className={isSmall && 'small'}>
       <ImageWrapper>
         <LazyLoadImage
           src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
@@ -73,7 +83,7 @@ const ChallengerAvatar = ({ avatar, party, isFull }) => {
       {PartyImg && (
         <PartyIcon
           src={PartyImg}
-          className={`full-image ${isFull && 'full'}`}
+          className={`full-image ${isSmall && 'small'}`}
         />
       )}
     </ChallengerAvatarWrapper>
@@ -83,7 +93,7 @@ const ChallengerAvatar = ({ avatar, party, isFull }) => {
 ChallengerAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
-  isFull: PropTypes.bool,
+  isSmall: PropTypes.bool,
 };
 
 export default ChallengerAvatar;

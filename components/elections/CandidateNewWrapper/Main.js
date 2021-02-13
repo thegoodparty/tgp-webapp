@@ -20,35 +20,9 @@ const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
 const SectionWrapper = styled.div`
   margin-top: 48px;
-  span.carousel-prev {
-    position: absolute;
-    height: 100%;
-    left: 0;
-    cursor: pointer;
-    z-index: 1000;
-    img {
-      margin-top: 180px;
-    }
-  }
-  span.carousel-next {
-    position: absolute;
-    height: 100%;
-    right: -29px;
-    cursor: pointer;
-    z-index: 1000;
-    img {
-      margin-top: 180px;
-    }
-  }
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    padding-left: 18px;
-    padding-right: 18px;
-    span.carousel-next {
-      right: -19px;
-    }
-    span.carousel-prev {
-      left: 10px;
-    }
+  padding: 0 18px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0 36px;
   }
 `;
 
@@ -61,6 +35,8 @@ const CampaignSummaryHeadLine = styled(H1)`
 const SectionHeader = styled(Body19)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.gray4};
+  margin-bottom: 18px;
+
   &.center {
     color: ${({ theme }) => theme.colors.gray70};
     text-align: center;
@@ -69,6 +45,10 @@ const SectionHeader = styled(Body19)`
     font-size: 16px;
     font-weight: normal;
   }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-bottom: 24px;
+  }
 `;
 
 const SectionContent = styled(Body13)`
@@ -76,7 +56,17 @@ const SectionContent = styled(Body13)`
 `;
 
 const InnerButton = styled.div`
-  font-size: 14px;
+  font-size: 11px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 16px;
+  }
+`;
+
+const LargeOnly = styled.span`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: inline;
+  }
 `;
 
 const Img = styled.img`
@@ -91,9 +81,7 @@ const Img = styled.img`
 `;
 const SocialLink = styled.a`
   margin-right: 25px;
-  img {
-    margin-top: 15px;
-  }
+
 `;
 const HowTo = styled.div`
   padding-right: 90px;
@@ -109,6 +97,10 @@ const HowTo = styled.div`
       padding-bottom: 20px;
     }
   }
+`;
+
+const YoutubePlayer = styled(ReactPlayer)`
+  width: unset !important;
 `;
 
 const YoutubePlayerWrapper = styled.div`
@@ -166,7 +158,7 @@ function MainWrapper({ candidate, endorseCallback }) {
     <>
       {heroVideo && (
         <YoutubePlayerWrapper>
-          <ReactPlayer
+          <YoutubePlayer
             url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
             playing={false}
           />
@@ -194,7 +186,7 @@ function MainWrapper({ candidate, endorseCallback }) {
         <SectionHeader>About</SectionHeader>
         <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
       </SectionWrapper>
-      <SectionWrapper style={{ marginRight: 30, position: 'relative' }}>
+      <SectionWrapper>
         <SectionHeader>Compare Candidates</SectionHeader>
         <ComparedCandidateCarousel candidates={comparedCandidates.candidates} />
       </SectionWrapper>
@@ -212,7 +204,9 @@ function MainWrapper({ candidate, endorseCallback }) {
             <PurpleButton fullWidth className="outline">
               <InnerButton>
                 <Img src={ShareIconPurple} alt="share" />
-                <span>SHARE CAMPAIGN</span>
+                <span>
+                  SHARE <LargeOnly>CAMPAIGN</LargeOnly>
+                </span>
               </InnerButton>
             </PurpleButton>
           </Grid>
@@ -246,14 +240,14 @@ function MainWrapper({ candidate, endorseCallback }) {
       <SectionWrapper>
         <SectionHeader>Updates({updates.length})</SectionHeader>
         {updates.map((update, index) => (
-          <React.Fragment key={index}>
+          <YoutubePlayerWrapper key={index}>
             <UpdatedDate>August 4, 2020</UpdatedDate>
             <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
             <SectionContent
               dangerouslySetInnerHTML={{ __html: update }}
               style={{ marginBottom: 20 }}
             />
-          </React.Fragment>
+          </YoutubePlayerWrapper>
         ))}
         <div style={{ textAlign: 'center' }}>
           <PurpleButton

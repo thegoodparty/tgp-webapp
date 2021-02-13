@@ -83,19 +83,6 @@ const TitleCase = styled.span`
   text-transform: capitalize;
 `;
 
-const RaceName = styled(Body11)`
-  color: ${({ theme }) => theme.colors.purple2};
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 11px;
-  }
-`;
-
 const LikelyVoters = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
   span {
@@ -179,7 +166,7 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
       <ProfileInfoWrapper>
         <AvatarWrapper container>
           <Grid item xs={3} sm={12}>
-            <ChallengerAvatar avatar={image} party={party} isFull={isMobile} />
+            <ChallengerAvatar avatar={image} party={party} isSmall={isMobile} />
           </Grid>
           <NameWrapper item xs={9} sm={12}>
             <CandidateName>

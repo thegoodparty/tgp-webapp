@@ -12,9 +12,10 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import CompareCandidate from './CompareCandidate';
+
 const CarouselPrevIcon = '/images/carousel-prev.png';
 const CarouselNextIcon = '/images/carousel-next.png';
-import CompareCandidate from './CompareCandidate';
 
 const StyledSlider = styled(Slider)`
   div {
@@ -23,15 +24,23 @@ const StyledSlider = styled(Slider)`
 `;
 
 const PrevArrowElem = styled.div`
-  left: -220px;
-  top: 150px;
+  left: calc(-50vw + 18px);
+  top: 70px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    left: -280px;
+    top: 150px;
+  }
   &.slick-disabled {
     display: none;
   }
 `;
 
 const NextArrowElem = styled.div`
-  top: 150px;
+  top: 70px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    top: 150px;
+  }
+  right: 0;
   &.slick-disabled {
     display: none;
   }
@@ -60,7 +69,7 @@ function ComparedCandidateCarousel({ candidates }) {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -72,10 +81,10 @@ function ComparedCandidateCarousel({ candidates }) {
   compared.shift();
   return (
     <Grid container>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <CompareCandidate candidate={candidates[0]} />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={6}>
         <StyledSlider {...settings}>
           {compared.map(cand => (
             <div key={cand.id}>
