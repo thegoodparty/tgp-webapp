@@ -78,11 +78,12 @@ function CandidateNewWrapper({
           <LeftCol row item xs>
             <Main
               candidate={candidate}
+              articles={articles}
               endorseCallback={() => {
                 endorseCallback(user);
               }}
             />
-            <TopQuestions articles={articles} />
+
           </LeftCol>
           <RightCol row item xs>
             <Hidden xsDown>
