@@ -30,12 +30,14 @@ const CandidateNameWrapper = styled.div`
 `;
 
 const InfoWrapper = styled(Body11)`
-  && {
-    margin-top: 32px;
-    text-align: center;
-    text-transform: uppercase;
-    color: ${({ theme }) => theme.colors.gray7};
-    line-height: 180%;
+  margin-top: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.gray7};
+  line-height: 1.8 !important;
+  img {
+    display: inline-block;
+    margin-bottom: 5px;
   }
 `;
 const ICONS = {

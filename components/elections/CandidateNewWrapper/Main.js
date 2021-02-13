@@ -19,7 +19,7 @@ import RecentlyJoined from './RecentlyJoined';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
 const SectionWrapper = styled.div`
-  margin-top: 64px;
+  margin-top: 48px;
   span.carousel-prev {
     position: absolute;
     height: 100%;
@@ -110,9 +110,21 @@ const HowTo = styled.div`
     }
   }
 `;
-const YoutubePlayer = styled(ReactPlayer)`
-  width: unset !important;
+
+const YoutubePlayerWrapper = styled.div`
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
+
 const HowToTitle = styled(H3)`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.purple};
@@ -147,13 +159,18 @@ function MainWrapper({ candidate, endorseCallback }) {
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
   }
+  const city = race?.includes('Mayor of')
+    ? `${race.replace('Mayor of', '')} city hall`
+    : race;
   return (
     <>
       {heroVideo && (
-        <YoutubePlayer
-          url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
-          playing={false}
-        />
+        <YoutubePlayerWrapper>
+          <ReactPlayer
+            url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
+            playing={false}
+          />
+        </YoutubePlayerWrapper>
       )}
       <Hidden smUp>
         <div
@@ -169,7 +186,7 @@ function MainWrapper({ candidate, endorseCallback }) {
       </Hidden>
       <SectionWrapper style={{ marginTop: !heroVideo && 0 }}>
         <CampaignSummaryHeadLine style={{ marginTop: !heroVideo && 0 }}>
-          Help {firstName} {lastName} take back {race}
+          Help {firstName} {lastName} take back {city}
         </CampaignSummaryHeadLine>
         <SectionContent dangerouslySetInnerHTML={{ __html: campaignSummary }} />
       </SectionWrapper>
@@ -182,21 +199,20 @@ function MainWrapper({ candidate, endorseCallback }) {
         <ComparedCandidateCarousel candidates={comparedCandidates.candidates} />
       </SectionWrapper>
       <SectionWrapper>
-        <Grid container>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <PurpleButton fullWidth onClick={endorseCallback}>
+              <InnerButton>
+                <Img src={HeartIconWhite} alt="share" />
+                <span>ADD YOUR NAME</span>
+              </InnerButton>
+            </PurpleButton>
+          </Grid>
           <Grid item xs={6}>
             <PurpleButton fullWidth className="outline">
               <InnerButton>
                 <Img src={ShareIconPurple} alt="share" />
-                <span>SHARE</span>
-              </InnerButton>
-            </PurpleButton>
-          </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={5}>
-            <PurpleButton fullWidth onClick={endorseCallback}>
-              <InnerButton>
-                <Img src={HeartIconWhite} alt="share" />
-                <span>ENDORSE</span>
+                <span>SHARE CAMPAIGN</span>
               </InnerButton>
             </PurpleButton>
           </Grid>

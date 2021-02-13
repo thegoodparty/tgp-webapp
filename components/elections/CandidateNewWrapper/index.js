@@ -32,7 +32,7 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const RightCol = styled(Grid)`
+const LeftCol = styled(Grid)`
   && {
     max-width: 100%;
     margin-bottom: 50px;
@@ -42,7 +42,7 @@ const RightCol = styled(Grid)`
   }
 `;
 
-const LeftCol = styled(Grid)`
+const RightCol = styled(Grid)`
   && {
     max-width: 100%;
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
@@ -75,7 +75,7 @@ function CandidateNewWrapper({
     <PageWrapper isFullWidth white>
       <ContentWrapper>
         <Grid container justify="space-between">
-          <RightCol row item xs>
+          <LeftCol row item xs>
             <Main
               candidate={candidate}
               endorseCallback={() => {
@@ -83,8 +83,8 @@ function CandidateNewWrapper({
               }}
             />
             <TopQuestions articles={articles} />
-          </RightCol>
-          <LeftCol row item xs>
+          </LeftCol>
+          <RightCol row item xs>
             <Hidden xsDown>
               <ProfileInfo
                 candidate={candidate}
@@ -93,7 +93,7 @@ function CandidateNewWrapper({
                 }}
               />
             </Hidden>
-          </LeftCol>
+          </RightCol>
         </Grid>
       </ContentWrapper>
       {showPreviewModal && (

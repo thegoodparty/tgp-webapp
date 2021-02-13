@@ -19,7 +19,7 @@ import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import RecentlyJoined from './RecentlyJoined';
-import { numberFormatter } from '../../../helpers/numberHelper';
+import { kFormatter, numberFormatter } from '../../../helpers/numberHelper';
 
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
@@ -70,7 +70,6 @@ const CandidateName = styled(Body19)`
 const PartyName = styled(Body11)`
   color: ${({ theme }) => theme.colors.gray4};
   text-align: center;
-  text-transform: uppercase;
   margin-bottom: 8px;
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin-top: 0;
@@ -78,6 +77,10 @@ const PartyName = styled(Body11)`
     text-align: left;
     font-size: 11px;
   }
+`;
+
+const TitleCase = styled.span`
+  text-transform: capitalize;
 `;
 
 const RaceName = styled(Body11)`
@@ -182,15 +185,17 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
             <CandidateName>
               {firstName} {lastName}
             </CandidateName>
-            <PartyName>Running as {partyResolver(party)}</PartyName>
-            <RaceName>{race}</RaceName>
+            <PartyName>
+              <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
+              Running for {race}
+            </PartyName>
           </NameWrapper>
         </AvatarWrapper>
         <Grid container>
           <Grid row xs={6}>
             <LikelyVoters>
-              <span>{numberFormatter(likelyVoters + endorsingCount)}</span>{' '}
-              likely voters
+              <span>{kFormatter(likelyVoters + endorsingCount)}</span> likely
+              voters
             </LikelyVoters>
           </Grid>
           <Grid row xs={6}>
@@ -210,7 +215,7 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
           <PurpleButton fullWidth className="outline">
             <InnerButton>
               <Img src={ShareIconPurple} alt="share" />
-              <span>SHARE</span>
+              <span>SHARE CAMPAIGN</span>
             </InnerButton>
           </PurpleButton>
         </Box>
@@ -218,13 +223,13 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
           <PurpleButton fullWidth onClick={endorseCallback}>
             <InnerButton>
               <Img src={HeartIconWhite} alt="share" />
-              <span>ENDORSE</span>
+              <span>ADD YOUR NAME</span>
             </InnerButton>
           </PurpleButton>
         </Box>
         <EndorsementDescription>
-          Endorsements are a good way to show and grow real grassroots support
-          for a candidate. <a>Read more</a>
+          Adding your name is a free way to show support for grassroots
+          candidates. <a>Read more</a>
         </EndorsementDescription>
         <Hidden xsDown>
           <RecentlyJoined />

@@ -22,6 +22,7 @@ const ImageWrapper = styled.div`
   height: 100%;
   overflow: hidden;
   border-radius: 50%;
+  border: solid 2px ${({ theme }) => theme.colors.purple};
   img {
     object-fit: cover;
     object-position: center center;
@@ -30,18 +31,20 @@ const ImageWrapper = styled.div`
 
 const PartyIcon = styled.img`
   position: absolute;
-  bottom: -10px;
-  left: -10px;
+  bottom: -5px;
+  right: -5px;
   border: 4px solid white;
   background: white;
   border-radius: 50%;
-  height: 45px;
-  width: 45px;
+  height: 40px;
+  width: 40px;
+  box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
+    0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
   &.full {
     width: 31px;
     height: 31px;
     bottom: -5px;
-    left: -5px;
+    right: -5px;
   }
 `;
 const ChallengerAvatar = ({ avatar, party, isFull }) => {
@@ -54,6 +57,8 @@ const ChallengerAvatar = ({ avatar, party, isFull }) => {
     PartyImg = '/images/icons/independent.png';
   } else if (party === 'L') {
     PartyImg = '/images/icons/libertarian.png';
+  } else if (party === 'P') {
+    PartyImg = '/images/icons/progressive.png';
   }
   return (
     <ChallengerAvatarWrapper className={isFull && 'full'}>
