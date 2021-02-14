@@ -17,6 +17,9 @@ const WrapperDiv = styled.div`
   &.white {
     background-color: #fff;
   }
+  &.purple {
+    background-color: ${({ theme }) => theme.colors.purple3};
+  }
   &.no-header {
     min-height: calc(100vh);
     min-height: calc(var(--vh, 1vh) * 100);
@@ -27,7 +30,7 @@ const WrapperDiv = styled.div`
   }
 `;
 
-const Wrapper = ({ children, style, white, noHeader = false }) => {
+const Wrapper = ({ children, style, white, purple, noHeader = false }) => {
   useEffect(() => {
     let vh;
     if (typeof window !== 'undefined') {
@@ -49,6 +52,9 @@ const Wrapper = ({ children, style, white, noHeader = false }) => {
   let className = '';
   if (white) {
     className = 'white';
+  }
+  if (purple) {
+    className = 'purple';
   }
   if (noHeader) {
     className += ' no-header';

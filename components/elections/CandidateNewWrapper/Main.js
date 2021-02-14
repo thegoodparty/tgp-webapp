@@ -6,17 +6,20 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PurpleButton } from 'components/shared/buttons';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import NotFound from 'containers/shared/NotFoundPage';
 import ReactPlayer from 'react-player/lazy';
+
+import NotFound from 'containers/shared/NotFoundPage';
+import { PurpleButton } from 'components/shared/buttons';
+
 import ProfileInfo from './ProfileInfo';
 import { H3, H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
 import ComparedCandidateCarousel from './ComparedCandidateCarousel';
 import RecentlyJoined from './RecentlyJoined';
 import TopQuestions from '../../shared/TopQuestions';
+import SupportButton from './SupportButton';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
 
@@ -32,7 +35,6 @@ const SectionWrapper = styled.div`
 `;
 
 const CampaignSummaryHeadLine = styled(H1)`
-  margin-top: 64px;
   color: ${({ theme }) => theme.colors.gray4};
   font-weight: 800;
 `;
@@ -58,6 +60,14 @@ const SectionHeader = styled(Body19)`
 
 const SectionContent = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
+`;
+
+const Support = styled(Body11)`
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.gray9};
 `;
 
 const InnerButton = styled.div`
@@ -108,7 +118,6 @@ const YoutubePlayer = styled(ReactPlayer)`
 `;
 
 const YoutubePlayerWrapper = styled.div`
-
   [data-jodit_iframe_wrapper] {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
@@ -139,7 +148,14 @@ const UpdatedBy = styled(Body11)`
   font-size: 16px;
   margin-bottom: 12px;
 `;
-function MainWrapper({ candidate, articles, endorseCallback }) {
+function MainWrapper({
+  candidate,
+  articles,
+  supportCallback,
+  isUserSupportCandidate,
+  removeSupportCallback,
+  candidateSupports,
+}) {
   if (!candidate) {
     return <NotFound />;
   }
@@ -184,8 +200,10 @@ function MainWrapper({ candidate, articles, endorseCallback }) {
         <ProfileInfo candidate={candidate} isMobile />
       </Hidden>
       <Padder>
-        <SectionWrapper style={{ marginTop: !heroVideo && 0 }}>
-          <CampaignSummaryHeadLine style={{ marginTop: !heroVideo && 0 }}>
+        <SectionWrapper style={{ marginTop: heroVideo ? '48px' : 0 }}>
+          <CampaignSummaryHeadLine
+            style={{ marginTop: heroVideo ? '64px' : 0 }}
+          >
             Help {firstName} {lastName} take back {city}
           </CampaignSummaryHeadLine>
           <SectionContent
@@ -202,15 +220,15 @@ function MainWrapper({ candidate, articles, endorseCallback }) {
             candidates={comparedCandidates.candidates}
           />
         </SectionWrapper>
+
         <SectionWrapper>
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <PurpleButton fullWidth onClick={endorseCallback}>
-                <InnerButton>
-                  <Img src={HeartIconWhite} alt="share" />
-                  <span>ADD YOUR NAME</span>
-                </InnerButton>
-              </PurpleButton>
+              <SupportButton
+                isUserSupportCandidate={isUserSupportCandidate}
+                removeSupportCallback={removeSupportCallback}
+                supportCallback={supportCallback}
+              />
             </Grid>
             <Grid item xs={6}>
               <PurpleButton fullWidth className="outline">
@@ -261,66 +279,66 @@ function MainWrapper({ candidate, articles, endorseCallback }) {
               />
             </YoutubePlayerWrapper>
           ))}
-          <div style={{ textAlign: 'center' }}>
-            <PurpleButton
-              className="outline"
-              style={{ paddingRight: 60, paddingLeft: 60 }}
-            >
-              <InnerButton>
-                <span>READ MORE UPDATES</span>
-              </InnerButton>
-            </PurpleButton>
-          </div>
+          {/*<div style={{ textAlign: 'center' }}>*/}
+          {/*  <PurpleButton*/}
+          {/*    className="outline"*/}
+          {/*    style={{ paddingRight: 60, paddingLeft: 60 }}*/}
+          {/*  >*/}
+          {/*    <InnerButton>*/}
+          {/*      <span>READ MORE UPDATES</span>*/}
+          {/*    </InnerButton>*/}
+          {/*  </PurpleButton>*/}
+          {/*</div>*/}
         </SectionWrapper>
         <Hidden smUp>
           <SectionWrapper>
-            <RecentlyJoined />
+            <RecentlyJoined candidateSupports={candidateSupports} />
           </SectionWrapper>
         </Hidden>
-        <SectionWrapper>
-          <SectionHeader className="center">
-            How The Good Party Works <br />
-            <span>We make votes matter more than money</span>
-          </SectionHeader>
-          <HowTo>
-            <div>
-              <img
-                src="/images/thank-you.png"
-                alt="thank-you"
-                width="100%"
-                height="100%"
-              />
-              <HowToTitle>
-                {' '}
-                See Good Candidates challenging THE status quo
-              </HowToTitle>
-            </div>
-            <div>
-              <img
-                src="/images/slide12.png"
-                alt="thank-you"
-                width="100%"
-                height="100%"
-              />
-              <HowToTitle>
-                {' '}
-                Add your vote to their crowd-voting campaigns
-              </HowToTitle>
-            </div>
-            <div>
-              <img
-                src="/images/slide13.png"
-                alt="thank-you"
-                width="100%"
-                height="100%"
-              />
-              <HowToTitle>
-                {' '}
-                spread the word and if they can win, vote!
-              </HowToTitle>
-            </div>
-          </HowTo>
-        </SectionWrapper>
+        {/*<SectionWrapper>*/}
+        {/*  <SectionHeader className="center">*/}
+        {/*    How The Good Party Works <br />*/}
+        {/*    <span>We make votes matter more than money</span>*/}
+        {/*  </SectionHeader>*/}
+          {/*<HowTo>*/}
+          {/*  <div>*/}
+          {/*    <img*/}
+          {/*      src="/images/thank-you.png"*/}
+          {/*      alt="thank-you"*/}
+          {/*      width="100%"*/}
+          {/*      height="100%"*/}
+          {/*    />*/}
+          {/*    <HowToTitle>*/}
+          {/*      {' '}*/}
+          {/*      See Good Candidates challenging THE status quo*/}
+          {/*    </HowToTitle>*/}
+          {/*  </div>*/}
+          {/*  <div>*/}
+          {/*    <img*/}
+          {/*      src="/images/slide12.png"*/}
+          {/*      alt="thank-you"*/}
+          {/*      width="100%"*/}
+          {/*      height="100%"*/}
+          {/*    />*/}
+          {/*    <HowToTitle>*/}
+          {/*      {' '}*/}
+          {/*      Add your vote to their crowd-voting campaigns*/}
+          {/*    </HowToTitle>*/}
+          {/*  </div>*/}
+          {/*  <div>*/}
+          {/*    <img*/}
+          {/*      src="/images/slide13.png"*/}
+          {/*      alt="thank-you"*/}
+          {/*      width="100%"*/}
+          {/*      height="100%"*/}
+          {/*    />*/}
+          {/*    <HowToTitle>*/}
+          {/*      {' '}*/}
+          {/*      spread the word and if they can win, vote!*/}
+          {/*    </HowToTitle>*/}
+          {/*  </div>*/}
+          {/*</HowTo>*/}
+        {/*</SectionWrapper>*/}
         <TopQuestions articles={articles} />
       </Padder>
     </>
@@ -329,8 +347,11 @@ function MainWrapper({ candidate, articles, endorseCallback }) {
 
 MainWrapper.propTypes = {
   candidate: PropTypes.object,
-  endorseCallback: PropTypes.func,
+  supportCallback: PropTypes.func,
+  removeSupportCallback: PropTypes.func,
   articles: PropTypes.array,
+  isUserSupportCandidate: PropTypes.bool,
+  candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default MainWrapper;

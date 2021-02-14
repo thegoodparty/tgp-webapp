@@ -22,7 +22,7 @@ const StyledButton = styled(Button)`
       ),
       ${({ theme }) => theme.colors.purple};
     &.outline {
-      background: white;
+      background: ${({ theme }) => theme.colors.purple3};
       border: 2px solid ${({ theme }) => theme.colors.purple};
       color: ${({ theme }) => theme.colors.purple};
       font-size: 1rem;

@@ -87,7 +87,7 @@ function ComparedCandidateCarousel({ candidates }) {
       <Grid item xs={6}>
         <StyledSlider {...settings}>
           {compared.map(cand => (
-            <div key={cand.id}>
+            <div key={cand.name}>
               <CompareCandidate candidate={cand} />
             </div>
           ))}

@@ -11,15 +11,17 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
+import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
+import { kFormatter } from 'helpers/numberHelper';
 
 import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import RecentlyJoined from './RecentlyJoined';
-import { kFormatter, numberFormatter } from '../../../helpers/numberHelper';
+import SupportButton from './SupportButton';
 
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
@@ -37,7 +39,6 @@ const Inner = styled.div`
 `;
 
 const ProfileInfoWrapper = styled.div`
-  background: #ffffff;
   border-radius: 8px;
   box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
   padding: 24px 24px 32px 24px;
@@ -133,8 +134,29 @@ const NameWrapper = styled(Grid)`
     }
   }
 `;
-function ProfileInfo({ candidate, isMobile, endorseCallback }) {
-  console.log('cand', candidate);
+
+const Support = styled(Body11)`
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.gray9};
+`;
+
+const GrayLogo = styled.img`
+  height: 16px;
+  width: auto;
+  margin-right: 6px;
+`;
+
+function ProfileInfo({
+  candidate,
+  isMobile,
+  supportCallback,
+  removeSupportCallback,
+  isUserSupportCandidate,
+  candidateSupports,
+}) {
   const {
     firstName,
     lastName,
@@ -160,7 +182,8 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
       </ScrollArea>
     );
 
-  const endorsingCount = 0;
+  const supportCount = candidateSupports?.length || 0;
+  console.log('cand', candidate);
   return (
     <WrapperElement>
       <ProfileInfoWrapper>
@@ -179,25 +202,25 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
           </NameWrapper>
         </AvatarWrapper>
         <Grid container>
-          <Grid row xs={6}>
+          <Grid item xs={6}>
             <LikelyVoters>
-              <span>{kFormatter(likelyVoters + endorsingCount)}</span> likely
+              <span>{kFormatter(likelyVoters + supportCount)}</span> likely
               voters
             </LikelyVoters>
           </Grid>
-          <Grid row xs={6}>
+          <Grid item xs={6}>
             <LikelyVoters>
-              <span>{endorsingCount}</span> people endorsing
+              <span>{supportCount}</span>{' '}
+              {supportCount === 1 ? 'person' : 'people'} supporting
             </LikelyVoters>
           </Grid>
         </Grid>
         <SupportersProgressBar
           showSupporters={false}
           votesNeeded={votesNeeded}
-          peopleSoFar={endorsingCount + likelyVoters}
+          peopleSoFar={supportCount + likelyVoters}
           fullWidth
         />
-
         <Box style={{ marginTop: 24 }}>
           <PurpleButton fullWidth className="outline">
             <InnerButton>
@@ -207,19 +230,18 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
           </PurpleButton>
         </Box>
         <Box style={{ marginTop: 8 }}>
-          <PurpleButton fullWidth onClick={endorseCallback}>
-            <InnerButton>
-              <Img src={HeartIconWhite} alt="share" />
-              <span>ADD YOUR NAME</span>
-            </InnerButton>
-          </PurpleButton>
+          <SupportButton
+            isUserSupportCandidate={isUserSupportCandidate}
+            removeSupportCallback={removeSupportCallback}
+            supportCallback={supportCallback}
+          />
         </Box>
         <EndorsementDescription>
           Adding your name is a free way to show support for grassroots
           candidates. <a>Read more</a>
         </EndorsementDescription>
         <Hidden xsDown>
-          <RecentlyJoined />
+          <RecentlyJoined candidateSupports={candidateSupports} />
         </Hidden>
       </ProfileInfoWrapper>
     </WrapperElement>
@@ -229,7 +251,10 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
 ProfileInfo.propTypes = {
   candidate: PropTypes.object,
   isMobile: PropTypes.bool,
-  endorseCallback: PropTypes.func,
+  supportCallback: PropTypes.func,
+  removeSupportCallback: PropTypes.func,
+  isUserSupportCandidate: PropTypes.bool,
+  candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ProfileInfo;

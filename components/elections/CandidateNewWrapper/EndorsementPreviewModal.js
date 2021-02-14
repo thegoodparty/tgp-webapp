@@ -50,7 +50,7 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-function EndorsementPreviewModal({ candidate, user }) {
+function EndorsementPreviewModal({ candidate, user, previewNextStepCallback }) {
   const [message, setMessage] = useState(
     `I'm ${user?.name} and I Approve this message!`,
   );
@@ -75,17 +75,12 @@ function EndorsementPreviewModal({ candidate, user }) {
         variant="outlined"
         onChange={onChangeField}
       />
-      <Link
-        href={
-          typeof window !== 'undefined'
-            ? `${window.location.pathname}?share=${encodeURIComponent(
-                message,
-              )}`
-            : ''
-        }
+
+      <PurpleButton
+        onClick={() => previewNextStepCallback(candidate.id, message)}
       >
-        <PurpleButton>CONTINUE</PurpleButton>
-      </Link>
+        CONTINUE
+      </PurpleButton>
     </QueryModalContainer>
   );
 }
@@ -93,6 +88,7 @@ function EndorsementPreviewModal({ candidate, user }) {
 EndorsementPreviewModal.propTypes = {
   candidate: PropTypes.object,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  previewNextStepCallback: PropTypes.func,
 };
 
 export default EndorsementPreviewModal;

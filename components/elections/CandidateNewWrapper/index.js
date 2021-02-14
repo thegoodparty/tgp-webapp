@@ -58,47 +58,61 @@ const RightCol = styled(Grid)`
 function CandidateNewWrapper({
   content,
   candidate,
-  endorseCallback,
+  supportCallback,
   showPreviewModal,
   showShareModal,
   user,
+  isUserSupportCandidate,
+  removeSupportCallback,
+  previewNextStepCallback,
+  candidateSupports,
 }) {
   if (!candidate) {
     return <NotFound />;
   }
-  console.log('New Candidae Data', candidate);
   let articles = [];
   if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
   }
+  const handleSupport = () => {
+    supportCallback(candidate.id, user);
+  };
+  const handleRemoveSupport = () => {
+    removeSupportCallback(candidate.id);
+  };
   return (
-    <PageWrapper isFullWidth white>
+    <PageWrapper isFullWidth purple>
       <ContentWrapper>
         <Grid container justify="space-between">
           <LeftCol row item xs>
             <Main
               candidate={candidate}
               articles={articles}
-              endorseCallback={() => {
-                endorseCallback(user);
-              }}
+              supportCallback={handleSupport}
+              isUserSupportCandidate={isUserSupportCandidate}
+              removeSupportCallback={handleRemoveSupport}
+              candidateSupports={candidateSupports}
             />
-
           </LeftCol>
-          <RightCol row item xs>
-            <Hidden xsDown>
+          <Hidden xsDown>
+            <RightCol row item xs>
               <ProfileInfo
                 candidate={candidate}
-                endorseCallback={() => {
-                  endorseCallback(user);
-                }}
+                supportCallback={handleSupport}
+                isUserSupportCandidate={isUserSupportCandidate}
+                removeSupportCallback={handleRemoveSupport}
+                candidateSupports={candidateSupports}
               />
-            </Hidden>
-          </RightCol>
+            </RightCol>
+          </Hidden>
         </Grid>
       </ContentWrapper>
       {showPreviewModal && (
-        <EndorsementPreviewModal candidate={candidate} user={user} />
+        <EndorsementPreviewModal
+          candidate={candidate}
+          user={user}
+          previewNextStepCallback={previewNextStepCallback}
+        />
       )}
       {showShareModal && (
         <ShareModal
@@ -115,9 +129,13 @@ CandidateNewWrapper.propTypes = {
   candidate: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  endorseCallback: PropTypes.func,
+  supportCallback: PropTypes.func,
+  removeSupportCallback: PropTypes.func,
   showPreviewModal: PropTypes.bool,
   showShareModal: PropTypes.bool,
+  isUserSupportCandidate: PropTypes.bool,
+  previewNextStepCallback: PropTypes.func,
+  candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default CandidateNewWrapper;

@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
 import { ConnectedRouter } from 'connected-next-router';
+import SnackbarContainer from 'containers/shared/SnackbarContainer';
 
 import GlobalStyles from 'theme/GlobalStyles';
 import store from 'redux/store';
@@ -17,7 +18,6 @@ import theme from 'theme';
  * @param {string} options.storeKey The key that will be used to persist the store in the browser's `window` object for safe HMR
  */
 if (typeof window !== 'undefined' && navigator) {
-  console.log('removing service worker');
   navigator.serviceWorker.getRegistrations().then(function(registrations) {
     for (let registration of registrations) {
       registration.unregister();
@@ -36,6 +36,7 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>
+        <SnackbarContainer />
       </UiThemeProvider>
     </ConnectedRouter>
   );

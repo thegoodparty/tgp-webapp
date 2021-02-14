@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,22 +13,27 @@ import { compose } from 'redux';
 import CandidateNewWrapper from 'components/elections/CandidateNewWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
+import { getUserCookie, setCookie } from 'helpers/cookieHelper';
+import queryHelper from 'helpers/queryHelper';
+import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { push } from 'connected-next-router';
 import reducer from './reducer';
 import saga from './saga';
-import actions from '../CandidatePage/actions';
+import actions from './actions';
 import { makeSelectContent } from '../../App/selectors';
-import { getUserCookie, setCookie } from '../../../helpers/cookieHelper';
-import queryHelper from '../../../helpers/queryHelper';
-import AdminMenuEditCandidate from '../../../components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
+import makeSelectCandidateNewPage from './selectors';
 
 export function CandidateNewPage({
   ssrState,
+  candidateNewPage,
   content,
   dispatch,
-  endorseCallback,
+  supportCallback,
+  removeSupportCallback,
+  previewNextStepCallback,
 }) {
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
@@ -36,6 +41,8 @@ export function CandidateNewPage({
   if (user) {
     user = JSON.parse(user);
   }
+  const { userSupports, candidateSupports } = candidateNewPage;
+
   let showPreviewModal = false;
   let showShareModal = false;
   if (typeof window !== 'undefined') {
@@ -47,9 +54,18 @@ export function CandidateNewPage({
   let tab;
 
   if (ssrState) {
-    ({ candidate, tab } = ssrState);
+    ({ candidate } = ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
+  useEffect(() => {
+    if (!userSupports && user) {
+      dispatch(actions.userSupportsAction());
+    }
+    if (!candidateSupports) {
+      dispatch(actions.candidateSupportsAction(candidate?.id));
+    }
+  }, []);
+  console.log('candidateSupports', candidateSupports);
 
   const emptyCandidate = () =>
     Object.keys(candidate).length === 0 && candidate.constructor === Object;
@@ -77,10 +93,14 @@ export function CandidateNewPage({
   const childProps = {
     candidate,
     content,
-    endorseCallback,
+    supportCallback,
+    removeSupportCallback,
     showPreviewModal,
     showShareModal,
     user,
+    isUserSupportCandidate: userSupports && userSupports[candidate.id],
+    previewNextStepCallback,
+    candidateSupports
   };
   return (
     <div>
@@ -100,25 +120,44 @@ export function CandidateNewPage({
 CandidateNewPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
+  candidateNewPage: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  previewNextStepCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
+  candidateNewPage: makeSelectCandidateNewPage(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    endorseCallback: user => {
+    supportCallback: (candidateId, user) => {
       // if no user here
       if (user) {
-        dispatch(push(`${window.location.pathname}?preview=true`));
+        // dispatch(push(`${window.location.pathname}?preview=true`));
+        dispatch(actions.supportAction(candidateId));
       } else {
         dispatch(
           push(`${window.location.pathname}?register=true&candidate=true`),
         );
       }
+    },
+    removeSupportCallback: candidateId => {
+      // if no user here
+      dispatch(actions.removeSupportAction(candidateId));
+    },
+    previewNextStepCallback: (candidateId, message) => {
+      const updateSupport = queryHelper(window.location.search, 'support');
+      if (updateSupport) {
+        dispatch(actions.updateSupportAction(candidateId, message));
+      }
+      dispatch(
+        push(
+          `${window.location.pathname}?share=${encodeURIComponent(message)}`,
+        ),
+      );
     },
   };
 }
