@@ -132,7 +132,6 @@ function ProfileInfo({ candidate, shareImageCallback }) {
       .then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
-        console.log(dataUrl);
         document.body.appendChild(img);
         shareImageCallback({ ...candidate, imageBase64: dataUrl });
       })
