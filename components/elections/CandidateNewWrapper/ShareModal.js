@@ -17,6 +17,7 @@ import {
   IoIosMail,
   IoLogoTwitter,
   IoLogoInstagram,
+  IoLogoReddit,
 } from 'react-icons/io';
 import { ImWhatsapp } from 'react-icons/im';
 import { FaSnapchatGhost, FaFacebookF } from 'react-icons/fa';
@@ -112,6 +113,10 @@ const IconWrapper = styled.div`
 
   &.twitter {
     background-color: #1ea1f3;
+  }
+
+  &.reddit {
+    background-color: #fe4006;
   }
 
   &.instagram {
@@ -221,7 +226,9 @@ const ShareModal = ({ candidate, user, message }) => {
   }
 
   const { firstName, lastName, race } = candidate;
-  const url = uuidUrl(user, window.location.origin + window.location.pathname);
+  const url = uuidUrl(user, window.location.origin + window.location.pathname, 'share=true');
+  console.log('url', url)
+  const encodedUrl = encodeURIComponent(url);
 
   const messageTitle = `Help ${firstName} ${lastName} take back ${race}.`;
   // const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
@@ -261,18 +268,24 @@ const ShareModal = ({ candidate, user, message }) => {
       className: 'email',
       link: `mailto:?body=${messageBody}&subject=${messageTitle}`,
     },
-    {
-      label: 'Messenger',
-      icon: <img src="/images/icons/messenger-icon.svg" alt="messenger" />,
-      className: 'messenger',
-      link: ``,
-    },
+    // {
+    //   label: 'Messenger',
+    //   icon: <img src="/images/icons/messenger-icon.svg" alt="messenger" />,
+    //   className: 'messenger',
+    //   link: ``,
+    // },
     {
       label: 'WhatsApp',
       icon: <ImWhatsapp />,
       className: 'whatsapp',
       link: `https://api.whatsapp.com/send?text=${messageBody}`,
     },
+    // {
+    //   label: 'Snapchat',
+    //   icon: <FaSnapchatGhost />,
+    //   className: 'snapchat',
+    //   link: ``,
+    // },
   ];
 
   const publicChannels = [
@@ -280,35 +293,32 @@ const ShareModal = ({ candidate, user, message }) => {
       label: 'Twitter',
       icon: <IoLogoTwitter />,
       className: 'twitter',
-      link: `https://twitter.com/share?url=${encodeURIComponent(
-        url,
-      )}&text=${messageBody}`,
+      link: `https://twitter.com/share?url=${encodedUrl}&text=${messageBody}`,
     },
     {
-      label: 'Instagram',
-      icon: <IoLogoInstagram />,
-      className: 'instagram',
-      link: ``,
+      label: 'Reddit',
+      icon: <IoLogoReddit />,
+      className: 'reddit',
+      link: `https://www.reddit.com/submit?url=${encodedUrl}&text=${messageBody}`,
     },
-    {
-      label: 'TikTok',
-      icon: <SiTiktok />,
-      className: 'tiktok',
-      link: ``,
-    },
-    {
-      label: 'Snapchat',
-      icon: <FaSnapchatGhost />,
-      className: 'snapchat',
-      link: ``,
-    },
+    // {
+    //   label: 'Instagram',
+    //   icon: <IoLogoInstagram />,
+    //   className: 'instagram',
+    //   link: ``,
+    // },
+    // {
+    //   label: 'TikTok',
+    //   icon: <SiTiktok />,
+    //   className: 'tiktok',
+    //   link: ``,
+    // },
+
     {
       label: 'Facebook',
       icon: <FaFacebookF />,
       className: 'facebook',
-      link: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        url,
-      )}`,
+      link: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     },
   ];
   return (
@@ -325,6 +335,7 @@ const ShareModal = ({ candidate, user, message }) => {
                   trackShare(channel.label);
                 }}
                 target="_blank"
+                rel="nofollow"
               >
                 <IconItem>
                   <IconWrapper className={channel.className}>
@@ -360,6 +371,8 @@ const ShareModal = ({ candidate, user, message }) => {
                 onClick={() => {
                   trackShare(channel.label);
                 }}
+                target="_blank"
+                rel="nofollow"
               >
                 <IconItem>
                   <IconWrapper className={channel.className}>

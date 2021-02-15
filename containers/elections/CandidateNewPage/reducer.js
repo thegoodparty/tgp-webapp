@@ -11,6 +11,8 @@ export const initialState = {
   candidate: false,
   loading: false,
   error: false,
+  userSupports: false,
+  candidateSupports: false,
 };
 
 const candidateNewPageReducer = (state = initialState, action) =>
@@ -32,6 +34,30 @@ const candidateNewPageReducer = (state = initialState, action) =>
         draft.candidate = false;
         draft.loading = false;
         draft.error = action.error;
+        break;
+
+      case types.USER_SUPPORTS:
+        draft.userSupports = false;
+        break;
+
+      case types.USER_SUPPORTS_SUCCESS:
+        draft.userSupports = action.userSupports;
+        break;
+
+      case types.USER_SUPPORTS_ERROR:
+        draft.userSupports = false;
+        break;
+
+      case types.CANDIDATE_SUPPORTS:
+        draft.candidateSupports = false;
+        break;
+
+      case types.CANDIDATE_SUPPORTS_SUCCESS:
+        draft.candidateSupports = action.candidateSupports;
+        break;
+
+      case types.CANDIDATE_SUPPORTS_ERROR:
+        draft.candidateSupports = false;
         break;
     }
   });

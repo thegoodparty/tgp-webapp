@@ -8,7 +8,7 @@ import UserAvatar from '../UserAvatar';
 
 const Wrapper = styled.div`
   position: fixed;
-  height: 80px;
+  height: 60px;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 60px;
 `;
 
 const Logo = styled.img`
@@ -33,13 +33,13 @@ const Logo = styled.img`
   cursor: pointer;
 `;
 const Divider = styled.div`
-  height: 80px;
+  height: 60px;
   width: 1px;
   background-color: ${({ theme }) => theme.colors.grayE};
 `;
 const TopLink = styled(Body12)`
   cursor: pointer;
-  height: 80px;
+  height: 60px;
   font-size: 1rem;
   border-bottom: solid 2px #fff;
   padding: 0 0.5rem;
@@ -54,7 +54,7 @@ const TopLink = styled(Body12)`
     border-bottom: solid 2px ${({ theme }) => theme.colors.lightBlue};
   }
   &.button {
-    height: 56px;
+    height: 36px;
     color: white;
     margin: 0.75rem 0 0.75rem 1.5rem;
     padding: 15px 30px;
@@ -77,7 +77,7 @@ const TopLink = styled(Body12)`
 `;
 
 const AvatarWrapper = styled(Body14)`
-  height: 80px;
+  height: 60px;
   cursor: pointer;
   margin-left: 0.5rem;
   &:hover,
@@ -95,9 +95,7 @@ const DesktopHeader = ({ pathname, user, navigateCallback }) => {
   const partyRoute = !electionRoute && pathname?.includes('party');
   const hideLinks = pathname?.includes('zip-finder');
 
-  const handleNavigate = screen => {
-    navigateCallback(screen, user);
-  };
+
   return (
     <Wrapper>
       <ContentWrapper>

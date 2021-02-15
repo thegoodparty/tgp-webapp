@@ -40,9 +40,7 @@ class CustomDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-
           <meta name="mobile-web-app-capable" content="yes" />
-
 
           <meta property="og:site_name" content="THE GOOD PARTY" />
           <meta property="og:type" content="website" />

@@ -12,23 +12,40 @@ import * as htmlToImage from 'html-to-image';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
+import Sticky from 'react-sticky-el';
+import { IoMdCloseCircleOutline } from 'react-icons/io';
+
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
+import { kFormatter } from 'helpers/numberHelper';
 
 import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import RecentlyJoined from './RecentlyJoined';
+import SupportButton from './SupportButton';
 
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
 
+const ScrollArea = styled.div`
+  height: calc(100% - 80px - 65px);
+  position: relative;
+  top: 0;
+  width: 416px;
+  margin-top: -85px;
+`;
+
+const Inner = styled.div`
+  padding-top: 85px;
+`;
+
 const ProfileInfoWrapper = styled.div`
-  background: #ffffff;
   border-radius: 8px;
   box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
   padding: 24px 24px 32px 24px;
   text-align: center;
+
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin-top: 40px;
     box-shadow: none;
@@ -56,7 +73,6 @@ const CandidateName = styled(Body19)`
 const PartyName = styled(Body11)`
   color: ${({ theme }) => theme.colors.gray4};
   text-align: center;
-  text-transform: uppercase;
   margin-bottom: 8px;
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     margin-top: 0;
@@ -66,17 +82,8 @@ const PartyName = styled(Body11)`
   }
 `;
 
-const RaceName = styled(Body11)`
-  color: ${({ theme }) => theme.colors.purple2};
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 11px;
-  }
+const TitleCase = styled.span`
+  text-transform: capitalize;
 `;
 
 const LikelyVoters = styled(Body9)`
@@ -129,8 +136,29 @@ const NameWrapper = styled(Grid)`
     }
   }
 `;
-function ProfileInfo({ candidate, isMobile, endorseCallback }) {
-  console.log('cand', candidate);
+
+const Support = styled(Body11)`
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.gray9};
+`;
+
+const GrayLogo = styled.img`
+  height: 16px;
+  width: auto;
+  margin-right: 6px;
+`;
+
+function ProfileInfo({
+  candidate,
+  isMobile,
+  supportCallback,
+  removeSupportCallback,
+  isUserSupportCandidate,
+  candidateSupports,
+}) {
   const {
     firstName,
     lastName,
@@ -140,82 +168,95 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
     likelyVoters,
     votesNeeded,
   } = candidate;
-  useEffect(() => {
-    htmlToImage
-      .toPng(document.getElementById('profile-info'))
-      .then(function (dataUrl) {
-        let img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
-  }, []);
-  return (
-    <ProfileInfoWrapper id="profile-info">
-      <AvatarWrapper container>
-        <Grid item xs={3} sm={12}>
-          <ChallengerAvatar avatar={image} party={party} isFull={isMobile} />
-        </Grid>
-        <NameWrapper item xs={9} sm={12}>
-          <CandidateName>
-            {firstName} {lastName}
-          </CandidateName>
-          <PartyName>Running as {partyResolver(party)}</PartyName>
-          <RaceName>{race}</RaceName>
-        </NameWrapper>
-      </AvatarWrapper>
-      <Grid container>
-        <Grid row xs={6}>
-          <LikelyVoters>
-            <span>{likelyVoters}</span> likely voters
-          </LikelyVoters>
-        </Grid>
-        <Grid row xs={6}>
-          <LikelyVoters>
-            <span /> people endorsing
-          </LikelyVoters>
-        </Grid>
-      </Grid>
-      <SupportersProgressBar
-        showSupporters={false}
-        votesNeeded={votesNeeded}
-        peopleSoFar={900}
-        fullWidth
-      />
 
-      <Box style={{ marginTop: 24 }}>
-        <PurpleButton fullWidth className="outline">
-          <InnerButton>
-            <Img src={ShareIconPurple} alt="share" />
-            <span>SHARE</span>
-          </InnerButton>
-        </PurpleButton>
-      </Box>
-      <Box style={{ marginTop: 8 }}>
-        <PurpleButton fullWidth onClick={endorseCallback}>
-          <InnerButton>
-            <Img src={HeartIconWhite} alt="share" />
-            <span>ENDORSE</span>
-          </InnerButton>
-        </PurpleButton>
-      </Box>
-      <EndorsementDescription>
-        Endorsements are a good way to show and grow real grassroots support for
-        a candidate. <a>Read more</a>
-      </EndorsementDescription>
-      <Hidden xsDown>
-        <RecentlyJoined />
-      </Hidden>
-    </ProfileInfoWrapper>
+  const WrapperElement = ({ children }) =>
+    isMobile ? (
+      <div>{children}</div>
+    ) : (
+      <ScrollArea className="scroll-area">
+        <Sticky
+          boundaryElement=".scroll-area"
+          hideOnBoundaryHit={false}
+          dontUpdateHolderHeightWhenSticky
+        >
+          <Inner className="inner">{children}</Inner>
+        </Sticky>
+      </ScrollArea>
+    );
+
+  const supportCount = candidateSupports?.length || 0;
+  console.log('cand', candidate);
+  return (
+    <WrapperElement>
+      <ProfileInfoWrapper>
+        <AvatarWrapper container>
+          <Grid item xs={3} sm={12}>
+            <ChallengerAvatar avatar={image} party={party} isSmall={isMobile} />
+          </Grid>
+          <NameWrapper item xs={9} sm={12}>
+            <CandidateName>
+              {firstName} {lastName}
+            </CandidateName>
+            <PartyName>
+              <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
+              Running for {race}
+            </PartyName>
+          </NameWrapper>
+        </AvatarWrapper>
+        <Grid container>
+          <Grid item xs={6}>
+            <LikelyVoters>
+              <span>{kFormatter(likelyVoters + supportCount)}</span> likely
+              voters
+            </LikelyVoters>
+          </Grid>
+          <Grid item xs={6}>
+            <LikelyVoters>
+              <span>{supportCount}</span>{' '}
+              {supportCount === 1 ? 'person' : 'people'} supporting
+            </LikelyVoters>
+          </Grid>
+        </Grid>
+        <SupportersProgressBar
+          showSupporters={false}
+          votesNeeded={votesNeeded}
+          peopleSoFar={supportCount + likelyVoters}
+          fullWidth
+        />
+        <Box style={{ marginTop: 24 }}>
+          <PurpleButton fullWidth className="outline">
+            <InnerButton>
+              <Img src={ShareIconPurple} alt="share" />
+              <span>SHARE CAMPAIGN</span>
+            </InnerButton>
+          </PurpleButton>
+        </Box>
+        <Box style={{ marginTop: 8 }}>
+          <SupportButton
+            isUserSupportCandidate={isUserSupportCandidate}
+            removeSupportCallback={removeSupportCallback}
+            supportCallback={supportCallback}
+          />
+        </Box>
+        <EndorsementDescription>
+          Adding your name is a free way to show support for grassroots
+          candidates. <a>Read more</a>
+        </EndorsementDescription>
+        <Hidden xsDown>
+          <RecentlyJoined candidateSupports={candidateSupports} />
+        </Hidden>
+      </ProfileInfoWrapper>
+    </WrapperElement>
   );
 }
 
 ProfileInfo.propTypes = {
   candidate: PropTypes.object,
   isMobile: PropTypes.bool,
-  endorseCallback: PropTypes.func,
+  supportCallback: PropTypes.func,
+  removeSupportCallback: PropTypes.func,
+  isUserSupportCandidate: PropTypes.bool,
+  candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ProfileInfo;

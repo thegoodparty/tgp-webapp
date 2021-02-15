@@ -123,9 +123,6 @@ function ProfileInfo({ candidate, shareImageCallback }) {
     likelyVoters,
     votesNeeded,
   } = candidate;
-  useEffect(() => {
-    afterLoad();
-  }, [])
   const afterLoad = () => {
     htmlToImage
       .toPng(document.getElementById('profile-info'))
@@ -147,7 +144,7 @@ function ProfileInfo({ candidate, shareImageCallback }) {
           <ChallengerAvatar
             avatar={image}
             party={party}
-            isFull={true}
+            isSmall={true}
             afterLoad={afterLoad}
           />
         </Grid>

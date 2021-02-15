@@ -12,7 +12,7 @@ import Link from 'next/link';
 const MenuWrapper = styled.div`
   position: fixed;
   z-index: 2001;
-  top: 10px;
+  top: 0px;
   right: 10px;
 `;
 

@@ -8,57 +8,92 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import CompareCandidate from './CompareCandidate.js';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+import CompareCandidate from './CompareCandidate';
+
 const CarouselPrevIcon = '/images/carousel-prev.png';
 const CarouselNextIcon = '/images/carousel-next.png';
 
-
-const ComparedCandidateWrapper = styled.div`
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-`;
-const CarouselWrapper = styled(Grid)`
-  && {
-    width: 10000px;
-    flex-wrap: nowrap;
-    padding-left: 27px;
+const StyledSlider = styled(Slider)`
+  div {
+    outline: none;
   }
 `;
 
-function ComparedCandidateCarousel({ candidates }) {
-  const [carouselPos, setCarouselPos] = useState(0);
+const PrevArrowElem = styled.div`
+  left: calc(-50vw + 18px);
+  top: 70px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    left: -280px;
+    top: 150px;
+  }
+  &.slick-disabled {
+    display: none;
+  }
+`;
+
+const NextArrowElem = styled.div`
+  top: 70px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    top: 150px;
+  }
+  right: 0;
+  &.slick-disabled {
+    display: none;
+  }
+`;
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
   return (
-    <>
-      {carouselPos > 0 && (
-        <span
-          className="carousel-prev"
-          onClick={() => setCarouselPos(carouselPos - 1)}
-        >
-          <img src={CarouselPrevIcon} alt="carousel-prev" />
-        </span>
-      )}
-      {carouselPos < candidates?.length - 1 && (
-        <span
-          className="carousel-next"
-          onClick={() => setCarouselPos(carouselPos + 1)}
-        >
-          <img src={CarouselNextIcon} alt="carousel-next" />
-        </span>
-      )}
-      <ComparedCandidateWrapper>
-        <CarouselWrapper container>
-          {candidates &&
-            candidates.map((cand, index) =>
-              index >= carouselPos ? (
-                <CompareCandidate candidate={cand} />
-              ) : (
-                <></>
-              ),
-            )}
-        </CarouselWrapper>
-      </ComparedCandidateWrapper>
-    </>
+    <PrevArrowElem className={className} onClick={onClick}>
+      <img src={CarouselPrevIcon} alt="carousel-prev" />
+    </PrevArrowElem>
+  );
+}
+
+function NextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <NextArrowElem className={className} onClick={onClick}>
+      <img src={CarouselNextIcon} alt="carousel-prev" />
+    </NextArrowElem>
+  );
+}
+
+function ComparedCandidateCarousel({ candidates }) {
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+  if (!candidates || candidates.length === 0) {
+    return <></>;
+  }
+  const compared = [...candidates];
+  compared.shift();
+  return (
+    <Grid container>
+      <Grid item xs={6}>
+        <CompareCandidate candidate={candidates[0]} />
+      </Grid>
+      <Grid item xs={6}>
+        <StyledSlider {...settings}>
+          {compared.map(cand => (
+            <div key={cand.name}>
+              <CompareCandidate candidate={cand} />
+            </div>
+          ))}
+        </StyledSlider>
+      </Grid>
+    </Grid>
   );
 }
 

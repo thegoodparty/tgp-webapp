@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
   max-width: 100%;
   margin: 0 auto;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding-top: 5rem;
+    padding-top: 60px;
   }
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     max-width: 980px;
@@ -32,7 +32,7 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const RightCol = styled(Grid)`
+const LeftCol = styled(Grid)`
   && {
     max-width: 100%;
     margin-bottom: 50px;
@@ -42,7 +42,7 @@ const RightCol = styled(Grid)`
   }
 `;
 
-const LeftCol = styled(Grid)`
+const RightCol = styled(Grid)`
   && {
     max-width: 100%;
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
@@ -58,46 +58,61 @@ const LeftCol = styled(Grid)`
 function CandidateNewWrapper({
   content,
   candidate,
-  endorseCallback,
+  supportCallback,
   showPreviewModal,
   showShareModal,
   user,
+  isUserSupportCandidate,
+  removeSupportCallback,
+  previewNextStepCallback,
+  candidateSupports,
 }) {
   if (!candidate) {
     return <NotFound />;
   }
-  console.log('New Candidae Data', candidate);
   let articles = [];
   if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
   }
+  const handleSupport = () => {
+    supportCallback(candidate.id, user);
+  };
+  const handleRemoveSupport = () => {
+    removeSupportCallback(candidate.id);
+  };
   return (
-    <PageWrapper isFullWidth white>
+    <PageWrapper isFullWidth purple>
       <ContentWrapper>
         <Grid container justify="space-between">
-          <RightCol row item>
+          <LeftCol row item xs>
             <Main
               candidate={candidate}
-              endorseCallback={() => {
-                endorseCallback(user);
-              }}
+              articles={articles}
+              supportCallback={handleSupport}
+              isUserSupportCandidate={isUserSupportCandidate}
+              removeSupportCallback={handleRemoveSupport}
+              candidateSupports={candidateSupports}
             />
-            <TopQuestions articles={articles} />
-          </RightCol>
-          <LeftCol row item>
-            <Hidden xsDown>
+          </LeftCol>
+          <Hidden xsDown>
+            <RightCol row item xs>
               <ProfileInfo
                 candidate={candidate}
-                endorseCallback={() => {
-                  endorseCallback(user);
-                }}
+                supportCallback={handleSupport}
+                isUserSupportCandidate={isUserSupportCandidate}
+                removeSupportCallback={handleRemoveSupport}
+                candidateSupports={candidateSupports}
               />
-            </Hidden>
-          </LeftCol>
+            </RightCol>
+          </Hidden>
         </Grid>
       </ContentWrapper>
       {showPreviewModal && (
-        <EndorsementPreviewModal candidate={candidate} user={user} />
+        <EndorsementPreviewModal
+          candidate={candidate}
+          user={user}
+          previewNextStepCallback={previewNextStepCallback}
+        />
       )}
       {showShareModal && (
         <ShareModal
@@ -114,9 +129,13 @@ CandidateNewWrapper.propTypes = {
   candidate: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  endorseCallback: PropTypes.func,
+  supportCallback: PropTypes.func,
+  removeSupportCallback: PropTypes.func,
   showPreviewModal: PropTypes.bool,
   showShareModal: PropTypes.bool,
+  isUserSupportCandidate: PropTypes.bool,
+  previewNextStepCallback: PropTypes.func,
+  candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default CandidateNewWrapper;

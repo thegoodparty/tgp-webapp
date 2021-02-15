@@ -64,9 +64,9 @@ const SupportersProgressBar = ({
   showSuffix = true,
   fullWidth = false,
 }) => {
-  let progress = 3;
+  let progress = 0;
   if (peopleSoFar && votesNeeded) {
-    progress = 3 + (peopleSoFar * 100) / votesNeeded;
+    progress =  (peopleSoFar * 100) / votesNeeded;
   }
   if (progress > 100) {
     progress = 100;

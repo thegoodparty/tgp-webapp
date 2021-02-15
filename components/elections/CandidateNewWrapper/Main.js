@@ -6,54 +6,35 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PurpleButton } from 'components/shared/buttons';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import NotFound from 'containers/shared/NotFoundPage';
 import ReactPlayer from 'react-player/lazy';
+
+import NotFound from 'containers/shared/NotFoundPage';
+import { PurpleButton } from 'components/shared/buttons';
+
 import ProfileInfo from './ProfileInfo';
 import { H3, H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
 import ComparedCandidateCarousel from './ComparedCandidateCarousel';
 import RecentlyJoined from './RecentlyJoined';
+import TopQuestions from '../../shared/TopQuestions';
+import SupportButton from './SupportButton';
 const ShareIconPurple = '/images/purple-share.svg';
 const HeartIconWhite = '/images/white-heart.svg';
-const SectionWrapper = styled.div`
-  margin-top: 64px;
-  span.carousel-prev {
-    position: absolute;
-    height: 100%;
-    left: 0;
-    cursor: pointer;
-    z-index: 1000;
-    img {
-      margin-top: 180px;
-    }
-  }
-  span.carousel-next {
-    position: absolute;
-    height: 100%;
-    right: -29px;
-    cursor: pointer;
-    z-index: 1000;
-    img {
-      margin-top: 180px;
-    }
-  }
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    padding-left: 18px;
-    padding-right: 18px;
-    span.carousel-next {
-      right: -19px;
-    }
-    span.carousel-prev {
-      left: 10px;
-    }
+
+const Padder = styled.div`
+  padding: 0 18px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0 36px;
   }
 `;
 
+const SectionWrapper = styled.div`
+  margin-top: 48px;
+`;
+
 const CampaignSummaryHeadLine = styled(H1)`
-  margin-top: 64px;
   color: ${({ theme }) => theme.colors.gray4};
   font-weight: 800;
 `;
@@ -61,6 +42,8 @@ const CampaignSummaryHeadLine = styled(H1)`
 const SectionHeader = styled(Body19)`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.gray4};
+  margin-bottom: 18px;
+
   &.center {
     color: ${({ theme }) => theme.colors.gray70};
     text-align: center;
@@ -69,14 +52,36 @@ const SectionHeader = styled(Body19)`
     font-size: 16px;
     font-weight: normal;
   }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-bottom: 24px;
+  }
 `;
 
 const SectionContent = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
 
+const Support = styled(Body11)`
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.gray9};
+`;
+
 const InnerButton = styled.div`
-  font-size: 14px;
+  font-size: 11px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 16px;
+  }
+`;
+
+const LargeOnly = styled.span`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: inline;
+  }
 `;
 
 const Img = styled.img`
@@ -91,9 +96,6 @@ const Img = styled.img`
 `;
 const SocialLink = styled.a`
   margin-right: 25px;
-  img {
-    margin-top: 15px;
-  }
 `;
 const HowTo = styled.div`
   padding-right: 90px;
@@ -110,9 +112,27 @@ const HowTo = styled.div`
     }
   }
 `;
+
 const YoutubePlayer = styled(ReactPlayer)`
   width: unset !important;
 `;
+
+const YoutubePlayerWrapper = styled.div`
+  [data-jodit_iframe_wrapper] {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0 !important;
+    width: 100% !important;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+`;
+
 const HowToTitle = styled(H3)`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.purple};
@@ -128,7 +148,14 @@ const UpdatedBy = styled(Body11)`
   font-size: 16px;
   margin-bottom: 12px;
 `;
-function MainWrapper({ candidate, endorseCallback }) {
+function MainWrapper({
+  candidate,
+  articles,
+  supportCallback,
+  isUserSupportCandidate,
+  removeSupportCallback,
+  candidateSupports,
+}) {
   if (!candidate) {
     return <NotFound />;
   }
@@ -147,13 +174,18 @@ function MainWrapper({ candidate, endorseCallback }) {
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
   }
+  const city = race?.includes('Mayor of')
+    ? `${race.replace('Mayor of', '')} city hall`
+    : race;
   return (
     <>
       {heroVideo && (
-        <YoutubePlayer
-          url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
-          playing={false}
-        />
+        <YoutubePlayerWrapper>
+          <YoutubePlayer
+            url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
+            playing={false}
+          />
+        </YoutubePlayerWrapper>
       )}
       <Hidden smUp>
         <div
@@ -167,142 +199,159 @@ function MainWrapper({ candidate, endorseCallback }) {
         />
         <ProfileInfo candidate={candidate} isMobile />
       </Hidden>
-      <SectionWrapper style={{ marginTop: !heroVideo && 0 }}>
-        <CampaignSummaryHeadLine style={{ marginTop: !heroVideo && 0 }}>
-          Help {firstName} {lastName} take back {race}
-        </CampaignSummaryHeadLine>
-        <SectionContent dangerouslySetInnerHTML={{ __html: campaignSummary }} />
-      </SectionWrapper>
-      <SectionWrapper>
-        <SectionHeader>About</SectionHeader>
-        <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
-      </SectionWrapper>
-      <SectionWrapper style={{ marginRight: 30, position: 'relative' }}>
-        <SectionHeader>Compare Candidates</SectionHeader>
-        <ComparedCandidateCarousel candidates={comparedCandidates.candidates} />
-      </SectionWrapper>
-      <SectionWrapper>
-        <Grid container>
-          <Grid item xs={6}>
-            <PurpleButton fullWidth className="outline">
-              <InnerButton>
-                <Img src={ShareIconPurple} alt="share" />
-                <span>SHARE</span>
-              </InnerButton>
-            </PurpleButton>
-          </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={5}>
-            <PurpleButton fullWidth onClick={endorseCallback}>
-              <InnerButton>
-                <Img src={HeartIconWhite} alt="share" />
-                <span>ENDORSE</span>
-              </InnerButton>
-            </PurpleButton>
-          </Grid>
-        </Grid>
-      </SectionWrapper>
-      <SectionWrapper>
-        <SectionHeader>Connect with {firstName}</SectionHeader>
-        <div>
-          {facebook && (
-            <SocialLink href={facebook}>
-              <img
-                src="/images/icons/facebook-icon.svg"
-                alt="facebook"
-                rel="nofollow"
-                target="_blank"
-              />
-            </SocialLink>
-          )}
-          {twitter && (
-            <SocialLink href={twitter}>
-              <img
-                src="/images/icons/twitter-icon.svg"
-                alt="twitter"
-                rel="nofollow"
-                target="_blank"
-              />
-            </SocialLink>
-          )}
-        </div>
-      </SectionWrapper>
-      <SectionWrapper>
-        <SectionHeader>Updates({updates.length})</SectionHeader>
-        {updates.map((update, index) => (
-          <React.Fragment key={index}>
-            <UpdatedDate>August 4, 2020</UpdatedDate>
-            <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
-            <SectionContent
-              dangerouslySetInnerHTML={{ __html: update }}
-              style={{ marginBottom: 20 }}
-            />
-          </React.Fragment>
-        ))}
-        <div style={{ textAlign: 'center' }}>
-          <PurpleButton
-            className="outline"
-            style={{ paddingRight: 60, paddingLeft: 60 }}
+      <Padder>
+        <SectionWrapper style={{ marginTop: heroVideo ? '48px' : 0 }}>
+          <CampaignSummaryHeadLine
+            style={{ marginTop: heroVideo ? '64px' : 0 }}
           >
-            <InnerButton>
-              <span>READ MORE UPDATES</span>
-            </InnerButton>
-          </PurpleButton>
-        </div>
-      </SectionWrapper>
-      <Hidden smUp>
-        <SectionWrapper>
-          <RecentlyJoined />
+            Help {firstName} {lastName} take back {city}
+          </CampaignSummaryHeadLine>
+          <SectionContent
+            dangerouslySetInnerHTML={{ __html: campaignSummary }}
+          />
         </SectionWrapper>
-      </Hidden>
-      <SectionWrapper>
-        <SectionHeader className="center">
-          How The Good Party Works <br />
-          <span>We make votes matter more than money</span>
-        </SectionHeader>
-        <HowTo>
+        <SectionWrapper>
+          <SectionHeader>About</SectionHeader>
+          <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
+        </SectionWrapper>
+        <SectionWrapper>
+          <SectionHeader>Compare Candidates</SectionHeader>
+          <ComparedCandidateCarousel
+            candidates={comparedCandidates.candidates}
+          />
+        </SectionWrapper>
+
+        <SectionWrapper>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <SupportButton
+                isUserSupportCandidate={isUserSupportCandidate}
+                removeSupportCallback={removeSupportCallback}
+                supportCallback={supportCallback}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <PurpleButton fullWidth className="outline">
+                <InnerButton>
+                  <Img src={ShareIconPurple} alt="share" />
+                  <span>
+                    SHARE <LargeOnly>CAMPAIGN</LargeOnly>
+                  </span>
+                </InnerButton>
+              </PurpleButton>
+            </Grid>
+          </Grid>
+        </SectionWrapper>
+        <SectionWrapper>
+          <SectionHeader>Connect with {firstName}</SectionHeader>
           <div>
-            <img
-              src="/images/thank-you.png"
-              alt="thank-you"
-              width="100%"
-              height="100%"
-            />
-            <HowToTitle>
-              {' '}
-              See Good Candidates challenging THE status quo
-            </HowToTitle>
+            {facebook && (
+              <SocialLink href={facebook}>
+                <img
+                  src="/images/icons/facebook-icon.svg"
+                  alt="facebook"
+                  rel="nofollow"
+                  target="_blank"
+                />
+              </SocialLink>
+            )}
+            {twitter && (
+              <SocialLink href={twitter}>
+                <img
+                  src="/images/icons/twitter-icon.svg"
+                  alt="twitter"
+                  rel="nofollow"
+                  target="_blank"
+                />
+              </SocialLink>
+            )}
           </div>
-          <div>
-            <img
-              src="/images/slide12.png"
-              alt="thank-you"
-              width="100%"
-              height="100%"
-            />
-            <HowToTitle>
-              {' '}
-              Add your vote to their crowd-voting campaigns
-            </HowToTitle>
-          </div>
-          <div>
-            <img
-              src="/images/slide13.png"
-              alt="thank-you"
-              width="100%"
-              height="100%"
-            />
-            <HowToTitle> spread the word and if they can win, vote!</HowToTitle>
-          </div>
-        </HowTo>
-      </SectionWrapper>
+        </SectionWrapper>
+        <SectionWrapper>
+          <SectionHeader>Updates({updates.length})</SectionHeader>
+          {updates.map((update, index) => (
+            <YoutubePlayerWrapper key={index}>
+              <UpdatedDate>August 4, 2020</UpdatedDate>
+              <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
+              <SectionContent
+                dangerouslySetInnerHTML={{ __html: update }}
+                style={{ marginBottom: 20 }}
+              />
+            </YoutubePlayerWrapper>
+          ))}
+          {/*<div style={{ textAlign: 'center' }}>*/}
+          {/*  <PurpleButton*/}
+          {/*    className="outline"*/}
+          {/*    style={{ paddingRight: 60, paddingLeft: 60 }}*/}
+          {/*  >*/}
+          {/*    <InnerButton>*/}
+          {/*      <span>READ MORE UPDATES</span>*/}
+          {/*    </InnerButton>*/}
+          {/*  </PurpleButton>*/}
+          {/*</div>*/}
+        </SectionWrapper>
+        <Hidden smUp>
+          <SectionWrapper>
+            <RecentlyJoined candidateSupports={candidateSupports} />
+          </SectionWrapper>
+        </Hidden>
+        {/*<SectionWrapper>*/}
+        {/*  <SectionHeader className="center">*/}
+        {/*    How The Good Party Works <br />*/}
+        {/*    <span>We make votes matter more than money</span>*/}
+        {/*  </SectionHeader>*/}
+          {/*<HowTo>*/}
+          {/*  <div>*/}
+          {/*    <img*/}
+          {/*      src="/images/thank-you.png"*/}
+          {/*      alt="thank-you"*/}
+          {/*      width="100%"*/}
+          {/*      height="100%"*/}
+          {/*    />*/}
+          {/*    <HowToTitle>*/}
+          {/*      {' '}*/}
+          {/*      See Good Candidates challenging THE status quo*/}
+          {/*    </HowToTitle>*/}
+          {/*  </div>*/}
+          {/*  <div>*/}
+          {/*    <img*/}
+          {/*      src="/images/slide12.png"*/}
+          {/*      alt="thank-you"*/}
+          {/*      width="100%"*/}
+          {/*      height="100%"*/}
+          {/*    />*/}
+          {/*    <HowToTitle>*/}
+          {/*      {' '}*/}
+          {/*      Add your vote to their crowd-voting campaigns*/}
+          {/*    </HowToTitle>*/}
+          {/*  </div>*/}
+          {/*  <div>*/}
+          {/*    <img*/}
+          {/*      src="/images/slide13.png"*/}
+          {/*      alt="thank-you"*/}
+          {/*      width="100%"*/}
+          {/*      height="100%"*/}
+          {/*    />*/}
+          {/*    <HowToTitle>*/}
+          {/*      {' '}*/}
+          {/*      spread the word and if they can win, vote!*/}
+          {/*    </HowToTitle>*/}
+          {/*  </div>*/}
+          {/*</HowTo>*/}
+        {/*</SectionWrapper>*/}
+        <TopQuestions articles={articles} />
+      </Padder>
     </>
   );
 }
 
 MainWrapper.propTypes = {
   candidate: PropTypes.object,
-  endorseCallback: PropTypes.func,
+  supportCallback: PropTypes.func,
+  removeSupportCallback: PropTypes.func,
+  articles: PropTypes.array,
+  isUserSupportCandidate: PropTypes.bool,
+  candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default MainWrapper;

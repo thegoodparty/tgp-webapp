@@ -102,10 +102,10 @@ function AdminAddCandidateWrapper({
     candidate?.updates ? candidate.updates : [],
   );
 
-  const onChangeField = (key, value) => {
+  const onChangeField = (key, value, type = 'text') => {
     setFormState({
       ...formState,
-      [key]: value,
+      [key]: type === 'number' ? parseInt(value, 10) : value,
     });
   };
 
@@ -216,7 +216,14 @@ function AdminAddCandidateWrapper({
                 name={field.label}
                 variant="outlined"
                 value={formState[field.key]}
-                onChange={e => onChangeField(field.key, e.target.value)}
+                type={field.initialValue === 0 ? 'number' : 'text'}
+                onChange={e =>
+                  onChangeField(
+                    field.key,
+                    e.target.value,
+                    field.initialValue === 0 ? 'number' : 'text',
+                  )
+                }
               />
             )}
           </React.Fragment>

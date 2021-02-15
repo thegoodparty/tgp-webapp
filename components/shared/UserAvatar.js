@@ -5,7 +5,7 @@ import { getInitials } from 'helpers/userHelper';
 import { Body14, H1 } from './typogrophy';
 
 const Wrapper = styled(Body14)`
-  min-height: 80px;
+  min-height: 60px;
   display: flex;
   align-items: center;
 `;
@@ -22,14 +22,14 @@ const Avatar = styled.div`
     width: 50px;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      height: 80px;
-      width: 80px;
+      height: 60px;
+      width: 60px;
     }
   }
 
   &.large {
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
       height: 120px;
@@ -56,8 +56,8 @@ const UserInitials = styled(Body14)`
     font-size: 18px;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      height: 80px;
-      width: 80px;
+      height: 60px;
+      width: 60px;
       font-size: 24px;
     }
   }
@@ -65,8 +65,8 @@ const UserInitials = styled(Body14)`
 
 const LargeUserInitials = styled(H1)`
   cursor: pointer;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
