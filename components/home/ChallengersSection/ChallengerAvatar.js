@@ -44,7 +44,7 @@ const PartyIcon = styled.img`
     left: -5px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isFull }) => {
+const ChallengerAvatar = ({ avatar, party, isFull, afterLoad = () => { } }) => {
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -58,11 +58,12 @@ const ChallengerAvatar = ({ avatar, party, isFull }) => {
   return (
     <ChallengerAvatarWrapper className={isFull && 'full'}>
       <ImageWrapper>
-        <LazyLoadImage
+        <img
           src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
           alt=""
           width="100%"
           height="100%"
+          afterLoad={afterLoad}
         />
       </ImageWrapper>
       {PartyImg && (
@@ -79,6 +80,7 @@ ChallengerAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
   isFull: PropTypes.bool,
+  afterLoad: PropTypes.func,
 };
 
 export default ChallengerAvatar;

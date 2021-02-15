@@ -11,17 +11,13 @@ import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Hidden from '@material-ui/core/Hidden';
+import Typography from '@material-ui/core/Typography';
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
 
 import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
-import RecentlyJoined from './RecentlyJoined';
-
-const ShareIconPurple = '/images/purple-share.svg';
-const HeartIconWhite = '/images/white-heart.svg';
 
 const ProfileInfoWrapper = styled.div`
   background: #ffffff;
@@ -29,14 +25,10 @@ const ProfileInfoWrapper = styled.div`
   box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
   padding: 24px 24px 32px 24px;
   text-align: center;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 40px;
-    box-shadow: none;
-  }
-  @media only screen and (max-width: 500px) {
-    margin-top: 77px;
-    box-shadow: none;
-  }
+  margin-top: 40px;
+  box-shadow: none;
+  width: 340px;
+  height: 400px;
 `;
 
 const CandidateName = styled(Body19)`
@@ -45,12 +37,10 @@ const CandidateName = styled(Body19)`
   margin-top: 12px;
   margin-bottom: 10px;
   font-weight: 800;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 16px;
-  }
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 16px;
 `;
 
 const PartyName = styled(Body11)`
@@ -58,12 +48,10 @@ const PartyName = styled(Body11)`
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 8px;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 11px;
-  }
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 11px;
 `;
 
 const RaceName = styled(Body11)`
@@ -71,12 +59,10 @@ const RaceName = styled(Body11)`
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 24px;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 11px;
-  }
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: left;
+  font-size: 11px;
 `;
 
 const LikelyVoters = styled(Body9)`
@@ -87,49 +73,46 @@ const LikelyVoters = styled(Body9)`
     font-weight: 600;
   }
 `;
-
-const Img = styled.img`
-  top: 4px;
-  position: relative;
-  height: 16px;
-  margin-right: 10px;
-
-  &.heart {
-    top: 4px;
-    width: 24px;
-  }
-`;
-
 const InnerButton = styled.div`
   font-size: 14px;
 `;
 
-const EndorsementDescription = styled(Body11)`
-  margin-top: 12px;
-  color: ${({ theme }) => theme.colors.gray7};
-`;
-
 const AvatarWrapper = styled(Grid)`
   && {
-    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-      margin-bottom: 50px;
-      align-items: center;
-    }
+    margin-bottom: 20px;
+    align-items: center;
   }
 `;
 const NameWrapper = styled(Grid)`
   && {
-    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-      padding-left: 20px;
-      & > div {
-        color: #fff;
-        line-height: 25px;
-      }
-      z-index: 1000;
-    }
+    padding-left: 15px;
+    z-index: 1000;
   }
 `;
-function ProfileInfo({ candidate, isMobile, endorseCallback }) {
+const HelperText = styled(Typography)`
+  && {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+    color: #767676;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+`;
+const WrapperTitle = styled(Typography)`
+  && {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 23px;
+    line-height: 30px;
+    /* identical to box height, or 130% */
+    color: #292936;
+    margin-bottom: 15px;
+  }
+  
+`
+function ProfileInfo({ candidate, shareImageCallback }) {
   console.log('cand', candidate);
   const {
     firstName,
@@ -141,24 +124,35 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
     votesNeeded,
   } = candidate;
   useEffect(() => {
+    afterLoad();
+  }, [])
+  const afterLoad = () => {
     htmlToImage
       .toPng(document.getElementById('profile-info'))
       .then(function (dataUrl) {
         let img = new Image();
         img.src = dataUrl;
+        console.log(dataUrl);
         document.body.appendChild(img);
+        shareImageCallback({ ...candidate, imageBase64: dataUrl });
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
       });
-  }, []);
+  }
   return (
     <ProfileInfoWrapper id="profile-info">
-      <AvatarWrapper container>
-        <Grid item xs={3} sm={12}>
-          <ChallengerAvatar avatar={image} party={party} isFull={isMobile} />
+      <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
+      <AvatarWrapper container alignItems="center">
+        <Grid item sm={3}>
+          <ChallengerAvatar
+            avatar={image}
+            party={party}
+            isFull={true}
+            afterLoad={afterLoad}
+          />
         </Grid>
-        <NameWrapper item xs={9} sm={12}>
+        <NameWrapper item xs={9}>
           <CandidateName>
             {firstName} {lastName}
           </CandidateName>
@@ -166,6 +160,7 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
           <RaceName>{race}</RaceName>
         </NameWrapper>
       </AvatarWrapper>
+      <HelperText>Crowd-voting campaign stats, so far:</HelperText>
       <Grid container>
         <Grid row xs={6}>
           <LikelyVoters>
@@ -184,38 +179,20 @@ function ProfileInfo({ candidate, isMobile, endorseCallback }) {
         peopleSoFar={900}
         fullWidth
       />
-
-      <Box style={{ marginTop: 24 }}>
-        <PurpleButton fullWidth className="outline">
-          <InnerButton>
-            <Img src={ShareIconPurple} alt="share" />
-            <span>SHARE</span>
-          </InnerButton>
-        </PurpleButton>
-      </Box>
       <Box style={{ marginTop: 8 }}>
-        <PurpleButton fullWidth onClick={endorseCallback}>
+        <PurpleButton fullWidth>
           <InnerButton>
-            <Img src={HeartIconWhite} alt="share" />
-            <span>ENDORSE</span>
+            <span>Join Me</span>
           </InnerButton>
         </PurpleButton>
       </Box>
-      <EndorsementDescription>
-        Endorsements are a good way to show and grow real grassroots support for
-        a candidate. <a>Read more</a>
-      </EndorsementDescription>
-      <Hidden xsDown>
-        <RecentlyJoined />
-      </Hidden>
     </ProfileInfoWrapper>
   );
 }
 
 ProfileInfo.propTypes = {
   candidate: PropTypes.object,
-  isMobile: PropTypes.bool,
-  endorseCallback: PropTypes.func,
+  shareImageCallback: PropTypes.func,
 };
 
 export default ProfileInfo;

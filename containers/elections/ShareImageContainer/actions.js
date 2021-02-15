@@ -12,11 +12,6 @@ const loadCandidateActionSuccess = candidate => ({
   candidate,
 });
 
-const shareImageAction = candidate => ({
-  type: types.SHARE_IMAGE,
-  candidate,
-});
-
 const loadCandidateActionError = error => ({
   type: types.LOAD_CANDIDATE_ERROR,
   error,
@@ -26,5 +21,4 @@ export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
   loadCandidateActionError,
-  shareImageAction,
 };

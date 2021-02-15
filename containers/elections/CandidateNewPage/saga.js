@@ -19,7 +19,19 @@ function* loadCandidate(action) {
   }
 }
 
+function* shareImage(action) {
+  try {
+    const api = tgpApi.shareImage;
+    const { candidate } = action;
+    const payload = { candidate };
+    yield call(requestHelper, api, payload);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
-  let action = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
+  yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
+  yield takeLatest(types.SHARE_IMAGE, shareImage)
 }
