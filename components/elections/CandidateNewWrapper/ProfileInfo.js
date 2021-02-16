@@ -12,6 +12,10 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
+<<<<<<< HEAD
+=======
+import Link from 'next/link';
+>>>>>>> 887072a82f72cf8e4351dffca28008c6fcc1c019
 
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
@@ -22,6 +26,7 @@ import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
+import ShareButton from './ShareButton';
 
 const ShareIconPurple = '/images/purple-share.svg';
 
@@ -134,7 +139,10 @@ const NameWrapper = styled(Grid)`
   }
 `;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 887072a82f72cf8e4351dffca28008c6fcc1c019
 function ProfileInfo({
   candidate,
   isMobile,
@@ -169,6 +177,12 @@ function ProfileInfo({
     );
 
   const supportCount = candidateSupports?.length || 0;
+
+  let shareLink = '/';
+  if (typeof window !== 'undefined') {
+    shareLink = `${window.location.pathname}?share=true`;
+  }
+
   return (
     <WrapperElement>
       <ProfileInfoWrapper>
@@ -207,12 +221,7 @@ function ProfileInfo({
           fullWidth
         />
         <Box style={{ marginTop: 24 }}>
-          <PurpleButton fullWidth className="outline">
-            <InnerButton>
-              <Img src={ShareIconPurple} alt="share" />
-              <span>SHARE CAMPAIGN</span>
-            </InnerButton>
-          </PurpleButton>
+          <ShareButton />
         </Box>
         <Box style={{ marginTop: 8 }}>
           <SupportButton
