@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
-import { IoMdCloseCircleOutline } from 'react-icons/io';
+import Link from 'next/link';
 
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
@@ -22,9 +22,9 @@ import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
+import ShareButton from './ShareButton';
 
 const ShareIconPurple = '/images/purple-share.svg';
-const HeartIconWhite = '/images/white-heart.svg';
 
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
@@ -135,20 +135,6 @@ const NameWrapper = styled(Grid)`
   }
 `;
 
-const Support = styled(Body11)`
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.colors.gray9};
-`;
-
-const GrayLogo = styled.img`
-  height: 16px;
-  width: auto;
-  margin-right: 6px;
-`;
-
 function ProfileInfo({
   candidate,
   isMobile,
@@ -183,6 +169,12 @@ function ProfileInfo({
     );
 
   const supportCount = candidateSupports?.length || 0;
+
+  let shareLink = '/';
+  if (typeof window !== 'undefined') {
+    shareLink = `${window.location.pathname}?share=true`;
+  }
+
   console.log('cand', candidate);
   return (
     <WrapperElement>
@@ -222,12 +214,7 @@ function ProfileInfo({
           fullWidth
         />
         <Box style={{ marginTop: 24 }}>
-          <PurpleButton fullWidth className="outline">
-            <InnerButton>
-              <Img src={ShareIconPurple} alt="share" />
-              <span>SHARE CAMPAIGN</span>
-            </InnerButton>
-          </PurpleButton>
+          <ShareButton />
         </Box>
         <Box style={{ marginTop: 8 }}>
           <SupportButton

@@ -12,16 +12,14 @@ import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
 
 import NotFound from 'containers/shared/NotFoundPage';
-import { PurpleButton } from 'components/shared/buttons';
 
 import ProfileInfo from './ProfileInfo';
-import { H3, H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
+import { H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
 import ComparedCandidateCarousel from './ComparedCandidateCarousel';
 import RecentlyJoined from './RecentlyJoined';
 import TopQuestions from '../../shared/TopQuestions';
 import SupportButton from './SupportButton';
-const ShareIconPurple = '/images/purple-share.svg';
-const HeartIconWhite = '/images/white-heart.svg';
+import ShareButton from './ShareButton';
 
 const Padder = styled.div`
   padding: 0 18px;
@@ -62,55 +60,8 @@ const SectionContent = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
 
-const Support = styled(Body11)`
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.colors.gray9};
-`;
-
-const InnerButton = styled.div`
-  font-size: 11px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 16px;
-  }
-`;
-
-const LargeOnly = styled.span`
-  display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    display: inline;
-  }
-`;
-
-const Img = styled.img`
-  top: 4px;
-  position: relative;
-  height: 16px;
-  margin-right: 10px;
-  &.heart {
-    top: 4px;
-    width: 24px;
-  }
-`;
 const SocialLink = styled.a`
   margin-right: 25px;
-`;
-const HowTo = styled.div`
-  padding-right: 90px;
-  padding-left: 90px;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    padding-right: 18px;
-    padding-left: 18px;
-  }
-  & > div {
-    text-align: center;
-    margin-top: 50px;
-    img {
-      padding-bottom: 20px;
-    }
-  }
 `;
 
 const YoutubePlayer = styled(ReactPlayer)`
@@ -133,10 +84,6 @@ const YoutubePlayerWrapper = styled.div`
   }
 `;
 
-const HowToTitle = styled(H3)`
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.purple};
-`;
 const UpdatedDate = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray3};
   font-size: 19px;
@@ -231,14 +178,7 @@ function MainWrapper({
               />
             </Grid>
             <Grid item xs={6}>
-              <PurpleButton fullWidth className="outline">
-                <InnerButton>
-                  <Img src={ShareIconPurple} alt="share" />
-                  <span>
-                    SHARE <LargeOnly>CAMPAIGN</LargeOnly>
-                  </span>
-                </InnerButton>
-              </PurpleButton>
+              <ShareButton />
             </Grid>
           </Grid>
         </SectionWrapper>
@@ -300,44 +240,44 @@ function MainWrapper({
         {/*    How The Good Party Works <br />*/}
         {/*    <span>We make votes matter more than money</span>*/}
         {/*  </SectionHeader>*/}
-          {/*<HowTo>*/}
-          {/*  <div>*/}
-          {/*    <img*/}
-          {/*      src="/images/thank-you.png"*/}
-          {/*      alt="thank-you"*/}
-          {/*      width="100%"*/}
-          {/*      height="100%"*/}
-          {/*    />*/}
-          {/*    <HowToTitle>*/}
-          {/*      {' '}*/}
-          {/*      See Good Candidates challenging THE status quo*/}
-          {/*    </HowToTitle>*/}
-          {/*  </div>*/}
-          {/*  <div>*/}
-          {/*    <img*/}
-          {/*      src="/images/slide12.png"*/}
-          {/*      alt="thank-you"*/}
-          {/*      width="100%"*/}
-          {/*      height="100%"*/}
-          {/*    />*/}
-          {/*    <HowToTitle>*/}
-          {/*      {' '}*/}
-          {/*      Add your vote to their crowd-voting campaigns*/}
-          {/*    </HowToTitle>*/}
-          {/*  </div>*/}
-          {/*  <div>*/}
-          {/*    <img*/}
-          {/*      src="/images/slide13.png"*/}
-          {/*      alt="thank-you"*/}
-          {/*      width="100%"*/}
-          {/*      height="100%"*/}
-          {/*    />*/}
-          {/*    <HowToTitle>*/}
-          {/*      {' '}*/}
-          {/*      spread the word and if they can win, vote!*/}
-          {/*    </HowToTitle>*/}
-          {/*  </div>*/}
-          {/*</HowTo>*/}
+        {/*<HowTo>*/}
+        {/*  <div>*/}
+        {/*    <img*/}
+        {/*      src="/images/thank-you.png"*/}
+        {/*      alt="thank-you"*/}
+        {/*      width="100%"*/}
+        {/*      height="100%"*/}
+        {/*    />*/}
+        {/*    <HowToTitle>*/}
+        {/*      {' '}*/}
+        {/*      See Good Candidates challenging THE status quo*/}
+        {/*    </HowToTitle>*/}
+        {/*  </div>*/}
+        {/*  <div>*/}
+        {/*    <img*/}
+        {/*      src="/images/slide12.png"*/}
+        {/*      alt="thank-you"*/}
+        {/*      width="100%"*/}
+        {/*      height="100%"*/}
+        {/*    />*/}
+        {/*    <HowToTitle>*/}
+        {/*      {' '}*/}
+        {/*      Add your vote to their crowd-voting campaigns*/}
+        {/*    </HowToTitle>*/}
+        {/*  </div>*/}
+        {/*  <div>*/}
+        {/*    <img*/}
+        {/*      src="/images/slide13.png"*/}
+        {/*      alt="thank-you"*/}
+        {/*      width="100%"*/}
+        {/*      height="100%"*/}
+        {/*    />*/}
+        {/*    <HowToTitle>*/}
+        {/*      {' '}*/}
+        {/*      spread the word and if they can win, vote!*/}
+        {/*    </HowToTitle>*/}
+        {/*  </div>*/}
+        {/*</HowTo>*/}
         {/*</SectionWrapper>*/}
         <TopQuestions articles={articles} />
       </Padder>

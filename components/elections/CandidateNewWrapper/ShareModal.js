@@ -225,14 +225,20 @@ const ShareModal = ({ candidate, user, message }) => {
     return <> </>;
   }
 
+  const cleanMessage = message === 'true' ? '' : message;
+
   const { firstName, lastName, race } = candidate;
-  const url = uuidUrl(user, window.location.origin + window.location.pathname, 'share=true');
-  console.log('url', url)
+  const url = uuidUrl(
+    user,
+    window.location.origin + window.location.pathname,
+    'share=true',
+  );
+  console.log('url', url);
   const encodedUrl = encodeURIComponent(url);
 
   const messageTitle = `Help ${firstName} ${lastName} take back ${race}.`;
   // const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
-  const messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${message}`;
+  const messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
 
   const canShare = typeof navigator !== 'undefined' && navigator.share;
   const nativeShare = () => {
