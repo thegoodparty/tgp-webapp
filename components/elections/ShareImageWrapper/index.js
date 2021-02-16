@@ -89,31 +89,26 @@ const NameWrapper = styled(Grid)`
     z-index: 1000;
   }
 `;
-const HelperText = styled(Typography)`
+const HelperText = styled(Body11)`
   && {
     font-style: normal;
     font-weight: 600;
-    font-size: 13px;
     line-height: 18px;
-    color: #767676;
+    color: ${({ theme }) => theme.colors.gray7};
     margin-bottom: 15px;
     text-align: center;
   }
 `;
-const WrapperTitle = styled(Typography)`
+const WrapperTitle = styled(Body19)`
   && {
     font-style: normal;
     font-weight: 800;
-    font-size: 23px;
     line-height: 30px;
-    /* identical to box height, or 130% */
     color: #292936;
     margin-bottom: 15px;
   }
-  
 `
 function ProfileInfo({ candidate, shareImageCallback }) {
-  console.log('cand', candidate);
   const {
     firstName,
     lastName,

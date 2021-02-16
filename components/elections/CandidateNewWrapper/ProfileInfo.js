@@ -5,15 +5,13 @@
  */
 
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import * as htmlToImage from 'html-to-image';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
-import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
@@ -26,7 +24,6 @@ import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
 
 const ShareIconPurple = '/images/purple-share.svg';
-const HeartIconWhite = '/images/white-heart.svg';
 
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
@@ -137,19 +134,6 @@ const NameWrapper = styled(Grid)`
   }
 `;
 
-const Support = styled(Body11)`
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.colors.gray9};
-`;
-
-const GrayLogo = styled.img`
-  height: 16px;
-  width: auto;
-  margin-right: 6px;
-`;
 
 function ProfileInfo({
   candidate,
@@ -185,7 +169,6 @@ function ProfileInfo({
     );
 
   const supportCount = candidateSupports?.length || 0;
-  console.log('cand', candidate);
   return (
     <WrapperElement>
       <ProfileInfoWrapper>
