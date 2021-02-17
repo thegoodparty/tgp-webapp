@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Image from 'next/image';
-import { InlineShareButtons } from 'sharethis-reactjs';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Body, Body11, Body13, H2 } from 'components/shared/typogrophy';
-import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
+import { Body11, Body13, H2 } from 'components/shared/typogrophy';
 import { uuidUrl } from 'helpers/userHelper';
 import AnalyticsService from 'services/AnalyticsService';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
@@ -16,17 +13,17 @@ import {
   IoIosLink,
   IoIosMail,
   IoLogoTwitter,
-  IoLogoInstagram,
+  // IoLogoInstagram,
   IoLogoReddit,
 } from 'react-icons/io';
 import { ImWhatsapp } from 'react-icons/im';
 import { FaSnapchatGhost, FaFacebookF } from 'react-icons/fa';
-import { SiTiktok } from 'react-icons/si';
-
-const CopyPasteIcon = '/images/icons/copy-paste.svg';
-const LinkIcon = '/images/icons/link-icon.svg';
-const SmsIcon = '/images/icons/sms-icon.svg';
-const ShareIcon = '/images/icons/share-icon.svg';
+// import { SiTiktok } from 'react-icons/si';
+//
+// const CopyPasteIcon = '/images/icons/copy-paste.svg';
+// const LinkIcon = '/images/icons/link-icon.svg';
+// const SmsIcon = '/images/icons/sms-icon.svg';
+// const ShareIcon = '/images/icons/share-icon.svg';
 
 const Wrapper = styled.div`
   border-radius: 8px;
@@ -228,11 +225,7 @@ const ShareModal = ({ candidate, user, message }) => {
   const cleanMessage = message === 'true' ? '' : message;
 
   const { firstName, lastName, race } = candidate;
-  const url = uuidUrl(
-    user,
-    window.location.origin + window.location.pathname,
-    'share=true',
-  );
+  const url = uuidUrl(user, window.location.origin + window.location.pathname);
   console.log('url', url);
   const encodedUrl = encodeURIComponent(url);
 
