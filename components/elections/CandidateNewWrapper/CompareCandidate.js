@@ -70,7 +70,10 @@ function ComparedCandidate({ candidate }) {
   delete comparedFactors.image;
   delete comparedFactors.website;
   const factors = Object.keys(comparedFactors);
-  const cleanParty = party ? party.charAt(0) : '';
+  let cleanParty = party ? party.charAt(0) : '';
+  if (party === 'Liberation') {
+    cleanParty = 'LI';
+  }
   return (
     <>
       <ChallengerAvatar party={cleanParty} avatar={image} />
