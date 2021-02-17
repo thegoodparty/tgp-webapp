@@ -9,23 +9,19 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 import { PurpleButton } from 'components/shared/buttons';
+import { Body13 } from '../../shared/typogrophy';
 
 const ShareIconPurple = '/images/purple-share.svg';
 
 const Img = styled.img`
-  top: 4px;
+  top: 2px;
   position: relative;
   height: 16px;
   margin-right: 10px;
-
-  &.heart {
-    top: 4px;
-    width: 24px;
-  }
 `;
 
-const InnerButton = styled.div`
-  font-size: 14px;
+const InnerButton = styled(Body13)`
+  color: ${({ theme }) => theme.colors.purple};
 `;
 
 function ShareButton() {
