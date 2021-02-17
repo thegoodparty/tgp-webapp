@@ -24,7 +24,7 @@ import ShareButton from './ShareButton';
 const Padder = styled.div`
   padding: 0 18px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 36px;
+    padding: 0;
   }
 `;
 
@@ -129,7 +129,7 @@ function MainWrapper({
       {heroVideo && (
         <YoutubePlayerWrapper>
           <YoutubePlayer
-            url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
+            url={`https://www.youtube.com/embed/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
             playing={false}
           />
         </YoutubePlayerWrapper>
