@@ -4,19 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import { PurpleButton } from 'components/shared/buttons';
+import Truncate from 'react-truncate';
+// import Box from '@material-ui/core/Box';
+// import { PurpleButton } from 'components/shared/buttons';
 import { Body9, Body11, Body13, Body19, Body } from '../../shared/typogrophy';
 const PeopleJoinedIconPurple = '/images/people-joined-purple.svg';
 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
 
-const InnerButton = styled.div`
-  font-size: 14px;
-`;
+// const InnerButton = styled.div`
+//   font-size: 14px;
+// `;
 
 const RecentActivity = styled.div`
   margin-top: 32px;
@@ -55,6 +56,22 @@ const RecentJoin = styled.div`
 `;
 function RecentlyJoined({ candidateSupports }) {
   const supporters = candidateSupports || [];
+  const [expanded, setExpanded] = useState(false);
+  const [truncated, setTruncated] = useState(false);
+
+  const lines = 3;
+
+  const handleTruncate = isTruncated => {
+    if (truncated !== isTruncated) {
+      setTruncated(isTruncated);
+    }
+  };
+
+  const toggleLines = e => {
+    e.preventDefault();
+
+    setExpanded(!expanded);
+  };
   return (
     <>
       <RecentActivity>
@@ -77,7 +94,32 @@ function RecentlyJoined({ candidateSupports }) {
           <div>
             <JoinName>{supporter.user}</JoinName>
             <JoinTime>{supporter.timeAgo}</JoinTime>
-            {supporter.message && <Message>{supporter.message}</Message>}
+            {supporter.message && (
+              <Message>
+                <Truncate
+                  lines={!expanded && lines}
+                  ellipsis={
+                    <span>
+                      ...{' '}
+                      <a href="#" onClick={toggleLines}>
+                        More
+                      </a>
+                    </span>
+                  }
+                  onTruncate={handleTruncate}
+                >
+                  {supporter.message}
+                </Truncate>
+                {!truncated && expanded && (
+                  <span>
+                    {' '}
+                    <a href="#" onClick={toggleLines}>
+                      Less
+                    </a>
+                  </span>
+                )}
+              </Message>
+            )}
           </div>
         </RecentJoin>
       ))}
