@@ -27,10 +27,10 @@ import AdminVoterizeList from '../AdminVoterizeList/Loadable';
 import NewCandidateList from '../AdminCandidateList/NewCandidateList';
 
 const Wrapper = styled.div`
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: row;
-  padding-top: 38px;
+  padding-top: 0;
 `;
 
 const LeftPanel = styled.div`

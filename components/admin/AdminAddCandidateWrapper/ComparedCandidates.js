@@ -47,15 +47,18 @@ const CropWrapper = styled.div`
   }
 `;
 
+const initialCriteria = ['image', 'name', 'party', 'website'];
+
 function ComparedCandidates({ candidate, candidatesCallback }) {
   const [candidates, setCandidates] = useState([
     {
       image: candidate ? candidate.image : '',
       name: candidate ? `${candidate.firstName} ${candidate.lastName}` : '',
+      website: candidate?.website || '',
       party: candidate ? candidate.party : '',
     },
   ]);
-  const [criteria, setCriteria] = useState(['image', 'name', 'party']);
+  const [criteria, setCriteria] = useState(initialCriteria);
   const [updateParent, setUpdateParent] = useState(false);
   const [uploadedImages, setUploadedImages] = useState({});
 
@@ -64,10 +67,21 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
       candidate?.comparedCandidates?.candidates &&
       candidate.comparedCandidates.candidates.length > 0
     ) {
-      setCriteria(Object.keys(candidate.comparedCandidates.candidates[0]));
+      const existingCriteria = Object.keys(
+        candidate.comparedCandidates.candidates[0],
+      );
+      const newCriteria = [...initialCriteria];
+      // insert website
+      existingCriteria.forEach(crit => {
+        if (!initialCriteria.includes(crit)) {
+          newCriteria.push(crit);
+        }
+      });
+      setCriteria(newCriteria);
       const compared = candidate.comparedCandidates.candidates;
       compared[0].name = `${candidate.firstName} ${candidate.lastName}`;
       compared[0].party = candidate.party;
+      compared[0].website = candidate.website || '';
       compared[0].image = candidate.image;
       setCandidates(compared);
     }
@@ -133,12 +147,15 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     setUpdateParent(true);
   };
 
+  console.log('criteria', criteria);
+  const disabledRows = 3;
+
   return (
     <Wrapper>
       {criteria.map((crit, index) => (
         <Grid container spacing={3}>
           <Grid item xs style={{ flex: 0 }}>
-            {index > 2 ? (
+            {index > disabledRows ? (
               <Delete>
                 <DeleteForeverIcon onClick={() => deleteCriteria(index)} />
               </Delete>
@@ -159,7 +176,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
               variant="outlined"
               value={crit}
               onChange={e => onChangeCriteria(e.target.value, index)}
-              disabled={index < 3}
+              disabled={index < disabledRows + 1}
             />
           </Grid>
           {candidates.map((cand, index2) => (
