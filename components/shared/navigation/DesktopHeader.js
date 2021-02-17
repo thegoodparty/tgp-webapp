@@ -7,7 +7,6 @@ import { Body14, Body12 } from '../typogrophy';
 import UserAvatar from '../UserAvatar';
 
 const Wrapper = styled.div`
-  position: fixed;
   height: 60px;
   top: 0;
   left: 0;
@@ -89,7 +88,7 @@ const AvatarWrapper = styled(Body14)`
 const LinkContainer = styled.div`
   display: flex;
 `;
-const DesktopHeader = ({ pathname, user, navigateCallback }) => {
+const DesktopHeader = ({ pathname, user}) => {
   const youRoute = !electionRoute && pathname?.includes('you');
   const electionRoute = pathname?.includes('elections');
   const partyRoute = !electionRoute && pathname?.includes('party');

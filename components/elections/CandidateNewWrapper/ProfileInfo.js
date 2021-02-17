@@ -27,11 +27,11 @@ const ScrollArea = styled.div`
   position: relative;
   top: 0;
   width: 416px;
-  margin-top: -85px;
+  margin-top: -25px;
 `;
 
 const Inner = styled.div`
-  padding-top: 85px;
+  padding-top: 25px;
 `;
 
 const ProfileInfoWrapper = styled.div`
