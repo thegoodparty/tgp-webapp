@@ -11,9 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
-import Link from 'next/link';
 
-import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
 import { kFormatter } from 'helpers/numberHelper';
 
@@ -23,8 +21,6 @@ import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
 import ShareButton from './ShareButton';
-
-const ShareIconPurple = '/images/purple-share.svg';
 
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
@@ -93,22 +89,6 @@ const LikelyVoters = styled(Body9)`
   }
 `;
 
-const Img = styled.img`
-  top: 4px;
-  position: relative;
-  height: 16px;
-  margin-right: 10px;
-
-  &.heart {
-    top: 4px;
-    width: 24px;
-  }
-`;
-
-const InnerButton = styled.div`
-  font-size: 14px;
-`;
-
 const EndorsementDescription = styled(Body11)`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.gray7};
@@ -170,10 +150,6 @@ function ProfileInfo({
 
   const supportCount = candidateSupports?.length || 0;
 
-  let shareLink = '/';
-  if (typeof window !== 'undefined') {
-    shareLink = `${window.location.pathname}?share=true`;
-  }
 
   console.log('cand', candidate);
   return (
