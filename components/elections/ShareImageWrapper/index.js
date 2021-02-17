@@ -1,6 +1,6 @@
 /**
  *
- * ProfileInfo
+ * ShareImage
  *
  */
 
@@ -19,7 +19,7 @@ import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 
-const ProfileInfoWrapper = styled.div`
+const ShareImageWrapper = styled.div`
   background: #ffffff;
   border-radius: 8px;
   box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
@@ -108,7 +108,7 @@ const WrapperTitle = styled(Body19)`
     margin-bottom: 15px;
   }
 `
-function ProfileInfo({ candidate, shareImageCallback }) {
+function ShareImage({ candidate, shareImageCallback }) {
   const {
     firstName,
     lastName,
@@ -132,7 +132,7 @@ function ProfileInfo({ candidate, shareImageCallback }) {
       });
   }
   return (
-    <ProfileInfoWrapper id="profile-info">
+    <ShareImageWrapper id="profile-info">
       <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
       <AvatarWrapper container alignItems="center">
         <Grid item sm={3}>
@@ -177,13 +177,13 @@ function ProfileInfo({ candidate, shareImageCallback }) {
           </InnerButton>
         </PurpleButton>
       </Box>
-    </ProfileInfoWrapper>
+    </ShareImageWrapper>
   );
 }
 
-ProfileInfo.propTypes = {
+ShareImage.propTypes = {
   candidate: PropTypes.object,
   shareImageCallback: PropTypes.func,
 };
 
-export default ProfileInfo;
+export default ShareImage;

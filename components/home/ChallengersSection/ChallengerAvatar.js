@@ -67,6 +67,8 @@ const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => { }}) => {
     PartyImg = '/images/icons/independent.png';
   } else if (party === 'L') {
     PartyImg = '/images/icons/libertarian.png';
+  } else if (party === 'LI') {
+    PartyImg = '/images/icons/liberation.png';
   } else if (party === 'P') {
     PartyImg = '/images/icons/progressive.png';
   }

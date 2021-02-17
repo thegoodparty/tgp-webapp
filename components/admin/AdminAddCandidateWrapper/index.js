@@ -47,6 +47,7 @@ const partyOptions = [
   { key: 'R', value: 'Republican' },
   { key: 'GP', value: 'Green Party' },
   { key: 'L', value: 'Libertarian' },
+  { key: 'LI', value: 'Liberation' },
   { key: 'I', value: 'Independent' },
 ];
 

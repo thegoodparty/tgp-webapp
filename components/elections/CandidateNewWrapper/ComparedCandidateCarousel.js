@@ -25,7 +25,7 @@ const StyledSlider = styled(Slider)`
 
 const PrevArrowElem = styled.div`
   left: calc(-50vw + 18px);
-  top: 70px;
+  top: 35px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     left: -280px;
     top: 150px;
@@ -33,15 +33,24 @@ const PrevArrowElem = styled.div`
   &.slick-disabled {
     display: none;
   }
+  &::before {
+    display: none;
+  }
 `;
 
 const NextArrowElem = styled.div`
-  top: 70px;
+  top: 35px;
+  &::before {
+    display: none;
+  }
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     top: 150px;
   }
   right: 0;
   &.slick-disabled {
+    display: none;
+  }
+  &::before {
     display: none;
   }
 `;

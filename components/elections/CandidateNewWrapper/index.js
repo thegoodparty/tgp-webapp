@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import articlesHelper from 'helpers/articlesHelper';
 import NotFound from 'containers/shared/NotFoundPage';
-import TopQuestions from 'components/shared/TopQuestions';
 import PageWrapper from '../../shared/PageWrapper';
 import ProfileInfo from './ProfileInfo';
 import Main from './Main';

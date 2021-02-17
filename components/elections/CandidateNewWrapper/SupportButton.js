@@ -12,7 +12,7 @@ import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import { PurpleButton } from 'components/shared/buttons';
 
-import { Body11 } from '../../shared/typogrophy';
+import { Body11, Body12, Body13 } from '../../shared/typogrophy';
 
 const HeartIconWhite = '/images/white-heart.svg';
 
@@ -28,9 +28,9 @@ const Img = styled.img`
   }
 `;
 
-const InnerButton = styled.div`
-  font-size: 14px;
+const InnerButton = styled(Body13)`
   text-align: center;
+  color: #fff;
 `;
 
 const AddName = styled.div`

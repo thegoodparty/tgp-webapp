@@ -12,12 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
-<<<<<<< HEAD
-=======
 import Link from 'next/link';
->>>>>>> 887072a82f72cf8e4351dffca28008c6fcc1c019
 
-import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
 import { kFormatter } from 'helpers/numberHelper';
 
@@ -28,18 +24,16 @@ import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
 import ShareButton from './ShareButton';
 
-const ShareIconPurple = '/images/purple-share.svg';
-
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
   position: relative;
   top: 0;
   width: 416px;
-  margin-top: -85px;
+  margin-top: -25px;
 `;
 
 const Inner = styled.div`
-  padding-top: 85px;
+  padding-top: 25px;
 `;
 
 const ProfileInfoWrapper = styled.div`
@@ -97,22 +91,6 @@ const LikelyVoters = styled(Body9)`
   }
 `;
 
-const Img = styled.img`
-  top: 4px;
-  position: relative;
-  height: 16px;
-  margin-right: 10px;
-
-  &.heart {
-    top: 4px;
-    width: 24px;
-  }
-`;
-
-const InnerButton = styled.div`
-  font-size: 14px;
-`;
-
 const EndorsementDescription = styled(Body11)`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.gray7};
@@ -165,23 +143,19 @@ function ProfileInfo({
     isMobile ? (
       <div>{children}</div>
     ) : (
-      <ScrollArea className="scroll-area">
-        <Sticky
-          boundaryElement=".scroll-area"
-          hideOnBoundaryHit={false}
-          dontUpdateHolderHeightWhenSticky
-        >
-          <Inner className="inner">{children}</Inner>
-        </Sticky>
-      </ScrollArea>
-    );
+        <ScrollArea className="scroll-area">
+          <Sticky
+            boundaryElement=".scroll-area"
+            hideOnBoundaryHit={false}
+            dontUpdateHolderHeightWhenSticky
+          >
+            <Inner className="inner">{children}</Inner>
+          </Sticky>
+        </ScrollArea>
+      );
 
   const supportCount = candidateSupports?.length || 0;
 
-  let shareLink = '/';
-  if (typeof window !== 'undefined') {
-    shareLink = `${window.location.pathname}?share=true`;
-  }
 
   return (
     <WrapperElement>
