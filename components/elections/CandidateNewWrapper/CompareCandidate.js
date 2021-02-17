@@ -71,7 +71,7 @@ function ComparedCandidate({ candidate }) {
   delete comparedFactors.website;
   const factors = Object.keys(comparedFactors);
   let cleanParty = party ? party.charAt(0) : '';
-  if (party === 'Liberation') {
+  if (party === 'Liberation' || party === 'LI') {
     cleanParty = 'LI';
   }
   return (
