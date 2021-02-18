@@ -57,7 +57,7 @@ const PartyIcon = styled.img`
   }
 `;
 const ChallengerAvatar = ({ avatar, party, isSmall }) => {
-  console.log('isSmall', isSmall);
+  console.log('ppp', party);
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -71,6 +71,8 @@ const ChallengerAvatar = ({ avatar, party, isSmall }) => {
     PartyImg = '/images/icons/liberation.png';
   } else if (party === 'P') {
     PartyImg = '/images/icons/progressive.png';
+  } else if (party === 'G' || party === 'GP') {
+    PartyImg = '/images/icons/green-party.png';
   }
   return (
     <ChallengerAvatarWrapper className={isSmall && 'small'}>
