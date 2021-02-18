@@ -52,7 +52,8 @@ const topics = {
   'TRANSPARENT BUDGETING': 'This is the TRANSPARENT BUDGETING tooltip data',
   'OFFICE OF COMMUNITY WEALTH BUILDING':
     'This is the OFFICE OF COMMUNITY WEALTH BUILDING tooltip data',
-  'UNIVERSAL HEALTHCARE': 'This is the UNIVERSAL HEALTHCARE tooltip data',
+  'UNIVERSAL HEALTHCARE':
+    'Access to health services for all people regardless of economic status or any other factor.',
   'LEGALIZE MARIJUANA': 'This is the LEGALIZE MARIJUANA tooltip data',
   'END CASH BAIL': 'This is the END CASH BAIL tooltip data',
 };
