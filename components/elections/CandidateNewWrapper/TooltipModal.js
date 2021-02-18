@@ -54,14 +54,13 @@ const topics = {
     'This is the OFFICE OF COMMUNITY WEALTH BUILDING tooltip data',
   'UNIVERSAL HEALTHCARE':
     'Access to health services for all people regardless of economic status or any other factor.',
-  'LEGALIZE MARIJUANA': 'This is the LEGALIZE MARIJUANA tooltip data',
+  'LEGALIZE MARIJUANA':
+    'Legalizing marijuana will create more jobs, reduce incarceration rates and end racial disparities in marijuana enforcement. ',
   'END CASH BAIL': 'This is the END CASH BAIL tooltip data',
 };
 
 function TooltipModal({ topic, closeModalCallback }) {
-  console.log('topic', topic);
   const text = topic ? topics[topic.toUpperCase()] : false;
-  console.log('topic', topic, text);
   return (
     <TgpDialog onClose={closeModalCallback} open={text}>
       <TopWrapper>
