@@ -72,6 +72,8 @@ const fields = [
   },
   { label: 'Facebook', key: 'facebook', initialValue: '' },
   { label: 'Twitter', key: 'twitter', initialValue: '' },
+  { label: 'TikTok', key: 'tiktok', initialValue: '' },
+  { label: 'Snap', key: 'snap', initialValue: '' },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
   {
