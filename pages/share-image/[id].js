@@ -11,7 +11,6 @@ export async function getServerSideProps(context) {
     const url = `${api.url}?id=${id}`;
     const res = await fetch(url);
     const candidate = await res.json();
-    console.log(candidate);
     return {
       props: {
         ssrState: {

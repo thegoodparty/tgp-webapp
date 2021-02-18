@@ -4,14 +4,12 @@
  *
  */
 
-
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
 
@@ -22,20 +20,16 @@ import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 const ShareImageWrapper = styled.div`
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
   padding: 24px 24px 32px 24px;
   text-align: center;
   margin-top: 40px;
   box-shadow: none;
   width: 340px;
-  height: 400px;
+  height: 500px;
 `;
 
 const CandidateName = styled(Body19)`
   color: ${({ theme }) => theme.colors.gray4};
-  text-align: center;
-  margin-top: 12px;
-  margin-bottom: 10px;
   font-weight: 800;
   margin-top: 0;
   margin-bottom: 0;
@@ -45,9 +39,7 @@ const CandidateName = styled(Body19)`
 
 const PartyName = styled(Body11)`
   color: ${({ theme }) => theme.colors.gray4};
-  text-align: center;
   text-transform: uppercase;
-  margin-bottom: 8px;
   margin-top: 0;
   margin-bottom: 0;
   text-align: left;
@@ -55,10 +47,7 @@ const PartyName = styled(Body11)`
 `;
 
 const RaceName = styled(Body11)`
-  color: ${({ theme }) => theme.colors.purple2};
-  text-align: center;
   text-transform: uppercase;
-  margin-bottom: 24px;
   margin-top: 0;
   margin-bottom: 0;
   text-align: left;
@@ -75,6 +64,7 @@ const LikelyVoters = styled(Body9)`
 `;
 const InnerButton = styled.div`
   font-size: 14px;
+  width: 100%;
 `;
 
 const AvatarWrapper = styled(Grid)`
@@ -107,7 +97,7 @@ const WrapperTitle = styled(Body19)`
     color: #292936;
     margin-bottom: 15px;
   }
-`
+`;
 function ShareImage({ candidate, shareImageCallback }) {
   const {
     firstName,
@@ -118,19 +108,33 @@ function ShareImage({ candidate, shareImageCallback }) {
     likelyVoters,
     votesNeeded,
   } = candidate;
+  // useEffect(() => {
+  //   htmlToImage
+  //     .toPng(document.getElementById('profile-info'))
+  //     .then(function(dataUrl) {
+  //       console.log('here');
+  //       const img = new Image();
+  //       img.src = dataUrl;
+  //       document.body.appendChild(img);
+  //       shareImageCallback({ ...candidate, imageBase64: dataUrl });
+  //     })
+  //     .catch(function(error) {
+  //       console.error('oops, something went wrong!', error);
+  //     });
+  // }, []);
   const afterLoad = () => {
     htmlToImage
       .toPng(document.getElementById('profile-info'))
-      .then(function (dataUrl) {
+      .then(function(dataUrl) {
         let img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
         shareImageCallback({ ...candidate, imageBase64: dataUrl });
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.error('oops, something went wrong!', error);
       });
-  }
+  };
   return (
     <ShareImageWrapper id="profile-info">
       <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
@@ -139,7 +143,7 @@ function ShareImage({ candidate, shareImageCallback }) {
           <ChallengerAvatar
             avatar={image}
             party={party}
-            isSmall={true}
+            isSmall
             afterLoad={afterLoad}
           />
         </Grid>
@@ -172,9 +176,7 @@ function ShareImage({ candidate, shareImageCallback }) {
       />
       <Box style={{ marginTop: 8 }}>
         <PurpleButton fullWidth>
-          <InnerButton>
-            <span>Join Me</span>
-          </InnerButton>
+          <InnerButton>Join Me</InnerButton>
         </PurpleButton>
       </Box>
     </ShareImageWrapper>
