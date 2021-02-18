@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { H3, Body11 } from '../../shared/typogrophy';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import { BiLinkExternal } from 'react-icons/bi';
+import TooltipModal from './TooltipModal';
 
 const CandidateName = styled(H3)`
   font-weight: bold;
@@ -31,6 +32,11 @@ const Website = styled(Body11)`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.colors.purple};
+`;
+
+const Factor = styled.span`
+  border-bottom: 1px dotted #000;
+  cursor: pointer;
 `;
 
 const InfoWrapper = styled(Body11)`
@@ -59,7 +65,7 @@ const ICONS = {
   Yes: '/images/checkmark.svg',
   '?': '/images/question.svg',
 };
-function ComparedCandidate({ candidate }) {
+function ComparedCandidate({ candidate, setTopicCallback }) {
   if (!candidate) {
     return <NotFound />;
   }
@@ -95,7 +101,8 @@ function ComparedCandidate({ candidate }) {
           ) : (
             <>{comparedFactors[factor]}</>
           )}{' '}
-          <br /> {factor}
+          <br />{' '}
+          <Factor onClick={() => setTopicCallback(factor)}>{factor}</Factor>
         </InfoWrapper>
       ))}
     </>
@@ -104,6 +111,7 @@ function ComparedCandidate({ candidate }) {
 
 ComparedCandidate.propTypes = {
   candidate: PropTypes.object,
+  setTopicCallback: PropTypes.func,
 };
 
 export default ComparedCandidate;
