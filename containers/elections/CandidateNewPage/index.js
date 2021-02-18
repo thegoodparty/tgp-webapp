@@ -100,7 +100,7 @@ export function CandidateNewPage({
     user,
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
     previewNextStepCallback,
-    candidateSupports
+    candidateSupports,
   };
   return (
     <div>
@@ -108,7 +108,9 @@ export function CandidateNewPage({
         <TgpHelmet
           title={title}
           description={description}
-          image={candidate?.image}
+          image={`https://assets.thegoodparty.org/share-image/${
+            candidate.firstName.toLowerCase()
+          }-${candidate.lastName.toLowerCase()}-${candidate.id}.jpeg`}
         />
       )}
       <CandidateNewWrapper {...childProps} />

@@ -98,35 +98,20 @@ const WrapperTitle = styled(Body19)`
     margin-bottom: 15px;
   }
 `;
-function ShareImage({ candidate, shareImageCallback }) {
+function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
   const {
     firstName,
     lastName,
-    image,
     race,
     party,
     likelyVoters,
     votesNeeded,
   } = candidate;
-  // useEffect(() => {
-  //   htmlToImage
-  //     .toPng(document.getElementById('profile-info'))
-  //     .then(function(dataUrl) {
-  //       console.log('here');
-  //       const img = new Image();
-  //       img.src = dataUrl;
-  //       document.body.appendChild(img);
-  //       shareImageCallback({ ...candidate, imageBase64: dataUrl });
-  //     })
-  //     .catch(function(error) {
-  //       console.error('oops, something went wrong!', error);
-  //     });
-  // }, []);
   const afterLoad = () => {
     htmlToImage
       .toPng(document.getElementById('profile-info'))
       .then(function(dataUrl) {
-        let img = new Image();
+        const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
         shareImageCallback({ ...candidate, imageBase64: dataUrl });
@@ -141,7 +126,7 @@ function ShareImage({ candidate, shareImageCallback }) {
       <AvatarWrapper container alignItems="center">
         <Grid item sm={3}>
           <ChallengerAvatar
-            avatar={image}
+            avatar={`data:image/jpeg;base64, ${imageAsBase64}`}
             party={party}
             isSmall
             afterLoad={afterLoad}
@@ -186,6 +171,7 @@ function ShareImage({ candidate, shareImageCallback }) {
 ShareImage.propTypes = {
   candidate: PropTypes.object,
   shareImageCallback: PropTypes.func,
+  imageAsBase64: PropTypes.string,
 };
 
 export default ShareImage;

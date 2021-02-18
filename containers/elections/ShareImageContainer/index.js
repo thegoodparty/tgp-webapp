@@ -27,14 +27,16 @@ export function ShareImageContainer({
   useInjectSaga({ key: 'ShareImageContainer', saga });
 
   let candidate;
+  let imageAsBase64;
 
   if (ssrState) {
-    ({ candidate } = ssrState);
+    ({ candidate, imageAsBase64 } = ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
   const childProps = {
     candidate,
     shareImageCallback,
+    imageAsBase64,
   };
   return (
     <div>
