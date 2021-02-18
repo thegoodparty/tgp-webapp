@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Head from 'next/head'
+import Head from 'next/head';
 
 function TgpHelmet({ title, description, image }) {
   return (
@@ -21,7 +21,15 @@ function TgpHelmet({ title, description, image }) {
         />
       )}
       {description && <meta property="og:description" content={description} />}
-      {image && <meta property="og:image" content={image} />}
+      {image ? (
+        <meta property="og:image" content={image} />
+      ) : (
+        <meta
+          property="og:image"
+          content="https://assets.thegoodparty.org/share.jpg?v=4"
+          data-react-helmet="true"
+        />
+      )}
     </Head>
   );
 }

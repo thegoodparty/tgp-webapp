@@ -46,11 +46,7 @@ class CustomDocument extends Document {
           <meta property="og:site_name" content="THE GOOD PARTY" />
           <meta property="og:type" content="website" />
 
-          <meta
-            property="og:image"
-            content="https://assets.thegoodparty.org/share.jpg?v=4"
-            data-react-helmet="true"
-          />
+
           <meta property="twitter:card" content="summary_large_image" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="fb:app_id" content="241239336921963" />
