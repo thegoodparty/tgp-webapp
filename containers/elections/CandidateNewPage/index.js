@@ -109,8 +109,8 @@ export function CandidateNewPage({
           title={title}
           description={description}
           image={`https://assets.thegoodparty.org/share-image/${
-            candidate.firstName.toLowerCase()
-          }-${candidate.lastName.toLowerCase()}-${candidate.id}.jpeg`}
+            candidate.firstName.toLowerCase().trim()
+          }-${candidate.lastName.toLowerCase().trim()}-${candidate.id}.jpeg`}
         />
       )}
       <CandidateNewWrapper {...childProps} />
