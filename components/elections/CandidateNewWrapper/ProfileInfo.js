@@ -117,10 +117,6 @@ const NameWrapper = styled(Grid)`
   }
 `;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 887072a82f72cf8e4351dffca28008c6fcc1c019
 function ProfileInfo({
   candidate,
   isMobile,
