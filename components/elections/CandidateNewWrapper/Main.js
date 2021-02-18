@@ -24,7 +24,7 @@ import ShareButton from './ShareButton';
 const Padder = styled.div`
   padding: 0 18px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 36px;
+    padding: 0;
   }
 `;
 
@@ -115,6 +115,8 @@ function MainWrapper({
     comparedCandidates,
     facebook,
     twitter,
+    tiktok,
+    snap,
     heroVideo,
     updates,
   } = candidate;
@@ -129,7 +131,7 @@ function MainWrapper({
       {heroVideo && (
         <YoutubePlayerWrapper>
           <YoutubePlayer
-            url={`https://youtu.be/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
+            url={`https://www.youtube.com/embed/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
             playing={false}
           />
         </YoutubePlayerWrapper>
@@ -188,7 +190,7 @@ function MainWrapper({
             {facebook && (
               <SocialLink href={facebook}>
                 <img
-                  src="/images/icons/facebook-icon.svg"
+                  src="/images/icons/purple-facebook.svg"
                   alt="facebook"
                   rel="nofollow"
                   target="_blank"
@@ -198,8 +200,28 @@ function MainWrapper({
             {twitter && (
               <SocialLink href={twitter}>
                 <img
-                  src="/images/icons/twitter-icon.svg"
+                  src="/images/icons/purple-twitter.svg"
                   alt="twitter"
+                  rel="nofollow"
+                  target="_blank"
+                />
+              </SocialLink>
+            )}
+            {tiktok && (
+              <SocialLink href={tiktok}>
+                <img
+                  src="/images/icons/purple-tiktok.svg"
+                  alt="tiktok"
+                  rel="nofollow"
+                  target="_blank"
+                />
+              </SocialLink>
+            )}
+            {snap && (
+              <SocialLink href={twitter}>
+                <img
+                  src="/images/icons/purple-snap.svg"
+                  alt="snap"
                   rel="nofollow"
                   target="_blank"
                 />

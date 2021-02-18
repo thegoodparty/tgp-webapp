@@ -13,6 +13,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import CompareCandidate from './CompareCandidate';
+import TooltipModal from './TooltipModal';
 
 const CarouselPrevIcon = '/images/carousel-prev.png';
 const CarouselNextIcon = '/images/carousel-next.png';
@@ -74,6 +75,7 @@ function NextArrow(props) {
 }
 
 function ComparedCandidateCarousel({ candidates }) {
+  const [tooltipTopic, setTooltipTopic] = useState(false);
   const settings = {
     dots: false,
     infinite: false,
@@ -88,20 +90,34 @@ function ComparedCandidateCarousel({ candidates }) {
   }
   const compared = [...candidates];
   compared.shift();
+
+  const handleSetTopic = topic => {
+    setTooltipTopic(topic);
+  };
   return (
     <Grid container>
       <Grid item xs={6}>
-        <CompareCandidate candidate={candidates[0]} />
+        <CompareCandidate
+          candidate={candidates[0]}
+          setTopicCallback={handleSetTopic}
+        />
       </Grid>
       <Grid item xs={6}>
         <StyledSlider {...settings}>
           {compared.map(cand => (
             <div key={cand.name}>
-              <CompareCandidate candidate={cand} />
+              <CompareCandidate
+                candidate={cand}
+                setTopicCallback={handleSetTopic}
+              />
             </div>
           ))}
         </StyledSlider>
       </Grid>
+      <TooltipModal
+        topic={tooltipTopic}
+        closeModalCallback={() => setTooltipTopic(false)}
+      />
     </Grid>
   );
 }

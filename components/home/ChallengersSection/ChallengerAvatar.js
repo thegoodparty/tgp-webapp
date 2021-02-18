@@ -71,6 +71,8 @@ const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => { }}) => {
     PartyImg = '/images/icons/liberation.png';
   } else if (party === 'P') {
     PartyImg = '/images/icons/progressive.png';
+  } else if (party === 'G' || party === 'GP') {
+    PartyImg = '/images/icons/green-party.png';
   }
   return (
     <ChallengerAvatarWrapper className={isSmall && 'small'}>

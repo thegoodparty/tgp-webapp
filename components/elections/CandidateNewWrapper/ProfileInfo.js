@@ -151,7 +151,7 @@ function ProfileInfo({
       );
 
   const supportCount = candidateSupports?.length || 0;
-
+  const intLikelyVoters = parseInt(likelyVoters, 10);
 
   return (
     <WrapperElement>
@@ -173,7 +173,7 @@ function ProfileInfo({
         <Grid container>
           <Grid item xs={6}>
             <LikelyVoters>
-              <span>{kFormatter(likelyVoters + supportCount)}</span> likely
+              <span>{kFormatter(intLikelyVoters + supportCount)}</span> likely
               voters
             </LikelyVoters>
           </Grid>
@@ -187,7 +187,7 @@ function ProfileInfo({
         <SupportersProgressBar
           showSupporters={false}
           votesNeeded={votesNeeded}
-          peopleSoFar={supportCount + likelyVoters}
+          peopleSoFar={supportCount + intLikelyVoters}
           fullWidth
         />
         <Box style={{ marginTop: 24 }}>

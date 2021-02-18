@@ -15,12 +15,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
-  body.fontLoaded {
     font-family: 'Libre Franklin', sans-serif;
   }
+
 
   a {
    text-decoration: none;

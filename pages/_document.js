@@ -41,6 +41,7 @@ class CustomDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <meta name="mobile-web-app-capable" content="yes" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
 
           <meta property="og:site_name" content="THE GOOD PARTY" />
           <meta property="og:type" content="website" />
@@ -56,6 +57,10 @@ class CustomDocument extends Document {
           <meta
             name="google-signin-client_id"
             content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
           />
 
           <link rel="icon" href="/favicon.ico" />

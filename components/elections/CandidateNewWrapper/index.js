@@ -18,39 +18,11 @@ import EndorsementPreviewModal from './EndorsementPreviewModal';
 import ShareModal from './ShareModal';
 
 const ContentWrapper = styled.div`
-  max-width: 100%;
   margin: 0 auto;
+  max-width: 1080px;
+  padding-bottom: 48px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding-top: 60px;
-  }
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    max-width: 980px;
-  }
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xl}) {
-    max-width: 1080px;
-  }
-`;
-
-const LeftCol = styled(Grid)`
-  && {
-    max-width: 100%;
-    margin-bottom: 50px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-      max-width: calc(100% - 448px);
-    }
-  }
-`;
-
-const RightCol = styled(Grid)`
-  && {
-    max-width: 100%;
-    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-      padding-left: 18px;
-      padding-right: 18px;
-    }
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-      max-width: 416px;
-    }
+    padding: 60px 18px 64px;
   }
 `;
 
@@ -82,8 +54,8 @@ function CandidateNewWrapper({
   return (
     <PageWrapper isFullWidth purple>
       <ContentWrapper>
-        <Grid container justify="space-between">
-          <LeftCol row item xs>
+        <Grid container spacing={3}>
+          <Grid row item xs={12} md={7}>
             <Main
               candidate={candidate}
               articles={articles}
@@ -92,9 +64,9 @@ function CandidateNewWrapper({
               removeSupportCallback={handleRemoveSupport}
               candidateSupports={candidateSupports}
             />
-          </LeftCol>
+          </Grid>
           <Hidden xsDown>
-            <RightCol row item xs>
+            <Grid row item xs={12} md={5}>
               <ProfileInfo
                 candidate={candidate}
                 supportCallback={handleSupport}
@@ -102,7 +74,7 @@ function CandidateNewWrapper({
                 removeSupportCallback={handleRemoveSupport}
                 candidateSupports={candidateSupports}
               />
-            </RightCol>
+            </Grid>
           </Hidden>
         </Grid>
       </ContentWrapper>
