@@ -4,6 +4,7 @@
  *
  */
 
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -11,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
+import Link from 'next/link';
 
 import { partyResolver } from 'helpers/electionsHelper';
 import { kFormatter } from 'helpers/numberHelper';
@@ -137,21 +139,20 @@ function ProfileInfo({
     isMobile ? (
       <div>{children}</div>
     ) : (
-      <ScrollArea className="scroll-area">
-        <Sticky
-          boundaryElement=".scroll-area"
-          hideOnBoundaryHit={false}
-          dontUpdateHolderHeightWhenSticky
-        >
-          <Inner className="inner">{children}</Inner>
-        </Sticky>
-      </ScrollArea>
-    );
+        <ScrollArea className="scroll-area">
+          <Sticky
+            boundaryElement=".scroll-area"
+            hideOnBoundaryHit={false}
+            dontUpdateHolderHeightWhenSticky
+          >
+            <Inner className="inner">{children}</Inner>
+          </Sticky>
+        </ScrollArea>
+      );
 
   const supportCount = candidateSupports?.length || 0;
   const intLikelyVoters = parseInt(likelyVoters, 10);
 
-  console.log('cand', candidate);
   return (
     <WrapperElement>
       <ProfileInfoWrapper>

@@ -10,10 +10,10 @@ const ChallengerAvatarWrapper = styled.div`
   box-shadow: inset 0px 0px 16.5455px rgba(255, 255, 255, 0.25);
   position: relative;
   border-radius: 50%;
-  //&.small {
-  //  width: unset;
-  //  height: unset;
-  //}
+  &.small {
+   width: unset;
+   height: unset;
+  }
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 100px;
     height: 100px;
@@ -56,8 +56,8 @@ const PartyIcon = styled.img`
     right: -5px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isSmall }) => {
-  console.log('ppp', party);
+const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => { }}) => {
+  console.log('isSmall', isSmall);
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -82,6 +82,7 @@ const ChallengerAvatar = ({ avatar, party, isSmall }) => {
           alt=""
           width="100%"
           height="100%"
+          afterLoad={afterLoad}
         />
       </ImageWrapper>
       {PartyImg && (
@@ -97,6 +98,7 @@ const ChallengerAvatar = ({ avatar, party, isSmall }) => {
 ChallengerAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
+  afterLoad: PropTypes.func,
   isSmall: PropTypes.bool,
 };
 

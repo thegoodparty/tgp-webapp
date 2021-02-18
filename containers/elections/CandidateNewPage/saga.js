@@ -20,6 +20,17 @@ function* loadCandidate({ id, chamber, isIncumbent }) {
   }
 }
 
+function* shareImage(action) {
+  try {
+    const api = tgpApi.shareImage;
+    const { candidate } = action;
+    const payload = { candidate };
+    yield call(requestHelper, api, payload);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function* support({ candidateId }) {
   try {
     yield put(
@@ -105,10 +116,13 @@ function* candidateSupports({ candidateId }) {
 
 // Individual exports for testing
 export default function* saga() {
+  yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
+  yield takeLatest(types.SHARE_IMAGE, shareImage)
   let action = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
   yield takeLatest(types.SUPPORT, support);
   yield takeLatest(types.USER_SUPPORTS, userSupports);
   action = yield takeLatest(types.CANDIDATE_SUPPORTS, candidateSupports);
   yield takeLatest(types.REMOVE_SUPPORT, removeSupport);
   yield takeLatest(types.UPDATE_SUPPORT, updateSupport);
+  yield takeLatest(types.SHARE_IMAGE, shareImage);
 }
