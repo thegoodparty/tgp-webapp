@@ -20,12 +20,10 @@ import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 const ShareImageWrapper = styled.div`
   background: #ffffff;
   border-radius: 8px;
-  padding: 24px 24px 32px 24px;
+  padding: 24px 16px;
   text-align: center;
-  margin-top: 40px;
   box-shadow: none;
   width: 340px;
-  height: 500px;
 `;
 
 const CandidateName = styled(Body19)`
