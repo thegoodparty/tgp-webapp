@@ -52,7 +52,7 @@ const StyledTextField = styled(TextField)`
 
 function EndorsementPreviewModal({ candidate, user, previewNextStepCallback }) {
   const [message, setMessage] = useState(
-    `I'm ${user?.name} and I Approve this message!`,
+    `Someone real, not another 💩 politician!\nI'm ${user?.name} and I Approve this message! 😜`,
   );
 
   const onChangeField = e => {
