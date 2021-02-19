@@ -132,8 +132,8 @@ function ProfileInfo({
               {firstName} {lastName}
             </CandidateName>
             <PartyName>
-              <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
-              Running for {race}
+              <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase> for{' '}
+              {race}
             </PartyName>
           </div>
         </AvatarSection>

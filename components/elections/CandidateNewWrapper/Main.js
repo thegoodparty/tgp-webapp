@@ -112,10 +112,9 @@ function MainWrapper({
     return <NotFound />;
   }
   const {
+    headline,
     firstName,
-    lastName,
     campaignSummary,
-    race,
     about,
     comparedCandidates,
     facebook,
@@ -128,9 +127,7 @@ function MainWrapper({
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
   }
-  const city = race?.includes('Mayor of')
-    ? `${race.replace('Mayor of', '')} city hall`
-    : race;
+
   return (
     <>
       {heroVideo && (
@@ -153,7 +150,7 @@ function MainWrapper({
           <CampaignSummaryHeadLine
             style={{ marginTop: heroVideo ? '64px' : 0 }}
           >
-            Help {firstName} {lastName} take back {city}
+            {headline}
           </CampaignSummaryHeadLine>
           <SectionContent
             dangerouslySetInnerHTML={{ __html: campaignSummary }}
@@ -231,16 +228,17 @@ function MainWrapper({
         </SectionWrapper>
         <SectionWrapper>
           <SectionHeader>Updates({updates.length})</SectionHeader>
-          {updates.map((update, index) => (
-            <YoutubePlayerWrapper key={index}>
-              <UpdatedDate>August 4, 2020</UpdatedDate>
-              <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
-              <SectionContent
-                dangerouslySetInnerHTML={{ __html: update }}
-                style={{ marginBottom: 20 }}
-              />
-            </YoutubePlayerWrapper>
-          ))}
+          {updates &&
+            updates.reverse().map((update, index) => (
+              <YoutubePlayerWrapper key={index}>
+                <UpdatedDate>August 4, 2020</UpdatedDate>
+                <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
+                <SectionContent
+                  dangerouslySetInnerHTML={{ __html: update }}
+                  style={{ marginBottom: 20 }}
+                />
+              </YoutubePlayerWrapper>
+            ))}
           {/*<div style={{ textAlign: 'center' }}>*/}
           {/*  <PurpleButton*/}
           {/*    className="outline"*/}

@@ -61,6 +61,7 @@ const fields = [
   { label: 'First Name', key: 'firstName', initialValue: '' },
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
+  { label: 'Headline', key: 'headline', initialValue: '' },
   { label: 'Chamber', key: 'chamber', initialValue: 'local' },
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
   {
