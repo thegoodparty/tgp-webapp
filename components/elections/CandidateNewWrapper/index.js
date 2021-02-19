@@ -16,6 +16,7 @@ import ProfileInfo from './ProfileInfo';
 import Main from './Main';
 import EndorsementPreviewModal from './EndorsementPreviewModal';
 import ShareModal from './ShareModal';
+import { H1 } from '../../shared/typogrophy';
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
@@ -54,6 +55,9 @@ function CandidateNewWrapper({
   return (
     <PageWrapper isFullWidth purple>
       <ContentWrapper>
+        <Hidden mdDown>
+          <H1 style={{ marginBottom: '24px' }}>{candidate.headline}</H1>
+        </Hidden>
         <Grid container spacing={3}>
           <Grid row item xs={12} md={7}>
             <Main

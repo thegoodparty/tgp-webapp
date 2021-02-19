@@ -32,10 +32,7 @@ const SectionWrapper = styled.div`
   margin-top: 48px;
 `;
 
-const CampaignSummaryHeadLine = styled(H1)`
-  color: ${({ theme }) => theme.colors.gray4};
-  font-weight: 800;
-`;
+const CampaignSummaryHeadLine = styled(H1)``;
 
 const SectionHeader = styled(Body19)`
   font-weight: bold;
@@ -130,6 +127,7 @@ function MainWrapper({
 
   return (
     <>
+
       {heroVideo && (
         <YoutubePlayerWrapper className="top">
           <YoutubePlayer
@@ -146,16 +144,18 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        <SectionWrapper style={{ marginTop: heroVideo ? '48px' : 0 }}>
-          <CampaignSummaryHeadLine
-            style={{ marginTop: heroVideo ? '64px' : 0 }}
-          >
-            {headline}
-          </CampaignSummaryHeadLine>
-          <SectionContent
-            dangerouslySetInnerHTML={{ __html: campaignSummary }}
-          />
-        </SectionWrapper>
+        <Hidden mdUp>
+          <SectionWrapper style={{ marginTop: heroVideo ? '48px' : 0 }}>
+            <CampaignSummaryHeadLine
+              style={{ marginTop: heroVideo ? '64px' : 0 }}
+            >
+              {headline}
+            </CampaignSummaryHeadLine>
+            <SectionContent
+              dangerouslySetInnerHTML={{ __html: campaignSummary }}
+            />
+          </SectionWrapper>
+        </Hidden>
         <SectionWrapper>
           <SectionHeader>About</SectionHeader>
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
