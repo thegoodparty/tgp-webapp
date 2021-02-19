@@ -69,8 +69,6 @@ const YoutubePlayer = styled(ReactPlayer)`
 `;
 
 const YoutubePlayerWrapper = styled.div`
-  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
-    0px 0px 16px rgba(0, 0, 0, 0.12);
   [data-jodit_iframe_wrapper] {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
@@ -83,6 +81,11 @@ const YoutubePlayerWrapper = styled.div`
       width: 100%;
       height: 100%;
     }
+  }
+
+  &.top {
+    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07),
+      0px 0px 12px rgba(0, 0, 0, 0.08), 0px 0px 16px rgba(0, 0, 0, 0.12);
   }
 `;
 
@@ -131,7 +134,7 @@ function MainWrapper({
   return (
     <>
       {heroVideo && (
-        <YoutubePlayerWrapper>
+        <YoutubePlayerWrapper className="top">
           <YoutubePlayer
             url={`https://www.youtube.com/embed/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
             playing={false}
