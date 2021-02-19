@@ -48,7 +48,7 @@ const TopClose = styled(CloseIcon)`
 
 const topics = {
   'PUBLIC HEALTH EMERGENCY MANAGER':
-    'A new position which will track public health crises such as COVID-19, the opioid crisis and future public health emergencies.',
+    'A new position which will track public health crises such as COVID-19, the opioid crisis and future public health emergencies',
   'TRANSPARENT BUDGETING':
     'Transparent budgeting provides an opportunity for the community to contribute to budget conversations and ensure that money is spent wisely.',
   'OFFICE OF COMMUNITY WEALTH BUILDING':
