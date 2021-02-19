@@ -28,15 +28,17 @@ export function ShareImageContainer({
 
   let candidate;
   let imageAsBase64;
+  let candidateSupports;
 
   if (ssrState) {
-    ({ candidate, imageAsBase64 } = ssrState);
+    ({ candidate, imageAsBase64, candidateSupports } = ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
   const childProps = {
     candidate,
     shareImageCallback,
     imageAsBase64,
+    candidateSupports
   };
   return (
     <div>

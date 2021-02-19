@@ -16,6 +16,7 @@ import { partyResolver } from 'helpers/electionsHelper';
 import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
+import { kFormatter } from '../../../helpers/numberHelper';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
@@ -98,7 +99,13 @@ const WrapperTitle = styled(Body19)`
     margin-bottom: 15px;
   }
 `;
-function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
+function ShareImage({
+  candidate,
+  shareImageCallback,
+  imageAsBase64,
+  candidateSupports,
+}) {
+  const supportCount = candidateSupports?.length;
   const {
     firstName,
     lastName,
@@ -107,7 +114,7 @@ function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
     likelyVoters,
     votesNeeded,
   } = candidate;
-  useEffect(() => {
+  const afterLoad = () => {
     htmlToImage
       .toJpeg(document.getElementById('profile-info'))
       .then(function(dataUrl) {
@@ -119,7 +126,7 @@ function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
       .catch(function(error) {
         console.error('oops, something went wrong!', error);
       });
-  }, []);
+  };
 
   return (
     <ShareImageWrapper id="profile-info">
@@ -130,6 +137,7 @@ function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
             avatar={`data:image/jpeg;base64, ${imageAsBase64}`}
             party={party}
             isSmall
+            afterLoad={afterLoad}
           />
         </Grid>
         <NameWrapper item xs={9}>
@@ -144,13 +152,17 @@ function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
       <Grid container>
         <Grid row xs={6}>
           <LikelyVoters>
-            <span>{likelyVoters}</span> likely voters
+            <span>{kFormatter(likelyVoters)}</span> likely voters
           </LikelyVoters>
         </Grid>
         <Grid row xs={6}>
-          <LikelyVoters>
-            <span /> people endorsing
-          </LikelyVoters>
+          {supportCount === 0 ? (
+            <>&nbsp;</>
+          ) : (
+            <LikelyVoters>
+              <span>{kFormatter(supportCount)}</span> people endorsing
+            </LikelyVoters>
+          )}
         </Grid>
       </Grid>
       <SupportersProgressBar
@@ -172,6 +184,7 @@ ShareImage.propTypes = {
   candidate: PropTypes.object,
   shareImageCallback: PropTypes.func,
   imageAsBase64: PropTypes.string,
+  candidateSupports: PropTypes.array,
 };
 
 export default ShareImage;

@@ -59,10 +59,13 @@ const topics = {
     'Legalizing marijuana will create more jobs, reduce incarceration rates and end racial disparities in marijuana enforcement. ',
   'END CASH BAIL':
     'In the cash bail system, an individual has to pay a certain amount of money to be released from detention. Individuals who cannot afford to pay are detained for weeks or months before trial. Ending cash bail will save taxpayer dollars, decrease job loss and reduce incarceration rates.',
-  'NON-PARTISAN': 'Missing topic description',
-  'SMALL MONEY': 'Missing topic description',
-  'ANTI-CORRUPTION': 'Missing topic description',
-  TRANSPARENT: 'Missing topic description',
+  'NON-PARTISAN':
+    'Not republican, not democrat, but independent minded and dedicated to serving everyone.',
+  'SMALL MONEY': 'Not funded by corporate PACs and big money donors.',
+  'ANTI-CORRUPTION':
+    'Dedicated to supporting the Anti-Corruption Act and reporting any attempts at undue influence.',
+  TRANSPARENT:
+    'Committed to using modern technology in being accountable and transparent to all the people he represents and fostering meaningful citizen engagement. ',
 };
 
 function TooltipModal({ topic, closeModalCallback }) {

@@ -74,7 +74,7 @@ const PartyIcon = styled.img`
     width: 25px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isSmall }) => {
+const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => {} }) => {
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -91,15 +91,26 @@ const ChallengerAvatar = ({ avatar, party, isSmall }) => {
   } else if (party === 'G' || party === 'GP') {
     PartyImg = '/images/icons/green-party.png';
   }
+  console.log(avatar);
   return (
     <ChallengerAvatarWrapper className={isSmall && 'small'}>
       <ImageWrapper>
-        <Img
-          style={{
-            backgroundImage: `url(${avatar ||
-              'https://assets.thegoodparty.org/gray-heart.png'})`,
-          }}
-        />
+        {isSmall ? (
+          <LazyLoadImage
+            src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
+            alt=""
+            width="100%"
+            height="100%"
+            afterLoad={afterLoad}
+          />
+        ) : (
+          <Img
+            style={{
+              backgroundImage: `url(${avatar ||
+                'https://assets.thegoodparty.org/gray-heart.png'})`,
+            }}
+          />
+        )}
       </ImageWrapper>
       {PartyImg && (
         <PartyIcon
@@ -115,6 +126,7 @@ ChallengerAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
   isSmall: PropTypes.bool,
+  afterLoad: PropTypes.func,
 };
 
 export default ChallengerAvatar;
