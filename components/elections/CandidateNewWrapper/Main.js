@@ -20,6 +20,7 @@ import RecentlyJoined from './RecentlyJoined';
 import TopQuestions from '../../shared/TopQuestions';
 import SupportButton from './SupportButton';
 import ShareButton from './ShareButton';
+import Updates from './Updates';
 
 const Padder = styled.div`
   padding: 0 18px;
@@ -223,30 +224,7 @@ function MainWrapper({
             )}
           </div>
         </SectionWrapper>
-        <SectionWrapper>
-          <SectionHeader>Updates({updates.length})</SectionHeader>
-          {updates &&
-            updates.reverse().map((update, index) => (
-              <YoutubePlayerWrapper key={index}>
-                <UpdatedDate>August 4, 2020</UpdatedDate>
-                <UpdatedBy>by Cameron Sadeghi, The Good Party</UpdatedBy>
-                <SectionContent
-                  dangerouslySetInnerHTML={{ __html: update }}
-                  style={{ marginBottom: 20 }}
-                />
-              </YoutubePlayerWrapper>
-            ))}
-          {/*<div style={{ textAlign: 'center' }}>*/}
-          {/*  <PurpleButton*/}
-          {/*    className="outline"*/}
-          {/*    style={{ paddingRight: 60, paddingLeft: 60 }}*/}
-          {/*  >*/}
-          {/*    <InnerButton>*/}
-          {/*      <span>READ MORE UPDATES</span>*/}
-          {/*    </InnerButton>*/}
-          {/*  </PurpleButton>*/}
-          {/*</div>*/}
-        </SectionWrapper>
+        <Updates candidate={candidate} />
         <Hidden smUp>
           <SectionWrapper>
             <RecentlyJoined candidateSupports={candidateSupports} />

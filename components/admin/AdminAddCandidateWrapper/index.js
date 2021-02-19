@@ -99,6 +99,9 @@ function AdminAddCandidateWrapper({
   const [updates, setUpdates] = useState(
     candidate?.updates ? candidate.updates : [],
   );
+  const [updatesDates, setUpdatesDates] = useState(
+    candidate?.updatesDates ? candidate.updatesDates : [],
+  );
 
   const onChangeField = (key, value, type = 'text') => {
     setFormState({
@@ -117,12 +120,18 @@ function AdminAddCandidateWrapper({
 
   const createCandidate = () => {
     if (mode === 'add') {
-      createCandidateCallback({ ...formState, comparedCandidates, updates });
+      createCandidateCallback({
+        ...formState,
+        comparedCandidates,
+        updates,
+        updatesDates,
+      });
     } else {
       editCandidateCallback({
         ...formState,
         comparedCandidates,
         updates,
+        updatesDates,
         id: candidate.id,
         image: candidate.image,
       });
@@ -136,12 +145,22 @@ function AdminAddCandidateWrapper({
     const existingUpdates = [...updates];
     existingUpdates.push('');
     setUpdates(existingUpdates);
+
+    const existingUpdatesDates = [...updatesDates];
+    existingUpdatesDates.push('');
+    setUpdatesDates(existingUpdatesDates);
   };
 
   const onChangeUpdates = (val, index) => {
     const existingUpdates = [...updates];
     existingUpdates[index] = val;
     setUpdates(existingUpdates);
+  };
+
+  const onChangeUpdateMeta = (val, index) => {
+    const existingUpdatesDates = [...updatesDates];
+    existingUpdatesDates[index] = val;
+    setUpdatesDates(existingUpdatesDates);
   };
 
   return (
@@ -240,8 +259,19 @@ function AdminAddCandidateWrapper({
         <hr />
         <br />
         {updates.map((update, index) => (
-          <React.Fragment>
+          <React.Fragment key={index}>
             Update #{index + 1}
+            <br />
+            <Input
+              fullWidth
+              label={`update ${index + 1} date`}
+              name={`update ${index + 1} date`}
+              variant="outlined"
+              value={updatesDates.length > index ? updatesDates[index] : ''}
+              onChange={e => onChangeUpdateMeta(e.target.value, index)}
+            />
+            <br />
+            <br />
             <JoditEditorWrapper
               onChangeCallback={value => onChangeUpdates(value, index)}
               initialText={update}
