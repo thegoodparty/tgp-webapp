@@ -16,6 +16,11 @@ const ChallengerAvatarWrapper = styled.div`
     height: 112px;
     margin: 0 auto;
   }
+
+  &.small {
+    width: 58px;
+    height: 58px;
+  }
 `;
 
 const Img = styled.div`
@@ -27,6 +32,11 @@ const Img = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 112px;
     height: 112px;
+  }
+
+  &.small {
+    width: 58px;
+    height: 58px;
   }
 `;
 
@@ -53,20 +63,18 @@ const PartyIcon = styled.img`
   width: 25px;
   box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
     0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
-  //&.small {
-  //  width: 31px;
-  //  height: 31px;
-  //  bottom: -5px;
-  //  right: -5px;
-  //}
+
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 36px;
     width: 36px;
-    bottom: -5px;
-    right: -5px;
+  }
+
+  &.small {
+    height: 25px;
+    width: 25px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => {} }) => {
+const ChallengerAvatar = ({ avatar, party, isSmall }) => {
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -106,7 +114,6 @@ const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => {} }) => {
 ChallengerAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
-  afterLoad: PropTypes.func,
   isSmall: PropTypes.bool,
 };
 

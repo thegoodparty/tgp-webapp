@@ -107,9 +107,9 @@ function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
     likelyVoters,
     votesNeeded,
   } = candidate;
-  const afterLoad = () => {
+  useEffect(() => {
     htmlToImage
-      .toPng(document.getElementById('profile-info'))
+      .toJpeg(document.getElementById('profile-info'))
       .then(function(dataUrl) {
         const img = new Image();
         img.src = dataUrl;
@@ -119,7 +119,8 @@ function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
       .catch(function(error) {
         console.error('oops, something went wrong!', error);
       });
-  };
+  }, []);
+
   return (
     <ShareImageWrapper id="profile-info">
       <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
@@ -129,7 +130,6 @@ function ShareImage({ candidate, shareImageCallback, imageAsBase64 }) {
             avatar={`data:image/jpeg;base64, ${imageAsBase64}`}
             party={party}
             isSmall
-            afterLoad={afterLoad}
           />
         </Grid>
         <NameWrapper item xs={9}>
