@@ -48,6 +48,8 @@ const InfoWrapper = styled(Body11)`
   img {
     display: inline-block;
     margin-bottom: 5px;
+    height: 15px;
+    width: auto;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -82,7 +84,7 @@ function ComparedCandidate({ candidate, setTopicCallback }) {
   }
   return (
     <>
-      <ChallengerAvatar party={cleanParty} avatar={image} />
+      <ChallengerAvatar party={cleanParty} avatar={image} centered />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
       </CandidateNameWrapper>

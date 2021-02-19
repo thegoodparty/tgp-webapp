@@ -77,12 +77,6 @@ const fields = [
   { label: 'Snap', key: 'snap', initialValue: '' },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
-  {
-    label: 'Campaign Summary',
-    key: 'campaignSummary',
-    rte: true,
-    initialValue: '',
-  },
   { label: 'About', key: 'about', rte: true, initialValue: '' },
 ];
 

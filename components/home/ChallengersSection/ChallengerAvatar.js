@@ -74,7 +74,13 @@ const PartyIcon = styled.img`
     width: 25px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => {} }) => {
+const ChallengerAvatar = ({
+  avatar,
+  party,
+  isSmall,
+  afterLoad = () => {},
+  centered = false,
+}) => {
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -91,9 +97,11 @@ const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => {} }) => {
   } else if (party === 'G' || party === 'GP') {
     PartyImg = '/images/icons/green-party.png';
   }
-  console.log(avatar);
   return (
-    <ChallengerAvatarWrapper className={isSmall && 'small'}>
+    <ChallengerAvatarWrapper
+      className={isSmall && 'small'}
+      style={centered ? { margin: '0 auto' } : {}}
+    >
       <ImageWrapper>
         {isSmall ? (
           <LazyLoadImage

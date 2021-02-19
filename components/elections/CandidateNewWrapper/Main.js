@@ -111,7 +111,7 @@ function MainWrapper({
   const {
     headline,
     firstName,
-    campaignSummary,
+    lastName,
     about,
     comparedCandidates,
     facebook,
@@ -127,7 +127,6 @@ function MainWrapper({
 
   return (
     <>
-
       {heroVideo && (
         <YoutubePlayerWrapper className="top">
           <YoutubePlayer
@@ -151,17 +150,15 @@ function MainWrapper({
             >
               {headline}
             </CampaignSummaryHeadLine>
-            <SectionContent
-              dangerouslySetInnerHTML={{ __html: campaignSummary }}
-            />
           </SectionWrapper>
         </Hidden>
         <SectionWrapper>
-          <SectionHeader>About</SectionHeader>
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
         </SectionWrapper>
         <SectionWrapper>
-          <SectionHeader>Compare Candidates</SectionHeader>
+          <SectionHeader>
+            Compare {firstName} {lastName} with others
+          </SectionHeader>
           <ComparedCandidateCarousel
             candidates={comparedCandidates.candidates}
           />
