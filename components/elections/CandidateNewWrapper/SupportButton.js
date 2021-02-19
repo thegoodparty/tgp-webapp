@@ -71,7 +71,7 @@ function SupportButton({
         <PurpleButton fullWidth onClick={supportCallback}>
           <InnerButton>
             <Img src={HeartIconWhite} alt="share" />
-            <span>ADD YOUR NAME</span>
+            <span>ENDORSE CANDIDATE</span>
           </InnerButton>
         </PurpleButton>
       )}

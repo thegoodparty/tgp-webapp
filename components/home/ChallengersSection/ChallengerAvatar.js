@@ -4,19 +4,29 @@ import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ChallengerAvatarWrapper = styled.div`
-  width: 70px;
-  height: 70px;
-  margin: 0 auto;
+  width: 58px;
+  height: 58px;
   box-shadow: inset 0px 0px 16.5455px rgba(255, 255, 255, 0.25);
-  position: relative;
   border-radius: 50%;
-  &.small {
-   width: unset;
-   height: unset;
-  }
+  margin-right: 20px;
+  position: relative;
+
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 100px;
-    height: 100px;
+    width: 112px;
+    height: 112px;
+    margin: 0 auto;
+  }
+`;
+
+const Img = styled.div`
+  width: 58px;
+  height: 58px;
+  background-position: center;
+  background-size: cover;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 112px;
+    height: 112px;
   }
 `;
 
@@ -56,8 +66,7 @@ const PartyIcon = styled.img`
     right: -5px;
   }
 `;
-const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => { }}) => {
-  console.log('isSmall', isSmall);
+const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => {} }) => {
   let PartyImg;
   if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
@@ -77,12 +86,11 @@ const ChallengerAvatar = ({ avatar, party, isSmall, afterLoad = () => { }}) => {
   return (
     <ChallengerAvatarWrapper className={isSmall && 'small'}>
       <ImageWrapper>
-        <LazyLoadImage
-          src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
-          alt=""
-          width="100%"
-          height="100%"
-          afterLoad={afterLoad}
+        <Img
+          style={{
+            backgroundImage: `url(${avatar ||
+              'https://assets.thegoodparty.org/gray-heart.png'})`,
+          }}
         />
       </ImageWrapper>
       {PartyImg && (

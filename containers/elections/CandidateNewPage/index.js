@@ -65,7 +65,6 @@ export function CandidateNewPage({
       dispatch(actions.candidateSupportsAction(candidate?.id));
     }
   }, []);
-  console.log('candidateSupports', candidateSupports);
 
   const emptyCandidate = () =>
     Object.keys(candidate).length === 0 && candidate.constructor === Object;

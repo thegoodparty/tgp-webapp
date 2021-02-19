@@ -69,6 +69,8 @@ const YoutubePlayer = styled(ReactPlayer)`
 `;
 
 const YoutubePlayerWrapper = styled.div`
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
+    0px 0px 16px rgba(0, 0, 0, 0.12);
   [data-jodit_iframe_wrapper] {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
@@ -136,17 +138,12 @@ function MainWrapper({
           />
         </YoutubePlayerWrapper>
       )}
-      <Hidden smUp>
-        <div
-          style={{
-            height: 200,
-            background:
-              'linear-gradient(rgba(17, 17, 17, 0.16) 11.98%, rgba(17, 17, 17, 0.8) 68.9%)',
-            position: 'absolute',
-            width: '100%',
-          }}
+      <Hidden mdUp>
+        <ProfileInfo
+          candidate={candidate}
+          candidateSupports={candidateSupports}
+          isMobile
         />
-        <ProfileInfo candidate={candidate} isMobile />
       </Hidden>
       <Padder>
         <SectionWrapper style={{ marginTop: heroVideo ? '48px' : 0 }}>

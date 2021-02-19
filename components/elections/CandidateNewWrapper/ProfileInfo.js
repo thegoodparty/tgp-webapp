@@ -4,7 +4,6 @@
  *
  */
 
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -12,12 +11,11 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
-import Link from 'next/link';
 
 import { partyResolver } from 'helpers/electionsHelper';
 import { kFormatter } from 'helpers/numberHelper';
 
-import { Body9, Body11, Body19 } from '../../shared/typogrophy';
+import { Body9, Body11, H3, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
 import RecentlyJoined from './RecentlyJoined';
@@ -38,43 +36,36 @@ const Inner = styled.div`
 
 const ProfileInfoWrapper = styled.div`
   border-radius: 8px;
-  box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
-  padding: 24px 24px 32px 24px;
-  text-align: center;
+  padding: 24px 18px 0;
 
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 40px;
-    box-shadow: none;
-  }
-  @media only screen and (max-width: 500px) {
-    margin-top: 77px;
-    box-shadow: none;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
+    padding: 24px 24px 32px 24px;
   }
 `;
 
-const CandidateName = styled(Body19)`
-  color: ${({ theme }) => theme.colors.gray4};
-  text-align: center;
-  margin-top: 12px;
-  margin-bottom: 10px;
-  font-weight: 800;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 16px;
+const AvatarSection = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: block;
   }
 `;
 
-const PartyName = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray4};
-  text-align: center;
-  margin-bottom: 8px;
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    margin-top: 0;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 11px;
+const CandidateName = styled(H3)`
+  text-align: left;
+  font-size: 16px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+`;
+
+const PartyName = styled(Body13)`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: center;
   }
 `;
 
@@ -82,39 +73,19 @@ const TitleCase = styled.span`
   text-transform: capitalize;
 `;
 
-const LikelyVoters = styled(Body9)`
+const LikelyVoters = styled(Body11)`
   color: ${({ theme }) => theme.colors.gray7};
   span {
     color: ${({ theme }) => theme.colors.gray3};
     font-size: 16px;
     font-weight: 600;
+    margin-right: 4px;
   }
 `;
 
 const EndorsementDescription = styled(Body11)`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.gray7};
-`;
-
-const AvatarWrapper = styled(Grid)`
-  && {
-    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-      margin-bottom: 50px;
-      align-items: center;
-    }
-  }
-`;
-const NameWrapper = styled(Grid)`
-  && {
-    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-      padding-left: 20px;
-      & > div {
-        color: #fff;
-        line-height: 25px;
-      }
-      z-index: 1000;
-    }
-  }
 `;
 
 function ProfileInfo({
@@ -134,33 +105,29 @@ function ProfileInfo({
     likelyVoters,
     votesNeeded,
   } = candidate;
-
   const WrapperElement = ({ children }) =>
     isMobile ? (
       <div>{children}</div>
     ) : (
-        <ScrollArea className="scroll-area">
-          <Sticky
-            boundaryElement=".scroll-area"
-            hideOnBoundaryHit={false}
-            dontUpdateHolderHeightWhenSticky
-          >
-            <Inner className="inner">{children}</Inner>
-          </Sticky>
-        </ScrollArea>
-      );
-
+      <ScrollArea className="scroll-area">
+        <Sticky
+          boundaryElement=".scroll-area"
+          hideOnBoundaryHit={false}
+          dontUpdateHolderHeightWhenSticky
+        >
+          <Inner className="inner">{children}</Inner>
+        </Sticky>
+      </ScrollArea>
+    );
   const supportCount = candidateSupports?.length || 0;
   const intLikelyVoters = parseInt(likelyVoters, 10);
 
   return (
     <WrapperElement>
       <ProfileInfoWrapper>
-        <AvatarWrapper container>
-          <Grid item xs={3} sm={12}>
-            <ChallengerAvatar avatar={image} party={party} isSmall={isMobile} />
-          </Grid>
-          <NameWrapper item xs={9} sm={12}>
+        <AvatarSection>
+          <ChallengerAvatar avatar={image} party={party} isSmall={isMobile} />
+          <div>
             <CandidateName>
               {firstName} {lastName}
             </CandidateName>
@@ -168,8 +135,8 @@ function ProfileInfo({
               <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
               Running for {race}
             </PartyName>
-          </NameWrapper>
-        </AvatarWrapper>
+          </div>
+        </AvatarSection>
         <Grid container>
           <Grid item xs={6}>
             <LikelyVoters>
@@ -178,10 +145,14 @@ function ProfileInfo({
             </LikelyVoters>
           </Grid>
           <Grid item xs={6}>
-            <LikelyVoters>
-              <span>{supportCount}</span>{' '}
-              {supportCount === 1 ? 'person' : 'people'} supporting
-            </LikelyVoters>
+            {supportCount === 0 ? (
+              <>&nbsp;</>
+            ) : (
+              <LikelyVoters>
+                <span>{supportCount}</span>
+                {supportCount === 1 ? 'person' : 'people'} endorsing
+              </LikelyVoters>
+            )}
           </Grid>
         </Grid>
         <SupportersProgressBar

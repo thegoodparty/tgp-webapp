@@ -85,7 +85,7 @@ function RecentlyJoined({ candidateSupports }) {
         </JoinedCount>
       </Grid>
       {supporters.map(supporter => (
-        <RecentJoin>
+        <RecentJoin key={supporter.id}>
           <img
             src={AnonymousIconPurple}
             alt="share"

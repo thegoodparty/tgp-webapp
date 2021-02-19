@@ -10,7 +10,6 @@ const ProgressBarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4px;
 
   &.left {
     align-items: flex-start;
@@ -51,6 +50,10 @@ const BarBody11 = styled(Body11)`
 
 const BarBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
+  align-self: flex-start;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    align-self: center;
+  }
 `;
 
 const SupportersProgressBar = ({
@@ -66,7 +69,7 @@ const SupportersProgressBar = ({
 }) => {
   let progress = 0;
   if (peopleSoFar && votesNeeded) {
-    progress =  (peopleSoFar * 100) / votesNeeded;
+    progress = (peopleSoFar * 100) / votesNeeded;
   }
   if (progress > 100) {
     progress = 100;

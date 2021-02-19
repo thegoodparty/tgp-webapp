@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
   max-width: 1080px;
   padding-bottom: 48px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 60px 18px 64px;
+    padding: 24px 18px 64px;
   }
 `;
 
