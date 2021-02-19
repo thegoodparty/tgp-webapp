@@ -87,7 +87,7 @@ const ChallengerAvatar = ({
   } else if (party === 'R') {
     PartyImg = '/images/icons/republican.png';
   } else if (party === 'I') {
-    PartyImg = '/images/icons/independent.png';
+    PartyImg = '/images/icons/heart-party.png';
   } else if (party === 'L') {
     PartyImg = '/images/icons/libertarian.png';
   } else if (party === 'LI') {
