@@ -39,7 +39,7 @@ const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => {
         <RockTheVoteSection />
       </GrayWrapper>
       <ContentWrapper>
-        <ChallengersSection challengers={goodChallengers} />
+        {/* <ChallengersSection challengers={goodChallengers} /> */}
         <CreatorsSection />
       </ContentWrapper>
     </PageWrapper>
