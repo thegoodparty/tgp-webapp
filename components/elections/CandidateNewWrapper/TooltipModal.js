@@ -48,15 +48,21 @@ const TopClose = styled(CloseIcon)`
 
 const topics = {
   'PUBLIC HEALTH EMERGENCY MANAGER':
-    'This is the PUBLIC HEALTH EMERGENCY MANAGER tooltip data',
-  'TRANSPARENT BUDGETING': 'This is the TRANSPARENT BUDGETING tooltip data',
+    'A new position which will track public health crises such as COVID-19, the opioid crisis and future public health emergencies.',
+  'TRANSPARENT BUDGETING':
+    'Transparent budgeting provides an opportunity for the community to contribute to budget conversations and ensure that money is spent wisely.',
   'OFFICE OF COMMUNITY WEALTH BUILDING':
     'This is the OFFICE OF COMMUNITY WEALTH BUILDING tooltip data',
   'UNIVERSAL HEALTHCARE':
     'Access to health services for all people regardless of economic status or any other factor.',
   'LEGALIZE MARIJUANA':
     'Legalizing marijuana will create more jobs, reduce incarceration rates and end racial disparities in marijuana enforcement. ',
-  'END CASH BAIL': 'This is the END CASH BAIL tooltip data',
+  'END CASH BAIL':
+    'In the cash bail system, an individual has to pay a certain amount of money to be released from detention. Individuals who cannot afford to pay are detained for weeks or months before trial. Ending cash bail will save taxpayer dollars, decrease job loss and reduce incarceration rates.',
+  'NON-PARTISAN': 'Missing topic description',
+  'SMALL MONEY': 'Missing topic description',
+  'ANTI-CORRUPTION': 'Missing topic description',
+  TRANSPARENT: 'Missing topic description',
 };
 
 function TooltipModal({ topic, closeModalCallback }) {
