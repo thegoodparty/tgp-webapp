@@ -14,6 +14,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { BsTrash } from 'react-icons/bs';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
@@ -30,6 +31,12 @@ const Wrapper = styled.div`
 
 const CropWrapper = styled.div`
   position: relative;
+`;
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Input = styled(TextField)`
@@ -151,6 +158,16 @@ function AdminAddCandidateWrapper({
     setUpdatesDates(existingUpdatesDates);
   };
 
+  const deleteUpdate = index => {
+    const existingUpdates = [...updates];
+    existingUpdates.splice(index, 1);
+    setUpdates(existingUpdates);
+
+    const existingUpdatesDates = [...updatesDates];
+    existingUpdatesDates.splice(index, 1);
+    setUpdatesDates(existingUpdatesDates);
+  };
+
   const onChangeUpdates = (val, index) => {
     const existingUpdates = [...updates];
     existingUpdates[index] = val;
@@ -258,9 +275,13 @@ function AdminAddCandidateWrapper({
         <br />
         <hr />
         <br />
+        <br />
         {updates.map((update, index) => (
           <React.Fragment key={index}>
-            Update #{index + 1}
+            <Row>
+              <span>Update #{index + 1}</span>
+              <BsTrash onClick={deleteUpdate} style={{ cursor: 'pointer' }} />
+            </Row>
             <br />
             <Input
               fullWidth
