@@ -280,7 +280,12 @@ function AdminAddCandidateWrapper({
           <React.Fragment key={index}>
             <Row>
               <span>Update #{index + 1}</span>
-              <BsTrash onClick={deleteUpdate} style={{ cursor: 'pointer' }} />
+              <BsTrash
+                onClick={() => {
+                  deleteUpdate(index);
+                }}
+                style={{ cursor: 'pointer' }}
+              />
             </Row>
             <br />
             <Input
