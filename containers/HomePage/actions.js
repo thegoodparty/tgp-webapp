@@ -6,22 +6,22 @@
 
 import types from './constants';
 
-function loadChallengersAction() {
+function loadHomepageCandidatesAction() {
   return {
-    type: types.LOAD_CHALLENGERS,
+    type: types.LOAD_HOMEPAGE_CANDIDATES,
   };
 }
 
-function loadChallengersActionSuccess(challengers) {
+function loadHomepageCandidatesActionSuccess(candidates) {
   return {
-    type: types.LOAD_CHALLENGERS_SUCCESS,
-    challengers,
+    type: types.LOAD_HOMEPAGE_CANDIDATES_SUCCESS,
+    candidates,
   };
 }
 
-function loadChallengersActionError(error) {
+function loadHomepageCandidatesActionError(error) {
   return {
-    type: types.LOAD_CHALLENGERS_ERROR,
+    type: types.LOAD_HOMEPAGE_CANDIDATES_ERROR,
     error,
   };
 }
@@ -30,12 +30,12 @@ function subscribeEmailAction(email) {
   return {
     type: types.SUBSCRIBE_EMAIL,
     email,
-  }
+  };
 }
 
 export default {
-	loadChallengersAction,
-	loadChallengersActionSuccess,
-	loadChallengersActionError,
-  subscribeEmailAction
+  loadHomepageCandidatesAction,
+  loadHomepageCandidatesActionSuccess,
+  loadHomepageCandidatesActionError,
+  subscribeEmailAction,
 };

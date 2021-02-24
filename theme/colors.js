@@ -23,6 +23,7 @@ const colors = {
   purple: '#5C00C7',
   purple2: '#6E26DB',
   purple3: '#F0ECF3',
+  purple4: '#E8E3EC',
 };
 
 export default colors;

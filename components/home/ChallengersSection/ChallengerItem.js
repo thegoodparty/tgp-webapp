@@ -11,7 +11,7 @@ import {
   candidateRoute,
 } from 'helpers/electionsHelper';
 import { percHelper, numberFormatter } from 'helpers/numberHelper';
-import ChallengerAvatar from './ChallengerAvatar';
+import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import VotesNeeded from './VotesNeeded';
 import WonLostElection from '../../shared/WonLostElection';
 
@@ -134,7 +134,7 @@ const ChallengerItem = ({ challenger, id }) => {
     <ChallengerItemWrapper id={id ? id : undefined}>
       <Link href={candidateLink()} passHref>
         <a>
-          <ChallengerAvatar avatar={image} party={party} />
+          <CandidateAvatar avatar={image} party={party} />
           <ChallengerName>{name}</ChallengerName>
           <ChallengerInfo>{challengerInfo}</ChallengerInfo>
           <Grid container>

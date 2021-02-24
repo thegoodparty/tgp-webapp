@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { H3, Body11 } from '../../shared/typogrophy';
-import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
+import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { BiLinkExternal } from 'react-icons/bi';
 import TooltipModal from './TooltipModal';
 
@@ -84,7 +84,7 @@ function ComparedCandidate({ candidate, setTopicCallback }) {
   }
   return (
     <>
-      <ChallengerAvatar party={cleanParty} avatar={image} centered />
+      <CandidateAvatar party={cleanParty} avatar={image} centered />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
       </CandidateNameWrapper>

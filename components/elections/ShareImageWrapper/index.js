@@ -15,7 +15,7 @@ import { partyResolver } from 'helpers/electionsHelper';
 
 import { Body9, Body11, Body19 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
-import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
+import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter } from '../../../helpers/numberHelper';
 
 const ShareImageWrapper = styled.div`
@@ -133,10 +133,10 @@ function ShareImage({
       <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
       <AvatarWrapper container alignItems="center">
         <Grid item sm={3}>
-          <ChallengerAvatar
+          <CandidateAvatar
             avatar={`data:image/jpeg;base64, ${imageAsBase64}`}
             party={party}
-            isSmall
+            size="small"
             afterLoad={afterLoad}
           />
         </Grid>

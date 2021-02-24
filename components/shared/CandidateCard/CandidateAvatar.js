@@ -21,12 +21,17 @@ const ChallengerAvatarWrapper = styled.div`
     width: 58px;
     height: 58px;
   }
+
+  &.medium {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 const Img = styled.div`
   width: 58px;
   height: 58px;
-  background-position: center;
+  background-position: center center;
   background-size: cover;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -37,6 +42,12 @@ const Img = styled.div`
   &.small {
     width: 58px;
     height: 58px;
+  }
+
+  &.medium {
+    width: 70px;
+    height: 70px;
+
   }
 `;
 
@@ -73,11 +84,16 @@ const PartyIcon = styled.img`
     height: 25px;
     width: 25px;
   }
+
+  &.medium {
+    height: 25px;
+    width: 25px;
+  }
 `;
-const ChallengerAvatar = ({
+const CandidateAvatar = ({
   avatar,
   party,
-  isSmall,
+  size = 'large',
   afterLoad = () => {},
   centered = false,
 }) => {
@@ -87,7 +103,7 @@ const ChallengerAvatar = ({
   } else if (party === 'R') {
     PartyImg = '/images/icons/republican.png';
   } else if (party === 'I') {
-    PartyImg = '/images/icons/heart-party.png';
+    PartyImg = '/images/icons/heart-party.svg';
   } else if (party === 'L') {
     PartyImg = '/images/icons/libertarian.png';
   } else if (party === 'LI') {
@@ -99,11 +115,11 @@ const ChallengerAvatar = ({
   }
   return (
     <ChallengerAvatarWrapper
-      className={isSmall && 'small'}
+      className={size}
       style={centered ? { margin: '0 auto' } : {}}
     >
       <ImageWrapper>
-        {isSmall ? (
+        {size === 'small' ? (
           <LazyLoadImage
             src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
             alt=""
@@ -113,6 +129,7 @@ const ChallengerAvatar = ({
           />
         ) : (
           <Img
+            className={size}
             style={{
               backgroundImage: `url(${avatar ||
                 'https://assets.thegoodparty.org/gray-heart.png'})`,
@@ -121,20 +138,17 @@ const ChallengerAvatar = ({
         )}
       </ImageWrapper>
       {PartyImg && (
-        <PartyIcon
-          src={PartyImg}
-          className={`full-image ${isSmall && 'small'}`}
-        />
+        <PartyIcon src={PartyImg} className={`full-image ${size}`} />
       )}
     </ChallengerAvatarWrapper>
   );
 };
 
-ChallengerAvatar.propTypes = {
+CandidateAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
-  isSmall: PropTypes.bool,
+  size: PropTypes.small,
   afterLoad: PropTypes.func,
 };
 
-export default ChallengerAvatar;
+export default CandidateAvatar;

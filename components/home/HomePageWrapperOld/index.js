@@ -24,7 +24,7 @@ const GrayWrapper = styled.div`
   width: 100%;
   overflow-x: hidden;
 `;
-const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => {
+const HomePageWrapper = ({ homepageCandidates, subscribeEmailCallback }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -39,7 +39,7 @@ const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => {
         <RockTheVoteSection />
       </GrayWrapper>
       <ContentWrapper>
-        {/* <ChallengersSection challengers={goodChallengers} /> */}
+        {/* <ChallengersSection challengers={homepageCandidates} /> */}
         <CreatorsSection />
       </ContentWrapper>
     </PageWrapper>
@@ -47,7 +47,7 @@ const HomePageWrapper = ({ goodChallengers, subscribeEmailCallback }) => {
 };
 
 HomePageWrapper.propTypes = {
-  goodChallengers: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  homepageCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   subscribeEmailCallback: PropTypes.func,
 };
 

@@ -61,7 +61,7 @@ const partyOptions = [
 const fields = [
   {
     label: 'Show on Homepage?',
-    key: 'onHomepage',
+    key: 'isOnHomepage',
     initialValue: false,
     isCheckbox: true,
   },

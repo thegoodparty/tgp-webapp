@@ -17,7 +17,7 @@ import { kFormatter } from 'helpers/numberHelper';
 
 import { Body9, Body11, H3, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
-import ChallengerAvatar from '../../home/ChallengersSection/ChallengerAvatar';
+import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
 import ShareButton from './ShareButton';
@@ -126,7 +126,11 @@ function ProfileInfo({
     <WrapperElement>
       <ProfileInfoWrapper>
         <AvatarSection>
-          <ChallengerAvatar avatar={image} party={party} isSmall={isMobile} />
+          <CandidateAvatar
+            avatar={image}
+            party={party}
+            size={isMobile ? 'small' : 'large'}
+          />
           <div>
             <CandidateName>
               {firstName} {lastName}
