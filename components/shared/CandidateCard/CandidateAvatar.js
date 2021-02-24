@@ -103,7 +103,7 @@ const CandidateAvatar = ({
   } else if (party === 'R') {
     PartyImg = '/images/icons/republican.png';
   } else if (party === 'I') {
-    PartyImg = '/images/icons/heart-party.svg';
+    PartyImg = '/images/icons/certification-badge.svg';
   } else if (party === 'L') {
     PartyImg = '/images/icons/libertarian.png';
   } else if (party === 'LI') {

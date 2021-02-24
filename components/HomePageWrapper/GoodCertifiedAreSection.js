@@ -44,25 +44,25 @@ const UnderText = styled(Body12)`
 const points = [
   {
     title: 'Non-Partisan',
-    icon: 'images/icons/heart-party.svg',
+    icon: 'images/icons/non-partisan.svg',
     body:
       'Good Party candidates pledge to caucus (meet) with everyone, but NEVER to pay or fundraise for either Republican or Democratic parties.',
   },
   {
     title: 'Small Money',
-    icon: 'images/icons/heart-party.svg',
+    icon: 'images/icons/certification-badge.svg',
     body:
       'Good Party candidate pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
   },
   {
     title: 'Anti-Corruption',
-    icon: 'images/icons/heart-party.svg',
+    icon: 'images/icons/anti-corruption.svg',
     body:
       'Good Party candidates pledge to abide and advance the Anti-Corruption Act championed by Represent.us.',
   },
   {
     title: 'Accountable',
-    icon: 'images/icons/heart-party.svg',
+    icon: 'images/icons/accountable.svg',
     body:
       'Good Party candidates pledge to openly share their calendar, and, to the extent possible, to live-stream, closed caption and searchable archiving of all meetings on public time.',
   },
@@ -73,7 +73,7 @@ const GoodCertifiedAreSection = () => {
     <>
       <Row>
         <H2>Good Certified candidates are: </H2>
-        <Img src="images/icons/heart-party.svg" alt="tgp certified" />
+        <Img src="images/icons/certification-badge.svg" alt="tgp certified" />
       </Row>
       <Grid container spacing={5} alignItems="center">
         {points.map(point => (
