@@ -7,6 +7,7 @@ import Section2 from './Section2';
 import Section3 from './Section3';
 import GoodCertifiedAreSection from './GoodCertifiedAreSection';
 import CandidatesSection from './CandidatesSection';
+import HelpSection from './HelpSection';
 
 const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
@@ -24,15 +25,18 @@ const Section = styled.section`
   }
 `;
 
-const sections = [
-  { component: <TopSection /> },
-  { component: <Section2 />, sectionClass: 'purple4' },
-  { component: <Section3 /> },
-  { component: <GoodCertifiedAreSection /> },
-];
-
 const HomePageWrapper = ({ homepageCandidates }) => {
   console.log('homepageCandidates', homepageCandidates);
+  const sections = [
+    { component: <TopSection /> },
+    { component: <Section2 />, sectionClass: 'purple4' },
+    { component: <Section3 /> },
+    { component: <GoodCertifiedAreSection /> },
+    {
+      component: <CandidatesSection homepageCandidates={homepageCandidates} />,
+    },
+    { component: <HelpSection /> },
+  ];
 
   return (
     <PageWrapper isFullWidth purple>
@@ -44,11 +48,6 @@ const HomePageWrapper = ({ homepageCandidates }) => {
           <Content>{section.component}</Content>
         </Section>
       ))}
-      <Section>
-        <Content>
-          <CandidatesSection homepageCandidates={homepageCandidates} />
-        </Content>
-      </Section>
     </PageWrapper>
   );
 };

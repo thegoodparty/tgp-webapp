@@ -3,13 +3,9 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import StyledH2 from './StyledH2';
 import SectionImg from './SectionImg';
-import { PurpleButton } from '../shared/buttons';
-import { Body } from '../shared/typogrophy';
+import JoinUsButton from './JoinUsButton';
 
-const StyledBody = styled(Body)`
-  color: #fff;
-  padding: 0 24px;
-`;
+
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;
@@ -26,9 +22,7 @@ const Section3 = () => {
       </Grid>
       <Grid item xs={12} md={6}>
         <StyledH2>Let’s get money out of politics - for good.</StyledH2>
-        <PurpleButton>
-          <StyledBody>JOIN US</StyledBody>
-        </PurpleButton>
+        <JoinUsButton />
       </Grid>
     </ReverseGrid>
   );

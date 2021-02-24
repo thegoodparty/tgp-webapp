@@ -2,9 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import StyledH2 from './StyledH2';
-import { Body, H2 } from '../shared/typogrophy';
+import { Body11, H2 } from '../shared/typogrophy';
 import CandidateCard from '../shared/CandidateCard';
+
+const SeeMore = styled(Body11)`
+  color: ${({ theme }) => theme.colors.purple};
+  border: solid 1px ${({ theme }) => theme.colors.purple};
+  display: inline-block;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-weight: 500;
+`;
 
 const CandidatesSection = ({ homepageCandidates }) => {
   return (
@@ -21,6 +29,9 @@ const CandidatesSection = ({ homepageCandidates }) => {
           ))}
         <Grid item xs={12} md={4} />
       </Grid>
+      <div className="text-center">
+        <SeeMore>SEE MORE CANDIDATES</SeeMore>
+      </div>
     </>
   );
 };
