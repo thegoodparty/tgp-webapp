@@ -12,10 +12,7 @@ const NavWrapper = ({ pathname, user, navigateCallback }) => {
   return (
     <>
       <Hidden smDown>
-        <DesktopHeader
-          user={user}
-          pathname={pathname}
-        />
+        <DesktopHeader user={user} pathname={pathname} />
         <RegisterBannerContainer />
       </Hidden>
       <Hidden mdUp>
