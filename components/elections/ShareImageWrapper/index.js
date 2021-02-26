@@ -115,7 +115,7 @@ function ShareImage({
   } = candidate;
   const afterLoad = () => {
     htmlToImage
-      .toJpeg(document.getElementById('profile-info'), { width: 420 })
+      .toJpeg(document.getElementById('profile-info'))
       .then(function (dataUrl) {
         const img = new Image();
         img.src = dataUrl;
