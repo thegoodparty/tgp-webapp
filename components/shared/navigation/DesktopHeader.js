@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { BsChevronDown } from 'react-icons/bs';
+import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -14,7 +15,7 @@ import { Body14 } from '../typogrophy';
 import UserAvatar from '../UserAvatar';
 
 const Wrapper = styled.div`
-  height: 60px;
+  height: 80px;
   width: 100%;
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -28,7 +29,7 @@ const ContentWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 80px;
 `;
 
 const Works = styled.div`
@@ -36,11 +37,18 @@ const Works = styled.div`
   letter-spacing: 0.2px;
   color: ${({ theme }) => theme.colors.purple};
   display: flex;
-  justify-content: center;
   align-items: center;
   cursor: pointer;
+  align-self: flex-start;
   span {
     margin-right: 10px;
+  }
+`;
+
+const ChevronDown = styled(BsChevronDown)`
+  transition: transform 0.3s;
+  &.open {
+    transform: rotate(180deg);
   }
 `;
 
@@ -49,8 +57,7 @@ const Share = styled.div`
   letter-spacing: 0.2px;
   color: ${({ theme }) => theme.colors.purple};
   padding: 10px 22px;
-  height: 44px;
-  margin-top: 8px;
+  height: 56px;
   border: solid 2px ${({ theme }) => theme.colors.purple};
   display: flex;
   border-radius: 8px;
@@ -71,6 +78,9 @@ const Share = styled.div`
 
 const ShareWrapper = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
 `;
 
 const Logo = styled.img`
@@ -78,10 +88,9 @@ const Logo = styled.img`
   width: auto;
 `;
 
-const AvatarWrapper = styled(Body14)`
-  height: 60px;
+const AvatarWrapper = styled.div`
   cursor: pointer;
-  margin-left: 12px;
+  margin-left: 32px;
 `;
 
 const StyledMenuItem = styled(MenuItem)`
@@ -90,6 +99,13 @@ const StyledMenuItem = styled(MenuItem)`
     font-size: 16px;
     padding-top: 12px;
     padding-bottom: 12px;
+
+    &.Mui-focusVisible {
+      background-color: #fff;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+    }
   }
 `;
 
@@ -129,80 +145,92 @@ const DesktopHeader = ({ user }) => {
   return (
     <Wrapper>
       <ContentWrapper>
-        <div>
-          <Works
-            ref={anchorRef}
-            aria-controls={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
-            onClick={handleToggle}
-          >
-            <span>HOW THIS WORKS</span>
-            <BsChevronDown size={14} />
-          </Works>
-          <Popper
-            open={open}
-            anchorEl={anchorRef.current}
-            role={undefined}
-            transition
-            disablePortal
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin:
-                    placement === 'bottom' ? 'center top' : 'center bottom',
-                }}
-              >
-                <Paper style={{ marginTop: '10px' }}>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList
-                      autoFocusItem={open}
-                      id="menu-list-grow"
-                      onKeyDown={handleListKeyDown}
-                    >
-                      <StyledMenuItem onClick={handleClose}>
-                        How crowd-voting works
-                      </StyledMenuItem>
-                      <StyledMenuItem onClick={handleClose}>
-                        About Good Party
-                      </StyledMenuItem>
-                      <StyledMenuItem onClick={handleClose}>
-                        Candidates
-                      </StyledMenuItem>
-                      <StyledMenuItem onClick={handleClose}>
-                        FAQs
-                      </StyledMenuItem>
-                      <StyledMenuItem onClick={handleClose}>
-                        Sign up / Login
-                      </StyledMenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
-        </div>
-        <Link href="/" passHref>
-          <a>
-            <Logo src="/images/new-logo.svg" data-cy="logo" />
-          </a>
-        </Link>
-        <ShareWrapper>
-          <Share>
-            <Logo src="/images/icons/share-icon.svg" alt="Good Party" />
-            <span>SHARE</span>
-          </Share>
-          {user?.name && (
-            <Link href="/you" passHref>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={4}>
+            <Works
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+            >
+              <span>HOW THIS WORKS</span>
+              <ChevronDown size={14} className={open ? 'open' : 'closed'} />
+            </Works>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+              placement="top-start"
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin:
+                      placement === 'bottom' ? 'center top' : 'center bottom',
+                  }}
+                >
+                  <Paper style={{ marginTop: '10px' }}>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="menu-list-grow"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <StyledMenuItem onClick={handleClose}>
+                          How crowd-voting works
+                        </StyledMenuItem>
+                        <StyledMenuItem onClick={handleClose}>
+                          <Link href="/party" passHref>
+                            <a>About Good Party</a>
+                          </Link>
+                          About Good Party
+                        </StyledMenuItem>
+                        <StyledMenuItem onClick={handleClose}>
+                          Candidates
+                        </StyledMenuItem>
+                        <StyledMenuItem>
+                          <Link href="/party/faqs" passHref>
+                            <a>FAQs</a>
+                          </Link>
+                        </StyledMenuItem>
+                        <StyledMenuItem onClick={handleClose}>
+                          Sign up / Login
+                        </StyledMenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </Grid>
+          <Grid item xs={4} className="text-center">
+            <Link href="/" passHref>
               <a>
-                <AvatarWrapper>
-                  <UserAvatar user={user} />
-                </AvatarWrapper>
+                <Logo src="/images/new-logo.svg" data-cy="logo" />
               </a>
             </Link>
-          )}
-        </ShareWrapper>
+          </Grid>
+          <Grid item xs={4}>
+            <ShareWrapper>
+              <Share>
+                <img src="/images/icons/share-icon.svg" alt="Share" />
+                <span>SHARE</span>
+              </Share>
+              {user?.name && (
+                <Link href="/you" passHref>
+                  <a>
+                    <AvatarWrapper>
+                      <UserAvatar user={user} />
+                    </AvatarWrapper>
+                  </a>
+                </Link>
+              )}
+            </ShareWrapper>
+          </Grid>
+        </Grid>
       </ContentWrapper>
     </Wrapper>
   );

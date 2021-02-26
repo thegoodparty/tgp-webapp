@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { push } from 'connected-next-router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -19,11 +18,10 @@ import saga from 'containers/you/YouPage/saga';
 
 import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
-import { electionRoute } from 'helpers/electionsHelper';
 
 import makeSelectCandidate from '../../elections/CandidatePage/selectors';
 
-export function Nav({ userState, dispatch, navigateCallback }) {
+export function Nav({ userState, dispatch }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -41,7 +39,6 @@ export function Nav({ userState, dispatch, navigateCallback }) {
 
   const childProps = {
     user,
-    navigateCallback,
   };
 
   return <NavWrapper {...childProps} />;
@@ -50,7 +47,6 @@ export function Nav({ userState, dispatch, navigateCallback }) {
 Nav.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
-  navigateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -62,13 +58,6 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    navigateCallback: (screen, user, zipCode) => {
-      if (screen === '/elections') {
-        dispatch(push(electionRoute(user, zipCode)));
-      } else {
-        dispatch(push(screen));
-      }
-    },
   };
 }
 
