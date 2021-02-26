@@ -43,7 +43,7 @@ export function HomePage({
   return (
     <div>
       <Head>
-        <title>The Good Party</title>
+        <title>GOOD PARTY</title>
         <meta name="description" content="The Good Party" />
       </Head>
       <HomePageWrapper {...childProps} />

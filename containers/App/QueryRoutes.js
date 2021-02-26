@@ -28,13 +28,15 @@ import saga from './saga';
 import globalActions from './actions';
 import { makeSelectContent, makeSelectLocation } from './selectors';
 import AnalyticsService from '../../services/AnalyticsService';
+import ShareModal from '../../components/elections/CandidateNewWrapper/ShareModal';
 
 function QueryRoutes({ locationState, content, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
   const { search } = locationState;
-  
+
   const [showRegister, setShowRegister] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   useEffect(() => {
     const uuid = queryHelper(search, 'u');
@@ -61,6 +63,9 @@ function QueryRoutes({ locationState, content, dispatch }) {
     if (queryRegister === 'true') {
       AnalyticsService.sendEvent('signup', 'View Account Signup Page');
     }
+
+    const queryShare = queryHelper(search, 'share');
+    setShowShare(queryShare === 'true');
   }, [search]);
 
   const blocRedirect = bloc => {
@@ -84,6 +89,7 @@ function QueryRoutes({ locationState, content, dispatch }) {
     <>
       {content && <FaqArticlePage />}
       {showRegister && <SocialRegisterPage />}
+      {showShare && <ShareModal />}
     </>
   );
 }

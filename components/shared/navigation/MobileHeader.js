@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import MenuItem from '@material-ui/core/MenuItem';
 import Drawer from '@material-ui/core/Drawer';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -12,27 +12,31 @@ import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
 import UserAvatar from '../UserAvatar';
 
 import { Body9, Body14 } from '../typogrophy';
+import { PurpleButton } from '../buttons';
 
 const Wrapper = styled.div`
-  padding: 20px 18px;
-  padding-bottom: none;
+  padding: 0 20px;
+  height: 80px;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  box-shadow: -1px 0px 12px rgb(0 0 0 / 20%);
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   justify-content: space-between;
 `;
 
 const Logo = styled.img`
-  height: 10px;
+  height: 12px;
   align-self: center;
   justify-self: center;
 `;
 
 const AuthButtonWrapper = styled.div`
   display: flex;
-  padding: 10px 0px;
+  padding: 18px 0px;
+  margin-top: 18px;
+  border-top: solid 1px rgba(12, 11, 49, 0.16);
+  align-items: center;
+  justify-content: space-between;
 `;
 const MenuIconButton = styled(MenuIcon)`
   && {
@@ -46,48 +50,6 @@ const CloseIconButton = styled(CloseIcon)`
     font-size: 2rem;
   }
 `;
-const TopLink = styled(Body9)`
-  cursor: pointer;
-  font-size: 12px;
-  border-bottom: solid 2px #fff;
-  margin-left: 1rem;
-  display: flex;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.purple};
-  &.menu-items {
-    font-size: 1rem;
-    margin-left: 0;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    &.button {
-      margin-left: 18px;
-      margin-right: 24px;
-    }
-  }
-  &.button {
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    &.big {
-      height: 56px;
-      padding: 18px 30px;
-    }
-    background: linear-gradient(
-        103.63deg,
-        rgba(255, 15, 19, 0.15) -3.51%,
-        rgba(191, 0, 32, 0) 94.72%
-      ),
-      linear-gradient(
-        257.82deg,
-        rgba(67, 0, 211, 0.25) -11.17%,
-        rgba(67, 0, 211, 0) 96.34%
-      ),
-      linear-gradient(0deg, #5c00c7, #5c00c7), #117cb6;
-  }
-  &.button:hover {
-    border-bottom: solid 2px #fff;
-  }
-`;
 const MenuItemWrapper = styled(Drawer)`
   && {
     .MuiDrawer-paper {
@@ -96,116 +58,154 @@ const MenuItemWrapper = styled(Drawer)`
     }
   }
 `;
-const AvatarWrapper = styled(Body14)`
+const PushMenuWrapper = styled.div`
+  padding: 24px 18px 18px;
+`;
+const AvatarWrapper = styled.div`
   height: 80px;
   cursor: pointer;
   display: flex;
   margin-left: 2rem;
 `;
 
+const PushAvatarWrapper = styled.div`
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  line-height: 20px;
+  align-items: center;
+  text-transform: uppercase;
+  border-bottom: solid 1px rgba(12, 11, 49, 0.16);
+  padding-bottom: 18px;
+`;
+
+const Share = styled.img`
+  height: 18px;
+  cursor: pointer;
+`;
+
 const LinkContainer = styled.div`
   display: flex;
 `;
-function MobileHeader({ user, navigateCallback }) {
+
+const PushMenuLink = styled.div`
+  padding: 12px 0;
+  line-height: 22px;
+  font-size: 16px;
+`;
+
+const ButtonInner = styled.div`
+  padding: 6px 0;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+function MobileHeader({ user }) {
   const [open, setOpen] = useState(false);
-  const handleNavigate = screen => {
-    navigateCallback(screen, user);
-  };
+
   return (
     <Hidden mdUp>
       <Wrapper>
-        <Link href="/home" className="text-center">
+        <LinkContainer>
+          <MenuIconButton onClick={() => setOpen(true)} />
+        </LinkContainer>
+        <Link href="/" className="text-center">
           <Logo
             src="/images/new-logo.svg"
             alt="The Good Party"
             data-cy="logo"
           />
         </Link>
-        <LinkContainer>
-          {!(user && user.name) && !open && (
-            <TopLink
-              onClick={() => handleNavigate('/you?register=true')}
-              data-cy="you"
-              className="button"
-            >
-              SIGN UP
-            </TopLink>
-          )}
-          <TopLink data-cy="you" style={{ borderBottom: 'none' }}>
-            <MenuIconButton onClick={() => setOpen(true)} />
-          </TopLink>
-        </LinkContainer>
-      </Wrapper>
-      <MenuItemWrapper
-        anchor="right"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <Wrapper style={{ marginBottom: 10 }}>
-          <Link href="/home" className="text-center">
-            <Logo
-              src="/images/new-logo.svg"
-              alt="The Good Party"
-              data-cy="logo"
-            />
-          </Link>
-          <TopLink data-cy="you">
-            <CloseIconButton onClick={() => setOpen(false)} />
-          </TopLink>
-        </Wrapper>
-        <MenuItem>
-          <TopLink
-            onClick={() => handleNavigate('/party')}
-            data-cy="party"
-            className="menu-items"
-          >
-            CANDIDATES
-          </TopLink>
-        </MenuItem>
-        <MenuItem>
-          <TopLink
-            onClick={() => handleNavigate('/party')}
-            data-cy="party"
-            className="menu-items"
-          >
-            ABOUT
-          </TopLink>
-        </MenuItem>
-        <AuthButtonWrapper className={!user?.name && 'auth-button'}>
-          {user?.name ? (
-            <MenuItem style={{ width: '100%' }}>
-              <AvatarWrapper
-                onClick={() => handleNavigate('/you')}
-                style={{ marginLeft: 0 }}
-              >
-                <UserAvatar
-                  user={user}
-                  onClick={() => handleNavigate('/you')}
-                />
-                <TopLink style={{ marginLeft: 6 }} className="menu-items">
-                  {user.name}
-                </TopLink>
+        {user?.name ? (
+          <Link href="/you" passHref>
+            <a>
+              <AvatarWrapper>
+                <UserAvatar user={user} />
               </AvatarWrapper>
-            </MenuItem>
-          ) : (
-              <>
-                <TopLink
-                  onClick={() => handleNavigate('/you?register=true')}
-                  data-cy="you"
-                  className="button menu-items big"
-                >
-                  SIGN UP
-              </TopLink>
-                <TopLink
-                  onClick={() => handleNavigate('/login')}
-                  data-cy="you"
-                  className="menu-items"
-                >
-                  LOG IN
-              </TopLink>
-              </>
+            </a>
+          </Link>
+        ) : (
+          <Link href="/">
+            <Share src="/images/icons/share-icon.svg" alt="Share" />
+          </Link>
+        )}
+      </Wrapper>
+      <MenuItemWrapper anchor="left" open={open} onClose={() => setOpen(false)}>
+        <PushMenuWrapper>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item xs={3}>
+              <CloseIconButton onClick={() => setOpen(false)} />
+            </Grid>
+            <Grid item xs={6}>
+              <div className="text-center">
+                <Link href="/" className="text-center" passHref>
+                  <a>
+                    <Logo
+                      src="/images/new-logo.svg"
+                      alt="The Good Party"
+                      data-cy="logo"
+                    />
+                  </a>
+                </Link>
+              </div>
+            </Grid>
+            <Grid item xs={3}>
+              &nbsp;
+            </Grid>
+          </Grid>
+
+          <PushMenuLink style={{ marginTop: '40px' }}>
+            <Link href="/" className="text-center" passHref>
+              <a>CANDIDATES</a>
+            </Link>
+          </PushMenuLink>
+          <PushMenuLink>
+            <Link href="/party" className="text-center" passHref>
+              <a>ABOUT</a>
+            </Link>
+          </PushMenuLink>
+
+          <AuthButtonWrapper className={!user?.name && 'auth-button'}>
+            {user?.name ? (
+              <Link href="/you" className="text-center" passHref>
+                <a style={{ width: '100%' }}>
+                  <PushAvatarWrapper>
+                    <UserAvatar user={user} />
+                    <div style={{ marginLeft: 6 }} className="menu-items">
+                      {user.name}
+                    </div>
+                  </PushAvatarWrapper>
+                </a>
+              </Link>
+            ) : (
+              <Grid container spacing={3} alignItems="center">
+                <Grid item xs={6}>
+                  <PushMenuLink className="text-center">
+                    <Link
+                      href="?register=true"
+                      className="text-center"
+                      passHref
+                    >
+                      <a>
+                        <PurpleButton fullWidth>
+                          <ButtonInner>SIGN UP</ButtonInner>
+                        </PurpleButton>
+                      </a>
+                    </Link>
+                  </PushMenuLink>
+                </Grid>
+                <Grid item xs={6}>
+                  <PushMenuLink className="text-center">
+                    <Link href="/login" className="text-center" passHref>
+                      <a>LOG IN</a>
+                    </Link>
+                  </PushMenuLink>
+                </Grid>
+              </Grid>
             )}
-        </AuthButtonWrapper>
+          </AuthButtonWrapper>
+        </PushMenuWrapper>
       </MenuItemWrapper>
 
       <RegisterBannerContainer />
@@ -215,7 +215,6 @@ function MobileHeader({ user, navigateCallback }) {
 
 MobileHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  navigateCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
