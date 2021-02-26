@@ -215,10 +215,14 @@ const DesktopHeader = ({ user }) => {
           </Grid>
           <Grid item xs={4}>
             <ShareWrapper>
-              <Share>
-                <img src="/images/icons/share-icon.svg" alt="Share" />
-                <span>SHARE</span>
-              </Share>
+              <Link href="?share=true" passHref>
+                <a>
+                  <Share>
+                    <img src="/images/icons/share-icon.svg" alt="Share" />
+                    <span>SHARE</span>
+                  </Share>
+                </a>
+              </Link>
               {user?.name && (
                 <Link href="/you" passHref>
                   <a>
