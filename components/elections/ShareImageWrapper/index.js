@@ -114,14 +114,14 @@ function ShareImage({
   } = candidate;
   const afterLoad = () => {
     htmlToImage
-      .toJpeg(document.getElementById('profile-info'))
-      .then(function(dataUrl) {
+      .toJpeg(document.getElementById('profile-info'), { width: 420 })
+      .then(function (dataUrl) {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
         shareImageCallback({ ...candidate, imageBase64: dataUrl });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error('oops, something went wrong!', error);
       });
   };
@@ -157,10 +157,10 @@ function ShareImage({
           {supportCount === 0 ? (
             <>&nbsp;</>
           ) : (
-            <LikelyVoters>
-              <span>{kFormatter(supportCount)}</span> people endorsing
-            </LikelyVoters>
-          )}
+              <LikelyVoters>
+                <span>{kFormatter(supportCount)}</span> people endorsing
+              </LikelyVoters>
+            )}
         </Grid>
       </Grid>
       <SupportersProgressBar
