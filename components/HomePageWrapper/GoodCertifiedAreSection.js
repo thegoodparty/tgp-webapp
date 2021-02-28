@@ -14,7 +14,6 @@ const Img = styled.img`
   margin-left: 16px;
   width: 60px;
   height: auto;
-
 `;
 
 const PointWrapper = styled.div`
@@ -42,20 +41,23 @@ const points = [
     title: 'Non-Partisan',
     icon: 'images/icons/non-partisan.svg',
     body:
-      'Good Party candidates pledge to caucus (meet) with everyone, but NEVER to pay or fundraise for either Republican or Democratic parties.',
+      'Good Party Certified candidates pledge to caucus (meet) with all sides, but to NEVER pay dues to nor fundraise for either Republican or Democratic parties.',
   },
   {
     title: 'Small Money',
     icon: 'images/icons/small-money.svg',
     body:
-      'Good Party candidate pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
+      'Good Party Certified candidates pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
   },
   {
     title: 'Anti-Corruption',
     icon: 'images/icons/anti-corruption.svg',
     body:
-      'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time.  They will also abide by and work to advance the',
-    endLink: { text: 'Anti-Corruption Act', href: '/?article=7jm2j9gapWwEoVwVD3VX6o' },
+      'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time.  They will also abide by and work to advance the ',
+    endLink: {
+      text: 'Anti-Corruption Act',
+      href: '/?article=7jm2j9gapWwEoVwVD3VX6o',
+    },
   },
 ];
 
