@@ -70,7 +70,7 @@ const GoodCertifiedAreSection = () => {
     <>
       <Row>
         <H2>Good Certified candidates are: </H2>
-        <Img src="images/icons/certification-badge.svg" alt="tgp certified" />
+        <Img src="images/icons/certification-badge2.svg" alt="tgp certified" />
       </Row>
       <Grid container spacing={5} alignItems="center">
         {points.map(point => (

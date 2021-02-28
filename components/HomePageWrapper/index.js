@@ -35,7 +35,7 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     {
       component: <CandidatesSection homepageCandidates={homepageCandidates} />,
     },
-    { component: <HelpSection /> },
+    { component: <HelpSection />, sectionClass: 'purple4' },
   ];
 
   return (

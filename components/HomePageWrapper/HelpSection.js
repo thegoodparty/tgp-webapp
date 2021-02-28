@@ -18,12 +18,11 @@ const TextWrapper = styled.div`
 const HelpSection = () => {
   return (
     <>
-      <StyledH2>Help good candidates</StyledH2>
+      <StyledH2>Sign up to stay informed</StyledH2>
       <TextWrapper>
         <GrayText>
-          Currently, we’re focused on getting some wins for good candidates in
-          New York and California. Create an account to help these candidates
-          win.
+          We’re always adding candidates. Join the Good Party and we’ll keep you
+          posted as the roster grows.
         </GrayText>
       </TextWrapper>
       <JoinUsButton />
