@@ -69,10 +69,14 @@ const Column = styled.div`
 `;
 
 const ColumnHeader = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: 30px;
   font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 32px;
+    font-size: 16px;
   }
 `;
 
