@@ -176,8 +176,8 @@ function ProfileInfo({
           />
         </Box>
         <EndorsementDescription>
-          Adding your name is a free way to show support for grassroots
-          candidates. <a>Read more</a>
+          Your endorsement is a free way to show and grow grassroots support.{' '}
+          <a>Read more</a>
         </EndorsementDescription>
         <Hidden xsDown>
           <RecentlyJoined candidateSupports={candidateSupports} />
