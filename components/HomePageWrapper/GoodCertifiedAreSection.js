@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
 import { H2, Body, Body12 } from '../shared/typogrophy';
 
 const Row = styled.div`
@@ -13,9 +14,7 @@ const Img = styled.img`
   margin-left: 16px;
   width: 60px;
   height: auto;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 74px;
-  }
+
 `;
 
 const PointWrapper = styled.div`
@@ -47,7 +46,7 @@ const points = [
   },
   {
     title: 'Small Money',
-    icon: 'images/icons/certification-badge.svg',
+    icon: 'images/icons/small-money.svg',
     body:
       'Good Party candidate pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
   },
@@ -55,13 +54,8 @@ const points = [
     title: 'Anti-Corruption',
     icon: 'images/icons/anti-corruption.svg',
     body:
-      'Good Party candidates pledge to abide and advance the Anti-Corruption Act championed by Represent.us.',
-  },
-  {
-    title: 'Accountable',
-    icon: 'images/icons/accountable.svg',
-    body:
-      'Good Party candidates pledge to openly share their calendar, and, to the extent possible, to live-stream, closed caption and searchable archiving of all meetings on public time.',
+      'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time.  They will also abide by and work to advance the',
+    endLink: { text: 'Anti-Corruption Act', href: '/?article=7jm2j9gapWwEoVwVD3VX6o' },
   },
 ];
 
@@ -74,13 +68,20 @@ const GoodCertifiedAreSection = () => {
       </Row>
       <Grid container spacing={5} alignItems="center">
         {points.map(point => (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <PointWrapper>
               <PointIcon src={point.icon} />
               <div>
                 <Body>
                   <strong>{point.title}</strong>
-                  <UnderText>{point.body}</UnderText>
+                  <UnderText>
+                    {point.body}{' '}
+                    {point.endLink && (
+                      <Link href={point.endLink.href}>
+                        {point.endLink.text}
+                      </Link>
+                    )}
+                  </UnderText>
                 </Body>
               </div>
             </PointWrapper>

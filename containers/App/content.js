@@ -2854,6 +2854,17 @@ const content = {
       "id": "7D3TGoveRpv3RjgAWnefCy"
     },
     {
+      "title": "Anti Corruption Act",
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How The Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "7jm2j9gapWwEoVwVD3VX6o"
+    },
+    {
       "title": "What does it mean to \"endorse\" a candidate?",
       "articleBody": {
         "nodeType": "document",
@@ -3009,6 +3020,10 @@ const content = {
         {
           "title": "What is a crowd-voting campaign?",
           "id": "1ic6T6fhH0jZLNvX5aZkDe"
+        },
+        {
+          "title": "Anti Corruption Act",
+          "id": "7jm2j9gapWwEoVwVD3VX6o"
         },
         {
           "title": "What does it mean to \"endorse\" a candidate?",
