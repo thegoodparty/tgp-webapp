@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { BsChevronDown } from 'react-icons/bs';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
@@ -112,6 +113,7 @@ const StyledMenuItem = styled(MenuItem)`
 const DesktopHeader = ({ user }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const router = useRouter();
 
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
@@ -141,6 +143,11 @@ const DesktopHeader = ({ user }) => {
 
     prevOpen.current = open;
   }, [open]);
+
+  const handShare = () => {
+    router.query.share = 'true';
+    router.push(router);
+  };
 
   return (
     <Wrapper>
@@ -215,14 +222,11 @@ const DesktopHeader = ({ user }) => {
           </Grid>
           <Grid item xs={4}>
             <ShareWrapper>
-              <Link href="?share=true" passHref>
-                <a>
-                  <Share>
-                    <img src="/images/icons/share-icon.svg" alt="Share" />
-                    <span>SHARE</span>
-                  </Share>
-                </a>
-              </Link>
+              <Share onClick={handShare}>
+                <img src="/images/icons/share-icon.svg" alt="Share" />
+                <span>SHARE</span>
+              </Share>
+
               {user?.name && (
                 <Link href="/you" passHref>
                   <a>
