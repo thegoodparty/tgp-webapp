@@ -52,8 +52,13 @@ const StyledTextField = styled(TextField)`
 
 function EndorsementPreviewModal({ candidate, user, previewNextStepCallback }) {
   const [message, setMessage] = useState(
-    `Someone real, not another 💩 politician!\nI'm ${user?.name} and I Approve this message! 😜`,
+    `Someone real, not another 💩 politician!\n\nI'm ${
+      user?.name
+    } and I approve this message! 😜`,
   );
+  const shareImage = `https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${candidate.firstName.toLowerCase()}-${candidate.lastName.toLowerCase()}-${
+    candidate.id
+  }.jpeg`;
 
   const onChangeField = e => {
     setMessage(e.target.value);
@@ -62,7 +67,9 @@ function EndorsementPreviewModal({ candidate, user, previewNextStepCallback }) {
     <QueryModalContainer>
       <H2 style={{ marginTop: '24px' }}>Preview endorsement</H2>
       <ImageWrapper>
-        <Img style={{ backgroundImage: `url(${candidate.image})` }} />
+        <div className="text-center">
+          <img src={shareImage} alt="Share Image" />
+        </div>
         <H3 style={{ padding: '20px' }}>
           See why 12,491 people support a different kind of candidate
         </H3>
