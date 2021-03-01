@@ -1,3 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36" viewBox="0 0 50 50">
-  <image x="1" y="1" width="48" height="48" xlink:href="data:img/png;base64,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"/>
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18 2C9.163 2 2 9.163 2 18C2 26.837 9.163 34 18 34C26.837 34 34 26.837 34 18C34 9.163 26.837 2 18 2Z" fill="#6E26DB" fill-opacity="0.1"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18 2C9.163 2 2 9.163 2 18C2 26.837 9.163 34 18 34C26.837 34 34 26.837 34 18C34 9.163 26.837 2 18 2Z" fill="url(#paint0_linear)" fill-opacity="0.05"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18 2C9.163 2 2 9.163 2 18C2 26.837 9.163 34 18 34C26.837 34 34 26.837 34 18C34 9.163 26.837 2 18 2Z" fill="url(#paint1_linear)" fill-opacity="0.05"/>
+<path d="M18 2C9.163 2 2 9.163 2 18C2 26.837 9.163 34 18 34C26.837 34 34 26.837 34 18C34 9.163 26.837 2 18 2Z" stroke="#5C00C7" stroke-width="2.37"/>
+<path d="M18 2C9.163 2 2 9.163 2 18C2 26.837 9.163 34 18 34C26.837 34 34 26.837 34 18C34 9.163 26.837 2 18 2Z" stroke="url(#paint2_linear)" stroke-opacity="0.25" stroke-width="2.37"/>
+<path d="M18 2C9.163 2 2 9.163 2 18C2 26.837 9.163 34 18 34C26.837 34 34 26.837 34 18C34 9.163 26.837 2 18 2Z" stroke="url(#paint3_linear)" stroke-opacity="0.15" stroke-width="2.37"/>
+<path d="M20.002 23.6001L14.802 18.4001L20.002 13.2001" stroke="#5C00C7" stroke-width="2.37" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.002 23.6001L14.802 18.4001L20.002 13.2001" stroke="url(#paint4_linear)" stroke-opacity="0.25" stroke-width="2.37" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20.002 23.6001L14.802 18.4001L20.002 13.2001" stroke="url(#paint5_linear)" stroke-opacity="0.15" stroke-width="2.37" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x1="0.932999" y1="34" x2="37.51" y2="26.694" gradientUnits="userSpaceOnUse">
+<stop stop-color="#117CB6"/>
+<stop offset="1" stop-color="#117CB6" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear" x1="29.022" y1="58.8" x2="-11.962" y2="41.723" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF5B7E"/>
+<stop offset="1" stop-color="#FF5B7E" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint2_linear" x1="-0.791001" y1="41.2" x2="39.175" y2="32.576" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4300D3"/>
+<stop offset="1" stop-color="#4300D3" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint3_linear" x1="35.396" y1="34" x2="-1.489" y2="25.059" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF0F13"/>
+<stop offset="1" stop-color="#BF0020" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint4_linear" x1="20.456" y1="10.8601" x2="13.737" y2="11.5851" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4300D3"/>
+<stop offset="1" stop-color="#4300D3" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint5_linear" x1="14.575" y1="13.2001" x2="20.829" y2="13.9591" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF0F13"/>
+<stop offset="1" stop-color="#BF0020" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0">
+<rect width="36" height="36" fill="white" transform="translate(36 36) rotate(-180)"/>
+</clipPath>
+</defs>
 </svg>

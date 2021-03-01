@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 import StyledH2 from './StyledH2';
-import SectionImg from './SectionImg';
-import { PurpleButton } from '../shared/buttons';
-import { H2, Body, Body19, Body12 } from '../shared/typogrophy';
 import GrayText from './GrayText';
 import JoinUsButton from './JoinUsButton';
 

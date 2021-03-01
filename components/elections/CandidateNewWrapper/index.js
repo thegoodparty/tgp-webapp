@@ -42,6 +42,7 @@ function CandidateNewWrapper({
   if (!candidate) {
     return <NotFound />;
   }
+  console.log('cand', candidate)
   let articles = [];
   if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');

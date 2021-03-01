@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import { H2, Body, Body12 } from '../shared/typogrophy';
+import CandidatesWrapper from '../CandidatesWrapper';
 
 const Row = styled.div`
   display: flex;
@@ -61,7 +63,7 @@ const points = [
   },
 ];
 
-const GoodCertifiedAreSection = () => {
+const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
   return (
     <>
       <Row>
@@ -70,7 +72,7 @@ const GoodCertifiedAreSection = () => {
       </Row>
       <Grid container spacing={5} alignItems="center">
         {points.map(point => (
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={mdColumns}>
             <PointWrapper>
               <PointIcon src={point.icon} />
               <div>
@@ -92,6 +94,10 @@ const GoodCertifiedAreSection = () => {
       </Grid>
     </>
   );
+};
+
+GoodCertifiedAreSection.propTypes = {
+  mdColumns: PropTypes.number,
 };
 
 export default GoodCertifiedAreSection;

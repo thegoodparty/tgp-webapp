@@ -19,7 +19,6 @@ const TgpDialog = styled(Dialog)`
       width: 100vw;
       border-radius: 8px;
       background-color: ${({ theme }) => theme.colors.purple3};
-      border-radius: 8px;
       padding: 24px;
 
       @media only screen and (min-width: ${({ theme }) =>
