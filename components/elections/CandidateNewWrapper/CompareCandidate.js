@@ -84,7 +84,7 @@ function ComparedCandidate({ candidate, setTopicCallback }) {
   }
   return (
     <>
-      <CandidateAvatar party={cleanParty} avatar={image} centered />
+      <CandidateAvatar party={cleanParty} avatar={encodeURI(image)} centered />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
       </CandidateNameWrapper>

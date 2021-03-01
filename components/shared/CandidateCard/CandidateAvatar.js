@@ -47,7 +47,6 @@ const Img = styled.div`
   &.medium {
     width: 70px;
     height: 70px;
-
   }
 `;
 
