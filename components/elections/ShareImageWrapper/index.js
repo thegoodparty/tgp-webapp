@@ -124,7 +124,7 @@ function ShareImage({
         console.error('oops, something went wrong!', error);
       });
   };
-
+  const intLikelyVoters = parseInt(likelyVoters, 10);
   return (
     <ShareImageWrapper id="profile-info">
       <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
@@ -157,7 +157,7 @@ function ShareImage({
             <>&nbsp;</>
           ) : (
               <LikelyVoters>
-                <span>{kFormatter(supportCount)}</span> people endorsing
+                <span>{kFormatter(supportCount)}</span> people supporting
               </LikelyVoters>
             )}
         </Grid>
@@ -165,7 +165,7 @@ function ShareImage({
       <SupportersProgressBar
         showSupporters={false}
         votesNeeded={votesNeeded}
-        peopleSoFar={900}
+        peopleSoFar={supportCount + intLikelyVoters}
         fullWidth
       />
       <Box style={{ marginTop: 8 }}>
