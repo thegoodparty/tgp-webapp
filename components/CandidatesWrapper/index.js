@@ -19,6 +19,7 @@ import VideoSection from './VideoSection';
 const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
+  padding: 0 18px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 48px 0;
   }
