@@ -302,6 +302,10 @@ const api = {
       url: `${base}new-candidate`,
       method: 'GET',
     },
+    list: {
+      url: `${base}new-candidates`,
+      method: 'GET',
+    },
     update: {
       url: `${base}new-candidate`,
       method: 'PUT',

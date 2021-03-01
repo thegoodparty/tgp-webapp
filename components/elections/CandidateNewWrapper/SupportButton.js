@@ -17,20 +17,25 @@ import { Body11, Body12, Body13 } from '../../shared/typogrophy';
 const HeartIconWhite = '/images/white-heart.svg';
 
 const Img = styled.img`
-  top: 4px;
+  top: 3px;
   position: relative;
-  height: 16px;
-  margin-right: 10px;
+  height: 12px;
+  margin-right: 5px;
 
-  &.heart {
+  @media only screen and (min-width: 500px) {
     top: 4px;
-    width: 24px;
+    margin-right: 10px;
+    height: 16px;
   }
 `;
 
 const InnerButton = styled(Body13)`
   text-align: center;
   color: #fff;
+  font-size: 9px;
+  @media only screen and (min-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 const AddName = styled.div`
@@ -68,7 +73,11 @@ function SupportButton({
           />
         </Support>
       ) : (
-        <PurpleButton fullWidth onClick={supportCallback}>
+        <PurpleButton
+          fullWidth
+          onClick={supportCallback}
+          style={{ border: 'solid 2px #5C00C7' }}
+        >
           <InnerButton>
             <Img src={HeartIconWhite} alt="share" />
             <span>ENDORSE CANDIDATE</span>

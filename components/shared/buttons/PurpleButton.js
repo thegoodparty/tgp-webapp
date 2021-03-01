@@ -7,7 +7,7 @@ import tgpTheme from 'theme/index';
 const StyledButton = styled(Button)`
   && {
     border-radius: 8px;
-    padding: 12px 6px;
+    padding: 12px 3px;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     background: linear-gradient(

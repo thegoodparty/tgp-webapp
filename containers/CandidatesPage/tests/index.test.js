@@ -1,6 +1,6 @@
 /**
  *
- * Tests for CreatorsWrapper
+ * Tests for CandidatesPage
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,12 +10,13 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import HomePageWrapper from '../index';
+import { CandidatesPage } from '../index';
 
-describe('<HomePageWrapper />', () => {
+describe('<CandidatesPage />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    render(<HomePageWrapper />);
+    const dispatch = jest.fn();
+    render(<CandidatesPage dispatch={dispatch} />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -31,7 +32,7 @@ describe('<HomePageWrapper />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<HomePageWrapper />);
+    } = render(<CandidatesPage />);
     expect(firstChild).toMatchSnapshot();
   });
 });
