@@ -30,8 +30,8 @@ const ShareImageWrapper = styled.div`
 `;
 
 const CandidateName = styled(Body19)`
-  color: ${({ theme }) => theme.colors.gray4};
-  font-weight: 800;
+  color: ${({ theme }) => theme.colors.gray2};
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;
   text-align: left;
@@ -39,20 +39,13 @@ const CandidateName = styled(Body19)`
 `;
 
 const PartyName = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray4};
+  color: ${({ theme }) => theme.colors.gray7};
   text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
   text-align: left;
   font-size: 11px;
-`;
-
-const RaceName = styled(Body11)`
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-align: left;
-  font-size: 11px;
+  line-height: 15px;
 `;
 
 const LikelyVoters = styled(Body9)`
@@ -148,7 +141,7 @@ function ShareImage({
             {firstName} {lastName}
           </CandidateName>
           <PartyName>{partyResolver(party)} for</PartyName>
-          <RaceName>{race}</RaceName>
+          <PartyName>{race}</PartyName>
         </NameWrapper>
       </AvatarWrapper>
       <HelperText>Crowd-voting campaign stats, so far:</HelperText>
@@ -174,11 +167,13 @@ function ShareImage({
         peopleSoFar={supportCount + intLikelyVoters}
         fullWidth
       />
-      <Box style={{ marginTop: 8 }}>
-        <PurpleButton fullWidth>
-          <InnerButton>Join Me</InnerButton>
-        </PurpleButton>
-      </Box>
+      {withRender && (
+        <Box style={{ marginTop: 8 }}>
+          <PurpleButton fullWidth>
+            <InnerButton>Join Me</InnerButton>
+          </PurpleButton>
+        </Box>
+      )}
     </ShareImageWrapper>
   );
 }
