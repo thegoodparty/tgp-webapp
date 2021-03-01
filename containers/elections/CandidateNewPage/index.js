@@ -107,7 +107,7 @@ export function CandidateNewPage({
         <TgpHelmet
           title={title}
           description={description}
-          image={`https://assets.thegoodparty.org/share-image/${candidate.firstName.toLowerCase()}-${candidate.lastName.toLowerCase()}-${
+          image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${candidate.firstName.toLowerCase()}-${candidate.lastName.toLowerCase()}-${
             candidate.id
           }.jpeg`}
         />
