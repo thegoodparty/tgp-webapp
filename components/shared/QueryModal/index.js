@@ -79,13 +79,17 @@ function QueryModal({
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  console.log('{ ...modalStyles.dialog }, { zIndex }', {
+    ...modalStyles.dialog,
+    zIndex,
+  });
   return (
     <TgpDialog
       onClose={closeModalCallback}
       open
       fullScreen={fullScreen}
       className={`${mode} ${zIndex === 1400 ? 'no-blur' : ''}`}
-      style={{ zIndex }}
+      style={{ ...modalStyles.dialog, zIndex }}
     >
       <TopWrapper>
         <TopClose

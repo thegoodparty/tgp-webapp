@@ -21,9 +21,12 @@ import { kFormatter } from '../../../helpers/numberHelper';
 const ShareImageWrapper = styled.div`
   background: #ffffff;
   padding: 24px 24px 32px 24px;
-  text-align: center;
+  text-align: left;
   box-shadow: none;
   width: 340px;
+  &.no-bg {
+    background-color: transparent;
+  }
 `;
 
 const CandidateName = styled(Body19)`
@@ -65,17 +68,14 @@ const InnerButton = styled.div`
   width: 100%;
 `;
 
-const AvatarWrapper = styled(Grid)`
-  && {
-    margin-bottom: 20px;
-    align-items: center;
-  }
+const AvatarWrapper = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
 `;
-const NameWrapper = styled(Grid)`
-  && {
-    padding-left: 15px;
-    z-index: 1000;
-  }
+const NameWrapper = styled.div`
+  padding-left: 15px;
+  z-index: 1000;
 `;
 const HelperText = styled(Body11)`
   && {
@@ -101,6 +101,7 @@ function ShareImage({
   shareImageCallback,
   imageAsBase64,
   candidateSupports,
+  withRender = true,
 }) {
   const supportCount = candidateSupports?.length;
   const {
@@ -112,32 +113,37 @@ function ShareImage({
     votesNeeded,
   } = candidate;
   const afterLoad = () => {
+    if (!withRender) {
+      return;
+    }
     htmlToImage
       .toJpeg(document.getElementById('profile-info'))
-      .then(function (dataUrl) {
+      .then(function(dataUrl) {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
         shareImageCallback({ ...candidate, imageBase64: dataUrl });
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.error('oops, something went wrong!', error);
       });
   };
   const intLikelyVoters = parseInt(likelyVoters, 10);
   return (
-    <ShareImageWrapper id="profile-info">
+    <ShareImageWrapper id="profile-info" className={!withRender && 'no-bg'}>
       <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
-      <AvatarWrapper container alignItems="center">
-        <Grid item sm={3}>
-          <CandidateAvatar
-            avatar={`data:image/jpeg;base64, ${imageAsBase64}`}
-            party={party}
-            size="small"
-            afterLoad={afterLoad}
-          />
-        </Grid>
-        <NameWrapper item xs={9}>
+      <AvatarWrapper>
+        <CandidateAvatar
+          avatar={
+            withRender
+              ? `data:image/jpeg;base64, ${imageAsBase64}`
+              : candidate.image
+          }
+          party={party}
+          size="medium"
+          afterLoad={afterLoad}
+        />
+        <NameWrapper>
           <CandidateName>
             {firstName} {lastName}
           </CandidateName>
@@ -156,10 +162,10 @@ function ShareImage({
           {supportCount === 0 ? (
             <>&nbsp;</>
           ) : (
-              <LikelyVoters>
-                <span>{kFormatter(supportCount)}</span> people supporting
-              </LikelyVoters>
-            )}
+            <LikelyVoters>
+              <span>{kFormatter(supportCount)}</span> people supporting
+            </LikelyVoters>
+          )}
         </Grid>
       </Grid>
       <SupportersProgressBar
@@ -182,6 +188,7 @@ ShareImage.propTypes = {
   shareImageCallback: PropTypes.func,
   imageAsBase64: PropTypes.string,
   candidateSupports: PropTypes.array,
+  withRender: PropTypes.bool,
 };
 
 export default ShareImage;

@@ -88,6 +88,11 @@ const PartyIcon = styled.img`
     height: 25px;
     width: 25px;
   }
+
+  &.party-I {
+  background: transparent;
+  border: none;
+  }
 `;
 const CandidateAvatar = ({
   avatar,
@@ -137,7 +142,10 @@ const CandidateAvatar = ({
         )}
       </ImageWrapper>
       {PartyImg && (
-        <PartyIcon src={PartyImg} className={`full-image ${size}`} />
+        <PartyIcon
+          src={PartyImg}
+          className={`full-image ${size} party-${party}`}
+        />
       )}
     </ChallengerAvatarWrapper>
   );
