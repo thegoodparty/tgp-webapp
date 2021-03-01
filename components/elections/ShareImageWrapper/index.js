@@ -20,12 +20,10 @@ import { kFormatter } from '../../../helpers/numberHelper';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
-  border-radius: 8px;
   padding: 24px 24px 32px 24px;
   text-align: center;
   box-shadow: none;
   width: 340px;
-  height: 500px;
 `;
 
 const CandidateName = styled(Body19)`
@@ -143,7 +141,7 @@ function ShareImage({
           <CandidateName>
             {firstName} {lastName}
           </CandidateName>
-          <PartyName>Running as {partyResolver(party)}</PartyName>
+          <PartyName>{partyResolver(party)} for</PartyName>
           <RaceName>{race}</RaceName>
         </NameWrapper>
       </AvatarWrapper>
