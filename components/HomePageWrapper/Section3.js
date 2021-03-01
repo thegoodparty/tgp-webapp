@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+
 import StyledH2 from './StyledH2';
 import SectionImg from './SectionImg';
 import JoinUsButton from './JoinUsButton';
-
-
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;

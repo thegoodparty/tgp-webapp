@@ -15,6 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { BsTrash } from 'react-icons/bs';
+import { states } from 'helpers/statesHelper';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
@@ -57,6 +58,10 @@ const partyOptions = [
   { key: 'LI', value: 'Liberation' },
   { key: 'I', value: 'Independent' },
 ];
+const statesOptions = states.map(state => ({
+  key: state.abbreviation,
+  value: state.name,
+}));
 
 const fields = [
   {
@@ -72,11 +77,20 @@ const fields = [
   { label: 'Chamber', key: 'chamber', initialValue: 'local' },
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
   {
+    label: 'State',
+    key: 'state',
+    initialValue: '',
+    isSelect: true,
+    options: statesOptions,
+    emptySelectLabel: 'Select A State',
+  },
+  {
     label: 'Party',
     key: 'party',
     initialValue: '',
     isSelect: true,
     options: partyOptions,
+    emptySelectLabel: 'Select A Party',
   },
   { label: 'Facebook', key: 'facebook', initialValue: '' },
   { label: 'Twitter', key: 'twitter', initialValue: '' },
@@ -227,7 +241,7 @@ function AdminAddCandidateWrapper({
                   variant="outlined"
                   style={{ marginTop: '2rem' }}
                 >
-                  <option value="">Select A Party</option>
+                  <option value="">{field.emptySelectLabel}</option>
                   {field.options?.map(item => (
                     <option value={item.key} key={item.key}>
                       {item.value}

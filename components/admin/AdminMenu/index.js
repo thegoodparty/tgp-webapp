@@ -12,8 +12,12 @@ import Link from 'next/link';
 const MenuWrapper = styled.div`
   position: fixed;
   z-index: 2001;
-  top: 0px;
-  right: 10px;
+  top: 10px;
+  right: 60px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    top: 0px;
+    right: 10px;
+  }
 `;
 
 const HeartWrapper = styled.div`
@@ -23,7 +27,7 @@ const HeartWrapper = styled.div`
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  margin: 10px 10px 0 0 ;
+  margin: 10px 10px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;

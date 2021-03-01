@@ -16,12 +16,22 @@ const ShareIconPurple = '/images/purple-share.svg';
 const Img = styled.img`
   top: 2px;
   position: relative;
-  height: 16px;
-  margin-right: 10px;
+  height: 12px;
+  margin-right: 5px;
+
+  @media only screen and (min-width: 500px) {
+    top: 2px;
+    margin-right: 10px;
+    height: 16px;
+  }
 `;
 
 const InnerButton = styled(Body13)`
   color: ${({ theme }) => theme.colors.purple};
+  font-size: 9px;
+  @media only screen and (min-width: 500px) {
+    font-size: 13px;
+  }
 `;
 
 function ShareButton() {

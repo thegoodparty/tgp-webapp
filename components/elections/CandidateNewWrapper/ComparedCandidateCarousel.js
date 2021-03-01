@@ -15,8 +15,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import CompareCandidate from './CompareCandidate';
 import TooltipModal from './TooltipModal';
 
-const CarouselPrevIcon = '/images/carousel-prev.png';
-const CarouselNextIcon = '/images/carousel-next.png';
+const CarouselPrevIcon = '/images/icons/carousel-next.svg';
+const CarouselNextIcon = '/images/icons/carousel-next.svg';
 
 const StyledSlider = styled(Slider)`
   div {
@@ -47,7 +47,7 @@ const NextArrowElem = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     top: 150px;
   }
-  right: 0;
+  right: 20px;
   &.slick-disabled {
     display: none;
   }

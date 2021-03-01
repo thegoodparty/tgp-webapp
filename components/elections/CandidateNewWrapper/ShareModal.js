@@ -218,32 +218,18 @@ const ShareModal = ({ candidate, user, message }) => {
     }
   });
 
-  if (!candidate) {
-    return <> </>;
-  }
-
   const cleanMessage = message === 'true' ? '' : message;
 
-  const { firstName, lastName, race } = candidate;
+  const { firstName, lastName, race } = candidate || {};
   const url = uuidUrl(user, window.location.origin + window.location.pathname);
-  console.log('url', url);
   const encodedUrl = encodeURIComponent(url);
+  const messageTitle = candidate
+    ? `Help ${firstName} ${lastName} take back ${race}.`
+    : 'Good Party Share message';
+  const messageBody = candidate
+    ? `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`
+    : 'Good Party Share message body';
 
-  const messageTitle = `Help ${firstName} ${lastName} take back ${race}.`;
-  // const messageBody = `Check out ${blocName} for ${chamberTitle} in The Good Party. See what’s possible, before we vote: ${url}`;
-  const messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
-
-  const canShare = typeof navigator !== 'undefined' && navigator.share;
-  const nativeShare = () => {
-    navigator
-      .share({
-        title: messageTitle,
-        text: messageBody,
-      })
-      .then(() => {
-        trackShare('Native Share');
-      });
-  };
   const handleCopy = () => {
     setCopied(true);
 
@@ -321,7 +307,7 @@ const ShareModal = ({ candidate, user, message }) => {
     },
   ];
   return (
-    <QueryModalContainer mode="purple">
+    <QueryModalContainer mode="purple" zIndex={candidate ? 1400 : 1300}>
       <Wrapper>
         <H2 style={{ color: '#FFF' }}>Share to</H2>
         <Grid container spacing={3}>

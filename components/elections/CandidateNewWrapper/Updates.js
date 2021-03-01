@@ -72,11 +72,9 @@ function Updates({ candidate }) {
     }
     return { html: update, date: 'February 18, 2021' };
   });
-  console.log('combinedUpdates', combinedUpdates);
   combinedUpdates.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
-  console.log('combinedUpdates', combinedUpdates);
 
   return (
     <SectionWrapper>

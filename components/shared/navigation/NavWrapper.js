@@ -8,18 +8,15 @@ import AdminMenu from 'components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
-const NavWrapper = ({ pathname, user, navigateCallback }) => {
+const NavWrapper = ({ pathname, user }) => {
   return (
     <>
       <Hidden smDown>
-        <DesktopHeader
-          user={user}
-          pathname={pathname}
-        />
+        <DesktopHeader user={user} pathname={pathname} />
         <RegisterBannerContainer />
       </Hidden>
       <Hidden mdUp>
-        <MobileHeader user={user} navigateCallback={navigateCallback} />
+        <MobileHeader user={user} />
       </Hidden>
 
       {user?.isAdmin && <AdminMenu />}
@@ -30,7 +27,6 @@ const NavWrapper = ({ pathname, user, navigateCallback }) => {
 NavWrapper.propTypes = {
   pathname: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  navigateCallback: PropTypes.func,
 };
 
 export default NavWrapper;
