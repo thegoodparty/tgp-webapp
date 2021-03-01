@@ -1,4 +1,64 @@
 const content = {
+  "articleCategories": [
+    {
+      "fields": {
+        "name": "Joining The Good Party",
+        "order": 20
+      },
+      "id": "7jOZqjB2BBfvymyAJ4IQWe",
+      "articles": [
+        {
+          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
+          "id": "7Mrfo6spgrgpwAFe83Oph4"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "About Us",
+        "order": 300
+      },
+      "id": "1x8sreeqPN0PK929WRNw4I",
+      "articles": [
+        {
+          "title": "Who is building Good Party?",
+          "id": "33lnRLO7M0gvfqVkoVxADO"
+        },
+        {
+          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
+          "id": "5YnyOUU7NVOihcos0oR1kL"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "Meet the candidates FAQ"
+      },
+      "id": "7eOiHTthKy6ZWpUKnUiJpI",
+      "articles": []
+    },
+    {
+      "fields": {
+        "name": "How The Good Party Works",
+        "order": 0
+      },
+      "id": "4CrRDuyTqip7XK7DdK4tq7",
+      "articles": [
+        {
+          "title": "How crowd-voting works",
+          "id": "1ic6T6fhH0jZLNvX5aZkDe"
+        },
+        {
+          "title": "Anti-Corruption Act",
+          "id": "7jm2j9gapWwEoVwVD3VX6o"
+        },
+        {
+          "title": "What does it mean to \"endorse\" a candidate?",
+          "id": "3IWiTNf7gKItHkLB0Sm6q3"
+        }
+      ]
+    }
+  ],
   "faqArticles": [
     {
       "title": "Is The Good Party a real political party?",
@@ -122,7 +182,7 @@ const content = {
       "id": "48a7xazZc0eN4PXM20Jtel"
     },
     {
-      "title": "Who is behind The Good Party?",
+      "title": "Who is building Good Party?",
       "articleBody": {
         "nodeType": "document",
         "data": {},
@@ -132,7 +192,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "The Good Party is a non-profit, open-source project, run by a ",
+                "value": "Good Party is a non-profit, open-source project, run by a ",
                 "marks": [],
                 "data": {}
               },
@@ -332,6 +392,13 @@ const content = {
       "pages": [
         "party"
       ],
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
       "id": "33lnRLO7M0gvfqVkoVxADO"
     },
     {
@@ -1447,7 +1514,7 @@ const content = {
       "id": "U4dbmGezqNUIDdGriL5oA"
     },
     {
-      "title": "What is a crowd-voting campaign?",
+      "title": "How crowd-voting works",
       "articleBody": {
         "nodeType": "document",
         "data": {},
@@ -1457,7 +1524,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "A crowd-voting campaign is a way to make votes matter more than money. It makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against the establishment politicians.  ",
+                "value": "Crowd-voting empowers people to endorse candidates they like and enlist others' support—rather than just asking people to donate money.",
                 "marks": [],
                 "data": {}
               }
@@ -1469,7 +1536,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Crowd-voting empowers people to endorse candidates they like to see if it's possible to get them elected by spreading the word and enlisting others' support, rather than just asking people to donate money.",
+                "value": "A crowd-voting campaign is makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against the establishment politicians.  ",
                 "marks": [],
                 "data": {}
               }
@@ -1522,7 +1589,7 @@ const content = {
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "nobody ever has to worry about wasting their vote",
+                    "value": "nobody has to worry about wasting their vote",
                     "marks": [],
                     "data": {}
                   }
@@ -1558,7 +1625,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their  options -- not just pick the 'lesser of two evil' candidates approved by red or blue.  ",
+                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their options—not just pick the 'lesser of two evil' candidate.  ",
                 "marks": [],
                 "data": {}
               }
@@ -1570,7 +1637,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "It's important to note that there is no cost or downside to joining a crowd-voting campaign using The Good Party.  Every crowd-voting campaign on The Good Party is absolutely free for both people and candidates.",
+                "value": "There is no cost or downside to joining a crowd-voting campaign using The Good Party.  Every crowd-voting campaign on The Good Party is absolutely free for both people and candidates.",
                 "marks": [],
                 "data": {}
               }
@@ -2307,224 +2374,6 @@ const content = {
       "id": "2zn1lYvlEB3sHYwUTeLqyS"
     },
     {
-      "title": "What makes a candidate \"Potentially Good?\"",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "To be a ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Potentially Good ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "option, a candidate must pass ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "both",
-                "marks": [
-                  {
-                    "type": "underline"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " our ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Follow the Money",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " and ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Character Check",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " criteria below:",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "heading-3",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Follow the Money",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Mostly Funded by Small Donors (<$200).",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " Major candidates who have raised lots of funding, but have ensured that most of their funding (>50%) is coming from Small Individual Donors (<$200).",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "or ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Relatively Small Amount of Funding.",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " Candidates who have raised relatively little funding when compared to the incumbent in race. These are candidates who have raised less than half (<50%) of the funding of the incumbent and are relying on grass-roots campaigning, word-of-mouth and their policy positions to get them elected.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "heading-3",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Character Check",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Candidate passes our minimum standard of civility, meaning they have been vetted to ensure that they are ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "not",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " engaged in a pattern of activities or ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "hate-speech",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " that encourages intolerance, discrimination, hostility or hatred towards a person or group based on constitutionally or state-law protected classes, such as race, religion, color, creed, sexual orientation, age, disability or gender.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "pages": [
-        "district",
-        "election"
-      ],
-      "id": "5KnBx42FOEVDJNUFpoU1PX"
-    },
-    {
       "title": "What is The Good Party's minimum standard of civility?",
       "articleBody": {
         "nodeType": "document",
@@ -2854,7 +2703,25 @@ const content = {
       "id": "7D3TGoveRpv3RjgAWnefCy"
     },
     {
-      "title": "Anti Corruption Act",
+      "title": "Anti-Corruption Act",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Article content will go here.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
       "category": {
         "id": "4CrRDuyTqip7XK7DdK4tq7",
         "fields": {
@@ -2981,55 +2848,6 @@ const content = {
         }
       },
       "id": "5YnyOUU7NVOihcos0oR1kL"
-    }
-  ],
-  "articleCategories": [
-    {
-      "fields": {
-        "name": "Joining The Good Party",
-        "order": 20
-      },
-      "id": "7jOZqjB2BBfvymyAJ4IQWe",
-      "articles": [
-        {
-          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
-          "id": "7Mrfo6spgrgpwAFe83Oph4"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "About Us",
-        "order": 300
-      },
-      "id": "1x8sreeqPN0PK929WRNw4I",
-      "articles": [
-        {
-          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
-          "id": "5YnyOUU7NVOihcos0oR1kL"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "How The Good Party Works",
-        "order": 0
-      },
-      "id": "4CrRDuyTqip7XK7DdK4tq7",
-      "articles": [
-        {
-          "title": "What is a crowd-voting campaign?",
-          "id": "1ic6T6fhH0jZLNvX5aZkDe"
-        },
-        {
-          "title": "Anti Corruption Act",
-          "id": "7jm2j9gapWwEoVwVD3VX6o"
-        },
-        {
-          "title": "What does it mean to \"endorse\" a candidate?",
-          "id": "3IWiTNf7gKItHkLB0Sm6q3"
-        }
-      ]
     }
   ],
   "partyPage": {

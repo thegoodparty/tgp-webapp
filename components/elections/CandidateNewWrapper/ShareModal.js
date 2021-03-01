@@ -229,9 +229,6 @@ const ShareModal = ({ candidate, user, message }) => {
   const messageBody = candidate
     ? `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`
     : 'Good Party Share message body';
-  console.log('modal candidate', candidate);
-
-  console.log('messageBody', messageBody);
 
   const handleCopy = () => {
     setCopied(true);
