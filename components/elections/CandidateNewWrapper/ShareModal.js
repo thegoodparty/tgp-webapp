@@ -318,7 +318,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       zIndex={candidate ? 1400 : 1300}
     >
       <Wrapper>
-        <H2 style={{ color: '#FFF' }}>Share to1</H2>
+        <H2 style={{ color: '#FFF' }}>Share to</H2>
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <WhiteBody13>PRIVATE</WhiteBody13>

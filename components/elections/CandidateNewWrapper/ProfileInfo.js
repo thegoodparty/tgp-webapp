@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { partyResolver } from 'helpers/electionsHelper';
 import { kFormatter } from 'helpers/numberHelper';
@@ -97,6 +99,8 @@ function ProfileInfo({
   candidateSupports,
   adminDeleteSupportCallback,
 }) {
+  const router = useRouter();
+
   const {
     firstName,
     lastName,
@@ -178,7 +182,12 @@ function ProfileInfo({
         </Box>
         <EndorsementDescription>
           Your endorsement is a free way to show and grow grassroots support.{' '}
-          <a>Read more</a>
+          <Link
+            href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+            passHref
+          >
+            <a>Read more</a>
+          </Link>
         </EndorsementDescription>
         <Hidden xsDown>
           <RecentlyJoined
