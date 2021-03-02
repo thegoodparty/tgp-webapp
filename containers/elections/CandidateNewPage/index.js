@@ -47,7 +47,6 @@ export function CandidateNewPage({
   const showShareModal = router.query.share;
   const supportLink = router.query.support;
 
-
   let candidate;
   let tab;
 
@@ -109,7 +108,7 @@ export function CandidateNewPage({
           description={description}
           image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${candidate.firstName.toLowerCase()}-${candidate.lastName.toLowerCase()}-${
             candidate.id
-          }${supportLink ? '-support' : ''}.jpeg`}
+          }${supportLink ? '-support' : '-share'}.jpeg`}
         />
       )}
       <CandidateNewWrapper {...childProps} />
