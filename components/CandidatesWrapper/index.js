@@ -15,10 +15,11 @@ import CandidatesSection from './CandidatesSection';
 import articlesHelper from '../../helpers/articlesHelper';
 import TopQuestions from '../shared/TopQuestions';
 import VideoSection from './VideoSection';
+import IllustrationSection from './IllustrationSection';
 
 const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
-  margin: 0 auto;
+  margin: 0 auto 48px;
   padding: 0 18px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 48px 0;
@@ -66,6 +67,7 @@ function CandidatesWrapper({ candidates, content }) {
             </StyledBody13>
             <GoodCertifiedAreSection mdColumns={6} />
             <CandidatesSection candidates={candidates} />
+            <IllustrationSection />
             <TopQuestions articles={articles} />
           </Grid>
         </ReverseGrid>
