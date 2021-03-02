@@ -144,7 +144,7 @@ const DesktopHeader = ({ user }) => {
     prevOpen.current = open;
   }, [open]);
 
-  const handShare = () => {
+  const handleShare = () => {
     router.query.share = 'true';
     router.push(router);
   };
@@ -236,7 +236,7 @@ const DesktopHeader = ({ user }) => {
           </Grid>
           <Grid item xs={4}>
             <ShareWrapper>
-              <Share onClick={handShare}>
+              <Share onClick={handleShare}>
                 <img src="/images/icons/share-icon.svg" alt="Share" />
                 <span>SHARE</span>
               </Share>

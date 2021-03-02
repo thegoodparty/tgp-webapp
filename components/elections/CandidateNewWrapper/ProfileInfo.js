@@ -122,7 +122,6 @@ function ProfileInfo({
     );
   const supportCount = candidateSupports?.length || 0;
   const intLikelyVoters = parseInt(likelyVoters, 10);
-  console.log('in profile info supportCallback2', supportCallback);
 
   return (
     <WrapperElement>

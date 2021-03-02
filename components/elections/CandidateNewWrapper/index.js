@@ -73,7 +73,6 @@ function CandidateNewWrapper({
           </Grid>
           <Hidden xsDown>
             <Grid row item xs={12} md={5}>
-              {console.log('here1', handleSupport)}
               <ProfileInfo
                 candidate={candidate}
                 supportCallback={handleSupport}

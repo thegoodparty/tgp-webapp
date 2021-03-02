@@ -44,19 +44,7 @@ const WhiteBody13 = styled(Body13)`
   color: #fff;
   margin: 33px 0 18px;
 `;
-const ShareThisWrapper = styled.div`
-  &.email {
-    padding: 0;
-  }
 
-  .st-btn {
-    border-radius: 50% !important;
-  }
-
-  .st-btn[data-network='email'] {
-    background-color: #da0063 !important;
-  }
-`;
 
 const IconItem = styled.div`
   display: flex;
@@ -200,6 +188,7 @@ const Copied = styled(Body11)`
 const ShareModal = ({ candidate, message, supportLink }) => {
   const [copied, setCopied] = useState(false);
   const user = getUserCookie(true);
+
   useEffect(() => {
     AnalyticsService.sendEvent('Sharing', 'Open Share Modal', candidate?.name);
   }, []);
@@ -223,11 +212,14 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const cleanMessage = message === 'true' ? '' : message;
 
   const { firstName, lastName, race } = candidate || {};
-  const url = uuidUrl(
-    user,
-    window.location.origin + window.location.pathname,
-    supportLink ? 'support=true' : '',
-  );
+  let url = '';
+  if (typeof window !== 'undefined') {
+    url = uuidUrl(
+      user,
+      window.location.origin + window.location.pathname,
+      supportLink ? 'support=true' : '',
+    );
+  }
 
   const encodedUrl = encodeURIComponent(url);
   let messageBody = encodedUrl;
@@ -319,10 +311,14 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       link: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     },
   ];
+
   return (
-    <QueryModalContainer mode="purple" zIndex={candidate ? 1400 : 1300}>
+    <QueryModalContainer
+      mode="purple"
+      zIndex={candidate ? 1400 : 1300}
+    >
       <Wrapper>
-        <H2 style={{ color: '#FFF' }}>Share to</H2>
+        <H2 style={{ color: '#FFF' }}>Share to1</H2>
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <WhiteBody13>PRIVATE</WhiteBody13>

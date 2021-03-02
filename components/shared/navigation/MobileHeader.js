@@ -105,6 +105,10 @@ const ButtonInner = styled.div`
 function MobileHeader({ user }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const handleShare = () => {
+    router.query.share = 'true';
+    router.push(router);
+  };
 
   return (
     <Hidden mdUp>
@@ -128,9 +132,11 @@ function MobileHeader({ user }) {
             </a>
           </Link>
         ) : (
-          <Link href="/">
-            <Share src="/images/icons/share-icon.svg" alt="Share" />
-          </Link>
+          <Share
+            src="/images/icons/share-icon.svg"
+            alt="Share"
+            onClick={handleShare}
+          />
         )}
       </Wrapper>
       <MenuItemWrapper anchor="left" open={open} onClose={() => setOpen(false)}>

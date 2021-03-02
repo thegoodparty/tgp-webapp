@@ -59,6 +59,7 @@ const TopWrapper = styled.div`
   position: absolute;
   top: 24px;
   right: 24px;
+  z-index: 1000;
 `;
 
 const TopClose = styled(CloseIcon)`
