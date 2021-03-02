@@ -230,10 +230,12 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   );
 
   const encodedUrl = encodeURIComponent(url);
-
-  const messageBody = candidate
-    ? `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`
-    : encodedUrl;
+  let messageBody = encodedUrl;
+  if (cleanMessage) {
+    messageBody = `${cleanMessage} ${url}`;
+  } else if (candidate) {
+    messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
+  }
 
   const emailSubject = user
     ? 'Join me on the Good Party'
