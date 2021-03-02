@@ -133,7 +133,7 @@ function ShareImage({
               : candidate.image
           }
           party={party}
-          size="medium"
+          size="small"
           afterLoad={afterLoad}
         />
         <NameWrapper>

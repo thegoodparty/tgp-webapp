@@ -154,7 +154,7 @@ const CandidateAvatar = ({
 CandidateAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
-  size: PropTypes.small,
+  size: PropTypes.string,
   afterLoad: PropTypes.func,
 };
 
