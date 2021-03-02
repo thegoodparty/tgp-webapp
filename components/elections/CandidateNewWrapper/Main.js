@@ -139,6 +139,9 @@ function MainWrapper({
         <ProfileInfo
           candidate={candidate}
           candidateSupports={candidateSupports}
+          supportCallback={supportCallback}
+          isUserSupportCandidate={isUserSupportCandidate}
+          removeSupportCallback={removeSupportCallback}
           isMobile
         />
       </Hidden>
