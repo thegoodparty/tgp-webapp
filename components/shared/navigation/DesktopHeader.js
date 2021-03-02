@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   z-index: 100;
+  padding: 0 20px;
 `;
 
 const ContentWrapper = styled.div`
