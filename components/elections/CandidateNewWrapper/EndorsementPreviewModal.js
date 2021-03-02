@@ -13,17 +13,19 @@ import Link from 'next/link';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
 import { Body11, H2, H3 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
+import ShareImage from '../ShareImageWrapper';
 
 const ImageWrapper = styled.div`
   border-radius: 12px;
   margin-top: 24px;
   overflow: hidden;
-  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3),
+  display: flex;
+  justify-content: center;
+  box-shadow: -2px 2px 5px rgba(224, 212, 234, 0.2),
+    2px -2px 5px rgba(224, 212, 234, 0.2),
+    -2px -2px 5px rgba(255, 255, 255, 0.9), 2px 2px 5px rgba(224, 212, 234, 0.9),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.3),
     inset -1px -1px 1px rgba(224, 212, 234, 0.5);
-  filter: drop-shadow(-2px 2px 5px rgba(224, 212, 234, 0.2)),
-    drop-shadow(2px -2px 5px rgba(224, 212, 234, 0.2)),
-    drop-shadow(-2px -2px 5px rgba(255, 255, 255, 0.9)),
-    drop-shadow(2px 2px 5px rgba(224, 212, 234, 0.9));
 `;
 
 const Img = styled.div`
@@ -50,22 +52,37 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-function EndorsementPreviewModal({ candidate, user, previewNextStepCallback }) {
+function EndorsementPreviewModal({
+  candidate,
+  user,
+  candidateSupports,
+  previewNextStepCallback,
+}) {
   const [message, setMessage] = useState(
-    `Someone real, not another 💩 politician!\nI'm ${user?.name} and I Approve this message! 😜`,
+    `Someone real, not another 💩 politician!\n\nI'm ${
+      user?.name
+    } and I approve this message! 😜`,
   );
 
   const onChangeField = e => {
     setMessage(e.target.value);
   };
+
+  const modalStyles = {
+    dialog: {
+      maxWidth: '452px',
+      margin: '0 auto',
+    },
+  };
   return (
-    <QueryModalContainer>
-      <H2 style={{ marginTop: '24px' }}>Preview endorsement</H2>
+    <QueryModalContainer modalStyles={modalStyles}>
+      <Body11 style={{ marginTop: '12px' }}>PREVIEW ENDORSEMENT</Body11>
       <ImageWrapper>
-        <Img style={{ backgroundImage: `url(${candidate.image})` }} />
-        <H3 style={{ padding: '20px' }}>
-          See why 12,491 people support a different kind of candidate
-        </H3>
+        <ShareImage
+          candidate={candidate}
+          withRender={false}
+          candidateSupports={candidateSupports}
+        />
       </ImageWrapper>
       <Personal>ADD A PERSONAL NOTE</Personal>
       <StyledTextField
@@ -89,6 +106,7 @@ EndorsementPreviewModal.propTypes = {
   candidate: PropTypes.object,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   previewNextStepCallback: PropTypes.func,
+  candidateSupports: PropTypes.number,
 };
 
 export default EndorsementPreviewModal;

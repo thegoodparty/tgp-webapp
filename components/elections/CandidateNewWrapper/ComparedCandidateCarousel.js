@@ -15,7 +15,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import CompareCandidate from './CompareCandidate';
 import TooltipModal from './TooltipModal';
 
-const CarouselPrevIcon = '/images/icons/carousel-next.svg';
+const CarouselPrevIcon = '/images/icons/carousel-prev.svg';
 const CarouselNextIcon = '/images/icons/carousel-next.svg';
 
 const StyledSlider = styled(Slider)`
@@ -69,7 +69,7 @@ function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <NextArrowElem className={className} onClick={onClick}>
-      <img src={CarouselNextIcon} alt="carousel-prev" />
+      <img src={CarouselNextIcon} alt="carousel-next" />
     </NextArrowElem>
   );
 }

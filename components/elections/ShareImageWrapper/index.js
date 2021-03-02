@@ -21,14 +21,17 @@ import { kFormatter } from '../../../helpers/numberHelper';
 const ShareImageWrapper = styled.div`
   background: #ffffff;
   padding: 24px 24px 32px 24px;
-  text-align: center;
+  text-align: left;
   box-shadow: none;
   width: 340px;
+  &.no-bg {
+    background-color: transparent;
+  }
 `;
 
 const CandidateName = styled(Body19)`
-  color: ${({ theme }) => theme.colors.gray4};
-  font-weight: 800;
+  color: ${({ theme }) => theme.colors.gray2};
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;
   text-align: left;
@@ -36,20 +39,13 @@ const CandidateName = styled(Body19)`
 `;
 
 const PartyName = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray4};
+  color: ${({ theme }) => theme.colors.gray7};
   text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
   text-align: left;
   font-size: 11px;
-`;
-
-const RaceName = styled(Body11)`
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-align: left;
-  font-size: 11px;
+  line-height: 15px;
 `;
 
 const LikelyVoters = styled(Body9)`
@@ -65,17 +61,14 @@ const InnerButton = styled.div`
   width: 100%;
 `;
 
-const AvatarWrapper = styled(Grid)`
-  && {
-    margin-bottom: 20px;
-    align-items: center;
-  }
+const AvatarWrapper = styled.div`
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
 `;
-const NameWrapper = styled(Grid)`
-  && {
-    padding-left: 15px;
-    z-index: 1000;
-  }
+const NameWrapper = styled.div`
+  padding-left: 15px;
+  z-index: 1000;
 `;
 const HelperText = styled(Body11)`
   && {
@@ -84,7 +77,7 @@ const HelperText = styled(Body11)`
     line-height: 18px;
     color: ${({ theme }) => theme.colors.gray7};
     margin-bottom: 15px;
-    text-align: center;
+    text-align: left;
   }
 `;
 const WrapperTitle = styled(Body19)`
@@ -101,6 +94,7 @@ function ShareImage({
   shareImageCallback,
   imageAsBase64,
   candidateSupports,
+  withRender = true,
 }) {
   const supportCount = candidateSupports?.length;
   const {
@@ -111,14 +105,17 @@ function ShareImage({
     likelyVoters,
     votesNeeded,
   } = candidate;
-  const afterLoad = () => {
+  const afterLoad = suffix => {
+    if (!withRender) {
+      return;
+    }
     htmlToImage
-      .toJpeg(document.getElementById('profile-info'))
+      .toJpeg(document.getElementById(suffix))
       .then(function (dataUrl) {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
-        shareImageCallback({ ...candidate, imageBase64: dataUrl });
+        shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
@@ -126,54 +123,115 @@ function ShareImage({
   };
   const intLikelyVoters = parseInt(likelyVoters, 10);
   return (
-    <ShareImageWrapper id="profile-info">
-      <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
-      <AvatarWrapper container alignItems="center">
-        <Grid item sm={3}>
+    <>
+      <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
+        <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
+        <AvatarWrapper>
           <CandidateAvatar
-            avatar={`data:image/jpeg;base64, ${imageAsBase64}`}
+            avatar={
+              withRender
+                ? `data:image/jpeg;base64, ${imageAsBase64}`
+                : candidate.image
+            }
             party={party}
             size="small"
-            afterLoad={afterLoad}
+            afterLoad={() => afterLoad('support')}
           />
-        </Grid>
-        <NameWrapper item xs={9}>
-          <CandidateName>
-            {firstName} {lastName}
-          </CandidateName>
-          <PartyName>{partyResolver(party)} for</PartyName>
-          <RaceName>{race}</RaceName>
-        </NameWrapper>
-      </AvatarWrapper>
-      <HelperText>Crowd-voting campaign stats, so far:</HelperText>
-      <Grid container>
-        <Grid row xs={6}>
-          <LikelyVoters>
-            <span>{kFormatter(likelyVoters)}</span> likely voters
+          <NameWrapper>
+            <CandidateName>
+              {firstName} {lastName}
+            </CandidateName>
+            <PartyName>{partyResolver(party)} for</PartyName>
+            <PartyName>{race}</PartyName>
+          </NameWrapper>
+        </AvatarWrapper>
+        <HelperText>Crowd-voting campaign stats, so far:</HelperText>
+        <Grid container>
+          <Grid row xs={6}>
+            <LikelyVoters>
+              <span>{kFormatter(likelyVoters)}</span> likely voters
           </LikelyVoters>
+          </Grid>
+          <Grid row xs={6}>
+            {supportCount === 0 ? (
+              <>&nbsp;</>
+            ) : (
+                <LikelyVoters>
+                  <span>{kFormatter(supportCount)}</span> people supporting
+                </LikelyVoters>
+              )}
+          </Grid>
         </Grid>
-        <Grid row xs={6}>
-          {supportCount === 0 ? (
-            <>&nbsp;</>
-          ) : (
+        <SupportersProgressBar
+          showSupporters={false}
+          votesNeeded={votesNeeded}
+          peopleSoFar={supportCount + intLikelyVoters}
+          fullWidth
+        />
+        {withRender && (
+          <Box style={{ marginTop: 20, textAlign: 'center' }}>
+            <PurpleButton style={{ width: '50%' }}>
+              <InnerButton>Join Me</InnerButton>
+            </PurpleButton>
+          </Box>
+        )}
+      </ShareImageWrapper>
+      {withRender &&
+        <ShareImageWrapper id="share" className={!withRender && 'no-bg'}>
+          <WrapperTitle>Hey, check out...</WrapperTitle>
+          <AvatarWrapper>
+            <CandidateAvatar
+              avatar={
+                withRender
+                  ? `data:image/jpeg;base64, ${imageAsBase64}`
+                  : candidate.image
+              }
+              party={party}
+              size="small"
+              afterLoad={() => afterLoad('share')}
+              style={{ margin: '0 5px' }}
+            />
+            <NameWrapper>
+              <CandidateName>
+                {firstName} {lastName}
+              </CandidateName>
+              <PartyName>{partyResolver(party)} for</PartyName>
+              <PartyName>{race}</PartyName>
+            </NameWrapper>
+          </AvatarWrapper>
+          <HelperText>Crowd-voting campaign stats, so far:</HelperText>
+          <Grid container>
+            <Grid row xs={6}>
               <LikelyVoters>
-                <span>{kFormatter(supportCount)}</span> people supporting
-              </LikelyVoters>
-            )}
-        </Grid>
-      </Grid>
-      <SupportersProgressBar
-        showSupporters={false}
-        votesNeeded={votesNeeded}
-        peopleSoFar={supportCount + intLikelyVoters}
-        fullWidth
-      />
-      <Box style={{ marginTop: 8 }}>
-        <PurpleButton fullWidth>
-          <InnerButton>Join Me</InnerButton>
-        </PurpleButton>
-      </Box>
-    </ShareImageWrapper>
+                <span>{kFormatter(likelyVoters)}</span> likely voters
+          </LikelyVoters>
+            </Grid>
+            <Grid row xs={6}>
+              {supportCount === 0 ? (
+                <>&nbsp;</>
+              ) : (
+                  <LikelyVoters>
+                    <span>{kFormatter(supportCount)}</span> people supporting
+                  </LikelyVoters>
+                )}
+            </Grid>
+          </Grid>
+          <SupportersProgressBar
+            showSupporters={false}
+            votesNeeded={votesNeeded}
+            peopleSoFar={supportCount + intLikelyVoters}
+            fullWidth
+          />
+          {withRender && (
+            <Box style={{ marginTop: 20, textAlign: "center" }}>
+              <PurpleButton style={{ width: '70%' }}>
+                <InnerButton>See Campaign</InnerButton>
+              </PurpleButton>
+            </Box>
+          )}
+        </ShareImageWrapper>
+      }
+    </>
   );
 }
 
@@ -182,6 +240,7 @@ ShareImage.propTypes = {
   shareImageCallback: PropTypes.func,
   imageAsBase64: PropTypes.string,
   candidateSupports: PropTypes.array,
+  withRender: PropTypes.bool,
 };
 
 export default ShareImage;

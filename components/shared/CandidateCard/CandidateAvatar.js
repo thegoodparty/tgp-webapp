@@ -20,6 +20,7 @@ const ChallengerAvatarWrapper = styled.div`
   &.small {
     width: 58px;
     height: 58px;
+    margin: 0 5px;
   }
 
   &.medium {
@@ -47,7 +48,6 @@ const Img = styled.div`
   &.medium {
     width: 70px;
     height: 70px;
-
   }
 `;
 
@@ -88,6 +88,11 @@ const PartyIcon = styled.img`
   &.medium {
     height: 25px;
     width: 25px;
+  }
+
+  &.party-I {
+  background: transparent;
+  border: none;
   }
 `;
 const CandidateAvatar = ({
@@ -138,7 +143,10 @@ const CandidateAvatar = ({
         )}
       </ImageWrapper>
       {PartyImg && (
-        <PartyIcon src={PartyImg} className={`full-image ${size}`} />
+        <PartyIcon
+          src={PartyImg}
+          className={`full-image ${size} party-${party}`}
+        />
       )}
     </ChallengerAvatarWrapper>
   );
@@ -147,7 +155,7 @@ const CandidateAvatar = ({
 CandidateAvatar.propTypes = {
   avatar: PropTypes.string,
   party: PropTypes.string,
-  size: PropTypes.small,
+  size: PropTypes.string,
   afterLoad: PropTypes.func,
 };
 

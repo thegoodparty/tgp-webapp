@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
+import { BiLinkExternal } from 'react-icons/bi';
 
 import NotFound from 'containers/shared/NotFoundPage';
 
@@ -62,6 +63,14 @@ const SocialLink = styled.a`
   margin-right: 25px;
 `;
 
+const Website = styled(Body13)`
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: ${({ theme }) => theme.colors.purple};
+`;
+
 const YoutubePlayer = styled(ReactPlayer)`
   width: unset !important;
 `;
@@ -87,17 +96,6 @@ const YoutubePlayerWrapper = styled.div`
   }
 `;
 
-const UpdatedDate = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray3};
-  font-size: 19px;
-  margin-top: 24px;
-  line-height: 25px;
-`;
-const UpdatedBy = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray7};
-  font-size: 16px;
-  margin-bottom: 12px;
-`;
 function MainWrapper({
   candidate,
   articles,
@@ -109,6 +107,7 @@ function MainWrapper({
   if (!candidate) {
     return <NotFound />;
   }
+  let website;
   const {
     headline,
     firstName,
@@ -120,10 +119,10 @@ function MainWrapper({
     tiktok,
     snap,
     heroVideo,
-    updates,
   } = candidate;
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
+    ({ website } = candidate.comparedCandidates.candidates[0]);
   }
 
   return (
@@ -157,31 +156,19 @@ function MainWrapper({
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
         </SectionWrapper>
         <SectionWrapper>
-          <SectionHeader>
-            Compare {firstName} {lastName} with others
+          <SectionHeader style={{ marginBottom: '4px' }}>
+            Connect with {firstName}
           </SectionHeader>
-          <ComparedCandidateCarousel
-            candidates={comparedCandidates.candidates}
-          />
-        </SectionWrapper>
-
-        <SectionWrapper>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <SupportButton
-                isUserSupportCandidate={isUserSupportCandidate}
-                removeSupportCallback={removeSupportCallback}
-                supportCallback={supportCallback}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <ShareButton />
-            </Grid>
-          </Grid>
-        </SectionWrapper>
-        <SectionWrapper>
-          <SectionHeader>Connect with {firstName}</SectionHeader>
-          <div>
+          {
+            <a href={website} target="_blank" rel="nofollow">
+              <Website>
+                <span>Campaign website</span>
+                &nbsp;
+                <BiLinkExternal />
+              </Website>
+            </a>
+          }
+          <div style={{ marginTop: '24px' }}>
             {facebook && (
               <SocialLink href={facebook}>
                 <img
@@ -224,6 +211,30 @@ function MainWrapper({
             )}
           </div>
         </SectionWrapper>
+        <SectionWrapper>
+          <SectionHeader>
+            Compare {firstName} {lastName} with others
+          </SectionHeader>
+          <ComparedCandidateCarousel
+            candidates={comparedCandidates.candidates}
+          />
+        </SectionWrapper>
+
+        <SectionWrapper>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <SupportButton
+                isUserSupportCandidate={isUserSupportCandidate}
+                removeSupportCallback={removeSupportCallback}
+                supportCallback={supportCallback}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <ShareButton />
+            </Grid>
+          </Grid>
+        </SectionWrapper>
+
         <Updates candidate={candidate} />
         <Hidden smUp>
           <SectionWrapper>
