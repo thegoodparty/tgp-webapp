@@ -52,7 +52,7 @@ const BarBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
   align-self: flex-start;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    align-self: center;
+    // align-self: center;
   }
 `;
 

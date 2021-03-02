@@ -20,6 +20,7 @@ const ChallengerAvatarWrapper = styled.div`
   &.small {
     width: 58px;
     height: 58px;
+    margin: 0 5px;
   }
 
   &.medium {
