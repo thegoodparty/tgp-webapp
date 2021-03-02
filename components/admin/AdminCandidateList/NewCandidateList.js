@@ -16,12 +16,14 @@ import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/DeleteForever';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Link from 'next/link';
 import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
 import { numberFormatter } from 'helpers/numberHelper';
+import AlertDialog from '../../shared/AlertDialog';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -51,8 +53,21 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function NewCandidateList({ candidates, updateCandidateCallback, chamber }) {
+function NewCandidateList({
+  candidates,
+  chamber,
+  deleteCandidateCallback,
+}) {
   const [tableData, setTableData] = useState([]);
+  const [deleteCandidate, setDeleteCandidate] = useState(false);
+  const handleDeleteCandidate = id => {
+    setDeleteCandidate(id);
+  };
+
+  const handleProceedDelete = () => {
+    deleteCandidateCallback(deleteCandidate);
+    setDeleteCandidate(false);
+  };
   useEffect(() => {
     if (candidates) {
       const data = [];
@@ -120,7 +135,7 @@ function NewCandidateList({ candidates, updateCandidateCallback, chamber }) {
           <>
             <Link href={editRoute} target="_blank" passHref>
               <a>
-              <EditIcon />
+                <EditIcon />
               </a>
             </Link>
             &nbsp;&nbsp;&nbsp;
@@ -148,6 +163,26 @@ function NewCandidateList({ candidates, updateCandidateCallback, chamber }) {
       accessor: 'race',
       filterMethod: customFilter,
       headerStyle,
+    },
+    {
+      Header: 'Delete',
+      maxWidth: 80,
+      accessor: 'name',
+      headerStyle,
+      filterMethod: customFilter,
+      Cell: row => {
+        return (
+          <div className="text-center">
+            {' '}
+            <DeleteIcon
+              onClick={() => {
+                handleDeleteCandidate(row.original.id);
+              }}
+              style={{ color: 'red', cursor: 'pointer' }}
+            />
+          </div>
+        );
+      },
     },
   ];
 
@@ -190,13 +225,20 @@ function NewCandidateList({ candidates, updateCandidateCallback, chamber }) {
         showPagination
         filterable
       />
+      <AlertDialog
+        title="Delete Candidate?"
+        description="This can't be undone, and you will have to deal with it in your afterlife"
+        open={deleteCandidate !== false}
+        handleClose={() => setDeleteCandidate(false)}
+        handleProceed={handleProceedDelete}
+      />
     </Wrapper>
   );
 }
 
 NewCandidateList.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  updateCandidateCallback: PropTypes.func,
+  deleteCandidateCallback: PropTypes.func,
   chamber: PropTypes.string,
 };
 

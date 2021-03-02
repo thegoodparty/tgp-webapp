@@ -283,6 +283,7 @@ const api = {
       method: 'DELETE',
       withAuth: true,
     },
+
     uploadedImages: {
       url: `${base}admin/uploaded-images`,
       method: 'POST',
@@ -309,6 +310,11 @@ const api = {
     update: {
       url: `${base}new-candidate`,
       method: 'PUT',
+      withAuth: true,
+    },
+    deleteCandidate: {
+      url: `${base}new-candidate`,
+      method: 'DELETE',
       withAuth: true,
     },
   },

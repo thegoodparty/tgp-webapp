@@ -113,6 +113,7 @@ const AdminWrapper = ({
   loadVoterizeCallback,
   updateVoterizeCallback,
   deleteUserCallback,
+  deleteCandidateCallback,
   loading,
   error,
   content,
@@ -192,6 +193,7 @@ const AdminWrapper = ({
           candidates={candidates}
           updateCandidateCallback={updateCandidateCallback}
           chamber={chamber}
+          deleteCandidateCallback={deleteCandidateCallback}
         />
       );
     }
@@ -276,6 +278,7 @@ AdminWrapper.propTypes = {
   updateVoterizeCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   isUpdated: PropTypes.bool,
+  deleteCandidateCallback: PropTypes.func,
 };
 
 export default AdminWrapper;
