@@ -10,8 +10,8 @@ import { Body11 } from '../../shared/typogrophy';
 
 const StyledButton = styled(Button)`
   && {
-    border-radius: 30px;
-    padding: 16px 6px;
+    border-radius: 8px;
+    padding: 16px 4px;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     background-color: ${({ theme }) => theme.colors.blue};
@@ -34,6 +34,10 @@ const StyledBody11 = styled(Body11)`
   color: #fff;
   font-weight: 500;
   padding-left: 16px;
+  font-size: 10px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 14px;
+  }
 
   &.google {
     color: ${({ theme }) => theme.colors.gray4};
@@ -42,15 +46,15 @@ const StyledBody11 = styled(Body11)`
 
 const Icon = styled.div`
   position: absolute;
-  left: 12px;
-  top: 9px;
-  font-size: 20px;
-  width: 24px;
-  height: 24px;
+  left: 7px;
+  top: 12px;
+  font-size: 16px;
   padding: 2px;
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    left: 12px;
     top: 12px;
+    font-size: 20px;
   }
 
   &.with-shadow {
@@ -59,8 +63,6 @@ const Icon = styled.div`
     border-radius: 50%;
   }
 `;
-
-
 
 const SocialButton = ({ triggerLogin, children, channel, ...props }) => {
   const icon = () => {

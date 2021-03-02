@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import TextField from '@material-ui/core/TextField';
 
 import globals from 'globals';
@@ -93,15 +94,21 @@ const Input = styled(TextField)`
 function SocialRegisterWrapper({
   socialLoginCallback,
   socialLoginFailureCallback,
-  blocName,
-  candidateName,
   twitterButtonCallback,
   emailRegisterCallback,
 }) {
-  // const registerSteps = blocName
-  //   ? defaultRegisterSteps
-  //   : defaultRegisterSteps.slice(0, 2);
-
+  const router = useRouter();
+  console.log(router);
+  let title = <>Join the Good Party</>;
+  if (router.route === '/candidate/[...NameIdTab]') {
+    title = (
+      <>
+        To endorse a candidate,
+        <br />
+        create your profile
+      </>
+    );
+  }
   const initState = {
     name: '',
     email: '',
@@ -148,7 +155,6 @@ function SocialRegisterWrapper({
     } else if (state.name === '' && !validateEmail()) {
       setErrors({ email: true, name: true });
     } else if (state.name === '') {
-      console.log('empty name');
       setErrors({ email: false, name: true });
     } else {
       setErrors({ email: true, name: false });
@@ -164,9 +170,7 @@ function SocialRegisterWrapper({
         </Link>
       </Body13>
       <StyledH1 data-cy="title">
-        To endorse a candidate,
-        <br />
-        create your profile
+        {title}
       </StyledH1>
 
       <form noValidate onSubmit={handleSubmitForm}>
