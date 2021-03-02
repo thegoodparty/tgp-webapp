@@ -197,7 +197,7 @@ const Copied = styled(Body11)`
   color: #fff;
 `;
 
-const ShareModal = ({ candidate, message }) => {
+const ShareModal = ({ candidate, message, supportLink }) => {
   const [copied, setCopied] = useState(false);
   const user = getUserCookie(true);
   useEffect(() => {
@@ -223,7 +223,11 @@ const ShareModal = ({ candidate, message }) => {
   const cleanMessage = message === 'true' ? '' : message;
 
   const { firstName, lastName, race } = candidate || {};
-  const url = uuidUrl(user, window.location.origin + window.location.pathname);
+  const url = uuidUrl(
+    user,
+    window.location.origin + window.location.pathname,
+    supportLink ? 'support=true' : '',
+  );
 
   const encodedUrl = encodeURIComponent(url);
 

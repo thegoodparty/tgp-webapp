@@ -33,6 +33,7 @@ function CandidateNewWrapper({
   supportCallback,
   showPreviewModal,
   showShareModal,
+  supportLink,
   user,
   isUserSupportCandidate,
   removeSupportCallback,
@@ -97,6 +98,7 @@ function CandidateNewWrapper({
           candidate={candidate}
           user={user}
           message={showShareModal}
+          supportLink={supportLink}
         />
       )}
     </PageWrapper>
@@ -111,6 +113,7 @@ CandidateNewWrapper.propTypes = {
   removeSupportCallback: PropTypes.func,
   showPreviewModal: PropTypes.bool,
   showShareModal: PropTypes.bool,
+  supportLink: PropTypes.bool,
   isUserSupportCandidate: PropTypes.bool,
   previewNextStepCallback: PropTypes.func,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),

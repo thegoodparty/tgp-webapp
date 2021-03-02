@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -41,12 +42,11 @@ export function CandidateNewPage({
   let user = getUserCookie(true);
   const { userSupports, candidateSupports } = candidateNewPage;
 
-  let showPreviewModal = false;
-  let showShareModal = false;
-  if (typeof window !== 'undefined') {
-    showPreviewModal = queryHelper(window.location.search, 'preview');
-    showShareModal = queryHelper(window.location.search, 'share');
-  }
+  const router = useRouter();
+  const showPreviewModal = router.query.preview;
+  const showShareModal = router.query.share;
+  const supportLink = router.query.support;
+
 
   let candidate;
   let tab;
@@ -94,6 +94,7 @@ export function CandidateNewPage({
     removeSupportCallback,
     showPreviewModal,
     showShareModal,
+    supportLink,
     user,
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
     previewNextStepCallback,
@@ -108,7 +109,7 @@ export function CandidateNewPage({
           description={description}
           image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${candidate.firstName.toLowerCase()}-${candidate.lastName.toLowerCase()}-${
             candidate.id
-          }.jpeg`}
+          }${supportLink ? '-support' : ''}.jpeg`}
         />
       )}
       <CandidateNewWrapper {...childProps} />
@@ -153,12 +154,20 @@ function mapDispatchToProps(dispatch) {
       const updateSupport = queryHelper(window.location.search, 'support');
       if (updateSupport) {
         dispatch(actions.updateSupportAction(candidateId, message));
+        dispatch(
+          push(
+            `${window.location.pathname}?share=${encodeURIComponent(
+              message,
+            )}&support=true`,
+          ),
+        );
+      } else {
+        dispatch(
+          push(
+            `${window.location.pathname}?share=${encodeURIComponent(message)}`,
+          ),
+        );
       }
-      dispatch(
-        push(
-          `${window.location.pathname}?share=${encodeURIComponent(message)}`,
-        ),
-      );
     },
     adminDeleteSupportCallback: (supportId, candidateId) => {
       dispatch(actions.adminDeleteSupportAction(supportId, candidateId));
