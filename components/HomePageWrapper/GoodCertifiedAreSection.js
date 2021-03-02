@@ -20,7 +20,6 @@ const Img = styled.img`
 
 const PointWrapper = styled.div`
   display: flex;
-  margin-bottom: 36px;
   align-items: flex-start;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 48px;
