@@ -17,6 +17,7 @@ const StyledH3 = styled(H3)`
   color: ${({ theme }) => theme.colors.gray2};
   margin-top: 48px;
   margin-bottom: 16px;
+  position: relative;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-top: 66px;
   }
@@ -37,7 +38,7 @@ function CandidatesSection({ candidates }) {
     <Wrapper>
       {states.map(state => (
         <>
-          <StyledH3>{shortToLongState[state]}</StyledH3>
+          <StyledH3>{shortToLongState[state] || 'No State'}</StyledH3>
           <Grid container spacing={1}>
             {candidates[state].map(candidate => (
               <Grid item xs={12} md={6}>
