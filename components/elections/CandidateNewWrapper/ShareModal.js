@@ -18,6 +18,7 @@ import {
 } from 'react-icons/io';
 import { ImWhatsapp } from 'react-icons/im';
 import { FaSnapchatGhost, FaFacebookF } from 'react-icons/fa';
+import { getUserCookie } from '../../../helpers/cookieHelper';
 // import { SiTiktok } from 'react-icons/si';
 //
 // const CopyPasteIcon = '/images/icons/copy-paste.svg';
@@ -196,8 +197,9 @@ const Copied = styled(Body11)`
   color: #fff;
 `;
 
-const ShareModal = ({ candidate, user, message }) => {
+const ShareModal = ({ candidate, message }) => {
   const [copied, setCopied] = useState(false);
+  const user = getUserCookie(true);
   useEffect(() => {
     AnalyticsService.sendEvent('Sharing', 'Open Share Modal', candidate?.name);
   }, []);
@@ -222,13 +224,18 @@ const ShareModal = ({ candidate, user, message }) => {
 
   const { firstName, lastName, race } = candidate || {};
   const url = uuidUrl(user, window.location.origin + window.location.pathname);
+
   const encodedUrl = encodeURIComponent(url);
-  const messageTitle = candidate
-    ? `Help ${firstName} ${lastName} take back ${race}.`
-    : 'Good Party Share message';
+
   const messageBody = candidate
     ? `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`
-    : 'Good Party Share message body';
+    : encodedUrl;
+
+  const emailSubject = user
+    ? 'Join me on the Good Party'
+    : 'Check out the Good Party';
+
+  const emailBody = `The Good Party is free software for free elections: ${encodedUrl}`;
 
   const handleCopy = () => {
     setCopied(true);
@@ -251,7 +258,7 @@ const ShareModal = ({ candidate, user, message }) => {
       label: 'Email',
       icon: <IoIosMail />,
       className: 'email',
-      link: `mailto:?body=${messageBody}&subject=${messageTitle}`,
+      link: `mailto:?body=${emailBody}&subject=${emailSubject}`,
     },
     // {
     //   label: 'Messenger',

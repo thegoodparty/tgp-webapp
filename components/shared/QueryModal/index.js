@@ -79,10 +79,6 @@ function QueryModal({
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-  console.log('{ ...modalStyles.dialog }, { zIndex }', {
-    ...modalStyles.dialog,
-    zIndex,
-  });
   return (
     <TgpDialog
       onClose={closeModalCallback}
