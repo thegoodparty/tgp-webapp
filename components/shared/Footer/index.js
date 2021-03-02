@@ -4,17 +4,14 @@
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import history from 'utils/history';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Image from 'next/image';
-import { getUserCookie } from 'helpers/cookieHelper';
-import ShareModal from 'components/you/ProfileWrapper/ShareModal/Loadable';
-import { electionRoute } from 'helpers/electionsHelper';
+import { useRouter } from 'next/router';
 
 import { Body9, Body12 } from '../typogrophy';
 
@@ -119,6 +116,7 @@ const SocialIcon = styled.img`
 `;
 
 function Footer({ isCreators = false }) {
+  const router = useRouter();
   return (
     <>
       <GrayWrapper>
@@ -137,7 +135,10 @@ function Footer({ isCreators = false }) {
                     />
                   </Link>
                 </ColumnHeader>
-                <Link href="/party" passHref>
+                <Link
+                  href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                  passHref
+                >
                   <WhiteLink data-cy="footer-link-about">
                     How crowd-voting works
                   </WhiteLink>
@@ -169,11 +170,7 @@ function Footer({ isCreators = false }) {
                 <ColumnHeader data-cy="footer-community-title">
                   Community
                 </ColumnHeader>
-                <Link
-                  data-cy="footer-link-creators"
-                  href="?share=true"
-                  passHref
-                >
+                <Link href={`${router.asPath}?share=true`} passHref>
                   <WhiteLink data-cy="footer-link-share">
                     Share with friends
                   </WhiteLink>

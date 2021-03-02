@@ -31,12 +31,10 @@ const CategoryName = styled(Body19)`
 const Hero = styled.div`
   margin-top: 0;
   height: 190px;
-  background-color: pink;
-
   position: relative;
-  width: 100%
-  background: url(http://assets.thegoodparty.org/faq-hero.jpeg)
-    no-repeat center center;
+  width: 100%;
+  background: url(http://assets.thegoodparty.org/faq-hero.jpeg) no-repeat center
+    center;
   background-size: cover;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-top: 18px;
@@ -51,7 +49,6 @@ const Shadow = styled.div`
     rgba(17, 17, 17, 0.2) 62.89%,
     rgba(17, 17, 17, 0.8) 86.02%
   );
-  position: absolue;
   top: 0;
   left: 0;
   height: 100%;

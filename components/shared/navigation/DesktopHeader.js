@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -12,7 +12,6 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import MenuList from '@material-ui/core/MenuList';
 
 import styled from 'styled-components';
-import { Body14 } from '../typogrophy';
 import UserAvatar from '../UserAvatar';
 
 const Wrapper = styled.div`
@@ -170,6 +169,7 @@ const DesktopHeader = ({ user }) => {
               transition
               disablePortal
               placement="top-start"
+              style={{ zIndex: 1000 }}
             >
               {({ TransitionProps, placement }) => (
                 <Grow
@@ -187,16 +187,24 @@ const DesktopHeader = ({ user }) => {
                         onKeyDown={handleListKeyDown}
                       >
                         <StyledMenuItem onClick={handleClose}>
-                          How crowd-voting works
+                          <Link
+                            href={`${
+                              router.asPath
+                            }?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                            passHref
+                          >
+                            <a>How crowd-voting works</a>
+                          </Link>
                         </StyledMenuItem>
                         <StyledMenuItem onClick={handleClose}>
                           <Link href="/party" passHref>
                             <a>About Good Party</a>
                           </Link>
-                          About Good Party
                         </StyledMenuItem>
                         <StyledMenuItem onClick={handleClose}>
-                          Candidates
+                          <Link href="/candidates" passHref>
+                            <a>Meet the candidates</a>
+                          </Link>
                         </StyledMenuItem>
                         <StyledMenuItem>
                           <Link href="/party/faqs" passHref>
@@ -204,7 +212,12 @@ const DesktopHeader = ({ user }) => {
                           </Link>
                         </StyledMenuItem>
                         <StyledMenuItem onClick={handleClose}>
-                          Sign up / Login
+                          <Link
+                            href={`${router.asPath}?register=true`}
+                            passHref
+                          >
+                            <a>Sign up / Login</a>
+                          </Link>
                         </StyledMenuItem>
                       </MenuList>
                     </ClickAwayListener>

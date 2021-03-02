@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -103,6 +104,7 @@ const ButtonInner = styled.div`
 
 function MobileHeader({ user }) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <Hidden mdUp>
@@ -156,13 +158,26 @@ function MobileHeader({ user }) {
           </Grid>
 
           <PushMenuLink style={{ marginTop: '40px' }}>
-            <Link href="/" className="text-center" passHref>
-              <a>CANDIDATES</a>
+            <Link
+              href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+              passHref
+            >
+              <a>How crowd-voting works</a>
             </Link>
           </PushMenuLink>
           <PushMenuLink>
-            <Link href="/party" className="text-center" passHref>
-              <a>ABOUT</a>
+            <Link href="/party" passHref>
+              <a>About Good Party</a>
+            </Link>
+          </PushMenuLink>
+          <PushMenuLink>
+            <Link href="/candidates" passHref>
+              <a>Meet the candidates</a>
+            </Link>
+          </PushMenuLink>
+          <PushMenuLink>
+            <Link href="/party/faqs" passHref>
+              <a>FAQs</a>
             </Link>
           </PushMenuLink>
 
@@ -182,11 +197,7 @@ function MobileHeader({ user }) {
               <Grid container spacing={3} alignItems="center">
                 <Grid item xs={6}>
                   <PushMenuLink className="text-center">
-                    <Link
-                      href="?register=true"
-                      className="text-center"
-                      passHref
-                    >
+                    <Link href={`${router.asPath}?register=true`} passHref>
                       <a>
                         <PurpleButton fullWidth>
                           <ButtonInner>SIGN UP</ButtonInner>
