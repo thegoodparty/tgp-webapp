@@ -34,13 +34,11 @@ export function CandidateNewPage({
   supportCallback,
   removeSupportCallback,
   previewNextStepCallback,
+  adminDeleteSupportCallback,
 }) {
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
-  let user = getUserCookie();
-  if (user) {
-    user = JSON.parse(user);
-  }
+  let user = getUserCookie(true);
   const { userSupports, candidateSupports } = candidateNewPage;
 
   let showPreviewModal = false;
@@ -100,6 +98,7 @@ export function CandidateNewPage({
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
     previewNextStepCallback,
     candidateSupports,
+    adminDeleteSupportCallback,
   };
   return (
     <div>
@@ -124,6 +123,7 @@ CandidateNewPage.propTypes = {
   candidateNewPage: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   previewNextStepCallback: PropTypes.func,
+  adminDeleteSupportCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -159,6 +159,9 @@ function mapDispatchToProps(dispatch) {
           `${window.location.pathname}?share=${encodeURIComponent(message)}`,
         ),
       );
+    },
+    adminDeleteSupportCallback: (supportId, candidateId) => {
+      dispatch(actions.adminDeleteSupportAction(supportId, candidateId));
     },
   };
 }

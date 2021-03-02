@@ -75,6 +75,12 @@ const updateSupportAction = (candidateId, message) => ({
   message,
 });
 
+const adminDeleteSupportAction = (supportId, candidateId) => ({
+  type: types.ADMIN_DELETE_SUPPORT,
+  supportId,
+  candidateId,
+});
+
 export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
@@ -95,4 +101,5 @@ export default {
 
   removeSupportAction,
   updateSupportAction,
+  adminDeleteSupportAction,
 };

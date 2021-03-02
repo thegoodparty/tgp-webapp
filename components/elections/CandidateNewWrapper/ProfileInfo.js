@@ -95,6 +95,7 @@ function ProfileInfo({
   removeSupportCallback,
   isUserSupportCandidate,
   candidateSupports,
+  adminDeleteSupportCallback,
 }) {
   const {
     firstName,
@@ -180,7 +181,11 @@ function ProfileInfo({
           <a>Read more</a>
         </EndorsementDescription>
         <Hidden xsDown>
-          <RecentlyJoined candidateSupports={candidateSupports} />
+          <RecentlyJoined
+            candidateSupports={candidateSupports}
+            adminDeleteSupportCallback={adminDeleteSupportCallback}
+            candidateId={candidate.id}
+          />
         </Hidden>
       </ProfileInfoWrapper>
     </WrapperElement>
@@ -194,6 +199,7 @@ ProfileInfo.propTypes = {
   removeSupportCallback: PropTypes.func,
   isUserSupportCandidate: PropTypes.bool,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  adminDeleteSupportCallback: PropTypes.func,
 };
 
 export default ProfileInfo;

@@ -360,6 +360,11 @@ const api = {
       method: 'DELETE',
       withAuth: true,
     },
+    adminDeleteSupport: {
+      url: `${base}admin-support`,
+      method: 'DELETE',
+      withAuth: true,
+    },
     updateSupport: {
       url: `${base}support`,
       method: 'PUT',

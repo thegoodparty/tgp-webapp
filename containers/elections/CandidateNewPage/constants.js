@@ -8,8 +8,10 @@ const SUPPORT_SUCCESS = '@@tgp/candidateNewPage/SUPPORT_SUCCESS';
 const SUPPORT_ERROR = '@@tgp/candidateNewPage/SUPPORT_ERROR';
 
 const CANDIDATE_SUPPORTS = '@@tgp/candidateNewPage/CANDIDATE_SUPPORTS';
-const CANDIDATE_SUPPORTS_SUCCESS = '@@tgp/candidateNewPage/CANDIDATE_SUPPORTS_SUCCESS';
-const CANDIDATE_SUPPORTS_ERROR = '@@tgp/candidateNewPage/CANDIDATE_SUPPORTS_ERROR';
+const CANDIDATE_SUPPORTS_SUCCESS =
+  '@@tgp/candidateNewPage/CANDIDATE_SUPPORTS_SUCCESS';
+const CANDIDATE_SUPPORTS_ERROR =
+  '@@tgp/candidateNewPage/CANDIDATE_SUPPORTS_ERROR';
 
 const USER_SUPPORTS = '@@tgp/candidateNewPage/USER_SUPPORTS';
 const USER_SUPPORTS_SUCCESS = '@@tgp/candidateNewPage/USER_SUPPORTS_SUCCESS';
@@ -17,6 +19,7 @@ const USER_SUPPORTS_ERROR = '@@tgp/candidateNewPage/USER_SUPPORTS_ERROR';
 
 const REMOVE_SUPPORT = '@@tgp/candidateNewPage/REMOVE_SUPPORT';
 const UPDATE_SUPPORT = '@@tgp/candidateNewPage/UPDATE_SUPPORT';
+const ADMIN_DELETE_SUPPORT = '@@tgp/candidateNewPage/ ADMIN_DELETE_SUPPORT';
 
 export default {
   LOAD_CANDIDATE,
@@ -38,4 +41,5 @@ export default {
 
   REMOVE_SUPPORT,
   UPDATE_SUPPORT,
+  ADMIN_DELETE_SUPPORT,
 };

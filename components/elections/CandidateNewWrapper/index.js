@@ -38,11 +38,11 @@ function CandidateNewWrapper({
   removeSupportCallback,
   previewNextStepCallback,
   candidateSupports,
+  adminDeleteSupportCallback,
 }) {
   if (!candidate) {
     return <NotFound />;
   }
-  console.log('cand', candidate);
   let articles = [];
   if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
@@ -78,6 +78,7 @@ function CandidateNewWrapper({
                 isUserSupportCandidate={isUserSupportCandidate}
                 removeSupportCallback={handleRemoveSupport}
                 candidateSupports={candidateSupports}
+                adminDeleteSupportCallback={adminDeleteSupportCallback}
               />
             </Grid>
           </Hidden>
@@ -113,6 +114,7 @@ CandidateNewWrapper.propTypes = {
   isUserSupportCandidate: PropTypes.bool,
   previewNextStepCallback: PropTypes.func,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  adminDeleteSupportCallback: PropTypes.func,
 };
 
 export default CandidateNewWrapper;

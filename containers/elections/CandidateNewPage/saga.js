@@ -67,6 +67,22 @@ function* removeSupport({ candidateId }) {
   }
 }
 
+function* adminDeleteSupportAction({ supportId, candidateId }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Removing your support'));
+    const api = tgpApi.supportCandidate.adminDeleteSupport;
+    const payload = { supportId };
+    yield call(requestHelper, api, payload);
+    yield put(actions.userSupportsAction());
+    yield put(actions.candidateSupportsAction(candidateId));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(`Error deleting support`, 'error'),
+    );
+  }
+}
+
 function* updateSupport({ candidateId, message }) {
   try {
     const api = tgpApi.supportCandidate.updateSupport;
@@ -117,12 +133,16 @@ function* candidateSupports({ candidateId }) {
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
-  yield takeLatest(types.SHARE_IMAGE, shareImage)
+  yield takeLatest(types.SHARE_IMAGE, shareImage);
   let action = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
   yield takeLatest(types.SUPPORT, support);
   yield takeLatest(types.USER_SUPPORTS, userSupports);
   action = yield takeLatest(types.CANDIDATE_SUPPORTS, candidateSupports);
   yield takeLatest(types.REMOVE_SUPPORT, removeSupport);
+  action = yield takeLatest(
+    types.ADMIN_DELETE_SUPPORT,
+    adminDeleteSupportAction,
+  );
   yield takeLatest(types.UPDATE_SUPPORT, updateSupport);
   yield takeLatest(types.SHARE_IMAGE, shareImage);
 }

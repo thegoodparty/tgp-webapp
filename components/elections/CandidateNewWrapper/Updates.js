@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Body19, Body13 } from '../../shared/typogrophy';
+import { getUserCookie } from '../../../helpers/cookieHelper';
 
 const SectionWrapper = styled.div`
   margin-top: 48px;

@@ -12,8 +12,10 @@ import Truncate from 'react-truncate';
 // import Box from '@material-ui/core/Box';
 // import { PurpleButton } from 'components/shared/buttons';
 import { Body9, Body11, Body13, Body19, Body } from '../../shared/typogrophy';
+import { getUserCookie } from '../../../helpers/cookieHelper';
 const PeopleJoinedIconPurple = '/images/people-joined-purple.svg';
 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 // const InnerButton = styled.div`
 //   font-size: 14px;
@@ -53,11 +55,30 @@ const RecentJoin = styled.div`
   padding: 12px 0;
   border-top: 1px solid ${({ theme }) => theme.colors.grayD};
   text-align: left;
+  position: relative;
 `;
-function RecentlyJoined({ candidateSupports }) {
+
+const AdminDelete = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 0 5px 5px;
+  font-size: 12px;
+  color: red;
+  cursor: pointer;
+`;
+
+function RecentlyJoined({
+  candidateSupports,
+  adminDeleteSupportCallback,
+  candidateId,
+}) {
   const supporters = candidateSupports || [];
   const [expanded, setExpanded] = useState(false);
   const [truncated, setTruncated] = useState(false);
+
+  const user = getUserCookie(true);
+  const { isAdmin } = user;
 
   const lines = 3;
 
@@ -86,6 +107,15 @@ function RecentlyJoined({ candidateSupports }) {
       </Grid>
       {supporters.map(supporter => (
         <RecentJoin key={supporter.id}>
+          {isAdmin && (
+            <AdminDelete
+              onClick={() => {
+                adminDeleteSupportCallback(supporter.id, candidateId);
+              }}
+            >
+              <DeleteForeverIcon />
+            </AdminDelete>
+          )}
           <img
             src={AnonymousIconPurple}
             alt="share"
@@ -137,6 +167,8 @@ function RecentlyJoined({ candidateSupports }) {
 
 RecentlyJoined.propTypes = {
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  adminDeleteSupportCallback: PropTypes.func,
+  candidateId: PropTypes.number,
 };
 
 export default RecentlyJoined;
