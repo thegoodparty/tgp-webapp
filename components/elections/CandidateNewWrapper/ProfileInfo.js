@@ -24,16 +24,10 @@ import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
 import ShareButton from './ShareButton';
 
-const ScrollArea = styled.div`
-  height: calc(100% - 80px - 65px);
-  position: relative;
-  top: 0;
-  width: 416px;
-  margin-top: -25px;
-`;
-
 const Inner = styled.div`
-  padding-top: 25px;
+  background-color: ${({ theme }) => theme.colors.purple3};
+  z-index: 5000;
+  padding: 12px 0;
 `;
 
 const ProfileInfoWrapper = styled.div`
@@ -43,6 +37,23 @@ const ProfileInfoWrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
     padding: 24px 24px 32px 24px;
+  }
+
+  .sticky {
+    z-index: 1000;
+    .box {
+      margin-top: 0 !important;
+    }
+    .box {
+      width: 50%;
+      display: inline-block;
+    }
+    .box-left {
+      padding-right: 5px;
+    }
+    .box-right {
+      padding-left: 5px;
+    }
   }
 `;
 
@@ -92,7 +103,7 @@ const EndorsementDescription = styled(Body11)`
 
 function ProfileInfo({
   candidate,
-  isMobile,
+  isMobile = false,
   supportCallback,
   removeSupportCallback,
   isUserSupportCandidate,
@@ -110,25 +121,27 @@ function ProfileInfo({
     likelyVoters,
     votesNeeded,
   } = candidate;
-  const WrapperElement = ({ children }) =>
-    isMobile ? (
-      <div>{children}</div>
-    ) : (
-      <ScrollArea className="scroll-area">
+
+  const StickyWrapperElement = ({ children }) => (
+    <>
+      {!isMobile ? (
+        <div>{children}</div>
+      ) : (
         <Sticky
           boundaryElement=".scroll-area"
           hideOnBoundaryHit={false}
           dontUpdateHolderHeightWhenSticky
         >
-          <Inner className="inner">{children}</Inner>
+          <Inner>{children}</Inner>
         </Sticky>
-      </ScrollArea>
-    );
+      )}
+    </>
+  );
   const supportCount = candidateSupports?.length || 0;
   const intLikelyVoters = parseInt(likelyVoters, 10);
 
   return (
-    <WrapperElement>
+    <div>
       <ProfileInfoWrapper>
         <AvatarSection>
           <CandidateAvatar
@@ -170,16 +183,19 @@ function ProfileInfo({
           peopleSoFar={supportCount + intLikelyVoters}
           fullWidth
         />
-        <Box style={{ marginTop: 24 }}>
-          <ShareButton />
-        </Box>
-        <Box style={{ marginTop: 8 }}>
-          <SupportButton
-            isUserSupportCandidate={isUserSupportCandidate}
-            removeSupportCallback={removeSupportCallback}
-            supportCallback={supportCallback}
-          />
-        </Box>
+        <StickyWrapperElement>
+          <Box style={{ marginTop: 24 }} className="box box-left">
+            <ShareButton />
+          </Box>
+          <Box style={{ marginTop: 8 }} className="box box-right">
+            <SupportButton
+              isUserSupportCandidate={isUserSupportCandidate}
+              removeSupportCallback={removeSupportCallback}
+              supportCallback={supportCallback}
+            />
+          </Box>
+        </StickyWrapperElement>
+
         <EndorsementDescription>
           Your endorsement is a free way to show and grow grassroots support.{' '}
           <Link
@@ -197,7 +213,7 @@ function ProfileInfo({
           />
         </Hidden>
       </ProfileInfoWrapper>
-    </WrapperElement>
+    </div>
   );
 }
 
