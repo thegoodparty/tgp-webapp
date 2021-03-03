@@ -19,6 +19,8 @@ import ShareModal from './ShareModal';
 import { H1 } from '../../shared/typogrophy';
 
 const ContentWrapper = styled.div`
+  width: 100vw;
+  overflow-x: hidden;
   margin: 0 auto;
   max-width: 1080px;
   padding-bottom: 48px;
