@@ -56,10 +56,6 @@ const ScrollArea = styled.div`
   top: 0;
   width: 416px;
   margin-top: -25px;
-
-  & > div {
-    min-height: 500px !important;
-  }
 `;
 
 const Inner2 = styled.div`
