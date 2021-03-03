@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -20,6 +20,8 @@ import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
 
 const Content = styled.div`
+  width: 100vw;
+  overflow-x: hidden;
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto 48px;
   padding: 0 18px;
@@ -54,23 +56,32 @@ const ScrollArea = styled.div`
   top: 0;
   width: 416px;
   margin-top: -25px;
+
+  & > div {
+    min-height: 500px !important;
+  }
 `;
 
 const Inner2 = styled.div`
   padding-top: 25px;
 `;
 
-const StickyWrapperElement = ({ children }) => (
-  <ScrollArea className="scroll-area">
-    <Sticky
-      boundaryElement=".scroll-area"
-      hideOnBoundaryHit={false}
-      dontUpdateHolderHeightWhenSticky
-    >
-      <Inner2 className="inner">{children}</Inner2>
-    </Sticky>
-  </ScrollArea>
-);
+const StickyWrapperElement = ({ children }) => {
+  if (typeof window !== 'undefined' && window.innerWidth > 960) {
+    return (
+      <ScrollArea className="scroll-area">
+        <Sticky
+          boundaryElement=".scroll-area"
+          hideOnBoundaryHit={false}
+          dontUpdateHolderHeightWhenSticky
+        >
+          <Inner2 className="inner">{children}</Inner2>
+        </Sticky>
+      </ScrollArea>
+    );
+  }
+  return <div>{children}</div>;
+};
 
 function CandidatesWrapper({ candidates, content }) {
   let articles = [];

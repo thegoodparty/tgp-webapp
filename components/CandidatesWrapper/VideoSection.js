@@ -8,8 +8,21 @@ import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const VideoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100vw - 36px);
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: center;
+    display: block;
+    width: unset;
+  }
+`;
+
 const Wrapper = styled.div`
   width: 325px;
+  max-width: calc(100vw - 20px);
   margin: 0 auto;
 
   box-shadow: -9px 18px 30px rgba(224, 212, 234, 0.2),
@@ -32,9 +45,9 @@ function VideoSection() {
     document.body.appendChild(script);
   }, []);
   return (
-    <div className="text-center">
+    <VideoWrapper>
       <Wrapper dangerouslySetInnerHTML={{ __html: tiktokEmbed }} />
-    </div>
+    </VideoWrapper>
   );
 }
 
