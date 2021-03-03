@@ -7,8 +7,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import PageWrapper from '../shared/PageWrapper';
 import Grid from '@material-ui/core/Grid';
+import Sticky from 'react-sticky-el';
+
+import PageWrapper from '../shared/PageWrapper';
 import { Body13, H1 } from '../shared/typogrophy';
 import GoodCertifiedAreSection from '../HomePageWrapper/GoodCertifiedAreSection';
 import CandidatesSection from './CandidatesSection';
@@ -46,6 +48,30 @@ const StyledBody13 = styled(Body13)`
   }
 `;
 
+const ScrollArea = styled.div`
+  height: calc(100% - 80px - 65px);
+  position: relative;
+  top: 0;
+  width: 416px;
+  margin-top: -25px;
+`;
+
+const Inner2 = styled.div`
+  padding-top: 25px;
+`;
+
+const StickyWrapperElement = ({ children }) => (
+  <ScrollArea className="scroll-area">
+    <Sticky
+      boundaryElement=".scroll-area"
+      hideOnBoundaryHit={false}
+      dontUpdateHolderHeightWhenSticky
+    >
+      <Inner2 className="inner">{children}</Inner2>
+    </Sticky>
+  </ScrollArea>
+);
+
 function CandidatesWrapper({ candidates, content }) {
   let articles = [];
   if (content?.faqArticles) {
@@ -56,7 +82,9 @@ function CandidatesWrapper({ candidates, content }) {
       <Content>
         <ReverseGrid container spacing={4}>
           <Grid item xs={12} md={5}>
-            <VideoSection />
+            <StickyWrapperElement>
+              <VideoSection />
+            </StickyWrapperElement>
           </Grid>
           <Grid item xs={12} md={7}>
             <StyledH1>Meet some Good Certified candidates</StyledH1>

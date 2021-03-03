@@ -30,6 +30,18 @@ const Inner = styled.div`
   padding: 12px 0;
 `;
 
+const ScrollArea = styled.div`
+  height: calc(100% - 80px - 65px);
+  position: relative;
+  top: 0;
+  width: 416px;
+  margin-top: -25px;
+`;
+
+const Inner2 = styled.div`
+  padding-top: 25px;
+`;
+
 const ProfileInfoWrapper = styled.div`
   border-radius: 8px;
   padding: 24px 18px 0;
@@ -137,11 +149,26 @@ function ProfileInfo({
       )}
     </>
   );
+
+  const WrapperElement = ({ children }) =>
+    isMobile ? (
+      <div>{children}</div>
+    ) : (
+      <ScrollArea className="scroll-area">
+        <Sticky
+          boundaryElement=".scroll-area"
+          hideOnBoundaryHit={false}
+          dontUpdateHolderHeightWhenSticky
+        >
+          <Inner2 className="inner">{children}</Inner2>
+        </Sticky>
+      </ScrollArea>
+    );
   const supportCount = candidateSupports?.length || 0;
   const intLikelyVoters = parseInt(likelyVoters, 10);
 
   return (
-    <div>
+    <WrapperElement>
       <ProfileInfoWrapper>
         <AvatarSection>
           <CandidateAvatar
@@ -213,7 +240,7 @@ function ProfileInfo({
           />
         </Hidden>
       </ProfileInfoWrapper>
-    </div>
+    </WrapperElement>
   );
 }
 
