@@ -18,17 +18,18 @@ const SeeMore = styled(Body11)`
 const CandidatesSection = ({ homepageCandidates }) => {
   return (
     <>
-      <H2 style={{ marginBottom: '8px', color: '#000' }}>
+      <H2 style={{ marginBottom: '8px', color: '#000', position: 'relative' }}>
         Meet some Good Certified candidates
       </H2>
-      <Body style={{ marginBottom: '24px' }}>
-        We are actively recruiting candidates now, and will have some to show
-        you very soon. In the meanwhile, if you know any good candidates please
-        nominate them!
-      </Body>
+
       {homepageCandidates && homepageCandidates.length > 0 ? (
         <>
-          <Grid container spacing={5} alignItems="center">
+          <Grid
+            container
+            spacing={5}
+            alignItems="center"
+            style={{ marginTop: '12px' }}
+          >
             {homepageCandidates.map(candidate => (
               <Grid item xs={12} md={4}>
                 <CandidateCard candidate={candidate} />
@@ -40,13 +41,20 @@ const CandidatesSection = ({ homepageCandidates }) => {
           </div>
         </>
       ) : (
-        <a
-          href="https://docs.google.com/forms/d/1NA_oF8v8WqMcFBXYK9NSN6V7TGlMp-50Qpgru0qPE5s/edit"
-          target="_blank"
-          rel="nofollow"
-        >
-          <SeeMore style={{ marginTop: 0 }}>NOMINATE A CANDIDATE</SeeMore>
-        </a>
+        <>
+          <Body>
+            We are actively recruiting candidates now, and will have some to
+            show you very soon. In the meanwhile, if you know any good
+            candidates please nominate them!
+          </Body>
+          <a
+            href="https://docs.google.com/forms/d/1NA_oF8v8WqMcFBXYK9NSN6V7TGlMp-50Qpgru0qPE5s/edit"
+            target="_blank"
+            rel="nofollow"
+          >
+            <SeeMore style={{ marginTop: 0 }}>NOMINATE A CANDIDATE</SeeMore>
+          </a>
+        </>
       )}
     </>
   );
