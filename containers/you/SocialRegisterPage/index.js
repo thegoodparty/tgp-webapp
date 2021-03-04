@@ -91,12 +91,12 @@ function mapDispatchToProps(dispatch) {
     },
     socialLoginFailureCallback: err => {
       if (err.toString().includes('[google][load] Failed to load SDK')) {
-        dispatch(
-          snackbarActions.showSnakbarAction(
-            'Your browser is blocking Google Cookies.',
-            'error',
-          ),
-        );
+        // dispatch(
+        //   snackbarActions.showSnakbarAction(
+        //     'Your browser is blocking Google Cookies.',
+        //     'error',
+        //   ),
+        // );
       } else {
         console.log('error social register', err);
         dispatch(
