@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import StyledH2 from './StyledH2';
 import GrayText from './GrayText';
@@ -12,10 +12,10 @@ const Section2 = () => {
         <SectionImg src="images/homepage/together.jpg" alt="together" />
       </Grid>
       <Grid item xs={12} md={6}>
-        <StyledH2>Together we can be powerful</StyledH2>
+        <StyledH2>Together we can change that. </StyledH2>
         <GrayText>
-          That’s why we’re creating free technology that puts power back in the
-          hands of the people, where it belongs
+          We created free, open-source technology that puts power back in the
+          hands of people. Where it should be.
         </GrayText>
       </Grid>
     </Grid>

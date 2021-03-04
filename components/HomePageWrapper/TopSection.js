@@ -48,7 +48,7 @@ const TopSection = () => {
   return (
     <>
       <Row>
-        <StyledH1>We are creating technology for good</StyledH1>
+        <StyledH1>Use technology for Good.</StyledH1>
         <Logo src="/images/icons/heart.svg" />
       </Row>
       <ReverseGrid container spacing={5} alignItems="center">
@@ -56,16 +56,12 @@ const TopSection = () => {
           <SectionImg src="images/homepage/big-money.jpg" alt="big money" />
         </Grid>
         <Grid item xs={12} md={6}>
-          <StyledH2>We know big money is running politics.</StyledH2>
-          <GrayText>
-            Individually we can’t stop it and we feel powerless.
-          </GrayText>
+          <StyledH2>Big money is running politics.</StyledH2>
+          <GrayText>Individually we can’t stop it.</GrayText>
         </Grid>
-
       </ReverseGrid>
     </>
   );
 };
-
 
 export default TopSection;

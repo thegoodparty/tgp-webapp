@@ -1,272 +1,7 @@
 const content = {
-  "partyPage": {
-    "title": "Header Content",
-    "content": {
-      "nodeType": "document",
-      "data": {},
-      "content": [
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Hi there!",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Thanks for coming here to find out more.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "First (and most importantly) we are NOT a political party. We are a digital grassroots movement for political change.  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Our goal is to get money out of politics and allow indie candidates to run and win! ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We do this by building free and open-source technology that allows good people to run crowd-voting campaigns and win!. Just like GoFundMe or change.org, but for politics!  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We empower people to join together, vote different and make a BIG impact.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "heading-1",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "How Crowd Voting Works:",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "1.   ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "Launch",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " – We provide a platform for you to meet indie grassroots candidates and for good candidates to run free campaigns. No more big dollar donations necessary.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "2.   ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "Empower",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " – You can make a difference in getting good candidates elected, by simply clicking “endorse” and sharing with your friends. ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We will never ask you for a donation.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "3.   ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "Change ",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "– With your help, our free and open technology is changing the political landscape and the world. Allowing good candidates to run for office without taking big donations.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Finally, we have a way to get money out of politics and have our voices heard!",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        }
-      ]
-    }
-  },
-  "articleCategories": [
-    {
-      "fields": {
-        "name": "Joining The Good Party",
-        "order": 20
-      },
-      "id": "7jOZqjB2BBfvymyAJ4IQWe",
-      "articles": [
-        {
-          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
-          "id": "7Mrfo6spgrgpwAFe83Oph4"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "About Us",
-        "order": 300
-      },
-      "id": "1x8sreeqPN0PK929WRNw4I",
-      "articles": [
-        {
-          "title": "Who is building Good Party?",
-          "id": "33lnRLO7M0gvfqVkoVxADO"
-        },
-        {
-          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
-          "id": "5YnyOUU7NVOihcos0oR1kL"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "name": "Meet the candidates FAQ"
-      },
-      "id": "7eOiHTthKy6ZWpUKnUiJpI",
-      "articles": []
-    },
-    {
-      "fields": {
-        "name": "How The Good Party Works",
-        "order": 0
-      },
-      "id": "4CrRDuyTqip7XK7DdK4tq7",
-      "articles": [
-        {
-          "title": "How crowd-voting works",
-          "id": "1ic6T6fhH0jZLNvX5aZkDe"
-        },
-        {
-          "title": "Anti-Corruption Act",
-          "id": "7jm2j9gapWwEoVwVD3VX6o"
-        },
-        {
-          "title": "What does it mean to \"endorse\" a candidate?",
-          "id": "3IWiTNf7gKItHkLB0Sm6q3"
-        }
-      ]
-    }
-  ],
   "faqArticles": [
     {
-      "title": "Is The Good Party a real political party?",
+      "title": "Is Good Party a real political party?",
       "articleBody": {
         "nodeType": "document",
         "data": {},
@@ -276,7 +11,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "No. The Good Party is not an actual political party. We are a free non-commercial platform and set of open-source tools, being built by a ",
+                "value": "No. Good Party is not an actual political party. We are a free non-commercial platform and set of open-source tools, being built by a ",
                 "marks": [],
                 "data": {}
               },
@@ -384,6 +119,13 @@ const content = {
       "pages": [
         "party"
       ],
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How The Good Party Works",
+          "order": 0
+        }
+      },
       "id": "48a7xazZc0eN4PXM20Jtel"
     },
     {
@@ -565,7 +307,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "The Good Party seeks as many diversely talented creative people as possible to help us build something truly good!  ",
+                "value": "Good Party seeks as many diversely talented creative people as possible to help us build something truly good!  ",
                 "marks": [],
                 "data": {}
               },
@@ -1729,7 +1471,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Crowd-voting empowers people to endorse candidates they like and enlist others' support—rather than just asking people to donate money.",
+                "value": "Crowd-voting empowers people to endorse candidates they like, and enlist others' support— rather than just asking people to donate money.",
                 "marks": [],
                 "data": {}
               }
@@ -1842,7 +1584,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "There is no cost or downside to joining a crowd-voting campaign using The Good Party.  Every crowd-voting campaign on The Good Party is absolutely free for both people and candidates.",
+                "value": "There is no cost or downside to joining a crowd-voting campaign using Good Party.  Every crowd-voting campaign on Good Party is absolutely free for both people and candidates.",
                 "marks": [],
                 "data": {}
               }
@@ -1853,7 +1595,8 @@ const content = {
       },
       "pages": [
         "election",
-        "district"
+        "district",
+        "party"
       ],
       "category": {
         "id": "4CrRDuyTqip7XK7DdK4tq7",
@@ -2579,60 +2322,67 @@ const content = {
       "id": "2zn1lYvlEB3sHYwUTeLqyS"
     },
     {
-      "title": "What is The Good Party's minimum standard of civility?",
+      "title": "What is Good Party's minimum standard of civility?",
       "articleBody": {
-        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "We vet all candidates to ensure that they have ",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "We vet all candidates to ensure that they have ",
+                "nodeType": "text"
               },
               {
-                "nodeType": "text",
-                "value": "not",
+                "data": {},
                 "marks": [
                   {
                     "type": "bold"
                   }
                 ],
-                "data": {}
+                "value": "not",
+                "nodeType": "text"
               },
               {
-                "nodeType": "text",
-                "value": " engaged in a pattern of activities or ",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": " engaged in a pattern of activities or ",
+                "nodeType": "text"
               },
               {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "hate-speech",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
                 "data": {
                   "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
-                }
+                },
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "hate-speech",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "hyperlink"
               },
               {
-                "nodeType": "text",
-                "value": " encouraging intolerance, discrimination or hostility towards a constitutionally or state-protected group or class.",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": " encouraging intolerance, discrimination or hostility towards a constitutionally or state-protected group or class.",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           }
-        ]
+        ],
+        "nodeType": "document"
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How The Good Party Works",
+          "order": 0
+        }
       },
       "id": "66i4vRRLkX1yf8MnCQvYSb"
     },
@@ -2801,110 +2551,117 @@ const content = {
       "id": "4c0UMRSwDPu5gLSPPxGz4s"
     },
     {
-      "title": "How can I learn more about The Good Party?",
+      "title": "How can I learn more about Good Party?",
       "articleBody": {
-        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "Join us for a ",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "Join us for a ",
+                "nodeType": "text"
               },
               {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Livestream + Q&A or Watch a Replay",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
                 "data": {
                   "uri": "https://thegoodparty.org/party/events"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "or",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Read our ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
+                },
                 "content": [
                   {
-                    "nodeType": "text",
-                    "value": "FAQ",
+                    "data": {},
                     "marks": [
                       {
                         "type": "bold"
                       }
                     ],
-                    "data": {}
+                    "value": "Livestream + Q&A or Watch a Replay",
+                    "nodeType": "text"
                   }
                 ],
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faqs"
-                }
+                "nodeType": "hyperlink"
               },
               {
-                "nodeType": "text",
-                "value": "",
+                "data": {},
                 "marks": [
                   {
                     "type": "bold"
                   }
                 ],
-                "data": {}
+                "value": "",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "or",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Read our ",
+                "nodeType": "text"
+              },
+              {
+                "data": {
+                  "uri": "https://thegoodparty.org/party/faqs"
+                },
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "value": "FAQ",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "hyperlink"
+              },
+              {
+                "data": {},
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "value": "",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
           }
-        ]
+        ],
+        "nodeType": "document"
       },
       "pages": [
         "district",
         "election",
         "party"
       ],
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
       "id": "7D3TGoveRpv3RjgAWnefCy"
     },
     {
@@ -3053,6 +2810,283 @@ const content = {
         }
       },
       "id": "5YnyOUU7NVOihcos0oR1kL"
+    }
+  ],
+  "partyPage": {
+    "title": "Header Content",
+    "content": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Hi there!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Thanks for coming here to find out more.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "First (and most importantly) we are NOT a political party. We are a digital grassroots movement for political change.  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Our goal is to get money out of politics and allow indie candidates to run and win! ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We do this by building free and open-source technology that allows good people to run crowd-voting campaigns and win!. Just like GoFundMe or change.org, but for politics!  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We empower people to join together, vote different and make a BIG impact.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-1",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How Crowd Voting Works:",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "1.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Launch",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " – We provide a platform for you to meet indie grassroots candidates and for good candidates to run free campaigns. No more big dollar donations necessary.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "2.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Empower",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " – You can make a difference in getting good candidates elected, by simply clicking “endorse” and sharing with your friends. ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We will never ask you for a donation.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "3.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Change ",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "– With your help, our free and open technology is changing the political landscape and the world. Allowing good candidates to run for office without taking big donations.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Finally, we have a way to get money out of politics and have our voices heard!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
+  "articleCategories": [
+    {
+      "fields": {
+        "name": "Joining The Good Party",
+        "order": 20
+      },
+      "id": "7jOZqjB2BBfvymyAJ4IQWe",
+      "articles": [
+        {
+          "title": "Does joining The Good Party app impact my ability to vote in primaries or for other candidates?",
+          "id": "7Mrfo6spgrgpwAFe83Oph4"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "About Us",
+        "order": 300
+      },
+      "id": "1x8sreeqPN0PK929WRNw4I",
+      "articles": [
+        {
+          "title": "Who is building Good Party?",
+          "id": "33lnRLO7M0gvfqVkoVxADO"
+        },
+        {
+          "title": "How can I learn more about Good Party?",
+          "id": "7D3TGoveRpv3RjgAWnefCy"
+        },
+        {
+          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
+          "id": "5YnyOUU7NVOihcos0oR1kL"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "name": "Meet the candidates FAQ"
+      },
+      "id": "7eOiHTthKy6ZWpUKnUiJpI",
+      "articles": []
+    },
+    {
+      "fields": {
+        "name": "How The Good Party Works",
+        "order": 0
+      },
+      "id": "4CrRDuyTqip7XK7DdK4tq7",
+      "articles": [
+        {
+          "title": "Is Good Party a real political party?",
+          "id": "48a7xazZc0eN4PXM20Jtel"
+        },
+        {
+          "title": "How crowd-voting works",
+          "id": "1ic6T6fhH0jZLNvX5aZkDe"
+        },
+        {
+          "title": "What is Good Party's minimum standard of civility?",
+          "id": "66i4vRRLkX1yf8MnCQvYSb"
+        },
+        {
+          "title": "Anti-Corruption Act",
+          "id": "7jm2j9gapWwEoVwVD3VX6o"
+        },
+        {
+          "title": "What does it mean to \"endorse\" a candidate?",
+          "id": "3IWiTNf7gKItHkLB0Sm6q3"
+        }
+      ]
     }
   ],
   "events": [],

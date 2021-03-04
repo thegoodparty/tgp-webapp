@@ -20,7 +20,9 @@ const Section3 = () => {
         <SectionImg src="images/homepage/money-out.jpg" alt="big money" />
       </Grid>
       <Grid item xs={12} md={6}>
-        <StyledH2>Let’s get money out of politics - for good.</StyledH2>
+        <StyledH2>
+          It&apos;s time to to get money out of politics - for good!
+        </StyledH2>
         <JoinUsButton />
       </Grid>
     </ReverseGrid>
