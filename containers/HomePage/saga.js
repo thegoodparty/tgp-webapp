@@ -7,14 +7,14 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* loadChallengers() {
+function* loadHomepageCandidates() {
   try {
-    const api = tgpApi.goodChallengers;
-    const { goodChallengers } = yield call(requestHelper, api, null);
-    yield put(actions.loadChallengersActionSuccess(goodChallengers));
+    const api = tgpApi.homepageCandidates;
+    const { homepageCandidates } = yield call(requestHelper, api, null);
+    yield put(actions.loadHomepageCandidatesActionSuccess(homepageCandidates));
   } catch (error) {
     console.log(error);
-    yield put(actions.loadChallengersActionError(error));
+    yield put(actions.loadHomepageCandidatesActionError(error));
   }
 }
 
@@ -42,6 +42,6 @@ function* subscribeEmail(action) {
 
 // Individual exports for testing
 export default function* saga() {
-  yield takeLatest(types.LOAD_CHALLENGERS, loadChallengers);
+  yield takeLatest(types.LOAD_HOMEPAGE_CANDIDATES, loadHomepageCandidates);
   yield takeLatest(types.SUBSCRIBE_EMAIL, subscribeEmail);
 }

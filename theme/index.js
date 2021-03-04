@@ -9,7 +9,7 @@ const theme = createMuiTheme({
   typography,
   palette,
   breakpoints,
-  creators
+  creators,
 });
 
 export default theme;

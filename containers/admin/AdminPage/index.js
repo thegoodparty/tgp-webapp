@@ -32,6 +32,7 @@ export function AdminPage({
   deleteUserCallback,
   loadVoterizeCallback,
   updateVoterizeCallback,
+  deleteCandidateCallback,
   userState,
   content,
   dispatch,
@@ -69,6 +70,7 @@ export function AdminPage({
     deleteUserCallback,
     loadVoterizeCallback,
     updateVoterizeCallback,
+    deleteCandidateCallback,
     loading,
     error,
     user,
@@ -95,6 +97,7 @@ AdminPage.propTypes = {
   deleteUserCallback: PropTypes.func,
   loadVoterizeCallback: PropTypes.func,
   updateVoterizeCallback: PropTypes.func,
+  deleteCandidateCallback: PropTypes.func,
   userState: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
@@ -127,6 +130,8 @@ function mapDispatchToProps(dispatch) {
     loadVoterizeCallback: () => dispatch(adminActions.loadVoterizeAction()),
     updateVoterizeCallback: voterize =>
       dispatch(adminActions.updateVoterizeAction(voterize)),
+    deleteCandidateCallback: id =>
+      dispatch(adminActions.deleteCandidateAction(id)),
   };
 }
 

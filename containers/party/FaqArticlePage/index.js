@@ -38,7 +38,6 @@ export function FaqArticlePage({ content, helpfulCallback, locationState }) {
   }
   const childProps = {
     article,
-    backButtonCallback: () => router.back(),
     closeModalCallback: () => router.push(window.location.pathname),
     helpfulCallback,
   };

@@ -11,23 +11,21 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
-  body.fontLoaded {
     font-family: 'Libre Franklin', sans-serif;
   }
 
+
   a {
    text-decoration: none;
-   color: #117CB6;
+   color: #5C00C7;
   }
 
   a: hover {
-   color: #21A8DD;
+   color: #6E26DB;
   }
 
   .bold700 {
@@ -74,6 +72,12 @@ const GlobalStyles = createGlobalStyle`
   }
   .uploadIcon {
     display: none;
+  }
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 

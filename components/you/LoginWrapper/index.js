@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
 import globals from '../../../globals';
@@ -13,8 +13,8 @@ import PasswordInput from '../../shared/PasswordInput';
 import TwitterButton from '../SocialRegisterWrapper/TwitterButton';
 const SocialButton = dynamic(
   () => import('components/you/SocialRegisterWrapper/SocialButton'),
-  { ssr: false }
-)
+  { ssr: false },
+);
 const heartImg = '/images/heart.svg';
 const Heart = styled.img`
   width: 64px;
@@ -184,6 +184,7 @@ const LoginWrapper = ({
                 <Body13 style={{ color: '#767676' }}>Or</Body13>
               </Or>
             </OrWrapper>
+            <br />
             <div data-cy="facebook-login">
               <SocialButton
                 channel="facebook"
@@ -195,9 +196,11 @@ const LoginWrapper = ({
                 Continue with FACEBOOK
               </SocialButton>
             </div>
+            <br />
             <TwitterButton clickCallback={twitterButtonCallback}>
               Continue with Twitter
             </TwitterButton>
+            <br />
             <div data-cy="google-login">
               <SocialButton
                 channel="google"

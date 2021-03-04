@@ -15,7 +15,7 @@ const MenuWrapper = styled.div`
   position: fixed;
   z-index: 2002;
   top: 10px;
-  right: 60px;
+  right: 70px;
 `;
 
 const EditWrapper = styled.div`
@@ -35,13 +35,18 @@ function AdminMenuEditCandidate({ candidate }) {
   const chamberLower = candidate?.chamber
     ? candidate.chamber.toLowerCase()
     : 'presidential';
-  const editRoute = `/admin/edit-candidate/${chamberLower}${
-    candidate?.isIncumbent ? '-i' : ''
-  }/${candidate?.id}`;
+  let editRoute;
+  if (chamberLower === 'local') {
+    editRoute = `/admin/add-candidate/${candidate?.id}`;
+  } else {
+    editRoute = `/admin/edit-candidate/${chamberLower}${
+      candidate?.isIncumbent ? '-i' : ''
+    }/${candidate?.id}`;
+  }
   return (
     <>
       <MenuWrapper>
-        <Link href={editRoute}>
+        <Link href={editRoute} target="_blank">
           <EditWrapper>
             <EditIcon />
           </EditWrapper>

@@ -18,6 +18,9 @@ const MainWrapper = styled.div`
   &.white {
     background-color: #fff;
   }
+  &.purple {
+    background-color: ${({ theme }) => theme.colors.purple3};
+  }
 `;
 const TopBannerWrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -32,6 +35,7 @@ function PageWrapper({
   children,
   hideNav,
   white,
+  purple,
   mobileHeaderProps = {},
   wrapperStyles = {},
   hideMobileNav,
@@ -40,12 +44,18 @@ function PageWrapper({
   isFullWidth = false,
 }) {
   const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
+  let className = '';
+  if (white) {
+    className = 'white';
+  } else if (purple) {
+    className = 'purple';
+  }
   return (
-    <MainWrapper className={white ? 'white' : ''} style={style}>
+    <MainWrapper className={className} style={style}>
       {!hideNav && <Nav hideMobileNav={hideMobileNav} />}
       {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
       <WrapperComp white={white} style={wrapperStyles} noHeader={hideNav}>
-        {!hideNav && <MobileHeader {...mobileHeaderProps} />}
+        {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
         {children}
       </WrapperComp>
       <Footer />

@@ -11,7 +11,7 @@ import { OutlinedButton } from './buttons';
 
 const AskQuestion = styled(Body)`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.purple};
   margin-top: 28px;
   padding-bottom: 28px;
   font-weight: 700;

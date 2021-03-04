@@ -1,153 +1,237 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
-import Hidden from '@material-ui/core/Hidden';
-import BackIcon from '@material-ui/icons/ChevronLeft';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import Drawer from '@material-ui/core/Drawer';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
-import Image from 'next/image';
-// import history from 'utils/history';
-
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
+import UserAvatar from '../UserAvatar';
 
-import { uuidUrl } from 'helpers/userHelper';
-import { Body13 } from '../typogrophy';
+import { Body9, Body14 } from '../typogrophy';
+import { PurpleButton } from '../buttons';
 
 const Wrapper = styled.div`
-  padding: 20px 0;
+  padding: 0 20px;
+  height: 80px;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   justify-content: space-between;
 `;
 
 const Logo = styled.img`
-  width: 100%;
-  height: auto;
+  height: 12px;
   align-self: center;
   justify-self: center;
 `;
 
-const BackIconWrapper = styled.div`
-  color: ${({ theme }) => theme.colors.blue};
+const AuthButtonWrapper = styled.div`
+  display: flex;
+  padding: 18px 0px;
+  margin-top: 18px;
+  border-top: solid 1px rgba(12, 11, 49, 0.16);
+  align-items: center;
+  justify-content: space-between;
+`;
+const MenuIconButton = styled(MenuIcon)`
+  && {
+    color: ${({ theme }) => theme.colors.purple};
+    font-size: 2rem;
+  }
+`;
+const CloseIconButton = styled(CloseIcon)`
+  && {
+    color: ${({ theme }) => theme.colors.purple};
+    font-size: 2rem;
+  }
+`;
+const MenuItemWrapper = styled(Drawer)`
+  && {
+    .MuiDrawer-paper {
+      height: 100%;
+      width: 100%;
+    }
+  }
+`;
+const PushMenuWrapper = styled.div`
+  padding: 24px 18px 18px;
+`;
+const AvatarWrapper = styled.div`
+  height: 80px;
   cursor: pointer;
-  & > svg {
-    font-size: 30px;
-  }
-  &.hidden {
-    opacity: 0;
-  }
-  &.white {
-    color: #fff;
-  }
+  display: flex;
+  margin-left: 2rem;
 `;
 
-const BackIconWrapperHidden = styled.div`
-  opacity: 0;
+const PushAvatarWrapper = styled.div`
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  line-height: 20px;
+  align-items: center;
+  text-transform: uppercase;
+  border-bottom: solid 1px rgba(12, 11, 49, 0.16);
+  padding-bottom: 18px;
 `;
 
-const GoodNoGood = styled(Body13)`
-  color: ${({ theme }) => theme.colors.orange};
-  font-weight: 500;
-
-  &.good {
-    color: ${({ theme }) => theme.colors.green};
-  }
+const Share = styled.img`
+  height: 18px;
+  cursor: pointer;
 `;
 
-function MobileHeader({
-  showGood = false,
-  isGood = false,
-  showShare = false,
-  whiteBackButton = false,
-  user,
-  hideBack = false,
-}) {
+const LinkContainer = styled.div`
+  display: flex;
+`;
+
+const PushMenuLink = styled.div`
+  padding: 12px 0;
+  line-height: 22px;
+  font-size: 16px;
+`;
+
+const ButtonInner = styled.div`
+  padding: 6px 0;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+function MobileHeader({ user }) {
+  const [open, setOpen] = useState(false);
   const router = useRouter();
-  const routeBack = () => {
-    router.back();
+  const handleShare = () => {
+    router.query.share = 'true';
+    router.push(router);
   };
 
-  const canShare = typeof navigator !== 'undefined' && navigator.share;
-  const url = uuidUrl(user);
-
-  const nativeShare = () => {
-    navigator
-      .share({
-        title: 'The Good Party',
-        text: 'Check out The Good Party!',
-        url,
-      })
-      .then(() => console.log('Successful share'));
-  };
   return (
     <Hidden mdUp>
       <Wrapper>
-        {!hideBack ? (
-          <BackIconWrapper
-            onClick={routeBack}
-            className={whiteBackButton ? 'white' : ''}
-          >
-            <BackIcon />
-          </BackIconWrapper>
-        ) : (
-          <div>&nbsp;</div>
-        )}
-        {showGood ? (
-          <>
-            {isGood === true && (
-              <GoodNoGood className="good">GOOD OPTION</GoodNoGood>
-            )}
-            {isGood === false && (
-              <GoodNoGood className="notgood">NOT GOOD ENOUGH</GoodNoGood>
-            )}
-          </>
-        ) : (
-          <Link href="/home" className="text-center">
-            <span>
-              {whiteBackButton ? (
-                <Logo
-                  src="images/white-logo.svg"
-                  alt="The Good Party"
-                  data-cy="logo"
-                />
-              ) : (
-                <Logo
-                  src="/images/logo-caps.svg"
-                  alt="The Good Party"
-                  data-cy="logo"
-                />
-              )}
-            </span>
-          </Link>
-        )}
-        {showShare && canShare ? (
-          <Image
-            src="images/icons/share.svg"
-            alt="Share"
-            onClick={nativeShare}
-            width="auto"
-            height="auto"
+        <LinkContainer>
+          <MenuIconButton onClick={() => setOpen(true)} />
+        </LinkContainer>
+        <Link href="/" className="text-center">
+          <Logo
+            src="/images/new-logo.svg"
+            alt="The Good Party"
+            data-cy="logo"
           />
+        </Link>
+        {user?.name ? (
+          <Link href="/you" passHref>
+            <a>
+              <AvatarWrapper>
+                <UserAvatar user={user} />
+              </AvatarWrapper>
+            </a>
+          </Link>
         ) : (
-          <BackIconWrapperHidden>
-            <BackIcon />
-          </BackIconWrapperHidden>
+          <Share
+            src="/images/icons/share-icon.svg"
+            alt="Share"
+            onClick={handleShare}
+          />
         )}
       </Wrapper>
+      <MenuItemWrapper anchor="left" open={open} onClose={() => setOpen(false)}>
+        <PushMenuWrapper>
+          <Grid container spacing={1} alignItems="center">
+            <Grid item xs={3}>
+              <CloseIconButton onClick={() => setOpen(false)} />
+            </Grid>
+            <Grid item xs={6}>
+              <div className="text-center">
+                <Link href="/" className="text-center" passHref>
+                  <a>
+                    <Logo
+                      src="/images/new-logo.svg"
+                      alt="The Good Party"
+                      data-cy="logo"
+                    />
+                  </a>
+                </Link>
+              </div>
+            </Grid>
+            <Grid item xs={3}>
+              &nbsp;
+            </Grid>
+          </Grid>
+
+          <PushMenuLink style={{ marginTop: '40px' }}>
+            <Link
+              href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+              passHref
+            >
+              <a>How crowd-voting works</a>
+            </Link>
+          </PushMenuLink>
+          <PushMenuLink>
+            <Link href="/party" passHref>
+              <a>About Good Party</a>
+            </Link>
+          </PushMenuLink>
+          <PushMenuLink>
+            <Link href="/candidates" passHref>
+              <a>Meet the candidates</a>
+            </Link>
+          </PushMenuLink>
+          <PushMenuLink>
+            <Link href="/party/faqs" passHref>
+              <a>FAQs</a>
+            </Link>
+          </PushMenuLink>
+
+          <AuthButtonWrapper className={!user?.name && 'auth-button'}>
+            {user?.name ? (
+              <Link href="/you" className="text-center" passHref>
+                <a style={{ width: '100%' }}>
+                  <PushAvatarWrapper>
+                    <UserAvatar user={user} />
+                    <div style={{ marginLeft: 6 }} className="menu-items">
+                      {user.name}
+                    </div>
+                  </PushAvatarWrapper>
+                </a>
+              </Link>
+            ) : (
+              <Grid container spacing={3} alignItems="center">
+                <Grid item xs={6}>
+                  <PushMenuLink className="text-center">
+                    <Link href={`${router.asPath}?register=true`} passHref>
+                      <a>
+                        <PurpleButton fullWidth>
+                          <ButtonInner>SIGN UP</ButtonInner>
+                        </PurpleButton>
+                      </a>
+                    </Link>
+                  </PushMenuLink>
+                </Grid>
+                <Grid item xs={6}>
+                  <PushMenuLink className="text-center">
+                    <Link href="/login" className="text-center" passHref>
+                      <a>LOG IN</a>
+                    </Link>
+                  </PushMenuLink>
+                </Grid>
+              </Grid>
+            )}
+          </AuthButtonWrapper>
+        </PushMenuWrapper>
+      </MenuItemWrapper>
+
       <RegisterBannerContainer />
     </Hidden>
   );
 }
 
 MobileHeader.propTypes = {
-  showGood: PropTypes.bool,
-  isGood: PropTypes.bool,
-  showShare: PropTypes.bool,
-  whiteBackButton: PropTypes.bool,
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  hideBack: PropTypes.bool,
 };
 
 function mapDispatchToProps(dispatch) {

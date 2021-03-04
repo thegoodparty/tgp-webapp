@@ -40,31 +40,12 @@ class CustomDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
-
           <meta name="mobile-web-app-capable" content="yes" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-          <meta
-            name="description"
-            content="The Good Party is a way to take back our democracy from corrupt big-money politicians of both major parties, and to replace them with good capable indie or grass-roots candidates that wouldn't ordinarily have a chance."
-            data-react-helmet="true"
-          />
           <meta property="og:site_name" content="THE GOOD PARTY" />
           <meta property="og:type" content="website" />
-          <meta
-            property="og:title"
-            content="THE GOOD PARTY"
-            data-react-helmet="true"
-          />
-          <meta
-            property="og:description"
-            content="The Good Party is a way to take back our democracy from corrupt big-money politicians of both major parties, and to replace them with good capable indie or grass-roots candidates that wouldn't ordinarily have a chance."
-            data-react-helmet="true"
-          />
-          <meta
-            property="og:image"
-            content="https://assets.thegoodparty.org/share.jpg?v=4"
-            data-react-helmet="true"
-          />
+
           <meta property="twitter:card" content="summary_large_image" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="fb:app_id" content="241239336921963" />
@@ -72,9 +53,87 @@ class CustomDocument extends Document {
             name="google-signin-client_id"
             content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
 
           <link rel="icon" href="/favicon.ico" />
-          <title data-react-helmet="true">THE GOOD PARTY</title>
+          <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-57x57.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-60x60.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-72x72.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-76x76.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-114x114.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-120x120.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-144x144.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-152x152.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="https://assets.thegoodparty.org/favicon/apple-icon-180x180.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="https://assets.thegoodparty.org/favicon/android-icon-192x192.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="https://assets.thegoodparty.org/favicon/favicon-512x512.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="https://assets.thegoodparty.org/favicon/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="https://assets.thegoodparty.org/favicon/favicon-96x96.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="https://assets.thegoodparty.org/favicon/favicon-16x16.png"
+          />
 
           {this.props.styles}
           {/* google tag manager */}

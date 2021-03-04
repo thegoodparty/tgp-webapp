@@ -24,14 +24,26 @@ export const fullFirstLastInitials = name => {
   return '';
 };
 
-export const uuidUrl = (user, url = 'https://thegoodparty.org') => {
+export const uuidUrl = (
+  user,
+  url = 'https://thegoodparty.org',
+  additionalQueries = '',
+) => {
   let returnUrl = url;
   if (user && user.uuid) {
-    returnUrl = `${url}?u=${user.uuid}`;
+    returnUrl = `${url}?u=${user.uuid}${
+      additionalQueries !== '' ? `&${additionalQueries}` : ''
+    }`;
   } else {
     const uuidCookie = getCookie('guuid');
     if (uuidCookie) {
-      returnUrl = `${url}?u=${uuidCookie}`;
+      returnUrl = `${url}?u=${uuidCookie}${
+        additionalQueries !== '' ? `&${additionalQueries}` : ''
+      }`;
+    } else {
+      returnUrl = `${url}${
+        additionalQueries !== '' ? `?${additionalQueries}` : ''
+      }`;
     }
   }
   return returnUrl;

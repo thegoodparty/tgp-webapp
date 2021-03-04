@@ -29,7 +29,12 @@ const ButtonWrapper = styled.div`
 
 const pixelRatio = 4;
 
-function ImageCrop({ uploadImageCallback, loading, currentImage }) {
+function ImageCrop({
+  uploadImageCallback,
+  loading,
+  currentImage,
+  showTitle = true,
+}) {
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -93,7 +98,7 @@ function ImageCrop({ uploadImageCallback, loading, currentImage }) {
   return (
     <div>
       <div className="text-center">
-        <H3>Upload a New Image</H3>
+        {showTitle && <H3>Upload a New Image</H3>}
         {currentImage && (
           <Body13>
             Existing image:{' '}
@@ -103,7 +108,11 @@ function ImageCrop({ uploadImageCallback, loading, currentImage }) {
           </Body13>
         )}
         <br />
-        <input type="file" accept="image/*" onChange={onSelectFile} />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={onSelectFile}
+        />
       </div>
       <br />
       {upImg && !loading && (
@@ -149,6 +158,7 @@ ImageCrop.propTypes = {
   uploadImageCallback: PropTypes.func,
   loading: PropTypes.bool,
   currentImage: PropTypes.string,
+  showTitle: PropTypes.bool,
 };
 
 export default ImageCrop;

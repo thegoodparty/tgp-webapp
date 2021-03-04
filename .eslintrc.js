@@ -82,11 +82,11 @@ module.exports = {
     'default-case': 0,
     'no-param-reassign': 0,
   },
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: './internals/webpack/webpack.prod.babel.js',
-      },
-    },
-  },
+  // settings: {
+  //   'import/resolver': {
+  //     webpack: {
+  //       config: './internals/webpack/webpack.prod.babel.js',
+  //     },
+  //   },
+  // },
 };

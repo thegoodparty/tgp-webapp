@@ -1,0 +1,102 @@
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
+import { H2, Body, Body12 } from '../shared/typogrophy';
+import CandidatesWrapper from '../CandidatesWrapper';
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+`;
+
+const Img = styled.img`
+  margin-left: 16px;
+  width: 60px;
+  height: auto;
+`;
+
+const PointWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-bottom: 48px;
+  }
+`;
+
+const PointIcon = styled.img`
+  margin-right: 12px;
+  width: 30px;
+  height: auto;
+`;
+
+const UnderText = styled(Body12)`
+  margin-top: 4px;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const points = [
+  {
+    title: 'Non-Partisan',
+    icon: 'images/icons/non-partisan.svg',
+    body:
+      'Good Party Certified candidates pledge to caucus (meet) with all sides, but to NEVER pay dues to nor fundraise for either Republican or Democratic parties.',
+  },
+  {
+    title: 'Small Money',
+    icon: 'images/icons/small-money.svg',
+    body:
+      'Good Party Certified candidates pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
+  },
+  {
+    title: 'Anti-Corruption',
+    icon: 'images/icons/anti-corruption.svg',
+    body:
+      'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time.  They will also abide by and work to advance the ',
+    endLink: {
+      text: 'Anti-Corruption Act',
+      href: '/?article=7jm2j9gapWwEoVwVD3VX6o',
+    },
+  },
+];
+
+const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
+  return (
+    <>
+      <Row>
+        <H2>Good Certified candidates are: </H2>
+        <Img src="images/icons/certification-badge.svg" alt="tgp certified" />
+      </Row>
+      <Grid container spacing={5} alignItems="center">
+        {points.map(point => (
+          <Grid item xs={12} md={mdColumns}>
+            <PointWrapper>
+              <PointIcon src={point.icon} />
+              <div>
+                <Body>
+                  <strong>{point.title}</strong>
+                  <UnderText>
+                    {point.body}{' '}
+                    {point.endLink && (
+                      <Link href={point.endLink.href}>
+                        {point.endLink.text}
+                      </Link>
+                    )}
+                  </UnderText>
+                </Body>
+              </div>
+            </PointWrapper>
+          </Grid>
+        ))}
+      </Grid>
+    </>
+  );
+};
+
+GoodCertifiedAreSection.propTypes = {
+  mdColumns: PropTypes.number,
+};
+
+export default GoodCertifiedAreSection;

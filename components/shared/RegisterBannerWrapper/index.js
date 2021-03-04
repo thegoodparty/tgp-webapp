@@ -31,14 +31,6 @@ const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-export const Spacer = styled.div`
-  display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    height: 40px;
-    display: block;
-  }
-`;
-
 const Blue = styled.span`
   color: ${({ theme }) => theme.colors.blue};
 `;
@@ -46,7 +38,7 @@ const Blue = styled.span`
 function RegisterBannerWrapper({ count, showBanner, blocName }) {
   return (
     <>
-      {showBanner ? (
+      {showBanner && (
         <Wrapper>
           <Link href="?register=true">
             <ContentWrapper>
@@ -64,8 +56,6 @@ function RegisterBannerWrapper({ count, showBanner, blocName }) {
             </ContentWrapper>
           </Link>
         </Wrapper>
-      ) : (
-        <Spacer />
       )}
     </>
   );

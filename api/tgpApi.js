@@ -22,8 +22,8 @@ const api = {
     url: `${base}race-candidate/senate-by-state`,
     method: 'GET',
   },
-  goodChallengers: {
-    url: `${base}race-candidate/good-challengers`,
+  homepageCandidates: {
+    url: `${base}homepage-candidates`,
     method: 'GET',
   },
   fullAddressToDistrict: {
@@ -37,6 +37,10 @@ const api = {
   findCandidate: {
     url: `${base}candidates/find`,
     method: 'GET',
+  },
+  shareImage: {
+    url: `${base}candidates/share-image`,
+    method: 'POST',
   },
   findBlocCandidate: {
     url: `${base}candidates/find-by-bloc`,
@@ -234,6 +238,11 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    createCandidate: {
+      url: `${base}admin/candidate`,
+      method: 'POST',
+      withAuth: true,
+    },
     updateCandidate: {
       url: `${base}admin/candidate`,
       method: 'PUT',
@@ -274,6 +283,7 @@ const api = {
       method: 'DELETE',
       withAuth: true,
     },
+
     uploadedImages: {
       url: `${base}admin/uploaded-images`,
       method: 'POST',
@@ -281,6 +291,31 @@ const api = {
     uploadImage: {
       url: `${base}admin/upload-image`,
       method: 'POST',
+    },
+  },
+  newCandidate: {
+    create: {
+      url: `${base}new-candidate`,
+      method: 'POST',
+      withAuth: true,
+    },
+    find: {
+      url: `${base}new-candidate`,
+      method: 'GET',
+    },
+    list: {
+      url: `${base}new-candidates`,
+      method: 'GET',
+    },
+    update: {
+      url: `${base}new-candidate`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    deleteCandidate: {
+      url: `${base}new-candidate`,
+      method: 'DELETE',
+      withAuth: true,
     },
   },
 
@@ -312,6 +347,38 @@ const api = {
     url: `${base}voterize/register-vote`,
     method: 'GET',
     withAuth: true,
+  },
+
+  supportCandidate: {
+    support: {
+      url: `${base}support`,
+      method: 'POST',
+      withAuth: true,
+    },
+    removeSupport: {
+      url: `${base}support`,
+      method: 'DELETE',
+      withAuth: true,
+    },
+    adminDeleteSupport: {
+      url: `${base}admin-support`,
+      method: 'DELETE',
+      withAuth: true,
+    },
+    updateSupport: {
+      url: `${base}support`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    userSupports: {
+      url: `${base}supports`,
+      method: 'GET',
+      withAuth: true,
+    },
+    candidateSupports: {
+      url: `${base}candidate-supports`,
+      method: 'GET',
+    },
   },
 };
 export default api;

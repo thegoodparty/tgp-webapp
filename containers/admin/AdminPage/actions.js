@@ -183,6 +183,13 @@ function updateVoterizeActionSuccess(voterize) {
   };
 }
 
+function deleteCandidateAction(id) {
+  return {
+    type: types.DELETE_CANDIDATE,
+    id,
+  };
+}
+
 export default {
   loadCandidates,
   loadCandidatesSuccess,
@@ -213,4 +220,5 @@ export default {
   updateVoterizeActionSuccess,
 
   deleteUpdate,
+  deleteCandidateAction,
 };

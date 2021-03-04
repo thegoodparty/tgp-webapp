@@ -4,17 +4,14 @@
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import history from 'utils/history';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Image from 'next/image';
-import { getUserCookie } from 'helpers/cookieHelper';
-import ShareModal from 'components/you/ProfileWrapper/ShareModal/Loadable';
-import { electionRoute } from 'helpers/electionsHelper';
+import { useRouter } from 'next/router';
 
 import { Body9, Body12 } from '../typogrophy';
 
@@ -25,20 +22,8 @@ const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 0;
   }
-  &.creatorsFooter {
-    background-color: ${({ theme }) => theme.colors.blue};
-    && {
-      margin-bottom: 0;
-    }
-  }
-  &.withNav {
-    margin-bottom: 4rem;
-
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      margin-bottom: 0;
-    }
-  }
 `;
+
 const InnerWrapper = styled(Body9)`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: auto auto;
@@ -63,28 +48,39 @@ const GrayWrapper = styled.div`
 `;
 
 const GrayInnerWrapper = styled(Body12)`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    max-width: 80%;
-    margin: 0 auto;
+  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  margin: 0 auto;
+  padding: 0 10px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpoints.contentMax}) {
+    padding: 0;
   }
 `;
 
 const Column = styled.div`
-  text-align: center;
   color: #fff;
+  text-align: center;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: left;
+  }
 `;
 
 const ColumnHeader = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: 30px;
   font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     margin-bottom: 32px;
+    font-size: 16px;
   }
 `;
 
 const Logo = styled(Image)`
   width: 130px;
   height: auto;
+  cursor: pointer;
 `;
 
 const WhiteLink = styled.a`
@@ -92,16 +88,13 @@ const WhiteLink = styled.a`
   display: block;
   color: #fff;
   text-decoration: underline;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 20px;
+  &:hover {
+    color: #ccc;
+  }
 `;
-
-const WhiteHref = styled.a`
-  display: block;
-  color: #fff;
-  text-decoration: underline;
-  margin-bottom: 14px;
-`;
-
 const Apply = styled.div`
   margin-top: 20px;
   display: inline-block;
@@ -123,46 +116,7 @@ const SocialIcon = styled.img`
 `;
 
 function Footer({ isCreators = false }) {
-  const [withMobileNav, setWithMobileNav] = useState(true);
-  const [currentPath, setCurrentPath] = useState(null);
-  const [showShareModal, setShowShareModal] = useState(false);
-  const onCloseShareModal = () => {
-    setShowShareModal(false);
-  };
-  const onClickShareButton = () => {
-    setShowShareModal(true);
-  };
-  useEffect(() => {
-    // history.listen(location => {
-    //   updateMobileNav(location);
-    //   setCurrentPath(location.pathname);
-    // });
-    updateMobileNav(window.location);
-    setCurrentPath(window.location.pathname);
-  }, []);
-
-  const updateMobileNav = location => {
-    const { pathname } = location;
-    if (
-      pathname === '/' ||
-      pathname === '/intro/splash' ||
-      pathname === '/intro/zip-finder'
-    ) {
-      setWithMobileNav(false);
-    } else {
-      setWithMobileNav(true);
-    }
-  };
-
-  if (currentPath === '/creators' && !isCreators) {
-    return <></>;
-  }
-
-  let user = getUserCookie();
-  if (user) {
-    user = JSON.parse(user);
-  }
-
+  const router = useRouter();
   return (
     <>
       <GrayWrapper>
@@ -171,28 +125,43 @@ function Footer({ isCreators = false }) {
             <Grid item xs={12} md={4}>
               <Column>
                 <ColumnHeader>
-                  <Logo
-                    src="/images/white-logo.svg"
-                    alt="The Good Party Logo"
-                    data-cy="footer-logo"
-                    width="130px"
-                    height="15px"
-                  />
+                  <Link href="/">
+                    <Logo
+                      src="/images/white-logo.svg"
+                      alt="The Good Party Logo"
+                      data-cy="footer-logo"
+                      width="130px"
+                      height="15px"
+                    />
+                  </Link>
                 </ColumnHeader>
-                <Link href="/party" passHref>
-                  <WhiteLink data-cy="footer-link-about">About</WhiteLink>
-                </Link>
-
-                <Link href={electionRoute(user)} passHref>
-                  <WhiteLink data-cy="footer-link-elections">
-                    Elections
+                <Link
+                  href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                  passHref
+                >
+                  <WhiteLink data-cy="footer-link-about">
+                    How crowd-voting works
                   </WhiteLink>
                 </Link>
-                <Link href="/you" passHref>
-                  <WhiteLink data-cy="footer-link-you">You</WhiteLink>
+
+                <Link href="/party" passHref>
+                  <WhiteLink data-cy="footer-link-elections">
+                    About Good Party
+                  </WhiteLink>
                 </Link>
-                <Link data-cy="footer-link-creators" href="/creators" passHref>
-                  <WhiteLink data-cy="footer-link-creators">Creators</WhiteLink>
+                <Link href="/candidates" passHref>
+                  <WhiteLink data-cy="footer-link-you">
+                    Meet the candidates
+                  </WhiteLink>
+                </Link>
+                <Link
+                  data-cy="footer-link-creators"
+                  href="/party/faqs"
+                  passHref
+                >
+                  <WhiteLink data-cy="footer-link-creators">
+                    Frequently asked questions
+                  </WhiteLink>
                 </Link>
               </Column>
             </Grid>
@@ -201,27 +170,24 @@ function Footer({ isCreators = false }) {
                 <ColumnHeader data-cy="footer-community-title">
                   Community
                 </ColumnHeader>
+                <Link href={`${router.asPath}?share=true`} passHref>
+                  <WhiteLink data-cy="footer-link-share">
+                    Share with friends
+                  </WhiteLink>
+                </Link>
                 <WhiteLink
-                  data-cy="footer-link-share"
-                  onClick={onClickShareButton}
+                  href="mailto:ask@thegoodparty.org"
+                  data-cy="footer-link-email"
                 >
-                  Share with Friends
-                </WhiteLink>
-                <WhiteLink>
-                  <WhiteHref
-                    href="mailto:ask@thegoodparty.org"
-                    data-cy="footer-link-email"
-                  >
-                    Send Us An Email
-                  </WhiteHref>
+                  Email us
                 </WhiteLink>
               </Column>
             </Grid>
             <Grid item xs={12} md={4}>
               <Column data-cy="footer-team">
                 <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
-                Want to join The Good Party? We are always looking for good
-                people to collaborate with.
+                Want to join the Good Party? We are always looking for good
+                people to collaborate with!
                 <div>
                   <a
                     href="mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
@@ -249,7 +215,7 @@ function Footer({ isCreators = false }) {
               <Grid item xs={12} md={4}>
                 <Column>
                   <a
-                    href="https://www.facebook.com/thegoodpartyorg"
+                    href="https://www.facebook.com/goodpartyorg"
                     target="_blank"
                     rel="nofollow"
                     data-cy="footer-link-facebook"
@@ -257,7 +223,7 @@ function Footer({ isCreators = false }) {
                     <SocialIcon src="/images/icons/facebook-white.svg" />
                   </a>
                   <a
-                    href="https://twitter.com/thegoodpartyorg"
+                    href="https://twitter.com/goodpartyorg"
                     target="_blank"
                     rel="nofollow"
                     data-cy="footer-link-twitter"
@@ -265,12 +231,12 @@ function Footer({ isCreators = false }) {
                     <SocialIcon src="/images/icons/twitter.svg" />
                   </a>
                   <a
-                    href="https://www.youtube.com/channel/UCPNp46yxggs8NPeXFuMTpGQ"
+                    href="https://www.tiktok.com/@goodparty"
                     target="_blank"
                     rel="nofollow"
-                    data-cy="footer-link-youtube"
+                    data-cy="footer-link-tiktok"
                   >
-                    <SocialIcon src="/images/icons/youtube-white.svg" />
+                    <SocialIcon src="/images/icons/tiktok-white.svg" />
                   </a>
                 </Column>
               </Grid>
@@ -295,12 +261,7 @@ function Footer({ isCreators = false }) {
         </GrayInnerWrapper>
       </GrayWrapper>
 
-      <Wrapper
-        className={
-          (withMobileNav ? 'withNav' : '') +
-          (isCreators ? ' creatorsFooter' : '')
-        }
-      >
+      <Wrapper>
         <InnerWrapper
           className={isCreators ? ' creatorsFooterContent' : ''}
           data-cy="footer-description"
@@ -310,13 +271,6 @@ function Footer({ isCreators = false }) {
           NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
         </InnerWrapper>
       </Wrapper>
-      {showShareModal && (
-        <ShareModal
-          open={showShareModal}
-          closeCallback={onCloseShareModal}
-          user={user}
-        />
-      )}
     </>
   );
 }

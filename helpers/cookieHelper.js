@@ -54,11 +54,15 @@ export const setUserCookie = value => {
   setCookie('user', val);
 };
 
-export const getUserCookie = () => {
+export const getUserCookie = (withParse = false) => {
   if (typeof window === 'undefined') {
     return false;
   }
-  return getCookie('user');
+  const user = getCookie('user');
+  if (user && withParse) {
+    return JSON.parse(user);
+  }
+  return user;
 };
 
 export const setSignupRedirectCookie = (route, options = {}) => {

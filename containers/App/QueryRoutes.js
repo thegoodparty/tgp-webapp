@@ -8,8 +8,8 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -28,13 +28,15 @@ import saga from './saga';
 import globalActions from './actions';
 import { makeSelectContent, makeSelectLocation } from './selectors';
 import AnalyticsService from '../../services/AnalyticsService';
+import ShareModal from '../../components/elections/CandidateNewWrapper/ShareModal';
 
 function QueryRoutes({ locationState, content, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
   const { search } = locationState;
-  
+  const router = useRouter();
   const [showRegister, setShowRegister] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   useEffect(() => {
     const uuid = queryHelper(search, 'u');
@@ -61,6 +63,11 @@ function QueryRoutes({ locationState, content, dispatch }) {
     if (queryRegister === 'true') {
       AnalyticsService.sendEvent('signup', 'View Account Signup Page');
     }
+
+    const queryShare = queryHelper(search, 'share');
+    console.log('(router', router);
+    const isCandidatePage = router.pathname === '/candidate/[...NameIdTab]';
+    setShowShare(queryShare === 'true' && !isCandidatePage);
   }, [search]);
 
   const blocRedirect = bloc => {
@@ -84,6 +91,7 @@ function QueryRoutes({ locationState, content, dispatch }) {
     <>
       {content && <FaqArticlePage />}
       {showRegister && <SocialRegisterPage />}
+      {showShare && <ShareModal />}
     </>
   );
 }

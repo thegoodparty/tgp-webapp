@@ -159,13 +159,7 @@ const CandidateWrapper = ({
   const rightCard = <RightCard {...buttonsProps} tab={tab} hideTab={hideTab} />;
   return (
     <PageWrapper mobileHeaderProps={mobileHeaderProps} isFullWidth white>
-      <img
-        height="1"
-        width="1"
-        style={{ borderStyle: 'none' }}
-        alt=""
-        src="https://insight.adsrvr.org/track/pxl/?adv=kwzncc1&ct=0:ry26isr&fmt=3"
-      />
+
       <ContentWrapper>
         {candidate?.name ? (
           <Grid container spacing={3}>

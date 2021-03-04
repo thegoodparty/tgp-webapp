@@ -14,8 +14,8 @@ import UserIcon from '@material-ui/icons/Person';
 import ArticletIcon from '@material-ui/icons/Assignment';
 import StatsIcon from '@material-ui/icons/Equalizer';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
 
-import MobileHeader from 'components/shared/navigation/MobileHeader';
 import Nav from 'containers/shared/Nav';
 import { Body13, H1 } from 'components/shared/typogrophy/index';
 
@@ -24,12 +24,13 @@ import AdminUsersList from '../AdminUsersList/Loadable';
 import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 import AdminUserStats from '../AdminUserStats/Loadable';
 import AdminVoterizeList from '../AdminVoterizeList/Loadable';
+import NewCandidateList from '../AdminCandidateList/NewCandidateList';
 
 const Wrapper = styled.div`
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: row;
-  padding-top: 18px;
+  padding-top: 0;
 `;
 
 const LeftPanel = styled.div`
@@ -80,16 +81,18 @@ const MainPanelPlaceholder = styled.div`
   flex-direction: column;
 `;
 
-const Heart = styled(Image)`
-  width: 80px;
-  height: auto;
-  margin-top: 12px;
+const Heart = styled.div`
+  width: 84px;
+  height: 76px;
+  margin: 12px auto;
+  position: relative;
 `;
 
 const leftMenuItems = [
   { icon: <StarsIcon />, label: 'Presidential Candidates' },
   { icon: <AccountBalanceIcon />, label: 'Senate Candidates' },
   { icon: <HomeIcon />, label: 'House Candidates' },
+  { icon: <LocationCityIcon />, label: 'Local Candidates' },
   { icon: <UserIcon />, label: 'Users' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },
@@ -110,6 +113,7 @@ const AdminWrapper = ({
   loadVoterizeCallback,
   updateVoterizeCallback,
   deleteUserCallback,
+  deleteCandidateCallback,
   loading,
   error,
   content,
@@ -119,19 +123,19 @@ const AdminWrapper = ({
 
   const handleSelectedItem = index => {
     setSelectedItem(index);
-    if (index === 0 || index === 1 || index === 2) {
+    if (index < 4) {
       const chamber = mapChamber(index);
       loadCandidatesCallback(chamber);
     }
-    if (index === 3 || index === 5) {
+    if (index === 4 || index === 6) {
       if (!users) {
         loadAllUsersCallback();
       }
     }
-    if (index === 4) {
+    if (index === 5) {
       loadArticleFeedbackCallback();
     }
-    if (index === 6) {
+    if (index === 7) {
       loadVoterizeCallback();
     }
   };
@@ -145,6 +149,9 @@ const AdminWrapper = ({
     }
     if (index === 2) {
       return 'house';
+    }
+    if (index === 3) {
+      return 'local';
     }
     return null;
   };
@@ -162,7 +169,9 @@ const AdminWrapper = ({
       return (
         <MainPanelPlaceholder>
           <H1>Admin Dashboard</H1>
-          <Heart src="/images/heart.svg" width="auto" height="auto" />
+          <Heart>
+            <Image src="/images/heart.svg" layout="fill" />
+          </Heart>
         </MainPanelPlaceholder>
       );
     }
@@ -176,18 +185,30 @@ const AdminWrapper = ({
         />
       );
     }
-    if (selectedItem === 3) {
+
+    if (selectedItem < 4) {
+      const chamber = mapChamber(selectedItem);
+      return (
+        <NewCandidateList
+          candidates={candidates}
+          updateCandidateCallback={updateCandidateCallback}
+          chamber={chamber}
+          deleteCandidateCallback={deleteCandidateCallback}
+        />
+      );
+    }
+    if (selectedItem === 4) {
       return (
         <AdminUsersList users={users} deleteUserCallback={deleteUserCallback} />
       );
     }
-    if (selectedItem === 4) {
+    if (selectedItem === 5) {
       return <AdminArticlesFeedback articles={articles} content={content} />;
     }
-    if (selectedItem === 5) {
+    if (selectedItem === 6) {
       return <AdminUserStats users={users} />;
     }
-    if (selectedItem === 6) {
+    if (selectedItem === 7) {
       return (
         <AdminVoterizeList
           voterizeList={voterizeList}
@@ -211,7 +232,7 @@ const AdminWrapper = ({
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
-      <MobileHeader />
+      {/* <MobileHeader /> */}
       {user && user.isAdmin && (
         <Wrapper>
           <LeftPanel className={leftOpen ? 'open' : 'close'}>
@@ -257,6 +278,7 @@ AdminWrapper.propTypes = {
   updateVoterizeCallback: PropTypes.func,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   isUpdated: PropTypes.bool,
+  deleteCandidateCallback: PropTypes.func,
 };
 
 export default AdminWrapper;

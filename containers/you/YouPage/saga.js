@@ -25,6 +25,7 @@ import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
+import queryHelper from '../../../helpers/queryHelper';
 
 function* sendCreatorMessage(action) {
   try {
@@ -43,14 +44,13 @@ function* sendCreatorMessage(action) {
 }
 function* register(action) {
   try {
-    const { email, name, password } = action;
+    const { email, name } = action;
     const zip = yield getZipFromStateOrCookie();
     const ranking = getCookie('guestRanking') || '[]';
 
     const payload = {
       email,
       name,
-      password,
       zip,
       ranking,
     };
@@ -76,7 +76,12 @@ function* register(action) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      yield put(push('/you'));
+      const queryCandidate = queryHelper(window?.location.search, 'candidate');
+      if (queryCandidate) {
+        yield put(push(`${window.location.pathname}?preview=true`));
+      } else {
+        yield put(push(window.location.pathname));
+      }
     }
     yield call(trackFbRegister);
 
@@ -166,7 +171,12 @@ function* socialRegister(action) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      yield put(push(window.location.pathname));
+      const queryCandidate = queryHelper(window?.location.search, 'candidate');
+      if (queryCandidate) {
+        yield put(push(`${window.location.pathname}?preview=true`));
+      } else {
+        yield put(push(window.location.pathname));
+      }
     }
     yield call(trackFbRegister);
 

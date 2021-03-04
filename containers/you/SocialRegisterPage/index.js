@@ -28,6 +28,7 @@ export function SocialRegisterPage({
   socialLoginFailureCallback,
   closeModalCallback,
   twitterButtonCallback,
+  emailRegisterCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -54,6 +55,7 @@ export function SocialRegisterPage({
     blocName,
     candidateName,
     twitterButtonCallback,
+    emailRegisterCallback,
   };
 
   return (
@@ -72,6 +74,7 @@ SocialRegisterPage.propTypes = {
   socialLoginFailureCallback: PropTypes.func,
   closeModalCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
+  emailRegisterCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({});
@@ -88,12 +91,12 @@ function mapDispatchToProps(dispatch) {
     },
     socialLoginFailureCallback: err => {
       if (err.toString().includes('[google][load] Failed to load SDK')) {
-        dispatch(
-          snackbarActions.showSnakbarAction(
-            'Your browser is blocking Google Cookies.',
-            'error',
-          ),
-        );
+        // dispatch(
+        //   snackbarActions.showSnakbarAction(
+        //     'Your browser is blocking Google Cookies.',
+        //     'error',
+        //   ),
+        // );
       } else {
         console.log('error social register', err);
         dispatch(
@@ -107,6 +110,10 @@ function mapDispatchToProps(dispatch) {
 
     twitterButtonCallback: () => {
       dispatch(userActions.twitterLoginAction());
+    },
+
+    emailRegisterCallback: (name, email) => {
+      dispatch(userActions.registerAction(email, name));
     },
   };
 }
