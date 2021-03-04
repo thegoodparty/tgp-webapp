@@ -231,14 +231,6 @@ function Footer({ isCreators = false }) {
                     <SocialIcon src="/images/icons/twitter.svg" />
                   </a>
                   <a
-                    href="https://www.youtube.com/channel/UCPNp46yxggs8NPeXFuMTpGQ"
-                    target="_blank"
-                    rel="nofollow"
-                    data-cy="footer-link-youtube"
-                  >
-                    <SocialIcon src="/images/icons/youtube-white.svg" />
-                  </a>
-                  <a
                     href="https://www.tiktok.com/@goodparty"
                     target="_blank"
                     rel="nofollow"
