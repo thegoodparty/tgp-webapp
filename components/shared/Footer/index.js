@@ -186,7 +186,7 @@ function Footer({ isCreators = false }) {
             <Grid item xs={12} md={4}>
               <Column data-cy="footer-team">
                 <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
-                Want to join The Good Party? We are always looking for good
+                Want to join the Good Party? We are always looking for good
                 people to collaborate with!
                 <div>
                   <a
