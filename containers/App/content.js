@@ -6,11 +6,11 @@ const content = {
       "data": {},
       "content": [
         {
-          "nodeType": "heading-3",
+          "nodeType": "paragraph",
           "content": [
             {
               "nodeType": "text",
-              "value": "TEST About The Good Party:",
+              "value": "Hi there!",
               "marks": [],
               "data": {}
             }
@@ -22,39 +22,7 @@ const content = {
           "content": [
             {
               "nodeType": "text",
-              "value": "The Good Party is ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "not",
-              "marks": [
-                {
-                  "type": "italic"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " a political party. We're building free familiar tools that help good indie candidates take back our democracy from corrupt big-money politicians of ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "both",
-              "marks": [
-                {
-                  "type": "underline"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " major parties.  Our mission is to make votes matter more than money in our democracy.",
+              "value": "Thanks for coming here to find out more.",
               "marks": [],
               "data": {}
             }
@@ -66,27 +34,7 @@ const content = {
           "content": [
             {
               "nodeType": "text",
-              "value": "Our first set of free tools allow grassroots challengers to run ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "crowd-voting campaigns",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": " that turn their supporters into an army of endorsers who recruit their friends and family as voters. This way anyone with great ideas that resonate with actual people can run for office and get elected, without becoming beholden to the two-party system or their network of big-money sources and special interests.",
+              "value": "First (and most importantly) we are NOT a political party. We are a digital grassroots movement for political change.  ",
               "marks": [],
               "data": {}
             }
@@ -98,7 +46,7 @@ const content = {
           "content": [
             {
               "nodeType": "text",
-              "value": "Also, because our tools always show everyone how many likely voters a campaign has, and how many votes are needed to win, we allow people unprecedented transparency into the election process, so they never waste their votes.",
+              "value": "Our goal is to get money out of politics and allow indie candidates to run and win! ",
               "marks": [],
               "data": {}
             }
@@ -110,27 +58,7 @@ const content = {
           "content": [
             {
               "nodeType": "text",
-              "value": "The Good Party is building everything as a public good.  So, all we build is available for free.  To that end, we seek volunteer ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "creators of the world",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "https://thegoodparty.org/creators"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": " who want to join and help us fix politics for Good!",
+              "value": "We do this by building free and open-source technology that allows good people to run crowd-voting campaigns and win!. Just like GoFundMe or change.org, but for politics!  ",
               "marks": [],
               "data": {}
             }
@@ -142,27 +70,7 @@ const content = {
           "content": [
             {
               "nodeType": "text",
-              "value": "In 2020 we helped eight ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "potentially good candidates",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "https://thegoodparty.org/party?article=5KnBx42FOEVDJNUFpoU1PX"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": " running for Congress, to see if we could help them gather enough additional votes using our nascent technology to tip any of the races.  The idea was to do a live test, then rapidly iterate and learn as much as we could to tune our tools for best impact in future cycles.",
+              "value": "We empower people to join together, vote different and make a BIG impact.",
               "marks": [],
               "data": {}
             }
@@ -170,132 +78,14 @@ const content = {
           "data": {}
         },
         {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Based on all our learnings in the 2020 cycle, we're now working on the next iteration of our product, for local elections in 2021.  (Sorry if some parts of our site our a bit our of sync and pointing to 2020.  We'll have a big update soon!)  ITMW, please ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "hyperlink",
-              "content": [
-                {
-                  "nodeType": "text",
-                  "value": "contact us",
-                  "marks": [],
-                  "data": {}
-                }
-              ],
-              "data": {
-                "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
-              }
-            },
-            {
-              "nodeType": "text",
-              "value": " if you're interested in joining our efforts!  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "heading-3",
+          "nodeType": "heading-1",
           "content": [
             {
               "nodeType": "text",
               "value": "How Crowd Voting Works:",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "ordered-list",
-          "content": [
-            {
-              "nodeType": "list-item",
-              "content": [
+              "marks": [
                 {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Meet",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "data": {}
-                    },
-                    {
-                      "nodeType": "text",
-                      "value": " - Learn about a grassroots candidate and campaign.",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Endorse",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "data": {}
-                    },
-                    {
-                      "nodeType": "text",
-                      "value": " - Give your personal endorsement to the candidate.",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Share ",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "data": {}
-                    },
-                    {
-                      "nodeType": "text",
-                      "value": "- Send your endorsement to friends and family or post publicly.",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
+                  "type": "bold"
                 }
               ],
               "data": {}
@@ -308,7 +98,23 @@ const content = {
           "content": [
             {
               "nodeType": "text",
-              "value": "Then, sit back and watch your campaigns grow, knowing that we will update you on additional opportunities to take action or join in and help with the campaign in areas you are interested.",
+              "value": "1.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Launch",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " – We provide a platform for you to meet indie grassroots candidates and for good candidates to run free campaigns. No more big dollar donations necessary.",
               "marks": [],
               "data": {}
             }
@@ -320,7 +126,75 @@ const content = {
           "content": [
             {
               "nodeType": "text",
-              "value": "",
+              "value": "2.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Empower",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " – You can make a difference in getting good candidates elected, by simply clicking “endorse” and sharing with your friends. ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We will never ask you for a donation.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "3.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Change ",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "– With your help, our free and open technology is changing the political landscape and the world. Allowing good candidates to run for office without taking big donations.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Finally, we have a way to get money out of politics and have our voices heard!",
               "marks": [],
               "data": {}
             }

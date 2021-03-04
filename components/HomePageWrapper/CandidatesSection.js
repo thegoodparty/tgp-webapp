@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import { Body, Body11, H2 } from '../shared/typogrophy';
 import CandidateCard from '../shared/CandidateCard';
@@ -13,6 +14,7 @@ const SeeMore = styled(Body11)`
   padding: 14px 18px;
   font-weight: 500;
   margin-top: 24px;
+  cursor: pointer;
 `;
 
 const CandidatesSection = ({ homepageCandidates }) => {
@@ -36,9 +38,11 @@ const CandidatesSection = ({ homepageCandidates }) => {
               </Grid>
             ))}
           </Grid>
-          <div className="text-center">
-            <SeeMore>SEE MORE CANDIDATES</SeeMore>
-          </div>
+          <Link href="/candidates">
+            <div className="text-center">
+              <SeeMore>SEE MORE CANDIDATES</SeeMore>
+            </div>
+          </Link>
         </>
       ) : (
         <>
@@ -52,7 +56,9 @@ const CandidatesSection = ({ homepageCandidates }) => {
             target="_blank"
             rel="nofollow"
           >
-            <SeeMore style={{ marginTop: 0 }}>NOMINATE A CANDIDATE</SeeMore>
+            <SeeMore style={{ marginTop: '12px' }}>
+              NOMINATE A CANDIDATE
+            </SeeMore>
           </a>
         </>
       )}
