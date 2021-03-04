@@ -47,11 +47,6 @@ const TgpDialog = styled(Dialog)`
           #ffffff;
       }
     }
-    &.no-blur {
-      .MuiBackdrop-root {
-        background: rgba(240, 236, 243, 0);
-      }
-    }
   }
 `;
 
@@ -71,13 +66,7 @@ const TopClose = styled(CloseIcon)`
   }
 `;
 
-function QueryModal({
-  closeModalCallback,
-  children,
-  modalStyles = {},
-  mode,
-  zIndex,
-}) {
+function QueryModal({ closeModalCallback, children, modalStyles = {}, mode }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
@@ -85,8 +74,8 @@ function QueryModal({
       onClose={closeModalCallback}
       open
       fullScreen={fullScreen}
-      className={`${mode} ${zIndex === 1400 ? 'no-blur' : ''}`}
-      style={{ ...modalStyles.dialog, zIndex }}
+      className={mode}
+      style={modalStyles.dialog}
     >
       <TopWrapper>
         <TopClose

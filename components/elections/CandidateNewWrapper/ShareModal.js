@@ -45,7 +45,6 @@ const WhiteBody13 = styled(Body13)`
   margin: 33px 0 18px;
 `;
 
-
 const IconItem = styled.div`
   display: flex;
   align-items: center;
@@ -229,9 +228,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
   }
 
-  const emailSubject = user
-    ? 'Join me on the Good Party'
-    : 'Check out the Good Party';
+  const emailSubject = 'Check out the Good Party';
 
   const emailBody = `The Good Party is free software for free elections: ${encodedUrl}`;
 
@@ -313,10 +310,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   ];
 
   return (
-    <QueryModalContainer
-      mode="purple"
-      zIndex={candidate ? 1400 : 1300}
-    >
+    <QueryModalContainer mode="purple">
       <Wrapper>
         <H2 style={{ color: '#FFF' }}>Share to</H2>
         <Grid container spacing={3}>

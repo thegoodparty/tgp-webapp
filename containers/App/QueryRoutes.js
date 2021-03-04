@@ -8,8 +8,8 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -34,7 +34,7 @@ function QueryRoutes({ locationState, content, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
   const { search } = locationState;
-
+  const router = useRouter();
   const [showRegister, setShowRegister] = useState(false);
   const [showShare, setShowShare] = useState(false);
 
@@ -65,7 +65,9 @@ function QueryRoutes({ locationState, content, dispatch }) {
     }
 
     const queryShare = queryHelper(search, 'share');
-    setShowShare(queryShare === 'true');
+    console.log('(router', router);
+    const isCandidatePage = router.pathname === '/candidate/[...NameIdTab]';
+    setShowShare(queryShare === 'true' && !isCandidatePage);
   }, [search]);
 
   const blocRedirect = bloc => {
