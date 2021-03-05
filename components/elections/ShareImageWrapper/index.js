@@ -110,14 +110,14 @@ function ShareImage({
       return;
     }
     htmlToImage
-      .toJpeg(document.getElementById(suffix))
-      .then(function (dataUrl) {
+      .toJpeg(document.getElementById(suffix), { quality: 1, pixelRatio: 1 })
+      .then(function(dataUrl) {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
         shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.error('oops, something went wrong!', error);
       });
   };
@@ -150,16 +150,16 @@ function ShareImage({
           <Grid row xs={6}>
             <LikelyVoters>
               <span>{kFormatter(likelyVoters)}</span> likely voters
-          </LikelyVoters>
+            </LikelyVoters>
           </Grid>
           <Grid row xs={6}>
             {supportCount === 0 ? (
               <>&nbsp;</>
             ) : (
-                <LikelyVoters>
-                  <span>{kFormatter(supportCount)}</span> people supporting
-                </LikelyVoters>
-              )}
+              <LikelyVoters>
+                <span>{kFormatter(supportCount)}</span> people supporting
+              </LikelyVoters>
+            )}
           </Grid>
         </Grid>
         <SupportersProgressBar
@@ -176,7 +176,7 @@ function ShareImage({
           </Box>
         )}
       </ShareImageWrapper>
-      {withRender &&
+      {withRender && (
         <ShareImageWrapper id="share" className={!withRender && 'no-bg'}>
           <WrapperTitle>Hey, check out...</WrapperTitle>
           <AvatarWrapper>
@@ -204,16 +204,16 @@ function ShareImage({
             <Grid row xs={6}>
               <LikelyVoters>
                 <span>{kFormatter(likelyVoters)}</span> likely voters
-          </LikelyVoters>
+              </LikelyVoters>
             </Grid>
             <Grid row xs={6}>
               {supportCount === 0 ? (
                 <>&nbsp;</>
               ) : (
-                  <LikelyVoters>
-                    <span>{kFormatter(supportCount)}</span> people supporting
-                  </LikelyVoters>
-                )}
+                <LikelyVoters>
+                  <span>{kFormatter(supportCount)}</span> people supporting
+                </LikelyVoters>
+              )}
             </Grid>
           </Grid>
           <SupportersProgressBar
@@ -223,14 +223,14 @@ function ShareImage({
             fullWidth
           />
           {withRender && (
-            <Box style={{ marginTop: 20, textAlign: "center" }}>
+            <Box style={{ marginTop: 20, textAlign: 'center' }}>
               <PurpleButton style={{ width: '70%' }}>
                 <InnerButton>See Campaign</InnerButton>
               </PurpleButton>
             </Box>
           )}
         </ShareImageWrapper>
-      }
+      )}
     </>
   );
 }
