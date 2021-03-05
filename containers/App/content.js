@@ -1,209 +1,4 @@
 const content = {
-  "partyPage": {
-    "title": "Header Content",
-    "content": {
-      "nodeType": "document",
-      "data": {},
-      "content": [
-        {
-          "nodeType": "heading-1",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "About Good Party",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Hi there!",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Thanks for coming here to find out more.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "First (and most importantly) we are NOT a political party. We are a digital grassroots movement for political change.  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Our goal is to get money out of politics and allow indie candidates to run and win! ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We do this by building free and open-source technology that allows good people to run crowd-voting campaigns and win!. Just like GoFundMe or change.org, but for politics!  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We empower people to join together, vote different and make a BIG impact.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "heading-2",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "How Crowd Voting Works:",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "1.   ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "Launch",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " – We provide a platform for you to meet indie grassroots candidates and for good candidates to run free campaigns. No more big dollar donations necessary.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "2.   ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "Empower",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": " – You can make a difference in getting good candidates elected, by simply clicking “endorse” and sharing with your friends.  We will never ask you for a donation.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "3.   ",
-              "marks": [],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "Change ",
-              "marks": [
-                {
-                  "type": "bold"
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "text",
-              "value": "– With your help, our free and open technology is changing the political landscape and the world. Allowing good candidates to run for office without taking big donations.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Finally, we have a way to get money out of politics and have our voices heard!",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        }
-      ]
-    }
-  },
   "faqArticles": [
     {
       "title": "Is Good Party a real political party?",
@@ -2880,7 +2675,91 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Article content will go here.",
+                "value": "Good Certified candidates agree to abide by the American Anti-Corruption Act as a candidate and enact it as an elected official. Its four core elements are:",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(1) Stop political bribery.\n(2) End secret money.\n(3) Fix our broken elections.\n(4) Enforce the rules.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Additionally, in order to eliminate corruption, Good Party endorses candidates who have nothing to hide and won’t just give lip-service to transparency and accountability. If elected, Good Party Certified candidates are expected to operate consistent with the following to the fullest extent possible:",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(1) Make as much of your official and campaign meeting calendars available and open online for constituents to see.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(2) Continuously pursue innovations in communication technology to interact with and inform constituents - including but not limited to live-streaming every possible meeting and allocating a reasonable portion of official and campaign budget to the technology (mobile apps, phone, body cam, Youtube, Facebook Live, etc.) necessary to do so.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(3) Make all recording of my meetings close-captioned, archived and keyword searchable and available online - to the extent legally allowable - for all. For any official meeting not legally permitted to be live-streamed or recorded, I pledge to summarize the meeting's purpose and content to the full extent allowed.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(4) Report and disclose to appropriate authorities (Constituents, FEC, Law Enforcement, etc.) any attempts to unfairly influence me or members of my congressional or campaign staff within 48 hours. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
                 "marks": [],
                 "data": {}
               }
@@ -3017,6 +2896,211 @@ const content = {
       "id": "5YnyOUU7NVOihcos0oR1kL"
     }
   ],
+  "partyPage": {
+    "title": "Header Content",
+    "content": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "heading-1",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "About Good Party",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Hi there!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Thanks for coming here to find out more.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "First (and most importantly) we are NOT a political party. We are a digital grassroots movement for political change.  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Our goal is to get money out of politics and allow indie candidates to run and win! ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We do this by building free and open-source technology that allows good people to run crowd-voting campaigns and win!. Just like GoFundMe or change.org, but for politics!  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We empower people to join together, vote different and make a BIG impact.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-2",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How Crowd Voting Works:",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "1.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Launch",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " – We provide a platform for you to meet indie grassroots candidates and for good candidates to run free campaigns. No more big dollar donations necessary.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "2.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Empower",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": " – You can make a difference in getting good candidates elected, by simply clicking “endorse” and sharing with your friends.  We will never ask you for a donation.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "3.   ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Change ",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "– With your help, our free and open technology is changing the political landscape and the world. Allowing good candidates to run for office without taking big donations.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Finally, we have a way to get money out of politics and have our voices heard!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
   "articleCategories": [
     {
       "fields": {
