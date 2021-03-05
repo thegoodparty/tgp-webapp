@@ -65,7 +65,6 @@ function QueryRoutes({ locationState, content, dispatch }) {
     }
 
     const queryShare = queryHelper(search, 'share');
-    console.log('(router', router);
     const isCandidatePage = router.pathname === '/candidate/[...NameIdTab]';
     setShowShare(queryShare === 'true' && !isCandidatePage);
   }, [search]);
