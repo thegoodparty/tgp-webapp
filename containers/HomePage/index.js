@@ -20,6 +20,7 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectHomePage from './selectors';
 import actions from './actions';
+import TgpHelmet from '../../components/shared/TgpHelmet';
 
 export function HomePage({
   ssrState,
@@ -43,8 +44,10 @@ export function HomePage({
   return (
     <div>
       <Head>
-        <title>GOOD PARTY</title>
-        <meta name="description" content="The Good Party" />
+        <TgpHelmet
+          title="GOOD PARTY"
+          description="Good Party is a way to take back our democracy from corrupt big-money politicians of both major parties, and to replace them with good capable indie or grass-roots candidates that wouldn't ordinarily have a chance."
+        />
       </Head>
       <HomePageWrapper {...childProps} />
     </div>
