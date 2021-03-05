@@ -29,7 +29,6 @@ const CategoryName = styled(Body19)`
 `;
 
 const Hero = styled.div`
-  margin-top: 0;
   height: 220px;
   position: relative;
   width: 100%;
@@ -37,12 +36,10 @@ const Hero = styled.div`
     top center;
   background-size: cover;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin-top: 18px;
     height: 450px;
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    margin-top: 18px;
     height: 500px;
   }
 `;
