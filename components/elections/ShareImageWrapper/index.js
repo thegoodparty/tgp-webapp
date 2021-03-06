@@ -125,7 +125,7 @@ function ShareImage({
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
-        <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
+        <WrapperTitle>Hey, I’m endorsing...</WrapperTitle>
         <AvatarWrapper>
           <CandidateAvatar
             avatar={
