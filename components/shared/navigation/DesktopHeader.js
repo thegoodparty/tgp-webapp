@@ -212,14 +212,16 @@ const DesktopHeader = ({ user }) => {
                             <a>FAQs</a>
                           </Link>
                         </StyledMenuItem>
-                        <StyledMenuItem onClick={handleClose}>
-                          <Link
-                            href={`${router.asPath}?register=true`}
-                            passHref
-                          >
-                            <a>Sign up / Login</a>
-                          </Link>
-                        </StyledMenuItem>
+                        {!user && (
+                          <StyledMenuItem onClick={handleClose}>
+                            <Link
+                              href={`${router.asPath}?register=true`}
+                              passHref
+                            >
+                              <a>Sign up / Login</a>
+                            </Link>
+                          </StyledMenuItem>
+                        )}
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
