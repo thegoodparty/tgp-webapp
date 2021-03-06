@@ -70,6 +70,12 @@ const fields = [
     initialValue: false,
     isCheckbox: true,
   },
+  {
+    label: 'Is Active',
+    key: 'isActive',
+    initialValue: true,
+    isCheckbox: true,
+  },
   { label: 'First Name', key: 'firstName', initialValue: '' },
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
@@ -113,6 +119,9 @@ function AdminAddCandidateWrapper({
       ? candidate[field.key]
       : field.initialValue;
   });
+  if (candidate) {
+    initialState.isActive = candidate.isActive;
+  }
   const [formState, setFormState] = useState(initialState);
   const [comparedCandidates, setComparedCandidates] = useState(
     candidate ? candidate.comparedCandidates : false,
@@ -251,11 +260,13 @@ function AdminAddCandidateWrapper({
               </FormControl>
             ) : field.isCheckbox ? (
               <>
-                {field.label}: <br />
-                <Checkbox
-                  checked={formState[field.key]}
-                  onChange={e => onChangeField(field.key, e.target.checked)}
-                />
+                <div>
+                  <Checkbox
+                    checked={formState[field.key]}
+                    onChange={e => onChangeField(field.key, e.target.checked)}
+                  />
+                  &nbsp; &nbsp; {field.label}
+                </div>
               </>
             ) : (
               <Input

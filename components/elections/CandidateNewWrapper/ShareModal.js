@@ -230,7 +230,9 @@ const ShareModal = ({ candidate, message, supportLink }) => {
 
   const emailSubject = 'Check out the Good Party';
 
-  const emailBody = `The Good Party is free software for free elections: ${encodedUrl}`;
+  const emailBody = cleanMessage
+    ? `${cleanMessage} ${encodedUrl}`
+    : `The Good Party is free software for free elections: ${encodedUrl}`;
 
   const handleCopy = () => {
     setCopied(true);

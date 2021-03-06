@@ -22,7 +22,7 @@ function* loadCandidate({ id, chamber, isIncumbent }) {
 
 function* shareImage(action) {
   try {
-    const api = tgpApi.shareImage;
+    const api = tgpApi.newCandidate.shareImage;
     const { candidate } = action;
     const payload = { candidate };
     yield call(requestHelper, api, payload);
