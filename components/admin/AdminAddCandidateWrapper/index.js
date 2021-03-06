@@ -335,7 +335,7 @@ function AdminAddCandidateWrapper({
         <br />
         <br />
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>
-          {mode === 'add' ? 'CREATE' : 'EDIT'} CANDIDATE
+          SAVE
         </BlueButton>
       </Wrapper>
     </div>

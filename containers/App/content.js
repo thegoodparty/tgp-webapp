@@ -2829,71 +2829,6 @@ const content = {
         }
       },
       "id": "3IWiTNf7gKItHkLB0Sm6q3"
-    },
-    {
-      "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The short answer is that it was an experiment we ran in 2020. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The current system - which is designed by the elected officials of the two major parties - makes it nearly impossible for alternative candidates to get on the ballot. In fact, they deliberately limit choice because they don't want the competition. That's why you almost never see independents or third-parties get elected. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "That means today, good people who want to serve as honest representatives often have to pick either red or blue, just to have a reasonable shot to get on the ballot - even if they view themselves as independent or not totally aligned with Democrats and Republicans. Unfortunately, even though we believe people are Good, the two-party Duopoly has designed a system strictly interested in serving itself. Meaning those that choose to run as Red or Blue are eventually destined to serve the system rather than the people. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The Good news is going forward our focus is on helping truly Independent and 3rd party candidates finally be able to compete and win against the establishment politicians.  ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "category": {
-        "id": "1x8sreeqPN0PK929WRNw4I",
-        "fields": {
-          "name": "About Us",
-          "order": 300
-        }
-      },
-      "id": "5YnyOUU7NVOihcos0oR1kL"
     }
   ],
   "partyPage": {
@@ -3129,10 +3064,6 @@ const content = {
         {
           "title": "How can I learn more about Good Party?",
           "id": "7D3TGoveRpv3RjgAWnefCy"
-        },
-        {
-          "title": "If you're all about indie and grassroots candidates, why do you have so many Democrats and Republicans?",
-          "id": "5YnyOUU7NVOihcos0oR1kL"
         }
       ]
     },
