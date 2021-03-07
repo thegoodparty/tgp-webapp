@@ -36,6 +36,9 @@ const CandidateName = styled(Body19)`
   margin-bottom: 0;
   text-align: left;
   font-size: 16px;
+  &.long-name {
+    font-size: 19px;
+  }
 `;
 
 const PartyName = styled(Body11)`
@@ -122,6 +125,8 @@ function ShareImage({
       });
   };
   const intLikelyVoters = parseInt(likelyVoters, 10);
+  const longName = firstName.length + lastName.length > 14;
+
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
@@ -138,7 +143,7 @@ function ShareImage({
             afterLoad={() => afterLoad('support')}
           />
           <NameWrapper>
-            <CandidateName>
+            <CandidateName className={longName && 'long-name'}>
               {firstName} {lastName}
             </CandidateName>
             <PartyName>{partyResolver(party)} for</PartyName>
@@ -192,7 +197,7 @@ function ShareImage({
               style={{ margin: '0 5px' }}
             />
             <NameWrapper>
-              <CandidateName>
+              <CandidateName className={longName && 'long-name'}>
                 {firstName} {lastName}
               </CandidateName>
               <PartyName>{partyResolver(party)} for</PartyName>
