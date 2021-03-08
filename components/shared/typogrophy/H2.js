@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const H2 = styled.h2`
-  color: ${({ theme }) => theme.colors.gray4};
+  color: ${({ theme }) => theme.colors.gray2};
   font-size: 23px;
   line-height: 30px;
   margin: 0;

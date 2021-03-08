@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Body9 = styled.div`
-  color: ${({ theme }) => theme.colors.gray4};
+  color: ${({ theme }) => theme.colors.gray2};
   font-size: 9px;
   line-height: 12px;
   letter-spacing: 0.5px;

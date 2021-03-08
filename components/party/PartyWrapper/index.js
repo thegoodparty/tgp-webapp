@@ -6,6 +6,7 @@ import CandidatesSection from 'components/HomePageWrapper/CandidatesSection';
 
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import PageWrapper from 'components/shared/PageWrapper';
+import { Body, H2 } from '../../shared/typogrophy';
 
 const Content = styled.div`
   width: 100vw;
@@ -35,6 +36,31 @@ const AboutTitle = styled.h1`
   }
 `;
 
+const HowWorks = styled.div`
+  margin: 48px 0;
+`;
+
+const WorksItem = styled.div`
+  display: flex;
+  margin-top: 24px;
+`;
+
+const Img = styled.img`
+  width: 90px;
+  height: auto;
+  margin-right: 24px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-right: 36px;
+  }
+`;
+
+const ItemTitle = styled(Body)`
+  font-weight: 700;
+  margin-bottom: 6px;
+`;
+
+const ItemText = styled(Body)``;
+
 const PartyWrapper = ({ content, candidates }) => {
   let mainContent = '';
   if (content && content.partyPage) {
@@ -48,7 +74,42 @@ const PartyWrapper = ({ content, candidates }) => {
       </AboutTitleWrapper>
       <Content>
         {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
-        <div style={{ height: '64px' }}>&nbsp;</div>
+        <HowWorks>
+          <H2>How Crowd Voting Works:</H2>
+          <WorksItem style={{ marginTop: '32px' }}>
+            <div>
+              <Img src="images/see-good-candidates.svg" />
+            </div>
+            <ItemText>
+              <ItemTitle>Launch</ItemTitle>
+              We provide a platform for you to meet indie grassroots candidates
+              and for good candidates to run free campaigns. No more big dollar
+              donations necessary
+            </ItemText>
+          </WorksItem>
+          <WorksItem>
+            <div>
+              <Img src="images/join-campaigns.svg" />
+            </div>
+            <ItemText>
+              <ItemTitle>Empower</ItemTitle>
+              You can make a difference in getting good candidates elected, by
+              simply clicking “endorse” and sharing with your friends. We will
+              never ask you for a donation.
+            </ItemText>
+          </WorksItem>
+          <WorksItem>
+            <div>
+              <Img src="images/tell-others.svg" />
+            </div>
+            <ItemText>
+              <ItemTitle>Change</ItemTitle>
+              With your help, our free and open technology is changing the
+              political landscape and the world. Allowing good candidates to run
+              for office without taking big donations.
+            </ItemText>
+          </WorksItem>
+        </HowWorks>
         {candidates && <CandidatesSection homepageCandidates={candidates} />}
       </Content>
     </PageWrapper>
