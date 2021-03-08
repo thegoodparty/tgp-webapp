@@ -37,7 +37,7 @@ const TopQuestions = ({ articles }) => {
     <Wrapper>
       <Row>
         <H3 data-cy="faqs">Top Questions</H3>
-        <Link href="/party/faqs" data-cy="faqs-link">
+        <Link href="/faqs" data-cy="faqs-link">
           <a>
             <SeeFaq>See FAQ</SeeFaq>
           </a>

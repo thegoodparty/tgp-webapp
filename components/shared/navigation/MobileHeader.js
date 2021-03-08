@@ -172,7 +172,7 @@ function MobileHeader({ user }) {
             </Link>
           </PushMenuLink>
           <PushMenuLink>
-            <Link href="/party" passHref>
+            <Link href="/about" passHref>
               <a>About Good Party</a>
             </Link>
           </PushMenuLink>
@@ -182,7 +182,7 @@ function MobileHeader({ user }) {
             </Link>
           </PushMenuLink>
           <PushMenuLink>
-            <Link href="/party/faqs" passHref>
+            <Link href="/faqs" passHref>
               <a>FAQs</a>
             </Link>
           </PushMenuLink>

@@ -199,7 +199,7 @@ const DesktopHeader = ({ user }) => {
                           </Link>
                         </StyledMenuItem>
                         <StyledMenuItem onClick={handleClose}>
-                          <Link href="/party" passHref>
+                          <Link href="/about" passHref>
                             <a>About Good Party</a>
                           </Link>
                         </StyledMenuItem>
@@ -209,7 +209,7 @@ const DesktopHeader = ({ user }) => {
                           </Link>
                         </StyledMenuItem>
                         <StyledMenuItem>
-                          <Link href="/party/faqs" passHref>
+                          <Link href="/faqs" passHref>
                             <a>FAQs</a>
                           </Link>
                         </StyledMenuItem>

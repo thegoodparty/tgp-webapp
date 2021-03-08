@@ -2823,7 +2823,7 @@ const content = {
               },
               {
                 "data": {
-                  "uri": "https://thegoodparty.org/party/faqs"
+                  "uri": "https://thegoodparty.org/faqs"
                 },
                 "content": [
                   {

@@ -106,7 +106,7 @@ function Routes() {
       <Route exact path="/login/confirm" component={LoginConfirmPage} />
 
       <Route exact path="/party" component={PartyPage} />
-      <Route exact path="/party/faqs" component={FaqListPage} />
+      <Route exact path="/faqs" component={FaqListPage} />
       <Route exact path="/party/events" component={EventsPage} />
 
       <Route exact path="/scrape/incumbents" component={IncumbentsToScrape} />

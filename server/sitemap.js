@@ -18,7 +18,7 @@ const staticUrls = [
   '/you/register-email',
   '/login',
   '/party',
-  '/party/faqs',
+  '/faqs',
   '/party/events',
   '/privacy',
   '/creators',
@@ -52,7 +52,7 @@ const generateSiteMapXML = async () => {
     faqArticles.forEach(article => {
       xmlString += `
         <url>
-          <loc>${base}/party/faqs?article=${article.id}</loc>
+          <loc>${base}/faqs?article=${article.id}</loc>
           <lastmod>${currentDate}</lastmod>
           <changefreq>monthly</changefreq>
         </url>

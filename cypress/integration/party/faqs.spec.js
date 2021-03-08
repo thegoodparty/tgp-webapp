@@ -3,7 +3,7 @@ import promisify from 'cypress-promise';
 describe('FAQs', () => {
   let content;
   beforeEach(() => {
-    cy.visit('/party/faqs');
+    cy.visit('/faqs');
     cy.get('[data-cy=page-title]').contains('FAQs | The Good Party');
   });
   it('finds faqs', async () => {
