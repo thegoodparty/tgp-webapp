@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,7 @@ import CandidatesSection from 'components/HomePageWrapper/CandidatesSection';
 
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import PageWrapper from 'components/shared/PageWrapper';
-import { Body, H2 } from '../../shared/typogrophy';
+import { Body, H2 } from 'components/shared/typogrophy';
 
 const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
@@ -15,25 +15,7 @@ const Content = styled.div`
 `;
 const Inner = styled.div`
   max-width: 700px;
-`;
-
-const AboutTitleWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.purple4};
-  padding: 0 20px;
-`;
-
-const AboutTitle = styled.h1`
-  font-size: 48px;
-  line-height: 64px;
-  padding: 32px 0;
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
-
-  color: ${({ theme }) => theme.colors.gray2};
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 64px;
-    line-height: 92px;
-  }
 `;
 
 const HowWorks = styled.div`
@@ -69,9 +51,6 @@ const PartyWrapper = ({ content, candidates }) => {
 
   return (
     <PageWrapper purple isFullWidth>
-      <AboutTitleWrapper>
-        <AboutTitle>About Good Party</AboutTitle>
-      </AboutTitleWrapper>
       <div style={{ padding: '0 20px' }}>
         <Content>
           <Inner>
