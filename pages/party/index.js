@@ -1,16 +1,20 @@
-import { END } from 'redux-saga';
 import PartyPage from 'containers/party/PartyPage';
-import wrapper from 'redux/store';
-import { loadContent } from 'utils/loadInitialState';
+import tgpApi from 'api/tgpApi';
 
-export default function Party() {
-  return <PartyPage />;
+export default function Party({ ssrState }) {
+  return <PartyPage ssrState={ssrState} />;
 }
 
-// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-//   loadContent(store.dispatch);
-//   store.dispatch(END);
-//   if (store.global) {
-//     await store.global.toPromise();
-//   }
-// });
+export async function getServerSideProps() {
+  const api = tgpApi.homepageCandidates;
+  const res = await fetch(api.url);
+
+  const { homepageCandidates } = await res.json();
+  return {
+    props: {
+      ssrState: {
+        candidates: homepageCandidates,
+      },
+    }, // will be passed to the page component as props
+  };
+}

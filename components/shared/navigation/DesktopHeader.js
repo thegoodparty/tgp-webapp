@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   background-color: #fff;
   z-index: 100;
   padding: 0 20px;
+  position: relative;
 `;
 
 const ContentWrapper = styled.div`

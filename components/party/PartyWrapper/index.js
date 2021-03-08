@@ -1,109 +1,63 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 
-import { Body13, Body9, H3 } from 'components/shared/typogrophy/index';
-import EventSnippet from 'components/shared/EventSnippet';
-import articlesHelper from 'helpers/articlesHelper';
-import TopQuestions from 'components/shared/TopQuestions';
+import CandidatesSection from 'components/HomePageWrapper/CandidatesSection';
+
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
-import AmaContainer from 'containers/shared/AmaContainer';
-import ENV from 'api/ENV';
 import PageWrapper from 'components/shared/PageWrapper';
 
-const EventsWrapper = styled.div`
-  margin-top: 50px;
-`;
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const AppVersion = styled(Body9)`
-  color: ${({ theme }) => theme.colors.gray9};
-  text-align: center;
-  padding-bottom: 20px;
-`;
-
-const LearnMore = styled(Body13)`
-  color: ${({ theme }) => theme.colors.blue};
-  text-align: right;
-  cursor: pointer;
-`;
-
-const PartyWrapper = ({ content, appVersion }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  let events = [];
-  if (content) {
-    if (content.events.length > 0) {
-      events = content.events;
-    } else {
-      events = content.pastEvents.slice(0, 2);
-    }
+const Content = styled.div`
+  width: 100vw;
+  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  margin: 0 auto;
+  padding: 0 18px 48px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0 0 48px;
   }
+`;
 
-  let articles = [];
-  if (content && content.faqArticles) {
-    articles = articlesHelper(content.faqArticles, 'party');
+const AboutTitleWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.purple4};
+`;
+
+const AboutTitle = styled.h1`
+  font-size: 48px;
+  line-height: 64px;
+  padding: 32px 0;
+  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  margin: 0 auto;
+
+  color: ${({ theme }) => theme.colors.gray2};
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 64px;
+    line-height: 92px;
   }
+`;
+
+const PartyWrapper = ({ content, candidates }) => {
   let mainContent = '';
   if (content && content.partyPage) {
     mainContent = contentfulHelper(content.partyPage.content);
   }
 
-  let productionVersion = false;
-  if (
-    content.appVersion &&
-    content.appVersion.version &&
-    content.appVersion.version !== appVersion
-  ) {
-    productionVersion = content.appVersion.version;
-  }
   return (
-    <PageWrapper white>
-      {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
-      {events.length > 0 && (
-        <EventsWrapper>
-          <Row>
-            <H3 data-cy="events">
-              {content?.events?.length > 0 ? 'Upcoming' : 'Previous'} Online
-              Events
-            </H3>
-            <Link href="/party/events" data-cy="events-link">
-              <LearnMore>See All</LearnMore>
-            </Link>
-          </Row>
-          {events.map(event => (
-            <EventSnippet event={event} key={event.id} />
-          ))}
-        </EventsWrapper>
-      )}
-
-      <TopQuestions articles={articles} />
-      <AmaContainer />
-      <AppVersion>
-        The Good Party V.{appVersion} {ENV !== 'prod' && ENV}
-        {productionVersion ? (
-          <div style={{ marginTop: '8px' }}>
-            Latest version: {productionVersion}
-          </div>
-        ) : (
-          ''
-        )}
-      </AppVersion>
+    <PageWrapper purple isFullWidth>
+      <AboutTitleWrapper>
+        <AboutTitle>About Good Party</AboutTitle>
+      </AboutTitleWrapper>
+      <Content>
+        {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
+        <div style={{ height: '64px' }}>&nbsp;</div>
+        {candidates && <CandidatesSection homepageCandidates={candidates} />}
+      </Content>
     </PageWrapper>
   );
 };
 
 PartyWrapper.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  appVersion: PropTypes.string,
+  candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default PartyWrapper;
