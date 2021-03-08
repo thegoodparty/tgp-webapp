@@ -14,8 +14,11 @@ const Content = styled.div`
   padding-bottom: 48px;
 `;
 const Inner = styled.div`
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 680px;
+  margin: 40px auto 0;
+  &> div:first-child > h2 {
+    font-size: 40px;
+  }
 `;
 
 const HowWorks = styled.div`
