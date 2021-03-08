@@ -9,17 +9,17 @@ import PageWrapper from 'components/shared/PageWrapper';
 import { Body, H2 } from '../../shared/typogrophy';
 
 const Content = styled.div`
-  width: 100vw;
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
-  padding: 0 18px 48px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 0 48px;
-  }
+  padding-bottom: 48px;
+`;
+const Inner = styled.div`
+  max-width: 700px;
 `;
 
 const AboutTitleWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.purple4};
+  padding: 0 20px;
 `;
 
 const AboutTitle = styled.h1`
@@ -72,46 +72,56 @@ const PartyWrapper = ({ content, candidates }) => {
       <AboutTitleWrapper>
         <AboutTitle>About Good Party</AboutTitle>
       </AboutTitleWrapper>
-      <Content>
-        {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
-        <HowWorks>
-          <H2>How Crowd Voting Works:</H2>
-          <WorksItem style={{ marginTop: '32px' }}>
-            <div>
-              <Img src="images/see-good-candidates.svg" />
-            </div>
-            <ItemText>
-              <ItemTitle>Launch</ItemTitle>
-              We provide a platform for you to meet indie grassroots candidates
-              and for good candidates to run free campaigns. No more big dollar
-              donations necessary
-            </ItemText>
-          </WorksItem>
-          <WorksItem>
-            <div>
-              <Img src="images/join-campaigns.svg" />
-            </div>
-            <ItemText>
-              <ItemTitle>Empower</ItemTitle>
-              You can make a difference in getting good candidates elected, by
-              simply clicking “endorse” and sharing with your friends. We will
-              never ask you for a donation.
-            </ItemText>
-          </WorksItem>
-          <WorksItem>
-            <div>
-              <Img src="images/tell-others.svg" />
-            </div>
-            <ItemText>
-              <ItemTitle>Change</ItemTitle>
-              With your help, our free and open technology is changing the
-              political landscape and the world. Allowing good candidates to run
-              for office without taking big donations.
-            </ItemText>
-          </WorksItem>
-        </HowWorks>
-        {candidates && <CandidatesSection homepageCandidates={candidates} />}
-      </Content>
+      <div style={{ padding: '0 20px' }}>
+        <Content>
+          <Inner>
+            {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
+            <HowWorks>
+              <H2>How Crowd Voting Works:</H2>
+              <WorksItem style={{ marginTop: '32px' }}>
+                <div>
+                  <Img src="images/see-good-candidates.svg" />
+                </div>
+                <ItemText>
+                  <ItemTitle>Launch</ItemTitle>
+                  We provide a platform for you to meet indie grassroots
+                  candidates and for good candidates to run free campaigns. No
+                  more big dollar donations necessary
+                </ItemText>
+              </WorksItem>
+              <WorksItem>
+                <div>
+                  <Img src="images/join-campaigns.svg" />
+                </div>
+                <ItemText>
+                  <ItemTitle>Empower</ItemTitle>
+                  You can make a difference in getting good candidates elected,
+                  by simply clicking “endorse” and sharing with your friends. We
+                  will never ask you for a donation.
+                </ItemText>
+              </WorksItem>
+              <WorksItem>
+                <div>
+                  <Img src="images/tell-others.svg" />
+                </div>
+                <ItemText>
+                  <ItemTitle>Change</ItemTitle>
+                  With your help, our free and open technology is changing the
+                  political landscape and the world. Allowing good candidates to
+                  run for office without taking big donations.
+                  <div style={{ marginTop: '32px' }}>
+                    Finally, we have a way to get money out of politics and have
+                    our voices heard!
+                  </div>
+                </ItemText>
+              </WorksItem>
+            </HowWorks>
+            {candidates && (
+              <CandidatesSection homepageCandidates={candidates} maxRows={2} />
+            )}
+          </Inner>
+        </Content>
+      </div>
     </PageWrapper>
   );
 };
