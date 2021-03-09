@@ -34,6 +34,7 @@ function CandidateNewWrapper({
   candidate,
   supportCallback,
   showPreviewModal,
+  fromShareLink,
   showShareModal,
   supportLink,
   user,
@@ -93,6 +94,7 @@ function CandidateNewWrapper({
           user={user}
           previewNextStepCallback={previewNextStepCallback}
           candidateSupports={candidateSupports}
+          fromShareLink={fromShareLink}
         />
       )}
       {showShareModal && (
@@ -114,6 +116,7 @@ CandidateNewWrapper.propTypes = {
   supportCallback: PropTypes.func,
   removeSupportCallback: PropTypes.func,
   showPreviewModal: PropTypes.bool,
+  fromShareLink: PropTypes.bool,
   showShareModal: PropTypes.bool,
   supportLink: PropTypes.bool,
   isUserSupportCandidate: PropTypes.bool,

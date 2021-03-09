@@ -37,7 +37,7 @@ const InnerButton = styled(Body13)`
 function ShareButton() {
   let shareLink = '/';
   if (typeof window !== 'undefined') {
-    shareLink = `${window.location.pathname}?share=true`;
+    shareLink = `${window.location.pathname}?preview=true&fromshare=true`;
   }
 
   return (

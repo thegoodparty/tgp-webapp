@@ -57,12 +57,14 @@ function EndorsementPreviewModal({
   user,
   candidateSupports,
   previewNextStepCallback,
+  fromShareLink,
 }) {
-  const [message, setMessage] = useState(
-    `Someone real, not another 💩 politician!\n\nI'm ${
-      user?.name
-    } and I approve this message! 😜`,
-  );
+  const defaultMessage = user
+    ? `Someone real, not another 💩 politician!\n\nI'm ${
+        user?.name
+      } and I approve this message! 😜`
+    : 'Someone real, not another 💩 politician!';
+  const [message, setMessage] = useState(defaultMessage);
 
   const onChangeField = e => {
     setMessage(e.target.value);
@@ -76,12 +78,15 @@ function EndorsementPreviewModal({
   };
   return (
     <QueryModalContainer modalStyles={modalStyles}>
-      <Body11 style={{ marginTop: '12px' }}>PREVIEW ENDORSEMENT</Body11>
+      <Body11 style={{ marginTop: '12px' }}>
+        PREVIEW {fromShareLink ? 'SHARE' : 'ENDORSEMENT'}
+      </Body11>
       <ImageWrapper>
         <ShareImage
           candidate={candidate}
           withRender={false}
           candidateSupports={candidateSupports}
+          fromShareLink={fromShareLink}
         />
       </ImageWrapper>
       <Personal>ADD A PERSONAL NOTE</Personal>
@@ -107,6 +112,7 @@ EndorsementPreviewModal.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   previewNextStepCallback: PropTypes.func,
   candidateSupports: PropTypes.number,
+  fromShareLink: PropTypes.bool,
 };
 
 export default EndorsementPreviewModal;

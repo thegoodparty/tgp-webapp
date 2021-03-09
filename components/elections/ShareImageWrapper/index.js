@@ -98,6 +98,7 @@ function ShareImage({
   imageAsBase64,
   candidateSupports,
   withRender = true,
+  fromShareLink = false,
 }) {
   const supportCount = candidateSupports?.length;
   const {
@@ -130,7 +131,9 @@ function ShareImage({
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
-        <WrapperTitle>Hey, I’m endorsing...</WrapperTitle>
+        <WrapperTitle>
+          Hey, {fromShareLink ? 'Check out' : 'I’m endorsing'}...
+        </WrapperTitle>
         <AvatarWrapper>
           <CandidateAvatar
             avatar={
@@ -246,6 +249,7 @@ ShareImage.propTypes = {
   imageAsBase64: PropTypes.string,
   candidateSupports: PropTypes.array,
   withRender: PropTypes.bool,
+  fromShareLink: PropTypes.bool,
 };
 
 export default ShareImage;
