@@ -10,8 +10,11 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { useRouter } from 'next/router';
 
+import { getUserCookie } from 'helpers/cookieHelper';
 import ProfileWrapper from 'components/profile/ProfileWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -20,16 +23,24 @@ import reducer from './reducer';
 import saga from './saga';
 
 export function ProfilePage() {
+  const router = useRouter();
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
 
+  const user = getUserCookie(true);
+  if (typeof window !== 'undefined' && !user) {
+    router.push('login');
+  }
+
+  const childProps = { user };
+
   return (
     <div>
-      <Helmet>
-        <title>ProfilePage</title>
-        <meta name="description" content="Description of ProfilePage" />
-      </Helmet>
-      <ProfileWrapper />
+      <TgpHelmet>
+        <title>Profile Page</title>
+        <meta name="description" content="Description of Profile Page" />
+      </TgpHelmet>
+      {user && <ProfileWrapper {...childProps} />}
     </div>
   );
 }

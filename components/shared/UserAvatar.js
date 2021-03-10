@@ -28,12 +28,12 @@ const Avatar = styled.div`
   }
 
   &.large {
-    height: 60px;
-    width: 60px;
+    height: 62px;
+    width: 62px;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      height: 120px;
-      width: 120px;
+      height: 96px;
+      width: 96px;
     }
   }
 `;
@@ -47,7 +47,8 @@ const UserInitials = styled(Body14)`
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.lighterBlue};
+  background-color: ${({ theme }) => theme.colors.purple4};
+  border: solid 1px ${({ theme }) => theme.colors.purple};
   text-transform: uppercase;
 
   &.medium {
@@ -72,8 +73,9 @@ const LargeUserInitials = styled(H1)`
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.lighterBlue};
+  background-color: ${({ theme }) => theme.colors.purple4};
   text-transform: uppercase;
+  border: solid 2px ${({ theme }) => theme.colors.purple};
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 120px;
