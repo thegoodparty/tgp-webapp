@@ -299,6 +299,10 @@ const api = {
       url: `${base}new-candidate`,
       method: 'GET',
     },
+    findWithInactive: {
+      url: `${base}new-candidate-with-inactive`,
+      method: 'GET',
+    },
     list: {
       url: `${base}new-candidates`,
       method: 'GET',

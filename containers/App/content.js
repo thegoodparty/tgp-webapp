@@ -1478,95 +1478,97 @@ const content = {
     {
       "title": "How crowd-voting works",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "Crowd-voting empowers people to endorse candidates they like, and enlist others' support— rather than just asking people to donate money.",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "A crowd-voting campaign makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against establishment politicians.  ",
                 "marks": [],
-                "value": "A crowd-voting campaign is makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against the establishment politicians.  ",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "Each crowd-voting campaign brings much needed transparency to an election by showing how many people are endorsing a candidate, ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "how many votes are needed to win",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
                 "data": {
                   "uri": "?article=4qI5UjYbJmivzBOy1y74Z4"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "how many votes are needed to win",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
+                }
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": ", and how many other likely voters there are for a candidate.",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "In this way, ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {
-                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
-                },
+                "nodeType": "hyperlink",
                 "content": [
                   {
-                    "data": {},
-                    "marks": [],
+                    "nodeType": "text",
                     "value": "nobody has to worry about wasting their vote",
-                    "nodeType": "text"
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "nodeType": "hyperlink"
+                "data": {
+                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
+                }
               },
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": ", because everyone knows if a candidate they like can can win ",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "before anyone goes out and actually votes!",
                 "marks": [
                   {
                     "type": "italic"
@@ -1575,38 +1577,36 @@ const content = {
                     "type": "bold"
                   }
                 ],
-                "value": "before anyone goes out and actually votes!",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their options - not just pick the 'lesser of two evils' candidate.  ",
                 "marks": [],
-                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their options—not just pick the 'lesser of two evil' candidate.  ",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "There is no cost or downside to joining a crowd-voting campaign using Good Party. Every crowd-voting campaign on Good Party is absolutely free for both people and candidates.",
                 "marks": [],
-                "value": "There is no cost or downside to joining a crowd-voting campaign using Good Party.  Every crowd-voting campaign on Good Party is absolutely free for both people and candidates.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "pages": [
         "election",
