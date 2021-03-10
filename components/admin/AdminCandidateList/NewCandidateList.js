@@ -125,9 +125,6 @@ function NewCandidateList({
       headerStyle,
       filterMethod: customFilter,
       Cell: row => {
-        const chamberLower = row.original.chamber
-          ? row.original.chamber.toLowerCase()
-          : 'presidential';
 
         const route = candidateRoute(row.original);
         const editRoute = `/admin/add-candidate/${row.original.id}`;
