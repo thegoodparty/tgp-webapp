@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { TiPlus } from 'react-icons/ti';
@@ -12,6 +12,7 @@ import Link from 'next/link';
 
 import { Body13, Body19, Body9, H1 } from '../../shared/typogrophy';
 import { GrayText } from './index';
+import CrewMember from './CrewMember';
 
 const AvatarsWrapper = styled.div`
   margin-top: 24px;
@@ -75,7 +76,22 @@ const LeaderboardLink = styled(Body19)`
 
 const Wrapper = styled.section``;
 
-function PeopleSection({ user }) {
+function PeopleSection({ user, crewPreview, crewCount }) {
+  const [crewFillers, setCrewFillers] = useState([]);
+  const circlesCount = 2;
+  useEffect(() => {
+    if (crewPreview && crewPreview.length < circlesCount) {
+      const fillerCount = circlesCount - crewPreview.length;
+      const newFillers = Array.from(
+        Array(fillerCount),
+        (_, x) => x + 1 + circlesCount - fillerCount,
+      );
+      setCrewFillers(newFillers);
+    }
+  }, [crewPreview]);
+
+  console.log('crewFillers', crewFillers);
+
   return (
     <Wrapper>
       <Body19>
@@ -97,15 +113,41 @@ function PeopleSection({ user }) {
             </a>
           </Link>
         </CircleWrapper>
-        <CircleWrapper>
-          <DashedCircle src="/images/icons/dashed-circle.svg" />
-        </CircleWrapper>
-        <CircleWrapper>
-          <DashedCircle src="/images/icons/dashed-circle.svg" />
-        </CircleWrapper>
+        {crewPreview.map((crewMember, index) => (
+          <React.Fragment key={crewMember.uuid}>
+            {crewCount > 2 && index === 2 ? (
+              <CircleWrapper>
+                <Link href="/profile/leaderboard" passHref>
+                  <a>
+                    <CircleWithBevel className="flex-center">
+                      <TiPlus size={20} />
+                      {crewCount - 2}
+                    </CircleWithBevel>
+                    MORE
+                  </a>
+                </Link>
+              </CircleWrapper>
+            ) : (
+              <Link href="/profile/leaderboard" passHref>
+                <a>
+                  <CircleWrapper key={crewMember.uuid}>
+                    <CrewMember crewMember={crewMember} />
+                  </CircleWrapper>
+                </a>
+              </Link>
+            )}
+          </React.Fragment>
+        ))}
+        {crewFillers.map(filler => (
+          <CircleWrapper key={filler}>
+            <DashedCircle src="/images/icons/dashed-circle.svg" />
+          </CircleWrapper>
+        ))}
       </AvatarsWrapper>
-      <Link href="/profile/leaderboard">
-        <LeaderboardLink>View Leaderboard</LeaderboardLink>
+      <Link href="/profile/leaderboard" passHref>
+        <a>
+          <LeaderboardLink>View Leaderboard</LeaderboardLink>
+        </a>
       </Link>
     </Wrapper>
   );
@@ -113,6 +155,8 @@ function PeopleSection({ user }) {
 
 PeopleSection.propTypes = {
   user: PropTypes.object,
+  crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  crewCount: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default PeopleSection;

@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -21,18 +21,27 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectProfilePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import userActions from './actions';
 
-export function ProfilePage() {
+export function ProfilePage({ dispatch, profilePage }) {
   const router = useRouter();
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
 
+  const { loading, crewPreview, crewCount } = profilePage;
   const user = getUserCookie(true);
+
+  useEffect(() => {
+    if (user && !crewPreview) {
+      dispatch(userActions.loadCrewPreviewAction());
+    }
+  }, [user]);
+
   if (typeof window !== 'undefined' && !user) {
     router.push('login');
   }
-
-  const childProps = { user };
+  console.log('crewPreview', crewPreview);
+  const childProps = { user, loading, crewPreview, crewCount };
 
   return (
     <div>
@@ -44,6 +53,7 @@ export function ProfilePage() {
 
 ProfilePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  profilePage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

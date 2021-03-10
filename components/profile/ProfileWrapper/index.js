@@ -32,7 +32,7 @@ const ContentWrpper = styled(MaxWidth)`
   }
 `;
 
-function ProfileWrapper({ user }) {
+function ProfileWrapper({ user, crewPreview, crewCount }) {
   console.log('user', user);
   return (
     <PageWrapper purple isFullWidth>
@@ -40,7 +40,11 @@ function ProfileWrapper({ user }) {
       <ContentWrpper>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <PeopleSection user={user} />
+            <PeopleSection
+              user={user}
+              crewPreview={crewPreview}
+              crewCount={crewCount}
+            />
           </Grid>
           <Grid item xs={12} md={6}>
             <SpreadSection user={user} />
@@ -54,6 +58,8 @@ function ProfileWrapper({ user }) {
 
 ProfileWrapper.propTypes = {
   user: PropTypes.object,
+  crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  crewCount: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default ProfileWrapper;
