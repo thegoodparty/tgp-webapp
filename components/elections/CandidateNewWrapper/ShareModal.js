@@ -223,14 +223,14 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const encodedUrl = encodeURIComponent(url);
   let messageBody = encodedUrl;
   if (cleanMessage) {
-    messageBody = `${cleanMessage} ${url}`;
+    messageBody = `${cleanMessage} \n\n ${url}`;
   } else if (candidate) {
     messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
   }
 
   let textMessageBody = encodedUrl;
   if (cleanMessage) {
-    textMessageBody = `${url} ${cleanMessage}`;
+    textMessageBody = `${url} ${"\n %0a"} ${"\n %0a"} ${cleanMessage}`;
   } else if (candidate) {
     textMessageBody = `${url} ${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
   }
