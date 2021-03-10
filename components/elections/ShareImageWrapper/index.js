@@ -36,6 +36,9 @@ const CandidateName = styled(Body19)`
   margin-bottom: 0;
   text-align: left;
   font-size: 16px;
+  &.long-name {
+    font-size: 19px;
+  }
 `;
 
 const PartyName = styled(Body11)`
@@ -95,6 +98,7 @@ function ShareImage({
   imageAsBase64,
   candidateSupports,
   withRender = true,
+  fromShareLink = false,
 }) {
   const supportCount = candidateSupports?.length;
   const {
@@ -122,10 +126,14 @@ function ShareImage({
       });
   };
   const intLikelyVoters = parseInt(likelyVoters, 10);
+  const longName = firstName.length + lastName.length > 14;
+
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
-        <WrapperTitle>Hey, I’m supporting...</WrapperTitle>
+        <WrapperTitle>
+          Hey, {fromShareLink ? 'Check out' : 'I’m endorsing'}...
+        </WrapperTitle>
         <AvatarWrapper>
           <CandidateAvatar
             avatar={
@@ -138,7 +146,7 @@ function ShareImage({
             afterLoad={() => afterLoad('support')}
           />
           <NameWrapper>
-            <CandidateName>
+            <CandidateName className={longName && 'long-name'}>
               {firstName} {lastName}
             </CandidateName>
             <PartyName>{partyResolver(party)} for</PartyName>
@@ -192,7 +200,7 @@ function ShareImage({
               style={{ margin: '0 5px' }}
             />
             <NameWrapper>
-              <CandidateName>
+              <CandidateName className={longName && 'long-name'}>
                 {firstName} {lastName}
               </CandidateName>
               <PartyName>{partyResolver(party)} for</PartyName>
@@ -241,6 +249,7 @@ ShareImage.propTypes = {
   imageAsBase64: PropTypes.string,
   candidateSupports: PropTypes.array,
   withRender: PropTypes.bool,
+  fromShareLink: PropTypes.bool,
 };
 
 export default ShareImage;

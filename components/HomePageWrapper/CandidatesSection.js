@@ -17,7 +17,9 @@ const SeeMore = styled(Body11)`
   cursor: pointer;
 `;
 
-const CandidatesSection = ({ homepageCandidates }) => {
+const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
+  const columns = 12 / maxRows;
+
   return (
     <>
       <H2 style={{ marginBottom: '8px', color: '#000', position: 'relative' }}>
@@ -33,7 +35,7 @@ const CandidatesSection = ({ homepageCandidates }) => {
             style={{ marginTop: '12px' }}
           >
             {homepageCandidates.map(candidate => (
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={columns}>
                 <CandidateCard candidate={candidate} />
               </Grid>
             ))}
@@ -68,6 +70,7 @@ const CandidatesSection = ({ homepageCandidates }) => {
 
 CandidatesSection.propTypes = {
   homepageCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  maxRows: PropTypes.number,
 };
 
 export default CandidatesSection;

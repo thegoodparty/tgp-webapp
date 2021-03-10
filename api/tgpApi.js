@@ -38,10 +38,6 @@ const api = {
     url: `${base}candidates/find`,
     method: 'GET',
   },
-  shareImage: {
-    url: `${base}candidates/share-image`,
-    method: 'POST',
-  },
   findBlocCandidate: {
     url: `${base}candidates/find-by-bloc`,
     method: 'GET',
@@ -316,6 +312,10 @@ const api = {
       url: `${base}new-candidate`,
       method: 'DELETE',
       withAuth: true,
+    },
+    shareImage: {
+      url: `${base}new-candidate/share-image`,
+      method: 'POST',
     },
   },
 

@@ -14,6 +14,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import HomePageWrapper from 'components/HomePageWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
 import AnalyticsService from 'services/AnalyticsService';
 
 import reducer from './reducer';
@@ -42,10 +43,10 @@ export function HomePage({
 
   return (
     <div>
-      <Head>
-        <title>GOOD PARTY</title>
-        <meta name="description" content="The Good Party" />
-      </Head>
+      <TgpHelmet
+        title="GOOD PARTY"
+        description="Good Party is a way to take back our democracy from corrupt big-money politicians of both major parties, and to replace them with good capable indie or grass-roots candidates that wouldn't ordinarily have a chance."
+      />
       <HomePageWrapper {...childProps} />
     </div>
   );

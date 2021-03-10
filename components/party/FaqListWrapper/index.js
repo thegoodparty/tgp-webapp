@@ -29,16 +29,18 @@ const CategoryName = styled(Body19)`
 `;
 
 const Hero = styled.div`
-  margin-top: 0;
-  height: 190px;
+  height: 220px;
   position: relative;
   width: 100%;
-  background: url(http://assets.thegoodparty.org/faq-hero.jpeg) no-repeat center
-    center;
+  background: url(https://assets.thegoodparty.org/faq-hero-new.jpg) no-repeat
+    top center;
   background-size: cover;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin-top: 18px;
-    height: 360px;
+    height: 450px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    height: 500px;
   }
 `;
 

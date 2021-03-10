@@ -46,6 +46,7 @@ export function CandidateNewPage({
   const showPreviewModal = router.query.preview;
   const showShareModal = router.query.share;
   const supportLink = router.query.support;
+  const fromShareLink = router.query.fromshare;
 
   let candidate;
   let tab;
@@ -93,6 +94,7 @@ export function CandidateNewPage({
     removeSupportCallback,
     showPreviewModal,
     showShareModal,
+    fromShareLink,
     supportLink,
     user,
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
@@ -106,7 +108,9 @@ export function CandidateNewPage({
         <TgpHelmet
           title={title}
           description={description}
-          image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${candidate.firstName.toLowerCase()}-${candidate.lastName.toLowerCase()}-${
+          image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${candidate.firstName
+            .trim()
+            .toLowerCase()}-${candidate.lastName.trim().toLowerCase()}-${
             candidate.id
           }${supportLink ? '-support' : '-share'}.jpeg`}
         />

@@ -28,10 +28,12 @@ export function TwitterCallbackPage({ dispatch, locationState }) {
   const oauthVerifier = queryHelper(search, 'oauth_verifier');
 
   useEffect(() => {
-    dispatch(
-      userActions.confirmTwitterCallbackAction(oauthToken, oauthVerifier),
-    );
-  }, []);
+    if (oauthToken) {
+      dispatch(
+        userActions.confirmTwitterCallbackAction(oauthToken, oauthVerifier),
+      );
+    }
+  }, [oauthToken]);
 
   return <LoadingAnimation />;
 }

@@ -161,7 +161,7 @@ Cypress.Commands.add('testTopQueSection', async filter => {
   cy.get('[data-cy=faqs-link]')
     .contains('See FAQ')
     .click();
-  cy.url().should('include', '/party/faqs');
+  cy.url().should('include', '/faqs');
   cy.get('[data-cy=page-title]').contains('FAQs | The Good Party');
 });
 

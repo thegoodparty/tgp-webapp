@@ -144,7 +144,7 @@ function Footer({ isCreators = false }) {
                   </WhiteLink>
                 </Link>
 
-                <Link href="/party" passHref>
+                <Link href="/about" passHref>
                   <WhiteLink data-cy="footer-link-elections">
                     About Good Party
                   </WhiteLink>
@@ -156,7 +156,7 @@ function Footer({ isCreators = false }) {
                 </Link>
                 <Link
                   data-cy="footer-link-creators"
-                  href="/party/faqs"
+                  href="/faqs"
                   passHref
                 >
                   <WhiteLink data-cy="footer-link-creators">

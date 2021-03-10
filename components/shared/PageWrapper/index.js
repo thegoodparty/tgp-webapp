@@ -36,7 +36,6 @@ function PageWrapper({
   hideNav,
   white,
   purple,
-  mobileHeaderProps = {},
   wrapperStyles = {},
   hideMobileNav,
   style = {},
@@ -54,7 +53,12 @@ function PageWrapper({
     <MainWrapper className={className} style={style}>
       {!hideNav && <Nav hideMobileNav={hideMobileNav} />}
       {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
-      <WrapperComp white={white} style={wrapperStyles} noHeader={hideNav}>
+      <WrapperComp
+        white={white}
+        purple={purple}
+        style={wrapperStyles}
+        noHeader={hideNav}
+      >
         {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
         {children}
       </WrapperComp>
@@ -68,7 +72,7 @@ PageWrapper.propTypes = {
   hideNav: PropTypes.bool,
   white: PropTypes.bool,
   wrapperStyles: PropTypes.object,
-  mobileHeaderProps: PropTypes.object,
+  purple: PropTypes.bool,
   topBanner: PropTypes.object,
   style: PropTypes.object,
   hideMobileNav: PropTypes.bool,

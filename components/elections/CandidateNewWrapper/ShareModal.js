@@ -228,9 +228,18 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
   }
 
+  let textMessageBody = encodedUrl;
+  if (cleanMessage) {
+    textMessageBody = `${url} ${cleanMessage}`;
+  } else if (candidate) {
+    textMessageBody = `${url} ${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
+  }
+
   const emailSubject = 'Check out the Good Party';
 
-  const emailBody = `The Good Party is free software for free elections: ${encodedUrl}`;
+  const emailBody = cleanMessage
+    ? `${cleanMessage} ${encodedUrl}`
+    : `The Good Party is free software for free elections: ${encodedUrl}`;
 
   const handleCopy = () => {
     setCopied(true);
@@ -247,7 +256,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       label: 'Text message',
       icon: <IoIosText />,
       className: 'sms',
-      link: `sms:?&body=${messageBody.replace('&', '%26')}`,
+      link: `sms:?&body=${textMessageBody.replace('&', '%26')}`,
     },
     {
       label: 'Email',

@@ -19,17 +19,25 @@ import {
 
 import PartyWrapper from 'components/party/PartyWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
+import actions from '../../HomePage/actions';
 
-export function PartyPage({ content, appVersion }) {
+export function PartyPage({ content, appVersion, ssrState }) {
   loadInitialState();
   // useEffect(() => {
   //   if (!content) {
   //     loadContent(dispatch);
   //   }
   // }, [content]);
+  let candidates;
+  if (ssrState) {
+    ({ candidates } = ssrState);
+  }
+  console.log('page cands', candidates);
+
   const childProps = {
     content,
     appVersion,
+    candidates,
   };
   return (
     <div>

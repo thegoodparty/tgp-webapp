@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   background-color: #fff;
   z-index: 100;
   padding: 0 20px;
+  position: relative;
 `;
 
 const ContentWrapper = styled.div`
@@ -198,7 +199,7 @@ const DesktopHeader = ({ user }) => {
                           </Link>
                         </StyledMenuItem>
                         <StyledMenuItem onClick={handleClose}>
-                          <Link href="/party" passHref>
+                          <Link href="/about" passHref>
                             <a>About Good Party</a>
                           </Link>
                         </StyledMenuItem>
@@ -208,18 +209,20 @@ const DesktopHeader = ({ user }) => {
                           </Link>
                         </StyledMenuItem>
                         <StyledMenuItem>
-                          <Link href="/party/faqs" passHref>
+                          <Link href="/faqs" passHref>
                             <a>FAQs</a>
                           </Link>
                         </StyledMenuItem>
-                        <StyledMenuItem onClick={handleClose}>
-                          <Link
-                            href={`${router.asPath}?register=true`}
-                            passHref
-                          >
-                            <a>Sign up / Login</a>
-                          </Link>
-                        </StyledMenuItem>
+                        {!user && (
+                          <StyledMenuItem onClick={handleClose}>
+                            <Link
+                              href={`${router.asPath}?register=true`}
+                              passHref
+                            >
+                              <a>Sign up / Login</a>
+                            </Link>
+                          </StyledMenuItem>
+                        )}
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
