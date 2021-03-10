@@ -36,10 +36,7 @@ export function ProfilePage() {
 
   return (
     <div>
-      <TgpHelmet>
-        <title>Profile Page</title>
-        <meta name="description" content="Description of Profile Page" />
-      </TgpHelmet>
+      <TgpHelmet title="Profile Page" description="Profile Page | Good Party" />
       {user && <ProfileWrapper {...childProps} />}
     </div>
   );
