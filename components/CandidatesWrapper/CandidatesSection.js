@@ -57,7 +57,7 @@ function CandidatesSection({ candidates }) {
         nominate them!
       </Body>
       <a
-        href="https://docs.google.com/forms/d/1NA_oF8v8WqMcFBXYK9NSN6V7TGlMp-50Qpgru0qPE5s/edit"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSe78SJOH5edK4jTyOWVhs-b8AIf9_ElONlc5opPgzHnnpm_0Q/viewform?usp=sf_link"
         target="_blank"
         rel="nofollow"
       >
