@@ -30,6 +30,12 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'UUP') {
     return 'UNITED UTAH PARTY';
   }
+  if (partyLetter === 'W') {
+    return 'Working Families Party';
+  }
+  if (partyLetter === 'S') {
+    return 'SAM';
+  }
   return '';
 };
 
