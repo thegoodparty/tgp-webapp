@@ -16,8 +16,9 @@ const Content = styled.div`
 const Inner = styled.div`
   max-width: 680px;
   margin: 40px auto 0;
-  &> div:first-child > h2 {
+  & > div:first-child > h2 {
     font-size: 40px;
+    line-height: 52px;
   }
 `;
 
@@ -68,7 +69,7 @@ const PartyWrapper = ({ content, candidates }) => {
                   <ItemTitle>Launch</ItemTitle>
                   We provide a platform for you to meet indie grassroots
                   candidates and for good candidates to run free campaigns. No
-                  more big dollar donations necessary
+                  more big dollar donations necessary.
                 </ItemText>
               </WorksItem>
               <WorksItem>
@@ -76,7 +77,7 @@ const PartyWrapper = ({ content, candidates }) => {
                   <Img src="images/join-campaigns.svg" />
                 </div>
                 <ItemText>
-                  <ItemTitle>Empower</ItemTitle>
+                  <ItemTitle>Grow</ItemTitle>
                   You can make a difference in getting good candidates elected,
                   by simply clicking “endorse” and sharing with your friends. We
                   will never ask you for a donation.
@@ -87,16 +88,17 @@ const PartyWrapper = ({ content, candidates }) => {
                   <Img src="images/tell-others.svg" />
                 </div>
                 <ItemText>
-                  <ItemTitle>Change</ItemTitle>
-                  With your help, our free and open technology is changing the
-                  political landscape and the world. Allowing good candidates to
-                  run for office without taking big donations.
-                  <div style={{ marginTop: '32px' }}>
-                    Finally, we have a way to get money out of politics and have
-                    our voices heard!
-                  </div>
+                  <ItemTitle>Win</ItemTitle>
+                  With your help, our free and open technology is diversifying
+                  the political landscape in the U.S., by allowing good indie
+                  candidates to run and win elections without relying on big
+                  donations.
                 </ItemText>
               </WorksItem>
+              <Body style={{ marginTop: '42px' }}>
+                Finally, we have a way to get money out of politics and have our
+                voices heard!
+              </Body>
             </HowWorks>
             {candidates && (
               <CandidatesSection homepageCandidates={candidates} maxRows={2} />
