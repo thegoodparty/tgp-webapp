@@ -30,9 +30,11 @@ const MeetLink = styled.div`
 `;
 
 const Feedback = styled.div`
-    display: block;
-    margin-top: 48px;
-    color: ${({ theme }) => theme.colors.purple};
+  display: block;
+  margin-top: 48px;
+  color: ${({ theme }) => theme.colors.purple};
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
   }
 `;
 
@@ -43,10 +45,14 @@ function CampaignSection({ user }) {
         <strong>Campaigns you’re supporting</strong>
         <br />
         <GrayText>These are the candidates you endorse</GrayText>
-        <Link href="candidates">
-          <MeetLink>Meet the candidates</MeetLink>
+        <Link href="candidates" passHref>
+          <a>
+            <MeetLink>Meet the candidates</MeetLink>
+          </a>
         </Link>
-        <Feedback>Give feedback or suggestions</Feedback>
+        <a href="mailto:ask@goodparty.org?subject=Feedback%20or%20Suggestion">
+          <Feedback>Give feedback or suggestions</Feedback>
+        </a>
       </Body19>
     </Wrapper>
   );

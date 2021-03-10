@@ -13,7 +13,6 @@ import Link from 'next/link';
 import { Body13, Body19, Body9, H1 } from '../../shared/typogrophy';
 import { GrayText } from './index';
 
-
 const AvatarsWrapper = styled.div`
   margin-top: 24px;
   display: flex;
@@ -89,10 +88,14 @@ function PeopleSection({ user }) {
 
       <AvatarsWrapper>
         <CircleWrapper>
-          <CircleWithBevel className="flex-center">
-            <TiPlus size={20} />
-          </CircleWithBevel>
-          INVITE
+          <Link href="?share=true" passHref>
+            <a>
+              <CircleWithBevel className="flex-center">
+                <TiPlus size={20} />
+              </CircleWithBevel>
+              INVITE
+            </a>
+          </Link>
         </CircleWrapper>
         <CircleWrapper>
           <DashedCircle src="/images/icons/dashed-circle.svg" />
