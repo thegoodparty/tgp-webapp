@@ -36,7 +36,11 @@ function AdminMenuEditCandidate({ candidate }) {
     ? candidate.chamber.toLowerCase()
     : 'presidential';
   let editRoute;
-  if (chamberLower === 'local') {
+  if (
+    chamberLower !== 'presidential' &&
+    chamberLower !== 'senate' &&
+    chamberLower !== 'house'
+  ) {
     editRoute = `/admin/add-candidate/${candidate?.id}`;
   } else {
     editRoute = `/admin/edit-candidate/${chamberLower}${

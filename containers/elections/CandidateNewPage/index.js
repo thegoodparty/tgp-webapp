@@ -16,7 +16,7 @@ import TgpHelmet from 'components/shared/TgpHelmet';
 import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
 import { getUserCookie, setCookie } from 'helpers/cookieHelper';
 import queryHelper from 'helpers/queryHelper';
-import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate/Loadable';
+import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';

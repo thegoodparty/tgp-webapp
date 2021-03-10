@@ -39,7 +39,11 @@ export const candidateRoute = candidate => {
   }
   const { isIncumbent, chamber, id } = candidate;
   const chamberLower = chamber ? chamber.toLowerCase() : 'presidential';
-  if (chamberLower === 'local') {
+  if (
+    chamberLower !== 'presidential' &&
+    chamberLower !== 'senate' &&
+    chamberLower !== 'house'
+  ) {
     const name = slugify(`${candidate.firstName} ${candidate.lastName}`);
     return `/candidate/${name}/${id}`;
   }
