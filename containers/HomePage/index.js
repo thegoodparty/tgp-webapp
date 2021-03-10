@@ -44,8 +44,8 @@ export function HomePage({
   return (
     <div>
       <TgpHelmet
-        title="GOOD PARTY"
-        description="Good Party is a way to take back our democracy from corrupt big-money politicians of both major parties, and to replace them with good capable indie or grass-roots candidates that wouldn't ordinarily have a chance."
+        title="GOOD PARTY | Free software for free elections"
+        description="GOOD PARTY builds free software for free elections. We're helping good indie candidates run and win, because BOTH Red + Blue have been corrupted beyond repair."
       />
       <HomePageWrapper {...childProps} />
     </div>

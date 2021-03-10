@@ -61,8 +61,11 @@ export function SocialRegisterPage({
   return (
     <div>
       <Head>
-        <title data-cy="page-title">Register to the Good Party</title>
-        <meta name="description" content="Register to the Good Party" />
+        <title data-cy="page-title">Sign up | GOOD PARTY</title>
+        <meta
+          name="description"
+          content="Sign up for GOOD PARTY, and join our movement to change politics for good!"
+        />
       </Head>
       <SocialRegisterWrapper {...childPros} />
     </div>

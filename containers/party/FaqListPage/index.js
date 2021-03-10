@@ -15,6 +15,7 @@ import { makeSelectContent } from 'containers/App/selectors';
 
 import FaqListWrapper from 'components/party/FaqListWrapper';
 import globalActions from '../../App/actions';
+import TgpHelmet from '../../../components/shared/TgpHelmet';
 
 export function FaqListPage({ dispatch, content }) {
   const router = useRouter();
@@ -28,10 +29,10 @@ export function FaqListPage({ dispatch, content }) {
   };
   return (
     <div>
-      <Head>
-        <title data-cy="page-title">FAQs | The Good Party</title>
-        <meta name="description" content="Frequently Asked Questions" />
-      </Head>
+      <TgpHelmet
+        title="FAQs | GOOD PARTY"
+        description="Frequently Asked Questions about GOOD PARTY"
+      />
       <FaqListWrapper {...childProps} />
     </div>
   );
