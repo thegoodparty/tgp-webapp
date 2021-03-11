@@ -113,31 +113,32 @@ function PeopleSection({ user, crewPreview, crewCount }) {
             </a>
           </Link>
         </CircleWrapper>
-        {crewPreview.map((crewMember, index) => (
-          <React.Fragment key={crewMember.uuid}>
-            {crewCount > 2 && index === 2 ? (
-              <CircleWrapper>
+        {crewPreview &&
+          crewPreview.map((crewMember, index) => (
+            <React.Fragment key={crewMember.uuid}>
+              {crewCount > 2 && index === 2 ? (
+                <CircleWrapper>
+                  <Link href="/profile/leaderboard" passHref>
+                    <a>
+                      <CircleWithBevel className="flex-center">
+                        <TiPlus size={20} />
+                        {crewCount - 2}
+                      </CircleWithBevel>
+                      MORE
+                    </a>
+                  </Link>
+                </CircleWrapper>
+              ) : (
                 <Link href="/profile/leaderboard" passHref>
                   <a>
-                    <CircleWithBevel className="flex-center">
-                      <TiPlus size={20} />
-                      {crewCount - 2}
-                    </CircleWithBevel>
-                    MORE
+                    <CircleWrapper key={crewMember.uuid}>
+                      <CrewMember crewMember={crewMember} />
+                    </CircleWrapper>
                   </a>
                 </Link>
-              </CircleWrapper>
-            ) : (
-              <Link href="/profile/leaderboard" passHref>
-                <a>
-                  <CircleWrapper key={crewMember.uuid}>
-                    <CrewMember crewMember={crewMember} />
-                  </CircleWrapper>
-                </a>
-              </Link>
-            )}
-          </React.Fragment>
-        ))}
+              )}
+            </React.Fragment>
+          ))}
         {crewFillers.map(filler => (
           <CircleWrapper key={filler}>
             <DashedCircle src="/images/icons/dashed-circle.svg" />
