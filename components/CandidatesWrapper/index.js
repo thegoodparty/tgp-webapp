@@ -98,7 +98,7 @@ function CandidatesWrapper({ candidates, content }) {
             <StyledH1>Meet some Good Certified candidates</StyledH1>
             <StyledBody13>
               Endorse good Indie candidates from across the country. If you know
-              a potentially a good candidate, nominate them!
+              a potentially good candidate, nominate them!
             </StyledBody13>
             <GoodCertifiedAreSection mdColumns={6} />
             <CandidatesSection candidates={candidates} />
