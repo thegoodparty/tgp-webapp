@@ -28,12 +28,12 @@ const Avatar = styled.div`
   }
 
   &.large {
-    height: 60px;
-    width: 60px;
+    height: 62px;
+    width: 62px;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      height: 120px;
-      width: 120px;
+      height: 96px;
+      width: 96px;
     }
   }
 `;
@@ -47,7 +47,8 @@ const UserInitials = styled(Body14)`
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.lighterBlue};
+  background-color: ${({ theme }) => theme.colors.purple4};
+  border: solid 1px ${({ theme }) => theme.colors.purple};
   text-transform: uppercase;
 
   &.medium {
@@ -63,21 +64,28 @@ const UserInitials = styled(Body14)`
   }
 `;
 
-const LargeUserInitials = styled(H1)`
+const LargeUserInitials = styled.div`
+  font-size: 27px;
+  line-height: 35px;
+  margin: 0;
+
   cursor: pointer;
-  height: 60px;
-  width: 60px;
+  height: 64px;
+  width: 64px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.lighterBlue};
+  background-color: ${({ theme }) => theme.colors.purple4};
   text-transform: uppercase;
+  border: solid 2px ${({ theme }) => theme.colors.purple};
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    height: 120px;
-    width: 120px;
+    height: 94px;
+    width: 94px;
+    font-size: 36px;
+    line-height: 42px;
   }
 `;
 

@@ -4,10 +4,19 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+const loadCrewPreviewAction = () => ({
+  type: types.LOAD_CREW_PREVIEW,
+});
+
+const loadCrewPreviewActionSuccess = (crewPreview, crewCount) => ({
+  type: types.LOAD_CREW_PREVIEW_SUCCESS,
+  crewPreview,
+  crewCount,
+});
+
+export default {
+  loadCrewPreviewAction,
+  loadCrewPreviewActionSuccess,
+};

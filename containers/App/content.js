@@ -1,4 +1,109 @@
 const content = {
+  "partyPage": {
+    "title": "Header Content",
+    "content": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "heading-2",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "What does Good Party do?",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Hi there!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Thanks for coming here to find out more.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "First (and most importantly) we are NOT a political party. We are a digital grassroots movement for political change.  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Our goal is to get money out of politics and allow indie candidates to run and win! ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We do this by building free and open-source technology that allows good people to run crowd-voting campaigns and win! Just like GoFundMe or change.org, but for politics!  ",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We empower people to join together, vote different and make a BIG impact.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
   "faqArticles": [
     {
       "title": "Is Good Party a real political party?",
@@ -2243,23 +2348,21 @@ const content = {
       "id": "30epU8vSgh9SeSnfGJmsDc"
     },
     {
-      "title": "Does joining Good Party impact my ability to vote for other candidates?",
+      "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
       "articleBody": {
-        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "No. We are NOT a political party. Your party affiliation is up to you and you always have the choice to vote for whomever you like. Good Party just allows you to see more options ",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "No. We are NOT a political party. Your party affiliation is up to you and you always have the choice to vote for whomever you like. Good Party just allows you to see more options ",
+                "nodeType": "text"
               },
               {
-                "nodeType": "text",
-                "value": "before ",
+                "data": {},
                 "marks": [
                   {
                     "type": "italic"
@@ -2268,30 +2371,32 @@ const content = {
                     "type": "bold"
                   }
                 ],
-                "data": {}
+                "value": "before ",
+                "nodeType": "text"
               },
               {
-                "nodeType": "text",
-                "value": "you vote.  ",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "you vote.  ",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           },
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "This way you can see whether your vote can be combined with others to elect good, indie or 3rd party candidates you might like more than the establishment candidates who get reelected over and over again.",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "This way you can see whether your vote can be combined with others to elect good, indie or 3rd party candidates you might like more than the establishment candidates who get reelected over and over again.",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           }
-        ]
+        ],
+        "nodeType": "document"
       },
       "category": {
         "id": "7jOZqjB2BBfvymyAJ4IQWe",
@@ -2665,11 +2770,6 @@ const content = {
         ],
         "nodeType": "document"
       },
-      "pages": [
-        "district",
-        "election",
-        "party"
-      ],
       "category": {
         "id": "1x8sreeqPN0PK929WRNw4I",
         "fields": {
@@ -2678,6 +2778,59 @@ const content = {
         }
       },
       "id": "7D3TGoveRpv3RjgAWnefCy"
+    },
+    {
+      "title": "What does it mean to \"endorse\" a candidate?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Endorsements are an easy way to show your support for Good, Independent and 3rd party candidates. Then you can share your endorsement either privately with family and friends or publicly via social channels. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Establishment politicians typically tout endorsements from big money donors and career politicians interested in maintaining the status quo. Good Party endorsements are a way for the people to take back the power. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "By endorsing and sharing, people can organically get behind good, indie candidates and quickly grow the support needed to show those candidates are viable and can win. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "3IWiTNf7gKItHkLB0Sm6q3"
     },
     {
       "title": "Anti-Corruption Act",
@@ -2791,59 +2944,6 @@ const content = {
         }
       },
       "id": "7jm2j9gapWwEoVwVD3VX6o"
-    },
-    {
-      "title": "What does it mean to \"endorse\" a candidate?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Endorsements are an easy way to show your support for Good, Independent and 3rd party candidates. Then you can share your endorsement either privately with family and friends or publicly via social channels. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Establishment politicians typically tout endorsements from big money donors and others career politicians interested in maintaining the status quo. Good Party endorsements are a way for the people to take back the power. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "By endorsing and sharing, people can organically get behind good, indie candidates and quickly grow the support needed to show those candidates are viable and can win. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "3IWiTNf7gKItHkLB0Sm6q3"
     }
   ],
   "articleCategories": [
@@ -2855,7 +2955,7 @@ const content = {
       "id": "7jOZqjB2BBfvymyAJ4IQWe",
       "articles": [
         {
-          "title": "Does joining Good Party impact my ability to vote for other candidates?",
+          "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
           "id": "7Mrfo6spgrgpwAFe83Oph4"
         }
       ]
@@ -2901,12 +3001,12 @@ const content = {
           "id": "66i4vRRLkX1yf8MnCQvYSb"
         },
         {
-          "title": "Anti-Corruption Act",
-          "id": "7jm2j9gapWwEoVwVD3VX6o"
-        },
-        {
           "title": "What does it mean to \"endorse\" a candidate?",
           "id": "3IWiTNf7gKItHkLB0Sm6q3"
+        },
+        {
+          "title": "Anti-Corruption Act",
+          "id": "7jm2j9gapWwEoVwVD3VX6o"
         }
       ]
     },
@@ -2918,111 +3018,6 @@ const content = {
       "articles": []
     }
   ],
-  "partyPage": {
-    "title": "Header Content",
-    "content": {
-      "nodeType": "document",
-      "data": {},
-      "content": [
-        {
-          "nodeType": "heading-2",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "What does Good Party do?",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Hi there!",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Thanks for coming here to find out more.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "First (and most importantly) we are NOT a political party. We are a digital grassroots movement for political change.  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Our goal is to get money out of politics and allow indie candidates to run and win! ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We do this by building free and open-source technology that allows good people to run crowd-voting campaigns and win!. Just like GoFundMe or change.org, but for politics!  ",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "We empower people to join together, vote different and make a BIG impact.",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        },
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        }
-      ]
-    }
-  },
   "events": [],
   "appVersion": {
     "version": "1.0.19"

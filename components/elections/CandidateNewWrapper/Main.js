@@ -162,15 +162,7 @@ function MainWrapper({
           <SectionHeader style={{ marginBottom: '4px' }}>
             Connect with {firstName}
           </SectionHeader>
-          {
-            <a href={website} target="_blank" rel="nofollow">
-              <Website>
-                <span>Campaign website</span>
-                &nbsp;
-                <BiLinkExternal />
-              </Website>
-            </a>
-          }
+
           <div style={{ marginTop: '24px' }}>
             {facebook && (
               <SocialLink href={facebook}>
@@ -178,7 +170,6 @@ function MainWrapper({
                   src="/images/icons/purple-facebook.svg"
                   alt="facebook"
                   rel="nofollow"
-                  target="_blank"
                 />
               </SocialLink>
             )}
@@ -188,7 +179,6 @@ function MainWrapper({
                   src="/images/icons/purple-twitter.svg"
                   alt="twitter"
                   rel="nofollow"
-                  target="_blank"
                 />
               </SocialLink>
             )}
@@ -198,7 +188,6 @@ function MainWrapper({
                   src="/images/icons/purple-tiktok.svg"
                   alt="tiktok"
                   rel="nofollow"
-                  target="_blank"
                 />
               </SocialLink>
             )}
@@ -208,8 +197,18 @@ function MainWrapper({
                   src="/images/icons/purple-snap.svg"
                   alt="snap"
                   rel="nofollow"
-                  target="_blank"
                 />
+              </SocialLink>
+            )}
+            {website && (
+              <SocialLink href={website} target="_blank" passhref>
+                <a target="_blank">
+                  <img
+                    src="/images/icons/globe-icon.svg"
+                    alt="snap"
+                    rel="nofollow"
+                  />
+                </a>
               </SocialLink>
             )}
           </div>

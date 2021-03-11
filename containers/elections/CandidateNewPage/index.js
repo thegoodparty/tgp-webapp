@@ -26,6 +26,7 @@ import saga from './saga';
 import actions from './actions';
 import { makeSelectContent } from '../../App/selectors';
 import makeSelectCandidateNewPage from './selectors';
+import { partyResolver } from '../../../helpers/electionsHelper';
 
 export function CandidateNewPage({
   ssrState,
@@ -49,7 +50,6 @@ export function CandidateNewPage({
   const fromShareLink = router.query.fromshare;
 
   let candidate;
-  let tab;
 
   if (ssrState) {
     ({ candidate } = ssrState);
@@ -66,26 +66,16 @@ export function CandidateNewPage({
 
   const emptyCandidate = () =>
     Object.keys(candidate).length === 0 && candidate.constructor === Object;
+  const { firstName, lastName, party, race, id } = candidate;
+  const title = `${firstName} ${lastName} ${partyResolver(
+    party,
+  ).toLowerCase()} for
+${race} | Crowd-voting on GOOD PARTY`;
 
-  const title = `${
-    candidate && !emptyCandidate()
-      ? `${candidate.firstName} ${candidate.lastName}`
-      : ''
-  } | ${candidate.chamber} ${
-    candidate && !emptyCandidate() && candidate.isIncumbent
-      ? 'incumbent'
-      : 'candidate'
-  }`;
-
-  const url = typeof window !== 'undefined' ? window.location.href : '';
-
-  const description = `${
-    candidate && !emptyCandidate()
-      ? `${candidate.firstName} ${candidate.lastName}`
-      : ''
-  } could win in ${getCandidateChamberDistrictOnly(
-    candidate,
-  )}, if we all just share this crowd-voting campaign! Add Your Vote & Share here: ${url}`;
+  const description = `Join the crowd-voting campaign for ${firstName} ${lastName}, ${partyResolver(
+    party,
+  ).toLowerCase()} for
+${race}.`;
 
   const childProps = {
     candidate,
@@ -108,11 +98,11 @@ export function CandidateNewPage({
         <TgpHelmet
           title={title}
           description={description}
-          image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${candidate.firstName
+          image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${firstName
             .trim()
-            .toLowerCase()}-${candidate.lastName.trim().toLowerCase()}-${
-            candidate.id
-          }${supportLink ? '-support' : '-share'}.jpeg`}
+            .toLowerCase()}-${lastName.trim().toLowerCase()}-${id}${
+            supportLink ? '-support' : '-share'
+          }.jpeg`}
         />
       )}
       <CandidateNewWrapper {...childProps} />

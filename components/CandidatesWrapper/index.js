@@ -97,9 +97,8 @@ function CandidatesWrapper({ candidates, content }) {
           <Grid item xs={12} md={7}>
             <StyledH1>Meet some Good Certified candidates</StyledH1>
             <StyledBody13>
-              Currently, we’re focused on getting some wins for Good Certified
-              candidates in New York and California. If you know a potentially
-              good candidate, nominate them!
+              Endorse good Indie candidates from across the country. If you know
+              a potentially a good candidate, nominate them!
             </StyledBody13>
             <GoodCertifiedAreSection mdColumns={6} />
             <CandidatesSection candidates={candidates} />

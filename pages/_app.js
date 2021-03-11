@@ -26,6 +26,15 @@ if (typeof window !== 'undefined' && navigator && navigator.serviceWorker) {
 }
 
 function MyApp({ Component, pageProps }) {
+  // force https
+  if (typeof window !== 'undefined') {
+    if (window.origin !== 'http://localhost:4000') {
+      const httpTokens = /^http:\/\/(.*)$/.exec(window.location.href);
+      if (httpTokens) {
+        window.location.replace(`https://${httpTokens[1]}`);
+      }
+    }
+  }
   return (
     <ConnectedRouter>
       <UiThemeProvider theme={theme}>

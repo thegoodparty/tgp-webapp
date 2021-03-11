@@ -57,6 +57,8 @@ const partyOptions = [
   { key: 'L', value: 'Libertarian' },
   { key: 'LI', value: 'Liberation' },
   { key: 'I', value: 'Independent' },
+  { key: 'W', value: 'Working Families Party' },
+  { key: 'S', value: 'SAM' },
 ];
 const statesOptions = states.map(state => ({
   key: state.abbreviation,

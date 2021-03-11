@@ -209,6 +209,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   });
 
   const cleanMessage = message === 'true' ? '' : message;
+  const defaultMessage = `I'm supporting someone real, not another 💩 politician!.`;
 
   const { firstName, lastName, race } = candidate || {};
   let url = '';
@@ -223,16 +224,18 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const encodedUrl = encodeURIComponent(url);
   let messageBody = encodedUrl;
   if (cleanMessage) {
-    messageBody = `${cleanMessage} ${url}`;
+    messageBody = `${cleanMessage} \n\n ${url}`;
   } else if (candidate) {
-    messageBody = `${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
+    messageBody = defaultMessage;
   }
+
+  const messageNoUrl = cleanMessage || defaultMessage;
 
   let textMessageBody = encodedUrl;
   if (cleanMessage) {
-    textMessageBody = `${url} ${cleanMessage}`;
+    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'} ${cleanMessage}`;
   } else if (candidate) {
-    textMessageBody = `${url} ${firstName} ${lastName} could win in ${race}, if we all just share this crowd-voting campaign! Add Your Vote and Share here: ${url}. ${cleanMessage}`;
+    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'} ${defaultMessage}`;
   }
 
   const emailSubject = 'Check out the Good Party';
@@ -289,13 +292,13 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       label: 'Twitter',
       icon: <IoLogoTwitter />,
       className: 'twitter',
-      link: `https://twitter.com/share?url=${encodedUrl}&text=${messageBody}`,
+      link: `https://twitter.com/share?url=${encodedUrl}&text=${messageNoUrl}`,
     },
     {
       label: 'Reddit',
       icon: <IoLogoReddit />,
       className: 'reddit',
-      link: `https://www.reddit.com/submit?url=${encodedUrl}&text=${messageBody}`,
+      link: `https://www.reddit.com/submit?url=${encodedUrl}&text=${messageNoUrl}`,
     },
     // {
     //   label: 'Instagram',

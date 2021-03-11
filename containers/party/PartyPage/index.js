@@ -42,8 +42,8 @@ export function PartyPage({ content, appVersion, ssrState }) {
   return (
     <div>
       <TgpHelmet
-        title="Party | The Good Party"
-        description="Party | The Good Party"
+        title="About | GOOD PARTY"
+        description="Learn about GOOD PARTY."
       />
       <PartyWrapper {...childProps} />
     </div>

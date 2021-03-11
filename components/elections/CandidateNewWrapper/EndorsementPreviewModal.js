@@ -60,7 +60,7 @@ function EndorsementPreviewModal({
   fromShareLink,
 }) {
   const defaultMessage = user
-    ? `Someone real, not another 💩 politician!\n\nI'm ${
+    ? `Someone real, not another 💩 politician! ${"\n"} ${"\n"} I'm ${
         user?.name
       } and I approve this message! 😜`
     : 'Someone real, not another 💩 politician!';
