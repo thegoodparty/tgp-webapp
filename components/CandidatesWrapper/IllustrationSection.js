@@ -49,9 +49,9 @@ function IllustrationSection() {
       <StyledBody13>We make votes matter more than money</StyledBody13>
       <Img src="images/see-good-candidates.svg" />
       <PurpleBody13>See Good Certified candidates</PurpleBody13>
-      <Img src="images/tell-others.svg" />
-      <PurpleBody13>Join their crowd-voting campaigns </PurpleBody13>
       <Img src="images/join-campaigns.svg" />
+      <PurpleBody13>Join their crowd-voting campaigns </PurpleBody13>
+      <Img src="images/tell-others.svg" />
       <PurpleBody13>Tell others and get out the vote!</PurpleBody13>
     </Wrapper>
   );
