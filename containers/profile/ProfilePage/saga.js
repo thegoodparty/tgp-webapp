@@ -21,6 +21,20 @@ function* loadCrewPreview() {
   }
 }
 
+function* loadUserSupported() {
+  try {
+    const api = tgpApi.supportCandidate.userSupports;
+    const payload = {
+      withCandidates: true,
+    };
+    const { supports } = yield call(requestHelper, api, payload);
+    yield put(actions.loadUserSupportedActionSuccess(supports));
+  } catch (error) {
+    console.log('crew error', JSON.stringify(error));
+  }
+}
+
 export default function* profilePageSaga() {
   let action = yield takeLatest(types.LOAD_CREW_PREVIEW, loadCrewPreview);
+  yield takeLatest(types.LOAD_USER_SUPPORTED, loadUserSupported);
 }

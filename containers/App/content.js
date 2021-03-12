@@ -2671,115 +2671,6 @@ const content = {
       "id": "4c0UMRSwDPu5gLSPPxGz4s"
     },
     {
-      "title": "How can I learn more about Good Party?",
-      "articleBody": {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Join us for a ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "https://thegoodparty.org/party/events"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "value": "Livestream + Q&A or Watch a Replay",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "value": "",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "or",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Read our ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "https://thegoodparty.org/party/faqs"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "value": "FAQ",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "value": "",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          }
-        ],
-        "nodeType": "document"
-      },
-      "category": {
-        "id": "1x8sreeqPN0PK929WRNw4I",
-        "fields": {
-          "name": "About Us",
-          "order": 300
-        }
-      },
-      "id": "7D3TGoveRpv3RjgAWnefCy"
-    },
-    {
       "title": "What does it mean to \"endorse\" a candidate?",
       "articleBody": {
         "nodeType": "document",
@@ -2974,10 +2865,6 @@ const content = {
         {
           "title": "Our team",
           "id": "579kihjyIPloNaEw02rniq"
-        },
-        {
-          "title": "How can I learn more about Good Party?",
-          "id": "7D3TGoveRpv3RjgAWnefCy"
         }
       ]
     },
@@ -3009,13 +2896,6 @@ const content = {
           "id": "7jm2j9gapWwEoVwVD3VX6o"
         }
       ]
-    },
-    {
-      "fields": {
-        "name": "Meet the candidates FAQ"
-      },
-      "id": "7eOiHTthKy6ZWpUKnUiJpI",
-      "articles": []
     }
   ],
   "events": [],

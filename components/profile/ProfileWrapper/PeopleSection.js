@@ -90,7 +90,7 @@ function PeopleSection({ user, crewPreview, crewCount }) {
     }
   }, [crewPreview]);
 
-  console.log('crewFillers', crewFillers);
+
 
   return (
     <Wrapper>

@@ -74,7 +74,7 @@ const PartyWrapper = ({ content, candidates }) => {
               </WorksItem>
               <WorksItem>
                 <div>
-                  <Img src="images/join-campaigns.svg" />
+                  <Img src="images/tell-others.svg" />
                 </div>
                 <ItemText>
                   <ItemTitle>Grow</ItemTitle>
@@ -85,7 +85,7 @@ const PartyWrapper = ({ content, candidates }) => {
               </WorksItem>
               <WorksItem>
                 <div>
-                  <Img src="images/tell-others.svg" />
+                  <Img src="images/join-campaigns.svg" />
                 </div>
                 <ItemText>
                   <ItemTitle>Win</ItemTitle>

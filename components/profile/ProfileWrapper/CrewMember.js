@@ -27,7 +27,7 @@ const CrewMember = ({
   showName = true,
 }) => (
   <Wrapper key={crewMember.uuid} data-cy="crew-member">
-    <UserAvatar user={crewMember} size="lg" />
+    <UserAvatar user={crewMember} size="large" />
     {showName && (
       <div
         style={{ marginTop: '4px' }}

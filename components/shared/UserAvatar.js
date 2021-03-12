@@ -28,12 +28,12 @@ const Avatar = styled.div`
   }
 
   &.large {
-    height: 62px;
-    width: 62px;
+    height: 64px;
+    width: 64px;
 
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-      height: 96px;
-      width: 96px;
+      height: 94px;
+      width: 94px;
     }
   }
 `;
@@ -62,30 +62,18 @@ const UserInitials = styled(Body14)`
       font-size: 24px;
     }
   }
-`;
 
-const LargeUserInitials = styled.div`
-  font-size: 27px;
-  line-height: 35px;
-  margin: 0;
+  &.large {
+    height: 64px;
+    width: 64px;
+    font-size: 18px;
 
-  cursor: pointer;
-  height: 64px;
-  width: 64px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.purple4};
-  text-transform: uppercase;
-  border: solid 2px ${({ theme }) => theme.colors.purple};
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    height: 94px;
-    width: 94px;
-    font-size: 36px;
-    line-height: 42px;
+    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      height: 94px;
+      width: 94px;
+      font-size: 36px;
+      line-height: 42px;
+    }
   }
 `;
 
@@ -99,15 +87,7 @@ const UserAvatar = ({ user, size = 'small' }) => (
             style={{ backgroundImage: `url(${user.avatar})` }}
           />
         ) : (
-          <>
-            {size === 'small' || size === 'medium' ? (
-              <UserInitials className={size}>
-                {getInitials(user.name)}
-              </UserInitials>
-            ) : (
-              <LargeUserInitials>{getInitials(user.name)}</LargeUserInitials>
-            )}
-          </>
+          <UserInitials className={size}>{getInitials(user.name)}</UserInitials>
         )}
       </Wrapper>
     )}

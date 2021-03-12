@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 import UserAvatar from '../../shared/UserAvatar';
 import { Body13, H1 } from '../../shared/typogrophy';
-import MaxWidth from './MaxWidth';
+import MaxWidth from '../ProfileWrapper/MaxWidth';
 
 const Wrapper = styled.section`
   padding: 32px;
@@ -36,35 +36,13 @@ const TopRowText = styled.div`
   }
 `;
 
-const Settings = styled(Body13)`
-  color: ${({ theme }) => theme.colors.purple};
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  cursor: pointer;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    position: static;
-  }
-`;
-
 function TopSection({ user }) {
   return (
     <Wrapper>
       <MaxWidth>
-        <Row>
-          <UserAvatar user={user} size="large" />
-          <TopRowText>
-            <StyledH1>{user.name}</StyledH1>
-            <Link href="/profile/settings">
-              <Settings>
-                <span style={{ marginRight: '6px' }}>Settings</span>
-                <img src="/images/icons/settings.svg" />
-              </Settings>
-            </Link>
-          </TopRowText>
-        </Row>
+        <TopRowText>
+          <StyledH1>{user.name}</StyledH1>
+        </TopRowText>
       </MaxWidth>
     </Wrapper>
   );

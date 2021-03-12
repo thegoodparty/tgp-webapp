@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: tgp-site-prod1
+    environment: tgp-site-prod
   develop:
     environment: tgp-site-dev
 environment-defaults:
