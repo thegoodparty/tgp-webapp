@@ -52,7 +52,6 @@ const PartyWrapper = ({ content, candidates }) => {
   if (content && content.partyPage) {
     mainContent = contentfulHelper(content.partyPage.content);
   }
-  console.log('profile page');
 
   return (
     <PageWrapper purple isFullWidth>
