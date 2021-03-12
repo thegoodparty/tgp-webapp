@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -22,30 +22,57 @@ import makeSelectProfilePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import userActions from './actions';
+import actions from './actions';
 
 export function ProfilePage({ dispatch, profilePage }) {
+  const [supported, setSupported] = useState(false);
   const router = useRouter();
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
 
-  const { loading, crewPreview, crewCount } = profilePage;
+  const { loading, crewPreview, crewCount, userSupported } = profilePage;
   const user = getUserCookie(true);
 
   useEffect(() => {
     if (user && !crewPreview) {
       dispatch(userActions.loadCrewPreviewAction());
     }
-  }, [user]);
+    if (user && !userSupported) {
+      dispatch(actions.loadUserSupportedAction());
+    }
+    if (typeof window !== 'undefined' && !user) {
+      router.push('login');
+    }
+  }, []);
 
-  if (typeof window !== 'undefined' && !user) {
-    router.push('login');
-  }
-  console.log('crewPreview', crewPreview);
-  const childProps = { user, loading, crewPreview, crewCount };
+  useEffect(() => {
+    if (userSupported) {
+      const tempSupported = [];
+      userSupported.forEach(support => {
+        if (support.candidate?.data) {
+          const parsed = JSON.parse(support.candidate.data);
+          parsed.supporters = support.candidate.supporters;
+          tempSupported.push(parsed);
+        }
+      });
+      setSupported(tempSupported);
+    }
+  }, [userSupported]);
+
+  const childProps = {
+    user,
+    loading,
+    crewPreview,
+    crewCount,
+    userSupported: supported,
+  };
 
   return (
     <div>
-      <TgpHelmet title="Profile Page" description="Profile Page | Good Party" />
+      <TgpHelmet
+        title="Profile Page"
+        description="Profile Page | Good Party"
+      />
       {user && <ProfileWrapper {...childProps} />}
     </div>
   );

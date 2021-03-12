@@ -28,12 +28,11 @@ export const GrayText = styled.span`
 const ContentWrpper = styled(MaxWidth)`
   padding: 24px 20px 48px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 32px 0 64px;
+    padding: 32px 20px 64px;
   }
 `;
 
-function ProfileWrapper({ user, crewPreview, crewCount }) {
-  console.log('user', user);
+function ProfileWrapper({ user, crewPreview, crewCount, userSupported }) {
   return (
     <PageWrapper purple isFullWidth>
       <TopSection user={user} />
@@ -50,7 +49,7 @@ function ProfileWrapper({ user, crewPreview, crewCount }) {
             <SpreadSection user={user} />
           </Grid>
         </Grid>
-        <CampaignSection />
+        <CampaignSection userSupported={userSupported} />
       </ContentWrpper>
     </PageWrapper>
   );
@@ -60,6 +59,7 @@ ProfileWrapper.propTypes = {
   user: PropTypes.object,
   crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   crewCount: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  userSupported: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ProfileWrapper;

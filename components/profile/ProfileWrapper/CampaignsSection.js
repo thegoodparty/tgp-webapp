@@ -8,10 +8,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Grid from '@material-ui/core/Grid';
 
-import { uuidUrl } from 'helpers/userHelper';
-
-import { Body13, Body19, Body9, H1 } from '../../shared/typogrophy';
+import { Body19 } from 'components/shared/typogrophy';
+import CandidateCard from 'components/shared/CandidateCard';
 import { GrayText } from './index';
 
 const Wrapper = styled.section`
@@ -38,18 +38,28 @@ const Feedback = styled.div`
   }
 `;
 
-function CampaignSection({ user }) {
+function CampaignSection({ userSupported }) {
   return (
     <Wrapper>
       <Body19>
         <strong>Campaigns you’re supporting</strong>
         <br />
         <GrayText>These are the candidates you endorse</GrayText>
-        <Link href="candidates" passHref>
-          <a>
-            <MeetLink>Meet the candidates</MeetLink>
-          </a>
-        </Link>
+        {userSupported && userSupported.length > 0 ? (
+          <Grid container spacing={1} style={{ marginTop: '24px' }}>
+            {userSupported.map(candidate => (
+              <Grid item xs={12} sm={6} lg={4} key={candidate.id}>
+                <CandidateCard candidate={candidate} />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Link href="candidates" passHref>
+            <a>
+              <MeetLink>Meet the candidates</MeetLink>
+            </a>
+          </Link>
+        )}
         <a href="mailto:ask@goodparty.org?subject=Feedback%20or%20Suggestion">
           <Feedback>Give feedback or suggestions</Feedback>
         </a>
@@ -59,7 +69,7 @@ function CampaignSection({ user }) {
 }
 
 CampaignSection.propTypes = {
-  user: PropTypes.object,
+  userSupported: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default CampaignSection;
