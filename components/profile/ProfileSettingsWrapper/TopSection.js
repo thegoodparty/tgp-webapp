@@ -12,44 +12,47 @@ import Link from 'next/link';
 
 import UserAvatar from '../../shared/UserAvatar';
 import { Body13, H1 } from '../../shared/typogrophy';
-import MaxWidth from '../ProfileWrapper/MaxWidth';
+
+import Breadcrumbs from '../../shared/Breadcrumbs';
 
 const Wrapper = styled.section`
-  padding: 32px;
-  background-color: ${({ theme }) => theme.colors.purple4};
-  position: relative;
-`;
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
+  padding: 32px 0;
 `;
 
 const StyledH1 = styled(H1)`
   font-size: 23px;
+  margin-top: 24px;
 `;
 
-const TopRowText = styled.div`
-  margin-left: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin-left: 24px;
-  }
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 `;
 
-function TopSection({ user }) {
+const breadcrumbsLinks = [
+  { href: '/profile', label: 'Your Profile' },
+  {
+    label: 'Settings',
+  },
+];
+
+function TopSection({ signoutCallback }) {
   return (
     <Wrapper>
-      <MaxWidth>
-        <TopRowText>
-          <StyledH1>{user.name}</StyledH1>
-        </TopRowText>
-      </MaxWidth>
+      <Breadcrumbs links={breadcrumbsLinks} />
+      <Row>
+        <StyledH1>Settings</StyledH1>
+        <Body13 onClick={signoutCallback}>
+          <span className="purple-text">Sign Out</span>
+        </Body13>
+      </Row>
     </Wrapper>
   );
 }
 
 TopSection.propTypes = {
-  user: PropTypes.object,
+  signoutCallback: PropTypes.func,
 };
 
 export default TopSection;

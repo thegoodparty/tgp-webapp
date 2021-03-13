@@ -12,15 +12,17 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import ProfileSettingsWrapper from 'components/profile/ProfileSettingsWrapper';
-import { getUserCookie } from 'helpers/cookieHelper';
+import { deleteCookies, getUserCookie } from 'helpers/cookieHelper';
+import TgpHelmet from 'components/shared/TgpHelmet';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectProfileSettingsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import actions from './actions';
 
-export function ProfileSettingsPage() {
+export function ProfileSettingsPage({ signoutCallback, updateUserCallback }) {
   useInjectReducer({ key: 'profileSettingsPage', reducer });
   useInjectSaga({ key: 'profileSettingsPage', saga });
 
@@ -28,14 +30,13 @@ export function ProfileSettingsPage() {
 
   const childProps = {
     user,
+    signoutCallback,
+    updateUserCallback,
   };
 
   return (
     <div>
-      <Helmet>
-        <title>ProfileSettingsPage</title>
-        <meta name="description" content="Description of ProfileSettingsPage" />
-      </Helmet>
+      <TgpHelmet title="GOOD PARTY | Profile Settings" />
       <ProfileSettingsWrapper {...childProps} />
     </div>
   );
@@ -43,6 +44,8 @@ export function ProfileSettingsPage() {
 
 ProfileSettingsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  signoutCallback: PropTypes.func,
+  updateUserCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -52,6 +55,18 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    signoutCallback: () => {
+      deleteCookies();
+      window.location.replace('/');
+    },
+    updateUserCallback: (key, value) => {
+      console.log('updte', key, value);
+      let cleanValue = value;
+      if (key === 'phone') {
+        cleanValue = value.replace(/\D+/g, '');
+      }
+      dispatch(actions.updateUserAction({ [key]: cleanValue }));
+    },
   };
 }
 

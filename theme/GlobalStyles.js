@@ -44,6 +44,10 @@ const GlobalStyles = createGlobalStyle`
     color: #117CB6;
   }
 
+  .purple-text {
+  color: #5C00C7;
+  }
+
   .text-right {
     text-align: right;
   }
