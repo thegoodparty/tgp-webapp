@@ -100,6 +100,7 @@ function ComparedCandidateCarousel({ candidates }) {
         <CompareCandidate
           candidate={candidates[0]}
           setTopicCallback={handleSetTopic}
+          partyBadge
         />
       </Grid>
       <Grid item xs={6}>

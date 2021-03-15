@@ -67,7 +67,11 @@ const ICONS = {
   Yes: '/images/checkmark.svg',
   '?': '/images/question.svg',
 };
-function ComparedCandidate({ candidate, setTopicCallback }) {
+function ComparedCandidate({
+  candidate,
+  setTopicCallback,
+  partyBadge = false,
+}) {
   if (!candidate) {
     return <NotFound />;
   }
@@ -84,7 +88,12 @@ function ComparedCandidate({ candidate, setTopicCallback }) {
   }
   return (
     <>
-      <CandidateAvatar party={cleanParty} avatar={encodeURI(image)} centered />
+      <CandidateAvatar
+        party={cleanParty}
+        avatar={encodeURI(image)}
+        centered
+        partyBadge={partyBadge}
+      />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
       </CandidateNameWrapper>

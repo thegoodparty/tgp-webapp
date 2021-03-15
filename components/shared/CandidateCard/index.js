@@ -86,7 +86,7 @@ function CandidateCard({ candidate }) {
   const intLikelyVoters = parseInt(likelyVoters, 10);
   return (
     <Wrapper>
-      <CandidateAvatar avatar={image} party={party} size="medium" />
+      <CandidateAvatar avatar={image} party={party} size="medium" partyBadge />
       <Name>
         {firstName} {lastName}
       </Name>
