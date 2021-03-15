@@ -258,7 +258,7 @@ const EditProfileWrapper = ({
   return (
     <PageWrapper white>
       <Hidden smDown>
-        <Link href="/you" data-cy="back-link">
+        <Link href="/profile" data-cy="back-link">
           <BackIcon style={{ fontSize: '34px' }} />
         </Link>
       </Hidden>

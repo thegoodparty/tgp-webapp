@@ -281,14 +281,14 @@ function* confirmEmail(action) {
       );
     }
     if (fromLogin) {
-      yield put(push('/you'));
+      yield put(push('/profile'));
     } else {
       const cookieRedirect = getSignupRedirectCookie();
       if (cookieRedirect) {
         yield put(push(cookieRedirect.route));
         deleteSignupRedirectCookie();
       } else {
-        yield put(push('/you'));
+        yield put(push('/profile'));
       }
     }
     AnalyticsService.sendEvent('email-login-confirm', 'success');
@@ -314,7 +314,7 @@ function* login(action) {
     setUserCookie(user);
     setCookie('token', token);
     deleteCookie('guestRanking');
-    yield put(push('/you'));
+    yield put(push('/profile'));
     AnalyticsService.sendEvent('email-login', 'success');
   } catch (error) {
     yield put(
@@ -507,7 +507,7 @@ function* socialLogin(action) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      yield put(push('/you'));
+      yield put(push('/profile'));
     }
 
     setUserCookie(responseUser);
@@ -584,7 +584,7 @@ function* uploadAvatar(action) {
       snackbarActions.showSnakbarAction('Your Profile photo is updated'),
     );
     if (withRedirect) {
-      yield put(push('/you'));
+      yield put(push('/profile'));
     }
   } catch (error) {
     yield put(
@@ -827,7 +827,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      yield put(push('/you'));
+      yield put(push('/profile'));
     }
 
     setUserCookie(user);

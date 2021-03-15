@@ -30,7 +30,7 @@ export function RegisterPage({ userState, registerCallback, dispatch }) {
 
   useEffect(() => {
     if (user) {
-      dispatch(push('/you'));
+      dispatch(push('/profile'));
     }
   }, []);
 
