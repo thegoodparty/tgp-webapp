@@ -10,7 +10,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { Body, Body11, H1, Body13 } from 'components/shared/typogrophy';
 import LoadingAnimation from 'components/shared/LoadingAnimation';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
-import { BlueButton } from '../../shared/buttons';
+import { PurpleButton } from '../../shared/buttons';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -191,9 +191,9 @@ const FaqArticleWrapper = ({
                     onClick={handleSubmit}
                     data-cy="feedback-submit"
                   >
-                    <BlueButton disabled={feedback === ''} fullWidth>
+                    <PurpleButton disabled={feedback === ''} fullWidth>
                       SUBMIT
-                    </BlueButton>
+                    </PurpleButton>
                   </SubmitButtonWrapper>
                 </>
               )}
