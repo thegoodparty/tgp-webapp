@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { MaxWidth } from '../ProfileWrapper';
@@ -49,6 +50,23 @@ const Invite = styled.div`
   border: solid 2px ${({ theme }) => theme.colors.purple};
   color: ${({ theme }) => theme.colors.purple};
   font-weight: 500;
+  cursor: pointer;
+`;
+
+const Everyone = styled.span`
+  display: inline-block;
+  color: ${({ theme }) => theme.colors.purple};
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+`;
+
+const Seperator = styled.span`
+  display: inline-block;
+  color: ${({ theme }) => theme.colors.gray7};
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 4px;
 `;
 
 function LeaderboardWrapper({ crew, user, leaderboard }) {
@@ -59,7 +77,12 @@ function LeaderboardWrapper({ crew, user, leaderboard }) {
         <StyledBody19>
           Invite Good Party people and move up the leaderboard when they join.
         </StyledBody19>
-        <Title>Your People</Title>
+        <Title>
+          Your People <Seperator>|</Seperator>{' '}
+          <Link href="#everyone">
+            <Everyone>Everyone</Everyone>
+          </Link>
+        </Title>
         <LeaderboardPerson purple person={user} index={0} />
         {crew &&
           crew.map((crewMember, index) => (
@@ -68,10 +91,12 @@ function LeaderboardWrapper({ crew, user, leaderboard }) {
 
         <Better>Good Parties are better with friends!</Better>
         <div className="text-center">
-          <Invite>INVITE PEOPLE</Invite>
+          <Link href="?share=true">
+            <Invite>INVITE PEOPLE</Invite>
+          </Link>
         </div>
 
-        <Title>Everyone</Title>
+        <Title id="everyone">Everyone</Title>
         {leaderboard &&
           leaderboard.map((member, index) => (
             <LeaderboardPerson
