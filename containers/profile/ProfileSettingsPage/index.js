@@ -22,7 +22,11 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
-export function ProfileSettingsPage({ signoutCallback, updateUserCallback }) {
+export function ProfileSettingsPage({
+  signoutCallback,
+  updateUserCallback,
+  changePasswordCallback,
+}) {
   useInjectReducer({ key: 'profileSettingsPage', reducer });
   useInjectSaga({ key: 'profileSettingsPage', saga });
 
@@ -32,6 +36,7 @@ export function ProfileSettingsPage({ signoutCallback, updateUserCallback }) {
     user,
     signoutCallback,
     updateUserCallback,
+    changePasswordCallback,
   };
 
   return (
@@ -46,6 +51,7 @@ ProfileSettingsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   signoutCallback: PropTypes.func,
   updateUserCallback: PropTypes.func,
+  changePasswordCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -66,6 +72,10 @@ function mapDispatchToProps(dispatch) {
         cleanValue = value.replace(/\D+/g, '');
       }
       dispatch(actions.updateUserAction({ [key]: cleanValue }));
+    },
+    changePasswordCallback: (password, oldPassword) => {
+      console.log('in page');
+      dispatch(actions.changePasswordAction(password, oldPassword));
     },
   };
 }

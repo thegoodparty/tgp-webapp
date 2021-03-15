@@ -16,7 +16,15 @@ const updateUserActionSuccess = user => ({
   user,
 });
 
+const changePasswordAction = (password, oldPassword) => ({
+  type: types.CHANGE_PASSWORD,
+  password,
+  oldPassword,
+});
+
 export default {
   updateUserAction,
   updateUserActionSuccess,
+
+  changePasswordAction,
 };

@@ -13,7 +13,12 @@ import PageWrapper from '../../shared/PageWrapper';
 import TopSection from './TopSection';
 import PersonalSection from './PersonalSection';
 
-function ProfileSettingsWrapper({ user, signoutCallback, updateUserCallback }) {
+function ProfileSettingsWrapper({
+  user,
+  signoutCallback,
+  updateUserCallback,
+  changePasswordCallback,
+}) {
   return (
     <PageWrapper purple>
       <Grid container spacing={3} alignItems="center">
@@ -22,6 +27,7 @@ function ProfileSettingsWrapper({ user, signoutCallback, updateUserCallback }) {
           <PersonalSection
             user={user}
             updateUserCallback={updateUserCallback}
+            changePasswordCallback={changePasswordCallback}
           />
         </Grid>
         <Grid item xs={12} md={5}>
@@ -36,6 +42,7 @@ ProfileSettingsWrapper.propTypes = {
   user: PropTypes.object,
   signoutCallback: PropTypes.func,
   updateUserCallback: PropTypes.func,
+  changePasswordCallback: PropTypes.func,
 };
 
 export default ProfileSettingsWrapper;
