@@ -93,7 +93,6 @@ const Cancel = styled.div`
 const ButtonCancelWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: block;
   }
@@ -257,34 +256,34 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
       <Row>
         <div style={{ flex: 1 }}>
           <Label>Password</Label>
-          <Hidden mdDown>
-            {editPassword ? (
-              <>
-                {user.hasPassword && (
-                  <StyledTextField
-                    label="Old Password"
-                    fullWidth
-                    variant="outlined"
-                    type="password"
-                    value={oldPassword}
-                    onChange={e => {
-                      setOldPassword(e.target.value);
-                    }}
-                    style={{ marginBottom: '16px' }}
-                  />
-                )}
+          {editPassword ? (
+            <>
+              {user.hasPassword && (
                 <StyledTextField
-                  label="Password"
+                  label="Old Password"
                   fullWidth
                   variant="outlined"
-                  value={password}
                   type="password"
+                  value={oldPassword}
                   onChange={e => {
-                    setPassword(e.target.value);
+                    setOldPassword(e.target.value);
                   }}
+                  style={{ marginBottom: '16px' }}
                 />
-                <small>8 characters minimum</small>
-                <br />
+              )}
+              <StyledTextField
+                label="Password"
+                fullWidth
+                variant="outlined"
+                value={password}
+                type="password"
+                onChange={e => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <small>8 characters minimum</small>
+              <br />
+              <ButtonCancelWrapper>
                 <PurpleButton
                   style={{ marginTop: '24px' }}
                   onClick={handleSavePassword}
@@ -292,13 +291,23 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
                 >
                   <span style={{ padding: '0 24px' }}>SAVE</span>
                 </PurpleButton>
-              </>
-            ) : (
-              <>{user.hasPassword ? '********' : 'Not Set Yet'}</>
-            )}
-          </Hidden>
+                <Cancel onClick={() => setEditPassword(false)}>Cancel</Cancel>
+              </ButtonCancelWrapper>
+            </>
+          ) : (
+            <>{user.hasPassword ? '********' : 'Not Set Yet'}</>
+          )}
         </div>
-        <Hidden mdUp>Hmm</Hidden>
+        <Hidden mdUp>
+          <ChevronWrapper
+            className="chevron"
+            onClick={() => {
+              setEditPassword(true);
+            }}
+          >
+            <BsChevronRight />
+          </ChevronWrapper>
+        </Hidden>
         <Hidden mdDown>
           {editPassword ? (
             <Action

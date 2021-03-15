@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import PageWrapper from '../../shared/PageWrapper';
 import TopSection from './TopSection';
 import PersonalSection from './PersonalSection';
+import ImageSection from './ImageSection';
 
 function ProfileSettingsWrapper({
   user,
@@ -23,7 +24,7 @@ function ProfileSettingsWrapper({
     <PageWrapper purple>
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12} md={7}>
-          <TopSection signoutCallback={signoutCallback} />
+          <TopSection signoutCallback={signoutCallback} user={user} />
           <PersonalSection
             user={user}
             updateUserCallback={updateUserCallback}
@@ -31,7 +32,7 @@ function ProfileSettingsWrapper({
           />
         </Grid>
         <Grid item xs={12} md={5}>
-          Image
+          <ImageSection user={user} />
         </Grid>
       </Grid>
     </PageWrapper>
