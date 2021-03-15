@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -25,16 +26,15 @@ import EmailConfirmationWrapper from 'components/you/EmailConfirmationWrapper';
 
 export function EmailConfirmationPage({
   userState,
-  locationState,
   resendEmailCallback,
   dispatch,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
-
-  const { search } = locationState;
-  const email = queryHelper(search, 'email');
-  const token = queryHelper(search, 'token');
+  const router = useRouter();
+  const { asPath } = router;
+  const email = queryHelper(`?${asPath.split('?')[1]}`, 'email');
+  const token = queryHelper(`?${asPath.split('?')[1]}`, 'token');
   const { loading, error } = userState;
 
   useEffect(() => {
