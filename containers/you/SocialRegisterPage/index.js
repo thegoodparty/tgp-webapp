@@ -39,7 +39,7 @@ export function SocialRegisterPage({
   useEffect(() => {
     // if (user) {
     //   console.log('redirect to  you6');
-    //   dispatch(push('/you'));
+    //   dispatch(push('/profile'));
     // }
     const blocCookie = getSignupRedirectCookie();
     if (blocCookie) {

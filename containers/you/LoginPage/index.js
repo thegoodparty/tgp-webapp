@@ -37,7 +37,7 @@ export function LoginPage({
   const { user } = userState;
   useEffect(() => {
     if (user) {
-      dispatch(push('/you'));
+      dispatch(push('/profile'));
     }
   }, [userState]);
 

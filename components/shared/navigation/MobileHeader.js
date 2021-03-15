@@ -124,7 +124,7 @@ function MobileHeader({ user }) {
           />
         </Link>
         {user?.name ? (
-          <Link href="/you" passHref>
+          <Link href="/profile" passHref>
             <a>
               <AvatarWrapper>
                 <UserAvatar user={user} />
@@ -189,7 +189,7 @@ function MobileHeader({ user }) {
 
           <AuthButtonWrapper className={!user?.name && 'auth-button'}>
             {user?.name ? (
-              <Link href="/you" className="text-center" passHref>
+              <Link href="/profile" className="text-center" passHref>
                 <a style={{ width: '100%' }}>
                   <PushAvatarWrapper>
                     <UserAvatar user={user} />

@@ -143,7 +143,7 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
             <TopLink className="menu-item active">Creators</TopLink>
           </Link>
           {user ? (
-            <Link href="/you">
+            <Link href="/profile">
               <TopLink
                 className="menu-item"
                 onClick={deleteSignupRedirectCookie}
@@ -174,7 +174,7 @@ const CreatorsDesktopHeader = ({ toggleJoin, user }) => {
               </ListItem>
               {user ? (
                 <ListItem button>
-                  <Link href="/you">
+                  <Link href="/profile">
                     <TopLink className="menu-item">You</TopLink>
                   </Link>
                 </ListItem>

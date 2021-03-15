@@ -229,6 +229,13 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     messageBody = defaultMessage;
   }
 
+  let encodedMessageBody = encodedUrl;
+  if (cleanMessage) {
+    encodedMessageBody = `${cleanMessage} \n\n ${encodedUrl}`;
+  } else if (candidate) {
+    encodedMessageBody = defaultMessage;
+  }
+
   const messageNoUrl = cleanMessage || defaultMessage;
 
   let textMessageBody = encodedUrl;
@@ -238,7 +245,9 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'} ${defaultMessage}`;
   }
 
-  const emailSubject = 'Check out the Good Party';
+  const emailSubject = candidate
+    ? `Check out ${candidate.firstName} ${candidate.lastName} on Good Party`
+    : 'Check out the Good Party';
 
   const emailBody = cleanMessage
     ? `${cleanMessage} ${encodedUrl}`
@@ -253,6 +262,8 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     AnalyticsService.sendEvent('Sharing', 'Click Share Method', shareType);
     // trackShareCallback(candidate);
   };
+
+  console.log(' messageBody', messageBody);
 
   const privateChannels = [
     {
@@ -277,7 +288,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       label: 'WhatsApp',
       icon: <ImWhatsapp />,
       className: 'whatsapp',
-      link: `https://api.whatsapp.com/send?text=${messageBody}`,
+      link: `https://api.whatsapp.com/send?text=${encodedMessageBody}`,
     },
     // {
     //   label: 'Snapchat',
@@ -298,7 +309,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       label: 'Reddit',
       icon: <IoLogoReddit />,
       className: 'reddit',
-      link: `https://www.reddit.com/submit?url=${encodedUrl}&text=${messageNoUrl}`,
+      link: `https://www.reddit.com/submit?url=${encodedUrl}&text=${messageNoUrl}&title=${emailSubject}`,
     },
     // {
     //   label: 'Instagram',

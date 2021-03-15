@@ -245,7 +245,7 @@ const DesktopHeader = ({ user }) => {
               </Share>
 
               {user?.name && (
-                <Link href="/you" passHref>
+                <Link href="/profile" passHref>
                   <a>
                     <AvatarWrapper>
                       <UserAvatar user={user} />

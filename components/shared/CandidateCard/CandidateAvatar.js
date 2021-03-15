@@ -91,8 +91,14 @@ const PartyIcon = styled.img`
   }
 
   &.party-I {
-  background: transparent;
-  border: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  &.no-bg {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none;
   }
 `;
 const CandidateAvatar = ({
@@ -101,9 +107,12 @@ const CandidateAvatar = ({
   size = 'large',
   afterLoad = () => {},
   centered = false,
+  partyBadge = false,
 }) => {
   let PartyImg;
-  if (party === 'D') {
+  if (partyBadge) {
+    PartyImg = '/images/icons/certification-badge.svg';
+  } else if (party === 'D') {
     PartyImg = '/images/icons/democrat.png';
   } else if (party === 'R') {
     PartyImg = '/images/icons/republican.png';
@@ -145,7 +154,8 @@ const CandidateAvatar = ({
       {PartyImg && (
         <PartyIcon
           src={PartyImg}
-          className={`full-image ${size} party-${party}`}
+          className={`full-image ${size} party-${party} ${partyBadge &&
+            'no-bg'}`}
         />
       )}
     </ChallengerAvatarWrapper>
@@ -157,6 +167,8 @@ CandidateAvatar.propTypes = {
   party: PropTypes.string,
   size: PropTypes.string,
   afterLoad: PropTypes.func,
+  centered: PropTypes.bool,
+  partyBadge: PropTypes.bool,
 };
 
 export default CandidateAvatar;

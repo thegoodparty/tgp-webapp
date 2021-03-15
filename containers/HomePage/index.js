@@ -30,14 +30,14 @@ export function HomePage({
 }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
-
-  if (ssrState) {
-    const candidates = ssrState.homepageCandidates;
-    dispatch(actions.loadHomepageCandidatesActionSuccess(candidates));
-  }
-  const { homepageCandidates } = homeState;
+  //
+  // if (ssrState) {
+  //   const candidates = ssrState.homepageCandidates;
+  //   dispatch(actions.loadHomepageCandidatesActionSuccess(candidates));
+  // }
+  // const { homepageCandidates } = homeState;
   const childProps = {
-    homepageCandidates,
+    homepageCandidates: ssrState.homepageCandidates,
     subscribeEmailCallback,
   };
 

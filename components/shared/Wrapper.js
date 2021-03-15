@@ -3,15 +3,15 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 const WrapperDiv = styled.div`
   min-height: calc(100vh - 140px);
-  min-height: calc(var(--vh, 1vh) * 100 - 140px);
+  //min-height: calc(var(--vh, 1vh) * 100 - 140px);
   max-width: ${({ theme }) => theme.breakpoints.contentMax};
   margin: 0 auto;
   padding: 0 16px 0;
   background-color: ${({ theme }) => theme.colors.grayBg};
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 3rem 16px 0;
+    padding: 0 16px;
     min-height: calc(100vh - 40px);
-    min-height: calc(var(--vh, 1vh) * 100 - 40px);
+    //min-height: calc(var(--vh, 1vh) * 100 - 40px);
   }
 
   &.white {
@@ -22,33 +22,33 @@ const WrapperDiv = styled.div`
   }
   &.no-header {
     min-height: calc(100vh);
-    min-height: calc(var(--vh, 1vh) * 100);
+    //min-height: calc(var(--vh, 1vh) * 100);
     @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
       min-height: calc(100vh);
-      min-height: calc(var(--vh, 1vh) * 100);
+      //min-height: calc(var(--vh, 1vh) * 100);
     }
   }
 `;
 
 const Wrapper = ({ children, style, white, purple, noHeader = false }) => {
-  useEffect(() => {
-    let vh;
-    if (typeof window !== 'undefined') {
-      vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-      const handleWindowResize = () => {
-        vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-      };
-
-      window.addEventListener('resize', handleWindowResize);
-
-      return function unmount() {
-        window.removeEventListener('resize', handleWindowResize);
-      };
-    }
-  }, []);
+  // useEffect(() => {
+  //   let vh;
+  //   if (typeof window !== 'undefined') {
+  //     vh = window.innerHeight * 0.01;
+  //     document.documentElement.style.setProperty('--vh', `${vh}px`);
+  //
+  //     const handleWindowResize = () => {
+  //       vh = window.innerHeight * 0.01;
+  //       document.documentElement.style.setProperty('--vh', `${vh}px`);
+  //     };
+  //
+  //     window.addEventListener('resize', handleWindowResize);
+  //
+  //     return function unmount() {
+  //       window.removeEventListener('resize', handleWindowResize);
+  //     };
+  //   }
+  // }, []);
   let className = '';
   if (white) {
     className = 'white';

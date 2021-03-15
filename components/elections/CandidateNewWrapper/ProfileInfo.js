@@ -175,6 +175,7 @@ function ProfileInfo({
             avatar={image}
             party={party}
             size={isMobile ? 'small' : 'large'}
+            partyBadge
           />
           <div>
             <CandidateName>

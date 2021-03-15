@@ -75,7 +75,7 @@ function mapDispatchToProps(dispatch) {
       } else if (redirect) {
         dispatch(push(`${redirect}`));
       } else {
-        dispatch(push('/you'));
+        dispatch(push('/profile'));
       }
     },
   };
