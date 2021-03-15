@@ -1,5 +1,6 @@
 import apiHelper from '../helpers/apiHelper';
 const base = apiHelper.apiBase;
+console.log('base', base);
 const api = {
   base,
   //
