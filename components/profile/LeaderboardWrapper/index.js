@@ -10,11 +10,12 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 import PageWrapper from '../../shared/PageWrapper';
-import { MaxWidth } from '../ProfileWrapper';
 import { Body19, H1 } from '../../shared/typogrophy';
 import LeaderboardPerson from './LeaderboardPerson';
 
-const ContentWrpper = styled(MaxWidth)`
+const ContentWrpper = styled.div`
+  max-width: 640px;
+  margin: 0 auto;
   padding: 24px 20px 48px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 40px 0 64px;
@@ -83,7 +84,7 @@ function LeaderboardWrapper({ crew, user, leaderboard }) {
             <Everyone>Everyone</Everyone>
           </Link>
         </Title>
-        <LeaderboardPerson purple person={user} index={0} />
+        <LeaderboardPerson you person={user} index={0} />
         {crew &&
           crew.map((crewMember, index) => (
             <LeaderboardPerson person={crewMember} index={index + 1} />
@@ -100,7 +101,7 @@ function LeaderboardWrapper({ crew, user, leaderboard }) {
         {leaderboard &&
           leaderboard.map((member, index) => (
             <LeaderboardPerson
-              purple={member.uuid === user.uuid}
+              you={member.uuid === user.uuid}
               person={member}
               index={index}
             />

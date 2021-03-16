@@ -11,6 +11,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 import { numberFormatter } from 'helpers/numberHelper';
 import UserAvatar from '../../shared/UserAvatar';
+import { fullFirstLastInitials } from '../../../helpers/userHelper';
 
 const heartImg = '/images/heart.svg';
 
@@ -64,39 +65,34 @@ const Heart = styled.img`
   margin-right: 6px;
 `;
 
-function LeaderboardPerson({ purple = false, person, index }) {
+function LeaderboardPerson({ you = false, person, index }) {
   if (!person) {
     return <></>;
   }
-  const crewHeart = crewCount => (
-    <CrewCountWrapper>
-      <Heart src={heartImg} />
-      <div>
-        {numberFormatter(crewCount)} {crewCount === 1 ? 'person' : 'people'}{' '}
-        recruited
-      </div>
-    </CrewCountWrapper>
-  );
+
   const { name, uuid, crewCount } = person;
   return (
-    <Row className={purple && 'purple-bg'} key={uuid}>
+    <Row className={you && 'purple-bg'} key={uuid}>
       <LeftColumn>
         <Index>{index + 1}</Index>
-        <UserAvatar user={person} size="medium" />
+        <UserAvatar user={person} size="medium" you />
         <Name>
-          {name}
-          <Hidden mdUp>{crewHeart(crewCount)}</Hidden>
+          {you ? `${fullFirstLastInitials(name)} (you)` : name}
+          <CrewCountWrapper>
+            <Heart src={heartImg} />
+            <div>
+              {numberFormatter(crewCount)}{' '}
+              {crewCount === 1 ? 'person' : 'people'} recruited
+            </div>
+          </CrewCountWrapper>
         </Name>
       </LeftColumn>
-      <Hidden mdDown>
-        <div>{crewHeart(crewCount)}</div>
-      </Hidden>
     </Row>
   );
 }
 
 LeaderboardPerson.propTypes = {
-  purple: PropTypes.bool,
+  you: PropTypes.bool,
   person: PropTypes.object,
   index: PropTypes.number,
 };
