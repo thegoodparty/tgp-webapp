@@ -393,12 +393,12 @@ const EditProfileWrapper = ({
           />
         </>
       )}
-      {showUploadPhoto && (
-        <AvatarUpload
-          closeCallback={closeUploadPhotoCallback}
-          selectImageCallback={selectImageCallback}
-        />
-      )}
+      {/*{showUploadPhoto && (*/}
+      {/*  <AvatarUpload*/}
+      {/*    closeCallback={closeUploadPhotoCallback}*/}
+      {/*    selectImageCallback={selectImageCallback}*/}
+      {/*  />*/}
+      {/*)}*/}
     </PageWrapper>
   );
 };

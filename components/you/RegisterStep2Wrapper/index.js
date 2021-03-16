@@ -191,12 +191,12 @@ const RegisterStep2Wrapper = ({ user, submitCallback, loading }) => {
           </VerticalWrapper>
         </Grid>
       </Grid>
-      {showUploadPhoto && (
-        <AvatarUpload
-          closeCallback={closeUploadPhotoCallback}
-          selectImageCallback={selectImageCallback}
-        />
-      )}
+      {/*{showUploadPhoto && (*/}
+      {/*  <AvatarUpload*/}
+      {/*    closeCallback={closeUploadPhotoCallback}*/}
+      {/*    selectImageCallback={selectImageCallback}*/}
+      {/*  />*/}
+      {/*)}*/}
     </PageWrapper>
   );
 };
