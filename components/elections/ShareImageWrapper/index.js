@@ -72,6 +72,7 @@ const AvatarWrapper = styled.div`
 const NameWrapper = styled.div`
   padding-left: 15px;
   z-index: 1000;
+  max-width: 215px;
 `;
 const HelperText = styled(Body11)`
   && {
