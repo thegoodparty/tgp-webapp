@@ -84,38 +84,30 @@ function* changePassword({ password, oldPassword }) {
   }
 }
 
-function* uploadAvatar(action) {
+function* uploadAvatar({ imageBase64 }) {
   try {
-    const { fileName, fileData, withRedirect } = action;
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
     const api = tgpApi.uploadAvatar;
-    const file = fileName && fileName.length > 0 ? fileName[0].name : false;
-    const fileExt = file ? file.split('.').pop() : '';
+    const payload = {
+      imageBase64,
+    };
 
-    const data = new FormData();
-    data.append('avatar', fileData);
-    data.append('fileExt', fileExt);
-    const response = yield call(requestHelper, api, data, true);
+    const response = yield call(requestHelper, api, payload);
     const { user } = response;
-    yield put(actions.updateUserActionSuccess(user));
     setUserCookie(user);
-    yield put(
-      snackbarActions.showSnakbarAction('Your Profile photo is updated'),
-    );
-    if (withRedirect) {
-      yield put(push('/profile'));
-    }
+    const rand = parseInt(Math.random() * 1000, 10);
+    yield put(push(`/profile/settings?updated=${rand}`));
+    yield put(snackbarActions.showSnakbarAction('Your Profile is updated'));
   } catch (error) {
+    console.log('Error updating user', error);
     yield put(
-      snackbarActions.showSnakbarAction(
-        'Error updating your profile photo',
-        'error',
-      ),
+      snackbarActions.showSnakbarAction('Error updating your profile', 'error'),
     );
   }
 }
-
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.UPDATE_USER, updateUser);
   yield takeLatest(types.CHANGE_PASSWORD, changePassword);
+  yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
 }

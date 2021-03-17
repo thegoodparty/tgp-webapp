@@ -156,8 +156,8 @@ const api = {
   },
 
   uploadAvatar: {
-    url: `${base}user/upload-avatar`,
-    method: 'PUT',
+    url: `${base}user/avatar`,
+    method: 'POST',
     withAuth: true,
   },
 

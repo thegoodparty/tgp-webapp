@@ -4,12 +4,12 @@
  *
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { useRouter } from 'next/router';
 
 import ProfileSettingsWrapper from 'components/profile/ProfileSettingsWrapper';
 import { deleteCookies, getUserCookie } from 'helpers/cookieHelper';
@@ -26,17 +26,26 @@ export function ProfileSettingsPage({
   signoutCallback,
   updateUserCallback,
   changePasswordCallback,
+  uploadImageCallback,
 }) {
   useInjectReducer({ key: 'profileSettingsPage', reducer });
   useInjectSaga({ key: 'profileSettingsPage', saga });
 
-  const user = getUserCookie(true);
+  const cookieUser = getUserCookie(true);
+  const [user, setUser] = useState(cookieUser);
+  const router = useRouter();
+  const { updated } = router.query;
+  useEffect(() => {
+    const tempUser = getUserCookie(true);
+    setUser(tempUser);
+  }, [updated]);
 
   const childProps = {
     user,
     signoutCallback,
     updateUserCallback,
     changePasswordCallback,
+    uploadImageCallback,
   };
 
   return (
@@ -52,6 +61,7 @@ ProfileSettingsPage.propTypes = {
   signoutCallback: PropTypes.func,
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
+  uploadImageCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -76,6 +86,10 @@ function mapDispatchToProps(dispatch) {
     changePasswordCallback: (password, oldPassword) => {
       console.log('in page');
       dispatch(actions.changePasswordAction(password, oldPassword));
+    },
+
+    uploadImageCallback: base64 => {
+      dispatch(actions.uploadAvatarAction(base64));
     },
   };
 }
