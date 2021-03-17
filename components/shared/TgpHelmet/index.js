@@ -8,11 +8,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-function TgpHelmet({ title, description, image }) {
+function TgpHelmet({ title, ogTitle, description, image }) {
   return (
     <Head>
       {title && <title data-cy="page-title">{title}</title>}
-      {title && <meta property="og:title" content={title} />}
+      {title && <meta property="og:title" content={ogTitle || title} />}
       {description && (
         <meta
           name="description"
@@ -35,6 +35,7 @@ function TgpHelmet({ title, description, image }) {
 
 TgpHelmet.propTypes = {
   title: PropTypes.string,
+  ogTitle: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
 };

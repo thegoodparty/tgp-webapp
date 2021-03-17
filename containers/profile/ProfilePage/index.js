@@ -23,6 +23,7 @@ import reducer from './reducer';
 import saga from './saga';
 import userActions from './actions';
 import actions from './actions';
+import { fullFirstLastInitials } from '../../../helpers/userHelper';
 
 export function ProfilePage({ dispatch, profilePage }) {
   const [supported, setSupported] = useState(false);
@@ -66,12 +67,13 @@ export function ProfilePage({ dispatch, profilePage }) {
     crewCount,
     userSupported: supported,
   };
+  const initialName = user ? fullFirstLastInitials(user.name) : '';
 
   return (
     <div>
       <TgpHelmet
-        title="Profile Page"
-        description="Profile Page | Good Party"
+        title={`${initialName} on GOOD PARTY`}
+        description={`Profile page for ${initialName} on GOOD PARTY`}
       />
       {user && <ProfileWrapper {...childProps} />}
     </div>
