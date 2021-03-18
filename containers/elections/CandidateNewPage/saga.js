@@ -7,6 +7,7 @@ import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
+import { getCookie } from '../../../helpers/cookieHelper';
 
 function* loadCandidate({ id, chamber, isIncumbent }) {
   try {
@@ -121,12 +122,31 @@ function* candidateSupports({ candidateId }) {
     const payload = { candidateId };
     const response = yield call(requestHelper, api, payload);
     yield put(
-      actions.candidateSupportsActionSuccess(response.candidateSupports),
+      actions.candidateSupportsActionSuccess(response.candidateSupports, response.total),
     );
   } catch (error) {
     console.log(error);
 
     yield put(actions.candidateSupportsActionError(error));
+  }
+}
+
+function* trackShare({ candidateId }) {
+  try {
+    const token = getCookie('token');
+    let api;
+    if (token) {
+      api = tgpApi.newCandidate.trackShare;
+    } else {
+      api = tgpApi.newCandidate.trackGuestShare;
+    }
+
+    const payload = {
+      candidateId,
+    };
+    yield call(requestHelper, api, payload);
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -145,4 +165,5 @@ export default function* saga() {
   );
   yield takeLatest(types.UPDATE_SUPPORT, updateSupport);
   yield takeLatest(types.SHARE_IMAGE, shareImage);
+  yield takeLatest(types.TRACK_SHARE, trackShare);
 }

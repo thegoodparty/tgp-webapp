@@ -10,12 +10,11 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
-import { BiLinkExternal } from 'react-icons/bi';
 
 import NotFound from 'containers/shared/NotFoundPage';
 
 import ProfileInfo from './ProfileInfo';
-import { H1, Body19, Body13, Body11 } from '../../shared/typogrophy';
+import { H1, Body19, Body13 } from '../../shared/typogrophy';
 import ComparedCandidateCarousel from './ComparedCandidateCarousel';
 import RecentlyJoined from './RecentlyJoined';
 import TopQuestions from '../../shared/TopQuestions';
@@ -63,14 +62,6 @@ const SocialLink = styled.a`
   margin-right: 25px;
 `;
 
-const Website = styled(Body13)`
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  color: ${({ theme }) => theme.colors.purple};
-`;
-
 const YoutubePlayer = styled(ReactPlayer)`
   width: unset !important;
 `;
@@ -103,6 +94,8 @@ function MainWrapper({
   isUserSupportCandidate,
   removeSupportCallback,
   candidateSupports,
+  total,
+  trackShareCallback,
 }) {
   if (!candidate) {
     return <NotFound />;
@@ -139,6 +132,7 @@ function MainWrapper({
         <ProfileInfo
           candidate={candidate}
           candidateSupports={candidateSupports}
+          total={total}
           supportCallback={supportCallback}
           isUserSupportCandidate={isUserSupportCandidate}
           removeSupportCallback={removeSupportCallback}
@@ -232,7 +226,10 @@ function MainWrapper({
               />
             </Grid>
             <Grid item xs={6}>
-              <ShareButton />
+              <ShareButton
+                trackShareCallback={trackShareCallback}
+                candidateId={candidate.id}
+              />
             </Grid>
           </Grid>
         </SectionWrapper>
@@ -240,53 +237,13 @@ function MainWrapper({
         <Updates candidate={candidate} />
         <Hidden smUp>
           <SectionWrapper>
-            <RecentlyJoined candidateSupports={candidateSupports} />
+            <RecentlyJoined
+              candidateSupports={candidateSupports}
+              total={total}
+            />
           </SectionWrapper>
         </Hidden>
-        {/*<SectionWrapper>*/}
-        {/*  <SectionHeader className="center">*/}
-        {/*    How The Good Party Works <br />*/}
-        {/*    <span>We make votes matter more than money</span>*/}
-        {/*  </SectionHeader>*/}
-        {/*<HowTo>*/}
-        {/*  <div>*/}
-        {/*    <img*/}
-        {/*      src="/images/thank-you.png"*/}
-        {/*      alt="thank-you"*/}
-        {/*      width="100%"*/}
-        {/*      height="100%"*/}
-        {/*    />*/}
-        {/*    <HowToTitle>*/}
-        {/*      {' '}*/}
-        {/*      See Good Candidates challenging THE status quo*/}
-        {/*    </HowToTitle>*/}
-        {/*  </div>*/}
-        {/*  <div>*/}
-        {/*    <img*/}
-        {/*      src="/images/slide12.png"*/}
-        {/*      alt="thank-you"*/}
-        {/*      width="100%"*/}
-        {/*      height="100%"*/}
-        {/*    />*/}
-        {/*    <HowToTitle>*/}
-        {/*      {' '}*/}
-        {/*      Add your vote to their crowd-voting campaigns*/}
-        {/*    </HowToTitle>*/}
-        {/*  </div>*/}
-        {/*  <div>*/}
-        {/*    <img*/}
-        {/*      src="/images/slide13.png"*/}
-        {/*      alt="thank-you"*/}
-        {/*      width="100%"*/}
-        {/*      height="100%"*/}
-        {/*    />*/}
-        {/*    <HowToTitle>*/}
-        {/*      {' '}*/}
-        {/*      spread the word and if they can win, vote!*/}
-        {/*    </HowToTitle>*/}
-        {/*  </div>*/}
-        {/*</HowTo>*/}
-        {/*</SectionWrapper>*/}
+
         <TopQuestions articles={articles} />
       </Padder>
     </>
@@ -300,6 +257,8 @@ MainWrapper.propTypes = {
   articles: PropTypes.array,
   isUserSupportCandidate: PropTypes.bool,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  total: PropTypes.number,
+  trackShareCallback: PropTypes.func,
 };
 
 export default MainWrapper;

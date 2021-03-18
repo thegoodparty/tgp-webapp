@@ -111,7 +111,7 @@ const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
-const DesktopHeader = ({ user }) => {
+const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const router = useRouter();
@@ -146,6 +146,13 @@ const DesktopHeader = ({ user }) => {
   }, [open]);
 
   const handleShare = () => {
+    // if we are on the candidate page, track the share
+    if (router.pathname === '/candidate/[...NameIdTab]') {
+      trackShareCallback(
+        router.components['/candidate/[...NameIdTab]']?.props?.pageProps
+          ?.ssrState?.id,
+      );
+    }
     router.query.share = 'true';
     router.push(router);
   };
@@ -264,6 +271,7 @@ const DesktopHeader = ({ user }) => {
 DesktopHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   navigateCallback: PropTypes.func,
+  trackShareCallbackk: PropTypes.func,
 };
 
 export default DesktopHeader;

@@ -120,7 +120,9 @@ function ProfileInfo({
   removeSupportCallback,
   isUserSupportCandidate,
   candidateSupports,
+  total,
   adminDeleteSupportCallback,
+  trackShareCallback,
 }) {
   const router = useRouter();
 
@@ -213,7 +215,10 @@ function ProfileInfo({
         />
         <StickyWrapperElement>
           <Box style={{ marginTop: 24 }} className="box box-left">
-            <ShareButton />
+            <ShareButton
+              trackShareCallback={trackShareCallback}
+              candidateId={candidate.id}
+            />
           </Box>
           <Box style={{ marginTop: 8 }} className="box box-right">
             <SupportButton
@@ -238,6 +243,7 @@ function ProfileInfo({
             candidateSupports={candidateSupports}
             adminDeleteSupportCallback={adminDeleteSupportCallback}
             candidateId={candidate.id}
+            total={total}
           />
         </Hidden>
       </ProfileInfoWrapper>
@@ -252,7 +258,9 @@ ProfileInfo.propTypes = {
   removeSupportCallback: PropTypes.func,
   isUserSupportCandidate: PropTypes.bool,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  total: PropTypes.number,
   adminDeleteSupportCallback: PropTypes.func,
+  trackShareCallback: PropTypes.func,
 };
 
 export default ProfileInfo;

@@ -21,6 +21,8 @@ const REMOVE_SUPPORT = '@@tgp/candidateNewPage/REMOVE_SUPPORT';
 const UPDATE_SUPPORT = '@@tgp/candidateNewPage/UPDATE_SUPPORT';
 const ADMIN_DELETE_SUPPORT = '@@tgp/candidateNewPage/ ADMIN_DELETE_SUPPORT';
 
+const TRACK_SHARE = '@@tgp/candidateNewPage/TRACK_SHARE';
+
 export default {
   LOAD_CANDIDATE,
   LOAD_CANDIDATE_SUCCESS,
@@ -42,4 +44,6 @@ export default {
   REMOVE_SUPPORT,
   UPDATE_SUPPORT,
   ADMIN_DELETE_SUPPORT,
+
+  TRACK_SHARE,
 };

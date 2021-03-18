@@ -321,6 +321,15 @@ const api = {
       url: `${base}new-candidate/share-image`,
       method: 'POST',
     },
+    trackShare: {
+      url: `${base}new-candidate/share`,
+      method: 'POST',
+      withAuth: true,
+    },
+    trackGuestShare: {
+      url: `${base}new-candidate/share-guest`,
+      method: 'POST',
+    },
   },
 
   creator: {

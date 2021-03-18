@@ -41,9 +41,10 @@ const candidateSupportsAction = candidateId => ({
   candidateId,
 });
 
-const candidateSupportsActionSuccess = candidateSupports => ({
+const candidateSupportsActionSuccess = (candidateSupports, total) => ({
   type: types.CANDIDATE_SUPPORTS_SUCCESS,
   candidateSupports,
+  total,
 });
 
 const candidateSupportsActionError = error => ({
@@ -81,6 +82,11 @@ const adminDeleteSupportAction = (supportId, candidateId) => ({
   candidateId,
 });
 
+const trackShare = candidateId => ({
+  type: types.TRACK_SHARE,
+  candidateId,
+});
+
 export default {
   loadCandidateAction,
   loadCandidateActionSuccess,
@@ -102,4 +108,6 @@ export default {
   removeSupportAction,
   updateSupportAction,
   adminDeleteSupportAction,
+
+  trackShare,
 };

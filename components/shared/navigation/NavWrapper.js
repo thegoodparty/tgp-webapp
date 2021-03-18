@@ -8,11 +8,15 @@ import AdminMenu from 'components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
-const NavWrapper = ({ pathname, user }) => {
+const NavWrapper = ({ pathname, user, trackShareCallback }) => {
   return (
     <>
       <Hidden smDown>
-        <DesktopHeader user={user} pathname={pathname} />
+        <DesktopHeader
+          user={user}
+          pathname={pathname}
+          trackShareCallback={trackShareCallback}
+        />
         <RegisterBannerContainer />
       </Hidden>
       <Hidden mdUp>
@@ -27,6 +31,7 @@ const NavWrapper = ({ pathname, user }) => {
 NavWrapper.propTypes = {
   pathname: PropTypes.string,
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  trackShareCallback: PropTypes.func,
 };
 
 export default NavWrapper;

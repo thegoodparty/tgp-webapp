@@ -9,13 +9,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Truncate from 'react-truncate';
-// import Box from '@material-ui/core/Box';
-// import { PurpleButton } from 'components/shared/buttons';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
 import { Body9, Body11, Body13, Body19, Body } from '../../shared/typogrophy';
 import { getUserCookie } from '../../../helpers/cookieHelper';
 const PeopleJoinedIconPurple = '/images/people-joined-purple.svg';
 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 // const InnerButton = styled.div`
 //   font-size: 14px;
@@ -75,6 +74,7 @@ function RecentlyJoined({
   candidateSupports,
   adminDeleteSupportCallback,
   candidateId,
+  total,
 }) {
   const supporters = candidateSupports || [];
   const [expanded, setExpanded] = useState(false);
@@ -104,8 +104,7 @@ function RecentlyJoined({
       <Grid container alignItems="center" style={{ marginBottom: 14 }}>
         <img src={PeopleJoinedIconPurple} alt="share" />
         <JoinedCount>
-          {supporters.length} {supporters.length === 1 ? 'person' : 'people'}{' '}
-          have taken action
+          {total} {total === 1 ? 'person' : 'people'} have taken action
         </JoinedCount>
       </Grid>
       {supporters.map(supporter => (
@@ -125,8 +124,10 @@ function RecentlyJoined({
             style={{ marginRight: '18px' }}
           />
           <div>
-            <JoinName>{supporter.user}</JoinName>
-            <JoinTime>{supporter.timeAgo}</JoinTime>
+            <JoinName>{supporter.user || 'Someone'}</JoinName>
+            <JoinTime>
+              {supporter.type}d {supporter.timeAgo}
+            </JoinTime>
             {supporter.message && (
               <Message>
                 <Truncate
@@ -172,6 +173,7 @@ RecentlyJoined.propTypes = {
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   adminDeleteSupportCallback: PropTypes.func,
   candidateId: PropTypes.number,
+  total: PropTypes.number,
 };
 
 export default RecentlyJoined;

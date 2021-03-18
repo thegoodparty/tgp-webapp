@@ -7,6 +7,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import { PurpleButton } from 'components/shared/buttons';
 import { Body13 } from '../../shared/typogrophy';
@@ -34,7 +35,7 @@ const InnerButton = styled(Body13)`
   }
 `;
 
-function ShareButton() {
+function ShareButton({ candidateId, trackShareCallback = () => {} }) {
   let shareLink = '/';
   if (typeof window !== 'undefined') {
     shareLink = `${window.location.pathname}?preview=true&fromshare=true`;
@@ -42,7 +43,13 @@ function ShareButton() {
 
   return (
     <Link href={shareLink}>
-      <PurpleButton fullWidth className="outline">
+      <PurpleButton
+        fullWidth
+        className="outline"
+        onClick={() => {
+          trackShareCallback(candidateId);
+        }}
+      >
         <InnerButton>
           <Img src={ShareIconPurple} alt="share" />
           <span>SHARE CAMPAIGN</span>
@@ -52,6 +59,9 @@ function ShareButton() {
   );
 }
 
-ShareButton.propTypes = {};
+ShareButton.propTypes = {
+  candidateId: PropTypes.number,
+  trackShareCallback: PropTypes.func,
+};
 
 export default ShareButton;
