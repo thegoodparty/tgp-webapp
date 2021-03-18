@@ -50,7 +50,6 @@ const CropWrapper = styled.div`
 const initialCriteria = ['image', 'name', 'party', 'website'];
 
 function ComparedCandidates({ candidate, candidatesCallback }) {
-  console.log('candidate', candidate.website, candidate)
   const [candidates, setCandidates] = useState([
     {
       image: candidate ? candidate.image : '',
