@@ -12,7 +12,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import Grid from '@material-ui/core/Grid';
 
 import { H3, Body13 } from '../typogrophy';
-import { BlueButton, PurpleButton } from '../buttons';
+import { PurpleButton } from '../buttons';
 
 const CanvasWrapper = styled.div`
   overflow: hidden;
@@ -52,16 +52,13 @@ function ImageCrop({
       reader.readAsDataURL(e.target.files[0]);
     }
   };
-
   const onLoad = useCallback(img => {
     imgRef.current = img;
   }, []);
-
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
     }
-
     const image = imgRef.current;
     const canvas = previewCanvasRef.current;
     const crop = completedCrop;
@@ -73,10 +70,8 @@ function ImageCrop({
     canvas.width = crop.width * pixelRatio;
     canvas.height = crop.height * pixelRatio;
     setCanvasWidth(crop.width);
-
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     ctx.imageSmoothingEnabled = false;
-
     ctx.drawImage(
       image,
       crop.x * scaleX,
@@ -125,7 +120,19 @@ function ImageCrop({
               />
             </Grid>
 
-            <Grid item xs={12} style={!withPreview && { opacity: 0, position:'absolute', left:'-3000px' }}>
+            <Grid
+              item
+              xs={12}
+              style={
+                withPreview
+                  ? {
+                      opacity: 0,
+                      position: 'absolute',
+                      left: '-3000px',
+                    }
+                  : {}
+              }
+            >
               <CanvasWrapper
                 style={{
                   width: `${canvasWidth}px`,
