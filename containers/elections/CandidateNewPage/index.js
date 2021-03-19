@@ -56,14 +56,13 @@ export function CandidateNewPage({
     ({ candidate } = ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
+
   useEffect(() => {
     if (!userSupports && user) {
       dispatch(actions.userSupportsAction());
     }
-    if (!candidateSupports) {
-      dispatch(actions.candidateSupportsAction(candidate?.id));
-    }
-  }, []);
+    dispatch(actions.candidateSupportsAction(candidate?.id));
+  }, [candidate.id]);
 
   const emptyCandidate = () =>
     Object.keys(candidate).length === 0 && candidate.constructor === Object;
