@@ -22,9 +22,15 @@ const changePasswordAction = (password, oldPassword) => ({
   oldPassword,
 });
 
+const uploadAvatarAction = imageBase64 => ({
+  type: types.UPLOAD_AVATAR,
+  imageBase64,
+});
+
 export default {
   updateUserAction,
   updateUserActionSuccess,
 
   changePasswordAction,
+  uploadAvatarAction,
 };

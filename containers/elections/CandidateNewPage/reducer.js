@@ -13,6 +13,7 @@ export const initialState = {
   error: false,
   userSupports: false,
   candidateSupports: false,
+  total: 0,
 };
 
 const candidateNewPageReducer = (state = initialState, action) =>
@@ -54,6 +55,7 @@ const candidateNewPageReducer = (state = initialState, action) =>
 
       case types.CANDIDATE_SUPPORTS_SUCCESS:
         draft.candidateSupports = action.candidateSupports;
+        draft.total = action.total;
         break;
 
       case types.CANDIDATE_SUPPORTS_ERROR:

@@ -19,6 +19,7 @@ function ProfileSettingsWrapper({
   signoutCallback,
   updateUserCallback,
   changePasswordCallback,
+  uploadImageCallback,
 }) {
   return (
     <PageWrapper purple>
@@ -32,7 +33,7 @@ function ProfileSettingsWrapper({
           />
         </Grid>
         <Grid item xs={12} md={5}>
-          <ImageSection user={user} />
+          <ImageSection user={user} uploadImageCallback={uploadImageCallback} />
         </Grid>
       </Grid>
     </PageWrapper>
@@ -44,6 +45,7 @@ ProfileSettingsWrapper.propTypes = {
   signoutCallback: PropTypes.func,
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
+  uploadImageCallback: PropTypes.func,
 };
 
 export default ProfileSettingsWrapper;

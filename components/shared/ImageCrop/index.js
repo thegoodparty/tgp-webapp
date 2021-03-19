@@ -12,7 +12,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import Grid from '@material-ui/core/Grid';
 
 import { H3, Body13 } from '../typogrophy';
-import { BlueButton } from '../buttons';
+import { PurpleButton } from '../buttons';
 
 const CanvasWrapper = styled.div`
   overflow: hidden;
@@ -34,6 +34,7 @@ function ImageCrop({
   loading,
   currentImage,
   showTitle = true,
+  withPreview = true,
 }) {
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
@@ -51,16 +52,13 @@ function ImageCrop({
       reader.readAsDataURL(e.target.files[0]);
     }
   };
-
   const onLoad = useCallback(img => {
     imgRef.current = img;
   }, []);
-
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !imgRef.current) {
       return;
     }
-
     const image = imgRef.current;
     const canvas = previewCanvasRef.current;
     const crop = completedCrop;
@@ -72,10 +70,8 @@ function ImageCrop({
     canvas.width = crop.width * pixelRatio;
     canvas.height = crop.height * pixelRatio;
     setCanvasWidth(crop.width);
-
     ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     ctx.imageSmoothingEnabled = false;
-
     ctx.drawImage(
       image,
       crop.x * scaleX,
@@ -108,17 +104,13 @@ function ImageCrop({
           </Body13>
         )}
         <br />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={onSelectFile}
-        />
+        <input type="file" accept="image/*" onChange={onSelectFile} />
       </div>
       <br />
       {upImg && !loading && (
         <>
           <Grid container spacing={3} justify="center" alignItems="center">
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12}>
               <ReactCrop
                 src={upImg}
                 onImageLoaded={onLoad}
@@ -127,7 +119,20 @@ function ImageCrop({
                 onComplete={c => setCompletedCrop(c)}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
+
+            <Grid
+              item
+              xs={12}
+              style={
+                withPreview
+                  ? {
+                      opacity: 0,
+                      position: 'absolute',
+                      left: '-3000px',
+                    }
+                  : {}
+              }
+            >
               <CanvasWrapper
                 style={{
                   width: `${canvasWidth}px`,
@@ -145,11 +150,10 @@ function ImageCrop({
             </Grid>
           </Grid>
           <ButtonWrapper onClick={handleUpload}>
-            <BlueButton fullWidth>Upload Image</BlueButton>
+            <PurpleButton fullWidth>Upload Image</PurpleButton>
           </ButtonWrapper>
         </>
       )}
-      <hr />
     </div>
   );
 }
@@ -159,6 +163,7 @@ ImageCrop.propTypes = {
   loading: PropTypes.bool,
   currentImage: PropTypes.string,
   showTitle: PropTypes.bool,
+  withPreview: PropTypes.bool,
 };
 
 export default ImageCrop;

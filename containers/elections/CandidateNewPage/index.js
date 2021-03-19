@@ -37,11 +37,12 @@ export function CandidateNewPage({
   removeSupportCallback,
   previewNextStepCallback,
   adminDeleteSupportCallback,
+  trackShareCallback,
 }) {
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
   let user = getUserCookie(true);
-  const { userSupports, candidateSupports } = candidateNewPage;
+  const { userSupports, candidateSupports, total } = candidateNewPage;
 
   const router = useRouter();
   const showPreviewModal = router.query.preview;
@@ -90,7 +91,9 @@ ${race}.`;
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
     previewNextStepCallback,
     candidateSupports,
+    total,
     adminDeleteSupportCallback,
+    trackShareCallback,
   };
   return (
     <div>
@@ -118,6 +121,9 @@ CandidateNewPage.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   previewNextStepCallback: PropTypes.func,
   adminDeleteSupportCallback: PropTypes.func,
+  trackShareCallback: PropTypes.func,
+  supportCallback: PropTypes.func,
+  removeSupportCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -164,6 +170,9 @@ function mapDispatchToProps(dispatch) {
     },
     adminDeleteSupportCallback: (supportId, candidateId) => {
       dispatch(actions.adminDeleteSupportAction(supportId, candidateId));
+    },
+    trackShareCallback: candidateId => {
+      dispatch(actions.trackShare(candidateId));
     },
   };
 }

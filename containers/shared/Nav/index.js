@@ -18,10 +18,11 @@ import saga from 'containers/you/YouPage/saga';
 
 import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
+import candidateActions from 'containers/elections/CandidateNewPage/actions';
 
 import makeSelectCandidate from '../../elections/CandidatePage/selectors';
 
-export function Nav({ userState, dispatch }) {
+export function Nav({ userState, dispatch, trackShareCallback }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -39,6 +40,7 @@ export function Nav({ userState, dispatch }) {
 
   const childProps = {
     user,
+    trackShareCallback,
   };
 
   return <NavWrapper {...childProps} />;
@@ -47,6 +49,7 @@ export function Nav({ userState, dispatch }) {
 Nav.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
+  trackShareCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -58,6 +61,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    trackShareCallback: candidateId => {
+      dispatch(candidateActions.trackShare(candidateId));
+    },
   };
 }
 

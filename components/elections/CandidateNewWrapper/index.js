@@ -42,7 +42,9 @@ function CandidateNewWrapper({
   removeSupportCallback,
   previewNextStepCallback,
   candidateSupports,
+  total,
   adminDeleteSupportCallback,
+  trackShareCallback,
 }) {
   if (!candidate) {
     return <NotFound />;
@@ -72,6 +74,8 @@ function CandidateNewWrapper({
               isUserSupportCandidate={isUserSupportCandidate}
               removeSupportCallback={handleRemoveSupport}
               candidateSupports={candidateSupports}
+              total={total}
+              trackShareCallback={trackShareCallback}
             />
           </Grid>
           <Hidden xsDown>
@@ -82,7 +86,9 @@ function CandidateNewWrapper({
                 isUserSupportCandidate={isUserSupportCandidate}
                 removeSupportCallback={handleRemoveSupport}
                 candidateSupports={candidateSupports}
+                total={total}
                 adminDeleteSupportCallback={adminDeleteSupportCallback}
+                trackShareCallback={trackShareCallback}
               />
             </Grid>
           </Hidden>
@@ -122,7 +128,9 @@ CandidateNewWrapper.propTypes = {
   isUserSupportCandidate: PropTypes.bool,
   previewNextStepCallback: PropTypes.func,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  total: PropTypes.number,
   adminDeleteSupportCallback: PropTypes.func,
+  trackShareCallback: PropTypes.func,
 };
 
 export default CandidateNewWrapper;

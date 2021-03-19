@@ -4,16 +4,17 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { BsLock } from 'react-icons/bs';
+import Dialog from '@material-ui/core/Dialog';
 
 import UserAvatar from '../../shared/UserAvatar';
-import { Body13, H1, H2 } from '../../shared/typogrophy';
+import { Body9, H2 } from '../../shared/typogrophy';
 
-import Breadcrumbs from '../../shared/Breadcrumbs';
 import { fullFirstLastInitials } from '../../../helpers/userHelper';
+import UploadModal from './UploadModal';
 
 const Wrapper = styled.section`
   padding: 24px 0;
@@ -35,6 +36,39 @@ const Row = styled.div`
   }
 `;
 
+const AvatarWrapper = styled.div`
+  position: relative;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 94px;
+    width: 94px;
+  }
+`;
+
+const EditText = styled(Body9)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  height: 20px;
+  background-color: rgba(232, 227, 236, 0.8);
+  color: ${({ theme }) => theme.colors.purple2};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 30px;
+    width: 94px;
+  }
+`;
+
 const Privacy = styled.div`
   margin-top: 24px;
   border: 1px solid ${({ theme }) => theme.colors.purple4};
@@ -44,12 +78,24 @@ const Privacy = styled.div`
   color: ${({ theme }) => theme.colors.gray6};
 `;
 
-function ImageSection({ user, mode = 'desktop' }) {
+function ImageSection({ user, mode = 'desktop', uploadImageCallback }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return (
     <Wrapper>
       {(mode === 'top' || mode === 'desktop') && (
         <Row className={mode}>
-          <UserAvatar user={user} size="large" />
+          <AvatarWrapper onClick={handleOpenModal}>
+            <EditText>EDIT</EditText>
+
+            <UserAvatar user={user} size="large" />
+          </AvatarWrapper>
           <H2 style={{ marginLeft: '12px' }}>
             {fullFirstLastInitials(user.name)}
           </H2>
@@ -64,6 +110,11 @@ function ImageSection({ user, mode = 'desktop' }) {
           your personal data
         </Privacy>
       )}
+      <UploadModal
+        closeModalCallback={handleCloseModal}
+        open={showModal}
+        uploadImageCallback={uploadImageCallback}
+      />
     </Wrapper>
   );
 }
@@ -71,6 +122,7 @@ function ImageSection({ user, mode = 'desktop' }) {
 ImageSection.propTypes = {
   user: PropTypes.object,
   mode: PropTypes.string,
+  uploadImageCallback: PropTypes.func,
 };
 
 export default ImageSection;

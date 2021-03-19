@@ -54,7 +54,6 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     {
       image: candidate ? candidate.image : '',
       name: candidate ? `${candidate.firstName} ${candidate.lastName}` : '',
-      website: candidate?.website || '',
       party: candidate ? candidate.party : '',
     },
   ]);
@@ -81,7 +80,6 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
       const compared = candidate.comparedCandidates.candidates;
       compared[0].name = `${candidate.firstName} ${candidate.lastName}`;
       compared[0].party = candidate.party;
-      compared[0].website = candidate.website || '';
       compared[0].image = candidate.image;
       setCandidates(compared);
     }

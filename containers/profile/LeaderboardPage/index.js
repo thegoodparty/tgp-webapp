@@ -47,7 +47,11 @@ export function LeaderboardPage({ leaderboardPage, dispatch }) {
   console.log('leaderboard', leaderboard);
   return (
     <div>
-      <TgpHelmet title="Leaderboard | GOOD PARTY" />
+      <TgpHelmet
+        title="Leaderboard | GOOD PARTY"
+        ogTitle="GOOD PARTY Leaderboard shows you where rank in recruiting good party people."
+        description="Invite good party people and move up the leaderboard when they join."
+      />
       <LeaderboardWrapper {...childProps} />
     </div>
   );

@@ -60,10 +60,11 @@ const topics = {
   'END CASH BAIL':
     'In the cash bail system, an individual has to pay a certain amount of money to be released from detention. Individuals who cannot afford to pay are detained for weeks or months before trial. Ending cash bail will save taxpayer dollars, decrease job loss and reduce incarceration rates.',
   'NON-PARTISAN':
-    'Not republican, not democrat, but independent minded and dedicated to serving everyone.',
-  'SMALL MONEY': 'Not funded by corporate PACs and big money donors.',
+    'Good Party Certified candidates pledge to caucus (meet) with all sides, but to NEVER pay dues to nor fundraise for either Republican or Democratic parties.',
+  'SMALL MONEY':
+    'Good Party Certified candidates pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
   'ANTI-CORRUPTION':
-    'Dedicated to supporting the Anti-Corruption Act and reporting any attempts at undue influence.',
+    'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time. They will also abide by and work to advance the Anti-Corruption Act.',
   TRANSPARENT:
     'Committed to using modern technology in being accountable and transparent to all the people he represents and fostering meaningful citizen engagement.',
   'New Non-Partisan Definition':
