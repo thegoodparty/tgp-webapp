@@ -214,9 +214,15 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const { firstName, lastName, race } = candidate || {};
   let url = '';
   if (typeof window !== 'undefined') {
+    if (window.location.pathname.includes('/candidate/')) {
+      url = window.location.pathname;
+    }
+    else {
+      url = '/candidates'
+    }
     url = uuidUrl(
       user,
-      window.location.origin + window.location.pathname,
+      window.location.origin + url,
       supportLink ? 'support=true' : '',
     );
   }
