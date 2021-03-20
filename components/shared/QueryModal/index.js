@@ -17,7 +17,7 @@ const TgpDialog = styled(Dialog)`
     .MuiDialog-paper {
       position: relative;
       width: 100vw;
-      border-radius: 8px;
+      border-radius: 0;
       background-color: ${({ theme }) => theme.colors.purple3};
       padding: 24px;
 
@@ -29,6 +29,7 @@ const TgpDialog = styled(Dialog)`
           2px 2px 5px rgba(224, 212, 234, 0.9),
           inset 1px 1px 1px rgba(255, 255, 255, 0.3),
           inset -1px -1px 1px rgba(224, 212, 234, 0.5);
+        border-radius: 8px;
       }
     }
 
@@ -40,11 +41,11 @@ const TgpDialog = styled(Dialog)`
     &.purple {
       .MuiDialog-paper {
         background: linear-gradient(
-            0deg,
-            rgba(110, 38, 219, 0.8),
-            rgba(110, 38, 219, 0.8)
+            180deg,
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0) 47.4%
           ),
-          #ffffff;
+          rgba(110, 38, 219, 0.8);
       }
     }
   }
