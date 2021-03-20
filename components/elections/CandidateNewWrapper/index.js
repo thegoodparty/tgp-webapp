@@ -62,7 +62,7 @@ function CandidateNewWrapper({
   return (
     <PageWrapper isFullWidth purple>
       <ContentWrapper>
-        <Hidden mdDown>
+        <Hidden smDown>
           <H1 style={{ marginBottom: '24px' }}>{candidate.headline}</H1>
         </Hidden>
         <Grid container spacing={3}>
@@ -78,7 +78,7 @@ function CandidateNewWrapper({
               trackShareCallback={trackShareCallback}
             />
           </Grid>
-          <Hidden xsDown>
+          <Hidden mdDown>
             <Grid row item xs={12} md={5}>
               <ProfileInfo
                 candidate={candidate}

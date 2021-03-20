@@ -122,7 +122,10 @@ function* candidateSupports({ candidateId }) {
     const payload = { candidateId };
     const response = yield call(requestHelper, api, payload);
     yield put(
-      actions.candidateSupportsActionSuccess(response.candidateSupports, response.total),
+      actions.candidateSupportsActionSuccess(
+        response.candidateSupports,
+        response.total,
+      ),
     );
   } catch (error) {
     console.log(error);
@@ -145,6 +148,7 @@ function* trackShare({ candidateId }) {
       candidateId,
     };
     yield call(requestHelper, api, payload);
+    yield put(actions.candidateSupportsAction(candidateId));
   } catch (error) {
     console.log(error);
   }

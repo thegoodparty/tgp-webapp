@@ -27,13 +27,16 @@ import ShareButton from './ShareButton';
 const Inner = styled.div`
   background-color: ${({ theme }) => theme.colors.purple3};
   z-index: 5000;
-  padding: 12px 0;
+  padding: 12px 18px;
+  width: 100vw;
+  margin-left: -18px;
 `;
 
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
   position: relative;
   top: 0;
+  left: 0;
   width: 416px;
   margin-top: -25px;
 `;
