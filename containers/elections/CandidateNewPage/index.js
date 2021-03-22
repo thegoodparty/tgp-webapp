@@ -13,8 +13,7 @@ import { compose } from 'redux';
 
 import CandidateNewWrapper from 'components/elections/CandidateNewWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
-import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
-import { getUserCookie, setCookie } from 'helpers/cookieHelper';
+import { getUserCookie } from 'helpers/cookieHelper';
 import queryHelper from 'helpers/queryHelper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
 
@@ -56,6 +55,23 @@ export function CandidateNewPage({
     ({ candidate } = ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
+
+  useEffect(() => {
+    // redirect to correct route
+    const { NameIdTab } = router.query;
+
+    if (
+      typeof window !== 'undefined' &&
+      (!NameIdTab ||
+        NameIdTab[0] !== `${candidate.firstName}-${candidate.lastName}`)
+    ) {
+      router.push(
+        `/candidate/${candidate.firstName}-${candidate.lastName}/${
+          candidate.id
+        }${window.location.search}`,
+      );
+    }
+  }, [candidate.id]);
 
   useEffect(() => {
     if (!userSupports && user) {
