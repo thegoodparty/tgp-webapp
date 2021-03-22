@@ -67,7 +67,13 @@ const TopClose = styled(CloseIcon)`
   }
 `;
 
-function QueryModal({ closeModalCallback, children, modalStyles = {}, mode }) {
+function QueryModal({
+  closeModalCallback,
+  children,
+  modalStyles = {},
+  mode,
+  hideClose = false,
+}) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
@@ -78,13 +84,15 @@ function QueryModal({ closeModalCallback, children, modalStyles = {}, mode }) {
       className={mode}
       style={modalStyles.dialog}
     >
-      <TopWrapper>
-        <TopClose
-          onClick={closeModalCallback}
-          style={modalStyles.closeButton}
-          className={mode}
-        />
-      </TopWrapper>
+      {!hideClose && (
+        <TopWrapper>
+          <TopClose
+            onClick={closeModalCallback}
+            style={modalStyles.closeButton}
+            className={mode}
+          />
+        </TopWrapper>
+      )}
       {children}
     </TgpDialog>
   );
@@ -95,7 +103,7 @@ QueryModal.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   modalStyles: PropTypes.object,
   mode: PropTypes.string,
-  zIndex: PropTypes.number,
+  hideClose: PropTypes.bool,
 };
 
 export default QueryModal;

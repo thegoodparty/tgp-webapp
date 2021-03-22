@@ -48,6 +48,7 @@ export function CandidateNewPage({
   const showShareModal = router.query.share;
   const supportLink = router.query.support;
   const fromShareLink = router.query.fromshare;
+  const showRedirectModal = router.query.redirect;
 
   let candidate;
 
@@ -65,7 +66,7 @@ export function CandidateNewPage({
       (!NameIdTab ||
         NameIdTab[0] !== `${candidate.firstName}-${candidate.lastName}`)
     ) {
-      router.push(
+      router.replace(
         `/candidate/${candidate.firstName}-${candidate.lastName}/${
           candidate.id
         }${window.location.search}`,
@@ -102,6 +103,7 @@ ${race}.`;
     showShareModal,
     fromShareLink,
     supportLink,
+    showRedirectModal,
     user,
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
     previewNextStepCallback,
