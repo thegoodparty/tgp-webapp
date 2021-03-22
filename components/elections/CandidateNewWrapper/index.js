@@ -63,6 +63,8 @@ function CandidateNewWrapper({
   };
   return (
     <PageWrapper isFullWidth purple>
+      {showRedirectModal && <RedirectModal />}
+
       <ContentWrapper>
         <Hidden smDown>
           <H1 style={{ marginBottom: '24px' }}>{candidate.headline}</H1>
@@ -113,7 +115,6 @@ function CandidateNewWrapper({
           supportLink={supportLink}
         />
       )}
-      {showRedirectModal && <RedirectModal />}
     </PageWrapper>
   );
 }

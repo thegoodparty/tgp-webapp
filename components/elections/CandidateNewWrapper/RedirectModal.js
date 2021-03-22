@@ -140,7 +140,12 @@ function RedirectModal() {
     router.push(window.location.pathname);
   };
   return (
-    <TgpDialog onClose={handleClose} open fullWidth>
+    <TgpDialog
+      onClose={handleClose}
+      open
+      fullWidth
+      TransitionProps={{ enter: false, appear: true, timeout: 0 }}
+    >
       <Wrapper>
         <Title>This campaign is collecting endorsements using GOOD PARTY</Title>
         <Row>
