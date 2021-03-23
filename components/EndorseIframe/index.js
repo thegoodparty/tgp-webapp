@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PurpleButton } from 'components/shared/buttons';
-import ENV from 'api/ENV';
 
 function EndorseIframe({ ssrState }) {
   const { candidate } = ssrState;
@@ -15,9 +14,7 @@ function EndorseIframe({ ssrState }) {
   const intId = parseInt(id, 10); // to prevent xss;
   return (
     <a
-      href={`https://${
-        ENV !== 'prod' ? 'dev.' : ''
-      }thegoodparty.org/candidate/${firstName}-${lastName}/${intId}?redirect=true`}
+      href={`https://dev.thegoodparty.org/candidate/${firstName}-${lastName}/${intId}?redirect=true`}
       target="_blank"
       style={{
         minWidth: '150px',
