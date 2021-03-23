@@ -57,8 +57,13 @@ function UploadModal({ open, closeModalCallback, uploadImageCallback }) {
     closeModalCallback();
     setBase64Img(false);
   };
+
+  const handleClose = () => {
+    setBase64Img(false);
+    closeModalCallback();
+  };
   return (
-    <Dialog open={open} fullScreen onClose={closeModalCallback}>
+    <Dialog open={open} fullScreen onClose={handleClose}>
       <Wrapper className={base64Img ? 'with-image' : ''}>
         <Inner>
           {base64Img ? (
@@ -79,6 +84,16 @@ function UploadModal({ open, closeModalCallback, uploadImageCallback }) {
                 showTitle={false}
                 withPreview={false}
                 uploadImageCallback={handleStep1}
+                label="CHOOSE"
+                additionalButton={
+                  <PurpleButton
+                    className="outline"
+                    fullWidth
+                    onClick={handleClose}
+                  >
+                    CANCEL
+                  </PurpleButton>
+                }
               />
             </>
           )}

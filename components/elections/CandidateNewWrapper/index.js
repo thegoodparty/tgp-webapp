@@ -17,6 +17,7 @@ import Main from './Main';
 import EndorsementPreviewModal from './EndorsementPreviewModal';
 import ShareModal from './ShareModal';
 import { H1 } from '../../shared/typogrophy';
+import RedirectModal from './RedirectModal';
 
 const ContentWrapper = styled.div`
   width: 100vw;
@@ -37,6 +38,7 @@ function CandidateNewWrapper({
   fromShareLink,
   showShareModal,
   supportLink,
+  showRedirectModal,
   user,
   isUserSupportCandidate,
   removeSupportCallback,
@@ -61,6 +63,8 @@ function CandidateNewWrapper({
   };
   return (
     <PageWrapper isFullWidth purple>
+      {showRedirectModal && <RedirectModal />}
+
       <ContentWrapper>
         <Hidden smDown>
           <H1 style={{ marginBottom: '24px' }}>{candidate.headline}</H1>
@@ -125,6 +129,7 @@ CandidateNewWrapper.propTypes = {
   fromShareLink: PropTypes.bool,
   showShareModal: PropTypes.bool,
   supportLink: PropTypes.bool,
+  showRedirectModal: PropTypes.bool,
   isUserSupportCandidate: PropTypes.bool,
   previewNextStepCallback: PropTypes.func,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),

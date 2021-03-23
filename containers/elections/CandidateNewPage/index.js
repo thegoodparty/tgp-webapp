@@ -13,8 +13,7 @@ import { compose } from 'redux';
 
 import CandidateNewWrapper from 'components/elections/CandidateNewWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
-import { getCandidateChamberDistrictOnly } from 'helpers/candidatesHelper';
-import { getUserCookie, setCookie } from 'helpers/cookieHelper';
+import { getUserCookie } from 'helpers/cookieHelper';
 import queryHelper from 'helpers/queryHelper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
 
@@ -49,6 +48,7 @@ export function CandidateNewPage({
   const showShareModal = router.query.share;
   const supportLink = router.query.support;
   const fromShareLink = router.query.fromshare;
+  const showRedirectModal = router.query.redirect;
 
   let candidate;
 
@@ -56,6 +56,23 @@ export function CandidateNewPage({
     ({ candidate } = ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
+
+  useEffect(() => {
+    // redirect to correct route
+    const { NameIdTab } = router.query;
+
+    if (
+      typeof window !== 'undefined' &&
+      (!NameIdTab ||
+        NameIdTab[0] !== `${candidate.firstName}-${candidate.lastName}`)
+    ) {
+      router.replace(
+        `/candidate/${candidate.firstName}-${candidate.lastName}/${
+          candidate.id
+        }${window.location.search}`,
+      );
+    }
+  }, [candidate.id]);
 
   useEffect(() => {
     if (!userSupports && user) {
@@ -86,6 +103,7 @@ ${race}.`;
     showShareModal,
     fromShareLink,
     supportLink,
+    showRedirectModal,
     user,
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
     previewNextStepCallback,

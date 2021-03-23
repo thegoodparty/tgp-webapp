@@ -98,6 +98,15 @@ const ButtonCancelWrapper = styled.div`
   }
 `;
 
+const Privacy = styled.div`
+  margin-top: 24px;
+  border: 1px solid ${({ theme }) => theme.colors.purple4};
+  padding: 38px;
+  border-radius: 8px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray6};
+`;
+
 function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [editEnabled, setEditEnabled] = useState({});
   const [editPassword, setEditPassword] = useState(false);
@@ -328,6 +337,13 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
           )}
         </Hidden>
       </Row>
+      <Privacy>
+        <BsLock size={24} color="#919191" />
+        <br />
+        Good Party doesn&apos;t sell or share
+        <br />
+        your personal data
+      </Privacy>
     </Wrapper>
   );
 }

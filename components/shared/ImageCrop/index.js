@@ -22,8 +22,9 @@ const CanvasWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
+  display: flex;
   text-align: center;
-  width: 60%;
+  width: 100%;
   margin: 1.5rem auto;
 `;
 
@@ -35,7 +36,10 @@ function ImageCrop({
   currentImage,
   showTitle = true,
   withPreview = true,
+  label = 'UPLOAD IMAGE',
+  additionalButton,
 }) {
+  console.log('withPRev', withPreview);
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -119,18 +123,17 @@ function ImageCrop({
                 onComplete={c => setCompletedCrop(c)}
               />
             </Grid>
-
             <Grid
               item
               xs={12}
               style={
                 withPreview
-                  ? {
+                  ? {}
+                  : {
                       opacity: 0,
                       position: 'absolute',
                       left: '-3000px',
                     }
-                  : {}
               }
             >
               <CanvasWrapper
@@ -150,7 +153,8 @@ function ImageCrop({
             </Grid>
           </Grid>
           <ButtonWrapper onClick={handleUpload}>
-            <PurpleButton fullWidth>Upload Image</PurpleButton>
+            {additionalButton || ''} &nbsp;
+            <PurpleButton fullWidth>{label}</PurpleButton>
           </ButtonWrapper>
         </>
       )}
@@ -164,6 +168,8 @@ ImageCrop.propTypes = {
   currentImage: PropTypes.string,
   showTitle: PropTypes.bool,
   withPreview: PropTypes.bool,
+  label: PropTypes.string,
+  additionalButton: PropTypes.object,
 };
 
 export default ImageCrop;

@@ -7,8 +7,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { BsLock } from 'react-icons/bs';
-import Dialog from '@material-ui/core/Dialog';
 
 import UserAvatar from '../../shared/UserAvatar';
 import { Body9, H2 } from '../../shared/typogrophy';
@@ -69,15 +67,6 @@ const EditText = styled(Body9)`
   }
 `;
 
-const Privacy = styled.div`
-  margin-top: 24px;
-  border: 1px solid ${({ theme }) => theme.colors.purple4};
-  padding: 38px;
-  border-radius: 8px;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.gray6};
-`;
-
 function ImageSection({ user, mode = 'desktop', uploadImageCallback }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -89,27 +78,17 @@ function ImageSection({ user, mode = 'desktop', uploadImageCallback }) {
   };
   return (
     <Wrapper>
-      {(mode === 'top' || mode === 'desktop') && (
-        <Row className={mode}>
-          <AvatarWrapper onClick={handleOpenModal}>
-            <EditText>EDIT</EditText>
+      <Row className={mode}>
+        <AvatarWrapper onClick={handleOpenModal}>
+          <EditText>EDIT</EditText>
 
-            <UserAvatar user={user} size="large" />
-          </AvatarWrapper>
-          <H2 style={{ marginLeft: '12px' }}>
-            {fullFirstLastInitials(user.name)}
-          </H2>
-        </Row>
-      )}
-      {(mode === 'bottom' || mode === 'desktop') && (
-        <Privacy>
-          <BsLock size={24} color="#919191" />
-          <br />
-          Good Party doesn&apos;t sell or share
-          <br />
-          your personal data
-        </Privacy>
-      )}
+          <UserAvatar user={user} size="large" />
+        </AvatarWrapper>
+        <H2 style={{ marginLeft: '12px' }}>
+          {fullFirstLastInitials(user.name)}
+        </H2>
+      </Row>
+
       <UploadModal
         closeModalCallback={handleCloseModal}
         open={showModal}

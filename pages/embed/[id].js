@@ -1,15 +1,12 @@
-import CandidatePage from 'containers/elections/CandidateNewPage';
+import EndorseIframe from 'components/EndorseIframe';
 import tgpApi from 'api/tgpApi';
 
-export default function Candidate({ ssrState }) {
-  return <CandidatePage ssrState={ssrState} />;
+export default function Embed({ ssrState }) {
+  return <EndorseIframe ssrState={ssrState} />;
 }
 
 export async function getServerSideProps(context) {
-  const { NameIdTab } = context.params;
-  // const name = NameIdTab?.length > 1 ? NameIdTab[0] : false;
-  const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
-  const tab = NameIdTab?.length > 2 ? NameIdTab[2] : false;
+  const { id } = context.params;
 
   if (id) {
     const api = tgpApi.newCandidate.find;
@@ -22,7 +19,6 @@ export async function getServerSideProps(context) {
         ssrState: {
           candidate: candidate.candidate,
           id,
-          tab,
         },
       }, // will be passed to the page component as props
     };

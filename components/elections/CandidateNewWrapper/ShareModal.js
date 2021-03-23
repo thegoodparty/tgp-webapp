@@ -40,7 +40,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const WhiteBody13 = styled(Body13)`
+const WhiteBody11 = styled(Body11)`
   color: #fff;
   margin: 33px 0 18px;
 `;
@@ -52,8 +52,8 @@ const IconItem = styled.div`
 `;
 
 const IconWrapper = styled.div`
-  height: 56px;
-  width: 56px;
+  height: 40px;
+  width: 40px;
   background-color: ${({ theme }) => theme.colors.blue};
   border-radius: 50%;
   display: flex;
@@ -164,7 +164,7 @@ const IconWrapper = styled.div`
 
 const Icon = styled.div`
   color: #fff;
-  font-size: 24px;
+  font-size: 16px;
   margin-top: 6px;
 `;
 
@@ -214,9 +214,15 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const { firstName, lastName, race } = candidate || {};
   let url = '';
   if (typeof window !== 'undefined') {
+    if (window.location.pathname.includes('/candidate/')) {
+      url = window.location.pathname;
+    }
+    else {
+      url = '/candidates'
+    }
     url = uuidUrl(
       user,
-      window.location.origin + window.location.pathname,
+      window.location.origin + url,
       supportLink ? 'support=true' : '',
     );
   }
@@ -338,7 +344,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
         <H2 style={{ color: '#FFF' }}>Share to</H2>
         <Grid container spacing={3}>
           <Grid item xs={6}>
-            <WhiteBody13>PRIVATE</WhiteBody13>
+            <WhiteBody11>PRIVATE</WhiteBody11>
             {privateChannels.map(channel => (
               <a
                 href={channel.link}
@@ -375,7 +381,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
           </Grid>
 
           <Grid item xs={6}>
-            <WhiteBody13> PUBLIC</WhiteBody13>
+            <WhiteBody11>PUBLIC</WhiteBody11>
             {publicChannels.map(channel => (
               <a
                 href={channel.link}
