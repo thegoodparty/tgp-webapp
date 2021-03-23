@@ -83,7 +83,7 @@ const Input = styled(TextField)`
       box-shadow: 0px 2px 0px rgba(17, 17, 31, 0.25);
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -101,13 +101,7 @@ function SocialRegisterWrapper({
   console.log(router);
   let title = <>Join the Good Party</>;
   if (router.route === '/candidate/[...NameIdTab]') {
-    title = (
-      <>
-        To endorse a candidate,
-        <br />
-        create your profile
-      </>
-    );
+    title = <>Complete endorsement</>;
   }
   const initState = {
     name: '',
