@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Body11 } from '../shared/typogrophy';
 
 const Wrapper = styled.div`
   position: relative;
@@ -48,6 +49,14 @@ const Row = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const Skip = styled(Body11)`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.purple};
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 8px;
   margin-bottom: 24px;
 `;
 
@@ -149,6 +158,7 @@ function RedirectWrapper({ candidate }) {
             <Number>{timeLeft}</Number>
           </CircleWrapper>
         </Row>
+        <Skip onClick={handleRedirect}>Click to redirect now</Skip>
         <Free>Free Software for free elections</Free>
         <Logo src="/images/new-logo.svg" alt="The Good Party" />
       </Inner>
