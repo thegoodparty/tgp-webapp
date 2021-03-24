@@ -29,6 +29,15 @@ const ContentWrapper = styled.div`
   }
 `;
 
+const HeaderWrapper = styled.div`
+  margin-bottom: 16px;
+  padding: 0 18px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0;
+    margin-bottom: 24px;
+  }
+`;
+
 function CandidateNewWrapper({
   content,
   candidate,
@@ -62,9 +71,9 @@ function CandidateNewWrapper({
   return (
     <PageWrapper isFullWidth purple>
       <ContentWrapper>
-        <Hidden smDown>
-          <H1 style={{ marginBottom: '24px' }}>{candidate.headline}</H1>
-        </Hidden>
+        <HeaderWrapper>
+          <H1 style={{}}>{candidate.headline}</H1>
+        </HeaderWrapper>
         <Grid container spacing={3}>
           <Grid row item xs={12} md={7}>
             <Main
