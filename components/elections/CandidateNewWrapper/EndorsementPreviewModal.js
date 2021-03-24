@@ -59,19 +59,22 @@ function EndorsementPreviewModal({
   previewNextStepCallback,
   fromShareLink,
 }) {
-  // const defaultMessage = user
-  //   ? `Someone real, not another 💩 politician! ${"\n"} ${"\n"} I'm ${
-  //       user?.name
-  //     } and I approve this message! 😜`
-  //   : 'Someone real, not another 💩 politician!';
   let defaultMessage = `Check out the crowd-voting campaign for ${
     candidate.firstName
   } ${candidate.lastName} for ${candidate.race}`;
-  // if (user) {
-  //   defaultMessage += `${'\n'} ${'\n'} I'm ${
-  //     user?.name
-  //   } and I approve this message! 😜`;
-  // }
+
+  if (!fromShareLink) {
+    defaultMessage = `Someone real, not another 💩 politician!`;
+
+    if (user) {
+      defaultMessage += `${'\n'} ${'\n'}I'm ${
+        user?.name
+      } and I approve this message! 😜`;
+    }
+  }
+  console.log('ms', defaultMessage);
+  console.log('fromShareLink', fromShareLink);
+
   const [message, setMessage] = useState(defaultMessage);
 
   const onChangeField = e => {
