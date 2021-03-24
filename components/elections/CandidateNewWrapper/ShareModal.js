@@ -214,12 +214,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const { firstName, lastName, race } = candidate || {};
   let url = '';
   if (typeof window !== 'undefined') {
-    if (window.location.pathname.includes('/candidate/')) {
-      url = window.location.pathname;
-    }
-    else {
-      url = '/candidates'
-    }
+    url = window.location.pathname;
     url = uuidUrl(
       user,
       window.location.origin + url,
@@ -252,12 +247,14 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   }
 
   const emailSubject = candidate
-    ? `Check out ${candidate.firstName} ${candidate.lastName} on Good Party`
-    : 'Check out the Good Party';
+    ? `Check out ${candidate.firstName} ${candidate.lastName} for ${
+        candidate.race
+      }`
+    : 'Check this out';
 
   const emailBody = cleanMessage
-    ? `${cleanMessage}%0D%0A%0D%0A${encodedUrl}`
-    : `The Good Party is free software for free elections:%0D%0A%0D%0A${encodedUrl}`;
+    ? `${cleanMessage}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`
+    : `${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
   const handleCopy = () => {
     setCopied(true);

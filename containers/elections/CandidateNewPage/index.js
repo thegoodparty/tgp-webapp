@@ -48,7 +48,6 @@ export function CandidateNewPage({
   const showShareModal = router.query.share;
   const supportLink = router.query.support;
   const fromShareLink = router.query.fromshare;
-  const showRedirectModal = router.query.redirect;
 
   let candidate;
 
@@ -103,7 +102,6 @@ ${race}.`;
     showShareModal,
     fromShareLink,
     supportLink,
-    showRedirectModal,
     user,
     isUserSupportCandidate: userSupports && userSupports[candidate.id],
     previewNextStepCallback,
