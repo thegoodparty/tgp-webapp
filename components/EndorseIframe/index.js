@@ -6,18 +6,17 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PurpleButton } from 'components/shared/buttons';
-import ENV from 'api/ENV';
+import { useRouter } from 'next/router';
 
-function EndorseIframe({ ssrState }) {
-  const { candidate } = ssrState;
-  const { id, firstName, lastName } = candidate;
+import { PurpleButton } from 'components/shared/buttons';
+
+function EndorseIframe() {
+  const router = useRouter();
+  const { id } = router.query;
   const intId = parseInt(id, 10); // to prevent xss;
   return (
     <a
-      href={`https://${
-        ENV !== 'prod' ? 'dev.' : ''
-      }thegoodparty.org/candidate/${firstName}-${lastName}/${intId}?redirect=true`}
+      href={`https://dev.thegoodparty.org/embed/redirect/${intId}`}
       target="_blank"
       style={{
         minWidth: '150px',
@@ -41,8 +40,6 @@ function EndorseIframe({ ssrState }) {
   );
 }
 
-EndorseIframe.propTypes = {
-  ssrState: PropTypes.object,
-};
+EndorseIframe.propTypes = {};
 
 export default EndorseIframe;

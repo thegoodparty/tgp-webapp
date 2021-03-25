@@ -152,8 +152,11 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
         router.components['/candidate/[...NameIdTab]']?.props?.pageProps
           ?.ssrState?.id,
       );
+      router.query.preview = 'true';
+      router.query.fromshare = 'true';
+    } else {
+      router.query.share = 'true';
     }
-    router.query.share = 'true';
     router.push(router);
   };
 

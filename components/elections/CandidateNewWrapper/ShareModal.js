@@ -214,12 +214,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const { firstName, lastName, race } = candidate || {};
   let url = '';
   if (typeof window !== 'undefined') {
-    if (window.location.pathname.includes('/candidate/')) {
-      url = window.location.pathname;
-    }
-    else {
-      url = '/candidates'
-    }
+    url = window.location.pathname;
     url = uuidUrl(
       user,
       window.location.origin + url,
@@ -251,13 +246,22 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'} ${defaultMessage}`;
   }
 
-  const emailSubject = candidate
-    ? `Check out ${candidate.firstName} ${candidate.lastName} on Good Party`
-    : 'Check out the Good Party';
+  let emailSubject;
+  if (candidate) {
+    if (supportLink) {
+      emailSubject = `I'm endorsing ${firstName} ${lastName} for ${
+        candidate.race
+      }`;
+    } else {
+      emailSubject = `Check out ${firstName} ${lastName} for ${candidate.race}`;
+    }
+  } else {
+    emailSubject = 'Check this out';
+  }
 
   const emailBody = cleanMessage
-    ? `${cleanMessage}%0D%0A%0D%0A${encodedUrl}`
-    : `The Good Party is free software for free elections:%0D%0A%0D%0A${encodedUrl}`;
+    ? `${cleanMessage}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`
+    : `${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
   const handleCopy = () => {
     setCopied(true);
@@ -414,8 +418,8 @@ const ShareModal = ({ candidate, message, supportLink }) => {
 
 ShareModal.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   message: PropTypes.string,
+  supportLink: PropTypes.bool,
 };
 
 export default ShareModal;

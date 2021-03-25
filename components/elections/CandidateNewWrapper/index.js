@@ -17,7 +17,6 @@ import Main from './Main';
 import EndorsementPreviewModal from './EndorsementPreviewModal';
 import ShareModal from './ShareModal';
 import { H1 } from '../../shared/typogrophy';
-import RedirectModal from './RedirectModal';
 
 const ContentWrapper = styled.div`
   width: 100vw;
@@ -30,6 +29,15 @@ const ContentWrapper = styled.div`
   }
 `;
 
+const HeaderWrapper = styled.div`
+  margin-bottom: 16px;
+  padding: 0 18px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: 0;
+    margin-bottom: 24px;
+  }
+`;
+
 function CandidateNewWrapper({
   content,
   candidate,
@@ -38,7 +46,6 @@ function CandidateNewWrapper({
   fromShareLink,
   showShareModal,
   supportLink,
-  showRedirectModal,
   user,
   isUserSupportCandidate,
   removeSupportCallback,
@@ -63,12 +70,10 @@ function CandidateNewWrapper({
   };
   return (
     <PageWrapper isFullWidth purple>
-      {showRedirectModal && <RedirectModal />}
-
       <ContentWrapper>
-        <Hidden smDown>
-          <H1 style={{ marginBottom: '24px' }}>{candidate.headline}</H1>
-        </Hidden>
+        <HeaderWrapper>
+          <H1 style={{}}>{candidate.headline}</H1>
+        </HeaderWrapper>
         <Grid container spacing={3}>
           <Grid row item xs={12} md={7}>
             <Main
@@ -129,7 +134,6 @@ CandidateNewWrapper.propTypes = {
   fromShareLink: PropTypes.bool,
   showShareModal: PropTypes.bool,
   supportLink: PropTypes.bool,
-  showRedirectModal: PropTypes.bool,
   isUserSupportCandidate: PropTypes.bool,
   previewNextStepCallback: PropTypes.func,
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
