@@ -104,7 +104,7 @@ function RecentlyJoined({
       <Grid container alignItems="center" style={{ marginBottom: 14 }}>
         <img src={PeopleJoinedIconPurple} alt="share" />
         <JoinedCount>
-          {total} {total === 1 ? 'person' : 'people'} have taken action
+          {total} {total === 1 ? 'person has' : 'people have'} taken action
         </JoinedCount>
       </Grid>
       {supporters.map(supporter => (
