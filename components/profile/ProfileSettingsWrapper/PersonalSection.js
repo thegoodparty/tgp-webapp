@@ -157,7 +157,11 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
               onChange={e => onChangeField(fieldKey, e.target.value)}
             />
             <ButtonCancelWrapper>
-              <PurpleButton style={{ marginTop: '24px' }} onClick={handleSave}>
+              <PurpleButton
+                style={{ marginTop: '24px' }}
+                disabled={field.value === ''}
+                onClick={handleSave}
+              >
                 <span style={{ padding: '0 24px' }}>SAVE</span>
               </PurpleButton>
               <Cancel
