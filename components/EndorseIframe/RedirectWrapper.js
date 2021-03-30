@@ -93,7 +93,7 @@ const CircularProgressBg = styled(CircularProgress)`
 
 const Number = styled.div`
   margin-top: 1px;
-  margin-left: 3px;
+  margin-left: 1px;
   font-size: 11px;
   font-weight: 700;
 `;
@@ -112,7 +112,7 @@ const Logo = styled.img`
   height: auto;
 `;
 
-const timerSeconds = 10;
+const timerSeconds = 9;
 
 function RedirectWrapper({ candidate }) {
   const router = useRouter();
@@ -158,8 +158,8 @@ function RedirectWrapper({ candidate }) {
             <Number>{timeLeft}</Number>
           </CircleWrapper>
         </Row>
-        <Skip onClick={handleRedirect}>Click to redirect now</Skip>
-        <Free>Free Software for free elections</Free>
+        <Skip onClick={handleRedirect}>Click to go now</Skip>
+        <Free>Free software for free elections</Free>
         <Logo src="/images/new-logo.svg" alt="The Good Party" />
       </Inner>
     </Wrapper>
