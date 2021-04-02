@@ -22,7 +22,7 @@ const PointWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin-bottom: 48px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -74,20 +74,20 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
           <Grid item xs={12} md={mdColumns}>
             <PointWrapper>
               <PointIcon src={point.icon} />
-              <div>
-                <Body>
-                  <strong>{point.title}</strong>
-                  <UnderText>
-                    {point.body}{' '}
-                    {point.endLink && (
-                      <Link href={point.endLink.href}>
-                        {point.endLink.text}
-                      </Link>
-                    )}
-                  </UnderText>
-                </Body>
-              </div>
+              <Body>
+                <strong>{point.title}</strong>
+              </Body>
             </PointWrapper>
+            <div>
+              <Body>
+                <UnderText>
+                  {point.body}{' '}
+                  {point.endLink && (
+                    <Link href={point.endLink.href}>{point.endLink.text}</Link>
+                  )}
+                </UnderText>
+              </Body>
+            </div>
           </Grid>
         ))}
       </Grid>
