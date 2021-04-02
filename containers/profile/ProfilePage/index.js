@@ -67,13 +67,12 @@ export function ProfilePage({ dispatch, profilePage }) {
     crewCount,
     userSupported: supported,
   };
-  const initialName = user ? fullFirstLastInitials(user.name) : '';
 
   return (
     <div>
       <TgpHelmet
-        title={`${initialName} on GOOD PARTY`}
-        description={`Profile page for ${initialName} on GOOD PARTY`}
+        title="Profile | GOOD PARTY"
+        description="Sign into your profile on GOOD PARTY."
       />
       {user && <ProfileWrapper {...childProps} />}
     </div>
