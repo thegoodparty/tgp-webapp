@@ -68,7 +68,7 @@ const Action = styled(Body13)`
 const StyledTextField = styled(TextField)`
   && {
     background-color: #fff;
-    box-shadow: 0px 2px 0px rgba(17, 17, 31, 0.25);
+    box-shadow: 0 2px 0 rgba(17, 17, 31, 0.25);
     border-radius: 8px;
     margin-top: 8px;
   }
@@ -213,18 +213,30 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
       setOldPassword('');
     }
   };
+
+  const showEdit = field => {
+    if (!editEnabled[formFields[field].label] && window.innerWidth < 960) {
+      setEditEnabled({
+        ...editEnabled,
+        [formFields[field].label]: true,
+      });
+    }
+  };
   return (
     <Wrapper>
       {Object.keys(formFields).map(field => (
         <Row
           key={formFields[field].label}
           className={editEnabled[formFields[field].label] && 'with-save'}
+          onClick={() => {
+            showEdit(field);
+          }}
         >
           <div style={{ flex: 1 }}>
             <Label>
               {formFields[field].label} <BsLock size={12} color="#767676" />
             </Label>
-            <Hidden mdDown>{EditableValue(field)}</Hidden>
+            <Hidden smDown>{EditableValue(field)}</Hidden>
           </div>
           <Hidden mdUp>
             {EditableValue(field)}
@@ -240,7 +252,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
               <BsChevronRight />
             </ChevronWrapper>
           </Hidden>
-          <Hidden mdDown>
+          <Hidden smDown>
             {editEnabled[formFields[field].label] ? (
               <Action
                 onClick={() => {
@@ -321,7 +333,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
             <BsChevronRight />
           </ChevronWrapper>
         </Hidden>
-        <Hidden mdDown>
+        <Hidden smDown>
           {editPassword ? (
             <Action
               onClick={() => {
