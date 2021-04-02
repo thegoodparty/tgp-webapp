@@ -66,7 +66,6 @@ const AvatarWrapper = styled.div`
   height: 80px;
   cursor: pointer;
   display: flex;
-  margin-left: 2rem;
 `;
 
 const PushAvatarWrapper = styled.div`
@@ -80,6 +79,11 @@ const PushAvatarWrapper = styled.div`
   padding-bottom: 18px;
 `;
 
+const ShareWrapper = styled.div`
+  width: 40px;
+  text-align: right;
+`;
+
 const Share = styled.img`
   height: 18px;
   cursor: pointer;
@@ -87,6 +91,7 @@ const Share = styled.img`
 
 const LinkContainer = styled.div`
   display: flex;
+  width: 40px;
 `;
 
 const PushMenuLink = styled.div`
@@ -132,11 +137,13 @@ function MobileHeader({ user }) {
             </a>
           </Link>
         ) : (
-          <Share
-            src="/images/icons/share-icon.svg"
-            alt="Share"
-            onClick={handleShare}
-          />
+          <ShareWrapper>
+            <Share
+              src="/images/icons/share-icon.svg"
+              alt="Share"
+              onClick={handleShare}
+            />
+          </ShareWrapper>
         )}
       </Wrapper>
       <MenuItemWrapper anchor="left" open={open} onClose={() => setOpen(false)}>
