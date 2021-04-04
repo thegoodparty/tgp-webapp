@@ -91,7 +91,8 @@ function CandidateCard({ candidate }) {
         {firstName} {lastName}
       </Name>
       <For>
-        <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase> for {race}
+        <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
+        candidate running for {race}
       </For>
       <Grid container>
         <Grid item xs={6}>
