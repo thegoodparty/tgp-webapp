@@ -21,8 +21,7 @@ const TgpDialog = styled(Dialog)`
       background-color: ${({ theme }) => theme.colors.purple3};
       padding: 24px;
 
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+      @media only screen and (min-width: 1280px) {
         box-shadow: -2px 2px 5px rgba(224, 212, 234, 0.2),
           2px -2px 5px rgba(224, 212, 234, 0.2),
           -2px -2px 5px rgba(255, 255, 255, 0.9),
@@ -34,8 +33,7 @@ const TgpDialog = styled(Dialog)`
     }
 
     .MuiBackdrop-root {
-      background: rgba(240, 236, 243, 0.9);
-      backdrop-filter: blur(5px);
+      background: rgb(240, 236, 243);
     }
 
     &.purple {
