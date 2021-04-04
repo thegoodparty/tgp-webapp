@@ -140,15 +140,6 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        <Hidden mdUp>
-          <SectionWrapper style={{ marginTop: heroVideo ? '48px' : 0 }}>
-            <CampaignSummaryHeadLine
-              style={{ marginTop: heroVideo ? '64px' : 0 }}
-            >
-              {headline}
-            </CampaignSummaryHeadLine>
-          </SectionWrapper>
-        </Hidden>
         <SectionWrapper>
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
         </SectionWrapper>
