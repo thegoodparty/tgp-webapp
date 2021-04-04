@@ -241,9 +241,9 @@ const ShareModal = ({ candidate, message, supportLink }) => {
 
   let textMessageBody = encodedUrl;
   if (cleanMessage) {
-    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'} ${cleanMessage}`;
+    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${cleanMessage}`;
   } else if (candidate) {
-    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'} ${defaultMessage}`;
+    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${defaultMessage}`;
   }
 
   let emailSubject;
@@ -261,7 +261,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
 
   const emailBody = cleanMessage
     ? `${cleanMessage}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`
-    : `${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
+    : `${encodedUrl}%0D%0A%0D%0AGOOD PARTY%0D%0AFree software for free elections`;
 
   const handleCopy = () => {
     setCopied(true);
