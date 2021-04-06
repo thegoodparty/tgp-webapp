@@ -26,9 +26,11 @@ const Content = styled.div`
   margin: 0 auto 48px;
   padding: 0 18px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 48px 0;
+    padding: 48px 18px;
     overflow-x: visible;
+    max-width: 1310px;
   }
+
 `;
 
 const ReverseGrid = styled(Grid)`
