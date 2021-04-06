@@ -87,7 +87,7 @@ Cypress.Commands.add('checkCommonFooter', (user = {}) => {
     .and('contain', 'https://www.youtube.com/channel/UCPNp46yxggs8NPeXFuMTpGQ');
 
   cy.get('[data-cy=footer-description]')
-    .should('contain', 'PAID FOR BY THE GOOD PARTY | THEGOODPARTY.ORG')
+    .should('contain', 'PAID FOR BY THE GOOD PARTY | GOODPARTY.ORG')
     .and('contain', 'NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.');
 });
 
