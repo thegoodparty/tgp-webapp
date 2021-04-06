@@ -209,7 +209,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   });
 
   const cleanMessage = message === 'true' ? '' : message;
-  const defaultMessage = `I'm supporting someone real, not another 💩 politician!.`;
+  const defaultMessage = `I'm supporting someone real, not another 💩 politician!`;
 
   const { firstName, lastName, race } = candidate || {};
   let url = '';
