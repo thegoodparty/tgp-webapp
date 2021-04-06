@@ -13,13 +13,13 @@ import {
   IoIosLink,
   IoIosMail,
   IoLogoTwitter,
-  // IoLogoInstagram,
+  IoLogoInstagram,
   IoLogoReddit,
 } from 'react-icons/io';
 import { ImWhatsapp } from 'react-icons/im';
 import { FaSnapchatGhost, FaFacebookF } from 'react-icons/fa';
 import { getUserCookie } from '../../../helpers/cookieHelper';
-// import { SiTiktok } from 'react-icons/si';
+import { SiTiktok } from 'react-icons/si';
 //
 // const CopyPasteIcon = '/images/icons/copy-paste.svg';
 // const LinkIcon = '/images/icons/link-icon.svg';
@@ -331,7 +331,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       label: 'TikTok',
       icon: <SiTiktok />,
       className: 'tiktok',
-      link: ``,
+      link: `https:`,
     },
     {
       label: 'Facebook',
