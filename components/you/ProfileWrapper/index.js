@@ -356,7 +356,7 @@ const ProfileWrapper = ({
         Spread the word
       </BottomLink>
       <a
-        href="mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion"
+        href="mailto:ask@goodparty.org?subject=Feedback%20or%20Suggestion"
         data-cy="feedback-link"
       >
         <BottomLink>Give Feedback or Suggestions</BottomLink>

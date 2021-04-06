@@ -140,15 +140,6 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        <Hidden mdUp>
-          <SectionWrapper style={{ marginTop: heroVideo ? '48px' : 0 }}>
-            <CampaignSummaryHeadLine
-              style={{ marginTop: heroVideo ? '64px' : 0 }}
-            >
-              {headline}
-            </CampaignSummaryHeadLine>
-          </SectionWrapper>
-        </Hidden>
         <SectionWrapper>
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
         </SectionWrapper>
@@ -159,7 +150,7 @@ function MainWrapper({
 
           <div style={{ marginTop: '24px' }}>
             {facebook && (
-              <SocialLink href={facebook}>
+              <SocialLink href={facebook} target="_blank">
                 <img
                   src="/images/icons/purple-facebook.svg"
                   alt="facebook"
@@ -168,7 +159,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {twitter && (
-              <SocialLink href={twitter}>
+              <SocialLink href={twitter} target="_blank">
                 <img
                   src="/images/icons/purple-twitter.svg"
                   alt="twitter"
@@ -177,7 +168,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {tiktok && (
-              <SocialLink href={tiktok}>
+              <SocialLink href={tiktok} target="_blank">
                 <img
                   src="/images/icons/purple-tiktok.svg"
                   alt="tiktok"
@@ -186,7 +177,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {snap && (
-              <SocialLink href={twitter}>
+              <SocialLink href={twitter} target="_blank">
                 <img
                   src="/images/icons/purple-snap.svg"
                   alt="snap"

@@ -8,7 +8,7 @@
 import { parseCookie } from './support/utils';
 export const base = Cypress.env('API_BASE');
 export const isProduction = Cypress.config().baseUrl === 'https://thegoodparty.org';
-export const feedbackLink = 'mailto:ask@thegoodparty.org?subject=Feedback%20or%20Suggestion';
+export const feedbackLink = 'mailto:ask@goodparty.org?subject=Feedback%20or%20Suggestion';
 export const api = {
   base,
   //
@@ -148,7 +148,7 @@ export const api = {
     method: 'GET',
     withAuth: true,
   },
-  
+
   userRanking: {
     url: `${base}user/ranking`,
     method: 'GET',

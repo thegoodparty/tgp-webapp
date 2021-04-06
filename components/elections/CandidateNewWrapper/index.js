@@ -87,7 +87,7 @@ function CandidateNewWrapper({
               trackShareCallback={trackShareCallback}
             />
           </Grid>
-          <Hidden mdDown>
+          <Hidden smDown>
             <Grid row item xs={12} md={5}>
               <ProfileInfo
                 candidate={candidate}

@@ -49,7 +49,7 @@ Cypress.Commands.add('checkCommonFooter', (user = {}) => {
   cy.get('[data-cy=footer-link-email]')
     .contains('Send Us An Email')
     .should('have.attr', 'href')
-    .and('contain', 'mailto:ask@thegoodparty.org');
+    .and('contain', 'mailto:ask@goodparty.org');
 
   cy.get('[data-cy=footer-team-title]').contains('Team');
   cy.get('[data-cy=footer-team]').contains(
@@ -61,7 +61,7 @@ Cypress.Commands.add('checkCommonFooter', (user = {}) => {
     .should('have.attr', 'href')
     .and(
       'contain',
-      "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]",
+      "mailto:ask@goodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]",
     );
 
   cy.get('[data-cy=footer-link-policy]')
@@ -87,7 +87,7 @@ Cypress.Commands.add('checkCommonFooter', (user = {}) => {
     .and('contain', 'https://www.youtube.com/channel/UCPNp46yxggs8NPeXFuMTpGQ');
 
   cy.get('[data-cy=footer-description]')
-    .should('contain', 'PAID FOR BY THE GOOD PARTY | THEGOODPARTY.ORG')
+    .should('contain', 'PAID FOR BY THE GOOD PARTY | GOODPARTY.ORG')
     .and('contain', 'NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.');
 });
 

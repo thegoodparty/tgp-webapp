@@ -176,7 +176,7 @@ function Footer({ isCreators = false }) {
                   </WhiteLink>
                 </Link>
                 <WhiteLink
-                  href="mailto:ask@thegoodparty.org"
+                  href="mailto:ask@goodparty.org"
                   data-cy="footer-link-email"
                 >
                   Email us
@@ -190,7 +190,7 @@ function Footer({ isCreators = false }) {
                 people to collaborate with!
                 <div>
                   <a
-                    href="mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                    href="mailto:ask@goodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
                     data-cy="footer-link-join"
                   >
                     <Apply>APPLY TO JOIN</Apply>
@@ -266,7 +266,7 @@ function Footer({ isCreators = false }) {
           className={isCreators ? ' creatorsFooterContent' : ''}
           data-cy="footer-description"
         >
-          PAID FOR BY THE GOOD PARTY | THEGOODPARTY.ORG
+          PAID FOR BY THE GOOD PARTY | GOODPARTY.ORG
           <br />
           NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
         </InnerWrapper>

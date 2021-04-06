@@ -34,6 +34,7 @@ const Name = styled.h3`
   font-size: 23px;
   font-weight: 700;
   margin: 20px 0;
+  color: #000;
 `;
 
 const TitleCase = styled.span`
@@ -85,47 +86,55 @@ function CandidateCard({ candidate }) {
 
   const intLikelyVoters = parseInt(likelyVoters, 10);
   return (
-    <Wrapper>
-      <CandidateAvatar avatar={image} party={party} size="medium" partyBadge />
-      <Name>
-        {firstName} {lastName}
-      </Name>
-      <For>
-        <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase> for {race}
-      </For>
-      <Grid container>
-        <Grid item xs={6}>
-          <LikelyVoters>
-            <span>{kFormatter(intLikelyVoters + supporters)}</span> likely
-            voters
-          </LikelyVoters>
-        </Grid>
-        <Grid item xs={6}>
-          {supporters === 0 ? (
-            <>&nbsp;</>
-          ) : (
-            <LikelyVoters>
-              <span>{supporters}</span>
-              {supporters === 1 ? 'person' : 'people'} endorsing
-            </LikelyVoters>
-          )}
-        </Grid>
-      </Grid>
-      <SupportersProgressBar
-        showSupporters={false}
-        votesNeeded={votesNeeded}
-        peopleSoFar={supporters + intLikelyVoters}
-        fullWidth
-      />
-      <Headline>{headline}</Headline>
-      <Link href={`/candidate/${firstName}-${lastName}/${id}`} passHref>
-        <a>
+    <Link href={`/candidate/${firstName}-${lastName}/${id}`} passHref>
+      <a>
+        <Wrapper>
+          <CandidateAvatar
+            avatar={image}
+            party={party}
+            size="medium"
+            partyBadge
+            centered
+          />
+          <Name>
+            {firstName} {lastName}
+          </Name>
+          <For>
+            <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
+            candidate running for {race}
+          </For>
+          <Grid container>
+            <Grid item xs={6}>
+              <LikelyVoters>
+                <span>{kFormatter(intLikelyVoters + supporters)}</span> likely
+                voters
+              </LikelyVoters>
+            </Grid>
+            <Grid item xs={6}>
+              {supporters === 0 ? (
+                <>&nbsp;</>
+              ) : (
+                <LikelyVoters>
+                  <span>{supporters}</span>
+                  {supporters === 1 ? 'person' : 'people'} endorsing
+                </LikelyVoters>
+              )}
+            </Grid>
+          </Grid>
+          <SupportersProgressBar
+            showSupporters={false}
+            votesNeeded={votesNeeded}
+            peopleSoFar={supporters + intLikelyVoters}
+            fullWidth
+          />
+          <Headline>{headline}</Headline>
+
           <PurpleButton>
             <ButtonInner>See Campaign</ButtonInner>
           </PurpleButton>
-        </a>
-      </Link>
-    </Wrapper>
+        </Wrapper>{' '}
+      </a>
+    </Link>
   );
 }
 

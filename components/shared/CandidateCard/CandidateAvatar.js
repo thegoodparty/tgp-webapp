@@ -140,6 +140,7 @@ const CandidateAvatar = ({
             width="100%"
             height="100%"
             afterLoad={afterLoad}
+            style={{ width: '58px' }}
           />
         ) : (
           <Img
