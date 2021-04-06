@@ -4,13 +4,16 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/HighlightOff';
 import Dialog from '@material-ui/core/Dialog';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
+import { Body11, Body13, H2 } from 'components/shared/typogrophy';
+import { PurpleButton, OutlinedButton } from '../../shared/buttons';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -36,6 +39,11 @@ const TgpDialog = styled(Dialog)`
       background: rgb(240, 236, 243);
     }
 
+    &.close-dialog {
+      .MuiDialog-paper {
+        background-color: ${({ theme }) => theme.colors.grayBg} !important;
+      }
+    }
     &.purple {
       .MuiDialog-paper {
         background: linear-gradient(
@@ -71,27 +79,60 @@ function QueryModal({
   modalStyles = {},
   mode,
   hideClose = false,
+  closeTitle,
+  closeContent,
+  closeBack,
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [close, setClose] = useState(false);
+  useEffect(() => {
+    if (close && !closeTitle) {
+      closeModalCallback();
+    }
+  }, [close]);
   return (
     <TgpDialog
       onClose={closeModalCallback}
       open
       fullScreen={fullScreen}
-      className={mode}
+      className={`${close && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
       {!hideClose && (
         <TopWrapper>
           <TopClose
-            onClick={closeModalCallback}
+            onClick={() => setClose(true)}
             style={modalStyles.closeButton}
             className={mode}
           />
         </TopWrapper>
       )}
-      {children}
+      {(!closeTitle || !close) && children}
+      {closeTitle && close && (
+        <>
+          <H2 style={{ color: '#292936' }}>{closeTitle}</H2>
+          <Body13 style={{ color: '#11111F', marginTop: 8 }}>
+            {closeContent}
+          </Body13>
+          <Grid container spacing={2} style={{ marginTop: 18 }}>
+            <Grid item xs={6}>
+              <PurpleButton
+                fullWidth
+                className="outline"
+                onClick={closeModalCallback}
+              >
+                YES, EXIT
+              </PurpleButton>
+            </Grid>
+            <Grid item xs={6}>
+              <PurpleButton fullWidth onClick={() => setClose(false)}>
+                {closeBack}
+              </PurpleButton>
+            </Grid>
+          </Grid>
+        </>
+      )}
     </TgpDialog>
   );
 }
@@ -102,6 +143,9 @@ QueryModal.propTypes = {
   modalStyles: PropTypes.object,
   mode: PropTypes.string,
   hideClose: PropTypes.bool,
+  closeTitle: PropTypes.string,
+  closeContent: PropTypes.string,
+  closeBack: PropTypes.string,
 };
 
 export default QueryModal;
