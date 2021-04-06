@@ -72,10 +72,7 @@ const Share = styled.div`
     width: auto;
     margin-right: 8px;
   }
-  transition: box-shadow 0.3s;
-  &:hover {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-  }
+
 `;
 
 const ShareWrapper = styled.div`
