@@ -16,11 +16,17 @@ export function QueryModalContainer({
   modalStyles = {},
   children,
   mode = 'white',
+  closeTitle,
+  closeContent,
+  closeBack
 }) {
   const childProps = {
     closeModalCallback,
     modalStyles,
     mode,
+    closeTitle,
+    closeContent,
+    closeBack,
   };
   return <QueryModal {...childProps}>{children}</QueryModal>;
 }
@@ -31,6 +37,9 @@ QueryModalContainer.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   mode: PropTypes.string,
   zIndex: PropTypes.number,
+  closeTitle: PropTypes.string,
+  closeContent: PropTypes.string,
+  closeBack: PropTypes.string,
 };
 
 function mapDispatchToProps(dispatch) {
