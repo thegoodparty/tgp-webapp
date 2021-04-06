@@ -288,24 +288,24 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       className: 'email',
       link: `mailto:?body=${emailBody}&subject=${emailSubject}`,
     },
-    // {
-    //   label: 'Messenger',
-    //   icon: <img src="/images/icons/messenger-icon.svg" alt="messenger" />,
-    //   className: 'messenger',
-    //   link: ``,
-    // },
+    {
+      label: 'Messenger',
+      icon: <img src="/images/icons/messenger-icon.svg" alt="messenger" />,
+      className: 'messenger',
+      link: ``,
+    },
     {
       label: 'WhatsApp',
       icon: <ImWhatsapp />,
       className: 'whatsapp',
       link: `https://api.whatsapp.com/send?text=${encodedMessageBody}`,
     },
-    // {
-    //   label: 'Snapchat',
-    //   icon: <FaSnapchatGhost />,
-    //   className: 'snapchat',
-    //   link: ``,
-    // },
+    {
+      label: 'Snapchat',
+      icon: <FaSnapchatGhost />,
+      className: 'snapchat',
+      link: `snapchat://text=${messageNoUrl}&url=${encodedUrl}`,
+    },
   ];
 
   const publicChannels = [
@@ -321,19 +321,18 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       className: 'reddit',
       link: `https://www.reddit.com/submit?url=${encodedUrl}&text=${messageNoUrl}&title=${emailSubject}`,
     },
-    // {
-    //   label: 'Instagram',
-    //   icon: <IoLogoInstagram />,
-    //   className: 'instagram',
-    //   link: ``,
-    // },
-    // {
-    //   label: 'TikTok',
-    //   icon: <SiTiktok />,
-    //   className: 'tiktok',
-    //   link: ``,
-    // },
-
+    {
+      label: 'Instagram',
+      icon: <IoLogoInstagram />,
+      className: 'instagram',
+      link: ``,
+    },
+    {
+      label: 'TikTok',
+      icon: <SiTiktok />,
+      className: 'tiktok',
+      link: ``,
+    },
     {
       label: 'Facebook',
       icon: <FaFacebookF />,
