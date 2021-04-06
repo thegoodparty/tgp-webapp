@@ -94,6 +94,7 @@ function CandidateCard({ candidate }) {
             party={party}
             size="medium"
             partyBadge
+            centered
           />
           <Name>
             {firstName} {lastName}
