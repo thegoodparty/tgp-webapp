@@ -4,7 +4,7 @@ import { getCookie } from './cookieHelper';
 
 export const partyResolver = partyLetter => {
   if (partyLetter === 'D') {
-    return 'DEMOCRAT';
+    return 'DEMOCRATIC';
   }
   if (partyLetter === 'R') {
     return 'REPUBLICAN';
