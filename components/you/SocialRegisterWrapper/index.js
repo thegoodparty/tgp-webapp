@@ -18,7 +18,7 @@ import AnalyticsService from 'services/AnalyticsService';
 
 import SocialButton from './SocialButton';
 
-import { H1, H2, Body13, Body11, Body } from '../../shared/typogrophy';
+import { H1, H2, Body13, Body11, Body, Body9 } from '../../shared/typogrophy';
 import { OutlinedButton, PurpleButton } from '../../shared/buttons';
 import TwitterButton from './TwitterButton';
 
@@ -41,15 +41,16 @@ const Border = styled.div`
 
 const Or = styled.div`
   position: absolute;
-  width: 50px;
+  width: 160px;
   text-align: center;
-  left: calc(50% - 25px);
-  top: 0;
+  left: calc(50% - 80px);
+  top: 4px;
   background-color: ${({ theme }) => theme.colors.purple3};
+  font-size: 9px;
 `;
 
 const Tap = styled.div`
-  margin: 20px 0;
+  margin: 18px 0;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray7};
 `;
@@ -57,6 +58,9 @@ const Tap = styled.div`
 const ButtonText = styled(Body)`
   color: #fff;
   font-weight: 500;
+  &.disabled {
+    color: #e0d4ea;
+  }
 `;
 
 const Error = styled(Body11)`
@@ -83,7 +87,7 @@ const Input = styled(TextField)`
       box-shadow: 0px 2px 0px rgba(17, 17, 31, 0.25);
 
       @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpoints.md}) {
+          theme.breakpoints.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -98,7 +102,6 @@ function SocialRegisterWrapper({
   emailRegisterCallback,
 }) {
   const router = useRouter();
-  console.log(router);
   let title = <>Join the Good Party</>;
   if (router.route === '/candidate/[...NameIdTab]') {
     title = <>Complete endorsement</>;
@@ -158,14 +161,12 @@ function SocialRegisterWrapper({
   return (
     <QueryModalContainer>
       <Body13 data-cy="login-wrapper">
-        Have an profile?{' '}
+        Have a profile?{' '}
         <Link href="/login" data-cy="login">
           Sign In
         </Link>
       </Body13>
-      <StyledH1 data-cy="title">
-        {title}
-      </StyledH1>
+      <StyledH1 data-cy="title">{title}</StyledH1>
 
       <form noValidate onSubmit={handleSubmitForm}>
         <Input
@@ -193,17 +194,24 @@ function SocialRegisterWrapper({
           type="email"
         />
         {errors.email && <Error>Please enter a valid email address</Error>}
-        <PurpleButton fullWidth onClick={handleSubmit} type="submit">
-          <ButtonText>CONTINUE</ButtonText>
+        <PurpleButton
+          fullWidth
+          onClick={handleSubmit}
+          type="submit"
+          disabled={!enableSubmit()}
+        >
+          <ButtonText className={!enableSubmit() && 'disabled'}>
+            CONTINUE
+          </ButtonText>
         </PurpleButton>
       </form>
       <OrWrapper>
         <Border />
         <Or>
-          <Body13 style={{ color: '#767676' }}>OR</Body13>
+          <Body9 style={{ color: '#767676' }}>USE YOUR SOCIAL</Body9>
         </Or>
       </OrWrapper>
-      <Tap>ONE TAP BELOW</Tap>
+      <Tap />
       <Grid container spacing={2}>
         <Grid item xs>
           <div data-cy="facebook-login">

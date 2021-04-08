@@ -35,6 +35,12 @@ const StyledButton = styled(Button)`
     }
     color: #fff;
     box-shadow: none;
+
+    &.Mui-disabled {
+      background: ${({ theme }) => theme.colors.purple3};
+      border: solid 2px #e0d4ea;
+
+    }
     &:hover {
       box-shadow: none;
       background: linear-gradient(
