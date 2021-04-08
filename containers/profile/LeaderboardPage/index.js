@@ -49,8 +49,8 @@ export function LeaderboardPage({ leaderboardPage, dispatch }) {
     <div>
       <TgpHelmet
         title="Leaderboard | GOOD PARTY"
-        ogTitle="GOOD PARTY Leaderboard shows you where rank in recruiting good party people."
-        description="Invite good party people and move up the leaderboard when they join."
+        ogTitle="See where you rank in recruiting GOOD PARTY people."
+        description="Invite people and move up the leaderboard when they join."
       />
       <LeaderboardWrapper {...childProps} />
     </div>
