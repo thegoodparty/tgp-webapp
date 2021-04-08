@@ -191,7 +191,11 @@ const FaqArticleWrapper = ({
                     onClick={handleSubmit}
                     data-cy="feedback-submit"
                   >
-                    <PurpleButton disabled={feedback === ''} fullWidth>
+                    <PurpleButton
+                      disabled={feedback === ''}
+                      fullWidth
+                      style={{ borderRadius: 30 }}
+                    >
                       SUBMIT
                     </PurpleButton>
                   </SubmitButtonWrapper>

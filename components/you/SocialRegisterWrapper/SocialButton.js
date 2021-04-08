@@ -17,8 +17,6 @@ const StyledButton = styled(Button)`
     background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
     position: relative;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08),
-      0px 0px 16px rgba(0, 0, 0, 0.12);
     text-align: center;
 
     &.facebook {

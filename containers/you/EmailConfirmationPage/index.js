@@ -32,7 +32,8 @@ export function EmailConfirmationPage({
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
   const router = useRouter();
-  const { email, token } = router.query;
+  const email = queryHelper(`?${router.asPath.split('?')[1]}`, 'email');
+  const token = queryHelper(`?${router.asPath.split('?')[1]}`, 'token');
   const { loading, error } = userState;
   useEffect(() => {
     if (email && token) {

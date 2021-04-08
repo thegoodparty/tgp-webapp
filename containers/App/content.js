@@ -427,7 +427,7 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "mailto:ask@goodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
                 }
               },
               {
@@ -2136,7 +2136,7 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "mailto:ask@goodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
                 }
               },
               {

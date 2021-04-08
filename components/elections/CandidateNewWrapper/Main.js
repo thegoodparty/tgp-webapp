@@ -177,7 +177,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {snap && (
-              <SocialLink href={twitter} target="_blank">
+              <SocialLink href={snap} target="_blank">
                 <img
                   src="/images/icons/purple-snap.svg"
                   alt="snap"
