@@ -52,7 +52,7 @@ const Input = styled(TextField)`
       color: #fff;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+    theme.breakpoints.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -122,6 +122,9 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
   const handleSubmitExpired = () => {
     resendEmailCallback();
   };
+  if (!loading && !error) {
+    return (<></>);
+  }
   return (
     <PageWrapper
       style={wrapperStyles}
