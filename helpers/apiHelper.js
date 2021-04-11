@@ -5,11 +5,11 @@ if (API_ENV === 'local') {
   apiBase = 'http://localhost:1337/api/v1/';
   base = 'http://localhost:1337';
 } else if (API_ENV === 'dev' || API_ENV === 'development') {
-  apiBase = 'https://api-dev.thegoodparty.org/api/v1/';
-  base = 'https://dev.thegoodparty.org';
+  apiBase = 'https://api-dev.goodparty.org/api/v1/';
+  base = 'https://dev.goodparty.org';
 } else if (API_ENV === 'prod') {
-  apiBase = 'https://api.thegoodparty.org/api/v1/';
-  base = 'https://thegoodparty.org';
+  apiBase = 'https://api.goodparty.org/api/v1/';
+  base = 'https://goodparty.org';
 }
 
 const apiHelper = { apiBase, base };

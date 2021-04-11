@@ -1,14 +1,14 @@
 branch-defaults:
   master:
-    environment: tgp-site-prod
+    environment: gp-site-prod
   develop:
-    environment: tgp-site-dev
+    environment: gp-site-dev
 environment-defaults:
   tgp-api-test:
     branch: null
     repository: null
 global:
-  application_name: TGP-SITE
+  application_name: goodparty.org
   default_ec2_keyname: null
   default_platform: arn:aws:elasticbeanstalk:us-west-2::platform/Node.js running on
     64bit Amazon Linux/4.9.2
