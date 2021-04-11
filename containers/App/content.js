@@ -1485,6 +1485,9 @@ const content = {
             "content": [],
             "data": {
               "target": {
+                "metadata": {
+                  "tags": []
+                },
                 "sys": {
                   "space": {
                     "sys": {
