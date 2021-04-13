@@ -165,7 +165,7 @@ function ZipFinderWrapper({
         <>
           <LocationWrapper onClick={getLocation}>
             <img
-              src="https://assets.thegoodparty.org/icons/location-user.svg"
+              src="https://assets.goodparty.org/icons/location-user.svg"
               alt="location"
             />
             <Location data-cy="geo-location-button">

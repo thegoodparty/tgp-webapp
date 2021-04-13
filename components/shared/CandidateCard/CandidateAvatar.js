@@ -135,7 +135,7 @@ const CandidateAvatar = ({
       <ImageWrapper>
         {size === 'small' ? (
           <LazyLoadImage
-            src={avatar || 'https://assets.thegoodparty.org/gray-heart.png'}
+            src={avatar || 'https://assets.goodparty.org/gray-heart.png'}
             alt=""
             width="100%"
             height="100%"
@@ -147,7 +147,7 @@ const CandidateAvatar = ({
             className={size}
             style={{
               backgroundImage: `url(${avatar ||
-                'https://assets.thegoodparty.org/gray-heart.png'})`,
+                'https://assets.goodparty.org/gray-heart.png'})`,
             }}
           />
         )}

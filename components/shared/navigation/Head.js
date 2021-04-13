@@ -11,7 +11,7 @@ const TgpHead = ({ title, description }) => (
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
-      content="https://assets.thegoodparty.org/share.jpg"
+      content="https://assets.goodparty.org/share.jpg"
     />
     <meta name="description" content={description} />
     <meta property="og:description" content={description} />
@@ -26,35 +26,35 @@ const TgpHead = ({ title, description }) => (
     <link
       rel="icon"
       type="image/png"
-      href="https://assets.thegoodparty.org/favicon.png"
+      href="https://assets.goodparty.org/favicon.png"
     />
     <link
       rel="apple-touch-icon"
-      href="https://assets.thegoodparty.org/apple-touch-icon.png"
+      href="https://assets.goodparty.org/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="https://assets.thegoodparty.org/favicon/favicon-16x16.png"
+      href="https://assets.goodparty.org/favicon/favicon-16x16.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="https://assets.thegoodparty.org/favicon/favicon-32x32.png"
+      href="https://assets.goodparty.org/favicon/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="96x96"
-      href="https://assets.thegoodparty.org/favicon/favicon-96x96.png"
+      href="https://assets.goodparty.org/favicon/favicon-96x96.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="512x1512"
-      href="https://assets.thegoodparty.org/favicon/favicon-512x1512.png"
+      href="https://assets.goodparty.org/favicon/favicon-512x1512.png"
     />
 
     <link rel="manifest" href="/manifest.json" />

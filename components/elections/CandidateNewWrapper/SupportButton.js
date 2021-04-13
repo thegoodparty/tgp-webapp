@@ -64,7 +64,7 @@ function SupportButton({
     <>
       {isUserSupportCandidate ? (
         <Support>
-          <GrayLogo src="https://assets.thegoodparty.org/gray9-heart.svg" />
+          <GrayLogo src="https://assets.goodparty.org/gray9-heart.svg" />
           <AddName>YOU SUPPORT THIS CANDIDATE</AddName>
           <IoMdCloseCircleOutline
             size={16}

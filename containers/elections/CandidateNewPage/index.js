@@ -116,7 +116,7 @@ ${race}.`;
         <TgpHelmet
           title={title}
           description={description}
-          image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${firstName
+          image={`https://s3-us-west-2.amazonaws.com/assets.goodparty.org/share-image/${firstName
             .trim()
             .toLowerCase()}-${lastName.trim().toLowerCase()}-${id}${
             supportLink ? '-support' : '-share'

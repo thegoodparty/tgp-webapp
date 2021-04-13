@@ -22,7 +22,7 @@ export function RedirectPage({ ssrState }) {
     <div>
       <TgpHelmet
         title={`Redirect to ${firstName} ${lastName} for ${race}`}
-        image={`https://s3-us-west-2.amazonaws.com/assets.thegoodparty.org/share-image/${firstName
+        image={`https://s3-us-west-2.amazonaws.com/assets.goodparty.org/share-image/${firstName
           .trim()
           .toLowerCase()}-${lastName.trim().toLowerCase()}-${id}-share.jpeg`}
       />

@@ -1,4 +1,4 @@
-<img src="https://assets.thegoodparty.org/share.jpg" alt="The Good Party" align="center" />
+<img src="https://assets.goodparty.org/share.jpg" alt="The Good Party" align="center" />
 
 <br />
 <br />

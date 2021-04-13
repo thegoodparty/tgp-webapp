@@ -387,7 +387,7 @@ export const generateEmptyBlocCandidate = (districtNumber, chamber, state) => {
     party: 'VC',
     chamber,
     state,
-    image: 'https://assets.thegoodparty.org/gray-heart.png',
+    image: 'https://assets.goodparty.org/gray-heart.png',
   };
 };
 

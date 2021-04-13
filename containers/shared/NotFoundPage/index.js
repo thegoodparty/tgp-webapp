@@ -28,7 +28,7 @@ export default function NotFound() {
       <Nav />
       <Wrapper>
         <Img
-          src="https://assets.thegoodparty.org/heart.svg"
+          src="https://assets.goodparty.org/heart.svg"
           alt="The Good Party"
         />
         <h1>404</h1>

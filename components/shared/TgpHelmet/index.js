@@ -26,7 +26,7 @@ function TgpHelmet({ title, ogTitle, description, image }) {
       ) : (
         <meta
           property="og:image"
-          content="https://assets.thegoodparty.org/share.jpg"
+          content="https://assets.goodparty.org/share.jpg"
         />
       )}
     </Head>
