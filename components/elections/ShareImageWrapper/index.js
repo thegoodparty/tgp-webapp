@@ -158,7 +158,7 @@ function ShareImage({
         <Grid container>
           <Grid row xs={6}>
             <LikelyVoters>
-              <span>{kFormatter(likelyVoters)}</span> likely voters
+              <span>{kFormatter(likelyVoters + supportCount)}</span> likely voters
             </LikelyVoters>
           </Grid>
           <Grid row xs={6}>

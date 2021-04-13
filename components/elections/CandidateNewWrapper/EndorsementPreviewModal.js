@@ -72,8 +72,6 @@ function EndorsementPreviewModal({
       } and I approve this message! 😜`;
     }
   }
-  console.log('ms', defaultMessage);
-  console.log('fromShareLink', fromShareLink);
 
   const [message, setMessage] = useState(defaultMessage);
 
