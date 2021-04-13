@@ -21,7 +21,7 @@ const Section3 = () => {
       </Grid>
       <Grid item xs={12} md={6}>
         <StyledH2>
-          It&apos;s time to to get money out of politics - for good!
+          It&apos;s time to get money out of politics - for good!
         </StyledH2>
         <JoinUsButton />
       </Grid>
