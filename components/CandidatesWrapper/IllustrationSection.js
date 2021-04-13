@@ -45,7 +45,7 @@ const Img = styled.img`
 function IllustrationSection() {
   return (
     <Wrapper>
-      <H3>How GOOD PARTY works</H3>
+      <H3>How Good Party works</H3>
       <StyledBody13>We make votes matter more than money</StyledBody13>
       <Img src="images/see-good-candidates.svg" />
       <PurpleBody13>See Good Certified candidates</PurpleBody13>
