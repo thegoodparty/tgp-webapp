@@ -16,7 +16,7 @@ function EndorseIframe() {
   const intId = parseInt(id, 10); // to prevent xss;
   return (
     <a
-      href={`https://dev.thegoodparty.org/embed/redirect/${intId}`}
+      href={`https://dev.goodparty.org/embed/redirect/${intId}`}
       target="_blank"
       style={{
         minWidth: '150px',

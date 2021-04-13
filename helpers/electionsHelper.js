@@ -13,13 +13,13 @@ export const partyResolver = partyLetter => {
     return 'GREEN PARTY';
   }
   if (partyLetter === 'LP' || partyLetter === 'L') {
-    return 'LIBERTARIAN';
+    return 'LIBERTARIAN PARTY';
+  }
+  if (partyLetter === 'LI') {
+    return 'LIBERATION PARTY';
   }
   if (partyLetter === 'I') {
     return 'INDEPENDENT';
-  }
-  if (partyLetter === 'W') {
-    return 'AS A WRITE-IN';
   }
   if (partyLetter === 'VC') {
     return 'VETTING CHALLENGERS';
@@ -34,7 +34,7 @@ export const partyResolver = partyLetter => {
     return 'Working Families Party';
   }
   if (partyLetter === 'S') {
-    return 'SAM';
+    return 'SAM PARTY';
   }
   return '';
 };
@@ -387,7 +387,7 @@ export const generateEmptyBlocCandidate = (districtNumber, chamber, state) => {
     party: 'VC',
     chamber,
     state,
-    image: 'https://assets.thegoodparty.org/gray-heart.png',
+    image: 'https://assets.goodparty.org/gray-heart.png',
   };
 };
 

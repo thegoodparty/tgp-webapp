@@ -9,7 +9,7 @@ Cypress.Commands.add('testVSCard', (el, title, candidates, suffixText) => {
       id: 'noneyet',
       name: 'NONE YET',
       party: 'VC',
-      image: 'https://assets.thegoodparty.org/gray-heart.png',
+      image: 'https://assets.goodparty.org/gray-heart.png',
       isGood: true,
     });
   }

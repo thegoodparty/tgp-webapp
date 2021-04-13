@@ -32,7 +32,7 @@ const Hero = styled.div`
   height: 220px;
   position: relative;
   width: 100%;
-  background: url(https://assets.thegoodparty.org/faq-hero-new.jpg) no-repeat
+  background: url(https://assets.goodparty.org/faq-hero-new.jpg) no-repeat
     top center;
   background-size: cover;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {

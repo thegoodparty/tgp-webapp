@@ -41,20 +41,6 @@ const StyledButton = styled(Button)`
       border: solid 2px #e0d4ea;
 
     }
-    &:hover {
-      box-shadow: none;
-      background: linear-gradient(
-          103.63deg,
-          rgba(255, 15, 19, 0.15) -3.51%,
-          rgba(191, 0, 32, 0) 94.72%
-        ),
-        linear-gradient(
-          257.82deg,
-          rgba(67, 0, 211, 0.25) -11.17%,
-          rgba(67, 0, 211, 0) 96.34%
-        ),
-        ${({ theme }) => theme.colors.purple};
-    }
   }
 `;
 

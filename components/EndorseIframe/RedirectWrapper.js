@@ -8,7 +8,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { Body11 } from '../shared/typogrophy';
 
 const Wrapper = styled.div`
@@ -45,12 +44,6 @@ const Title = styled.div`
   }
 `;
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Skip = styled(Body11)`
   text-align: center;
   color: ${({ theme }) => theme.colors.purple};
@@ -64,38 +57,6 @@ const RedirectMsg = styled.div`
   font-size: 16px;
   color: ${({ theme }) => theme.colors.gray4};
   margin-right: 8px;
-`;
-
-const CircleWrapper = styled.div`
-  //transform: rotate(90deg);
-  position: relative;
-  width: 14px;
-  height: 14px;
-`;
-
-const CircularProgressTop = styled(CircularProgress)`
-  && {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-`;
-
-const CircularProgressBg = styled(CircularProgress)`
-  && {
-    position: absolute;
-    color: ${({ theme }) => theme.colors.purple4};
-    top: 0;
-    left: 0;
-  }
-`;
-
-const Number = styled.div`
-  margin-top: 1px;
-  margin-left: 1px;
-  font-size: 11px;
-  font-weight: 700;
 `;
 
 const Free = styled.div`
@@ -146,18 +107,8 @@ function RedirectWrapper({ candidate }) {
     <Wrapper>
       <Inner>
         <Title>This campaign is collecting endorsements using GOOD PARTY</Title>
-        <Row>
-          <RedirectMsg>You will be redirected soon</RedirectMsg>
-          <CircleWrapper>
-            <CircularProgressBg variant="static" value={100} size={16} />
-            <CircularProgressTop
-              variant="static"
-              value={timeLeft * (100 / timerSeconds)}
-              size={16}
-            />
-            <Number>{timeLeft}</Number>
-          </CircleWrapper>
-        </Row>
+        <RedirectMsg>You will be sent there in {timeLeft}</RedirectMsg>
+
         <Skip onClick={handleRedirect}>Click to go now</Skip>
         <Free>Free software for free elections</Free>
         <Logo src="/images/new-logo.svg" alt="The Good Party" />

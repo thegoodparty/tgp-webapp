@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import BackIcon from '@material-ui/icons/ChevronLeft';
 import CloseIcon from '@material-ui/icons/HighlightOff';
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
@@ -41,7 +40,6 @@ const TopWrapper = styled.div`
 const TopClose = styled(CloseIcon)`
   font-size: 24px;
   cursor: pointer;
-
 `;
 
 const WasHelpul = styled(Body)`
@@ -69,7 +67,7 @@ const FeedbackButton = styled(Body11)`
   text-align: center;
   min-width: 120px;
   border: solid 2px ${({ theme }) => theme.colors.gray7};
-  border-radius: 30px;
+  border-radius: 8px;
   margin: 0 20px;
   cursor: pointer;
 
@@ -139,12 +137,6 @@ const FaqArticleWrapper = ({
           <TgpDialog onClose={closeModalCallback} open fullScreen={fullScreen}>
             <Wrapper>
               <TopWrapper>
-                {/*<BackIconWrapper onClick={backButtonCallback}>*/}
-                {/*  <BackIcon*/}
-                {/*    style={{ fontSize: '34px' }}*/}
-                {/*    data-cy="article-back"*/}
-                {/*  />*/}
-                {/*</BackIconWrapper>*/}
                 <TopClose
                   onClick={closeModalCallback}
                   data-cy="article-top-close"
@@ -191,11 +183,7 @@ const FaqArticleWrapper = ({
                     onClick={handleSubmit}
                     data-cy="feedback-submit"
                   >
-                    <PurpleButton
-                      disabled={feedback === ''}
-                      fullWidth
-                      style={{ borderRadius: 30 }}
-                    >
+                    <PurpleButton disabled={feedback === ''} fullWidth>
                       SUBMIT
                     </PurpleButton>
                   </SubmitButtonWrapper>
