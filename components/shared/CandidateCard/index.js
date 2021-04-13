@@ -100,7 +100,12 @@ function CandidateCard({ candidate }) {
             {firstName} {lastName}
           </Name>
           <For>
-            <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
+            {party === 'S' ? (
+              'SAM Party'
+            ) : (
+              <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
+            )}
+            {' '}
             candidate running for {race}
           </For>
           <Grid container>

@@ -187,7 +187,11 @@ function ProfileInfo({
               {firstName} {lastName}
             </CandidateName>
             <PartyName>
-              <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>{' '}
+              {party === 'S' ? (
+                'SAM Party'
+              ) : (
+                <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
+              )}{' '}
               candidate running for {race}
             </PartyName>
           </div>
