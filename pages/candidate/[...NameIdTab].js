@@ -10,8 +10,7 @@ export async function getServerSideProps(context) {
   // const name = NameIdTab?.length > 1 ? NameIdTab[0] : false;
   const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
   const tab = NameIdTab?.length > 2 ? NameIdTab[2] : false;
-
-  if (id) {
+  if (id && id !== 'undefined' && typeof id !== 'undefined') {
     const api = tgpApi.newCandidate.find;
     const url = `${api.url}?id=${id}`;
     const res = await fetch(url);

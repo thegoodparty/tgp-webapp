@@ -70,34 +70,35 @@ function AdminUserStats({ users }) {
     let hasPassword = 0;
     const states = {};
     const zips = {};
-    users?.map(user => {
-      if (user.isEmailVerified) {
-        verifiedEmailCount++;
-      }
-      if (user.socialId) {
-        socialRegister++;
-        if (user.socialProvider === 'google') {
-          google++;
-        } else if (user.socialProvider === 'facebook') {
-          facebook++;
+    users &&
+      users?.map(user => {
+        if (user.isEmailVerified) {
+          verifiedEmailCount++;
         }
-      }
-      if (user.hasPassword) {
-        hasPassword++;
-      }
-      const state = user.shortState;
-      if (!states[state]) {
-        states[state] = 1;
-      } else {
-        states[state] = states[state] + 1;
-      }
-      const zip = user.zipCode;
-      if (!zips[zip]) {
-        zips[zip] = 1;
-      } else {
-        zips[zip] = zips[zip] + 1;
-      }
-    });
+        if (user.socialId) {
+          socialRegister++;
+          if (user.socialProvider === 'google') {
+            google++;
+          } else if (user.socialProvider === 'facebook') {
+            facebook++;
+          }
+        }
+        if (user.hasPassword) {
+          hasPassword++;
+        }
+        const state = user.shortState;
+        if (!states[state]) {
+          states[state] = 1;
+        } else {
+          states[state] = states[state] + 1;
+        }
+        const zip = user.zipCode;
+        if (!zips[zip]) {
+          zips[zip] = 1;
+        } else {
+          zips[zip] = zips[zip] + 1;
+        }
+      });
 
     setVerifiedEmailData([
       { name: 'Verified Email', value: verifiedEmailCount, fill: '#8dd1e1' },
