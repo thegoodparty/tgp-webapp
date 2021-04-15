@@ -21,7 +21,6 @@ const staticUrls = [
   '/party/events',
   '/privacy',
   '/creators',
-  '/directory',
 ];
 
 const generateSiteMapXML = async () => {

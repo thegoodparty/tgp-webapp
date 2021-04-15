@@ -340,12 +340,6 @@ const api = {
     },
   },
 
-  directory: {
-    allCandidates: {
-      url: `${base}candidates/all`,
-      method: 'GET',
-    },
-  },
 
   subscribeEmail: {
     url: `${base}subscribe/email`,
