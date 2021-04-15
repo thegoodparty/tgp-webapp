@@ -21,13 +21,11 @@ import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
 import EditProfileWrapper from 'components/you/EditProfileWrapper';
-import candidateActions from '../../elections/CandidatePage/actions';
 
 export function EditProfilePage({
   userState,
   updateProfileCallback,
   updatePhotoCallback,
-  deleteRankingCallback,
 }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -38,7 +36,6 @@ export function EditProfilePage({
     user,
     updateProfileCallback,
     updatePhotoCallback,
-    deleteRankingCallback,
   };
 
   return (
@@ -56,7 +53,6 @@ EditProfilePage.propTypes = {
   userState: PropTypes.object,
   updateProfileCallback: PropTypes.func,
   updatePhotoCallback: PropTypes.func,
-  deleteRankingCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -75,28 +71,6 @@ function mapDispatchToProps(dispatch) {
           ),
         );
       }
-    },
-    deleteRankingCallback: user => {
-      if (user && user.shortState && user.districtNumber) {
-        const { shortState, districtNumber } = user;
-        dispatch(
-          candidateActions.saveRankHouseCandidateAction(
-            [],
-            shortState,
-            districtNumber,
-          ),
-        );
-      }
-      if (user && user.shortState) {
-        const { shortState } = user;
-
-        dispatch(
-          candidateActions.saveRankSenateCandidateAction([], shortState),
-        );
-        dispatch(userActions.deleteAllUserRankingsAction());
-      }
-
-      dispatch(push('/intro/zip-finder'));
     },
   };
 }
