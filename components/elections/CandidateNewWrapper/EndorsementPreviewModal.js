@@ -8,10 +8,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
-import Link from 'next/link';
-
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
-import { Body11, H2, H3 } from '../../shared/typogrophy';
+import { Body11 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import ShareImage from '../ShareImageWrapper';
 
@@ -26,12 +24,6 @@ const ImageWrapper = styled.div`
     -2px -2px 5px rgba(255, 255, 255, 0.9), 2px 2px 5px rgba(224, 212, 234, 0.9),
     inset 1px 1px 1px rgba(255, 255, 255, 0.3),
     inset -1px -1px 1px rgba(224, 212, 234, 0.5);
-`;
-
-const Img = styled.div`
-  height: 168px;
-  background-size: cover;
-  background-position: center;
 `;
 
 const Personal = styled(Body11)`
@@ -86,7 +78,12 @@ function EndorsementPreviewModal({
     },
   };
   return (
-    <QueryModalContainer modalStyles={modalStyles}>
+    <QueryModalContainer
+      modalStyles={modalStyles}
+      closeTitle={"Are you sure you don't want to share?"}
+      closeContent="Sharing a personal endorsement is the most powerful way to grow a grassroots campaign."
+      closeBack="BACK TO SHARE"
+    >
       <Body11 style={{ marginTop: '12px' }}>
         PREVIEW {fromShareLink ? 'SHARE' : 'ENDORSEMENT'}
       </Body11>
