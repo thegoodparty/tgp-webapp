@@ -26,7 +26,7 @@ export const fullFirstLastInitials = name => {
 
 export const uuidUrl = (
   user,
-  url = 'https://thegoodparty.org',
+  url = 'https://goodparty.org',
   additionalQueries = '',
 ) => {
   let returnUrl = url;

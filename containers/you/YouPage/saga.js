@@ -11,14 +11,10 @@ import {
   getSignupRedirectCookie,
   deleteSignupRedirectCookie,
 } from 'helpers/cookieHelper';
-import selectDistrict from 'containers/intro/ZipFinderPage/selectors';
-import selectCandidate from 'containers/elections/CandidatePage/selectors';
 
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import districtActions from 'containers/intro/ZipFinderPage/actions';
 
 import tgpApi from 'api/tgpApi';
-import { candidateBlocName } from 'helpers/electionsHelper';
 import AnalyticsService from 'services/AnalyticsService';
 import globalActions from 'containers/App/actions';
 import types from './constants';
@@ -45,13 +41,11 @@ function* sendCreatorMessage(action) {
 function* register(action) {
   try {
     const { email, name } = action;
-    const zip = yield getZipFromStateOrCookie();
     const ranking = getCookie('guestRanking') || '[]';
 
     const payload = {
       email,
       name,
-      zip,
       ranking,
     };
     const referrer = getCookie('referrer');
@@ -83,7 +77,6 @@ function* register(action) {
         yield put(push(window.location.pathname));
       }
     }
-    yield call(trackFbRegister);
 
     AnalyticsService.sendEvent('Signup', 'Complete Account Signup', 'Email');
   } catch (error) {
@@ -111,7 +104,6 @@ function* socialRegister(action) {
     const profile = user._profile;
     const provider = user._provider;
     const { name, email, id, profilePicURL } = profile;
-    const zip = yield getZipFromStateOrCookie();
     const ranking = getCookie('guestRanking') || '[]';
     // for facebook - get a larger image
     let socialPic = profilePicURL;
@@ -145,7 +137,6 @@ function* socialRegister(action) {
       socialPic,
       name,
       email,
-      zip,
       ranking,
       socialToken: idToken,
     };
@@ -178,7 +169,6 @@ function* socialRegister(action) {
         yield put(push(window.location.pathname));
       }
     }
-    yield call(trackFbRegister);
 
     setUserCookie(responseUser);
     setCookie('token', access_token);
@@ -193,33 +183,6 @@ function* socialRegister(action) {
       yield put(globalActions.logErrorAction('social register error', error));
     }
   }
-}
-
-function* getZipFromStateOrCookie() {
-  const districtState = yield select(selectDistrict);
-  let zip = false;
-  if (districtState && districtState.zipWithDistricts) {
-    zip = districtState.zipWithDistricts.zip;
-  } else {
-    let cookieZip = getCookie('zip');
-    if (cookieZip) {
-      cookieZip = JSON.parse(cookieZip);
-      zip = cookieZip.zip;
-    }
-  }
-  return zip;
-}
-
-function* getRankFromStateOrCookie(chamber) {
-  const candidateState = yield select(selectCandidate);
-  if (candidateState && candidateState[chamber]) {
-    return JSON.stringify(candidateState[chamber]);
-  }
-  const cookieRank = getCookie(chamber);
-  if (cookieRank) {
-    return cookieRank;
-  }
-  return null;
 }
 
 function* resendEmail(action) {
@@ -596,132 +559,6 @@ function* uploadAvatar(action) {
   }
 }
 
-function* saveUserRanking(action) {
-  try {
-    const { candidate, rank, chamber, state, district } = action;
-    const api = tgpApi.rankCandidate;
-    const payload = {
-      rank,
-      candidateId: candidate.id,
-      chamber,
-      state,
-      isIncumbent: candidate.isIncumbent,
-    };
-    const { ranking } = yield call(requestHelper, api, payload);
-    yield put(actions.userRankingActionSuccess(ranking));
-
-    yield put(snackbarActions.showSnakbarAction('Your choice was saved'));
-
-    if (chamber === 'presidential') {
-      yield put(districtActions.loadAllPresidentialAction());
-    } else if (chamber === 'senate') {
-      yield put(districtActions.loadSenateCandidatesAction(state));
-    } else {
-      yield put(districtActions.loadHouseCandidatesAction(state, district));
-    }
-  } catch (error) {
-    console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error saving your ranking', 'error'),
-    );
-  }
-}
-
-function* saveGuestRanking(action) {
-  try {
-    const { candidate, rank, chamber } = action;
-    const rankingCookie = getCookie('guestRanking');
-    const ranking = rankingCookie ? JSON.parse(rankingCookie) : [];
-    const blocName = candidateBlocName(candidate);
-
-    ranking.push({
-      id: `cookie-${chamber}-${candidate.id}${
-        candidate.isIncumbent ? '-i' : ''
-      }`,
-      rank,
-      candidate: candidate.id,
-      chamber,
-      isIncumbent: !!candidate.isIncumbent,
-      blocName,
-    });
-    setCookie('guestRanking', JSON.stringify(ranking));
-
-    yield put(actions.userRankingActionSuccess(ranking));
-    yield put(
-      snackbarActions.showSnakbarAction('Your guest ranking were saved'),
-    );
-  } catch (error) {
-    console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error saving your ranking', 'error'),
-    );
-  }
-}
-
-function* deleteAllUserRankings() {
-  try {
-    const api = tgpApi.deleteAllUserRankings;
-    yield call(requestHelper, api, null);
-    yield put(actions.userRankingAction());
-    yield put(snackbarActions.showSnakbarAction('Your rankings were deleted'));
-  } catch (error) {
-    console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error deleting your ranking', 'error'),
-    );
-  }
-}
-
-function* deleteCandidateRanking(action) {
-  try {
-    const { id, chamber, state, district } = action;
-    const payload = { id };
-    const api = tgpApi.deleteCandidateRanking;
-    yield call(requestHelper, api, payload);
-    yield put(actions.userRankingAction());
-    yield put(snackbarActions.showSnakbarAction('Your ranking was deleted'));
-    if (chamber === 'presidential') {
-      yield put(districtActions.loadAllPresidentialAction());
-    } else if (chamber === 'senate') {
-      yield put(districtActions.loadSenateCandidatesAction(state));
-    } else {
-      yield put(districtActions.loadHouseCandidatesAction(state, district));
-    }
-  } catch (error) {
-    console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error deleting your ranking', 'error'),
-    );
-  }
-}
-
-function* deleteGuestRanking(action) {
-  try {
-    const { rankToDelete } = action;
-    const { rank, chamber } = rankToDelete;
-    const rankingCookie = getCookie('guestRanking');
-    if (rankingCookie) {
-      const ranking = JSON.parse(rankingCookie);
-      const newRanking = [];
-      ranking.forEach(existingRank => {
-        if (existingRank.chamber !== chamber || existingRank.rank < rank) {
-          newRanking.push(existingRank);
-        }
-      });
-      setCookie('guestRanking', JSON.stringify(newRanking));
-      yield put(actions.userRankingActionSuccess(newRanking));
-    }
-    yield put(
-      snackbarActions.showSnakbarAction('Your guest ranking was deleted'),
-    );
-  } catch (error) {
-    console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error deleting your ranking', 'error'),
-    );
-  }
-}
-
 function* generateUuid() {
   const user = getUserCookie();
   const guestUuid = getCookie('guuid');
@@ -803,12 +640,10 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
   try {
     const api = tgpApi.confirmTwitterCallback;
 
-    const zip = yield getZipFromStateOrCookie();
     const ranking = getCookie('guestRanking') || '[]';
     const payload = {
       oauthToken,
       oauthVerifier,
-      zip,
       ranking,
     };
     const referrer = getCookie('referrer');
@@ -874,48 +709,14 @@ export default function* saga() {
     sendCreatorMessage,
   );
 
-  const saveUserRankingAction = yield takeLatest(
-    types.SAVE_USER_RANKING,
-    saveUserRanking,
-  );
-  const saveGuestRankingAction = yield takeLatest(
-    types.SAVE_GUEST_RANKING,
-    saveGuestRanking,
-  );
-  yield takeLatest(types.DELETE_ALL_USER_RANKINGS, deleteAllUserRankings);
-  const deleteRanking = yield takeLatest(
-    types.DELETE_CANDIDATE_RANKING,
-    deleteCandidateRanking,
-  );
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   const crewAction = yield takeLatest(types.CREW, crew);
   yield takeLatest(types.LEADERBOARD, leaderboard);
   yield takeLatest(types.USER_RANKING, userRanking);
   yield takeLatest(types.GUEST_RANKING, guestRanking);
-  const deleteGuest = yield takeLatest(
-    types.DELETE_GUEST_RANKING,
-    deleteGuestRanking,
-  );
   const twitterAction = yield takeLatest(types.TWITTER_LOGIN, twitterLogin);
   const confirmTwitterAction = yield takeLatest(
     types.CONFIRM_TWITTER_CALLBACK,
     confirmTwitterCallback,
   );
-}
-
-function* trackFbRegister() {
-  if (typeof fbq === 'function') {
-    const candidateState = yield select(selectCandidate());
-    if (candidateState && candidateState.candidate) {
-      const candidateName = candidateState.candidate.uuid.replace('_', '-');
-      fbq('track', 'CompleteRegistration', {
-        status: true,
-        content_name: candidateName,
-      });
-    } else {
-      fbq('track', 'CompleteRegistration', {
-        status: true,
-      });
-    }
-  }
 }

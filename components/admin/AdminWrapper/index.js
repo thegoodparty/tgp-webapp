@@ -89,10 +89,7 @@ const Heart = styled.div`
 `;
 
 const leftMenuItems = [
-  { icon: <StarsIcon />, label: 'Presidential Candidates' },
-  { icon: <AccountBalanceIcon />, label: 'Senate Candidates' },
-  { icon: <HomeIcon />, label: 'House Candidates' },
-  { icon: <LocationCityIcon />, label: 'Local Candidates' },
+  { icon: <AccountBalanceIcon />, label: 'Local Candidates' },
   { icon: <UserIcon />, label: 'Users' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },
@@ -123,37 +120,21 @@ const AdminWrapper = ({
 
   const handleSelectedItem = index => {
     setSelectedItem(index);
-    if (index < 4) {
-      const chamber = mapChamber(index);
+    if (index === 0) {
+      const chamber = 'local';
       loadCandidatesCallback(chamber);
     }
-    if (index === 4 || index === 6) {
+    if (index === 1 || index === 3) {
       if (!users) {
         loadAllUsersCallback();
       }
     }
-    if (index === 5) {
+    if (index === 2) {
       loadArticleFeedbackCallback();
     }
-    if (index === 7) {
+    if (index === 4) {
       loadVoterizeCallback();
     }
-  };
-
-  const mapChamber = index => {
-    if (index === 0) {
-      return 'presidential';
-    }
-    if (index === 1) {
-      return 'senate';
-    }
-    if (index === 2) {
-      return 'house';
-    }
-    if (index === 3) {
-      return 'local';
-    }
-    return null;
   };
 
   const mainContent = () => {
@@ -175,40 +156,28 @@ const AdminWrapper = ({
         </MainPanelPlaceholder>
       );
     }
-    if (selectedItem < 3) {
-      const chamber = mapChamber(selectedItem);
-      return (
-        <AdminCandidateList
-          candidates={candidates}
-          updateCandidateCallback={updateCandidateCallback}
-          chamber={chamber}
-        />
-      );
-    }
-
-    if (selectedItem < 4) {
-      const chamber = mapChamber(selectedItem);
+    if (selectedItem === 0) {
       return (
         <NewCandidateList
           candidates={candidates}
           updateCandidateCallback={updateCandidateCallback}
-          chamber={chamber}
+          chamber="local"
           deleteCandidateCallback={deleteCandidateCallback}
         />
       );
     }
-    if (selectedItem === 4) {
+    if (selectedItem === 1) {
       return (
         <AdminUsersList users={users} deleteUserCallback={deleteUserCallback} />
       );
     }
-    if (selectedItem === 5) {
+    if (selectedItem === 2) {
       return <AdminArticlesFeedback articles={articles} content={content} />;
     }
-    if (selectedItem === 6) {
+    if (selectedItem === 3) {
       return <AdminUserStats users={users} />;
     }
-    if (selectedItem === 7) {
+    if (selectedItem === 4) {
       return (
         <AdminVoterizeList
           voterizeList={voterizeList}

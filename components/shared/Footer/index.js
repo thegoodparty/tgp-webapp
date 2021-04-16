@@ -242,11 +242,6 @@ function Footer({ isCreators = false }) {
               </Grid>
               <Grid item xs={12} md={4}>
                 <Column>
-                  <Link href="/directory" passHref>
-                    <WhiteLink data-cy="footer-link-directory">
-                      Directory
-                    </WhiteLink>
-                  </Link>
                   <Hidden mdUp>
                     <Link href="/privacy">
                       <WhiteLink data-cy="footer-link-policy">

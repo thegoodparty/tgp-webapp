@@ -20,8 +20,6 @@ import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
 import candidateActions from 'containers/elections/CandidateNewPage/actions';
 
-import makeSelectCandidate from '../../elections/CandidatePage/selectors';
-
 export function Nav({ userState, dispatch, trackShareCallback }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
@@ -54,7 +52,6 @@ Nav.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   userState: makeSelectUser(),
-  candidateState: makeSelectCandidate(),
 });
 
 /* eslint-disable prefer-destructuring */

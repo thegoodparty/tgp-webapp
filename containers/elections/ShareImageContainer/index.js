@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import ShareImageWrapper from 'components/elections/ShareImageWrapper';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import reducer from '../CandidatePage/reducer';
+import reducer from '../CandidateNewPage/reducer';
 import saga from '../CandidateNewPage/saga';
 import actions from '../CandidateNewPage/actions';
 import { makeSelectContent } from '../../App/selectors';
@@ -38,7 +38,7 @@ export function ShareImageContainer({
     candidate,
     shareImageCallback,
     imageAsBase64,
-    candidateSupports
+    candidateSupports,
   };
   return (
     <div>

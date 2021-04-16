@@ -6,40 +6,17 @@ const api = {
   // DISTRICT
   //
 
-  allPresidential: {
-    url: `${base}presidential/all`,
-    method: 'GET',
-  },
-  districtIncumbent: {
-    url: `${base}incumbent/find-by-district`,
-    method: 'GET',
-  },
-  houseCandidates: {
-    url: `${base}race-candidate/house-by-district`,
-    method: 'GET',
-  },
-  senateCandidates: {
-    url: `${base}race-candidate/senate-by-state`,
-    method: 'GET',
-  },
   homepageCandidates: {
     url: `${base}homepage-candidates`,
     method: 'GET',
   },
-  fullAddressToDistrict: {
-    url: `${base}entrance/address-to-district`,
-    method: 'GET',
-  },
+
   userCounts: {
     url: `${base}counts/user-counts`,
     method: 'GET',
   },
   findCandidate: {
     url: `${base}candidates/find`,
-    method: 'GET',
-  },
-  findBlocCandidate: {
-    url: `${base}candidates/find-by-bloc`,
     method: 'GET',
   },
   loadIncumbents: {
@@ -337,13 +314,6 @@ const api = {
       url: `${base}creators/engagement-email`,
       method: 'POST',
       withAuth: true,
-    },
-  },
-
-  directory: {
-    allCandidates: {
-      url: `${base}candidates/all`,
-      method: 'GET',
     },
   },
 

@@ -4,9 +4,9 @@ const { default: Axios } = require('axios');
 const moment = require('moment');
 const path = require('path');
 const fs = require('fs');
-const { candidateRoute } = require('../old-app/helpers/electionsHelper');
-const apiHelper = require('../old-app/helpers/apiHelper').default;
-const api = require('../old-app/api/tgpApi').default;
+const { candidateRoute } = require('../helpers/electionsHelper');
+const apiHelper = require('../helpers/apiHelper').default;
+const api = require('../api/tgpApi').default;
 const currentDate = moment().format('YYYY-MM-DD');
 const { base } = apiHelper;
 
@@ -22,20 +22,12 @@ const staticUrls = [
   '/party/events',
   '/privacy',
   '/creators',
-  '/directory',
 ];
 
 const generateSiteMapXML = async () => {
   try {
     let response = await Axios.get(api.content.url);
     const { faqArticles } = response.data;
-
-    response = await Axios.get(api.directory.allCandidates.url);
-    const candidates = response.data;
-    let allCandidates = [];
-    Object.keys(candidates).forEach(key => {
-      allCandidates = [...allCandidates, ...candidates[key]];
-    });
 
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -58,24 +50,7 @@ const generateSiteMapXML = async () => {
         </url>
       `;
     });
-    allCandidates.forEach(candidate => {
-      xmlString += `
-        <url>
-          <loc>${base}${candidateRoute(candidate)}</loc>
-          <lastmod>${currentDate}</lastmod>
-          <changefreq>weekly</changefreq>
-        </url>
-      `;
-      if (candidate.campaignUpdates && candidate.campaignUpdates.length > 0) {
-        xmlString += `
-        <url>
-          <loc>${base}${candidateRoute(candidate)}/info</loc>
-          <lastmod>${currentDate}</lastmod>
-          <changefreq>weekly</changefreq>
-        </url>
-      `;
-      }
-    });
+
     xmlString += '</urlset>';
     fs.writeFileSync(path.join(__dirname, 'sitemaps/sitemap.xml'), xmlString, {
       encoding: 'utf8',
