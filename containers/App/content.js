@@ -1,4 +1,1098 @@
 const content = {
+  "privacyPage": {
+    "title": "Privacy Policy",
+    "lastModified": "2019-08-23",
+    "pageContent": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "This Privacy Policy explains how Good Party (“we” or “us”) collects, uses, and disclose information that you may provide while visiting our website, www.goodparty.org, and our mobile sites, mobile applications, and other online services (the “Sites”) using a personal computer, mobile device, or any other means, and to demonstrate our firm commitment to Internet privacy. This Privacy Policy also applies to personal information collected by third-party vendors on our behalf.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "What is Personal Information?",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "“Personal Information” is information about a particular individual that specifically identifies that individual, or information about that individual, such as name, address, email address, telephone number, or credit or debit card information. Personal Information does not include “aggregate information,” which is data that may be collected automatically or without reference to Personal Information about the use of the Sites. The Privacy Policy does not restrict Good Party’s collection and use of aggregate information.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Visitors to the Sites",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Good Party operates in the United States and the information we collect is governed by U.S. law.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Children",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Sites are not directed at children and we do not knowingly collect Personal Information directly from children (including information concerning a child or that child's parents/guardians, any screen or user name that functions as online contact information for a child, any photograph, video, or audio file containing a child’s image or voice) directly from users under the age of thirteen (13) or from other web sites or services directed at children. Consistent with the Federal Children’s Online Privacy Protection Act of 1988 (“COPPA”), we will not knowingly request or collect Personal Information from any child under the age of thirteen (13) in the United States without obtaining the required consent from the appropriate parent/guardian. Children may access and browse the Sites without disclosing any Personal Information. We will apply material changes to this Privacy Policy to conform with applicable law, including any applicable provisions of COPPA that require parental consent.\n\nPlease visit ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "www.ftc.gov/privacy/privacyinitiatives/childrens.html",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "https://www.ftc.gov/privacy/privacyinitiatives/childrens.html"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": " for information from the Federal Trade Commission about protecting children’s privacy online. If you have any reservations, questions or concerns about your child’s access to the Sites or how information that your child provides is used by us, please contact us.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-2",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "COLLECTION OF PERSONAL INFORMATION",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Direct Collection",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We collect Personal Information that you provide to us when you register, send us an email, sign up to receive email or text messages, sign up to volunteer, fill out a form, make a purchase or donation, communicate with us through third-party social feeds, request information, participate in active forums or take any other action on the Sites. We (or our service providers) may also obtain information from outside sources and combine it with the information we collect through the Sites, including from voter file data from state parties and other organizations, from public databases, and from private organizations. This Policy also applies to Personal Information that we may obtain from third-party vendors such as search engines or social media sites.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Aggregate and Similar Information",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We may automatically collect information when you visit the Sites such as the Internet Protocol (IP) address, the browser and operating system you use, the name of the domain and host from which you access the Internet, the address of the website from which you linked to the Sites, device identifiers, and mobile and network information, and your actions on the Sites. This information will be treated as Personal Information if we combine or link it to any of the identifying information above. Otherwise, this information constitutes aggregate information.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Aggregate and Similar Information",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Log data provides information about the number of visits to different pages on the Sites. We use this data for troubleshooting purposes and to track which pages people visit in order to improve the Sites. We do not link log data collected to Personal Information. We may communicate with third-party vendors, including Google, and place online advertising, which will be shown on other websites on the Internet. In some cases, those third-party vendors may decide which ads to show you based on your prior visits to the Sites. At no time will you be personally identified to those third-party vendors, nor will any of the information you share with us be shared with those third-party vendors. If you prefer to opt out of the use of these third-party cookies on the Sites, you can do so by visiting the Network Advertising opt out page: www.networkadvertising.org. We may also use third-party services such as Google Analytics. This helps us understand traffic patterns and know if there are problems with the Sites. We may also use embedded images in emails to track open rates for our mailings, so that we can tell which mailings appeal most to our supporters.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Cookies and Related Technology",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We may also automatically receive and store certain types of information when you visit the Sites through the use of cookies, web beacons, or similar programs to collect the information described above. “Cookies” are small text files stored locally on your computer that help store user preferences. “Web beacons” are small pieces of code placed on websites used to collect advertising metrics, such as counting page views, promotion views, or advertising responses. We may use cookies or web beacons to measure aggregate web statistics, including the number of monthly visitors, number of repeat visitors, most popular webpages and other information. We may also use cookies to facilitate your online visit by maintaining data that you provide so that you will not need to resubmit certain information. Cookies do not contain any Personal Information and we will never track your Internet usage outside of the Sites. In many web browsers, you can choose to delete, disable, turn off, or reject most cookies and web beacons through the “Internet Options” sub-option of the “Tools” menu of your web browser or otherwise as directed by your web browser’s support feature. Please consult the “Help” section of your web browser for more information.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Petitions",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Any petitions that you have signed online, and any comments therewith, constitute public information that we may provide to local, state, or national political leaders and the press.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Third Party Websites",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Sites may contain links to third party websites, including social media sites. Except as expressly stated otherwise by The Good Party, we do not review the privacy practices of all other websites and recommends that you review their privacy policies and your privacy settings before sharing your Personal Information. We do not have control over third party websites and is not responsible for their privacy policies or practices. Any third parties to whom we may disclose Personal Information may have their own privacy policies that describe how they use and disclose Personal Information. Those policies will govern use, handling, and disclosure of Personal Information once we have shared it with those third parties as described in this Privacy Policy. If you want to learn more about third-party privacy practices, we encourage you to visit the websites of those third parties.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How We Use Your Personal Information",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We may use your Personal Information for various purposes including to:",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Connect you to The Good Party programs, events, and activities, and obtain and confirm RSVP’s to events and programs;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Improve, maintain, and operate the Sites, send you receipts, confirmations, updates, notices, and messages regarding support and administration;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Provide information or products that you request and process and complete such transactions;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Respond to your emails, requests, comments, submissions, and questions, and provide customer service, request feedback, and otherwise communicate with you regarding your use of the Sites;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Help connect you with other Good Party supporters, and to solicit support, and volunteers;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Monitor and analyze trends and site usage and provide features and content that match your interests based on the information you provide and your actions on the Sites;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "To manage our operations;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "To notify you of changes to our Sites;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "To protect the interests of The Good Party, another visitor to the Sites, and/or to enforce one or more provisions of this Privacy Policy; and",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "To communicate with you, including through newsletters and email notifications, confirmations, technical notices, updates, security alerts, as well as regarding support and administrative messages that you may request.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Send you technical notices, updates, security alerts, and support and administrative messages and provide technical support;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Contact you if Federal election laws require us to request additional information from you;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Remind you to vote and register to vote and assist you in finding your registration information, polling location and campaign events near you;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Monitor and analyze trends, usage, and activities in connection with our Site;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Personalize the Site and provide advertisements, content or features based on your preferences, interests, and browsing and online activities;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Facilitate contests, sweepstakes, and promotions and process and deliver entries and rewards;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Carry out any other purpose described to you at the time the information was collected.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How We Share Your Personal Information",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Though we make every effort to preserve your privacy, we may share Personal information as follows:",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "When we have a good-faith belief that release is appropriate to comply with the law (for example, a lawful subpoena);",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "To protect the rights or property or safety of our supporters, employees, volunteers, or others;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "With vendors, service providers, consultants, employees, contractors, or volunteers who need to know such information to carry out their duties;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "With groups, causes, organizations, or candidates we believe have similar views, goals, and principles;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "To report your name, address, occupation, employer, and amount contributed if your donation exceeds $200, as required by the FEC;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "To comply with applicable laws, statutes, or regulations and to enforce this Privacy Policy; and",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "With your consent.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "In the event of a bankruptcy or a sale, merger, or acquisition, The Good Party may transfer your Personal Information to a separate entity. That entity will be responsible for ensuring your Personal Information is used only for authorized purposes and in a manner consistent with this Privacy Policy and applicable law.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How We Protect and Retain the Information You Provide",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Good Party uses reasonable industry-standard security measures to protect against the loss, misuse, theft, unauthorized access, destruction or alteration of the information under our control. Although we make good faith efforts to store information collected by the Sites in a secure operating environment, we cannot guarantee complete security.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "We will retain your Personal Information as long as you have an active account with The Good Party, as necessary to provide you with the services via the Sites, or as otherwise set forth in this Privacy Policy. We will also retain and use Personal Information as necessary for the purposes set out in this Privacy Policy and to the extent necessary to comply with our legal obligations, resolve disputes, enforce our agreements, and protect our legal rights. We also collect, maintain, use, and share aggregated, anonymized, or pseudonymized information, which we may retain indefinitely to protect the safety and security of our Sites, improve our Sites, or comply with legal obligations.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Sharing on Social Media",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Site may offer social sharing features and other integrated tools (such the ability to share on twitter or instagram), which let you share actions you take on our Site with other media, and vice versa. Your use of such features enables the sharing of information with your friends or the public, depending on your privacy settings for the relevant social media site. For more information about the purpose and scope of data collection and processing in connection with social sharing features, please visit the privacy policies of the entities that provide these features.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How to Unsubscribe or Opt Out",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Those who subscribe to email lists via the Sites will receive periodic updates from us by regular mail or email. You may opt out of receiving future information via email by using the unsubscribe procedure specified on the email message. With your consent, we may send promotional and non-promotional push notifications or alerts to your mobile device. You can deactivate these messages at any time by changing the notification settings on your mobile device. You may also contact us at ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "info@goodparty.org",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "mailto:info@goodparty.org"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": " if you no longer wish to receive communications regarding The Good Party or the Sites. If you opt out, we may still send you non-promotional emails, such as those about your use of the Sites.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Rejecting Cookies / Do Not Track",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Most web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove or reject browser cookies. If you choose to reject all cookies, you may be unable to use certain areas of the Sites. Some browsers have incorporated “Do Not Track” features. Most of these features, when turned on, send a signal or preference to the website or online service that a user visits, indicating that the user does not wish to be tracked. California law requires that an operator of a website or other online service disclose how the operator responds to a Do Not Track signal and whether third parties may collect personal information about an individual’s online activities from the operator’s website or online service. The Good Party is committed to providing you with meaningful choices about the information collected through the Services, however please be aware that the Internet industry is currently still working on Do Not Track standards.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "California Privacy Rights",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Effective January 1, 2005, under California Civil Code Section 1798.83, if an individual who is a California resident has provided Personal Information to a business in connection with a business relationship that is primarily for personal, family, or household purposes, and if that business has within the immediately preceding calendar year disclosed such an individual’s Personal Information to a third party and knows or should have known that such third party used the information for its own direct marketing purposes, then that business is obligated to disclose in writing to such individual upon request, what Personal Information was shared and with whom it was shared. As a non-profit, we are not a “business” subject to the California Consumer Privacy Act (California Civil Code Section 1798.135; “CCPA”) that goes into effect on January 1, 2020. Our disclosures to service providers will strive to be consistent, however, with the spirit of the CCPA as of its effective date on January 1, 2020. Any request for a disclosure required under these California laws should be sent to us via email at ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "info@goodparty.org",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "mailto:info@goodparty.org"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": ".",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Please note that we are not required to respond to your request more than once in a calendar year, nor are we required to respond to any request that is not sent to the email address designated above.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Account Closure",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "If you would like to stop using the Service, you should deactivate your account and contact us at ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "info@goodparty.org",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "mailto:info@goodparty.org"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": ". Similarly, if you stop working with the Organisation, the Organisation may suspend Your Account and/or delete any information associated with Your Account. It typically takes about 90 days to delete an account after account closure, but some information may remain in backup copies for a reasonable period of time.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Please note that we are not required to respond to your request more than once in a calendar year, nor are we required to respond to any request that is not sent to the email address designated above.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "International Visitors",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "The Sites are hosted in and provided from the United States. While we do not direct our services to residents of the European Union (or European Economic Area; together, “EU”), it is possible that EU residents may access and use the Sites. If you use the Sites and/or reside in the EU, Canada, or other regions with laws governing data collection and use that may differ from U.S. law, please note that you may be transferring your personal data to the United States. The United States may not have the same data protection laws as the EU, Canada, and some other regions. By providing Personal Information, you consent to the transfer of your Personal Information to the United States and the use of your Personal Information, in accordance with this Privacy Policy. If we collect Personal Information from EU residents, we strive to do so in a manner in compliance with the General Data Protection Regulation (“GDPR”), which include acknowledgment of EU residents’ rights, including the following:",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "to withdraw your consent to the processing of Personal Information about you to which you have previously given consent;",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "to object to processing of Personal Information about you for the purpose of direct marketing; and",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "to have incorrect Personal Information about you corrected.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "You also have the right to obtain a copy of the Personal Information we have about you, although we reserve the right to charge a fee for this.z",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "California Residents",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Some browsers have incorporated “Do Not Track” features. Most of these features, when turned on, send a signal or preference to a website or online service that a user visits, indicating that the user does not wish to be tracked. California law requires that an operator of a website or other online service disclose how the operator responds to a Do Not Track signal and whether third parties may collect personal information about an individual’s online activities from the operator’s website or online service. The Good Party is committed to providing you with meaningful choices about the information collected through the Sites, however please be aware that the Internet industry is currently still working on Do Not Track standards, implementations and solutions, and therefore the Sites may or may not respond to those signals.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "California law also provides California residents with the right to receive disclosures about any sharing of their Personal Information to a business in connection with a business relationship that is primarily for personal, family, or household purposes, and if that business has within the immediately preceding calendar year disclosed such an individual’s Personal Information to a third-party and knows or should have known that such third-party used the information for its own direct marketing purposes, then that business is obligated to disclose in writing to such individual upon request, what Personal Information was shared and with whom it was shared. Any request for a disclosure required under this California law should be sent to us via email at  ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "info@goodparty.org",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "mailto:info@goodparty.org"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": ".",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "mailto:info@thegoodparty.org"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": "",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Changes to Privacy Policy",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "This Privacy Policy may be updated from time to time. When updated the “last updated\" date will be amended and the new Privacy Policy will be posted online. We encourage you to check this page when revisiting the Sites to make sure that you are informed of how your personal information will be used.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "heading-4",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "How to Contact Us",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Questions regarding this Privacy Policy should be emailed to The Good Party at  ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "info@goodparty.org",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "mailto:info@goodparty.org"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": ".",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "hyperlink",
+              "content": [
+                {
+                  "nodeType": "text",
+                  "value": "",
+                  "marks": [],
+                  "data": {}
+                }
+              ],
+              "data": {
+                "uri": "mailto:info@thegoodparty.org"
+              }
+            },
+            {
+              "nodeType": "text",
+              "value": "",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
   "partyPage": {
     "title": "Header Content",
     "content": {
@@ -3120,1060 +4214,6 @@ const content = {
       ]
     },
     "signUpLink": "https://airtable.com/shrbJLdp5uQuyHIZf"
-  },
-  "privacyPage": {
-    "title": "Privacy Policy",
-    "lastModified": "2019-08-23",
-    "pageContent": {
-      "data": {},
-      "content": [
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "This Privacy Policy explains how The Good Party (“we” or “us”) collects, uses, and disclose information that you may provide while visiting our website, www.thegoodparty.org, and our mobile sites, mobile applications, and other online services (the “Sites”) using a personal computer, mobile device, or any other means, and to demonstrate our firm commitment to Internet privacy. This Privacy Policy also applies to personal information collected by third-party vendors on our behalf.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "What is Personal Information?",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "“Personal Information” is information about a particular individual that specifically identifies that individual, or information about that individual, such as name, address, email address, telephone number, or credit or debit card information. Personal Information does not include “aggregate information,” which is data that may be collected automatically or without reference to Personal Information about the use of the Sites. The Privacy Policy does not restrict The Good Party’s collection and use of aggregate information.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Visitors to the Sites",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "The Good Party operates in the United States and the information we collect is governed by U.S. law.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Children",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "The Sites are not directed at children and we do not knowingly collect Personal Information directly from children (including information concerning a child or that child's parents/guardians, any screen or user name that functions as online contact information for a child, any photograph, video, or audio file containing a child’s image or voice) directly from users under the age of thirteen (13) or from other web sites or services directed at children. Consistent with the Federal Children’s Online Privacy Protection Act of 1988 (“COPPA”), we will not knowingly request or collect Personal Information from any child under the age of thirteen (13) in the United States without obtaining the required consent from the appropriate parent/guardian. Children may access and browse the Sites without disclosing any Personal Information. We will apply material changes to this Privacy Policy to conform with applicable law, including any applicable provisions of COPPA that require parental consent.\n\nPlease visit ",
-              "nodeType": "text"
-            },
-            {
-              "data": {
-                "uri": "https://www.ftc.gov/privacy/privacyinitiatives/childrens.html"
-              },
-              "content": [
-                {
-                  "data": {},
-                  "marks": [],
-                  "value": "www.ftc.gov/privacy/privacyinitiatives/childrens.html",
-                  "nodeType": "text"
-                }
-              ],
-              "nodeType": "hyperlink"
-            },
-            {
-              "data": {},
-              "marks": [],
-              "value": " for information from the Federal Trade Commission about protecting children’s privacy online. If you have any reservations, questions or concerns about your child’s access to the Sites or how information that your child provides is used by us, please contact us.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "COLLECTION OF PERSONAL INFORMATION",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-2"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Direct Collection",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "We collect Personal Information that you provide to us when you register, send us an email, sign up to receive email or text messages, sign up to volunteer, fill out a form, make a purchase or donation, communicate with us through third-party social feeds, request information, participate in active forums or take any other action on the Sites. We (or our service providers) may also obtain information from outside sources and combine it with the information we collect through the Sites, including from voter file data from state parties and other organizations, from public databases, and from private organizations. This Policy also applies to Personal Information that we may obtain from third-party vendors such as search engines or social media sites.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Aggregate and Similar Information",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "We may automatically collect information when you visit the Sites such as the Internet Protocol (IP) address, the browser and operating system you use, the name of the domain and host from which you access the Internet, the address of the website from which you linked to the Sites, device identifiers, and mobile and network information, and your actions on the Sites. This information will be treated as Personal Information if we combine or link it to any of the identifying information above. Otherwise, this information constitutes aggregate information.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Aggregate and Similar Information",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Log data provides information about the number of visits to different pages on the Sites. We use this data for troubleshooting purposes and to track which pages people visit in order to improve the Sites. We do not link log data collected to Personal Information. We may communicate with third-party vendors, including Google, and place online advertising, which will be shown on other websites on the Internet. In some cases, those third-party vendors may decide which ads to show you based on your prior visits to the Sites. At no time will you be personally identified to those third-party vendors, nor will any of the information you share with us be shared with those third-party vendors. If you prefer to opt out of the use of these third-party cookies on the Sites, you can do so by visiting the Network Advertising opt out page: www.networkadvertising.org. We may also use third-party services such as Google Analytics. This helps us understand traffic patterns and know if there are problems with the Sites. We may also use embedded images in emails to track open rates for our mailings, so that we can tell which mailings appeal most to our supporters.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Cookies and Related Technology",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "We may also automatically receive and store certain types of information when you visit the Sites through the use of cookies, web beacons, or similar programs to collect the information described above. “Cookies” are small text files stored locally on your computer that help store user preferences. “Web beacons” are small pieces of code placed on websites used to collect advertising metrics, such as counting page views, promotion views, or advertising responses. We may use cookies or web beacons to measure aggregate web statistics, including the number of monthly visitors, number of repeat visitors, most popular webpages and other information. We may also use cookies to facilitate your online visit by maintaining data that you provide so that you will not need to resubmit certain information. Cookies do not contain any Personal Information and we will never track your Internet usage outside of the Sites. In many web browsers, you can choose to delete, disable, turn off, or reject most cookies and web beacons through the “Internet Options” sub-option of the “Tools” menu of your web browser or otherwise as directed by your web browser’s support feature. Please consult the “Help” section of your web browser for more information.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Petitions",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Any petitions that you have signed online, and any comments therewith, constitute public information that we may provide to local, state, or national political leaders and the press.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Third Party Websites",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "The Sites may contain links to third party websites, including social media sites. Except as expressly stated otherwise by The Good Party, we do not review the privacy practices of all other websites and recommends that you review their privacy policies and your privacy settings before sharing your Personal Information. We do not have control over third party websites and is not responsible for their privacy policies or practices. Any third parties to whom we may disclose Personal Information may have their own privacy policies that describe how they use and disclose Personal Information. Those policies will govern use, handling, and disclosure of Personal Information once we have shared it with those third parties as described in this Privacy Policy. If you want to learn more about third-party privacy practices, we encourage you to visit the websites of those third parties.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "How We Use Your Personal Information",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "We may use your Personal Information for various purposes including to:",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Connect you to The Good Party programs, events, and activities, and obtain and confirm RSVP’s to events and programs;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Improve, maintain, and operate the Sites, send you receipts, confirmations, updates, notices, and messages regarding support and administration;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Provide information or products that you request and process and complete such transactions;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Respond to your emails, requests, comments, submissions, and questions, and provide customer service, request feedback, and otherwise communicate with you regarding your use of the Sites;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Help connect you with other Good Party supporters, and to solicit support, and volunteers;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Monitor and analyze trends and site usage and provide features and content that match your interests based on the information you provide and your actions on the Sites;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "To manage our operations;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "To notify you of changes to our Sites;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "To protect the interests of The Good Party, another visitor to the Sites, and/or to enforce one or more provisions of this Privacy Policy; and",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "To communicate with you, including through newsletters and email notifications, confirmations, technical notices, updates, security alerts, as well as regarding support and administrative messages that you may request.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Send you technical notices, updates, security alerts, and support and administrative messages and provide technical support;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Contact you if Federal election laws require us to request additional information from you;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Remind you to vote and register to vote and assist you in finding your registration information, polling location and campaign events near you;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Monitor and analyze trends, usage, and activities in connection with our Site;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Personalize the Site and provide advertisements, content or features based on your preferences, interests, and browsing and online activities;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Facilitate contests, sweepstakes, and promotions and process and deliver entries and rewards;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Carry out any other purpose described to you at the time the information was collected.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "How We Share Your Personal Information",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Though we make every effort to preserve your privacy, we may share Personal information as follows:",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "When we have a good-faith belief that release is appropriate to comply with the law (for example, a lawful subpoena);",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "To protect the rights or property or safety of our supporters, employees, volunteers, or others;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "With vendors, service providers, consultants, employees, contractors, or volunteers who need to know such information to carry out their duties;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "With groups, causes, organizations, or candidates we believe have similar views, goals, and principles;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "To report your name, address, occupation, employer, and amount contributed if your donation exceeds $200, as required by the FEC;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "To comply with applicable laws, statutes, or regulations and to enforce this Privacy Policy; and",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "With your consent.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "In the event of a bankruptcy or a sale, merger, or acquisition, The Good Party may transfer your Personal Information to a separate entity. That entity will be responsible for ensuring your Personal Information is used only for authorized purposes and in a manner consistent with this Privacy Policy and applicable law.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "How We Protect and Retain the Information You Provide",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "The Good Party uses reasonable industry-standard security measures to protect against the loss, misuse, theft, unauthorized access, destruction or alteration of the information under our control. Although we make good faith efforts to store information collected by the Sites in a secure operating environment, we cannot guarantee complete security.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "We will retain your Personal Information as long as you have an active account with The Good Party, as necessary to provide you with the services via the Sites, or as otherwise set forth in this Privacy Policy. We will also retain and use Personal Information as necessary for the purposes set out in this Privacy Policy and to the extent necessary to comply with our legal obligations, resolve disputes, enforce our agreements, and protect our legal rights. We also collect, maintain, use, and share aggregated, anonymized, or pseudonymized information, which we may retain indefinitely to protect the safety and security of our Sites, improve our Sites, or comply with legal obligations.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Sharing on Social Media",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "The Site may offer social sharing features and other integrated tools (such the ability to share on twitter or instagram), which let you share actions you take on our Site with other media, and vice versa. Your use of such features enables the sharing of information with your friends or the public, depending on your privacy settings for the relevant social media site. For more information about the purpose and scope of data collection and processing in connection with social sharing features, please visit the privacy policies of the entities that provide these features.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "How to Unsubscribe or Opt Out",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Those who subscribe to email lists via the Sites will receive periodic updates from us by regular mail or email. You may opt out of receiving future information via email by using the unsubscribe procedure specified on the email message. With your consent, we may send promotional and non-promotional push notifications or alerts to your mobile device. You can deactivate these messages at any time by changing the notification settings on your mobile device. You may also contact us at ",
-              "nodeType": "text"
-            },
-            {
-              "data": {
-                "uri": "mailto:info@thegoodparty.org"
-              },
-              "content": [
-                {
-                  "data": {},
-                  "marks": [],
-                  "value": "info@thegoodparty.org",
-                  "nodeType": "text"
-                }
-              ],
-              "nodeType": "hyperlink"
-            },
-            {
-              "data": {},
-              "marks": [],
-              "value": " if you no longer wish to receive communications regarding The Good Party or the Sites. If you opt out, we may still send you non-promotional emails, such as those about your use of the Sites.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Rejecting Cookies / Do Not Track",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Most web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove or reject browser cookies. If you choose to reject all cookies, you may be unable to use certain areas of the Sites. Some browsers have incorporated “Do Not Track” features. Most of these features, when turned on, send a signal or preference to the website or online service that a user visits, indicating that the user does not wish to be tracked. California law requires that an operator of a website or other online service disclose how the operator responds to a Do Not Track signal and whether third parties may collect personal information about an individual’s online activities from the operator’s website or online service. The Good Party is committed to providing you with meaningful choices about the information collected through the Services, however please be aware that the Internet industry is currently still working on Do Not Track standards.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "California Privacy Rights",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Effective January 1, 2005, under California Civil Code Section 1798.83, if an individual who is a California resident has provided Personal Information to a business in connection with a business relationship that is primarily for personal, family, or household purposes, and if that business has within the immediately preceding calendar year disclosed such an individual’s Personal Information to a third party and knows or should have known that such third party used the information for its own direct marketing purposes, then that business is obligated to disclose in writing to such individual upon request, what Personal Information was shared and with whom it was shared. As a non-profit, we are not a “business” subject to the California Consumer Privacy Act (California Civil Code Section 1798.135; “CCPA”) that goes into effect on January 1, 2020. Our disclosures to service providers will strive to be consistent, however, with the spirit of the CCPA as of its effective date on January 1, 2020. Any request for a disclosure required under these California laws should be sent to us via email at ",
-              "nodeType": "text"
-            },
-            {
-              "data": {
-                "uri": "mailto:info@thegoodparty.org"
-              },
-              "content": [
-                {
-                  "data": {},
-                  "marks": [],
-                  "value": "info@thegoodparty.org",
-                  "nodeType": "text"
-                }
-              ],
-              "nodeType": "hyperlink"
-            },
-            {
-              "data": {},
-              "marks": [],
-              "value": ".",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Please note that we are not required to respond to your request more than once in a calendar year, nor are we required to respond to any request that is not sent to the email address designated above.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Account Closure",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "If you would like to stop using the Service, you should deactivate your account and contact us at ",
-              "nodeType": "text"
-            },
-            {
-              "data": {
-                "uri": "mailto:info@thegoodparty.org"
-              },
-              "content": [
-                {
-                  "data": {},
-                  "marks": [],
-                  "value": "info@thegoodparty.org",
-                  "nodeType": "text"
-                }
-              ],
-              "nodeType": "hyperlink"
-            },
-            {
-              "data": {},
-              "marks": [],
-              "value": ". Similarly, if you stop working with the Organisation, the Organisation may suspend Your Account and/or delete any information associated with Your Account. It typically takes about 90 days to delete an account after account closure, but some information may remain in backup copies for a reasonable period of time.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Please note that we are not required to respond to your request more than once in a calendar year, nor are we required to respond to any request that is not sent to the email address designated above.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "International Visitors",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "The Sites are hosted in and provided from the United States. While we do not direct our services to residents of the European Union (or European Economic Area; together, “EU”), it is possible that EU residents may access and use the Sites. If you use the Sites and/or reside in the EU, Canada, or other regions with laws governing data collection and use that may differ from U.S. law, please note that you may be transferring your personal data to the United States. The United States may not have the same data protection laws as the EU, Canada, and some other regions. By providing Personal Information, you consent to the transfer of your Personal Information to the United States and the use of your Personal Information, in accordance with this Privacy Policy. If we collect Personal Information from EU residents, we strive to do so in a manner in compliance with the General Data Protection Regulation (“GDPR”), which include acknowledgment of EU residents’ rights, including the following:",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "to withdraw your consent to the processing of Personal Information about you to which you have previously given consent;",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "to object to processing of Personal Information about you for the purpose of direct marketing; and",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "to have incorrect Personal Information about you corrected.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "You also have the right to obtain a copy of the Personal Information we have about you, although we reserve the right to charge a fee for this.z",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "California Residents",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Some browsers have incorporated “Do Not Track” features. Most of these features, when turned on, send a signal or preference to a website or online service that a user visits, indicating that the user does not wish to be tracked. California law requires that an operator of a website or other online service disclose how the operator responds to a Do Not Track signal and whether third parties may collect personal information about an individual’s online activities from the operator’s website or online service. The Good Party is committed to providing you with meaningful choices about the information collected through the Sites, however please be aware that the Internet industry is currently still working on Do Not Track standards, implementations and solutions, and therefore the Sites may or may not respond to those signals.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "California law also provides California residents with the right to receive disclosures about any sharing of their Personal Information to a business in connection with a business relationship that is primarily for personal, family, or household purposes, and if that business has within the immediately preceding calendar year disclosed such an individual’s Personal Information to a third-party and knows or should have known that such third-party used the information for its own direct marketing purposes, then that business is obligated to disclose in writing to such individual upon request, what Personal Information was shared and with whom it was shared. Any request for a disclosure required under this California law should be sent to us via email at ",
-              "nodeType": "text"
-            },
-            {
-              "data": {
-                "uri": "mailto:info@thegoodparty.org"
-              },
-              "content": [
-                {
-                  "data": {},
-                  "marks": [],
-                  "value": "info@thegoodparty.org",
-                  "nodeType": "text"
-                }
-              ],
-              "nodeType": "hyperlink"
-            },
-            {
-              "data": {},
-              "marks": [],
-              "value": ".",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Changes to Privacy Policy",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "This Privacy Policy may be updated from time to time. When updated the “last updated\" date will be amended and the new Privacy Policy will be posted online. We encourage you to check this page when revisiting the Sites to make sure that you are informed of how your personal information will be used.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "How to Contact Us",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-4"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Questions regarding this Privacy Policy should be emailed to The Good Party at ",
-              "nodeType": "text"
-            },
-            {
-              "data": {
-                "uri": "mailto:info@thegoodparty.org"
-              },
-              "content": [
-                {
-                  "data": {},
-                  "marks": [],
-                  "value": "info@thegoodparty.org",
-                  "nodeType": "text"
-                }
-              ],
-              "nodeType": "hyperlink"
-            },
-            {
-              "data": {},
-              "marks": [],
-              "value": "",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        }
-      ],
-      "nodeType": "document"
-    }
   },
   "pastEvents": [
     {
