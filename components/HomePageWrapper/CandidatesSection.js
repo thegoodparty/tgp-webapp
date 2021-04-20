@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import { Body, Body11, H2 } from '../shared/typogrophy';
 import CandidateCard from '../shared/CandidateCard';
+import StyledH2 from './StyledH2';
 
 const SeeMore = styled(Body11)`
   color: ${({ theme }) => theme.colors.purple};
@@ -17,14 +18,22 @@ const SeeMore = styled(Body11)`
   cursor: pointer;
 `;
 
+const Title = styled(StyledH2)`
+  color: #000;
+  position: relative;
+  text-align: center;
+`;
+
 const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
   const columns = 12 / maxRows;
 
   return (
     <>
-      <H2 style={{ marginBottom: '8px', color: '#000', position: 'relative' }}>
-        Meet some Good Certified candidates
-      </H2>
+      <Title
+        style={{ marginBottom: '8px', color: '#000', position: 'relative' }}
+      >
+        Featured crowd-voting campaigns
+      </Title>
 
       {homepageCandidates && homepageCandidates.length > 0 ? (
         <>
@@ -42,7 +51,7 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
           </Grid>
           <Link href="/candidates">
             <div className="text-center">
-              <SeeMore>SEE MORE CANDIDATES</SeeMore>
+              <SeeMore>SEE MORE</SeeMore>
             </div>
           </Link>
         </>

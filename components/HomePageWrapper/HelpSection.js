@@ -6,23 +6,20 @@ import JoinUsButton from './JoinUsButton';
 
 const TextWrapper = styled.div`
   margin-bottom: 24px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 50%;
-  }
 `;
 
 const HelpSection = () => {
   return (
-    <>
-      <StyledH2>Sign up to stay informed</StyledH2>
+    <div className="text-center">
+      <StyledH2>Stay informed</StyledH2>
       <TextWrapper>
         <GrayText>
           We’re always adding candidates. Join the Good Party and we’ll keep you
           posted as the roster grows.
         </GrayText>
       </TextWrapper>
-      <JoinUsButton />
-    </>
+      <JoinUsButton label="SIGN UP" />
+    </div>
   );
 };
 

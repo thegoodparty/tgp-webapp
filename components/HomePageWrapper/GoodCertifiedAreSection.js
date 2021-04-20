@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
-import { H2, Body, Body12 } from '../shared/typogrophy';
+import { H3, Body, Body12 } from '../shared/typogrophy';
 import CandidatesWrapper from '../CandidatesWrapper';
+import StyledH2 from './StyledH2';
+import NominateButton from './NominateButton';
 
 const Row = styled.div`
   display: flex;
@@ -37,24 +39,34 @@ const UnderText = styled(Body12)`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
+const StyledH3 = styled(H3)`
+  font-size: 27px;
+  line-height: 32px;
+  margin-bottom: 48px;
+  margin-top: 10px;
+`;
+
+const NominateWrapper = styled.div`
+  text-align: center;
+  margin-top: 42px;
+`;
+
 const points = [
   {
     title: 'Non-Partisan',
     icon: 'images/icons/non-partisan.svg',
-    body:
-      'Good Party Certified candidates pledge to caucus (meet) with all sides, but to NEVER pay dues to nor fundraise for either Republican or Democratic parties.',
+    body: 'Never pay dues to nor fundraise for Republicans or Democrats.',
   },
   {
     title: 'Small Money',
     icon: 'images/icons/small-money.svg',
     body:
-      'Good Party Certified candidates pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
+      'Accept a majority of their funding from individual donations under $200.',
   },
   {
     title: 'Anti-Corruption',
     icon: 'images/icons/anti-corruption.svg',
-    body:
-      'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time.  They will also abide by and work to advance the ',
+    body: 'Openly share their public meeting calendars and advance the ',
     endLink: {
       text: 'Anti-Corruption Act',
       href: '/?article=7jm2j9gapWwEoVwVD3VX6o',
@@ -65,10 +77,11 @@ const points = [
 const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
   return (
     <>
-      <Row>
-        <H2>Good Certified candidates are: </H2>
+      <div className="text-center">
         <Img src="images/icons/certification-badge.svg" alt="tgp certified" />
-      </Row>
+        <StyledH2>What’s a Good Certified candidate?</StyledH2>
+        <StyledH3>Independent candidates who pledge to be:</StyledH3>
+      </div>
       <Grid container spacing={5} alignItems="center">
         {points.map(point => (
           <Grid item xs={12} md={mdColumns}>
@@ -91,6 +104,9 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
           </Grid>
         ))}
       </Grid>
+      <NominateWrapper>
+        <NominateButton />
+      </NominateWrapper>
     </>
   );
 };

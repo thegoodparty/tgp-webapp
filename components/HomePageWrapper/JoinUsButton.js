@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 
@@ -10,16 +11,21 @@ const StyledBody = styled(Body)`
   padding: 0 24px;
 `;
 
-const JoinUsButton = () => {
+const JoinUsButton = ({ style = {}, label = 'JOIN US' }) => {
   return (
     <Link href="?register=true" passHref>
       <a>
-        <PurpleButton>
-          <StyledBody>JOIN US</StyledBody>
+        <PurpleButton style={style}>
+          <StyledBody>{label}</StyledBody>
         </PurpleButton>
       </a>
     </Link>
   );
+};
+
+JoinUsButton.propTypes = {
+  style: PropTypes.object,
+  label: PropTypes.string,
 };
 
 export default JoinUsButton;
