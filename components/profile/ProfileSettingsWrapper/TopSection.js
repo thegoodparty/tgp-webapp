@@ -8,10 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
-
-import Link from 'next/link';
-
-import UserAvatar from '../../shared/UserAvatar';
 import { Body13, H1 } from '../../shared/typogrophy';
 
 import Breadcrumbs from '../../shared/Breadcrumbs';
