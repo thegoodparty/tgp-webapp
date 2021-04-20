@@ -6,7 +6,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from '../../shared/PageWrapper';
@@ -25,7 +24,11 @@ function ProfileSettingsWrapper({
     <PageWrapper purple>
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12} md={7}>
-          <TopSection signoutCallback={signoutCallback} user={user} />
+          <TopSection
+            signoutCallback={signoutCallback}
+            user={user}
+            uploadImageCallback={uploadImageCallback}
+          />
           <PersonalSection
             user={user}
             updateUserCallback={updateUserCallback}

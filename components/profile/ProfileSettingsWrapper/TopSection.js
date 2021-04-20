@@ -35,7 +35,7 @@ const breadcrumbsLinks = [
   },
 ];
 
-function TopSection({ user, signoutCallback }) {
+function TopSection({ user, signoutCallback, uploadImageCallback }) {
   return (
     <Wrapper>
       <Breadcrumbs links={breadcrumbsLinks} />
@@ -46,7 +46,11 @@ function TopSection({ user, signoutCallback }) {
         </Body13>
       </Row>
       <Hidden mdUp>
-        <ImageSection user={user} mode="top" />
+        <ImageSection
+          user={user}
+          mode="top"
+          uploadImageCallback={uploadImageCallback}
+        />
       </Hidden>
     </Wrapper>
   );
@@ -55,6 +59,7 @@ function TopSection({ user, signoutCallback }) {
 TopSection.propTypes = {
   user: PropTypes.object,
   signoutCallback: PropTypes.func,
+  uploadImageCallback: PropTypes.func,
 };
 
 export default TopSection;
