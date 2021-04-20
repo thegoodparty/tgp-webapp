@@ -48,16 +48,18 @@ const TopSection = () => {
   return (
     <>
       <Row>
-        <StyledH1>Use technology for Good.</StyledH1>
+        <StyledH1>Free software for free elections</StyledH1>
         <Logo src="/images/icons/heart.svg" />
       </Row>
       <ReverseGrid container spacing={5} alignItems="center">
         <Grid item xs={12} md={6}>
-          <SectionImg src="images/homepage/big-money.jpg" alt="big money" />
+          <SectionImg
+            src="images/homepage/capitol.png"
+            alt="broken democracy"
+          />
         </Grid>
         <Grid item xs={12} md={6}>
-          <StyledH2>Big money is running politics.</StyledH2>
-          <GrayText>Individually we can’t stop it.</GrayText>
+          <StyledH2>Our democracy is broken</StyledH2>
         </Grid>
       </ReverseGrid>
     </>

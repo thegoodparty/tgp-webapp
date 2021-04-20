@@ -6,8 +6,8 @@ const StyledH2 = styled.h2`
   font-weight: 700;
   margin: 0 0 4px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 33px;
-    line-height: 43px;
+    font-size: 48px;
+    line-height: 52px;
     margin-bottom: 8px;
   }
 `;
