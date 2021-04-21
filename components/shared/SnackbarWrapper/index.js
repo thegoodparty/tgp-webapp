@@ -25,7 +25,7 @@ function SnackbarWrapper({ message, severity, isOpen, closeCallback }) {
   };
   const [width] = useWindowSize();
   let vertical = 'top';
-  if (width > theme.breakpoints.mdPx) {
+  if (width > theme.breakpointsPixels.mdPx) {
     vertical = 'bottom';
   }
   return (

@@ -16,7 +16,7 @@ const PageWrapper = styled.div`
 const Img = styled.img`
   max-height: 30vh;
   margin-bottom: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     max-height: 30vh;
   }
 `;

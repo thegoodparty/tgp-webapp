@@ -40,7 +40,7 @@ const Icon = styled.img`
   position: absolute;
   left: 24px;
   top: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: 12px;
     top: 14px;
   }

@@ -24,7 +24,7 @@ import Updates from './Updates';
 
 const Padder = styled.div`
   padding: 0 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 0;
   }
 `;
@@ -49,7 +49,7 @@ const SectionHeader = styled(Body19)`
     font-weight: normal;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-bottom: 24px;
   }
 `;

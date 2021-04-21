@@ -22,10 +22,10 @@ import IllustrationSection from './IllustrationSection';
 const Content = styled.div`
   width: 100vw;
   overflow-x: hidden;
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixelsPixels.contentMax};
   margin: 0 auto 48px;
   padding: 0 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixelsPixels.md}) {
     padding: 48px 18px;
     overflow-x: visible;
     max-width: 1310px;
@@ -35,7 +35,7 @@ const Content = styled.div`
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixelsPixels.md}) {
     flex-direction: row-reverse;
   }
 `;
@@ -47,7 +47,7 @@ const StyledH1 = styled(H1)`
 const StyledBody13 = styled(Body13)`
   margin: 4px 0 48px;
   color: ${({ theme }) => theme.colors.gray7};
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 19px;
     line-height: 25px;
   }

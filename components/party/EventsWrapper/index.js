@@ -15,7 +15,7 @@ import EventSnippet from 'components/shared/EventSnippet';
 
 const BackIconWrapper = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     display: block;
     cursor: pointer;
     color: ${({ theme }) => theme.colors.blue};

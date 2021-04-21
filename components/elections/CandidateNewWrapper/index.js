@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
   margin: 0 auto;
   max-width: 1080px;
   padding-bottom: 48px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 24px 18px 64px;
   }
 `;
@@ -32,7 +32,7 @@ const ContentWrapper = styled.div`
 const HeaderWrapper = styled.div`
   margin-bottom: 16px;
   padding: 0 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 0;
     margin-bottom: 24px;
   }

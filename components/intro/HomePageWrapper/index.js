@@ -16,7 +16,7 @@ import { Body13, H2 } from 'components/shared/typogrophy';
 const Logo = styled(Image)`
   width: 63px;
   height: auto;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: 100px;
     height: auto;
   }
@@ -43,7 +43,7 @@ const StyledH2 = styled(H2)`
 const ButtonWrapper = styled.div`
   margin-top: 2rem;
   text-align: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-bottom: 2rem;
   }
 `;

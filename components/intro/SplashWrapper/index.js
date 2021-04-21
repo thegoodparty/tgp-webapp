@@ -31,7 +31,7 @@ const SubTitle = styled.div`
   line-height: 26px;
   color: ${({ theme }) => theme.colors.gray6};
   margin-top: 4px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 22px;
     line-height: 28px;
   }
@@ -65,7 +65,7 @@ const SmallTitle = styled.div`
   letter-spacing: 0.5px;
   color: ${({ theme }) => theme.colors.gray4};
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 24px;
     line-height: 34px;
   }

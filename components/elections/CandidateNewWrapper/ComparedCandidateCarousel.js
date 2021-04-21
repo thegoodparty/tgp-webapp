@@ -27,7 +27,7 @@ const StyledSlider = styled(Slider)`
 const PrevArrowElem = styled.div`
   left: calc(-50vw + 18px);
   top: 35px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     left: -280px;
     top: 150px;
   }
@@ -44,7 +44,7 @@ const NextArrowElem = styled.div`
   &::before {
     display: none;
   }
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     top: 150px;
   }
   right: 20px;

@@ -18,7 +18,7 @@ const StyledH3 = styled(H3)`
   margin-top: 48px;
   margin-bottom: 16px;
   position: relative;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixelsPixels.md}) {
     margin-top: 66px;
   }
 `;

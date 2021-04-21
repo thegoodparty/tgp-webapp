@@ -6,7 +6,7 @@ const Subtitle = styled.h2`
   line-height: 30px;
   font-weight: 500;
   margin: 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 33px;
     line-height: 43px;
   }

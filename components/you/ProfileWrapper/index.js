@@ -93,7 +93,7 @@ const Filler = styled(Body13)`
   border-radius: 50%;
   border: solid 1px ${({ theme }) => theme.colors.gray9};
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     height: 80px;
     width: 80px;
   }
@@ -122,7 +122,7 @@ const More = styled(Body13)`
   border: 3px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
     0px 0px 16px rgba(0, 0, 0, 0.12);
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     height: 80px;
     width: 80px;
   }

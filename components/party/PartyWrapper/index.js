@@ -9,7 +9,7 @@ import PageWrapper from 'components/shared/PageWrapper';
 import { Body, H2 } from 'components/shared/typogrophy';
 
 const Content = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding-bottom: 48px;
 `;
@@ -35,7 +35,7 @@ const Img = styled.img`
   width: 90px;
   height: auto;
   margin-right: 24px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-right: 36px;
   }
 `;

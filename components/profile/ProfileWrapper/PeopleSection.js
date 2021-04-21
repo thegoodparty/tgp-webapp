@@ -23,7 +23,7 @@ const CircleWrapper = styled(Body9)`
   color: ${({ theme }) => theme.colors.purple};
   text-align: center;
   margin-right: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-right: 24px;
   }
 `;
@@ -32,7 +32,7 @@ const DashedCircle = styled.img`
   width: 64px;
   height: 64px;
   margin-bottom: 9px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: 94px;
     height: 94px;
     margin-bottom: 12px;
@@ -53,7 +53,7 @@ const CircleWithBevel = styled.div`
     inset 1px 1px 2px rgba(255, 255, 255, 0.3),
     inset -1px -1px 2px rgba(224, 212, 234, 0.5);
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: 94px;
     height: 94px;
     margin-bottom: 12px;
@@ -69,7 +69,7 @@ const CircleWithBevel = styled.div`
 const LeaderboardLink = styled(Body19)`
   color: ${({ theme }) => theme.colors.purple};
   margin-top: 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-top: 24px;
   }
 `;

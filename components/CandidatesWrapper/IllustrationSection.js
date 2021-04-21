@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     inset 1px 1px 1px rgba(255, 255, 255, 0.3),
     inset -1px -1px 1px rgba(224, 212, 234, 0.5);
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 48px;
   }
 `;
@@ -37,7 +37,7 @@ const Img = styled.img`
   height: auto;
   margin: 42px auto 12px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: 60%;
   }
 `;

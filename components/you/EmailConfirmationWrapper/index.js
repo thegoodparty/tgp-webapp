@@ -52,7 +52,7 @@ const Input = styled(TextField)`
       color: #fff;
 
       @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpoints.md}) {
+    theme.breakpointsPixels.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -76,7 +76,7 @@ const ButtonsWrapper = styled.div`
   width: 100%;
 `;
 const ButtonsInnerWrapper = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -87,7 +87,7 @@ const ButtonsInnerWrapper = styled.div`
   }
 `;
 const ButtonsInnerWrapperExpired = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding: 0 16px;
 `;

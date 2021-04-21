@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import { H3, Body, Body12 } from '../shared/typogrophy';
-import CandidatesWrapper from '../CandidatesWrapper';
 import StyledH2 from './StyledH2';
+import StyledH3 from './StyledH3';
 import NominateButton from './NominateButton';
 
 const Row = styled.div`
@@ -23,7 +23,8 @@ const Img = styled.img`
 const PointWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-bottom: 12px;
   }
 `;
@@ -34,21 +35,26 @@ const PointIcon = styled.img`
   height: auto;
 `;
 
-const UnderText = styled(Body12)`
+const UnderText = styled.div`
   margin-top: 4px;
   color: ${({ theme }) => theme.colors.gray7};
-`;
-
-const StyledH3 = styled(H3)`
-  font-size: 27px;
-  line-height: 32px;
-  margin-bottom: 48px;
-  margin-top: 10px;
 `;
 
 const NominateWrapper = styled.div`
   text-align: center;
   margin-top: 42px;
+`;
+
+const PointTitle = styled.div`
+  font-size: 19px;
+  line-height: 25px;
+  color: ${({ theme }) => theme.colors.gray2};
+`;
+
+const PointBody = styled.div`
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
 `;
 
 const points = [
@@ -87,19 +93,19 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
           <Grid item xs={12} md={mdColumns}>
             <PointWrapper>
               <PointIcon src={point.icon} />
-              <Body>
+              <PointTitle>
                 <strong>{point.title}</strong>
-              </Body>
+              </PointTitle>
             </PointWrapper>
             <div>
-              <Body>
+              <PointBody>
                 <UnderText>
                   {point.body}{' '}
                   {point.endLink && (
                     <Link href={point.endLink.href}>{point.endLink.text}</Link>
                   )}
                 </UnderText>
-              </Body>
+              </PointBody>
             </div>
           </Grid>
         ))}

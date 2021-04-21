@@ -6,7 +6,7 @@ const Body9 = styled.div`
   line-height: 12px;
   letter-spacing: 0.5px;
   font-weight: 500;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 12px;
     line-height: 15px;
   }

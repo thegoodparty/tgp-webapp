@@ -33,7 +33,7 @@ const StyledBody11 = styled(Body11)`
   font-weight: 500;
   padding-left: 16px;
   font-size: 10px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 14px;
   }
 
@@ -54,7 +54,7 @@ const Icon = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     left: 12px;
     top: 12px;
     font-size: 20px;

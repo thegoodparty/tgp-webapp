@@ -46,7 +46,7 @@ const UserInitials = styled(H3)`
   position: relative;
   overflow: hidden;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     height: 100px;
     width: 100px;
   }
@@ -71,7 +71,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+          theme.breakpointsPixels.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -98,7 +98,7 @@ const PrivateWrapper = styled.div`
   width: 100vw;
   margin-left: -16px;
   padding 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: auto;
   }
 `;

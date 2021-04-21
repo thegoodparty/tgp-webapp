@@ -48,7 +48,7 @@ const RankedCrewWrapper = styled.div`
 const Rank = styled(Body9)`
   padding-bottom: 45px;
   margin-right: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-right: 22px;
   }
 `;
@@ -56,7 +56,7 @@ const Rank = styled(Body9)`
 const TextWrapper = styled(Body11)`
   padding-bottom: 45px;
   margin-left: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-left: 22px;
   }
 `;
@@ -69,7 +69,7 @@ const NameLocation = styled.div`
 const Name = styled(Body13)`
   font-weight: 500;
   margin-right: 5px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-right: 10px;
   }
 `;

@@ -11,7 +11,7 @@ const ArticleWrapper = styled.a`
   .article-title {
     padding: 6px 0 6px 40px;
     color: ${({ theme }) => theme.colors.purple};
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
       padding: 8px 0 8px 40px;
     }
   }
@@ -19,7 +19,7 @@ const ArticleWrapper = styled.a`
 
 const Category = styled(Body19)`
   margin: 6px 0 32px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin: 8px 0 48px;
   }
 `;
@@ -35,11 +35,11 @@ const Hero = styled.div`
   background: url(https://assets.goodparty.org/faq-hero-new.jpg) no-repeat
     top center;
   background-size: cover;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     height: 450px;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.lg}) {
     height: 500px;
   }
 `;
@@ -63,25 +63,25 @@ const HeroText = styled(H1)`
   bottom: 16px;
 
   color: #fff;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 94px;
     bottom: 64px;
   }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding: 24px 18px 16px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 32px 20px 16px;
   }
 `;
 
 const StyledH1 = styled(H1)`
   margin: 24px 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin: 32px 0;
   }
 `;

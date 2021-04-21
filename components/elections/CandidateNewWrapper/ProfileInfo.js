@@ -49,7 +49,7 @@ const ProfileInfoWrapper = styled.div`
   border-radius: 8px;
   padding: 24px 18px 0;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
     padding: 24px 24px 32px 24px;
   }
@@ -76,7 +76,7 @@ const AvatarSection = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-bottom: 24px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     display: block;
   }
 `;
@@ -84,7 +84,7 @@ const AvatarSection = styled.div`
 const CandidateName = styled(H3)`
   text-align: left;
   font-size: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     text-align: center;
     margin-top: 12px;
     margin-bottom: 8px;
@@ -92,7 +92,7 @@ const CandidateName = styled(H3)`
 `;
 
 const PartyName = styled(Body13)`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     text-align: center;
   }
 `;

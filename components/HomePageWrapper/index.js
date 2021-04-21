@@ -8,20 +8,40 @@ import Section3 from './Section3';
 import GoodCertifiedAreSection from './GoodCertifiedAreSection';
 import CandidatesSection from './CandidatesSection';
 import HelpSection from './HelpSection';
+import HowItWorksSection from './HowItWorksSection';
 
 const Content = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: 524px;
   margin: 0 auto;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  }
 `;
 
 const Section = styled.section`
   padding: 24px 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 60px 18px;
   }
 
   &.purple4 {
     background-color: ${({ theme }) => theme.colors.purple4};
+  }
+
+  &.purple-gradient {
+    background: linear-gradient(0deg, #f2e7ff, #f2e7ff),
+      linear-gradient(
+        257.82deg,
+        rgba(67, 0, 211, 0.25) -11.17%,
+        rgba(67, 0, 211, 0) 96.34%
+      ),
+      #5c00c7;
+  }
+  &.no-padding {
+    padding-left: 0;
+    padding-right: 0;
   }
 `;
 
@@ -31,6 +51,7 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     { component: <TopSection /> },
     { component: <Section2 />, sectionClass: 'purple4' },
     { component: <Section3 /> },
+    { component: <HowItWorksSection />, noContent: true },
     { component: <GoodCertifiedAreSection /> },
     {
       component: <CandidatesSection homepageCandidates={homepageCandidates} />,
@@ -42,10 +63,15 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     <PageWrapper isFullWidth purple>
       {sections.map((section, index) => (
         <Section
-          className={section.sectionClass && section.sectionClass}
+          className={`${section.sectionClass &&
+            section.sectionClass} ${section.noContent && 'no-padding'}`}
           key={index}
         >
-          <Content>{section.component}</Content>
+          {section.noContent ? (
+            <>{section.component}</>
+          ) : (
+            <Content>{section.component}</Content>
+          )}
         </Section>
       ))}
     </PageWrapper>

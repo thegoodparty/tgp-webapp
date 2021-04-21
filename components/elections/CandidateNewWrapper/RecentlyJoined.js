@@ -46,7 +46,7 @@ const JoinTime = styled(Body11)`
 
 const Message = styled(Body)`
   margin-top: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 16px;
   }
 `;

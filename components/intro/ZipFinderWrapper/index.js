@@ -16,9 +16,9 @@ import GeoLocator from './GeoLocator';
 const ContentWrapper = styled.div`
   min-height: 100vh;
   padding: 0 16px 0;
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     min-height: calc(100vh - 40px);
     padding: 3rem 16px 0;
   }

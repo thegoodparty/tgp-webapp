@@ -4,9 +4,18 @@ import styled from 'styled-components';
 import { PurpleButton } from '../shared/buttons';
 import { Body } from '../shared/typogrophy';
 
-const StyledBody = styled(Body)`
+const StyledBody = styled.div`
   color: ${({ theme }) => theme.colors.purple};
-  padding: 0 24px;
+  padding: 0 18px;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: 0.1px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 0 32px;
+  }
 `;
 
 const NominateButton = ({ style = {} }) => {

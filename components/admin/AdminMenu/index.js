@@ -14,7 +14,7 @@ const MenuWrapper = styled.div`
   z-index: 2001;
   top: 10px;
   right: 60px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     top: 0px;
     right: 10px;
   }

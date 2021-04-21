@@ -10,7 +10,7 @@ import NominateButton from './NominateButton';
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     flex-direction: row-reverse;
   }
 `;
@@ -20,7 +20,7 @@ const Section3 = () => {
     <ReverseGrid container spacing={5} alignItems="center">
       <Grid item xs={12} md={6}>
         <SectionImg
-          src="images/homepage/good-indie.png"
+          src="images/homepage/good-indie.svg"
           alt="Good Candidates"
         />
       </Grid>
