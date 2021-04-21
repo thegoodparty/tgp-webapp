@@ -98,7 +98,9 @@ const FaqArticleWrapper = ({
   const [feedback, setFeedback] = useState('');
   const [isHelpful, setIsHelpful] = useState(HELPFUL_STATES.notSelected);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpointsPixels.down('md'));
+  const fullScreen = useMediaQuery(
+    `(max-width: ${theme.breakpointsPixels.md}px)`,
+  );
   useEffect(() => {
     if (isHelpful === HELPFUL_STATES.helpful) {
       handleSubmit();

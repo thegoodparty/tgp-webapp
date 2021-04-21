@@ -18,7 +18,7 @@ export function QueryModalContainer({
   mode = 'white',
   closeTitle,
   closeContent,
-  closeBack
+  closeBack,
 }) {
   const childProps = {
     closeModalCallback,
