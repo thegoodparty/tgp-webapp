@@ -32,10 +32,6 @@ const InnerWrapper = styled(Body9)`
   text-align: center;
   border: solid 1px ${({ theme }) => theme.colors.gray10};
 
-  &.creatorsFooterContent {
-    color: ${({ theme }) => theme.creators.colors.gray11};
-    border: solid 1px ${({ theme }) => theme.creators.colors.gray11};
-  }
 `;
 
 const GrayWrapper = styled.div`

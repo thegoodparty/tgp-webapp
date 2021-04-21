@@ -13,7 +13,7 @@ const VideoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: calc(100vw - 36px);
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     text-align: center;
     display: block;
     width: unset;

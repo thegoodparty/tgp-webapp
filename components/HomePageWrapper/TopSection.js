@@ -52,13 +52,13 @@ const TopSection = () => {
         <Logo src="/images/icons/heart.svg" />
       </Row>
       <ReverseGrid container spacing={5} alignItems="center">
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={6}>
           <SectionImg
             src="images/homepage/capitol.png"
             alt="broken democracy"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={6}>
           <StyledH2>Our democracy is broken</StyledH2>
         </Grid>
       </ReverseGrid>
