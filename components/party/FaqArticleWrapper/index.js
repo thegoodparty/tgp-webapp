@@ -21,14 +21,14 @@ const TgpDialog = styled(Dialog)`
 
 const Wrapper = styled.div`
   padding: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 24px;
   }
 `;
 
 const TopWrapper = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -98,7 +98,7 @@ const FaqArticleWrapper = ({
   const [feedback, setFeedback] = useState('');
   const [isHelpful, setIsHelpful] = useState(HELPFUL_STATES.notSelected);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const fullScreen = useMediaQuery(theme.breakpointsPixels.down('md'));
   useEffect(() => {
     if (isHelpful === HELPFUL_STATES.helpful) {
       handleSubmit();

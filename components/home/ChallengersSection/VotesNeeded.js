@@ -20,7 +20,7 @@ const DistrictInfo = styled.span`
   &.truncate-small {
     display: none;
     text-align: center;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
       display: inline;
     }
   }

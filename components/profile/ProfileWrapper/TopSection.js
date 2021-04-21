@@ -31,7 +31,7 @@ const StyledH1 = styled(H1)`
 
 const TopRowText = styled.div`
   margin-left: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-left: 24px;
   }
 `;
@@ -44,7 +44,7 @@ const Settings = styled(Body13)`
   top: 14px;
   right: 14px;
   cursor: pointer;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     position: static;
   }
 `;

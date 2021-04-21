@@ -36,7 +36,7 @@ export const CmsContentWrapper = styled.div`
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.1px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 20px;
     line-height: 26px;
   }
@@ -46,7 +46,7 @@ export const CmsContentWrapper = styled.div`
     line-height: 25px;
     font-weight: 600;
     margin: 0;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
       font-size: 26px;
       line-height: 32px;
     }
@@ -56,7 +56,7 @@ export const CmsContentWrapper = styled.div`
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.1px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
       font-size: 20px;
       line-height: 26px;
     }

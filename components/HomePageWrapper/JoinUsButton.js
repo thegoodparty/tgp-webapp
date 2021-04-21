@@ -6,9 +6,18 @@ import Link from 'next/link';
 import { PurpleButton } from '../shared/buttons';
 import { Body } from '../shared/typogrophy';
 
-const StyledBody = styled(Body)`
+const StyledBody = styled.div`
   color: #fff;
-  padding: 0 24px;
+  padding: 0 18px;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: 0.1px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 0 32px;
+  }
 `;
 
 const JoinUsButton = ({ style = {}, label = 'JOIN US' }) => {

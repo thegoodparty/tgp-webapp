@@ -13,14 +13,14 @@ import { Body13 } from '../typogrophy';
 
 const Wrapper = styled.div`
   margin-bottom: 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding-top: 80px;
     margin-bottom: 0;
   }
 `;
 
 const ContentWrapper = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding: 16px;
   border: solid 1px ${({ theme }) => theme.colors.green};

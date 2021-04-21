@@ -26,7 +26,7 @@ import CandidateAvatar from '../../shared/CandidateAvatar';
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
   padding: 36px 0;
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
 `;
 

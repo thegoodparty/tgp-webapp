@@ -25,7 +25,7 @@ import Body from '../../shared/typogrophy/Body';
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
   padding: 36px 0;
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
 `;
 
@@ -56,7 +56,7 @@ const Input = styled(TextField)`
       line-height: 15px;
       letter-spacing: 0.5px;
       @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpoints.md}) {
+    theme.breakpointsPixels.md}) {
         font-size: 14px;
         line-height: 18px;
       }

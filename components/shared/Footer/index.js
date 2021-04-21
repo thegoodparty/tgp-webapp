@@ -19,13 +19,13 @@ const Wrapper = styled.div`
   background-color: #fff;
   padding: 16px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-bottom: 0;
   }
 `;
 
 const InnerWrapper = styled(Body9)`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: auto auto;
   padding: 8px;
   color: ${({ theme }) => theme.colors.gray10};
@@ -38,17 +38,17 @@ const GrayWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray3};
   padding: 40px 16px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 60px 16px;
   }
 `;
 
 const GrayInnerWrapper = styled(Body12)`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding: 0 10px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpoints.contentMax}) {
+      theme.breakpointsPixels.contentMax}) {
     padding: 0;
   }
 `;
@@ -56,7 +56,7 @@ const GrayInnerWrapper = styled(Body12)`
 const Column = styled.div`
   color: #fff;
   text-align: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     text-align: left;
   }
 `;
@@ -67,7 +67,7 @@ const ColumnHeader = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-bottom: 32px;
     font-size: 16px;
   }
@@ -102,7 +102,7 @@ const Apply = styled.div`
 
 const SecondRow = styled.div`
   margin-top: 60px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-top: 100px;
   }
 `;

@@ -26,7 +26,7 @@ const VerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     height: calc(100vh - 100px);
   }
 `;
@@ -61,7 +61,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+          theme.breakpointsPixels.md}) {
         font-size: 20px;
         line-height: 26px;
       }

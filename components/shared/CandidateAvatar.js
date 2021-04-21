@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: ${props => props.wrapperSizeLarge};
     height: ${props => props.wrapperSizeLarge};
   }
@@ -40,7 +40,7 @@ const Avatar = styled.div`
   background-size: cover;
   border-radius: 50%;
   position: relative;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     width: ${props => props.avatarSizeLarge};
     height: ${props => props.avatarSizeLarge};
   }

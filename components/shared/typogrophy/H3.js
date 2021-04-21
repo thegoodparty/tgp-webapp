@@ -6,7 +6,7 @@ const H3 = styled.h3`
   line-height: 25px;
   font-weight: 600;
   margin: 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 26px;
     line-height: 32px;
   }

@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 500px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 24px 24px 32px;
   }
 `;
@@ -51,7 +51,7 @@ const AvatarWrapper = styled(Body)`
 const ShareThisWrapper = styled.div`
   padding: 36px 0;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 36px 60px;
   }
 
@@ -97,13 +97,13 @@ const ShareThisWrapper = styled.div`
 const AdditionalSharesWrapper = styled.div`
   padding: 0 25px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 0 115px;
   }
 
   &.with-native {
     padding: 0 8px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
       padding: 0 90px;
     }
   }

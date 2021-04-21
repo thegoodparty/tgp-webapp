@@ -84,7 +84,7 @@ function QueryModal({
   closeBack,
 }) {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const fullScreen = useMediaQuery(theme.breakpointsPixels.down('md'));
   const [close, setClose] = useState(false);
   useEffect(() => {
     if (close && !closeTitle) {

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 const WrapperDiv = styled.div`
   min-height: calc(100vh - 140px);
   //min-height: calc(var(--vh, 1vh) * 100 - 140px);
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding: 0 16px 0;
   background-color: ${({ theme }) => theme.colors.grayBg};
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 0 16px;
     min-height: calc(100vh - 40px);
     //min-height: calc(var(--vh, 1vh) * 100 - 40px);
@@ -23,7 +23,7 @@ const WrapperDiv = styled.div`
   &.no-header {
     min-height: calc(100vh);
     //min-height: calc(var(--vh, 1vh) * 100);
-    @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
       min-height: calc(100vh);
       //min-height: calc(var(--vh, 1vh) * 100);
     }

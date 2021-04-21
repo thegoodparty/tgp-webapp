@@ -16,7 +16,7 @@ import { GrayText } from './index';
 
 const Wrapper = styled.section`
   margin-top: 36px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-top: 64px;
   }
 `;
@@ -24,7 +24,7 @@ const Wrapper = styled.section`
 const MeetLink = styled.div`
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.purple};
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-top: 24px;
   }
 `;
@@ -33,7 +33,7 @@ const Feedback = styled.div`
   display: block;
   margin-top: 48px;
   color: ${({ theme }) => theme.colors.purple};
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     display: none;
   }
 `;

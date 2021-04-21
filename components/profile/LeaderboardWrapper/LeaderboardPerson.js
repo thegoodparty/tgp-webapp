@@ -53,7 +53,7 @@ const CrewCountWrapper = styled.div`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.gray4};
   margin-top: 6px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-top: 0;
   }
 `;

@@ -36,7 +36,7 @@ const Row = styled.div`
     }
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 25px 0;
     &.with-save {
       display: flex;
@@ -49,7 +49,7 @@ const Row = styled.div`
 
 const Label = styled(Body13)`
   font-weight: 700;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-bottom: 10px;
   }
 `;
@@ -85,7 +85,7 @@ const Cancel = styled.div`
   margin-left: 12px;
   color: ${({ theme }) => theme.colors.purple};
   cursor: pointer;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     display: none;
   }
 `;
@@ -93,7 +93,7 @@ const Cancel = styled.div`
 const ButtonCancelWrapper = styled.div`
   display: flex;
   align-items: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     display: block;
   }
 `;

@@ -52,7 +52,7 @@ const InfoWrapper = styled(Body11)`
     width: auto;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-top: 36px;
   }
 `;

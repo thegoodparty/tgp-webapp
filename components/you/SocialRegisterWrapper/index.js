@@ -24,7 +24,7 @@ import TwitterButton from './TwitterButton';
 
 const StyledH1 = styled(H1)`
   margin: 18px 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin: 24px 0;
   }
 `;
@@ -87,7 +87,7 @@ const Input = styled(TextField)`
       box-shadow: 0px 2px 0px rgba(17, 17, 31, 0.25);
 
       @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpoints.md}) {
+          theme.breakpointsPixels.md}) {
         font-size: 20px;
         line-height: 26px;
       }

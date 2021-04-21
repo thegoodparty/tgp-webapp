@@ -16,7 +16,7 @@ import SpreadSection from './SpreadSection';
 import CampaignSection from './CampaignsSection';
 
 export const MaxWidth = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixelsPixels.contentMax};
   margin: 0 auto;
 `;
 
@@ -27,7 +27,7 @@ export const GrayText = styled.span`
 
 const ContentWrpper = styled(MaxWidth)`
   padding: 24px 20px 48px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixelsPixels.md}) {
     padding: 32px 20px 64px;
   }
 `;

@@ -5,7 +5,7 @@ const Body12 = styled.div`
   font-size: 12px;
   line-height: 17px;
   letter-spacing: 0.1px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 16px;
     line-height: 22px;
   }

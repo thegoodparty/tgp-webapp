@@ -36,7 +36,7 @@ const TgpDialog = styled(Dialog)`
   && {
     .MuiDialog-paper {
       width: 100vw;
-      max-width: ${({ theme }) => theme.breakpoints.contentMax};
+      max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
       margin: 12px !important;
     }
   }
@@ -53,7 +53,7 @@ const TopClose = styled(CloseIcon)`
 
 const Wrapper = styled.div`
   padding: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 24px;
   }
 `;

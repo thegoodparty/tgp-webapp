@@ -10,7 +10,7 @@ import NominateButton from './NominateButton';
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     flex-direction: row-reverse;
   }
 `;

@@ -10,7 +10,7 @@ const theme = createMuiTheme({
   typography,
   palette,
   breakpoints,
-  breakpointsPixels
+  breakpointsPixels,
   // creators,
 });
 

@@ -11,13 +11,18 @@ import HelpSection from './HelpSection';
 import HowItWorksSection from './HowItWorksSection';
 
 const Content = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: 524px;
   margin: 0 auto;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  }
 `;
 
 const Section = styled.section`
   padding: 24px 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 60px 18px;
   }
 

@@ -5,38 +5,35 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import StyledH2 from './StyledH2';
-import { H3 } from '../shared/typogrophy';
-
-const StyledH3 = styled(H3)`
-  font-size: 27px;
-  line-height: 32px;
-  margin-bottom: 40px;
-  margin-top: 8px;
-  color: ${({ theme }) => theme.colors.gray4};
-  font-weight: 400;
-`;
+import StyledH3 from './StyledH3';
 
 const Img = styled.img`
   width: 100%;
   max-width: 200px;
   height: auto;
-  margin-top: 32px;
-  margin-bottom: -4px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  margin-bottom: -36px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     max-width: unset;
   }
 `;
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     flex-direction: row-reverse;
   }
 `;
-
 const Content = styled.div`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: 524px;
   margin: 0 auto;
+  text-align: center;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    text-align: left;
+    max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  }
 `;
 
 const Section1 = styled.div`
@@ -47,16 +44,16 @@ const Section1 = styled.div`
       rgba(67, 0, 211, 0) 96.34%
     ),
     #5c00c7;
-  padding: 0 32px;
+  padding: 32px;
 `;
 
 const Section2 = styled.div`
   background-color: #e9d7ff;
-  padding: 0 32px;
+  padding: 32px;
 `;
 const Section3 = styled.div`
   background-color: #e7d2ff;
-  padding: 0 32px;
+  padding: 32px;
 `;
 
 const TextWrapper = styled.div`
@@ -64,16 +61,29 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 33px;
-  line-height: 43px;
+  font-size: 27px;
+  line-height: 35px;
   color: ${({ theme }) => theme.colors.gray2};
   font-weight: 700;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 33px;
+    line-height: 43px;
+  }
 `;
 
 const Description = styled.div`
-  font-size: 27px;
-  line-height: 32px;
+  font-size: 19px;
+  line-height: 25px;
+  margin-top: 8px;
   color: ${({ theme }) => theme.colors.gray4};
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 27px;
+    line-height: 32px;
+  }
 `;
 
 const HowItWorksSection = () => {

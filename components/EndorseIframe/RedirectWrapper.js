@@ -39,7 +39,7 @@ const Title = styled.div`
   line-height: 25px;
   font-weight: 700;
   margin-bottom: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-bottom: 20px;
   }
 `;

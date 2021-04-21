@@ -34,7 +34,7 @@ const Wrapper = styled.div`
   max-width: 500px;
   min-width: 300px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     //padding: 24px 24px 32px;
     width: 85vw;
   }

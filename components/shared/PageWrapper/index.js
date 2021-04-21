@@ -23,7 +23,7 @@ const MainWrapper = styled.div`
   }
 `;
 const TopBannerWrapper = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-top: 18px;
   }
 `;

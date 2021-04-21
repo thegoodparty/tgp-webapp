@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.orange};
 `;
 const InnerWrapper = styled(Body13)`
-  max-width: ${({ theme }) => theme.breakpoints.contentMax};
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   color: #fff;
 `;

@@ -16,14 +16,14 @@ import UploadModal from './UploadModal';
 
 const Wrapper = styled.section`
   padding: 24px 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding-left: 24px;
   }
 `;
 
 const Row = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     display: flex;
     align-items: center;
   }
@@ -42,7 +42,7 @@ const AvatarWrapper = styled.div`
   overflow: hidden;
   cursor: pointer;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     height: 94px;
     width: 94px;
   }
@@ -61,7 +61,7 @@ const EditText = styled(Body9)`
   justify-content: center;
   font-weight: 500;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     height: 30px;
     width: 94px;
   }

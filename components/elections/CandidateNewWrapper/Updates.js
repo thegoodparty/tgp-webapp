@@ -29,7 +29,7 @@ const SectionHeader = styled(Body19)`
     font-weight: normal;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     margin-bottom: 24px;
   }
 `;
@@ -60,7 +60,7 @@ const UpdatedDate = styled(Body13)`
   margin-top: 24px;
   margin-bottom: 12px;
   font-weight: 700;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     font-size: 19px;
   }
 `;
