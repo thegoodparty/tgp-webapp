@@ -64,10 +64,10 @@ const points = [
     body: 'Never pay dues to nor fundraise for Republicans or Democrats.',
   },
   {
-    title: 'Small Money',
-    icon: 'images/icons/small-money.svg',
+    title: 'People Powered',
+    icon: 'images/icons/people-powered.svg',
     body:
-      'Accept a majority of their funding from individual donations under $200.',
+      'Good candidates only accept donations from individuals - not corporations, unions, PACs, or other entities. ',
   },
   {
     title: 'Anti-Corruption',
