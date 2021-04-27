@@ -63,7 +63,7 @@ const TopSection = () => {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <StyledH2>Our democracy is broken</StyledH2>
+          <StyledH2>Our democracy is broken.</StyledH2>
         </Grid>
       </ReverseGrid>
     </>
