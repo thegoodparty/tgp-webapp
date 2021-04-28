@@ -57,7 +57,10 @@ const Section3 = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  padding-left: 48px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding-left: 48px;
+  }
 `;
 
 const Title = styled.div`
