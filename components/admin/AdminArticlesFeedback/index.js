@@ -93,8 +93,6 @@ function AdminArticlesFeedback({ articles, content }) {
       headerStyle,
 
       Cell: row => {
-        console.log('row.id', row.original.id);
-        console.log('row.title', row.original.title);
         return (
           <>
             {row.original.title && typeof row.original.title === 'string' && (
