@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Link from 'next/link';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { H3 } from '../../shared/typogrophy';
 import { getArticleById } from '../../../helpers/articlesHelper';
 
@@ -93,8 +93,16 @@ function AdminArticlesFeedback({ articles, content }) {
       headerStyle,
 
       Cell: row => {
+        console.log('row.id', row.original.id);
+        console.log('row.title', row.original.title);
         return (
-          <Link href={`${router.asPath}?article=${row.original.id}`}>{row.original.title}</Link>
+          <>
+            {row.original.title && typeof row.original.title === 'string' && (
+              <Link href={`${router.asPath}?article=${row.original.id}`}>
+                {row.original.title}
+              </Link>
+            )}
+          </>
         );
       },
     },
