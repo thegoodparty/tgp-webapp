@@ -84,7 +84,9 @@ function QueryModal({
   closeBack,
 }) {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpointsPixels.down('md'));
+  const fullScreen = useMediaQuery(
+    `(max-width: ${theme.breakpointsPixels.md}px)`,
+  );
   const [close, setClose] = useState(false);
   useEffect(() => {
     if (close && !closeTitle) {
@@ -93,7 +95,7 @@ function QueryModal({
   }, [close]);
   return (
     <TgpDialog
-      onClose={closeModalCallback}
+      onClose={() => setClose(true)}
       open
       fullScreen={fullScreen}
       className={`${close && 'close-dialog'} ${mode} `}

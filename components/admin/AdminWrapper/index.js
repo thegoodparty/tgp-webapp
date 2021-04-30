@@ -19,7 +19,6 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 import Nav from 'containers/shared/Nav';
 import { Body13, H1 } from 'components/shared/typogrophy/index';
 
-import AdminCandidateList from '../AdminCandidateList/Loadable';
 import AdminUsersList from '../AdminUsersList/Loadable';
 import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 import AdminUserStats from '../AdminUserStats/Loadable';

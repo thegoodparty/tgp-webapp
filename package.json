@@ -48,7 +48,7 @@
     "deploy-dev": "git checkout develop && eb deploy",
     "deploy-prod": "git checkout master  && eb deploy",
     "cypress:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000  CYPRESS_API_BASE=http://localhost:1337/api/v1/ ./node_modules/.bin/cypress open",
-    "cypress:local-dev": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api-dev.thegoodparty.org/api/v1/ ./node_modules/.bin/cypress open",
+    "cypress:local-dev": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api-dev.goodparty.org/api/v1/ ./node_modules/.bin/cypress open",
     "cypress:local-prod": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api.thegoodparty.org/api/v1/ ./node_modules/.bin/cypress open",
     "cypress:dev": "cross-env CYPRESS_BASE_URL=https://dev.thegoodparty.org ./node_modules/.bin/cypress open",
     "cypress:prod": "cross-env CYPRESS_BASE_URL=https://thegoodparty.org ./node_modules/.bin/cypress open",

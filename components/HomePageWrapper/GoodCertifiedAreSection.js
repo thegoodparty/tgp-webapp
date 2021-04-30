@@ -64,10 +64,10 @@ const points = [
     body: 'Never pay dues to nor fundraise for Republicans or Democrats.',
   },
   {
-    title: 'Small Money',
-    icon: 'images/icons/small-money.svg',
+    title: 'People Powered',
+    icon: 'images/icons/people-powered.svg',
     body:
-      'Accept a majority of their funding from individual donations under $200.',
+      'Good candidates only accept donations from individuals - not corporations, unions, PACs, or other entities. ',
   },
   {
     title: 'Anti-Corruption',
@@ -88,7 +88,7 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
         <StyledH2>What’s a Good Certified candidate?</StyledH2>
         <StyledH3>Independent candidates who pledge to be:</StyledH3>
       </div>
-      <Grid container spacing={5} alignItems="center">
+      <Grid container spacing={5} alignItems="flex-start">
         {points.map(point => (
           <Grid item xs={12} md={mdColumns}>
             <PointWrapper>
