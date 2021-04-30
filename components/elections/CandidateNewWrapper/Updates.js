@@ -66,12 +66,9 @@ const UpdatedDate = styled(Body13)`
 `;
 
 function Updates({ candidate }) {
-  const { updates, updatesDates } = candidate;
-  const combinedUpdates = updates.map((update, index) => {
-    if (updatesDates && updates.length === updatesDates.length) {
-      return { html: update, date: updatesDates[index] };
-    }
-    return { html: update, date: 'February 18, 2021' };
+  const { updatesList } = candidate;
+  const combinedUpdates = updatesList.map(item => {
+    return { html: item.text, date: item.date };
   });
   combinedUpdates.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
@@ -79,7 +76,7 @@ function Updates({ candidate }) {
 
   return (
     <SectionWrapper>
-      <SectionHeader>Updates({updates.length})</SectionHeader>
+      <SectionHeader>Updates({updatesList.length})</SectionHeader>
       {combinedUpdates &&
         combinedUpdates.reverse().map((update, index) => (
           <YoutubePlayerWrapper key={index}>
