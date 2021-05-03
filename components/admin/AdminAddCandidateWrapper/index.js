@@ -128,13 +128,9 @@ function AdminAddCandidateWrapper({
   const [comparedCandidates, setComparedCandidates] = useState(
     candidate ? candidate.comparedCandidates : false,
   );
-  const [updates, setUpdates] = useState(
-    candidate?.updates ? candidate.updates : [],
+  const [candidateUpdates, setCandidateUpdates] = useState(
+    candidate?.updatesList || [],
   );
-  const [updatesDates, setUpdatesDates] = useState(
-    candidate?.updatesDates ? candidate.updatesDates : [],
-  );
-
   const onChangeField = (key, value, type = 'text') => {
     setFormState({
       ...formState,
@@ -155,15 +151,13 @@ function AdminAddCandidateWrapper({
       createCandidateCallback({
         ...formState,
         comparedCandidates,
-        updates,
-        updatesDates,
+        candidateUpdates,
       });
     } else {
       editCandidateCallback({
         ...formState,
         comparedCandidates,
-        updates,
-        updatesDates,
+        candidateUpdates,
         id: candidate.id,
         image: candidate.image,
       });
@@ -174,37 +168,26 @@ function AdminAddCandidateWrapper({
   };
 
   const addUpdate = () => {
-    const existingUpdates = [...updates];
-    existingUpdates.push('');
-    setUpdates(existingUpdates);
-
-    const existingUpdatesDates = [...updatesDates];
-    existingUpdatesDates.push('');
-    setUpdatesDates(existingUpdatesDates);
+    const existingUpdates = [...candidateUpdates];
+    existingUpdates.push({
+      text: '',
+      date: '',
+    });
+    setCandidateUpdates(existingUpdates);
   };
 
-  const deleteUpdate = index => {
-    const existingUpdates = [...updates];
+
+  const deleteUpdateListItem = index => {
+    const existingUpdates = [...candidateUpdates];
     existingUpdates.splice(index, 1);
-    setUpdates(existingUpdates);
-
-    const existingUpdatesDates = [...updatesDates];
-    existingUpdatesDates.splice(index, 1);
-    setUpdatesDates(existingUpdatesDates);
+    setCandidateUpdates(existingUpdates);
   };
-
-  const onChangeUpdates = (val, index) => {
-    const existingUpdates = [...updates];
-    existingUpdates[index] = val;
-    setUpdates(existingUpdates);
+  const onChangeUpdateList = (val, index, key) => {
+    const existingUpdates = [...candidateUpdates];
+    existingUpdates[index][key] = val;
+    setCandidateUpdates(existingUpdates);
   };
-
-  const onChangeUpdateMeta = (val, index) => {
-    const existingUpdatesDates = [...updatesDates];
-    existingUpdatesDates[index] = val;
-    setUpdatesDates(existingUpdatesDates);
-  };
-
+  
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
@@ -303,13 +286,13 @@ function AdminAddCandidateWrapper({
         <hr />
         <br />
         <br />
-        {updates.map((update, index) => (
+        {candidateUpdates.map((update, index) => (
           <React.Fragment key={index}>
             <Row>
               <span>Update #{index + 1}</span>
               <BsTrash
                 onClick={() => {
-                  deleteUpdate(index);
+                  deleteUpdateListItem(index);
                 }}
                 style={{ cursor: 'pointer' }}
               />
@@ -320,14 +303,16 @@ function AdminAddCandidateWrapper({
               label={`update ${index + 1} date`}
               name={`update ${index + 1} date`}
               variant="outlined"
-              value={updatesDates.length > index ? updatesDates[index] : ''}
-              onChange={e => onChangeUpdateMeta(e.target.value, index)}
+              value={update.date || ''}
+              onChange={e => onChangeUpdateList(e.target.value, index, 'date')}
             />
             <br />
             <br />
             <JoditEditorWrapper
-              onChangeCallback={value => onChangeUpdates(value, index)}
-              initialText={update}
+              onChangeCallback={value =>
+                onChangeUpdateList(value, index, 'text')
+              }
+              initialText={update.text}
             />
             <br />
             <br />
