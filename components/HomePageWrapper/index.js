@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PageWrapper from 'components/shared/PageWrapper';
-import TopSection from './TopSection';
-import Section2 from './Section2';
+// import TopSection from './TopSection';
+// import Section2 from './Section2';
 import Section3 from './Section3';
 import GoodCertifiedAreSection from './GoodCertifiedAreSection';
 import CandidatesSection from './CandidatesSection';
@@ -48,8 +48,8 @@ const Section = styled.section`
 const HomePageWrapper = ({ homepageCandidates }) => {
   console.log('homepageCandidates', homepageCandidates);
   const sections = [
-    { component: <TopSection /> },
-    { component: <Section2 />, sectionClass: 'purple4' },
+    // { component: <TopSection /> },
+    // { component: <Section2 />, sectionClass: 'purple4' },
     { component: <Section3 /> },
     { component: <HowItWorksSection />, noContent: true },
     { component: <GoodCertifiedAreSection /> },
