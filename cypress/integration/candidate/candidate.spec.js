@@ -8,7 +8,7 @@ context('Candidate', () => {
     // isMajor = true
     // isAligned = false
     // isIncumbent = true
-    // https://thegoodparty.org/elections/candidate/presidential-i/donald-trump/1
+    // https://goodparty.org/elections/candidate/presidential-i/donald-trump/1
     {
       isGood: false,
       isMajor: true,
@@ -21,7 +21,7 @@ context('Candidate', () => {
     // isGood = false
     // isMajor = true
     // isAligned = true
-    // https://thegoodparty.org/elections/candidate/presidential/joe-biden/3
+    // https://goodparty.org/elections/candidate/presidential/joe-biden/3
     {
       isGood: false,
       isMajor: true,
@@ -34,7 +34,7 @@ context('Candidate', () => {
     // isGood = true (most of contributions are from small donors)
     // isMajor = true
     // isAligned = true
-    // https://thegoodparty.org/elections/candidate/presidential/bernie-sanders/2
+    // https://goodparty.org/elections/candidate/presidential/bernie-sanders/2
     {
       isGood: true,
       isMajor: true,
@@ -47,7 +47,7 @@ context('Candidate', () => {
     // isGood = true
     // isMajor = false
     // isAligned = true
-    // https://thegoodparty.org/elections/candidate/presidential/howie-hawkins/4
+    // https://goodparty.org/elections/candidate/presidential/howie-hawkins/4
     {
       isGood: true,
       isMajor: false,
@@ -60,7 +60,7 @@ context('Candidate', () => {
     // isGood = unknown
     // isMajor = false
     // isAligned = unknown
-    // https://thegoodparty.org/elections/candidate/senate/bryant-corky-messner/580
+    // https://goodparty.org/elections/candidate/senate/bryant-corky-messner/580
     {
       isGood: 'unknown',
       isMajor: false,
@@ -74,9 +74,9 @@ context('Candidate', () => {
     // isMajor = true
     // isAligned true
     // isIncumbent = true
-    // https://thegoodparty.org/elections/candidate/house-i/alexandria-ocasiocortez/343
-    // https://thegoodparty.org/elections/candidate/house-i/devin-nunes/387
-    // https://thegoodparty.org/elections/candidate/house-i/jim-jordan/123
+    // https://goodparty.org/elections/candidate/house-i/alexandria-ocasiocortez/343
+    // https://goodparty.org/elections/candidate/house-i/devin-nunes/387
+    // https://goodparty.org/elections/candidate/house-i/jim-jordan/123
     {
       isGood: true,
       isMajor: true,

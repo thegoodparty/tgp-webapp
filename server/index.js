@@ -27,10 +27,10 @@ app.get('/sitemap.xml', async (req, res) => {
 });
 if (process.env.NODE_ENV === 'production') {
   app.all('*', function (req, res, next) {
-    if (baseUrl === 'https://thegoodparty.org') {
+    if (baseUrl === 'https://goodparty.org') {
       const str = 'www.';
       if (req.host.indexOf(str) === 0) {
-        res.redirect(301, `https://thegoodparty.org${req.url}`);
+        res.redirect(301, `https://goodparty.org${req.url}`);
       }
     }
     if (req.headers['x-forwarded-proto'] === 'https') {
@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 const prerenderToken = process.env.PRERENDER_TOKEN;
 if (
   typeof prerenderToken !== 'undefined' &&
-  baseUrl === 'https://thegoodparty.org'
+  baseUrl === 'https://goodparty.org'
 ) {
   console.log('prerender is defined');
   app.use(require('prerender-node').set('prerenderToken', prerenderToken));
