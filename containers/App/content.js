@@ -990,7 +990,7 @@ const content = {
                 }
               ],
               "data": {
-                "uri": "mailto:info@goodparty.org"
+                "uri": "mailto:info@thegoodparty.org"
               }
             },
             {
@@ -1078,7 +1078,7 @@ const content = {
                 }
               ],
               "data": {
-                "uri": "mailto:info@goodparty.org"
+                "uri": "mailto:info@thegoodparty.org"
               }
             },
             {
@@ -1521,7 +1521,7 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "mailto:ask@goodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
                 }
               },
               {
@@ -2952,7 +2952,7 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "mailto:info@goodparty.org?subject=Data%20Model%20Team"
+                  "uri": "mailto:info@thegoodparty.org?subject=Data%20Model%20Team"
                 }
               },
               {
@@ -3233,7 +3233,7 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "mailto:ask@goodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
                 }
               },
               {
@@ -3307,7 +3307,7 @@ const content = {
                   }
                 ],
                 "data": {
-                  "uri": "https://goodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
+                  "uri": "https://thegoodparty.org/party/faq/what-is-a-candidate-votingbloc/1ic6T6fhH0jZLNvX5aZkDe"
                 }
               },
               {
@@ -4008,7 +4008,7 @@ const content = {
       ],
       "creatorName": "Cameron Sadeghi",
       "creatorPhoto": "//images.ctfassets.net/g08ybc4r0f4b/2rgwWB2c1NwJe5sUe0P1nc/655e72157543f115ed324fa17e6876d3/user-09.jpg",
-      "email": "cameron@goodparty.org",
+      "email": "cameron@thegoodparty.org",
       "ichLink": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=pp_url&entry.1354955634=Candidate+Video+Introductions",
       "images": [],
       "id": "5dUlNNJ2UaIpbUekPkddf"
@@ -4023,7 +4023,7 @@ const content = {
       ],
       "creatorName": "Farhad Mohit",
       "creatorPhoto": "//images.ctfassets.net/g08ybc4r0f4b/6gti1rk7BZjNhQlRUEmh8Z/f05b4e80e9c2caf160131f2cc2dba3f3/user-07.jpg",
-      "email": "farhad@goodparty.org",
+      "email": "farhad@thegoodparty.org",
       "ichLink": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=pp_url&entry.1354955634=Explainer+video+for+The+Good+Party",
       "images": [],
       "id": "7pOEbwdpcxQDAAiTTIrYGW"
@@ -4033,7 +4033,7 @@ const content = {
       "summary": "I am working on a video to get new people familiar with The Good Party when they enter the app.\n\nI envision the video to be short, concise, and entertaining. It should make sense if people want to watch as a rolling story or be able to advance and rewind each segment to understand each concept.\n\nI am looking for a copywriter and video editor for this project. I will link to a more detailed brief soon. Until then, please reach out if you have expertise in this area and would like to collaborate on it. 🙏",
       "creatorName": "Farhad Mohit",
       "creatorPhoto": "//images.ctfassets.net/g08ybc4r0f4b/2fI018EGMIKCQg2WcfboNN/b431630bc1e85629ad7e54c03893f676/user-07.jpg",
-      "email": "farhad@goodparty.org",
+      "email": "farhad@thegoodparty.org",
       "ichLink": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=pp_url&entry.1354955634=Onboarding+video+for+The+Good+Party",
       "images": [],
       "id": "5YDcQC4PixxR1LJI5I9Jyx"
@@ -4048,7 +4048,7 @@ const content = {
       ],
       "creatorName": "Dan Shipley",
       "creatorPhoto": "//images.ctfassets.net/g08ybc4r0f4b/1gAyNcAJEnQuYQrCFBfOrq/1a97b5917c579f1de7356ef2c4c44a6b/user-10.jpg",
-      "email": "dan@goodparty.org",
+      "email": "dan@thegoodparty.org",
       "ichLink": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=pp_url&entry.1354955634=Illustration+or+video+explaining+Voting+Blocs",
       "images": [],
       "id": "69roPOqyUqa7Zzx8k9tVG7"
@@ -4072,7 +4072,7 @@ const content = {
       ],
       "creatorName": "Farhad Mohit",
       "creatorPhoto": "//images.ctfassets.net/g08ybc4r0f4b/2umV0RgHPFF0cKRh5KmYOG/80190351e3baf47b7017e9a81d828b6f/user-07.jpg",
-      "email": "farhad@goodparty.org",
+      "email": "farhad@thegoodparty.org",
       "ichLink": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=pp_url&entry.1354955634=Formatting+help+for+our+deck:+A+Plan+to+Fix+Politics,+for+Good!",
       "id": "5urvywkiSlHsLGJbpqHGQn"
     },
@@ -4108,7 +4108,7 @@ const content = {
     },
     {
       "title": "Sticker Variations",
-      "summary": "Our current stickers come in two variations: with a white background, and metallic holographic background that sparkle in the light.\n\nThe current stickers are cool, but it would nice to have more variations. Hit me up if you want to jam on some ideas. You can duplicate the Figma file to create more variations.\n\nShare your designs with us (info@goodparty.org), and we might print them. And if you want to grab some of the current stickers, fill out the form below.",
+      "summary": "Our current stickers come in two variations: with a white background, and metallic holographic background that sparkle in the light.\n\nThe current stickers are cool, but it would nice to have more variations. Hit me up if you want to jam on some ideas. You can duplicate the Figma file to create more variations.\n\nShare your designs with us (info@thegoodparty.org), and we might print them. And if you want to grab some of the current stickers, fill out the form below.",
       "topics": [
         "Stickers"
       ],

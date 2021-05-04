@@ -23,21 +23,6 @@ import actions from './actions';
 import selectUser from './selectors';
 import queryHelper from '../../../helpers/queryHelper';
 
-function* sendCreatorMessage(action) {
-  try {
-    const { messageInfo } = action;
-    const api = tgpApi.creator.message;
-    const payload = messageInfo;
-    yield call(requestHelper, api, payload);
-    yield put(
-      snackbarActions.showSnakbarAction(
-        `This message was sent to ${messageInfo.creatorEmail}`,
-      ),
-    );
-  } catch (error) {
-    console.log(error);
-  }
-}
 function* register(action) {
   try {
     const { email, name } = action;
@@ -600,16 +585,6 @@ function* leaderboard() {
   }
 }
 
-function* userRanking() {
-  try {
-    const api = tgpApi.userRanking;
-    const { ranking } = yield call(requestHelper, api, null);
-    yield put(actions.userRankingActionSuccess(ranking));
-  } catch (error) {
-    console.log('user ranking ranking', JSON.stringify(error));
-  }
-}
-
 function* guestRanking() {
   try {
     const rankingCookie = getCookie('guestRanking');
@@ -704,15 +679,10 @@ export default function* saga() {
   const socialLoginAction = yield takeLatest(types.SOCIAL_LOGIN, socialLogin);
   const updateAction = yield takeLatest(types.UPDATE_USER, updateUser);
   const avatarAction = yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
-  const creatorMessageAction = yield takeLatest(
-    types.SEND_MESSAGE_TO_CREATOR,
-    sendCreatorMessage,
-  );
 
   yield takeLatest(types.GENERATE_UUID, generateUuid);
   const crewAction = yield takeLatest(types.CREW, crew);
   yield takeLatest(types.LEADERBOARD, leaderboard);
-  yield takeLatest(types.USER_RANKING, userRanking);
   yield takeLatest(types.GUEST_RANKING, guestRanking);
   const twitterAction = yield takeLatest(types.TWITTER_LOGIN, twitterLogin);
   const confirmTwitterAction = yield takeLatest(
