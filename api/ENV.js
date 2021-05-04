@@ -4,9 +4,9 @@ if (typeof window !== 'undefined') {
   const { host } = window.location;
   if (host === 'localhost:4000') {
     ENV = 'local';
-  } else if (host === 'dev.thegoodparty.org' || host === 'dev.goodparty.org') {
+  } else if (host === 'dev.goodparty.org') {
     ENV = 'dev';
-  } else if (host === 'thegoodparty.org' || host === 'goodparty.org') {
+  } else if (host === 'goodparty.org') {
     ENV = 'prod';
   } else {
     ENV = 'prod';

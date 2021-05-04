@@ -156,7 +156,7 @@ class CustomDocument extends Document {
             type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `
-          if(window.location.host === 'thegoodparty.org'){
+          if(window.location.host === 'goodparty.org'){
           window['_fs_debug'] = false;
           window['_fs_host'] = 'fullstory.com';
           window['_fs_script'] = 'edge.fullstory.com/s/fs.js';

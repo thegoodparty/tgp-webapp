@@ -102,7 +102,7 @@ Cypress.Commands.add(
     const blocLink = candidateBlocLink(candidate, chamber);
     let url = uuidUrl(user);
     let queryOperator = '&';
-    if (url === 'https://thegoodparty.org') {
+    if (url === 'https://goodparty.org') {
       queryOperator = '?';
     }
     url = `${url + queryOperator}b=${blocLink}`;

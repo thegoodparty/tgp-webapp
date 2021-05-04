@@ -1,31 +1,11 @@
 /* eslint-disable camelcase, no-undef */
-export const gaEvent = (
-  event_label,
-  value,
-  event_category = 'navigation',
-  action = 'click',
-) => {
+export const gaEvent = (name, context = {}) => {
   if (typeof gtag === 'undefined') {
     return;
   }
-  if (value && event_label) {
-    gtag('event', action, {
-      event_category,
-      event_label,
-      value,
-    });
+  if (context) {
+    gtag('event', name, context);
     return;
   }
-
-  if (event_label) {
-    gtag('event', action, {
-      event_category,
-      event_label,
-    });
-    return;
-  }
-
-  gtag('event', action, {
-    event_category,
-  });
+  gtag('event', name);
 };

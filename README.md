@@ -5,7 +5,7 @@
 <div align="center">
   <h1>The Good Party Webapp</h1>
 </div>
-<div align="center"><strong>Website:</strong> <a href="https://thegoodparty.org">https://thegoodparty.org</a></div>
+<div align="center"><strong>Website:</strong> <a href="https://goodparty.org">https://goodparty.org</a></div>
 
 <br />
 

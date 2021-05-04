@@ -228,7 +228,7 @@ Cypress.Commands.add(
           .and('have.attr', 'href')
           .and(
             'include',
-            'mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=',
+            'mailto:info@goodparty.org?subject=Character%20Check:%20Candidate%20Page&body=',
           );
       }
     }
@@ -297,7 +297,7 @@ Cypress.Commands.add(
         .and('have.attr', 'href')
         .and(
           'include',
-          'mailto:info@thegoodparty.org?subject=Character%20Check:%20Candidate%20Page&body=',
+          'mailto:info@goodparty.org?subject=Character%20Check:%20Candidate%20Page&body=',
         );
     }
 
@@ -472,7 +472,7 @@ Cypress.Commands.add(
       .should('have.attr', 'href')
       .and(
         'include',
-        `mailto:info@thegoodparty.org?subject=Data%20Error:%20Candidate%20Page&body`,
+        `mailto:info@goodparty.org?subject=Data%20Error:%20Candidate%20Page&body`,
       );
 
     cy.get('@top-row')
