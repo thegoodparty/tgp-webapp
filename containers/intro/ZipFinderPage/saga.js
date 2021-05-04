@@ -80,25 +80,6 @@ function* loadSenateCandidates(action) {
   }
 }
 
-function* userCounts(action) {
-  try {
-    const { shortState, districtNumber } = action;
-    const api = tgpApi.userCounts;
-    const payload = {};
-    if (shortState) {
-      payload.shortState = shortState;
-    }
-    if (districtNumber) {
-      payload.districtNumber = districtNumber;
-    }
-
-    const counts = yield call(requestHelper, api, payload);
-    yield put(actions.userCountsActionSuccess(counts));
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 function* loadBlocCandidate(action) {
   try {
     const { bloc } = action;
@@ -172,7 +153,6 @@ export default function* saga() {
     gelocationToDistrict,
   );
 
-  const countsAction = yield takeLatest(types.USERS_COUNTS, userCounts);
   const blocAction = yield takeLatest(
     types.LOAD_BLOC_CANDIDATE,
     loadBlocCandidate,
