@@ -16,12 +16,10 @@ import { PurpleButton } from '../../shared/buttons';
 const Wrapper = styled.section`
   background-color: #000;
   min-height: 100vh;
-  width: 100vw;
   padding: 24px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-
   &.with-image {
     background-color: #fff;
   }

@@ -106,7 +106,7 @@ function QueryModal({
           <TopClose
             onClick={() => setClose(true)}
             style={modalStyles.closeButton}
-            className={mode}
+            className={!(closeTitle && close) && mode}
           />
         </TopWrapper>
       )}

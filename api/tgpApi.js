@@ -11,16 +11,8 @@ const api = {
     method: 'GET',
   },
 
-  userCounts: {
-    url: `${base}counts/user-counts`,
-    method: 'GET',
-  },
   findCandidate: {
     url: `${base}candidates/find`,
-    method: 'GET',
-  },
-  loadIncumbents: {
-    url: `${base}incumbents`,
     method: 'GET',
   },
 
@@ -103,35 +95,6 @@ const api = {
     withAuth: true,
   },
 
-  updateUserRanking: {
-    url: `${base}user/update-user-ranking`,
-    method: 'PUT',
-    withAuth: true,
-  },
-
-  rankCandidate: {
-    url: `${base}user/rank-candidate`,
-    method: 'POST',
-    withAuth: true,
-  },
-
-  trackShare: {
-    url: `${base}candidates/track-share`,
-    method: 'POST',
-  },
-
-  deleteCandidateRanking: {
-    url: `${base}user/rank-candidate`,
-    method: 'DELETE',
-    withAuth: true,
-  },
-
-  deleteAllUserRankings: {
-    url: `${base}user/delete-user-ranking`,
-    method: 'PUT',
-    withAuth: true,
-  },
-
   uploadAvatar: {
     url: `${base}user/avatar`,
     method: 'POST',
@@ -146,12 +109,6 @@ const api = {
 
   leaderboard: {
     url: `${base}user/leaderboard`,
-    method: 'GET',
-    withAuth: true,
-  },
-
-  userRanking: {
-    url: `${base}user/ranking`,
     method: 'GET',
     withAuth: true,
   },
@@ -174,25 +131,6 @@ const api = {
     withAuth: true,
   },
 
-  loadCandidateRanking: {
-    url: `${base}user/ranking/candidate-ranking`,
-    method: 'GET',
-    withAuth: true,
-  },
-  /*
-   * SCRAPE
-   */
-
-  scrapeIncumbents: {
-    url: `${base}incumbent/to-scrape`,
-    method: 'GET',
-  },
-
-  scrapeAllCandidates: {
-    url: `${base}race-candidate/all`,
-    method: 'GET',
-  },
-
   // General
   sendAma: {
     url: `${base}notifications/email-ama`,
@@ -209,11 +147,6 @@ const api = {
     candidates: {
       url: `${base}admin/candidates`,
       method: 'GET',
-      withAuth: true,
-    },
-    createCandidate: {
-      url: `${base}admin/candidate`,
-      method: 'POST',
       withAuth: true,
     },
     updateCandidate: {
@@ -308,15 +241,6 @@ const api = {
       method: 'POST',
     },
   },
-
-  creator: {
-    message: {
-      url: `${base}creators/engagement-email`,
-      method: 'POST',
-      withAuth: true,
-    },
-  },
-
   subscribeEmail: {
     url: `${base}subscribe/email`,
     method: 'GET',

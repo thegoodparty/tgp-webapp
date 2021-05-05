@@ -15,7 +15,7 @@ const TgpHead = ({ title, description }) => (
     />
     <meta name="description" content={description} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://thegoodparty.org" />
+    <meta property="og:url" content="https://goodparty.org" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#ffffff" />
 
