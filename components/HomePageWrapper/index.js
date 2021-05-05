@@ -11,6 +11,7 @@ import HelpSection from './HelpSection';
 import HowItWorksSection from './HowItWorksSection';
 import TestimonialsSection from './TestimonialsSection';
 
+
 const Content = styled.div`
   max-width: 524px;
   margin: 0 auto;
