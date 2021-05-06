@@ -21,7 +21,7 @@ const TextWrapper = styled.div`
 `;
 
 const Name = styled.div`
-  margin-top: 24px;
+  margin: 24px 0;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.2px;
@@ -35,16 +35,34 @@ const Gray7 = styled.div`
 const Img = styled.img`
   height: 100px;
   width: 100px;
+  border-radius: 50%;
+
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     height: 212px;
     width: 212px;
   }
+  box-shadow: inset 2.8125px 2.8125px 2.8125px rgba(255, 255, 255, 0.3),
+    inset -2.8125px -2.8125px 2.8125px rgba(224, 212, 234, 0.5);
+  filter: drop-shadow(-5.625px 5.625px 14.0625px rgba(224, 212, 234, 0.2)),
+    drop-shadow(5.625px -5.625px 14.0625px rgba(224, 212, 234, 0.2)),
+    drop-shadow(-5.625px -5.625px 14.0625px rgba(255, 255, 255, 0.9)),
+    drop-shadow(5.625px 5.625px 14.0625px rgba(224, 212, 234, 0.9));
 `;
 
 const StyledSlider = styled(Slider)`
   div {
     outline: none;
+  }
+  .slick-dots li button:before {
+    background-color: ${({ theme }) => theme.colors.grayC};
+    content: '';
+    height: 5px;
+    border-radius: 4px;
+  }
+
+  .slick-dots li.slick-active button:before {
+    background-color: ${({ theme }) => theme.colors.purple};
   }
 `;
 
@@ -69,7 +87,7 @@ display: none;
 `;
 
 const NextArrowElem = styled.div`
-  top: 120px;
+  //top: 120px;
   &::before {
     display: none;
   }
@@ -84,16 +102,23 @@ const NextArrowElem = styled.div`
 
 const testimonials = [
   {
-    image: 'https://assets.goodparty.org/testimonials/katherine-gehl.png',
+    image: 'https://assets.goodparty.org/testimonials/katherine-gehl1.jpg',
     content: 'Good Party is making citizens’ votes matter more than money.',
     name: 'Katherine Gehl',
     title: 'Founder, Institute for Political Innovation',
   },
   {
-    image: 'https://assets.goodparty.org/testimonials/naval-ravikant.png',
+    image: 'https://assets.goodparty.org/testimonials/naval-ravikant1.jpg',
     content:
       'Outside of Good Party hacks like crowd-voting, you’re never going to get an independent or 3rd party elected.',
     name: 'Naval Ravikant',
+    title: 'Founder and Chairman, AngelList',
+  },
+  {
+    image: 'https://assets.goodparty.org/testimonials/jeff-ayeroff.jpg',
+    content:
+      'Outside of Good Party hacks like crowd-voting, you’re never going to get an independent or 3rd party elected.',
+    name: 'Jeff Ayeroff',
     title: 'Founder and Chairman, AngelList',
   },
 ];
@@ -118,8 +143,10 @@ function NextArrow(props) {
 
 const TestimonialsSection = () => {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
+    autoPlay: true,
+    autoplaySpeed: 3000,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -129,7 +156,7 @@ const TestimonialsSection = () => {
   return (
     <StyledSlider {...settings}>
       {testimonials.map(testimonial => (
-        <div>
+        <div key={testimonial.name}>
           <Wrapper key={testimonial.name}>
             <Img src={testimonial.image} alt={testimonial.name} />
             <TextWrapper>
