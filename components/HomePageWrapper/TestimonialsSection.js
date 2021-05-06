@@ -168,7 +168,7 @@ const TestimonialsSection = () => {
   const settings = {
     dots: true,
     infinite: true,
-    // autoplay: true,
+    autoplay: true,
     autoplaySpeed: 3000,
     speed: 500,
     slidesToShow: 1,
