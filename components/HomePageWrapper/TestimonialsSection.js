@@ -10,14 +10,25 @@ const CarouselNextIcon = '/images/icons/carousel-next-gray.svg';
 import StyledH2 from './StyledH2';
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 16px 40px 16px 12px;
+  text-align: center;
+  padding: 12px 8px;
   position: relative;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: flex;
+    align-items: center;
+    padding: 16px 40px 16px 12px;
+  }
 `;
 
 const TextWrapper = styled.div`
   padding: 18px 0 0 32px;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    flex: 1;
+    text-align: left;
+  }
 `;
 
 const Name = styled.div`
@@ -33,9 +44,10 @@ const Gray7 = styled.div`
 `;
 
 const Img = styled.img`
-  height: 100px;
-  width: 100px;
+  height: 96px;
+  width: 96px;
   border-radius: 50%;
+  margin: 0 auto;
 
   box-shadow: -2px 2px 5px rgba(224, 212, 234, 0.2),
     2px -2px 5px rgba(224, 212, 234, 0.2),
@@ -47,12 +59,20 @@ const Img = styled.img`
       theme.breakpointsPixels.md}) {
     height: 172px;
     width: 172px;
+    margin: 0;
   }
 `;
 
 const StyledSlider = styled(Slider)`
   div {
     outline: none;
+  }
+  .slick-dots {
+    bottom: -10px;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      bottom: -25px;
+    }
   }
   .slick-dots li button:before {
     background-color: ${({ theme }) => theme.colors.grayC};
@@ -87,7 +107,11 @@ display: none;
 `;
 
 const NextArrowElem = styled.div`
-  //top: 120px;
+  display: none;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: block;
+  }
   &::before {
     display: none;
   }
@@ -101,24 +125,23 @@ const NextArrowElem = styled.div`
 `;
 
 const testimonials = [
+  // {
+  //   image: 'https://assets.goodparty.org/testimonials/katherine-gehl1.jpg',
+  //   content: 'Good Party is making citizens’ votes matter more than money.',
+  //   name: 'Katherine Gehl',
+  //   title: 'Founder, Institute for Political Innovation',
+  // },
   {
-    image: 'https://assets.goodparty.org/testimonials/katherine-gehl1.jpg',
-    content: 'Good Party is making citizens’ votes matter more than money.',
-    name: 'Katherine Gehl',
-    title: 'Founder, Institute for Political Innovation',
+    image: 'https://assets.goodparty.org/testimonials/jeff-ayeroff.jpg',
+    content: 'Good Party is Rock the Vote on steroids!',
+    name: 'Jeff Ayeroff',
+    title: 'Founder, Rock the Vote',
   },
   {
     image: 'https://assets.goodparty.org/testimonials/naval-ravikant1.jpg',
     content:
       'Outside of Good Party hacks like crowd-voting, you’re never going to get an independent or 3rd party elected.',
     name: 'Naval Ravikant',
-    title: 'Founder and Chairman, AngelList',
-  },
-  {
-    image: 'https://assets.goodparty.org/testimonials/jeff-ayeroff.jpg',
-    content:
-      'Outside of Good Party hacks like crowd-voting, you’re never going to get an independent or 3rd party elected.',
-    name: 'Jeff Ayeroff',
     title: 'Founder and Chairman, AngelList',
   },
 ];
@@ -145,7 +168,7 @@ const TestimonialsSection = () => {
   const settings = {
     dots: true,
     infinite: true,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 3000,
     speed: 500,
     slidesToShow: 1,
