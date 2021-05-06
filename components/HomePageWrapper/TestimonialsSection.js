@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const CarouselPrevIcon = '/images/icons/carousel-prev.svg';
+// const CarouselPrevIcon = '/images/icons/carousel-prev.svg';
 const CarouselNextIcon = '/images/icons/carousel-next-gray.svg';
 
 import StyledH2 from './StyledH2';
@@ -12,7 +12,7 @@ import StyledH2 from './StyledH2';
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 16px 40px 16px 0;
+  padding: 16px 40px 16px 12px;
   position: relative;
 `;
 
@@ -37,17 +37,17 @@ const Img = styled.img`
   width: 100px;
   border-radius: 50%;
 
+  box-shadow: -2px 2px 5px rgba(224, 212, 234, 0.2),
+    2px -2px 5px rgba(224, 212, 234, 0.2),
+    -2px -2px 5px rgba(255, 255, 255, 0.9), 2px 2px 5px rgba(224, 212, 234, 0.9),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.3),
+    inset -1px -1px 1px rgba(224, 212, 234, 0.5);
+
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    height: 212px;
-    width: 212px;
+    height: 172px;
+    width: 172px;
   }
-  box-shadow: inset 2.8125px 2.8125px 2.8125px rgba(255, 255, 255, 0.3),
-    inset -2.8125px -2.8125px 2.8125px rgba(224, 212, 234, 0.5);
-  filter: drop-shadow(-5.625px 5.625px 14.0625px rgba(224, 212, 234, 0.2)),
-    drop-shadow(5.625px -5.625px 14.0625px rgba(224, 212, 234, 0.2)),
-    drop-shadow(-5.625px -5.625px 14.0625px rgba(255, 255, 255, 0.9)),
-    drop-shadow(5.625px 5.625px 14.0625px rgba(224, 212, 234, 0.9));
 `;
 
 const StyledSlider = styled(Slider)`
@@ -145,7 +145,7 @@ const TestimonialsSection = () => {
   const settings = {
     dots: true,
     infinite: true,
-    autoPlay: true,
+    autoplay: true,
     autoplaySpeed: 3000,
     speed: 500,
     slidesToShow: 1,
@@ -153,6 +153,7 @@ const TestimonialsSection = () => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
+
   return (
     <StyledSlider {...settings}>
       {testimonials.map(testimonial => (
