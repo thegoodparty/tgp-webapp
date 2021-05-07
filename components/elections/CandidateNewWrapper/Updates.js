@@ -82,7 +82,7 @@ function Updates({ candidate }) {
 
   return (
     <SectionWrapper>
-      <SectionHeader>Updates({updatesList.length})</SectionHeader>
+      <SectionHeader>Updates({(updatesList || []).length})</SectionHeader>
       {combinedUpdates &&
         combinedUpdates.reverse().map((update, index) => (
           <YoutubePlayerWrapper key={index}>
