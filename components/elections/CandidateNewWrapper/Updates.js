@@ -29,7 +29,8 @@ const SectionHeader = styled(Body19)`
     font-weight: normal;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.md}) {
     margin-bottom: 24px;
   }
 `;
@@ -60,23 +61,23 @@ const UpdatedDate = styled(Body13)`
   margin-top: 24px;
   margin-bottom: 12px;
   font-weight: 700;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.md}) {
     font-size: 19px;
   }
 `;
 
 function Updates({ candidate }) {
   const { updatesList } = candidate;
-  const combinedUpdates = updatesList.map(item => {
-    return { html: item.text, date: item.date };
-  });
+  const combinedUpdates =
+    updatesList?.map(item => ({ html: item.text, date: item.date })) || [];
   combinedUpdates.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
   return (
     <SectionWrapper>
-      <SectionHeader>Updates({updatesList.length})</SectionHeader>
+      <SectionHeader>Updates({(updatesList || []).length})</SectionHeader>
       {combinedUpdates &&
         combinedUpdates.reverse().map((update, index) => (
           <YoutubePlayerWrapper key={index}>

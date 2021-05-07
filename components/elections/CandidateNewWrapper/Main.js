@@ -12,6 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
 
 import NotFound from 'containers/shared/NotFoundPage';
+import { validateLink } from 'helpers/linkHelper';
 
 import ProfileInfo from './ProfileInfo';
 import { H1, Body19, Body13 } from '../../shared/typogrophy';
@@ -150,7 +151,7 @@ function MainWrapper({
 
           <div style={{ marginTop: '24px' }}>
             {facebook && (
-              <SocialLink href={facebook} target="_blank">
+              <SocialLink href={validateLink(facebook)} target="_blank">
                 <img
                   src="/images/icons/purple-facebook.svg"
                   alt="facebook"
@@ -159,7 +160,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {twitter && (
-              <SocialLink href={twitter} target="_blank">
+              <SocialLink href={validateLink(twitter)} target="_blank">
                 <img
                   src="/images/icons/purple-twitter.svg"
                   alt="twitter"
@@ -168,7 +169,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {tiktok && (
-              <SocialLink href={tiktok} target="_blank">
+              <SocialLink href={validateLink(tiktok)} target="_blank">
                 <img
                   src="/images/icons/purple-tiktok.svg"
                   alt="tiktok"
@@ -177,7 +178,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {snap && (
-              <SocialLink href={snap} target="_blank">
+              <SocialLink href={validateLink(snap)} target="_blank">
                 <img
                   src="/images/icons/purple-snap.svg"
                   alt="snap"
@@ -186,7 +187,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {website && (
-              <SocialLink href={website} target="_blank" passhref>
+              <SocialLink href={validateLink(website)} target="_blank" passhref>
                 <a target="_blank">
                   <img
                     src="/images/icons/globe-icon.svg"

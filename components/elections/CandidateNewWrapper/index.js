@@ -68,6 +68,7 @@ function CandidateNewWrapper({
   const handleRemoveSupport = () => {
     removeSupportCallback(candidate.id);
   };
+  console.log('candidate:', candidate)
   return (
     <PageWrapper isFullWidth purple>
       <ContentWrapper>
