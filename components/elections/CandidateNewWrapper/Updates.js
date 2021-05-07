@@ -30,7 +30,7 @@ const SectionHeader = styled(Body19)`
   }
 
   @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.md}) {
     margin-bottom: 24px;
   }
 `;
@@ -62,15 +62,20 @@ const UpdatedDate = styled(Body13)`
   margin-bottom: 12px;
   font-weight: 700;
   @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.md}) {
     font-size: 19px;
   }
 `;
 
 function Updates({ candidate }) {
   const { updatesList } = candidate;
-  const combinedUpdates =
-    updatesList?.map(item => ({ html: item.text, date: item.date })) || [];
+  if (!updatesList) {
+    return <> </>;
+  }
+
+  const combinedUpdates = updatesList.map(item => {
+    return { html: item.text, date: item.date };
+  });
   combinedUpdates.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );

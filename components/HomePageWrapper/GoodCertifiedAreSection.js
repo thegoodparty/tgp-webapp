@@ -59,7 +59,7 @@ const PointBody = styled.div`
 
 const points = [
   {
-    title: 'Non-Partisan',
+    title: 'Independent',
     icon: 'images/icons/non-partisan.svg',
     body: 'Never pay dues to nor fundraise for Republicans or Democrats.',
   },
@@ -85,8 +85,8 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
     <>
       <div className="text-center">
         <Img src="images/icons/certification-badge.svg" alt="tgp certified" />
-        <StyledH2>What’s a Good Certified candidate?</StyledH2>
-        <StyledH3>Independent candidates who pledge to be:</StyledH3>
+        <StyledH2>How to become a Good Certified candidate</StyledH2>
+        <StyledH3>Candidates must pledge to be:</StyledH3>
       </div>
       <Grid container spacing={5} alignItems="flex-start">
         {points.map(point => (
