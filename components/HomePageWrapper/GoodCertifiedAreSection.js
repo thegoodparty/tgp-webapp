@@ -3,19 +3,13 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
-import { H3, Body, Body12 } from '../shared/typogrophy';
 import StyledH2 from './StyledH2';
 import StyledH3 from './StyledH3';
 import NominateButton from './NominateButton';
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 32px;
-`;
+
 
 const Img = styled.img`
-  margin-left: 16px;
   width: 60px;
   height: auto;
 `;

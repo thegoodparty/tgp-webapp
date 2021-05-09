@@ -16,18 +16,19 @@ const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     display: flex;
-    align-items: center;
+    //align-items: center;
     padding: 16px 40px 16px 12px;
   }
 `;
 
 const TextWrapper = styled.div`
-  padding: 18px 0 0 32px;
+  padding: 18px 0 0;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     flex: 1;
     text-align: left;
+    padding: 0 0 0 32px;
   }
 `;
 
