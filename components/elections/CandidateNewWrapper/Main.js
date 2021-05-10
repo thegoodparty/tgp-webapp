@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
+import { Element } from 'react-scroll';
 
 import NotFound from 'containers/shared/NotFoundPage';
 import { validateLink } from 'helpers/linkHelper';
@@ -25,7 +26,8 @@ import Updates from './Updates';
 
 const Padder = styled.div`
   padding: 0 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 0;
   }
 `;
@@ -34,7 +36,9 @@ const SectionWrapper = styled.div`
   margin-top: 48px;
 `;
 
-const CampaignSummaryHeadLine = styled(H1)``;
+const HeadlineWrapper = styled.div`
+  padding: 18px;
+`;
 
 const SectionHeader = styled(Body19)`
   font-weight: bold;
@@ -50,7 +54,8 @@ const SectionHeader = styled(Body19)`
     font-weight: normal;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-bottom: 24px;
   }
 `;
@@ -68,11 +73,23 @@ const YoutubePlayer = styled(ReactPlayer)`
 `;
 
 const YoutubePlayerWrapper = styled.div`
+  overflow: hidden;
+  padding: 18px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 0;
+  }
+  &:first-child {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
   [data-jodit_iframe_wrapper] {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     height: 0 !important;
     width: 100% !important;
+
     iframe {
       position: absolute;
       top: 0;
@@ -82,10 +99,10 @@ const YoutubePlayerWrapper = styled.div`
     }
   }
 
-  &.top {
-    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07),
-      0px 0px 12px rgba(0, 0, 0, 0.08), 0px 0px 16px rgba(0, 0, 0, 0.12);
-  }
+  //&.top {
+  //  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07),
+  //    0px 0px 12px rgba(0, 0, 0, 0.08), 0px 0px 16px rgba(0, 0, 0, 0.12);
+  //}
 `;
 
 function MainWrapper({
@@ -130,6 +147,9 @@ function MainWrapper({
         </YoutubePlayerWrapper>
       )}
       <Hidden mdUp>
+        <HeadlineWrapper>
+          <H1>{headline}</H1>
+        </HeadlineWrapper>
         <ProfileInfo
           candidate={candidate}
           candidateSupports={candidateSupports}
@@ -229,10 +249,12 @@ function MainWrapper({
         <Updates candidate={candidate} />
         <Hidden smUp>
           <SectionWrapper>
-            <RecentlyJoined
-              candidateSupports={candidateSupports}
-              total={total}
-            />
+            <Element name="recently-all">
+              <RecentlyJoined
+                candidateSupports={candidateSupports}
+                total={total}
+              />
+            </Element>
           </SectionWrapper>
         </Hidden>
 

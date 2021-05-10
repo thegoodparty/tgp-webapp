@@ -133,6 +133,7 @@
     "react-responsive-carousel": "^3.2.7",
     "react-router-dom": "5.0.0",
     "react-rte": "^0.16.1",
+    "react-scroll": "^1.8.2",
     "react-select-material-ui": "^6.5.0",
     "react-slick": "^0.25.2",
     "react-social-login": "^3.4.7",

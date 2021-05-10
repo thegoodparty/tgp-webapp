@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Truncate from 'react-truncate';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { Link } from 'react-scroll';
 
 import { Body9, Body11, Body13, Body19, Body } from '../../shared/typogrophy';
 import { getUserCookie } from '../../../helpers/cookieHelper';
@@ -46,9 +47,18 @@ const JoinTime = styled(Body11)`
 
 const Message = styled(Body)`
   margin-top: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     font-size: 16px;
   }
+`;
+
+const SeeMore = styled.div`
+  font-size: 13px;
+  line-height: 24px;
+  color: ${({ theme }) => theme.colors.purple};
+  margin-top: 8px;
+  cursor: pointer;
 `;
 
 const RecentJoin = styled.div`
@@ -75,10 +85,17 @@ function RecentlyJoined({
   adminDeleteSupportCallback,
   candidateId,
   total,
+  previewMode,
+  scrollForMore,
 }) {
   const supporters = candidateSupports || [];
+  let displaySupporters = supporters;
   const [expanded, setExpanded] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const [truncated, setTruncated] = useState(false);
+  if (previewMode && !showAll) {
+    displaySupporters = displaySupporters.slice(0, 2);
+  }
 
   const user = getUserCookie(true);
   const { isAdmin } = user;
@@ -96,6 +113,13 @@ function RecentlyJoined({
 
     setExpanded(!expanded);
   };
+
+  const handleShowMore = () => {
+    if (scrollForMore) {
+    } else {
+      setShowAll(!showAll);
+    }
+  };
   return (
     <>
       <RecentActivity>
@@ -107,7 +131,7 @@ function RecentlyJoined({
           {total} {total === 1 ? 'person has' : 'people have'} taken action
         </JoinedCount>
       </Grid>
-      {supporters.map(supporter => (
+      {displaySupporters.map(supporter => (
         <RecentJoin key={supporter.id}>
           {isAdmin && (
             <AdminDelete
@@ -157,6 +181,19 @@ function RecentlyJoined({
           </div>
         </RecentJoin>
       ))}
+      {previewMode && (
+        <>
+          {scrollForMore ? (
+            <Link to="recently-all" duration={350} smooth>
+              <SeeMore>See {showAll ? 'Less' : 'More'}</SeeMore>
+            </Link>
+          ) : (
+            <SeeMore onClick={handleShowMore}>
+              See {showAll ? 'Less' : 'More'}
+            </SeeMore>
+          )}
+        </>
+      )}
 
       {/*<Box style={{ marginTop: 24 }}>*/}
       {/*  <PurpleButton fullWidth className="outline">*/}
