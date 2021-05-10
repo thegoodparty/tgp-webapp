@@ -9,6 +9,7 @@ import GoodCertifiedAreSection from './GoodCertifiedAreSection';
 import CandidatesSection from './CandidatesSection';
 import HelpSection from './HelpSection';
 import HowItWorksSection from './HowItWorksSection';
+import TestimonialsSection from './TestimonialsSection';
 
 const Content = styled.div`
   max-width: 524px;
@@ -24,6 +25,10 @@ const Section = styled.section`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding: 60px 18px;
+  }
+
+  &.no-bottom-padding {
+    padding-bottom: 0;
   }
 
   &.purple4 {
@@ -51,7 +56,12 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     // { component: <TopSection /> },
     // { component: <Section2 />, sectionClass: 'purple4' },
     { component: <Section3 /> },
-    { component: <HowItWorksSection />, noContent: true },
+    {
+      component: <HowItWorksSection />,
+      sectionClass: 'no-bottom-padding',
+      noContent: true,
+    },
+    { component: <TestimonialsSection />, sectionClass: 'purple4' },
     { component: <GoodCertifiedAreSection /> },
     {
       component: <CandidatesSection homepageCandidates={homepageCandidates} />,
@@ -63,8 +73,9 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     <PageWrapper isFullWidth purple>
       {sections.map((section, index) => (
         <Section
-          className={`${section.sectionClass &&
-            section.sectionClass} ${section.noContent && 'no-padding'}`}
+          className={`${section.sectionClass ? section.sectionClass : ''} ${
+            section.noContent ? 'no-padding' : ''
+          }`}
           key={index}
         >
           {section.noContent ? (

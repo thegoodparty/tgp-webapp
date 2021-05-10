@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { Body, Body11, H2 } from '../shared/typogrophy';
 import CandidateCard from '../shared/CandidateCard';
 import StyledH2 from './StyledH2';
+import StyledH3 from './StyledH3';
 
 const SeeMore = styled(Body11)`
   color: ${({ theme }) => theme.colors.purple};
@@ -24,6 +25,23 @@ const Title = styled(StyledH2)`
   text-align: center;
 `;
 
+const Badge = styled.img`
+  height: 16px;
+  width: auto;
+  margin: 0 4px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    height: 19px;
+    margin: 0 6px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    height: 27px;
+    margin: 0 8px;
+  }
+`;
+
 const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
   const columns = 12 / maxRows;
 
@@ -32,7 +50,21 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
       <Title
         style={{ marginBottom: '8px', color: '#000', position: 'relative' }}
       >
-        Featured crowd-voting campaigns
+        Featured campaigns
+        <StyledH3
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <span>of</span>{' '}
+          <Badge
+            src="images/icons/certification-badge.svg"
+            alt="tgp certified"
+          />{' '}
+          <span>Good Certified candidates</span>
+        </StyledH3>
       </Title>
 
       {homepageCandidates && homepageCandidates.length > 0 ? (

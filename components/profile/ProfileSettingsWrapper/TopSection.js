@@ -42,7 +42,9 @@ function TopSection({ user, signoutCallback, uploadImageCallback }) {
       <Row>
         <StyledH1>Settings</StyledH1>
         <Body13 onClick={signoutCallback}>
-          <span className="purple-text">Sign Out</span>
+          <span className="purple-text" style={{ cursor: 'pointer' }}>
+            Sign Out
+          </span>
         </Body13>
       </Row>
       <Hidden mdUp>

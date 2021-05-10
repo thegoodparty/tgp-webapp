@@ -3,26 +3,19 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
-import { H3, Body, Body12 } from '../shared/typogrophy';
 import StyledH2 from './StyledH2';
 import StyledH3 from './StyledH3';
 import NominateButton from './NominateButton';
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 32px;
-`;
-
 const Img = styled.img`
-  margin-left: 16px;
   width: 60px;
   height: auto;
 `;
 
 const PointWrapper = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     margin-bottom: 12px;
@@ -38,6 +31,7 @@ const PointIcon = styled.img`
 const UnderText = styled.div`
   margin-top: 4px;
   color: ${({ theme }) => theme.colors.gray7};
+  text-align: center;
 `;
 
 const NominateWrapper = styled.div`
@@ -59,7 +53,7 @@ const PointBody = styled.div`
 
 const points = [
   {
-    title: 'Non-Partisan',
+    title: 'Independent',
     icon: 'images/icons/non-partisan.svg',
     body: 'Never pay dues to nor fundraise for Republicans or Democrats.',
   },
@@ -85,8 +79,8 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
     <>
       <div className="text-center">
         <Img src="images/icons/certification-badge.svg" alt="tgp certified" />
-        <StyledH2>What’s a Good Certified candidate?</StyledH2>
-        <StyledH3>Independent candidates who pledge to be:</StyledH3>
+        <StyledH2>How to become a Good Certified candidate</StyledH2>
+        <StyledH3>Candidates must pledge to be:</StyledH3>
       </div>
       <Grid container spacing={5} alignItems="flex-start">
         {points.map(point => (

@@ -16,6 +16,14 @@ const ReverseGrid = styled(Grid)`
   }
 `;
 
+const ResponsiveAlign = styled.div`
+  text-align: center;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    text-align: left;
+  }
+`;
+
 const Section3 = () => {
   return (
     <ReverseGrid container spacing={5} alignItems="center">
@@ -26,11 +34,13 @@ const Section3 = () => {
         />
       </Grid>
       <Grid item xs={12} md={6}>
-        <StyledH2 style={{ marginBottom: '18px' }}>
-          We build free software to help good indie candidates run and win.
-        </StyledH2>
-        <JoinUsButton style={{ marginRight: '24px' }} />
-        <NominateButton />
+        <ResponsiveAlign>
+          <StyledH2 style={{ marginBottom: '18px' }}>
+            We build free software to help good indie candidates run and win.
+          </StyledH2>
+          <JoinUsButton style={{ marginRight: '24px' }} />
+          <NominateButton />
+        </ResponsiveAlign>
       </Grid>
     </ReverseGrid>
   );
