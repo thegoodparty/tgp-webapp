@@ -7,8 +7,6 @@ import StyledH2 from './StyledH2';
 import StyledH3 from './StyledH3';
 import NominateButton from './NominateButton';
 
-
-
 const Img = styled.img`
   width: 60px;
   height: auto;
@@ -16,7 +14,8 @@ const Img = styled.img`
 
 const PointWrapper = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     margin-bottom: 12px;
@@ -32,6 +31,7 @@ const PointIcon = styled.img`
 const UnderText = styled.div`
   margin-top: 4px;
   color: ${({ theme }) => theme.colors.gray7};
+  text-align: center;
 `;
 
 const NominateWrapper = styled.div`
