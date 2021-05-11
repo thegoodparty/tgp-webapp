@@ -132,6 +132,13 @@ const VerticalOrder = styled.div`
   }
 `;
 
+const EndorsmentWrapper = styled.div`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
 function ProfileInfo({
   candidate,
   isMobile = false,
@@ -256,15 +263,6 @@ function ProfileInfo({
         {/*  </Box>*/}
         {/*</StickyWrapperElement>*/}
 
-        <EndorsementDescription>
-          Your endorsement is a free way to show and grow grassroots support.{' '}
-          <Link
-            href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-            passHref
-          >
-            <a>Read more</a>
-          </Link>
-        </EndorsementDescription>
         <Hidden mdUp>
           <RecentlyJoined
             candidateSupports={candidateSupports}
@@ -283,6 +281,24 @@ function ProfileInfo({
             total={total}
             previewMode
           />
+
+          <EndorsmentWrapper>
+            <SupportButton
+              supportCallback={supportCallback}
+              removeSupportCallback={removeSupportCallback}
+              isUserSupportCandidate={isUserSupportCandidate}
+            />
+            <div style={{ marginTop: '12px' }}>
+              Your endorsement is a free and powerful way to show and grow
+              grassroots support.{' '}
+              <Link
+                href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                passHref
+              >
+                <a>Read more.</a>
+              </Link>
+            </div>
+          </EndorsmentWrapper>
         </Hidden>
       </ProfileInfoWrapper>
     </WrapperElement>
