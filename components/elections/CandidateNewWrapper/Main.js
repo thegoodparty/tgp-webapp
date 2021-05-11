@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
 import { Element } from 'react-scroll';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import NotFound from 'containers/shared/NotFoundPage';
 import { validateLink } from 'helpers/linkHelper';
@@ -34,6 +36,18 @@ const Padder = styled.div`
 
 const SectionWrapper = styled.div`
   margin-top: 48px;
+`;
+
+const FixedEndorse = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 16px 18px;
+  background-color: ${({ theme }) => theme.colors.purple3};
+  filter: drop-shadow(0px 0px 16px rgba(62, 0, 140, 0.16));
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.gray7};
 `;
 
 const HeadlineWrapper = styled.div`
@@ -118,6 +132,7 @@ function MainWrapper({
   if (!candidate) {
     return <NotFound />;
   }
+  const router = useRouter();
   let website;
   const {
     headline,
@@ -247,7 +262,7 @@ function MainWrapper({
         </SectionWrapper>
 
         <Updates candidate={candidate} />
-        <Hidden smUp>
+        <Hidden mdUp>
           <SectionWrapper>
             <Element name="recently-all">
               <RecentlyJoined
@@ -256,6 +271,23 @@ function MainWrapper({
               />
             </Element>
           </SectionWrapper>
+          <FixedEndorse>
+            <SupportButton
+              supportCallback={supportCallback}
+              removeSupportCallback={removeSupportCallback}
+              isUserSupportCandidate={isUserSupportCandidate}
+            />
+            <div style={{ marginTop: '8px' }} className="text-center">
+              Your endorsement is a free and powerful way to show and grow
+              grassroots support.{' '}
+              <Link
+                href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                passHref
+              >
+                <a>Read more.</a>
+              </Link>
+            </div>
+          </FixedEndorse>
         </Hidden>
 
         <TopQuestions articles={articles} />

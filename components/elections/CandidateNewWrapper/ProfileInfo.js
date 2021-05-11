@@ -265,14 +265,25 @@ function ProfileInfo({
             <a>Read more</a>
           </Link>
         </EndorsementDescription>
-        <RecentlyJoined
-          candidateSupports={candidateSupports}
-          adminDeleteSupportCallback={adminDeleteSupportCallback}
-          candidateId={candidate.id}
-          total={total}
-          previewMode
-          scrollForMore
-        />
+        <Hidden mdUp>
+          <RecentlyJoined
+            candidateSupports={candidateSupports}
+            adminDeleteSupportCallback={adminDeleteSupportCallback}
+            candidateId={candidate.id}
+            total={total}
+            previewMode
+            scrollForMore
+          />
+        </Hidden>
+        <Hidden smDown>
+          <RecentlyJoined
+            candidateSupports={candidateSupports}
+            adminDeleteSupportCallback={adminDeleteSupportCallback}
+            candidateId={candidate.id}
+            total={total}
+            previewMode
+          />
+        </Hidden>
       </ProfileInfoWrapper>
     </WrapperElement>
   );
