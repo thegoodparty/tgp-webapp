@@ -96,6 +96,7 @@ const YoutubePlayerWrapper = styled.div`
   &:first-child {
     border-radius: 8px;
     overflow: hidden;
+    filter: drop-shadow(9px 9px 12px rgba(224, 212, 234, 0.9));
   }
 
   [data-jodit_iframe_wrapper] {
@@ -113,10 +114,6 @@ const YoutubePlayerWrapper = styled.div`
     }
   }
 
-  //&.top {
-  //  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07),
-  //    0px 0px 12px rgba(0, 0, 0, 0.08), 0px 0px 16px rgba(0, 0, 0, 0.12);
-  //}
 `;
 
 function MainWrapper({

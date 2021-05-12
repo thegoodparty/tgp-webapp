@@ -7,42 +7,24 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 import Truncate from 'react-truncate';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { Link } from 'react-scroll';
 
-import { Body9, Body11, Body13, Body19, Body } from '../../shared/typogrophy';
+import { Body11, Body13, Body } from '../../shared/typogrophy';
 import { getUserCookie } from '../../../helpers/cookieHelper';
-const PeopleJoinedIconPurple = '/images/people-joined-purple.svg';
 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
-
-// const InnerButton = styled.div`
-//   font-size: 14px;
-// `;
-
-const RecentActivity = styled.div`
-  margin-top: 32px;
-`;
-const RecentActivityTitle = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray4};
-  margin-bottom: 18px;
-  font-weight: 600;
-  text-align: left;
-`;
-
-const JoinedCount = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray4};
-  margin-left: 16px;
-`;
 
 const JoinName = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray3};
   font-weight: 600;
+  display: inline-block;
+  margin-right: 4px;
 `;
 
 const JoinTime = styled(Body11)`
   color: ${({ theme }) => theme.colors.gray7};
+  display: inline-block;
 `;
 
 const Message = styled(Body)`
@@ -63,16 +45,17 @@ const SeeMore = styled.div`
 
 const RecentJoin = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+
   padding: 12px 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.grayD};
   text-align: left;
   position: relative;
+  font-size: 13px;
 `;
 
 const AdminDelete = styled.div`
   position: absolute;
-  top: 0;
+  top: 6px;
   right: 0;
   padding: 5px 0 5px 5px;
   font-size: 12px;
@@ -80,11 +63,16 @@ const AdminDelete = styled.div`
   cursor: pointer;
 `;
 
+const Img = styled.img`
+  margin-right: 8px;
+  height: 32px;
+  width: 32px;
+`;
+
 function RecentlyJoined({
   candidateSupports,
   adminDeleteSupportCallback,
   candidateId,
-  total,
   previewMode,
   scrollForMore,
 }) {
@@ -121,16 +109,7 @@ function RecentlyJoined({
     }
   };
   return (
-    <>
-      <RecentActivity>
-        <RecentActivityTitle>Recent Activity</RecentActivityTitle>
-      </RecentActivity>
-      <Grid container alignItems="center" style={{ marginBottom: 14 }}>
-        <img src={PeopleJoinedIconPurple} alt="share" />
-        <JoinedCount>
-          {total} {total === 1 ? 'person has' : 'people have'} taken action
-        </JoinedCount>
-      </Grid>
+    <div style={{ marginTop: '14px' }}>
       {displaySupporters.map(supporter => (
         <RecentJoin key={supporter.id}>
           {isAdmin && (
@@ -139,14 +118,10 @@ function RecentlyJoined({
                 adminDeleteSupportCallback(supporter.id, candidateId);
               }}
             >
-              <DeleteForeverIcon />
+              <DeleteForeverIcon style={{ fontSize: '22px' }} />
             </AdminDelete>
           )}
-          <img
-            src={AnonymousIconPurple}
-            alt="share"
-            style={{ marginRight: '18px' }}
-          />
+          <Img src={AnonymousIconPurple} alt="share" />
           <div>
             <JoinName>{supporter.user || 'Someone'}</JoinName>
             <JoinTime>
@@ -194,15 +169,7 @@ function RecentlyJoined({
           )}
         </>
       )}
-
-      {/*<Box style={{ marginTop: 24 }}>*/}
-      {/*  <PurpleButton fullWidth className="outline">*/}
-      {/*    <InnerButton>*/}
-      {/*      <span>SEE ALL</span>*/}
-      {/*    </InnerButton>*/}
-      {/*  </PurpleButton>*/}
-      {/*</Box>*/}
-    </>
+    </div>
   );
 }
 
@@ -210,7 +177,8 @@ RecentlyJoined.propTypes = {
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   adminDeleteSupportCallback: PropTypes.func,
   candidateId: PropTypes.number,
-  total: PropTypes.number,
+  previewMode: PropTypes.bool,
+  scrollForMore: PropTypes.bool,
 };
 
 export default RecentlyJoined;

@@ -7,30 +7,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { partyResolver } from 'helpers/electionsHelper';
-import { kFormatter } from 'helpers/numberHelper';
+import { numberFormatter } from 'helpers/numberHelper';
+import { achievementsHelper } from 'helpers/achievementsHelper';
 
-import { Body9, Body11, H3, Body13 } from '../../shared/typogrophy';
+import { H3, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
-import ShareButton from './ShareButton';
-
-const Inner = styled.div`
-  background-color: ${({ theme }) => theme.colors.purple3};
-  z-index: 5000;
-  padding: 12px 18px;
-  width: 100vw;
-  margin-left: -18px;
-`;
 
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
@@ -108,21 +98,6 @@ const TitleCase = styled.span`
   text-transform: capitalize;
 `;
 
-const LikelyVoters = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray7};
-  span {
-    color: ${({ theme }) => theme.colors.gray3};
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 4px;
-  }
-`;
-
-const EndorsementDescription = styled(Body11)`
-  margin-top: 12px;
-  color: ${({ theme }) => theme.colors.gray7};
-`;
-
 const VerticalOrder = styled.div`
   display: flex;
   flex-direction: column;
@@ -139,6 +114,11 @@ const EndorsmentWrapper = styled.div`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
+const Endorsed = styled(Body13)`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray4};
+`;
+
 function ProfileInfo({
   candidate,
   isMobile = false,
@@ -148,35 +128,10 @@ function ProfileInfo({
   candidateSupports,
   total,
   adminDeleteSupportCallback,
-  trackShareCallback,
 }) {
   const router = useRouter();
 
-  const {
-    firstName,
-    lastName,
-    image,
-    race,
-    party,
-    likelyVoters,
-    votesNeeded,
-  } = candidate;
-
-  const StickyWrapperElement = ({ children }) => (
-    <>
-      {!isMobile ? (
-        <div>{children}</div>
-      ) : (
-        <Sticky
-          boundaryElement=".scroll-area"
-          hideOnBoundaryHit={false}
-          dontUpdateHolderHeightWhenSticky
-        >
-          <Inner>{children}</Inner>
-        </Sticky>
-      )}
-    </>
-  );
+  const { firstName, lastName, image, race, party } = candidate;
 
   const WrapperElement = ({ children }) =>
     isMobile ? (
@@ -193,36 +148,29 @@ function ProfileInfo({
       </ScrollArea>
     );
   const supportCount = candidateSupports?.length || 0;
-  const intLikelyVoters = parseInt(likelyVoters, 10);
+
+  const achievements = achievementsHelper(supportCount);
 
   return (
     <WrapperElement>
       <ProfileInfoWrapper>
         <VerticalOrder>
           <div>
-            <Grid container>
-              <Grid item xs={6}>
-                <LikelyVoters>
-                  <span>{kFormatter(intLikelyVoters + supportCount)}</span>{' '}
-                  likely voters
-                </LikelyVoters>
-              </Grid>
-              <Grid item xs={6}>
-                {supportCount === 0 ? (
-                  <>&nbsp;</>
-                ) : (
-                  <LikelyVoters>
-                    <span>{supportCount}</span>
-                    {supportCount === 1 ? 'person' : 'people'} endorsing
-                  </LikelyVoters>
-                )}
-              </Grid>
-            </Grid>
+            <Endorsed>
+              <strong>
+                {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
+                endorsed.
+              </strong>{' '}
+              Let's get to {numberFormatter(achievements.nextStep)}!
+            </Endorsed>
+
             <SupportersProgressBar
               showSupporters={false}
-              votesNeeded={votesNeeded}
-              peopleSoFar={supportCount + intLikelyVoters}
+              votesNeeded={achievements.nextStep}
+              peopleSoFar={supportCount}
               fullWidth
+              showSuffix={false}
+              withAchievement
             />
           </div>
           <AvatarSection>
@@ -247,21 +195,6 @@ function ProfileInfo({
             </div>
           </AvatarSection>
         </VerticalOrder>
-        {/*<StickyWrapperElement>*/}
-        {/*  <Box style={{ marginTop: 24 }} className="box box-left">*/}
-        {/*    <ShareButton*/}
-        {/*      trackShareCallback={trackShareCallback}*/}
-        {/*      candidateId={candidate.id}*/}
-        {/*    />*/}
-        {/*  </Box>*/}
-        {/*  <Box style={{ marginTop: 8 }} className="box box-right">*/}
-        {/*    <SupportButton*/}
-        {/*      isUserSupportCandidate={isUserSupportCandidate}*/}
-        {/*      removeSupportCallback={removeSupportCallback}*/}
-        {/*      supportCallback={supportCallback}*/}
-        {/*    />*/}
-        {/*  </Box>*/}
-        {/*</StickyWrapperElement>*/}
 
         <Hidden mdUp>
           <RecentlyJoined
