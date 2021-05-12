@@ -1,5 +1,5 @@
 export const achievementsHelper = count => {
-  if (count > 10000) {
+  if (count >= 10000) {
     return {
       nextStep: 60000,
       text: (
@@ -12,7 +12,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 5000) {
+  if (count >= 5000) {
     return {
       nextStep: 10000,
       text: (
@@ -25,7 +25,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 1500) {
+  if (count >= 1500) {
     return {
       nextStep: 5000,
       text: (
@@ -37,7 +37,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 1000) {
+  if (count >= 1000) {
     return {
       nextStep: 1500,
       text: (
@@ -49,7 +49,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 750) {
+  if (count >= 750) {
     return {
       nextStep: 1000,
       text: (
@@ -61,7 +61,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 250) {
+  if (count >= 250) {
     return {
       nextStep: 750,
       text: (
@@ -74,7 +74,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 100) {
+  if (count >= 100) {
     return {
       nextStep: 250,
       text: (
@@ -86,7 +86,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 50) {
+  if (count >= 50) {
     return {
       nextStep: 100,
       text: (
@@ -98,7 +98,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 25) {
+  if (count >= 25) {
     return {
       nextStep: 50,
       text: (
@@ -110,7 +110,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 10) {
+  if (count >= 10) {
     return {
       nextStep: 25,
       text: (
@@ -122,7 +122,7 @@ export const achievementsHelper = count => {
     };
   }
 
-  if (count > 1) {
+  if (count >= 1) {
     return {
       nextStep: 10,
       text: (
