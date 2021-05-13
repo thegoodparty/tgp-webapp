@@ -39,12 +39,6 @@ const ProfileInfoWrapper = styled.div`
   border-radius: 8px;
   padding: 0 18px 0;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
-    padding: 24px 24px 32px 24px;
-  }
-
   .sticky {
     z-index: 1000;
     .box {
@@ -173,6 +167,16 @@ function ProfileInfo({
               withAchievement
             />
           </div>
+          <Hidden mdUp>
+            <RecentlyJoined
+              candidateSupports={candidateSupports}
+              adminDeleteSupportCallback={adminDeleteSupportCallback}
+              candidateId={candidate.id}
+              total={total}
+              previewMode
+              scrollForMore
+            />
+          </Hidden>
           <AvatarSection>
             <CandidateAvatar
               avatar={image}
@@ -196,16 +200,6 @@ function ProfileInfo({
           </AvatarSection>
         </VerticalOrder>
 
-        <Hidden mdUp>
-          <RecentlyJoined
-            candidateSupports={candidateSupports}
-            adminDeleteSupportCallback={adminDeleteSupportCallback}
-            candidateId={candidate.id}
-            total={total}
-            previewMode
-            scrollForMore
-          />
-        </Hidden>
         <Hidden smDown>
           <RecentlyJoined
             candidateSupports={candidateSupports}

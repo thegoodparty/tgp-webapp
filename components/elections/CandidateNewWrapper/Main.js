@@ -113,7 +113,6 @@ const YoutubePlayerWrapper = styled.div`
       height: 100%;
     }
   }
-
 `;
 
 function MainWrapper({
@@ -173,12 +172,12 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        <SectionWrapper>
+        <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
         </SectionWrapper>
-        <SectionWrapper>
+        <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionHeader style={{ marginBottom: '4px' }}>
-            Connect with {firstName}
+            Campaign socials
           </SectionHeader>
 
           <div style={{ marginTop: '24px' }}>
