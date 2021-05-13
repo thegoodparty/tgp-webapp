@@ -42,7 +42,6 @@ function CandidatesSection({ candidates }) {
           <Grid container spacing={1}>
             {candidates[state].map(candidate => (
               <Grid item xs={12} md={6}>
-                {console.log('candidate', candidate)}
                 <CandidateCard candidate={candidate} />
               </Grid>
             ))}

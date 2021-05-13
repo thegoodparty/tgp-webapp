@@ -61,7 +61,7 @@ const points = [
     title: 'People Powered',
     icon: 'images/icons/people-powered.svg',
     body:
-      'Good candidates only accept donations from individuals - not corporations, unions, PACs, or other entities. ',
+      'Good candidates only accept donations from individuals - not corporations, unions, PACs, or other non-living entities. ',
   },
   {
     title: 'Anti-Corruption',
@@ -96,7 +96,11 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
                 <UnderText>
                   {point.body}{' '}
                   {point.endLink && (
-                    <Link href={point.endLink.href}>{point.endLink.text}</Link>
+                    <span style={{ whiteSpace: 'nowrap' }}>
+                      <Link href={point.endLink.href}>
+                        {point.endLink.text}
+                      </Link>
+                    </span>
                   )}
                 </UnderText>
               </PointBody>

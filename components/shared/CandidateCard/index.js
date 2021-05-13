@@ -9,13 +9,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { partyResolver } from 'helpers/electionsHelper';
-import { kFormatter } from 'helpers/numberHelper';
+import { kFormatter, numberFormatter } from 'helpers/numberHelper';
 import Link from 'next/link';
 
 import CandidateAvatar from './CandidateAvatar';
-import { Body11 } from '../typogrophy';
+import { Body11, Body13 } from '../typogrophy';
 import SupportersProgressBar from '../../elections/SupportersProgressBar';
 import { PurpleButton } from '../buttons';
+import { achievementsHelper } from '../../../helpers/achievementsHelper';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.purple3};
@@ -70,6 +71,11 @@ const ButtonInner = styled.div`
   font-size: 13px;
 `;
 
+const Endorsed = styled(Body13)`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray4};
+`;
+
 function CandidateCard({ candidate }) {
   const {
     id,
@@ -84,7 +90,7 @@ function CandidateCard({ candidate }) {
     headline,
   } = candidate;
 
-  const intLikelyVoters = parseInt(likelyVoters, 10);
+  const achievements = achievementsHelper(supporters);
   return (
     <Link href={`/candidate/${firstName}-${lastName}/${id}`} passHref>
       <a>
@@ -104,33 +110,23 @@ function CandidateCard({ candidate }) {
               'SAM Party'
             ) : (
               <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
-            )}
-            {' '}
+            )}{' '}
             candidate running for {race}
           </For>
-          <Grid container>
-            <Grid item xs={6}>
-              <LikelyVoters>
-                <span>{kFormatter(intLikelyVoters + supporters)}</span> likely
-                voters
-              </LikelyVoters>
-            </Grid>
-            <Grid item xs={6}>
-              {supporters === 0 ? (
-                <>&nbsp;</>
-              ) : (
-                <LikelyVoters>
-                  <span>{supporters}</span>
-                  {supporters === 1 ? 'person' : 'people'} endorsing
-                </LikelyVoters>
-              )}
-            </Grid>
-          </Grid>
+          <Endorsed>
+            <strong>
+              {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
+            </strong>{' '}
+            Let's get to {numberFormatter(achievements.nextStep)}!
+          </Endorsed>
+
           <SupportersProgressBar
             showSupporters={false}
-            votesNeeded={votesNeeded}
-            peopleSoFar={supporters + intLikelyVoters}
+            votesNeeded={achievements.nextStep}
+            peopleSoFar={supporters}
             fullWidth
+            showSuffix={false}
+            withAchievement
           />
           <Headline>{headline}</Headline>
 

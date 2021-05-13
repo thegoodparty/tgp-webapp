@@ -34,6 +34,7 @@ const TgpDialog = styled(Dialog)`
       .MuiDialog-paper {
         background-color: ${({ theme }) => theme.colors.grayBg} !important;
       }
+      max-width: 100% !important;
     }
     &.purple {
       .MuiDialog-paper {
@@ -92,7 +93,7 @@ function QueryModal({
       className={`${close && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
-      {!hideClose && (
+      {!closeTitle && !hideClose && (
         <TopWrapper>
           <TopClose
             onClick={() => setClose(true)}

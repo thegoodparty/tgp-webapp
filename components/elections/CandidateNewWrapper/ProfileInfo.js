@@ -7,30 +7,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import Sticky from 'react-sticky-el';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { partyResolver } from 'helpers/electionsHelper';
-import { kFormatter } from 'helpers/numberHelper';
+import { numberFormatter } from 'helpers/numberHelper';
+import { achievementsHelper } from 'helpers/achievementsHelper';
 
-import { Body9, Body11, H3, Body13 } from '../../shared/typogrophy';
+import { H3, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
-import ShareButton from './ShareButton';
-
-const Inner = styled.div`
-  background-color: ${({ theme }) => theme.colors.purple3};
-  z-index: 5000;
-  padding: 12px 18px;
-  width: 100vw;
-  margin-left: -18px;
-`;
 
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
@@ -47,12 +37,7 @@ const Inner2 = styled.div`
 
 const ProfileInfoWrapper = styled.div`
   border-radius: 8px;
-  padding: 24px 18px 0;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    box-shadow: -1px 0px 12px rgba(0, 0, 0, 0.2);
-    padding: 24px 24px 32px 24px;
-  }
+  padding: 0 18px 0;
 
   .sticky {
     z-index: 1000;
@@ -76,15 +61,20 @@ const AvatarSection = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-bottom: 24px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  margin-top: 24px;
+  flex-direction: row-reverse;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     display: block;
+    margin-top: 0;
   }
 `;
 
 const CandidateName = styled(H3)`
   text-align: left;
   font-size: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     text-align: center;
     margin-top: 12px;
     margin-bottom: 8px;
@@ -92,7 +82,8 @@ const CandidateName = styled(H3)`
 `;
 
 const PartyName = styled(Body13)`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     text-align: center;
   }
 `;
@@ -101,19 +92,25 @@ const TitleCase = styled.span`
   text-transform: capitalize;
 `;
 
-const LikelyVoters = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray7};
-  span {
-    color: ${({ theme }) => theme.colors.gray3};
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 4px;
+const VerticalOrder = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    flex-direction: column-reverse;
   }
 `;
 
-const EndorsementDescription = styled(Body11)`
-  margin-top: 12px;
+const EndorsmentWrapper = styled.div`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
   color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const Endorsed = styled(Body13)`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray4};
 `;
 
 function ProfileInfo({
@@ -125,35 +122,10 @@ function ProfileInfo({
   candidateSupports,
   total,
   adminDeleteSupportCallback,
-  trackShareCallback,
 }) {
   const router = useRouter();
 
-  const {
-    firstName,
-    lastName,
-    image,
-    race,
-    party,
-    likelyVoters,
-    votesNeeded,
-  } = candidate;
-
-  const StickyWrapperElement = ({ children }) => (
-    <>
-      {!isMobile ? (
-        <div>{children}</div>
-      ) : (
-        <Sticky
-          boundaryElement=".scroll-area"
-          hideOnBoundaryHit={false}
-          dontUpdateHolderHeightWhenSticky
-        >
-          <Inner>{children}</Inner>
-        </Sticky>
-      )}
-    </>
-  );
+  const { firstName, lastName, image, race, party } = candidate;
 
   const WrapperElement = ({ children }) =>
     isMobile ? (
@@ -170,88 +142,90 @@ function ProfileInfo({
       </ScrollArea>
     );
   const supportCount = candidateSupports?.length || 0;
-  const intLikelyVoters = parseInt(likelyVoters, 10);
+
+  const achievements = achievementsHelper(supportCount);
 
   return (
     <WrapperElement>
       <ProfileInfoWrapper>
-        <AvatarSection>
-          <CandidateAvatar
-            avatar={image}
-            party={party}
-            size={isMobile ? 'small' : 'large'}
-            partyBadge
-          />
+        <VerticalOrder>
           <div>
-            <CandidateName>
-              {firstName} {lastName}
-            </CandidateName>
-            <PartyName>
-              {party === 'S' ? (
-                'SAM Party'
-              ) : (
-                <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
-              )}{' '}
-              candidate running for {race}
-            </PartyName>
-          </div>
-        </AvatarSection>
-        <Grid container>
-          <Grid item xs={6}>
-            <LikelyVoters>
-              <span>{kFormatter(intLikelyVoters + supportCount)}</span> likely
-              voters
-            </LikelyVoters>
-          </Grid>
-          <Grid item xs={6}>
-            {supportCount === 0 ? (
-              <>&nbsp;</>
-            ) : (
-              <LikelyVoters>
-                <span>{supportCount}</span>
-                {supportCount === 1 ? 'person' : 'people'} endorsing
-              </LikelyVoters>
-            )}
-          </Grid>
-        </Grid>
-        <SupportersProgressBar
-          showSupporters={false}
-          votesNeeded={votesNeeded}
-          peopleSoFar={supportCount + intLikelyVoters}
-          fullWidth
-        />
-        <StickyWrapperElement>
-          <Box style={{ marginTop: 24 }} className="box box-left">
-            <ShareButton
-              trackShareCallback={trackShareCallback}
-              candidateId={candidate.id}
-            />
-          </Box>
-          <Box style={{ marginTop: 8 }} className="box box-right">
-            <SupportButton
-              isUserSupportCandidate={isUserSupportCandidate}
-              removeSupportCallback={removeSupportCallback}
-              supportCallback={supportCallback}
-            />
-          </Box>
-        </StickyWrapperElement>
+            <Endorsed>
+              <strong>
+                {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
+                endorsed.
+              </strong>{' '}
+              Let's get to {numberFormatter(achievements.nextStep)}!
+            </Endorsed>
 
-        <EndorsementDescription>
-          Your endorsement is a free way to show and grow grassroots support.{' '}
-          <Link
-            href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-            passHref
-          >
-            <a>Read more</a>
-          </Link>
-        </EndorsementDescription>
-        <Hidden xsDown>
+            <SupportersProgressBar
+              showSupporters={false}
+              votesNeeded={achievements.nextStep}
+              peopleSoFar={supportCount}
+              fullWidth
+              showSuffix={false}
+              withAchievement
+            />
+          </div>
+          <Hidden mdUp>
+            <RecentlyJoined
+              candidateSupports={candidateSupports}
+              adminDeleteSupportCallback={adminDeleteSupportCallback}
+              candidateId={candidate.id}
+              total={total}
+              previewMode
+              scrollForMore
+            />
+          </Hidden>
+          <AvatarSection>
+            <CandidateAvatar
+              avatar={image}
+              party={party}
+              size={isMobile ? 'small' : 'large'}
+              partyBadge
+            />
+            <div style={{ flex: 1 }}>
+              <CandidateName>
+                {firstName} {lastName}
+              </CandidateName>
+              <PartyName>
+                {party === 'S' ? (
+                  'SAM Party'
+                ) : (
+                  <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
+                )}{' '}
+                candidate running for {race}
+              </PartyName>
+            </div>
+          </AvatarSection>
+        </VerticalOrder>
+
+        <Hidden smDown>
           <RecentlyJoined
             candidateSupports={candidateSupports}
             adminDeleteSupportCallback={adminDeleteSupportCallback}
             candidateId={candidate.id}
             total={total}
+            previewMode
           />
+
+          <EndorsmentWrapper>
+            <SupportButton
+              supportCallback={supportCallback}
+              removeSupportCallback={removeSupportCallback}
+              isUserSupportCandidate={isUserSupportCandidate}
+            />
+            <div style={{ marginTop: '12px' }}>
+              Your endorsement is a free and powerful way to show and grow
+              grassroots support.{' '}
+              <Link
+                href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                passHref
+              >
+                <a>Read more.</a>
+              </Link>
+            </div>
+          </EndorsmentWrapper>
         </Hidden>
       </ProfileInfoWrapper>
     </WrapperElement>
