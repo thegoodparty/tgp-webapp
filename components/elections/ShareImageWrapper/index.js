@@ -89,6 +89,7 @@ const HelperText = styled(Body11)`
 const Endorsed = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
   text-align: left;
+  padding-left: 5px;
 `;
 
 const WrapperTitle = styled(Body19)`
@@ -209,7 +210,8 @@ function ShareImage({
           </AvatarWrapper>
           <Endorsed>
             <strong>
-              {supportCount} {supportCount === 1 ? 'person' : 'people'} endorsed.
+              {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
+              endorsed.
             </strong>{' '}
             Let's get to {numberFormatter(achievements.nextStep)}!
           </Endorsed>
