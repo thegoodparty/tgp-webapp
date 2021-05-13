@@ -53,6 +53,7 @@ const AchievementWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  text-align: left;
   width: 100%;
   font-size: 13px;
   line-height: 18px;
