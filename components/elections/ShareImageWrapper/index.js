@@ -87,8 +87,8 @@ const HelperText = styled(Body11)`
 `;
 
 const Endorsed = styled(Body13)`
-  text-align: center;
   color: ${({ theme }) => theme.colors.gray4};
+  text-align: left;
 `;
 
 const WrapperTitle = styled(Body19)`
@@ -162,7 +162,6 @@ function ShareImage({
             <PartyName>{race}</PartyName>
           </NameWrapper>
         </AvatarWrapper>
-        <HelperText>Crowd-voting campaign stats, so far:</HelperText>
         <Endorsed>
           <strong>
             {supportCount} {supportCount === 1 ? 'person' : 'people'} endorsed.
@@ -208,7 +207,6 @@ function ShareImage({
               <PartyName>{race}</PartyName>
             </NameWrapper>
           </AvatarWrapper>
-          <HelperText>Crowd-voting campaign stats, so far:</HelperText>
           <Endorsed>
             <strong>
               {supportCount} {supportCount === 1 ? 'person' : 'people'} endorsed.

@@ -72,7 +72,7 @@ const ButtonInner = styled.div`
 `;
 
 const Endorsed = styled(Body13)`
-  text-align: center;
+  text-align: left;
   color: ${({ theme }) => theme.colors.gray4};
 `;
 
