@@ -13,10 +13,11 @@ import Box from '@material-ui/core/Box';
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
 
-import { Body9, Body11, Body19 } from '../../shared/typogrophy';
+import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
-import { kFormatter } from '../../../helpers/numberHelper';
+import { kFormatter, numberFormatter } from '../../../helpers/numberHelper';
+import { achievementsHelper } from '../../../helpers/achievementsHelper';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
@@ -84,6 +85,12 @@ const HelperText = styled(Body11)`
     text-align: left;
   }
 `;
+
+const Endorsed = styled(Body13)`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray4};
+`;
+
 const WrapperTitle = styled(Body19)`
   && {
     font-style: normal;
@@ -128,6 +135,7 @@ function ShareImage({
   };
   const intLikelyVoters = parseInt(likelyVoters, 10);
   const longName = firstName.length + lastName.length > 14;
+  const achievements = achievementsHelper(supportCount);
 
   return (
     <>
@@ -155,27 +163,19 @@ function ShareImage({
           </NameWrapper>
         </AvatarWrapper>
         <HelperText>Crowd-voting campaign stats, so far:</HelperText>
-        <Grid container>
-          <Grid row xs={6}>
-            <LikelyVoters>
-              <span>{kFormatter(likelyVoters + supportCount)}</span> likely voters
-            </LikelyVoters>
-          </Grid>
-          <Grid row xs={6}>
-            {supportCount === 0 ? (
-              <>&nbsp;</>
-            ) : (
-              <LikelyVoters>
-                <span>{kFormatter(supportCount)}</span> people supporting
-              </LikelyVoters>
-            )}
-          </Grid>
-        </Grid>
+        <Endorsed>
+          <strong>
+            {supportCount} {supportCount === 1 ? 'person' : 'people'} endorsed.
+          </strong>{' '}
+          Let's get to {numberFormatter(achievements.nextStep)}!
+        </Endorsed>
         <SupportersProgressBar
           showSupporters={false}
-          votesNeeded={votesNeeded}
-          peopleSoFar={supportCount + intLikelyVoters}
+          votesNeeded={achievements.nextStep}
+          peopleSoFar={supportCount}
           fullWidth
+          showSuffix={false}
+          withAchievement
         />
         {withRender && (
           <Box style={{ marginTop: 20, textAlign: 'center' }}>
@@ -209,27 +209,19 @@ function ShareImage({
             </NameWrapper>
           </AvatarWrapper>
           <HelperText>Crowd-voting campaign stats, so far:</HelperText>
-          <Grid container>
-            <Grid row xs={6}>
-              <LikelyVoters>
-                <span>{kFormatter(likelyVoters)}</span> likely voters
-              </LikelyVoters>
-            </Grid>
-            <Grid row xs={6}>
-              {supportCount === 0 ? (
-                <>&nbsp;</>
-              ) : (
-                <LikelyVoters>
-                  <span>{kFormatter(supportCount)}</span> people supporting
-                </LikelyVoters>
-              )}
-            </Grid>
-          </Grid>
+          <Endorsed>
+            <strong>
+              {supportCount} {supportCount === 1 ? 'person' : 'people'} endorsed.
+            </strong>{' '}
+            Let's get to {numberFormatter(achievements.nextStep)}!
+          </Endorsed>
           <SupportersProgressBar
             showSupporters={false}
-            votesNeeded={votesNeeded}
-            peopleSoFar={supportCount + intLikelyVoters}
+            votesNeeded={achievements.nextStep}
+            peopleSoFar={supportCount}
             fullWidth
+            showSuffix={false}
+            withAchievement
           />
           {withRender && (
             <Box style={{ marginTop: 20, textAlign: 'center' }}>

@@ -84,8 +84,6 @@ function CandidateCard({ candidate }) {
     image,
     race,
     party,
-    likelyVoters,
-    votesNeeded,
     supporters,
     headline,
   } = candidate;
