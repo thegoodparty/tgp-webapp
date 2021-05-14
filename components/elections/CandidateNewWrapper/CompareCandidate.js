@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { H3, Body11 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { BiLinkExternal } from 'react-icons/bi';
+import { getValidImgUrl } from 'helpers/linkHelper';
 import TooltipModal from './TooltipModal';
 
 const CandidateName = styled(H3)`
@@ -90,7 +91,7 @@ function ComparedCandidate({
     <>
       <CandidateAvatar
         party={cleanParty}
-        avatar={encodeURI(image)}
+        avatar={encodeURI(getValidImgUrl(image))}
         centered
         partyBadge={partyBadge}
       />
