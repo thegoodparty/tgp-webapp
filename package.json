@@ -83,7 +83,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.45",
     "@svgr/webpack": "^5.5.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "chalk": "^2.4.2",
     "compression": "1.7.4",
     "connected-next-router": "^4.0.0",
