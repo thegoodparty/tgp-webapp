@@ -267,23 +267,25 @@ function MainWrapper({
               />
             </Element>
           </SectionWrapper>
-          <FixedEndorse>
-            <SupportButton
-              supportCallback={supportCallback}
-              removeSupportCallback={removeSupportCallback}
-              isUserSupportCandidate={isUserSupportCandidate}
-            />
-            <div style={{ marginTop: '8px' }} className="text-center">
-              Your endorsement is a free and powerful way to show and grow
-              grassroots support.{' '}
-              <Link
-                href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-                passHref
-              >
-                <a>Read more.</a>
-              </Link>
-            </div>
-          </FixedEndorse>
+          {!isUserSupportCandidate && (
+            <FixedEndorse>
+              <SupportButton
+                supportCallback={supportCallback}
+                removeSupportCallback={removeSupportCallback}
+                isUserSupportCandidate={isUserSupportCandidate}
+              />
+              <div style={{ marginTop: '8px' }} className="text-center">
+                Your endorsement is a free and powerful way to show and grow
+                grassroots support.{' '}
+                <Link
+                  href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                  passHref
+                >
+                  <a>Read more.</a>
+                </Link>
+              </div>
+            </FixedEndorse>
+          )}
         </Hidden>
 
         <TopQuestions articles={articles} />
