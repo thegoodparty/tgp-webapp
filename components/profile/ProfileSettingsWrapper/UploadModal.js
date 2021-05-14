@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
@@ -60,9 +60,14 @@ function UploadModal({ open, closeModalCallback, uploadImageCallback }) {
     setBase64Img(false);
     closeModalCallback();
   };
+  useEffect(() => {
+    if (open) {
+      setBase64Img(false);
+    }
+  }, [open])
   return (
     <Dialog open={open} fullScreen onClose={handleClose}>
-      <Wrapper className={base64Img ? 'with-image' : ''}>
+      <Wrapper className="with-image">
         <Inner>
           {base64Img ? (
             <div className="text-center">
@@ -74,10 +79,11 @@ function UploadModal({ open, closeModalCallback, uploadImageCallback }) {
               </PurpleButton>
             </div>
           ) : (
-            <>
-              Upload a new profile image
-              <br />
-              <br />
+            <div className="text-center">
+              <H2>Crop Your Photo</H2>
+              <StyledBody>
+                Drag the corners to highlight the photo you’d like
+              </StyledBody>
               <ImageCrop
                 showTitle={false}
                 withPreview={false}
@@ -93,7 +99,7 @@ function UploadModal({ open, closeModalCallback, uploadImageCallback }) {
                   </PurpleButton>
                 }
               />
-            </>
+            </div>
           )}
         </Inner>
       </Wrapper>

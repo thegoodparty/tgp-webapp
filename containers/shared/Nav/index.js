@@ -15,7 +15,8 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 import reducer from 'containers/you/YouPage/reducer';
 import saga from 'containers/you/YouPage/saga';
-
+import { useRouter } from 'next/router';
+import { getUserCookie } from 'helpers/cookieHelper';
 import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
 import candidateActions from 'containers/elections/CandidateNewPage/actions';
@@ -26,7 +27,8 @@ export function Nav({ userState, dispatch, trackShareCallback }) {
 
   const [user, setUser] = React.useState(null);
   const stateUser = userState.user;
-
+  const router = useRouter();
+  const { updated } = router.query;
   useEffect(() => {
     if (!stateUser) {
       dispatch(userActions.loadUserFromCookieAction());
@@ -35,12 +37,14 @@ export function Nav({ userState, dispatch, trackShareCallback }) {
       setUser(stateUser);
     }
   }, [stateUser]);
-
+  useEffect(() => {
+    const tempUser = getUserCookie(true);
+    setUser(tempUser);
+  }, [updated]);
   const childProps = {
     user,
     trackShareCallback,
   };
-
   return <NavWrapper {...childProps} />;
 }
 
