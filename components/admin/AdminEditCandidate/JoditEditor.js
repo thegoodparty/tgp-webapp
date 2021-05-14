@@ -12,7 +12,7 @@ const JoditEditor = dynamic(importJodit, {
 
 const JoditEditorWrapper = ({
   initialText = '',
-  onChangeCallback = () => { },
+  onChangeCallback = () => {},
 }) => {
   const editor = useRef(null);
   const [content, setContent] = useState('');
@@ -60,7 +60,14 @@ const JoditEditorWrapper = ({
       value={content}
       config={config}
       tabIndex={1} // tabIndex of textarea
-      onBlur={newContent => onBlur(newContent.target.innerHTML)} // preferred to use only this option to update the content for performance reasons
+      onBlur={newContent => {
+        if (typeof newContent === 'string') {
+          onBlur(newContent);
+        } else {
+          // preferred to use only this option to update the content for performance reasons
+          onBlur(newContent?.target?.innerHTML);
+        }
+      }}
     />
   );
 };
