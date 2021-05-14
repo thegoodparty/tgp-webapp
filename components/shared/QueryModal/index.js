@@ -12,6 +12,7 @@ import Dialog from '@material-ui/core/Dialog';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
 import { Body11, Body13, H2 } from 'components/shared/typogrophy';
 import { PurpleButton, OutlinedButton } from '../../shared/buttons';
 
@@ -80,8 +81,11 @@ function QueryModal({
     `(max-width: ${theme.breakpointsPixels.md}px)`,
   );
   const [close, setClose] = useState(false);
+  const router = useRouter();
+  const isCandidatePage = router.route === '/candidate/[...NameIdTab]';
+
   useEffect(() => {
-    if (close && !closeTitle) {
+    if (close && (!closeTitle || !isCandidatePage)) {
       closeModalCallback();
     }
   }, [close]);
@@ -90,7 +94,7 @@ function QueryModal({
       onClose={() => setClose(true)}
       open
       fullScreen={fullScreen}
-      className={`${close && 'close-dialog'} ${mode} `}
+      className={`${close && isCandidatePage && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
       {!closeTitle && !hideClose && (
@@ -102,8 +106,8 @@ function QueryModal({
           />
         </TopWrapper>
       )}
-      {(!closeTitle || !close) && children}
-      {closeTitle && close && (
+      {(!closeTitle || !close || !isCandidatePage) && children}
+      {closeTitle && close && isCandidatePage && (
         <>
           <H2 style={{ color: '#292936' }}>{closeTitle}</H2>
           <Body13 style={{ color: '#11111F', marginTop: 8 }}>
