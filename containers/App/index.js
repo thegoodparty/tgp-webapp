@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import history from 'utils/history';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import ENV from 'api/ENV';
 import Head from 'next/head';
 
@@ -35,8 +35,8 @@ import QueryRoutes from './QueryRoutes';
 
 if (ENV === 'prod') {
   history.listen(location => {
-    ReactGA.set({ page: location.pathname });
-    ReactGA.pageview(location.pathname);
+    // ReactGA.set({ page: location.pathname });
+    // ReactGA.pageview(location.pathname);
     if (typeof fbq === 'function') {
       fbq('track', 'PageView');
     }
@@ -51,9 +51,9 @@ function App({ dispatch }) {
     if (user) {
       dispatch(globalActions.refreshTokenAction());
     }
-    if (ENV === 'prod') {
-      ReactGA.pageview(window.location.pathname);
-    }
+    // if (ENV === 'prod') {
+    //   ReactGA.pageview(window.location.pathname);
+    // }
     dispatch(globalActions.loadContentAction());
 
     fullStoryIdentify();

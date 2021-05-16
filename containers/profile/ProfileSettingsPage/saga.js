@@ -8,10 +8,10 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import globalActions from 'containers/App/actions';
 
 import tgpApi from 'api/tgpApi';
+import { logEvent } from 'services/AnalyticsService';
 
 import types from './constants';
 import actions from './actions';
-import AnalyticsService from '../../../services/AnalyticsService';
 
 function* updateUser(action) {
   try {
@@ -62,10 +62,7 @@ function* changePassword({ password, oldPassword }) {
           'error',
         ),
       );
-      AnalyticsService.sendEvent(
-        'change-password',
-        'error - incorrect password',
-      );
+      logEvent('change-password', 'error - incorrect password');
       yield put(
         globalActions.logErrorAction(
           'change password - incorrect password',
@@ -79,7 +76,7 @@ function* changePassword({ password, oldPassword }) {
           'error',
         ),
       );
-      AnalyticsService.sendEvent('change-password', 'error');
+      logEvent('change-password', 'error');
     }
   }
 }

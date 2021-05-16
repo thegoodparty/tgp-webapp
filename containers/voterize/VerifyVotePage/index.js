@@ -14,7 +14,7 @@ import { push } from 'connected-next-router';
 
 import userReducer from 'containers/you/YouPage/reducer';
 import queryHelper from 'helpers/queryHelper';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -63,7 +63,7 @@ export function VerifyVotePage({
       setSignupRedirectCookie('/verify-vote');
       dispatch(push('?register=true'));
     }
-    AnalyticsService.sendEvent('Voter Registration', 'View Voterize Page');
+    logEvent('Voter Registration', 'View Voterize Page');
   }, [user]);
   const { loading, voteStatus, vaResponse } = verifyVotePage;
   const childProps = {

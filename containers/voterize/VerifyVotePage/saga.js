@@ -6,7 +6,7 @@ import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import globalActions from 'containers/App/actions';
 import { electionRoute } from 'helpers/electionsHelper';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 import { getUserFromStateOrCookie } from 'helpers/userHelper';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 
@@ -16,7 +16,7 @@ import actions from './actions';
 function* verifyVoter({ voter }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Checking Voter Registration'));
-    AnalyticsService.sendEvent('Voter Registration', 'Submit Voterize Form');
+    logEvent('Voter Registration', 'Submit Voterize Form');
     const api = tgpApi.verifyVote;
     const payload = voter;
     const { voteStatus } = yield call(requestHelper, api, payload);
@@ -31,7 +31,7 @@ function* verifyVoter({ voter }) {
     if (voteStatus === 'verified') {
       yield put(push(`/elections/district/${voter.zip}`));
     }
-    AnalyticsService.sendEvent(
+    logEvent(
       'Voter Registration',
       'View Voterize Result',
       voteStatus,

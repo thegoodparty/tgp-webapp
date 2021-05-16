@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Body11, Body13, H2 } from 'components/shared/typogrophy';
 import { uuidUrl } from 'helpers/userHelper';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
 
 import {
@@ -190,7 +190,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const user = getUserCookie(true);
 
   useEffect(() => {
-    AnalyticsService.sendEvent('Sharing', 'Open Share Modal', candidate?.name);
+    logEvent('Sharing', 'Open Share Modal', candidate?.name);
   }, []);
   useEffect(() => {
     const sharebtns = document.getElementsByClassName('st-btn');
@@ -270,7 +270,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     trackShare('Copy to Clipboard');
   };
   const trackShare = (shareType = '') => {
-    AnalyticsService.sendEvent('Sharing', 'Click Share Method', shareType);
+    logEvent('Sharing', 'Click Share Method', shareType);
     // trackShareCallback(candidate);
   };
 

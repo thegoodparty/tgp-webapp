@@ -137,17 +137,17 @@ class CustomDocument extends Document {
 
           {this.props.styles}
           {/* google tag manager */}
-          <script
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-K2HCFR7');`,
-            }}
-          />
+{/*          <script*/}
+{/*            type="text/javascript"*/}
+{/*            dangerouslySetInnerHTML={{*/}
+{/*              __html: `*/}
+{/*(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':*/}
+{/*      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],*/}
+{/*    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=*/}
+{/*    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);*/}
+{/*  })(window,document,'script','dataLayer','GTM-K2HCFR7');`,*/}
+{/*            }}*/}
+{/*          />*/}
         </Head>
         <body>
           <Main />
@@ -201,8 +201,8 @@ class CustomDocument extends Document {
               style="display:none"
               src="https://www.facebook.com/tr?id=1530862867115121&ev=PageView&noscript=1"
             />
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2HCFR7"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+<!--            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2HCFR7"-->
+<!--                  height="0" width="0" style="display:none;visibility:hidden"></iframe>-->
           `,
             }}
           />

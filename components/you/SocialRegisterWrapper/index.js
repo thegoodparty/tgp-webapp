@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 
 import globals from 'globals';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 
 import SocialButton from './SocialButton';
 
@@ -124,7 +124,7 @@ function SocialRegisterWrapper({
   };
 
   const trackEmail = () => {
-    AnalyticsService.sendEvent(
+    logEvent(
       'Signup',
       'Click Signup Method',
       `Click Email Signup`,

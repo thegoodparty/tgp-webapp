@@ -21,7 +21,7 @@ import userActions from 'containers/you/YouPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-next-router';
 import { getSignupRedirectCookie } from 'helpers/cookieHelper';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 
 export function SocialRegisterPage({
   socialLoginCallback,
@@ -85,7 +85,7 @@ const mapStateToProps = createStructuredSelector({});
 function mapDispatchToProps(dispatch) {
   return {
     socialLoginCallback: user => {
-      AnalyticsService.sendEvent(
+      logEvent(
         'Signup',
         'Click Signup Method',
         `Click ${user._provider} Signup`,

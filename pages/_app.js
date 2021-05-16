@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
 import { ConnectedRouter } from 'connected-next-router';
@@ -6,6 +8,7 @@ import SnackbarContainer from 'containers/shared/SnackbarContainer';
 import GlobalStyles from 'theme/GlobalStyles';
 import store from 'redux/store';
 import QueryRoutes from 'containers/App/QueryRoutes';
+import { initGA4 } from 'services/AnalyticsService';
 
 import theme from 'theme';
 
@@ -26,6 +29,10 @@ if (typeof window !== 'undefined' && navigator && navigator.serviceWorker) {
 }
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    initGA4();
+  }, []);
+
   // force https
   if (typeof window !== 'undefined') {
     if (window.origin !== 'http://localhost:4000') {
