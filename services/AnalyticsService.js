@@ -21,7 +21,7 @@ export async function initGA4() {
 }
 
 function logPageView() {
-  ga4react.pageview(window.location.pathname);
+  ga4react?.pageview(window.location.pathname);
 }
 
 function logPageViews() {
@@ -33,5 +33,5 @@ function logPageViews() {
 }
 
 export function logEvent(action, label, category) {
-  ga4react.event(action, label, category);
+  ga4react?.event(action, label, category);
 }
