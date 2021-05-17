@@ -30,6 +30,21 @@ const TopBannerWrapper = styled.div`
 
 const HomeWrapper = styled.div`
   width: 100%;
+  padding: 0 32px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.contentMax}) {
+    padding: 0;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.lg}) {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.sm}) {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
 `;
 function PageWrapper({
   children,

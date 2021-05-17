@@ -24,11 +24,11 @@ const Content = styled.div`
   overflow-x: hidden;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto 48px;
-  padding: 0 18px;
+  padding: 0;
   @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    padding: 48px 18px;
+    padding: 48px 0;
     overflow-x: visible;
-    max-width: 1310px;
+    max-width: 1280px;
   }
 
 `;
