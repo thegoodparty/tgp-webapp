@@ -177,7 +177,7 @@ function MainWrapper({
         </SectionWrapper>
         <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionHeader style={{ marginBottom: '4px' }}>
-            Campaign socials
+            Candidate socials
           </SectionHeader>
 
           <div style={{ marginTop: '24px' }}>
