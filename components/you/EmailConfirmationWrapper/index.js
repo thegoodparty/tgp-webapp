@@ -130,7 +130,6 @@ const EmailConfirmationWrapper = ({ loading, error, resendEmailCallback }) => {
       style={wrapperStyles}
       wrapperStyles={wrapperStyles}
       mobileHeaderProps={{ whiteBackButton: true }}
-      className="responsive-margin"
     >
       {loading ? (
         <LoadingAnimation label="Verifying your email" />

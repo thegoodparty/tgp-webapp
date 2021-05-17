@@ -83,18 +83,6 @@ const GlobalStyles = createGlobalStyle`
     align-items: center;
     justify-content: center;
   }
-  .responsive-margin {
-    padding-right: 32px !important;
-    padding-left: 32px !important;
-    @media only screen and (max-width: 1024px) { 
-      padding-right: 24px !important;
-      padding-left: 24px !important;
-    }
-    @media only screen and (max-width: 600px) {
-      padding-right: 18px !important;
-      padding-left: 18px !important;
-    }
-  }
 `;
 
 export default GlobalStyles;
