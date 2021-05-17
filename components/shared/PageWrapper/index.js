@@ -30,6 +30,23 @@ const TopBannerWrapper = styled.div`
 
 const HomeWrapper = styled.div`
   width: 100%;
+  padding: 0 32px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.contentMax}) {
+    padding: 0;
+    min-height: calc(100vh - 40px);
+    //min-height: calc(var(--vh, 1vh) * 100 - 40px);
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.lg}) {
+    padding-right: 24px !important;
+    padding-left: 24px !important;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.sm}) {
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+  }
 `;
 function PageWrapper({
   children,

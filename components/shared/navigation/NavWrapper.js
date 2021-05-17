@@ -8,25 +8,23 @@ import AdminMenu from 'components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
-const NavWrapper = ({ pathname, user, trackShareCallback }) => {
-  return (
-    <>
-      <Hidden smDown>
-        <DesktopHeader
-          user={user}
-          pathname={pathname}
-          trackShareCallback={trackShareCallback}
-        />
-        <RegisterBannerContainer />
-      </Hidden>
-      <Hidden mdUp>
-        <MobileHeader user={user} />
-      </Hidden>
+const NavWrapper = ({ pathname, user, trackShareCallback }) => (
+  <>
+    <Hidden smDown>
+      <DesktopHeader
+        user={user}
+        pathname={pathname}
+        trackShareCallback={trackShareCallback}
+      />
+      <RegisterBannerContainer />
+    </Hidden>
+    <Hidden mdUp>
+      <MobileHeader user={user} />
+    </Hidden>
 
-      {user?.isAdmin && <AdminMenu />}
-    </>
-  );
-};
+    {user?.isAdmin && <AdminMenu />}
+  </>
+);
 
 NavWrapper.propTypes = {
   pathname: PropTypes.string,

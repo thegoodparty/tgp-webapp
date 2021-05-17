@@ -104,7 +104,7 @@ const FaqListWrapper = ({ content }) => {
           <HeroText>Help Center</HeroText>
         </ContentWrapper>
       </Hero>
-      <ContentWrapper>
+      <ContentWrapper className="responsive-margin">
         <Breadcrumbs links={breadcrumbsLinks} />
         <StyledH1 data-cy="faqs-page-title">
           Frequently Asked Questions

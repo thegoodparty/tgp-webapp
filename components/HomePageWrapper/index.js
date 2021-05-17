@@ -73,9 +73,9 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     <PageWrapper isFullWidth purple>
       {sections.map((section, index) => (
         <Section
-          className={`${section.sectionClass ? section.sectionClass : ''} ${
-            section.noContent ? 'no-padding' : ''
-          }`}
+          className={`responsive-margin ${
+            section.sectionClass ? section.sectionClass : ''
+          } ${section.noContent ? 'no-padding' : ''}`}
           key={index}
         >
           {section.noContent ? (
