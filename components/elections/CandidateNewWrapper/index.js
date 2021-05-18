@@ -19,14 +19,14 @@ import ShareModal from './ShareModal';
 import { H1 } from '../../shared/typogrophy';
 
 const ContentWrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
   margin: 0 auto;
   max-width: 1080px;
   padding-bottom: 48px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    padding: 24px 18px 64px;
+    padding: 24px 0 64px;
   }
 `;
 
