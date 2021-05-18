@@ -45,19 +45,10 @@ const TitleCase = styled.span`
 const For = styled.div`
   font-size: 13px;
   color: ${({ theme }) => theme.colors.gray4};
-  margin-bottom: 28px;
+  margin-bottom: 24px;
+  min-height: 36px;
 `;
 
-const LikelyVoters = styled.div`
-  color: ${({ theme }) => theme.colors.gray7};
-  font-size: 11px;
-  span {
-    color: ${({ theme }) => theme.colors.gray3};
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 4px;
-  }
-`;
 
 const Headline = styled.div`
   color: ${({ theme }) => theme.colors.gray4};

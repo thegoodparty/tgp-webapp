@@ -208,6 +208,12 @@ const api = {
     find: {
       url: `${base}new-candidate`,
       method: 'GET',
+      withAuth: true,
+    },
+    findInactive: {
+      url: `${base}new-candidate-inactive`,
+      method: 'GET',
+      withAuth: true,
     },
     findWithInactive: {
       url: `${base}new-candidate-with-inactive`,
