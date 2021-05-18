@@ -20,7 +20,7 @@ const BarBg = styled.div`
   margin: 10px 0;
   width: 80%;
   position: relative;
-  height: 12px;
+  height: 18px;
   background-color: ${({ theme }) => theme.colors.grayC};
   border-radius: 12px;
 
@@ -31,7 +31,7 @@ const BarBg = styled.div`
 
 const Bar = styled.div`
   position: absolute;
-  height: 12px;
+  height: 18px;
   border-radius: 12px;
 
   background-color: ${({ theme }) => theme.colors.purple};
