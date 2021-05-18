@@ -37,7 +37,7 @@ const Inner2 = styled.div`
 
 const ProfileInfoWrapper = styled.div`
   border-radius: 8px;
-  padding: 0 18px 0;
+  padding: 0;
 
   .sticky {
     z-index: 1000;

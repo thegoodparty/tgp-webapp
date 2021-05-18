@@ -20,7 +20,7 @@ import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
 
 const Content = styled.div`
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto 48px;

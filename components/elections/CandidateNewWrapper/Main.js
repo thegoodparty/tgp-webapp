@@ -27,11 +27,7 @@ import ShareButton from './ShareButton';
 import Updates from './Updates';
 
 const Padder = styled.div`
-  padding: 0 18px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    padding: 0;
-  }
+  padding: 0;
 `;
 
 const SectionWrapper = styled.div`
@@ -43,7 +39,21 @@ const FixedEndorse = styled.div`
   bottom: 0;
   left: 0;
   width: 100vw;
-  padding: 16px 18px;
+  padding: 16px 32px;
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.contentMax}) {
+    padding: 16px 32px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.lg}) {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.sm}) {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
   background-color: ${({ theme }) => theme.colors.purple3};
   filter: drop-shadow(0px 0px 16px rgba(62, 0, 140, 0.16));
   font-size: 13px;
@@ -51,7 +61,7 @@ const FixedEndorse = styled.div`
 `;
 
 const HeadlineWrapper = styled.div`
-  padding: 18px;
+  padding: 18px 0;
 `;
 
 const SectionHeader = styled(Body19)`
@@ -88,7 +98,7 @@ const YoutubePlayer = styled(ReactPlayer)`
 
 const YoutubePlayerWrapper = styled.div`
   overflow: hidden;
-  padding: 18px;
+  padding: 18px 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding: 0;
