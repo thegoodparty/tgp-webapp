@@ -1,3 +1,5 @@
+const LOAD_INACTIVE_CANDIDATE =
+  '@@tgp/candidateNewPage/LOAD_INACTIVE_CANDIDATE';
 const LOAD_CANDIDATE = '@@tgp/candidateNewPage/LOAD_CANDIDATE';
 const LOAD_CANDIDATE_SUCCESS = '@@tgp/candidateNewPage/LOAD_CANDIDATE_SUCCESS';
 const LOAD_CANDIDATE_ERROR = '@@tgp/candidateNewPage/LOAD_CANDIDATE_ERROR';
@@ -24,6 +26,7 @@ const ADMIN_DELETE_SUPPORT = '@@tgp/candidateNewPage/ ADMIN_DELETE_SUPPORT';
 const TRACK_SHARE = '@@tgp/candidateNewPage/TRACK_SHARE';
 
 export default {
+  LOAD_INACTIVE_CANDIDATE,
   LOAD_CANDIDATE,
   LOAD_CANDIDATE_SUCCESS,
   LOAD_CANDIDATE_ERROR,

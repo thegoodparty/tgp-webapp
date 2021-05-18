@@ -4,8 +4,9 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import ErrorPage from 'next/error';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -38,6 +39,8 @@ export function CandidateNewPage({
   adminDeleteSupportCallback,
   trackShareCallback,
 }) {
+  const [candidate, setCandidate] = useState({});
+  const [show404, setShow404] = useState(false);
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
   let user = getUserCookie(true);
@@ -49,36 +52,50 @@ export function CandidateNewPage({
   const supportLink = router.query.support;
   const fromShareLink = router.query.fromshare;
 
-  let candidate;
+  const stateCandidate = candidateNewPage.candidate;
 
-  if (ssrState) {
-    ({ candidate } = ssrState);
-    dispatch(actions.loadCandidateActionSuccess(candidate));
-  }
+  const { NameIdTab } = router.query;
+  const candidateId = NameIdTab[1];
+  useEffect(() => {
+    setShow404(false);
+    if (Object.keys(ssrState.candidate).length === 0 && user?.isAdmin) {
+      if (candidateNewPage.candidate) {
+        setCandidate(candidateNewPage.candidate);
+      } else {
+        dispatch(actions.loadInactiveCandidateAction(NameIdTab[1]));
+      }
+    } else {
+      if (Object.keys(ssrState.candidate).length === 0) {
+        setShow404(true);
+      }
+      setCandidate(ssrState.candidate);
+      dispatch(actions.loadCandidateActionSuccess(ssrState.candidate));
+    }
+  }, [NameIdTab, stateCandidate]);
 
   useEffect(() => {
     // redirect to correct route
-    const { NameIdTab } = router.query;
 
     if (
       typeof window !== 'undefined' &&
       (!NameIdTab ||
-        NameIdTab[0] !== `${candidate.firstName}-${candidate.lastName}`)
+        NameIdTab[0] !== `${candidate.firstName}-${candidate.lastName}`) &&
+      Object.keys(candidate).length !== 0
     ) {
       router.replace(
-        `/candidate/${candidate.firstName}-${candidate.lastName}/${
-          candidate.id
-        }${window.location.search}`,
+        `/candidate/${candidate.firstName}-${
+          candidate.lastName
+        }/${candidateId}${window.location.search}`,
       );
     }
-  }, [candidate.id]);
+  }, [candidateId]);
 
   useEffect(() => {
     if (!userSupports && user) {
       dispatch(actions.userSupportsAction());
     }
-    dispatch(actions.candidateSupportsAction(candidate?.id));
-  }, [candidate.id]);
+    dispatch(actions.candidateSupportsAction(candidateId));
+  }, [candidateId]);
 
   const emptyCandidate = () =>
     Object.keys(candidate).length === 0 && candidate.constructor === Object;
@@ -103,13 +120,16 @@ ${race}.`;
     fromShareLink,
     supportLink,
     user,
-    isUserSupportCandidate: userSupports && userSupports[candidate.id],
+    isUserSupportCandidate: userSupports && userSupports[candidateId],
     previewNextStepCallback,
     candidateSupports,
     total,
     adminDeleteSupportCallback,
     trackShareCallback,
   };
+  if (show404) {
+    return <ErrorPage statusCode={404} />;
+  }
   return (
     <div>
       {candidate && !emptyCandidate() && (
@@ -117,8 +137,8 @@ ${race}.`;
           title={title}
           description={description}
           image={`https://s3-us-west-2.amazonaws.com/assets.goodparty.org/share-image/${firstName
-            .trim()
-            .toLowerCase()}-${lastName.trim().toLowerCase()}-${id}${
+            ?.trim()
+            ?.toLowerCase()}-${lastName?.trim()?.toLowerCase()}-${id}${
             supportLink ? '-support' : '-share'
           }.jpeg`}
         />

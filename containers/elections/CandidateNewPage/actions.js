@@ -1,10 +1,13 @@
 import types from './constants';
 
-const loadCandidateAction = (id, chamber, isIncumbent) => ({
+const loadInactiveCandidateAction = id => ({
+  type: types.LOAD_INACTIVE_CANDIDATE,
+  id,
+});
+
+const loadCandidateAction = id => ({
   type: types.LOAD_CANDIDATE,
   id,
-  chamber,
-  isIncumbent,
 });
 
 const loadCandidateActionSuccess = candidate => ({
@@ -88,6 +91,8 @@ const trackShare = candidateId => ({
 });
 
 export default {
+  loadInactiveCandidateAction,
+
   loadCandidateAction,
   loadCandidateActionSuccess,
   loadCandidateActionError,

@@ -245,7 +245,7 @@ function MainWrapper({
             Compare {firstName} {lastName} with others
           </SectionHeader>
           <ComparedCandidateCarousel
-            candidates={comparedCandidates.candidates}
+            candidates={comparedCandidates?.candidates}
           />
         </SectionWrapper>
 
