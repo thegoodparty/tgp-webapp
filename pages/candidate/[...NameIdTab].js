@@ -23,7 +23,6 @@ export async function getServerSideProps(context) {
         candidate: {},
       };
     }
-
     return {
       props: {
         ssrState: {

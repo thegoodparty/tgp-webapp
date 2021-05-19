@@ -215,7 +215,7 @@ function ProfileInfo({
               removeSupportCallback={removeSupportCallback}
               isUserSupportCandidate={isUserSupportCandidate}
             />
-            <div style={{ marginTop: '12px' }}>
+            {/* <div style={{ marginTop: '12px' }}>
               Your endorsement is a free and powerful way to show and grow
               grassroots support.{' '}
               <Link
@@ -224,7 +224,7 @@ function ProfileInfo({
               >
                 <a>Read more.</a>
               </Link>
-            </div>
+            </div> */}
           </EndorsmentWrapper>
         </Hidden>
       </ProfileInfoWrapper>

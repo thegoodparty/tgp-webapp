@@ -11,7 +11,6 @@ export async function getServerSideProps() {
   const res = await fetch(api.url);
 
   const { candidates } = await res.json();
-
   return {
     props: {
       ssrState: {
