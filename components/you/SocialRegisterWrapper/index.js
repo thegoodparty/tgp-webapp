@@ -262,8 +262,6 @@ SocialRegisterWrapper.propTypes = {
   socialLoginFailureCallback: PropTypes.func,
   emailRegisterCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
-  blocName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  candidateName: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
 export default SocialRegisterWrapper;

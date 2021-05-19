@@ -1,5 +1,6 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'connected-next-router';
+import Router from 'next/router';
 
 import requestHelper from 'helpers/requestHelper';
 import {
@@ -17,11 +18,13 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import tgpApi from 'api/tgpApi';
 import { logEvent } from 'services/AnalyticsService';
 import globalActions from 'containers/App/actions';
+import queryHelper from 'helpers/queryHelper';
+import candidateActions from 'containers/elections/CandidateNewPage/actions';
+
 import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import queryHelper from '../../../helpers/queryHelper';
 
 function* register(action) {
   try {
@@ -50,7 +53,6 @@ function* register(action) {
     setCookie('token', token);
     deleteCookie('guestRanking');
     const cookieRedirect = getSignupRedirectCookie();
-    console.log('saga cookieRedirect', cookieRedirect);
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
@@ -58,6 +60,10 @@ function* register(action) {
       const queryCandidate = queryHelper(window?.location.search, 'candidate');
       if (queryCandidate) {
         yield put(push(`${window.location.pathname}?preview=true`));
+        // need to support here
+        yield put(
+          candidateActions.supportAction(Router?.router?.query?.NameIdTab[1]),
+        );
       } else {
         yield put(push(window.location.pathname));
       }
@@ -361,10 +367,7 @@ function* changePassword({ newPassword, oldPassword }) {
           'error',
         ),
       );
-      logEvent(
-        'change-password',
-        'error - incorrect password',
-      );
+      logEvent('change-password', 'error - incorrect password');
       yield put(
         globalActions.logErrorAction(
           'change password - incorrect password',
@@ -473,11 +476,7 @@ function* socialLogin(action) {
     } else {
       yield put(snackbarActions.showSnakbarAction('Error Signing in', 'error'));
     }
-    logEvent(
-      'social-login',
-      'error',
-      action?.user?._provider,
-    );
+    logEvent('social-login', 'error', action?.user?._provider);
     yield put(
       globalActions.logErrorAction(
         `social login error. provider: ${action?.user?._provider}`,
