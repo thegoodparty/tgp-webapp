@@ -95,9 +95,7 @@ const topics = {
 };
 
 function TooltipModal({ topic, closeModalCallback }) {
-  console.log('topis', topic);
   const text = topic ? topics[topic.toUpperCase()] : false;
-  console.log('text', text);
   return (
     <TgpDialog onClose={closeModalCallback} open={text}>
       <TopWrapper>
