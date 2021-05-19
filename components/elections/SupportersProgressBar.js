@@ -58,6 +58,7 @@ const AchievementWrapper = styled.div`
   font-size: 13px;
   line-height: 18px;
   color: ${({ theme }) => theme.colors.gray4};
+  padding-left: 8px;
 `;
 
 const Icon = styled.img`

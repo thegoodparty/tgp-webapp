@@ -242,7 +242,7 @@ function MainWrapper({
         </SectionWrapper>
         <SectionWrapper>
           <SectionHeader>
-            Compare {firstName} {lastName} with others
+            Compare candidates in this race
           </SectionHeader>
           <ComparedCandidateCarousel
             candidates={comparedCandidates?.candidates}

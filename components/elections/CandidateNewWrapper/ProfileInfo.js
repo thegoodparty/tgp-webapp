@@ -151,11 +151,13 @@ function ProfileInfo({
         <VerticalOrder>
           <div>
             <Endorsed>
-              <strong>
-                {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
-                endorsed.
-              </strong>{' '}
-              Let's get to {numberFormatter(achievements.nextStep)}!
+              <div style={{ paddingLeft: '10px' }}>
+                <strong>
+                  {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
+                  endorsed.
+                </strong>{' '}
+                Let's get to {numberFormatter(achievements.nextStep)}!
+              </div>
             </Endorsed>
 
             <SupportersProgressBar
@@ -168,14 +170,16 @@ function ProfileInfo({
             />
           </div>
           <Hidden mdUp>
-            <RecentlyJoined
-              candidateSupports={candidateSupports}
-              adminDeleteSupportCallback={adminDeleteSupportCallback}
-              candidateId={candidate.id}
-              total={total}
-              previewMode
-              scrollForMore
-            />
+            <div style={{ paddingLeft: '10px' }}>
+              <RecentlyJoined
+                candidateSupports={candidateSupports}
+                adminDeleteSupportCallback={adminDeleteSupportCallback}
+                candidateId={candidate.id}
+                total={total}
+                previewMode
+                scrollForMore
+              />
+            </div>
           </Hidden>
           <AvatarSection>
             <CandidateAvatar
@@ -201,14 +205,15 @@ function ProfileInfo({
         </VerticalOrder>
 
         <Hidden smDown>
-          <RecentlyJoined
-            candidateSupports={candidateSupports}
-            adminDeleteSupportCallback={adminDeleteSupportCallback}
-            candidateId={candidate.id}
-            total={total}
-            previewMode
-          />
-
+          <div style={{ paddingLeft: '8px' }}>
+            <RecentlyJoined
+              candidateSupports={candidateSupports}
+              adminDeleteSupportCallback={adminDeleteSupportCallback}
+              candidateId={candidate.id}
+              total={total}
+              previewMode
+            />
+          </div>
           <EndorsmentWrapper>
             <SupportButton
               supportCallback={supportCallback}
