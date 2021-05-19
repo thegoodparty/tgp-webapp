@@ -31,7 +31,7 @@ const TgpDialog = styled(Dialog)`
       background: rgb(240, 236, 243);
       @media only screen and (min-width: ${({ theme }) =>
           theme.breakpointsPixels.md}) {
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.85);
       }
     }
 
