@@ -99,6 +99,7 @@ const WrapperTitle = styled(Body19)`
     line-height: 30px;
     color: #292936;
     margin-bottom: 15px;
+    padding-left: 8px;
   }
 `;
 function ShareImage({
@@ -164,10 +165,13 @@ function ShareImage({
           </NameWrapper>
         </AvatarWrapper>
         <Endorsed>
-          <strong>
-            {supportCount} {supportCount === 1 ? 'person' : 'people'} endorsed.
-          </strong>{' '}
-          Let's get to {numberFormatter(achievements.nextStep)}!
+          <div style={{ paddingLeft: '8px' }}>
+            <strong>
+              {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
+              endorsed.
+            </strong>{' '}
+            Let's get to {numberFormatter(achievements.nextStep)}!
+          </div>
         </Endorsed>
         <SupportersProgressBar
           showSupporters={false}
@@ -209,11 +213,13 @@ function ShareImage({
             </NameWrapper>
           </AvatarWrapper>
           <Endorsed>
-            <strong>
-              {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
-              endorsed.
-            </strong>{' '}
-            Let's get to {numberFormatter(achievements.nextStep)}!
+            <div style={{ paddingLeft: '8px' }}>
+              <strong>
+                {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
+                endorsed.
+              </strong>{' '}
+              Let's get to {numberFormatter(achievements.nextStep)}!
+            </div>
           </Endorsed>
           <SupportersProgressBar
             showSupporters={false}
