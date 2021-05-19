@@ -49,12 +49,12 @@ const For = styled.div`
   min-height: 36px;
 `;
 
-
 const Headline = styled.div`
   color: ${({ theme }) => theme.colors.gray4};
   font-size: 16px;
   margin: 18px 0;
   min-height: 40px;
+  padding: 0 8px;
 `;
 
 const ButtonInner = styled.div`
@@ -103,10 +103,12 @@ function CandidateCard({ candidate }) {
             candidate running for {race}
           </For>
           <Endorsed>
-            <strong>
-              {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
-            </strong>{' '}
-            Let's get to {numberFormatter(achievements.nextStep)}!
+            <div style={{ paddingLeft: '8px' }}>
+              <strong>
+                {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
+              </strong>{' '}
+              Let's get to {numberFormatter(achievements.nextStep)}!
+            </div>
           </Endorsed>
 
           <SupportersProgressBar
