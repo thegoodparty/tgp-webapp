@@ -29,6 +29,10 @@ const TgpDialog = styled(Dialog)`
 
     .MuiBackdrop-root {
       background: rgb(240, 236, 243);
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpointsPixels.md}) {
+        background: rgba(0, 0, 0, 0.8);
+      }
     }
 
     &.close-dialog {
@@ -44,7 +48,7 @@ const TgpDialog = styled(Dialog)`
             rgba(255, 255, 255, 0.4) 0%,
             rgba(255, 255, 255, 0) 47.4%
           ),
-          rgba(110, 38, 219, 0.8);
+          rgb(110, 38, 219);
       }
     }
   }
