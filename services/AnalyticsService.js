@@ -33,5 +33,9 @@ function logPageViews() {
 }
 
 export function logEvent(action, label, category) {
-  ga4react?.event(action, label, category);
+  try {
+    ga4react?.event(action, label, category);
+  } catch (e) {
+    console.log('error at log event');
+  }
 }
