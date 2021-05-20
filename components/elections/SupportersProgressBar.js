@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 
-import { Body9, Body11, Body13 } from 'components/shared/typogrophy';
+import { Body9, Body11 } from 'components/shared/typogrophy';
 import { numberFormatter } from 'helpers/numberHelper';
+import { achievementsHelper } from 'helpers/achievementsHelper';
 
 const ProgressBarWrapper = styled.div`
   display: flex;
@@ -20,10 +20,8 @@ const BarBg = styled.div`
   margin: 10px 0;
   width: 80%;
   position: relative;
-  height: 12px;
+  height: 18px;
   background-color: ${({ theme }) => theme.colors.grayC};
-
-  // border-radius: 3px;
   border-radius: 12px;
 
   &.full-width {
@@ -33,11 +31,9 @@ const BarBg = styled.div`
 
 const Bar = styled.div`
   position: absolute;
-  height: 12px;
-  // border-radius: 3px;
+  height: 18px;
   border-radius: 12px;
 
-  // background-color: ${({ theme }) => theme.colors.green};
   background-color: ${({ theme }) => theme.colors.purple};
   left: 0;
   width: 3%;
@@ -51,9 +47,24 @@ const BarBody11 = styled(Body11)`
 const BarBody9 = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray7};
   align-self: flex-start;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    // align-self: center;
-  }
+`;
+
+const AchievementWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+  font-size: 13px;
+  line-height: 18px;
+  color: ${({ theme }) => theme.colors.gray4};
+  padding-left: 8px;
+`;
+
+const Icon = styled.img`
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
 `;
 
 const SupportersProgressBar = ({
@@ -66,6 +77,7 @@ const SupportersProgressBar = ({
   prefixText = 'likely voters for top candidate',
   showSuffix = true,
   fullWidth = false,
+  withAchievement = false,
 }) => {
   let progress = 0;
   if (peopleSoFar && votesNeeded) {
@@ -74,6 +86,7 @@ const SupportersProgressBar = ({
   if (progress > 100) {
     progress = 100;
   }
+  const achievements = achievementsHelper(peopleSoFar);
   return (
     <ProgressBarWrapper
       className={alignLeft ? 'left' : ''}
@@ -95,6 +108,12 @@ const SupportersProgressBar = ({
           {suffixText}
         </BarBody9>
       )}
+      {withAchievement && (
+        <AchievementWrapper>
+          <Icon src="/images/icons/achievement.svg" />
+          <div>{achievements.text}</div>
+        </AchievementWrapper>
+      )}
     </ProgressBarWrapper>
   );
 };
@@ -108,6 +127,8 @@ SupportersProgressBar.propTypes = {
   userState: PropTypes.string,
   prefixText: PropTypes.string,
   suffixText: PropTypes.string,
+  withAchievement: PropTypes.bool,
+  fullWidth: PropTypes.bool,
 };
 
 export default SupportersProgressBar;

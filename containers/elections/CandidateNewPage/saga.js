@@ -9,10 +9,23 @@ import types from './constants';
 import actions from './actions';
 import { getCookie } from '../../../helpers/cookieHelper';
 
-function* loadCandidate({ id, chamber, isIncumbent }) {
+function* loadInactiveCandidate({ id }) {
   try {
-    const api = tgpApi.findCandidate;
-    const payload = { id, chamber, isIncumbent };
+    const api = tgpApi.newCandidate.findInactive;
+    const payload = { id };
+    const { candidate } = yield call(requestHelper, api, payload);
+    console.log('saga', candidate);
+    yield put(actions.loadCandidateActionSuccess(candidate));
+  } catch (error) {
+    console.log(error);
+    yield put(actions.loadCandidateActionError(error));
+  }
+}
+
+function* loadCandidate({ id }) {
+  try {
+    const api = tgpApi.newCandidate.find;
+    const payload = { id };
     const candidate = yield call(requestHelper, api, payload);
     yield put(actions.loadCandidateActionSuccess(candidate));
   } catch (error) {
@@ -156,6 +169,7 @@ function* trackShare({ candidateId }) {
 
 // Individual exports for testing
 export default function* saga() {
+  yield takeLatest(types.LOAD_INACTIVE_CANDIDATE, loadInactiveCandidate);
   yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);
   yield takeLatest(types.SHARE_IMAGE, shareImage);
   let action = yield takeLatest(types.LOAD_CANDIDATE, loadCandidate);

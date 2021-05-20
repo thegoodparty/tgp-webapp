@@ -27,7 +27,7 @@ function EventsWrapper({ content, backButtonCallback }) {
   const events = content ? content.events : [];
   const pastEvents = content ? content.pastEvents : [];
   return (
-    <PageWrapper white>
+    <PageWrapper white >
       <BackIconWrapper onClick={backButtonCallback} data-cy="back">
         <BackIcon style={{ fontSize: '34px' }} />
       </BackIconWrapper>

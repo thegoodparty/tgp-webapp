@@ -30,7 +30,7 @@ import {
   DobFormat,
   PhoneNumberFormat,
 } from 'components/shared/customInputFormat';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 import { formatToPhone } from '../../../helpers/phoneHelper';
 import { deleteCookie } from '../../../helpers/cookieHelper';
 
@@ -310,7 +310,7 @@ const VerifyVoteWrapper = ({
   );
 
   const trackClose = () => {
-    AnalyticsService.sendEvent('Voter Registration', 'Close Voterize Form');
+    logEvent('Voter Registration', 'Close Voterize Form');
     deleteCookie('signupRedirect');
   };
 

@@ -15,7 +15,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 
 import HomePageWrapper from 'components/HomePageWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -67,7 +67,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     subscribeEmailCallback: email => {
-      AnalyticsService.sendEvent(
+      logEvent(
         'Email & Marketing',
         'Subscribe to Newsletter',
       );

@@ -12,6 +12,7 @@ import Dialog from '@material-ui/core/Dialog';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
 import { Body11, Body13, H2 } from 'components/shared/typogrophy';
 import { PurpleButton, OutlinedButton } from '../../shared/buttons';
 
@@ -20,29 +21,25 @@ const TgpDialog = styled(Dialog)`
     .MuiDialog-paper {
       position: relative;
       width: 100vw;
-      border-radius: 0;
       background-color: ${({ theme }) => theme.colors.purple3};
       padding: 24px;
-
-      @media only screen and (min-width: 1280px) {
-        box-shadow: -2px 2px 5px rgba(224, 212, 234, 0.2),
-          2px -2px 5px rgba(224, 212, 234, 0.2),
-          -2px -2px 5px rgba(255, 255, 255, 0.9),
-          2px 2px 5px rgba(224, 212, 234, 0.9),
-          inset 1px 1px 1px rgba(255, 255, 255, 0.3),
-          inset -1px -1px 1px rgba(224, 212, 234, 0.5);
-        border-radius: 8px;
-      }
+      border-radius: 8px;
+      box-shadow: none;
     }
 
     .MuiBackdrop-root {
       background: rgb(240, 236, 243);
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpointsPixels.md}) {
+        background: rgba(0, 0, 0, 0.85);
+      }
     }
 
     &.close-dialog {
       .MuiDialog-paper {
         background-color: ${({ theme }) => theme.colors.grayBg} !important;
       }
+      max-width: 100% !important;
     }
     &.purple {
       .MuiDialog-paper {
@@ -51,7 +48,7 @@ const TgpDialog = styled(Dialog)`
             rgba(255, 255, 255, 0.4) 0%,
             rgba(255, 255, 255, 0) 47.4%
           ),
-          rgba(110, 38, 219, 0.8);
+          rgb(110, 38, 219);
       }
     }
   }
@@ -88,8 +85,11 @@ function QueryModal({
     `(max-width: ${theme.breakpointsPixels.md}px)`,
   );
   const [close, setClose] = useState(false);
+  const router = useRouter();
+  const isCandidatePage = router.route === '/candidate/[...NameIdTab]';
+
   useEffect(() => {
-    if (close && !closeTitle) {
+    if (close && (!closeTitle || !isCandidatePage)) {
       closeModalCallback();
     }
   }, [close]);
@@ -98,10 +98,10 @@ function QueryModal({
       onClose={() => setClose(true)}
       open
       fullScreen={fullScreen}
-      className={`${close && 'close-dialog'} ${mode} `}
+      className={`${close && isCandidatePage && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
-      {!hideClose && (
+      {!closeTitle && !hideClose && (
         <TopWrapper>
           <TopClose
             onClick={() => setClose(true)}
@@ -110,8 +110,8 @@ function QueryModal({
           />
         </TopWrapper>
       )}
-      {(!closeTitle || !close) && children}
-      {closeTitle && close && (
+      {(!closeTitle || !close || !isCandidatePage) && children}
+      {closeTitle && close && isCandidatePage && (
         <>
           <H2 style={{ color: '#292936' }}>{closeTitle}</H2>
           <Body13 style={{ color: '#11111F', marginTop: 8 }}>

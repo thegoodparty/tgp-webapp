@@ -23,6 +23,14 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   justify-content: space-between;
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.lg}) {
+    padding: 0 24px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.sm}) {
+    padding: 0 18px;
+  }
 `;
 
 const Logo = styled.img`

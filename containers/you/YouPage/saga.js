@@ -1,5 +1,6 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { push } from 'connected-next-router';
+import Router from 'next/router';
 
 import requestHelper from 'helpers/requestHelper';
 import {
@@ -15,13 +16,15 @@ import {
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 
 import tgpApi from 'api/tgpApi';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 import globalActions from 'containers/App/actions';
+import queryHelper from 'helpers/queryHelper';
+import candidateActions from 'containers/elections/CandidateNewPage/actions';
+
 import types from './constants';
 import actions from './actions';
 
 import selectUser from './selectors';
-import queryHelper from '../../../helpers/queryHelper';
 
 function* register(action) {
   try {
@@ -36,7 +39,7 @@ function* register(action) {
     const referrer = getCookie('referrer');
     if (referrer) {
       payload.referrer = referrer;
-      AnalyticsService.sendEvent('voting', 'Join Crew');
+      logEvent('voting', 'Join Crew');
     }
     const guestUuid = getCookie('guuid');
     if (guestUuid) {
@@ -50,7 +53,6 @@ function* register(action) {
     setCookie('token', token);
     deleteCookie('guestRanking');
     const cookieRedirect = getSignupRedirectCookie();
-    console.log('saga cookieRedirect', cookieRedirect);
     if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
@@ -58,12 +60,16 @@ function* register(action) {
       const queryCandidate = queryHelper(window?.location.search, 'candidate');
       if (queryCandidate) {
         yield put(push(`${window.location.pathname}?preview=true`));
+        // need to support here
+        yield put(
+          candidateActions.supportAction(Router?.router?.query?.NameIdTab[1]),
+        );
       } else {
         yield put(push(window.location.pathname));
       }
     }
 
-    AnalyticsService.sendEvent('Signup', 'Complete Account Signup', 'Email');
+    logEvent('Signup', 'Complete Account Signup', 'Email');
   } catch (error) {
     if (error.response?.exists) {
       yield put(
@@ -128,7 +134,7 @@ function* socialRegister(action) {
     const referrer = getCookie('referrer');
     if (referrer) {
       payload.referrer = referrer;
-      AnalyticsService.sendEvent('voting', 'Join Crew');
+      logEvent('voting', 'Join Crew');
     }
     const guestUuid = getCookie('guuid');
     if (guestUuid) {
@@ -157,14 +163,14 @@ function* socialRegister(action) {
 
     setUserCookie(responseUser);
     setCookie('token', access_token);
-    AnalyticsService.sendEvent('Signup', 'Complete Account Signup', provider);
+    logEvent('Signup', 'Complete Account Signup', provider);
   } catch (error) {
     if (error.response?.exists) {
       // user is already in our system, try login.
       yield put(actions.socialLoginAction(action.user));
     } else {
       yield put(actions.registerActionError(error));
-      AnalyticsService.sendEvent('social-register', 'error');
+      logEvent('social-register', 'error');
       yield put(globalActions.logErrorAction('social register error', error));
     }
   }
@@ -239,11 +245,11 @@ function* confirmEmail(action) {
         yield put(push('/profile'));
       }
     }
-    AnalyticsService.sendEvent('email-login-confirm', 'success');
+    logEvent('email-login-confirm', 'success');
   } catch (error) {
     console.log('error at email conriamtion', error);
     yield put(actions.confirmEmailActionError(error.response));
-    AnalyticsService.sendEvent('email-login-confirm', 'error');
+    logEvent('email-login-confirm', 'error');
     yield put(globalActions.logErrorAction('email login confirm error', error));
   }
 }
@@ -263,7 +269,7 @@ function* login(action) {
     setCookie('token', token);
     deleteCookie('guestRanking');
     yield put(push('/profile'));
-    AnalyticsService.sendEvent('email-login', 'success');
+    logEvent('email-login', 'success');
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
@@ -271,7 +277,7 @@ function* login(action) {
         'error',
       ),
     );
-    AnalyticsService.sendEvent('email-login', 'error');
+    logEvent('email-login', 'error');
     yield put(globalActions.logErrorAction('email login error', error));
   }
 }
@@ -290,7 +296,7 @@ function* forgotPassword(action) {
         `We sent an email to ${email}, which contains a link to reset your password.`,
       ),
     );
-    AnalyticsService.sendEvent('forgot-password', 'success');
+    logEvent('forgot-password', 'success');
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
@@ -298,7 +304,7 @@ function* forgotPassword(action) {
         'error',
       ),
     );
-    AnalyticsService.sendEvent('forgot-password', 'error');
+    logEvent('forgot-password', 'error');
     yield put(globalActions.logErrorAction('forgot password error', error));
   }
 }
@@ -317,7 +323,7 @@ function* resetPassword(action) {
     yield put(
       snackbarActions.showSnakbarAction(`Your password has been reset`),
     );
-    AnalyticsService.sendEvent('reset-password', 'success');
+    logEvent('reset-password', 'success');
   } catch (error) {
     if (error.response?.expired) {
       yield put(
@@ -326,7 +332,7 @@ function* resetPassword(action) {
           'error',
         ),
       );
-      AnalyticsService.sendEvent('reset-password', 'expired token');
+      logEvent('reset-password', 'expired token');
       yield put(globalActions.logErrorAction('reset password expired', error));
     } else {
       yield put(
@@ -335,7 +341,7 @@ function* resetPassword(action) {
           'error',
         ),
       );
-      AnalyticsService.sendEvent('reset-password', 'error');
+      logEvent('reset-password', 'error');
       yield put(globalActions.logErrorAction('reset password error', error));
     }
   }
@@ -352,7 +358,7 @@ function* changePassword({ newPassword, oldPassword }) {
     yield put(
       snackbarActions.showSnakbarAction(`Your password has been changed`),
     );
-    AnalyticsService.sendEvent('change-password', 'success');
+    logEvent('change-password', 'success');
   } catch (error) {
     if (error.response?.incorrect) {
       yield put(
@@ -361,10 +367,7 @@ function* changePassword({ newPassword, oldPassword }) {
           'error',
         ),
       );
-      AnalyticsService.sendEvent(
-        'change-password',
-        'error - incorrect password',
-      );
+      logEvent('change-password', 'error - incorrect password');
       yield put(
         globalActions.logErrorAction(
           'change password - incorrect password',
@@ -378,7 +381,7 @@ function* changePassword({ newPassword, oldPassword }) {
           'error',
         ),
       );
-      AnalyticsService.sendEvent('change-password', 'error');
+      logEvent('change-password', 'error');
       yield put(globalActions.logErrorAction('change password error', error));
     }
   }
@@ -397,12 +400,12 @@ function* addPassword({ newPassword }) {
     yield put(
       snackbarActions.showSnakbarAction(`Your password has been added`),
     );
-    AnalyticsService.sendEvent('add-password', 'success');
+    logEvent('add-password', 'success');
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction('Error adding your password.', 'error'),
     );
-    AnalyticsService.sendEvent('add-password', 'error');
+    logEvent('add-password', 'error');
     yield put(globalActions.logErrorAction('add password error', error));
   }
 }
@@ -464,7 +467,7 @@ function* socialLogin(action) {
     yield put(
       snackbarActions.showSnakbarAction(`Welcome back ${responseUser.name}`),
     );
-    AnalyticsService.sendEvent('social-login', 'success', provider);
+    logEvent('social-login', 'success', provider);
   } catch (error) {
     if (error.response && error.response.noUser) {
       yield put(
@@ -473,11 +476,7 @@ function* socialLogin(action) {
     } else {
       yield put(snackbarActions.showSnakbarAction('Error Signing in', 'error'));
     }
-    AnalyticsService.sendEvent(
-      'social-login',
-      'error',
-      action?.user?._provider,
-    );
+    logEvent('social-login', 'error', action?.user?._provider);
     yield put(
       globalActions.logErrorAction(
         `social login error. provider: ${action?.user?._provider}`,
@@ -644,7 +643,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
     setCookie('token', token);
 
     yield put(snackbarActions.showSnakbarAction(`Welcome back ${user.name}`));
-    AnalyticsService.sendEvent('social-login', 'success', 'twitter');
+    logEvent('social-login', 'success', 'twitter');
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction('Twitter Confirmation Error', 'error'),

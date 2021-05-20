@@ -58,10 +58,10 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     { component: <Section3 /> },
     {
       component: <HowItWorksSection />,
-      // sectionClass: 'no-bottom-padding',
+      sectionClass: 'no-bottom-padding',
       noContent: true,
     },
-    // { component: <TestimonialsSection />, sectionClass: 'purple4' },
+    { component: <TestimonialsSection />, sectionClass: 'purple4' },
     { component: <GoodCertifiedAreSection /> },
     {
       component: <CandidatesSection homepageCandidates={homepageCandidates} />,

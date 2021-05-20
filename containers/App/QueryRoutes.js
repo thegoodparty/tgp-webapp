@@ -27,7 +27,7 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectContent, makeSelectLocation } from './selectors';
-import AnalyticsService from '../../services/AnalyticsService';
+import { logEvent } from '../../services/AnalyticsService';
 import ShareModal from '../../components/elections/CandidateNewWrapper/ShareModal';
 
 function QueryRoutes({ locationState, content, dispatch }) {
@@ -61,7 +61,7 @@ function QueryRoutes({ locationState, content, dispatch }) {
     const queryRegister = queryHelper(search, 'register');
     setShowRegister(queryRegister === 'true');
     if (queryRegister === 'true') {
-      AnalyticsService.sendEvent('signup', 'View Account Signup Page');
+      logEvent('signup', 'View Account Signup Page');
     }
 
     const queryShare = queryHelper(search, 'share');

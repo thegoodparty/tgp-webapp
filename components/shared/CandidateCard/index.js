@@ -9,13 +9,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { partyResolver } from 'helpers/electionsHelper';
-import { kFormatter } from 'helpers/numberHelper';
+import { kFormatter, numberFormatter } from 'helpers/numberHelper';
 import Link from 'next/link';
 
 import CandidateAvatar from './CandidateAvatar';
-import { Body11 } from '../typogrophy';
+import { Body11, Body13 } from '../typogrophy';
 import SupportersProgressBar from '../../elections/SupportersProgressBar';
 import { PurpleButton } from '../buttons';
+import { achievementsHelper } from '../../../helpers/achievementsHelper';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.purple3};
@@ -44,18 +45,8 @@ const TitleCase = styled.span`
 const For = styled.div`
   font-size: 13px;
   color: ${({ theme }) => theme.colors.gray4};
-  margin-bottom: 28px;
-`;
-
-const LikelyVoters = styled.div`
-  color: ${({ theme }) => theme.colors.gray7};
-  font-size: 11px;
-  span {
-    color: ${({ theme }) => theme.colors.gray3};
-    font-size: 16px;
-    font-weight: 600;
-    margin-right: 4px;
-  }
+  margin-bottom: 24px;
+  min-height: 36px;
 `;
 
 const Headline = styled.div`
@@ -63,11 +54,17 @@ const Headline = styled.div`
   font-size: 16px;
   margin: 18px 0;
   min-height: 40px;
+  padding: 0 8px;
 `;
 
 const ButtonInner = styled.div`
   padding: 0 40px;
   font-size: 13px;
+`;
+
+const Endorsed = styled(Body13)`
+  text-align: left;
+  color: ${({ theme }) => theme.colors.gray4};
 `;
 
 function CandidateCard({ candidate }) {
@@ -78,13 +75,11 @@ function CandidateCard({ candidate }) {
     image,
     race,
     party,
-    likelyVoters,
-    votesNeeded,
     supporters,
     headline,
   } = candidate;
 
-  const intLikelyVoters = parseInt(likelyVoters, 10);
+  const achievements = achievementsHelper(supporters);
   return (
     <Link href={`/candidate/${firstName}-${lastName}/${id}`} passHref>
       <a>
@@ -104,33 +99,25 @@ function CandidateCard({ candidate }) {
               'SAM Party'
             ) : (
               <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
-            )}
-            {' '}
+            )}{' '}
             candidate running for {race}
           </For>
-          <Grid container>
-            <Grid item xs={6}>
-              <LikelyVoters>
-                <span>{kFormatter(intLikelyVoters + supporters)}</span> likely
-                voters
-              </LikelyVoters>
-            </Grid>
-            <Grid item xs={6}>
-              {supporters === 0 ? (
-                <>&nbsp;</>
-              ) : (
-                <LikelyVoters>
-                  <span>{supporters}</span>
-                  {supporters === 1 ? 'person' : 'people'} endorsing
-                </LikelyVoters>
-              )}
-            </Grid>
-          </Grid>
+          <Endorsed>
+            <div style={{ paddingLeft: '8px' }}>
+              <strong>
+                {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
+              </strong>{' '}
+              Let's get to {numberFormatter(achievements.nextStep)}!
+            </div>
+          </Endorsed>
+
           <SupportersProgressBar
             showSupporters={false}
-            votesNeeded={votesNeeded}
-            peopleSoFar={supporters + intLikelyVoters}
+            votesNeeded={achievements.nextStep}
+            peopleSoFar={supporters}
             fullWidth
+            showSuffix={false}
+            withAchievement
           />
           <Headline>{headline}</Headline>
 

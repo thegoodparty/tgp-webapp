@@ -21,7 +21,7 @@ import userActions from 'containers/you/YouPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-next-router';
 import { getSignupRedirectCookie } from 'helpers/cookieHelper';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 
 export function SocialRegisterPage({
   socialLoginCallback,
@@ -33,27 +33,27 @@ export function SocialRegisterPage({
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
-  const [blocName, setBlocName] = useState(false);
-  const [candidateName, setCandidateName] = useState(false);
+  // const [blocName, setBlocName] = useState(false);
+  // const [candidateName, setCandidateName] = useState(false);
 
-  useEffect(() => {
-    // if (user) {
-    //   console.log('redirect to  you6');
-    //   dispatch(push('/profile'));
-    // }
-    const blocCookie = getSignupRedirectCookie();
-    if (blocCookie) {
-      setBlocName(blocCookie.options?.blocName);
-      setCandidateName(blocCookie.options?.name);
-    }
-  }, []);
+  // useEffect(() => {
+  //   // if (user) {
+  //   //   console.log('redirect to  you6');
+  //   //   dispatch(push('/profile'));
+  //   // }
+  //   const blocCookie = getSignupRedirectCookie();
+  //   if (blocCookie) {
+  //     setBlocName(blocCookie.options?.blocName);
+  //     setCandidateName(blocCookie.options?.name);
+  //   }
+  // }, []);
 
   const childPros = {
     socialLoginCallback,
     socialLoginFailureCallback,
     closeModalCallback,
-    blocName,
-    candidateName,
+    // blocName,
+    // candidateName,
     twitterButtonCallback,
     emailRegisterCallback,
   };
@@ -85,7 +85,7 @@ const mapStateToProps = createStructuredSelector({});
 function mapDispatchToProps(dispatch) {
   return {
     socialLoginCallback: user => {
-      AnalyticsService.sendEvent(
+      logEvent(
         'Signup',
         'Click Signup Method',
         `Click ${user._provider} Signup`,
@@ -94,12 +94,6 @@ function mapDispatchToProps(dispatch) {
     },
     socialLoginFailureCallback: err => {
       if (err.toString().includes('[google][load] Failed to load SDK')) {
-        // dispatch(
-        //   snackbarActions.showSnakbarAction(
-        //     'Your browser is blocking Google Cookies.',
-        //     'error',
-        //   ),
-        // );
       } else {
         console.log('error social register', err);
         dispatch(

@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Body11, Body13, H2 } from 'components/shared/typogrophy';
 import { uuidUrl } from 'helpers/userHelper';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
 
 import {
@@ -34,7 +34,8 @@ const Wrapper = styled.div`
   max-width: 500px;
   min-width: 300px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     //padding: 24px 24px 32px;
     width: 85vw;
   }
@@ -189,7 +190,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   const user = getUserCookie(true);
 
   useEffect(() => {
-    AnalyticsService.sendEvent('Sharing', 'Open Share Modal', candidate?.name);
+    logEvent('Sharing', 'Open Share Modal', candidate?.name);
   }, []);
   useEffect(() => {
     const sharebtns = document.getElementsByClassName('st-btn');
@@ -249,8 +250,9 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   let emailSubject;
   if (candidate) {
     if (supportLink) {
-      emailSubject = `I'm endorsing ${firstName} ${lastName} for ${candidate.race
-        }`;
+      emailSubject = `I'm endorsing ${firstName} ${lastName} for ${
+        candidate.race
+      }`;
     } else {
       emailSubject = `Check out ${firstName} ${lastName} for ${candidate.race}`;
     }
@@ -268,7 +270,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     trackShare('Copy to Clipboard');
   };
   const trackShare = (shareType = '') => {
-    AnalyticsService.sendEvent('Sharing', 'Click Share Method', shareType);
+    logEvent('Sharing', 'Click Share Method', shareType);
     // trackShareCallback(candidate);
   };
 
@@ -342,7 +344,14 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   ];
 
   return (
-    <QueryModalContainer mode="purple" closeTitle={"Are you sure you don't want to share?"} closeContent={"Sharing a personal endorsement is the most powerful way to grow a grassroots campaign."} closeBack={"BACK TO SHARE"}>
+    <QueryModalContainer
+      mode="purple"
+      closeTitle={"Are you sure you don't want to share?"}
+      closeContent={
+        'Sharing a personal endorsement is the most powerful way to grow a grassroots campaign.'
+      }
+      closeBack={'BACK TO SHARE'}
+    >
       <Wrapper>
         <H2 style={{ color: '#FFF' }}>Share to</H2>
         <Grid container spacing={3}>

@@ -16,7 +16,7 @@ import LeaderboardPerson from './LeaderboardPerson';
 const ContentWrpper = styled.div`
   max-width: 640px;
   margin: 0 auto;
-  padding: 24px 20px 48px;
+  padding: 24px 0 48px;
   @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
     padding: 40px 0 64px;
   }

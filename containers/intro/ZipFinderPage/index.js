@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
 import ZipFinderWrapper from 'components/intro/ZipFinderWrapper';
-import AnalyticsService from 'services/AnalyticsService';
+import { logEvent } from 'services/AnalyticsService';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -79,11 +79,11 @@ function mapDispatchToProps(dispatch) {
       }
 
       dispatch(push(`/elections/district/${zip}`));
-      AnalyticsService.sendEvent('Location', 'Submit ZIP Location');
+      logEvent('Location', 'Submit ZIP Location');
     },
     currentLocationCallback: coords => {
       dispatch(districtActions.geolocationToDistrictAction(coords));
-      AnalyticsService.sendEvent('Location', 'Submit Device Location');
+      logEvent('Location', 'Submit Device Location');
     },
   };
 }

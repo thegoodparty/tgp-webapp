@@ -13,7 +13,7 @@ import MenuList from '@material-ui/core/MenuList';
 
 import styled from 'styled-components';
 import UserAvatar from '../UserAvatar';
-import { gaEvent } from '../../../helpers/gaEventHelper';
+import { logEvent } from 'services/AnalyticsService';
 
 const Wrapper = styled.div`
   height: 80px;
@@ -21,8 +21,16 @@ const Wrapper = styled.div`
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   z-index: 100;
-  padding: 0 20px;
+  padding: 0 32px;
   position: relative;
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 0 24px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpointsPixels.sm}) {
+    padding: 0 18px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -155,13 +163,14 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
       router.query.share = 'true';
     }
     router.push(router);
-    gaEvent('top_nav_share');
+
+    logEvent('Share', 'top_nav_share', 'Top Nav');
   };
 
   return (
     <Wrapper>
       <ContentWrapper>
-        <Grid container spacing={2} alignItems="center">
+        <Grid container alignItems="center">
           <Grid item xs={4}>
             <Works
               ref={anchorRef}
@@ -203,9 +212,11 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                             }?article=1ic6T6fhH0jZLNvX5aZkDe`}
                             passHref
                             onClick={() => {
-                              gaEvent('top_nav_link', {
-                                link: 'How crowd-voting works',
-                              });
+                              logEvent(
+                                'Link',
+                                'How crowd-voting works',
+                                'Top Nav',
+                              );
                             }}
                           >
                             <a>How crowd-voting works</a>
@@ -216,9 +227,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                             href="/about"
                             passHref
                             onClick={() => {
-                              gaEvent('top_nav_link', {
-                                link: 'About',
-                              });
+                              logEvent('Link', 'About', 'Top Nav');
                             }}
                           >
                             <a>About Good Party</a>
@@ -229,9 +238,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                             href="/candidates"
                             passHref
                             onClick={() => {
-                              gaEvent('top_nav_link', {
-                                link: 'Candidates',
-                              });
+                              logEvent('Link', 'Candidates', 'Top Nav');
                             }}
                           >
                             <a>Meet the candidates</a>
@@ -242,9 +249,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                             href="/faqs"
                             passHref
                             onClick={() => {
-                              gaEvent('top_nav_link', {
-                                link: 'faqs',
-                              });
+                              logEvent('Link', 'FAQs', 'Top Nav');
                             }}
                           >
                             <a>FAQs</a>
@@ -256,9 +261,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                               href={`${router.asPath}?register=true`}
                               passHref
                               onClick={() => {
-                                gaEvent('top_nav_link', {
-                                  link: 'Sign up',
-                                });
+                                logEvent('Link', 'Sign up', 'Top Nav');
                               }}
                             >
                               <a>Sign up / Login</a>
@@ -277,9 +280,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               href="/"
               passHref
               onClick={() => {
-                gaEvent('top_nav_link', {
-                  link: 'logo',
-                });
+                logEvent('Link', 'Logo', 'Top Nav');
               }}
             >
               <a>
@@ -299,9 +300,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                   href="/profile"
                   passHref
                   onClick={() => {
-                    gaEvent('top_nav_link', {
-                      link: 'profile',
-                    });
+                    logEvent('Link', 'Profile', 'Top Nav');
                   }}
                 >
                   <a>

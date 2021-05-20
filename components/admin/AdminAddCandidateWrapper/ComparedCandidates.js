@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import { BlueButton } from 'components/shared/buttons';
 import TextField from '@material-ui/core/TextField';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { getValidImgUrl } from 'helpers/linkHelper';
 import ImageCrop from '../../shared/ImageCrop';
 
 const Wrapper = styled.div`
@@ -196,13 +197,13 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
               {crit === 'image' ? (
                 <div className="text-center">
                   {cand[crit] ? (
-                    <Img src={cand[crit]} />
+                    <Img src={getValidImgUrl(cand[crit])} />
                   ) : (
                     <>
                       {index2 > 0 && (
                         <CropWrapper>
                           <ImageCrop
-                            currentImage={cand[crit]}
+                            currentImage={getValidImgUrl(cand[crit])}
                             uploadImageCallback={base64 => {
                               handleUploadImage(index2, base64);
                             }}

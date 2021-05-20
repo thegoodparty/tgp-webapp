@@ -10,8 +10,12 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
+import { Element } from 'react-scroll';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import NotFound from 'containers/shared/NotFoundPage';
+import { validateLink } from 'helpers/linkHelper';
 
 import ProfileInfo from './ProfileInfo';
 import { H1, Body19, Body13 } from '../../shared/typogrophy';
@@ -23,17 +27,42 @@ import ShareButton from './ShareButton';
 import Updates from './Updates';
 
 const Padder = styled.div`
-  padding: 0 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    padding: 0;
-  }
+  padding: 0;
 `;
 
 const SectionWrapper = styled.div`
   margin-top: 48px;
 `;
 
-const CampaignSummaryHeadLine = styled(H1)``;
+const FixedEndorse = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 16px 32px;
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.contentMax}) {
+    padding: 16px 32px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.lg}) {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  @media only screen and (max-width: ${({ theme }) =>
+    theme.breakpointsPixels.sm}) {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+  background-color: ${({ theme }) => theme.colors.purple3};
+  filter: drop-shadow(0px 0px 16px rgba(62, 0, 140, 0.16));
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const HeadlineWrapper = styled.div`
+  padding: 18px 0;
+`;
 
 const SectionHeader = styled(Body19)`
   font-weight: bold;
@@ -49,7 +78,8 @@ const SectionHeader = styled(Body19)`
     font-weight: normal;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-bottom: 24px;
   }
 `;
@@ -67,11 +97,24 @@ const YoutubePlayer = styled(ReactPlayer)`
 `;
 
 const YoutubePlayerWrapper = styled.div`
+  overflow: hidden;
+  padding: 18px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 0;
+  }
+  &:first-child {
+    border-radius: 8px;
+    overflow: hidden;
+    filter: drop-shadow(9px 9px 12px rgba(224, 212, 234, 0.9));
+  }
+
   [data-jodit_iframe_wrapper] {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     height: 0 !important;
     width: 100% !important;
+
     iframe {
       position: absolute;
       top: 0;
@@ -79,11 +122,6 @@ const YoutubePlayerWrapper = styled.div`
       width: 100%;
       height: 100%;
     }
-  }
-
-  &.top {
-    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07),
-      0px 0px 12px rgba(0, 0, 0, 0.08), 0px 0px 16px rgba(0, 0, 0, 0.12);
   }
 `;
 
@@ -100,6 +138,7 @@ function MainWrapper({
   if (!candidate) {
     return <NotFound />;
   }
+  const router = useRouter();
   let website;
   const {
     headline,
@@ -129,6 +168,9 @@ function MainWrapper({
         </YoutubePlayerWrapper>
       )}
       <Hidden mdUp>
+        <HeadlineWrapper>
+          <H1>{headline}</H1>
+        </HeadlineWrapper>
         <ProfileInfo
           candidate={candidate}
           candidateSupports={candidateSupports}
@@ -140,17 +182,17 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        <SectionWrapper>
+        <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
         </SectionWrapper>
-        <SectionWrapper>
+        <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionHeader style={{ marginBottom: '4px' }}>
-            Connect with {firstName}
+            Candidate socials
           </SectionHeader>
 
           <div style={{ marginTop: '24px' }}>
             {facebook && (
-              <SocialLink href={facebook} target="_blank">
+              <SocialLink href={validateLink(facebook)} target="_blank">
                 <img
                   src="/images/icons/purple-facebook.svg"
                   alt="facebook"
@@ -159,7 +201,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {twitter && (
-              <SocialLink href={twitter} target="_blank">
+              <SocialLink href={validateLink(twitter)} target="_blank">
                 <img
                   src="/images/icons/purple-twitter.svg"
                   alt="twitter"
@@ -168,7 +210,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {tiktok && (
-              <SocialLink href={tiktok} target="_blank">
+              <SocialLink href={validateLink(tiktok)} target="_blank">
                 <img
                   src="/images/icons/purple-tiktok.svg"
                   alt="tiktok"
@@ -177,7 +219,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {snap && (
-              <SocialLink href={snap} target="_blank">
+              <SocialLink href={validateLink(snap)} target="_blank">
                 <img
                   src="/images/icons/purple-snap.svg"
                   alt="snap"
@@ -186,7 +228,7 @@ function MainWrapper({
               </SocialLink>
             )}
             {website && (
-              <SocialLink href={website} target="_blank" passhref>
+              <SocialLink href={validateLink(website)} target="_blank" passhref>
                 <a target="_blank">
                   <img
                     src="/images/icons/globe-icon.svg"
@@ -200,10 +242,10 @@ function MainWrapper({
         </SectionWrapper>
         <SectionWrapper>
           <SectionHeader>
-            Compare {firstName} {lastName} with others
+            Compare candidates in this race
           </SectionHeader>
           <ComparedCandidateCarousel
-            candidates={comparedCandidates.candidates}
+            candidates={comparedCandidates?.candidates}
           />
         </SectionWrapper>
 
@@ -226,13 +268,34 @@ function MainWrapper({
         </SectionWrapper>
 
         <Updates candidate={candidate} />
-        <Hidden smUp>
+        <Hidden mdUp>
           <SectionWrapper>
-            <RecentlyJoined
-              candidateSupports={candidateSupports}
-              total={total}
-            />
+            <Element name="recently-all">
+              <RecentlyJoined
+                candidateSupports={candidateSupports}
+                total={total}
+              />
+            </Element>
           </SectionWrapper>
+          {!isUserSupportCandidate && (
+            <FixedEndorse>
+              <SupportButton
+                supportCallback={supportCallback}
+                removeSupportCallback={removeSupportCallback}
+                isUserSupportCandidate={isUserSupportCandidate}
+              />
+              <div style={{ marginTop: '8px' }} className="text-center">
+                Your endorsement is a free and powerful way to show and grow
+                grassroots support.{' '}
+                <Link
+                  href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                  passHref
+                >
+                  <a>Read more.</a>
+                </Link>
+              </div>
+            </FixedEndorse>
+          )}
         </Hidden>
 
         <TopQuestions articles={articles} />

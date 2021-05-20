@@ -19,20 +19,22 @@ import ShareModal from './ShareModal';
 import { H1 } from '../../shared/typogrophy';
 
 const ContentWrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
   margin: 0 auto;
   max-width: 1080px;
   padding-bottom: 48px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    padding: 24px 18px 64px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 24px 0 64px;
   }
 `;
 
 const HeaderWrapper = styled.div`
-  margin-bottom: 16px;
-  padding: 0 18px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  display: none;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: block;
     padding: 0;
     margin-bottom: 24px;
   }
@@ -72,7 +74,7 @@ function CandidateNewWrapper({
     <PageWrapper isFullWidth purple>
       <ContentWrapper>
         <HeaderWrapper>
-          <H1 style={{}}>{candidate.headline}</H1>
+          <H1>{candidate.headline}</H1>
         </HeaderWrapper>
         <Grid container spacing={3}>
           <Grid row item xs={12} md={7}>
