@@ -27,7 +27,7 @@ const ScrollArea = styled.div`
   position: relative;
   top: 0;
   left: 0;
-  width: 416px;
+  // width: 416px;
   margin-top: -25px;
 `;
 
