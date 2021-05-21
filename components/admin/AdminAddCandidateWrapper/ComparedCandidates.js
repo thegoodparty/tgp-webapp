@@ -146,7 +146,6 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     setUpdateParent(true);
   };
 
-  console.log('criteria', criteria);
   const disabledRows = 3;
 
   return (
