@@ -2,26 +2,13 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import tgpApi from 'api/tgpApi';
 
-export default function UpdateContent({ content, template }) {
-  return (
-    <div>
-      template:
-      <br />
-      {template}
-      <br />
-      <br />
-      <br />
-      Content:
-      <br />
-      {content}
-    </div>
-  );
+export default function UpdateContent() {
+  return <div>updated</div>;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const api = tgpApi.content;
   const res = await fetch(api.url);
-  console.log('api.url', api.url);
 
   const response = await res.json();
   const template = `const content = ${JSON.stringify(response, null, 2)};
@@ -36,6 +23,6 @@ export async function getStaticProps() {
   });
   const content = await fs.readFile(filePath, 'utf8');
   return {
-    props: { content, template },
+    props: {  },
   };
 }

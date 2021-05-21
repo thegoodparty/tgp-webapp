@@ -1,74 +1,74 @@
 const content = {
   "landingPages": {
     "test-tomer": {
-      "metaTitle": "Tomer Example1",
+      "metaTitle": "Tomer Example",
       "metaDescription": "This is the description",
       "slug": "test-tomer",
       "content": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "heading-1",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "This is a test from Tomer",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "heading-1"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "test2",
                 "marks": [],
-                "value": "test",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "id": "5qLbQy6kjUyYwA6VGiG6uM"
     }
