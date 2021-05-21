@@ -4,64 +4,60 @@ const content = {
       "metaTitle": "Tomer Example",
       "metaDescription": "This is the description",
       "slug": "test-tomer",
-      "content": {
+      "content1": {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Thanks for checking us out!",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "heading-1"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Good Party would like your feedback on our brand new platform to empower independent and third-party candidates to run for office and win! If you share are passion for fixing politics and would like to participate in testing our platform please sign up below.",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Participants who are selected to participate will receive a $60 (for 60 minutes) Amazon Gift Card upon completion of their session. \n\nPlease note, space is limited and not everyone who applies will be selected.",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          }
+        ],
+        "nodeType": "document"
+      },
+      "buttonLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "buttonLabel": "Click Me",
+      "content2": {
         "nodeType": "document",
         "data": {},
         "content": [
           {
-            "nodeType": "heading-1",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "This is a test from Tomer",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
             "nodeType": "paragraph",
             "content": [
               {
                 "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "test2",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
+                "value": "Participants who are selected to participate will receive a $60 (for 60 minutes) Amazon Gift Card upon completion of their session. \n\nPlease note, space is limited and not everyone who applies will be selected.",
                 "marks": [],
                 "data": {}
               }

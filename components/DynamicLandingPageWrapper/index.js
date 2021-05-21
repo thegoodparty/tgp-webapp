@@ -5,20 +5,40 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 import PageWrapper from '../shared/PageWrapper';
-import contentfulHelper from '../../helpers/contentfulHelper';
+import contentfulHelper, {
+  CmsContentWrapper,
+} from '../../helpers/contentfulHelper';
+import { PurpleButton } from '../shared/buttons';
 
 function DynamicLandingPageWrapper({ pageContent }) {
   return (
     <PageWrapper>
-      <div>{contentfulHelper(pageContent.content)}</div>
+      <CmsContentWrapper>
+        <div style={{ paddingTop: '1px' }}>
+          {contentfulHelper(pageContent.content1)}
+        </div>
+
+        {pageContent.buttonLink ? (
+          <a href={pageContent.buttonLink} target="_blank">
+            <PurpleButton className="outline" style={{ minWidth: '165px' }}>
+              {pageContent.buttonLabel}
+            </PurpleButton>
+          </a>
+        ) : (
+          <PurpleButton className="outline">Sign Up</PurpleButton>
+        )}
+        <div>{contentfulHelper(pageContent.content2)}</div>
+      </CmsContentWrapper>
     </PageWrapper>
   );
 }
 
-DynamicLandingPageWrapper.propTypes = {};
+DynamicLandingPageWrapper.propTypes = {
+  pageContent: PropTypes.object,
+};
 
 export default DynamicLandingPageWrapper;
