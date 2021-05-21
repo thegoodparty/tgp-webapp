@@ -5,32 +5,40 @@ const content = {
       "metaDescription": "This is the description",
       "slug": "test-tomer",
       "content1": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "heading-1",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "Thanks for checking us out!",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "heading-1"
+            "data": {}
           },
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
-                "marks": [],
+                "nodeType": "text",
                 "value": "Good Party would like your feedback on our brand new platform to empower independent and third-party candidates to run for office and win! If you share are passion for fixing politics and would like to participate in testing our platform please sign up below.",
-                "nodeType": "text"
+                "marks": [],
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
-          },
+            "data": {}
+          }
+        ]
+      },
+      "buttonLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "buttonLabel": "Click Me",
+      "content2": {
+        "data": {},
+        "content": [
           {
             "data": {},
             "content": [
@@ -45,26 +53,6 @@ const content = {
           }
         ],
         "nodeType": "document"
-      },
-      "buttonLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "buttonLabel": "Click Me",
-      "content2": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Participants who are selected to participate will receive a $60 (for 60 minutes) Amazon Gift Card upon completion of their session. \n\nPlease note, space is limited and not everyone who applies will be selected.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
       },
       "id": "5qLbQy6kjUyYwA6VGiG6uM"
     }
