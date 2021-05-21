@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
+import Link from 'next/link';
 
 import PageWrapper from '../shared/PageWrapper';
 import contentfulHelper, {
@@ -29,7 +30,9 @@ function DynamicLandingPageWrapper({ pageContent }) {
             </PurpleButton>
           </a>
         ) : (
-          <PurpleButton className="outline">Sign Up</PurpleButton>
+          <Link href="?register=true" data-cy="sign-up">
+            <PurpleButton className="outline">Sign Up</PurpleButton>
+          </Link>
         )}
         <div>{contentfulHelper(pageContent.content2)}</div>
       </CmsContentWrapper>
