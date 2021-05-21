@@ -1,7 +1,7 @@
 const content = {
   "landingPages": {
     "test-tomer": {
-      "metaTitle": "Tomer Example",
+      "metaTitle": "Tomer Example1",
       "metaDescription": "This is the description",
       "slug": "test-tomer",
       "content": {
@@ -37,7 +37,7 @@ const content = {
               {
                 "data": {},
                 "marks": [],
-                "value": "Hi",
+                "value": "test",
                 "nodeType": "text"
               }
             ],
