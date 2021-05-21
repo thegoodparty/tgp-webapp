@@ -39,7 +39,7 @@ export function CandidateNewPage({
   adminDeleteSupportCallback,
   trackShareCallback,
 }) {
-  const [candidate, setCandidate] = useState({});
+  const [candidate, setCandidate] = useState(ssrState.candidate);
   const [show404, setShow404] = useState(false);
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
