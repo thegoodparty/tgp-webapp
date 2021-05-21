@@ -19,7 +19,6 @@ import makeSelectDynamicLandingPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import DynamicLandingPageWrapper from '../../components/DynamicLandingPageWrapper';
-import { makeSelectContent } from '../App/selectors';
 import TgpHelmet from '../../components/shared/TgpHelmet';
 
 export function DynamicLandingPage({ ssrState }) {
@@ -28,7 +27,6 @@ export function DynamicLandingPage({ ssrState }) {
 
   const router = useRouter();
   const { slug } = router.query;
-  console.log('slug', slug);
   const pageContent = ssrState.content?.landingPages
     ? ssrState.content.landingPages[slug]
     : false;
