@@ -52,6 +52,7 @@ export function DynamicLandingPage({ ssrState }) {
 
 DynamicLandingPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  ssrState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
