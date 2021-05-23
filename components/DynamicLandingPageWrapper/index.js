@@ -9,16 +9,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 
+import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
+import PageWrapper from '../shared/PageWrapper';
+import { PurpleButton } from '../shared/buttons';
+
 const Wrapper = styled.div`
   max-width: 650px;
   margin: 0 auto;
 `;
-
-import PageWrapper from '../shared/PageWrapper';
-import contentfulHelper, {
-  CmsContentWrapper,
-} from '../../helpers/contentfulHelper';
-import { PurpleButton } from '../shared/buttons';
 
 function DynamicLandingPageWrapper({ pageContent }) {
   return (
