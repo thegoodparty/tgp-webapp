@@ -32,7 +32,6 @@ export function PartyPage({ content, appVersion, ssrState }) {
   if (ssrState) {
     ({ candidates } = ssrState);
   }
-  console.log('page cands', candidates);
 
   const childProps = {
     content,

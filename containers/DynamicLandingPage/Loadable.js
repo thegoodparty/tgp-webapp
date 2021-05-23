@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for EventsPage
+ * Asynchronously loads the component for DynamicLandingPage
  *
  */
 

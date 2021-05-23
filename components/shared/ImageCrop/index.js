@@ -39,7 +39,6 @@ function ImageCrop({
   label = 'UPLOAD IMAGE',
   additionalButton,
 }) {
-  console.log('withPRev', withPreview);
   const [upImg, setUpImg] = useState();
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);

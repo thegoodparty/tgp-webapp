@@ -1,6 +1,6 @@
 /**
  *
- * Tests for EventsPage
+ * Tests for DynamicLandingPageWrapper
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,13 +10,12 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { EventsPage } from '../index';
+import DynamicLandingPageWrapper from '../index';
 
-describe('<EventsPage />', () => {
+describe('<DynamicLandingPageWrapper />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    const dispatch = jest.fn();
-    render(<EventsPage dispatch={dispatch} />);
+    render(<DynamicLandingPageWrapper />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -32,7 +31,7 @@ describe('<EventsPage />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<EventsPage />);
+    } = render(<DynamicLandingPageWrapper />);
     expect(firstChild).toMatchSnapshot();
   });
 });
