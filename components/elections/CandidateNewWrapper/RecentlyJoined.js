@@ -108,6 +108,19 @@ function RecentlyJoined({
       setShowAll(!showAll);
     }
   };
+
+  const supportUser = supporter => {
+    if (!supporter || !supporter.user) {
+      return 'Someone';
+    }
+    if (typeof supporter.user === 'string') {
+      return supporter.user;
+    }
+    if (typeof supporter.user === 'object') {
+      return supporter.user.name;
+    }
+    return 'Someone';
+  };
   return (
     <div style={{ marginTop: '14px' }}>
       {displaySupporters.map(supporter => (
@@ -123,7 +136,7 @@ function RecentlyJoined({
           )}
           <Img src={AnonymousIconPurple} alt="share" />
           <div>
-            <JoinName>{supporter.user || 'Someone'}</JoinName>
+            <JoinName>{supportUser(supporter)}</JoinName>
             <JoinTime>
               {supporter.type}d {supporter.timeAgo}
             </JoinTime>
