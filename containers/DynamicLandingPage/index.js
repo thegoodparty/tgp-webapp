@@ -7,10 +7,8 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 
 import { useInjectSaga } from 'utils/injectSaga';
@@ -25,11 +23,7 @@ export function DynamicLandingPage({ ssrState }) {
   useInjectReducer({ key: 'dynamicLandingPage', reducer });
   useInjectSaga({ key: 'dynamicLandingPage', saga });
 
-  const router = useRouter();
-  const { slug } = router.query;
-  const pageContent = ssrState.content?.landingPages
-    ? ssrState.content.landingPages[slug]
-    : false;
+  const pageContent = ssrState.content;
   if (!pageContent) {
     return <ErrorPage statusCode={404} />;
   }
