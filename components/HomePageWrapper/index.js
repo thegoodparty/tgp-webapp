@@ -50,7 +50,7 @@ const Section = styled.section`
   }
 `;
 
-const HomePageWrapper = ({ homepageCandidates }) => {
+const HomePageWrapper = ({ homepageCandidates, experimentVariant }) => {
   console.log('homepageCandidates', homepageCandidates);
   const sections = [
     // { component: <TopSection /> },
@@ -85,6 +85,7 @@ const HomePageWrapper = ({ homepageCandidates }) => {
           )}
         </Section>
       ))}
+      {experimentVariant === '1' && <div>Experiment Variant</div>}
     </PageWrapper>
   );
 };

@@ -147,6 +147,7 @@ class CustomDocument extends Document {
           {/*  })(window,document,'script','dataLayer','GTM-K2HCFR7');`, */}
           {/*            }} */}
           {/*          /> */}
+          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />
         </Head>
         <body>
           <Main />
