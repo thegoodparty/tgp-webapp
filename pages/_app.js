@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
 
   // force https
   if (typeof window !== 'undefined') {
-    if (window.origin !== 'http://localhost:4000' && window.origin !== 'http://127.0.0.1:4000') {
+    if (window.origin !== 'http://localhost:4000') {
       const httpTokens = /^http:\/\/(.*)$/.exec(window.location.href);
       if (httpTokens) {
         window.location.replace(`https://${httpTokens[1]}`);
