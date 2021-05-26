@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useEffect, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Head from 'next/head';
@@ -21,24 +21,24 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectHomePage from './selectors';
 import actions from './actions';
+// import { getExperiment } from '../../helpers/optimizeHelper';
 
-export function HomePage({
-  ssrState,
-  dispatch,
-  homeState,
-  subscribeEmailCallback,
-}) {
+export function HomePage({ ssrState, subscribeEmailCallback }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
-  //
-  // if (ssrState) {
-  //   const candidates = ssrState.homepageCandidates;
-  //   dispatch(actions.loadHomepageCandidatesActionSuccess(candidates));
-  // }
-  // const { homepageCandidates } = homeState;
+
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment('initial-test', 'FwHOlOl4S8Kii-_TtpM0lQ', type => {
+  //     setExperimentVariant(type);
+  //   });
+  // }, []);
+  // console.log('experimentVariant', experimentVariant);
+
   const childProps = {
     homepageCandidates: ssrState.homepageCandidates,
     subscribeEmailCallback,
+    // experimentVariant,
   };
 
   return (
@@ -67,10 +67,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     subscribeEmailCallback: email => {
-      logEvent(
-        'Email & Marketing',
-        'Subscribe to Newsletter',
-      );
+      logEvent('Email & Marketing', 'Subscribe to Newsletter');
       dispatch(actions.subscribeEmailAction(email));
     },
   };
