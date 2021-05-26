@@ -95,7 +95,7 @@ const HowItWorksSection = ({ experimentVariant }) => {
     <>
       <div className="text-center">
         <StyledH2>
-          How it works {experimentVariant === 1 && <span> Optimize JS</span>}
+          How it works {experimentVariant === '1' && <span> Optimize JS</span>}
         </StyledH2>
         <StyledH3>
           Crowd campaigns can make votes matter more than money in our
