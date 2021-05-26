@@ -85,7 +85,7 @@ const HomePageWrapper = ({ homepageCandidates, experimentVariant }) => {
           )}
         </Section>
       ))}
-      {experimentVariant === '1' && <div>Experiment Variant</div>}
+      {/*{experimentVariant === '1' && <div>Experiment Variant</div>}*/}
     </PageWrapper>
   );
 };

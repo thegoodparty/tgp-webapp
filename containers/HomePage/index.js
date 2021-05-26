@@ -21,35 +21,24 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectHomePage from './selectors';
 import actions from './actions';
-import { getExperiment } from '../../helpers/optimizeHelper';
+// import { getExperiment } from '../../helpers/optimizeHelper';
 
-export function HomePage({
-  ssrState,
-  dispatch,
-  homeState,
-  subscribeEmailCallback,
-}) {
+export function HomePage({ ssrState, subscribeEmailCallback }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
-  const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment('initial-test', 'FwHOlOl4S8Kii-_TtpM0lQ', type => {
-      setExperimentVariant(type);
-    });
-  }, []);
-  console.log('experimentVariant', experimentVariant);
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment('initial-test', 'FwHOlOl4S8Kii-_TtpM0lQ', type => {
+  //     setExperimentVariant(type);
+  //   });
+  // }, []);
+  // console.log('experimentVariant', experimentVariant);
 
-  //
-  // if (ssrState) {
-  //   const candidates = ssrState.homepageCandidates;
-  //   dispatch(actions.loadHomepageCandidatesActionSuccess(candidates));
-  // }
-  // const { homepageCandidates } = homeState;
   const childProps = {
     homepageCandidates: ssrState.homepageCandidates,
     subscribeEmailCallback,
-    experimentVariant,
+    // experimentVariant,
   };
 
   return (
