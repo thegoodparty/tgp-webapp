@@ -10,6 +10,8 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 import { PurpleButton } from 'components/shared/buttons';
+import { logEvent } from 'services/AnalyticsService';
+
 import { Body13 } from '../../shared/typogrophy';
 
 const ShareIconPurple = '/images/purple-share.svg';
@@ -40,16 +42,14 @@ function ShareButton({ candidateId, trackShareCallback = () => {} }) {
   if (typeof window !== 'undefined') {
     shareLink = `${window.location.pathname}?preview=true&fromshare=true`;
   }
+  const handleShare = () => {
+    trackShareCallback(candidateId);
+    logEvent('Share Candidate', 'Campaign share button', 'Share');
+  };
 
   return (
     <Link href={shareLink}>
-      <PurpleButton
-        fullWidth
-        className="outline"
-        onClick={() => {
-          trackShareCallback(candidateId);
-        }}
-      >
+      <PurpleButton fullWidth className="outline" onClick={handleShare}>
         <InnerButton>
           <Img src={ShareIconPurple} alt="share" />
           <span>SHARE CAMPAIGN</span>

@@ -256,6 +256,7 @@ function MainWrapper({
                 isUserSupportCandidate={isUserSupportCandidate}
                 removeSupportCallback={removeSupportCallback}
                 supportCallback={supportCallback}
+                trackingLabel="bottom endorse button"
               />
             </Grid>
             <Grid item xs={6}>
@@ -283,6 +284,7 @@ function MainWrapper({
                 supportCallback={supportCallback}
                 removeSupportCallback={removeSupportCallback}
                 isUserSupportCandidate={isUserSupportCandidate}
+                trackingLabel="fixed endorse button"
               />
               <div style={{ marginTop: '8px' }} className="text-center">
                 Your endorsement is a free and powerful way to show and grow

@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import { PurpleButton } from 'components/shared/buttons';
+import { logEvent } from 'services/AnalyticsService';
 
 import { Body11, Body12, Body13 } from '../../shared/typogrophy';
 
@@ -59,7 +60,16 @@ function SupportButton({
   supportCallback,
   removeSupportCallback,
   isUserSupportCandidate,
+  trackingLabel = '',
 }) {
+  const handleSupport = () => {
+    logEvent('Endorse Candidate', trackingLabel, 'Endorsements');
+    supportCallback();
+  };
+  const handleRemoveSupport = () => {
+    logEvent('Remove Endorse Candidate', trackingLabel, 'Endorsements');
+    removeSupportCallback();
+  };
   return (
     <>
       {isUserSupportCandidate ? (
@@ -69,13 +79,13 @@ function SupportButton({
           <IoMdCloseCircleOutline
             size={16}
             style={{ marginLeft: '4px', cursor: 'pointer' }}
-            onClick={removeSupportCallback}
+            onClick={handleRemoveSupport}
           />
         </Support>
       ) : (
         <PurpleButton
           fullWidth
-          onClick={supportCallback}
+          onClick={handleSupport}
           style={{ border: 'solid 2px #5C00C7' }}
         >
           <InnerButton>
@@ -92,6 +102,7 @@ SupportButton.propTypes = {
   supportCallback: PropTypes.func,
   removeSupportCallback: PropTypes.func,
   isUserSupportCandidate: PropTypes.bool,
+  trackingLabel: PropTypes.string,
 };
 
 export default SupportButton;
