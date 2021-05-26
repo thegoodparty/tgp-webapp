@@ -89,12 +89,14 @@ const Description = styled.div`
   }
 `;
 
-const HowItWorksSection = () => {
+const HowItWorksSection = ({ experimentVariant }) => {
   const router = useRouter();
   return (
     <>
       <div className="text-center">
-        <StyledH2>How it works</StyledH2>
+        <StyledH2>
+          How it works {experimentVariant === '1' && <span> Optimize JS</span>}
+        </StyledH2>
         <StyledH3>
           Crowd campaigns can make votes matter more than money in our
           elections!

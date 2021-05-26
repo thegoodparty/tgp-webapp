@@ -57,7 +57,7 @@ const HomePageWrapper = ({ homepageCandidates, experimentVariant }) => {
     // { component: <Section2 />, sectionClass: 'purple4' },
     { component: <Section3 /> },
     {
-      component: <HowItWorksSection />,
+      component: <HowItWorksSection experimentVariant={experimentVariant} />,
       sectionClass: 'no-bottom-padding',
       noContent: true,
     },
@@ -85,7 +85,7 @@ const HomePageWrapper = ({ homepageCandidates, experimentVariant }) => {
           )}
         </Section>
       ))}
-      {/*{experimentVariant === '1' && <div>Experiment Variant</div>}*/}
+      {experimentVariant === '1' && <div>Experiment Variant</div>}
     </PageWrapper>
   );
 };
