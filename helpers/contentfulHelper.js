@@ -5,7 +5,7 @@ import { BLOCKS } from '@contentful/rich-text-types';
 
 const dtrOptions = {
   renderNode: {
-    [BLOCKS.EMBEDDED_ASSET]: (node) => (
+    [BLOCKS.EMBEDDED_ASSET]: node => (
       <img
         src={node.data?.target?.fields?.file?.url}
         alt={node.data?.target?.fields?.title}
@@ -36,17 +36,44 @@ export const CmsContentWrapper = styled.div`
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.1px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     font-size: 20px;
     line-height: 26px;
   }
+
+  h1 {
+    color: ${({ theme }) => theme.colors.gray2};
+    font-size: 27px;
+    line-height: 35px;
+    margin: 0;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 36px;
+      line-height: 42px;
+    }
+  }
+
+  h2 {
+    color: ${({ theme }) => theme.colors.gray2};
+    font-size: 23px;
+    line-height: 30px;
+    margin: 0;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
   h3 {
     color: ${({ theme }) => theme.colors.gray2};
     font-size: 19px;
     line-height: 25px;
     font-weight: 600;
     margin: 0;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
       font-size: 26px;
       line-height: 32px;
     }
@@ -56,7 +83,8 @@ export const CmsContentWrapper = styled.div`
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0.1px;
-    @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
       font-size: 20px;
       line-height: 26px;
     }
