@@ -141,7 +141,7 @@ function ProfileInfo({
         </Sticky>
       </ScrollArea>
     );
-  const supportCount = candidateSupports?.length || 0;
+  const supportCount = total || 0;
 
   const achievements = achievementsHelper(supportCount);
 
@@ -246,7 +246,6 @@ ProfileInfo.propTypes = {
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   total: PropTypes.number,
   adminDeleteSupportCallback: PropTypes.func,
-  trackShareCallback: PropTypes.func,
 };
 
 export default ProfileInfo;
