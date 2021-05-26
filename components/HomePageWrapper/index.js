@@ -50,14 +50,14 @@ const Section = styled.section`
   }
 `;
 
-const HomePageWrapper = ({ homepageCandidates, experimentVariant }) => {
+const HomePageWrapper = ({ homepageCandidates }) => {
   console.log('homepageCandidates', homepageCandidates);
   const sections = [
     // { component: <TopSection /> },
     // { component: <Section2 />, sectionClass: 'purple4' },
     { component: <Section3 /> },
     {
-      component: <HowItWorksSection experimentVariant={experimentVariant} />,
+      component: <HowItWorksSection />,
       sectionClass: 'no-bottom-padding',
       noContent: true,
     },
@@ -85,7 +85,6 @@ const HomePageWrapper = ({ homepageCandidates, experimentVariant }) => {
           )}
         </Section>
       ))}
-      {experimentVariant === '1' && <div>Experiment Variant</div>}
     </PageWrapper>
   );
 };

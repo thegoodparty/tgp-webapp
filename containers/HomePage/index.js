@@ -27,18 +27,18 @@ export function HomePage({ ssrState, subscribeEmailCallback }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
-  const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment('initial-test', 'FwHOlOl4S8Kii-_TtpM0lQ', type => {
-      setExperimentVariant(type);
-    });
-  }, []);
-  console.log('experimentVariant', experimentVariant);
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment('initial-test', 'FwHOlOl4S8Kii-_TtpM0lQ', type => {
+  //     setExperimentVariant(type);
+  //   });
+  // }, []);
+  // console.log('experimentVariant', experimentVariant);
 
   const childProps = {
     homepageCandidates: ssrState.homepageCandidates,
     subscribeEmailCallback,
-    experimentVariant,
+    // experimentVariant,
   };
 
   return (
