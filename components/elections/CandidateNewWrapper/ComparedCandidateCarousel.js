@@ -85,7 +85,7 @@ function NextArrow(props) {
   );
 }
 
-function ComparedCandidateCarousel({ candidates }) {
+function ComparedCandidateCarousel({ candidates, candidate }) {
   const [tooltipTopic, setTooltipTopic] = useState(false);
   const settings = {
     dots: false,
@@ -105,6 +105,7 @@ function ComparedCandidateCarousel({ candidates }) {
   const handleSetTopic = topic => {
     setTooltipTopic(topic);
   };
+  console.log('candidate', candidate)
   return (
     <Grid container>
       <Grid item xs={6}>
@@ -112,6 +113,7 @@ function ComparedCandidateCarousel({ candidates }) {
           candidate={candidates[0]}
           setTopicCallback={handleSetTopic}
           partyBadge
+          hideBadge={candidate.isDraft}
         />
       </Grid>
       <Grid item xs={6}>

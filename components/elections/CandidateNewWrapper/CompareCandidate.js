@@ -75,11 +75,12 @@ function ComparedCandidate({
   candidate,
   setTopicCallback,
   partyBadge = false,
+  hideBadge = false,
 }) {
   if (!candidate) {
     return <NotFound />;
   }
-  const { image, name, party, website } = candidate;
+  const { image, name, party, website, isDraft } = candidate;
   const comparedFactors = { ...candidate };
   delete comparedFactors.name;
   delete comparedFactors.party;
@@ -98,10 +99,11 @@ function ComparedCandidate({
   return (
     <>
       <CandidateAvatar
-        party={cleanParty}
+        party={isDraft ? 'draft' : cleanParty}
         avatar={encodeURI(getValidImgUrl(image))}
         centered
         partyBadge={partyBadge}
+        hideBadge={hideBadge}
       />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>

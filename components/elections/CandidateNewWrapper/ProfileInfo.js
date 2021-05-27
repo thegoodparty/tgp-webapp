@@ -125,7 +125,15 @@ function ProfileInfo({
 }) {
   const router = useRouter();
 
-  const { firstName, lastName, image, race, party } = candidate;
+  const {
+    firstName,
+    lastName,
+    image,
+    race,
+    party,
+    isDraft,
+    draftOffice,
+  } = candidate;
 
   const WrapperElement = ({ children }) =>
     isMobile ? (
@@ -187,18 +195,27 @@ function ProfileInfo({
               party={party}
               size={isMobile ? 'small' : 'large'}
               partyBadge
+              hideBadge={isDraft}
             />
             <div style={{ flex: 1 }}>
               <CandidateName>
                 {firstName} {lastName}
               </CandidateName>
               <PartyName>
-                {party === 'S' ? (
-                  'SAM Party'
+                {isDraft ? (
+                  draftOffice
                 ) : (
-                  <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
-                )}{' '}
-                candidate running for {race}
+                  <>
+                    {party === 'S' ? (
+                      'SAM Party'
+                    ) : (
+                      <TitleCase>
+                        {partyResolver(party).toLowerCase()}
+                      </TitleCase>
+                    )}{' '}
+                    candidate running for {race}{' '}
+                  </>
+                )}
               </PartyName>
             </div>
           </AvatarSection>

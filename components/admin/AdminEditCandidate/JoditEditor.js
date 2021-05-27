@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import { getCookie } from 'helpers/cookieHelper';
 import PropTypes from 'prop-types';
 import tgpApi from 'api/tgpApi';
@@ -19,7 +19,7 @@ const JoditEditorWrapper = ({
   const token = getCookie('token');
   useEffect(() => {
     setContent(initialText);
-  }, [initialText]);
+  }, []);
 
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
@@ -77,4 +77,4 @@ JoditEditorWrapper.propTypes = {
   onChangeCallback: PropTypes.func,
 };
 
-export default JoditEditorWrapper;
+export default memo(JoditEditorWrapper);
