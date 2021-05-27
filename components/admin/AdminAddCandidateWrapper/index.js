@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
@@ -106,7 +106,7 @@ const fields = [
   { label: 'Snap', key: 'snap', initialValue: '' },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
-  { label: 'About', key: 'about', rte: true, initialValue: '' },
+  // { label: 'About', key: 'about', rte: true, initialValue: '' },
 ];
 
 function AdminAddCandidateWrapper({
@@ -125,6 +125,7 @@ function AdminAddCandidateWrapper({
     initialState.isActive = candidate.isActive;
   }
   const [formState, setFormState] = useState(initialState);
+  const [about, setAbout] = useState(candidate ? candidate.about : '');
   const [comparedCandidates, setComparedCandidates] = useState(
     candidate ? candidate.comparedCandidates : false,
   );
@@ -150,12 +151,14 @@ function AdminAddCandidateWrapper({
     if (mode === 'add') {
       createCandidateCallback({
         ...formState,
+        about,
         comparedCandidates,
         candidateUpdates,
       });
     } else {
       editCandidateCallback({
         ...formState,
+        about,
         comparedCandidates,
         candidateUpdates,
         id: candidate.id,
@@ -176,7 +179,6 @@ function AdminAddCandidateWrapper({
     setCandidateUpdates(existingUpdates);
   };
 
-
   const deleteUpdateListItem = index => {
     const existingUpdates = [...candidateUpdates];
     existingUpdates.splice(index, 1);
@@ -187,7 +189,7 @@ function AdminAddCandidateWrapper({
     existingUpdates[index][key] = val;
     setCandidateUpdates(existingUpdates);
   };
-  
+
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
@@ -215,15 +217,7 @@ function AdminAddCandidateWrapper({
         )}
         {fields.map(field => (
           <React.Fragment key={field.key}>
-            {field.rte ? (
-              <>
-                <Label>{field.label}</Label>
-                <JoditEditorWrapper
-                  onChangeCallback={value => onChangeField(field.key, value)}
-                  initialText={formState[field.key]}
-                />
-              </>
-            ) : field.isSelect ? (
+            {field.isSelect ? (
               <FormControl style={{ width: '100%' }}>
                 <InputLabel id={field.key}>{field.label}</InputLabel>
                 <Select
@@ -272,6 +266,11 @@ function AdminAddCandidateWrapper({
             )}
           </React.Fragment>
         ))}
+        <Label>About</Label>
+        <JoditEditorWrapper
+          onChangeCallback={value => setAbout(value)}
+          initialText={about}
+        />
         <br />
         <br />
         <hr />
@@ -336,4 +335,4 @@ AdminAddCandidateWrapper.propTypes = {
   mode: PropTypes.string,
 };
 
-export default AdminAddCandidateWrapper;
+export default memo(AdminAddCandidateWrapper);

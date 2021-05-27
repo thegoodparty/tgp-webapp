@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -111,14 +111,14 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     const newCandidates = [...candidates];
     newCandidates[index][key] = val;
     setCandidates(newCandidates);
-    setUpdateParent(true);
+    // setUpdateParent(true);
   };
 
   const onChangeCriteria = (val, index) => {
     const newCriteria = [...criteria];
     newCriteria[index] = val;
     setCriteria(newCriteria);
-    setUpdateParent(true);
+    // setUpdateParent(true);
   };
 
   const deleteCriteria = index => {
@@ -174,6 +174,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
               variant="outlined"
               value={crit}
               onChange={e => onChangeCriteria(e.target.value, index)}
+              onBlue={() => setUpdateParent(true)}
               disabled={index < disabledRows + 1}
             />
           </Grid>
@@ -220,6 +221,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
                   variant="outlined"
                   value={cand[crit]}
                   onChange={e => onChangeCand(crit, e.target.value, index2)}
+                  onBlue={() => setUpdateParent(true)}
                   disabled={index2 === 0 && index < 3}
                 />
               )}
@@ -241,4 +243,4 @@ ComparedCandidates.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 
-export default ComparedCandidates;
+export default memo(ComparedCandidates);
