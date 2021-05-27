@@ -128,7 +128,7 @@ function AdminAddCandidateWrapper({
   });
 
   const [formState, setFormState] = useState(initialState);
-  const [about, setAbout] = useState('');
+  const [about, setAbout] = useState(candidate ? candidate.about : '');
   const [comparedCandidates, setComparedCandidates] = useState(false);
   const [showUpdates, setShowUpdates] = useState(false);
   const [candidateUpdates, setCandidateUpdates] = useState([]);
