@@ -111,7 +111,7 @@ function RecentlyJoined({
 
   const supportUser = supporter => {
     if (!supporter || !supporter.user) {
-      return 'Someone';
+      return 'Anonymous';
     }
     if (typeof supporter.user === 'string') {
       return supporter.user;
@@ -119,7 +119,7 @@ function RecentlyJoined({
     if (typeof supporter.user === 'object') {
       return supporter.user.name;
     }
-    return 'Someone';
+    return 'Anonymous';
   };
   return (
     <div style={{ marginTop: '14px' }}>
