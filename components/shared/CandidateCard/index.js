@@ -77,6 +77,8 @@ function CandidateCard({ candidate }) {
     party,
     supporters,
     headline,
+    isDraft,
+    draftOffice,
   } = candidate;
 
   const achievements = achievementsHelper(supporters);
@@ -90,17 +92,24 @@ function CandidateCard({ candidate }) {
             size="medium"
             partyBadge
             centered
+            hideBadge={isDraft}
           />
           <Name>
             {firstName} {lastName}
           </Name>
           <For>
-            {party === 'S' ? (
-              'SAM Party'
+            {isDraft ? (
+              draftOffice
             ) : (
-              <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
-            )}{' '}
-            candidate running for {race}
+              <>
+                {party === 'S' ? (
+                  'SAM Party'
+                ) : (
+                  <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
+                )}{' '}
+                candidate running for {race}
+              </>
+            )}
           </For>
           <Endorsed>
             <div style={{ paddingLeft: '8px' }}>

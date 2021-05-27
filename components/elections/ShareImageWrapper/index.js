@@ -106,20 +106,12 @@ function ShareImage({
   candidate,
   shareImageCallback,
   imageAsBase64,
-  candidateSupports,
   withRender = true,
   fromShareLink = false,
   total,
 }) {
   const supportCount = total;
-  const {
-    firstName,
-    lastName,
-    race,
-    party,
-    likelyVoters,
-    votesNeeded,
-  } = candidate;
+  const { firstName, lastName, race, party, isDraft, draftOffice } = candidate;
   const afterLoad = suffix => {
     if (!withRender) {
       return;
@@ -136,7 +128,6 @@ function ShareImage({
         console.error('oops, something went wrong!', error);
       });
   };
-  const intLikelyVoters = parseInt(likelyVoters, 10);
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
 
@@ -156,13 +147,20 @@ function ShareImage({
             party={party}
             size="small"
             afterLoad={() => afterLoad('support')}
+            hideBadge={isDraft}
           />
           <NameWrapper>
             <CandidateName className={longName && 'long-name'}>
               {firstName} {lastName}
             </CandidateName>
-            <PartyName>{partyResolver(party)} for</PartyName>
-            <PartyName>{race}</PartyName>
+            {isDraft ? (
+              draftOffice
+            ) : (
+              <>
+                <PartyName>{partyResolver(party)} for</PartyName>
+                <PartyName>{race}</PartyName>
+              </>
+            )}
           </NameWrapper>
         </AvatarWrapper>
         <Endorsed>
@@ -204,13 +202,20 @@ function ShareImage({
               size="small"
               afterLoad={() => afterLoad('share')}
               style={{ margin: '0 5px' }}
+              hideBadge={isDraft}
             />
             <NameWrapper>
               <CandidateName className={longName && 'long-name'}>
                 {firstName} {lastName}
               </CandidateName>
-              <PartyName>{partyResolver(party)} for</PartyName>
-              <PartyName>{race}</PartyName>
+              {isDraft ? (
+                draftOffice
+              ) : (
+                <>
+                  <PartyName>{partyResolver(party)} for</PartyName>
+                  <PartyName>{race}</PartyName>
+                </>
+              )}
             </NameWrapper>
           </AvatarWrapper>
           <Endorsed>
@@ -247,7 +252,7 @@ ShareImage.propTypes = {
   candidate: PropTypes.object,
   shareImageCallback: PropTypes.func,
   imageAsBase64: PropTypes.string,
-  candidateSupports: PropTypes.array,
+  total: PropTypes.number,
   withRender: PropTypes.bool,
   fromShareLink: PropTypes.bool,
 };
