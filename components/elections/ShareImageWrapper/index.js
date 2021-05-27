@@ -109,8 +109,9 @@ function ShareImage({
   candidateSupports,
   withRender = true,
   fromShareLink = false,
+  total,
 }) {
-  const supportCount = candidateSupports?.length;
+  const supportCount = total;
   const {
     firstName,
     lastName,

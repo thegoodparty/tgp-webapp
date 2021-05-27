@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 
 import NotFound from 'containers/shared/NotFoundPage';
 import { validateLink } from 'helpers/linkHelper';
+import { logEvent } from 'services/AnalyticsService';
 
 import ProfileInfo from './ProfileInfo';
 import { H1, Body19, Body13 } from '../../shared/typogrophy';
@@ -41,16 +42,16 @@ const FixedEndorse = styled.div`
   width: 100vw;
   padding: 16px 32px;
   @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.contentMax}) {
+      theme.breakpointsPixels.contentMax}) {
     padding: 16px 32px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     padding-right: 24px;
     padding-left: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.sm}) {
+      theme.breakpointsPixels.sm}) {
     padding-right: 18px;
     padding-left: 18px;
   }
@@ -157,6 +158,10 @@ function MainWrapper({
     ({ website } = candidate.comparedCandidates.candidates[0]);
   }
 
+  const trackSocial = channel => {
+    logEvent('Click', channel, 'Candidate Social Links');
+  };
+
   return (
     <>
       {heroVideo && (
@@ -192,7 +197,11 @@ function MainWrapper({
 
           <div style={{ marginTop: '24px' }}>
             {facebook && (
-              <SocialLink href={validateLink(facebook)} target="_blank">
+              <SocialLink
+                href={validateLink(facebook)}
+                target="_blank"
+                onClick={() => trackSocial('Facebook')}
+              >
                 <img
                   src="/images/icons/purple-facebook.svg"
                   alt="facebook"
@@ -201,7 +210,11 @@ function MainWrapper({
               </SocialLink>
             )}
             {twitter && (
-              <SocialLink href={validateLink(twitter)} target="_blank">
+              <SocialLink
+                href={validateLink(twitter)}
+                target="_blank"
+                onClick={() => trackSocial('Twitter')}
+              >
                 <img
                   src="/images/icons/purple-twitter.svg"
                   alt="twitter"
@@ -210,7 +223,11 @@ function MainWrapper({
               </SocialLink>
             )}
             {tiktok && (
-              <SocialLink href={validateLink(tiktok)} target="_blank">
+              <SocialLink
+                href={validateLink(tiktok)}
+                target="_blank"
+                onClick={() => trackSocial('Tiktok')}
+              >
                 <img
                   src="/images/icons/purple-tiktok.svg"
                   alt="tiktok"
@@ -219,7 +236,11 @@ function MainWrapper({
               </SocialLink>
             )}
             {snap && (
-              <SocialLink href={validateLink(snap)} target="_blank">
+              <SocialLink
+                href={validateLink(snap)}
+                target="_blank"
+                onClick={() => trackSocial('Snap')}
+              >
                 <img
                   src="/images/icons/purple-snap.svg"
                   alt="snap"
@@ -228,7 +249,12 @@ function MainWrapper({
               </SocialLink>
             )}
             {website && (
-              <SocialLink href={validateLink(website)} target="_blank" passhref>
+              <SocialLink
+                href={validateLink(website)}
+                target="_blank"
+                passhref
+                onClick={() => trackSocial('Website')}
+              >
                 <a target="_blank">
                   <img
                     src="/images/icons/globe-icon.svg"
@@ -241,9 +267,7 @@ function MainWrapper({
           </div>
         </SectionWrapper>
         <SectionWrapper>
-          <SectionHeader>
-            Compare candidates in this race
-          </SectionHeader>
+          <SectionHeader>Compare candidates in this race</SectionHeader>
           <ComparedCandidateCarousel
             candidates={comparedCandidates?.candidates}
           />

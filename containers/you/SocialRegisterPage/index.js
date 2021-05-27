@@ -86,16 +86,16 @@ function mapDispatchToProps(dispatch) {
   return {
     socialLoginCallback: user => {
       logEvent(
-        'Signup',
-        'Click Signup Method',
-        `Click ${user._provider} Signup`,
+        'Social Register Success',
+        `${user._provider} Signup`,
+        `Register`,
       );
       dispatch(userActions.socialRegisterAction(user));
     },
     socialLoginFailureCallback: err => {
       if (err.toString().includes('[google][load] Failed to load SDK')) {
       } else {
-        console.log('error social register', err);
+        logEvent('Social Register Error', `${user._provider} SSO`, `Register`);
         dispatch(
           snackbarActions.showSnakbarAction('Error Registering', 'error'),
         );
@@ -106,10 +106,12 @@ function mapDispatchToProps(dispatch) {
     },
 
     twitterButtonCallback: () => {
+      logEvent('Social Register Success', 'Twitter SSO', `Register`);
       dispatch(userActions.twitterLoginAction());
     },
 
     emailRegisterCallback: (name, email) => {
+      logEvent('Email Register', 'Email Register', `Register`);
       dispatch(userActions.registerAction(email, name));
     },
   };

@@ -17,6 +17,7 @@ import TgpHelmet from 'components/shared/TgpHelmet';
 import { getUserCookie } from 'helpers/cookieHelper';
 import queryHelper from 'helpers/queryHelper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
+import { partyResolver } from 'helpers/electionsHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -26,7 +27,6 @@ import saga from './saga';
 import actions from './actions';
 import { makeSelectContent } from '../../App/selectors';
 import makeSelectCandidateNewPage from './selectors';
-import { partyResolver } from '../../../helpers/electionsHelper';
 
 export function CandidateNewPage({
   ssrState,

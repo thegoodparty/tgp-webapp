@@ -15,7 +15,7 @@ export async function getServerSideProps(context) {
     const api2 = tgpApi.supportCandidate.candidateSupports;
     const url2 = `${api2.url}?candidateId=${id}`;
     const res2 = await fetch(url2);
-    const { candidateSupports } = await res2.json();
+    const { candidateSupports, total } = await res2.json();
 
     return {
       props: {
@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
             ? candidate.imageAsBase64
             : null,
           candidateSupports,
+          total,
         },
       }, // will be passed to the page component as props
     };

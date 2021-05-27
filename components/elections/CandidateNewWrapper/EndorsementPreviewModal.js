@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
+import { logEvent } from 'services/AnalyticsService';
+
 import { Body11 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import ShareImage from '../ShareImageWrapper';
@@ -77,6 +79,29 @@ function EndorsementPreviewModal({
       margin: '0 auto',
     },
   };
+
+  const handleContinue = (candidateId, message) => {
+    if (message === '') {
+      logEvent(
+        'Submit endorsement',
+        'empty message',
+        'Endorsement preview modal',
+      );
+    } else if (message === defaultMessage) {
+      logEvent(
+        'Submit endorsement',
+        'default message',
+        'Endorsement preview modal',
+      );
+    } else {
+      logEvent(
+        'Submit endorsement',
+        'custom message',
+        'Endorsement preview modal',
+      );
+    }
+    previewNextStepCallback(candidateId, message);
+  };
   return (
     <QueryModalContainer
       modalStyles={modalStyles}
@@ -104,9 +129,7 @@ function EndorsementPreviewModal({
         onChange={onChangeField}
       />
 
-      <PurpleButton
-        onClick={() => previewNextStepCallback(candidate.id, message)}
-      >
+      <PurpleButton onClick={() => handleContinue(candidate.id, message)}>
         CONTINUE
       </PurpleButton>
     </QueryModalContainer>
