@@ -237,7 +237,6 @@ function ProfileInfo({
               removeSupportCallback={removeSupportCallback}
               isUserSupportCandidate={isUserSupportCandidate}
               trackingLabel="top endorse button"
-              isDraft={isDraft}
             />
             <div style={{ marginTop: '12px' }}>
               Your endorsement is a free and powerful way to show and grow

@@ -61,7 +61,6 @@ function SupportButton({
   removeSupportCallback,
   isUserSupportCandidate,
   trackingLabel = '',
-  isDraft = false,
 }) {
   const handleSupport = () => {
     logEvent('Endorse Candidate', trackingLabel, 'Endorsements');
@@ -91,7 +90,7 @@ function SupportButton({
         >
           <InnerButton>
             <Img src={HeartIconWhite} alt="share" />
-            <span>{isDraft ? 'DRAFT' : 'ENDORSE'} CANDIDATE</span>
+            <span>ENDORSE CANDIDATE</span>
           </InnerButton>
         </PurpleButton>
       )}

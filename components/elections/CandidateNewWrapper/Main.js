@@ -152,7 +152,6 @@ function MainWrapper({
     tiktok,
     snap,
     heroVideo,
-    isDraft,
   } = candidate;
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
@@ -291,7 +290,6 @@ function MainWrapper({
                 removeSupportCallback={removeSupportCallback}
                 supportCallback={supportCallback}
                 trackingLabel="bottom endorse button"
-                isDraft={isDraft}
               />
             </Grid>
             <Grid item xs={6}>
@@ -320,7 +318,6 @@ function MainWrapper({
                 removeSupportCallback={removeSupportCallback}
                 isUserSupportCandidate={isUserSupportCandidate}
                 trackingLabel="fixed endorse button"
-                isDraft={isDraft}
               />
               <div style={{ marginTop: '8px' }} className="text-center">
                 Your endorsement is a free and powerful way to show and grow
