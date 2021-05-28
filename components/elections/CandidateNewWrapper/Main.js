@@ -135,6 +135,7 @@ function MainWrapper({
   candidateSupports,
   total,
   trackShareCallback,
+  experimentVariant,
 }) {
   const router = useRouter();
 
@@ -187,9 +188,11 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        <SectionWrapper style={{ marginTop: '24px' }}>
-          <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
-        </SectionWrapper>
+        {experimentVariant === '0' && (
+          <SectionWrapper style={{ marginTop: '24px' }}>
+            <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
+          </SectionWrapper>
+        )}
         <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionHeader style={{ marginBottom: '4px' }}>
             Candidate socials
@@ -273,6 +276,12 @@ function MainWrapper({
             candidate={candidate}
           />
         </SectionWrapper>
+
+        {experimentVariant === '1' && (
+          <SectionWrapper style={{ marginTop: '24px' }}>
+            <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
+          </SectionWrapper>
+        )}
 
         <SectionWrapper>
           <Grid container spacing={2}>

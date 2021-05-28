@@ -152,7 +152,7 @@ class CustomDocument extends Document {
             }}
           />
 
-          {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />*/}
+          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />
         </Head>
         <body>
           <Main />

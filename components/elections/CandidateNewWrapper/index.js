@@ -56,6 +56,7 @@ function CandidateNewWrapper({
   total,
   adminDeleteSupportCallback,
   trackShareCallback,
+  experimentVariant,
 }) {
   if (!candidate) {
     return <NotFound />;
@@ -87,6 +88,7 @@ function CandidateNewWrapper({
               candidateSupports={candidateSupports}
               total={total}
               trackShareCallback={trackShareCallback}
+              experimentVariant={experimentVariant}
             />
           </Grid>
           <Hidden smDown>
@@ -142,6 +144,7 @@ CandidateNewWrapper.propTypes = {
   total: PropTypes.number,
   adminDeleteSupportCallback: PropTypes.func,
   trackShareCallback: PropTypes.func,
+  experimentVariant: PropTypes.string,
 };
 
 export default CandidateNewWrapper;
