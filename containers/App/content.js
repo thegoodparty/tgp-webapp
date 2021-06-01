@@ -1,42 +1,10 @@
 const content = {
   "landingPages": {
-    "test-tomer": {
-      "metaTitle": "Tomer Example",
-      "metaDescription": "This is the description",
-      "slug": "test-tomer",
+    "ux-research": {
+      "metaTitle": "Research | Good Party",
+      "metaDescription": "Earn rewards by answering questions about new software.",
+      "slug": "ux-research",
       "content1": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "heading-1",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Thanks for checking us out!",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Good Party would like your feedback on our brand new platform to empower independent and third-party candidates to run for office and win! If you share are passion for fixing politics and would like to participate in testing our platform please sign up below.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "buttonLink": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "buttonLabel": "Click Me",
-      "content2": {
         "data": {},
         "content": [
           {
@@ -45,7 +13,19 @@ const content = {
               {
                 "data": {},
                 "marks": [],
-                "value": "Participants who are selected to participate will receive a $60 (for 60 minutes) Amazon Gift Card upon completion of their session. \n\nPlease note, space is limited and not everyone who applies will be selected.",
+                "value": "Thanks for checking us out!",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "heading-1"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Good Party would like your feedback on our brand new platform to empower independent and third-party candidates to run for office and win! If you share our passion for fixing politics and would like to participate in testing our platform please sign up below.",
                 "nodeType": "text"
               }
             ],
@@ -53,6 +33,26 @@ const content = {
           }
         ],
         "nodeType": "document"
+      },
+      "buttonLink": "https://airtable.com/shrOHA73cgHw5s0Dd",
+      "buttonLabel": "SIGN ME UP",
+      "content2": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Participants who are selected to participate will receive a $60 (for 60 minutes) Amazon Gift Card upon completion of their session. \n\nPlease note, space is limited and not everyone who applies will be selected.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
       },
       "id": "5qLbQy6kjUyYwA6VGiG6uM"
     }

@@ -38,6 +38,7 @@ function* shareImage(action) {
   try {
     const api = tgpApi.newCandidate.shareImage;
     const { candidate } = action;
+    console.log(candidate);
     const payload = { candidate };
     yield call(requestHelper, api, payload);
   } catch (error) {

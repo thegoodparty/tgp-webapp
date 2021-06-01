@@ -33,13 +33,6 @@ const logErrorAction = (message, error) => ({
   error,
 });
 
-const sendArticleFeedbackAction = (id, title, isHelpful, feedback) => ({
-  type: types.SEND_ARTICLE_FEEDBACK,
-  id,
-  title,
-  isHelpful,
-  feedback,
-});
 
 export default {
   loadContentAction,
@@ -47,7 +40,6 @@ export default {
   loadContentActionError,
   setArticleModalAction,
   clearArticleModalAction,
-  sendArticleFeedbackAction,
   logErrorAction,
   refreshTokenAction,
 };
