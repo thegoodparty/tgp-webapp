@@ -1,13 +1,10 @@
-import { all, call, put, takeLatest, select, fork, take, cancel } from 'redux-saga/effects';
-import { getCookie, setUserCookie, setCookie } from 'helpers/cookieHelper';
+import { all, call, takeLatest } from 'redux-saga/effects';
 import requestHelper from 'helpers/requestHelper';
 import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
 import makeSelectUser from 'containers/you/YouPage/selectors';
-import youActions from 'containers/you/YouPage/actions';
 
 import tgpApi from 'api/tgpApi';
 import types from './constants';
-import actions from './actions';
 import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 function* sendArticleFeedback(action) {
@@ -23,7 +20,7 @@ function* sendArticleFeedback(action) {
       feedback,
       uuid,
     };
-    
+
     yield call(requestHelper, api, payload);
     snackbarActions.showSnakbarAction('Thank you for your feedback');
   } catch (error) {
@@ -34,7 +31,5 @@ function* sendArticleFeedback(action) {
 
 // Individual exports for testing
 export default function* saga() {
-  yield all([
-    takeLatest(types.SEND_ARTICLE_FEEDBACK, sendArticleFeedback),
-  ]);
+  yield all([takeLatest(types.SEND_ARTICLE_FEEDBACK, sendArticleFeedback)]);
 }

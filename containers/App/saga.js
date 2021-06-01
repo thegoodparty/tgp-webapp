@@ -1,14 +1,12 @@
-import { all, call, put, takeLatest, select, fork, take, cancel } from 'redux-saga/effects';
-import { getCookie, setUserCookie, setCookie } from 'helpers/cookieHelper';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { setUserCookie, setCookie } from 'helpers/cookieHelper';
 import requestHelper from 'helpers/requestHelper';
 import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
-import makeSelectUser from 'containers/you/YouPage/selectors';
 import youActions from 'containers/you/YouPage/actions';
 
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
-import snackbarActions from '../shared/SnackbarContainer/actions';
 
 function* loadContent() {
   try {
