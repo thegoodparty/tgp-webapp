@@ -70,6 +70,7 @@ const Seperator = styled.span`
   margin: 0 4px;
 `;
 
+
 function LeaderboardWrapper({ crew, user, leaderboard }) {
   return (
     <PageWrapper purple isFullWidth>

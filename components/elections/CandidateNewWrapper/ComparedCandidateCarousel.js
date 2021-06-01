@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { logEvent } from 'services/AnalyticsService';
 
 import CompareCandidate from './CompareCandidate';
 import TooltipModal from './TooltipModal';
@@ -27,7 +28,8 @@ const StyledSlider = styled(Slider)`
 const PrevArrowElem = styled.div`
   left: calc(-50vw + 18px);
   top: 35px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     left: -280px;
     top: 150px;
   }
@@ -44,7 +46,8 @@ const NextArrowElem = styled.div`
   &::before {
     display: none;
   }
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     top: 150px;
   }
   right: 20px;
@@ -58,8 +61,12 @@ const NextArrowElem = styled.div`
 
 function PrevArrow(props) {
   const { className, style, onClick } = props;
+  const handleClick = () => {
+    logEvent('click', 'Carousel Prev button', 'Candidate Carousel');
+    onClick();
+  };
   return (
-    <PrevArrowElem className={className} onClick={onClick}>
+    <PrevArrowElem className={className} onClick={handleClick}>
       <img src={CarouselPrevIcon} alt="carousel-prev" />
     </PrevArrowElem>
   );
@@ -67,14 +74,18 @@ function PrevArrow(props) {
 
 function NextArrow(props) {
   const { className, style, onClick } = props;
+  const handleClick = () => {
+    logEvent('click', 'Carousel Next button', 'Candidate Carousel');
+    onClick();
+  };
   return (
-    <NextArrowElem className={className} onClick={onClick}>
+    <NextArrowElem className={className} onClick={handleClick}>
       <img src={CarouselNextIcon} alt="carousel-next" />
     </NextArrowElem>
   );
 }
 
-function ComparedCandidateCarousel({ candidates }) {
+function ComparedCandidateCarousel({ candidates, candidate }) {
   const [tooltipTopic, setTooltipTopic] = useState(false);
   const settings = {
     dots: false,
@@ -94,6 +105,7 @@ function ComparedCandidateCarousel({ candidates }) {
   const handleSetTopic = topic => {
     setTooltipTopic(topic);
   };
+  console.log('candidate', candidate)
   return (
     <Grid container>
       <Grid item xs={6}>
@@ -101,6 +113,7 @@ function ComparedCandidateCarousel({ candidates }) {
           candidate={candidates[0]}
           setTopicCallback={handleSetTopic}
           partyBadge
+          hideBadge={candidate.isDraft}
         />
       </Grid>
       <Grid item xs={6}>

@@ -4,19 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import AdminAddCandidateWrapper from 'components/admin/AdminAddCandidateWrapper';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectAdminAddCandidatePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import AdminAddCandidateWrapper from '../../../components/admin/AdminAddCandidateWrapper';
 import actions from './actions';
 
 export function AdminAddCandidatePage({
@@ -67,7 +68,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.createCandidateAction(candidate));
     },
     editCandidateCallback: candidate => {
-      console.log('here');
       dispatch(actions.editCandidateAction(candidate));
     },
   };
@@ -78,4 +78,7 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(AdminAddCandidatePage);
+export default compose(
+  withConnect,
+  memo,
+)(AdminAddCandidatePage);

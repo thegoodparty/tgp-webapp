@@ -4,12 +4,12 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Nav from 'containers/shared/Nav';
-import { BlueButton } from 'components/shared/buttons';
+import { BlueButton, PurpleButton } from 'components/shared/buttons';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -78,6 +78,13 @@ const fields = [
     initialValue: true,
     isCheckbox: true,
   },
+  {
+    label: 'Draft Candidate',
+    key: 'isDraft',
+    initialValue: false,
+    isCheckbox: true,
+  },
+  { label: 'Draft Office', key: 'draftOffice', initialValue: '' },
   { label: 'First Name', key: 'firstName', initialValue: '' },
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
@@ -106,7 +113,7 @@ const fields = [
   { label: 'Snap', key: 'snap', initialValue: '' },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
-  { label: 'About', key: 'about', rte: true, initialValue: '' },
+  // { label: 'About', key: 'about', rte: true, initialValue: '' },
 ];
 
 function AdminAddCandidateWrapper({
@@ -117,20 +124,31 @@ function AdminAddCandidateWrapper({
 }) {
   const initialState = {};
   fields.forEach(field => {
-    initialState[field.key] = candidate
-      ? candidate[field.key]
-      : field.initialValue;
+    initialState[field.key] = field.initialValue;
   });
-  if (candidate) {
-    initialState.isActive = candidate.isActive;
-  }
+
   const [formState, setFormState] = useState(initialState);
-  const [comparedCandidates, setComparedCandidates] = useState(
-    candidate ? candidate.comparedCandidates : false,
-  );
-  const [candidateUpdates, setCandidateUpdates] = useState(
-    candidate?.updatesList || [],
-  );
+  const [about, setAbout] = useState(candidate ? candidate.about : '');
+  const [comparedCandidates, setComparedCandidates] = useState(false);
+  const [showUpdates, setShowUpdates] = useState(false);
+  const [candidateUpdates, setCandidateUpdates] = useState([]);
+
+  useEffect(() => {
+    if (candidate) {
+      const newState = {};
+      fields.forEach(field => {
+        newState[field.key] = candidate
+          ? candidate[field.key]
+          : field.initialValue;
+      });
+      setAbout(candidate.about);
+      newState.isActive = candidate.isActive;
+      setFormState(newState);
+      setComparedCandidates(candidate.comparedCandidates);
+      setCandidateUpdates(candidate.updatesList || []);
+    }
+  }, [candidate]);
+
   const onChangeField = (key, value, type = 'text') => {
     setFormState({
       ...formState,
@@ -150,12 +168,14 @@ function AdminAddCandidateWrapper({
     if (mode === 'add') {
       createCandidateCallback({
         ...formState,
+        about,
         comparedCandidates,
         candidateUpdates,
       });
     } else {
       editCandidateCallback({
         ...formState,
+        about,
         comparedCandidates,
         candidateUpdates,
         id: candidate.id,
@@ -176,7 +196,6 @@ function AdminAddCandidateWrapper({
     setCandidateUpdates(existingUpdates);
   };
 
-
   const deleteUpdateListItem = index => {
     const existingUpdates = [...candidateUpdates];
     existingUpdates.splice(index, 1);
@@ -187,7 +206,7 @@ function AdminAddCandidateWrapper({
     existingUpdates[index][key] = val;
     setCandidateUpdates(existingUpdates);
   };
-  
+
   return (
     <div style={{ backgroundColor: '#FFF' }}>
       <Nav />
@@ -215,15 +234,7 @@ function AdminAddCandidateWrapper({
         )}
         {fields.map(field => (
           <React.Fragment key={field.key}>
-            {field.rte ? (
-              <>
-                <Label>{field.label}</Label>
-                <JoditEditorWrapper
-                  onChangeCallback={value => onChangeField(field.key, value)}
-                  initialText={formState[field.key]}
-                />
-              </>
-            ) : field.isSelect ? (
+            {field.isSelect ? (
               <FormControl style={{ width: '100%' }}>
                 <InputLabel id={field.key}>{field.label}</InputLabel>
                 <Select
@@ -272,6 +283,11 @@ function AdminAddCandidateWrapper({
             )}
           </React.Fragment>
         ))}
+        <Label>About</Label>
+        <JoditEditorWrapper
+          onChangeCallback={value => setAbout(value)}
+          initialText={about}
+        />
         <br />
         <br />
         <hr />
@@ -286,39 +302,51 @@ function AdminAddCandidateWrapper({
         <hr />
         <br />
         <br />
-        {candidateUpdates.map((update, index) => (
-          <React.Fragment key={index}>
-            <Row>
-              <span>Update #{index + 1}</span>
-              <BsTrash
-                onClick={() => {
-                  deleteUpdateListItem(index);
-                }}
-                style={{ cursor: 'pointer' }}
-              />
-            </Row>
-            <br />
-            <Input
-              fullWidth
-              label={`update ${index + 1} date`}
-              name={`update ${index + 1} date`}
-              variant="outlined"
-              value={update.date || ''}
-              onChange={e => onChangeUpdateList(e.target.value, index, 'date')}
-            />
-            <br />
-            <br />
-            <JoditEditorWrapper
-              onChangeCallback={value =>
-                onChangeUpdateList(value, index, 'text')
-              }
-              initialText={update.text}
-            />
-            <br />
-            <br />
-          </React.Fragment>
-        ))}
-        <BlueButton onClick={addUpdate}>Add update</BlueButton>
+        <PurpleButton onClick={() => setShowUpdates(!showUpdates)}>
+          &nbsp;&nbsp;{showUpdates ? 'Hide' : 'Show'} Updates&nbsp;&nbsp;
+        </PurpleButton>
+        <br />
+        <br />
+        {showUpdates && (
+          <>
+            {candidateUpdates.map((update, index) => (
+              <React.Fragment key={update.id}>
+                <Row>
+                  <span>Update #{index + 1}</span>
+                  <BsTrash
+                    onClick={() => {
+                      deleteUpdateListItem(index);
+                    }}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </Row>
+                <br />
+                <Input
+                  fullWidth
+                  label={`update ${index + 1} date`}
+                  name={`update ${index + 1} date`}
+                  variant="outlined"
+                  value={update.date || ''}
+                  onChange={e =>
+                    onChangeUpdateList(e.target.value, index, 'date')
+                  }
+                />
+                <br />
+                <br />
+                <JoditEditorWrapper
+                  onChangeCallback={value =>
+                    onChangeUpdateList(value, index, 'text')
+                  }
+                  initialText={update.text}
+                />
+                <br />
+                <br />
+              </React.Fragment>
+            ))}
+
+            <BlueButton onClick={addUpdate}>Add update</BlueButton>
+          </>
+        )}
         <br />
         <br />
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>
@@ -336,4 +364,4 @@ AdminAddCandidateWrapper.propTypes = {
   mode: PropTypes.string,
 };
 
-export default AdminAddCandidateWrapper;
+export default memo(AdminAddCandidateWrapper);

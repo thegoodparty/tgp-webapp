@@ -29,16 +29,19 @@ export function ShareImageContainer({
   let candidate;
   let imageAsBase64;
   let candidateSupports;
+  let total;
 
   if (ssrState) {
-    ({ candidate, imageAsBase64, candidateSupports } = ssrState);
+    ({ candidate, imageAsBase64, candidateSupports, total } = ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
+
   const childProps = {
     candidate,
     shareImageCallback,
     imageAsBase64,
     candidateSupports,
+    total,
   };
   return (
     <div>

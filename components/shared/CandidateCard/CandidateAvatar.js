@@ -11,7 +11,8 @@ const ChallengerAvatarWrapper = styled.div`
   margin-right: 20px;
   position: relative;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     width: 112px;
     height: 112px;
     margin: 0 auto;
@@ -35,7 +36,8 @@ const Img = styled.div`
   background-position: center center;
   background-size: cover;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     width: 112px;
     height: 112px;
   }
@@ -75,7 +77,8 @@ const PartyIcon = styled.img`
   box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
     0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     height: 36px;
     width: 36px;
   }
@@ -108,6 +111,7 @@ const CandidateAvatar = ({
   afterLoad = () => {},
   centered = false,
   partyBadge = false,
+  hideBadge = false,
 }) => {
   let PartyImg;
   if (partyBadge) {
@@ -126,6 +130,9 @@ const CandidateAvatar = ({
     PartyImg = '/images/icons/progressive.png';
   } else if (party === 'G' || party === 'GP') {
     PartyImg = '/images/icons/green-party.png';
+  }
+  if (hideBadge) {
+    PartyImg = false;
   }
   return (
     <ChallengerAvatarWrapper

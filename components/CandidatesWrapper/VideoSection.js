@@ -13,7 +13,8 @@ const VideoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: calc(100vw - 36px);
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     text-align: center;
     display: block;
     width: unset;
@@ -34,7 +35,7 @@ const Wrapper = styled.div`
 `;
 
 const tiktokEmbed =
-  '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@goodparty/video/6939909685717781765" data-video-id="6939909685717781765" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@goodparty" href="https://www.tiktok.com/@goodparty">@goodparty</a> <p>Who is a good party candidate? Maybe you are ❤️ <a title="goodparty" target="_blank" href="https://www.tiktok.com/tag/goodparty">#goodparty</a> <a title="vote4good" target="_blank" href="https://www.tiktok.com/tag/vote4good">#vote4good</a> <a title="antiestablishment" target="_blank" href="https://www.tiktok.com/tag/antiestablishment">#antiestablishment</a> <a title="thirdparty" target="_blank" href="https://www.tiktok.com/tag/thirdparty">#thirdparty</a> <a title="indie" target="_blank" href="https://www.tiktok.com/tag/indie">#indie</a></p> <a target="_blank" title="♬ The Office - The Hyphenate" href="https://www.tiktok.com/music/The-Office-6819255229129689090">♬ The Office - The Hyphenate</a> </section> </blockquote>';
+  '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@goodparty/video/6965277968717434118" data-video-id="6965277968717434118" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@goodparty" href="https://www.tiktok.com/@goodparty">@goodparty</a> <p>Who is a Good Party candidate? Maybe you? 📣🌟❤️ <a title="independent" target="_blank" href="https://www.tiktok.com/tag/independent">#independent</a> <a title="thirdparty" target="_blank" href="https://www.tiktok.com/tag/thirdparty">#thirdparty</a> <a title="goodpartyorg" target="_blank" href="https://www.tiktok.com/tag/goodpartyorg">#goodpartyorg</a> <a title="vote4good" target="_blank" href="https://www.tiktok.com/tag/vote4good">#vote4good</a> <a title="antiestablishment" target="_blank" href="https://www.tiktok.com/tag/antiestablishment">#antiestablishment</a> <a title="crowdvoting" target="_blank" href="https://www.tiktok.com/tag/crowdvoting">#crowdvoting</a></p> <a target="_blank" title="♬ Jump Around - House Of Pain" href="https://www.tiktok.com/music/Jump-Around-5000000000755653951">♬ Jump Around - House Of Pain</a> </section> </blockquote>';
 function VideoSection() {
   useEffect(() => {
     const script = document.createElement('script');

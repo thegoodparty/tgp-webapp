@@ -7,11 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { H3, Body11 } from '../../shared/typogrophy';
-import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
+
 import { BiLinkExternal } from 'react-icons/bi';
 import { getValidImgUrl } from 'helpers/linkHelper';
-import TooltipModal from './TooltipModal';
+import { logEvent } from 'services/AnalyticsService';
+
+import { H3, Body11 } from '../../shared/typogrophy';
+import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 
 const CandidateName = styled(H3)`
   font-weight: bold;
@@ -53,7 +55,8 @@ const InfoWrapper = styled(Body11)`
     width: auto;
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-top: 36px;
   }
 `;
@@ -72,11 +75,12 @@ function ComparedCandidate({
   candidate,
   setTopicCallback,
   partyBadge = false,
+  hideBadge = false,
 }) {
   if (!candidate) {
     return <NotFound />;
   }
-  const { image, name, party, website } = candidate;
+  const { image, name, party, website, isDraft } = candidate;
   const comparedFactors = { ...candidate };
   delete comparedFactors.name;
   delete comparedFactors.party;
@@ -87,13 +91,19 @@ function ComparedCandidate({
   if (party === 'Liberation' || party === 'LI') {
     cleanParty = 'LI';
   }
+
+  const handleTooltipClick = factor => {
+    setTopicCallback(factor);
+    logEvent('Compare Tooltip Clicked', factor, 'Tooltip');
+  };
   return (
     <>
       <CandidateAvatar
-        party={cleanParty}
+        party={isDraft ? 'draft' : cleanParty}
         avatar={encodeURI(getValidImgUrl(image))}
         centered
         partyBadge={partyBadge}
+        hideBadge={hideBadge}
       />
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
@@ -114,7 +124,7 @@ function ComparedCandidate({
             <>{comparedFactors[factor]}</>
           )}{' '}
           <br />{' '}
-          <Factor onClick={() => setTopicCallback(factor)}>{factor}</Factor>
+          <Factor onClick={() => handleTooltipClick(factor)}>{factor}</Factor>
         </InfoWrapper>
       ))}
     </>

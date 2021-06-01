@@ -17,6 +17,7 @@ import TgpHelmet from 'components/shared/TgpHelmet';
 import { getUserCookie } from 'helpers/cookieHelper';
 import queryHelper from 'helpers/queryHelper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
+import { partyResolver } from 'helpers/electionsHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -26,7 +27,7 @@ import saga from './saga';
 import actions from './actions';
 import { makeSelectContent } from '../../App/selectors';
 import makeSelectCandidateNewPage from './selectors';
-import { partyResolver } from '../../../helpers/electionsHelper';
+import { getExperiment } from '../../../helpers/optimizeHelper';
 
 export function CandidateNewPage({
   ssrState,
@@ -110,6 +111,14 @@ ${race} | Crowd-voting on GOOD PARTY`;
   ).toLowerCase()} for
 ${race}.`;
 
+  const [experimentVariant, setExperimentVariant] = useState('0');
+  useEffect(() => {
+    getExperiment('candidate-order', 'EgYaDqBHTpast2N8btQIsA', type => {
+      setExperimentVariant(type);
+    });
+  }, []);
+  console.log('experimentVariant', experimentVariant);
+
   const childProps = {
     candidate,
     content,
@@ -126,6 +135,7 @@ ${race}.`;
     total,
     adminDeleteSupportCallback,
     trackShareCallback,
+    experimentVariant,
   };
   if (show404) {
     return <ErrorPage statusCode={404} />;

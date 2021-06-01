@@ -89,7 +89,7 @@ const Description = styled.div`
   }
 `;
 
-const HowItWorksSection = () => {
+const HowItWorksSection = ({ experimentVariant }) => {
   const router = useRouter();
   return (
     <>

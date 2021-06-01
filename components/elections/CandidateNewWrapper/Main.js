@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 
 import NotFound from 'containers/shared/NotFoundPage';
 import { validateLink } from 'helpers/linkHelper';
+import { logEvent } from 'services/AnalyticsService';
 
 import ProfileInfo from './ProfileInfo';
 import { H1, Body19, Body13 } from '../../shared/typogrophy';
@@ -41,16 +42,16 @@ const FixedEndorse = styled.div`
   width: 100vw;
   padding: 16px 32px;
   @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.contentMax}) {
+      theme.breakpointsPixels.contentMax}) {
     padding: 16px 32px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     padding-right: 24px;
     padding-left: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.sm}) {
+      theme.breakpointsPixels.sm}) {
     padding-right: 18px;
     padding-left: 18px;
   }
@@ -134,16 +135,16 @@ function MainWrapper({
   candidateSupports,
   total,
   trackShareCallback,
+  experimentVariant,
 }) {
+  const router = useRouter();
+
   if (!candidate) {
     return <NotFound />;
   }
-  const router = useRouter();
   let website;
   const {
     headline,
-    firstName,
-    lastName,
     about,
     comparedCandidates,
     facebook,
@@ -156,6 +157,10 @@ function MainWrapper({
     candidate.comparedCandidates.candidates[0].image = candidate.image;
     ({ website } = candidate.comparedCandidates.candidates[0]);
   }
+
+  const trackSocial = channel => {
+    logEvent('Click', channel, 'Candidate Social Links');
+  };
 
   return (
     <>
@@ -182,9 +187,11 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        <SectionWrapper style={{ marginTop: '24px' }}>
-          <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
-        </SectionWrapper>
+        {experimentVariant === '0' && (
+          <SectionWrapper style={{ marginTop: '24px' }}>
+            <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
+          </SectionWrapper>
+        )}
         <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionHeader style={{ marginBottom: '4px' }}>
             Candidate socials
@@ -192,7 +199,11 @@ function MainWrapper({
 
           <div style={{ marginTop: '24px' }}>
             {facebook && (
-              <SocialLink href={validateLink(facebook)} target="_blank">
+              <SocialLink
+                href={validateLink(facebook)}
+                target="_blank"
+                onClick={() => trackSocial('Facebook')}
+              >
                 <img
                   src="/images/icons/purple-facebook.svg"
                   alt="facebook"
@@ -201,7 +212,11 @@ function MainWrapper({
               </SocialLink>
             )}
             {twitter && (
-              <SocialLink href={validateLink(twitter)} target="_blank">
+              <SocialLink
+                href={validateLink(twitter)}
+                target="_blank"
+                onClick={() => trackSocial('Twitter')}
+              >
                 <img
                   src="/images/icons/purple-twitter.svg"
                   alt="twitter"
@@ -210,7 +225,11 @@ function MainWrapper({
               </SocialLink>
             )}
             {tiktok && (
-              <SocialLink href={validateLink(tiktok)} target="_blank">
+              <SocialLink
+                href={validateLink(tiktok)}
+                target="_blank"
+                onClick={() => trackSocial('Tiktok')}
+              >
                 <img
                   src="/images/icons/purple-tiktok.svg"
                   alt="tiktok"
@@ -219,7 +238,11 @@ function MainWrapper({
               </SocialLink>
             )}
             {snap && (
-              <SocialLink href={validateLink(snap)} target="_blank">
+              <SocialLink
+                href={validateLink(snap)}
+                target="_blank"
+                onClick={() => trackSocial('Snap')}
+              >
                 <img
                   src="/images/icons/purple-snap.svg"
                   alt="snap"
@@ -228,7 +251,12 @@ function MainWrapper({
               </SocialLink>
             )}
             {website && (
-              <SocialLink href={validateLink(website)} target="_blank" passhref>
+              <SocialLink
+                href={validateLink(website)}
+                target="_blank"
+                passhref
+                onClick={() => trackSocial('Website')}
+              >
                 <a target="_blank">
                   <img
                     src="/images/icons/globe-icon.svg"
@@ -241,13 +269,18 @@ function MainWrapper({
           </div>
         </SectionWrapper>
         <SectionWrapper>
-          <SectionHeader>
-            Compare candidates in this race
-          </SectionHeader>
+          <SectionHeader>Compare candidates in this race</SectionHeader>
           <ComparedCandidateCarousel
             candidates={comparedCandidates?.candidates}
+            candidate={candidate}
           />
         </SectionWrapper>
+
+        {experimentVariant === '1' && (
+          <SectionWrapper style={{ marginTop: '24px' }}>
+            <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
+          </SectionWrapper>
+        )}
 
         <SectionWrapper>
           <Grid container spacing={2}>
@@ -256,6 +289,7 @@ function MainWrapper({
                 isUserSupportCandidate={isUserSupportCandidate}
                 removeSupportCallback={removeSupportCallback}
                 supportCallback={supportCallback}
+                trackingLabel="bottom endorse button"
               />
             </Grid>
             <Grid item xs={6}>
@@ -283,6 +317,7 @@ function MainWrapper({
                 supportCallback={supportCallback}
                 removeSupportCallback={removeSupportCallback}
                 isUserSupportCandidate={isUserSupportCandidate}
+                trackingLabel="fixed endorse button"
               />
               <div style={{ marginTop: '8px' }} className="text-center">
                 Your endorsement is a free and powerful way to show and grow
