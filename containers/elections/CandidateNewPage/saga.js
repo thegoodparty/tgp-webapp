@@ -14,7 +14,6 @@ function* loadInactiveCandidate({ id }) {
     const api = tgpApi.newCandidate.findInactive;
     const payload = { id };
     const { candidate } = yield call(requestHelper, api, payload);
-    console.log('saga', candidate);
     yield put(actions.loadCandidateActionSuccess(candidate));
   } catch (error) {
     console.log(error);
@@ -38,7 +37,6 @@ function* shareImage(action) {
   try {
     const api = tgpApi.newCandidate.shareImage;
     const { candidate } = action;
-    console.log(candidate);
     const payload = { candidate };
     yield call(requestHelper, api, payload);
   } catch (error) {
