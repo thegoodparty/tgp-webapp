@@ -12,8 +12,11 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import queryHelper from 'helpers/queryHelper';
 import { createStructuredSelector } from 'reselect';
-import globalActions from 'containers/App/actions';
-
+import actions from './actions';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import reducer from './reducer';
+import saga from './saga';
 import {
   makeSelectContent,
   makeSelectLocation,
@@ -23,6 +26,8 @@ import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
 import { getArticleById } from 'helpers/articlesHelper';
 
 export function FaqArticlePage({ content, helpfulCallback, locationState }) {
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'global', saga });
   const [article, setArticle] = useState(null);
   const { search } = locationState;
   const router = useRouter();
@@ -65,7 +70,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     helpfulCallback: (id, title, isHelpful, feedback) => {
       dispatch(
-        globalActions.sendArticleFeedbackAction(id, title, isHelpful, feedback),
+        actions.sendArticleFeedbackAction(id, title, isHelpful, feedback),
       );
     },
   };

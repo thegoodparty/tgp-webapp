@@ -6,6 +6,7 @@ export default function Party({ ssrState }) {
 }
 
 export async function getServerSideProps() {
+
   const api = tgpApi.homepageCandidates;
   const res = await fetch(api.url);
 

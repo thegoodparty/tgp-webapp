@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { PurpleButton } from 'components/shared/buttons';
 import { partyResolver } from 'helpers/electionsHelper';
-
 import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';

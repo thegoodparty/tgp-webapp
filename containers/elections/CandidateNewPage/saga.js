@@ -14,7 +14,6 @@ function* loadInactiveCandidate({ id }) {
     const api = tgpApi.newCandidate.findInactive;
     const payload = { id };
     const { candidate } = yield call(requestHelper, api, payload);
-    console.log('saga', candidate);
     yield put(actions.loadCandidateActionSuccess(candidate));
   } catch (error) {
     console.log(error);
