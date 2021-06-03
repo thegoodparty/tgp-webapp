@@ -98,7 +98,7 @@ function CandidateCard({ candidate }) {
             {firstName} {lastName}
           </Name>
           <For>
-            {isDraft ? (
+            {isDraft && draftOffice !== '' ? (
               draftOffice
             ) : (
               <>

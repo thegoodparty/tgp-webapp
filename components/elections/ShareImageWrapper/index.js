@@ -152,7 +152,7 @@ function ShareImage({
             <CandidateName className={longName && 'long-name'}>
               {firstName} {lastName}
             </CandidateName>
-            {isDraft ? (
+            {isDraft && draftOffice !== '' ? (
               draftOffice
             ) : (
               <>
@@ -207,7 +207,7 @@ function ShareImage({
               <CandidateName className={longName && 'long-name'}>
                 {firstName} {lastName}
               </CandidateName>
-              {isDraft ? (
+              {isDraft && draftOffice !== '' ? (
                 draftOffice
               ) : (
                 <>

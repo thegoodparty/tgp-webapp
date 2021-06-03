@@ -202,7 +202,7 @@ function ProfileInfo({
                 {firstName} {lastName}
               </CandidateName>
               <PartyName>
-                {isDraft ? (
+                {isDraft && draftOffice !== '' ? (
                   draftOffice
                 ) : (
                   <>
