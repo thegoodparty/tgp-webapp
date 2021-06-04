@@ -8,6 +8,8 @@ import React, { useState, memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import Link from 'next/link';
+
 import Nav from 'containers/shared/Nav';
 import { BlueButton, PurpleButton } from 'components/shared/buttons';
 import Select from '@material-ui/core/Select';
@@ -22,6 +24,7 @@ import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
 import ComparedCandidates from './ComparedCandidates';
 import CandidateAvatar from '../../shared/CandidateAvatar';
+import CandidateTopMenu from '../CandidateTopMenu';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -212,7 +215,8 @@ function AdminAddCandidateWrapper({
       <Nav />
       {/* <MobileHeader /> */}
       <Wrapper>
-        <H2>Admin add candidate</H2>
+        <CandidateTopMenu candidate={candidate} />
+
         <br />
         {candidate && candidate.image && (
           <div className="flex-center">

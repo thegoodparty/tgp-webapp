@@ -1,6 +1,6 @@
 /*
  *
- * AdminCampaignSettingsPage actions
+ * AdminCandidateStageSettingsPage actions
  *
  */
 

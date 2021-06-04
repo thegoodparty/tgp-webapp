@@ -11,18 +11,15 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { CSVLink } from 'react-csv/lib';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
-import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { IoIosSettings } from 'react-icons/io';
 import Link from 'next/link';
 import moment from 'moment';
-import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
+import { candidateRoute } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
 import AlertDialog from '../../shared/AlertDialog';
 
 const Wrapper = styled.div`
@@ -36,13 +33,6 @@ const Title = styled(H3)`
   position: relative;
 `;
 
-const StyledSelect = styled(Select)`
-  && {
-    .MuiOutlinedInput-input {
-      padding: 8px 32px 8px 14px;
-    }
-  }
-`;
 const CSVLinkWrapper = styled.div`
   position: absolute;
   right: 0;
@@ -53,11 +43,7 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function NewCandidateList({
-  candidates,
-  chamber,
-  deleteCandidateCallback,
-}) {
+function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
   const [tableData, setTableData] = useState([]);
   const [deleteCandidate, setDeleteCandidate] = useState(false);
   const handleDeleteCandidate = id => {
@@ -125,14 +111,20 @@ function NewCandidateList({
       headerStyle,
       filterMethod: customFilter,
       Cell: row => {
-
         const route = candidateRoute(row.original);
         const editRoute = `/admin/add-candidate/${row.original.id}`;
+        const settingsRoute = `/admin/stage-settings/${row.original.id}`;
         return (
           <>
             <Link href={editRoute} target="_blank" passHref>
               <a>
                 <EditIcon />
+              </a>
+            </Link>
+            &nbsp;&nbsp;&nbsp;
+            <Link href={settingsRoute} target="_blank" passHref>
+              <a>
+                <IoIosSettings size={24} />
               </a>
             </Link>
             &nbsp;&nbsp;&nbsp;

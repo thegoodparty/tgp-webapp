@@ -1,6 +1,6 @@
 /**
  *
- * Tests for AdminCampaignSettingsPage
+ * Tests for AdminCandidateSettingsWrapper
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,13 +10,12 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { AdminCampaignSettingsPage } from '../index';
+import AdminCandidateSettingsWrapper from '../index';
 
-describe('<AdminCampaignSettingsPage />', () => {
+describe('<AdminCandidateSettingsWrapper />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
-    const dispatch = jest.fn();
-    render(<AdminCampaignSettingsPage dispatch={dispatch} />);
+    render(<AdminCandidateSettingsWrapper />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -32,7 +31,7 @@ describe('<AdminCampaignSettingsPage />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<AdminCampaignSettingsPage />);
+    } = render(<AdminCandidateSettingsWrapper />);
     expect(firstChild).toMatchSnapshot();
   });
 });

@@ -52,6 +52,7 @@ function EndorsementPreviewModal({
   candidateSupports,
   previewNextStepCallback,
   fromShareLink,
+  total
 }) {
   let defaultMessage = `Check out the crowd-voting campaign for ${
     candidate.firstName
@@ -118,6 +119,7 @@ function EndorsementPreviewModal({
           withRender={false}
           candidateSupports={candidateSupports}
           fromShareLink={fromShareLink}
+          total={total}
         />
       </ImageWrapper>
       <Personal>ADD A PERSONAL NOTE</Personal>
@@ -142,6 +144,7 @@ EndorsementPreviewModal.propTypes = {
   previewNextStepCallback: PropTypes.func,
   candidateSupports: PropTypes.number,
   fromShareLink: PropTypes.bool,
+  total: PropTypes.number,
 };
 
 export default EndorsementPreviewModal;
