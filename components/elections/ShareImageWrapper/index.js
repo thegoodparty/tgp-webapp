@@ -129,7 +129,6 @@ function ShareImage({
   };
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
-
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
