@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import adminCampaignSettingsPageReducer from '../reducer';
+import adminCandidateStageSettingsPageReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe('adminCampaignSettingsPageReducer', () => {
+describe('adminCandidateStageSettingsPageReducer', () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,7 +13,7 @@ describe('adminCampaignSettingsPageReducer', () => {
 
   it('returns the initial state', () => {
     const expectedResult = state;
-    expect(adminCampaignSettingsPageReducer(undefined, {})).toEqual(
+    expect(adminCandidateStageSettingsPageReducer(undefined, {})).toEqual(
       expectedResult,
     );
   });
