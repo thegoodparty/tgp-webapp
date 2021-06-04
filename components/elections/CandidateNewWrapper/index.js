@@ -114,6 +114,7 @@ function CandidateNewWrapper({
           previewNextStepCallback={previewNextStepCallback}
           candidateSupports={candidateSupports}
           fromShareLink={fromShareLink}
+          total={total}
         />
       )}
       {showShareModal && (

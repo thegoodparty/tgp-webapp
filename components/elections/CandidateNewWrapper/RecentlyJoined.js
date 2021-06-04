@@ -78,6 +78,7 @@ function RecentlyJoined({
 }) {
   const supporters = candidateSupports || [];
   let displaySupporters = supporters;
+  console.log('supporters:', displaySupporters);
   const [expanded, setExpanded] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [truncated, setTruncated] = useState(false);
