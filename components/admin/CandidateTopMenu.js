@@ -33,14 +33,14 @@ const Item = styled.div`
 function CandidateTopMenu({ candidate }) {
   return (
     <Wrapper>
-      <Link href={`/admin/add-candidate/${candidate.id}`} passHref>
+      <Link href={`/admin/add-candidate/${candidate?.id}`} passHref>
         <a>
           <Item>Edit Candidate</Item>
         </a>
       </Link>
-      {candidate.id && (
+      {candidate?.id && (
         <>
-          <Link href={`/admin/stage-settings/${candidate.id}`} passHref>
+          <Link href={`/admin/stage-settings/${candidate?.id}`} passHref>
             <a>
               <Item className="last-item">Stage Settings</Item>
             </a>
