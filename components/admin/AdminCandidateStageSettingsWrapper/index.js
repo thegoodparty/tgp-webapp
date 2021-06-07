@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -16,6 +16,7 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
+import { PurpleButton } from 'components/shared/buttons';
 import Nav from 'containers/shared/Nav';
 import { H2, H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateAvatar';
@@ -38,7 +39,7 @@ const Item = styled.div`
   padding: 10px 0;
 `;
 
-function AdminCandidateStageSettingsWrapper({ candidate }) {
+function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
   const [signatureState, setSignatureState] = useState({
     isActive: false,
     startDate: new Date(),
@@ -55,6 +56,14 @@ function AdminCandidateStageSettingsWrapper({ candidate }) {
     electionDay: new Date(),
     isActive: false,
   });
+
+  useEffect(() => {
+    if (candidate?.campaignStage) {
+      setSignatureState(candidate.campaignStage.signatureStage);
+      setRegistrationState(candidate.campaignStage.registrationStage);
+      setGotvState(candidate.campaignStage.gotvStage);
+    }
+  }, [candidate]);
 
   const onChangeSignature = (key, value) => {
     setSignatureState({
@@ -74,6 +83,18 @@ function AdminCandidateStageSettingsWrapper({ candidate }) {
     setGotvState({
       ...gotvState,
       [key]: value,
+    });
+  };
+
+  const save = () => {
+    const campaignStage = {
+      signatureStage: signatureState,
+      registrationStage: registrationState,
+      gotvStage: gotvState,
+    };
+    saveCallback({
+      ...candidate,
+      campaignStage,
     });
   };
 
@@ -107,6 +128,7 @@ function AdminCandidateStageSettingsWrapper({ candidate }) {
           <Grid item xs={12} md={4}>
             <StageTitle>
               <Checkbox
+                checked={signatureState.isActive}
                 onChange={event =>
                   onChangeSignature('isActive', event.target.checked)
                 }
@@ -170,6 +192,7 @@ function AdminCandidateStageSettingsWrapper({ candidate }) {
           <Grid item xs={12} md={4}>
             <StageTitle>
               <Checkbox
+                checked={registrationState.isActive}
                 onChange={event =>
                   onChangeRegistration('isActive', event.target.checked)
                 }
@@ -202,6 +225,7 @@ function AdminCandidateStageSettingsWrapper({ candidate }) {
           <Grid item xs={12} md={4}>
             <StageTitle>
               <Checkbox
+                checked={gotvState.isActive}
                 onChange={event =>
                   onChangeGotv('isActive', event.target.checked)
                 }
@@ -230,6 +254,9 @@ function AdminCandidateStageSettingsWrapper({ candidate }) {
             </Item>
           </Grid>
         </Grid>
+        <PurpleButton onClick={save} fullWidth>
+          &nbsp;&nbsp;SAVE&nbsp;&nbsp;
+        </PurpleButton>
       </Wrapper>
     </div>
   );
@@ -237,6 +264,7 @@ function AdminCandidateStageSettingsWrapper({ candidate }) {
 
 AdminCandidateStageSettingsWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  saveCallback: PropTypes.func,
 };
 
 export default AdminCandidateStageSettingsWrapper;

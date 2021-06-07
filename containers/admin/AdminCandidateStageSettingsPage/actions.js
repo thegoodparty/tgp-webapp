@@ -1,13 +1,12 @@
-/*
- *
- * AdminCandidateStageSettingsPage actions
- *
- */
+import types from './constants';
 
-import { DEFAULT_ACTION } from './constants';
-
-export function defaultAction() {
+function updateCandidateAction(candidate) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.UPDATE_CANDIDATE,
+    candidate,
   };
 }
+
+export default {
+  updateCandidateAction,
+};

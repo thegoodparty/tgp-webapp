@@ -18,8 +18,9 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectAdminCandidateStageSettingsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import actions from './actions';
 
-export function AdminCandidateStageSettingsPage({ ssrState }) {
+export function AdminCandidateStageSettingsPage({ ssrState, saveCallback }) {
   useInjectReducer({ key: 'adminCandidateStageSettingsPage', reducer });
   useInjectSaga({ key: 'adminCandidateStageSettingsPage', saga });
 
@@ -27,6 +28,7 @@ export function AdminCandidateStageSettingsPage({ ssrState }) {
 
   const childProps = {
     candidate,
+    saveCallback,
   };
 
   return (
@@ -46,6 +48,7 @@ export function AdminCandidateStageSettingsPage({ ssrState }) {
 AdminCandidateStageSettingsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
+  saveCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -55,6 +58,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    saveCallback: candidate => {
+      dispatch(actions.updateCandidateAction(candidate));
+    },
   };
 }
 

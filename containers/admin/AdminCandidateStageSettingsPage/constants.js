@@ -4,5 +4,8 @@
  *
  */
 
-export const DEFAULT_ACTION =
-  'app/AdminCandidateStageSettingsPage/DEFAULT_ACTION';
+const UPDATE_CANDIDATE = 'app/AdminCandidateStageSettingsPage/UPDATE_CANDIDATE';
+
+export default {
+  UPDATE_CANDIDATE,
+};

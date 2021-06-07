@@ -23,7 +23,6 @@ function* createCandidate({ candidate }) {
 
 function* editCandidate({ candidate }) {
   try {
-    console.log('at saga');
     yield put(snackbarActions.showSnakbarAction('Creating Candidate'));
     const api = tgpApi.newCandidate.update;
     const payload = { candidate };
