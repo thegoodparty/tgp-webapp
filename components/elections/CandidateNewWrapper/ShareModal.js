@@ -253,6 +253,11 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       emailSubject = `I'm endorsing ${firstName} ${lastName} for ${
         candidate.race
       }`;
+      if (candidate.isDraft) {
+        emailSubject = `Let's get ${firstName} ${lastName} to run as an Independent for ${
+          candidate.race
+        }`;
+      }
     } else {
       emailSubject = `Check out ${firstName} ${lastName} for ${candidate.race}`;
     }

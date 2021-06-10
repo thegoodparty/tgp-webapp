@@ -52,14 +52,25 @@ function EndorsementPreviewModal({
   candidateSupports,
   previewNextStepCallback,
   fromShareLink,
-  total
+  total,
 }) {
   let defaultMessage = `Check out the crowd-voting campaign for ${
     candidate.firstName
   } ${candidate.lastName} for ${candidate.race}`;
+  if (candidate.isDraft) {
+    defaultMessage = `Check out the crowd-voting campaign to draft ${
+      candidate.firstName
+    } ${candidate.lastName} as an Independent for ${candidate.race}`;
+  }
 
   if (!fromShareLink) {
     defaultMessage = `Someone real, not another 💩 politician!`;
+
+    if (candidate.isDraft) {
+      defaultMessage = `Let's get ${
+        candidate.firstName
+      } ${candidate.lastName} to run as an Indie for ${candidate.race}!`;
+    }
 
     if (user) {
       defaultMessage += `${'\n'} ${'\n'}I'm ${
