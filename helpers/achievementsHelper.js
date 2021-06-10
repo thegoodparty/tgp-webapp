@@ -1,12 +1,11 @@
 export const achievementsHelper = count => {
   if (count >= 10000) {
     return {
-      nextStep: 60000,
+      nextStep: 50000,
       text: (
         <span>
-          <strong>At 60,000 endorsements,</strong> this campaign will have more
-          supporters than the
-          <strong>population of Greenland!</strong>
+          <strong>At 50,000 endorsements,</strong> this campaign is more likely
+          to win the race!
         </span>
       ),
     };
@@ -17,21 +16,20 @@ export const achievementsHelper = count => {
       nextStep: 10000,
       text: (
         <span>
-          <strong>At 10,000 endorsements,</strong> this campaign is changing the
-          <strong>world!</strong> Let's make{' '}
-          <strong>people matter more than money!</strong>
+          <strong>At 10,000 endorsements,</strong> this campaign is more likely
+          to get picked up by <strong>national media!</strong>
         </span>
       ),
     };
   }
 
-  if (count >= 1500) {
+  if (count >= 2500) {
     return {
       nextStep: 5000,
       text: (
         <span>
-          <strong>At 5,000 endorsements,</strong> this campaign will have enough
-          signatures to get on the <strong>ballot.</strong>
+          <strong>At 5,000 endorsements,</strong> this campaign is likely to
+          have enough signatures to get on the <strong>ballot!</strong>
         </span>
       ),
     };
@@ -39,23 +37,23 @@ export const achievementsHelper = count => {
 
   if (count >= 1000) {
     return {
-      nextStep: 1500,
+      nextStep: 2500,
       text: (
         <span>
-          <strong>At 1,500 endorsements,</strong> this campaign will have{' '}
-          <strong>more support</strong> than any independent in the race.
+          <strong>At 2,500 endorsements,</strong> this campaign is more likely
+          to get picked up by <strong>regional media!</strong>
         </span>
       ),
     };
   }
 
-  if (count >= 750) {
+  if (count >= 500) {
     return {
       nextStep: 1000,
       text: (
         <span>
           <strong>At 1,000 endorsements,</strong> this campaign is more likely
-          to get picked up by <strong>local media.</strong>
+          to get picked up by <strong>local media!</strong>
         </span>
       ),
     };
@@ -63,12 +61,11 @@ export const achievementsHelper = count => {
 
   if (count >= 250) {
     return {
-      nextStep: 750,
+      nextStep: 500,
       text: (
         <span>
-          <strong>At 750 endorsements,</strong> this campaign is a{' '}
-          <strong>people-powered</strong>
-          💪
+          <strong>At 500 endorsements,</strong> this campaign is becoming truly{' '}
+          <strong>people-powered</strong> 💪
         </span>
       ),
     };
@@ -80,7 +77,7 @@ export const achievementsHelper = count => {
       text: (
         <span>
           <strong>At 250 endorsements,</strong> this campaign will have more
-          endorsements than the <strong>corrupt incumbents.</strong>
+          endorsements than <strong>all the competitors combined</strong>
         </span>
       ),
     };
@@ -103,8 +100,8 @@ export const achievementsHelper = count => {
       nextStep: 50,
       text: (
         <span>
-          <strong>At 50 endorsements,</strong> this campaign is making history
-          and taking on the <strong>establishment politicians!</strong>
+          <strong>At 50 endorsements,</strong> this campaign will have more
+          endorsements than the competitors!
         </span>
       ),
     };
@@ -115,8 +112,8 @@ export const achievementsHelper = count => {
       nextStep: 25,
       text: (
         <span>
-          <strong>At 25 endorsements,</strong> this campaign is on the way to
-          getting <strong>money out of politics!</strong>
+          <strong>At 25 endorsements,</strong> this campaign is more than just
+          neighbors and friends!
         </span>
       ),
     };
