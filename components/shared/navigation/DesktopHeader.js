@@ -10,10 +10,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import MenuList from '@material-ui/core/MenuList';
-
 import styled from 'styled-components';
-import UserAvatar from '../UserAvatar';
+
 import { logEvent } from 'services/AnalyticsService';
+import UserAvatar from '../UserAvatar';
 
 const Wrapper = styled.div`
   height: 80px;
@@ -30,6 +30,10 @@ const Wrapper = styled.div`
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpointsPixels.sm}) {
     padding: 0 18px;
+  }
+  &.purple {
+    background-color: ${({ theme }) => theme.colors.purple};
+    box-shadow: none;
   }
 `;
 
@@ -53,6 +57,10 @@ const Works = styled.div`
   align-self: flex-start;
   span {
     margin-right: 10px;
+  }
+
+  &.purple {
+    color: #fff;
   }
 `;
 
@@ -80,6 +88,11 @@ const Share = styled.div`
     height: 20px;
     width: auto;
     margin-right: 8px;
+  }
+
+  &.purple {
+    color: #fff;
+    border-color: #fff;
   }
 `;
 
@@ -116,7 +129,7 @@ const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
-const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
+const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const router = useRouter();
@@ -166,9 +179,8 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
 
     logEvent('Share', 'top_nav_share', 'Top Nav');
   };
-
   return (
-    <Wrapper>
+    <Wrapper className={purpleNav && 'purple'}>
       <ContentWrapper>
         <Grid container alignItems="center">
           <Grid item xs={4}>
@@ -177,6 +189,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               aria-controls={open ? 'menu-list-grow' : undefined}
               aria-haspopup="true"
               onClick={handleToggle}
+              className={purpleNav && 'purple'}
             >
               <span>HOW THIS WORKS</span>
               <ChevronDown size={14} className={open ? 'open' : 'closed'} />
@@ -284,14 +297,22 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               }}
             >
               <a>
-                <Logo src="/images/new-logo.svg" data-cy="logo" />
+                {purpleNav ? (
+                  <Logo src="/images/new-logo-white.svg" data-cy="logo" />
+                ) : (
+                  <Logo src="/images/new-logo.svg" data-cy="logo" />
+                )}
               </a>
             </Link>
           </Grid>
           <Grid item xs={4}>
             <ShareWrapper>
-              <Share onClick={handleShare}>
-                <img src="/images/icons/share-icon.svg" alt="Share" />
+              <Share onClick={handleShare} className={purpleNav && 'purple'}>
+                {purpleNav ? (
+                  <img src="/images/icons/share-icon-white.svg" alt="Share" />
+                ) : (
+                  <img src="/images/icons/share-icon.svg" alt="Share" />
+                )}
                 <span>SHARE</span>
               </Share>
 
@@ -322,6 +343,7 @@ DesktopHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   navigateCallback: PropTypes.func,
   trackShareCallbackk: PropTypes.func,
+  purpleNav: PropTypes.bool,
 };
 
 export default DesktopHeader;

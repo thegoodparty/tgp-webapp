@@ -27,6 +27,10 @@ const api = {
     url: `${base}content/landing-page`,
     method: 'GET',
   },
+  contentByKey: {
+    url: `${base}content/content-by-key`,
+    method: 'GET',
+  },
   articleFeedback: {
     url: `${base}content/article-feedback`,
     method: 'POST',

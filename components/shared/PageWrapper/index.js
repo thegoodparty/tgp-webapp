@@ -23,7 +23,8 @@ const MainWrapper = styled.div`
   }
 `;
 const TopBannerWrapper = styled.div`
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-top: 18px;
   }
 `;
@@ -32,18 +33,23 @@ const HomeWrapper = styled.div`
   width: 100%;
   padding: 0 32px 0;
   @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.contentMax}) {
+      theme.breakpointsPixels.contentMax}) {
     padding: 0;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     padding-right: 24px;
     padding-left: 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.sm}) {
+      theme.breakpointsPixels.sm}) {
     padding-right: 18px;
     padding-left: 18px;
+  }
+
+  &.purple-nav {
+  padding: 0;
+  background-color: ${({ theme }) => theme.colors.purple};
   }
 `;
 function PageWrapper({
@@ -52,10 +58,10 @@ function PageWrapper({
   white,
   purple,
   wrapperStyles = {},
-  hideMobileNav,
   style = {},
   topBanner,
   isFullWidth = false,
+  purpleNav = false,
 }) {
   const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
   let className = '';
@@ -66,13 +72,14 @@ function PageWrapper({
   }
   return (
     <MainWrapper className={className} style={style}>
-      {!hideNav && <Nav hideMobileNav={hideMobileNav} />}
+      {!hideNav && <Nav purpleNav={purpleNav} />}
       {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
       <WrapperComp
         white={white}
         purple={purple}
         style={wrapperStyles}
         noHeader={hideNav}
+        className={purpleNav && 'purple-nav'}
       >
         {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
         {children}
@@ -90,8 +97,8 @@ PageWrapper.propTypes = {
   purple: PropTypes.bool,
   topBanner: PropTypes.object,
   style: PropTypes.object,
-  hideMobileNav: PropTypes.bool,
   isFullWidth: PropTypes.bool,
+  purpleNav: PropTypes.bool,
 };
 
 export default PageWrapper;

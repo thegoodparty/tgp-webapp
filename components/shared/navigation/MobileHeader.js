@@ -24,12 +24,17 @@ const Wrapper = styled.div`
   background-color: #fff;
   justify-content: space-between;
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     padding: 0 24px;
   }
   @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.sm}) {
+      theme.breakpointsPixels.sm}) {
     padding: 0 18px;
+  }
+
+  &.purple {
+    background-color: ${({ theme }) => theme.colors.purple};
+    box-shadow: none;
   }
 `;
 
@@ -51,6 +56,9 @@ const MenuIconButton = styled(MenuIcon)`
   && {
     color: ${({ theme }) => theme.colors.purple};
     font-size: 2rem;
+    &.purple {
+      color: #fff;
+    }
   }
 `;
 const CloseIconButton = styled(CloseIcon)`
@@ -115,7 +123,7 @@ const ButtonInner = styled.div`
   font-weight: 600;
 `;
 
-function MobileHeader({ user }) {
+function MobileHeader({ user, purpleNav }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const handleShare = () => {
@@ -125,13 +133,18 @@ function MobileHeader({ user }) {
 
   return (
     <Hidden mdUp>
-      <Wrapper>
+      <Wrapper className={purpleNav && 'purple'}>
         <LinkContainer>
-          <MenuIconButton onClick={() => setOpen(true)} />
+          <MenuIconButton
+            onClick={() => setOpen(true)}
+            className={purpleNav && 'purple'}
+          />
         </LinkContainer>
         <Link href="/" className="text-center">
           <Logo
-            src="/images/new-logo.svg"
+            src={
+              purpleNav ? '/images/new-logo-white.svg' : '/images/new-logo.svg'
+            }
             alt="The Good Party"
             data-cy="logo"
           />
@@ -147,7 +160,11 @@ function MobileHeader({ user }) {
         ) : (
           <ShareWrapper>
             <Share
-              src="/images/icons/share-icon.svg"
+              src={
+                purpleNav
+                  ? '/images/icons/share-icon-white.svg'
+                  : '/images/icons/share-icon.svg'
+              }
               alt="Share"
               onClick={handleShare}
             />
@@ -247,6 +264,7 @@ function MobileHeader({ user }) {
 
 MobileHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  purpleNav: PropTypes.bool,
 };
 
 function mapDispatchToProps(dispatch) {

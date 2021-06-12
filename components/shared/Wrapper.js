@@ -6,7 +6,7 @@ const WrapperDiv = styled.div`
   //min-height: calc(var(--vh, 1vh) * 100 - 140px);
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
-  padding: 0 32px 0;
+  padding: 0 32px;
   background-color: ${({ theme }) => theme.colors.grayBg};
   @media only screen and (min-width: ${({ theme }) =>
     theme.breakpointsPixels.contentMax}) {

@@ -21,7 +21,7 @@ import NavWrapper from 'components/shared/navigation/NavWrapper';
 import userActions from 'containers/you/YouPage/actions';
 import candidateActions from 'containers/elections/CandidateNewPage/actions';
 
-export function Nav({ userState, dispatch, trackShareCallback }) {
+export function Nav({ userState, dispatch, trackShareCallback, purpleNav }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -44,6 +44,7 @@ export function Nav({ userState, dispatch, trackShareCallback }) {
   const childProps = {
     user,
     trackShareCallback,
+    purpleNav,
   };
   return <NavWrapper {...childProps} />;
 }
@@ -52,6 +53,7 @@ Nav.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
   trackShareCallback: PropTypes.func,
+  purpleNav: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({

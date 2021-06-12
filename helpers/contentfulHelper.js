@@ -89,6 +89,13 @@ export const CmsContentWrapper = styled.div`
       line-height: 26px;
     }
   }
+  ul {
+    list-style-type: none;
+    p {
+      margin-block-start: 10px;
+      margin-block-end: 10px;
+    }
+  }
 `;
 
 export default contentfulHelper;
