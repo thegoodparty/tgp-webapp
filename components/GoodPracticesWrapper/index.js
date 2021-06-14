@@ -63,7 +63,7 @@ const Box = styled.div`
   justify-content: center;
   cursor: pointer;
   margin-top: 18px;
-  padding: 0 24px;
+  padding: 0 0 0 24px;
   border-radius: 8px;
   background-size: cover;
   background-position: left center;
@@ -97,10 +97,41 @@ const StyledH2 = styled.div`
   font-size: 23px;
   line-height: 30px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 28px;
     line-height: 36px;
     margin: 64px 0 12px;
+  }
+`;
+
+const BgImg = styled.div`
+  height: 160px;
+  background-position: center right;
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
+
+const LaunchBgImg = styled(BgImg)`
+  background-image: url('images/good-practices/launch-bg-sm.svg');
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background-image: url('images/good-practices/launch-bg.svg');
+  }
+`;
+
+const GrowBgImg = styled(BgImg)`
+  background-image: url('images/good-practices/grow-bg-sm.svg');
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background-image: url('images/good-practices/grow-bg.svg');
+  }
+`;
+
+const WinBgImg = styled(BgImg)`
+  background-image: url('images/good-practices/win-bg-sm.svg');
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background-image: url('images/good-practices/win-bg.svg');
   }
 `;
 
@@ -122,9 +153,7 @@ function GoodPracticesWrapper({ content }) {
                   </BoxText>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="text-center">
-                    <Img src="images/see-good-candidates.svg" alt="Launch" />
-                  </div>
+                  <LaunchBgImg />
                 </Grid>
               </Grid>
             </Box>
@@ -137,9 +166,7 @@ function GoodPracticesWrapper({ content }) {
                   <BoxText>How we can help you get more supporters</BoxText>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="text-center">
-                    <Img src="images/tell-others.svg" alt="Launch" />
-                  </div>
+                  <GrowBgImg />
                 </Grid>
               </Grid>
             </Box>
@@ -152,9 +179,7 @@ function GoodPracticesWrapper({ content }) {
                   <BoxText>Best practices for getting out the vote</BoxText>
                 </Grid>
                 <Grid item xs={6}>
-                  <div className="text-center">
-                    <Img src="images/join-campaigns.svg" alt="Launch" />
-                  </div>
+                  <WinBgImg />
                 </Grid>
               </Grid>
             </Box>
