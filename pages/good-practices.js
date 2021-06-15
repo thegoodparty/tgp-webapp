@@ -8,9 +8,14 @@ export async function getServerSideProps() {
   const api = tgpApi.contentByKey;
   const url = `${api.url}?key=goodPracticesPage`;
 
-  const res = await fetch(url);
+  let content;
+  try {
+    const res = await fetch(url);
 
-  const { content } = await res.json();
+    ({ content } = await res.json());
+  } catch (e) {
+    content = {};
+  }
   return {
     props: {
       ssrState: {

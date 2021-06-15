@@ -9,9 +9,13 @@ export async function getServerSideProps(context) {
   const { slug } = context.params;
   const url = `${api.url}?slug=${slug}`;
 
-  const res = await fetch(url);
-
-  const { content } = await res.json();
+  let content;
+  try {
+    const res = await fetch(url);
+    ({ content } = await res.json());
+  } catch (e) {
+    content = {};
+  }
   return {
     props: {
       ssrState: {

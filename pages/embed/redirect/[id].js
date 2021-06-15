@@ -12,8 +12,14 @@ export async function getServerSideProps(context) {
     const api = tgpApi.newCandidate.find;
     const url = `${api.url}?id=${id}`;
     const res = await fetch(url);
-    const candidate = await res.json();
-
+    let candidate;
+    try {
+      candidate = await res.json();
+    } catch (e) {
+      candidate = {
+        candidate: {},
+      };
+    }
     return {
       props: {
         ssrState: {
