@@ -15,7 +15,6 @@ export async function getServerSideProps(context) {
     try {
       candidate = await res.json();
     } catch (e) {
-      // context.res.writeHead(404);
       candidate = {
         candidate: {},
       };

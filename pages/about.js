@@ -14,7 +14,6 @@ export async function getServerSideProps() {
 
     ({ homepageCandidates } = await res.json());
   } catch (e) {
-    // context.res.writeHead(404);
     homepageCandidates = [];
   }
   return {

@@ -14,7 +14,6 @@ export async function getServerSideProps() {
 
     ({ content } = await res.json());
   } catch (e) {
-    // context.res.writeHead(404);
     content = {};
   }
   return {

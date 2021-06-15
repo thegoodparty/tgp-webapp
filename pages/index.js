@@ -13,7 +13,6 @@ export async function getServerSideProps() {
   try {
     ({ homepageCandidates } = await res.json());
   } catch (e) {
-    // context.res.writeHead(404);
     homepageCandidates = [];
   }
 
