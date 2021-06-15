@@ -7,11 +7,15 @@ export default function Candidates({ ssrState }) {
 
 export async function getServerSideProps() {
   const api = tgpApi.newCandidate.list;
-  console.log('api', api)
   const res = await fetch(api.url);
 
-  const { candidates } = await res.json();
-
+  let candidates;
+  try {
+    ({ candidates } = await res.json());
+  } catch (e) {
+    // context.res.writeHead(404);
+    candidates = [];
+  }
   return {
     props: {
       ssrState: {

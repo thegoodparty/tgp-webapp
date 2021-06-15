@@ -2,6 +2,220 @@ const content = {
   "goodPracticesPage": {
     "title": "How to win elections with Good Party",
     "launch": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "heading-3",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Campaign Website and Social Media",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "If it’s not posted online, it didn’t happen. Use tech to engage with supporters. \nHere are two content creation tips:",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "unordered-list",
+          "content": [
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Consistent Content",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Pick a platform or two and regularly create new content (then repurpose content across others platforms)\nFacebook, Twitter, Instagram, Youtube, TikTok, Snapchat, Twitch",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": " ",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Short Form Content",
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "Pick a social media platform or two (e.g. Youtube, TikTok) and regularly create new content. Then repurpose it across other platforms (e.g. FB / Instagram, Twitter)",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "🖼️ Pictures Of course you should share candid moments on the campaign trail with supporters and volunteers. But remember people care about who you are outside of politics! Also share photos of you working, walking your dog, spending time with family. Authenticity is what inspires people to support you - and then your campaign too.",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "📹 Short Videos\nKeep videos brief with a succinct message.",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "👾 Memes and Gifs - make it fun and capture attention",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    },
+    "videoImage": "//images.ctfassets.net/g08ybc4r0f4b/51w99YP5gZWxriwfbzgkOO/7d087612c3e939d4b1b4381b2d2c771f/video-image.jpg",
+    "video": "//videos.ctfassets.net/g08ybc4r0f4b/5EmOUkuTdZIvVwr690y5b6/6af331523d7eac39fcc3d63d7ab92dec/download.mp4",
+    "videoText": {
       "data": {},
       "content": [
         {
@@ -10,19 +224,7 @@ const content = {
             {
               "data": {},
               "marks": [],
-              "value": "Campaign Website and Social Media",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-3"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "If it’s not posted online, it didn’t happen. Use tech to engage with supporters. \nHere are two content creation tips:",
+              "value": "Upload a 60-second video to your website/social media that includes:",
               "nodeType": "text"
             }
           ],
@@ -39,12 +241,8 @@ const content = {
                   "content": [
                     {
                       "data": {},
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "value": "Consistent Content",
+                      "marks": [],
+                      "value": "① Self-introduction including your name as it would  appear on the ballot and what office you're seeking",
                       "nodeType": "text"
                     }
                   ],
@@ -62,7 +260,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Pick a platform or two and regularly create new content (then repurpose content across others platforms)\nFacebook, Twitter, Instagram, Youtube, TikTok, Snapchat, Twitch",
+                      "value": "② Something personal about yourself",
                       "nodeType": "text"
                     }
                   ],
@@ -80,101 +278,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": " ",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            },
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "value": "Short Form Content",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            },
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [],
-                      "value": "Pick a social media platform or two (e.g. Youtube, TikTok) and regularly create new content. Then repurpose it across other platforms (e.g. FB / Instagram, Twitter)",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            },
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [],
-                      "value": "🖼️ Pictures Of course you should share candid moments on the campaign trail with supporters and volunteers. But remember people care about who you are outside of politics! Also share photos of you working, walking your dog, spending time with family. Authenticity is what inspires people to support you - and then your campaign too.",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            },
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [],
-                      "value": "📹 Short Videos\nKeep videos brief with a succinct message.",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            },
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [],
-                      "value": "👾 Memes and Gifs - make it fun and capture attention",
+                      "value": "③ Why you are pledging to serve as an Independent or 3rd party candidate. ",
                       "nodeType": "text"
                     }
                   ],
@@ -185,18 +289,6 @@ const content = {
             }
           ],
           "nodeType": "unordered-list"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
         },
         {
           "data": {},
@@ -474,106 +566,106 @@ const content = {
       "nodeType": "document"
     },
     "win": {
-      "nodeType": "document",
       "data": {},
       "content": [
         {
-          "nodeType": "heading-3",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "Get Out The Vote",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "heading-3"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "Once you are on the ballot keep the momentum going by activating offline relationship online and vice versa:",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "unordered-list",
+          "data": {},
           "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
+                      "data": {},
+                      "marks": [],
                       "value": "ℹ️ Shared info about volunteer voter contact (phone / text banking) events",
-                      "marks": [],
-                      "data": {}
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
+                      "data": {},
+                      "marks": [],
                       "value": "📤 Share links to information about getting a ballot and where and when supporters can go to vote early!",
-                      "marks": [],
-                      "data": {}
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "🗳️  For Election Day make polling location information available to your supporters and share the candidate's election day calendar - including celebration events!\n",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "🗳️  For Election Day make polling location information available to your supporters and share the candidate's election day calendar - including celebration events!\n",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "unordered-list"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         }
-      ]
+      ],
+      "nodeType": "document"
     }
   },
   "landingPages": {
