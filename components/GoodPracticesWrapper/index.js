@@ -4,21 +4,30 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-scroll';
 import { Element } from 'react-scroll';
+import { AiOutlineYoutube } from 'react-icons/ai';
 
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import PageWrapper from '../shared/PageWrapper';
-import { Body11, H1, H2 } from '../shared/typogrophy';
+import { Body11, Body13, H1, H2, H3 } from '../shared/typogrophy';
+import VideoModal from './VideoModal';
 
 const Wrapper = styled.div`
   max-width: 712px; // 680 plus the 18*2 padding
   margin: 0 auto;
-  padding: 0 18px 60px;
+  padding: 0 18px;
+  &.no-sm-padding {
+    padding: 0;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      padding: 0 18px;
+    }
+  }
 `;
 
 const Inner = styled.div`
@@ -51,7 +60,7 @@ const StyledH1 = styled(H1)`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding: 32px 0;
-  @media only screen and (max-width: ${({ theme }) =>
+  @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     padding: 24px 0 48px;
   }
@@ -86,9 +95,60 @@ const BoxText = styled(Body11)`
   margin-top: 4px;
 `;
 
-const Img = styled.img`
-  height: 140px;
-  width: auto;
+const VideoWrapper = styled.div`
+  position: relative;
+  padding-bottom: 60px;
+`;
+
+const VideoImg = styled.img`
+  box-shadow: -3.62699px 3.62699px 9.06748px rgba(224, 212, 234, 0.2),
+    3.62699px -3.62699px 9.06748px rgba(224, 212, 234, 0.2),
+    -3.62699px -3.62699px 9.06748px rgba(255, 255, 255, 0.9),
+    3.62699px 3.62699px 9.06748px rgba(224, 212, 234, 0.9),
+    inset 1.8135px 1.8135px 1.8135px rgba(255, 255, 255, 0.3),
+    inset -1.8135px -1.8135px 1.8135px rgba(224, 212, 234, 0.5);
+  border-radius: 12px;
+  margin-top: 12px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin-top: 24px;
+  }
+`;
+
+const VideoOverlay = styled.div`
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.colors.purple3};
+  box-shadow: -3.62699px 3.62699px 9.06748px rgba(224, 212, 234, 0.2),
+    3.62699px -3.62699px 9.06748px rgba(224, 212, 234, 0.2),
+    -3.62699px -3.62699px 9.06748px rgba(255, 255, 255, 0.9),
+    3.62699px 3.62699px 9.06748px rgba(224, 212, 234, 0.9),
+    inset 1.8135px 1.8135px 1.8135px rgba(255, 255, 255, 0.3),
+    inset -1.8135px -1.8135px 1.8135px rgba(224, 212, 234, 0.5);
+  width: 90%;
+  position: absolute;
+  bottom: 0px;
+  left: 5%;
+  padding: 24px;
+  text-align: center;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 42px 24px;
+  }
+`;
+
+const Watch = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.gray7};
+  margin-top: 12px;
+  font-size: 13px;
+  cursor: pointer;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin-top: 24px;
+    font-size: 18px;
+  }
 `;
 
 const StyledH2 = styled.div`
@@ -136,6 +196,7 @@ const WinBgImg = styled(BgImg)`
 `;
 
 function GoodPracticesWrapper({ content }) {
+  const [showVideoModal, setShowVideoModal] = useState(false);
   return (
     <PageWrapper purple purpleNav isFullWidth>
       <Inner>
@@ -191,7 +252,34 @@ function GoodPracticesWrapper({ content }) {
             <div style={{ paddingTop: '1px' }}>
               {contentfulHelper(content.launch)}
             </div>
-
+            <H3>Announcement Video:</H3>
+          </CmsContentWrapper>
+        </Wrapper>
+        {content.video && (
+          <Wrapper className="no-sm-padding">
+            <VideoWrapper>
+              <VideoImg
+                src={content.videoImage}
+                alt="Video"
+                className="full-image"
+              />
+              <VideoOverlay>
+                <H3>Learn how to launch with Good Party 🤳</H3>
+                <Watch
+                  onClick={() => {
+                    setShowVideoModal(true);
+                  }}
+                >
+                  <AiOutlineYoutube size={28} /> &nbsp;&nbsp;
+                  <div>Watch now</div>
+                </Watch>
+              </VideoOverlay>
+            </VideoWrapper>
+          </Wrapper>
+        )}
+        <Wrapper>
+          <CmsContentWrapper>
+            {contentfulHelper(content.videoText)}
             <Element name="grow">
               <StyledH2>Grow</StyledH2>
             </Element>
@@ -208,6 +296,12 @@ function GoodPracticesWrapper({ content }) {
           </CmsContentWrapper>
         </Wrapper>
       </Inner>
+      {showVideoModal && (
+        <VideoModal
+          closeModalCallback={() => setShowVideoModal(false)}
+          url={content.video}
+        />
+      )}
     </PageWrapper>
   );
 }
