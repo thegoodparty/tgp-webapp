@@ -368,6 +368,9 @@ function GoodPracticesWrapper({ content, candidates }) {
                 </Grid>
               </ReverseGrid>
             </CopyCodeWrapper>
+            <div style={{ paddingTop: '1px' }}>
+              {contentfulHelper(content.growUnderCodeSection)}
+            </div>
             <Element name="win">
               <StyledH2>Win</StyledH2>
             </Element>
