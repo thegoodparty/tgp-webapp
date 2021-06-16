@@ -229,6 +229,14 @@ const ButtonText = styled(Body11)`
   color: ${({ theme }) => theme.colors.purple};
 `;
 
+const UnderCodeWrapper = styled.div`
+  margin-top: 36px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin-top: 48px;
+  }
+`;
+
 function GoodPracticesWrapper({ content, candidates }) {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(false);
@@ -380,9 +388,9 @@ function GoodPracticesWrapper({ content, candidates }) {
                 </Grid>
               </ReverseGrid>
             </CopyCodeWrapper>
-            <div style={{ paddingTop: '1px' }}>
+            <UnderCodeWrapper>
               {contentfulHelper(content.growUnderCodeSection)}
-            </div>
+            </UnderCodeWrapper>
             <Element name="win">
               <StyledH2>Win</StyledH2>
             </Element>
