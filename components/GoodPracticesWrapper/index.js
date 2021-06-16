@@ -40,21 +40,6 @@ const Inner = styled.div`
 
 const HeaderWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.purple};
-  padding: 0 32px 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.contentMax}) {
-    padding: 0;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
-    padding-right: 18px;
-    padding-left: 18px;
-  }
 `;
 
 const StyledH1 = styled(H1)`
@@ -255,7 +240,9 @@ function GoodPracticesWrapper({ content, candidates }) {
     <PageWrapper purple purpleNav isFullWidth>
       <Inner>
         <HeaderWrapper>
-          <StyledH1>{content.title}</StyledH1>
+          <Wrapper>
+            <StyledH1>{content.title}</StyledH1>
+          </Wrapper>
         </HeaderWrapper>
         <Wrapper>
           <Link to="launch" duration={350} smooth>
@@ -369,7 +356,7 @@ function GoodPracticesWrapper({ content, candidates }) {
                     <>
                       <Code>
                         &lt;iframe src="https://goodparty.org/embed/
-                        {selectedCandidate} style="border:none; height:56px;
+                        {selectedCandidate}" style="border:none; height:56px;
                         width:100%" &gt;&lt;/iframe&gt;
                       </Code>
                       <CopyToClipboard
