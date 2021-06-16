@@ -2,216 +2,360 @@ const content = {
   "goodPracticesPage": {
     "title": "How to win elections with Good Party",
     "launch": {
-      "nodeType": "document",
       "data": {},
       "content": [
         {
-          "nodeType": "heading-3",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "Campaign Website and Social Media",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "heading-3"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "If it’s not posted online, it didn’t happen. Use tech to engage with supporters. \nHere are two content creation tips:",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "unordered-list",
+          "data": {},
           "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "Consistent Content",
+                      "data": {},
                       "marks": [
                         {
                           "type": "bold"
                         }
                       ],
-                      "data": {}
+                      "value": "🎨 Consistent Content",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "Pick a platform or two and regularly create new content (then repurpose content across others platforms)\nFacebook, Twitter, Instagram, Youtube, TikTok, Snapchat, Twitch",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "Pick a platform or two and regularly create new content (then repurpose content across others platforms). Facebook, Twitter, Instagram, Youtube, TikTok, Snapchat, Twitch",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
-            },
+              "nodeType": "list-item"
+            }
+          ],
+          "nodeType": "unordered-list"
+        },
+        {
+          "data": {},
+          "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
+              "marks": [],
+              "value": "",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": " ",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Short Form Content",
+                      "data": {},
                       "marks": [
                         {
                           "type": "bold"
                         }
                       ],
-                      "data": {}
+                      "value": "🎬 Short Form Content",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
+                      "data": {},
+                      "marks": [],
                       "value": "Pick a social media platform or two (e.g. Youtube, TikTok) and regularly create new content. Then repurpose it across other platforms (e.g. FB / Instagram, Twitter)",
-                      "marks": [],
-                      "data": {}
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "🖼️ Pictures Of course you should share candid moments on the campaign trail with supporters and volunteers. But remember people care about who you are outside of politics! Also share photos of you working, walking your dog, spending time with family. Authenticity is what inspires people to support you - and then your campaign too.",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "📹 Short Videos\nKeep videos brief with a succinct message.",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "👾 Memes and Gifs - make it fun and capture attention",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "unordered-list"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "",
-              "marks": [],
-              "data": {}
+              "data": {},
+              "content": [
+                {
+                  "data": {},
+                  "content": [
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": "🖼️ ",
+                      "nodeType": "text"
+                    },
+                    {
+                      "data": {},
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "value": "Pictures",
+                      "nodeType": "text"
+                    },
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": " ",
+                      "nodeType": "text"
+                    }
+                  ],
+                  "nodeType": "paragraph"
+                }
+              ],
+              "nodeType": "list-item"
+            },
+            {
+              "data": {},
+              "content": [
+                {
+                  "data": {},
+                  "content": [
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": "Of course, you should share candid moments on the campaign trail with supporters and volunteers. But remember people care about who you are outside of politics! Also share photos of you working, walking your dog, spending time with family. Authenticity is what inspires people to support you - and then your campaign too.",
+                      "nodeType": "text"
+                    }
+                  ],
+                  "nodeType": "paragraph"
+                }
+              ],
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "unordered-list"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "content": [
+                {
+                  "data": {},
+                  "content": [
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": "📹",
+                      "nodeType": "text"
+                    },
+                    {
+                      "data": {},
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "value": " Short Videos",
+                      "nodeType": "text"
+                    }
+                  ],
+                  "nodeType": "paragraph"
+                }
+              ],
+              "nodeType": "list-item"
+            },
+            {
+              "data": {},
+              "content": [
+                {
+                  "data": {},
+                  "content": [
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": "Keep videos brief with a succinct message.",
+                      "nodeType": "text"
+                    }
+                  ],
+                  "nodeType": "paragraph"
+                }
+              ],
+              "nodeType": "list-item"
+            }
+          ],
+          "nodeType": "unordered-list"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "content": [
+                {
+                  "data": {},
+                  "content": [
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": "👾 ",
+                      "nodeType": "text"
+                    },
+                    {
+                      "data": {},
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
+                      "value": "Memes and Gifs",
+                      "nodeType": "text"
+                    }
+                  ],
+                  "nodeType": "paragraph"
+                }
+              ],
+              "nodeType": "list-item"
+            },
+            {
+              "data": {},
+              "content": [
+                {
+                  "data": {},
+                  "content": [
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": "Add color, make it fun, and capture your endorsers' attention.",
+                      "nodeType": "text"
+                    }
+                  ],
+                  "nodeType": "paragraph"
+                }
+              ],
+              "nodeType": "list-item"
+            }
+          ],
+          "nodeType": "unordered-list"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
         }
-      ]
+      ],
+      "nodeType": "document"
     },
     "videoImage": "//images.ctfassets.net/g08ybc4r0f4b/51w99YP5gZWxriwfbzgkOO/7d087612c3e939d4b1b4381b2d2c771f/video-image.jpg",
     "video": "//videos.ctfassets.net/g08ybc4r0f4b/5EmOUkuTdZIvVwr690y5b6/6af331523d7eac39fcc3d63d7ab92dec/download.mp4",
@@ -242,7 +386,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "① Self-introduction including your name as it would  appear on the ballot and what office you're seeking",
+                      "value": "Self-introduction including your name as it would  appear on the ballot and what office you're seeking",
                       "nodeType": "text"
                     }
                   ],
@@ -260,7 +404,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "② Something personal about yourself",
+                      "value": "Something personal about yourself",
                       "nodeType": "text"
                     }
                   ],
@@ -278,7 +422,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "③ Why you are pledging to serve as an Independent or 3rd party candidate. ",
+                      "value": "Why you are pledging to serve as an Independent or 3rd party candidate. ",
                       "nodeType": "text"
                     }
                   ],
@@ -288,7 +432,7 @@ const content = {
               "nodeType": "list-item"
             }
           ],
-          "nodeType": "unordered-list"
+          "nodeType": "ordered-list"
         },
         {
           "data": {},
@@ -490,65 +634,11 @@ const content = {
             {
               "data": {},
               "marks": [],
-              "value": "Get on The Ballot!",
+              "value": "Embed the endorse button on your site",
               "nodeType": "text"
             }
           ],
           "nodeType": "heading-3"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "Your first priority as an Indie or 3rd party candidate is to actually get on the ballot.",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [],
-                      "value": "📄 Know how many signatures you need to qualify and host petition drive events (i.e. Parties with a Purpose) to collect signatures as efficiently as possible.",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            },
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [],
-                      "value": "⌚ Be sure to post the exact time, date and location of signature collecting events on your website and social media.",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            }
-          ],
-          "nodeType": "unordered-list"
         },
         {
           "data": {},
@@ -564,6 +654,90 @@ const content = {
         }
       ],
       "nodeType": "document"
+    },
+    "growUnderCodeSection": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "heading-3",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Get on The Ballot!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Your first priority as an Indie or 3rd party candidate is to actually get on the ballot.",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "unordered-list",
+          "content": [
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "📄 Know how many signatures you need to qualify and host petition drive events (i.e. Parties with a Purpose) to collect signatures as efficiently as possible.",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "list-item",
+              "content": [
+                {
+                  "nodeType": "paragraph",
+                  "content": [
+                    {
+                      "nodeType": "text",
+                      "value": "⌚ Be sure to post the exact time, date, and location of signature collecting events on your website and social media.",
+                      "marks": [],
+                      "data": {}
+                    }
+                  ],
+                  "data": {}
+                }
+              ],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
     },
     "win": {
       "data": {},

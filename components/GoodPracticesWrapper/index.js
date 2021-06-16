@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -232,6 +232,17 @@ const ButtonText = styled(Body11)`
 function GoodPracticesWrapper({ content, candidates }) {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [selectedCandidate, setSelectedCandidate] = useState(false);
+  const [candidatesData, setCandidatesData] = useState([]);
+  useEffect(() => {
+    if (candidates) {
+      const data = [];
+      candidates.forEach(candidate => {
+        data.push(JSON.parse(candidate.data));
+      });
+      setCandidatesData(data);
+    }
+  }, [candidates]);
+
   return (
     <PageWrapper purple purpleNav isFullWidth>
       <Inner>
@@ -339,9 +350,10 @@ function GoodPracticesWrapper({ content, candidates }) {
                     variant="outlined"
                   >
                     <option value="">Select Candidate</option>
-                    {candidates?.map(candidate => (
+                    {candidatesData.map(candidate => (
                       <option value={candidate.id} key={candidate.id}>
-                        {candidate.firstName} {candidate.lastName}
+                        {candidate.firstName} {candidate.lastName} |{' '}
+                        {candidate.race}
                       </option>
                     ))}
                   </Select>
