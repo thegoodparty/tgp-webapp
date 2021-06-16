@@ -214,6 +214,11 @@ function MobileHeader({ user, purpleNav }) {
             </Link>
           </PushMenuLink>
           <PushMenuLink>
+            <Link href="/good-practices" passHref>
+              <a>Good Practices</a>
+            </Link>
+          </PushMenuLink>
+          <PushMenuLink>
             <Link href="/faqs" passHref>
               <a>FAQs</a>
             </Link>

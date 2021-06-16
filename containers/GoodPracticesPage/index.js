@@ -21,10 +21,11 @@ import GoodPracticesWrapper from '../../components/GoodPracticesWrapper';
 export function GoodPracticesPage({ ssrState }) {
   useInjectReducer({ key: 'goodPracticesPage', reducer });
   useInjectSaga({ key: 'goodPracticesPage', saga });
-  const { content } = ssrState;
+  const { content, candidates } = ssrState;
 
   const childProps = {
     content,
+    candidates,
   };
   return (
     <div>
