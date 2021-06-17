@@ -293,7 +293,7 @@ function GoodPracticesWrapper({ content, candidates }) {
             <div style={{ paddingTop: '1px' }}>
               {contentfulHelper(content.launch)}
             </div>
-            <H3>Announcement Video:</H3>
+            <H3>Announcement Video</H3>
           </CmsContentWrapper>
         </Wrapper>
         {content.video && (
