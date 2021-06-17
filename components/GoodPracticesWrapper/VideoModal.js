@@ -26,7 +26,12 @@ function VideoModal({ closeModalCallback, url }) {
           style={{ display: 'block' }}
           config={{
             youtube: {
-              playerVars: { showinfo: 1, modestbranding: 1, iv_load_policy:3, rel:1 },
+              playerVars: {
+                showinfo: 1,
+                modestbranding: 1,
+                iv_load_policy: 3,
+                rel: 1,
+              },
             },
           }}
         />
