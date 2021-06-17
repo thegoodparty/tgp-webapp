@@ -230,7 +230,11 @@ function GoodPracticesWrapper({ content, candidates }) {
       {showVideoModal && (
         <VideoModal
           closeModalCallback={() => setShowVideoModal(false)}
-          url={content.video}
+          url={
+            content.youtubeId
+              ? `https://www.youtube.com/watch?v=${content.youtubeId}?modestbranding=1`
+              : content.video
+          }
         />
       )}
     </PageWrapper>

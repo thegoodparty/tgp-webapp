@@ -84,7 +84,7 @@ const Watch = styled.div`
 function VideoSection({ content, showVideoCallback }) {
   return (
     <>
-      {content.video && (
+      {(content.video || content.youtubeId) && (
         <Wrapper className="no-sm-padding">
           <VideoWrapper>
             <VideoImg
@@ -94,7 +94,7 @@ function VideoSection({ content, showVideoCallback }) {
             />
             <VideoOverlay>
               <H3>
-                Learn how to launch with Good Party111{' '}
+                Learn how to launch with Good Party{' '}
                 <span role="img" aria-label="selfie">
                   🤳
                 </span>
