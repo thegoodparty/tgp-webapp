@@ -354,7 +354,7 @@ function GoodPracticesWrapper({ content, candidates }) {
                   </Select>
                   {selectedCandidate && (
                     <>
-                      <Code>
+                      <Code>œœ
                         &lt;iframe src="https://goodparty.org/embed/
                         {selectedCandidate}" style="border:none; height:56px;
                         width:100%" &gt;&lt;/iframe&gt;

@@ -65,7 +65,7 @@ export const achievementsHelper = count => {
       text: (
         <span>
           <strong>At 500 endorsements,</strong> this campaign is becoming truly{' '}
-          <strong>people-powered</strong> 💪
+          <strong>people-powered</strong> 💪.
         </span>
       ),
     };
@@ -77,7 +77,7 @@ export const achievementsHelper = count => {
       text: (
         <span>
           <strong>At 250 endorsements,</strong> this campaign will have more
-          endorsements than <strong>all the competitors combined</strong>
+          endorsements than <strong>all the competitors combined</strong>.
         </span>
       ),
     };
@@ -125,7 +125,7 @@ export const achievementsHelper = count => {
       text: (
         <span>
           <strong>At 10 endorsements,</strong> this campaign is starting to
-          pickup some steam!
+          pick up some steam!
         </span>
       ),
     };
