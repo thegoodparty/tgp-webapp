@@ -13,13 +13,15 @@ import QueryModal from '../shared/QueryModal';
 
 function VideoModal({ closeModalCallback, url }) {
   return (
-    <QueryModal closeModalCallback={closeModalCallback}>
+    <QueryModal closeModalCallback={closeModalCallback} mode="full-screen">
       <div className="flex-center">
         <ReactPlayer
-          url={url}
+          // url={url}
+          url="https://assets.goodparty.org/videos/welcome.mov"
+          controls
           playing
           height={window.innerHeight * 0.8}
-          width={400}
+          width={window.innerWidth}
           style={{ display: 'block' }}
         />
       </div>

@@ -51,6 +51,13 @@ const TgpDialog = styled(Dialog)`
           rgb(110, 38, 219);
       }
     }
+    &.full-screen {
+      .MuiDialog-paper {
+        padding: 0;
+        margin: 0;
+
+      }
+    }
   }
 `;
 

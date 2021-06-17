@@ -22,7 +22,7 @@ const content = {
             {
               "data": {},
               "marks": [],
-              "value": "If it’s not posted online, it didn’t happen. Use tech to engage with supporters. \nHere are two content creation tips:",
+              "value": "If it’s not posted online, it didn’t happen. Use tech to engage with supporters. \nHere are a few content creation tips:",
               "nodeType": "text"
             }
           ],
@@ -62,7 +62,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Pick a platform or two and regularly create new content (then repurpose content across others platforms). Facebook, Twitter, Instagram, Youtube, TikTok, Snapchat, Twitch",
+                      "value": "Pick a platform or two and regularly create new content. Then repurpose content across others platforms (Facebook, Twitter, Instagram, Youtube, TikTok, Snapchat, Twitch).",
                       "nodeType": "text"
                     }
                   ],
@@ -73,76 +73,6 @@ const content = {
             }
           ],
           "nodeType": "unordered-list"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "value": "🎬 Short Form Content",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            },
-            {
-              "data": {},
-              "content": [
-                {
-                  "data": {},
-                  "content": [
-                    {
-                      "data": {},
-                      "marks": [],
-                      "value": "Pick a social media platform or two (e.g. Youtube, TikTok) and regularly create new content. Then repurpose it across other platforms (e.g. FB / Instagram, Twitter)",
-                      "nodeType": "text"
-                    }
-                  ],
-                  "nodeType": "paragraph"
-                }
-              ],
-              "nodeType": "list-item"
-            }
-          ],
-          "nodeType": "unordered-list"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
         },
         {
           "data": {},
@@ -190,7 +120,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Of course, you should share candid moments on the campaign trail with supporters and volunteers. But remember people care about who you are outside of politics! Also share photos of you working, walking your dog, spending time with family. Authenticity is what inspires people to support you - and then your campaign too.",
+                      "value": "Share candid moments on the campaign trail with supporters and volunteers. Remember that people care about who you are outside of politics! Share photos of you working, walking your dog or spending time with family. Authenticity is what inspires people to support you - and then your campaign too.",
                       "nodeType": "text"
                     }
                   ],
@@ -201,18 +131,6 @@ const content = {
             }
           ],
           "nodeType": "unordered-list"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
-              "marks": [],
-              "value": "",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "paragraph"
         },
         {
           "data": {},
@@ -386,7 +304,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Self-introduction including your name as it would  appear on the ballot and what office you're seeking",
+                      "value": "Self-introduction including your name as it would  appear on the ballot and what office you're seeking.",
                       "nodeType": "text"
                     }
                   ],
@@ -404,7 +322,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Something personal about yourself",
+                      "value": "Something personal about yourself.",
                       "nodeType": "text"
                     }
                   ],
@@ -422,7 +340,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Why you are pledging to serve as an Independent or 3rd party candidate. ",
+                      "value": "Why you are pledging to serve as an Independent or 3rd party candidate rather than Red or Blue. ",
                       "nodeType": "text"
                     }
                   ],
@@ -450,316 +368,322 @@ const content = {
       "nodeType": "document"
     },
     "grow": {
-      "nodeType": "document",
       "data": {},
       "content": [
         {
-          "nodeType": "heading-3",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "Campaign Calendar of Events",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "heading-3"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "Once you are on the ballot keep the momentum going by activating offline relationships online and vice versa:\n",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "unordered-list",
+          "data": {},
           "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
+                      "data": {},
+                      "marks": [
+                        {
+                          "type": "bold"
+                        }
+                      ],
                       "value": "Updates",
-                      "marks": [
-                        {
-                          "type": "bold"
-                        }
-                      ],
-                      "data": {}
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
+                      "data": {},
+                      "marks": [],
                       "value": "Share interviews, ideas, good meetings, news coverage and endorsements to keep supporters informed and excited.",
-                      "marks": [],
-                      "data": {}
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
-            },
+              "nodeType": "list-item"
+            }
+          ],
+          "nodeType": "unordered-list"
+        },
+        {
+          "data": {},
+          "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "  ",
-                      "marks": [],
-                      "data": {}
-                    }
-                  ],
-                  "data": {}
-                }
-              ],
-              "data": {}
-            },
-            {
-              "nodeType": "list-item",
-              "content": [
-                {
-                  "nodeType": "paragraph",
-                  "content": [
-                    {
-                      "nodeType": "text",
-                      "value": "Events",
+                      "data": {},
                       "marks": [
                         {
                           "type": "bold"
                         }
                       ],
-                      "data": {}
+                      "value": "Events",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "Provide advance notice of key campaign activities and volunteer opportunities (e.g. phone or text banking, door to door, registration drives etc.)",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "Provide advance notice of key campaign activities and volunteer opportunities (e.g. phone or text banking, door to door, registration drives etc.)",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "unordered-list"
         },
         {
-          "nodeType": "heading-3",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "heading-3"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "heading-3",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "Embed the endorse button on your site",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "Embed the \"Endorse\" button on your site",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "heading-3"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "Sure you need donations, but votes win elections! Start collecting endorsements by embedding this button on your website, social media and in campaign emails. Where there’s a donate button there should be an endorse button. Grow your campaign!",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "Sure you need donations, but votes win elections! Start collecting endorsements by embedding this button on your website, social media and in campaign emails. Where there’s a Donate button on your site there should also be an Endorse button. Don't let money get in the way of people supporting and growing awareness about your campaign!",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "Here's how it works:",
+              "data": {},
               "marks": [
                 {
                   "type": "bold"
                 }
               ],
-              "data": {}
+              "value": "Here's how it works:",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "ordered-list",
+          "data": {},
           "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "Make sure you or someone you know has access to create an iframe on your site",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "Make sure you or your campaign website administrator has access to create an iframe on your site.",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "Select the candidate who you want your site's visitors to endorse",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "Select the name of the candidate you support (choose yourself if you're the candidate) from the drop down menu.",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "Copy the code snippet below",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "Copy the code snippet below.",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             },
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "Paste the code snippet into the appropriate area of your site",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "Paste the code snippet into the area of your site (or emails) where you want the Endorse button to appear.",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
+            },
+            {
+              "data": {},
+              "content": [
+                {
+                  "data": {},
+                  "content": [
+                    {
+                      "data": {},
+                      "marks": [],
+                      "value": "Encourage people you meet and connect with to Endorse your campaign!",
+                      "nodeType": "text"
+                    }
+                  ],
+                  "nodeType": "paragraph"
+                }
+              ],
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "ordered-list"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         }
-      ]
+      ],
+      "nodeType": "document"
     },
     "growUnderCodeSection": {
       "data": {},
@@ -782,7 +706,7 @@ const content = {
             {
               "data": {},
               "marks": [],
-              "value": "Your first priority as an Indie or 3rd party candidate is to actually get on the ballot.",
+              "value": "As you build awareness and support from endorsers, your first priority as an Independent or 3rd party candidate is to activate those people to help you get on the ballot.",
               "nodeType": "text"
             }
           ],
@@ -808,7 +732,13 @@ const content = {
                 }
               ],
               "nodeType": "list-item"
-            },
+            }
+          ],
+          "nodeType": "unordered-list"
+        },
+        {
+          "data": {},
+          "content": [
             {
               "data": {},
               "content": [
@@ -846,106 +776,118 @@ const content = {
       "nodeType": "document"
     },
     "win": {
+      "nodeType": "document",
       "data": {},
       "content": [
         {
-          "data": {},
+          "nodeType": "heading-3",
           "content": [
             {
-              "data": {},
-              "marks": [],
+              "nodeType": "text",
               "value": "Get Out The Vote",
-              "nodeType": "text"
-            }
-          ],
-          "nodeType": "heading-3"
-        },
-        {
-          "data": {},
-          "content": [
-            {
-              "data": {},
               "marks": [],
-              "value": "Once you are on the ballot keep the momentum going by activating offline relationship online and vice versa:",
-              "nodeType": "text"
+              "data": {}
             }
           ],
-          "nodeType": "paragraph"
+          "data": {}
         },
         {
-          "data": {},
+          "nodeType": "paragraph",
           "content": [
             {
-              "data": {},
+              "nodeType": "text",
+              "value": "Once you are on the ballot keep the momentum going by activating offline relationships with supporters online and vice versa:",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "unordered-list",
+          "content": [
+            {
+              "nodeType": "list-item",
               "content": [
                 {
-                  "data": {},
+                  "nodeType": "paragraph",
                   "content": [
                     {
-                      "data": {},
+                      "nodeType": "text",
+                      "value": "ℹ️ Share info about volunteer voter contact (phone / text banking) events.",
                       "marks": [],
-                      "value": "ℹ️ Shared info about volunteer voter contact (phone / text banking) events",
-                      "nodeType": "text"
+                      "data": {}
                     }
                   ],
-                  "nodeType": "paragraph"
+                  "data": {}
                 }
               ],
-              "nodeType": "list-item"
-            },
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "unordered-list",
+          "content": [
             {
-              "data": {},
+              "nodeType": "list-item",
               "content": [
                 {
-                  "data": {},
+                  "nodeType": "paragraph",
                   "content": [
                     {
-                      "data": {},
+                      "nodeType": "text",
+                      "value": "📤 Share links to information about where and when supporters can go to vote early!",
                       "marks": [],
-                      "value": "📤 Share links to information about getting a ballot and where and when supporters can go to vote early!",
-                      "nodeType": "text"
+                      "data": {}
                     }
                   ],
-                  "nodeType": "paragraph"
+                  "data": {}
                 }
               ],
-              "nodeType": "list-item"
-            },
+              "data": {}
+            }
+          ],
+          "data": {}
+        },
+        {
+          "nodeType": "unordered-list",
+          "content": [
             {
-              "data": {},
+              "nodeType": "list-item",
               "content": [
                 {
-                  "data": {},
+                  "nodeType": "paragraph",
                   "content": [
                     {
-                      "data": {},
-                      "marks": [],
+                      "nodeType": "text",
                       "value": "🗳️  For Election Day make polling location information available to your supporters and share the candidate's election day calendar - including celebration events!\n",
-                      "nodeType": "text"
+                      "marks": [],
+                      "data": {}
                     }
                   ],
-                  "nodeType": "paragraph"
+                  "data": {}
                 }
               ],
-              "nodeType": "list-item"
+              "data": {}
             }
           ],
-          "nodeType": "unordered-list"
+          "data": {}
         },
         {
-          "data": {},
+          "nodeType": "paragraph",
           "content": [
             {
-              "data": {},
-              "marks": [],
+              "nodeType": "text",
               "value": "",
-              "nodeType": "text"
+              "marks": [],
+              "data": {}
             }
           ],
-          "nodeType": "paragraph"
+          "data": {}
         }
-      ],
-      "nodeType": "document"
+      ]
     }
   },
   "landingPages": {
