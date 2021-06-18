@@ -265,7 +265,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                               logEvent('Link', 'Good-Practices', 'Top Nav');
                             }}
                           >
-                            <a>Good Practices</a>
+                            <a>Good practices</a>
                           </Link>
                         </StyledMenuItem>
                         <StyledMenuItem>

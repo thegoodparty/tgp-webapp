@@ -30,8 +30,8 @@ export function GoodPracticesPage({ ssrState }) {
   return (
     <div>
       <TgpHelmet
-        title="Good Practices | GOOD PARTY"
-        description="Good Practices | GOOD PARTY"
+        title="Good practices | GOOD PARTY"
+        description="How to win elections with Good Party - Launch, Grow and Win!"
       />
       <GoodPracticesWrapper {...childProps} />
     </div>
