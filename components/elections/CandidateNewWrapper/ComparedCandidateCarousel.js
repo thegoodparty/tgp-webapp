@@ -30,8 +30,8 @@ const PrevArrowElem = styled.div`
   top: 35px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    left: -280px;
-    top: 150px;
+    left: -305px;
+    top: 160px;
   }
   &.slick-disabled {
     display: none;
@@ -48,7 +48,7 @@ const NextArrowElem = styled.div`
   }
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    top: 150px;
+    top: 160px;
   }
   right: 20px;
   &.slick-disabled {
