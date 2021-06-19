@@ -194,6 +194,11 @@ function MobileHeader({ user, purpleNav }) {
               &nbsp;
             </Grid>
           </Grid>
+          <PushMenuLink>
+            <Link href="/about" passHref>
+              <a>About Good Party</a>
+            </Link>
+          </PushMenuLink>
 
           <PushMenuLink style={{ marginTop: '40px' }}>
             <Link
@@ -203,11 +208,7 @@ function MobileHeader({ user, purpleNav }) {
               <a>How crowd-voting works</a>
             </Link>
           </PushMenuLink>
-          <PushMenuLink>
-            <Link href="/about" passHref>
-              <a>About Good Party</a>
-            </Link>
-          </PushMenuLink>
+
           <PushMenuLink>
             <Link href="/candidates" passHref>
               <a>Meet the candidates</a>

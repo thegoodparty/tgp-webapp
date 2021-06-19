@@ -220,6 +220,17 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                       >
                         <StyledMenuItem onClick={handleClose}>
                           <Link
+                            href="/about"
+                            passHref
+                            onClick={() => {
+                              logEvent('Link', 'About', 'Top Nav');
+                            }}
+                          >
+                            <a>About Good Party</a>
+                          </Link>
+                        </StyledMenuItem>
+                        <StyledMenuItem onClick={handleClose}>
+                          <Link
                             href={`${
                               router.asPath
                             }?article=1ic6T6fhH0jZLNvX5aZkDe`}
@@ -233,17 +244,6 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                             }}
                           >
                             <a>How crowd-voting works</a>
-                          </Link>
-                        </StyledMenuItem>
-                        <StyledMenuItem onClick={handleClose}>
-                          <Link
-                            href="/about"
-                            passHref
-                            onClick={() => {
-                              logEvent('Link', 'About', 'Top Nav');
-                            }}
-                          >
-                            <a>About Good Party</a>
                           </Link>
                         </StyledMenuItem>
                         <StyledMenuItem onClick={handleClose}>
