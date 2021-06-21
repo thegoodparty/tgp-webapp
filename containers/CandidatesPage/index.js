@@ -16,13 +16,16 @@ import TgpHelmet from '../../components/shared/TgpHelmet';
 
 export function CandidatesPage({ ssrState, content }) {
   let candidates = [];
+  let pageContent = {};
   if (ssrState) {
-    ({ candidates } = ssrState);
+    ({ candidates, pageContent } = ssrState);
   }
   const childProps = {
     candidates,
     content,
+    pageContent,
   };
+
 
   return (
     <div>

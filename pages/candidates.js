@@ -15,10 +15,20 @@ export async function getServerSideProps() {
   } catch (e) {
     candidates = [];
   }
+
+  let content = {};
+  try {
+    const api2 = tgpApi.contentByKey;
+    const url2 = `${api2.url}?key=meetTheCandidates`;
+    const res2 = await fetch(url2);
+    ({ content } = await res2.json());
+  } catch (e) {}
+
   return {
     props: {
       ssrState: {
         candidates,
+        pageContent: content,
       },
     }, // will be passed to the page component as props
   };

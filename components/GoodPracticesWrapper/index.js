@@ -14,7 +14,7 @@ import { Element } from 'react-scroll';
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import PageWrapper from '../shared/PageWrapper';
 import { Body11, H1, H3 } from '../shared/typogrophy';
-import VideoModal from './VideoModal';
+import VideoModal from '../shared/VideoModal';
 import VideoSection from './VideoSection';
 import CopyCodeSection from './CopyCodeSection';
 

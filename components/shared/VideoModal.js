@@ -9,10 +9,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 
-import QueryModal from '../shared/QueryModal';
+import QueryModal from './QueryModal';
 
 function VideoModal({ closeModalCallback, url }) {
-  console.log('u', url);
   return (
     <QueryModal closeModalCallback={closeModalCallback} mode="full-screen">
       <div className="flex-center">

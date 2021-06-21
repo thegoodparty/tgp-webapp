@@ -888,8 +888,7 @@ const content = {
         }
       ],
       "nodeType": "document"
-    },
-    "video": null
+    }
   },
   "landingPages": {
     "ux-research": {

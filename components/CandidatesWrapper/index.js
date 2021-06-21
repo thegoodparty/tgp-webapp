@@ -24,17 +24,18 @@ const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto 48px;
   padding: 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 48px 0;
     overflow-x: visible;
     max-width: 1280px;
   }
-
 `;
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     flex-direction: row-reverse;
   }
 `;
@@ -46,7 +47,8 @@ const StyledH1 = styled(H1)`
 const StyledBody13 = styled(Body13)`
   margin: 4px 0 48px;
   color: ${({ theme }) => theme.colors.gray7};
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     font-size: 19px;
     line-height: 25px;
   }
@@ -61,7 +63,7 @@ const ScrollArea = styled.div`
 `;
 
 const Inner2 = styled.div`
-  padding-top: 25px;
+  margin-top: 25px;
 `;
 
 const StickyWrapperElement = ({ children }) => {
@@ -81,7 +83,7 @@ const StickyWrapperElement = ({ children }) => {
   return <div>{children}</div>;
 };
 
-function CandidatesWrapper({ candidates, content }) {
+function CandidatesWrapper({ candidates, content, pageContent }) {
   let articles = [];
   if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
@@ -92,7 +94,7 @@ function CandidatesWrapper({ candidates, content }) {
         <ReverseGrid container spacing={4}>
           <Grid item xs={12} md={5}>
             <StickyWrapperElement>
-              <VideoSection />
+              <VideoSection pageContent={pageContent} />
             </StickyWrapperElement>
           </Grid>
           <Grid item xs={12} md={7}>
@@ -115,6 +117,7 @@ function CandidatesWrapper({ candidates, content }) {
 CandidatesWrapper.propTypes = {
   candidates: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  pageContent: PropTypes.object,
 };
 
 export default CandidatesWrapper;
