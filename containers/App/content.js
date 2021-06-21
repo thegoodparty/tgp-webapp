@@ -276,7 +276,7 @@ const content = {
       "nodeType": "document"
     },
     "videoImage": "//images.ctfassets.net/g08ybc4r0f4b/51w99YP5gZWxriwfbzgkOO/7d087612c3e939d4b1b4381b2d2c771f/video-image.jpg",
-    "video": "//videos.ctfassets.net/g08ybc4r0f4b/5EmOUkuTdZIvVwr690y5b6/6af331523d7eac39fcc3d63d7ab92dec/download.mp4",
+    "youtubeId": "Y3XqpPReKfA",
     "videoText": {
       "data": {},
       "content": [
@@ -598,7 +598,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Copy the code snippet below.",
+                      "value": "Copy the code snippet that appears once you click on a name.",
                       "nodeType": "text"
                     }
                   ],
@@ -634,7 +634,7 @@ const content = {
                     {
                       "data": {},
                       "marks": [],
-                      "value": "Encourage people you meet and connect with to Endorse your campaign!",
+                      "value": "Encourage people you meet and connect with to endorse your campaign!",
                       "nodeType": "text"
                     }
                   ],
@@ -776,119 +776,120 @@ const content = {
       "nodeType": "document"
     },
     "win": {
-      "nodeType": "document",
       "data": {},
       "content": [
         {
-          "nodeType": "heading-3",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "Get Out The Vote",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "heading-3"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
+              "data": {},
+              "marks": [],
               "value": "Once you are on the ballot keep the momentum going by activating offline relationships with supporters online and vice versa:",
-              "marks": [],
-              "data": {}
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         },
         {
-          "nodeType": "unordered-list",
+          "data": {},
           "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
+                      "data": {},
+                      "marks": [],
                       "value": "ℹ️ Share info about volunteer voter contact (phone / text banking) events.",
-                      "marks": [],
-                      "data": {}
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "unordered-list"
         },
         {
-          "nodeType": "unordered-list",
+          "data": {},
           "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
+                      "data": {},
+                      "marks": [],
                       "value": "📤 Share links to information about where and when supporters can go to vote early!",
-                      "marks": [],
-                      "data": {}
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "unordered-list"
         },
         {
-          "nodeType": "unordered-list",
+          "data": {},
           "content": [
             {
-              "nodeType": "list-item",
+              "data": {},
               "content": [
                 {
-                  "nodeType": "paragraph",
+                  "data": {},
                   "content": [
                     {
-                      "nodeType": "text",
-                      "value": "🗳️  For Election Day make polling location information available to your supporters and share the candidate's election day calendar - including celebration events!\n",
+                      "data": {},
                       "marks": [],
-                      "data": {}
+                      "value": "🗳️  For Election Day make polling location information available to your supporters and share the candidate's election day calendar - including celebration events!\n",
+                      "nodeType": "text"
                     }
                   ],
-                  "data": {}
+                  "nodeType": "paragraph"
                 }
               ],
-              "data": {}
+              "nodeType": "list-item"
             }
           ],
-          "data": {}
+          "nodeType": "unordered-list"
         },
         {
-          "nodeType": "paragraph",
+          "data": {},
           "content": [
             {
-              "nodeType": "text",
-              "value": "",
+              "data": {},
               "marks": [],
-              "data": {}
+              "value": "",
+              "nodeType": "text"
             }
           ],
-          "data": {}
+          "nodeType": "paragraph"
         }
-      ]
-    }
+      ],
+      "nodeType": "document"
+    },
+    "video": null
   },
   "landingPages": {
     "ux-research": {
