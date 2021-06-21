@@ -53,21 +53,6 @@ class CustomDocument extends Document {
             name="google-signin-client_id"
             content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"
           />
-
-          <script
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `
-              if(window.location.hostname === 'goodparty.org'){
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','GTM-K2HCFR7');
-              }`,
-            }}
-          />
-
           <link
             href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap"
             rel="stylesheet"
@@ -172,11 +157,6 @@ class CustomDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-K2HCFR7"
-              height="0" width="0" style={{display:'none',visibility:'hidden'}} />
-          </noscript>
           <script
             type="text/javascript"
             dangerouslySetInnerHTML={{

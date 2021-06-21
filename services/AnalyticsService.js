@@ -4,7 +4,7 @@ import Router from 'next/router';
 import GA4React from 'ga-4-react';
 
 let ga4react;
-const G = 'GTM-K2HCFR7';
+const G = 'G-XN4N0QT5J5';
 
 export async function initGA4() {
   if (!isProd) {
@@ -24,17 +24,14 @@ export async function initGA4() {
 }
 
 function logPageView() {
-  if (!isProd) {
+  if (!isProd || !GA4React.isInitialized()) {
     return;
   }
   ga4react?.pageview(window.location.pathname);
 }
 
 function logPageViews() {
-  if (!isProd) {
-    return;
-  }
-  logPageView();
+  // logPageView();
 
   Router.events.on('routeChangeComplete', () => {
     logPageView();
@@ -42,7 +39,7 @@ function logPageViews() {
 }
 
 export function logEvent(action, label, category) {
-  if (!isProd) {
+  if (!isProd || !GA4React.isInitialized()) {
     return;
   }
   try {
