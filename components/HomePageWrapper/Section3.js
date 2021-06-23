@@ -26,7 +26,12 @@ const ResponsiveAlign = styled.div`
 const Section3 = () => (
   <ReverseGrid container spacing={5} alignItems="center">
     <Grid item xs={12} md={6}>
-      <SectionImg src="images/homepage/good-indie.svg" alt="Good Candidates" />
+      <SectionImg
+        src="images/homepage/good-indie.svg"
+        alt="Good Candidates"
+        width={620}
+        height={1378}
+      />
     </Grid>
     <Grid item xs={12} md={6}>
       <ResponsiveAlign>

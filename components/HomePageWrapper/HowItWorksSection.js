@@ -124,7 +124,12 @@ const HowItWorksSection = ({ experimentVariant }) => {
               </TextWrapper>
             </Grid>
             <Grid item xs={12} md={3}>
-              <Img src="images/homepage/launch.svg" alt="Launch" />
+              <Img
+                src="images/homepage/launch.svg"
+                alt="Launch"
+                width={320}
+                height={228}
+              />
             </Grid>
           </ReverseGrid>
         </Content>
@@ -147,7 +152,12 @@ const HowItWorksSection = ({ experimentVariant }) => {
               </TextWrapper>
             </Grid>
             <Grid item xs={12} md={3}>
-              <Img src="images/homepage/grow.svg" alt="Launch" />
+              <Img
+                src="images/homepage/grow.svg"
+                alt="Launch"
+                width={320}
+                height={262}
+              />
             </Grid>
           </ReverseGrid>
         </Content>
@@ -170,7 +180,12 @@ const HowItWorksSection = ({ experimentVariant }) => {
               </TextWrapper>
             </Grid>
             <Grid item xs={12} md={3}>
-              <Img src="images/homepage/win.svg" alt="Launch" />
+              <Img
+                src="images/homepage/win.svg"
+                alt="Launch"
+                width={320}
+                height={262}
+              />
             </Grid>
           </ReverseGrid>
         </Content>

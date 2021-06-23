@@ -78,7 +78,12 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
   return (
     <>
       <div className="text-center">
-        <Img src="images/icons/certification-badge.svg" alt="tgp certified" />
+        <Img
+          src="images/icons/certification-badge.svg"
+          alt="tgp certified"
+          width={60}
+          height={60}
+        />
         <StyledH2>How to become a Good Certified candidate</StyledH2>
         <StyledH3>Candidates must pledge to be:</StyledH3>
       </div>
@@ -86,7 +91,12 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
         {points.map(point => (
           <Grid item xs={12} md={mdColumns} key={point.title}>
             <PointWrapper>
-              <PointIcon src={point.icon} />
+              <PointIcon
+                src={point.icon}
+                width={30}
+                height={40}
+                alt={point.title}
+              />
               <PointTitle>
                 <strong>{point.title}</strong>
               </PointTitle>

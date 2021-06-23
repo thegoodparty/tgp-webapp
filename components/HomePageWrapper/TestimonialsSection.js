@@ -183,7 +183,12 @@ const TestimonialsSection = () => {
       {testimonials.map(testimonial => (
         <div key={testimonial.name}>
           <Wrapper key={testimonial.name}>
-            <Img src={testimonial.image} alt={testimonial.name} />
+            <Img
+              src={testimonial.image}
+              alt={testimonial.name}
+              width={172}
+              height={172}
+            />
             <TextWrapper>
               <StyledH2>&ldquo;{testimonial.content}&rdquo;</StyledH2>
               <Name>

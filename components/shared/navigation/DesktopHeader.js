@@ -309,9 +309,19 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
             >
               <a>
                 {purpleNav ? (
-                  <Logo src="/images/new-logo-white.svg" data-cy="logo" />
+                  <Logo
+                    src="/images/new-logo-white.svg"
+                    data-cy="logo"
+                    width={173}
+                    height={20}
+                  />
                 ) : (
-                  <Logo src="/images/new-logo.svg" data-cy="logo" />
+                  <Logo
+                    src="/images/new-logo.svg"
+                    data-cy="logo"
+                    width={173}
+                    height={20}
+                  />
                 )}
               </a>
             </Link>
@@ -320,9 +330,19 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
             <ShareWrapper>
               <Share onClick={handleShare} className={purpleNav && 'purple'}>
                 {purpleNav ? (
-                  <img src="/images/icons/share-icon-white.svg" alt="Share" />
+                  <img
+                    src="/images/icons/share-icon-white.svg"
+                    alt="Share"
+                    width={20}
+                    height={20}
+                  />
                 ) : (
-                  <img src="/images/icons/share-icon.svg" alt="Share" />
+                  <img
+                    src="/images/icons/share-icon.svg"
+                    alt="Share"
+                    width={20}
+                    height={20}
+                  />
                 )}
                 <span>SHARE</span>
               </Share>
