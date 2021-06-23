@@ -19,7 +19,8 @@ const Wrapper = styled.div`
   background-color: #fff;
   padding: 16px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-bottom: 0;
   }
 `;
@@ -31,14 +32,14 @@ const InnerWrapper = styled(Body9)`
   color: ${({ theme }) => theme.colors.gray10};
   text-align: center;
   border: solid 1px ${({ theme }) => theme.colors.gray10};
-
 `;
 
 const GrayWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray3};
   padding: 40px 16px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 60px 16px;
   }
 `;
@@ -56,7 +57,8 @@ const GrayInnerWrapper = styled(Body12)`
 const Column = styled.div`
   color: #fff;
   text-align: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     text-align: left;
   }
 `;
@@ -67,7 +69,8 @@ const ColumnHeader = styled.div`
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-bottom: 32px;
     font-size: 16px;
   }
@@ -102,7 +105,8 @@ const Apply = styled.div`
 
 const SecondRow = styled.div`
   margin-top: 60px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-top: 100px;
   }
 `;
@@ -150,11 +154,7 @@ function Footer({ isCreators = false }) {
                     Meet the candidates
                   </WhiteLink>
                 </Link>
-                <Link
-                  data-cy="footer-link-creators"
-                  href="/faqs"
-                  passHref
-                >
+                <Link data-cy="footer-link-creators" href="/faqs" passHref>
                   <WhiteLink data-cy="footer-link-creators">
                     Frequently asked questions
                   </WhiteLink>
@@ -216,7 +216,11 @@ function Footer({ isCreators = false }) {
                     rel="nofollow"
                     data-cy="footer-link-facebook"
                   >
-                    <SocialIcon src="/images/icons/facebook-white.svg" />
+                    <SocialIcon
+                      src="/images/icons/facebook-white.svg"
+                      width={12}
+                      height={20}
+                    />
                   </a>
                   <a
                     href="https://twitter.com/goodpartyorg"
@@ -224,7 +228,11 @@ function Footer({ isCreators = false }) {
                     rel="nofollow"
                     data-cy="footer-link-twitter"
                   >
-                    <SocialIcon src="/images/icons/twitter.svg" />
+                    <SocialIcon
+                      src="/images/icons/twitter.svg"
+                      width={20}
+                      height={17}
+                    />
                   </a>
                   <a
                     href="https://www.tiktok.com/@goodparty"
@@ -232,7 +240,11 @@ function Footer({ isCreators = false }) {
                     rel="nofollow"
                     data-cy="footer-link-tiktok"
                   >
-                    <SocialIcon src="/images/icons/tiktok-white.svg" />
+                    <SocialIcon
+                      src="/images/icons/tiktok-white.svg"
+                      width={21}
+                      height={10}
+                    />
                   </a>
                 </Column>
               </Grid>

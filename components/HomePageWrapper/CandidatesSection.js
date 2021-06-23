@@ -61,7 +61,12 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
         }}
       >
         <span>of</span>{' '}
-        <Badge src="images/icons/certification-badge.svg" alt="tgp certified" />{' '}
+        <Badge
+          src="images/icons/certification-badge.svg"
+          alt="tgp certified"
+          width={27}
+          height={27}
+        />{' '}
         <span>Good Certified candidates</span>
       </StyledH3>
 

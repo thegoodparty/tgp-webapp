@@ -160,7 +160,7 @@ function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <NextArrowElem className={className} onClick={onClick}>
-      <img src={CarouselNextIcon} alt="carousel-next" />
+      <img src={CarouselNextIcon} alt="carousel-next" width={28} height={28} />
     </NextArrowElem>
   );
 }
