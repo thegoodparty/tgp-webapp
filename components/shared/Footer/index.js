@@ -73,7 +73,7 @@ const ColumnHeader = styled.div`
   }
 `;
 
-const Logo = styled(Image)`
+const Logo = styled.img`
   width: 130px;
   height: auto;
   cursor: pointer;

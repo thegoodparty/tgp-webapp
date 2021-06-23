@@ -84,7 +84,7 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
       </div>
       <Grid container spacing={5} alignItems="flex-start">
         {points.map(point => (
-          <Grid item xs={12} md={mdColumns}>
+          <Grid item xs={12} md={mdColumns} key={point.title}>
             <PointWrapper>
               <PointIcon src={point.icon} />
               <PointTitle>

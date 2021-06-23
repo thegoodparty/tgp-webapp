@@ -1,4 +1,8 @@
 const content = {
+  "meetTheCandidates": {
+    "youtubeId": "183Otqkf8So",
+    "videoPlaceholder": "//images.ctfassets.net/g08ybc4r0f4b/5fDZlDzjGD3QWSSp6jhULu/9342c2fa2415cf713163163b6c605a96/whois.jpg"
+  },
   "goodPracticesPage": {
     "title": "How to win elections with Good Party",
     "launch": {

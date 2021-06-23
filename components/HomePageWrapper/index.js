@@ -51,7 +51,6 @@ const Section = styled.section`
 `;
 
 const HomePageWrapper = ({ homepageCandidates }) => {
-  console.log('homepageCandidates', homepageCandidates);
   const sections = [
     // { component: <TopSection /> },
     // { component: <Section2 />, sectionClass: 'purple4' },

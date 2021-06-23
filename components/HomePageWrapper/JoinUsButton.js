@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 import { PurpleButton } from '../shared/buttons';
-import { Body } from '../shared/typogrophy';
 
 const StyledBody = styled.div`
   color: #fff;
@@ -22,7 +21,7 @@ const StyledBody = styled.div`
 
 const JoinUsButton = ({ style = {}, label = 'JOIN US' }) => {
   return (
-    <Link href="?register=true" passHref>
+    <Link href="/?register=true" passHref>
       <a>
         <PurpleButton style={style}>
           <StyledBody>{label}</StyledBody>

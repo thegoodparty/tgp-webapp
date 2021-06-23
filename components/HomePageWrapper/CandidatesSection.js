@@ -50,22 +50,20 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
       <Title
         style={{ marginBottom: '8px', color: '#000', position: 'relative' }}
       >
-        Featured campaigns
-        <StyledH3
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <span>of</span>{' '}
-          <Badge
-            src="images/icons/certification-badge.svg"
-            alt="tgp certified"
-          />{' '}
-          <span>Good Certified candidates</span>
-        </StyledH3>
+        Featured campaigns{' '}
       </Title>
+
+      <StyledH3
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <span>of</span>{' '}
+        <Badge src="images/icons/certification-badge.svg" alt="tgp certified" />{' '}
+        <span>Good Certified candidates</span>
+      </StyledH3>
 
       {homepageCandidates && homepageCandidates.length > 0 ? (
         <>
@@ -76,7 +74,7 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
             style={{ marginTop: '12px' }}
           >
             {homepageCandidates.map(candidate => (
-              <Grid item xs={12} md={columns}>
+              <Grid item xs={12} md={columns} key={candidate.id}>
                 <CandidateCard candidate={candidate} />
               </Grid>
             ))}
