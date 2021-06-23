@@ -215,11 +215,13 @@ function Footer({ isCreators = false }) {
                     target="_blank"
                     rel="nofollow"
                     data-cy="footer-link-facebook"
+                    title="Facebook"
                   >
                     <SocialIcon
                       src="/images/icons/facebook-white.svg"
                       width={12}
                       height={20}
+                      alt="Facebook"
                     />
                   </a>
                   <a
@@ -227,11 +229,13 @@ function Footer({ isCreators = false }) {
                     target="_blank"
                     rel="nofollow"
                     data-cy="footer-link-twitter"
+                    title="Twitter"
                   >
                     <SocialIcon
                       src="/images/icons/twitter.svg"
                       width={20}
                       height={17}
+                      alt="Twitter"
                     />
                   </a>
                   <a
@@ -239,11 +243,13 @@ function Footer({ isCreators = false }) {
                     target="_blank"
                     rel="nofollow"
                     data-cy="footer-link-tiktok"
+                    title="TikTok"
                   >
                     <SocialIcon
                       src="/images/icons/tiktok-white.svg"
                       width={21}
                       height={10}
+                      alt="TikTok"
                     />
                   </a>
                 </Column>

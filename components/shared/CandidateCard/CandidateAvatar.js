@@ -164,6 +164,7 @@ const CandidateAvatar = ({
           src={PartyImg}
           className={`full-image ${size} party-${party} ${partyBadge &&
             'no-bg'}`}
+          alt="badge"
         />
       )}
     </ChallengerAvatarWrapper>

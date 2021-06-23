@@ -110,7 +110,7 @@ const SupportersProgressBar = ({
       )}
       {withAchievement && (
         <AchievementWrapper>
-          <Icon src="/images/icons/achievement.svg" />
+          <Icon src="/images/icons/achievement.svg" alt="achievement" />
           <div>{achievements.text}</div>
         </AchievementWrapper>
       )}
