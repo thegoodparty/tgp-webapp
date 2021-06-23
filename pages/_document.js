@@ -42,6 +42,7 @@ class CustomDocument extends Document {
           <meta charSet="utf-8" />
           <meta name="mobile-web-app-capable" content="yes" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link rel="preconnect" href="https://connect.facebook.net" />
 
           <meta property="og:site_name" content="THE GOOD PARTY" />
           <meta property="og:type" content="website" />
