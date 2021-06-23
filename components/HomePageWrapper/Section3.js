@@ -30,7 +30,7 @@ const Section3 = () => (
         src="images/homepage/good-indie.svg"
         alt="Good Candidates"
         width={620}
-        height={1378}
+        height={378}
       />
     </Grid>
     <Grid item xs={12} md={6}>
