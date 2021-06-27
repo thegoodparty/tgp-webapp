@@ -254,6 +254,11 @@ const api = {
       url: `${base}new-candidate/share-guest`,
       method: 'POST',
     },
+    updateImage: {
+      url: `${base}new-candidate/image`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
   subscribeEmail: {
     url: `${base}subscribe/email`,

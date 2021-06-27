@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
@@ -27,26 +27,53 @@ const Item = styled.div`
   &.last-item {
     border-right: none;
   }
+
+  &.active {
+    background-color: ${({ theme }) => theme.colors.purple};
+    color: #fff;
+  }
 `;
 
 function CandidateTopMenu({ candidate }) {
+  const [activeLink, setActiveLink] = useState('edit');
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { pathname } = location;
+      if (pathname.includes('candidate-image')) {
+        setActiveLink('image');
+      } else if (pathname.includes('stage-settings')) {
+        setActiveLink('stage');
+      }
+    }
+  }, []);
+
   return (
     <Wrapper>
       <Link href={`/admin/add-candidate/${candidate?.id}`} passHref>
         <a>
-          <Item>Edit Candidate</Item>
+          <Item className={activeLink === 'edit' && 'active'}>
+            Edit Candidate
+          </Item>
         </a>
       </Link>
       {candidate?.id && (
         <>
           <Link href={`/admin/candidate-image/${candidate?.id}`} passHref>
             <a>
-              <Item className="last-item">Candidate Image</Item>
+              <Item className={activeLink === 'image' && 'active'}>
+                Candidate Image
+              </Item>
             </a>
           </Link>
           <Link href={`/admin/stage-settings/${candidate?.id}`} passHref>
             <a>
-              <Item className="last-item">Stage Settings</Item>
+              <Item
+                className={
+                  activeLink === 'stage' ? 'last-item active' : 'last-item'
+                }
+              >
+                Stage Settings
+              </Item>
             </a>
           </Link>
         </>

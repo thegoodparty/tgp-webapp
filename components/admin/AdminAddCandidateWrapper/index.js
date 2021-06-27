@@ -159,10 +159,6 @@ function AdminAddCandidateWrapper({
     });
   };
 
-  const handleUpload = base64 => {
-    setFormState({ ...formState, imageBase64: base64 });
-  };
-
   const canSubmit = () => {
     return formState.firstName !== '' && formState.lastName !== '';
   };
@@ -218,24 +214,7 @@ function AdminAddCandidateWrapper({
         <CandidateTopMenu candidate={candidate} />
 
         <br />
-        {candidate && candidate.image && (
-          <div className="flex-center">
-            <CandidateAvatar
-              src={candidate.image}
-              name={candidate.firstName}
-              good
-              size="xl"
-            />
-          </div>
-        )}
 
-        {!formState.imageBase64 ? (
-          <CropWrapper>
-            <ImageCrop uploadImageCallback={handleUpload} />
-          </CropWrapper>
-        ) : (
-          <Body>Image Selected</Body>
-        )}
         {fields.map(field => (
           <React.Fragment key={field.key}>
             {field.isSelect ? (

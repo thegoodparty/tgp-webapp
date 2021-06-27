@@ -14,7 +14,7 @@ function* createCandidate({ candidate }) {
     yield call(requestHelper, api, payload);
     // yield put(push('/admin'));
     yield put(snackbarActions.showSnakbarAction('Saved'));
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   } catch (error) {
     console.log(error);
     yield put(
@@ -31,7 +31,7 @@ function* editCandidate({ candidate }) {
     yield call(requestHelper, api, payload);
     // yield put(push('/admin'));
     yield put(snackbarActions.showSnakbarAction('Saved'));
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   } catch (error) {
     console.log(error);
     yield put(
