@@ -88,7 +88,7 @@ const Heart = styled.div`
 `;
 
 const leftMenuItems = [
-  { icon: <AccountBalanceIcon />, label: 'Local Candidates' },
+  { icon: <AccountBalanceIcon />, label: 'Candidates' },
   { icon: <UserIcon />, label: 'Users' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },

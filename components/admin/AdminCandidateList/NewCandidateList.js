@@ -18,7 +18,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { IoIosSettings } from 'react-icons/io';
 import Link from 'next/link';
 import moment from 'moment';
-import { candidateRoute } from 'helpers/electionsHelper';
+import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
 
@@ -59,21 +59,15 @@ function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
       const data = [];
       candidates.map(candidate => {
         const fields = {
+          active: candidate.isActive ? 'Yes' : 'No',
           id: candidate.id,
           firstName: candidate.firstName,
           lastName: candidate.lastName,
-          party: candidate.party,
+          party: partyResolver(candidate.party),
           chamber: candidate.chamber,
-          race: candidate.race,
+          office: candidate.race,
+          state: candidate.state ? candidate.state.toUpperCase() : '?',
         };
-        if (chamber !== 'presidential') {
-          fields.state = candidate.state
-            ? candidate.state.toLowerCase()
-            : 'N/A';
-        }
-        if (chamber === 'house') {
-          fields.district = candidate.district;
-        }
         data.push(fields);
       });
       setTableData(data);
@@ -106,8 +100,15 @@ function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
       maxWidth: 80,
     },
     {
-      Header: 'Name',
-      accessor: 'name',
+      Header: 'Active?',
+      accessor: 'active',
+      filterMethod: customFilter,
+      headerStyle,
+      maxWidth: 90,
+    },
+    {
+      Header: 'First Name',
+      accessor: 'firstName',
       headerStyle,
       filterMethod: customFilter,
       Cell: row => {
@@ -135,11 +136,17 @@ function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}
             >
-              {row.original.firstName} {row.original.lastName}
+              {row.original.firstName}
             </a>
           </>
         );
       },
+    },
+    {
+      Header: 'Last Name',
+      accessor: 'lastName',
+      filterMethod: customFilter,
+      headerStyle,
     },
     {
       Header: 'Party',
@@ -148,10 +155,24 @@ function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
       headerStyle,
     },
     {
-      Header: 'Race',
-      accessor: 'race',
+      Header: 'Chamber',
+      accessor: 'chamber',
       filterMethod: customFilter,
       headerStyle,
+      maxWidth: 120,
+    },
+    {
+      Header: 'Office',
+      accessor: 'office',
+      filterMethod: customFilter,
+      headerStyle,
+    },
+    {
+      Header: 'State',
+      accessor: 'state',
+      filterMethod: customFilter,
+      headerStyle,
+      maxWidth: 120,
     },
     {
       Header: 'Delete',
@@ -183,7 +204,7 @@ function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
   return (
     <Wrapper>
       <Title>
-        {chamber} candidate list
+        candidate list
         <CSVLinkWrapper>
           <Button variant="contained" color="primary">
             <CSVLink
