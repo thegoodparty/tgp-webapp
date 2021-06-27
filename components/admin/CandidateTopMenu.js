@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
 `;
 
 const Item = styled.div`
@@ -40,6 +39,11 @@ function CandidateTopMenu({ candidate }) {
       </Link>
       {candidate?.id && (
         <>
+          <Link href={`/admin/candidate-image/${candidate?.id}`} passHref>
+            <a>
+              <Item className="last-item">Candidate Image</Item>
+            </a>
+          </Link>
           <Link href={`/admin/stage-settings/${candidate?.id}`} passHref>
             <a>
               <Item className="last-item">Stage Settings</Item>
