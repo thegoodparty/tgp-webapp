@@ -16,7 +16,7 @@ const VideoWrapper = styled.div`
   justify-content: center;
   width: calc(100vw - 36px);
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  theme.breakpointsPixels.md}) {
     text-align: center;
     display: block;
     width: unset;
@@ -53,7 +53,10 @@ function VideoSection({ pageContent }) {
     <VideoWrapper>
       <Wrapper onClick={showVideo}>
         <VideoImg
-          src={pageContent.videoPlaceholder}
+          src={
+            pageContent?.videoPlaceholder ||
+            '//images.ctfassets.net/g08ybc4r0f4b/5fDZlDzjGD3QWSSp6jhULu/9342c2fa2415cf713163163b6c605a96/whois.jpg'
+          }
           alt="Video"
           className="full-image"
         />
@@ -65,7 +68,7 @@ function VideoSection({ pageContent }) {
         <VideoModal
           closeModalCallback={() => setShowVideoModal(false)}
           url={`https://www.youtube.com/watch?v=${
-            pageContent.youtubeId
+            pageContent?.youtubeId || '183Otqkf8So'
           }?modestbranding=1`}
         />
       )}
