@@ -1,6 +1,6 @@
 /**
  *
- * AdminCandidateImagePage
+ * AdminCompareCandidatesPage
  *
  */
 
@@ -11,23 +11,29 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import AdminCandidateImageWrapper from 'components/admin/AdminCandidateImageWrapper';
-
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectAdminCandidateImagePage from './selectors';
-import reducer from './reducer';
+import makeSelectAdminCompareCandidatesPage from './selectors';
+import adminCandidateImageReducer from '../AdminCandidateImagePage/reducer';
 import saga from './saga';
-import actions from './actions';
 
-export function AdminCandidateImagePage({
+import reducer from './reducer';
+import actions from '../AdminCandidateImagePage/actions';
+import makeSelectAdminCandidateImagePage from '../AdminCandidateImagePage/selectors';
+import AdminCompareCandidatesWrapper from '../../../components/admin/AdminCompareCandidatesWrapper';
+
+export function AdminCompareCandidatesPage({
   dispatch,
   ssrState,
-  saveCallback,
   adminCandidateImagePage,
 }) {
-  useInjectReducer({ key: 'adminCandidateImagePage', reducer });
-  useInjectSaga({ key: 'adminCandidateImagePage', saga });
+  useInjectReducer({ key: 'adminCompareCandidatesPage', reducer });
+  useInjectSaga({ key: 'adminCompareCandidatesPage', saga });
+  useInjectReducer({
+    key: 'adminCandidateImagePage',
+    reducer: adminCandidateImageReducer,
+  });
+
   const [candidate, setCandidate] = useState(ssrState.candidate);
 
   const stateCandidate = adminCandidateImagePage.candidate;
@@ -43,37 +49,32 @@ export function AdminCandidateImagePage({
 
   const childProps = {
     candidate,
-    saveCallback,
   };
 
   return (
     <div>
       <Helmet>
-        <title>Admin Candidate Image</title>
-
+        <title>AdminCompareCandidatesPage</title>
       </Helmet>
-      <AdminCandidateImageWrapper {...childProps} />
+      <AdminCompareCandidatesWrapper {...childProps} />
     </div>
   );
 }
 
-AdminCandidateImagePage.propTypes = {
+AdminCompareCandidatesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
-  saveCallback: PropTypes.func,
   adminCandidateImagePage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
+  adminCompareCandidatesPage: makeSelectAdminCompareCandidatesPage(),
   adminCandidateImagePage: makeSelectAdminCandidateImagePage(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    saveCallback: candidate => {
-      dispatch(actions.updateCandidateImageAction(candidate));
-    },
   };
 }
 
@@ -85,4 +86,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(AdminCandidateImagePage);
+)(AdminCompareCandidatesPage);

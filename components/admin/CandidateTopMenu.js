@@ -22,7 +22,7 @@ const Item = styled.div`
   padding: 12px 36px;
   border-right: solid 1px #ccc;
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 
   &.last-item {
     border-right: none;
@@ -43,6 +43,8 @@ function CandidateTopMenu({ candidate }) {
         setActiveLink('image');
       } else if (pathname.includes('stage-settings')) {
         setActiveLink('stage');
+      } else if (pathname.includes('compare-candidates')) {
+        setActiveLink('compare');
       }
     }
   }, []);
@@ -62,6 +64,13 @@ function CandidateTopMenu({ candidate }) {
             <a>
               <Item className={activeLink === 'image' && 'active'}>
                 Candidate Image
+              </Item>
+            </a>
+          </Link>
+          <Link href={`/admin/compare-candidates/${candidate?.id}`} passHref>
+            <a>
+              <Item className={activeLink === 'compare' && 'active'}>
+                Compared Candidates
               </Item>
             </a>
           </Link>
