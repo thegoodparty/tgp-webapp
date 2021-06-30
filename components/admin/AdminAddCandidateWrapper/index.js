@@ -60,6 +60,13 @@ const partyOptions = [
   { key: 'W', value: 'Working Families Party' },
   { key: 'S', value: 'SAM' },
 ];
+
+const chmaberOptions = [
+  { key: 'local', value: 'Local' },
+  { key: 'state', value: 'State' },
+  { key: 'federal', value: 'Federal' },
+];
+
 const statesOptions = states.map(state => ({
   key: state.abbreviation,
   value: state.name,
@@ -89,7 +96,13 @@ const fields = [
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
   { label: 'Headline', key: 'headline', initialValue: '' },
-  { label: 'Chamber', key: 'chamber', initialValue: 'local' },
+  {
+    label: 'Chamber',
+    key: 'chamber',
+    initialValue: 'local',
+    isSelect: true,
+    options: chmaberOptions,
+  },
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
   {
     label: 'State',
