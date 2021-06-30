@@ -18,7 +18,8 @@ import adminCandidateImageReducer from '../AdminCandidateImagePage/reducer';
 import saga from './saga';
 
 import reducer from './reducer';
-import actions from '../AdminCandidateImagePage/actions';
+import actions from './actions';
+import adminCandidateImageActions from '../AdminCandidateImagePage/actions';
 import makeSelectAdminCandidateImagePage from '../AdminCandidateImagePage/selectors';
 import AdminCompareCandidatesWrapper from '../../../components/admin/AdminCompareCandidatesWrapper';
 
@@ -26,6 +27,7 @@ export function AdminCompareCandidatesPage({
   dispatch,
   ssrState,
   adminCandidateImagePage,
+  saveCallback,
 }) {
   useInjectReducer({ key: 'adminCompareCandidatesPage', reducer });
   useInjectSaga({ key: 'adminCompareCandidatesPage', saga });
@@ -38,7 +40,11 @@ export function AdminCompareCandidatesPage({
 
   const stateCandidate = adminCandidateImagePage.candidate;
   useEffect(() => {
-    dispatch(actions.loadCandidateActionSuccess(stateCandidate || candidate));
+    dispatch(
+      adminCandidateImageActions.loadCandidateActionSuccess(
+        stateCandidate || candidate,
+      ),
+    );
   }, []);
 
   useEffect(() => {
@@ -49,6 +55,7 @@ export function AdminCompareCandidatesPage({
 
   const childProps = {
     candidate,
+    saveCallback,
   };
 
   return (
@@ -65,6 +72,7 @@ AdminCompareCandidatesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
   adminCandidateImagePage: PropTypes.object,
+  saveCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -75,6 +83,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    saveCallback: candidate => {
+      dispatch(actions.updateComparedCandidateAction(candidate));
+    },
   };
 }
 

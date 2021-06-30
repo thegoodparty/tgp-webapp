@@ -4,4 +4,9 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/AdminCompareCandidatesPage/DEFAULT_ACTION';
+const UPDATE_COMPARED_CANDIDATES =
+  'app/AdminCompareCandidatesPage/UPDATE_COMPARED_CANDIDATES';
+
+export default {
+  UPDATE_COMPARED_CANDIDATES,
+};

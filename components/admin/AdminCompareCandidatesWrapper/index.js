@@ -11,6 +11,8 @@ import styled from 'styled-components';
 import Nav from 'containers/shared/Nav';
 import CandidateTopMenu from '../CandidateTopMenu';
 import { Body, H2 } from '../../shared/typogrophy';
+import ComparedCandidates from './ComparedCandidates';
+import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -20,9 +22,20 @@ const Wrapper = styled.div`
 `;
 
 function AdminCompareCandidatesWrapper({ candidate, saveCallback }) {
-  const [formState, setFormState] = useState({
-    imageBase64: false,
-  });
+  const [comparedCandidates, setComparedCandidates] = useState(false);
+  const compareCandidatesCallback = comparedCands => {
+    console.log('compared', comparedCands);
+    setComparedCandidates(comparedCands);
+  };
+
+  const handleSave = () => {
+    console.log('cand', candidate);
+    console.log('comparedCandidates', comparedCandidates);
+    saveCallback({
+      ...candidate,
+      comparedCandidates,
+    });
+  };
 
   return (
     <div style={{ backgroundColor: '#FFF' }} className="text-center">
@@ -33,6 +46,20 @@ function AdminCompareCandidatesWrapper({ candidate, saveCallback }) {
         <H2>Compare Candidates</H2>
         <br />
         <br />
+        <ComparedCandidates
+          candidate={candidate}
+          candidatesCallback={compareCandidatesCallback}
+        />
+        <br />
+        <br />
+        <PurpleButton
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={handleSave}
+        >
+          SAVE
+        </PurpleButton>
       </Wrapper>
     </div>
   );

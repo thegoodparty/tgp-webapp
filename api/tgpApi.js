@@ -259,6 +259,11 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    updateComparedCandidates: {
+      url: `${base}new-candidate/compared`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
   subscribeEmail: {
     url: `${base}subscribe/email`,

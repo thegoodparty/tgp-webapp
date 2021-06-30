@@ -21,9 +21,6 @@ import { states } from 'helpers/statesHelper';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
-import ImageCrop from '../../shared/ImageCrop';
-import ComparedCandidates from './ComparedCandidates';
-import CandidateAvatar from '../../shared/CandidateAvatar';
 import CandidateTopMenu from '../CandidateTopMenu';
 
 const Wrapper = styled.div`
@@ -132,7 +129,6 @@ function AdminAddCandidateWrapper({
 
   const [formState, setFormState] = useState(initialState);
   const [about, setAbout] = useState(candidate ? candidate.about : '');
-  const [comparedCandidates, setComparedCandidates] = useState(false);
   const [showUpdates, setShowUpdates] = useState(false);
   const [candidateUpdates, setCandidateUpdates] = useState([]);
 
@@ -147,7 +143,6 @@ function AdminAddCandidateWrapper({
       setAbout(candidate.about);
       newState.isActive = candidate.isActive;
       setFormState(newState);
-      setComparedCandidates(candidate.comparedCandidates);
       setCandidateUpdates(candidate.updatesList || []);
     }
   }, [candidate]);
@@ -166,24 +161,20 @@ function AdminAddCandidateWrapper({
   const createCandidate = () => {
     if (mode === 'add') {
       createCandidateCallback({
+        ...candidate,
         ...formState,
         about,
-        comparedCandidates,
         candidateUpdates,
       });
     } else {
       editCandidateCallback({
+        ...candidate,
         ...formState,
         about,
-        comparedCandidates,
         candidateUpdates,
         id: candidate.id,
-        image: candidate.image,
       });
     }
-  };
-  const compareCandidatesCallback = comparedCands => {
-    setComparedCandidates(comparedCands);
   };
 
   const addUpdate = () => {
@@ -271,18 +262,7 @@ function AdminAddCandidateWrapper({
           onChangeCallback={value => setAbout(value)}
           initialText={about}
         />
-        <br />
-        <br />
-        <hr />
-        <br />
-        <Label>Compare Candidates</Label>
-        <ComparedCandidates
-          candidate={candidate}
-          candidatesCallback={compareCandidatesCallback}
-        />
-        <br />
-        <br />
-        <hr />
+
         <br />
         <br />
         <PurpleButton onClick={() => setShowUpdates(!showUpdates)}>

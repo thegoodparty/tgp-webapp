@@ -1,13 +1,12 @@
-/*
- *
- * AdminCompareCandidatesPage actions
- *
- */
+import types from './constants';
 
-import { DEFAULT_ACTION } from './constants';
-
-export function defaultAction() {
+function updateComparedCandidateAction(candidate) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.UPDATE_COMPARED_CANDIDATES,
+    candidate,
   };
 }
+
+export default {
+  updateComparedCandidateAction,
+};

@@ -1,20 +1,20 @@
 /*
  *
- * AdminCompareCandidatesPage reducer
+ * AdminCandidateStageSettingsPage reducer
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
 export const initialState = {};
 
 /* eslint-disable default-case, no-param-reassign */
-const adminCompareCandidatesPageReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+const adminCandidateStageSettingsPageReducer = (state = initialState, action) =>
+  produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
+      case types.UPDATE_COMPARED_CANDIDATES:
         break;
     }
   });
 
-export default adminCompareCandidatesPageReducer;
+export default adminCandidateStageSettingsPageReducer;
