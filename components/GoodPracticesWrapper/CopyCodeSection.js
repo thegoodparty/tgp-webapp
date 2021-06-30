@@ -87,7 +87,7 @@ function CopyCodeSection({ candidates }) {
           {selectedCandidate && (
             <>
               <Code>
-                œœ &lt;iframe src="https://goodparty.org/embed/
+                &lt;iframe src="https://goodparty.org/embed/
                 {selectedCandidate}" style="border:none; height:56px;
                 width:100%" &gt;&lt;/iframe&gt;
               </Code>
