@@ -11,13 +11,14 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import ShareImageWrapper from 'components/elections/ShareImageWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from '../CandidateNewPage/reducer';
 import saga from '../CandidateNewPage/saga';
 import actions from '../CandidateNewPage/actions';
 import { makeSelectContent } from '../../App/selectors';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
 
 export function ShareImageContainer({
   ssrState,
