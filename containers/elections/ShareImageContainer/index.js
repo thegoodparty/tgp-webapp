@@ -17,6 +17,7 @@ import reducer from '../CandidateNewPage/reducer';
 import saga from '../CandidateNewPage/saga';
 import actions from '../CandidateNewPage/actions';
 import { makeSelectContent } from '../../App/selectors';
+import TgpHelmet from '../../../components/shared/TgpHelmet';
 
 export function ShareImageContainer({
   ssrState,
@@ -45,6 +46,10 @@ export function ShareImageContainer({
   };
   return (
     <div>
+      <TgpHelmet
+        title="Generate Share Image | GOOD PARTY"
+        description="Generate Share Image | GOOD PARTY"
+      />
       <ShareImageWrapper {...childProps} />
     </div>
   );
