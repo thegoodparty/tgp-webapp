@@ -11,6 +11,8 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import ShareImageWrapper from 'components/elections/ShareImageWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import reducer from '../CandidateNewPage/reducer';
@@ -45,6 +47,10 @@ export function ShareImageContainer({
   };
   return (
     <div>
+      <TgpHelmet
+        title="Generate Share Image | GOOD PARTY"
+        description="Generate Share Image | GOOD PARTY"
+      />
       <ShareImageWrapper {...childProps} />
     </div>
   );
