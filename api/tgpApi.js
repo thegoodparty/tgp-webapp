@@ -214,6 +214,16 @@ const api = {
         method: 'POST',
         withAuth: true,
       },
+      update: {
+        url: `${base}compare-topic`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}compare-topic`,
+        method: 'DELETE',
+        withAuth: true,
+      },
       list: {
         url: `${base}compare-topics`,
         method: 'GET',

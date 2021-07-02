@@ -20,7 +20,41 @@ function* createTopic({ name, description }) {
     yield put(actions.loadTopicsAction());
   } catch (error) {
     console.log(error);
-    yield put(snackbarActions.showSnakbarAction('Error saving topic'));
+    yield put(snackbarActions.showSnakbarAction('Error saving topic', 'error'));
+  }
+}
+
+function* editTopic({ topic }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
+    const api = tgpApi.admin.topics.update;
+    const payload = {
+      topic,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Saved'));
+    yield put(actions.loadTopicsAction());
+  } catch (error) {
+    console.log(error);
+    yield put(snackbarActions.showSnakbarAction('Error saving topic', 'error'));
+  }
+}
+
+function* deleteTopic({ id }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Deleting...'));
+    const api = tgpApi.admin.topics.delete;
+    const payload = {
+      id,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Deleted'));
+    yield put(actions.loadTopicsAction());
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting topic', 'error'),
+    );
   }
 }
 
@@ -41,5 +75,7 @@ function* loadTopics() {
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.CREATE_TOPIC, createTopic);
+  yield takeLatest(types.EDIT_TOPIC, editTopic);
+  yield takeLatest(types.DELETE_TOPIC, deleteTopic);
   yield takeLatest(types.LOAD_TOPICS, loadTopics);
 }

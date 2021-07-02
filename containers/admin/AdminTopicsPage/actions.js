@@ -8,6 +8,20 @@ function createTopicAction(name, description) {
   };
 }
 
+function editTopicAction(topic) {
+  return {
+    type: types.EDIT_TOPIC,
+    topic,
+  };
+}
+
+function deleteTopicAction(id) {
+  return {
+    type: types.DELETE_TOPIC,
+    id,
+  };
+}
+
 function loadTopicsAction() {
   return {
     type: types.LOAD_TOPICS,
@@ -23,6 +37,8 @@ function loadTopicsActionSuccess(topics) {
 
 export default {
   createTopicAction,
+  editTopicAction,
+  deleteTopicAction,
   loadTopicsAction,
   loadTopicsActionSuccess,
 };

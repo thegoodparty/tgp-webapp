@@ -20,7 +20,13 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
-export function AdminTopicsPage({ dispatch, createCallback, adminTopicsPage }) {
+export function AdminTopicsPage({
+  dispatch,
+  createCallback,
+  adminTopicsPage,
+  editCallback,
+  deleteCallback,
+}) {
   useInjectReducer({ key: 'adminTopicsPage', reducer });
   useInjectSaga({ key: 'adminTopicsPage', saga });
 
@@ -33,6 +39,8 @@ export function AdminTopicsPage({ dispatch, createCallback, adminTopicsPage }) {
   const childProps = {
     createCallback,
     topics,
+    editCallback,
+    deleteCallback,
   };
 
   return (
@@ -48,6 +56,8 @@ export function AdminTopicsPage({ dispatch, createCallback, adminTopicsPage }) {
 AdminTopicsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   createCallback: PropTypes.func,
+  editCallback: PropTypes.func,
+  deleteCallback: PropTypes.func,
   adminTopicsPage: PropTypes.object,
 };
 
@@ -60,6 +70,12 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     createCallback: (name, description) => {
       dispatch(actions.createTopicAction(name, description));
+    },
+    editCallback: topic => {
+      dispatch(actions.editTopicAction(topic));
+    },
+    deleteCallback: id => {
+      dispatch(actions.deleteTopicAction(id));
     },
   };
 }
