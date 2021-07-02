@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import MenuItem from '@material-ui/core/MenuItem';
-import StarsIcon from '@material-ui/icons/Stars';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import HomeIcon from '@material-ui/icons/Home';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
@@ -14,7 +13,7 @@ import UserIcon from '@material-ui/icons/Person';
 import ArticletIcon from '@material-ui/icons/Assignment';
 import StatsIcon from '@material-ui/icons/Equalizer';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
-import LocationCityIcon from '@material-ui/icons/LocationCity';
+import CompareIcon from '@material-ui/icons/Compare';
 
 import Nav from 'containers/shared/Nav';
 import { Body13, H1 } from 'components/shared/typogrophy/index';
@@ -90,6 +89,7 @@ const Heart = styled.div`
 const leftMenuItems = [
   { icon: <AccountBalanceIcon />, label: 'Candidates' },
   { icon: <UserIcon />, label: 'Users' },
+  { icon: <CompareIcon />, label: 'Topics', link: '/admin/topics' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },
   { icon: <HowToVoteIcon />, label: 'Voterize' },
@@ -210,16 +210,32 @@ const AdminWrapper = ({
               </CloseWrapper>
             </LeftMenuItem>
             {leftMenuItems.map((item, index) => (
-              <LeftMenuItem
-                key={item.label}
-                onClick={() => {
-                  handleSelectedItem(index);
-                }}
-                className={selectedItem === index ? 'selected' : ''}
-              >
-                <Icon>{item.icon}</Icon>
-                <IconLabel>{item.label}</IconLabel>
-              </LeftMenuItem>
+              <>
+                {item.link ? (
+                  <Link href={item.link} passHref>
+                    <a>
+                      <LeftMenuItem
+                        key={item.label}
+                        className={selectedItem === index ? 'selected' : ''}
+                      >
+                        <Icon>{item.icon}</Icon>
+                        <IconLabel>{item.label}</IconLabel>
+                      </LeftMenuItem>
+                    </a>
+                  </Link>
+                ) : (
+                  <LeftMenuItem
+                    key={item.label}
+                    onClick={() => {
+                      handleSelectedItem(index);
+                    }}
+                    className={selectedItem === index ? 'selected' : ''}
+                  >
+                    <Icon>{item.icon}</Icon>
+                    <IconLabel>{item.label}</IconLabel>
+                  </LeftMenuItem>
+                )}
+              </>
             ))}
           </LeftPanel>
           <MainPanel>{mainContent()}</MainPanel>

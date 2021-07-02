@@ -201,10 +201,24 @@ const api = {
     uploadedImages: {
       url: `${base}admin/uploaded-images`,
       method: 'POST',
+      withAuth: true,
     },
     uploadImage: {
       url: `${base}admin/upload-image`,
       method: 'POST',
+      withAuth: true,
+    },
+    topics: {
+      create: {
+        url: `${base}compare-topic`,
+        method: 'POST',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}compare-topics`,
+        method: 'GET',
+        withAuth: true,
+      },
     },
   },
   newCandidate: {

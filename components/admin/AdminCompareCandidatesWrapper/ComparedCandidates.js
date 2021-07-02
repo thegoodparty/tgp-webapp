@@ -174,7 +174,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
               variant="outlined"
               value={crit}
               onChange={e => onChangeCriteria(e.target.value, index)}
-              onBlue={() => setUpdateParent(true)}
+              onBlur={() => setUpdateParent(true)}
               disabled={index < disabledRows + 1}
             />
           </Grid>
@@ -221,7 +221,7 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
                   variant="outlined"
                   value={cand[crit]}
                   onChange={e => onChangeCand(crit, e.target.value, index2)}
-                  onBlue={() => setUpdateParent(true)}
+                  onBlur={() => setUpdateParent(true)}
                   disabled={index2 === 0 && index < 3}
                 />
               )}
