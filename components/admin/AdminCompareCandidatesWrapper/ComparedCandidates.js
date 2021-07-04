@@ -9,10 +9,13 @@ import React, { useState, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import { BlueButton } from 'components/shared/buttons';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
 import { getValidImgUrl } from 'helpers/linkHelper';
+import { BlueButton } from 'components/shared/buttons';
+
 import ImageCrop from '../../shared/ImageCrop';
 
 const Wrapper = styled.div`
@@ -50,7 +53,7 @@ const CropWrapper = styled.div`
 
 const initialCriteria = ['image', 'name', 'party', 'website'];
 
-function ComparedCandidates({ candidate, candidatesCallback }) {
+function ComparedCandidates({ candidate, candidatesCallback, topics }) {
   const [candidates, setCandidates] = useState([
     {
       image: candidate ? candidate.image : '',
@@ -121,6 +124,13 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
     setUpdateParent(true);
   };
 
+  const setSelectedCriteria = (val, index) => {
+    const newCriteria = [...criteria];
+    newCriteria[index] = val;
+    setCriteria(newCriteria);
+    setUpdateParent(true);
+  };
+
   const deleteCriteria = index => {
     const newCriteria = [...criteria];
     const newCandidates = [...candidates];
@@ -169,14 +179,35 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
                 <DeleteForeverIcon />
               </Delete>
             )}
-            <TextField
-              fullWidth
-              variant="outlined"
-              value={crit}
-              onChange={e => onChangeCriteria(e.target.value, index)}
-              onBlur={() => setUpdateParent(true)}
-              disabled={index < disabledRows + 1}
-            />
+            {index < disabledRows + 1 ? (
+              <TextField
+                fullWidth
+                variant="outlined"
+                value={crit}
+                onChange={e => onChangeCriteria(e.target.value, index)}
+                onBlur={() => setUpdateParent(true)}
+                disabled
+              />
+            ) : (
+              <Select
+                native
+                value={crit}
+                onChange={e => setSelectedCriteria(e.target.value, index)}
+                fullWidth
+                variant="outlined"
+              >
+                <option value="">Select Topic</option>
+                {topics?.map(topic => (
+                  <option
+                    value={topic.name}
+                    key={topic.id}
+                    selected={crit === topic.name}
+                  >
+                    {topic.name}
+                  </option>
+                ))}
+              </Select>
+            )}
           </Grid>
           {candidates.map((cand, index2) => (
             <Grid item xs>
@@ -241,6 +272,8 @@ function ComparedCandidates({ candidate, candidatesCallback }) {
 
 ComparedCandidates.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  topics: PropTypes.array,
+  candidatesCallback: PropTypes.func,
 };
 
 export default memo(ComparedCandidates);

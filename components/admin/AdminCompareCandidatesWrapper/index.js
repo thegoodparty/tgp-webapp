@@ -21,16 +21,13 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-function AdminCompareCandidatesWrapper({ candidate, saveCallback }) {
+function AdminCompareCandidatesWrapper({ candidate, saveCallback, topics }) {
   const [comparedCandidates, setComparedCandidates] = useState(false);
   const compareCandidatesCallback = comparedCands => {
-    console.log('compared', comparedCands);
     setComparedCandidates(comparedCands);
   };
 
   const handleSave = () => {
-    console.log('cand', candidate);
-    console.log('comparedCandidates', comparedCandidates);
     saveCallback({
       ...candidate,
       comparedCandidates,
@@ -49,6 +46,7 @@ function AdminCompareCandidatesWrapper({ candidate, saveCallback }) {
         <ComparedCandidates
           candidate={candidate}
           candidatesCallback={compareCandidatesCallback}
+          topics={topics}
         />
         <br />
         <br />
@@ -68,6 +66,7 @@ function AdminCompareCandidatesWrapper({ candidate, saveCallback }) {
 AdminCompareCandidatesWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   saveCallback: PropTypes.func,
+  topics: PropTypes.array,
 };
 
 export default AdminCompareCandidatesWrapper;

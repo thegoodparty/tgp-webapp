@@ -23,12 +23,20 @@ export async function getServerSideProps(context) {
       };
     }
 
+    const api2 = tgpApi.admin.topics.list;
+    const res2 = await fetch(`${api2.url}?format=hash`);
+    let topics = [];
+    try {
+      ({ topics } = await res2.json());
+    } catch (e) {}
+
     return {
       props: {
         ssrState: {
           candidate: candidate.candidate,
           id,
           tab,
+          topics,
         },
       }, // will be passed to the page component as props
     };

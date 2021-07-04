@@ -85,7 +85,7 @@ function NextArrow(props) {
   );
 }
 
-function ComparedCandidateCarousel({ candidates, candidate }) {
+function ComparedCandidateCarousel({ candidates, candidate, topics }) {
   const [tooltipTopic, setTooltipTopic] = useState(false);
   const settings = {
     dots: false,
@@ -105,7 +105,7 @@ function ComparedCandidateCarousel({ candidates, candidate }) {
   const handleSetTopic = topic => {
     setTooltipTopic(topic);
   };
-  console.log('candidate', candidate)
+  console.log('candidate', candidate);
   return (
     <Grid container>
       <Grid item xs={6}>
@@ -131,6 +131,7 @@ function ComparedCandidateCarousel({ candidates, candidate }) {
       <TooltipModal
         topic={tooltipTopic}
         closeModalCallback={() => setTooltipTopic(false)}
+        topics={topics}
       />
     </Grid>
   );
@@ -138,6 +139,8 @@ function ComparedCandidateCarousel({ candidates, candidate }) {
 
 ComparedCandidateCarousel.propTypes = {
   candidates: PropTypes.array,
+  candidate: PropTypes.object,
+  topics: PropTypes.object,
 };
 
 export default ComparedCandidateCarousel;

@@ -11,6 +11,8 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import AdminCompareCandidatesWrapper from 'components/admin/AdminCompareCandidatesWrapper';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectAdminCompareCandidatesPage from './selectors';
@@ -21,11 +23,11 @@ import reducer from './reducer';
 import actions from './actions';
 import adminCandidateImageActions from '../AdminCandidateImagePage/actions';
 import makeSelectAdminCandidateImagePage from '../AdminCandidateImagePage/selectors';
-import AdminCompareCandidatesWrapper from '../../../components/admin/AdminCompareCandidatesWrapper';
 
 export function AdminCompareCandidatesPage({
   dispatch,
   ssrState,
+  adminCompareCandidatesPage,
   adminCandidateImagePage,
   saveCallback,
 }) {
@@ -36,6 +38,8 @@ export function AdminCompareCandidatesPage({
     reducer: adminCandidateImageReducer,
   });
 
+  const { topics } = adminCompareCandidatesPage;
+
   const [candidate, setCandidate] = useState(ssrState.candidate);
 
   const stateCandidate = adminCandidateImagePage.candidate;
@@ -45,6 +49,7 @@ export function AdminCompareCandidatesPage({
         stateCandidate || candidate,
       ),
     );
+    dispatch(actions.loadTopicsAction());
   }, []);
 
   useEffect(() => {
@@ -56,6 +61,7 @@ export function AdminCompareCandidatesPage({
   const childProps = {
     candidate,
     saveCallback,
+    topics,
   };
 
   return (
@@ -71,6 +77,7 @@ export function AdminCompareCandidatesPage({
 AdminCompareCandidatesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
+  adminCompareCandidatesPage: PropTypes.object,
   adminCandidateImagePage: PropTypes.object,
   saveCallback: PropTypes.func,
 };

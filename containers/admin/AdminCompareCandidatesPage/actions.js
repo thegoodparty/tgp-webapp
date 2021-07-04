@@ -7,6 +7,21 @@ function updateComparedCandidateAction(candidate) {
   };
 }
 
+function loadTopicsAction() {
+  return {
+    type: types.LOAD_TOPICS,
+  };
+}
+
+function loadTopicsActionSuccess(topics) {
+  return {
+    type: types.LOAD_TOPICS_SUCCESS,
+    topics,
+  };
+}
+
 export default {
   updateComparedCandidateAction,
+  loadTopicsAction,
+  loadTopicsActionSuccess,
 };
