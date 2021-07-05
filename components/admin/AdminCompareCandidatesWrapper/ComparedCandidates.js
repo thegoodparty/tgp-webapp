@@ -210,7 +210,7 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
             )}
           </Grid>
           {candidates.map((cand, index2) => (
-            <Grid item xs>
+            <Grid item xs key={cand.id}>
               {index === 0 && index2 !== 0 && (
                 <Delete className="text-center">
                   <DeleteForeverIcon

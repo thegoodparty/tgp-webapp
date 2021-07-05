@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { useWindowSize } from 'customHooks/useWindowSize';
 import theme from 'theme';
 
 function Alert(props) {
@@ -23,7 +22,7 @@ function SnackbarWrapper({ message, severity, isOpen, closeCallback }) {
 
     closeCallback();
   };
-  const [width] = useWindowSize();
+  const width = typeof window !== 'undefined' ? window.innerWidth : 1200;
   let vertical = 'top';
   if (width > theme.breakpointsPixels.mdPx) {
     vertical = 'bottom';
