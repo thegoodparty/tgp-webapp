@@ -18,7 +18,7 @@ function EndorseIframe() {
     typeof window !== 'undefined' &&
     window.location.hostname === 'dev.goodparty.org';
   let base = '';
-  if (!isDev) {
+  if (isDev) {
     base = 'dev.';
   }
   return (
