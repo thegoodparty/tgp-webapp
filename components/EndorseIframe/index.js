@@ -14,9 +14,16 @@ function EndorseIframe() {
   const router = useRouter();
   const { id } = router.query;
   const intId = parseInt(id, 10); // to prevent xss;
+  const isDev =
+    typeof window !== 'undefined' &&
+    window.location.hostname === 'dev.goodparty.org';
+  let base = '';
+  if (!isDev) {
+    base = 'dev.';
+  }
   return (
     <a
-      href={`https://dev.goodparty.org/embed/redirect/${intId}`}
+      href={`https://${base}goodparty.org/embed/redirect/${intId}`}
       target="_blank"
       style={{
         minWidth: '150px',
