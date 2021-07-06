@@ -25,9 +25,15 @@ function* createCandidate({ candidate }) {
 
 function* editCandidate({ candidate }) {
   try {
-    yield put(snackbarActions.showSnakbarAction('Creating Candidate'));
+    yield put(snackbarActions.showSnakbarAction('Updating Candidate'));
     const api = tgpApi.newCandidate.update;
-    const payload = { candidate };
+    const newCandidate = candidate;
+    Object.keys(newCandidate).forEach(key => {
+      if (typeof newCandidate[key] === 'string') {
+        newCandidate[key] = newCandidate[key].trim();
+      }
+    });
+    const payload = { candidate: newCandidate };
     yield call(requestHelper, api, payload);
     // yield put(push('/admin'));
     yield put(snackbarActions.showSnakbarAction('Saved'));
@@ -35,7 +41,7 @@ function* editCandidate({ candidate }) {
   } catch (error) {
     console.log(error);
     yield put(
-      snackbarActions.showSnakbarAction('Error creating candidate', 'error'),
+      snackbarActions.showSnakbarAction('Error updating candidate', 'error'),
     );
   }
 }
