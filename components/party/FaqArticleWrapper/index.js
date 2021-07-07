@@ -14,74 +14,72 @@ import { PurpleButton } from '../../shared/buttons';
 const TgpDialog = styled(Dialog)`
   && {
     .MuiDialog-paper {
-      //margin: 12px !important;
     }
   }
 `;
 
 const Wrapper = styled.div`
   padding: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    padding: 24px;
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.md}) {
+    padding: 36px;
   }
 `;
 
 const TopWrapper = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+    theme.breakpointsPixels.md}) {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 24px;
+    position: absolute;
+    right: 32px;
   }
 `;
 
 const TopClose = styled(CloseIcon)`
   font-size: 24px;
   cursor: pointer;
+  color: #5c00c7;
 `;
 
 const WasHelpul = styled(Body)`
-  text-align: center;
-  margin: 35px 0 24px;
+  text-align: left;
+  margin-right: 5px;
+  &.grey {
+    color: #767676;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 14px;
-  justify-content: center;
+  align-items: center;
 `;
 
 const SubmitButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin: 14px auto;
-  justify-content: center;
-  max-width: 250px;
+  justify-content: end;
+  margin-right: 0;
+  max-width: 150px;
 `;
 
 const FeedbackButton = styled(Body11)`
-  padding: 13px 30px;
   text-align: center;
-  min-width: 120px;
-  border: solid 2px ${({ theme }) => theme.colors.gray7};
   border-radius: 8px;
-  margin: 0 20px;
+  margin: 0 5px;
   cursor: pointer;
-
+  font-size: 19px;
   &.purple {
     border-color: ${({ theme }) => theme.colors.purple};
     color: ${({ theme }) => theme.colors.purple};
   }
-`;
-
-const Close = styled(Body13)`
-  text-align: center;
-  color: ${({ theme }) => theme.colors.purple};
-  cursor: pointer;
-  padding: 10px;
 `;
 
 const HELPFUL_STATES = {
@@ -151,24 +149,35 @@ const FaqArticleWrapper = ({
               <CmsContentWrapper>
                 {contentfulHelper(article.articleBody)}
               </CmsContentWrapper>
-              <WasHelpul data-cy="was-helpful">Was this helpful?</WasHelpul>
-              {isHelpful === HELPFUL_STATES.notSelected && (
-                <ButtonsWrapper>
-                  <FeedbackButton
-                    className="purple"
-                    onClick={() => handleHelpful(true)}
-                    data-cy="helpful-yes"
-                  >
-                    Yes
-                  </FeedbackButton>
-                  <FeedbackButton
-                    onClick={() => handleHelpful(false)}
-                    data-cy="helpful-no"
-                  >
-                    No
-                  </FeedbackButton>
-                </ButtonsWrapper>
-              )}
+              <ButtonsWrapper>
+                <WasHelpul
+                  data-cy="was-helpful"
+                  className={isHelpful === HELPFUL_STATES.notHelpful && 'grey'}
+                >
+                  {isHelpful !== HELPFUL_STATES.notHelpful
+                    ? 'Was this helpful?'
+                    : 'Why wasn’t this entry helpful?'}
+                </WasHelpul>
+                {isHelpful === HELPFUL_STATES.notSelected && (
+                  <>
+                    <FeedbackButton
+                      className="purple"
+                      onClick={() => handleHelpful(true)}
+                      data-cy="helpful-yes"
+                    >
+                      Yes
+                    </FeedbackButton>
+                    |
+                    <FeedbackButton
+                      className="purple"
+                      onClick={() => handleHelpful(false)}
+                      data-cy="helpful-no"
+                    >
+                      No
+                    </FeedbackButton>
+                  </>
+                )}
+              </ButtonsWrapper>
               {isHelpful === HELPFUL_STATES.notHelpful && (
                 <>
                   <TextField
@@ -191,14 +200,14 @@ const FaqArticleWrapper = ({
                   </SubmitButtonWrapper>
                 </>
               )}
-              <div className="text-center">
+              {/* <div className="text-center">
                 <Close
                   onClick={closeModalCallback}
                   data-cy="article-bottom-close"
                 >
                   Close
                 </Close>
-              </div>
+              </div> */}
             </Wrapper>
           </TgpDialog>
         </>
