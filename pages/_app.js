@@ -31,6 +31,10 @@ if (typeof window !== 'undefined' && navigator && navigator.serviceWorker) {
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     initGA4();
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
   }, []);
 
   // force https
