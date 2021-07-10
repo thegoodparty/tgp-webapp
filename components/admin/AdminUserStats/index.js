@@ -23,6 +23,7 @@ import {
 
 import { H3, H1, H2, Body13 } from 'components/shared/typogrophy';
 import { numberFormatter } from 'helpers/numberHelper';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -165,92 +166,94 @@ function AdminUserStats({ users }) {
   };
 
   return (
-    <Wrapper>
-      <Title>User Stats</Title>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
-          <Box>
-            <H3>Total Number of Users</H3>
-            <br />
-            <H1>{users.length}</H1>
-          </Box>
+    <AdminPageWrapper>
+      <Wrapper>
+        <Title>User Stats</Title>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={4}>
+            <Box>
+              <H3>Total Number of Users</H3>
+              <br />
+              <H1>{users.length}</H1>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box>
+              <BoxTitle>Verified Emails</BoxTitle>
+              {verifiedEmailData.length > 0 && (
+                <ResponsiveContainer>
+                  <PieChart>
+                    <Pie
+                      dataKey="value"
+                      isAnimationActive={false}
+                      data={verifiedEmailData}
+                      fill="#8884d8"
+                      label
+                    />
+                    <Tooltip content={customTooltip} />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              )}
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box>
+              <BoxTitle>Social Registration</BoxTitle>
+              {socialRegisterData.length > 0 && (
+                <ResponsiveContainer>
+                  <PieChart>
+                    <Pie
+                      dataKey="value"
+                      isAnimationActive={false}
+                      data={socialRegisterData}
+                      fill="#8884d8"
+                      label
+                    />
+                    <Tooltip content={customTooltip} />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              )}
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box>
+              <BoxTitle>States Distribution</BoxTitle>
+              {stateData && (
+                <ResponsiveContainer>
+                  <BarChart data={stateData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="state" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="count" fill="#82ca9d" />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box>
+              <BoxTitle>Zip Code Distribution</BoxTitle>
+              {zipData && (
+                <ResponsiveContainer>
+                  <BarChart data={zipData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="zip" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="count" fill="#0088FE" />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Box>
-            <BoxTitle>Verified Emails</BoxTitle>
-            {verifiedEmailData.length > 0 && (
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    dataKey="value"
-                    isAnimationActive={false}
-                    data={verifiedEmailData}
-                    fill="#8884d8"
-                    label
-                  />
-                  <Tooltip content={customTooltip} />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            )}
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Box>
-            <BoxTitle>Social Registration</BoxTitle>
-            {socialRegisterData.length > 0 && (
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    dataKey="value"
-                    isAnimationActive={false}
-                    data={socialRegisterData}
-                    fill="#8884d8"
-                    label
-                  />
-                  <Tooltip content={customTooltip} />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            )}
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box>
-            <BoxTitle>States Distribution</BoxTitle>
-            {stateData && (
-              <ResponsiveContainer>
-                <BarChart data={stateData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="state" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="count" fill="#82ca9d" />
-                </BarChart>
-              </ResponsiveContainer>
-            )}
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box>
-            <BoxTitle>Zip Code Distribution</BoxTitle>
-            {zipData && (
-              <ResponsiveContainer>
-                <BarChart data={zipData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="zip" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="count" fill="#0088FE" />
-                </BarChart>
-              </ResponsiveContainer>
-            )}
-          </Box>
-        </Grid>
-      </Grid>
-    </Wrapper>
+      </Wrapper>
+    </AdminPageWrapper>
   );
 }
 

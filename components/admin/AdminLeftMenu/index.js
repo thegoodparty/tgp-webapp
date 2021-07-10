@@ -66,43 +66,35 @@ const leftMenuItems = [
   { icon: <UserIcon />, label: 'Users', link: '/admin/users' },
   { icon: <CompareIcon />, label: 'Topics', link: '/admin/topics' },
   { icon: <ArticletIcon />, label: 'Articles', link: '/admin/articles' },
-  { icon: <StatsIcon />, label: 'User Stats' },
+  { icon: <StatsIcon />, label: 'User Stats', link: '/admin/user-stats' },
 ];
 function AdminLeftMenu() {
   const [leftOpen, setLeftOpen] = useState(false);
   const toggleLeftPanel = () => {
     setLeftOpen(!leftOpen);
   };
+  let pathname = '';
+  if (typeof window !== 'undefined') {
+    pathname = window.location.pathname;
+  }
+
   return (
     <LeftPanel className={leftOpen ? 'open' : 'close'}>
       <LeftMenuItem onClick={toggleLeftPanel}>
         <CloseWrapper>{leftOpen ? <CloseIcon /> : <OpenIcon />}</CloseWrapper>
       </LeftMenuItem>
       {leftMenuItems.map((item, index) => (
-        <>
-          {item.link ? (
-            <Link href={item.link} passHref>
-              <a>
-                <LeftMenuItem
-                  key={item.label}
-                  // className={selectedItem === index ? 'selected' : ''}
-                >
-                  <Icon>{item.icon}</Icon>
-                  <IconLabel>{item.label}</IconLabel>
-                </LeftMenuItem>
-              </a>
-            </Link>
-          ) : (
+        <Link href={item.link} passHref>
+          <a>
             <LeftMenuItem
               key={item.label}
-
-              // className={selectedItem === index ? 'selected' : ''}
+              className={pathname === item.link ? 'selected' : ''}
             >
               <Icon>{item.icon}</Icon>
               <IconLabel>{item.label}</IconLabel>
             </LeftMenuItem>
-          )}
-        </>
+          </a>
+        </Link>
       ))}
     </LeftPanel>
   );
