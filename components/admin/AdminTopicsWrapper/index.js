@@ -16,6 +16,7 @@ import DeleteIcon from '@material-ui/icons/DeleteForever';
 import Nav from 'containers/shared/Nav';
 import { Body, H2 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -77,8 +78,7 @@ function AdminTopicsWrapper({
   };
 
   return (
-    <div>
-      <Nav />
+    <AdminPageWrapper>
       <Wrapper>
         <br />
         <H2 className="text-center">Admin Topics</H2>
@@ -195,7 +195,7 @@ function AdminTopicsWrapper({
             ))}
         </Grid>
       </Wrapper>
-    </div>
+    </AdminPageWrapper>
   );
 }
 

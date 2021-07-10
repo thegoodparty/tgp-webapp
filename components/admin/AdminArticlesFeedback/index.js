@@ -13,6 +13,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { H3 } from '../../shared/typogrophy';
 import { getArticleById } from '../../../helpers/articlesHelper';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -120,17 +121,19 @@ function AdminArticlesFeedback({ articles, content }) {
     },
   ];
   return (
-    <Wrapper>
-      <Title>Articles Feedback</Title>
-      <ReactTable
-        className="-striped -highlight"
-        data={tableData}
-        columns={columns}
-        defaultPageSize={25}
-        showPagination
-        filterable
-      />
-    </Wrapper>
+    <AdminPageWrapper>
+      <Wrapper>
+        <Title>Articles Feedback</Title>
+        <ReactTable
+          className="-striped -highlight"
+          data={tableData}
+          columns={columns}
+          defaultPageSize={25}
+          showPagination
+          filterable
+        />
+      </Wrapper>
+    </AdminPageWrapper>
   );
 }
 

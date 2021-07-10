@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for AdminCandidateList
+ * Asynchronously loads the component for AdminArticlesPage
  *
  */
 

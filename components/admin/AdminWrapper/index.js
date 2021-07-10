@@ -21,7 +21,6 @@ import { Body13, H1 } from 'components/shared/typogrophy/index';
 import AdminUsersList from '../AdminUsersList/Loadable';
 import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 import AdminUserStats from '../AdminUserStats/Loadable';
-import AdminVoterizeList from '../AdminVoterizeList/Loadable';
 import NewCandidateList from '../AdminCandidateList/NewCandidateList';
 import AdminLeftMenu from '../AdminLeftMenu';
 
@@ -177,15 +176,7 @@ const AdminWrapper = ({
     if (selectedItem === 3) {
       return <AdminUserStats users={users} />;
     }
-    if (selectedItem === 4) {
-      return (
-        <AdminVoterizeList
-          voterizeList={voterizeList}
-          updateVoterizeCallback={updateVoterizeCallback}
-          isUpdated={isUpdated}
-        />
-      );
-    }
+
     return (
       <MainPanelPlaceholder>
         <H1>Admin Dashboard</H1>

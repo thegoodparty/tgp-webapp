@@ -65,9 +65,8 @@ const leftMenuItems = [
   },
   { icon: <UserIcon />, label: 'Users', link: '/admin/users' },
   { icon: <CompareIcon />, label: 'Topics', link: '/admin/topics' },
-  { icon: <ArticletIcon />, label: 'Articles' },
+  { icon: <ArticletIcon />, label: 'Articles', link: '/admin/articles' },
   { icon: <StatsIcon />, label: 'User Stats' },
-  { icon: <HowToVoteIcon />, label: 'Voterize' },
 ];
 function AdminLeftMenu() {
   const [leftOpen, setLeftOpen] = useState(false);
