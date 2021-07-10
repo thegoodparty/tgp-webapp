@@ -173,7 +173,7 @@ const api = {
       withAuth: true,
     },
     deleteUser: {
-      url: `${base}admin/users`,
+      url: `${base}admin/user`,
       method: 'DELETE',
       withAuth: true,
     },

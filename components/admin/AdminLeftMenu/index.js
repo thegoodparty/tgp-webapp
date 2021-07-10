@@ -58,8 +58,12 @@ const IconLabel = styled(Body13)`
 `;
 
 const leftMenuItems = [
-  { icon: <AccountBalanceIcon />, label: 'Candidates', link: '/admin/candidates' },
-  { icon: <UserIcon />, label: 'Users' },
+  {
+    icon: <AccountBalanceIcon />,
+    label: 'Candidates',
+    link: '/admin/candidates',
+  },
+  { icon: <UserIcon />, label: 'Users', link: '/admin/users' },
   { icon: <CompareIcon />, label: 'Topics', link: '/admin/topics' },
   { icon: <ArticletIcon />, label: 'Articles' },
   { icon: <StatsIcon />, label: 'User Stats' },

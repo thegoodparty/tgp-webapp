@@ -45,7 +45,7 @@ export function AdminPage({
     if (user && !user.isAdmin) {
       dispatch(push('/'));
     }
-  });
+  }, [user]);
 
   const {
     candidates,
