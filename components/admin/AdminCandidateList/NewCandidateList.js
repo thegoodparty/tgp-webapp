@@ -21,6 +21,7 @@ import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -43,7 +44,7 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
+function NewCandidateList({ candidates, deleteCandidateCallback }) {
   const [tableData, setTableData] = useState([]);
   const [deleteCandidate, setDeleteCandidate] = useState(false);
   const handleDeleteCandidate = id => {
@@ -202,54 +203,53 @@ function NewCandidateList({ candidates, chamber, deleteCandidateCallback }) {
   }));
 
   return (
-    <Wrapper>
-      <Title>
-        candidate list
-        <CSVLinkWrapper>
-          <Button variant="contained" color="primary">
-            <CSVLink
-              data={tableData}
-              filename={`${chamber}_candidates_${moment().format(
-                'YYYY_MM_DD',
-              )}.csv`}
-              headers={csvHeader}
-              target="_blank"
-            >
-              <span style={{ color: '#FFF' }}>Download as a CSV</span>
-            </CSVLink>
-          </Button>
-          &nbsp; &nbsp;
-          <Link href="/admin/add-candidate">
-            <Button variant="contained" color="secondary">
-              <PersonAddIcon /> &nbsp; &nbsp; Add a candidate
+    <AdminPageWrapper>
+      <Wrapper>
+        <Title>
+          candidate list
+          <CSVLinkWrapper>
+            <Button variant="contained" color="primary">
+              <CSVLink
+                data={tableData}
+                filename={`candidates_${moment().format('YYYY_MM_DD')}.csv`}
+                headers={csvHeader}
+                target="_blank"
+              >
+                <span style={{ color: '#FFF' }}>Download as a CSV</span>
+              </CSVLink>
             </Button>
-          </Link>
-        </CSVLinkWrapper>
-      </Title>
+            &nbsp; &nbsp;
+            <Link href="/admin/add-candidate">
+              <Button variant="contained" color="secondary">
+                <PersonAddIcon /> &nbsp; &nbsp; Add a candidate
+              </Button>
+            </Link>
+          </CSVLinkWrapper>
+        </Title>
 
-      <ReactTable
-        className="-striped -highlight"
-        data={tableData}
-        columns={columns}
-        defaultPageSize={25}
-        showPagination
-        filterable
-      />
-      <AlertDialog
-        title="Delete Candidate?"
-        description="This can't be undone, and you will have to deal with it in your afterlife"
-        open={deleteCandidate !== false}
-        handleClose={() => setDeleteCandidate(false)}
-        handleProceed={handleProceedDelete}
-      />
-    </Wrapper>
+        <ReactTable
+          className="-striped -highlight"
+          data={tableData}
+          columns={columns}
+          defaultPageSize={25}
+          showPagination
+          filterable
+        />
+        <AlertDialog
+          title="Delete Candidate?"
+          description="This can't be undone, and you will have to deal with it in your afterlife"
+          open={deleteCandidate !== false}
+          handleClose={() => setDeleteCandidate(false)}
+          handleProceed={handleProceedDelete}
+        />
+      </Wrapper>
+    </AdminPageWrapper>
   );
 }
 
 NewCandidateList.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   deleteCandidateCallback: PropTypes.func,
-  chamber: PropTypes.string,
 };
 
 export default NewCandidateList;

@@ -22,6 +22,7 @@ import { states } from 'helpers/statesHelper';
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import CandidateTopMenu from '../CandidateTopMenu';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -211,9 +212,7 @@ function AdminAddCandidateWrapper({
   };
 
   return (
-    <div style={{ backgroundColor: '#FFF' }}>
-      <Nav />
-      {/* <MobileHeader /> */}
+    <AdminPageWrapper>
       <Wrapper>
         <CandidateTopMenu candidate={candidate} />
 
@@ -329,7 +328,7 @@ function AdminAddCandidateWrapper({
           SAVE
         </BlueButton>
       </Wrapper>
-    </div>
+    </AdminPageWrapper>
   );
 }
 

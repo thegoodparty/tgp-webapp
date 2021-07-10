@@ -23,6 +23,7 @@ import AdminArticlesFeedback from '../AdminArticlesFeedback/Loadable';
 import AdminUserStats from '../AdminUserStats/Loadable';
 import AdminVoterizeList from '../AdminVoterizeList/Loadable';
 import NewCandidateList from '../AdminCandidateList/NewCandidateList';
+import AdminLeftMenu from '../AdminLeftMenu';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 60px);
@@ -203,41 +204,8 @@ const AdminWrapper = ({
       {/* <MobileHeader /> */}
       {user && user.isAdmin && (
         <Wrapper>
-          <LeftPanel className={leftOpen ? 'open' : 'close'}>
-            <LeftMenuItem onClick={toggleLeftPanel}>
-              <CloseWrapper>
-                {leftOpen ? <CloseIcon /> : <OpenIcon />}
-              </CloseWrapper>
-            </LeftMenuItem>
-            {leftMenuItems.map((item, index) => (
-              <>
-                {item.link ? (
-                  <Link href={item.link} passHref>
-                    <a>
-                      <LeftMenuItem
-                        key={item.label}
-                        className={selectedItem === index ? 'selected' : ''}
-                      >
-                        <Icon>{item.icon}</Icon>
-                        <IconLabel>{item.label}</IconLabel>
-                      </LeftMenuItem>
-                    </a>
-                  </Link>
-                ) : (
-                  <LeftMenuItem
-                    key={item.label}
-                    onClick={() => {
-                      handleSelectedItem(index);
-                    }}
-                    className={selectedItem === index ? 'selected' : ''}
-                  >
-                    <Icon>{item.icon}</Icon>
-                    <IconLabel>{item.label}</IconLabel>
-                  </LeftMenuItem>
-                )}
-              </>
-            ))}
-          </LeftPanel>
+          <AdminLeftMenu />
+
           <MainPanel>{mainContent()}</MainPanel>
         </Wrapper>
       )}
