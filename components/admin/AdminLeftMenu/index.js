@@ -57,7 +57,7 @@ const IconLabel = styled(Body13)`
   display: inline-block;
 `;
 
-const leftMenuItems = [
+export const leftMenuItems = [
   {
     icon: <AccountBalanceIcon />,
     label: 'Candidates',
@@ -75,7 +75,7 @@ function AdminLeftMenu() {
   };
   let pathname = '';
   if (typeof window !== 'undefined') {
-    pathname = window.location.pathname;
+    ({ pathname } = window.location);
   }
 
   return (
@@ -84,10 +84,9 @@ function AdminLeftMenu() {
         <CloseWrapper>{leftOpen ? <CloseIcon /> : <OpenIcon />}</CloseWrapper>
       </LeftMenuItem>
       {leftMenuItems.map((item, index) => (
-        <Link href={item.link} passHref>
+        <Link href={item.link} passHref key={item.label} >
           <a>
             <LeftMenuItem
-              key={item.label}
               className={pathname === item.link ? 'selected' : ''}
             >
               <Icon>{item.icon}</Icon>
