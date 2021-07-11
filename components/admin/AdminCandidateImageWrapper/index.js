@@ -13,6 +13,7 @@ import CandidateTopMenu from '../CandidateTopMenu';
 import { Body, H2 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateAvatar';
 import ImageCrop from '../../shared/ImageCrop';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -38,8 +39,7 @@ function AdminCandidateImageWrapper({ candidate, saveCallback }) {
     });
   };
   return (
-    <div style={{ backgroundColor: '#FFF' }}  className="text-center">
-      <Nav />
+    <AdminPageWrapper>
       <Wrapper>
         <CandidateTopMenu candidate={candidate} />
         <br />
@@ -65,7 +65,7 @@ function AdminCandidateImageWrapper({ candidate, saveCallback }) {
           <Body>Image Selected</Body>
         )}
       </Wrapper>
-    </div>
+    </AdminPageWrapper>
   );
 }
 

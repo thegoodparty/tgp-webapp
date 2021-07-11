@@ -13,6 +13,7 @@ import CandidateTopMenu from '../CandidateTopMenu';
 import { Body, H2 } from '../../shared/typogrophy';
 import ComparedCandidates from './ComparedCandidates';
 import { PurpleButton } from '../../shared/buttons';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -35,8 +36,7 @@ function AdminCompareCandidatesWrapper({ candidate, saveCallback, topics }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FFF' }} className="text-center">
-      <Nav />
+    <AdminPageWrapper>
       <Wrapper>
         <CandidateTopMenu candidate={candidate} />
         <br />
@@ -59,7 +59,7 @@ function AdminCompareCandidatesWrapper({ candidate, saveCallback, topics }) {
           SAVE
         </PurpleButton>
       </Wrapper>
-    </div>
+    </AdminPageWrapper>
   );
 }
 
