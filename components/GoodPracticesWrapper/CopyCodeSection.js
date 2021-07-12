@@ -59,17 +59,25 @@ function CopyCodeSection({ candidates }) {
     }
   }, [candidates]);
 
+  let urlPrefix = '';
+  if (
+    typeof window !== 'undefined' &&
+    window.location.hostname !== 'goodparty.org'
+  ) {
+    urlPrefix = 'dev.';
+  }
+
   return (
     <CopyCodeWrapper>
       <ReverseGrid container spacing={3}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5}>
           <img
             src="images/good-practices/endorse-preview.svg"
             alt="endorse"
             className="image-full"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={7}>
           <Select
             native
             value={selectedCandidate}
@@ -87,19 +95,23 @@ function CopyCodeSection({ candidates }) {
           {selectedCandidate && (
             <>
               <Code>
-                &lt;iframe src="https://goodparty.org/embed/
+                &lt;iframe src="https://{urlPrefix}goodparty.org/embed/
                 {selectedCandidate}" style="border:none; height:56px;
                 width:100%" &gt;&lt;/iframe&gt;
               </Code>
               <CopyToClipboard
-                text={`<iframe src="https://goodparty.org/embed/${selectedCandidate}" style="border:none; height:56px; width:100%" ></iframe>`}
+                text={`<iframe src="https://${urlPrefix}goodparty.org/embed/${selectedCandidate}" style="border:none; height:56px; width:100%" ></iframe>`}
                 onCopy={() => setCopied(true)}
               >
                 <PurpleButton className="outline" style={{ marginTop: '24px' }}>
                   <ButtonText>COPY CODE</ButtonText>
                 </PurpleButton>
               </CopyToClipboard>
-              {copied && <Body11 style={{marginTop: '8px'}}>Copied to clipboard</Body11>}
+              {copied && (
+                <Body11 style={{ marginTop: '8px' }}>
+                  Copied to clipboard
+                </Body11>
+              )}
             </>
           )}
         </Grid>
