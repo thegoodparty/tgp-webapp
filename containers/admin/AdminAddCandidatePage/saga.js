@@ -2,6 +2,8 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-next-router';
 
 import requestHelper from 'helpers/requestHelper';
+import { trimObject } from 'helpers/stringHelper';
+
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
@@ -10,6 +12,7 @@ function* createCandidate({ candidate }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Creating Candidate'));
     const api = tgpApi.newCandidate.create;
+    trimObject(candidate);
     const payload = { candidate };
     yield call(requestHelper, api, payload);
     // yield put(push('/admin'));
@@ -28,11 +31,7 @@ function* editCandidate({ candidate }) {
     yield put(snackbarActions.showSnakbarAction('Updating Candidate'));
     const api = tgpApi.newCandidate.update;
     const newCandidate = candidate;
-    Object.keys(newCandidate).forEach(key => {
-      if (typeof newCandidate[key] === 'string') {
-        newCandidate[key] = newCandidate[key].trim();
-      }
-    });
+    trimObject(newCandidate);
     const payload = { candidate: newCandidate };
     yield call(requestHelper, api, payload);
     // yield put(push('/admin'));
