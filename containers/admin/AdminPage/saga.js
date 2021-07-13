@@ -114,14 +114,14 @@ function* updateCandidateImage(action) {
 
 function* loadCandidate(action) {
   try {
-    const api = tgpApi.findCandidate;
-    const { id, chamber, isIncumbent } = action;
-    const payload = { id, chamber, isIncumbent };
-    const candidate = yield call(requestHelper, api, payload);
+    const api = tgpApi.newCandidate.findWithInactive;
+    const { id } = action;
+    const payload = { id };
+    const { candidate } = yield call(requestHelper, api, payload);
     yield put(actions.loadCandidateActionSuccess(candidate));
   } catch (error) {
+    yield put(snackbarActions.showSnakbarAction('Error loading candidate', 'error'));
     console.log(error);
-    yield put(actions.loadCandidateActionError(error));
   }
 }
 

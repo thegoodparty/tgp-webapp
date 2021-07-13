@@ -133,12 +133,10 @@ function loadArticlesFeedbackSuccess(articlesFeedback) {
   };
 }
 
-function loadCandidateAction(id, chamber, isIncumbent) {
+function loadCandidateAction(id) {
   return {
     type: types.LOAD_CANDIDATE,
     id,
-    chamber,
-    isIncumbent,
   };
 }
 

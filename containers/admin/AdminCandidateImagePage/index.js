@@ -4,42 +4,47 @@
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { useRouter } from 'next/router';
 
 import AdminCandidateImageWrapper from 'components/admin/AdminCandidateImageWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectAdminCandidateImagePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
+import adminActions from '../AdminPage/actions';
+import adminReducer from '../AdminPage/reducer';
+import adminSaga from '../AdminPage/saga';
+import makeSelectAdminPage from '../AdminPage/selectors';
+
 export function AdminCandidateImagePage({
   dispatch,
-  ssrState,
   saveCallback,
-  adminCandidateImagePage,
+  adminState,
 }) {
   useInjectReducer({ key: 'adminCandidateImagePage', reducer });
   useInjectSaga({ key: 'adminCandidateImagePage', saga });
-  const [candidate, setCandidate] = useState(ssrState.candidate);
 
-  const stateCandidate = adminCandidateImagePage.candidate;
-  useEffect(() => {
-    dispatch(actions.loadCandidateActionSuccess(stateCandidate || candidate));
-  }, []);
+  useInjectReducer({ key: 'adminPage', reducer: adminReducer });
+  useInjectSaga({ key: 'adminPage', saga: adminSaga });
 
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { candidate } = adminState;
   useEffect(() => {
-    if (stateCandidate) {
-      setCandidate(stateCandidate);
+    if (id) {
+      dispatch(adminActions.loadCandidateAction(id));
     }
-  }, [stateCandidate]);
+  }, [id]);
 
   const childProps = {
     candidate,
@@ -50,7 +55,6 @@ export function AdminCandidateImagePage({
     <div>
       <Helmet>
         <title>Admin Candidate Image</title>
-
       </Helmet>
       <AdminCandidateImageWrapper {...childProps} />
     </div>
@@ -61,11 +65,11 @@ AdminCandidateImagePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
   saveCallback: PropTypes.func,
-  adminCandidateImagePage: PropTypes.object,
+  adminState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  adminCandidateImagePage: makeSelectAdminCandidateImagePage(),
+  adminState: makeSelectAdminPage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -82,7 +86,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(
-  withConnect,
-  memo,
-)(AdminCandidateImagePage);
+export default compose(withConnect)(AdminCandidateImagePage);

@@ -4,11 +4,10 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Nav from 'containers/shared/Nav';
 import CandidateTopMenu from '../CandidateTopMenu';
 import { Body, H2 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateAvatar';
