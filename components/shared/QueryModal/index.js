@@ -55,7 +55,11 @@ const TgpDialog = styled(Dialog)`
       .MuiDialog-paper {
         padding: 0;
         margin: 0;
-
+        overflow: hidden;
+      }
+      .top-wrapper {
+        top: 4px;
+        right: 4px;
       }
     }
   }
@@ -109,7 +113,7 @@ function QueryModal({
       style={modalStyles.dialog}
     >
       {!closeTitle && !hideClose && (
-        <TopWrapper>
+        <TopWrapper className="top-wrapper">
           <TopClose
             onClick={() => setClose(true)}
             style={modalStyles.closeButton}
