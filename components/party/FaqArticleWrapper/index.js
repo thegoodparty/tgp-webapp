@@ -21,14 +21,16 @@ const TgpDialog = styled(Dialog)`
 
 const Wrapper = styled.div`
   padding: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 24px;
   }
 `;
 
 const TopWrapper = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -101,11 +103,11 @@ const FaqArticleWrapper = ({
   const fullScreen = useMediaQuery(
     `(max-width: ${theme.breakpointsPixels.md}px)`,
   );
-  useEffect(() => {
-    if (isHelpful === HELPFUL_STATES.helpful) {
-      handleSubmit();
-    }
-  }, [isHelpful]);
+  // useEffect(() => {
+  //   if (isHelpful === HELPFUL_STATES.helpful) {
+  //     handleSubmit();
+  //   }
+  // }, [isHelpful]);
 
   const handleFeedback = event => {
     setFeedback(event.target.value);
@@ -114,6 +116,8 @@ const FaqArticleWrapper = ({
   const handleHelpful = isHelpfulVal => {
     if (isHelpfulVal) {
       setIsHelpful(HELPFUL_STATES.helpful);
+      helpfulCallback(article.id, article.title, true, '');
+      closeModalCallback();
     } else {
       setIsHelpful(HELPFUL_STATES.notHelpful);
     }

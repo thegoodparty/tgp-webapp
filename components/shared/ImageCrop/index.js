@@ -28,6 +28,11 @@ const ButtonWrapper = styled.div`
   margin: 1.5rem auto;
 `;
 
+const Error = styled.div`
+  color: red;
+  padding: 8px 0;
+`;
+
 const pixelRatio = 4;
 
 function ImageCrop({
@@ -45,14 +50,27 @@ function ImageCrop({
   const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 });
   const [completedCrop, setCompletedCrop] = useState(null);
   const [canvasWidth, setCanvasWidth] = useState(0);
+  const [error, setError] = useState(false);
 
   const onSelectFile = e => {
     if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      setError(false);
+      if (!file) {
+        e.target.value = null;
+        setError('No file selected');
+        return false;
+      }
+      if (file.size > 1000000) {
+        e.target.value = null;
+        setError('File size cannot exceed 1MB');
+        return false;
+      }
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         setUpImg(reader.result);
       });
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
     }
   };
   const onLoad = useCallback(img => {
@@ -108,6 +126,7 @@ function ImageCrop({
         )}
         <br />
         <input type="file" accept="image/*" onChange={onSelectFile} />
+        {error && <Error>{error}</Error>}
       </div>
       <br />
       {upImg && !loading && (

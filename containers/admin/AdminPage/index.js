@@ -16,27 +16,11 @@ import AdminWrapper from 'components/admin/AdminWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectAdminPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import adminActions from './actions';
 import makeSelectUser from '../../you/YouPage/selectors';
-import { makeSelectContent } from '../../App/selectors';
 
-export function AdminPage({
-  adminState,
-  loadCandidatesCallback,
-  updateCandidateCallback,
-  loadAllUsersCallback,
-  loadArticleFeedbackCallback,
-  deleteUserCallback,
-  loadVoterizeCallback,
-  updateVoterizeCallback,
-  deleteCandidateCallback,
-  userState,
-  content,
-  dispatch,
-}) {
+export function AdminPage({ userState, dispatch }) {
   useInjectReducer({ key: 'adminPage', reducer });
   useInjectSaga({ key: 'adminPage', saga });
 
@@ -45,93 +29,32 @@ export function AdminPage({
     if (user && !user.isAdmin) {
       dispatch(push('/'));
     }
-  });
+  }, [user]);
 
-  const {
-    candidates,
-    users,
-    articlesFeedback,
-    voterizeList,
-    loading,
-    error,
-    isUpdated,
-  } = adminState;
-
-  const childProps = {
-    candidates,
-    users,
-    voterizeList,
-    isUpdated,
-    articles: articlesFeedback,
-    loadCandidatesCallback,
-    updateCandidateCallback,
-    loadAllUsersCallback,
-    loadArticleFeedbackCallback,
-    deleteUserCallback,
-    loadVoterizeCallback,
-    updateVoterizeCallback,
-    deleteCandidateCallback,
-    loading,
-    error,
-    user,
-    content,
-  };
   return (
     <div>
       <Head>
         <title>Admin Dashboard</title>
         <meta name="description" content="Admin Dashboard" />
       </Head>
-      <AdminWrapper {...childProps} />
+      <AdminWrapper />
     </div>
   );
 }
 
 AdminPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  adminState: PropTypes.object,
-  loadCandidatesCallback: PropTypes.func,
-  updateCandidateCallback: PropTypes.func,
-  loadAllUsersCallback: PropTypes.func,
-  loadArticleFeedbackCallback: PropTypes.func,
-  deleteUserCallback: PropTypes.func,
-  loadVoterizeCallback: PropTypes.func,
-  updateVoterizeCallback: PropTypes.func,
-  deleteCandidateCallback: PropTypes.func,
   userState: PropTypes.object,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 const mapStateToProps = createStructuredSelector({
-  adminState: makeSelectAdminPage(),
+  // adminState: makeSelectAdminPage(),
   userState: makeSelectUser(),
-  content: makeSelectContent(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadCandidatesCallback: chamber =>
-      dispatch(adminActions.loadCandidates(chamber)),
-    updateCandidateCallback: (id, updatedFields, chamber, isIncumbent) => {
-      dispatch(
-        adminActions.updateCandidate(id, updatedFields, chamber, isIncumbent),
-      );
-    },
-    loadAllUsersCallback: () => {
-      dispatch(adminActions.loadAllUsers());
-    },
-    loadArticleFeedbackCallback: () => {
-      dispatch(adminActions.loadArticlesFeedback());
-    },
-    deleteUserCallback: user => {
-      dispatch(adminActions.deleteUser(user));
-    },
-    loadVoterizeCallback: () => dispatch(adminActions.loadVoterizeAction()),
-    updateVoterizeCallback: voterize =>
-      dispatch(adminActions.updateVoterizeAction(voterize)),
-    deleteCandidateCallback: id =>
-      dispatch(adminActions.deleteCandidateAction(id)),
   };
 }
 

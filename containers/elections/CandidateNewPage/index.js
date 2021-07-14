@@ -117,7 +117,9 @@ ${race}.`;
       setExperimentVariant(type);
     });
   }, []);
-  console.log('experimentVariant', experimentVariant);
+  // console.log('experimentVariant', experimentVariant);
+
+  const { topics } = ssrState;
 
   const childProps = {
     candidate,
@@ -136,10 +138,12 @@ ${race}.`;
     adminDeleteSupportCallback,
     trackShareCallback,
     experimentVariant,
+    topics,
   };
   if (show404) {
     return <ErrorPage statusCode={404} />;
   }
+
   return (
     <div>
       {candidate && !emptyCandidate() && (

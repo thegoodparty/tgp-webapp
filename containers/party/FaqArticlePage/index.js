@@ -69,6 +69,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     helpfulCallback: (id, title, isHelpful, feedback) => {
+      console.log('here helpful callback page')
       dispatch(
         actions.sendArticleFeedbackAction(id, title, isHelpful, feedback),
       );

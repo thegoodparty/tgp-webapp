@@ -27,7 +27,7 @@ const Wrapper = styled.div`
   //width: 325px;
   //max-width: calc(100vw - 20px);
   //margin: 0 auto;
-  posisiton: relative;
+  position: relative;
 `;
 
 const VideoImg = styled.img`

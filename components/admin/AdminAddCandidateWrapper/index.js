@@ -21,10 +21,8 @@ import { states } from 'helpers/statesHelper';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
-import ImageCrop from '../../shared/ImageCrop';
-import ComparedCandidates from './ComparedCandidates';
-import CandidateAvatar from '../../shared/CandidateAvatar';
 import CandidateTopMenu from '../CandidateTopMenu';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -63,6 +61,13 @@ const partyOptions = [
   { key: 'W', value: 'Working Families Party' },
   { key: 'S', value: 'SAM' },
 ];
+
+const chmaberOptions = [
+  { key: 'local', value: 'Local' },
+  { key: 'state', value: 'State' },
+  { key: 'federal', value: 'Federal' },
+];
+
 const statesOptions = states.map(state => ({
   key: state.abbreviation,
   value: state.name,
@@ -92,7 +97,13 @@ const fields = [
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
   { label: 'Headline', key: 'headline', initialValue: '' },
-  { label: 'Chamber', key: 'chamber', initialValue: 'local' },
+  {
+    label: 'Chamber',
+    key: 'chamber',
+    initialValue: 'local',
+    isSelect: true,
+    options: chmaberOptions,
+  },
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
   {
     label: 'State',
@@ -132,7 +143,6 @@ function AdminAddCandidateWrapper({
 
   const [formState, setFormState] = useState(initialState);
   const [about, setAbout] = useState(candidate ? candidate.about : '');
-  const [comparedCandidates, setComparedCandidates] = useState(false);
   const [showUpdates, setShowUpdates] = useState(false);
   const [candidateUpdates, setCandidateUpdates] = useState([]);
 
@@ -147,7 +157,6 @@ function AdminAddCandidateWrapper({
       setAbout(candidate.about);
       newState.isActive = candidate.isActive;
       setFormState(newState);
-      setComparedCandidates(candidate.comparedCandidates);
       setCandidateUpdates(candidate.updatesList || []);
     }
   }, [candidate]);
@@ -159,10 +168,6 @@ function AdminAddCandidateWrapper({
     });
   };
 
-  const handleUpload = base64 => {
-    setFormState({ ...formState, imageBase64: base64 });
-  };
-
   const canSubmit = () => {
     return formState.firstName !== '' && formState.lastName !== '';
   };
@@ -170,24 +175,20 @@ function AdminAddCandidateWrapper({
   const createCandidate = () => {
     if (mode === 'add') {
       createCandidateCallback({
+        ...candidate,
         ...formState,
         about,
-        comparedCandidates,
         candidateUpdates,
       });
     } else {
       editCandidateCallback({
+        ...candidate,
         ...formState,
         about,
-        comparedCandidates,
         candidateUpdates,
         id: candidate.id,
-        image: candidate.image,
       });
     }
-  };
-  const compareCandidatesCallback = comparedCands => {
-    setComparedCandidates(comparedCands);
   };
 
   const addUpdate = () => {
@@ -211,31 +212,12 @@ function AdminAddCandidateWrapper({
   };
 
   return (
-    <div style={{ backgroundColor: '#FFF' }}>
-      <Nav />
-      {/* <MobileHeader /> */}
+    <AdminPageWrapper>
       <Wrapper>
         <CandidateTopMenu candidate={candidate} />
 
         <br />
-        {candidate && candidate.image && (
-          <div className="flex-center">
-            <CandidateAvatar
-              src={candidate.image}
-              name={candidate.firstName}
-              good
-              size="xl"
-            />
-          </div>
-        )}
 
-        {!formState.imageBase64 ? (
-          <CropWrapper>
-            <ImageCrop uploadImageCallback={handleUpload} />
-          </CropWrapper>
-        ) : (
-          <Body>Image Selected</Body>
-        )}
         {fields.map(field => (
           <React.Fragment key={field.key}>
             {field.isSelect ? (
@@ -292,18 +274,7 @@ function AdminAddCandidateWrapper({
           onChangeCallback={value => setAbout(value)}
           initialText={about}
         />
-        <br />
-        <br />
-        <hr />
-        <br />
-        <Label>Compare Candidates</Label>
-        <ComparedCandidates
-          candidate={candidate}
-          candidatesCallback={compareCandidatesCallback}
-        />
-        <br />
-        <br />
-        <hr />
+
         <br />
         <br />
         <PurpleButton onClick={() => setShowUpdates(!showUpdates)}>
@@ -357,7 +328,7 @@ function AdminAddCandidateWrapper({
           SAVE
         </BlueButton>
       </Wrapper>
-    </div>
+    </AdminPageWrapper>
   );
 }
 

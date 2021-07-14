@@ -21,6 +21,7 @@ import Nav from 'containers/shared/Nav';
 import { H2, H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateAvatar';
 import CandidateTopMenu from '../CandidateTopMenu';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -99,8 +100,7 @@ function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FFF' }}>
-      <Nav />
+    <AdminPageWrapper>
       <Wrapper>
         <CandidateTopMenu candidate={candidate} />
         <br />
@@ -258,7 +258,7 @@ function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
           &nbsp;&nbsp;SAVE&nbsp;&nbsp;
         </PurpleButton>
       </Wrapper>
-    </div>
+    </AdminPageWrapper>
   );
 }
 

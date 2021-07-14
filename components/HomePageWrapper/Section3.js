@@ -31,6 +31,7 @@ const Section3 = () => (
         alt="Good Candidates"
         width={620}
         height={378}
+        style={{ maxWidth: '620px' }}
       />
     </Grid>
     <Grid item xs={12} md={6}>

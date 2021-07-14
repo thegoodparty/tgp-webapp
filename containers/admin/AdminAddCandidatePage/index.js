@@ -31,8 +31,6 @@ export function AdminAddCandidatePage({
   const { candidate } = ssrState || {};
   const mode = candidate ? 'edit' : 'add';
 
-  console.log('candidate', candidate);
-
   const childProps = {
     createCandidateCallback,
     editCandidateCallback,

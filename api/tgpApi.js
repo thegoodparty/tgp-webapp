@@ -173,7 +173,7 @@ const api = {
       withAuth: true,
     },
     deleteUser: {
-      url: `${base}admin/users`,
+      url: `${base}admin/user`,
       method: 'DELETE',
       withAuth: true,
     },
@@ -201,10 +201,34 @@ const api = {
     uploadedImages: {
       url: `${base}admin/uploaded-images`,
       method: 'POST',
+      withAuth: true,
     },
     uploadImage: {
       url: `${base}admin/upload-image`,
       method: 'POST',
+      withAuth: true,
+    },
+    topics: {
+      create: {
+        url: `${base}compare-topic`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}compare-topic`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}compare-topic`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}compare-topics`,
+        method: 'GET',
+        withAuth: true,
+      },
     },
   },
   newCandidate: {
@@ -253,6 +277,16 @@ const api = {
     trackGuestShare: {
       url: `${base}new-candidate/share-guest`,
       method: 'POST',
+    },
+    updateImage: {
+      url: `${base}new-candidate/image`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    updateComparedCandidates: {
+      url: `${base}new-candidate/compared`,
+      method: 'PUT',
+      withAuth: true,
     },
   },
   subscribeEmail: {

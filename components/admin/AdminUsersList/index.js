@@ -16,6 +16,7 @@ import { H3 } from '../../shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
 import ENV from 'api/ENV';
 import UserAvatar from '../../shared/UserAvatar';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -168,44 +169,49 @@ function AdminUsersList({ users, deleteUserCallback }) {
       filterable: false,
       Cell: row => (
         <ButtonWrapper>
-          <IconButton aria-label="delete" onClick={() => handleOpenAlert(row.original)}>
+          <IconButton
+            aria-label="delete"
+            onClick={() => handleOpenAlert(row.original)}
+          >
             <DeleteIcon />
           </IconButton>
         </ButtonWrapper>
       ),
-    })
+    });
   }
   const handleDeleteUser = () => {
     deleteUserCallback(selectedUser);
     toggleShowDeleteAlert(false);
-  }
+  };
   const handleOpenAlert = user => {
     setSelectedUser(user);
     toggleShowDeleteAlert(true);
   };
   const handleCloseAlert = () => toggleShowDeleteAlert(false);
   return (
-    <Wrapper>
-      <Title>All Users</Title>
-      <ReactTable
-        className="-striped -highlight"
-        data={tableData}
-        columns={columns}
-        defaultPageSize={25}
-        showPagination
-        filterable
-      />
-      {ENV !== 'prod' &&
-        <AlertDialog
-          open={showDeleteAlert}
-          handleClose={handleCloseAlert}
-          title={"Delete User"}
-          ariaLabel={"Delete User"}
-          description={"Are you sure you want to delete the user?"}
-          handleProceed={handleDeleteUser}
+    <AdminPageWrapper>
+      <Wrapper>
+        <Title>All Users</Title>
+        <ReactTable
+          className="-striped -highlight"
+          data={tableData}
+          columns={columns}
+          defaultPageSize={25}
+          showPagination
+          filterable
         />
-      }
-    </Wrapper>
+        {ENV !== 'prod' && (
+          <AlertDialog
+            open={showDeleteAlert}
+            handleClose={handleCloseAlert}
+            title={'Delete User'}
+            ariaLabel={'Delete User'}
+            description={'Are you sure you want to delete the user?'}
+            handleProceed={handleDeleteUser}
+          />
+        )}
+      </Wrapper>
+    </AdminPageWrapper>
   );
 }
 
