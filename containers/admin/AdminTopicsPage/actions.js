@@ -34,6 +34,18 @@ function loadTopicsActionSuccess(topics) {
     topics,
   };
 }
+function loadTopicsFeedback() {
+  return {
+    type: types.LOAD_TOPICS_FEEDBACK,
+  };
+}
+
+function loadTopicsFeedbackSuccess(topicsFeedback) {
+  return {
+    type: types.LOAD_TOPICS_FEEDBACK_SUCCESS,
+    topicsFeedback,
+  };
+}
 
 export default {
   createTopicAction,
@@ -41,4 +53,6 @@ export default {
   deleteTopicAction,
   loadTopicsAction,
   loadTopicsActionSuccess,
+  loadTopicsFeedback,
+  loadTopicsFeedbackSuccess,
 };

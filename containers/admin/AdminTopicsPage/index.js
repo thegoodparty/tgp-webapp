@@ -32,15 +32,17 @@ export function AdminTopicsPage({
 
   useEffect(() => {
     dispatch(actions.loadTopicsAction());
+    dispatch(actions.loadTopicsFeedback());
   }, []);
 
-  const { topics } = adminTopicsPage;
+  const { topics, topicsFeedback } = adminTopicsPage;
 
   const childProps = {
     createCallback,
     topics,
     editCallback,
     deleteCallback,
+    topicsFeedback,
   };
 
   return (

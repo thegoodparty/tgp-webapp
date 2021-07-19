@@ -35,7 +35,10 @@ const api = {
     url: `${base}content/article-feedback`,
     method: 'POST',
   },
-
+  topicFeedback: {
+    url: `${base}content/topic-feedback`,
+    method: 'POST',
+  },
   //
   // ENTRANCE
   //
@@ -179,6 +182,11 @@ const api = {
     },
     articlesFeedback: {
       url: `${base}admin/articles-feedback`,
+      method: 'GET',
+      withAuth: true,
+    },
+    topicsFeedback: {
+      url: `${base}admin/topics-feedback`,
       method: 'GET',
       withAuth: true,
     },
