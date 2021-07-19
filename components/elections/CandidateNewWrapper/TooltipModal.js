@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/HighlightOff';
 import Dialog from '@material-ui/core/Dialog';
-import { Body11, H2 } from '../../shared/typogrophy';
+import { Body, Body13, H1 } from '../../shared/typogrophy';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -45,6 +45,12 @@ const TopClose = styled(CloseIcon)`
     color: #fff;
   }
 `;
+
+const WasHelpul = styled(Body)`
+  text-align: left;
+  margin: 35px 0 24px;
+`;
+
 //
 // const topics = {
 //   'PUBLIC HEALTH EMERGENCY MANAGER':
@@ -101,8 +107,9 @@ function TooltipModal({ topic, closeModalCallback, topics }) {
       <TopWrapper>
         <TopClose onClick={closeModalCallback} />
       </TopWrapper>
-      <H2>{topic}</H2>
-      <Body11 style={{ marginTop: '20px' }}>{text}</Body11>
+      <H1>{topic}</H1>
+      <Body13 style={{ marginTop: '20px' }}>{text}</Body13>
+      <WasHelpul data-cy="was-helpful">Was this helpful?</WasHelpul>
     </TgpDialog>
   );
 }
