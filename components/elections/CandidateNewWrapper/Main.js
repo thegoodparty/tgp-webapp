@@ -136,6 +136,7 @@ function MainWrapper({
   total,
   trackShareCallback,
   experimentVariant,
+  helpfulCallback,
   topics,
 }) {
   const router = useRouter();
@@ -272,6 +273,7 @@ function MainWrapper({
         <SectionWrapper>
           <SectionHeader>Compare candidates in this race</SectionHeader>
           <ComparedCandidateCarousel
+            helpfulCallback={helpfulCallback}
             candidates={comparedCandidates?.candidates}
             candidate={candidate}
             topics={topics}
@@ -350,6 +352,7 @@ MainWrapper.propTypes = {
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   total: PropTypes.number,
   trackShareCallback: PropTypes.func,
+  helpfulCallback: PropTypes.func,
   topics: PropTypes.object,
 };
 

@@ -72,10 +72,25 @@ function* loadTopics() {
   }
 }
 
+function* loadTopicsFeedback() {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading Topics Feedback'));
+    const api = tgpApi.admin.topicsFeedback;
+    const { topics } = yield call(requestHelper, api, null);
+    yield put(actions.loadTopicsFeedbackActionSuccess(topics));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error Loading Articles', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.CREATE_TOPIC, createTopic);
   yield takeLatest(types.EDIT_TOPIC, editTopic);
   yield takeLatest(types.DELETE_TOPIC, deleteTopic);
   yield takeLatest(types.LOAD_TOPICS, loadTopics);
+  yield takeLatest(types.LOAD_TOPICS_FEEDBACK, loadTopicsFeedback);
 }

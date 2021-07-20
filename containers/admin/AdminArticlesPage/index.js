@@ -50,7 +50,6 @@ export function AdminArticlesPage({
     content,
     articles: articlesFeedback,
   };
-
   return (
     <div>
       <TgpHelmet title="Admin Articles Page" />

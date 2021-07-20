@@ -25,6 +25,8 @@ const ADMIN_DELETE_SUPPORT = '@@tgp/candidateNewPage/ ADMIN_DELETE_SUPPORT';
 
 const TRACK_SHARE = '@@tgp/candidateNewPage/TRACK_SHARE';
 
+const SEND_TOPIC_FEEDBACK = '@@tgp/candidateNewPage/SEND_TOPIC_FEEDBACK';
+
 export default {
   LOAD_INACTIVE_CANDIDATE,
   LOAD_CANDIDATE,
@@ -49,4 +51,5 @@ export default {
   ADMIN_DELETE_SUPPORT,
 
   TRACK_SHARE,
+  SEND_TOPIC_FEEDBACK,
 };

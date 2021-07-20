@@ -90,6 +90,14 @@ const trackShare = candidateId => ({
   candidateId,
 });
 
+const sendTopicFeedbackAction = (id, title, isHelpful, feedback) => ({
+  type: types.SEND_TOPIC_FEEDBACK,
+  id,
+  title,
+  isHelpful,
+  feedback,
+});
+
 export default {
   loadInactiveCandidateAction,
 
@@ -115,4 +123,5 @@ export default {
   adminDeleteSupportAction,
 
   trackShare,
+  sendTopicFeedbackAction,
 };

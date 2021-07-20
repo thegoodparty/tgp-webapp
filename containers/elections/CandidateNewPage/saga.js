@@ -1,8 +1,9 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import { push } from 'connected-next-router';
-
+import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
 import requestHelper from 'helpers/requestHelper';
+import makeSelectUser from 'containers/you/YouPage/selectors';
 
 import tgpApi from 'api/tgpApi';
 import types from './constants';
@@ -166,6 +167,28 @@ function* trackShare({ candidateId }) {
   }
 }
 
+function* sendTopicFeedback(action) {
+  try {
+    const user = yield call(getUserFromStateOrCookie, makeSelectUser);
+    const uuid = getUuid(user);
+    const { id, title, isHelpful, feedback } = action;
+    const api = tgpApi.topicFeedback;
+    const payload = {
+      candidateId: id,
+      topicTitle: title,
+      isHelpful,
+      feedback,
+      uuid,
+    };
+
+    yield call(requestHelper, api, payload);
+    snackbarActions.showSnakbarAction('Thank you for your feedback');
+  } catch (error) {
+    console.log(error);
+    snackbarActions.showSnakbarAction('Error sending your feedback', 'error');
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_INACTIVE_CANDIDATE, loadInactiveCandidate);
@@ -183,4 +206,5 @@ export default function* saga() {
   yield takeLatest(types.UPDATE_SUPPORT, updateSupport);
   yield takeLatest(types.SHARE_IMAGE, shareImage);
   yield takeLatest(types.TRACK_SHARE, trackShare);
+  yield takeLatest(types.SEND_TOPIC_FEEDBACK, sendTopicFeedback);
 }

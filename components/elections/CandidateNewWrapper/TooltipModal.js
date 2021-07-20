@@ -4,12 +4,14 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import TextField from '@material-ui/core/TextField';
 import CloseIcon from '@material-ui/icons/HighlightOff';
 import Dialog from '@material-ui/core/Dialog';
-import { Body11, H2 } from '../../shared/typogrophy';
+import { Body, H1, Body11 } from '../../shared/typogrophy';
+import { PurpleButton } from '../../shared/buttons';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -45,64 +47,147 @@ const TopClose = styled(CloseIcon)`
     color: #fff;
   }
 `;
-//
-// const topics = {
-//   'PUBLIC HEALTH EMERGENCY MANAGER':
-//     'A new position which will track public health crises such as COVID-19, the opioid crisis and future public health emergencies.',
-//   'TRANSPARENT BUDGETING':
-//     'Honest, transparent budgeting provides an opportunity for the community to contribute to budget conversations and ensure that money is spent wisely.',
-//   'OFFICE OF COMMUNITY WEALTH BUILDING':
-//     'Community Wealth Building (CWB) is a system-changing approach to community economic development that works to produce broadly shared economic prosperity, racial equity, and ecological sustainability through the reconfiguration of institutions and local economies on the basis of greater democratic ownership, participation, and control.',
-//   'UNIVERSAL HEALTHCARE':
-//     'Access to health services for all people regardless of economic status or any other factor.',
-//   'LEGALIZE MARIJUANA':
-//     'Legalizing marijuana will create more jobs, reduce incarceration rates and end racial disparities in marijuana enforcement.',
-//   'END CASH BAIL':
-//     'In the cash bail system, an individual has to pay a certain amount of money to be released from detention. Individuals who cannot afford to pay are detained for weeks or months before trial. Ending cash bail will save taxpayer dollars, decrease job loss and reduce incarceration rates.',
-//   'NON-PARTISAN':
-//     'Good Party Certified candidates pledge to caucus (meet) with all sides, but to NEVER pay dues to nor fundraise for either Republican or Democratic parties.',
-//   'SMALL MONEY':
-//     'Good Party Certified candidates pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
-//   'ANTI-CORRUPTION':
-//     'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time. They will also abide by and work to advance the Anti-Corruption Act.',
-//   TRANSPARENT:
-//     'Committed to using modern technology in being accountable and transparent to all the people he represents and fostering meaningful citizen engagement.',
-//   'NEW NON-PARTISAN DEFINITION':
-//     'Good Party Certified candidates pledge to caucus (meet) with all sides, but to NEVER pay dues to nor fundraise for either Republican or Democratic parties.',
-//   'NEW SMALL MONEY DEFINITION':
-//     'Good Party Certified candidates pledge to take a majority of their funding from small money donations, or self-financing with matching rules that mimic publicly funded elections.',
-//   'NEW ANTI_CORRUPTION DEFINITION':
-//     'Good Party Certfied candidates pledge to openly share their calendar and the content of meetings on public time. They will also abide by and work to advance the Anti-Corruption Act',
-//   CLEANLINESS:
-//     'Accountability for all property owners to respect their own properties. A clean city will instill hope in Albany.',
-//   'PUBLIC SAFETY':
-//     'Clear communication between elected officials, police, residents and businesses to establish trust in Albany.',
-//   'INCREASE HIGH SCHOOL GRADUATION RATES':
-//     'Engage young people by teaching the importance of solid education and community relations.',
-//   'HOMELESS PREVENTION SERVICE':
-//     'Angelenos can contact the Homeless Prevention Service if they are on the verge of being homeless. ',
-//   'REDUCE NOISE POLLUTION':
-//     'Noise pollution contributes to hearing loss. Los Angeles has some of the highest levels of noise pollution in the world.',
-//   'ACCESSIBLE FINANCIAL DATA':
-//     "Allow for greater access to financial data so Angelenos can easilly understand the city's finances.",
-//   'TIMELY FINANCIAL INFORMATION':
-//     'Ensure that financial information such as payroll, budgets and accounting are made availiable quickly.',
-//   'IDENTIFY WASTEFUL SPENDING':
-//     'Results-driven financial and performance audits will showcase whether or not Los Angeles is utilizing its resources properly.',
-//   INDEPENDENT: 'Never pay dues to nor fundraise for Republicans or Democrats.',
-//   'PEOPLE POWERED':
-//     'Good candidates only accept donations from individuals - not corporations, unions, PACs, or other non-living entities.',
-// };
 
-function TooltipModal({ topic, closeModalCallback, topics }) {
+const WasHelpful = styled(Body)`
+  text-align: left;
+  margin-right: 5px;
+  &.grey {
+    color: #767676;
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 14px;
+  align-items: center;
+  margin-top: 24px;
+`;
+
+const FeedbackButton = styled(Body11)`
+  text-align: center;
+  border-radius: 8px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-size: 19px;
+  &.purple {
+    border-color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.purple};
+  }
+`;
+
+const SubmitButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 14px auto;
+  justify-content: end;
+  margin-right: 0;
+  max-width: 150px;
+`;
+
+const HELPFUL_STATES = {
+  notSelected: 0,
+  helpful: 1,
+  notHelpful: 2,
+};
+function TooltipModal({
+  topic,
+  closeModalCallback,
+  helpfulCallback,
+  candidateId,
+  topics,
+}) {
   const text = topic ? topics[topic] : false;
+  const [feedback, setFeedback] = useState('');
+  const [isHelpful, setIsHelpful] = useState(HELPFUL_STATES.notSelected);
+
+  const handleFeedback = event => {
+    setFeedback(event.target.value);
+  };
+  const setDefault = () => {
+    setFeedback('');
+    setIsHelpful(HELPFUL_STATES.notSelected);
+  }
+  const handleHelpful = isHelpfulVal => {
+    if (isHelpfulVal) {
+      setIsHelpful(HELPFUL_STATES.helpful);
+      helpfulCallback(candidateId, topic, true, '');
+      closeModalCallback();
+      setDefault();
+    } else {
+      setIsHelpful(HELPFUL_STATES.notHelpful);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (isHelpful === HELPFUL_STATES.notSelected) {
+      return;
+    }
+    if (isHelpful === HELPFUL_STATES.helpful) {
+      helpfulCallback(candidateId, topic, true, '');
+      closeModalCallback();
+    } else if (feedback !== '') {
+      helpfulCallback(candidateId, topic, false, feedback);
+      closeModalCallback();
+    }
+    setDefault();
+  };
   return (
     <TgpDialog onClose={closeModalCallback} open={text}>
       <TopWrapper>
         <TopClose onClick={closeModalCallback} />
       </TopWrapper>
-      <H2>{topic}</H2>
-      <Body11 style={{ marginTop: '20px' }}>{text}</Body11>
+      <H1>{topic}</H1>
+      <Body style={{ marginTop: '20px' }}>{text}</Body>
+      <ButtonsWrapper>
+        <WasHelpful data-cy="was-helpful" className="grey">
+          {isHelpful !== HELPFUL_STATES.notHelpful
+            ? 'Was this helpful?'
+            : 'Why wasn’t this entry helpful?'}
+        </WasHelpful>
+        {isHelpful === HELPFUL_STATES.notSelected && (
+          <>
+            <FeedbackButton
+              className="purple"
+              onClick={() => handleHelpful(true)}
+              data-cy="helpful-yes"
+            >
+              Yes
+            </FeedbackButton>
+            |
+            <FeedbackButton
+              className="purple"
+              onClick={() => handleHelpful(false)}
+              data-cy="helpful-no"
+            >
+              No
+            </FeedbackButton>
+          </>
+        )}
+      </ButtonsWrapper>
+      {isHelpful === HELPFUL_STATES.notHelpful && (
+        <>
+          <TextField
+            rows={4}
+            multiline
+            fullWidth
+            placeholder="Please let us know how we can improve."
+            onChange={handleFeedback}
+            variant="outlined"
+            required
+            data-cy="feedback"
+          />
+          <SubmitButtonWrapper onClick={handleSubmit} data-cy="feedback-submit">
+            <PurpleButton
+              className="submit"
+              disabled={feedback === ''}
+              fullWidth
+            >
+              SUBMIT
+            </PurpleButton>
+          </SubmitButtonWrapper>
+        </>
+      )}
     </TgpDialog>
   );
 }
@@ -110,7 +195,9 @@ function TooltipModal({ topic, closeModalCallback, topics }) {
 TooltipModal.propTypes = {
   topic: PropTypes.string,
   closeModalCallback: PropTypes.func,
+  helpfulCallback: PropTypes.func,
   topics: PropTypes.object,
+  candidateId: PropTypes.number,
 };
 
 export default TooltipModal;
