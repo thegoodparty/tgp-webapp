@@ -51,10 +51,12 @@ export function AdminCompareCandidatesPage({
   useEffect(() => {
     if (id) {
       dispatch(adminActions.loadCandidateAction(id));
+      dispatch(actions.loadTopicsAction());
     }
   }, [id]);
 
   const { topics } = adminCompareCandidatesPage;
+  console.log('topics', topics)
 
   const childProps = {
     candidate,
