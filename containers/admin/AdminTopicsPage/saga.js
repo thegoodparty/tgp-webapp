@@ -77,7 +77,7 @@ function* loadTopicsFeedback() {
     yield put(snackbarActions.showSnakbarAction('Loading Topics Feedback'));
     const api = tgpApi.admin.topicsFeedback;
     const { topics } = yield call(requestHelper, api, null);
-    yield put(actions.loadTopicsFeedbackSuccess(topics));
+    yield put(actions.loadTopicsFeedbackActionSuccess(topics));
   } catch (error) {
     console.log(error);
     yield put(
