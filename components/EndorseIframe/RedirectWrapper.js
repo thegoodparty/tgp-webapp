@@ -73,7 +73,7 @@ const Logo = styled.img`
   height: auto;
 `;
 
-const timerSeconds = 9;
+const timerSeconds = 6;
 
 function RedirectWrapper({ candidate }) {
   const router = useRouter();
