@@ -116,6 +116,14 @@ const AdminWrapper = () => (
         >
           GP Deck Template
         </a>
+        <br />
+        <br />
+        <a
+          href="https://docs.google.com/document/d/1K2qP6VvpS4QPdC9pl_96L4b24BrreTU30hWDowxLhBo/edit#heading=h.rxv3nobisv34"
+          target="_blank"
+        >
+          Embed the "endorse" button instructions
+        </a>
       </Body>
     </Wrapper>
   </AdminPageWrapper>
