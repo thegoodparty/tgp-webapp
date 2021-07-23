@@ -269,17 +269,6 @@ function Footer({ isCreators = false }) {
           </SecondRow>
         </GrayInnerWrapper>
       </GrayWrapper>
-
-      <Wrapper>
-        <InnerWrapper
-          className={isCreators ? ' creatorsFooterContent' : ''}
-          data-cy="footer-description"
-        >
-          PAID FOR BY THE GOOD PARTY | GOODPARTY.ORG
-          <br />
-          NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
-        </InnerWrapper>
-      </Wrapper>
     </>
   );
 }
