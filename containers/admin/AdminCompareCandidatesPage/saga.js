@@ -6,11 +6,13 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 import adminActions from '../AdminCandidateImagePage/actions';
+import { trimObject } from '../../../helpers/stringHelper';
 
 function* updateComparedCandidates({ candidate }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
     const api = tgpApi.newCandidate.updateComparedCandidates;
+    trimObject(candidate);
     const payload = { candidate };
     yield call(requestHelper, api, payload);
     yield put(snackbarActions.showSnakbarAction('Saved...'));
