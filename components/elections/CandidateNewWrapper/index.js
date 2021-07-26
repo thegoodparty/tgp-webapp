@@ -57,6 +57,7 @@ function CandidateNewWrapper({
   adminDeleteSupportCallback,
   trackShareCallback,
   experimentVariant,
+  helpfulCallback,
   topics,
 }) {
   if (!candidate) {
@@ -90,6 +91,7 @@ function CandidateNewWrapper({
               total={total}
               trackShareCallback={trackShareCallback}
               experimentVariant={experimentVariant}
+              helpfulCallback={helpfulCallback}
               topics={topics}
             />
           </Grid>
@@ -149,6 +151,7 @@ CandidateNewWrapper.propTypes = {
   trackShareCallback: PropTypes.func,
   experimentVariant: PropTypes.string,
   topics: PropTypes.object,
+  helpfulCallback: PropTypes.func,
 };
 
 export default CandidateNewWrapper;

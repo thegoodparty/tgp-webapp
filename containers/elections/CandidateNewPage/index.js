@@ -39,12 +39,13 @@ export function CandidateNewPage({
   previewNextStepCallback,
   adminDeleteSupportCallback,
   trackShareCallback,
+  helpfulCallback,
 }) {
   const [candidate, setCandidate] = useState(ssrState.candidate);
   const [show404, setShow404] = useState(false);
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
-  let user = getUserCookie(true);
+  const user = getUserCookie(true);
   const { userSupports, candidateSupports, total } = candidateNewPage;
 
   const router = useRouter();
@@ -136,6 +137,7 @@ ${race}.`;
     candidateSupports,
     total,
     adminDeleteSupportCallback,
+    helpfulCallback,
     trackShareCallback,
     experimentVariant,
     topics,
@@ -173,6 +175,7 @@ CandidateNewPage.propTypes = {
   trackShareCallback: PropTypes.func,
   supportCallback: PropTypes.func,
   removeSupportCallback: PropTypes.func,
+  helpfulCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -222,6 +225,10 @@ function mapDispatchToProps(dispatch) {
     },
     trackShareCallback: candidateId => {
       dispatch(actions.trackShare(candidateId));
+    },
+    helpfulCallback: (id, title, isHelpful, feedback) => {
+      console.log('here helpful callback page');
+      dispatch(actions.sendTopicFeedbackAction(id, title, isHelpful, feedback));
     },
   };
 }

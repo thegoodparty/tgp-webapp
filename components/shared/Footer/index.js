@@ -182,6 +182,9 @@ function Footer({ isCreators = false }) {
             <Grid item xs={12} md={4}>
               <Column data-cy="footer-team">
                 <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
+                <Link href="/faqs" passHref>
+                  <WhiteLink>Meet our Good Party People</WhiteLink>
+                </Link>
                 Want to join the Good Party? We are always looking for good
                 people to collaborate with!
                 <div>
@@ -196,7 +199,7 @@ function Footer({ isCreators = false }) {
             </Grid>
           </Grid>
           <SecondRow>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} alignItems="flex-end">
               <Grid item xs={12} md={4}>
                 <Column>
                   <Hidden smDown>
@@ -204,12 +207,41 @@ function Footer({ isCreators = false }) {
                       <WhiteLink data-cy="footer-link-policy">
                         Privacy Policy
                       </WhiteLink>
-                    </Link>
+                    </Link>{' '}
+                    &copy; 2006-2021 Good Party. All rights reserved.
                   </Hidden>
                 </Column>
               </Grid>
               <Grid item xs={12} md={4}>
                 <Column>
+                  <a
+                    href="https://www.tiktok.com/@goodparty"
+                    target="_blank"
+                    rel="nofollow"
+                    data-cy="footer-link-tiktok"
+                    title="TikTok"
+                  >
+                    <SocialIcon
+                      src="/images/icons/tiktok-white.svg"
+                      width={21}
+                      height={17}
+                      alt="TikTok"
+                    />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/goodpartyorg/"
+                    target="_blank"
+                    rel="nofollow"
+                    data-cy="footer-link-instagram"
+                    title="Instagram"
+                  >
+                    <SocialIcon
+                      src="/images/icons/instagram-white.svg"
+                      width={17}
+                      height={17}
+                      alt="Instagram"
+                    />
+                  </a>
                   <a
                     href="https://www.facebook.com/goodpartyorg"
                     target="_blank"
@@ -238,20 +270,6 @@ function Footer({ isCreators = false }) {
                       alt="Twitter"
                     />
                   </a>
-                  <a
-                    href="https://www.tiktok.com/@goodparty"
-                    target="_blank"
-                    rel="nofollow"
-                    data-cy="footer-link-tiktok"
-                    title="TikTok"
-                  >
-                    <SocialIcon
-                      src="/images/icons/tiktok-white.svg"
-                      width={21}
-                      height={10}
-                      alt="TikTok"
-                    />
-                  </a>
                 </Column>
               </Grid>
               <Grid item xs={12} md={4}>
@@ -261,7 +279,8 @@ function Footer({ isCreators = false }) {
                       <WhiteLink data-cy="footer-link-policy">
                         Privacy Policy
                       </WhiteLink>
-                    </Link>
+                    </Link>{' '}
+                    &copy; 2006-2021 Good Party. All rights reserved.
                   </Hidden>
                 </Column>
               </Grid>
@@ -269,17 +288,6 @@ function Footer({ isCreators = false }) {
           </SecondRow>
         </GrayInnerWrapper>
       </GrayWrapper>
-
-      <Wrapper>
-        <InnerWrapper
-          className={isCreators ? ' creatorsFooterContent' : ''}
-          data-cy="footer-description"
-        >
-          PAID FOR BY THE GOOD PARTY | GOODPARTY.ORG
-          <br />
-          NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE COMMITTEE.
-        </InnerWrapper>
-      </Wrapper>
     </>
   );
 }

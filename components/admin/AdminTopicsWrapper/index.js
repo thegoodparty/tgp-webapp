@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -46,11 +46,37 @@ function AdminTopicsWrapper({
   createCallback,
   topics,
   editCallback,
+  topicsFeedback,
   deleteCallback,
 }) {
   const [state, setState] = useState(initialState);
   const [editTopic, setEditTopic] = useState(false);
-
+  const [feedbackByTopic, setFeedbackByTopic] = useState({});
+  useEffect(() => {
+    if (topicsFeedback) {
+      const feedbackByTopicObj = {};
+      topics.map(topic => {
+        feedbackByTopicObj[topic.id] = {
+          helpful: 0,
+          notHelpful: 0,
+        };
+      });
+      topicsFeedback.map(feedback => {
+        if (!feedbackByTopicObj[feedback.topicId]) {
+          feedbackByTopicObj[feedback.topicId] = {
+            helpful: 0,
+            notHelpful: 0,
+          };
+        }
+        if (feedback.isHelpful) {
+          feedbackByTopicObj[feedback.topicId].helpful++;
+        } else {
+          feedbackByTopicObj[feedback.topicId].notHelpful++;
+        }
+        setFeedbackByTopic(feedbackByTopicObj);
+      });
+    }
+  }, [topicsFeedback]);
   const onChangeField = (key, e) => {
     setState({
       ...state,
@@ -86,13 +112,22 @@ function AdminTopicsWrapper({
         <br />
         <br />
         <Grid container spacing={2}>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <Header>Name</Header>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={4}>
             <Header>Description</Header>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
+            <Header>Helpful</Header>
+          </Grid>
+          <Grid item xs={2}>
+            <Header>Not Helpful</Header>
+          </Grid>
+          <Grid item xs={1}>
+            <Header>Actions</Header>
+          </Grid>
+          <Grid item xs={3}>
             <TextField
               fullWidth
               variant="outlined"
@@ -101,7 +136,7 @@ function AdminTopicsWrapper({
               onChange={e => onChangeField('name', e)}
             />
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={4}>
             <TextField
               fullWidth
               variant="outlined"
@@ -112,6 +147,7 @@ function AdminTopicsWrapper({
               value={state.description}
             />
           </Grid>
+          <Grid item xs={4} />
           <Grid item xs={1} style={{ alignSelf: 'center' }}>
             <PurpleButton
               fullWidth
@@ -127,7 +163,7 @@ function AdminTopicsWrapper({
                 <>
                   {editTopic.id === topic.id ? (
                     <>
-                      <Grid item xs={4}>
+                      <Grid item xs={3}>
                         <Field>
                           <Body>
                             <TextField
@@ -140,7 +176,7 @@ function AdminTopicsWrapper({
                           </Body>
                         </Field>
                       </Grid>
-                      <Grid item xs={7}>
+                      <Grid item xs={4}>
                         <Field>
                           <Body>
                             <TextField
@@ -155,6 +191,16 @@ function AdminTopicsWrapper({
                           </Body>
                         </Field>
                       </Grid>
+                      <Grid item xs={2}>
+                        <Field>
+                          <Body>{feedbackByTopic[topic.id]?.helpful}</Body>
+                        </Field>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Field>
+                          <Body>{feedbackByTopic[topic.id]?.notHelpful}</Body>
+                        </Field>
+                      </Grid>
                       <Grid item xs={1} style={{ alignSelf: 'center' }}>
                         <div className="text-center">
                           <FaSave size={18} onClick={handleEdit} />
@@ -163,14 +209,24 @@ function AdminTopicsWrapper({
                     </>
                   ) : (
                     <>
-                      <Grid item xs={4}>
+                      <Grid item xs={3}>
                         <Field>
                           <Body>{topic.name}</Body>
                         </Field>
                       </Grid>
-                      <Grid item xs={7}>
+                      <Grid item xs={4}>
                         <Field>
                           <Body>{topic.description}</Body>
+                        </Field>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Field>
+                          <Body>{feedbackByTopic[topic.id]?.helpful}</Body>
+                        </Field>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Field>
+                          <Body>{feedbackByTopic[topic.id]?.notHelpful}</Body>
                         </Field>
                       </Grid>
                       <Grid
@@ -204,6 +260,7 @@ AdminTopicsWrapper.propTypes = {
   editCallback: PropTypes.func,
   deleteCallback: PropTypes.func,
   topics: PropTypes.array,
+  topicsFeedback: PropTypes.array,
 };
 
 export default AdminTopicsWrapper;

@@ -15,8 +15,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import NotFound from 'containers/shared/NotFoundPage';
-import { validateLink } from 'helpers/linkHelper';
-import { logEvent } from 'services/AnalyticsService';
 
 import ProfileInfo from './ProfileInfo';
 import { H1, Body19, Body13 } from '../../shared/typogrophy';
@@ -26,6 +24,7 @@ import TopQuestions from '../../shared/TopQuestions';
 import SupportButton from './SupportButton';
 import ShareButton from './ShareButton';
 import Updates from './Updates';
+import SocialIcons from './SocialIcons';
 
 const Padder = styled.div`
   padding: 0;
@@ -89,10 +88,6 @@ const SectionContent = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
 
-const SocialLink = styled.a`
-  margin-right: 25px;
-`;
-
 const YoutubePlayer = styled(ReactPlayer)`
   width: unset !important;
 `;
@@ -136,6 +131,7 @@ function MainWrapper({
   total,
   trackShareCallback,
   experimentVariant,
+  helpfulCallback,
   topics,
 }) {
   const router = useRouter();
@@ -143,25 +139,10 @@ function MainWrapper({
   if (!candidate) {
     return <NotFound />;
   }
-  let website;
-  const {
-    headline,
-    about,
-    comparedCandidates,
-    facebook,
-    twitter,
-    tiktok,
-    snap,
-    heroVideo,
-  } = candidate;
+  const { headline, about, comparedCandidates, heroVideo } = candidate;
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
-    ({ website } = candidate.comparedCandidates.candidates[0]);
   }
-
-  const trackSocial = channel => {
-    logEvent('Click', channel, 'Candidate Social Links');
-  };
 
   return (
     <>
@@ -197,81 +178,12 @@ function MainWrapper({
           <SectionHeader style={{ marginBottom: '4px' }}>
             Candidate socials
           </SectionHeader>
-
-          <div style={{ marginTop: '24px' }}>
-            {facebook && (
-              <SocialLink
-                href={validateLink(facebook)}
-                target="_blank"
-                onClick={() => trackSocial('Facebook')}
-              >
-                <img
-                  src="/images/icons/purple-facebook.svg"
-                  alt="facebook"
-                  rel="nofollow"
-                />
-              </SocialLink>
-            )}
-            {twitter && (
-              <SocialLink
-                href={validateLink(twitter)}
-                target="_blank"
-                onClick={() => trackSocial('Twitter')}
-              >
-                <img
-                  src="/images/icons/purple-twitter.svg"
-                  alt="twitter"
-                  rel="nofollow"
-                />
-              </SocialLink>
-            )}
-            {tiktok && (
-              <SocialLink
-                href={validateLink(tiktok)}
-                target="_blank"
-                onClick={() => trackSocial('Tiktok')}
-              >
-                <img
-                  src="/images/icons/purple-tiktok.svg"
-                  alt="tiktok"
-                  rel="nofollow"
-                />
-              </SocialLink>
-            )}
-            {snap && (
-              <SocialLink
-                href={validateLink(snap)}
-                target="_blank"
-                onClick={() => trackSocial('Snap')}
-              >
-                <img
-                  src="/images/icons/purple-snap.svg"
-                  alt="snap"
-                  rel="nofollow"
-                />
-              </SocialLink>
-            )}
-            {website && (
-              <SocialLink
-                href={validateLink(website)}
-                target="_blank"
-                passhref
-                onClick={() => trackSocial('Website')}
-              >
-                <a target="_blank">
-                  <img
-                    src="/images/icons/globe-icon.svg"
-                    alt="snap"
-                    rel="nofollow"
-                  />
-                </a>
-              </SocialLink>
-            )}
-          </div>
+          <SocialIcons candidate={candidate} />
         </SectionWrapper>
         <SectionWrapper>
           <SectionHeader>Compare candidates in this race</SectionHeader>
           <ComparedCandidateCarousel
+            helpfulCallback={helpfulCallback}
             candidates={comparedCandidates?.candidates}
             candidate={candidate}
             topics={topics}
@@ -350,6 +262,7 @@ MainWrapper.propTypes = {
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   total: PropTypes.number,
   trackShareCallback: PropTypes.func,
+  helpfulCallback: PropTypes.func,
   topics: PropTypes.object,
 };
 

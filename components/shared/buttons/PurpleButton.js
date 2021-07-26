@@ -41,6 +41,9 @@ const StyledButton = styled(Button)`
       border: solid 2px #e0d4ea;
 
     }
+    &.submit {
+      padding: 12px 22px;
+    }
   }
 `;
 
