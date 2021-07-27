@@ -8,6 +8,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+
 import { Body11 } from '../shared/typogrophy';
 
 const Wrapper = styled.div`
@@ -15,7 +17,8 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   padding: 24px;
-  background: rgba(240, 236, 243, 0.9);
+  background: ${({ theme }) => theme.colors.purple};
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,6 +28,7 @@ const Inner = styled.div`
   text-align: center;
   max-width: 475px;
   margin: 0 auto;
+  background: rgba(240, 236, 243, 0.9);
   box-shadow: -2px 2px 5px rgba(224, 212, 234, 0.2),
     2px -2px 5px rgba(224, 212, 234, 0.2),
     -2px -2px 5px rgba(255, 255, 255, 0.9), 2px 2px 5px rgba(224, 212, 234, 0.9),
@@ -39,7 +43,8 @@ const Title = styled.div`
   line-height: 25px;
   font-weight: 700;
   margin-bottom: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-bottom: 20px;
   }
 `;
@@ -73,7 +78,7 @@ const Logo = styled.img`
   height: auto;
 `;
 
-const timerSeconds = 9;
+const timerSeconds = 4;
 
 function RedirectWrapper({ candidate }) {
   const router = useRouter();
@@ -100,14 +105,25 @@ function RedirectWrapper({ candidate }) {
     // when we update it
   }, [timeLeft]);
 
-  const handleRedirect = () => {
+  const handleRedirect = e => {
+    if (e) {
+      e.preventDefault();
+    }
     router.push(`/candidate/${firstName}=${lastName}/${id}`);
   };
   return (
     <Wrapper>
       <Inner>
-        <Title>This campaign is collecting endorsements using GOOD PARTY</Title>
-        <RedirectMsg>You will be sent there in {timeLeft}</RedirectMsg>
+        <Title>
+          This campaign is collecting endorsements for free on GOOD PARTY
+        </Title>
+        <RedirectMsg>
+          You will redirected to{' '}
+          <a href="#" onClick={handleRedirect}>
+            goodparty.org
+          </a>{' '}
+          in {timeLeft}
+        </RedirectMsg>
 
         <Skip onClick={handleRedirect}>Click to go now</Skip>
         <Free>Free software for free elections</Free>

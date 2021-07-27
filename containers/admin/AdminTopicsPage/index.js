@@ -32,7 +32,7 @@ export function AdminTopicsPage({
 
   useEffect(() => {
     dispatch(actions.loadTopicsAction());
-    dispatch(actions.loadTopicsFeedback());
+    dispatch(actions.loadTopicsFeedbackAction());
   }, []);
 
   const { topics, topicsFeedback } = adminTopicsPage;
