@@ -132,10 +132,14 @@ function TooltipModal({
     }
     setDefault();
   };
+  const handleClose = () => {
+    closeModalCallback();
+    setDefault();
+  }
   return (
-    <TgpDialog onClose={closeModalCallback} open={text}>
+    <TgpDialog onClose={handleClose} open={text}>
       <TopWrapper>
-        <TopClose onClick={closeModalCallback} />
+        <TopClose onClick={handleClose} />
       </TopWrapper>
       <H1>{topic}</H1>
       <Body style={{ marginTop: '20px' }}>{text}</Body>
