@@ -314,6 +314,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                     data-cy="logo"
                     width={173}
                     height={20}
+                    alt="GOOD PARTY"
                   />
                 ) : (
                   <Logo
@@ -321,6 +322,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                     data-cy="logo"
                     width={173}
                     height={20}
+                    alt="GOOD PARTY"
                   />
                 )}
               </a>
