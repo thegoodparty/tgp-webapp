@@ -63,6 +63,7 @@ class CustomDocument extends NextDocument {
             href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap"
             rel="stylesheet"
           />
+          <link rel="manifest" href="/manifest.json" />
 
           <link rel="icon" href="/favicon.ico" />
           <link
