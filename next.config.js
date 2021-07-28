@@ -1,6 +1,7 @@
 require('dotenv').config();
+const withPWA = require('next-pwa');
 
-module.exports = {
+module.exports = withPWA({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -21,4 +22,7 @@ module.exports = {
   cssLoaderOptions: {
     url: false,
   },
-};
+  pwa: {
+    dest: 'public',
+  },
+});
