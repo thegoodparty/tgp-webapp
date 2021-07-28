@@ -113,11 +113,11 @@ ${race} | Crowd-voting on GOOD PARTY`;
 ${race}.`;
 
   const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment('candidate-order', 'EgYaDqBHTpast2N8btQIsA', type => {
-      setExperimentVariant(type);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getExperiment('candidate-order', 'EgYaDqBHTpast2N8btQIsA', type => {
+  //     setExperimentVariant(type);
+  //   });
+  // }, []);
   // console.log('experimentVariant', experimentVariant);
 
   const { topics } = ssrState;

@@ -158,7 +158,7 @@ class CustomDocument extends NextDocument {
           {/*  }}*/}
           {/*/>*/}
 
-          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />
+          {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />*/}
         </Head>
         <body>
           <Main />
@@ -191,32 +191,31 @@ class CustomDocument extends NextDocument {
         })(window,document,window['_fs_namespace'],'script','user');
 
           // fb pixel
-          !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '1530862867115121');
-        }`,
+        //   !function(f,b,e,v,n,t,s)
+        // {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        //   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        //   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        //   n.queue=[];t=b.createElement(e);t.async=!0;
+        //   t.src=v;s=b.getElementsByTagName(e)[0];
+        //   s.parentNode.insertBefore(t,s)}(window, document,'script',
+        //   'https://connect.facebook.net/en_US/fbevents.js');
+        //   fbq('init', '1530862867115121');
+        }
+        `,
             }}
           />
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: `
-            <img
-              height="1"
-              width="1"
-              style="display:none"
-              src="https://www.facebook.com/tr?id=1530862867115121&ev=PageView&noscript=1"
-            />
-<!--            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K2HCFR7"-->
-<!--                  height="0" width="0" style="display:none;visibility:hidden"></iframe>-->
-          `,
-            }}
-          />
+{/*          <noscript*/}
+{/*            dangerouslySetInnerHTML={{*/}
+{/*              __html: `*/}
+{/*            <img*/}
+{/*              height="1"*/}
+{/*              width="1"*/}
+{/*              style="display:none"*/}
+{/*              src="https://www.facebook.com/tr?id=1530862867115121&ev=PageView&noscript=1"*/}
+{/*            />*/}
+{/*          `,*/}
+{/*            }}*/}
+{/*          />*/}
 
           <script
             type="text/javascript"
