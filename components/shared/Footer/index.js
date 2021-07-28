@@ -217,7 +217,7 @@ function Footer({ isCreators = false }) {
                   <a
                     href="https://www.tiktok.com/@goodparty"
                     target="_blank"
-                    rel="nofollow"
+                    rel="noopener noreferrer nofollow"
                     data-cy="footer-link-tiktok"
                     title="TikTok"
                   >
@@ -231,7 +231,7 @@ function Footer({ isCreators = false }) {
                   <a
                     href="https://www.instagram.com/goodpartyorg/"
                     target="_blank"
-                    rel="nofollow"
+                    rel="noopener noreferrer nofollow"
                     data-cy="footer-link-instagram"
                     title="Instagram"
                   >
@@ -245,7 +245,7 @@ function Footer({ isCreators = false }) {
                   <a
                     href="https://www.facebook.com/goodpartyorg"
                     target="_blank"
-                    rel="nofollow"
+                    rel="noopener noreferrer nofollow"
                     data-cy="footer-link-facebook"
                     title="Facebook"
                   >
@@ -259,7 +259,7 @@ function Footer({ isCreators = false }) {
                   <a
                     href="https://twitter.com/goodpartyorg"
                     target="_blank"
-                    rel="nofollow"
+                    rel="noopener noreferrer nofollow"
                     data-cy="footer-link-twitter"
                     title="Twitter"
                   >

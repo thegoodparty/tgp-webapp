@@ -108,7 +108,7 @@ function ComparedCandidate({
       <CandidateNameWrapper>
         <CandidateName>{name}</CandidateName>
       </CandidateNameWrapper>
-      <a href={website} target="_blank" rel="nofollow">
+      <a href={website} target="_blank" rel="noopener noreferrer nofollow">
         <Website>
           <span>CAMPAIGN WEBSITE</span>
           &nbsp;

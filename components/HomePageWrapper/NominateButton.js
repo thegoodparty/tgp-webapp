@@ -23,7 +23,7 @@ const NominateButton = ({ style = {} }) => {
     <a
       href="https://docs.google.com/forms/d/e/1FAIpQLSe78SJOH5edK4jTyOWVhs-b8AIf9_ElONlc5opPgzHnnpm_0Q/viewform?usp=sf_link"
       target="_blank"
-      rel="nofollow"
+      rel="noopener noreferrer nofollow"
     >
       <PurpleButton className="outline" style={style}>
         <StyledBody>NOMINATE A CANDIDATE</StyledBody>

@@ -100,7 +100,7 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe78SJOH5edK4jTyOWVhs-b8AIf9_ElONlc5opPgzHnnpm_0Q/viewform?usp=sf_link"
             target="_blank"
-            rel="nofollow"
+            rel="noopener noreferrer nofollow"
           >
             <SeeMore style={{ marginTop: '12px' }}>
               NOMINATE A CANDIDATE

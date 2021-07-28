@@ -18,7 +18,8 @@ const StyledH3 = styled(H3)`
   margin-top: 48px;
   margin-bottom: 16px;
   position: relative;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-top: 66px;
   }
 `;
@@ -59,7 +60,7 @@ function CandidatesSection({ candidates }) {
       <a
         href="https://docs.google.com/forms/d/e/1FAIpQLSe78SJOH5edK4jTyOWVhs-b8AIf9_ElONlc5opPgzHnnpm_0Q/viewform?usp=sf_link"
         target="_blank"
-        rel="nofollow"
+        rel="noopener noreferrer nofollow"
       >
         <Nominate>NOMINATE A CANDIDATE</Nominate>
       </a>

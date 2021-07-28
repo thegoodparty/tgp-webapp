@@ -26,7 +26,8 @@ const Photo = styled.img`
   width: 55px;
   flex-basis: 55px;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     height: 100px;
     width: 100px;
     flex-basis: 100px;
@@ -66,7 +67,11 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
             <Row>
               <div style={{ marginRight: '16px' }}>
                 <Body className="bold600" data-cy="event-title">
-                  <a href={locationLink} target="_blank" rel="nofollow">
+                  <a
+                    href={locationLink}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                  >
                     {title}
                   </a>
                 </Body>
@@ -88,7 +93,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
                         href={locationLink}
                         target="_blank"
                         data-cy="event-location-link"
-                        rel="nofollow"
+                        rel="noopener noreferrer nofollow"
                       >
                         {location}
                       </a>
@@ -133,7 +138,7 @@ const EventSnippet = ({ event, isPastEvent = false }) => {
           href={locationLink}
           target="_blank"
           data-cy="event-interested"
-          rel="nofollow"
+          rel="noopener noreferrer nofollow"
         >
           <ButtonWrapper>
             <OutlinedButton fullWidth active>

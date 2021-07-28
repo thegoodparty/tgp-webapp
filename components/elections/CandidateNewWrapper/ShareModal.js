@@ -369,7 +369,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
                   trackShare(channel.label);
                 }}
                 target="_blank"
-                rel="nofollow"
+                rel="noopener noreferrer nofollow"
               >
                 <IconItem>
                   <IconWrapper className={channel.className}>
@@ -406,7 +406,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
                   trackShare(channel.label);
                 }}
                 target="_blank"
-                rel="nofollow"
+                rel="noopener noreferrer nofollow"
               >
                 <IconItem>
                   <IconWrapper className={channel.className}>
