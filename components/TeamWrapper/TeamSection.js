@@ -217,7 +217,7 @@ function TeamSection() {
                       src={`images/team/${member.folder}/party.jpg`}
                       className="member selected"
                     />
-                    <br/>
+                    <br />
                     <Body11>{member.name}</Body11>
                     <Body11>{member.role}</Body11>
                   </Member>
@@ -233,9 +233,7 @@ function TeamSection() {
               {team.map((member, index) => (
                 <Grid item xs={12} md={4} key={index}>
                   <Member>
-                    <Img
-                      src={`images/team/${member.folder}/straight.jpg`}
-                    />
+                    <Img src={`images/team/${member.folder}/straight.jpg`} />
                     <Body11>{member.name}</Body11>
                   </Member>
                 </Grid>
