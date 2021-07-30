@@ -33,7 +33,6 @@ const logErrorAction = (message, error) => ({
   error,
 });
 
-
 export default {
   loadContentAction,
   loadContentActionSuccess,

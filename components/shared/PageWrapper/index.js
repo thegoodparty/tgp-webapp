@@ -48,8 +48,12 @@ const HomeWrapper = styled.div`
   }
 
   &.purple-nav {
-  padding: 0;
-  background-color: ${({ theme }) => theme.colors.purple};
+    padding: 0;
+    background-color: ${({ theme }) => theme.colors.purple};
+  }
+
+  &.no-padding {
+    padding: 0;
   }
 `;
 function PageWrapper({
@@ -62,6 +66,7 @@ function PageWrapper({
   topBanner,
   isFullWidth = false,
   purpleNav = false,
+  noPadding = false,
 }) {
   const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
   let className = '';
@@ -79,7 +84,7 @@ function PageWrapper({
         purple={purple}
         style={wrapperStyles}
         noHeader={hideNav}
-        className={purpleNav && 'purple-nav'}
+        className={`${purpleNav && 'purple-nav'} ${noPadding && 'no-padding '}`}
       >
         {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
         {children}

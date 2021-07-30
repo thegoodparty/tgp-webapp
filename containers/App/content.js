@@ -1,4 +1,1565 @@
 const content = {
+  "faqArticles": [
+    {
+      "title": "Is Good Party a real political party?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "No. Good Party is NOT a political party. We are a public benefit corporation and our mission is to make people matter more than money in democracy. We are building free, open-source technology to upgrade the operating system of our democracy. ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Our logo",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://goodparty.org/faqs?article=U4dbmGezqNUIDdGriL5oA"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " hints at our motives!",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We are being built by a ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "diverse, mostly volunteer team",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://goodparty.org/faqs?article=579kihjyIPloNaEw02rniq"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ". Our app allow voters to organize ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "crowd-voting campaigns",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " that gather organic momentum and allow good candidates with great ideas to get elected. We are providing technology and tools that empower ordinary people to actively participate and have impact on democracy. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected. By providing free, open-source software, those candidates do not have to depend on big money sources to spread their ideas and gather supporters. We do this by showcasing grass-roots, independent candidates and providing a crowd-voting platform that helps people spread the word and turn social media supporters into actual voters.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "pages": [
+        "party"
+      ],
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "48a7xazZc0eN4PXM20Jtel"
+    },
+    {
+      "title": "Who is building Good Party?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Good Party is an open-source project, run by a ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "passionate and diverse team",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://goodparty.org/faqs?article=579kihjyIPloNaEw02rniq"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ". We believe that people are good and if empowered by technology, instead of enslaved by it, we can create a much better world for all. ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "?article=U4dbmGezqNUIDdGriL5oA"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We believe that commercial interests and power motives often undercut the vast potential of technology to help humanity. So, we've removed both money and power as motives and set ourselves up as a public benefit corporation whose mission is to make people matter more than money in our democracy.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Our organization's stated public benefit is to empower eligible voters and non-voters who are not represented by the two major U.S. political parties. Good Party provides software and related technology and consulting services to independent and third-party voters, candidates, and political organizations that cannot be serviced today by vendors that strictly serve one of the two major parties.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We are creating the infrastructure and people-powered movement necessary to enable Good Certified, Indie candidates to run and win elections. We do so by using technology and the power of the crowd to overcome the tired, old ‘wasted vote’ argument used by establishment politicians over the past century. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Our vision is to build a more robust, human-centered democracy. We do so by enabling more, better choices of representation for voters, and creating real competition against the broken two-party Duopoly. Not Red, not Blue, Good.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The current system allows corrupt career politicians of either major party to hold onto power, election after election, setting the rules of society to benefit themselves and the big money sources that paid to get them elected.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We're trying to make possible a kind of civic tour of duty, where good, ordinary, capable people can step up and serve as honest representatives. Where people can be given a chance to truly serve society and move everyone towards a more just and sustainable future. There are several steps to get there, but it starts with this simple Good Party app we offer you today.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The Good Party's main financial backing to date has come from one of our project co-founders, ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://farhadmohit.com"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "who is also a full-time volunteer here. We are committed to being open and transparent in all matters. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Good Party seeks as many diversely talented creative people as possible to help us build something truly good!  ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Interested? Ping us!",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "pages": [
+        "party"
+      ],
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
+      "id": "33lnRLO7M0gvfqVkoVxADO"
+    },
+    {
+      "title": "Our team",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "heading-3",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Good Party People",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Tomer Almog",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/tomer-almog-742b6b40/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Engineering",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Jared Alper",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/jared-alper-00606093/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Political ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Peter Asaro",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/peter-asaro-a0a725191/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Engineering",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/jedwheeler/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Jed Wheeler",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/jedwheeler/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Product",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Cameron Sadeghi",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/cameron-sadeghi-9662081b/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Politics Associate",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Dan Shipley",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/danielshipley/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Design / User Experience",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Whitney Smith",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/whitney-smith-599802143/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Digital Marketing",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Zak Tomich",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/zaktomich/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Strategy / Operations",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Richie Alicea",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/richiealicea/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Political",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "heading-4",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Volunteers",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Victoria Mitchell",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/victoriapmitchell/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Mobilization",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " ",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Navid Aslani",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/navidaslani/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " ",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "- Operations",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Kai Gradert",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/kaigradert/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Product / Design",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Kam Kafi",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/kamkafi/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Creator Relations",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Farhad Mohit",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/farhad667/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Product",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Brian O'Neil",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/brian-o-neil-a8b5283/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - HR / FEC / Finance",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Jean Rousseau",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/jeanrousseau/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " ",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "- Field Operations",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Gobi Rahimi ",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/gobi-m-rahimi-3725721/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "- Creator ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Interested in joining us? \n💪 ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " ",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Get in touch! ",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=sf_link"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
+      "id": "579kihjyIPloNaEw02rniq"
+    },
+    {
+      "title": "How crowd-voting works",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Crowd-voting empowers people to endorse candidates they like, and enlist others' support— rather than just asking people to donate money.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "A crowd-voting campaign makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against establishment politicians.  ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Each crowd-voting campaign brings much needed transparency to an election by showing how many people are endorsing a candidate, ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "how many votes are needed to win",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "?article=4qI5UjYbJmivzBOy1y74Z4"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ", and how many other likely voters there are for a candidate.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "In this way, ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "nobody has to worry about wasting their vote",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ", because everyone knows if a candidate they like can can win ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "before anyone goes out and actually votes!",
+                "marks": [
+                  {
+                    "type": "italic"
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their options - not just pick the 'lesser of two evils' candidate.  ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "There is no cost or downside to joining a crowd-voting campaign using Good Party. Every crowd-voting campaign on Good Party is absolutely free for both people and candidates.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "pages": [
+        "election",
+        "party",
+        "district"
+      ],
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "1ic6T6fhH0jZLNvX5aZkDe"
+    },
+    {
+      "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "No. We are NOT a political party. Your party affiliation is up to you and you always have the choice to vote for whomever you like. Good Party just allows you to see more options ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "before ",
+                "marks": [
+                  {
+                    "type": "italic"
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "you vote.  ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "This way you can see whether your vote can be combined with others to elect good, indie or 3rd party candidates you might like more than the establishment candidates who get reelected over and over again.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "7jOZqjB2BBfvymyAJ4IQWe",
+        "fields": {
+          "name": "Joining Good Party",
+          "order": 20
+        }
+      },
+      "id": "7Mrfo6spgrgpwAFe83Oph4"
+    },
+    {
+      "title": "What is Good Party's minimum standard of civility?",
+      "articleBody": {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "We vet all candidates to ensure that they have ",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "value": "not",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": " engaged in a pattern of activities or ",
+                "nodeType": "text"
+              },
+              {
+                "data": {
+                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
+                },
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "hate-speech",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "hyperlink"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": " encouraging intolerance, discrimination or hostility towards a constitutionally or state-protected group or class.",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          }
+        ],
+        "nodeType": "document"
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "66i4vRRLkX1yf8MnCQvYSb"
+    },
+    {
+      "title": "What does it mean to \"endorse\" a candidate?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Endorsements are an easy way to show your support for Good, Independent and 3rd party candidates. Then you can share your endorsement either privately with family and friends or publicly via social channels. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Establishment politicians typically tout endorsements from big money donors and career politicians interested in maintaining the status quo. Good Party endorsements are a way for the people to take back the power. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "By endorsing and sharing, people can organically get behind good, indie candidates and quickly grow the support needed to show those candidates are viable and can win.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "3IWiTNf7gKItHkLB0Sm6q3"
+    },
+    {
+      "title": "Anti-Corruption Act",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Good Certified candidates agree to abide by the American Anti-Corruption Act as a candidate and enact it as an elected official. Its four core elements are:",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(1) Stop political bribery.\n(2) End secret money.\n(3) Fix our broken elections.\n(4) Enforce the rules.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Additionally, in order to eliminate corruption, Good Party endorses candidates who have nothing to hide and won’t just give lip-service to transparency and accountability. If elected, Good Party Certified candidates are expected to operate consistent with the following to the fullest extent possible:",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(1) Make as much of your official and campaign meeting calendars available and open online for constituents to see.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(2) Continuously pursue innovations in communication technology to interact with and inform constituents - including but not limited to live-streaming every possible meeting and allocating a reasonable portion of official and campaign budget to the technology (mobile apps, phone, body cam, Youtube, Facebook Live, etc.) necessary to do so.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(3) Make all recording of my meetings close-captioned, archived and keyword searchable and available online - to the extent legally allowable - for all. For any official meeting not legally permitted to be live-streamed or recorded, I pledge to summarize the meeting's purpose and content to the full extent allowed.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(4) Report and disclose to appropriate authorities (Constituents, FEC, Law Enforcement, etc.) any attempts to unfairly influence me or members of my congressional or campaign staff within 48 hours. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "7jm2j9gapWwEoVwVD3VX6o"
+    }
+  ],
   "meetTheCandidates": {
     "youtubeId": "183Otqkf8So",
     "videoPlaceholder": "//images.ctfassets.net/g08ybc4r0f4b/5fDZlDzjGD3QWSSp6jhULu/9342c2fa2415cf713163163b6c605a96/whois.jpg"
@@ -2151,1457 +3712,6 @@ const content = {
       ]
     }
   },
-  "faqArticles": [
-    {
-      "title": "Is Good Party a real political party?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "No. Good Party is not an actual political party. We are a free, non-commercial platform and set of open-source tools, being built by a ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "diverse, mostly volunteer team",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=33lnRLO7M0gvfqVkoVxADO"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ". Our app allow voters to organize ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "crowd-voting campaigns",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " that gather organic momentum and allow good candidates with great ideas to get elected. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Our mission is to make people matter more than money in democracy by providing the latest technology and tools that empower ordinary people to actively participate and have impact on democracy. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected. By providing free, open-source software, those candidates do not have to depend on big money sources to spread their ideas and gather supporters. We do this by showcasing grass-roots, independent candidates and providing a crowd-voting platform that helps people spread the word and turn social media supporters into actual voters.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "We are organized under I.R.C. Section 527 as a non-profit, tax exempt, political action committee, but ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "we run more like a technology start-up",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=33lnRLO7M0gvfqVkoVxADO"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " that has a public good interest, rather than a profit motive.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "pages": [
-        "party"
-      ],
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "48a7xazZc0eN4PXM20Jtel"
-    },
-    {
-      "title": "Who is building Good Party?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Good Party is a non-profit, open-source project, run by a ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "passionate and diverse team",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=579kihjyIPloNaEw02rniq"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ". We believe that people are good and if empowered by technology, instead of enslaved by it, we can create a much better world for all. ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Our logo",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=U4dbmGezqNUIDdGriL5oA"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " hints at our motives!",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "We believe that commercial interests and power motives often undercut the vast potential of technology to help humanity. So, we've removed both money and power as motives and set ourselves up as a non-profit, open source project, where as many people as possible can be ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "pro bono",
-                "marks": [
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " contributors and volunteers.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "This way, we can all just focus on building the best platform possible needed to take on humanity's biggest barrier to progress: the corruption of money and power in politics. The current system allows corrupt career politicians of either major party to hold onto power, election after election, setting the rules of society to benefit themselves and the big money sources that paid to get them elected.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Our mission is enormous and exciting: We're building a free, open, non-commercial foundational platform that upgrades the infrastructure of democracy everywhere. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "We're trying to make possible a kind of civic tour of duty, where good, ordinary, capable people can step up and serve as honest representatives. Where people can be given a chance to truly serve society and move everyone towards a more just and sustainable future. There are several steps to get there, but it starts with this simple Good Party app we offer you today.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The Good Party's main financial backing to date has come from one of our project co-founders, ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://farhadmohit.com"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": "who is also a full-time volunteer here. We are committed to being open and transparent in all matters. You can see our disclosures here at ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "The Good Party Financial Summary",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.fec.gov/data/committee/C00707398/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " on the Federal Election Commission (FEC) website.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Good Party seeks as many diversely talented creative people as possible to help us build something truly good!  ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Interested? Ping us!",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "pages": [
-        "party"
-      ],
-      "category": {
-        "id": "1x8sreeqPN0PK929WRNw4I",
-        "fields": {
-          "name": "About Us",
-          "order": 300
-        }
-      },
-      "id": "33lnRLO7M0gvfqVkoVxADO"
-    },
-    {
-      "title": "Our team",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "heading-3",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Good Party People",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Tomer Almog",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/tomer-almog-742b6b40/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Engineering",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Jared Alper",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/jared-alper-00606093/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Political ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Peter Asaro",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/peter-asaro-a0a725191/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Engineering",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Nick Greene",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/njdgx/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Product",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Cameron Sadeghi",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/cameron-sadeghi-9662081b/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Politics Associate",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Dan Shipley",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/danielshipley/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Design / User Experience",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Whitney Smith",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/whitney-smith-599802143/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Digital Marketing",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Zak Tomich",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/zaktomich/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Strategy / Operations",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "heading-4",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Volunteers",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Navid Aslani",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/navidaslani/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "- HR / Operations",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Kai Gradert",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/kaigradert/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Product / Design",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Kam Kafi",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/kamkafi/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Creator Relations",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Farhad Mohit",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/farhad667/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Product",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Brian O'Neil",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/brian-o-neil-a8b5283/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - HR / FEC / Finance",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Jean Rousseau",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/jeanrousseau/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "- Field Operations",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Interested in joining us? \n💪 ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Get in touch! ",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=sf_link"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "category": {
-        "id": "1x8sreeqPN0PK929WRNw4I",
-        "fields": {
-          "name": "About Us",
-          "order": 300
-        }
-      },
-      "id": "579kihjyIPloNaEw02rniq"
-    },
-    {
-      "title": "How crowd-voting works",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Crowd-voting empowers people to endorse candidates they like, and enlist others' support— rather than just asking people to donate money.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "A crowd-voting campaign makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against establishment politicians.  ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Each crowd-voting campaign brings much needed transparency to an election by showing how many people are endorsing a candidate, ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "how many votes are needed to win",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=4qI5UjYbJmivzBOy1y74Z4"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ", and how many other likely voters there are for a candidate.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "In this way, ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "nobody has to worry about wasting their vote",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ", because everyone knows if a candidate they like can can win ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "before anyone goes out and actually votes!",
-                "marks": [
-                  {
-                    "type": "italic"
-                  },
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their options - not just pick the 'lesser of two evils' candidate.  ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "There is no cost or downside to joining a crowd-voting campaign using Good Party. Every crowd-voting campaign on Good Party is absolutely free for both people and candidates.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "pages": [
-        "election",
-        "party",
-        "district"
-      ],
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "1ic6T6fhH0jZLNvX5aZkDe"
-    },
-    {
-      "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
-      "articleBody": {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "No. We are NOT a political party. Your party affiliation is up to you and you always have the choice to vote for whomever you like. Good Party just allows you to see more options ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "italic"
-                  },
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "value": "before ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": "you vote.  ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "This way you can see whether your vote can be combined with others to elect good, indie or 3rd party candidates you might like more than the establishment candidates who get reelected over and over again.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          }
-        ],
-        "nodeType": "document"
-      },
-      "category": {
-        "id": "7jOZqjB2BBfvymyAJ4IQWe",
-        "fields": {
-          "name": "Joining Good Party",
-          "order": 20
-        }
-      },
-      "id": "7Mrfo6spgrgpwAFe83Oph4"
-    },
-    {
-      "title": "What is Good Party's minimum standard of civility?",
-      "articleBody": {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "We vet all candidates to ensure that they have ",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "value": "not",
-                "nodeType": "text"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": " engaged in a pattern of activities or ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "hate-speech",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": " encouraging intolerance, discrimination or hostility towards a constitutionally or state-protected group or class.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          }
-        ],
-        "nodeType": "document"
-      },
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "66i4vRRLkX1yf8MnCQvYSb"
-    },
-    {
-      "title": "What does it mean to \"endorse\" a candidate?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Endorsements are an easy way to show your support for Good, Independent and 3rd party candidates. Then you can share your endorsement either privately with family and friends or publicly via social channels. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Establishment politicians typically tout endorsements from big money donors and career politicians interested in maintaining the status quo. Good Party endorsements are a way for the people to take back the power. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "By endorsing and sharing, people can organically get behind good, indie candidates and quickly grow the support needed to show those candidates are viable and can win. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "3IWiTNf7gKItHkLB0Sm6q3"
-    },
-    {
-      "title": "Anti-Corruption Act",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Good Certified candidates agree to abide by the American Anti-Corruption Act as a candidate and enact it as an elected official. Its four core elements are:",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(1) Stop political bribery.\n(2) End secret money.\n(3) Fix our broken elections.\n(4) Enforce the rules.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Additionally, in order to eliminate corruption, Good Party endorses candidates who have nothing to hide and won’t just give lip-service to transparency and accountability. If elected, Good Party Certified candidates are expected to operate consistent with the following to the fullest extent possible:",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(1) Make as much of your official and campaign meeting calendars available and open online for constituents to see.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(2) Continuously pursue innovations in communication technology to interact with and inform constituents - including but not limited to live-streaming every possible meeting and allocating a reasonable portion of official and campaign budget to the technology (mobile apps, phone, body cam, Youtube, Facebook Live, etc.) necessary to do so.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(3) Make all recording of my meetings close-captioned, archived and keyword searchable and available online - to the extent legally allowable - for all. For any official meeting not legally permitted to be live-streamed or recorded, I pledge to summarize the meeting's purpose and content to the full extent allowed.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(4) Report and disclose to appropriate authorities (Constituents, FEC, Law Enforcement, etc.) any attempts to unfairly influence me or members of my congressional or campaign staff within 48 hours. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "7jm2j9gapWwEoVwVD3VX6o"
-    }
-  ],
   "articleCategories": [
     {
       "fields": {
