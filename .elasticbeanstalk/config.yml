@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: gp-site-prod
+    environment: gp-site-prod-alpha
   develop:
     environment: gp-site-dev-alpha
 environment-defaults:
