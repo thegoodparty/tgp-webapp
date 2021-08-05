@@ -472,7 +472,11 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
                 "data": {}
               },
               {
@@ -481,7 +485,11 @@ const content = {
                   {
                     "nodeType": "text",
                     "value": "",
-                    "marks": [],
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
                     "data": {}
                   }
                 ],
@@ -492,7 +500,11 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
                 "data": {}
               },
               {
@@ -501,7 +513,11 @@ const content = {
                   {
                     "nodeType": "text",
                     "value": "Jed Wheeler",
-                    "marks": [],
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
                     "data": {}
                   }
                 ],
@@ -680,7 +696,11 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
                 "data": {}
               },
               {
@@ -689,7 +709,11 @@ const content = {
                   {
                     "nodeType": "text",
                     "value": "Richie Alicea",
-                    "marks": [],
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
                     "data": {}
                   }
                 ],
@@ -724,7 +748,11 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
                 "data": {}
               },
               {
@@ -733,7 +761,11 @@ const content = {
                   {
                     "nodeType": "text",
                     "value": "Victoria Mitchell",
-                    "marks": [],
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
                     "data": {}
                   }
                 ],

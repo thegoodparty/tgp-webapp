@@ -7,7 +7,7 @@ export default function LP({ ssrState }) {
 export async function getServerSideProps() {
   try {
     const api = tgpApi.contentByKey;
-    const url = `${api.url}?key=goodPracticesPage`;
+    const url = `${api.url}?key=teamPage`;
     // const url = `${api.url}?key=teamPage`;
     const res = await fetch(url);
 

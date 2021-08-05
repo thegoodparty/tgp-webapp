@@ -15,12 +15,26 @@ import { MaxContent } from './index';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
-  padding: 48px 0;
+  padding: 32px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 64px 0;
+  }
 `;
 
 const Members = styled.div`
   width: 600px;
   margin: 24px auto;
+`;
+
+const StyledH2 = styled.h2`
+  font-size: 27px;
+  line-height: 35px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 40px;
+    line-height: 48px;
+  }
 `;
 
 const Member = styled.div`
@@ -162,7 +176,7 @@ function TeamSection() {
   return (
     <Wrapper>
       <MaxContent className="text-center">
-        <H2>Meet our team</H2>
+        <StyledH2>Meet our team</StyledH2>
         <br />
         <Hidden smDown>
           <Members onMouseLeave={() => setHovered(false)}>
