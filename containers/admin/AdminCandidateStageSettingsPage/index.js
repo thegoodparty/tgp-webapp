@@ -34,11 +34,7 @@ export function AdminCandidateStageSettingsPage({ ssrState, saveCallback }) {
   return (
     <div>
       <Helmet>
-        <title>AdminCandidateStageSettingsPage</title>
-        <meta
-          name="description"
-          content="Description of AdminCandidateStageSettingsPage"
-        />
+        <title>Admin Candidate Stage Settings</title>
       </Helmet>
       <AdminCandidateSettingsWrapper {...childProps} />
     </div>
