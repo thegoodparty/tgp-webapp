@@ -24,6 +24,7 @@ const NavWrapper = ({ pathname, user, trackShareCallback, purpleNav }) => (
     </Hidden>
 
     {user?.isAdmin && <AdminMenu />}
+    {user?.isAdmin === false && user?.candidate && <AdminMenu candidateMode />}
   </>
 );
 

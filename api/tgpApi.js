@@ -358,5 +358,12 @@ const api = {
       method: 'GET',
     },
   },
+  candidateUser: {
+    find: {
+      url: `${base}candidate-user`,
+      method: 'GET',
+      withAuth: true,
+    },
+  },
 };
 export default api;
