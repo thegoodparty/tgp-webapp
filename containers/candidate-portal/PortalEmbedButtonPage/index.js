@@ -1,37 +1,45 @@
 /**
  *
- * CandidatePortalHomePage
+ * PortalEmbedButtonPage
  *
  */
 
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import TgpHelmet from 'components/shared/TgpHelmet';
-import CandidatePortalHomeWrapper from 'components/candidate-portal/CandidatePortalHomeWrapper';
 import { getUserCookie } from 'helpers/cookieHelper';
-
+import TgpHelmet from 'components/shared/TgpHelmet';
+import PortalEmbedButtonWrapper from 'components/candidate-portal/PortalEmbedButtonWrapper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectCandidatePortalHomePage from './selectors';
+import makeSelectPortalEmbedButtonPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import portalHomeActions from '../CandidatePortalHomePage/actions';
+import portalHomeSaga from '../CandidatePortalHomePage/saga';
+import portalHomeReducer from '../CandidatePortalHomePage/reducer';
+import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
-import actions from './actions';
 
-export function CandidatePortalHomePage({
+export function PortalEmbedButtonPage({
   userState,
   dispatch,
   candidatePortalHomePage,
 }) {
-  useInjectReducer({ key: 'candidatePortalHomePage', reducer });
-  useInjectSaga({ key: 'candidatePortalHomePage', saga });
+  useInjectReducer({ key: 'portalEmbedButtonPage', reducer });
+  useInjectSaga({ key: 'portalEmbedButtonPage', saga });
+
+  useInjectReducer({
+    key: 'candidatePortalHomePage',
+    reducer: portalHomeReducer,
+  });
+  useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
+
   const { candidate } = candidatePortalHomePage;
   let { user } = userState;
   if (!user) {
@@ -42,7 +50,7 @@ export function CandidatePortalHomePage({
       if (!user.isAdmin && !user.candidate) {
         dispatch(push('/'));
       }
-      dispatch(actions.findCandidate());
+      dispatch(portalHomeActions.findCandidate());
     }
   }, [user]);
 
@@ -54,12 +62,12 @@ export function CandidatePortalHomePage({
   return (
     <div>
       <TgpHelmet title="Candidate Portal" description="Candidate Portal" />
-      {user && <CandidatePortalHomeWrapper {...childProps} />}
+      {user && <PortalEmbedButtonWrapper {...childProps} />}
     </div>
   );
 }
 
-CandidatePortalHomePage.propTypes = {
+PortalEmbedButtonPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
@@ -68,6 +76,7 @@ CandidatePortalHomePage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   candidatePortalHomePage: makeSelectCandidatePortalHomePage(),
   userState: makeSelectUser(),
+  portalEmbedButtonPage: makeSelectPortalEmbedButtonPage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -84,4 +93,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(CandidatePortalHomePage);
+)(PortalEmbedButtonPage);
