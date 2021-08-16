@@ -51,7 +51,9 @@ function PortalEmbedButtonWrapper({ candidate }) {
             </Body>
             <br />
             <br />
-            <Body>Simply add the following code to your site:</Body>
+            <Body>
+              Simply add one of the following code snippets to your site:
+            </Body>
             <CopyCodeSection candidates={[]} candidateSelected={candidate.id} />
             <br />
             <br />
