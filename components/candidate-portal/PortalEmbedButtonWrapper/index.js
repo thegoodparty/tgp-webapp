@@ -11,6 +11,9 @@ import styled from 'styled-components';
 import { Body, H2 } from '../../shared/typogrophy';
 import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
 import CopyCodeSection from '../../GoodPracticesWrapper/CopyCodeSection';
+import contentfulHelper, {
+  CmsContentWrapper,
+} from '../../../helpers/contentfulHelper';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -32,22 +35,19 @@ const Img = styled.img`
     inset -1px -1px 1px rgba(224, 212, 234, 0.5);
 `;
 
-function PortalEmbedButtonWrapper({ candidate }) {
+function PortalEmbedButtonWrapper({ candidate, content }) {
   return (
     <PortalPageWrapper>
       {candidate && (
         <Wrapper>
           <div>
-            <H2>Embed our endorse button on your site</H2>
+            <H2>{content.title}</H2>
             <br />
             <br />
             <Body>
-              Sure you need donations, but votes win elections! Start collecting
-              endorsements by embedding this button on your website, social
-              media and in campaign emails. Where there’s a Donate button on
-              your site there should also be an Endorse button. Don't let money
-              get in the way of people supporting and growing awareness about
-              your campaign!
+              <CmsContentWrapper>
+                {contentfulHelper(content.instructions)}
+              </CmsContentWrapper>
             </Body>
             <br />
             <br />
@@ -73,6 +73,7 @@ function PortalEmbedButtonWrapper({ candidate }) {
 
 PortalEmbedButtonWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  content: PropTypes.object,
 };
 
 export default PortalEmbedButtonWrapper;

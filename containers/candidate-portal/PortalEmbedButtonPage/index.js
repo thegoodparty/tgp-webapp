@@ -30,6 +30,7 @@ export function PortalEmbedButtonPage({
   userState,
   dispatch,
   candidatePortalHomePage,
+  ssrState,
 }) {
   useInjectReducer({ key: 'portalEmbedButtonPage', reducer });
   useInjectSaga({ key: 'portalEmbedButtonPage', saga });
@@ -40,6 +41,7 @@ export function PortalEmbedButtonPage({
   });
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
 
+  const { content } = ssrState;
   const { candidate } = candidatePortalHomePage;
   let { user } = userState;
   if (!user) {
@@ -57,6 +59,7 @@ export function PortalEmbedButtonPage({
   const childProps = {
     candidate,
     user,
+    content,
   };
 
   return (
@@ -71,6 +74,7 @@ PortalEmbedButtonPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
+  ssrState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
