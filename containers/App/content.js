@@ -1,4 +1,25 @@
 const content = {
+  "portalEmbed": {
+    "title": "Embed our endorse button on your site",
+    "instructions": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Sure you need donations, but votes win elections! Start collecting endorsements by embedding this button on your website, social media and in campaign emails. Where there’s a Donate button on your site there should also be an Endorse button. Don't let money get in the way of people supporting and growing awareness about your campaign!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
   "faqArticles": [
     {
       "title": "Is Good Party a real political party?",
