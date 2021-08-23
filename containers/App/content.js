@@ -1,108 +1,129 @@
 const content = {
+  "portalEmbed": {
+    "title": "Embed our endorse button on your site",
+    "instructions": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Sure you need donations, but votes win elections! Start collecting endorsements by embedding this button on your website, social media and in campaign emails. Where there’s a Donate button on your site there should also be an Endorse button. Don't let money get in the way of people supporting and growing awareness about your campaign!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
   "faqArticles": [
     {
       "title": "Is Good Party a real political party?",
       "articleBody": {
-        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "No. Good Party is NOT a political party. We are a public benefit corporation and our mission is to make people matter more than money in democracy. We are building free, open-source technology to upgrade the operating system of our democracy. ",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "No. Good Party is NOT a political party. We are a public benefit corporation and our mission is to make people matter more than money in democracy. We are building free, open-source technology to upgrade the operating system of our democracy. ",
+                "nodeType": "text"
               },
               {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Our logo",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
                 "data": {
                   "uri": "https://goodparty.org/faqs?article=U4dbmGezqNUIDdGriL5oA"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " hints at our motives!",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "We are being built by a ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
+                },
                 "content": [
                   {
-                    "nodeType": "text",
-                    "value": "diverse, mostly volunteer team",
+                    "data": {},
                     "marks": [],
-                    "data": {}
+                    "value": "",
+                    "nodeType": "text"
                   }
                 ],
+                "nodeType": "hyperlink"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": "",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "We are being built by a ",
+                "nodeType": "text"
+              },
+              {
                 "data": {
                   "uri": "https://goodparty.org/faqs?article=579kihjyIPloNaEw02rniq"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ". Our app allow voters to organize ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
+                },
                 "content": [
                   {
-                    "nodeType": "text",
-                    "value": "crowd-voting campaigns",
+                    "data": {},
                     "marks": [],
-                    "data": {}
+                    "value": "diverse, mostly volunteer team",
+                    "nodeType": "text"
                   }
                 ],
-                "data": {
-                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
-                }
+                "nodeType": "hyperlink"
               },
               {
-                "nodeType": "text",
-                "value": " that gather organic momentum and allow good candidates with great ideas to get elected. We are providing technology and tools that empower ordinary people to actively participate and have impact on democracy. ",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": ". Our app allow voters to organize ",
+                "nodeType": "text"
+              },
+              {
+                "data": {
+                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
+                },
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "crowd-voting campaigns",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "hyperlink"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": " that gather organic momentum and allow good candidates with great ideas to get elected. We are providing technology and tools that empower ordinary people to actively participate and have impact on democracy. ",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           },
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected. By providing free, open-source software, those candidates do not have to depend on big money sources to spread their ideas and gather supporters. We do this by showcasing grass-roots, independent candidates and providing a crowd-voting platform that helps people spread the word and turn social media supporters into actual voters.",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected. By providing free, open-source software, those candidates do not have to depend on big money sources to spread their ideas and gather supporters. We do this by showcasing grass-roots, independent candidates and providing a crowd-voting platform that helps people spread the word and turn social media supporters into actual voters.",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           }
-        ]
+        ],
+        "nodeType": "document"
       },
       "pages": [
         "party"
@@ -148,6 +169,312 @@ const content = {
               {
                 "nodeType": "text",
                 "value": ". We believe that people are good and if empowered by technology, instead of enslaved by it, we can create a much better world for all. ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "entry-hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Our logo",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "target": {
+                    "metadata": {
+                      "tags": []
+                    },
+                    "sys": {
+                      "space": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "Space",
+                          "id": "g08ybc4r0f4b"
+                        }
+                      },
+                      "id": "3qWW61APIjdW2k8IvnrGg4",
+                      "type": "Entry",
+                      "createdAt": "2021-08-13T20:42:42.597Z",
+                      "updatedAt": "2021-08-13T22:36:39.379Z",
+                      "environment": {
+                        "sys": {
+                          "id": "master",
+                          "type": "Link",
+                          "linkType": "Environment"
+                        }
+                      },
+                      "revision": 7,
+                      "contentType": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "ContentType",
+                          "id": "faqArticle"
+                        }
+                      },
+                      "locale": "en-US"
+                    },
+                    "fields": {
+                      "title": "What's the meaning of the logo?",
+                      "articleBody": {
+                        "nodeType": "document",
+                        "data": {},
+                        "content": [
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "A Heart and Star dressed in Red, Bright and Blue!",
+                                "marks": [
+                                  {
+                                    "type": "bold"
+                                  }
+                                ],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "The heart is for ",
+                                "marks": [],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": "Humanity",
+                                "marks": [
+                                  {
+                                    "type": "bold"
+                                  }
+                                ],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": " (representing love and life!)",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "The star is for ",
+                                "marks": [],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": "Freedom",
+                                "marks": [
+                                  {
+                                    "type": "bold"
+                                  }
+                                ],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": " (representing liberty and justice!)",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "Our mission is heroic -- we're out to save American democracy -- so our logo has a super-hero vibe and uses the colors of our flag.  ",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "We also wanted to be a bit more fun and point to the bright future ahead of us as we come together to take back our government! So, we also see our third color, as ",
+                                "marks": [],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": "Bright ",
+                                "marks": [
+                                  {
+                                    "type": "bold"
+                                  }
+                                ],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": "(white); a full spectrum of colors coming together, shining as one!",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "",
+                                "marks": [],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "hyperlink",
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Tell us what you think",
+                                    "marks": [],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {
+                                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSdu1BTbnd8iavIxG51xVlkzKlGVktc1Y7WYWLNWzmZwr1yWqQ/viewform?usp=sf_link"
+                                }
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": " and which version you like better?",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "embedded-asset-block",
+                            "content": [],
+                            "data": {
+                              "target": {
+                                "metadata": {
+                                  "tags": []
+                                },
+                                "sys": {
+                                  "space": {
+                                    "sys": {
+                                      "type": "Link",
+                                      "linkType": "Space",
+                                      "id": "g08ybc4r0f4b"
+                                    }
+                                  },
+                                  "id": "5ltogLmmGOq0CkJCCvqHpt",
+                                  "type": "Asset",
+                                  "createdAt": "2020-06-02T00:21:40.365Z",
+                                  "updatedAt": "2020-06-02T00:42:44.296Z",
+                                  "environment": {
+                                    "sys": {
+                                      "id": "master",
+                                      "type": "Link",
+                                      "linkType": "Environment"
+                                    }
+                                  },
+                                  "revision": 2,
+                                  "locale": "en-US"
+                                },
+                                "fields": {
+                                  "title": "FAQ - Logos",
+                                  "file": {
+                                    "url": "//images.ctfassets.net/g08ybc4r0f4b/5ltogLmmGOq0CkJCCvqHpt/6651d14467ed29ad01852d0b21c2e5ef/For_FAQ.png",
+                                    "details": {
+                                      "size": 106715,
+                                      "image": {
+                                        "width": 727,
+                                        "height": 316
+                                      }
+                                    },
+                                    "fileName": "For FAQ.png",
+                                    "contentType": "image/png"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ]
+                      },
+                      "category": [
+                        {
+                          "metadata": {
+                            "tags": []
+                          },
+                          "sys": {
+                            "space": {
+                              "sys": {
+                                "type": "Link",
+                                "linkType": "Space",
+                                "id": "g08ybc4r0f4b"
+                              }
+                            },
+                            "id": "1x8sreeqPN0PK929WRNw4I",
+                            "type": "Entry",
+                            "createdAt": "2021-01-11T07:09:19.332Z",
+                            "updatedAt": "2021-01-11T17:09:02.346Z",
+                            "environment": {
+                              "sys": {
+                                "id": "master",
+                                "type": "Link",
+                                "linkType": "Environment"
+                              }
+                            },
+                            "revision": 2,
+                            "contentType": {
+                              "sys": {
+                                "type": "Link",
+                                "linkType": "ContentType",
+                                "id": "articleCategory"
+                              }
+                            },
+                            "locale": "en-US"
+                          },
+                          "fields": {
+                            "name": "About Us",
+                            "order": 300
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " says it all!",
                 "marks": [],
                 "data": {}
               },
@@ -251,7 +578,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "The Good Party's main financial backing to date has come from one of our project co-founders, ",
+                "value": "Good Party's main financial backing to date has come from one of our project co-founders, ",
                 "marks": [],
                 "data": {}
               },
@@ -1054,7 +1381,11 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
                 "data": {}
               },
               {
@@ -1062,7 +1393,17 @@ const content = {
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Gobi Rahimi ",
+                    "value": "Gobi Rahimi",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "text",
+                    "value": " ",
                     "marks": [],
                     "data": {}
                   }
@@ -1176,27 +1517,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Each crowd-voting campaign brings much needed transparency to an election by showing how many people are endorsing a candidate, ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "how many votes are needed to win",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=4qI5UjYbJmivzBOy1y74Z4"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ", and how many other likely voters there are for a candidate.",
+                "value": "Each crowd-voting campaign brings much needed transparency to an election by showing how many people are endorsing a candidate, how many votes are needed to win, and how many other likely voters there are for a candidate.",
                 "marks": [],
                 "data": {}
               }
@@ -1208,27 +1529,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "In this way, ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "nobody has to worry about wasting their vote",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "?article=prGq4SAFpfT7qzBFM1HDy"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ", because everyone knows if a candidate they like can can win ",
+                "value": "In this way, nobody has to worry about wasting their vote because everyone knows if a candidate they like can can win ",
                 "marks": [],
                 "data": {}
               },
@@ -1363,58 +1664,58 @@ const content = {
     {
       "title": "What is Good Party's minimum standard of civility?",
       "articleBody": {
+        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "data": {},
+            "nodeType": "paragraph",
             "content": [
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "Good Party attempts to vet all candidates to ensure that they have",
                 "marks": [],
-                "value": "We vet all candidates to ensure that they have ",
-                "nodeType": "text"
+                "data": {}
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": " not ",
                 "marks": [
                   {
                     "type": "bold"
                   }
                 ],
-                "value": "not",
-                "nodeType": "text"
+                "data": {}
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": "engaged in a pattern of activities or ",
                 "marks": [],
-                "value": " engaged in a pattern of activities or ",
-                "nodeType": "text"
+                "data": {}
               },
               {
-                "data": {
-                  "uri": "?article=5bwvf0PwsbpFEe8IJ9sHhX"
-                },
+                "nodeType": "hyperlink",
                 "content": [
                   {
-                    "data": {},
-                    "marks": [],
+                    "nodeType": "text",
                     "value": "hate-speech",
-                    "nodeType": "text"
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "nodeType": "hyperlink"
+                "data": {
+                  "uri": "https://en.wikipedia.org/wiki/Hate_speech"
+                }
               },
               {
-                "data": {},
+                "nodeType": "text",
+                "value": " encouraging intolerance, discrimination or hostility towards a constitutionally or state-protected group or class. Good Party maintains the right to withdraw its Good Party Certified endorsement and remove candidates from the site if they actively engage in such conduct. ",
                 "marks": [],
-                "value": " encouraging intolerance, discrimination or hostility towards a constitutionally or state-protected group or class.",
-                "nodeType": "text"
+                "data": {}
               }
             ],
-            "nodeType": "paragraph"
+            "data": {}
           }
-        ],
-        "nodeType": "document"
+        ]
       },
       "category": {
         "id": "4CrRDuyTqip7XK7DdK4tq7",
@@ -1424,6 +1725,373 @@ const content = {
         }
       },
       "id": "66i4vRRLkX1yf8MnCQvYSb"
+    },
+    {
+      "title": "What's the meaning of the logo?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "A Heart and Star dressed in Red, Bright and Blue!",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The heart is for ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Humanity",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " (representing love and life!)",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The star is for ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Freedom",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " (representing liberty and justice!)",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Our mission is heroic -- we're out to save American democracy -- so our logo has a super-hero vibe and uses the colors of our flag.  ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We also wanted to be a bit more fun and point to the bright future ahead of us as we come together to take back our government! So, we also see our third color, as ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Bright ",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "(white); a full spectrum of colors coming together, shining as one!",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Tell us what you think",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSdu1BTbnd8iavIxG51xVlkzKlGVktc1Y7WYWLNWzmZwr1yWqQ/viewform?usp=sf_link"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " and which version you like better?",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "embedded-asset-block",
+            "content": [],
+            "data": {
+              "target": {
+                "metadata": {
+                  "tags": []
+                },
+                "sys": {
+                  "space": {
+                    "sys": {
+                      "type": "Link",
+                      "linkType": "Space",
+                      "id": "g08ybc4r0f4b"
+                    }
+                  },
+                  "id": "5ltogLmmGOq0CkJCCvqHpt",
+                  "type": "Asset",
+                  "createdAt": "2020-06-02T00:21:40.365Z",
+                  "updatedAt": "2020-06-02T00:42:44.296Z",
+                  "environment": {
+                    "sys": {
+                      "id": "master",
+                      "type": "Link",
+                      "linkType": "Environment"
+                    }
+                  },
+                  "revision": 2,
+                  "locale": "en-US"
+                },
+                "fields": {
+                  "title": "FAQ - Logos",
+                  "file": {
+                    "url": "//images.ctfassets.net/g08ybc4r0f4b/5ltogLmmGOq0CkJCCvqHpt/6651d14467ed29ad01852d0b21c2e5ef/For_FAQ.png",
+                    "details": {
+                      "size": 106715,
+                      "image": {
+                        "width": 727,
+                        "height": 316
+                      }
+                    },
+                    "fileName": "For FAQ.png",
+                    "contentType": "image/png"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
+      "id": "3qWW61APIjdW2k8IvnrGg4"
+    },
+    {
+      "title": "What does Indie mean?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Indie is short for Independent political candidates who are independent of the political establishment and willing to take our ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Good Certified pledge",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://goodparty.org/candidates"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ". Not Red, not Blue, ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Good!",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Republicans and Democrats have had a stranglehold on American politics for too long. Their focus is on division in order to maintain power. Good Party is about creating more competition for the establishment parties and more choices for voters. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We also include 3rd Party candidates (e.g. Green Party, Libertarians) in our broader definition of Indie because they too are ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "independent",
+                "marks": [
+                  {
+                    "type": "bold"
+                  },
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " of the two-party Duopoly. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "It's kind of like how ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Indie Rock",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " and ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Indie Films",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " broke free from the mainstream of big record labels and big movie studios to give consumers more diverse and interesting options in music and film. Only we're looking to create a democracy that's more representative of all the Good Party people everywhere!",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "FqZOWMEEYfcXbASjaRkMU"
     },
     {
       "title": "What does it mean to \"endorse\" a candidate?",
@@ -1592,6 +2260,78 @@ const content = {
       "id": "7jm2j9gapWwEoVwVD3VX6o"
     }
   ],
+  "teamPage": {
+    "title": "Meet the Good Party Team",
+    "leftTitle": "The Story of Good Party",
+    "leftSubtitle": "Our Goals is simple",
+    "leftSubtitleLine2": "Get money out of politics",
+    "mainContent": {
+      "data": {},
+      "content": [
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est purus amet eget vestibulum ut tortor. ",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "Ornare massa pellentesque neque aliquet rhoncus ac consectetur. Maecenas nulla morbi lobortis eget lacinia dictum diam cras natoque. Vel, faucibus aenean purus neque, dolor neque sed integer. Eget at eu et sed purus tortor nam aenean. Ipsum mi euismod sed et pellentesque ante. Euismod phasellus mi turpis enim tempus, in. Neque lectus dictum id congue est aliquet.",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "Aliquet quis dictum lectus vitae tellus dictumst arcu convallis. Non lorem nibh at venenatis elit at augue velit at. Eleifend quis nisl sed vivamus. Dictum ut blandit vivamus habitant. Consequat, mi in viverra vitae lacus nunc. Velit ipsum, tincidunt magna placerat duis eu ornare non pharetra. Varius velit tellus massa sollicitudin lectus odio nam. Elementum, tortor purus purus tristique eget risus ut erat. Elementum eget sed sollicitudin lacus, turpis. ",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "Et egestas volutpat mi faucibus amet. Proin lobortis posuere lorem a tincidunt. Id odio volutpat, ac aliquet condimentum cursus. Sociis non posuere arcu tellus massa odio. Eget tempor enim venenatis, consequat purus ut. Dui quam dignissim nulla sed donec mauris non urna. Diam netus id turpis eget volutpat enim scelerisque faucibus. ",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        },
+        {
+          "data": {},
+          "content": [
+            {
+              "data": {},
+              "marks": [],
+              "value": "Semper nascetur egestas amet volutpat. Malesuada purus eros, sit proin. Sagittis duis eros, tristique nisl. Rutrum fusce donec porttitor eu non sit ornare morbi aliquam. Iaculis urna, nunc orci condimentum a nascetur. Viverra enim, nullam etiam imperdiet sed arcu. Ligula magna quis accumsan duis eget a. Non, hac diam odio diam, lobortis sagittis. Dolor etiam morbi vel in pretium amet scelerisque. Ac enim egestas amet dignissim molestie quis amet.",
+              "nodeType": "text"
+            }
+          ],
+          "nodeType": "paragraph"
+        }
+      ],
+      "nodeType": "document"
+    }
+  },
   "meetTheCandidates": {
     "youtubeId": "183Otqkf8So",
     "videoPlaceholder": "//images.ctfassets.net/g08ybc4r0f4b/5fDZlDzjGD3QWSSp6jhULu/9342c2fa2415cf713163163b6c605a96/whois.jpg"
@@ -3772,6 +4512,10 @@ const content = {
         {
           "title": "Our team",
           "id": "579kihjyIPloNaEw02rniq"
+        },
+        {
+          "title": "What's the meaning of the logo?",
+          "id": "3qWW61APIjdW2k8IvnrGg4"
         }
       ]
     },
@@ -3793,6 +4537,10 @@ const content = {
         {
           "title": "What is Good Party's minimum standard of civility?",
           "id": "66i4vRRLkX1yf8MnCQvYSb"
+        },
+        {
+          "title": "What does Indie mean?",
+          "id": "FqZOWMEEYfcXbASjaRkMU"
         },
         {
           "title": "What does it mean to \"endorse\" a candidate?",

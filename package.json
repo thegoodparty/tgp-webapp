@@ -123,6 +123,7 @@
     "prerender-node": "^3.2.5",
     "prop-types": "15.7.2",
     "react": "16.13.1",
+    "react-code-blocks": "0.0.9-0",
     "react-copy-to-clipboard": "^5.0.2",
     "react-csv": "^2.0.3",
     "react-dom": "16.13.1",

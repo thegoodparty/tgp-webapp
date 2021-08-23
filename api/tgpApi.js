@@ -165,6 +165,21 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    associateCandidateUser: {
+      url: `${base}admin/candidate-user`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    findAssociateUser: {
+      url: `${base}admin/candidate-user`,
+      method: 'GET',
+      withAuth: true,
+    },
+    removeAssociateUser: {
+      url: `${base}admin/candidate-user`,
+      method: 'DELETE',
+      withAuth: true,
+    },
     updateCandidateImage: {
       url: `${base}admin/candidate-image`,
       method: 'PUT',
@@ -341,6 +356,13 @@ const api = {
     candidateSupports: {
       url: `${base}candidate-supports`,
       method: 'GET',
+    },
+  },
+  candidateUser: {
+    find: {
+      url: `${base}candidate-user`,
+      method: 'GET',
+      withAuth: true,
     },
   },
 };

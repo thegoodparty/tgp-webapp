@@ -5,7 +5,7 @@
  */
 
 import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 
@@ -16,7 +16,7 @@ const MenuWrapper = styled.div`
   right: 60px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    top: 0px;
+    top: 10px;
     right: 10px;
   }
 `;
@@ -40,11 +40,11 @@ const Heart = styled.img`
   height: auto;
 `;
 
-function AdminMenu() {
+function AdminMenu({ candidateMode }) {
   return (
     <>
       <MenuWrapper>
-        <Link href="/admin" passHref>
+        <Link href={candidateMode ? `/candidate-portal` : '/admin'} passHref>
           <a>
             <HeartWrapper>
               <Heart src="/images/heart.svg" alt="admin menu" />
@@ -56,6 +56,8 @@ function AdminMenu() {
   );
 }
 
-AdminMenu.propTypes = {};
+AdminMenu.propTypes = {
+  candidateMode: PropTypes.bool,
+};
 
 export default memo(AdminMenu);

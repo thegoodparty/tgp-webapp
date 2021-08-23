@@ -268,7 +268,11 @@ function* login(action) {
     setUserCookie(user);
     setCookie('token', token);
     deleteCookie('guestRanking');
-    yield put(push('/profile'));
+    if (user.candidate) {
+      yield put(push('/candidate-portal'));
+    } else {
+      yield put(push('/profile'));
+    }
     logEvent('email-login', 'success');
   } catch (error) {
     yield put(
