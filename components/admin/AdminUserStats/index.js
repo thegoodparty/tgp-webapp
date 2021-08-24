@@ -8,6 +8,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import {
   ResponsiveContainer,
   PieChart,
@@ -57,7 +60,10 @@ const StyledTooltip = styled(Body13)`
   font-weight: 600;
 `;
 
-function AdminUserStats({ users }) {
+const dateRanges = ['All time', 'last 12 months', 'last 30 days', 'last week'];
+
+function AdminUserStats({ users, loadUsersCallback }) {
+  const [dateRange, setDateRange] = useState(dateRanges[0]);
   const [verifiedEmailData, setVerifiedEmailData] = useState([]);
   const [socialRegisterData, setSocialRegisterData] = useState([]);
   const [stateData, setStateData] = useState([]);
@@ -165,9 +171,21 @@ function AdminUserStats({ users }) {
     return null;
   };
 
+  const handleChange = event => {
+    setDateRange(event.target.value);
+    loadUsersCallback(event.target.value);
+  };
+
   return (
     <AdminPageWrapper>
       <Wrapper>
+        <div>
+          <Select value={dateRange} onChange={handleChange} variant="outlined">
+            {dateRanges.map(range => (
+              <MenuItem value={range}>{range}</MenuItem>
+            ))}
+          </Select>
+        </div>
         <Title>User Stats</Title>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
