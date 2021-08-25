@@ -27,6 +27,9 @@ function logPageView() {
   if (!isProd || !GA4React.isInitialized()) {
     return;
   }
+  if (window.location.pathname.startsWith('/share-image/')) {
+    return;
+  }
   ga4react?.pageview(window.location.pathname);
 }
 
