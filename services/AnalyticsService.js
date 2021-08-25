@@ -14,6 +14,9 @@ export async function initGA4() {
     ga4react = new GA4React(G, { debug_mode: !process.env.production });
 
     try {
+      if (window.location.pathname.startsWith('/share-image/')) {
+        return;
+      }
       await ga4react.initialize();
 
       logPageViews();
