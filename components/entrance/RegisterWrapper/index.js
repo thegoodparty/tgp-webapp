@@ -35,15 +35,10 @@ const ReverseGrid = styled(Grid)`
   }
 `;
 
-const VerticalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+const Wrapper = styled.div`
   padding: 24px 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    min-height: calc(100vh - 100px);
-  }
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const OrWrapper = styled.div`
@@ -115,6 +110,7 @@ const RegisterWrapper = ({
     password: '',
     phone: '',
     zipcode: '',
+    isSubmitted: false,
   });
 
   const enableSubmit = () => {
@@ -149,6 +145,10 @@ const RegisterWrapper = ({
         formData.password,
         formData.zipcode,
       );
+      setFormData({
+        ...formData,
+        isSubmitted: true,
+      });
     }
   };
 
@@ -169,112 +169,105 @@ const RegisterWrapper = ({
 
   return (
     <PageWrapper purple>
-      <ReverseGrid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <VerticalWrapper>
-            <div className="text-center">
-              <Heart src={heartImg} />
-              <H1 data-cy="title">Join the Good Party</H1>
-            </div>
-          </VerticalWrapper>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <VerticalWrapper>
-            <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-              {fields.map(field => (
-                <>
-                  {field.type === 'tel' ? (
-                    <PhoneWrapper>
-                      <PhoneInput
-                        country="us"
-                        disableCountryCode
-                        disableDropdown
-                        inputClass="phone-input"
-                        placeholder="Phone Number"
-                        onlyCountries={['us']}
-                        value={formData.phone}
-                        onChange={phone =>
-                          onChangeField({ target: { value: phone } }, 'phone')
-                        }
-                      />
-                      <Body11 style={{ marginTop: '8px' }}>
-                        Either email or phone number are required
-                      </Body11>
-                    </PhoneWrapper>
-                  ) : (
-                    <Input
-                      value={formData[field.key]}
-                      label={field.label}
-                      required={field.required}
-                      size="medium"
-                      fullWidth
-                      type={field.type}
-                      name={field.key}
-                      variant="outlined"
-                      onChange={e => onChangeField(e, field.key)}
-                      helperText={field.helperText}
-                    />
-                  )}
-                </>
-              ))}
+      <Wrapper>
+        <div className="text-center" style={{ marginBottom: '32px' }}>
+          <Heart src={heartImg} />
+          <H1 data-cy="title">Join Good Party</H1>
+        </div>
 
-              <PasswordInput
-                onChangeCallback={pwd =>
-                  onChangeField({ target: { value: pwd } }, 'password')
-                }
-              />
-
-              <div>
-                <PurpleButton
+        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
+          {fields.map(field => (
+            <>
+              {field.type === 'tel' ? (
+                <PhoneWrapper>
+                  <PhoneInput
+                    country="us"
+                    disableCountryCode
+                    disableDropdown
+                    inputClass="phone-input"
+                    placeholder="Phone Number"
+                    onlyCountries={['us']}
+                    value={formData.phone}
+                    onChange={phone =>
+                      onChangeField({ target: { value: phone } }, 'phone')
+                    }
+                  />
+                  <Body11 style={{ marginTop: '8px' }}>
+                    Either email or phone number are required
+                  </Body11>
+                </PhoneWrapper>
+              ) : (
+                <Input
+                  value={formData[field.key]}
+                  label={field.label}
+                  required={field.required}
+                  size="medium"
                   fullWidth
-                  disabled={!enableSubmit()}
-                  onClick={handleSubmit}
-                  type="submit"
-                >
-                  JOIN
-                </PurpleButton>
-              </div>
-            </form>
-            <OrWrapper>
-              <Border />
-              <Or>
-                <Body13 style={{ color: '#767676' }}>Or</Body13>
-              </Or>
-            </OrWrapper>
-            <br />
-            <div data-cy="facebook-login">
-              <SocialButton
-                channel="facebook"
-                provider="facebook"
-                appId={globals.facebookAppId}
-                onLoginSuccess={socialRegisterCallback}
-                onLoginFailure={socialRegisterFailureCallback}
-              >
-                Continue with FACEBOOK
-              </SocialButton>
-            </div>
-            <br />
-            <TwitterButton clickCallback={twitterButtonCallback}>
-              Continue with Twitter
-            </TwitterButton>
-            <br />
-            <div data-cy="google-login">
-              <SocialButton
-                channel="google"
-                provider="google"
-                appId={globals.googleAppId}
-                onLoginSuccess={socialRegisterCallback}
-                onLoginFailure={socialRegisterFailureCallback}
-              >
-                Continue with GOOGLE
-              </SocialButton>
-            </div>
-            <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-              Already have an account? <Link href="/login">login</Link>
-            </Body13>
-          </VerticalWrapper>
-        </Grid>
-      </ReverseGrid>
+                  type={field.type}
+                  name={field.key}
+                  variant="outlined"
+                  onChange={e => onChangeField(e, field.key)}
+                  helperText={field.helperText}
+                />
+              )}
+            </>
+          ))}
+
+          <PasswordInput
+            onChangeCallback={pwd =>
+              onChangeField({ target: { value: pwd } }, 'password')
+            }
+          />
+
+          <div>
+            <PurpleButton
+              fullWidth
+              disabled={!enableSubmit()}
+              onClick={handleSubmit}
+              type="submit"
+            >
+              JOIN
+            </PurpleButton>
+          </div>
+        </form>
+        <OrWrapper>
+          <Border />
+          <Or>
+            <Body13 style={{ color: '#767676' }}>Or</Body13>
+          </Or>
+        </OrWrapper>
+        <br />
+        <div data-cy="facebook-login">
+          <SocialButton
+            channel="facebook"
+            provider="facebook"
+            appId={globals.facebookAppId}
+            onLoginSuccess={socialRegisterCallback}
+            onLoginFailure={socialRegisterFailureCallback}
+          >
+            Continue with FACEBOOK
+          </SocialButton>
+        </div>
+        <br />
+        <TwitterButton clickCallback={twitterButtonCallback}>
+          Continue with Twitter
+        </TwitterButton>
+        <br />
+        <div data-cy="google-login">
+          <SocialButton
+            channel="google"
+            provider="google"
+            appId={globals.googleAppId}
+            onLoginSuccess={socialRegisterCallback}
+            onLoginFailure={socialRegisterFailureCallback}
+          >
+            Continue with GOOGLE
+          </SocialButton>
+        </div>
+        <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
+          Already have an account? <Link href="/login">login</Link>
+        </Body13>
+      </Wrapper>
     </PageWrapper>
   );
 };
