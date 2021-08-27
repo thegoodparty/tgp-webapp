@@ -22,6 +22,7 @@ const Input = styled(TextField)`
       line-height: 22px;
       font-size: 16px;
       letter-spacing: 0.1px;
+      background-color: #fff;
 
       @media only screen and (min-width: ${({ theme }) =>
           theme.breakpointsPixels.md}) {

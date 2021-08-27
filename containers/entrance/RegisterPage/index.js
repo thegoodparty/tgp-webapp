@@ -62,8 +62,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    registerCallback: (email, password) => {
-      console.log(email, password);
+    registerCallback: (email, password, zip) => {
+      console.log(email, password, zip);
     },
     socialRegisterCallback: socialAccount => {
       console.log('socialAccount', socialAccount);

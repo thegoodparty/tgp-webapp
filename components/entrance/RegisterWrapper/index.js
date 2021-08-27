@@ -5,6 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
 import globals from 'globals';
@@ -19,9 +22,17 @@ const SocialButton = dynamic(
 
 const heartImg = '/images/heart.svg';
 const Heart = styled.img`
+  display: block;
   width: 64px;
   height: auto;
-  margin-bottom: 12px;
+  margin: 0 auto 12px;
+`;
+
+const ReverseGrid = styled(Grid)`
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    flex-direction: row-reverse;
+  }
 `;
 
 const VerticalWrapper = styled.div`
@@ -62,6 +73,7 @@ const Input = styled(TextField)`
       line-height: 22px;
       font-size: 16px;
       letter-spacing: 0.1px;
+      background-color: #fff;
 
       @media only screen and (min-width: ${({ theme }) =>
           theme.breakpointsPixels.md}) {
@@ -70,12 +82,6 @@ const Input = styled(TextField)`
       }
     }
   }
-`;
-
-const ForgotLink = styled(Body11)`
-  color: ${({ theme }) => theme.colors.blue};
-  margin-bottom: 24px;
-  cursor: pointer;
 `;
 
 const RegisterWrapper = ({
@@ -87,10 +93,16 @@ const RegisterWrapper = ({
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    phone: '',
+    zip: '',
   });
 
   const enableSubmit = () => {
-    return formData.password.length >= 8 && validateEmail();
+    return (
+      formData.password.length >= 8 &&
+      validateZip() &&
+      (validatePhone() || validateEmail())
+    );
   };
 
   const validateEmail = () => {
@@ -98,14 +110,20 @@ const RegisterWrapper = ({
     return validEmail.test(formData.email);
   };
 
+  const validateZip = () => {
+    const validZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+    return validZip.test(formData.zip);
+  };
+
+  const validatePhone = () => formData.phone.length === 10;
+
   const handleSubmitForm = e => {
     e.preventDefault();
-    // handleSubmit();
   };
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      registerCallback(formData.email, formData.password);
+      registerCallback(formData.email, formData.password, formData.zip);
     }
   };
 
@@ -116,31 +134,68 @@ const RegisterWrapper = ({
     });
   };
 
+  const fields = [
+    { label: 'Email Address', key: 'email', type: 'email', required: false },
+    {
+      type: 'tel',
+    },
+    { label: 'Zip', key: 'zip', type: 'text', required: true },
+  ];
+
   return (
     <PageWrapper>
-      <Grid container spacing={3}>
+      <ReverseGrid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <Heart src={heartImg} />
-            <H1 data-cy="title">Join the Good Party</H1>
+            <div className="text-center">
+              <Heart src={heartImg} />
+              <H1 data-cy="title">Join the Good Party</H1>
+            </div>
           </VerticalWrapper>
         </Grid>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-              <Input
-                value={formData.email}
-                label="Email Address"
-                required
-                size="medium"
-                fullWidth
-                type="email"
-                name="email"
-                autoComplete="email"
-                variant="outlined"
-                onChange={e => onChangeField(e, 'email')}
-                data-cy="email-input"
-              />
+              {fields.map(field => (
+                <>
+                  {field.type === 'tel' ? (
+                    <div>
+                      <PhoneInput
+                        country="us"
+                        disableCountryCode
+                        disableDropdown
+                        inputStyle={{
+                          width: '100%',
+                          height: '60px',
+                        }}
+                        placeholder="Phone Number"
+                        onlyCountries={['us']}
+                        value={formData.phone}
+                        onChange={phone =>
+                          onChangeField({ target: { value: phone } }, 'phone')
+                        }
+                      />
+                      <Body11 style={{ margin: '8px 0 24px' }}>
+                        Either email or phone number are required
+                      </Body11>
+                    </div>
+                  ) : (
+                    <Input
+                      value={formData[field.key]}
+                      label={field.label}
+                      required={field.required}
+                      size="medium"
+                      fullWidth
+                      type={field.type}
+                      name={field.key}
+                      autoComplete={field.key}
+                      variant="outlined"
+                      onChange={e => onChangeField(e, field.key)}
+                      helperText={field.helperText}
+                    />
+                  )}
+                </>
+              ))}
 
               <PasswordInput
                 onChangeCallback={pwd =>
@@ -198,7 +253,7 @@ const RegisterWrapper = ({
             </Body13>
           </VerticalWrapper>
         </Grid>
-      </Grid>
+      </ReverseGrid>
     </PageWrapper>
   );
 };
