@@ -39,9 +39,10 @@ const VerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 24px 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
   }
 `;
 
