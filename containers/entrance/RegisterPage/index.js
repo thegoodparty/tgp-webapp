@@ -38,12 +38,10 @@ export function RegisterPage({
 
   return (
     <div>
-      <Helmet>
-        <TgpHelmet
-          title="Register | GOOD PARTY"
-          description="Create an account on GOOD PARTY"
-        />
-      </Helmet>
+      <TgpHelmet
+        title="Register | GOOD PARTY"
+        description="Create an account on GOOD PARTY"
+      />
       <RegisterWrapper {...childProps} />
     </div>
   );
