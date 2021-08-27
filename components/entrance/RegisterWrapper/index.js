@@ -7,14 +7,16 @@ import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
-import globals from '../../../globals';
-import { OutlinedButton } from '../../shared/buttons';
-import PasswordInput from '../../shared/PasswordInput';
-import TwitterButton from '../../shared/TwitterButton';
+import globals from 'globals';
+import { OutlinedButton } from 'components/shared/buttons';
+import PasswordInput from 'components/shared/PasswordInput';
+import TwitterButton from 'components/shared/TwitterButton';
+
 const SocialButton = dynamic(
   () => import('components/you/SocialRegisterWrapper/SocialButton'),
   { ssr: false },
 );
+
 const heartImg = '/images/heart.svg';
 const Heart = styled.img`
   width: 64px;
@@ -26,7 +28,8 @@ const VerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     height: calc(100vh - 100px);
   }
 `;
@@ -75,7 +78,7 @@ const ForgotLink = styled(Body11)`
   cursor: pointer;
 `;
 
-const LoginWrapper = ({
+const RegisterWrapper = ({
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
@@ -126,7 +129,7 @@ const LoginWrapper = ({
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <Heart src={heartImg} />
-            <H1 data-cy="title">Sign into your account</H1>
+            <H1 data-cy="title">Join the Good Party</H1>
           </VerticalWrapper>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -145,36 +148,17 @@ const LoginWrapper = ({
                 onChange={onChangeEmail}
                 data-cy="email-input"
               />
-              {forgotMode ? (
-                <ForgotLink
-                  onClick={() => {
-                    setForgotMode(false);
-                  }}
-                  data-cy="back-link"
-                >
-                  Back to login
-                </ForgotLink>
-              ) : (
-                <>
-                  <PasswordInput onChangeCallback={onChangePassword} />
-                  <ForgotLink
-                    onClick={() => {
-                      setForgotMode(true);
-                    }}
-                    data-cy="forgot-link"
-                  >
-                    Forgot your password?
-                  </ForgotLink>
-                </>
-              )}
-              <div data-cy="login">
+
+              <PasswordInput onChangeCallback={onChangePassword} />
+
+              <div>
                 <OutlinedButton
                   fullWidth
                   active={enableSubmit()}
                   onClick={handleSubmit}
                   type="submit"
                 >
-                  {forgotMode ? 'SEND PASSWORD RESET LINK' : 'SIGN IN'}
+                  JOIN
                 </OutlinedButton>
               </div>
             </form>
@@ -213,10 +197,7 @@ const LoginWrapper = ({
               </SocialButton>
             </div>
             <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-              Don&apos;t have an account?{' '}
-              <Link href="?register=true" data-cy="register">
-                Create one
-              </Link>
+              Already have an account? <Link href="/login">login</Link>
             </Body13>
           </VerticalWrapper>
         </Grid>
@@ -225,7 +206,7 @@ const LoginWrapper = ({
   );
 };
 
-LoginWrapper.propTypes = {
+RegisterWrapper.propTypes = {
   loginCallback: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
@@ -233,4 +214,4 @@ LoginWrapper.propTypes = {
   twitterButtonCallback: PropTypes.func,
 };
 
-export default LoginWrapper;
+export default RegisterWrapper;

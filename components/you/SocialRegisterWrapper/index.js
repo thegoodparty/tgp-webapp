@@ -20,7 +20,7 @@ import SocialButton from './SocialButton';
 
 import { H1, H2, Body13, Body11, Body, Body9 } from '../../shared/typogrophy';
 import { OutlinedButton, PurpleButton } from '../../shared/buttons';
-import TwitterButton from './TwitterButton';
+import TwitterButton from '../../shared/TwitterButton';
 
 const StyledH1 = styled(H1)`
   margin: 18px 0;

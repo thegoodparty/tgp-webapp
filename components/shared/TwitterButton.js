@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import tgpTheme from 'theme/index';
-import { Body11 } from '../../shared/typogrophy';
+import tgpTheme from 'theme';
+import { Body11 } from './typogrophy';
 
 const TwitterIcon = '/images/icons/twitter.svg';
 const StyledButton = styled(Button)`
