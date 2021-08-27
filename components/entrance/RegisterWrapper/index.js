@@ -11,7 +11,7 @@ import 'react-phone-input-2/lib/style.css';
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
 import globals from 'globals';
-import { OutlinedButton } from 'components/shared/buttons';
+import { OutlinedButton, PurpleButton } from 'components/shared/buttons';
 import PasswordInput from 'components/shared/PasswordInput';
 import TwitterButton from 'components/shared/TwitterButton';
 
@@ -63,7 +63,25 @@ const Or = styled.div`
   text-align: center;
   left: calc(50% - 25px);
   top: 0;
-  background: ${({ theme }) => theme.colors.grayBg};
+  background-color: ${({ theme }) => theme.colors.purple3};
+`;
+
+const PhoneWrapper = styled.div`
+  margin-bottom: 24px;
+  .phone-input {
+    width: 100%;
+    height: 60px;
+    line-height: 22px;
+    font-size: 16px;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 20px;
+      line-height: 26px;
+      ::placeholder {
+        font-size: 16px;
+      }
+    }
+  }
 `;
 
 const Input = styled(TextField)`
@@ -75,6 +93,7 @@ const Input = styled(TextField)`
       font-size: 16px;
       letter-spacing: 0.1px;
       background-color: #fff;
+      border-radius: 4px;
 
       @media only screen and (min-width: ${({ theme }) =>
           theme.breakpointsPixels.md}) {
@@ -95,7 +114,7 @@ const RegisterWrapper = ({
     email: '',
     password: '',
     phone: '',
-    zip: '',
+    zipcode: '',
   });
 
   const enableSubmit = () => {
@@ -113,7 +132,7 @@ const RegisterWrapper = ({
 
   const validateZip = () => {
     const validZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
-    return validZip.test(formData.zip);
+    return validZip.test(formData.zipcode);
   };
 
   const validatePhone = () => formData.phone.length === 10;
@@ -124,7 +143,12 @@ const RegisterWrapper = ({
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      registerCallback(formData.email, formData.password, formData.zip);
+      registerCallback(
+        formData.email,
+        formData.phone,
+        formData.password,
+        formData.zipcode,
+      );
     }
   };
 
@@ -140,11 +164,11 @@ const RegisterWrapper = ({
     {
       type: 'tel',
     },
-    { label: 'Zip', key: 'zip', type: 'text', required: true },
+    { label: 'Zip Code', key: 'zipcode', type: 'text', required: true },
   ];
 
   return (
-    <PageWrapper>
+    <PageWrapper purple>
       <ReverseGrid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
@@ -160,15 +184,12 @@ const RegisterWrapper = ({
               {fields.map(field => (
                 <>
                   {field.type === 'tel' ? (
-                    <div>
+                    <PhoneWrapper>
                       <PhoneInput
                         country="us"
                         disableCountryCode
                         disableDropdown
-                        inputStyle={{
-                          width: '100%',
-                          height: '60px',
-                        }}
+                        inputClass="phone-input"
                         placeholder="Phone Number"
                         onlyCountries={['us']}
                         value={formData.phone}
@@ -176,10 +197,10 @@ const RegisterWrapper = ({
                           onChangeField({ target: { value: phone } }, 'phone')
                         }
                       />
-                      <Body11 style={{ margin: '8px 0 24px' }}>
+                      <Body11 style={{ marginTop: '8px' }}>
                         Either email or phone number are required
                       </Body11>
-                    </div>
+                    </PhoneWrapper>
                   ) : (
                     <Input
                       value={formData[field.key]}
@@ -189,7 +210,6 @@ const RegisterWrapper = ({
                       fullWidth
                       type={field.type}
                       name={field.key}
-                      autoComplete={field.key}
                       variant="outlined"
                       onChange={e => onChangeField(e, field.key)}
                       helperText={field.helperText}
@@ -205,14 +225,14 @@ const RegisterWrapper = ({
               />
 
               <div>
-                <OutlinedButton
+                <PurpleButton
                   fullWidth
-                  active={enableSubmit()}
+                  disabled={!enableSubmit()}
                   onClick={handleSubmit}
                   type="submit"
                 >
                   JOIN
-                </OutlinedButton>
+                </PurpleButton>
               </div>
             </form>
             <OrWrapper>
