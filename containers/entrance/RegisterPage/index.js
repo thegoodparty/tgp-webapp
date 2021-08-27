@@ -20,9 +20,21 @@ import makeSelectRegisterPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export function RegisterPage() {
+export function RegisterPage({
+  registerCallback,
+  socialRegisterCallback,
+  socialRegisterFailureCallback,
+  twitterButtonCallback,
+}) {
   useInjectReducer({ key: 'registerPage', reducer });
   useInjectSaga({ key: 'registerPage', saga });
+
+  const childProps = {
+    registerCallback,
+    socialRegisterCallback,
+    socialRegisterFailureCallback,
+    twitterButtonCallback,
+  };
 
   return (
     <div>
@@ -32,13 +44,17 @@ export function RegisterPage() {
           description="Create an account on GOOD PARTY"
         />
       </Helmet>
-      <RegisterWrapper />
+      <RegisterWrapper {...childProps} />
     </div>
   );
 }
 
 RegisterPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  registerCallback: PropTypes.func,
+  socialRegisterCallback: PropTypes.func,
+  socialRegisterFailureCallback: PropTypes.func,
+  twitterButtonCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -48,6 +64,14 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    registerCallback: (email, password) => {
+      console.log(email, password);
+    },
+    socialRegisterCallback: socialAccount => {
+      console.log('socialAccount', socialAccount);
+    },
+    socialRegisterFailureCallback: () => {},
+    twitterButtonCallback: () => {},
   };
 }
 

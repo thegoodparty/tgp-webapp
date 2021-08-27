@@ -79,29 +79,23 @@ const ForgotLink = styled(Body11)`
 `;
 
 const RegisterWrapper = ({
-  loginCallback,
-  socialLoginCallback,
-  socialLoginFailureCallback,
-  forgotPasswordCallback,
+  registerCallback,
+  socialRegisterCallback,
+  socialRegisterFailureCallback,
   twitterButtonCallback,
 }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [forgotMode, setForgotMode] = useState(false);
-  const onChangeEmail = event => {
-    setEmail(event.target.value);
-  };
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
 
   const enableSubmit = () => {
-    if (forgotMode) {
-      return validateEmail();
-    }
-    return password.length >= 8 && validateEmail();
+    return formData.password.length >= 8 && validateEmail();
   };
 
   const validateEmail = () => {
     const validEmail = /\S+@\S+\.\S+/;
-    return validEmail.test(email);
+    return validEmail.test(formData.email);
   };
 
   const handleSubmitForm = e => {
@@ -111,16 +105,15 @@ const RegisterWrapper = ({
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      if (forgotMode) {
-        forgotPasswordCallback(email);
-      } else {
-        loginCallback(email, password);
-      }
+      registerCallback(formData.email, formData.password);
     }
   };
 
-  const onChangePassword = pwd => {
-    setPassword(pwd);
+  const onChangeField = (event, key) => {
+    setFormData({
+      ...formData,
+      [key]: event.target.value,
+    });
   };
 
   return (
@@ -136,7 +129,7 @@ const RegisterWrapper = ({
           <VerticalWrapper>
             <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
               <Input
-                value={email}
+                value={formData.email}
                 label="Email Address"
                 required
                 size="medium"
@@ -145,11 +138,15 @@ const RegisterWrapper = ({
                 name="email"
                 autoComplete="email"
                 variant="outlined"
-                onChange={onChangeEmail}
+                onChange={e => onChangeField(e, 'email')}
                 data-cy="email-input"
               />
 
-              <PasswordInput onChangeCallback={onChangePassword} />
+              <PasswordInput
+                onChangeCallback={pwd =>
+                  onChangeField({ target: { value: pwd } }, 'password')
+                }
+              />
 
               <div>
                 <OutlinedButton
@@ -174,8 +171,8 @@ const RegisterWrapper = ({
                 channel="facebook"
                 provider="facebook"
                 appId={globals.facebookAppId}
-                onLoginSuccess={socialLoginCallback}
-                onLoginFailure={socialLoginFailureCallback}
+                onLoginSuccess={socialRegisterCallback}
+                onLoginFailure={socialRegisterFailureCallback}
               >
                 Continue with FACEBOOK
               </SocialButton>
@@ -190,8 +187,8 @@ const RegisterWrapper = ({
                 channel="google"
                 provider="google"
                 appId={globals.googleAppId}
-                onLoginSuccess={socialLoginCallback}
-                onLoginFailure={socialLoginFailureCallback}
+                onLoginSuccess={socialRegisterCallback}
+                onLoginFailure={socialRegisterFailureCallback}
               >
                 Continue with GOOGLE
               </SocialButton>
@@ -207,10 +204,9 @@ const RegisterWrapper = ({
 };
 
 RegisterWrapper.propTypes = {
-  loginCallback: PropTypes.func,
-  socialLoginCallback: PropTypes.func,
-  socialLoginFailureCallback: PropTypes.func,
-  forgotPasswordCallback: PropTypes.func,
+  registerCallback: PropTypes.func,
+  socialRegisterCallback: PropTypes.func,
+  socialRegisterFailureCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
 };
 
