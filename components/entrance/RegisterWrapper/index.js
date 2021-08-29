@@ -11,8 +11,7 @@ import 'react-phone-input-2/lib/style.css';
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
 import globals from 'globals';
-import { OutlinedButton, PurpleButton } from 'components/shared/buttons';
-import PasswordInput from 'components/shared/PasswordInput';
+import { PurpleButton } from 'components/shared/buttons';
 import TwitterButton from 'components/shared/TwitterButton';
 
 const SocialButton = dynamic(
@@ -26,13 +25,6 @@ const Heart = styled.img`
   width: 64px;
   height: auto;
   margin: 0 auto 12px;
-`;
-
-const ReverseGrid = styled(Grid)`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    flex-direction: row-reverse;
-  }
 `;
 
 const Wrapper = styled.div`
@@ -99,6 +91,15 @@ const Input = styled(TextField)`
   }
 `;
 
+const fields = [
+  { label: 'Full Name', key: 'name', type: 'text', required: true },
+  { label: 'Email Address', key: 'email', type: 'email', required: false },
+  {
+    type: 'tel',
+  },
+  { label: 'Zip Code', key: 'zipcode', type: 'text', required: true },
+];
+
 const RegisterWrapper = ({
   registerCallback,
   socialRegisterCallback,
@@ -106,16 +107,15 @@ const RegisterWrapper = ({
   twitterButtonCallback,
 }) => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
-    password: '',
     phone: '',
     zipcode: '',
-    isSubmitted: false,
   });
 
   const enableSubmit = () => {
     return (
-      formData.password.length >= 8 &&
+      formData.name.length >= 2 &&
       validateZip() &&
       (validatePhone() || validateEmail())
     );
@@ -131,7 +131,7 @@ const RegisterWrapper = ({
     return validZip.test(formData.zipcode);
   };
 
-  const validatePhone = () => formData.phone.length === 10;
+  const validatePhone = () => formData.phone.length === 11;
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -140,15 +140,11 @@ const RegisterWrapper = ({
   const handleSubmit = () => {
     if (enableSubmit()) {
       registerCallback(
+        formData.name,
         formData.email,
         formData.phone,
-        formData.password,
         formData.zipcode,
       );
-      setFormData({
-        ...formData,
-        isSubmitted: true,
-      });
     }
   };
 
@@ -158,14 +154,6 @@ const RegisterWrapper = ({
       [key]: event.target.value,
     });
   };
-
-  const fields = [
-    { label: 'Email Address', key: 'email', type: 'email', required: false },
-    {
-      type: 'tel',
-    },
-    { label: 'Zip Code', key: 'zipcode', type: 'text', required: true },
-  ];
 
   return (
     <PageWrapper purple>
@@ -182,7 +170,6 @@ const RegisterWrapper = ({
                 <PhoneWrapper>
                   <PhoneInput
                     country="us"
-                    disableCountryCode
                     disableDropdown
                     inputClass="phone-input"
                     placeholder="Phone Number"
@@ -212,12 +199,6 @@ const RegisterWrapper = ({
               )}
             </>
           ))}
-
-          <PasswordInput
-            onChangeCallback={pwd =>
-              onChangeField({ target: { value: pwd } }, 'password')
-            }
-          />
 
           <div>
             <PurpleButton
@@ -252,6 +233,7 @@ const RegisterWrapper = ({
         <TwitterButton clickCallback={twitterButtonCallback}>
           Continue with Twitter
         </TwitterButton>
+        <br />
         <br />
         <div data-cy="google-login">
           <SocialButton

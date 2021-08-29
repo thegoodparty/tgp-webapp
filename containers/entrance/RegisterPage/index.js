@@ -19,6 +19,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectRegisterPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import actions from './actions';
 
 export function RegisterPage({
   registerCallback,
@@ -62,8 +63,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    registerCallback: (email, phone, password, zip) => {
-      console.log(email, phone, password, zip);
+    registerCallback: (name, email, phone, zip) => {
+      dispatch(actions.registerAction(name, email, phone, zip));
     },
     socialRegisterCallback: socialAccount => {
       console.log('socialAccount', socialAccount);

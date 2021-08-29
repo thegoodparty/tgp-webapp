@@ -4,4 +4,8 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/RegisterPage/DEFAULT_ACTION';
+const REGISTER = '@@tgp/RegisterPage/REGISTER';
+
+export default {
+  REGISTER,
+};

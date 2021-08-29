@@ -1,13 +1,15 @@
-/*
- *
- * RegisterPage actions
- *
- */
+import types from './constants';
 
-import { DEFAULT_ACTION } from './constants';
-
-export function defaultAction() {
+function registerAction(name, email, phone, zip) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.REGISTER,
+    name,
+    email,
+    phone,
+    zip,
   };
 }
+
+export default {
+  registerAction,
+};

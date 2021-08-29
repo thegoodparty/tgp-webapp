@@ -46,6 +46,21 @@ const api = {
     url: `${base}entrance/register`,
     method: 'POST',
   },
+  createCrew: {
+    url: `${base}entrance/crew`,
+    method: 'POST',
+    withAuth: true,
+  },
+  confirmCode: {
+    url: `${base}user/confirm`,
+    method: 'PUT',
+    withAuth: true,
+  },
+  sendCode: {
+    url: `${base}user/confirm`,
+    method: 'POST',
+    withAuth: true,
+  },
 
   resendEmail: {
     url: `${base}entrance/resend-verify-email`,

@@ -1,15 +1,15 @@
 /*
  *
- * RegisterPage reducer
+ * ConfirmPage reducer
  *
  */
 import produce from 'immer';
-// import { DEFAULT_ACTION } from './constants';
+import { DEFAULT_ACTION } from './constants';
 
 export const initialState = {};
 
 /* eslint-disable default-case, no-param-reassign */
-const registerPageReducer = (state = initialState, action) =>
+const confirmPageReducer = (state = initialState, action) =>
   produce(state, (/* draft */) => {
     switch (action.type) {
       // case DEFAULT_ACTION:
@@ -17,4 +17,4 @@ const registerPageReducer = (state = initialState, action) =>
     }
   });
 
-export default registerPageReducer;
+export default confirmPageReducer;
