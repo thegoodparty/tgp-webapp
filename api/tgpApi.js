@@ -106,6 +106,8 @@ const api = {
     url: `${base}entrance/twitter-confirm`,
     method: 'PUT',
   },
+
+
   //
   // USER
   //
@@ -140,13 +142,13 @@ const api = {
   },
 
   changePassword: {
-    url: `${base}user/change-password`,
+    url: `${base}user/password`,
     method: 'PUT',
     withAuth: true,
   },
 
   addPassword: {
-    url: `${base}user/add-password`,
+    url: `${base}user/password`,
     method: 'POST',
     withAuth: true,
   },

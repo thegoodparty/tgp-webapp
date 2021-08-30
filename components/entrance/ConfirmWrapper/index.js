@@ -60,7 +60,6 @@ const BottomLink = styled(Body13)`
 
 function ConfirmWrapper({ user, confirmCodeCallback, resendCodeCallback }) {
   const [token, setToken] = useState('');
-  console.log('u', user);
 
   const { phone, email } = user;
   const hasPhone = !!phone;

@@ -17,7 +17,7 @@ function* confirmCode({ code }) {
 
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
-    yield put(push('/profile'));
+    yield put(push('/register/password-creation'));
     yield put(snackbarActions.showSnakbarAction('Your account is verified.'));
   } catch (error) {
     console.log(error);
