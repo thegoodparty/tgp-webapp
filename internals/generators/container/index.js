@@ -25,13 +25,13 @@ module.exports = {
     {
       type: 'confirm',
       name: 'memo',
-      default: false,
+      default: true,
       message: 'Do you want to wrap your component in React.memo?',
     },
     {
       type: 'confirm',
       name: 'wantHeaders',
-      default: false,
+      default: true,
       message: 'Do you want headers?',
     },
     {
@@ -50,7 +50,7 @@ module.exports = {
     {
       type: 'confirm',
       name: 'wantLoadable',
-      default: true,
+      default: false,
       message: 'Do you want to load resources asynchronously?',
     },
   ],

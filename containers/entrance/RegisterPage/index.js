@@ -20,6 +20,9 @@ import makeSelectRegisterPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import snackbarActions from '../../shared/SnackbarContainer/actions';
+import { logEvent } from '../../../services/AnalyticsService';
+import userActions from '../../you/YouPage/actions';
 
 export function RegisterPage({
   registerCallback,
@@ -66,10 +69,12 @@ function mapDispatchToProps(dispatch) {
     registerCallback: (name, email, phone, zip) => {
       dispatch(actions.registerAction(name, email, phone, zip));
     },
-    socialRegisterCallback: socialAccount => {
-      console.log('socialAccount', socialAccount);
+    socialRegisterCallback: socialUser => {
+      dispatch(actions.socialRegisterAction(socialUser));
     },
-    socialRegisterFailureCallback: () => {},
+    socialRegisterFailureCallback: () => {
+      dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+    },
     twitterButtonCallback: () => {},
   };
 }

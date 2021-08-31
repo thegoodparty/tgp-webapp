@@ -17,9 +17,9 @@ const registerActionError = error => ({
   error,
 });
 
-const socialRegisterAction = user => ({
+const socialRegisterAction = socialUser => ({
   type: types.SOCIAL_REGISTER,
-  user,
+  socialUser,
 });
 
 const resendEmailAction = email => ({

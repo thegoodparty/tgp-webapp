@@ -1,65 +1,63 @@
 /**
  *
- * PasswordCreationPage
+ * RegisterUpdatePage
  *
  */
 
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-next-router';
 
 import TgpHelmet from 'components/shared/TgpHelmet';
-import PasswordCreationWrapper from 'components/entrance/PasswordCreationWrapper';
+import RegisterWrapper from 'components/entrance/RegisterWrapper';
 import { getUserCookie } from 'helpers/cookieHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectPasswordCreationPage from './selectors';
+import makeSelectRegisterUpdatePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
-export function PasswordCreationPage({ dispatch, savePasswordCallback }) {
-  useInjectReducer({ key: 'passwordCreationPage', reducer });
-  useInjectSaga({ key: 'passwordCreationPage', saga });
+export function RegisterUpdatePage({ registerCallback }) {
+  useInjectReducer({ key: 'registerUpdatePage', reducer });
+  useInjectSaga({ key: 'registerUpdatePage', saga });
 
   const user = getUserCookie(true);
-  if (user && user.hasPassword) {
-    dispatch(push('/profile'));
-  }
-
   const childProps = {
-    savePasswordCallback,
+    user,
+    registerCallback,
+    isUpdate: true,
   };
 
   return (
     <div>
       <TgpHelmet
-        title="Password Creation | GOOD PARTY"
-        description="Create an account on GOOD PARTY"
+        title="Update Info | GOOD PARTY"
+        description="update registration information for GOOD PARTY"
       />
-      <PasswordCreationWrapper {...childProps} />
+      <RegisterWrapper {...childProps} />
     </div>
   );
 }
 
-PasswordCreationPage.propTypes = {
+RegisterUpdatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  savePasswordCallback: PropTypes.func,
+  registerCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  passwordCreationPage: makeSelectPasswordCreationPage(),
+  registerUpdatePage: makeSelectRegisterUpdatePage(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    savePasswordCallback: password => {
-      dispatch(actions.setPasswordAction(password));
+    registerCallback: (name, email, phone, zip) => {
+      dispatch(actions.registerUpdateAction(name, email, phone, zip));
     },
   };
 }
@@ -72,4 +70,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(PasswordCreationPage);
+)(RegisterUpdatePage);

@@ -92,25 +92,45 @@ const Input = styled(TextField)`
 `;
 
 const fields = [
-  { label: 'Full Name', key: 'name', type: 'text', required: true },
-  { label: 'Email Address', key: 'email', type: 'email', required: false },
+  {
+    label: 'Full Name',
+    key: 'name',
+    type: 'text',
+    required: true,
+    isUpdatable: false,
+  },
+  {
+    label: 'Email Address',
+    key: 'email',
+    type: 'email',
+    required: false,
+    isUpdatable: false,
+  },
   {
     type: 'tel',
   },
-  { label: 'Zip Code', key: 'zipcode', type: 'text', required: true },
+  {
+    label: 'Zip Code',
+    key: 'zipcode',
+    type: 'text',
+    required: true,
+    isUpdatable: true,
+  },
 ];
 
 const RegisterWrapper = ({
+  user,
   registerCallback,
   socialRegisterCallback,
   socialRegisterFailureCallback,
   twitterButtonCallback,
+  isUpdate = false,
 }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    zipcode: '',
+    name: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    zipcode: user?.zip || '',
   });
 
   const enableSubmit = () => {
@@ -193,6 +213,7 @@ const RegisterWrapper = ({
                   type={field.type}
                   name={field.key}
                   variant="outlined"
+                  disabled={isUpdate && !field.isUpdatable}
                   onChange={e => onChangeField(e, field.key)}
                   helperText={field.helperText}
                 />
@@ -207,48 +228,52 @@ const RegisterWrapper = ({
               onClick={handleSubmit}
               type="submit"
             >
-              JOIN
+              {user ? 'UPDATE' : 'JOIN'}
             </PurpleButton>
           </div>
         </form>
-        <OrWrapper>
-          <Border />
-          <Or>
-            <Body13 style={{ color: '#767676' }}>Or</Body13>
-          </Or>
-        </OrWrapper>
-        <br />
-        <div data-cy="facebook-login">
-          <SocialButton
-            channel="facebook"
-            provider="facebook"
-            appId={globals.facebookAppId}
-            onLoginSuccess={socialRegisterCallback}
-            onLoginFailure={socialRegisterFailureCallback}
-          >
-            Continue with FACEBOOK
-          </SocialButton>
-        </div>
-        <br />
-        <TwitterButton clickCallback={twitterButtonCallback}>
-          Continue with Twitter
-        </TwitterButton>
-        <br />
-        <br />
-        <div data-cy="google-login">
-          <SocialButton
-            channel="google"
-            provider="google"
-            appId={globals.googleAppId}
-            onLoginSuccess={socialRegisterCallback}
-            onLoginFailure={socialRegisterFailureCallback}
-          >
-            Continue with GOOGLE
-          </SocialButton>
-        </div>
-        <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-          Already have an account? <Link href="/login">login</Link>
-        </Body13>
+        {!user && (
+          <>
+            <OrWrapper>
+              <Border />
+              <Or>
+                <Body13 style={{ color: '#767676' }}>Or</Body13>
+              </Or>
+            </OrWrapper>
+            <br />
+            <div data-cy="facebook-login">
+              <SocialButton
+                channel="facebook"
+                provider="facebook"
+                appId={globals.facebookAppId}
+                onLoginSuccess={socialRegisterCallback}
+                onLoginFailure={socialRegisterFailureCallback}
+              >
+                Continue with FACEBOOK
+              </SocialButton>
+            </div>
+            <br />
+            <TwitterButton clickCallback={twitterButtonCallback}>
+              Continue with Twitter
+            </TwitterButton>
+            <br />
+            <br />
+            <div data-cy="google-login">
+              <SocialButton
+                channel="google"
+                provider="google"
+                appId={globals.googleAppId}
+                onLoginSuccess={socialRegisterCallback}
+                onLoginFailure={socialRegisterFailureCallback}
+              >
+                Continue with GOOGLE
+              </SocialButton>
+            </div>
+            <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
+              Already have an account? <Link href="/login">login</Link>
+            </Body13>
+          </>
+        )}
       </Wrapper>
     </PageWrapper>
   );
@@ -259,6 +284,8 @@ RegisterWrapper.propTypes = {
   socialRegisterCallback: PropTypes.func,
   socialRegisterFailureCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
+  user: PropTypes.object,
+  isUpdate: PropTypes.bool,
 };
 
 export default RegisterWrapper;
