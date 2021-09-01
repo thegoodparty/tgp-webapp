@@ -27,8 +27,10 @@ export default function* requestHelper(api, data, isFormData = false) {
   let token;
   if (withAuth) {
     token = yield select(makeSelectToken());
+    console.log('select token', token);
     if (!token) {
       token = getCookie('token');
+      console.log('cookie token', token);
       if (!token) {
         yield put(userActions.signoutAction('/login'));
         throw new Error({ message: 'missing token' });
@@ -41,6 +43,7 @@ export default function* requestHelper(api, data, isFormData = false) {
     return yield call(fetchHelper, url, requestOptions);
   } catch (e) {
     if (e && e.response && e.response.err === 'Invalid token') {
+      console.log('invalid token', e);
       yield put(
         snackbarActions.showSnakbarAction('Please login again', 'error'),
       );

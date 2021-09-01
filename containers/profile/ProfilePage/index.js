@@ -36,9 +36,11 @@ export function ProfilePage({ dispatch, profilePage }) {
 
   useEffect(() => {
     if (user && !crewPreview) {
+      console.log('loadng crew');
       dispatch(actions.loadCrewPreviewAction());
     }
     if (user && !userSupported) {
+      console.log('loadng upport');
       dispatch(actions.loadUserSupportedAction());
     }
     if (typeof window !== 'undefined' && !user) {

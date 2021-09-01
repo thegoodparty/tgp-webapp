@@ -9,10 +9,13 @@ import types from './constants';
 function* loadCrewPreview() {
   try {
     const api = tgpApi.crew;
+    console.log('loading crew saga', api);
+
     const payload = {
       preview: true,
     };
     const response = yield call(requestHelper, api, payload);
+    console.log('loading crew response', response);
     yield put(
       actions.loadCrewPreviewActionSuccess(response.crew, response.crewCount),
     );
@@ -24,13 +27,15 @@ function* loadCrewPreview() {
 function* loadUserSupported() {
   try {
     const api = tgpApi.supportCandidate.userSupports;
+    console.log('loading support saga', api);
     const payload = {
       withCandidates: true,
     };
     const { supports } = yield call(requestHelper, api, payload);
+    console.log('loading support response', supports);
     yield put(actions.loadUserSupportedActionSuccess(supports));
   } catch (error) {
-    console.log('crew error', JSON.stringify(error));
+    console.log('support error', JSON.stringify(error));
   }
 }
 
