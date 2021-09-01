@@ -36,7 +36,7 @@ export function ProfilePage({ dispatch, profilePage }) {
 
   useEffect(() => {
     if (user && !crewPreview) {
-      dispatch(userActions.loadCrewPreviewAction());
+      dispatch(actions.loadCrewPreviewAction());
     }
     if (user && !userSupported) {
       dispatch(actions.loadUserSupportedAction());

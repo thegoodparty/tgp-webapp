@@ -46,11 +46,7 @@ const api = {
     url: `${base}entrance/register`,
     method: 'POST',
   },
-  createCrew: {
-    url: `${base}entrance/crew`,
-    method: 'POST',
-    withAuth: true,
-  },
+
   confirmCode: {
     url: `${base}user/confirm`,
     method: 'PUT',
@@ -107,7 +103,6 @@ const api = {
     method: 'PUT',
   },
 
-
   //
   // USER
   //
@@ -132,6 +127,11 @@ const api = {
   crew: {
     url: `${base}user/crew`,
     method: 'GET',
+    withAuth: true,
+  },
+  createCrew: {
+    url: `${base}user/crew`,
+    method: 'POST',
     withAuth: true,
   },
 
