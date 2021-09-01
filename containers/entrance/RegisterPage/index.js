@@ -75,7 +75,9 @@ function mapDispatchToProps(dispatch) {
     socialRegisterFailureCallback: () => {
       dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
     },
-    twitterButtonCallback: () => {},
+    twitterButtonCallback: () => {
+      dispatch(actions.twitterRegisterAction());
+    },
   };
 }
 

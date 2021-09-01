@@ -71,11 +71,9 @@ function* setupCrew() {
 function* socialRegister({ socialUser }) {
   try {
     /* eslint-disable no-underscore-dangle */
-    console.log('socialRegister Saga1', socialUser);
     const profile = socialUser._profile;
     const provider = socialUser._provider;
     const { name, email, id, profilePicURL } = profile;
-    console.log('socialRegister Saga2', name, email);
     // for facebook - get a larger image
     let socialPic = profilePicURL;
     let idToken;
@@ -111,8 +109,6 @@ function* socialRegister({ socialUser }) {
       socialToken: idToken,
     };
 
-    console.log('socialRegister Saga3', payload);
-
     const guestUuid = getCookie('guuid');
     if (guestUuid) {
       payload.guestUuid = guestUuid;
@@ -121,16 +117,11 @@ function* socialRegister({ socialUser }) {
     const api = tgpApi.register;
     const { user, token } = yield call(requestHelper, api, payload);
 
-    console.log('socialRegister Saga4', user);
-
     setUserCookie(user);
     setCookie('token', token);
     logEvent('Signup', 'Complete Account Signup', provider);
-    console.log('socialRegister Saga5');
     yield put(push('/register/update'));
-    console.log('socialRegister Saga6');
     yield call(setupCrew);
-    console.log('socialRegister Saga7');
   } catch (error) {
     if (error.response?.exists) {
       yield put(
@@ -145,8 +136,23 @@ function* socialRegister({ socialUser }) {
   }
 }
 
+function* twitterLogin() {
+  try {
+    const api = tgpApi.twitterLogin;
+
+    const { url } = yield call(requestHelper, api, null);
+    window.location.href = url;
+  } catch (error) {
+    console.log('twitter login error', JSON.stringify(error));
+    yield put(
+      snackbarActions.showSnakbarAction('Twitter Login Error', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.REGISTER, register);
   yield takeLatest(types.SOCIAL_REGISTER, socialRegister);
+  yield takeLatest(types.TWITTER_REGISTER, twitterLogin);
 }

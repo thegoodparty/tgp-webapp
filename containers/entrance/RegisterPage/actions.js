@@ -15,7 +15,12 @@ const socialRegisterAction = socialUser => ({
   socialUser,
 });
 
+const twitterRegisterAction = () => ({
+  type: types.TWITTER_REGISTER,
+});
+
 export default {
   registerAction,
   socialRegisterAction,
+  twitterRegisterAction,
 };
