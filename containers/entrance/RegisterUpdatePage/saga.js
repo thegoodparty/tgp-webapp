@@ -4,14 +4,7 @@ import requestHelper from 'helpers/requestHelper';
 import { push } from 'connected-next-router';
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import {
-  deleteCookie,
-  getCookie,
-  setCookie,
-  setUserCookie,
-} from 'helpers/cookieHelper';
-
-import { logEvent } from 'services/AnalyticsService';
+import { setUserCookie } from 'helpers/cookieHelper';
 
 import types from './constants';
 
@@ -23,9 +16,8 @@ function* registerUpdate({ phone, zip }) {
       zip,
     };
 
-    const { user, token } = yield call(requestHelper, api, payload);
+    const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
-    setCookie('token', token);
     yield put(push('/profile'));
   } catch (error) {
     if (error.response?.exists) {
