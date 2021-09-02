@@ -46,6 +46,7 @@ export function Nav({ userState, dispatch, trackShareCallback, purpleNav }) {
     trackShareCallback,
     purpleNav,
   };
+
   return <NavWrapper {...childProps} />;
 }
 

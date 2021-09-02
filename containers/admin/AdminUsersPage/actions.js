@@ -1,8 +1,9 @@
 import types from './constants';
 
-function loadAllUsers() {
+function loadAllUsers(dateRange = 'All time') {
   return {
     type: types.LOAD_ALL_USERS,
+    dateRange,
   };
 }
 

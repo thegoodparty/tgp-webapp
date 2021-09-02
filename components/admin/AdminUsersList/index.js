@@ -57,7 +57,7 @@ function AdminUsersList({ users, deleteUserCallback }) {
       users.map(user => {
         const fields = {
           ...user,
-          isAdmin: user.isAdmin ? 'yes' : 'no',
+          isAdmin: user.isAdmin ? 'admin' : user.candidate ? 'candidate' : 'no',
         };
 
         data.push(fields);
@@ -158,7 +158,7 @@ function AdminUsersList({ users, deleteUserCallback }) {
       accessor: 'isAdmin',
       headerStyle,
       filterMethod: customFilter,
-      maxWidth: 80,
+      maxWidth: 100,
     },
   ];
   if (ENV !== 'prod') {

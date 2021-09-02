@@ -6,11 +6,14 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* loadAllUsers() {
+function* loadAllUsers({ dateRange }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading Users'));
     const api = tgpApi.admin.allUsers;
-    const { users } = yield call(requestHelper, api, null);
+    const payload = {
+      dateRange,
+    };
+    const { users } = yield call(requestHelper, api, payload);
     yield put(actions.loadAllUsersSuccess(users));
   } catch (error) {
     console.log(error);

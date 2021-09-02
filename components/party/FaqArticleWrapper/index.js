@@ -138,7 +138,7 @@ const FaqArticleWrapper = ({
 
   return (
     <>
-      {article ? (
+      {article && (
         <>
           <TgpDialog onClose={closeModalCallback} open fullScreen={fullScreen}>
             <Wrapper>
@@ -206,8 +206,6 @@ const FaqArticleWrapper = ({
             </Wrapper>
           </TgpDialog>
         </>
-      ) : (
-        <LoadingAnimation />
       )}
     </>
   );

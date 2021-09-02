@@ -14,6 +14,9 @@ export async function initGA4() {
     ga4react = new GA4React(G, { debug_mode: !process.env.production });
 
     try {
+      if (window.location.pathname.startsWith('/share-image/')) {
+        return;
+      }
       await ga4react.initialize();
 
       logPageViews();
@@ -25,6 +28,9 @@ export async function initGA4() {
 
 function logPageView() {
   if (!isProd || !GA4React.isInitialized()) {
+    return;
+  }
+  if (window.location.pathname.startsWith('/share-image/')) {
     return;
   }
   ga4react?.pageview(window.location.pathname);

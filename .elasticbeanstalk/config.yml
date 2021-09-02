@@ -1,8 +1,8 @@
 branch-defaults:
   master:
-    environment: gp-site-prod
+    environment: gp-app-prod
   develop:
-    environment: gp-site-dev
+    environment: gp-app-dev
 environment-defaults:
   tgp-api-test:
     branch: null

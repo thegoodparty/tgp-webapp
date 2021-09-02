@@ -22,6 +22,7 @@ const Input = styled(TextField)`
       line-height: 22px;
       font-size: 16px;
       letter-spacing: 0.1px;
+      background-color: #fff;
 
       @media only screen and (min-width: ${({ theme }) =>
           theme.breakpointsPixels.md}) {
@@ -36,6 +37,7 @@ function PasswordInput({
   onChangeCallback,
   variant = 'outlined',
   label = 'Password',
+  helperText = '8 characters minimum',
 }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -61,7 +63,7 @@ function PasswordInput({
       size="medium"
       fullWidth
       type={showPassword ? 'text' : 'password'}
-      helperText="8 characters minimum"
+      helperText={helperText}
       name="password"
       onChange={onChangePassword}
       data-cy="password"
@@ -87,6 +89,7 @@ PasswordInput.propTypes = {
   onChangeCallback: PropTypes.func,
   variant: PropTypes.string,
   label: PropTypes.string,
+  helperText: PropTypes.string,
 };
 
 export default PasswordInput;

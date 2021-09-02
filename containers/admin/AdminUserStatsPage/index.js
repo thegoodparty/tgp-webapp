@@ -27,7 +27,12 @@ import actions from '../AdminUsersPage/actions';
 import makeSelectAdminUsersPage from '../AdminUsersPage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
 
-export function AdminUserStatsPage({ dispatch, adminUsersPage, userState }) {
+export function AdminUserStatsPage({
+  dispatch,
+  adminUsersPage,
+  userState,
+  loadUsersCallback,
+}) {
   useInjectReducer({ key: 'adminUserStatsPage', reducer });
   useInjectSaga({ key: 'adminUserStatsPage', saga });
 
@@ -38,7 +43,7 @@ export function AdminUserStatsPage({ dispatch, adminUsersPage, userState }) {
   const { users } = adminUsersPage;
 
   useEffect(() => {
-    dispatch(actions.loadAllUsers());
+    dispatch(actions.loadAllUsers('All time'));
   }, []);
 
   useEffect(() => {
@@ -49,12 +54,13 @@ export function AdminUserStatsPage({ dispatch, adminUsersPage, userState }) {
 
   const childProps = {
     users,
+    loadUsersCallback,
   };
 
   return (
     <div>
       <Helmet>
-        <title>AdminUserStatsPage</title>
+        <title>Admin User Stats</title>
         <meta name="description" content="Description of AdminUserStatsPage" />
       </Helmet>
       <AdminUserStats {...childProps} />
@@ -66,6 +72,7 @@ AdminUserStatsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   adminUsersPage: PropTypes.object,
   userState: PropTypes.object,
+  loadUsersCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -77,6 +84,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    loadUsersCallback: dateRange => {
+      dispatch(actions.loadAllUsers(dateRange));
+    },
   };
 }
 

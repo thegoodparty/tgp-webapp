@@ -10,7 +10,7 @@ import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
 import globals from '../../../globals';
 import { OutlinedButton } from '../../shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
-import TwitterButton from '../SocialRegisterWrapper/TwitterButton';
+import TwitterButton from '../../shared/TwitterButton';
 const SocialButton = dynamic(
   () => import('components/you/SocialRegisterWrapper/SocialButton'),
   { ssr: false },

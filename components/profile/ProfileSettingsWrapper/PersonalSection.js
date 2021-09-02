@@ -36,7 +36,8 @@ const Row = styled.div`
     }
   }
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 25px 0;
     &.with-save {
       display: flex;
@@ -49,7 +50,8 @@ const Row = styled.div`
 
 const Label = styled(Body13)`
   font-weight: 700;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-bottom: 10px;
   }
 `;
@@ -85,7 +87,8 @@ const Cancel = styled.div`
   margin-left: 12px;
   color: ${({ theme }) => theme.colors.purple};
   cursor: pointer;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     display: none;
   }
 `;
@@ -93,7 +96,8 @@ const Cancel = styled.div`
 const ButtonCancelWrapper = styled.div`
   display: flex;
   align-items: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     display: block;
   }
 `;
@@ -113,7 +117,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [password, setPassword] = useState('');
   const [canChangePassword, setCanChangePassword] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
-  const { name, email, phone } = user;
+  const { name, email, phone, zip } = user;
 
   useEffect(() => {
     canSubmitPassword();
@@ -123,12 +127,14 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
     name,
     email,
     phone: formatToPhone(phone),
+    zip: zip || '',
   };
 
   const [formFields, setFormFields] = useState({
     name: { label: 'Full Name', value: initialValues.name },
     email: { label: 'Email', value: initialValues.email },
     phone: { label: 'Mobile number', value: initialValues.phone },
+    zip: { label: 'Zip Code', value: initialValues.zip },
   });
 
   const onChangeField = (key, val) => {

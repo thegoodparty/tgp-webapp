@@ -47,6 +47,17 @@ const api = {
     method: 'POST',
   },
 
+  confirmCode: {
+    url: `${base}user/confirm`,
+    method: 'PUT',
+    withAuth: true,
+  },
+  sendCode: {
+    url: `${base}user/confirm`,
+    method: 'POST',
+    withAuth: true,
+  },
+
   resendEmail: {
     url: `${base}entrance/resend-verify-email`,
     method: 'GET',
@@ -91,6 +102,7 @@ const api = {
     url: `${base}entrance/twitter-confirm`,
     method: 'PUT',
   },
+
   //
   // USER
   //
@@ -117,6 +129,11 @@ const api = {
     method: 'GET',
     withAuth: true,
   },
+  createCrew: {
+    url: `${base}user/crew`,
+    method: 'POST',
+    withAuth: true,
+  },
 
   leaderboard: {
     url: `${base}user/leaderboard`,
@@ -125,13 +142,13 @@ const api = {
   },
 
   changePassword: {
-    url: `${base}user/change-password`,
+    url: `${base}user/password`,
     method: 'PUT',
     withAuth: true,
   },
 
   addPassword: {
-    url: `${base}user/add-password`,
+    url: `${base}user/password`,
     method: 'POST',
     withAuth: true,
   },
@@ -163,6 +180,21 @@ const api = {
     updateCandidate: {
       url: `${base}admin/candidate`,
       method: 'PUT',
+      withAuth: true,
+    },
+    associateCandidateUser: {
+      url: `${base}admin/candidate-user`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    findAssociateUser: {
+      url: `${base}admin/candidate-user`,
+      method: 'GET',
+      withAuth: true,
+    },
+    removeAssociateUser: {
+      url: `${base}admin/candidate-user`,
+      method: 'DELETE',
       withAuth: true,
     },
     updateCandidateImage: {
@@ -341,6 +373,13 @@ const api = {
     candidateSupports: {
       url: `${base}candidate-supports`,
       method: 'GET',
+    },
+  },
+  candidateUser: {
+    find: {
+      url: `${base}candidate-user`,
+      method: 'GET',
+      withAuth: true,
     },
   },
 };
