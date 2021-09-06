@@ -61,7 +61,7 @@ export function VerifyVotePage({
       dispatch(push(window.location.pathname));
     } else if (!user && registerQuery !== 'true') {
       setSignupRedirectCookie('/verify-vote');
-      dispatch(push('?register=true'));
+      dispatch(push('/register'));
     }
     logEvent('Voter Registration', 'View Voterize Page');
   }, [user]);
@@ -109,7 +109,7 @@ function mapDispatchToProps(dispatch) {
         dispatch(actions.verifyVoterAction(voter, user));
       } else {
         setSignupRedirectCookie('/verify-vote');
-        dispatch(push('?register=true'));
+        dispatch(push('/register'));
       }
     },
     registerToVoteCallback: voter =>

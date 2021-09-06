@@ -40,7 +40,7 @@ function RegisterBannerWrapper({ count, showBanner, blocName }) {
     <>
       {showBanner && (
         <Wrapper>
-          <Link href="?register=true">
+          <Link href="/register">
             <ContentWrapper>
               <Body13>
                 You have joined {blocName}{' '}

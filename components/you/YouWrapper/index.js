@@ -64,7 +64,7 @@ const YouWrapper = ({ articles }) => {
   return (
     <PageWrapper white>
       <Login>
-        <Link href="?register=true" data-cy="sign-up">
+        <Link href="/register" data-cy="sign-up">
           Sign-Up
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -80,7 +80,7 @@ const YouWrapper = ({ articles }) => {
           then we all vote to get them in.
         </H3Body>
         <ButtonWrapper>
-          <Link href="?register=true" data-cy="count-in">
+          <Link href="/register" data-cy="count-in">
             <OutlinedButton active fullWidth>
               COUNT ME IN!
             </OutlinedButton>

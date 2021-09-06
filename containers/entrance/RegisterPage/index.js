@@ -21,8 +21,6 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 import snackbarActions from '../../shared/SnackbarContainer/actions';
-import { logEvent } from '../../../services/AnalyticsService';
-import userActions from '../../you/YouPage/actions';
 
 export function RegisterPage({
   registerCallback,

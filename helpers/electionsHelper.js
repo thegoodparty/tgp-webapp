@@ -452,7 +452,7 @@ export const rankPageJoinLink = (
     }
     return houseElectionLink(state, district) + query;
   }
-  return '?register=true';
+  return '/register';
 };
 
 export const electionRoute = (user, zipCode = null) => {

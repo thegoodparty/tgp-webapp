@@ -4,7 +4,11 @@ import requestHelper from 'helpers/requestHelper';
 import { push } from 'connected-next-router';
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import { setUserCookie } from 'helpers/cookieHelper';
+import {
+  deleteSignupRedirectCookie,
+  getSignupRedirectCookie,
+  setUserCookie,
+} from 'helpers/cookieHelper';
 
 import types from './constants';
 
@@ -17,7 +21,13 @@ function* setPassword({ password }) {
 
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
-    yield put(push('/profile'));
+    const redirectCookie = getSignupRedirectCookie();
+    if (redirectCookie) {
+      yield put(push(redirectCookie.route));
+      deleteSignupRedirectCookie();
+    } else {
+      yield put(push('/profile'));
+    }
     yield put(
       snackbarActions.showSnakbarAction(
         'Your account is protected with a password.',

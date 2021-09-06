@@ -21,7 +21,7 @@ const StyledBody = styled.div`
 
 const JoinUsButton = ({ style = {}, label = 'JOIN US' }) => {
   return (
-    <Link href="/?register=true" passHref>
+    <Link href="/register" passHref>
       <a>
         <PurpleButton style={style}>
           <StyledBody>{label}</StyledBody>

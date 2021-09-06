@@ -14,7 +14,7 @@ import { compose } from 'redux';
 
 import CandidateNewWrapper from 'components/elections/CandidateNewWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
-import { getUserCookie } from 'helpers/cookieHelper';
+import { getUserCookie, setSignupRedirectCookie } from 'helpers/cookieHelper';
 import queryHelper from 'helpers/queryHelper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
 import { partyResolver } from 'helpers/electionsHelper';
@@ -192,9 +192,8 @@ function mapDispatchToProps(dispatch) {
         // dispatch(push(`${window.location.pathname}?preview=true`));
         dispatch(actions.supportAction(candidateId));
       } else {
-        dispatch(
-          push(`${window.location.pathname}?register=true&candidate=true`),
-        );
+        setSignupRedirectCookie(window.location.pathname);
+        dispatch(push('/register'));
       }
     },
     removeSupportCallback: candidateId => {

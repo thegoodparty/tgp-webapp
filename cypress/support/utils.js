@@ -71,7 +71,7 @@ export const rankPageJoinLink = (candidate, chamberName, user = null) => {
     }
     return houseElectionLink(state, district) + query;
   }
-  return '?register=true';
+  return '/register';
 };
 
 export const parseCookie = cookie => JSON.parse(decodeURIComponent(cookie));

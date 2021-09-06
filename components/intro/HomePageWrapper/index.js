@@ -67,7 +67,7 @@ function HomePageWrapper() {
     <PageWrapper white wrapperStyles={wrapperStyles} hideNav>
       <div>
         <LoginLink>
-          <Link href="?register=true" data-cy="register">
+          <Link href="/register" data-cy="register">
             Sign-Up
           </Link>
           &nbsp;&nbsp;|&nbsp;&nbsp;
