@@ -192,7 +192,7 @@ function mapDispatchToProps(dispatch) {
         // dispatch(push(`${window.location.pathname}?preview=true`));
         dispatch(actions.supportAction(candidateId));
       } else {
-        setSignupRedirectCookie(window.location.pathname);
+        setSignupRedirectCookie(window.location.pathname, { id: candidateId });
         dispatch(push('/register'));
       }
     },

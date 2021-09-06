@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { getUserCookie } from 'helpers/cookieHelper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import ConfirmWrapper from 'components/entrance/ConfirmWrapper';
+import candidateNewPageSaga from 'containers/elections/CandidateNewPage/saga';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -25,6 +26,7 @@ import actions from './actions';
 export function ConfirmPage({ confirmCodeCallback, resendCodeCallback }) {
   useInjectReducer({ key: 'confirmPage', reducer });
   useInjectSaga({ key: 'confirmPage', saga });
+  useInjectSaga({ key: 'candidateNewPage', saga: candidateNewPageSaga });
 
   const user = getUserCookie(true);
 

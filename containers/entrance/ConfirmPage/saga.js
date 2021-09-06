@@ -3,13 +3,19 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import requestHelper from 'helpers/requestHelper';
 import { push } from 'connected-next-router';
 import tgpApi from 'api/tgpApi';
+import candidateActions from 'containers/elections/CandidateNewPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import { setUserCookie } from 'helpers/cookieHelper';
+import { getSignupRedirectCookie, setUserCookie } from 'helpers/cookieHelper';
 
 import types from './constants';
 
 function* confirmCode({ code }) {
   try {
+    const redirectCookie = getSignupRedirectCookie();
+    if (redirectCookie) {
+      yield put(candidateActions.supportAction(redirectCookie.options?.id));
+    }
+
     const api = tgpApi.confirmCode;
     const payload = {
       code,
@@ -17,7 +23,15 @@ function* confirmCode({ code }) {
 
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
-    yield put(push('/register/password-creation'));
+    if (redirectCookie) {
+      yield put(
+        push(
+          `/register/endorsement-confirmation/${redirectCookie.options?.id}`,
+        ),
+      );
+    } else {
+      yield put(push('/register/password-creation'));
+    }
     yield put(snackbarActions.showSnakbarAction('Your account is verified.'));
   } catch (error) {
     console.log(error);
