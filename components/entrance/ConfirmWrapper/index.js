@@ -8,11 +8,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import Link from 'next/link';
+
+import { formatToPhone } from 'helpers/phoneHelper';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body, Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
-import { formatToPhone } from '../../../helpers/phoneHelper';
 
 const heartImg = '/images/heart.svg';
 const Heart = styled.img`
@@ -115,6 +117,11 @@ function ConfirmWrapper({ user, confirmCodeCallback, resendCodeCallback }) {
         <Row>
           <BottomLink onClick={resendCode}>Resend Token</BottomLink>
           {hasPhone && email && <BottomLink>Confirm with email</BottomLink>}
+          <Link href="/register/update" passHref>
+            <a>
+              <BottomLink>Update my info</BottomLink>
+            </a>
+          </Link>
         </Row>
       </Wrapper>
     </PageWrapper>
