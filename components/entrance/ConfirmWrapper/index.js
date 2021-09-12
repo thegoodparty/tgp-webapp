@@ -60,7 +60,12 @@ const BottomLink = styled(Body13)`
   cursor: pointer;
 `;
 
-function ConfirmWrapper({ user, confirmCodeCallback, resendCodeCallback }) {
+function ConfirmWrapper({
+  user,
+  confirmCodeCallback,
+  resendCodeCallback,
+  confirmWithEmailCallback,
+}) {
   const [token, setToken] = useState('');
 
   const { phone, email } = user;
@@ -89,8 +94,8 @@ function ConfirmWrapper({ user, confirmCodeCallback, resendCodeCallback }) {
           <H1 data-cy="title">Confirm your account</H1>
           <br />
           <Body>
-            We sent your confirmation token to{' '}
-            {hasPhone ? formatToPhone(phone) : email}
+            We sent your confirmation code to{' '}
+            <strong>{hasPhone ? formatToPhone(phone) : email}</strong>
           </Body>
         </div>
         <form noValidate onSubmit={handleSubmitForm}>
@@ -116,7 +121,11 @@ function ConfirmWrapper({ user, confirmCodeCallback, resendCodeCallback }) {
         <br />
         <Row>
           <BottomLink onClick={resendCode}>Resend Token</BottomLink>
-          {hasPhone && email && <BottomLink>Confirm with email</BottomLink>}
+          {hasPhone && email && (
+            <BottomLink onClick={confirmWithEmailCallback}>
+              Confirm with email
+            </BottomLink>
+          )}
           <Link href="/register/update" passHref>
             <a>
               <BottomLink>Update my info</BottomLink>
@@ -132,6 +141,7 @@ ConfirmWrapper.propTypes = {
   user: PropTypes.object,
   confirmCodeCallback: PropTypes.func,
   resendCodeCallback: PropTypes.func,
+  confirmWithEmailCallback: PropTypes.func,
 };
 
 export default ConfirmWrapper;

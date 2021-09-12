@@ -31,10 +31,10 @@ export const formatToPhone = value => {
   if (!value) {
     return '';
   }
-  const input = value.replace(/\D/g, '').substring(0, 11); // First ten digits of input only
-  const zip = input.substring(1, 4);
-  const middle = input.substring(4, 7);
-  const last = input.substring(7, 11);
+  const input = value.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
+  const zip = input.substring(0, 3);
+  const middle = input.substring(3, 6);
+  const last = input.substring(6, 10);
 
   if (input.length > 6) {
     return `+1 (${zip}) ${middle}-${last}`;

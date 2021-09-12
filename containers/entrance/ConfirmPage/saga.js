@@ -5,9 +5,14 @@ import { push } from 'connected-next-router';
 import tgpApi from 'api/tgpApi';
 import candidateActions from 'containers/elections/CandidateNewPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import { getSignupRedirectCookie, setUserCookie } from 'helpers/cookieHelper';
+import {
+  getSignupRedirectCookie,
+  getUserCookie,
+  setUserCookie,
+} from 'helpers/cookieHelper';
 
 import types from './constants';
+import { formatToPhone } from '../../../helpers/phoneHelper';
 
 function* confirmCode({ code }) {
   try {
@@ -41,12 +46,21 @@ function* confirmCode({ code }) {
   }
 }
 
-function* resendCode() {
+function* resendCode({ withEmail }) {
   try {
     const api = tgpApi.sendCode;
-
-    yield call(requestHelper, api, null);
-    yield put(snackbarActions.showSnakbarAction('New code sent.'));
+    const payload = {
+      withEmail,
+    };
+    yield call(requestHelper, api, payload);
+    const user = getUserCookie(true);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        `New code sent to ${
+          withEmail ? user.email : formatToPhone(user.phone)
+        }`,
+      ),
+    );
   } catch (error) {
     console.log(error);
     yield put(snackbarActions.showSnakbarAction('Error sending code', 'error'));

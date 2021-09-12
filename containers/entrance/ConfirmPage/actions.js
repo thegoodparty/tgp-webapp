@@ -7,9 +7,10 @@ function confirmCodeAction(code) {
   };
 }
 
-function resendCodeAction() {
+function resendCodeAction(withEmail = false) {
   return {
     type: types.RESEND_CODE,
+    withEmail,
   };
 }
 

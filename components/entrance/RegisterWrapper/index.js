@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
@@ -60,6 +59,7 @@ const PhoneWrapper = styled.div`
     height: 60px;
     line-height: 22px;
     font-size: 16px;
+    padding-left: 16px;
     @media only screen and (min-width: ${({ theme }) =>
         theme.breakpointsPixels.md}) {
       font-size: 20px;
@@ -68,6 +68,10 @@ const PhoneWrapper = styled.div`
         font-size: 16px;
       }
     }
+  }
+
+  .flag-dropdown {
+    display: none;
   }
 `;
 
@@ -151,7 +155,7 @@ const RegisterWrapper = ({
     return validZip.test(formData.zipcode);
   };
 
-  const validatePhone = () => formData.phone.length === 11;
+  const validatePhone = () => formData.phone.length === 10;
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -189,6 +193,7 @@ const RegisterWrapper = ({
               {field.type === 'tel' ? (
                 <PhoneWrapper>
                   <PhoneInput
+                    disableCountryCode
                     country="us"
                     disableDropdown
                     inputClass="phone-input"

@@ -1,144 +1,7 @@
 const content = {
-  "portalEmbed": {
-    "title": "Embed our endorse button on your site",
-    "instructions": {
-      "nodeType": "document",
-      "data": {},
-      "content": [
-        {
-          "nodeType": "paragraph",
-          "content": [
-            {
-              "nodeType": "text",
-              "value": "Sure you need donations, but votes win elections! Start collecting endorsements by embedding this button on your website, social media and in campaign emails. Where there’s a Donate button on your site there should also be an Endorse button. Don't let money get in the way of people supporting and growing awareness about your campaign!",
-              "marks": [],
-              "data": {}
-            }
-          ],
-          "data": {}
-        }
-      ]
-    }
-  },
   "faqArticles": [
     {
-      "title": "Is Good Party a real political party?",
-      "articleBody": {
-        "data": {},
-        "content": [
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "No. Good Party is NOT a political party. We are a public benefit corporation and our mission is to make people matter more than money in democracy. We are building free, open-source technology to upgrade the operating system of our democracy. ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "https://goodparty.org/faqs?article=U4dbmGezqNUIDdGriL5oA"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": "",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "We are being built by a ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "https://goodparty.org/faqs?article=579kihjyIPloNaEw02rniq"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "diverse, mostly volunteer team",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": ". Our app allow voters to organize ",
-                "nodeType": "text"
-              },
-              {
-                "data": {
-                  "uri": "?article=1ic6T6fhH0jZLNvX5aZkDe"
-                },
-                "content": [
-                  {
-                    "data": {},
-                    "marks": [],
-                    "value": "crowd-voting campaigns",
-                    "nodeType": "text"
-                  }
-                ],
-                "nodeType": "hyperlink"
-              },
-              {
-                "data": {},
-                "marks": [],
-                "value": " that gather organic momentum and allow good candidates with great ideas to get elected. We are providing technology and tools that empower ordinary people to actively participate and have impact on democracy. ",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          },
-          {
-            "data": {},
-            "content": [
-              {
-                "data": {},
-                "marks": [],
-                "value": "Our first step is disrupting the existing two-party dominated political industrial complex by giving indie or grass-roots candidates a path to being elected. By providing free, open-source software, those candidates do not have to depend on big money sources to spread their ideas and gather supporters. We do this by showcasing grass-roots, independent candidates and providing a crowd-voting platform that helps people spread the word and turn social media supporters into actual voters.",
-                "nodeType": "text"
-              }
-            ],
-            "nodeType": "paragraph"
-          }
-        ],
-        "nodeType": "document"
-      },
-      "pages": [
-        "party"
-      ],
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "48a7xazZc0eN4PXM20Jtel"
-    },
-    {
-      "title": "Who is building Good Party?",
+      "title": "What is Good Party?",
       "articleBody": {
         "nodeType": "document",
         "data": {},
@@ -148,7 +11,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Good Party is an open-source project, run by a ",
+                "value": "Good Party is an open-source project (NOT a Political Party!), run by a ",
                 "marks": [],
                 "data": {}
               },
@@ -168,313 +31,7 @@ const content = {
               },
               {
                 "nodeType": "text",
-                "value": ". We believe that people are good and if empowered by technology, instead of enslaved by it, we can create a much better world for all. ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "entry-hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Our logo",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "target": {
-                    "metadata": {
-                      "tags": []
-                    },
-                    "sys": {
-                      "space": {
-                        "sys": {
-                          "type": "Link",
-                          "linkType": "Space",
-                          "id": "g08ybc4r0f4b"
-                        }
-                      },
-                      "id": "3qWW61APIjdW2k8IvnrGg4",
-                      "type": "Entry",
-                      "createdAt": "2021-08-13T20:42:42.597Z",
-                      "updatedAt": "2021-08-13T22:36:39.379Z",
-                      "environment": {
-                        "sys": {
-                          "id": "master",
-                          "type": "Link",
-                          "linkType": "Environment"
-                        }
-                      },
-                      "revision": 7,
-                      "contentType": {
-                        "sys": {
-                          "type": "Link",
-                          "linkType": "ContentType",
-                          "id": "faqArticle"
-                        }
-                      },
-                      "locale": "en-US"
-                    },
-                    "fields": {
-                      "title": "What's the meaning of the logo?",
-                      "articleBody": {
-                        "nodeType": "document",
-                        "data": {},
-                        "content": [
-                          {
-                            "nodeType": "paragraph",
-                            "content": [
-                              {
-                                "nodeType": "text",
-                                "value": "A Heart and Star dressed in Red, Bright and Blue!",
-                                "marks": [
-                                  {
-                                    "type": "bold"
-                                  }
-                                ],
-                                "data": {}
-                              }
-                            ],
-                            "data": {}
-                          },
-                          {
-                            "nodeType": "paragraph",
-                            "content": [
-                              {
-                                "nodeType": "text",
-                                "value": "The heart is for ",
-                                "marks": [],
-                                "data": {}
-                              },
-                              {
-                                "nodeType": "text",
-                                "value": "Humanity",
-                                "marks": [
-                                  {
-                                    "type": "bold"
-                                  }
-                                ],
-                                "data": {}
-                              },
-                              {
-                                "nodeType": "text",
-                                "value": " (representing love and life!)",
-                                "marks": [],
-                                "data": {}
-                              }
-                            ],
-                            "data": {}
-                          },
-                          {
-                            "nodeType": "paragraph",
-                            "content": [
-                              {
-                                "nodeType": "text",
-                                "value": "The star is for ",
-                                "marks": [],
-                                "data": {}
-                              },
-                              {
-                                "nodeType": "text",
-                                "value": "Freedom",
-                                "marks": [
-                                  {
-                                    "type": "bold"
-                                  }
-                                ],
-                                "data": {}
-                              },
-                              {
-                                "nodeType": "text",
-                                "value": " (representing liberty and justice!)",
-                                "marks": [],
-                                "data": {}
-                              }
-                            ],
-                            "data": {}
-                          },
-                          {
-                            "nodeType": "paragraph",
-                            "content": [
-                              {
-                                "nodeType": "text",
-                                "value": "Our mission is heroic -- we're out to save American democracy -- so our logo has a super-hero vibe and uses the colors of our flag.  ",
-                                "marks": [],
-                                "data": {}
-                              }
-                            ],
-                            "data": {}
-                          },
-                          {
-                            "nodeType": "paragraph",
-                            "content": [
-                              {
-                                "nodeType": "text",
-                                "value": "We also wanted to be a bit more fun and point to the bright future ahead of us as we come together to take back our government! So, we also see our third color, as ",
-                                "marks": [],
-                                "data": {}
-                              },
-                              {
-                                "nodeType": "text",
-                                "value": "Bright ",
-                                "marks": [
-                                  {
-                                    "type": "bold"
-                                  }
-                                ],
-                                "data": {}
-                              },
-                              {
-                                "nodeType": "text",
-                                "value": "(white); a full spectrum of colors coming together, shining as one!",
-                                "marks": [],
-                                "data": {}
-                              }
-                            ],
-                            "data": {}
-                          },
-                          {
-                            "nodeType": "paragraph",
-                            "content": [
-                              {
-                                "nodeType": "text",
-                                "value": "",
-                                "marks": [],
-                                "data": {}
-                              },
-                              {
-                                "nodeType": "hyperlink",
-                                "content": [
-                                  {
-                                    "nodeType": "text",
-                                    "value": "Tell us what you think",
-                                    "marks": [],
-                                    "data": {}
-                                  }
-                                ],
-                                "data": {
-                                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSdu1BTbnd8iavIxG51xVlkzKlGVktc1Y7WYWLNWzmZwr1yWqQ/viewform?usp=sf_link"
-                                }
-                              },
-                              {
-                                "nodeType": "text",
-                                "value": " and which version you like better?",
-                                "marks": [],
-                                "data": {}
-                              }
-                            ],
-                            "data": {}
-                          },
-                          {
-                            "nodeType": "embedded-asset-block",
-                            "content": [],
-                            "data": {
-                              "target": {
-                                "metadata": {
-                                  "tags": []
-                                },
-                                "sys": {
-                                  "space": {
-                                    "sys": {
-                                      "type": "Link",
-                                      "linkType": "Space",
-                                      "id": "g08ybc4r0f4b"
-                                    }
-                                  },
-                                  "id": "5ltogLmmGOq0CkJCCvqHpt",
-                                  "type": "Asset",
-                                  "createdAt": "2020-06-02T00:21:40.365Z",
-                                  "updatedAt": "2020-06-02T00:42:44.296Z",
-                                  "environment": {
-                                    "sys": {
-                                      "id": "master",
-                                      "type": "Link",
-                                      "linkType": "Environment"
-                                    }
-                                  },
-                                  "revision": 2,
-                                  "locale": "en-US"
-                                },
-                                "fields": {
-                                  "title": "FAQ - Logos",
-                                  "file": {
-                                    "url": "//images.ctfassets.net/g08ybc4r0f4b/5ltogLmmGOq0CkJCCvqHpt/6651d14467ed29ad01852d0b21c2e5ef/For_FAQ.png",
-                                    "details": {
-                                      "size": 106715,
-                                      "image": {
-                                        "width": 727,
-                                        "height": 316
-                                      }
-                                    },
-                                    "fileName": "For FAQ.png",
-                                    "contentType": "image/png"
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "nodeType": "paragraph",
-                            "content": [
-                              {
-                                "nodeType": "text",
-                                "value": "",
-                                "marks": [],
-                                "data": {}
-                              }
-                            ],
-                            "data": {}
-                          }
-                        ]
-                      },
-                      "category": [
-                        {
-                          "metadata": {
-                            "tags": []
-                          },
-                          "sys": {
-                            "space": {
-                              "sys": {
-                                "type": "Link",
-                                "linkType": "Space",
-                                "id": "g08ybc4r0f4b"
-                              }
-                            },
-                            "id": "1x8sreeqPN0PK929WRNw4I",
-                            "type": "Entry",
-                            "createdAt": "2021-01-11T07:09:19.332Z",
-                            "updatedAt": "2021-01-11T17:09:02.346Z",
-                            "environment": {
-                              "sys": {
-                                "id": "master",
-                                "type": "Link",
-                                "linkType": "Environment"
-                              }
-                            },
-                            "revision": 2,
-                            "contentType": {
-                              "sys": {
-                                "type": "Link",
-                                "linkType": "ContentType",
-                                "id": "articleCategory"
-                              }
-                            },
-                            "locale": "en-US"
-                          },
-                          "fields": {
-                            "name": "About Us",
-                            "order": 300
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " says it all!",
+                "value": " of creators, influencers and organizers. We believe that people are inherently good and if empowered by technology, inspired by a credible vision, and organized and mobilized to action, we can create a much better world for all!",
                 "marks": [],
                 "data": {}
               },
@@ -506,7 +63,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "We believe that commercial interests and power motives often undercut the vast potential of technology to help humanity. So, we've removed both money and power as motives and set ourselves up as a public benefit corporation whose mission is to make people matter more than money in our democracy.",
+                "value": "We believe that commercial interests and power motives often undercut the vast potential of technology and corrupt our politicians to their own ends, creating a doom loop that has created rules that don't serve humanity. ",
                 "marks": [],
                 "data": {}
               }
@@ -518,7 +75,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Our organization's stated public benefit is to empower eligible voters and non-voters who are not represented by the two major U.S. political parties. Good Party provides software and related technology and consulting services to independent and third-party voters, candidates, and political organizations that cannot be serviced today by vendors that strictly serve one of the two major parties.",
+                "value": "So, we set ourselves up as a public benefit corporation whose primary mission is to make people matter more than money in our democracy.",
                 "marks": [],
                 "data": {}
               }
@@ -530,7 +87,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "We are creating the infrastructure and people-powered movement necessary to enable Good Certified, Indie candidates to run and win elections. We do so by using technology and the power of the crowd to overcome the tired, old ‘wasted vote’ argument used by establishment politicians over the past century. ",
+                "value": "Good Party seeks as many diversely talented creative people as possible to help us build something truly good! ",
                 "marks": [],
                 "data": {}
               }
@@ -542,43 +99,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Our vision is to build a more robust, human-centered democracy. We do so by enabling more, better choices of representation for voters, and creating real competition against the broken two-party Duopoly. Not Red, not Blue, Good.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The current system allows corrupt career politicians of either major party to hold onto power, election after election, setting the rules of society to benefit themselves and the big money sources that paid to get them elected.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "We're trying to make possible a kind of civic tour of duty, where good, ordinary, capable people can step up and serve as honest representatives. Where people can be given a chance to truly serve society and move everyone towards a more just and sustainable future. There are several steps to get there, but it starts with this simple Good Party app we offer you today.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Good Party's main financial backing to date has come from one of our project co-founders, ",
+                "value": "If you are interested in learning more or seeing how you can help please fill out our ",
                 "marks": [],
                 "data": {}
               },
@@ -587,30 +108,22 @@ const content = {
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "",
-                    "marks": [],
+                    "value": "volunteer form ",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
                     "data": {}
                   }
                 ],
                 "data": {
-                  "uri": "https://farhadmohit.com"
+                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=sf_link"
                 }
               },
               {
                 "nodeType": "text",
-                "value": "who is also a full-time volunteer here. We are committed to being open and transparent in all matters. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Good Party seeks as many diversely talented creative people as possible to help us build something truly good!  ",
+                "value": "or",
                 "marks": [],
                 "data": {}
               },
@@ -619,7 +132,7 @@ const content = {
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Interested? Ping us!",
+                    "value": " email us",
                     "marks": [],
                     "data": {}
                   }
@@ -630,7 +143,7 @@ const content = {
               },
               {
                 "nodeType": "text",
-                "value": "",
+                "value": ".",
                 "marks": [],
                 "data": {}
               }
@@ -652,7 +165,152 @@ const content = {
       "id": "33lnRLO7M0gvfqVkoVxADO"
     },
     {
-      "title": "Our team",
+      "title": "What does Good Party do?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Good Party is a public benefit corporation with a stated mission to empower the large plurality of people in this country -- a majority of whom are young, digital natives-- who feel that they are not truly represented by the two major U.S. political parties.  This group currently comprises over 130M people who are either choosing not to vote or voting for the lessor of two evils.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Our vision is to build a more robust, human-centered democracy by enabling more, better choices of representation for voters, and creating real competition against the broken two-party duopoly. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Our method is to build the latest technology and tools, couple it with creative energy and in-real-life organizing, so independent, people-powered, anti-corruption candidates can run and win elections. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We currently offer our all our services for free to all candidates who meet our criteria.  ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Our crowd-voting tools allow ordinary people to spread the word about a campaign, organize supporters and volunteers, and to mobilize and get out the vote, only when and where we have a good chance to win.  In this way, we very efficiently provide a free option to see if an indie candidate they like has a shot to win, without wasting the actual vote, thereby overcoming the tired, old ‘don't waste your vote on an independent candidate’ argument used by establishment politicians over the past century to stifle competition. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We look forward to a day when all elections have the choice to vote not just Red or Blue, but Good too!",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "If you are interested in learning more or seeing how you can help please fill out our ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "volunteer form ",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=sf_link"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "or",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": " email us",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ".",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
+      "id": "4HZdDTNOJWSFOxoBfO8sRU"
+    },
+    {
+      "title": "Meet the Team",
       "articleBody": {
         "nodeType": "document",
         "data": {},
@@ -706,7 +364,7 @@ const content = {
               },
               {
                 "nodeType": "text",
-                "value": " - Engineering",
+                "value": " - Developer",
                 "marks": [],
                 "data": {}
               }
@@ -731,6 +389,42 @@ const content = {
                 "content": [
                   {
                     "nodeType": "text",
+                    "value": "Richie Alicea",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/richiealicea/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Politics",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
                     "value": "Jared Alper",
                     "marks": [
                       {
@@ -746,7 +440,7 @@ const content = {
               },
               {
                 "nodeType": "text",
-                "value": " - Political ",
+                "value": " - Politics ",
                 "marks": [],
                 "data": {}
               }
@@ -786,7 +480,177 @@ const content = {
               },
               {
                 "nodeType": "text",
-                "value": " - Engineering",
+                "value": " - Developer",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Victoria Mitchell",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/victoriapmitchell/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Mobilization",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " ",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Cameron Sadeghi",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/cameron-sadeghi-9662081b/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Politics",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Whitney Smith",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/whitney-smith-599802143/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Social Media / TikTok",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Zak Tomich",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/zaktomich/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Politics / Operations",
                 "marks": [],
                 "data": {}
               }
@@ -862,258 +726,12 @@ const content = {
             "data": {}
           },
           {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Cameron Sadeghi",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/cameron-sadeghi-9662081b/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Politics Associate",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Dan Shipley",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/danielshipley/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Design / User Experience",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Whitney Smith",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/whitney-smith-599802143/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Digital Marketing",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Zak Tomich",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/zaktomich/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Strategy / Operations",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Richie Alicea",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/richiealicea/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Political",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
             "nodeType": "heading-4",
             "content": [
               {
                 "nodeType": "text",
                 "value": "Volunteers",
                 "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Victoria Mitchell",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/victoriapmitchell/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " - Mobilization",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
                 "data": {}
               }
             ],
@@ -1203,6 +821,46 @@ const content = {
               {
                 "nodeType": "text",
                 "value": " - Product / Design",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Jeehye Jung",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/jeehye-jung-6b4b0361/?originalSubdomain=ca"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " - Social Media / Instagram",
                 "marks": [],
                 "data": {}
               }
@@ -1335,52 +993,6 @@ const content = {
               {
                 "nodeType": "text",
                 "value": "",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Jean Rousseau",
-                    "marks": [
-                      {
-                        "type": "bold"
-                      }
-                    ],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://www.linkedin.com/in/jeanrousseau/"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "- Field Operations",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
                 "marks": [
                   {
                     "type": "bold"
@@ -1426,9 +1038,27 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Interested in joining us? \n💪 ",
+                "value": "",
                 "marks": [],
                 "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Jean Rousseau",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://www.linkedin.com/in/jeanrousseau/"
+                }
               },
               {
                 "nodeType": "text",
@@ -1441,11 +1071,29 @@ const content = {
                 "data": {}
               },
               {
+                "nodeType": "text",
+                "value": "- Field Operations",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "💪  If you are interested in learning more or seeing how you can help please fill out our ",
+                "marks": [],
+                "data": {}
+              },
+              {
                 "nodeType": "hyperlink",
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Get in touch! ",
+                    "value": "volunteer form ",
                     "marks": [
                       {
                         "type": "bold"
@@ -1460,12 +1108,28 @@ const content = {
               },
               {
                 "nodeType": "text",
-                "value": "",
-                "marks": [
+                "value": "or",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
                   {
-                    "type": "bold"
+                    "nodeType": "text",
+                    "value": " email us",
+                    "marks": [],
+                    "data": {}
                   }
                 ],
+                "data": {
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ".",
+                "marks": [],
                 "data": {}
               }
             ],
@@ -1483,7 +1147,328 @@ const content = {
       "id": "579kihjyIPloNaEw02rniq"
     },
     {
-      "title": "How crowd-voting works",
+      "title": "What's the meaning of our logo?",
+      "articleBody": {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "value": "A Heart and Star dressed in Red, Bright and Blue!",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "The heart is for ",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "value": "Humanity",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": " (representing love and life!)",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "The star is for ",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "value": "Freedom",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": " (representing liberty and justice!)",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "Our mission is heroic -- we're out to save American democracy -- so our logo has a super-hero vibe and uses the colors of our flag.  ",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "We also wanted to be a bit more fun and point to the bright future ahead of us as we come together to take back our government! So, we also see our third color, as ",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "value": "Bright ",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": "(white); a full spectrum of colors coming together, shining as one!",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "",
+                "nodeType": "text"
+              },
+              {
+                "data": {
+                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSdu1BTbnd8iavIxG51xVlkzKlGVktc1Y7WYWLNWzmZwr1yWqQ/viewform?usp=sf_link"
+                },
+                "content": [
+                  {
+                    "data": {},
+                    "marks": [],
+                    "value": "Tell us what you think",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "hyperlink"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": " and which version you like better?",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {
+              "target": {
+                "metadata": {
+                  "tags": []
+                },
+                "sys": {
+                  "space": {
+                    "sys": {
+                      "type": "Link",
+                      "linkType": "Space",
+                      "id": "g08ybc4r0f4b"
+                    }
+                  },
+                  "id": "5ltogLmmGOq0CkJCCvqHpt",
+                  "type": "Asset",
+                  "createdAt": "2020-06-02T00:21:40.365Z",
+                  "updatedAt": "2020-06-02T00:42:44.296Z",
+                  "environment": {
+                    "sys": {
+                      "id": "master",
+                      "type": "Link",
+                      "linkType": "Environment"
+                    }
+                  },
+                  "revision": 2,
+                  "locale": "en-US"
+                },
+                "fields": {
+                  "title": "FAQ - Logos",
+                  "file": {
+                    "url": "//images.ctfassets.net/g08ybc4r0f4b/5ltogLmmGOq0CkJCCvqHpt/6651d14467ed29ad01852d0b21c2e5ef/For_FAQ.png",
+                    "details": {
+                      "size": 106715,
+                      "image": {
+                        "width": 727,
+                        "height": 316
+                      }
+                    },
+                    "fileName": "For FAQ.png",
+                    "contentType": "image/png"
+                  }
+                }
+              }
+            },
+            "content": [],
+            "nodeType": "embedded-asset-block"
+          },
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          }
+        ],
+        "nodeType": "document"
+      },
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
+      "id": "3qWW61APIjdW2k8IvnrGg4"
+    },
+    {
+      "title": "Is Good Party a real political party?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "No. Good Party is NOT a political party. We are a public benefit corporation on a mission to make people matter more than money in our democracy. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "We are organized as a fully remote working and diverse group of creators, building free, open-source technology, telling inspiring stories, and doing in-real-life organizing to upgrade the operating system of our democracy so we can allow honest, independent, people-powered candidates to run and win.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "If you are interested in learning more or seeing how you can help please fill out our ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "volunteer form ",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSfPPTHykqtlSq2tRRu49XemAdI54i260jGEZ_ghaCexqM4I4Q/viewform?usp=sf_link"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "or",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": " email us",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ".",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "pages": [
+        "party"
+      ],
+      "category": {
+        "id": "1x8sreeqPN0PK929WRNw4I",
+        "fields": {
+          "name": "About Us",
+          "order": 300
+        }
+      },
+      "id": "48a7xazZc0eN4PXM20Jtel"
+    },
+    {
+      "title": "How does Crowd-voting work?",
       "articleBody": {
         "nodeType": "document",
         "data": {},
@@ -1505,7 +1490,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "A crowd-voting campaign makes it possible for Independent and 3rd party candidates to show they are competitive and actually win against establishment politicians.  ",
+                "value": "A crowd-voting campaign makes it possible for Independent and 3rd party candidates to show they are competitive and allows them to build momentum to actually win against establishment politicians.  ",
                 "marks": [],
                 "data": {}
               }
@@ -1529,7 +1514,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "In this way, nobody has to worry about wasting their vote because everyone knows if a candidate they like can can win ",
+                "value": "In this way, nobody has to worry about wasting their vote because everyone knows if a candidate they like have enough votes to possibly win ",
                 "marks": [],
                 "data": {}
               },
@@ -1554,7 +1539,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their options - not just pick the 'lesser of two evils' candidate.  ",
+                "value": "So, for the first time ever, people can join crowd-voting campaigns for ALL candidates they like and truly explore all their options - not just pick between the 'lesser of two evils' presented by red or blue.  ",
                 "marks": [],
                 "data": {}
               }
@@ -1566,7 +1551,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "There is no cost or downside to joining a crowd-voting campaign using Good Party. Every crowd-voting campaign on Good Party is absolutely free for both people and candidates.",
+                "value": "There is no cost or downside to joining a crowd-voting campaign using Good Party. Every crowd-voting campaign on Good Party is absolutely free for both people and Good Party Certified candidates.",
                 "marks": [],
                 "data": {}
               }
@@ -1590,7 +1575,7 @@ const content = {
       "id": "1ic6T6fhH0jZLNvX5aZkDe"
     },
     {
-      "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
+      "title": "Who is a Good Certified Candidate?",
       "articleBody": {
         "nodeType": "document",
         "data": {},
@@ -1600,26 +1585,342 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "No. We are NOT a political party. Your party affiliation is up to you and you always have the choice to vote for whomever you like. Good Party just allows you to see more options ",
+                "value": "A Good Certified Candidate is a someone running in an election who has taken the Good Party Pledge and has been certified by Good Party to be:",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "unordered-list",
+            "content": [
+              {
+                "nodeType": "list-item",
+                "content": [
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Independent ",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          },
+                          {
+                            "type": "italic"
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "unordered-list",
+                    "content": [
+                      {
+                        "nodeType": "list-item",
+                        "content": [
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "Independent or 3rd Party candidates.",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "list-item",
+                        "content": [
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "Never pay dues to nor fundraise for Republicans or Democrats.",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "unordered-list",
+            "content": [
+              {
+                "nodeType": "list-item",
+                "content": [
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "People Powered",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          },
+                          {
+                            "type": "italic"
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "unordered-list",
+                    "content": [
+                      {
+                        "nodeType": "list-item",
+                        "content": [
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "Only accept campaign donations from individual people--humans with a heart--subject to standard limits.",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "list-item",
+                        "content": [
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "Do NOT accept contributions from corporations, unions, lobbyists, PACs or other non-living entities.",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "unordered-list",
+            "content": [
+              {
+                "nodeType": "list-item",
+                "content": [
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Anti-Corruption",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          },
+                          {
+                            "type": "italic"
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "unordered-list",
+                    "content": [
+                      {
+                        "nodeType": "list-item",
+                        "content": [
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "Share calendar and content of meetings online and be committed to transparency with constituents",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      },
+                      {
+                        "nodeType": "list-item",
+                        "content": [
+                          {
+                            "nodeType": "paragraph",
+                            "content": [
+                              {
+                                "nodeType": "text",
+                                "value": "Live up to and work to enact the ",
+                                "marks": [],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "hyperlink",
+                                "content": [
+                                  {
+                                    "nodeType": "text",
+                                    "value": "Anti-Corruption Act",
+                                    "marks": [
+                                      {
+                                        "type": "underline"
+                                      }
+                                    ],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {
+                                  "uri": "https://represent.us/anticorruption-act/"
+                                }
+                              },
+                              {
+                                "nodeType": "text",
+                                "value": "",
+                                "marks": [],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          },
+                          {
+                            "nodeType": "unordered-list",
+                            "content": [
+                              {
+                                "nodeType": "list-item",
+                                "content": [
+                                  {
+                                    "nodeType": "paragraph",
+                                    "content": [
+                                      {
+                                        "nodeType": "text",
+                                        "value": "(1) Fix our broken elections ",
+                                        "marks": [],
+                                        "data": {}
+                                      }
+                                    ],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "list-item",
+                                "content": [
+                                  {
+                                    "nodeType": "paragraph",
+                                    "content": [
+                                      {
+                                        "nodeType": "text",
+                                        "value": "(2) Stop political bribery ",
+                                        "marks": [],
+                                        "data": {}
+                                      }
+                                    ],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {}
+                              },
+                              {
+                                "nodeType": "list-item",
+                                "content": [
+                                  {
+                                    "nodeType": "paragraph",
+                                    "content": [
+                                      {
+                                        "nodeType": "text",
+                                        "value": "(3) End secret money",
+                                        "marks": [],
+                                        "data": {}
+                                      }
+                                    ],
+                                    "data": {}
+                                  }
+                                ],
+                                "data": {}
+                              }
+                            ],
+                            "data": {}
+                          }
+                        ],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Additionally, Good Certified candidates have to abide by the ",
                 "marks": [],
                 "data": {}
               },
               {
-                "nodeType": "text",
-                "value": "before ",
-                "marks": [
+                "nodeType": "hyperlink",
+                "content": [
                   {
-                    "type": "italic"
-                  },
-                  {
-                    "type": "bold"
+                    "nodeType": "text",
+                    "value": "minimum standard of civility",
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {}
+                "data": {
+                  "uri": "https://goodparty.org/faqs?article=66i4vRRLkX1yf8MnCQvYSb"
+                }
               },
               {
                 "nodeType": "text",
-                "value": "you vote.  ",
+                "value": " we expect of our elected officials.",
                 "marks": [],
                 "data": {}
               }
@@ -1631,7 +1932,67 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "This way you can see whether your vote can be combined with others to elect good, indie or 3rd party candidates you might like more than the establishment candidates who get reelected over and over again.",
+                "value": "Currently such candidates get to use all of our services for free.  If you're interested in learning more, please fill out a ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "candidate application",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSe78SJOH5edK4jTyOWVhs-b8AIf9_ElONlc5opPgzHnnpm_0Q/viewform"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " or ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "mailto:ask@thegoodparty.org"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": "",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "email us",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "mailto:ask@thegoodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ".",
                 "marks": [],
                 "data": {}
               }
@@ -1653,13 +2014,404 @@ const content = {
         ]
       },
       "category": {
-        "id": "7jOZqjB2BBfvymyAJ4IQWe",
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
         "fields": {
-          "name": "Joining Good Party",
-          "order": 20
+          "name": "How Good Party Works",
+          "order": 0
         }
       },
-      "id": "7Mrfo6spgrgpwAFe83Oph4"
+      "id": "5zIbKVU0wCIAszTOyogGAB"
+    },
+    {
+      "title": "What does it mean to be Anti-Corruption?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "First it is to abide by the ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Anti-corruption Act",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://represent.us/anticorruption-act/"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": " as proposal by Represent.us to set a standard for local, state, and federal laws that fix our broken elections, stop political bribery, and end secret money. Good Certified candidates agree to abide by the Anti-Corruption Act as a part of taking the Good Party Certified Pledge.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Its core elements are:",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "ordered-list",
+            "content": [
+              {
+                "nodeType": "list-item",
+                "content": [
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Fix our broken elections.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "list-item",
+                "content": [
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "Stop political bribery.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "list-item",
+                "content": [
+                  {
+                    "nodeType": "paragraph",
+                    "content": [
+                      {
+                        "nodeType": "text",
+                        "value": "End secret money.",
+                        "marks": [],
+                        "data": {}
+                      }
+                    ],
+                    "data": {}
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Additionally, Good Party Certified candidates agree to do more than give lip-service to transparency and accountability by operating as transparently as possible if elected, by: ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(1) Publishing their Calendars",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Make as much of their official and campaign meeting calendars available and open online for constituents to see.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "(2) Providing Live Updates",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Use innovations in communication technology to interact with and inform constituents - including but not limited to live-streaming every possible meeting and allocating a reasonable portion of official and campaign budget to the technology (mobile apps, phone, body cam, Youtube, Facebook Live, etc.) necessary to do so.\n\n",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "(3) Recording and Archiving Meetings",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Record all meetings on public time.  Make them close-captioned, archived, keyword searchable and available online - to the extent legally allowable. For any official meeting not legally permitted to be live-streamed or recorded, pledge to summarize the meeting's purpose and content to the full extent allowed.\n\n",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "(4) Reporting and Disclosing Issues",
+                "marks": [
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Immediately report any conflicts of interest or attempts to unfairly influence them or their staff to all appropriate stakeholders, including their constituents, the FEC, and law enforcement.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "7jm2j9gapWwEoVwVD3VX6o"
+    },
+    {
+      "title": "Why does Good Party focus on Indie candidates?",
+      "articleBody": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Indie is short for Independent political candidates who are free of the partisan politics of the political establishment and have taken our ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "hyperlink",
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Good Party Cerfified Pledge",
+                    "marks": [],
+                    "data": {}
+                  }
+                ],
+                "data": {
+                  "uri": "https://goodparty.org/candidates"
+                }
+              },
+              {
+                "nodeType": "text",
+                "value": ". ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "They are free to be Not Red, not Blue, but ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Good!",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "Republicans and Democrats have long had a stranglehold on American politics. Their primary focus is retaining power, and their main methods have been division and creating voter apathy. Good Party is about creating hope through a credibly plan that creates credible competition for the establishment parties and more choices for voters. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "That's why we also include 3rd Party candidates (e.g. Green Party, Libertarians) in our broader definition of Indie because they too are ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "independent",
+                "marks": [
+                  {
+                    "type": "bold"
+                  },
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " of the two-party duopoly. ",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "It's kind of like how ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Indie Rock",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " and ",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Indie Films",
+                "marks": [
+                  {
+                    "type": "italic"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": " broke free from the mainstream of big record labels and big movie studios to give consumers more diverse and interesting options in music and film. We're looking to do that for democracy so we can have more diverse and interesting options in our government.",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      },
+      "category": {
+        "id": "4CrRDuyTqip7XK7DdK4tq7",
+        "fields": {
+          "name": "How Good Party Works",
+          "order": 0
+        }
+      },
+      "id": "FqZOWMEEYfcXbASjaRkMU"
     },
     {
       "title": "What is Good Party's minimum standard of civility?",
@@ -1727,373 +2479,6 @@ const content = {
       "id": "66i4vRRLkX1yf8MnCQvYSb"
     },
     {
-      "title": "What's the meaning of the logo?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "A Heart and Star dressed in Red, Bright and Blue!",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The heart is for ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Humanity",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " (representing love and life!)",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "The star is for ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Freedom",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " (representing liberty and justice!)",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Our mission is heroic -- we're out to save American democracy -- so our logo has a super-hero vibe and uses the colors of our flag.  ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "We also wanted to be a bit more fun and point to the bright future ahead of us as we come together to take back our government! So, we also see our third color, as ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Bright ",
-                "marks": [
-                  {
-                    "type": "bold"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "(white); a full spectrum of colors coming together, shining as one!",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Tell us what you think",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://docs.google.com/forms/d/e/1FAIpQLSdu1BTbnd8iavIxG51xVlkzKlGVktc1Y7WYWLNWzmZwr1yWqQ/viewform?usp=sf_link"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": " and which version you like better?",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "embedded-asset-block",
-            "content": [],
-            "data": {
-              "target": {
-                "metadata": {
-                  "tags": []
-                },
-                "sys": {
-                  "space": {
-                    "sys": {
-                      "type": "Link",
-                      "linkType": "Space",
-                      "id": "g08ybc4r0f4b"
-                    }
-                  },
-                  "id": "5ltogLmmGOq0CkJCCvqHpt",
-                  "type": "Asset",
-                  "createdAt": "2020-06-02T00:21:40.365Z",
-                  "updatedAt": "2020-06-02T00:42:44.296Z",
-                  "environment": {
-                    "sys": {
-                      "id": "master",
-                      "type": "Link",
-                      "linkType": "Environment"
-                    }
-                  },
-                  "revision": 2,
-                  "locale": "en-US"
-                },
-                "fields": {
-                  "title": "FAQ - Logos",
-                  "file": {
-                    "url": "//images.ctfassets.net/g08ybc4r0f4b/5ltogLmmGOq0CkJCCvqHpt/6651d14467ed29ad01852d0b21c2e5ef/For_FAQ.png",
-                    "details": {
-                      "size": 106715,
-                      "image": {
-                        "width": 727,
-                        "height": 316
-                      }
-                    },
-                    "fileName": "For FAQ.png",
-                    "contentType": "image/png"
-                  }
-                }
-              }
-            }
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "category": {
-        "id": "1x8sreeqPN0PK929WRNw4I",
-        "fields": {
-          "name": "About Us",
-          "order": 300
-        }
-      },
-      "id": "3qWW61APIjdW2k8IvnrGg4"
-    },
-    {
-      "title": "What does Indie mean?",
-      "articleBody": {
-        "nodeType": "document",
-        "data": {},
-        "content": [
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Indie is short for Independent political candidates who are independent of the political establishment and willing to take our ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "hyperlink",
-                "content": [
-                  {
-                    "nodeType": "text",
-                    "value": "Good Certified pledge",
-                    "marks": [],
-                    "data": {}
-                  }
-                ],
-                "data": {
-                  "uri": "https://goodparty.org/candidates"
-                }
-              },
-              {
-                "nodeType": "text",
-                "value": ". Not Red, not Blue, ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Good!",
-                "marks": [
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "Republicans and Democrats have had a stranglehold on American politics for too long. Their focus is on division in order to maintain power. Good Party is about creating more competition for the establishment parties and more choices for voters. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "We also include 3rd Party candidates (e.g. Green Party, Libertarians) in our broader definition of Indie because they too are ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "independent",
-                "marks": [
-                  {
-                    "type": "bold"
-                  },
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " of the two-party Duopoly. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "It's kind of like how ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Indie Rock",
-                "marks": [
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " and ",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Indie Films",
-                "marks": [
-                  {
-                    "type": "italic"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": " broke free from the mainstream of big record labels and big movie studios to give consumers more diverse and interesting options in music and film. Only we're looking to create a democracy that's more representative of all the Good Party people everywhere!",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          }
-        ]
-      },
-      "category": {
-        "id": "4CrRDuyTqip7XK7DdK4tq7",
-        "fields": {
-          "name": "How Good Party Works",
-          "order": 0
-        }
-      },
-      "id": "FqZOWMEEYfcXbASjaRkMU"
-    },
-    {
       "title": "What does it mean to \"endorse\" a candidate?",
       "articleBody": {
         "nodeType": "document",
@@ -2104,7 +2489,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Endorsements are an easy way to show your support for Good, Independent and 3rd party candidates. Then you can share your endorsement either privately with family and friends or publicly via social channels. ",
+                "value": "Endorsements are the fuel of crowd-voting campaigns.  They are an incredibly easy, free and effective way to build grassroots support for a people-powered candidate that you like. ",
                 "marks": [],
                 "data": {}
               }
@@ -2116,7 +2501,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "Establishment politicians typically tout endorsements from big money donors and career politicians interested in maintaining the status quo. Good Party endorsements are a way for the people to take back the power. ",
+                "value": "Your endorsement is extremely valuable because it can bring awareness of a good candidate to your family and friends or the people who follow you on your social channels and who trust your judgement. ",
                 "marks": [],
                 "data": {}
               }
@@ -2128,7 +2513,7 @@ const content = {
             "content": [
               {
                 "nodeType": "text",
-                "value": "By endorsing and sharing, people can organically get behind good, indie candidates and quickly grow the support needed to show those candidates are viable and can win.",
+                "value": "Establishment politicians typically tout endorsements from big money donors and partisan career politicians interested in maintaining the status quo. Good Party endorsements are a way for 'we the people' to take back this power for ourselves and make truly grassroots campaigns go viral and win.",
                 "marks": [],
                 "data": {}
               }
@@ -2147,108 +2532,67 @@ const content = {
       "id": "3IWiTNf7gKItHkLB0Sm6q3"
     },
     {
-      "title": "Anti-Corruption Act",
+      "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
       "articleBody": {
-        "nodeType": "document",
         "data": {},
         "content": [
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "Good Certified candidates agree to abide by the American Anti-Corruption Act as a candidate and enact it as an elected official. Its four core elements are:",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "No. We are NOT a political party. Your party affiliation is up to you and you always have the choice to vote for whomever you like. Good Party just allows you to see more options ",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [
+                  {
+                    "type": "italic"
+                  },
+                  {
+                    "type": "bold"
+                  }
+                ],
+                "value": "before ",
+                "nodeType": "text"
+              },
+              {
+                "data": {},
+                "marks": [],
+                "value": "you vote.  ",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           },
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "(1) Stop political bribery.\n(2) End secret money.\n(3) Fix our broken elections.\n(4) Enforce the rules.",
+                "data": {},
                 "marks": [],
-                "data": {}
+                "value": "This way you can see whether your vote can be combined with others to elect good, indie or 3rd party candidates you might like more than the establishment candidates who get reelected over and over again.",
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           },
           {
-            "nodeType": "paragraph",
+            "data": {},
             "content": [
               {
-                "nodeType": "text",
-                "value": "Additionally, in order to eliminate corruption, Good Party endorses candidates who have nothing to hide and won’t just give lip-service to transparency and accountability. If elected, Good Party Certified candidates are expected to operate consistent with the following to the fullest extent possible:",
+                "data": {},
                 "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(1) Make as much of your official and campaign meeting calendars available and open online for constituents to see.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(2) Continuously pursue innovations in communication technology to interact with and inform constituents - including but not limited to live-streaming every possible meeting and allocating a reasonable portion of official and campaign budget to the technology (mobile apps, phone, body cam, Youtube, Facebook Live, etc.) necessary to do so.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(3) Make all recording of my meetings close-captioned, archived and keyword searchable and available online - to the extent legally allowable - for all. For any official meeting not legally permitted to be live-streamed or recorded, I pledge to summarize the meeting's purpose and content to the full extent allowed.",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "(4) Report and disclose to appropriate authorities (Constituents, FEC, Law Enforcement, etc.) any attempts to unfairly influence me or members of my congressional or campaign staff within 48 hours. ",
-                "marks": [],
-                "data": {}
-              }
-            ],
-            "data": {}
-          },
-          {
-            "nodeType": "paragraph",
-            "content": [
-              {
-                "nodeType": "text",
                 "value": "",
-                "marks": [],
-                "data": {}
+                "nodeType": "text"
               }
             ],
-            "data": {}
+            "nodeType": "paragraph"
           }
-        ]
+        ],
+        "nodeType": "document"
       },
       "category": {
         "id": "4CrRDuyTqip7XK7DdK4tq7",
@@ -2257,9 +2601,30 @@ const content = {
           "order": 0
         }
       },
-      "id": "7jm2j9gapWwEoVwVD3VX6o"
+      "id": "7Mrfo6spgrgpwAFe83Oph4"
     }
   ],
+  "portalEmbed": {
+    "title": "Embed our endorse button on your site",
+    "instructions": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "Sure you need donations, but votes win elections! Start collecting endorsements by embedding this button on your website, social media and in campaign emails. Where there’s a Donate button on your site there should also be an Endorse button. Don't let money get in the way of people supporting and growing awareness about your campaign!",
+              "marks": [],
+              "data": {}
+            }
+          ],
+          "data": {}
+        }
+      ]
+    }
+  },
   "teamPage": {
     "title": "Meet the Good Party Team",
     "leftTitle": "The Story of Good Party",
@@ -4487,35 +4852,30 @@ const content = {
   "articleCategories": [
     {
       "fields": {
-        "name": "Joining Good Party",
-        "order": 20
-      },
-      "id": "7jOZqjB2BBfvymyAJ4IQWe",
-      "articles": [
-        {
-          "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
-          "id": "7Mrfo6spgrgpwAFe83Oph4"
-        }
-      ]
-    },
-    {
-      "fields": {
         "name": "About Us",
         "order": 300
       },
       "id": "1x8sreeqPN0PK929WRNw4I",
       "articles": [
         {
-          "title": "Who is building Good Party?",
+          "title": "What is Good Party?",
           "id": "33lnRLO7M0gvfqVkoVxADO"
         },
         {
-          "title": "Our team",
+          "title": "What does Good Party do?",
+          "id": "4HZdDTNOJWSFOxoBfO8sRU"
+        },
+        {
+          "title": "Meet the Team",
           "id": "579kihjyIPloNaEw02rniq"
         },
         {
-          "title": "What's the meaning of the logo?",
+          "title": "What's the meaning of our logo?",
           "id": "3qWW61APIjdW2k8IvnrGg4"
+        },
+        {
+          "title": "Is Good Party a real political party?",
+          "id": "48a7xazZc0eN4PXM20Jtel"
         }
       ]
     },
@@ -4527,28 +4887,32 @@ const content = {
       "id": "4CrRDuyTqip7XK7DdK4tq7",
       "articles": [
         {
-          "title": "Is Good Party a real political party?",
-          "id": "48a7xazZc0eN4PXM20Jtel"
+          "title": "How does Crowd-voting work?",
+          "id": "1ic6T6fhH0jZLNvX5aZkDe"
         },
         {
-          "title": "How crowd-voting works",
-          "id": "1ic6T6fhH0jZLNvX5aZkDe"
+          "title": "Who is a Good Certified Candidate?",
+          "id": "5zIbKVU0wCIAszTOyogGAB"
+        },
+        {
+          "title": "What does it mean to be Anti-Corruption?",
+          "id": "7jm2j9gapWwEoVwVD3VX6o"
+        },
+        {
+          "title": "Why does Good Party focus on Indie candidates?",
+          "id": "FqZOWMEEYfcXbASjaRkMU"
         },
         {
           "title": "What is Good Party's minimum standard of civility?",
           "id": "66i4vRRLkX1yf8MnCQvYSb"
         },
         {
-          "title": "What does Indie mean?",
-          "id": "FqZOWMEEYfcXbASjaRkMU"
-        },
-        {
           "title": "What does it mean to \"endorse\" a candidate?",
           "id": "3IWiTNf7gKItHkLB0Sm6q3"
         },
         {
-          "title": "Anti-Corruption Act",
-          "id": "7jm2j9gapWwEoVwVD3VX6o"
+          "title": "Does joining Good Party impact my ability to vote in primaries or for other candidates?",
+          "id": "7Mrfo6spgrgpwAFe83Oph4"
         }
       ]
     }

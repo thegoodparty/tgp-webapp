@@ -18,7 +18,7 @@ function* registerUpdate({ phone, zip }) {
 
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
-    yield put(push('/profile'));
+    yield put(push('/register/confirm'));
   } catch (error) {
     if (error.response?.exists) {
       yield put(
