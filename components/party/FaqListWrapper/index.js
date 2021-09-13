@@ -87,7 +87,7 @@ const StyledH1 = styled(H1)`
 `;
 
 const breadcrumbsLinks = [
-  { href: '/', label: 'The Good Party' },
+  { href: '/', label: 'Good Party' },
   {
     label: 'Frequently asked questions',
   },
