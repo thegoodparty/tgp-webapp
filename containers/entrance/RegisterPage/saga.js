@@ -7,13 +7,17 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import {
   deleteCookie,
   getCookie,
+  getSignupRedirectCookie,
   setCookie,
   setUserCookie,
 } from 'helpers/cookieHelper';
 
 import { logEvent } from 'services/AnalyticsService';
 
+import globalActions from 'containers/App/actions';
+
 import types from './constants';
+import candidateActions from '../../elections/CandidateNewPage/actions';
 
 function* register({ name, email, phone, zip }) {
   try {
@@ -34,7 +38,13 @@ function* register({ name, email, phone, zip }) {
     setUserCookie(user);
     setCookie('token', token);
     yield call(setupCrew);
-    yield put(push('/register/confirm'));
+    const redirectCookie = getSignupRedirectCookie();
+    if (redirectCookie) {
+      yield put(push(redirectCookie.route));
+    } else {
+      yield put(push('/register/confirm'));
+    }
+    yield put(globalActions.refreshTokenAction());
   } catch (error) {
     if (error.response?.exists) {
       yield put(

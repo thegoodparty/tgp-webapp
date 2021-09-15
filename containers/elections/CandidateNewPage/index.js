@@ -19,6 +19,10 @@ import queryHelper from 'helpers/queryHelper';
 import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
 import { partyResolver } from 'helpers/electionsHelper';
 
+import registerReducer from 'containers/entrance/RegisterPage/reducer';
+import registerSaga from 'containers/entrance/RegisterPage/saga';
+import registerActions from 'containers/entrance/RegisterPage/actions';
+
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { push } from 'connected-next-router';
@@ -45,14 +49,18 @@ export function CandidateNewPage({
   const [show404, setShow404] = useState(false);
   useInjectReducer({ key: 'candidateNewPage', reducer });
   useInjectSaga({ key: 'candidateNewPage', saga });
+
+  useInjectReducer({ key: 'registerUpdatePage', reducer: registerReducer });
+  useInjectSaga({ key: 'registerUpdatePage', saga: registerSaga });
+
   const user = getUserCookie(true);
   const { userSupports, candidateSupports, total } = candidateNewPage;
 
   const router = useRouter();
-  const showPreviewModal = router.query.preview;
+  // const showPreviewModal = router.query.preview;
   const showShareModal = router.query.share;
   const supportLink = router.query.support;
-  const fromShareLink = router.query.fromshare;
+  // const fromShareLink = router.query.fromshare;
 
   const stateCandidate = candidateNewPage.candidate;
 
@@ -127,13 +135,13 @@ ${race}.`;
     content,
     supportCallback,
     removeSupportCallback,
-    showPreviewModal,
+    // showPreviewModal,
     showShareModal,
-    fromShareLink,
+    // fromShareLink,
     supportLink,
     user,
     isUserSupportCandidate: userSupports && userSupports[candidateId],
-    previewNextStepCallback,
+    // previewNextStepCallback,
     candidateSupports,
     total,
     adminDeleteSupportCallback,
@@ -170,7 +178,7 @@ CandidateNewPage.propTypes = {
   ssrState: PropTypes.object,
   candidateNewPage: PropTypes.object,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  previewNextStepCallback: PropTypes.func,
+  // previewNextStepCallback: PropTypes.func,
   adminDeleteSupportCallback: PropTypes.func,
   trackShareCallback: PropTypes.func,
   supportCallback: PropTypes.func,
@@ -186,39 +194,46 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    supportCallback: (candidateId, user) => {
+    supportCallback: (candidateId, user, newUser) => {
       // if no user here
       if (user) {
         // dispatch(push(`${window.location.pathname}?preview=true`));
         dispatch(actions.supportAction(candidateId));
       } else {
-        setSignupRedirectCookie(window.location.pathname, { id: candidateId });
-        dispatch(push('/register'));
+        setSignupRedirectCookie(`${window.location.pathname}?share=true`);
+        dispatch(
+          registerActions.registerAction(
+            newUser.name,
+            newUser.email,
+            newUser.phone,
+            newUser.zip,
+          ),
+        );
       }
     },
     removeSupportCallback: candidateId => {
       // if no user here
       dispatch(actions.removeSupportAction(candidateId));
     },
-    previewNextStepCallback: (candidateId, message) => {
-      const updateSupport = queryHelper(window.location.search, 'support');
-      if (updateSupport) {
-        dispatch(actions.updateSupportAction(candidateId, message));
-        dispatch(
-          push(
-            `${window.location.pathname}?share=${encodeURIComponent(
-              message,
-            )}&support=true`,
-          ),
-        );
-      } else {
-        dispatch(
-          push(
-            `${window.location.pathname}?share=${encodeURIComponent(message)}`,
-          ),
-        );
-      }
-    },
+    // previewNextStepCallback: (candidateId, message) => {
+    //   const updateSupport = queryHelper(window.location.search, 'support');
+    //   if (updateSupport) {
+    //     dispatch(actions.updateSupportAction(candidateId, message));
+    //     dispatch(
+    //       push(
+    //         `${window.location.pathname}?share=${encodeURIComponent(
+    //           message,
+    //         )}&support=true`,
+    //       ),
+    //     );
+    //   } else {
+    //     dispatch(
+    //       push(
+    //         `${window.location.pathname}?share=${encodeURIComponent(message)}`,
+    //       ),
+    //     );
+    //   }
+    // },
     adminDeleteSupportCallback: (supportId, candidateId) => {
       dispatch(actions.adminDeleteSupportAction(supportId, candidateId));
     },

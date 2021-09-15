@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Body11, Body13, H2 } from 'components/shared/typogrophy';
 import { uuidUrl } from 'helpers/userHelper';
@@ -185,9 +187,29 @@ const Copied = styled(Body11)`
   color: #fff;
 `;
 
-const ShareModal = ({ candidate, message, supportLink }) => {
+const StyledTextField = styled(TextField)`
+  && {
+    margin: 20px 0;
+    .MuiInputBase-multiline {
+      background-color: #fff;
+      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25);
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border-color: ${props => props.theme.colors.purple};
+    }
+  }
+`;
+
+const ShareModal = ({ candidate, supportLink }) => {
+  const [message, setMessage] = useState(
+    `I'm supporting someone real, not another 💩 politician!`,
+  );
   const [copied, setCopied] = useState(false);
   const user = getUserCookie(true);
+
+  const onChangeField = e => {
+    setMessage(e.target.value);
+  };
 
   useEffect(() => {
     logEvent('Sharing', 'Open Share Modal', candidate?.name);
@@ -209,9 +231,6 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     }
   });
 
-  const cleanMessage = message === 'true' ? '' : message;
-  const defaultMessage = `I'm supporting someone real, not another 💩 politician!`;
-
   const { firstName, lastName, race } = candidate || {};
   let url = '';
   if (typeof window !== 'undefined') {
@@ -224,28 +243,14 @@ const ShareModal = ({ candidate, message, supportLink }) => {
   }
 
   const encodedUrl = encodeURIComponent(url);
-  let messageBody = encodedUrl;
-  if (cleanMessage) {
-    messageBody = `${cleanMessage} \n\n ${url}`;
-  } else if (candidate) {
-    messageBody = defaultMessage;
-  }
+  let messageBody = `${message} \n\n ${url}`;
 
   let encodedMessageBody = encodedUrl;
-  if (cleanMessage) {
-    encodedMessageBody = `${cleanMessage} \n\n ${encodedUrl}`;
-  } else if (candidate) {
-    encodedMessageBody = defaultMessage;
-  }
+  encodedMessageBody = `${message} \n\n ${encodedUrl}`;
 
-  const messageNoUrl = cleanMessage || defaultMessage;
+  const messageNoUrl = message;
 
-  let textMessageBody = encodedUrl;
-  if (cleanMessage) {
-    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${cleanMessage}`;
-  } else if (candidate) {
-    textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${defaultMessage}`;
-  }
+  const textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${message}`;
 
   let emailSubject;
   if (candidate) {
@@ -265,9 +270,7 @@ const ShareModal = ({ candidate, message, supportLink }) => {
     emailSubject = 'Check this out';
   }
 
-  const emailBody = cleanMessage
-    ? `${cleanMessage}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`
-    : `${encodedUrl}%0D%0A%0D%0AGOOD PARTY%0D%0AFree software for free elections`;
+  const emailBody = `${message}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
   const handleCopy = () => {
     setCopied(true);
@@ -358,6 +361,15 @@ const ShareModal = ({ candidate, message, supportLink }) => {
       closeBack={'BACK TO SHARE'}
     >
       <Wrapper>
+        <H2 style={{ color: '#FFF' }}>Shre to inspire others!</H2>
+        <StyledTextField
+          fullWidth
+          variant="outlined"
+          multiline
+          rows={3}
+          onChange={e => onChangeField(e)}
+          value={message}
+        />
         <H2 style={{ color: '#FFF' }}>Share to</H2>
         <Grid container spacing={3}>
           <Grid item xs={6}>
@@ -431,7 +443,6 @@ const ShareModal = ({ candidate, message, supportLink }) => {
 
 ShareModal.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  message: PropTypes.string,
   supportLink: PropTypes.bool,
 };
 

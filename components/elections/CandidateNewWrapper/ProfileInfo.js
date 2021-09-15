@@ -122,6 +122,7 @@ function ProfileInfo({
   candidateSupports,
   total,
   adminDeleteSupportCallback,
+  user
 }) {
   const router = useRouter();
 
@@ -237,6 +238,8 @@ function ProfileInfo({
               removeSupportCallback={removeSupportCallback}
               isUserSupportCandidate={isUserSupportCandidate}
               trackingLabel="top endorse button"
+              withForm
+              user={user}
             />
             <div style={{ marginTop: '12px' }}>
               Your endorsement is a free and powerful way to show and grow
@@ -264,6 +267,7 @@ ProfileInfo.propTypes = {
   candidateSupports: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   total: PropTypes.number,
   adminDeleteSupportCallback: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default ProfileInfo;

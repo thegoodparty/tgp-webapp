@@ -44,14 +44,14 @@ function CandidateNewWrapper({
   content,
   candidate,
   supportCallback,
-  showPreviewModal,
-  fromShareLink,
+  // showPreviewModal,
+  // fromShareLink,
   showShareModal,
   supportLink,
   user,
   isUserSupportCandidate,
   removeSupportCallback,
-  previewNextStepCallback,
+  // previewNextStepCallback,
   candidateSupports,
   total,
   adminDeleteSupportCallback,
@@ -67,8 +67,8 @@ function CandidateNewWrapper({
   if (content?.faqArticles) {
     articles = articlesHelper(content.faqArticles, 'election');
   }
-  const handleSupport = () => {
-    supportCallback(candidate.id, user);
+  const handleSupport = newUser => {
+    supportCallback(candidate.id, user, newUser);
   };
   const handleRemoveSupport = () => {
     removeSupportCallback(candidate.id);
@@ -93,6 +93,7 @@ function CandidateNewWrapper({
               experimentVariant={experimentVariant}
               helpfulCallback={helpfulCallback}
               topics={topics}
+              user={user}
             />
           </Grid>
           <Hidden smDown>
@@ -106,26 +107,26 @@ function CandidateNewWrapper({
                 total={total}
                 adminDeleteSupportCallback={adminDeleteSupportCallback}
                 trackShareCallback={trackShareCallback}
+                user={user}
               />
             </Grid>
           </Hidden>
         </Grid>
       </ContentWrapper>
-      {showPreviewModal && (
-        <EndorsementPreviewModal
-          candidate={candidate}
-          user={user}
-          previewNextStepCallback={previewNextStepCallback}
-          candidateSupports={candidateSupports}
-          fromShareLink={fromShareLink}
-          total={total}
-        />
-      )}
+      {/*{showPreviewModal && (*/}
+      {/*  <EndorsementPreviewModal*/}
+      {/*    candidate={candidate}*/}
+      {/*    user={user}*/}
+      {/*    previewNextStepCallback={previewNextStepCallback}*/}
+      {/*    candidateSupports={candidateSupports}*/}
+      {/*    fromShareLink={fromShareLink}*/}
+      {/*    total={total}*/}
+      {/*  />*/}
+      {/*)}*/}
       {showShareModal && (
         <ShareModal
           candidate={candidate}
           user={user}
-          message={showShareModal}
           supportLink={supportLink}
         />
       )}
@@ -139,7 +140,7 @@ CandidateNewWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   supportCallback: PropTypes.func,
   removeSupportCallback: PropTypes.func,
-  showPreviewModal: PropTypes.bool,
+  // showPreviewModal: PropTypes.bool,
   fromShareLink: PropTypes.bool,
   showShareModal: PropTypes.bool,
   supportLink: PropTypes.bool,

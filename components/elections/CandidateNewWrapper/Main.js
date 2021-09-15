@@ -133,6 +133,7 @@ function MainWrapper({
   experimentVariant,
   helpfulCallback,
   topics,
+  user
 }) {
   const router = useRouter();
 
@@ -189,7 +190,6 @@ function MainWrapper({
             topics={topics}
           />
         </SectionWrapper>
-
         {experimentVariant === '1' && (
           <SectionWrapper style={{ marginTop: '24px' }}>
             <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
@@ -198,15 +198,29 @@ function MainWrapper({
 
         <SectionWrapper>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <SupportButton
-                isUserSupportCandidate={isUserSupportCandidate}
-                removeSupportCallback={removeSupportCallback}
-                supportCallback={supportCallback}
-                trackingLabel="bottom endorse button"
-              />
+            <Grid item xs={12} md={6}>
+              <Hidden mdUp>
+                <SupportButton
+                  withForm
+                  isUserSupportCandidate={isUserSupportCandidate}
+                  removeSupportCallback={removeSupportCallback}
+                  supportCallback={supportCallback}
+                  trackingLabel="bottom endorse button"
+                  user={user}
+                />
+                <br />
+                <br />
+              </Hidden>
+              <Hidden smDown>
+                <SupportButton
+                  isUserSupportCandidate={isUserSupportCandidate}
+                  removeSupportCallback={removeSupportCallback}
+                  supportCallback={supportCallback}
+                  trackingLabel="bottom endorse button"
+                />
+              </Hidden>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} md={6}>
               <ShareButton
                 trackShareCallback={trackShareCallback}
                 candidateId={candidate.id}
@@ -264,6 +278,7 @@ MainWrapper.propTypes = {
   trackShareCallback: PropTypes.func,
   helpfulCallback: PropTypes.func,
   topics: PropTypes.object,
+  user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export default MainWrapper;

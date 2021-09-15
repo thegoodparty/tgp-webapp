@@ -206,7 +206,6 @@ function AdminEditCandidate({
   }
 
   const onChangeField = (event, key) => {
-    console.log('onChange field', event.target.value, key);
     setEditableValues({
       ...editableValues,
       [key]: event.target.value,

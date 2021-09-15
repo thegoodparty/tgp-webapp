@@ -59,7 +59,7 @@ function* register(action) {
     } else {
       const queryCandidate = queryHelper(window?.location.search, 'candidate');
       if (queryCandidate) {
-        yield put(push(`${window.location.pathname}?preview=true`));
+        yield put(push(`${window.location.pathname}?share=true`));
         // need to support here
         yield put(
           candidateActions.supportAction(Router?.router?.query?.NameIdTab[1]),
@@ -155,7 +155,7 @@ function* socialRegister(action) {
     } else {
       const queryCandidate = queryHelper(window?.location.search, 'candidate');
       if (queryCandidate) {
-        yield put(push(`${window.location.pathname}?preview=true`));
+        yield put(push(`${window.location.pathname}?share=true`));
       } else {
         yield put(push(window.location.pathname));
       }
