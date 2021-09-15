@@ -120,7 +120,7 @@ function ConfirmWrapper({
         </form>
         <br />
         <Row>
-          <BottomLink onClick={resendCode}>Resend Token</BottomLink>
+          <BottomLink onClick={resendCode}>Resend Code</BottomLink>
           {hasPhone && email && (
             <BottomLink onClick={confirmWithEmailCallback}>
               Confirm with email

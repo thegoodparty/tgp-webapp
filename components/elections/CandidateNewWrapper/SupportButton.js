@@ -213,7 +213,6 @@ function SupportButton({
 
   const handleSubmitForm = e => {
     e.preventDefault();
-    handleSupport();
   };
 
   return (

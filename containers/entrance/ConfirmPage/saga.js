@@ -29,11 +29,7 @@ function* confirmCode({ code }) {
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
     if (redirectCookie) {
-      yield put(
-        push(
-          `/register/endorsement-confirmation/${redirectCookie.options?.id}`,
-        ),
-      );
+      yield put(push(redirectCookie.route));
     } else {
       yield put(push('/register/password-creation'));
     }
