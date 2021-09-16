@@ -27,6 +27,7 @@ export function ConfirmPage({
   confirmCodeCallback,
   resendCodeCallback,
   confirmWithEmailCallback,
+  updateInfoCallback,
 }) {
   useInjectReducer({ key: 'confirmPage', reducer });
   useInjectSaga({ key: 'confirmPage', saga });
@@ -39,6 +40,7 @@ export function ConfirmPage({
     confirmCodeCallback,
     resendCodeCallback,
     confirmWithEmailCallback,
+    updateInfoCallback,
   };
 
   return (
@@ -57,6 +59,7 @@ ConfirmPage.propTypes = {
   confirmCodeCallback: PropTypes.func,
   resendCodeCallback: PropTypes.func,
   confirmWithEmailCallback: PropTypes.func,
+  updateInfoCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -74,6 +77,9 @@ function mapDispatchToProps(dispatch) {
     },
     confirmWithEmailCallback: () => {
       dispatch(actions.resendCodeAction(true));
+    },
+    updateInfoCallback: updatedField => {
+      dispatch(actions.updateUserAction(updatedField));
     },
   };
 }

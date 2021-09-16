@@ -14,7 +14,15 @@ function resendCodeAction(withEmail = false) {
   };
 }
 
+function updateUserAction(updatedField) {
+  return {
+    type: types.UPDATE_USER,
+    updatedField,
+  };
+}
+
 export default {
   confirmCodeAction,
   resendCodeAction,
+  updateUserAction,
 };

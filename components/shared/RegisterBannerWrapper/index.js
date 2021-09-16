@@ -8,7 +8,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { BiRightArrowCircle } from 'react-icons/bi';
+import { AiFillWarning } from 'react-icons/ai';
 import { Body13 } from '../typogrophy';
 
 const Wrapper = styled.div`
@@ -21,18 +22,37 @@ const Wrapper = styled.div`
   }
 `;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled(Body13)`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 `;
 
-function RegisterBannerWrapper() {
+const Underline = styled.span`
+  text-decoration: underline;
+`;
+
+function RegisterBannerWrapper({ user }) {
+  const hasPhone = !!user.phone;
+  let returnUrl = '';
+  if (typeof window !== 'undefined') {
+    returnUrl = window.location.pathname;
+  }
   return (
     <Wrapper>
-      <Link href="/register/confirm" passHref>
+      <Link href={`/register/confirm?returnUrl=${returnUrl}`} passHref>
         <a>
-          <ContentWrapper>Please verify your account</ContentWrapper>
+          <ContentWrapper>
+            <AiFillWarning size={20} /> &nbsp;
+            <Underline>
+              Verify your {hasPhone ? 'phone number' : 'email'}
+            </Underline>
+            , so your actions count! &nbsp;
+            <BiRightArrowCircle size={20} />
+          </ContentWrapper>
         </a>
       </Link>
     </Wrapper>

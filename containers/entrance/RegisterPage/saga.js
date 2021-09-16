@@ -19,7 +19,7 @@ import globalActions from 'containers/App/actions';
 import types from './constants';
 import candidateActions from '../../elections/CandidateNewPage/actions';
 
-function* register({ name, email, phone, zip }) {
+function* register({ name, email, phone, zip, callback }) {
   try {
     const api = tgpApi.register;
     const payload = {
@@ -38,6 +38,9 @@ function* register({ name, email, phone, zip }) {
     setUserCookie(user);
     setCookie('token', token);
     yield call(setupCrew);
+    if (callback) {
+      callback();
+    }
     const redirectCookie = getSignupRedirectCookie();
     if (redirectCookie) {
       yield put(push(redirectCookie.route));

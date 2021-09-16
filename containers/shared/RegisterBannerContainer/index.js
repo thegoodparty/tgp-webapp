@@ -25,7 +25,11 @@ export function RegisterBannerContainer({ userState, dispatch }) {
     return <></>;
   }
 
-  return <RegisterBannerWrapper />;
+  const childProps = {
+    user,
+  };
+
+  return <RegisterBannerWrapper {...childProps} />;
 }
 
 RegisterBannerContainer.propTypes = {

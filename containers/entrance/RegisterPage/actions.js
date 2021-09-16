@@ -1,12 +1,13 @@
 import types from './constants';
 
-function registerAction(name, email, phone, zip) {
+function registerAction(name, email, phone, zip, callback) {
   return {
     type: types.REGISTER,
     name,
     email,
     phone,
     zip,
+    callback,
   };
 }
 

@@ -10,9 +10,12 @@ import {
   getUserCookie,
   setUserCookie,
 } from 'helpers/cookieHelper';
+import { formatToPhone } from 'helpers/phoneHelper';
+import queryHelper from 'helpers/queryHelper';
 
 import types from './constants';
-import { formatToPhone } from '../../../helpers/phoneHelper';
+import globalActions from '../../App/actions';
+import actions from './actions';
 
 function* confirmCode({ code }) {
   try {
@@ -28,8 +31,10 @@ function* confirmCode({ code }) {
 
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
-    if (redirectCookie) {
-      yield put(push(redirectCookie.route));
+    const returnUrl = queryHelper(window.location.search, 'returnUrl');
+    yield put(globalActions.refreshTokenAction());
+    if (returnUrl) {
+      yield put(push(returnUrl));
     } else {
       yield put(push('/register/password-creation'));
     }
@@ -63,8 +68,25 @@ function* resendCode({ withEmail }) {
   }
 }
 
+function* updateUser({ updatedField }) {
+  try {
+    const api = tgpApi.updateUser;
+    const payload = {
+      [updatedField.field]: updatedField.newValue,
+    };
+    const { user } = yield call(requestHelper, api, payload);
+    setUserCookie(user);
+    yield put(globalActions.refreshTokenAction());
+    yield put(actions.resendCodeAction(updatedField.field === 'email'));
+  } catch (error) {
+    console.log(error);
+    yield put(snackbarActions.showSnakbarAction('Error sending code', 'error'));
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.CONFIRM_CODE, confirmCode);
   yield takeLatest(types.RESEND_CODE, resendCode);
+  yield takeLatest(types.UPDATE_USER, updateUser);
 }

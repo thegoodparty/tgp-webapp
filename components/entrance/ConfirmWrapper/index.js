@@ -16,14 +16,6 @@ import PageWrapper from '../../shared/PageWrapper';
 import { Body, Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 
-const heartImg = '/images/heart.svg';
-const Heart = styled.img`
-  display: block;
-  width: 64px;
-  height: auto;
-  margin: 0 auto 12px;
-`;
-
 const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
@@ -54,9 +46,20 @@ const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &.center {
+    justify-content: center;
+  }
 `;
 const BottomLink = styled(Body13)`
-  color: blue;
+  color: ${({ theme }) => theme.colors.purple};
+  cursor: pointer;
+`;
+
+const Edit = styled(Body13)`
+  display: inline-block;
+  padding-left: 12px;
+  color: ${({ theme }) => theme.colors.purple};
   cursor: pointer;
 `;
 
@@ -65,11 +68,14 @@ function ConfirmWrapper({
   confirmCodeCallback,
   resendCodeCallback,
   confirmWithEmailCallback,
+  updateInfoCallback,
 }) {
   const [token, setToken] = useState('');
+  const [edit, setEdit] = useState(false);
 
   const { phone, email } = user;
   const hasPhone = !!phone;
+  const [field, setField] = useState(hasPhone ? phone : email);
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -86,23 +92,61 @@ function ConfirmWrapper({
   const resendCode = () => {
     resendCodeCallback();
   };
+
+  const updateInfo = newValue => {
+    setField(newValue);
+  };
+
+  const handleSaveInfo = () => {
+    setEdit(false);
+
+    updateInfoCallback({
+      field: hasPhone ? 'phone' : 'email',
+      newValue: field,
+    });
+  };
   return (
     <PageWrapper purple>
       <Wrapper>
-        <div className="text-center" style={{ marginBottom: '32px' }}>
-          <Heart src={heartImg} />
-          <H1 data-cy="title">Confirm your account</H1>
+        <div
+          className="text-center"
+          style={{ marginBottom: '32px', paddingTop: '32px' }}
+        >
+          <H1 data-cy="title">
+            Verify your {hasPhone ? 'phone number' : 'email'}
+          </H1>
           <br />
           <Body>
-            We sent your confirmation code to{' '}
-            <strong>{hasPhone ? formatToPhone(phone) : email}</strong>
+            We sent a verification code to
+            {edit ? (
+              <Row className="center" style={{ marginTop: '16px' }}>
+                <Input
+                  value={field}
+                  label={`Edit your ${hasPhone ? 'phone' : 'email'}`}
+                  size="medium"
+                  variant="outlined"
+                  onChange={e => updateInfo(e.target.value)}
+                />
+
+                <PurpleButton
+                  style={{ padding: '4px 8px', marginLeft: '8px' }}
+                  onClick={handleSaveInfo}
+                >
+                  Save
+                </PurpleButton>
+              </Row>
+            ) : (
+              <div>
+                <strong>{hasPhone ? formatToPhone(field) : field}</strong>
+                <Edit onClick={() => setEdit(true)}>Edit</Edit>
+              </div>
+            )}
           </Body>
         </div>
         <form noValidate onSubmit={handleSubmitForm}>
           <Input
             value={token}
-            label="Code"
-            required
+            label="Enter verification code"
             size="medium"
             fullWidth
             name="Code"
@@ -123,14 +167,9 @@ function ConfirmWrapper({
           <BottomLink onClick={resendCode}>Resend Code</BottomLink>
           {hasPhone && email && (
             <BottomLink onClick={confirmWithEmailCallback}>
-              Confirm with email
+              Verify with email
             </BottomLink>
           )}
-          <Link href="/register/update" passHref>
-            <a>
-              <BottomLink>Update my info</BottomLink>
-            </a>
-          </Link>
         </Row>
       </Wrapper>
     </PageWrapper>
@@ -142,6 +181,7 @@ ConfirmWrapper.propTypes = {
   confirmCodeCallback: PropTypes.func,
   resendCodeCallback: PropTypes.func,
   confirmWithEmailCallback: PropTypes.func,
+  updateInfoCallback: PropTypes.func,
 };
 
 export default ConfirmWrapper;

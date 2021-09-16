@@ -182,8 +182,10 @@ const RegisterWrapper = ({
   return (
     <PageWrapper purple>
       <Wrapper>
-        <div className="text-center" style={{ marginBottom: '32px' }}>
-          <Heart src={heartImg} />
+        <div
+          className="text-center"
+          style={{ marginBottom: '32px', paddingTop: '32px' }}
+        >
           <H1 data-cy="title">Join Good Party</H1>
         </div>
 

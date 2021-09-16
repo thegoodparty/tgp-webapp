@@ -201,12 +201,16 @@ function mapDispatchToProps(dispatch) {
         dispatch(actions.supportAction(candidateId));
       } else {
         setSignupRedirectCookie(`${window.location.pathname}?share=true`);
+        const callback = () => {
+          dispatch(actions.supportAction(candidateId));
+        };
         dispatch(
           registerActions.registerAction(
             newUser.name,
             newUser.email,
             newUser.phone,
             newUser.zip,
+            callback,
           ),
         );
       }
