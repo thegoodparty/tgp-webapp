@@ -8,15 +8,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
-import { animateScroll, scroll } from 'react-scroll';
 
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import { PurpleButton } from 'components/shared/buttons';
 import { logEvent } from 'services/AnalyticsService';
 
-import { Body11, Body12, Body13 } from '../../shared/typogrophy';
-import theme from '../../../theme';
+import { Body11, Body13 } from '../../shared/typogrophy';
 
 const HeartIconWhite = '/images/white-heart.svg';
 
@@ -186,15 +184,9 @@ function SupportButton({
         });
       }
     } else {
-      document.getElementById('endorse-name').focus();
-      const width = typeof window !== 'undefined' ? window.innerWidth : 1200;
-      if (width > theme.breakpointsPixels.mdPx) {
-        animateScroll.scrollTo(400);
-      } else {
-        animateScroll.scrollTo('name', {
-          duration: 300,
-          smooth: true,
-        });
+      const endorseInput = document.getElementById('endorse-name');
+      if (endorseInput) {
+        endorseInput.focus();
       }
     }
   };
