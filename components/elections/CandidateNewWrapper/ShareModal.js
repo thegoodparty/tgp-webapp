@@ -201,9 +201,10 @@ const StyledTextField = styled(TextField)`
 `;
 
 const ShareModal = ({ candidate, supportLink }) => {
-  const [message, setMessage] = useState(
-    `I'm supporting someone real, not another 💩 politician!`,
-  );
+  const defaultMessage = candidate
+    ? `I'm supporting ${candidate.name}`
+    : `I'm supporting Good Party`;
+  const [message, setMessage] = useState(defaultMessage);
   const [copied, setCopied] = useState(false);
   const user = getUserCookie(true);
 
@@ -214,6 +215,12 @@ const ShareModal = ({ candidate, supportLink }) => {
   useEffect(() => {
     logEvent('Sharing', 'Open Share Modal', candidate?.name);
   }, []);
+
+  useEffect(() => {
+    if (candidate) {
+      setMessage(`I'm supporting ${candidate.name}`);
+    }
+  }, [candidate]);
   useEffect(() => {
     const sharebtns = document.getElementsByClassName('st-btn');
     for (let i = 0; i < sharebtns.length; i++) {
