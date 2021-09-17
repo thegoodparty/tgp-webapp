@@ -201,8 +201,11 @@ const StyledTextField = styled(TextField)`
 `;
 
 const ShareModal = ({ candidate, supportLink }) => {
+  console.log('cc', candidate);
   const defaultMessage = candidate
-    ? `I'm supporting ${candidate.name}`
+    ? `I'm supporting ${candidate.firstName} ${candidate.lastName} for ${
+        candidate.race
+      }`
     : `I'm supporting Good Party`;
   const [message, setMessage] = useState(defaultMessage);
   const [copied, setCopied] = useState(false);
@@ -213,12 +216,17 @@ const ShareModal = ({ candidate, supportLink }) => {
   };
 
   useEffect(() => {
-    logEvent('Sharing', 'Open Share Modal', candidate?.name);
-  }, []);
-
-  useEffect(() => {
     if (candidate) {
-      setMessage(`I'm supporting ${candidate.name}`);
+      setMessage(
+        `I'm supporting ${candidate.firstName} ${candidate.lastName}  for ${
+          candidate.race
+        }`,
+      );
+      logEvent(
+        'Sharing',
+        'Open Share Modal',
+        `${candidate?.firstName} ${candidate?.lastName}`,
+      );
     }
   }, [candidate]);
   useEffect(() => {
