@@ -20,7 +20,8 @@ import {
 } from 'react-icons/io';
 import { ImWhatsapp } from 'react-icons/im';
 import { FaSnapchatGhost, FaFacebookF } from 'react-icons/fa';
-import { getUserCookie } from '../../../helpers/cookieHelper';
+import { getUserCookie } from 'helpers/cookieHelper';
+import { candidateRoute } from 'helpers/electionsHelper';
 // import { SiTiktok } from 'react-icons/si';
 //
 // const CopyPasteIcon = '/images/icons/copy-paste.svg';
@@ -200,16 +201,30 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
+const candidateMessage = (candidate, user) => {
+  if (!candidate) {
+    if (typeof window !== 'undefined') {
+      if (user && user.uuid) {
+        return `${window.location.href}?u=${user.uuid}`;
+      }
+      return window.location.href;
+    }
+    return 'https://goodparty.org';
+  }
+
+  return `INDIE POWER!🗽💪 I just endorsed ${candidate.firstName} ${
+    candidate.lastName
+  }, the first people-powered candidate for ${
+    candidate.race
+  }! Follow their crowd-voting campaign here: ${candidateRoute(candidate)}`;
+};
+
 const ShareModal = ({ candidate, supportLink }) => {
-  console.log('cc', candidate);
-  const defaultMessage = candidate
-    ? `I'm supporting ${candidate.firstName} ${candidate.lastName} for ${
-        candidate.race
-      }`
-    : `I'm supporting Good Party`;
+  const user = getUserCookie(true);
+  const defaultMessage = candidateMessage(candidate);
+
   const [message, setMessage] = useState(defaultMessage);
   const [copied, setCopied] = useState(false);
-  const user = getUserCookie(true);
 
   const onChangeField = e => {
     setMessage(e.target.value);
@@ -217,11 +232,7 @@ const ShareModal = ({ candidate, supportLink }) => {
 
   useEffect(() => {
     if (candidate) {
-      setMessage(
-        `I'm supporting ${candidate.firstName} ${candidate.lastName}  for ${
-          candidate.race
-        }`,
-      );
+      setMessage(candidateMessage(candidate));
       logEvent(
         'Sharing',
         'Open Share Modal',
@@ -246,7 +257,7 @@ const ShareModal = ({ candidate, supportLink }) => {
     }
   });
 
-  const { firstName, lastName, race } = candidate || {};
+  const { firstName, lastName } = candidate || {};
   let url = '';
   if (typeof window !== 'undefined') {
     url = window.location.pathname;
@@ -376,7 +387,7 @@ const ShareModal = ({ candidate, supportLink }) => {
       closeBack={'BACK TO SHARE'}
     >
       <Wrapper>
-        <H2 style={{ color: '#FFF' }}>Shre to inspire others!</H2>
+        <H2 style={{ color: '#FFF' }}>Share to inspire others!</H2>
         <StyledTextField
           fullWidth
           variant="outlined"
@@ -385,7 +396,7 @@ const ShareModal = ({ candidate, supportLink }) => {
           onChange={e => onChangeField(e)}
           value={message}
         />
-        <H2 style={{ color: '#FFF' }}>Share to</H2>
+        <br />
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <WhiteBody11>PRIVATE</WhiteBody11>
