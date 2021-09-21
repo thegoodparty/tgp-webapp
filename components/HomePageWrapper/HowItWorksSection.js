@@ -114,7 +114,7 @@ const HowItWorksSection = ({ experimentVariant }) => {
                 <Description>
                   Candidates become{' '}
                   <Link
-                    href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+                    href={`${router.asPath}?article=5zIbKVU0wCIAszTOyogGAB`}
                     passHref
                   >
                     <a>Good Certified</a>
