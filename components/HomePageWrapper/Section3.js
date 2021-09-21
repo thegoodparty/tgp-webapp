@@ -39,7 +39,7 @@ const Section3 = () => (
         <StyledH2 style={{ marginBottom: '18px' }}>
           We build free software to help good indie candidates run and win.
         </StyledH2>
-        <JoinUsButton style={{ marginRight: '24px', marginBottom: '12px' }} />
+        <JoinUsButton style={{ marginRight: '24px' }} />
         <NominateButton />
       </ResponsiveAlign>
     </Grid>
