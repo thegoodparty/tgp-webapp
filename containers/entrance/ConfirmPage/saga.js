@@ -6,8 +6,10 @@ import tgpApi from 'api/tgpApi';
 import candidateActions from 'containers/elections/CandidateNewPage/actions';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import {
+  deleteCookie,
   getSignupRedirectCookie,
   getUserCookie,
+  setCookie,
   setUserCookie,
 } from 'helpers/cookieHelper';
 import { formatToPhone } from 'helpers/phoneHelper';
@@ -17,20 +19,31 @@ import types from './constants';
 import globalActions from '../../App/actions';
 import actions from './actions';
 
-function* confirmCode({ code }) {
+function* confirmCode({ code, email }) {
+  console.log('saga', code, email);
   try {
     const redirectCookie = getSignupRedirectCookie();
     if (redirectCookie) {
       yield put(candidateActions.supportAction(redirectCookie.options?.id));
     }
 
-    const api = tgpApi.confirmCode;
+    let api;
+    if (email) {
+      api = tgpApi.confirmCodeLogin;
+      deleteCookie('login-email');
+    } else {
+      api = tgpApi.confirmCode;
+    }
     const payload = {
       code,
+      email,
     };
 
-    const { user } = yield call(requestHelper, api, payload);
+    const { user, token } = yield call(requestHelper, api, payload);
     setUserCookie(user);
+    if (token) {
+      setCookie('token', token);
+    }
     const returnUrl = queryHelper(window.location.search, 'returnUrl');
     yield put(globalActions.refreshTokenAction());
     if (returnUrl) {

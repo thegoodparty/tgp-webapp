@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { getUserCookie } from 'helpers/cookieHelper';
+import { getCookie, getUserCookie } from 'helpers/cookieHelper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import ConfirmWrapper from 'components/entrance/ConfirmWrapper';
 import candidateNewPageSaga from 'containers/elections/CandidateNewPage/saga';
@@ -34,6 +34,7 @@ export function ConfirmPage({
   useInjectSaga({ key: 'candidateNewPage', saga: candidateNewPageSaga });
 
   const user = getUserCookie(true);
+  const loginEmail = getCookie('login-email');
 
   const childProps = {
     user,
@@ -41,6 +42,8 @@ export function ConfirmPage({
     resendCodeCallback,
     confirmWithEmailCallback,
     updateInfoCallback,
+    fromLogin: !!loginEmail,
+    loginEmail,
   };
 
   return (
@@ -69,8 +72,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    confirmCodeCallback: code => {
-      dispatch(actions.confirmCodeAction(code));
+    confirmCodeCallback: (code, email) => {
+      dispatch(actions.confirmCodeAction(code, email));
     },
     resendCodeCallback: () => {
       dispatch(actions.resendCodeAction());

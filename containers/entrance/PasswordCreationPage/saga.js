@@ -18,7 +18,7 @@ function* setPassword({ password }) {
     const payload = {
       password,
     };
-
+    console.log('set pass', api)
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
     const redirectCookie = getSignupRedirectCookie();

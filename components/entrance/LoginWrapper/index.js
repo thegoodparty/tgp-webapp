@@ -6,27 +6,21 @@ import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
 import PageWrapper from 'components/shared/PageWrapper';
-import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
+import { Body13, H1 } from 'components/shared/typogrophy';
 import globals from '../../../globals';
-import { OutlinedButton } from '../../shared/buttons';
-import PasswordInput from '../../shared/PasswordInput';
+import { PurpleButton } from '../../shared/buttons';
 import TwitterButton from '../../shared/TwitterButton';
 const SocialButton = dynamic(
   () => import('components/you/SocialRegisterWrapper/SocialButton'),
   { ssr: false },
 );
-const heartImg = '/images/heart.svg';
-const Heart = styled.img`
-  width: 64px;
-  height: auto;
-  margin-bottom: 12px;
-`;
 
 const VerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     height: calc(100vh - 100px);
   }
 `;
@@ -69,31 +63,19 @@ const Input = styled(TextField)`
   }
 `;
 
-const ForgotLink = styled(Body11)`
-  color: ${({ theme }) => theme.colors.blue};
-  margin-bottom: 24px;
-  cursor: pointer;
-`;
-
 const LoginWrapper = ({
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
-  forgotPasswordCallback,
   twitterButtonCallback,
 }) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [forgotMode, setForgotMode] = useState(false);
   const onChangeEmail = event => {
     setEmail(event.target.value);
   };
 
   const enableSubmit = () => {
-    if (forgotMode) {
-      return validateEmail();
-    }
-    return password.length >= 8 && validateEmail();
+    return validateEmail();
   };
 
   const validateEmail = () => {
@@ -103,21 +85,12 @@ const LoginWrapper = ({
 
   const handleSubmitForm = e => {
     e.preventDefault();
-    // handleSubmit();
   };
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      if (forgotMode) {
-        forgotPasswordCallback(email);
-      } else {
-        loginCallback(email, password);
-      }
+      loginCallback(email);
     }
-  };
-
-  const onChangePassword = pwd => {
-    setPassword(pwd);
   };
 
   return (
@@ -125,7 +98,6 @@ const LoginWrapper = ({
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <Heart src={heartImg} />
             <H1 data-cy="title">Sign into your account</H1>
           </VerticalWrapper>
         </Grid>
@@ -145,37 +117,16 @@ const LoginWrapper = ({
                 onChange={onChangeEmail}
                 data-cy="email-input"
               />
-              {forgotMode ? (
-                <ForgotLink
-                  onClick={() => {
-                    setForgotMode(false);
-                  }}
-                  data-cy="back-link"
-                >
-                  Back to login
-                </ForgotLink>
-              ) : (
-                <>
-                  <PasswordInput onChangeCallback={onChangePassword} />
-                  <ForgotLink
-                    onClick={() => {
-                      setForgotMode(true);
-                    }}
-                    data-cy="forgot-link"
-                  >
-                    Forgot your password?
-                  </ForgotLink>
-                </>
-              )}
+
               <div data-cy="login">
-                <OutlinedButton
+                <PurpleButton
                   fullWidth
-                  active={enableSubmit()}
+                  disabled={!enableSubmit()}
                   onClick={handleSubmit}
                   type="submit"
                 >
-                  {forgotMode ? 'SEND PASSWORD RESET LINK' : 'SIGN IN'}
-                </OutlinedButton>
+                  SIGN IN
+                </PurpleButton>
               </div>
             </form>
             <OrWrapper>

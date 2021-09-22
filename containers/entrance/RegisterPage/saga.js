@@ -133,7 +133,7 @@ function* socialRegister({ socialUser }) {
     setUserCookie(user);
     setCookie('token', token);
     logEvent('Signup', 'Complete Account Signup', provider);
-    yield put(push('/register/update'));
+    yield put(push('/profile'));
     yield call(setupCrew);
   } catch (error) {
     if (error.response?.exists) {

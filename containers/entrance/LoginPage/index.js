@@ -10,51 +10,52 @@ import { connect } from 'react-redux';
 import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
-
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/YouPage/selectors';
-import reducer from 'containers/you/YouPage/reducer';
-import saga from 'containers/you/YouPage/saga';
-import userActions from 'containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
-import LoginWrapper from 'components/you/LoginWrapper';
-import snackbarActions from '../../shared/SnackbarContainer/actions';
+import userActions from 'containers/you/YouPage/actions';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+
+import LoginWrapper from 'components/entrance/LoginWrapper';
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import TgpHelmet from 'components/shared/TgpHelmet';
+import { getUserCookie } from 'helpers/cookieHelper';
+
+import makeSelectLoginPage from './selectors';
+import reducer from './reducer';
+import saga from './saga';
+import actions from './actions';
 
 export function LoginPage({
-  userState,
   dispatch,
   loginCallback,
   socialLoginCallback,
   socialLoginFailureCallback,
-  forgotPasswordCallback,
   twitterButtonCallback,
 }) {
-  useInjectReducer({ key: 'user', reducer });
-  useInjectSaga({ key: 'user', saga });
+  useInjectReducer({ key: 'loginPage', reducer });
+  useInjectSaga({ key: 'loginPage', saga });
 
-  const { user } = userState;
   useEffect(() => {
+    const user = getUserCookie();
     if (user) {
       dispatch(push('/profile'));
     }
-  }, [userState]);
+  }, []);
 
   const childProps = {
     loginCallback,
     socialLoginCallback,
     socialLoginFailureCallback,
-    forgotPasswordCallback,
     twitterButtonCallback,
   };
 
   return (
     <div>
-      <Head>
-        <title data-cy="page-title">Sign into your account | TGP</title>
-        <meta name="description" content="Sign into your account | TGP" />
-      </Head>
+      <TgpHelmet
+        title="Sign into your account | Good Party"
+        description="Login to your Good Party account"
+      />
       <LoginWrapper {...childProps} />
     </div>
   );
@@ -62,7 +63,7 @@ export function LoginPage({
 
 LoginPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  userState: PropTypes.object,
+  loginPage: PropTypes.object,
   loginCallback: PropTypes.func,
   socialLoginCallback: PropTypes.func,
   socialLoginFailureCallback: PropTypes.func,
@@ -73,14 +74,11 @@ LoginPage.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loginCallback: (email, password) => {
-      dispatch(userActions.loginAction(email, password));
-    },
-    forgotPasswordCallback: email => {
-      dispatch(userActions.forgotPasswordAction(email));
+    loginCallback: email => {
+      dispatch(actions.loginAction(email));
     },
     socialLoginCallback: user => {
-      dispatch(userActions.socialLoginAction(user));
+      dispatch(actions.socialLoginAction(user));
     },
     socialLoginFailureCallback: () => {
       dispatch(snackbarActions.showSnakbarAction('Sign in error', 'error'));
@@ -92,7 +90,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  userState: makeSelectUser(),
+  loginPage: makeSelectLoginPage(),
 });
 
 const withConnect = connect(

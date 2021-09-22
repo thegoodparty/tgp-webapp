@@ -52,6 +52,11 @@ const api = {
     method: 'PUT',
     withAuth: true,
   },
+
+  confirmCodeLogin: {
+    url: `${base}user/confirm/login`,
+    method: 'PUT',
+  },
   sendCode: {
     url: `${base}user/confirm`,
     method: 'POST',

@@ -37,7 +37,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
     if (user.zip && user.hasPassword) {
       yield put(push('/profile'));
     } else {
-      yield put(push('/register/update'));
+      yield put(push('/profile'));
       yield call(setupCrew);
     }
   } catch (error) {

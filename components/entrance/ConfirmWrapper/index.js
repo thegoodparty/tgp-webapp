@@ -69,11 +69,18 @@ function ConfirmWrapper({
   resendCodeCallback,
   confirmWithEmailCallback,
   updateInfoCallback,
+  fromLogin,
+  loginEmail,
 }) {
   const [token, setToken] = useState('');
   const [edit, setEdit] = useState(false);
-
-  const { phone, email } = user;
+  let email;
+  if (fromLogin) {
+    email = loginEmail;
+  } else {
+    ({ email } = user);
+  }
+  const { phone } = user;
   const hasPhone = !!phone;
   const [field, setField] = useState(hasPhone ? phone : email);
 
@@ -85,7 +92,11 @@ function ConfirmWrapper({
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      confirmCodeCallback(token);
+      if (fromLogin) {
+        confirmCodeCallback(token, loginEmail);
+      } else {
+        confirmCodeCallback(token);
+      }
     }
   };
 
@@ -138,7 +149,7 @@ function ConfirmWrapper({
             ) : (
               <div>
                 <strong>{hasPhone ? formatToPhone(field) : field}</strong>
-                <Edit onClick={() => setEdit(true)}>Edit</Edit>
+                {!fromLogin && <Edit onClick={() => setEdit(true)}>Edit</Edit>}
               </div>
             )}
           </Body>
@@ -163,14 +174,16 @@ function ConfirmWrapper({
           </PurpleButton>
         </form>
         <br />
-        <Row>
-          <BottomLink onClick={resendCode}>Resend Code</BottomLink>
-          {hasPhone && email && (
-            <BottomLink onClick={confirmWithEmailCallback}>
-              Verify with email
-            </BottomLink>
-          )}
-        </Row>
+        {!fromLogin && (
+          <Row>
+            <BottomLink onClick={resendCode}>Resend Code</BottomLink>
+            {hasPhone && email && (
+              <BottomLink onClick={confirmWithEmailCallback}>
+                Verify with email
+              </BottomLink>
+            )}
+          </Row>
+        )}
       </Wrapper>
     </PageWrapper>
   );
@@ -182,6 +195,8 @@ ConfirmWrapper.propTypes = {
   resendCodeCallback: PropTypes.func,
   confirmWithEmailCallback: PropTypes.func,
   updateInfoCallback: PropTypes.func,
+  fromLogin: PropTypes.bool,
+  loginEmail: PropTypes.string,
 };
 
 export default ConfirmWrapper;
