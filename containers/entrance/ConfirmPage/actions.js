@@ -1,10 +1,11 @@
 import types from './constants';
 
-function confirmCodeAction(code, email) {
+function confirmCodeAction(code, value, valueType) {
   return {
     type: types.CONFIRM_CODE,
     code,
-    email,
+    value,
+    valueType,
   };
 }
 

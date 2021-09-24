@@ -19,8 +19,8 @@ import types from './constants';
 import globalActions from '../../App/actions';
 import actions from './actions';
 
-function* confirmCode({ code, email }) {
-  console.log('saga', code, email);
+function* confirmCode({ code, value, valueType }) {
+  console.log('saga', code, value, valueType);
   try {
     const redirectCookie = getSignupRedirectCookie();
     if (redirectCookie) {
@@ -28,19 +28,20 @@ function* confirmCode({ code, email }) {
     }
 
     let api;
-    if (email) {
+    if (value) {
       api = tgpApi.confirmCodeLogin;
-      deleteCookie('login-email');
     } else {
       api = tgpApi.confirmCode;
     }
     const payload = {
       code,
-      email,
+      [valueType]: value,
     };
 
     const { user, token } = yield call(requestHelper, api, payload);
     setUserCookie(user);
+    deleteCookie('login-value');
+    deleteCookie('login-value-type');
     if (token) {
       setCookie('token', token);
     }
@@ -49,7 +50,13 @@ function* confirmCode({ code, email }) {
     if (returnUrl) {
       yield put(push(returnUrl));
     } else {
-      yield put(push('/register/password-creation'));
+      if (!user.hasPassword) {
+        yield put(push('/register/password-creation'));
+      } else if (!user.zip) {
+        yield put(push('/register/set-zipcode'));
+      } else {
+        yield put(push('/profile'));
+      }
     }
     yield put(snackbarActions.showSnakbarAction('Your account is verified.'));
   } catch (error) {

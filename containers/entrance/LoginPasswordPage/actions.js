@@ -1,16 +1,18 @@
 import types from './constants';
 
-function loginAction(email, password) {
+function loginAction(value, password, valueType) {
   return {
     type: types.LOGIN,
-    email,
+    value,
     password,
+    valueType,
   };
 }
-function forgotPasswordAction(email) {
+function forgotPasswordAction(value, valueType) {
   return {
     type: types.FORGOT_PASSWORD,
-    email,
+    value,
+    valueType,
   };
 }
 

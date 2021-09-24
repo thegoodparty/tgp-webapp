@@ -70,17 +70,23 @@ function ConfirmWrapper({
   confirmWithEmailCallback,
   updateInfoCallback,
   fromLogin,
-  loginEmail,
+  loginValue,
+  loginValueType,
 }) {
   const [token, setToken] = useState('');
   const [edit, setEdit] = useState(false);
   let email;
+  let phone;
   if (fromLogin) {
-    email = loginEmail;
+    if (loginValueType === 'email') {
+      email = loginValue;
+    } else {
+      phone = loginValue;
+    }
   } else {
     ({ email } = user);
+    ({ phone } = user);
   }
-  const { phone } = user;
   const hasPhone = !!phone;
   const [field, setField] = useState(hasPhone ? phone : email);
 
@@ -93,7 +99,7 @@ function ConfirmWrapper({
   const handleSubmit = () => {
     if (enableSubmit()) {
       if (fromLogin) {
-        confirmCodeCallback(token, loginEmail);
+        confirmCodeCallback(token, loginValue, loginValueType);
       } else {
         confirmCodeCallback(token);
       }
@@ -196,7 +202,8 @@ ConfirmWrapper.propTypes = {
   confirmWithEmailCallback: PropTypes.func,
   updateInfoCallback: PropTypes.func,
   fromLogin: PropTypes.bool,
-  loginEmail: PropTypes.string,
+  loginValue: PropTypes.string,
+  loginValueType: PropTypes.string,
 };
 
 export default ConfirmWrapper;

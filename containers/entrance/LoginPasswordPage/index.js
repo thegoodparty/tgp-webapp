@@ -30,15 +30,17 @@ export function LoginPasswordPage({
   useInjectReducer({ key: 'loginPasswordPage', reducer });
   useInjectSaga({ key: 'loginPasswordPage', saga });
 
-  const email = getCookie('login-email');
+  const value = getCookie('login-value');
+  const valueType = getCookie('login-value-type');
   useEffect(() => {
-    if (!email) {
+    if (!value) {
       dispatch(push('/login'));
     }
   }, []);
 
   const childProps = {
-    email,
+    value,
+    valueType,
     loginCallback,
     forgotPasswordCallback,
   };
@@ -67,11 +69,11 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loginCallback: (email, password) => {
-      dispatch(actions.loginAction(email, password));
+    loginCallback: (email, password, valueType) => {
+      dispatch(actions.loginAction(email, password, valueType));
     },
-    forgotPasswordCallback: email => {
-      dispatch(actions.forgotPasswordAction(email));
+    forgotPasswordCallback: (value, valueType) => {
+      dispatch(actions.forgotPasswordAction(value, valueType));
     },
   };
 }

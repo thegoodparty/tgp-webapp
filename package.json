@@ -111,6 +111,7 @@
     "invariant": "2.2.4",
     "ip": "1.1.5",
     "jodit-react": "^1.0.66",
+    "libphonenumber-js": "^1.9.34",
     "lodash": "4.17.21",
     "markdown-to-jsx": "^7.0.0",
     "material-ui-dropzone": "^3.0.0",

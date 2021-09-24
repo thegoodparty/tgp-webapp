@@ -10,6 +10,7 @@ import { Body13, H1 } from 'components/shared/typogrophy';
 import globals from '../../../globals';
 import { PurpleButton } from '../../shared/buttons';
 import TwitterButton from '../../shared/TwitterButton';
+import PhoneOrEmailInput from '../../shared/PhoneOrEmailInput';
 const SocialButton = dynamic(
   () => import('components/you/SocialRegisterWrapper/SocialButton'),
   { ssr: false },
@@ -69,28 +70,24 @@ const LoginWrapper = ({
   socialLoginFailureCallback,
   twitterButtonCallback,
 }) => {
-  const [email, setEmail] = useState('');
-  const onChangeEmail = event => {
-    setEmail(event.target.value);
-  };
-
-  const enableSubmit = () => {
-    return validateEmail();
-  };
-
-  const validateEmail = () => {
-    const validEmail = /\S+@\S+\.\S+/;
-    return validEmail.test(email);
-  };
+  const [value, setValue] = useState('');
+  const [isValid, setIsValid] = useState(false);
+  const [valueType, setValueType] = useState(false);
 
   const handleSubmitForm = e => {
     e.preventDefault();
   };
 
   const handleSubmit = () => {
-    if (enableSubmit()) {
-      loginCallback(email);
+    if (isValid) {
+      loginCallback(value, valueType);
     }
+  };
+
+  const onChangeValue = (val, isValValid, valType) => {
+    setIsValid(isValValid);
+    setValue(val);
+    setValueType(valType);
   };
 
   return (
@@ -104,24 +101,11 @@ const LoginWrapper = ({
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-              <Input
-                value={email}
-                label="Email Address"
-                required
-                size="medium"
-                fullWidth
-                type="email"
-                name="email"
-                autoComplete="email"
-                variant="outlined"
-                onChange={onChangeEmail}
-                data-cy="email-input"
-              />
-
+              <PhoneOrEmailInput onChangeCallback={onChangeValue} />
               <div data-cy="login">
                 <PurpleButton
                   fullWidth
-                  disabled={!enableSubmit()}
+                  disabled={!isValid}
                   onClick={handleSubmit}
                   type="submit"
                 >

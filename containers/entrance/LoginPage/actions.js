@@ -1,8 +1,9 @@
 import types from './constants';
 
-const loginAction = email => ({
+const loginAction = (value, valueType) => ({
   type: types.LOGIN,
-  email,
+  value,
+  valueType,
 });
 
 const socialLoginAction = user => ({

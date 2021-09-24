@@ -13,6 +13,7 @@ import PageWrapper from 'components/shared/PageWrapper';
 import { H1 } from 'components/shared/typogrophy';
 import { PurpleButton } from 'components/shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
+import { formatToPhone } from '../../../helpers/phoneHelper';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ const VerticalWrapper = styled.div`
   }
 `;
 
-function ResetPasswordWrapper({ email, token, resetPasswordCallback }) {
+function ResetPasswordWrapper({ email, phone, token, resetPasswordCallback }) {
   const [password, setPassword] = useState('');
 
   const enableSubmit = () => password.length >= 8;
@@ -39,7 +40,7 @@ function ResetPasswordWrapper({ email, token, resetPasswordCallback }) {
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      resetPasswordCallback(email, password, token);
+      resetPasswordCallback(email, phone, password, token);
     }
   };
   return (
@@ -48,7 +49,9 @@ function ResetPasswordWrapper({ email, token, resetPasswordCallback }) {
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <H1 data-cy="title">
-              Enter a new password for <strong>{email}</strong>
+              Enter a new password for
+              <br />
+              <strong>{email || formatToPhone(phone)}</strong>
             </H1>
           </VerticalWrapper>
         </Grid>
@@ -80,6 +83,7 @@ function ResetPasswordWrapper({ email, token, resetPasswordCallback }) {
 
 ResetPasswordWrapper.propTypes = {
   email: PropTypes.string,
+  phone: PropTypes.string,
   token: PropTypes.string,
   resetPasswordCallback: PropTypes.func,
 };

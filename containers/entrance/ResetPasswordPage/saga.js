@@ -9,14 +9,18 @@ import tgpApi from 'api/tgpApi';
 
 import types from './constants';
 
-function* resetPassword({ email, password, token }) {
+function* resetPassword({ email, phone, password, token }) {
   try {
     const api = tgpApi.resetPassword;
     const payload = {
-      email,
       password,
       token,
     };
+    if (email) {
+      payload.email = email;
+    } else {
+      payload.phone = phone;
+    }
     yield call(requestHelper, api, payload);
     yield put(push('/login/password'));
     yield put(
@@ -30,7 +34,7 @@ function* resetPassword({ email, password, token }) {
           'error',
         ),
       );
-      yield put(push('/login'));
+      // yield put(push('/login'));
     } else {
       yield put(
         snackbarActions.showSnakbarAction(
@@ -38,7 +42,7 @@ function* resetPassword({ email, password, token }) {
           'error',
         ),
       );
-      yield put(push('/login'));
+      // yield put(push('/login'));
     }
   }
 }

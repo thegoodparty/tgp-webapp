@@ -19,14 +19,15 @@ import globalActions from 'containers/App/actions';
 import types from './constants';
 import actions from './actions';
 
-function* login({ email }) {
+function* login({ value, valueType }) {
   try {
     const api = tgpApi.loginStep1;
     const payload = {
-      email,
+      [valueType]: value,
     };
     const { hasPassword } = yield call(requestHelper, api, payload);
-    setCookie('login-email', email);
+    setCookie('login-value', value);
+    setCookie('login-value-type', valueType);
     if (hasPassword) {
       yield put(push('/login/password'));
     } else {
@@ -35,7 +36,7 @@ function* login({ email }) {
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
-        `${email} is not in our system`,
+        `${value} is not in our system`,
         'error',
       ),
     );

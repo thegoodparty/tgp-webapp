@@ -74,8 +74,8 @@ LoginPage.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loginCallback: email => {
-      dispatch(actions.loginAction(email));
+    loginCallback: (value, valueType) => {
+      dispatch(actions.loginAction(value, valueType));
     },
     socialLoginCallback: user => {
       dispatch(actions.socialLoginAction(user));

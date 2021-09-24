@@ -34,7 +34,8 @@ export function ConfirmPage({
   useInjectSaga({ key: 'candidateNewPage', saga: candidateNewPageSaga });
 
   const user = getUserCookie(true);
-  const loginEmail = getCookie('login-email');
+  const loginValue = getCookie('login-value');
+  const loginValueType = getCookie('login-value-type');
 
   const childProps = {
     user,
@@ -42,8 +43,9 @@ export function ConfirmPage({
     resendCodeCallback,
     confirmWithEmailCallback,
     updateInfoCallback,
-    fromLogin: !!loginEmail,
-    loginEmail,
+    fromLogin: !!loginValue,
+    loginValue,
+    loginValueType
   };
 
   return (
@@ -72,8 +74,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    confirmCodeCallback: (code, email) => {
-      dispatch(actions.confirmCodeAction(code, email));
+    confirmCodeCallback: (code, value, valueType) => {
+      dispatch(actions.confirmCodeAction(code, value, valueType));
     },
     resendCodeCallback: () => {
       dispatch(actions.resendCodeAction());

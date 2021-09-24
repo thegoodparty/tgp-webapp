@@ -23,10 +23,12 @@ export function ResetPasswordPage({ locationState, resetPasswordCallback }) {
 
   const { search } = locationState;
   const email = queryHelper(search, 'email');
+  const phone = queryHelper(search, 'phone');
   const token = queryHelper(search, 'token');
 
   const childProps = {
     email,
+    phone,
     token,
     resetPasswordCallback,
   };
@@ -49,8 +51,8 @@ ResetPasswordPage.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    resetPasswordCallback: (email, password, token) => {
-      dispatch(actions.resetPasswordAction(email, password, token));
+    resetPasswordCallback: (email, phone, password, token) => {
+      dispatch(actions.resetPasswordAction(email, phone, password, token));
     },
   };
 }

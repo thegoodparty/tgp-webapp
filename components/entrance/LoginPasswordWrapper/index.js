@@ -8,6 +8,7 @@ import { Body11, Body13, H1 } from 'components/shared/typogrophy';
 import Link from 'next/link';
 import PasswordInput from '../../shared/PasswordInput';
 import { PurpleButton } from '../../shared/buttons';
+import { formatToPhone } from '../../../helpers/phoneHelper';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -26,7 +27,8 @@ const ForgotLink = styled(Body11)`
 `;
 
 const LoginPasswordWrapper = ({
-  email,
+  value,
+  valueType,
   loginCallback,
   forgotPasswordCallback,
 }) => {
@@ -43,7 +45,7 @@ const LoginPasswordWrapper = ({
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      loginCallback(email, password);
+      loginCallback(value, password, valueType);
     }
   };
 
@@ -54,7 +56,7 @@ const LoginPasswordWrapper = ({
   const handleForgotPassword = e => {
     e.preventDefault();
     e.stopPropagation();
-    forgotPasswordCallback(email);
+    forgotPasswordCallback(value, valueType);
     setSentForgot(true);
   };
 
@@ -68,13 +70,14 @@ const LoginPasswordWrapper = ({
         </Grid>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
+            <form noValidate onSubmit={handleSubmitForm} data-cy="value-form">
               <Body13>
-                {email} &nbsp; &nbsp;{' '}
+                {valueType === 'phone' ? formatToPhone(value) : value} &nbsp;
+                &nbsp;{' '}
                 <Link href="/login" passHref>
                   <a>
                     <ForgotLink style={{ display: 'inline' }}>
-                      Change Email
+                      Change {valueType === 'email' ? 'email' : 'phone'}
                     </ForgotLink>
                   </a>
                 </Link>
@@ -83,7 +86,7 @@ const LoginPasswordWrapper = ({
               <PasswordInput onChangeCallback={onChangePassword} />
               {sentForgot ? (
                 <Body11 style={{ color: 'red', marginBottom: '24px' }}>
-                  Your password recovery link was sent to {email}
+                  Your password recovery link was sent to {value}
                 </Body11>
               ) : (
                 <ForgotLink
@@ -113,7 +116,8 @@ const LoginPasswordWrapper = ({
 };
 
 LoginPasswordWrapper.propTypes = {
-  email: PropTypes.string,
+  value: PropTypes.string,
+  valueType: PropTypes.string,
   loginCallback: PropTypes.func,
   forgotPasswordCallback: PropTypes.func,
 };

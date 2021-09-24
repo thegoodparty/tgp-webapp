@@ -37,7 +37,7 @@ function* setPassword({ password }) {
       );
     }
   } catch (error) {
-    console.log(error);
+    console.log(JSON.stringify(error));
     yield put(
       snackbarActions.showSnakbarAction('Error setting your password', 'error'),
     );

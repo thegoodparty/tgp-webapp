@@ -19,17 +19,18 @@ import globalActions from 'containers/App/actions';
 import types from './constants';
 import actions from './actions';
 
-function* login({ email, password }) {
+function* login({ value, password, valueType }) {
   try {
     const api = tgpApi.login;
     const payload = {
-      email,
+      [valueType]: value,
       password,
     };
     const { user, token } = yield call(requestHelper, api, payload);
     setUserCookie(user);
     setCookie('token', token);
-    deleteCookie('login-email');
+    deleteCookie('login-value');
+    deleteCookie('login-value-type');
     if (user.zip) {
       if (user.candidate) {
         yield put(push('/candidate-portal'));
@@ -42,21 +43,21 @@ function* login({ email, password }) {
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
-        `Your password is not matching for ${email}`,
+        `Your password is not matching for ${value}`,
         'error',
       ),
     );
   }
 }
-function* forgotPassword({ email }) {
+function* forgotPassword({ value, valueType }) {
   try {
     const api = tgpApi.forgotPassword;
     const payload = {
-      email,
+      [valueType]: value,
     };
     yield call(requestHelper, api, payload);
     snackbarActions.showSnakbarAction(
-      `Your password recovery email was sent to ${email}`,
+      `Your password recovery link was sent to ${value}`,
     );
   } catch (error) {
     yield put(
