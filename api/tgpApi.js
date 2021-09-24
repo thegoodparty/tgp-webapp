@@ -78,6 +78,11 @@ const api = {
     method: 'GET',
   },
 
+  loginStep1: {
+    url: `${base}entrance/login-step1`,
+    method: 'PUT',
+  },
+
   login: {
     url: `${base}entrance/login`,
     method: 'PUT',

@@ -21,7 +21,7 @@ import actions from './actions';
 
 function* login({ email }) {
   try {
-    const api = tgpApi.login;
+    const api = tgpApi.loginStep1;
     const payload = {
       email,
     };

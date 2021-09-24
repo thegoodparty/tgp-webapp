@@ -10,17 +10,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import reducer from 'containers/you/YouPage/reducer';
-import saga from 'containers/you/YouPage/saga';
 import { makeSelectLocation } from 'containers/App/selectors';
 import queryHelper from 'helpers/queryHelper';
-import userActions from 'containers/you/YouPage/actions';
 
-import ResetPasswordWrapper from 'components/you/ResetPasswordWrapper';
+import ResetPasswordWrapper from 'components/entrance/ResetPasswordWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
+import actions from './actions';
+import saga from './saga';
 
 export function ResetPasswordPage({ locationState, resetPasswordCallback }) {
-  useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
   const { search } = locationState;
@@ -32,7 +30,15 @@ export function ResetPasswordPage({ locationState, resetPasswordCallback }) {
     token,
     resetPasswordCallback,
   };
-  return <ResetPasswordWrapper {...childProps} />;
+  return (
+    <div>
+      <TgpHelmet
+        title="Reset your password | Good Party"
+        description="Reset your password for your Good Party account"
+      />
+      <ResetPasswordWrapper {...childProps} />
+    </div>
+  );
 }
 
 ResetPasswordPage.propTypes = {
@@ -44,7 +50,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     resetPasswordCallback: (email, password, token) => {
-      dispatch(userActions.resetPasswordAction(email, password, token));
+      dispatch(actions.resetPasswordAction(email, password, token));
     },
   };
 }
