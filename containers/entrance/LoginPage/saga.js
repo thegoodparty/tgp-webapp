@@ -32,11 +32,6 @@ function* login({ email }) {
     } else {
       yield put(push('/register/confirm'));
     }
-    // if (user.candidate) {
-    //   yield put(push('/candidate-portal'));
-    // } else {
-    //   yield put(push('/profile'));
-    // }
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(

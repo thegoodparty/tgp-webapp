@@ -76,7 +76,6 @@ function mapDispatchToProps(dispatch) {
       window.location.replace('/');
     },
     updateUserCallback: (key, value) => {
-      console.log('updte', key, value);
       let cleanValue = value;
       if (key === 'phone') {
         cleanValue = value.replace(/\D+/g, '');

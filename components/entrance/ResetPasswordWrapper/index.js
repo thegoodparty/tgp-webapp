@@ -7,7 +7,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from 'components/shared/PageWrapper';
@@ -69,7 +68,7 @@ function ResetPasswordWrapper({ email, token, resetPasswordCallback }) {
                 onClick={handleSubmit}
                 type="submit"
               >
-                CHANGE PASSWORD <ChevronRightIcon />
+                CHANGE PASSWORD
               </PurpleButton>
             </form>
           </VerticalWrapper>

@@ -30,11 +30,14 @@ function* login({ email, password }) {
     setUserCookie(user);
     setCookie('token', token);
     deleteCookie('login-email');
-
-    if (user.candidate) {
-      yield put(push('/candidate-portal'));
+    if (user.zip) {
+      if (user.candidate) {
+        yield put(push('/candidate-portal'));
+      } else {
+        yield put(push('/profile'));
+      }
     } else {
-      yield put(push('/profile'));
+      yield put(push('/register/set-zipcode'));
     }
   } catch (error) {
     yield put(

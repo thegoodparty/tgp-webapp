@@ -18,21 +18,24 @@ function* setPassword({ password }) {
     const payload = {
       password,
     };
-    console.log('set pass', api)
     const { user } = yield call(requestHelper, api, payload);
     setUserCookie(user);
-    const redirectCookie = getSignupRedirectCookie();
-    if (redirectCookie) {
-      yield put(push(redirectCookie.route));
-      deleteSignupRedirectCookie();
+    if (!user.zip) {
+      yield put(push('/register/set-zipcode'));
     } else {
-      yield put(push('/profile'));
+      const redirectCookie = getSignupRedirectCookie();
+      if (redirectCookie) {
+        yield put(push(redirectCookie.route));
+        deleteSignupRedirectCookie();
+      } else {
+        yield put(push('/profile'));
+      }
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Your account is protected with a password.',
+        ),
+      );
     }
-    yield put(
-      snackbarActions.showSnakbarAction(
-        'Your account is protected with a password.',
-      ),
-    );
   } catch (error) {
     console.log(error);
     yield put(

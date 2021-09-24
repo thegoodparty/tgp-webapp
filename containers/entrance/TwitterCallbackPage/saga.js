@@ -36,9 +36,11 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
     setCookie('token', token);
     if (user.zip && user.hasPassword) {
       yield put(push('/profile'));
-    } else {
-      yield put(push('/profile'));
+    } else if (!user.hasPassword) {
+      yield put(push('/register/password-creation'));
       yield call(setupCrew);
+    } else {
+      yield put(push('/register/set-zipcode'));
     }
   } catch (error) {
     if (error.response?.exists) {
