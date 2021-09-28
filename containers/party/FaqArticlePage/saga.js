@@ -1,4 +1,4 @@
-import { all, call, takeLatest } from 'redux-saga/effects';
+import { put, call, takeLatest } from 'redux-saga/effects';
 import requestHelper from 'helpers/requestHelper';
 import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
 import makeSelectUser from 'containers/you/YouPage/selectors';
@@ -6,6 +6,23 @@ import makeSelectUser from 'containers/you/YouPage/selectors';
 import tgpApi from 'api/tgpApi';
 import types from './constants';
 import snackbarActions from '../../shared/SnackbarContainer/actions';
+import actions from './actions';
+
+function* loadArticle({ id }) {
+  try {
+    const api = tgpApi.contentByKey;
+    const payload = {
+      key: 'faqArticles',
+      subKey: 'id',
+      subValue: id,
+    };
+
+    const { content } = yield call(requestHelper, api, payload);
+    yield put(actions.loadArticleActionSuccess(content));
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function* sendArticleFeedback(action) {
   try {
@@ -31,5 +48,6 @@ function* sendArticleFeedback(action) {
 
 // Individual exports for testing
 export default function* saga() {
-  yield all([takeLatest(types.SEND_ARTICLE_FEEDBACK, sendArticleFeedback)]);
+  yield takeLatest(types.LOAD_ARTICLE, loadArticle);
+  yield takeLatest(types.SEND_ARTICLE_FEEDBACK, sendArticleFeedback);
 }

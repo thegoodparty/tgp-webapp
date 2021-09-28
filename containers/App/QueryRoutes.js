@@ -35,17 +35,12 @@ function QueryRoutes({ locationState, content, dispatch }) {
   useInjectSaga({ key: 'global', saga });
   const { search } = locationState;
   const router = useRouter();
-  const [showRegister, setShowRegister] = useState(false);
   const [showShare, setShowShare] = useState(false);
 
   useEffect(() => {
     const uuid = queryHelper(search, 'u');
     if (uuid) {
       setCookie('referrer', uuid);
-    }
-    const bloc = queryHelper(search, 'b');
-    if (bloc) {
-      blocRedirect(bloc);
     }
   }, []);
 
@@ -58,38 +53,14 @@ function QueryRoutes({ locationState, content, dispatch }) {
       dispatch(globalActions.clearArticleModalAction());
     }
 
-    const queryRegister = queryHelper(search, 'register');
-    setShowRegister(queryRegister === 'true');
-    if (queryRegister === 'true') {
-      logEvent('signup', 'View Account Signup Page');
-    }
-
     const queryShare = queryHelper(search, 'share');
     const isCandidatePage = router.pathname === '/candidate/[...NameIdTab]';
     setShowShare(queryShare === 'true' && !isCandidatePage);
   }, [search]);
 
-  const blocRedirect = bloc => {
-    const [nameBloc, stateDistrict] = bloc.split('-');
-    if (!stateDistrict) {
-      dispatch(push(`/elections/presidential?b=${bloc}`));
-    } else if (stateDistrict.length === 2) {
-      dispatch(
-        push(`/elections/senate/${stateDistrict.toLowerCase()}?b=${bloc}`),
-      );
-    } else {
-      const state = stateDistrict.substring(0, 2);
-      const district = stateDistrict.substring(2, stateDistrict.length);
-      dispatch(
-        push(`/elections/house/${state.toLowerCase()}/${district}?b=${bloc}`),
-      );
-    }
-  };
-
   return (
     <>
       {content && <FaqArticlePage />}
-      {showRegister && <SocialRegisterPage />}
       {showShare && <ShareModal />}
     </>
   );
