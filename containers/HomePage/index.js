@@ -7,7 +7,6 @@
 import React, { useEffect, useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -22,12 +21,9 @@ import saga from './saga';
 import makeSelectHomePage from './selectors';
 import actions from './actions';
 
-
 export function HomePage({ ssrState, subscribeEmailCallback }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
-
-
 
   const childProps = {
     homepageCandidates: ssrState.homepageCandidates,

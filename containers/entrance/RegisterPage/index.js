@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -13,6 +13,7 @@ import { compose } from 'redux';
 
 import TgpHelmet from 'components/shared/TgpHelmet';
 import RegisterWrapper from 'components/entrance/RegisterWrapper';
+import { guestAccessOnly } from 'helpers/userHelper';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -23,6 +24,7 @@ import actions from './actions';
 import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 export function RegisterPage({
+  dispatch,
   registerCallback,
   socialRegisterCallback,
   socialRegisterFailureCallback,
@@ -30,6 +32,10 @@ export function RegisterPage({
 }) {
   useInjectReducer({ key: 'registerPage', reducer });
   useInjectSaga({ key: 'registerPage', saga });
+
+  useEffect(() => {
+    guestAccessOnly(dispatch);
+  }, []);
 
   const childProps = {
     registerCallback,
@@ -71,7 +77,8 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.socialRegisterAction(socialUser));
     },
     socialRegisterFailureCallback: () => {
-      dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
+      console.log('socialRegisterFailure');
+      // dispatch(snackbarActions.showSnakbarAction('Error Registering', 'error'));
     },
     twitterButtonCallback: () => {
       dispatch(actions.twitterRegisterAction());

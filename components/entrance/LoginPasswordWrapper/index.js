@@ -86,7 +86,8 @@ const LoginPasswordWrapper = ({
               <PasswordInput onChangeCallback={onChangePassword} />
               {sentForgot ? (
                 <Body11 style={{ color: 'red', marginBottom: '24px' }}>
-                  Your password recovery link was sent to {value}
+                  Your password recovery link was sent to{' '}
+                  {valueType ? formatToPhone(value) : value}
                 </Body11>
               ) : (
                 <ForgotLink

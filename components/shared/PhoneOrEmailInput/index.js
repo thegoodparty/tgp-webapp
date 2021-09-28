@@ -54,7 +54,16 @@ function PhoneOrEmailInput({ onChangeCallback }) {
         setDisplayValue(val);
       } else {
         const formatted = new AsYouType('US').input(val);
-        setDisplayValue(formatted);
+        // issue that we can't delete (XXX)
+        if (
+          val.length === 4 &&
+          formatted.length === 5 &&
+          formatted.charAt(4) === ')'
+        ) {
+          setDisplayValue(val);
+        } else {
+          setDisplayValue(formatted);
+        }
       }
       if (valType === 'phone') {
         onChangeCallback(val.replace(/\D/g, ''), isValid, valType);
