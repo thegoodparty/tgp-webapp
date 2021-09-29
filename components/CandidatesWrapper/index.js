@@ -14,8 +14,8 @@ import PageWrapper from '../shared/PageWrapper';
 import { Body13, H1 } from '../shared/typogrophy';
 import GoodCertifiedAreSection from '../HomePageWrapper/GoodCertifiedAreSection';
 import CandidatesSection from './CandidatesSection';
-import articlesHelper from '../../helpers/articlesHelper';
-import TopQuestions from '../shared/TopQuestions';
+// import articlesHelper from '../../helpers/articlesHelper';
+// import TopQuestions from '../shared/TopQuestions';
 import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
 
@@ -83,11 +83,10 @@ const StickyWrapperElement = ({ children }) => {
   return <div>{children}</div>;
 };
 
-function CandidatesWrapper({ candidates, content, pageContent }) {
-  let articles = [];
-  if (content?.faqArticles) {
-    articles = articlesHelper(content.faqArticles, 'election');
-  }
+function CandidatesWrapper({ candidates, pageContent }) {
+  // if (content?.faqArticles) {
+  //   articles = articlesHelper(content.faqArticles, 'election');
+  // }
   return (
     <PageWrapper isFullWidth purple>
       <Content>
@@ -106,7 +105,7 @@ function CandidatesWrapper({ candidates, content, pageContent }) {
             <GoodCertifiedAreSection mdColumns={6} />
             <CandidatesSection candidates={candidates} />
             <IllustrationSection />
-            <TopQuestions articles={articles} />
+            {/*<TopQuestions articles={articles} />*/}
           </Grid>
         </ReverseGrid>
       </Content>

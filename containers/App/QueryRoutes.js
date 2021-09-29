@@ -13,9 +13,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { push } from 'connected-next-router';
-
-import SocialRegisterPage from 'containers/you/SocialRegisterPage';
 import FaqArticlePage from 'containers/party/FaqArticlePage';
 
 import queryHelper from 'helpers/queryHelper';
@@ -26,11 +23,10 @@ import { useInjectReducer } from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
-import { makeSelectContent, makeSelectLocation } from './selectors';
-import { logEvent } from '../../services/AnalyticsService';
+import { makeSelectLocation } from './selectors';
 import ShareModal from '../../components/elections/CandidateNewWrapper/ShareModal';
 
-function QueryRoutes({ locationState, content, dispatch }) {
+function QueryRoutes({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
   const { search } = locationState;
@@ -60,7 +56,7 @@ function QueryRoutes({ locationState, content, dispatch }) {
 
   return (
     <>
-      {content && <FaqArticlePage />}
+      <FaqArticlePage />
       {showShare && <ShareModal />}
     </>
   );
@@ -69,7 +65,6 @@ function QueryRoutes({ locationState, content, dispatch }) {
 QueryRoutes.propTypes = {
   dispatch: PropTypes.func.isRequired,
   locationState: PropTypes.object,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 function mapDispatchToProps(dispatch) {
@@ -80,7 +75,6 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   locationState: makeSelectLocation(),
-  content: makeSelectContent(),
 });
 
 const withConnect = connect(

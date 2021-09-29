@@ -11,10 +11,9 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import CandidatesWrapper from 'components/CandidatesWrapper';
-import { makeSelectContent } from '../App/selectors';
 import TgpHelmet from '../../components/shared/TgpHelmet';
 
-export function CandidatesPage({ ssrState, content }) {
+export function CandidatesPage({ ssrState }) {
   let candidates = [];
   let pageContent = {};
   if (ssrState) {
@@ -22,10 +21,8 @@ export function CandidatesPage({ ssrState, content }) {
   }
   const childProps = {
     candidates,
-    content,
     pageContent,
   };
-
 
   return (
     <div>
@@ -42,12 +39,9 @@ CandidatesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   homeState: PropTypes.object,
   ssrState: PropTypes.object,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
-const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 const withConnect = connect(
   mapStateToProps,

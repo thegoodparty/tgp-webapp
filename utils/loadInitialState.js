@@ -12,5 +12,5 @@ export function loadInitialState() {
 
 export function loadContent(dispatch) {
   console.log('calling action load content')
-  dispatch(globalActions.loadContentAction());
+  // dispatch(globalActions.loadContentAction());
 }

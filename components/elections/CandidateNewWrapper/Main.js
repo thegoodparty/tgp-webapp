@@ -123,7 +123,7 @@ const YoutubePlayerWrapper = styled.div`
 
 function MainWrapper({
   candidate,
-  articles,
+  // articles,
   supportCallback,
   isUserSupportCandidate,
   removeSupportCallback,
@@ -261,7 +261,7 @@ function MainWrapper({
           )}
         </Hidden>
 
-        <TopQuestions articles={articles} />
+        {/*<TopQuestions articles={articles} />*/}
       </Padder>
     </>
   );

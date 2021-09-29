@@ -36,7 +36,6 @@ import { getExperiment } from '../../../helpers/optimizeHelper';
 export function CandidateNewPage({
   ssrState,
   candidateNewPage,
-  content,
   dispatch,
   supportCallback,
   removeSupportCallback,
@@ -132,7 +131,6 @@ ${race}.`;
 
   const childProps = {
     candidate,
-    content,
     supportCallback,
     removeSupportCallback,
     // showPreviewModal,
@@ -177,7 +175,6 @@ CandidateNewPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   ssrState: PropTypes.object,
   candidateNewPage: PropTypes.object,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   // previewNextStepCallback: PropTypes.func,
   adminDeleteSupportCallback: PropTypes.func,
   trackShareCallback: PropTypes.func,
@@ -187,7 +184,6 @@ CandidateNewPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
   candidateNewPage: makeSelectCandidateNewPage(),
 });
 

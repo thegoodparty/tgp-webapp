@@ -64,9 +64,9 @@ function CandidateNewWrapper({
     return <NotFound />;
   }
   let articles = [];
-  if (content?.faqArticles) {
-    articles = articlesHelper(content.faqArticles, 'election');
-  }
+  // if (content?.faqArticles) {
+  //   articles = articlesHelper(content.faqArticles, 'election');
+  // }
   const handleSupport = newUser => {
     supportCallback(candidate.id, user, newUser);
   };
@@ -83,7 +83,7 @@ function CandidateNewWrapper({
           <Grid row item xs={12} md={7}>
             <Main
               candidate={candidate}
-              articles={articles}
+              // articles={articles}
               supportCallback={handleSupport}
               isUserSupportCandidate={isUserSupportCandidate}
               removeSupportCallback={handleRemoveSupport}

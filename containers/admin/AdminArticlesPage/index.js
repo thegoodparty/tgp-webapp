@@ -27,8 +27,8 @@ import actions from './actions';
 export function AdminArticlesPage({
   dispatch,
   userState,
-  content,
   adminArticlesPage,
+  ssrState,
 }) {
   useInjectReducer({ key: 'adminArticlesPage', reducer });
   useInjectSaga({ key: 'adminArticlesPage', saga });
@@ -46,6 +46,8 @@ export function AdminArticlesPage({
     dispatch(actions.loadArticlesFeedback());
   }, []);
 
+  const { content } = ssrState;
+
   const childProps = {
     content,
     articles: articlesFeedback,
@@ -62,13 +64,12 @@ AdminArticlesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   adminArticlesPage: PropTypes.object,
   userState: PropTypes.object,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  ssrState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   adminArticlesPage: makeSelectAdminArticlesPage(),
   userState: makeSelectUser(),
-  content: makeSelectContent(),
 });
 
 function mapDispatchToProps(dispatch) {

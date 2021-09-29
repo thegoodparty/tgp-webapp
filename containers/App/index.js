@@ -54,7 +54,7 @@ function App({ dispatch }) {
     // if (ENV === 'prod') {
     //   ReactGA.pageview(window.location.pathname);
     // }
-    dispatch(globalActions.loadContentAction());
+    // dispatch(globalActions.loadContentAction());
 
     fullStoryIdentify();
   }, []);
