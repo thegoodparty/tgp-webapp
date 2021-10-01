@@ -8,17 +8,6 @@ import tgpApi from 'api/tgpApi';
 import types from './constants';
 import actions from './actions';
 
-function* loadContent() {
-  try {
-    const api = tgpApi.content;
-    const content = yield call(requestHelper, api, null);
-    yield put(actions.loadContentActionSuccess(content));
-  } catch (error) {
-    console.log(error);
-    yield put(actions.loadContentActionError(error));
-  }
-}
-
 function* refreshToken() {
   try {
     const api = tgpApi.refreshToken;
@@ -50,7 +39,6 @@ function* logError(action) {
 // Individual exports for testing
 export default function* saga() {
   yield all([
-    takeLatest(types.LOAD_CONTENT, loadContent),
     takeLatest(types.LOG_ERROR, logError),
     takeLatest(types.REFRESH_TOKEN, refreshToken),
   ]);
