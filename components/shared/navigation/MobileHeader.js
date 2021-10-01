@@ -241,7 +241,7 @@ function MobileHeader({ user, purpleNav }) {
               <Grid container spacing={3} alignItems="center">
                 <Grid item xs={6}>
                   <PushMenuLink className="text-center">
-                    <Link href={`${router.asPath}?register=true`} passHref>
+                    <Link href="/register" passHref>
                       <a>
                         <PurpleButton fullWidth>
                           <ButtonInner>SIGN UP</ButtonInner>

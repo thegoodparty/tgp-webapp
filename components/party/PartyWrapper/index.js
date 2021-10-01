@@ -35,7 +35,8 @@ const Img = styled.img`
   width: 90px;
   height: auto;
   margin-right: 24px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-right: 36px;
   }
 `;
@@ -47,18 +48,17 @@ const ItemTitle = styled(Body)`
 
 const ItemText = styled(Body)``;
 
-const PartyWrapper = ({ content, candidates }) => {
-  let mainContent = '';
-  if (content && content.partyPage) {
-    mainContent = contentfulHelper(content.partyPage.content);
-  }
-
+const PartyWrapper = ({ pageContent, candidates }) => {
   return (
     <PageWrapper purple isFullWidth>
       <div style={{ padding: '0 20px' }}>
         <Content>
           <Inner>
-            {content && <CmsContentWrapper>{mainContent}</CmsContentWrapper>}
+            {pageContent && (
+              <CmsContentWrapper>
+                {contentfulHelper(pageContent.content)}
+              </CmsContentWrapper>
+            )}
             <HowWorks>
               <H2>How Crowd Voting Works:</H2>
               <WorksItem style={{ marginTop: '32px' }}>
@@ -111,7 +111,7 @@ const PartyWrapper = ({ content, candidates }) => {
 };
 
 PartyWrapper.propTypes = {
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  pageContent: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 

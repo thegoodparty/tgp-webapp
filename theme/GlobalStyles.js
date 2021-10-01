@@ -83,6 +83,9 @@ const GlobalStyles = createGlobalStyle`
     align-items: center;
     justify-content: center;
   }
+  .ReactCrop__image {
+    max-width: 700px;
+  }
 `;
 
 export default GlobalStyles;

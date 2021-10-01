@@ -18,7 +18,6 @@ import { useInjectReducer } from 'utils/injectReducer';
 import reducer from '../CandidateNewPage/reducer';
 import saga from '../CandidateNewPage/saga';
 import actions from '../CandidateNewPage/actions';
-import { makeSelectContent } from '../../App/selectors';
 
 export function ShareImageContainer({
   ssrState,
@@ -62,9 +61,7 @@ ShareImageContainer.propTypes = {
   shareImageCallback: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 function mapDispatchToProps(dispatch) {
   return {

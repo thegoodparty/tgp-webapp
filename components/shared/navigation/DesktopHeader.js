@@ -282,7 +282,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                         {!user && (
                           <StyledMenuItem onClick={handleClose}>
                             <Link
-                              href={`${router.asPath}?register=true`}
+                              href="/register"
                               passHref
                               onClick={() => {
                                 logEvent('Link', 'Sign up', 'Top Nav');

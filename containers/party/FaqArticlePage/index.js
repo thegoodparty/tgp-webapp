@@ -10,35 +10,40 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import queryHelper from 'helpers/queryHelper';
 import { createStructuredSelector } from 'reselect';
-import actions from './actions';
+
+import queryHelper from 'helpers/queryHelper';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { makeSelectLocation } from 'containers/App/selectors';
+import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
+
 import reducer from './reducer';
 import saga from './saga';
-import {
-  makeSelectContent,
-  makeSelectLocation,
-} from 'containers/App/selectors';
+import actions from './actions';
 
-import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
-import { getArticleById } from 'helpers/articlesHelper';
+import makeSelectFaqArticlePage from './selectors';
 
-export function FaqArticlePage({ content, helpfulCallback, locationState }) {
-  useInjectReducer({ key: 'global', reducer });
-  useInjectSaga({ key: 'global', saga });
-  const [article, setArticle] = useState(null);
+export function FaqArticlePage({
+  dispatch,
+  helpfulCallback,
+  locationState,
+  faqArticlePage,
+}) {
+  useInjectReducer({ key: 'faqArticle', reducer });
+  useInjectSaga({ key: 'faqArticle', saga });
   const { search } = locationState;
   const router = useRouter();
   const id = queryHelper(search, 'article');
   useEffect(() => {
-    if (content) {
-      setArticle(getArticleById(content.faqArticles, id));
+    if (id) {
+      dispatch(actions.loadArticleAction(id));
     }
   }, [id]);
 
-  if (!id) {
+  const { article } = faqArticlePage;
+
+  if (!id || !article) {
     return <></>;
   }
   const childProps = {
@@ -63,13 +68,13 @@ FaqArticlePage.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   helpfulCallback: PropTypes.func,
   locationState: PropTypes.object,
+  faqArticlePage: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     helpfulCallback: (id, title, isHelpful, feedback) => {
-      console.log('here helpful callback page');
       dispatch(
         actions.sendArticleFeedbackAction(id, title, isHelpful, feedback),
       );
@@ -78,8 +83,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
   locationState: makeSelectLocation(),
+  faqArticlePage: makeSelectFaqArticlePage(),
 });
 
 const withConnect = connect(

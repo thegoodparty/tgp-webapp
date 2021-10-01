@@ -30,7 +30,7 @@ export default function* requestHelper(api, data, isFormData = false) {
     if (!token) {
       token = getCookie('token');
       if (!token) {
-        yield put(userActions.signoutAction('/login'));
+        // yield put(userActions.signoutAction('/login'));
         throw new Error({ message: 'missing token' });
       }
     }
@@ -44,7 +44,7 @@ export default function* requestHelper(api, data, isFormData = false) {
       yield put(
         snackbarActions.showSnakbarAction('Please login again', 'error'),
       );
-      yield put(userActions.signoutAction('/login'));
+      // yield put(userActions.signoutAction('/login'));
       throw new Error({ message: 'invalid token' });
     } else {
       throw e;

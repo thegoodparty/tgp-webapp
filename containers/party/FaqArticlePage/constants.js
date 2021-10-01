@@ -1,5 +1,11 @@
 const SEND_ARTICLE_FEEDBACK = '@@tgp/faq-article/SEND_ARTICLE_FEEDBACK';
 
+const LOAD_ARTICLE = '@@tgp/faq-article/LOAD_ARTICLE';
+const LOAD_ARTICLE_SUCCESS = '@@tgp/faq-article/LOAD_ARTICLE_SUCCESS';
+
 export default {
   SEND_ARTICLE_FEEDBACK,
+
+  LOAD_ARTICLE,
+  LOAD_ARTICLE_SUCCESS,
 };

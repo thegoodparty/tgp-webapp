@@ -14,7 +14,8 @@ import { createStructuredSelector } from 'reselect';
 import PrivacyWrapper from 'components/shared/PrivacyWrapper';
 import { makeSelectContent } from 'containers/App/selectors';
 
-export function PrivacyPage({ content }) {
+export function PrivacyPage({ ssrState }) {
+  const { content } = ssrState;
   const childProps = {
     content,
   };
@@ -30,12 +31,10 @@ export function PrivacyPage({ content }) {
 }
 
 PrivacyPage.propTypes = {
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  ssrState: PropTypes.object,
 };
 
-const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 const withConnect = connect(
   mapStateToProps,

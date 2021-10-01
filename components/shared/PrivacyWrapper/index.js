@@ -29,25 +29,23 @@ const Divider = styled.span`
 `;
 
 const PrivacyWrapper = ({ content }) => {
-  let cmsContent = '';
-  if (content && content.privacyPage) {
-    cmsContent = contentfulHelper(content.privacyPage.pageContent);
-  }
   return (
     <PageWrapper white>
-      {content && content.privacyPage && (
+      {content && (
         <>
           <TitleWrapper>
-            <H1 data-cy="title">{content.privacyPage.title}</H1>
+            <H1 data-cy="title">{content.title}</H1>
           </TitleWrapper>
           <RevisionWrapper>
             <Body11 data-cy="last-revisioin-label">Last Revision</Body11>
             <Divider />
             <Body11 data-cy="last-revisioin-date">
-              {dateUsHelper(content.privacyPage.lastModified)}
+              {dateUsHelper(content.lastModified)}
             </Body11>
           </RevisionWrapper>
-          <CmsContentWrapper>{cmsContent}</CmsContentWrapper>
+          <CmsContentWrapper>
+            {contentfulHelper(content.pageContent)}
+          </CmsContentWrapper>
         </>
       )}
     </PageWrapper>

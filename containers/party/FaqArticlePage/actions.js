@@ -8,6 +8,19 @@ const sendArticleFeedbackAction = (id, title, isHelpful, feedback) => ({
   feedback,
 });
 
+const loadArticleAction = id => ({
+  type: types.LOAD_ARTICLE,
+  id,
+});
+
+const loadArticleActionSuccess = article => ({
+  type: types.LOAD_ARTICLE_SUCCESS,
+  article,
+});
+
 export default {
   sendArticleFeedbackAction,
+
+  loadArticleAction,
+  loadArticleActionSuccess,
 };

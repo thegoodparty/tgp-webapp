@@ -1,4 +1,5 @@
 import { select } from 'redux-saga/effects';
+import { push } from 'connected-next-router';
 import { getCookie, getUserCookie } from './cookieHelper';
 
 export const getInitials = name => {
@@ -153,3 +154,9 @@ export const getUserDistrictName = (congDistrict, cds) => {
   return districtName;
 };
 
+export const guestAccessOnly = (dispatch, redirectTo = '/profile') => {
+  const user = getUserCookie();
+  if (user) {
+    dispatch(push(redirectTo));
+  }
+};

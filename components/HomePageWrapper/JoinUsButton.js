@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 import { PurpleButton } from '../shared/buttons';
+import { getUserCookie } from '../../helpers/cookieHelper';
 
 const StyledBody = styled.div`
   color: #fff;
@@ -20,8 +21,9 @@ const StyledBody = styled.div`
 `;
 
 const JoinUsButton = ({ style = {}, label = 'JOIN US' }) => {
+  const user = getUserCookie();
   return (
-    <Link href="/?register=true" passHref>
+    <Link href={user ? '/profile' : '/register'} passHref>
       <a>
         <PurpleButton style={style}>
           <StyledBody>{label}</StyledBody>

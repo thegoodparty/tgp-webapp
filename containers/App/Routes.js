@@ -22,10 +22,10 @@ import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
 import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
 import YouPage from 'containers/you/YouPage/Loadable';
 import CrewPage from 'containers/you/CrewPage/Loadable';
-import LoginPage from 'containers/you/LoginPage/Loadable';
+import LoginPage from 'containers/entrance/LoginPage/Loadable';
 import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
 import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
-import ResetPasswordPage from 'containers/you/ResetPasswordPage/Loadable';
+import ResetPasswordPage from 'containers/entrance/ResetPasswordPage/Loadable';
 
 import PartyPage from 'containers/party/PartyPage/Loadable';
 import FaqListPage from 'containers/party/FaqListPage/Loadable';

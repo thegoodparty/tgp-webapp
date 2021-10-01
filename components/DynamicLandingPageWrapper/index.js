@@ -34,7 +34,7 @@ function DynamicLandingPageWrapper({ pageContent }) {
               </PurpleButton>
             </a>
           ) : (
-            <Link href="?register=true" data-cy="sign-up">
+            <Link href="/register" data-cy="sign-up">
               <PurpleButton className="outline">Sign Up</PurpleButton>
             </Link>
           )}

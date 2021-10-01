@@ -37,11 +37,13 @@ export const formatToPhone = value => {
   const last = input.substring(6, 10);
 
   if (input.length > 6) {
-    return `(${zip}) ${middle} - ${last}`;
-  } else if (input.length > 3) {
-    return `(${zip}) ${middle}`;
-  } else if (input.length > 0) {
-    return `(${zip}`;
+    return `+1 (${zip}) ${middle}-${last}`;
+  }
+  if (input.length > 3) {
+    return `+1 (${zip}) ${middle}`;
+  }
+  if (input.length > 0) {
+    return `+1 (${zip}`;
   }
 };
 
@@ -57,9 +59,8 @@ export const cleanPhone = phone => {
   return phone;
 };
 
-
 export const validatePhone = phone => {
   const expression = /^([0-9]{3})\-([0-9]{3})\-([0-9]{4})$/;
 
-  return expression.test(phone)
-}
+  return expression.test(phone);
+};

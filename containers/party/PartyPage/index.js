@@ -21,20 +21,16 @@ import PartyWrapper from 'components/party/PartyWrapper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import actions from '../../HomePage/actions';
 
-export function PartyPage({ content, appVersion, ssrState }) {
+export function PartyPage({ appVersion, ssrState }) {
   loadInitialState();
-  // useEffect(() => {
-  //   if (!content) {
-  //     loadContent(dispatch);
-  //   }
-  // }, [content]);
   let candidates;
+  let pageContent;
   if (ssrState) {
-    ({ candidates } = ssrState);
+    ({ candidates, pageContent } = ssrState);
   }
 
   const childProps = {
-    content,
+    pageContent,
     appVersion,
     candidates,
   };
@@ -51,7 +47,6 @@ export function PartyPage({ content, appVersion, ssrState }) {
 
 PartyPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   appVersion: PropTypes.string,
 };
 
@@ -62,7 +57,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
   appVersion: makeSelectAppVersion(),
 });
 

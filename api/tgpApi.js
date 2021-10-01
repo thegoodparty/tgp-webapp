@@ -47,6 +47,22 @@ const api = {
     method: 'POST',
   },
 
+  confirmCode: {
+    url: `${base}user/confirm`,
+    method: 'PUT',
+    withAuth: true,
+  },
+
+  confirmCodeLogin: {
+    url: `${base}user/confirm/login`,
+    method: 'PUT',
+  },
+  sendCode: {
+    url: `${base}user/confirm`,
+    method: 'POST',
+    withAuth: true,
+  },
+
   resendEmail: {
     url: `${base}entrance/resend-verify-email`,
     method: 'GET',
@@ -60,6 +76,11 @@ const api = {
   zipToDistrict: {
     url: `${base}entrance/zip-to-district`,
     method: 'GET',
+  },
+
+  loginStep1: {
+    url: `${base}entrance/login-step1`,
+    method: 'PUT',
   },
 
   login: {
@@ -91,6 +112,7 @@ const api = {
     url: `${base}entrance/twitter-confirm`,
     method: 'PUT',
   },
+
   //
   // USER
   //
@@ -117,6 +139,11 @@ const api = {
     method: 'GET',
     withAuth: true,
   },
+  createCrew: {
+    url: `${base}user/crew`,
+    method: 'POST',
+    withAuth: true,
+  },
 
   leaderboard: {
     url: `${base}user/leaderboard`,
@@ -125,13 +152,13 @@ const api = {
   },
 
   changePassword: {
-    url: `${base}user/change-password`,
+    url: `${base}user/password`,
     method: 'PUT',
     withAuth: true,
   },
 
   addPassword: {
-    url: `${base}user/add-password`,
+    url: `${base}user/password`,
     method: 'POST',
     withAuth: true,
   },

@@ -50,11 +50,10 @@ function AdminArticlesFeedback({ articles, content }) {
         }
       });
       const data = [];
-      const cmsArticles = content.faqArticles;
       Object.keys(feedbackByArticle).map(articleId => {
         data.push({
           id: articleId,
-          title: getArticleById(cmsArticles, articleId)?.title,
+          title: getArticleById(content, articleId)?.title,
           helpful: feedbackByArticle[articleId].helpful,
           notHelpful: feedbackByArticle[articleId].notHelpful,
         });

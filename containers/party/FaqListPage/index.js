@@ -7,21 +7,18 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { useRouter } from 'next/router';
-import { makeSelectContent } from 'containers/App/selectors';
 
 import FaqListWrapper from 'components/party/FaqListWrapper';
-import globalActions from '../../App/actions';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
+import globalActions from 'containers/App/actions';
+import TgpHelmet from 'components/shared/TgpHelmet';
 
-export function FaqListPage({ dispatch, content }) {
+export function FaqListPage({  ssrState }) {
   const router = useRouter();
-  useEffect(() => {
-    dispatch(globalActions.loadContentAction());
-  }, []);
+
+  const { content } = ssrState;
 
   const childProps = {
     content,
@@ -41,7 +38,7 @@ export function FaqListPage({ dispatch, content }) {
 FaqListPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   backButtonCallback: PropTypes.func.isRequired,
-  content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  ssrState: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -50,9 +47,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-  content: makeSelectContent(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 const withConnect = connect(
   mapStateToProps,

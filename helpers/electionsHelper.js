@@ -43,20 +43,9 @@ export const candidateRoute = candidate => {
   if (!candidate) {
     return '/';
   }
-  const { isIncumbent, chamber, id } = candidate;
-  const chamberLower = chamber ? chamber.toLowerCase() : 'presidential';
-  if (
-    chamberLower !== 'presidential' &&
-    chamberLower !== 'senate' &&
-    chamberLower !== 'house'
-  ) {
-    const name = slugify(`${candidate.firstName} ${candidate.lastName}`);
-    return `/candidate/${name}/${id}`;
-  }
-  const name = slugify(candidate.name);
-  return `/elections/candidate/${chamberLower}${
-    isIncumbent ? '-i' : ''
-  }/${name}/${id}`;
+  const { id } = candidate;
+  const name = slugify(`${candidate.firstName} ${candidate.lastName}`);
+  return `/candidate/${name}/${id}`;
 };
 
 export const rankText = number => {
@@ -452,7 +441,7 @@ export const rankPageJoinLink = (
     }
     return houseElectionLink(state, district) + query;
   }
-  return '?register=true';
+  return '/register';
 };
 
 export const electionRoute = (user, zipCode = null) => {

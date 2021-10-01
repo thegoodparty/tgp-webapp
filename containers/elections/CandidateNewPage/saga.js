@@ -54,7 +54,8 @@ function* support({ candidateId }) {
     const payload = { candidateId };
     yield call(requestHelper, api, payload);
     yield put(actions.userSupportsAction());
-    yield put(push(`${window.location.pathname}?preview=true&support=true`));
+    yield put(actions.candidateSupportsAction(candidateId));
+    yield put(push(`${window.location.pathname}?share=true`));
   } catch (error) {
     console.log(error);
     yield put(
