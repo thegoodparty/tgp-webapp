@@ -129,9 +129,9 @@ const fields = [
   { label: 'YouTube', key: 'youtube', initialValue: '' },
   { label: 'Twitch', key: 'twitch', initialValue: '' },
   { label: 'Reddit', key: 'reddit', initialValue: '' },
+  { label: 'Unrepresented voters', key: 'unrepVoters', initialValue: 0 },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
-  // { label: 'About', key: 'about', rte: true, initialValue: '' },
 ];
 
 function AdminAddCandidateWrapper({
