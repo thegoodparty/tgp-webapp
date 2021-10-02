@@ -51,7 +51,7 @@ function Stats({ candidate }) {
       {unrepVoters ? (
         <Stat>
           <StatNum>{numberFormatter(unrepVoters)} </StatNum> &nbsp;
-          Unrepresented voters in this district
+          Unrepresented voters
         </Stat>
       ) : (
         <></>
