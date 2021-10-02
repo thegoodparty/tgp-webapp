@@ -30,7 +30,6 @@ const StatNum = styled.span`
 `;
 
 function Stats({ candidate }) {
-  console.log('can', candidate);
   const router = useRouter();
 
   if (!candidate) {
