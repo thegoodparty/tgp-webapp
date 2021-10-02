@@ -21,6 +21,7 @@ import SupportersProgressBar from '../SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
+import Stats from './Stats';
 
 const ScrollArea = styled.div`
   height: calc(100% - 80px - 65px);
@@ -122,7 +123,7 @@ function ProfileInfo({
   candidateSupports,
   total,
   adminDeleteSupportCallback,
-  user
+  user,
 }) {
   const router = useRouter();
 
@@ -177,6 +178,7 @@ function ProfileInfo({
               showSuffix={false}
               withAchievement
             />
+            <Stats candidate={candidate} />
           </div>
           <Hidden mdUp>
             <div style={{ paddingLeft: '10px' }}>
