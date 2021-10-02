@@ -40,7 +40,6 @@ const Section3 = () => (
           We build free software to help good indie candidates run and win.
         </StyledH2>
         <JoinUsButton style={{ marginRight: '24px' }} />
-        <NominateButton />
       </ResponsiveAlign>
     </Grid>
   </ReverseGrid>

@@ -118,9 +118,6 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
           </Grid>
         ))}
       </Grid>
-      <NominateWrapper>
-        <NominateButton />
-      </NominateWrapper>
     </>
   );
 };
