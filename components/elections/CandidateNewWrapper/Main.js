@@ -10,6 +10,9 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import ReactPlayer from 'react-player/lazy';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+
 import { Element } from 'react-scroll';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -133,7 +136,7 @@ function MainWrapper({
   experimentVariant,
   helpfulCallback,
   topics,
-  user
+  user,
 }) {
   const router = useRouter();
 
@@ -149,10 +152,11 @@ function MainWrapper({
     <>
       {heroVideo && (
         <YoutubePlayerWrapper className="top">
-          <YoutubePlayer
-            url={`https://www.youtube.com/embed/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}
-            playing={false}
-          />
+          {/*<YoutubePlayer*/}
+          {/*  url={`https://www.youtube.com/embed/${heroVideo}?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0`}*/}
+          {/*  playing={false}*/}
+          {/*/>*/}
+          <LiteYouTubeEmbed id={heroVideo} height="400px" />
         </YoutubePlayerWrapper>
       )}
       <Hidden mdUp>
@@ -260,7 +264,6 @@ function MainWrapper({
             </FixedEndorse>
           )}
         </Hidden>
-
         {/*<TopQuestions articles={articles} />*/}
       </Padder>
     </>
