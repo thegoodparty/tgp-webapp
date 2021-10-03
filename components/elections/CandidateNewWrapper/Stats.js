@@ -51,23 +51,23 @@ function Stats({ candidate }) {
       {unrepVoters ? (
         <Stat>
           <StatNum>{numberFormatter(unrepVoters)} </StatNum> &nbsp;
-          <strong>Unrepresented Voters</strong> in this race
+          Unrepresented Voters in this race
         </Stat>
       ) : (
         <></>
       )}
       {votesNeeded ? (
         <Stat>
-          <StatNum>{numberFormatter(votesNeeded)} </StatNum> &nbsp;{' '}
-          <strong>Votes Needed</strong> to win
+          <StatNum>{numberFormatter(votesNeeded)} </StatNum> &nbsp; Votes Needed
+          to win
         </Stat>
       ) : (
         <></>
       )}
       {likelyVoters ? (
         <Stat>
-          <StatNum>{numberFormatter(likelyVoters)} </StatNum> &nbsp;{' '}
-          <strong>Likely voters</strong> so far
+          <StatNum>{numberFormatter(likelyVoters)} </StatNum> &nbsp; Likely
+          Voters so far
         </Stat>
       ) : (
         <></>
