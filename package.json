@@ -24,7 +24,7 @@
     "start": "next build && next start -p 8081",
     "dev": "API_ENV=local next dev -p 4000",
     "dev-old": "cross-env NODE_ENV=development API_ENV=local node server/start",
-    "dev-dev": "node cross-env API_ENV=development next dev -p 4000",
+    "dev-dev": "cross-env API_ENV=development next dev -p 4000",
     "dev-dev-old": "cross-env NODE_ENV=development API_ENV=dev node server/start",
     "dev-prod": "cross-env NODE_ENV=development API_ENV=prod node server/start",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server/start",
