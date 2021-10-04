@@ -22,6 +22,25 @@ const PointWrapper = styled.div`
   }
 `;
 
+const StyledH1 = styled.h1`
+  color: #000;
+  font-size: 23px;
+  line-height: 30px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.md}) {
+    font-size: 30px;
+    line-height: 35px;
+    margin-bottom: 8px;
+  }
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.lg}) {
+    font-size: 40px;
+    line-height: 48px;
+  }
+`;
+
 const PointIcon = styled.img`
   margin-right: 12px;
   width: 30px;
@@ -74,7 +93,7 @@ const points = [
   },
 ];
 
-const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
+const GoodCertifiedAreSection = ({ headerElement = 'h2' }) => {
   return (
     <>
       <div className="text-center">
@@ -84,12 +103,19 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
           width={60}
           height={60}
         />
-        <StyledH2>How to become a Good Certified candidate</StyledH2>
-        <StyledH3>Candidates must pledge to be:</StyledH3>
+        {headerElement == 'h1' ? (
+          <StyledH1>What is a Good Certified candidate?</StyledH1>
+        ) : (
+          <StyledH2>What is a Good Certified candidate?</StyledH2>
+        )}
+        <StyledH3>
+          Good Certified candidates come from across the political spectrum, but
+          all who have all taken the pledge to be:
+        </StyledH3>
       </div>
       <Grid container spacing={5} alignItems="flex-start">
         {points.map(point => (
-          <Grid item xs={12} md={mdColumns} key={point.title}>
+          <Grid item xs={12} md={4} key={point.title}>
             <PointWrapper>
               <PointIcon
                 src={point.icon}
@@ -125,8 +151,6 @@ const GoodCertifiedAreSection = ({ mdColumns = 4 }) => {
   );
 };
 
-GoodCertifiedAreSection.propTypes = {
-  mdColumns: PropTypes.number,
-};
+GoodCertifiedAreSection.propTypes = {};
 
 export default GoodCertifiedAreSection;
