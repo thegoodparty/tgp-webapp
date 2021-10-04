@@ -15,7 +15,6 @@ const NoXsGrid = styled(Grid)`
   }
 `;
 
-
 const ResponsiveAlign = styled.div`
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
@@ -29,8 +28,9 @@ const Section3 = () => (
     <Grid item xs={12} md={6}>
       <ResponsiveAlign>
         <StyledH2 style={{ marginBottom: '18px' }}>
-          Money has corrupted both major parties. Together, we can change the
-          game!
+          Money has corrupted both major parties.
+          <br />
+          Together, we can change the game!
         </StyledH2>
         <JoinUsButton style={{ marginRight: '24px' }} />
       </ResponsiveAlign>
