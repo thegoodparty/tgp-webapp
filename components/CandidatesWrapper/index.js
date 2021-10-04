@@ -7,12 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from '../shared/PageWrapper';
 import GoodCertifiedAreSection from '../HomePageWrapper/GoodCertifiedAreSection';
 import FeaturedCandidateSection from '../HomePageWrapper/CandidatesSection';
 import CandidatesSection from './CandidatesSection';
-// import VideoSection from './VideoSection';
+import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
 
 const Content = styled.div`
@@ -40,7 +41,14 @@ function CandidatesWrapper({ candidates, homepageCandidates }) {
           hideSeeMore
         />
         <CandidatesSection candidates={candidates} />
-        <IllustrationSection />
+        <Grid container spacing={5}>
+          <Grid item xs={12} md={7}>
+            <IllustrationSection />
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <VideoSection />
+          </Grid>
+        </Grid>
       </Content>
     </PageWrapper>
   );
