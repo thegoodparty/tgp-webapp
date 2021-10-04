@@ -42,7 +42,11 @@ const Badge = styled.img`
   }
 `;
 
-const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
+const CandidatesSection = ({
+  homepageCandidates,
+  maxRows = 3,
+  hideSeeMore = false,
+}) => {
   const columns = 12 / maxRows;
 
   return (
@@ -84,11 +88,13 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
               </Grid>
             ))}
           </Grid>
-          <Link href="/candidates">
-            <div className="text-center">
-              <SeeMore>SEE MORE</SeeMore>
-            </div>
-          </Link>
+          {!hideSeeMore && (
+            <Link href="/candidates">
+              <div className="text-center">
+                <SeeMore>SEE MORE</SeeMore>
+              </div>
+            </Link>
+          )}
         </>
       ) : (
         <>
@@ -97,6 +103,7 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
             show you very soon. In the meanwhile, if you know any good
             candidates please nominate them!
           </Body>
+
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe78SJOH5edK4jTyOWVhs-b8AIf9_ElONlc5opPgzHnnpm_0Q/viewform?usp=sf_link"
             target="_blank"
@@ -115,6 +122,7 @@ const CandidatesSection = ({ homepageCandidates, maxRows = 3 }) => {
 CandidatesSection.propTypes = {
   homepageCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   maxRows: PropTypes.number,
+  hideSeeMore: PropTypes.bool,
 };
 
 export default CandidatesSection;
