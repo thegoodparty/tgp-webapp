@@ -20,7 +20,7 @@ const Content = styled.div`
   width: 100%;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto 48px;
-  padding: 0;
+  padding: 36px 0 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding: 48px 0;
