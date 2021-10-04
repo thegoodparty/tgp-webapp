@@ -39,7 +39,7 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 12px;
+  height: 18px;
   align-self: center;
   justify-self: center;
 `;
