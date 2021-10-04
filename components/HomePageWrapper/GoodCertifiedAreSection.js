@@ -6,6 +6,7 @@ import Link from 'next/link';
 import StyledH2 from './StyledH2';
 import StyledH3 from './StyledH3';
 import NominateButton from './NominateButton';
+import { Body } from '../shared/typogrophy';
 
 const Img = styled.img`
   width: 60px;
@@ -105,16 +106,18 @@ const GoodCertifiedAreSection = ({ headerElement = 'h2' }) => {
           width={60}
           height={60}
         />
-        {headerElement == 'h1' ? (
+        {headerElement === 'h1' ? (
           <StyledH1>What is a Good Certified candidate?</StyledH1>
         ) : (
           <StyledH2>What is a Good Certified candidate?</StyledH2>
         )}
-        <StyledH3>
-          Good Certified candidates come from across the political spectrum, but
-          all who have all taken the pledge to be:
-        </StyledH3>
+        <Body>
+          Good Certified candidates come from across the political spectrum, and
+          have all taken the pledge to be:
+        </Body>
       </div>
+      <br />
+      <br />
       <Grid container spacing={5} alignItems="flex-start">
         {points.map(point => (
           <Grid item xs={12} md={4} key={point.title}>
@@ -146,9 +149,11 @@ const GoodCertifiedAreSection = ({ headerElement = 'h2' }) => {
           </Grid>
         ))}
       </Grid>
-      <NominateWrapper>
-        <NominateButton />
-      </NominateWrapper>
+      {headerElement === 'h2' && (
+        <NominateWrapper>
+          <NominateButton />
+        </NominateWrapper>
+      )}
     </>
   );
 };

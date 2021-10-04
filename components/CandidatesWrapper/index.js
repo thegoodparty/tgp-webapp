@@ -15,6 +15,7 @@ import FeaturedCandidateSection from '../HomePageWrapper/CandidatesSection';
 import CandidatesSection from './CandidatesSection';
 import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
+import NominateButton from '../HomePageWrapper/NominateButton';
 
 const Content = styled.div`
   width: 100%;
@@ -29,6 +30,11 @@ const Content = styled.div`
   }
 `;
 
+const NominateWrapper = styled.div`
+  text-align: center;
+  margin: 42px 0;
+`;
+
 function CandidatesWrapper({ candidates, homepageCandidates }) {
   return (
     <PageWrapper isFullWidth purple>
@@ -40,6 +46,9 @@ function CandidatesWrapper({ candidates, homepageCandidates }) {
           homepageCandidates={homepageCandidates}
           hideSeeMore
         />
+        <NominateWrapper>
+          <NominateButton />
+        </NominateWrapper>
         <CandidatesSection candidates={candidates} />
         <Grid container spacing={5}>
           <Grid item xs={12} md={7}>
