@@ -6,6 +6,7 @@ import Link from 'next/link';
 import StyledH2 from './StyledH2';
 import StyledH3 from './StyledH3';
 import NominateButton from './NominateButton';
+import { Body } from '../shared/typogrophy';
 
 const Img = styled.img`
   width: 60px;
@@ -29,13 +30,13 @@ const StyledH1 = styled.h1`
   font-weight: 700;
   margin: 0 0 4px;
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.md}) {
     font-size: 30px;
     line-height: 35px;
     margin-bottom: 8px;
   }
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 40px;
     line-height: 48px;
   }
@@ -74,18 +75,20 @@ const points = [
   {
     title: 'Independent',
     icon: 'images/icons/non-partisan.svg',
-    body: 'Never pay dues to nor fundraise for Republicans or Democrats.',
+    body:
+      "Good candidates are not Republicans and not Democrats. They're real people from across the political spectrum.",
   },
   {
     title: 'People Powered',
     icon: 'images/icons/people-powered.svg',
     body:
-      'Good candidates only accept donations from individuals - not corporations, unions, PACs, or other non-living entities. ',
+      'Good candidates only accept donations from real living people--not corporations, unions, PACs, or other non-living entities.',
   },
   {
     title: 'Anti-Corruption',
     icon: 'images/icons/anti-corruption.svg',
-    body: 'Openly share their public meeting calendars and advance the ',
+    body:
+      'Good candidates are honest and transparent with their constituents.  They work to advance the ',
     endLink: {
       text: 'Anti-Corruption Act',
       href: '/?article=7jm2j9gapWwEoVwVD3VX6o',
@@ -103,16 +106,18 @@ const GoodCertifiedAreSection = ({ headerElement = 'h2' }) => {
           width={60}
           height={60}
         />
-        {headerElement == 'h1' ? (
+        {headerElement === 'h1' ? (
           <StyledH1>What is a Good Certified candidate?</StyledH1>
         ) : (
           <StyledH2>What is a Good Certified candidate?</StyledH2>
         )}
-        <StyledH3>
-          Good Certified candidates come from across the political spectrum, but
-          all who have all taken the pledge to be:
-        </StyledH3>
+        <Body>
+          Good Certified candidates come from across the political spectrum, and
+          have all taken the pledge to be:
+        </Body>
       </div>
+      <br />
+      <br />
       <Grid container spacing={5} alignItems="flex-start">
         {points.map(point => (
           <Grid item xs={12} md={4} key={point.title}>
@@ -144,13 +149,17 @@ const GoodCertifiedAreSection = ({ headerElement = 'h2' }) => {
           </Grid>
         ))}
       </Grid>
-      <NominateWrapper>
-        <NominateButton />
-      </NominateWrapper>
+      {headerElement === 'h2' && (
+        <NominateWrapper>
+          <NominateButton />
+        </NominateWrapper>
+      )}
     </>
   );
 };
 
-GoodCertifiedAreSection.propTypes = {};
+GoodCertifiedAreSection.propTypes = {
+  headerElement: PropTypes.string,
+};
 
 export default GoodCertifiedAreSection;

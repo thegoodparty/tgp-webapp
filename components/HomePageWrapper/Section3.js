@@ -15,7 +15,6 @@ const NoXsGrid = styled(Grid)`
   }
 `;
 
-
 const ResponsiveAlign = styled.div`
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>

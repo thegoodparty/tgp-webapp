@@ -33,13 +33,13 @@ const contentfulHelper = rawRichTextField => {
 export const CmsContentWrapper = styled.div`
   margin-top: 28px;
   color: ${({ theme }) => theme.colors.gray2};
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 14px;
+  line-height: 20px;
   letter-spacing: 0.1px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 16px;
+    line-height: 20px;
   }
 
   h1 {
@@ -80,13 +80,13 @@ export const CmsContentWrapper = styled.div`
   }
   p {
     color: ${({ theme }) => theme.colors.gray4};
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 20px;
     letter-spacing: 0.1px;
     @media only screen and (min-width: ${({ theme }) =>
         theme.breakpointsPixels.md}) {
-      font-size: 23px;
-      line-height: 30px;
+      font-size: 16px;
+      line-height: 20px;
     }
   }
   ul {
