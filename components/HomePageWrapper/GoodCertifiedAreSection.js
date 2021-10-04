@@ -29,13 +29,13 @@ const StyledH1 = styled.h1`
   font-weight: 700;
   margin: 0 0 4px;
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.md}) {
     font-size: 30px;
     line-height: 35px;
     margin-bottom: 8px;
   }
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 40px;
     line-height: 48px;
   }
@@ -74,18 +74,20 @@ const points = [
   {
     title: 'Independent',
     icon: 'images/icons/non-partisan.svg',
-    body: 'Never pay dues to nor fundraise for Republicans or Democrats.',
+    body:
+      "Good candidates are not Republicans and not Democrats. They're real people from across the political spectrum.",
   },
   {
     title: 'People Powered',
     icon: 'images/icons/people-powered.svg',
     body:
-      'Good candidates only accept donations from individuals - not corporations, unions, PACs, or other non-living entities. ',
+      'Good candidates only accept donations from real living people--not corporations, unions, PACs, or other non-living entities.',
   },
   {
     title: 'Anti-Corruption',
     icon: 'images/icons/anti-corruption.svg',
-    body: 'Openly share their public meeting calendars and advance the ',
+    body:
+      'Good candidates are honest and transparent with their constituents.  They work to advance the ',
     endLink: {
       text: 'Anti-Corruption Act',
       href: '/?article=7jm2j9gapWwEoVwVD3VX6o',
@@ -151,6 +153,8 @@ const GoodCertifiedAreSection = ({ headerElement = 'h2' }) => {
   );
 };
 
-GoodCertifiedAreSection.propTypes = {};
+GoodCertifiedAreSection.propTypes = {
+  headerElement: PropTypes.string,
+};
 
 export default GoodCertifiedAreSection;
