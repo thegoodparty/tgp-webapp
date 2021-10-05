@@ -233,16 +233,7 @@ function MainWrapper({
           </Grid>
         </SectionWrapper>
 
-        <Updates candidate={candidate} />
         <Hidden mdUp>
-          <SectionWrapper>
-            <Element name="recently-all">
-              <RecentlyJoined
-                candidateSupports={candidateSupports}
-                total={total}
-              />
-            </Element>
-          </SectionWrapper>
           {!isUserSupportCandidate && (
             <FixedEndorse>
               <SupportButton
