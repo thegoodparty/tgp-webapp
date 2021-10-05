@@ -17,6 +17,8 @@ import Main from './Main';
 import EndorsementPreviewModal from './EndorsementPreviewModal';
 import ShareModal from './ShareModal';
 import { H1 } from '../../shared/typogrophy';
+import Updates from './Updates';
+import MobileRecentlySupport from './MobileRecentlySupport';
 
 const ContentWrapper = styled.div`
   width: 100%;
@@ -111,6 +113,16 @@ function CandidateNewWrapper({
               />
             </Grid>
           </Hidden>
+        </Grid>
+        <Grid item xs={12}>
+          <Updates candidate={candidate} />
+        </Grid>
+        <Grid item xs={12}>
+          <MobileRecentlySupport
+            candidate={candidate}
+            candidateSupports={candidateSupports}
+            total={total}
+          />
         </Grid>
       </ContentWrapper>
       {/*{showPreviewModal && (*/}

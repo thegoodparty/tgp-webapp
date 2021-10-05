@@ -50,7 +50,7 @@ function CandidatesSection({ candidates }) {
         </>
       ))}
       <H2 style={{ marginBottom: '4px', marginTop: '64px', color: '#000' }}>
-        Meet some Good Certified candidates
+        Know any Good Candidates?
       </H2>
       <Body style={{ marginBottom: '24px' }}>
         We are actively recruiting candidates now, and will have some to show

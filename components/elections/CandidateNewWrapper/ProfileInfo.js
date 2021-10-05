@@ -8,7 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
-import Sticky from 'react-sticky-el';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -22,19 +21,6 @@ import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';
 import Stats from './Stats';
-
-const ScrollArea = styled.div`
-  height: calc(100% - 80px - 65px);
-  position: relative;
-  top: 0;
-  left: 0;
-  // width: 416px;
-  margin-top: -25px;
-`;
-
-const Inner2 = styled.div`
-  padding-top: 25px;
-`;
 
 const ProfileInfoWrapper = styled.div`
   border-radius: 8px;
@@ -137,126 +123,108 @@ function ProfileInfo({
     draftOffice,
   } = candidate;
 
-  const WrapperElement = ({ children }) =>
-    isMobile ? (
-      <div>{children}</div>
-    ) : (
-      <ScrollArea className="scroll-area">
-        <Sticky
-          boundaryElement=".scroll-area"
-          hideOnBoundaryHit={false}
-          dontUpdateHolderHeightWhenSticky
-        >
-          <Inner2 className="inner">{children}</Inner2>
-        </Sticky>
-      </ScrollArea>
-    );
   const supportCount = total || 0;
 
   const achievements = achievementsHelper(supportCount);
 
   return (
-    <WrapperElement>
-      <ProfileInfoWrapper>
-        <VerticalOrder>
-          <div>
-            <Endorsed>
-              <div style={{ paddingLeft: '10px' }}>
-                <strong>
-                  {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
-                  endorsed.
-                </strong>{' '}
-                Let's get to {numberFormatter(achievements.nextStep)}!
-              </div>
-            </Endorsed>
-
-            <SupportersProgressBar
-              showSupporters={false}
-              votesNeeded={achievements.nextStep}
-              peopleSoFar={supportCount}
-              fullWidth
-              showSuffix={false}
-              withAchievement
-            />
-            <Stats candidate={candidate} />
-          </div>
-          <Hidden mdUp>
+    <ProfileInfoWrapper>
+      <VerticalOrder>
+        <div>
+          <Endorsed>
             <div style={{ paddingLeft: '10px' }}>
-              <RecentlyJoined
-                candidateSupports={candidateSupports}
-                adminDeleteSupportCallback={adminDeleteSupportCallback}
-                candidateId={candidate.id}
-                total={total}
-                previewMode
-                scrollForMore
-              />
+              <strong>
+                {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
+                endorsed.
+              </strong>{' '}
+              Let's get to {numberFormatter(achievements.nextStep)}!
             </div>
-          </Hidden>
-          <AvatarSection>
-            <CandidateAvatar
-              avatar={image}
-              party={party}
-              size={isMobile ? 'small' : 'large'}
-              partyBadge
-              hideBadge={isDraft}
-            />
-            <div style={{ flex: 1 }}>
-              <CandidateName>
-                {firstName} {lastName}
-              </CandidateName>
-              <PartyName>
-                {isDraft && draftOffice !== '' ? (
-                  draftOffice
-                ) : (
-                  <>
-                    {party === 'S' ? (
-                      'SAM Party'
-                    ) : (
-                      <TitleCase>
-                        {partyResolver(party).toLowerCase()}
-                      </TitleCase>
-                    )}{' '}
-                    candidate running for {race}{' '}
-                  </>
-                )}
-              </PartyName>
-            </div>
-          </AvatarSection>
-        </VerticalOrder>
+          </Endorsed>
 
-        <Hidden smDown>
-          <div style={{ paddingLeft: '8px' }}>
+          <SupportersProgressBar
+            showSupporters={false}
+            votesNeeded={achievements.nextStep}
+            peopleSoFar={supportCount}
+            fullWidth
+            showSuffix={false}
+            withAchievement
+          />
+          <Stats candidate={candidate} />
+        </div>
+        <Hidden mdUp>
+          <div style={{ paddingLeft: '10px' }}>
             <RecentlyJoined
               candidateSupports={candidateSupports}
               adminDeleteSupportCallback={adminDeleteSupportCallback}
               candidateId={candidate.id}
               total={total}
               previewMode
+              scrollForMore
             />
           </div>
-          <EndorsmentWrapper>
-            <SupportButton
-              supportCallback={supportCallback}
-              removeSupportCallback={removeSupportCallback}
-              isUserSupportCandidate={isUserSupportCandidate}
-              trackingLabel="top endorse button"
-              withForm
-              user={user}
-            />
-            <div style={{ marginTop: '12px' }}>
-              Your endorsement is a free and powerful way to show and grow
-              grassroots support.{' '}
-              <Link
-                href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-                passHref
-              >
-                <a>Read more.</a>
-              </Link>
-            </div>
-          </EndorsmentWrapper>
         </Hidden>
-      </ProfileInfoWrapper>
-    </WrapperElement>
+        <AvatarSection>
+          <CandidateAvatar
+            avatar={image}
+            party={party}
+            size={isMobile ? 'small' : 'large'}
+            partyBadge
+            hideBadge={isDraft}
+          />
+          <div style={{ flex: 1 }}>
+            <CandidateName>
+              {firstName} {lastName}
+            </CandidateName>
+            <PartyName>
+              {isDraft && draftOffice !== '' ? (
+                draftOffice
+              ) : (
+                <>
+                  {party === 'S' ? (
+                    'SAM Party'
+                  ) : (
+                    <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
+                  )}{' '}
+                  candidate running for {race}{' '}
+                </>
+              )}
+            </PartyName>
+          </div>
+        </AvatarSection>
+      </VerticalOrder>
+
+      <Hidden smDown>
+        <div style={{ paddingLeft: '8px' }}>
+          <RecentlyJoined
+            candidateSupports={candidateSupports}
+            adminDeleteSupportCallback={adminDeleteSupportCallback}
+            candidateId={candidate.id}
+            total={total}
+            previewMode
+          />
+        </div>
+        <EndorsmentWrapper>
+          <SupportButton
+            supportCallback={supportCallback}
+            removeSupportCallback={removeSupportCallback}
+            isUserSupportCandidate={isUserSupportCandidate}
+            trackingLabel="top endorse button"
+            withForm
+            user={user}
+          />
+          <div style={{ marginTop: '12px' }}>
+            Your endorsement is a free and powerful way to show and grow
+            grassroots support.{' '}
+            <Link
+              href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
+              passHref
+            >
+              <a>Read more.</a>
+            </Link>
+          </div>
+        </EndorsmentWrapper>
+      </Hidden>
+    </ProfileInfoWrapper>
   );
 }
 
