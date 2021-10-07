@@ -338,6 +338,21 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    createCampaignUpdate: {
+      url: `${base}new-candidate/campaign-update`,
+      method: 'POST',
+      withAuth: true,
+    },
+    saveCampaignUpdate: {
+      url: `${base}new-candidate/campaign-update`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    deleteCampaignUpdate: {
+      url: `${base}new-candidate/campaign-update`,
+      method: 'DELETE',
+      withAuth: true,
+    },
   },
   subscribeEmail: {
     url: `${base}subscribe/email`,

@@ -7,12 +7,11 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import AdminCandidateList from 'components/admin/AdminCandidateList/NewCandidateList';
+import AdminCandidateList from 'components/admin/AdminCandidateList';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import makeSelectUser from 'containers/you/YouPage/selectors';
 
