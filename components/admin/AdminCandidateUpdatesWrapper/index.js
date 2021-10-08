@@ -12,7 +12,7 @@ import { BsTrash } from 'react-icons/bs';
 import TextField from '@material-ui/core/TextField';
 
 import CandidateTopMenu from '../CandidateTopMenu';
-import { Body13, H2 } from '../../shared/typogrophy';
+import { Body13, H2, Body } from '../../shared/typogrophy';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import { PurpleButton } from '../../shared/buttons';
@@ -120,8 +120,10 @@ function AdminCandidateUpdatesWrapper({
 
   const handleNewUpdate = () => {
     setNewUpdate({
+      title: '',
       date: '',
       text: '',
+      youtubeId: '',
     });
   };
 
@@ -155,7 +157,16 @@ function AdminCandidateUpdatesWrapper({
             <br />
             <Input
               fullWidth
-              label="date"
+              label="Title"
+              variant="outlined"
+              value={newUpdate.title}
+              onChange={e => onChangeFieldNew(e.target.value, 'title')}
+            />
+            <br />
+            <br />
+            <Input
+              fullWidth
+              label="Date"
               variant="outlined"
               value={newUpdate.date}
               onChange={e => onChangeFieldNew(e.target.value, 'date')}
@@ -165,6 +176,15 @@ function AdminCandidateUpdatesWrapper({
             <JoditEditorWrapper
               onChangeCallback={value => onChangeFieldNew(value, 'text')}
               initialText={newUpdate.text}
+            />
+            <br />
+            <br />
+            <Input
+              fullWidth
+              label="YouTube Id"
+              variant="outlined"
+              value={newUpdate.youtubeId}
+              onChange={e => onChangeFieldNew(e.target.value, 'youtubeId')}
             />
             <br />
             <br />
@@ -181,11 +201,29 @@ function AdminCandidateUpdatesWrapper({
             {editUpdate && editUpdate.id === update.id ? (
               <EditUpdate>
                 <Input
+                  label="Title"
+                  fullWidth
+                  variant="outlined"
+                  value={editedUpdate.title || ''}
+                  onChange={e => onChangeField(e.target.value, 'title')}
+                />
+                <br />
+                <br />
+                <Input
                   label="date"
                   fullWidth
                   variant="outlined"
                   value={editedUpdate.date || ''}
                   onChange={e => onChangeField(e.target.value, 'date')}
+                />
+                <br />
+                <br />
+                <Input
+                  label="YouTube Id"
+                  fullWidth
+                  variant="outlined"
+                  value={editedUpdate.youtubeId || ''}
+                  onChange={e => onChangeField(e.target.value, 'youtubeId')}
                 />
                 <br />
                 <br />
@@ -210,6 +248,11 @@ function AdminCandidateUpdatesWrapper({
                     <BsTrash style={{ color: 'red' }} />
                   </EditWrapper>
                 </div>
+                <strong>Title:</strong>
+                <br />
+                <Body>{update.title}</Body>
+                <br />
+                <br />
                 <strong>Date:</strong>
                 <br />
                 <Body13>{update.date}</Body13>
@@ -218,6 +261,15 @@ function AdminCandidateUpdatesWrapper({
                 <strong>update:</strong>
                 <br />
                 <Body13 dangerouslySetInnerHTML={{ __html: update.text }} />
+                {update.youtubeId && update.youtubeId !== '' && (
+                  <>
+                    <br />
+                    <br />
+                    <strong>YouTube Id:</strong>
+                    <br />
+                    <Body13>{update.youtubeId}</Body13>
+                  </>
+                )}
               </Update>
             )}
           </>

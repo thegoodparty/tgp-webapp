@@ -7,9 +7,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Grid from '@material-ui/core/Grid';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 import { Body19, Body13 } from '../../shared/typogrophy';
-import { getUserCookie } from '../../../helpers/cookieHelper';
 
 const SectionWrapper = styled.div`
   margin-top: 48px;
@@ -35,6 +37,12 @@ const SectionHeader = styled(Body19)`
   }
 `;
 
+const UpdateWrapper = styled.div`
+  margin-bottom: 32px;
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 24px;
+`;
+
 const YoutubePlayerWrapper = styled.div`
   [data-jodit_iframe_wrapper] {
     position: relative;
@@ -51,15 +59,20 @@ const YoutubePlayerWrapper = styled.div`
   }
 
   &.top {
-    box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07),
-      0px 0px 12px rgba(0, 0, 0, 0.08), 0px 0px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 32px rgba(0, 0, 0, 0.07), 0 0 12px rgba(0, 0, 0, 0.08),
+      0 0 16px rgba(0, 0, 0, 0.12);
   }
 `;
 
-const UpdatedDate = styled(Body13)`
+const UpdateDate = styled.div`
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-bottom: 18px;
+`;
+
+const UpdatedTitle = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray3};
-  margin-top: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   font-weight: 700;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
@@ -73,25 +86,35 @@ function Updates({ candidate }) {
     return <> </>;
   }
 
-  const combinedUpdates = updatesList.map(item => {
-    return { html: item.text, date: item.date };
-  });
-  combinedUpdates.sort(
+  const sortedUpdates = [...updatesList];
+  sortedUpdates.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
   return (
     <SectionWrapper>
-      <SectionHeader>Updates({(updatesList || []).length})</SectionHeader>
-      {combinedUpdates &&
-        combinedUpdates.reverse().map((update, index) => (
-          <YoutubePlayerWrapper key={index}>
-            <UpdatedDate>{update.date}</UpdatedDate>
-            <Body13
-              dangerouslySetInnerHTML={{ __html: update.html }}
-              style={{ marginBottom: 20 }}
-            />
-          </YoutubePlayerWrapper>
+      <SectionHeader>Updates ({(updatesList || []).length})</SectionHeader>
+      {sortedUpdates &&
+        sortedUpdates.reverse().map(update => (
+          <UpdateWrapper>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={update.youtubeId ? 8 : 12}>
+                <YoutubePlayerWrapper key={update.id}>
+                  <UpdatedTitle>{update.title}</UpdatedTitle>
+                  <UpdateDate>{update.date}</UpdateDate>
+                  <Body13
+                    dangerouslySetInnerHTML={{ __html: update.text }}
+                    style={{ marginBottom: 20 }}
+                  />
+                </YoutubePlayerWrapper>
+              </Grid>
+              {update.youtubeId && (
+                <Grid item xs={12} md={4}>
+                  <LiteYouTubeEmbed id={update.youtubeId} height="250px" />
+                </Grid>
+              )}
+            </Grid>
+          </UpdateWrapper>
         ))}
     </SectionWrapper>
   );
