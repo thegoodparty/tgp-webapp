@@ -82,6 +82,8 @@ function AdminCandidateUpdatesWrapper({
       id: update.id,
       date: update.date,
       text: update.text,
+      title: update.title,
+      youtubeId: update.youtubeId,
     });
   };
 
