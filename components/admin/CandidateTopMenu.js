@@ -20,10 +20,12 @@ const Wrapper = styled.div`
 
 const Item = styled.div`
   background-color: #eee;
-  padding: 12px 36px;
+  padding: 14px 8px;
   border-right: solid 1px #ccc;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  text-align: center;
+  width: 213px;
 
   &.last-item {
     border-right: none;
@@ -48,6 +50,8 @@ function CandidateTopMenu({ candidate }) {
         setActiveLink('compare');
       } else if (pathname.includes('associate')) {
         setActiveLink('associate');
+      } else if (pathname.includes('updates')) {
+        setActiveLink('updates');
       }
     }
   }, []);
@@ -64,6 +68,13 @@ function CandidateTopMenu({ candidate }) {
         </Link>
         {candidate?.id && (
           <>
+            <Link href={`/admin/candidate-updates/${candidate?.id}`} passHref>
+              <a>
+                <Item className={activeLink === 'updates' && 'active'}>
+                  Candidate Updates
+                </Item>
+              </a>
+            </Link>
             <Link href={`/admin/candidate-image/${candidate?.id}`} passHref>
               <a>
                 <Item className={activeLink === 'image' && 'active'}>

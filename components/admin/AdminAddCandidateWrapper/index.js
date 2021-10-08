@@ -147,8 +147,6 @@ function AdminAddCandidateWrapper({
 
   const [formState, setFormState] = useState(initialState);
   const [about, setAbout] = useState(candidate ? candidate.about : '');
-  const [showUpdates, setShowUpdates] = useState(false);
-  const [candidateUpdates, setCandidateUpdates] = useState([]);
 
   useEffect(() => {
     if (candidate) {
@@ -161,7 +159,6 @@ function AdminAddCandidateWrapper({
       setAbout(candidate.about);
       newState.isActive = candidate.isActive;
       setFormState(newState);
-      setCandidateUpdates(candidate.updatesList || []);
     }
   }, [candidate]);
 
@@ -182,37 +179,15 @@ function AdminAddCandidateWrapper({
         ...candidate,
         ...formState,
         about,
-        candidateUpdates,
       });
     } else {
       editCandidateCallback({
         ...candidate,
         ...formState,
         about,
-        candidateUpdates,
         id: candidate.id,
       });
     }
-  };
-
-  const addUpdate = () => {
-    const existingUpdates = [...candidateUpdates];
-    existingUpdates.push({
-      text: '',
-      date: '',
-    });
-    setCandidateUpdates(existingUpdates);
-  };
-
-  const deleteUpdateListItem = index => {
-    const existingUpdates = [...candidateUpdates];
-    existingUpdates.splice(index, 1);
-    setCandidateUpdates(existingUpdates);
-  };
-  const onChangeUpdateList = (val, index, key) => {
-    const existingUpdates = [...candidateUpdates];
-    existingUpdates[index][key] = val;
-    setCandidateUpdates(existingUpdates);
   };
 
   return (
@@ -279,53 +254,6 @@ function AdminAddCandidateWrapper({
           initialText={about}
         />
 
-        <br />
-        <br />
-        <PurpleButton onClick={() => setShowUpdates(!showUpdates)}>
-          &nbsp;&nbsp;{showUpdates ? 'Hide' : 'Show'} Updates&nbsp;&nbsp;
-        </PurpleButton>
-        <br />
-        <br />
-        {showUpdates && (
-          <>
-            {candidateUpdates.map((update, index) => (
-              <React.Fragment key={update.id}>
-                <Row>
-                  <span>Update #{index + 1}</span>
-                  <BsTrash
-                    onClick={() => {
-                      deleteUpdateListItem(index);
-                    }}
-                    style={{ cursor: 'pointer' }}
-                  />
-                </Row>
-                <br />
-                <Input
-                  fullWidth
-                  label={`update ${index + 1} date`}
-                  name={`update ${index + 1} date`}
-                  variant="outlined"
-                  value={update.date || ''}
-                  onChange={e =>
-                    onChangeUpdateList(e.target.value, index, 'date')
-                  }
-                />
-                <br />
-                <br />
-                <JoditEditorWrapper
-                  onChangeCallback={value =>
-                    onChangeUpdateList(value, index, 'text')
-                  }
-                  initialText={update.text}
-                />
-                <br />
-                <br />
-              </React.Fragment>
-            ))}
-
-            <BlueButton onClick={addUpdate}>Add update</BlueButton>
-          </>
-        )}
         <br />
         <br />
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>

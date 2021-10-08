@@ -1,6 +1,6 @@
 /**
  *
- * AdminCandidateList
+ * NewCandidateList
  *
  */
 
@@ -11,17 +11,16 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { CSVLink } from 'react-csv/lib';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
-import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/DeleteForever';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { IoIosSettings } from 'react-icons/io';
 import Link from 'next/link';
 import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
+import AlertDialog from '../../shared/AlertDialog';
+import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -34,13 +33,6 @@ const Title = styled(H3)`
   position: relative;
 `;
 
-const StyledSelect = styled(Select)`
-  && {
-    .MuiOutlinedInput-input {
-      padding: 8px 32px 8px 14px;
-    }
-  }
-`;
 const CSVLinkWrapper = styled.div`
   position: absolute;
   right: 0;
@@ -51,39 +43,31 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
+function Index({ candidates, deleteCandidateCallback }) {
   const [tableData, setTableData] = useState([]);
+  const [deleteCandidate, setDeleteCandidate] = useState(false);
+  const handleDeleteCandidate = id => {
+    setDeleteCandidate(id);
+  };
+
+  const handleProceedDelete = () => {
+    deleteCandidateCallback(deleteCandidate);
+    setDeleteCandidate(false);
+  };
   useEffect(() => {
     if (candidates) {
       const data = [];
       candidates.map(candidate => {
         const fields = {
+          active: candidate.isActive ? 'Yes' : 'No',
           id: candidate.id,
-          name: candidate.name,
+          firstName: candidate.firstName,
+          lastName: candidate.lastName,
           party: partyResolver(candidate.party),
-          incumbent: candidate.isIncumbent ? 'yes' : 'no',
-          isIncumbent: candidate.isIncumbent,
-          isAligned: candidate.isAligned,
           chamber: candidate.chamber,
-          isGood:
-            candidate.isGood === null
-              ? 'unknown'
-              : candidate.isGood
-              ? 'yes'
-              : 'no',
-          isBigMoney: candidate.isBigMoney ? 'yes' : 'no',
-          isMajor: candidate.isMajor ? 'yes' : 'no',
-          isHidden: candidate.isHidden === true,
-          twitterFollowers: candidate.twitterFollowers,
+          office: candidate.race,
+          state: candidate.state ? candidate.state.toUpperCase() : '?',
         };
-        if (chamber !== 'presidential') {
-          fields.state = candidate.state
-            ? candidate.state.toLowerCase()
-            : 'N/A';
-        }
-        if (chamber === 'house') {
-          fields.district = candidate.district;
-        }
         data.push(fields);
       });
       setTableData(data);
@@ -116,24 +100,28 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       maxWidth: 80,
     },
     {
-      Header: 'Name',
-      accessor: 'name',
+      Header: 'Active?',
+      accessor: 'active',
+      filterMethod: customFilter,
+      headerStyle,
+      maxWidth: 90,
+    },
+    {
+      Header: 'First Name',
+      accessor: 'firstName',
       headerStyle,
       filterMethod: customFilter,
       Cell: row => {
-        const chamberLower = row.original.chamber
-          ? row.original.chamber.toLowerCase()
-          : 'presidential';
-
         const route = candidateRoute(row.original);
-        const editRoute = `/admin/edit-candidate/${chamberLower}${
-          row.original.isIncumbent ? '-i' : ''
-        }/${row.original.id}`;
+        const editRoute = `/admin/add-candidate/${row.original.id}`;
+        const settingsRoute = `/admin/stage-settings/${row.original.id}`;
         return (
           <>
-            <a href={editRoute} target="_blank">
-              <EditIcon />
-            </a>
+            <Link href={editRoute} target="_blank" passHref>
+              <a>
+                <EditIcon />
+              </a>
+            </Link>
             &nbsp;&nbsp;&nbsp;
             <a
               href={route}
@@ -142,11 +130,17 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}
             >
-              {row.original.name}
+              {row.original.firstName}
             </a>
           </>
         );
       },
+    },
+    {
+      Header: 'Last Name',
+      accessor: 'lastName',
+      filterMethod: customFilter,
+      headerStyle,
     },
     {
       Header: 'Party',
@@ -155,172 +149,100 @@ function AdminCandidateList({ candidates, updateCandidateCallback, chamber }) {
       headerStyle,
     },
     {
-      Header: 'Twitter Followers',
-      accessor: 'twitterFollowers',
-      filterMethod: customFilter,
-      headerStyle,
-      Cell: row => {
-        return <div>{numberFormatter(row.original.twitterFollowers)}</div>;
-      },
-    },
-    {
-      Header: 'Incumbent?',
-      accessor: 'incumbent',
-      filterMethod: customFilter,
-      headerStyle,
-      maxWidth: 130,
-    },
-    {
-      Header: 'Is Good (yes/no)',
-      accessor: 'isGood',
-      filterMethod: customFilter,
-      headerStyle,
-      maxWidth: 150,
-    },
-    {
-      Header: 'Is Big Money (yes/no)',
-      accessor: 'isBigMoney',
-      filterMethod: customFilter,
-      headerStyle,
-      maxWidth: 150,
-    },
-    {
-      Header: 'Is Major (yes/no)',
-      accessor: 'isMajor',
-      filterMethod: customFilter,
-      headerStyle,
-      maxWidth: 150,
-    },
-    {
-      Header: 'isHidden',
-      accessor: 'isHidden',
+      Header: 'Chamber',
+      accessor: 'chamber',
       filterMethod: customFilter,
       headerStyle,
       maxWidth: 120,
+    },
+    {
+      Header: 'Office',
+      accessor: 'office',
+      filterMethod: customFilter,
+      headerStyle,
+    },
+    {
+      Header: 'State',
+      accessor: 'state',
+      filterMethod: customFilter,
+      headerStyle,
+      maxWidth: 120,
+    },
+    {
+      Header: 'Delete',
+      maxWidth: 80,
+      accessor: 'name',
+      headerStyle,
+      filterMethod: customFilter,
       Cell: row => {
         return (
           <div className="text-center">
-            <Checkbox
-              checked={row.original.isHidden}
-              onChange={event =>
-                updateHidden(row.original, event.target.checked)
-              }
-              inputProps={{ 'aria-label': 'primary checkbox' }}
+            {' '}
+            <DeleteIcon
+              onClick={() => {
+                handleDeleteCandidate(row.original.id);
+              }}
+              style={{ color: 'red', cursor: 'pointer' }}
             />
           </div>
         );
       },
     },
-    {
-      Header: 'Aligned? (yes/no/unknown)',
-      accessor: 'isAligned',
-      filterMethod: customFilter,
-      headerStyle,
-      maxWidth: 180,
-      Cell: row => {
-        return (
-          <FormControl variant="outlined">
-            <StyledSelect
-              value={row.original.isAligned}
-              onChange={event =>
-                updateAlignment(row.original, event.target.value)
-              }
-            >
-              <MenuItem value="unknown">
-                <em>Unknown</em>
-              </MenuItem>
-              <MenuItem value="yes">
-                <em>Aligned</em>
-              </MenuItem>
-              <MenuItem value="no">
-                <em>Not Aligned</em>
-              </MenuItem>
-            </StyledSelect>
-          </FormControl>
-        );
-      },
-    },
   ];
-  if (chamber !== 'presidential') {
-    columns.splice(3, 0, {
-      Header: 'State',
-      accessor: 'state',
-      maxWidth: 100,
-      headerStyle,
-    });
-  }
-  if (chamber === 'house') {
-    columns.splice(4, 0, {
-      Header: 'District',
-      accessor: 'district',
-      maxWidth: 100,
-      headerStyle,
-    });
-  }
+
   const csvHeader = columns.map(column => ({
     label: column.Header,
     key: column.accessor,
   }));
-  const updateHidden = (candidate, newVal) => {
-    updateCandidateCallback(
-      candidate.id,
-      { isHidden: newVal },
-      chamber,
-      candidate.incumbent === 'yes',
-    );
-  };
-
-  const updateAlignment = (candidate, newVal) => {
-    updateCandidateCallback(
-      candidate.id,
-      { isAligned: newVal },
-      chamber,
-      candidate.incumbent === 'yes',
-    );
-  };
 
   return (
-    <Wrapper>
-      <Title>
-        {chamber} candidate list
-        <CSVLinkWrapper>
-          <Button variant="contained" color="primary">
-            <CSVLink
-              data={tableData}
-              filename={`${chamber}_candidates_${moment().format(
-                'YYYY_MM_DD',
-              )}.csv`}
-              headers={csvHeader}
-              target="_blank"
-            >
-              <span style={{ color: '#FFF' }}>Download as a CSV</span>
-            </CSVLink>
-          </Button>
-          &nbsp; &nbsp;
-          <Link href="/admin/add-candidate">
-            <Button variant="contained" color="secondary">
-              <PersonAddIcon /> &nbsp; &nbsp; Add a candidate
+    <AdminPageWrapper>
+      <Wrapper>
+        <Title>
+          candidate list
+          <CSVLinkWrapper>
+            <Button variant="contained" color="primary">
+              <CSVLink
+                data={tableData}
+                filename={`candidates_${moment().format('YYYY_MM_DD')}.csv`}
+                headers={csvHeader}
+                target="_blank"
+              >
+                <span style={{ color: '#FFF' }}>Download as a CSV</span>
+              </CSVLink>
             </Button>
-          </Link>
-        </CSVLinkWrapper>
-      </Title>
+            &nbsp; &nbsp;
+            <Link href="/admin/add-candidate">
+              <Button variant="contained" color="secondary">
+                <PersonAddIcon /> &nbsp; &nbsp; Add a candidate
+              </Button>
+            </Link>
+          </CSVLinkWrapper>
+        </Title>
 
-      <ReactTable
-        className="-striped -highlight"
-        data={tableData}
-        columns={columns}
-        defaultPageSize={25}
-        showPagination
-        filterable
-      />
-    </Wrapper>
+        <ReactTable
+          className="-striped -highlight"
+          data={tableData}
+          columns={columns}
+          defaultPageSize={25}
+          showPagination
+          filterable
+        />
+        <AlertDialog
+          title="Delete Candidate?"
+          description="This can't be undone, and you will have to deal with it in your afterlife"
+          open={deleteCandidate !== false}
+          handleClose={() => setDeleteCandidate(false)}
+          handleProceed={handleProceedDelete}
+        />
+      </Wrapper>
+    </AdminPageWrapper>
   );
 }
 
-AdminCandidateList.propTypes = {
+Index.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  updateCandidateCallback: PropTypes.func,
-  chamber: PropTypes.string,
+  deleteCandidateCallback: PropTypes.func,
 };
 
-export default AdminCandidateList;
+export default Index;
