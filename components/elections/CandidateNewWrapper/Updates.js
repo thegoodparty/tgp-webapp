@@ -98,7 +98,7 @@ function Updates({ candidate }) {
         sortedUpdates.reverse().map(update => (
           <UpdateWrapper>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={update.youtubeId ? 8 : 12}>
+              <Grid item xs={12} md={update.youtubeId ? 7 : 12}>
                 <YoutubePlayerWrapper key={update.id}>
                   <UpdatedTitle>{update.title}</UpdatedTitle>
                   <UpdateDate>{update.date}</UpdateDate>
@@ -109,7 +109,7 @@ function Updates({ candidate }) {
                 </YoutubePlayerWrapper>
               </Grid>
               {update.youtubeId && (
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={5}>
                   <LiteYouTubeEmbed id={update.youtubeId} height="250px" />
                 </Grid>
               )}
