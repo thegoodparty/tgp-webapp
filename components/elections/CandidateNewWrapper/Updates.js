@@ -110,7 +110,11 @@ function Updates({ candidate }) {
               </Grid>
               {update.youtubeId && (
                 <Grid item xs={12} md={5}>
-                  <LiteYouTubeEmbed id={update.youtubeId} height="250px" />
+                  <LiteYouTubeEmbed
+                    id={update.youtubeId}
+                    height="250px"
+                    params={`start=${update.start}`}
+                  />
                 </Grid>
               )}
             </Grid>

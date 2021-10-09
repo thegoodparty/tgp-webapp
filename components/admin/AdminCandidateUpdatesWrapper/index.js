@@ -84,6 +84,7 @@ function AdminCandidateUpdatesWrapper({
       text: update.text,
       title: update.title,
       youtubeId: update.youtubeId,
+      start: update.start,
     });
   };
 
@@ -126,6 +127,7 @@ function AdminCandidateUpdatesWrapper({
       date: '',
       text: '',
       youtubeId: '',
+      start: 0,
     });
   };
 
@@ -190,6 +192,16 @@ function AdminCandidateUpdatesWrapper({
             />
             <br />
             <br />
+            <Input
+              fullWidth
+              label="YouTube Start time (seconds)"
+              variant="outlined"
+              type="number"
+              value={newUpdate.start}
+              onChange={e => onChangeFieldNew(e.target.value, 'start')}
+            />
+            <br />
+            <br />
             <div className="text-center">
               <Cancel onClick={handleCancelNew}>Cancel</Cancel>
               <PurpleButton onClick={handleCreate}>
@@ -226,6 +238,16 @@ function AdminCandidateUpdatesWrapper({
                   variant="outlined"
                   value={editedUpdate.youtubeId || ''}
                   onChange={e => onChangeField(e.target.value, 'youtubeId')}
+                />
+                <br />
+                <br />
+                <Input
+                  label="YouTube Start time (seconds)"
+                  fullWidth
+                  variant="outlined"
+                  value={editedUpdate.start}
+                  type="number"
+                  onChange={e => onChangeField(e.target.value, 'start')}
                 />
                 <br />
                 <br />
@@ -269,7 +291,9 @@ function AdminCandidateUpdatesWrapper({
                     <br />
                     <strong>YouTube Id:</strong>
                     <br />
-                    <Body13>{update.youtubeId}</Body13>
+                    <Body13>
+                      {update.youtubeId} &nbsp; &nbsp; Start: {update.start}
+                    </Body13>
                   </>
                 )}
               </Update>
