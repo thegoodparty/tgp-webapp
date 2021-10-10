@@ -96,8 +96,8 @@ const HowItWorksSection = ({ experimentVariant }) => {
       <div className="text-center">
         <StyledH2>How it works</StyledH2>
         <StyledH3>
-          Crowd campaigns can make votes matter more than money in our
-          elections!
+          Crowd-voting campaigns change the game by making votes matter more
+          than money!
         </StyledH3>
       </div>
       <Section1>
