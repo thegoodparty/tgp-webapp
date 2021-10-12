@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Image from 'next/image';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
@@ -80,6 +81,15 @@ const UpdatedTitle = styled(Body13)`
   }
 `;
 
+const ImageWrapper = styled.div`
+  position: relative;
+  height: 250px;
+  img {
+    object-fit: contain;
+    object-position: right center;
+  }
+`;
+
 function Updates({ candidate }) {
   const { updatesList } = candidate;
   if (!updatesList) {
@@ -90,6 +100,9 @@ function Updates({ candidate }) {
   sortedUpdates.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
+  const hasFeatured = update => update.youtubeId || update.image;
+
+  console.log('updates', sortedUpdates);
 
   return (
     <SectionWrapper>
@@ -98,7 +111,7 @@ function Updates({ candidate }) {
         sortedUpdates.reverse().map(update => (
           <UpdateWrapper>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={update.youtubeId ? 7 : 12}>
+              <Grid item xs={12} md={hasFeatured(update) ? 7 : 12}>
                 <YoutubePlayerWrapper key={update.id}>
                   <UpdatedTitle>{update.title}</UpdatedTitle>
                   <UpdateDate>{update.date}</UpdateDate>
@@ -108,13 +121,19 @@ function Updates({ candidate }) {
                   />
                 </YoutubePlayerWrapper>
               </Grid>
-              {update.youtubeId && (
+              {hasFeatured(update) && (
                 <Grid item xs={12} md={5}>
-                  <LiteYouTubeEmbed
-                    id={update.youtubeId}
-                    height="250px"
-                    params={`start=${update.start}`}
-                  />
+                  {update.youtubeId ? (
+                    <LiteYouTubeEmbed
+                      id={update.youtubeId}
+                      height="250px"
+                      params={`start=${update.start}`}
+                    />
+                  ) : (
+                    <ImageWrapper>
+                      <Image src={update.image} layout="fill" alt="" />
+                    </ImageWrapper>
+                  )}
                 </Grid>
               )}
             </Grid>

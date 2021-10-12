@@ -37,6 +37,9 @@ export default function* requestHelper(api, data, isFormData = false) {
   }
 
   const requestOptions = headersOptions(body, api.method, token);
+  // if (data instanceof FormData) {
+  //   requestOptions.headers['Content-Type'] = 'multipart/form-data';
+  // }
   try {
     return yield call(fetchHelper, url, requestOptions);
   } catch (e) {

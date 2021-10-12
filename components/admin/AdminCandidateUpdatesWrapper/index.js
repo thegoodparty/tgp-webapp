@@ -10,6 +10,12 @@ import styled from 'styled-components';
 import EditIcon from '@material-ui/icons/Edit';
 import { BsTrash } from 'react-icons/bs';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+
+import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
 
 import CandidateTopMenu from '../CandidateTopMenu';
 import { Body13, H2, Body } from '../../shared/typogrophy';
@@ -64,6 +70,12 @@ const Cancel = styled.div`
   color: ${({ theme }) => theme.colors.purple};
 `;
 
+const DeleteImage = styled.div`
+  margin-top: 12px;
+  color: red;
+  cursor: pointer;
+`;
+
 function AdminCandidateUpdatesWrapper({
   candidate,
   saveCallback,
@@ -84,6 +96,7 @@ function AdminCandidateUpdatesWrapper({
       text: update.text,
       title: update.title,
       youtubeId: update.youtubeId,
+      image: update.image,
       start: update.start,
     });
   };
@@ -126,7 +139,7 @@ function AdminCandidateUpdatesWrapper({
       title: '',
       date: '',
       text: '',
-      youtubeId: '',
+      image: '',
       start: 0,
     });
   };
@@ -138,6 +151,37 @@ function AdminCandidateUpdatesWrapper({
   const handleCreate = () => {
     createCallback(newUpdate, candidate.id);
     handleCancelNew();
+  };
+
+  const handleUploadImage = (image, isNewUpdate) => {
+    if (image) {
+      if (isNewUpdate) {
+        setNewUpdate({
+          ...newUpdate,
+          image,
+        });
+      } else {
+        setEditUpdate({
+          ...editUpdate,
+          image,
+        });
+        setEditedUpdate({
+          ...editedUpdate,
+          image,
+        });
+      }
+    }
+  };
+
+  const handleRemoveEditImage = () => {
+    setEditUpdate({
+      ...editUpdate,
+      image: '',
+    });
+    setEditedUpdate({
+      ...editedUpdate,
+      image: '',
+    });
   };
 
   return (
@@ -200,7 +244,23 @@ function AdminCandidateUpdatesWrapper({
               value={newUpdate.start}
               onChange={e => onChangeFieldNew(e.target.value, 'start')}
             />
+
             <br />
+            <br />
+            <br />
+            <strong>
+              Update Image (in case the update doesn't have a youtube video)
+            </strong>
+            <br />
+            <br />
+            {newUpdate.image && newUpdate.image !== '' ? (
+              <div>{newUpdate.image}</div>
+            ) : (
+              <ImageUploadContainer
+                uploadCallback={image => handleUploadImage(image, true)}
+              />
+            )}
+
             <br />
             <div className="text-center">
               <Cancel onClick={handleCancelNew}>Cancel</Cancel>
@@ -211,7 +271,7 @@ function AdminCandidateUpdatesWrapper({
           </EditUpdate>
         )}
         {updates.map(update => (
-          <>
+          <React.Fragment key={update.id}>
             {editUpdate && editUpdate.id === update.id ? (
               <EditUpdate>
                 <Input
@@ -257,6 +317,22 @@ function AdminCandidateUpdatesWrapper({
                 />
                 <br />
                 <br />
+                {editUpdate.image && editUpdate.image !== '' ? (
+                  <div>
+                    {editUpdate.image}
+                    <br />
+                    <br />
+                    <DeleteImage onClick={handleRemoveEditImage}>
+                      <BsTrash /> Delete Image
+                    </DeleteImage>
+                  </div>
+                ) : (
+                  <ImageUploadContainer
+                    uploadCallback={image => handleUploadImage(image, false)}
+                  />
+                )}
+                <br />
+                <br />
                 <div className="text-center">
                   <Cancel onClick={handleCancelEdit}>Cancel</Cancel>
                   <PurpleButton onClick={handleSave}>Save</PurpleButton>
@@ -272,33 +348,44 @@ function AdminCandidateUpdatesWrapper({
                     <BsTrash style={{ color: 'red' }} />
                   </EditWrapper>
                 </div>
-                <strong>Title:</strong>
-                <br />
-                <Body>{update.title}</Body>
-                <br />
-                <br />
-                <strong>Date:</strong>
-                <br />
-                <Body13>{update.date}</Body13>
-                <br />
-                <br />
-                <strong>update:</strong>
-                <br />
-                <Body13 dangerouslySetInnerHTML={{ __html: update.text }} />
-                {update.youtubeId && update.youtubeId !== '' && (
-                  <>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <strong>Title:</strong>
                     <br />
+                    <Body>{update.title}</Body>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <strong>Date:</strong>
                     <br />
-                    <strong>YouTube Id:</strong>
-                    <br />
-                    <Body13>
-                      {update.youtubeId} &nbsp; &nbsp; Start: {update.start}
-                    </Body13>
-                  </>
-                )}
+                    <Body13>{update.date}</Body13>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Body13 dangerouslySetInnerHTML={{ __html: update.text }} />
+                  </Grid>
+                  {update.youtubeId && update.youtubeId !== '' && (
+                    <Grid item xs={12} md={6}>
+                      <strong>YouTube Id:</strong>
+                      <br />
+                      <Body13>
+                        {update.youtubeId} &nbsp; &nbsp; Start: {update.start}
+                      </Body13>
+                      <br />
+                      <LiteYouTubeEmbed
+                        id={update.youtubeId}
+                        height="250px"
+                        params={`start=${update.start}`}
+                      />
+                    </Grid>
+                  )}
+                  {update.image && update.image !== '' && (
+                    <Grid item xs={12} md={6}>
+                      <img src={update.image} className="full-image" />
+                    </Grid>
+                  )}
+                </Grid>
               </Update>
             )}
-          </>
+          </React.Fragment>
         ))}
       </Wrapper>
       <AlertDialog

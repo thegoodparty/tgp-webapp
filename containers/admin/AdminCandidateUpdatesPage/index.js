@@ -88,7 +88,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.deleteUpdateAction(updateId, candidateId));
     },
     createCallback: (update, candidateId) => {
-      console.log('pag', update, candidateId);
       dispatch(actions.createUpdateAction(update, candidateId));
     },
   };
