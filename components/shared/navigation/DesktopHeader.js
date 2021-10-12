@@ -170,11 +170,8 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
         router.components['/candidate/[...NameIdTab]']?.props?.pageProps
           ?.ssrState?.id,
       );
-      router.query.preview = 'true';
-      router.query.fromshare = 'true';
-    } else {
-      router.query.share = 'true';
     }
+    router.query.share = 'true';
     router.push(router);
 
     logEvent('Share', 'top_nav_share', 'Top Nav');
