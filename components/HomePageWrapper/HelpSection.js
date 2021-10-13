@@ -18,7 +18,7 @@ const HelpSection = () => {
           posted as the roster grows.
         </GrayText>
       </TextWrapper>
-      <JoinUsButton label="SIGN UP" />
+      <JoinUsButton />
     </div>
   );
 };

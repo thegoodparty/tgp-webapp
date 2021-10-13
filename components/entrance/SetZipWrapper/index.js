@@ -11,17 +11,13 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
 import PageWrapper from 'components/shared/PageWrapper';
-import { H1 } from 'components/shared/typogrophy';
+import { Body, Body13, H1 } from 'components/shared/typogrophy';
 import { PurpleButton } from 'components/shared/buttons';
 
-const VerticalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    height: calc(100vh - 100px);
-  }
+const Wrapper = styled.div`
+  padding: 24px 0;
+  max-width: 600px;
+  margin: 24px auto;
 `;
 
 const Input = styled(TextField)`
@@ -42,6 +38,14 @@ const Input = styled(TextField)`
       }
     }
   }
+`;
+
+const Skip = styled(Body13)`
+  text-align: right;
+  color: ${({ theme }) => theme.colors.gray7};
+  cursor: pointer;
+  margin-top: 16px;
+  text-decoration: underline;
 `;
 
 function SetZipWrapper({ setZipCallback }) {
@@ -68,41 +72,38 @@ function SetZipWrapper({ setZipCallback }) {
   };
   return (
     <PageWrapper>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <VerticalWrapper>
-            <H1 data-cy="title">Set a zip code for your account</H1>
-          </VerticalWrapper>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <VerticalWrapper>
-            <form noValidate onSubmit={handleSubmitForm}>
-              <div style={{ marginTop: '54px', marginBottom: '22px' }}>
-                <Input
-                  value={zip}
-                  label="Zip Code"
-                  required
-                  size="medium"
-                  fullWidth
-                  name="zipcode"
-                  type="tel"
-                  variant="outlined"
-                  onChange={e => onChangeZip(e.target.value)}
-                  helperText="5 digits zip code"
-                />
-              </div>
-              <PurpleButton
-                fullWidth
-                disabled={!enableSubmit()}
-                onClick={handleSubmit}
-                type="submit"
-              >
-                SAVE ZIP CODE
-              </PurpleButton>
-            </form>
-          </VerticalWrapper>
-        </Grid>
-      </Grid>
+      <Wrapper>
+        <H1 data-cy="title">Set a zip code for your account</H1>
+        <Body style={{ marginTop: '24px' }}>
+          Please add a zip code so we can match you to candidates in your area.
+        </Body>
+        <form noValidate onSubmit={handleSubmitForm}>
+          <div style={{ marginTop: '54px', marginBottom: '22px' }}>
+            <Input
+              value={zip}
+              label="Zip Code"
+              required
+              size="medium"
+              fullWidth
+              name="zipcode"
+              type="tel"
+              variant="outlined"
+              onChange={e => onChangeZip(e.target.value)}
+              helperText="5 digits zip code"
+            />
+          </div>
+          <PurpleButton
+            fullWidth
+            disabled={!enableSubmit()}
+            onClick={handleSubmit}
+            type="submit"
+          >
+            SAVE ZIP CODE
+          </PurpleButton>
+          <br />
+          <Skip onClick={() => setZipCallback(zip, true)}>Not Now</Skip>
+        </form>
+      </Wrapper>
     </PageWrapper>
   );
 }

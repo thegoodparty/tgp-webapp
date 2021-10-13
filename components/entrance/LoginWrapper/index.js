@@ -16,15 +16,13 @@ const SocialButton = dynamic(
   { ssr: false },
 );
 
-const VerticalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    height: calc(100vh - 100px);
-  }
+const Wrapper = styled.div`
+  padding: 24px 0;
+  max-width: 600px;
+  margin: 0 auto;
 `;
+
+
 
 const OrWrapper = styled.div`
   margin-top: 24px;
@@ -92,70 +90,64 @@ const LoginWrapper = ({
 
   return (
     <PageWrapper>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <VerticalWrapper>
-            <H1 data-cy="title">Sign into your account</H1>
-          </VerticalWrapper>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <VerticalWrapper>
-            <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-              <PhoneOrEmailInput onChangeCallback={onChangeValue} />
-              <div data-cy="login">
-                <PurpleButton
-                  fullWidth
-                  disabled={!isValid}
-                  onClick={handleSubmit}
-                  type="submit"
-                >
-                  SIGN IN
-                </PurpleButton>
-              </div>
-            </form>
-            <OrWrapper>
-              <Border />
-              <Or>
-                <Body13 style={{ color: '#767676' }}>Or</Body13>
-              </Or>
-            </OrWrapper>
-            <br />
-            <div data-cy="facebook-login">
-              <SocialButton
-                channel="facebook"
-                provider="facebook"
-                appId={globals.facebookAppId}
-                onLoginSuccess={socialLoginCallback}
-                onLoginFailure={socialLoginFailureCallback}
-              >
-                Continue with FACEBOOK
-              </SocialButton>
-            </div>
-            <br />
-            <TwitterButton clickCallback={twitterButtonCallback}>
-              Continue with Twitter
-            </TwitterButton>
-            <br />
-            <div data-cy="google-login">
-              <SocialButton
-                channel="google"
-                provider="google"
-                appId={globals.googleAppId}
-                onLoginSuccess={socialLoginCallback}
-                onLoginFailure={socialLoginFailureCallback}
-              >
-                Continue with GOOGLE
-              </SocialButton>
-            </div>
-            <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-              Don&apos;t have an account?{' '}
-              <Link href="/register" data-cy="register">
-                Create one
-              </Link>
-            </Body13>
-          </VerticalWrapper>
-        </Grid>
-      </Grid>
+      <Wrapper>
+        <H1 data-cy="title" style={{ marginBottom: '24px' }}>
+          Log into your account
+        </H1>
+        <Body13 style={{ margin: '48px 0' }} data-cy="register-label">
+          Don&apos;t have an account?{' '}
+          <Link href="/register" data-cy="register">
+            Create one
+          </Link>
+        </Body13>
+        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
+          <PhoneOrEmailInput onChangeCallback={onChangeValue} />
+          <div data-cy="login">
+            <PurpleButton
+              fullWidth
+              disabled={!isValid}
+              onClick={handleSubmit}
+              type="submit"
+            >
+              NEXT
+            </PurpleButton>
+          </div>
+        </form>
+        <OrWrapper>
+          <Border />
+          <Or>
+            <Body13 style={{ color: '#767676' }}>Or</Body13>
+          </Or>
+        </OrWrapper>
+        <br />
+        <div data-cy="facebook-login">
+          <SocialButton
+            channel="facebook"
+            provider="facebook"
+            appId={globals.facebookAppId}
+            onLoginSuccess={socialLoginCallback}
+            onLoginFailure={socialLoginFailureCallback}
+          >
+            Continue with FACEBOOK
+          </SocialButton>
+        </div>
+        <br />
+        <TwitterButton clickCallback={twitterButtonCallback}>
+          Continue with Twitter
+        </TwitterButton>
+        <br />
+        <div data-cy="google-login">
+          <SocialButton
+            channel="google"
+            provider="google"
+            appId={globals.googleAppId}
+            onLoginSuccess={socialLoginCallback}
+            onLoginFailure={socialLoginFailureCallback}
+          >
+            Continue with GOOGLE
+          </SocialButton>
+        </div>
+      </Wrapper>
     </PageWrapper>
   );
 };

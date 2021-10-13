@@ -18,14 +18,6 @@ const SocialButton = dynamic(
   { ssr: false },
 );
 
-const heartImg = '/images/heart.svg';
-const Heart = styled.img`
-  display: block;
-  width: 64px;
-  height: auto;
-  margin: 0 auto 12px;
-`;
-
 const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
@@ -186,9 +178,11 @@ const RegisterWrapper = ({
           className="text-center"
           style={{ marginBottom: '32px', paddingTop: '32px' }}
         >
-          <H1 data-cy="title">Join Good Party</H1>
+          <H1 data-cy="title">Sign up for Good Party</H1>
         </div>
-
+        <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
+          Already have an account? <Link href="/login">login</Link>
+        </Body13>
         <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
           {fields.map(field => (
             <>
@@ -235,7 +229,7 @@ const RegisterWrapper = ({
               onClick={handleSubmit}
               type="submit"
             >
-              {user ? 'UPDATE' : 'JOIN'}
+              {user ? 'UPDATE' : 'Sign Up'}
             </PurpleButton>
           </div>
         </form>
@@ -276,9 +270,6 @@ const RegisterWrapper = ({
                 Continue with GOOGLE
               </SocialButton>
             </div>
-            <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-              Already have an account? <Link href="/login">login</Link>
-            </Body13>
           </>
         )}
       </Wrapper>

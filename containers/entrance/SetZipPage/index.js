@@ -60,8 +60,10 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    setZipCallback: zip => {
-      dispatch(profileActions.updateUserAction({ zip }));
+    setZipCallback: (zip, skip = false) => {
+      if (!skip) {
+        dispatch(profileActions.updateUserAction({ zip }));
+      }
       const user = getUserCookie(true);
       const redirectCookie = getSignupRedirectCookie();
       if (redirectCookie) {
