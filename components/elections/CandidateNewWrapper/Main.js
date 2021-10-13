@@ -91,9 +91,6 @@ const SectionContent = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
 
-const YoutubePlayer = styled(ReactPlayer)`
-  width: unset !important;
-`;
 
 const YoutubePlayerWrapper = styled.div`
   overflow: hidden;
@@ -132,11 +129,6 @@ function MainWrapper({
   removeSupportCallback,
   candidateSupports,
   total,
-  trackShareCallback,
-  experimentVariant,
-  helpfulCallback,
-  topics,
-  user,
 }) {
   const router = useRouter();
 
@@ -174,88 +166,15 @@ function MainWrapper({
         />
       </Hidden>
       <Padder>
-        {experimentVariant === '0' && (
-          <SectionWrapper style={{ marginTop: '24px' }}>
-            <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
-          </SectionWrapper>
-        )}
+        <SectionWrapper style={{ marginTop: '24px' }}>
+          <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
+        </SectionWrapper>
         <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionHeader style={{ marginBottom: '4px' }}>
             Candidate socials
           </SectionHeader>
           <SocialIcons candidate={candidate} />
         </SectionWrapper>
-        <SectionWrapper>
-          <SectionHeader>Compare candidates in this race</SectionHeader>
-          <ComparedCandidateCarousel
-            helpfulCallback={helpfulCallback}
-            candidates={comparedCandidates?.candidates}
-            candidate={candidate}
-            topics={topics}
-          />
-        </SectionWrapper>
-        {experimentVariant === '1' && (
-          <SectionWrapper style={{ marginTop: '24px' }}>
-            <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
-          </SectionWrapper>
-        )}
-
-        <SectionWrapper>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Hidden mdUp>
-                <SupportButton
-                  withForm
-                  isUserSupportCandidate={isUserSupportCandidate}
-                  removeSupportCallback={removeSupportCallback}
-                  supportCallback={supportCallback}
-                  trackingLabel="bottom endorse button"
-                  user={user}
-                />
-                <br />
-                <br />
-              </Hidden>
-              <Hidden smDown>
-                <SupportButton
-                  isUserSupportCandidate={isUserSupportCandidate}
-                  removeSupportCallback={removeSupportCallback}
-                  supportCallback={supportCallback}
-                  trackingLabel="bottom endorse button"
-                />
-              </Hidden>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <ShareButton
-                trackShareCallback={trackShareCallback}
-                candidateId={candidate.id}
-              />
-            </Grid>
-          </Grid>
-        </SectionWrapper>
-
-        <Hidden mdUp>
-          {!isUserSupportCandidate && (
-            <FixedEndorse>
-              <SupportButton
-                supportCallback={supportCallback}
-                removeSupportCallback={removeSupportCallback}
-                isUserSupportCandidate={isUserSupportCandidate}
-                trackingLabel="fixed endorse button"
-              />
-              <div style={{ marginTop: '8px' }} className="text-center">
-                Your endorsement is a free and powerful way to show and grow
-                grassroots support.{' '}
-                <Link
-                  href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-                  passHref
-                >
-                  <a>Read more.</a>
-                </Link>
-              </div>
-            </FixedEndorse>
-          )}
-        </Hidden>
-        {/*<TopQuestions articles={articles} />*/}
       </Padder>
     </>
   );

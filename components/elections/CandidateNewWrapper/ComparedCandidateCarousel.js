@@ -61,6 +61,9 @@ const NextArrowElem = styled.div`
 
 function PrevArrow(props) {
   const { className, style, onClick } = props;
+  if (typeof onClick !== 'function') {
+    return <></>;
+  }
   const handleClick = () => {
     logEvent('click', 'Carousel Prev button', 'Candidate Carousel');
     onClick();
@@ -97,10 +100,19 @@ function ComparedCandidateCarousel({
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   if (!candidates || candidates.length === 0) {
     return <></>;
@@ -113,7 +125,7 @@ function ComparedCandidateCarousel({
   };
   return (
     <Grid container>
-      <Grid item xs={6}>
+      <Grid item xs={6} md={compared.length > 1 ? 4 : 6}>
         <CompareCandidate
           candidate={candidates[0]}
           setTopicCallback={handleSetTopic}
@@ -121,7 +133,7 @@ function ComparedCandidateCarousel({
           hideBadge={candidate.isDraft}
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={6} md={compared.length > 1 ? 8 : 6}>
         <StyledSlider {...settings}>
           {compared.map(cand => (
             <div key={cand.name}>

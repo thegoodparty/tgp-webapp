@@ -19,6 +19,7 @@ import ShareModal from './ShareModal';
 import { H1 } from '../../shared/typogrophy';
 import Updates from './Updates';
 import MobileRecentlySupport from './MobileRecentlySupport';
+import ComparedSection from './ComparedSection';
 
 const ContentWrapper = styled.div`
   width: 100%;
@@ -85,17 +86,11 @@ function CandidateNewWrapper({
           <Grid row item xs={12} md={7}>
             <Main
               candidate={candidate}
-              // articles={articles}
               supportCallback={handleSupport}
               isUserSupportCandidate={isUserSupportCandidate}
               removeSupportCallback={handleRemoveSupport}
               candidateSupports={candidateSupports}
               total={total}
-              trackShareCallback={trackShareCallback}
-              experimentVariant={experimentVariant}
-              helpfulCallback={helpfulCallback}
-              topics={topics}
-              user={user}
             />
           </Grid>
           <Hidden smDown>
@@ -113,6 +108,18 @@ function CandidateNewWrapper({
               />
             </Grid>
           </Hidden>
+        </Grid>
+        <Grid item xs={12}>
+          <ComparedSection
+            candidate={candidate}
+            supportCallback={handleSupport}
+            isUserSupportCandidate={isUserSupportCandidate}
+            removeSupportCallback={handleRemoveSupport}
+            trackShareCallback={trackShareCallback}
+            user={user}
+            topics={topics}
+            helpfulCallback={helpfulCallback}
+          />
         </Grid>
         <Grid item xs={12}>
           <Updates candidate={candidate} />
