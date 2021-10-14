@@ -205,18 +205,21 @@ const candidateMessage = (candidate, user) => {
   if (!candidate) {
     if (typeof window !== 'undefined') {
       if (user && user.uuid) {
-        return `${window.location.href}?u=${user.uuid}`;
+        console.log('message1');
+        return `Vote different. ${window.location.href}?u=${user.uuid}`;
       }
-      return window.location.href;
+      console.log('message2');
+      return `Vote different. ${window.location.href}`;
     }
-    return 'https://goodparty.org';
+    console.log('message3');
+    return 'Vote different. https://goodparty.org';
   }
 
   return `INDIE POWER!🗽💪 I just endorsed ${candidate.firstName} ${
     candidate.lastName
   }, the first people-powered candidate for ${
     candidate.race
-  }! Follow their crowd-voting campaign here: ${candidateRoute(candidate)}`;
+  }! Follow their crowd-voting campaign here: https://goodparty.org${candidateRoute(candidate)}`;
 };
 
 const ShareModal = ({ candidate, supportLink }) => {
@@ -231,8 +234,8 @@ const ShareModal = ({ candidate, supportLink }) => {
   };
 
   useEffect(() => {
+    setMessage(candidateMessage(candidate));
     if (candidate) {
-      setMessage(candidateMessage(candidate));
       logEvent(
         'Sharing',
         'Open Share Modal',
