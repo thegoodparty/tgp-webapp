@@ -205,13 +205,10 @@ const candidateMessage = (candidate, user) => {
   if (!candidate) {
     if (typeof window !== 'undefined') {
       if (user && user.uuid) {
-        console.log('message1');
         return `Vote different. ${window.location.href}?u=${user.uuid}`;
       }
-      console.log('message2');
       return `Vote different. ${window.location.href}`;
     }
-    console.log('message3');
     return 'Vote different. https://goodparty.org';
   }
 
@@ -312,8 +309,6 @@ const ShareModal = ({ candidate, supportLink }) => {
     logEvent('Sharing', 'Click Share Method', shareType);
     // trackShareCallback(candidate);
   };
-
-  console.log(' messageBody', messageBody);
 
   const privateChannels = [
     {
