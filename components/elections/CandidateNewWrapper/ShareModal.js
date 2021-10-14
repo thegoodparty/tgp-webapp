@@ -219,7 +219,9 @@ const candidateMessage = (candidate, user) => {
     candidate.lastName
   }, the first people-powered candidate for ${
     candidate.race
-  }! Follow their crowd-voting campaign here: https://goodparty.org${candidateRoute(candidate)}`;
+  }! Follow their crowd-voting campaign here: https://goodparty.org${candidateRoute(
+    candidate,
+  )}`;
 };
 
 const ShareModal = ({ candidate, supportLink }) => {
