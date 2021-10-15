@@ -392,7 +392,7 @@ const ShareModal = ({ candidate, supportLink }) => {
           fullWidth
           variant="outlined"
           multiline
-          rows={3}
+          rows={4}
           onChange={e => onChangeField(e)}
           value={message}
         />
