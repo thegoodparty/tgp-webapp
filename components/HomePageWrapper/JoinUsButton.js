@@ -20,7 +20,7 @@ const StyledBody = styled.div`
   }
 `;
 
-const JoinUsButton = ({ style = {}, label = 'Sign Up for Good Party' }) => {
+const JoinUsButton = ({ style = {}, label = 'Sign Up' }) => {
   const user = getUserCookie();
   return (
     <Link href={user ? '/profile' : '/register'} passHref>
