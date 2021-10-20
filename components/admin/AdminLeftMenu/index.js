@@ -18,6 +18,7 @@ import ArticletIcon from '@material-ui/icons/Assignment';
 import StatsIcon from '@material-ui/icons/Equalizer';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import CompareIcon from '@material-ui/icons/Compare';
+import { GiPortal } from 'react-icons/gi';
 
 import { Body13 } from 'components/shared/typogrophy/index';
 
@@ -64,6 +65,11 @@ export const leftMenuItems = [
     link: '/admin/candidates',
   },
   { icon: <UserIcon />, label: 'Users', link: '/admin/users' },
+  {
+    icon: <GiPortal size={24} />,
+    label: 'Update Requests',
+    link: '/admin/update-requests',
+  },
   { icon: <CompareIcon />, label: 'Topics', link: '/admin/topics' },
   { icon: <ArticletIcon />, label: 'Articles', link: '/admin/articles' },
   { icon: <StatsIcon />, label: 'User Stats', link: '/admin/user-stats' },
@@ -84,11 +90,9 @@ function AdminLeftMenu() {
         <CloseWrapper>{leftOpen ? <CloseIcon /> : <OpenIcon />}</CloseWrapper>
       </LeftMenuItem>
       {leftMenuItems.map((item, index) => (
-        <Link href={item.link} passHref key={item.label} >
+        <Link href={item.link} passHref key={item.label}>
           <a>
-            <LeftMenuItem
-              className={pathname === item.link ? 'selected' : ''}
-            >
+            <LeftMenuItem className={pathname === item.link ? 'selected' : ''}>
               <Icon>{item.icon}</Icon>
               <IconLabel>{item.label}</IconLabel>
             </LeftMenuItem>

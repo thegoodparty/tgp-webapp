@@ -13,6 +13,8 @@ import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
 
 import { ImEmbed2 } from 'react-icons/im';
+import { MdSettings } from 'react-icons/md';
+import { BiHomeHeart } from 'react-icons/bi';
 
 import { Body13 } from 'components/shared/typogrophy/index';
 
@@ -53,6 +55,16 @@ const IconLabel = styled(Body13)`
 `;
 
 export const leftMenuItems = [
+  {
+    icon: <BiHomeHeart size={24} />,
+    label: 'Portal Home',
+    link: '/candidate-portal',
+  },
+  {
+    icon: <MdSettings size={24} />,
+    label: 'Campaign Manager',
+    link: '/candidate-portal/campaign-manager',
+  },
   {
     icon: <ImEmbed2 size={24} />,
     label: 'Embed Button',

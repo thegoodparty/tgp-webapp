@@ -406,6 +406,25 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    ugc: {
+      find: {
+        url: `${base}candidate-ugc`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}candidate-ugc`,
+        method: 'PUT',
+        withAuth: true,
+      },
+
+      list: {
+        // admin
+        url: `${base}candidate-ugcs`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
   },
 };
 export default api;
