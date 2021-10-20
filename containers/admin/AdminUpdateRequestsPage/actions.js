@@ -19,7 +19,16 @@ function loadUgcsActionSuccess(ugc) {
   };
 }
 
+function acceptRequestAction(id) {
+  return {
+    type: types.ACCEPT_REQUEST,
+    id,
+  };
+}
+
 export default {
   loadUgcsAction,
   loadUgcsActionSuccess,
+
+  acceptRequestAction,
 };

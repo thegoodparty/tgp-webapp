@@ -8,13 +8,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Switch from '@material-ui/core/Switch';
 
 import { candidateRoute } from 'helpers/electionsHelper';
 
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
+import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -34,7 +34,7 @@ const RequestWrapper = styled.div`
   border-bottom: solid 1px #ccc;
 `;
 
-function AdminUpdateRequestsWrapper({ ugc }) {
+function AdminUpdateRequestsWrapper({ ugc, acceptRequestCallback }) {
   console.log('ugc', ugc);
   return (
     <AdminPageWrapper>
@@ -59,37 +59,37 @@ function AdminUpdateRequestsWrapper({ ugc }) {
                   centered
                 />
               </h3>
+              <br />
               <Grid container spacing={3}>
-                <Grid item xs={12} md={5}>
+                <Grid item xs={12} md={6}>
                   <H3>On Production</H3>
                 </Grid>
-                <Grid item xs={12} md={5}>
+                <Grid item xs={12} md={6}>
                   <H3>Updates Requested</H3>
                 </Grid>
-                <Grid item xs={12} md={2}>
-                  <H3>Action</H3>
-                </Grid>
+
                 {Object.keys(request.data).map(field => (
                   <React.Fragment key={field}>
-                    <Grid item xs={12} md={5}>
+                    <Grid item xs={12} md={6}>
                       <strong>
                         {field}: {request.candidate[field]}
                       </strong>
                     </Grid>
-                    <Grid item xs={12} md={5}>
+                    <Grid item xs={12} md={6}>
                       <strong>{field}: </strong>
                       {request.data[field]}
                     </Grid>
-                    <Grid item xs={12} md={2}>
-                      <Switch
-                        // checked
-                        // onChange={handleChange}
-                        // name="checkedB"
-                        color="primary"
-                      />
-                    </Grid>
                   </React.Fragment>
                 ))}
+                <Grid xs={12}>
+                  <br />
+                  <PurpleButton
+                    fullWidth
+                    onClick={() => acceptRequestCallback(request.id)}
+                  >
+                    Accept Request
+                  </PurpleButton>
+                </Grid>
               </Grid>
             </RequestWrapper>
           ))}
@@ -100,6 +100,7 @@ function AdminUpdateRequestsWrapper({ ugc }) {
 
 AdminUpdateRequestsWrapper.propTypes = {
   ugc: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  acceptRequestCallback: PropTypes.func,
 };
 
 export default AdminUpdateRequestsWrapper;

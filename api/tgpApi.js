@@ -424,6 +424,13 @@ const api = {
         method: 'GET',
         withAuth: true,
       },
+
+      accept: {
+        // admin
+        url: `${base}candidate-ugcs/accept`,
+        method: 'PUT',
+        withAuth: true,
+      },
     },
   },
 };
