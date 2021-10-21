@@ -102,14 +102,12 @@ function Updates({ candidate }) {
   );
   const hasFeatured = update => update.youtubeId || update.image;
 
-  console.log('updates', sortedUpdates);
-
   return (
     <SectionWrapper>
       <SectionHeader>Updates ({(updatesList || []).length})</SectionHeader>
       {sortedUpdates &&
         sortedUpdates.reverse().map(update => (
-          <UpdateWrapper>
+          <UpdateWrapper id={`candidate-update-${update.id}`}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={hasFeatured(update) ? 7 : 12}>
                 <YoutubePlayerWrapper key={update.id}>
