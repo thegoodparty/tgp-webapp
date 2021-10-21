@@ -26,9 +26,17 @@ function acceptRequestAction(id) {
   };
 }
 
+function rejectRequestAction(id) {
+  return {
+    type: types.REJECT_REQUEST,
+    id,
+  };
+}
+
 export default {
   loadUgcsAction,
   loadUgcsActionSuccess,
 
   acceptRequestAction,
+  rejectRequestAction,
 };

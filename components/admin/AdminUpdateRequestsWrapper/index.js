@@ -12,9 +12,10 @@ import Grid from '@material-ui/core/Grid';
 import { candidateRoute } from 'helpers/electionsHelper';
 
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
-import { H3 } from '../../shared/typogrophy';
+import { Body, H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { PurpleButton } from '../../shared/buttons';
+import { dateUsHelper } from '../../../helpers/dateHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -34,7 +35,11 @@ const RequestWrapper = styled.div`
   border-bottom: solid 1px #ccc;
 `;
 
-function AdminUpdateRequestsWrapper({ ugc, acceptRequestCallback }) {
+function AdminUpdateRequestsWrapper({
+  ugc,
+  acceptRequestCallback,
+  rejectRequestCallback,
+}) {
   console.log('ugc', ugc);
   return (
     <AdminPageWrapper>
@@ -45,49 +50,82 @@ function AdminUpdateRequestsWrapper({ ugc, acceptRequestCallback }) {
         {ugc &&
           ugc.map(request => (
             <RequestWrapper key={request.id}>
-              <h3 className="text-center">
-                Candidate:{' '}
-                <a href={candidateRoute(request.candidate)} target="_blank">
-                  {request.candidate.firstName} {request.candidate.lastName}
-                </a>
-                <br />
-                <CandidateAvatar
-                  avatar={request.candidate.image}
-                  party={request.candidate.party}
-                  size="small"
-                  partyBadge
-                  centered
-                />
-              </h3>
-              <br />
               <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
-                  <H3>On Production</H3>
+                  <Body>
+                    Candidate:{' '}
+                    <a href={candidateRoute(request.candidate)} target="_blank">
+                      {request.candidate.firstName} {request.candidate.lastName}
+                    </a>
+                  </Body>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                  <H3>Updates Requested</H3>
+                <Grid item xs={12} md={6} className="text-right">
+                  <Body>{dateUsHelper(request.updatedAt)}</Body>
+                </Grid>
+              </Grid>
+              <br />
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={4}>
+                  <Body>
+                    <strong>Field</strong>
+                  </Body>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <Body>
+                    <strong>On Production</strong>
+                  </Body>
+                </Grid>
+                <Grid item xs={12} md={4} style={{ marginBottom: '12px' }}>
+                  <Body>
+                    <strong>Updates Requested</strong>
+                  </Body>
                 </Grid>
 
                 {Object.keys(request.data).map(field => (
                   <React.Fragment key={field}>
-                    <Grid item xs={12} md={6}>
-                      <strong>
-                        {field}: {request.candidate[field]}
-                      </strong>
+                    <Grid item xs={12} md={4}>
+                      <strong>{field}</strong>
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                      <strong>{field}: </strong>
-                      {request.data[field]}
+                    <Grid item xs={12} md={4}>
+                      {request.candidate[field].charAt(0) === '<' ? (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: request.candidate[field],
+                          }}
+                        />
+                      ) : (
+                        request.candidate[field] || '(empty)'
+                      )}
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      {request.data[field].charAt(0) === '<' ? (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: request.data[field],
+                          }}
+                        />
+                      ) : (
+                        request.data[field]
+                      )}
                     </Grid>
                   </React.Fragment>
                 ))}
-                <Grid xs={12}>
+                <Grid item xs={12} md={8}>
+                  &nbsp;
+                </Grid>
+                <Grid item xs={12} md={4}>
                   <br />
                   <PurpleButton
-                    fullWidth
+                    onClick={() => rejectRequestCallback(request.id)}
+                    style={{ background: 'red', borderColor: 'red' }}
+                  >
+                    &nbsp;Deny Request&nbsp;
+                  </PurpleButton>
+                  &nbsp; &nbsp;
+                  <PurpleButton
                     onClick={() => acceptRequestCallback(request.id)}
                   >
-                    Accept Request
+                    &nbsp;Accept Request&nbsp;
                   </PurpleButton>
                 </Grid>
               </Grid>
@@ -101,6 +139,7 @@ function AdminUpdateRequestsWrapper({ ugc, acceptRequestCallback }) {
 AdminUpdateRequestsWrapper.propTypes = {
   ugc: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   acceptRequestCallback: PropTypes.func,
+  rejectRequestCallback: PropTypes.func,
 };
 
 export default AdminUpdateRequestsWrapper;

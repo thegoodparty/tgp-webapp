@@ -83,7 +83,7 @@ const LoginPasswordWrapper = ({
                 </Link>
               </Body13>
               <br />
-              <PasswordInput onChangeCallback={onChangePassword} />
+              <PasswordInput onChangeCallback={onChangePassword} autoFocus />
               {sentForgot ? (
                 <Body11 style={{ color: 'red', marginBottom: '24px' }}>
                   Your password recovery link was sent to{' '}

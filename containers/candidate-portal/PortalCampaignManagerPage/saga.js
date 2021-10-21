@@ -18,12 +18,14 @@ function* findUgc() {
 
 function* updateUgc({ ugc }) {
   try {
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
     const api = tgpApi.candidateUser.ugc.update;
     const payload = {
       data: ugc,
     };
     yield call(requestHelper, api, payload);
     yield put(actions.findUgcAction());
+    yield put(snackbarActions.showSnakbarAction('Your request was sent'));
   } catch (error) {
     console.log(error);
   }

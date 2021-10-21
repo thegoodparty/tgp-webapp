@@ -34,6 +34,25 @@ function* acceptRequest({ id }) {
     };
     yield call(requestHelper, api, payload);
     yield put(actions.loadUgcsAction());
+    yield put(snackbarActions.showSnakbarAction('Saved (check candidate page)'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error accepting requests', 'error'),
+    );
+  }
+}
+
+function* rejectRequest({ id }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
+    const api = tgpApi.candidateUser.ugc.accept;
+    const payload = {
+      id,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(actions.loadUgcsAction());
+    yield put(snackbarActions.showSnakbarAction('Update request rejected.'));
   } catch (error) {
     console.log(error);
     yield put(
@@ -46,4 +65,5 @@ function* acceptRequest({ id }) {
 export default function* saga() {
   yield takeLatest(types.LOAD_UGC, loadUgc);
   yield takeLatest(types.ACCEPT_REQUEST, acceptRequest);
+  yield takeLatest(types.REJECT_REQUEST, rejectRequest);
 }

@@ -38,6 +38,7 @@ function PasswordInput({
   variant = 'outlined',
   label = 'Password',
   helperText = '8 characters minimum',
+  autoFocus = false,
 }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -68,6 +69,7 @@ function PasswordInput({
       onChange={onChangePassword}
       data-cy="password"
       variant={variant}
+      autoFocus={autoFocus}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
@@ -90,6 +92,7 @@ PasswordInput.propTypes = {
   variant: PropTypes.string,
   label: PropTypes.string,
   helperText: PropTypes.string,
+  autoFocus: PropTypes.bool,
 };
 
 export default PasswordInput;

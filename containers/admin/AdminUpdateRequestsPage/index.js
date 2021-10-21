@@ -26,6 +26,7 @@ export function AdminUpdateRequestsPage({
   userState,
   adminUpdateRequestsPage,
   acceptRequestCallback,
+  rejectRequestCallback,
 }) {
   useInjectReducer({ key: 'adminUpdateRequestsPage', reducer });
   useInjectSaga({ key: 'adminUpdateRequestsPage', saga });
@@ -45,6 +46,7 @@ export function AdminUpdateRequestsPage({
   const childProps = {
     ugc,
     acceptRequestCallback,
+    rejectRequestCallback,
   };
 
   return (
@@ -62,6 +64,7 @@ AdminUpdateRequestsPage.propTypes = {
   adminUpdateRequestsPage: PropTypes.object,
   userState: PropTypes.object,
   acceptRequestCallback: PropTypes.func,
+  rejectRequestCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -74,6 +77,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     acceptRequestCallback: id => {
       dispatch(actions.acceptRequestAction(id));
+    },
+    rejectRequestCallback: id => {
+      dispatch(actions.rejectRequestAction(id));
     },
   };
 }

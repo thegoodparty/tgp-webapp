@@ -431,6 +431,13 @@ const api = {
         method: 'PUT',
         withAuth: true,
       },
+
+      reject: {
+        // admin
+        url: `${base}candidate-ugcs/reject`,
+        method: 'PUT',
+        withAuth: true,
+      },
     },
   },
 };

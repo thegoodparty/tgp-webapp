@@ -10,9 +10,8 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-import { candidateRoute } from 'helpers/electionsHelper';
 import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
-import { Body13, H1, H3 } from '../../shared/typogrophy';
+import { Body13, H3 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../../admin/AdminEditCandidate/JoditEditor';
 import { PurpleButton } from '../../shared/buttons';
 import PortalContentTopMenu from '../PortalContentTopMenu';
@@ -38,8 +37,10 @@ function PortalCampaignManagerWrapper({
       setUgc(candidateUgc);
     }
   }, [candidateUgc]);
-  console.log('can', candidate);
   const fields = [
+    { label: 'Race (Office Seeking)', key: 'race' },
+    { label: 'Hero Video (YouTube id)', key: 'heroVideo' },
+    { label: 'Headline', key: 'headline' },
     { label: 'About', key: 'about', isRichText: true },
     { label: 'Facebook', key: 'facebook' },
     { label: 'Twitter', key: 'twitter' },
@@ -52,24 +53,16 @@ function PortalCampaignManagerWrapper({
   ];
 
   const updateUgc = (key, value) => {
-    console.log('v=>k', value, key);
     setUgc({
       ...ugc,
       [key]: value,
     });
   };
 
-  const addUgcChange = key => {
-    setUgc({
-      ...ugc,
-      [key]: '',
-    });
-  };
-
   return (
     <PortalPageWrapper>
       <Wrapper>
-        <PortalContentTopMenu />
+        <PortalContentTopMenu candidate={candidate} />
         <br />
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -95,28 +88,20 @@ function PortalCampaignManagerWrapper({
                 )}
               </Grid>
               <Grid item xs={12} md={6}>
-                {ugc[field.key] || ugc[field.key] === '' ? (
-                  <>
-                    {field.isRichText ? (
-                      <JoditEditorWrapper
-                        onChangeCallback={value => updateUgc(field.key, value)}
-                        initialText={ugc[field.key]}
-                      />
-                    ) : (
-                      <TextField
-                        fullWidth
-                        label={field.label}
-                        name={field.label}
-                        variant="outlined"
-                        value={ugc[field.key]}
-                        onChange={e => updateUgc(field.key, e.target.value)}
-                      />
-                    )}
-                  </>
+                {field.isRichText ? (
+                  <JoditEditorWrapper
+                    onChangeCallback={value => updateUgc(field.key, value)}
+                    initialText={ugc[field.key]}
+                  />
                 ) : (
-                  <PurpleButton onClick={() => addUgcChange(field.key)}>
-                    &nbsp; Request Changes &nbsp;{' '}
-                  </PurpleButton>
+                  <TextField
+                    fullWidth
+                    label={field.label}
+                    name={field.label}
+                    variant="outlined"
+                    value={ugc[field.key]}
+                    onChange={e => updateUgc(field.key, e.target.value)}
+                  />
                 )}
               </Grid>
               <Grid item xs={12}>
