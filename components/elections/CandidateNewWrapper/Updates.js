@@ -107,7 +107,7 @@ function Updates({ candidate }) {
       <SectionHeader>Updates ({(updatesList || []).length})</SectionHeader>
       {sortedUpdates &&
         sortedUpdates.reverse().map(update => (
-          <UpdateWrapper key={update.id}>
+          <UpdateWrapper id={`candidate-update-${update.id}`}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={hasFeatured(update) ? 7 : 12}>
                 <YoutubePlayerWrapper key={update.id}>
