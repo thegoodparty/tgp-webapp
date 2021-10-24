@@ -6,6 +6,8 @@ export default function Candidate({ ssrState }) {
 }
 
 export async function getServerSideProps(context) {
+  // x-real-ip
+  // const ip = req.connection.remoteAddress
   const { NameIdTab } = context.params;
   // const name = NameIdTab?.length > 1 ? NameIdTab[0] : false;
   const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
@@ -37,6 +39,7 @@ export async function getServerSideProps(context) {
           id,
           tab,
           topics,
+          userAgent: context.req.headers['user-agent'],
         },
       }, // will be passed to the page component as props
     };

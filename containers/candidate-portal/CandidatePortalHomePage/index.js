@@ -16,7 +16,6 @@ import TgpHelmet from 'components/shared/TgpHelmet';
 import CandidatePortalHomeWrapper from 'components/candidate-portal/CandidatePortalHomeWrapper';
 import { getUserCookie } from 'helpers/cookieHelper';
 
-
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectCandidatePortalHomePage from './selectors';
@@ -29,10 +28,11 @@ export function CandidatePortalHomePage({
   userState,
   dispatch,
   candidatePortalHomePage,
+  loadStatsCallback,
 }) {
   useInjectReducer({ key: 'candidatePortalHomePage', reducer });
   useInjectSaga({ key: 'candidatePortalHomePage', saga });
-  const { candidate } = candidatePortalHomePage;
+  const { candidate, stats } = candidatePortalHomePage;
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
@@ -43,12 +43,17 @@ export function CandidatePortalHomePage({
         dispatch(push('/'));
       }
       dispatch(actions.findCandidate());
+      if (!stats) {
+        dispatch(actions.loadStatsAction('Last Week'));
+      }
     }
   }, [user]);
 
   const childProps = {
     candidate,
     user,
+    stats,
+    loadStatsCallback,
   };
 
   return (
@@ -63,6 +68,7 @@ CandidatePortalHomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
+  loadStatsCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -73,6 +79,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    loadStatsCallback: range => {
+      dispatch(actions.loadStatsAction(range));
+    },
   };
 }
 

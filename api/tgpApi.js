@@ -354,6 +354,10 @@ const api = {
       withAuth: true,
     },
   },
+  trackVisit: {
+    url: `${base}visit`,
+    method: 'POST',
+  },
   subscribeEmail: {
     url: `${base}subscribe/email`,
     method: 'GET',
@@ -403,6 +407,11 @@ const api = {
   candidateUser: {
     find: {
       url: `${base}candidate-user`,
+      method: 'GET',
+      withAuth: true,
+    },
+    stats: {
+      url: `${base}candidate-user/stats`,
       method: 'GET',
       withAuth: true,
     },

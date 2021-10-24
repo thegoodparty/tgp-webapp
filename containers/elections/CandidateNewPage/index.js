@@ -39,7 +39,6 @@ export function CandidateNewPage({
   dispatch,
   supportCallback,
   removeSupportCallback,
-  previewNextStepCallback,
   adminDeleteSupportCallback,
   trackShareCallback,
   helpfulCallback,
@@ -56,15 +55,32 @@ export function CandidateNewPage({
   const { userSupports, candidateSupports, total } = candidateNewPage;
 
   const router = useRouter();
-  // const showPreviewModal = router.query.preview;
   const showShareModal = router.query.share;
   const supportLink = router.query.support;
-  // const fromShareLink = router.query.fromshare;
 
   const stateCandidate = candidateNewPage.candidate;
 
   const { NameIdTab } = router.query;
   const candidateId = NameIdTab[1];
+  const { topics, userAgent } = ssrState;
+
+  useEffect(() => {
+    const width = window.innerWidth || document.body.clientWidth;
+    const height = window.innerHeight || document.body.clientHeight;
+    console.log('herer')
+    dispatch(
+      actions.trackVisitAction(
+        window.location.pathname,
+        JSON.stringify({
+          userAgent,
+          width,
+          height,
+          url: window.location.pathname,
+        }),
+      ),
+    );
+  }, []);
+
   useEffect(() => {
     setShow404(false);
     if (Object.keys(ssrState.candidate).length === 0 && user?.isAdmin) {
@@ -126,8 +142,6 @@ ${race}.`;
   //   });
   // }, []);
   // console.log('experimentVariant', experimentVariant);
-
-  const { topics } = ssrState;
 
   const childProps = {
     candidate,

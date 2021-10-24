@@ -15,86 +15,38 @@ import { Body13, H2, H3, Body } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { partyResolver } from '../../../helpers/electionsHelper';
 import { leftMenuItems } from '../PortalLeftMenu';
+import CampaignStats from './CampaignStats';
 
 const Wrapper = styled.div`
   text-align: center;
   padding: 24px;
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  margin: 0 auto;
 `;
 
-const IconLabel = styled(Body13)`
-  color: #fff;
-`;
-
-const NavItem = styled.div`
-  padding: 24px 8px;
-  background: linear-gradient(
-    180deg,
-    rgba(67, 0, 211, 0.4) 11.17%,
-    rgba(67, 0, 211, 0.6) 76.34%
-  );
-  color: #fff;
-  border-radius: 8px;
-
-  @keyframes shadow-drop-2-center {
-    0% {
-      transform: translateZ(0);
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    }
-    100% {
-      transform: translateZ(20px);
-      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.35);
-    }
-  }
-  &:hover {
-    animation: shadow-drop-2-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-      both;
-  }
-`;
-
-function CandidatePortalHomeWrapper({ candidate, user }) {
+function CandidatePortalHomeWrapper({ candidate, stats, loadStatsCallback, }) {
   return (
     <PortalPageWrapper>
       <Wrapper>
         <div>
-          <H2>Welcome to Good Party Candidate Portal</H2>
+          <CandidateAvatar
+            avatar={candidate.image}
+            party={candidate.party}
+            size="medium"
+            partyBadge
+          />
+          <H2 style={{ marginBottom: '48px' }}>
+            Welcome to Good Party Candidate Portal
+          </H2>
           {candidate && (
             <div>
-              <br />
-              <br />
-
-              <CandidateAvatar
-                avatar={candidate.image}
-                party={candidate.party}
-                size="large"
-                partyBadge
-              />
-              <br />
-              <H3>
-                {candidate.firstName} {candidate.lastName}
-              </H3>
-              <Body13>{partyResolver(candidate.party)}</Body13>
-
-              <br />
-              <br />
-              <Body>
-                This candidate portal allows you to manage your campaign on Good
-                Party
-              </Body>
-              <br />
-              <br />
-              <Grid container spacing={3} alignItems="center" justify="center">
-                {leftMenuItems.map(item => (
-                  <Grid item xs={12} md={6} lg={3} xl={2} key={item.label}>
-                    <Link href={item.link} passHref>
-                      <a>
-                        <NavItem>
-                          <div>{item.icon}</div>
-                          <IconLabel>{item.label}</IconLabel>
-                        </NavItem>
-                      </a>
-                    </Link>
-                  </Grid>
-                ))}
+              <Grid container spacing={3} alignItems="stretch">
+                <Grid item xs={12} md={6}>
+                  Tip of the day
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <CampaignStats stats={stats} loadStatsCallback={loadStatsCallback} />
+                </Grid>
               </Grid>
             </div>
           )}
@@ -106,7 +58,8 @@ function CandidatePortalHomeWrapper({ candidate, user }) {
 
 CandidatePortalHomeWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  stats: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  loadStatsCallback: PropTypes.func,
 };
 
 export default CandidatePortalHomeWrapper;
