@@ -27,6 +27,8 @@ const TRACK_SHARE = '@@tgp/candidateNewPage/TRACK_SHARE';
 
 const SEND_TOPIC_FEEDBACK = '@@tgp/candidateNewPage/SEND_TOPIC_FEEDBACK';
 
+const TRACK_VISIT = '@@tgp/candidateNewPage/TRACK_VISIT';
+
 export default {
   LOAD_INACTIVE_CANDIDATE,
   LOAD_CANDIDATE,
@@ -52,4 +54,6 @@ export default {
 
   TRACK_SHARE,
   SEND_TOPIC_FEEDBACK,
+
+  TRACK_VISIT,
 };

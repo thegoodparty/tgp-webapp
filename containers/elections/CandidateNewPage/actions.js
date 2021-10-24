@@ -98,6 +98,12 @@ const sendTopicFeedbackAction = (id, title, isHelpful, feedback) => ({
   feedback,
 });
 
+const trackVisitAction = (url, data) => ({
+  type: types.TRACK_VISIT,
+  url,
+  data,
+});
+
 export default {
   loadInactiveCandidateAction,
 
@@ -124,4 +130,6 @@ export default {
 
   trackShare,
   sendTopicFeedbackAction,
+
+  trackVisitAction,
 };

@@ -190,6 +190,19 @@ function* sendTopicFeedback(action) {
   }
 }
 
+function* trackVisit({ url, data }) {
+  try {
+    const api = tgpApi.trackVisit;
+    const payload = {
+      url,
+      data,
+    };
+    yield call(requestHelper, api, payload);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_INACTIVE_CANDIDATE, loadInactiveCandidate);
@@ -208,4 +221,5 @@ export default function* saga() {
   yield takeLatest(types.SHARE_IMAGE, shareImage);
   yield takeLatest(types.TRACK_SHARE, trackShare);
   yield takeLatest(types.SEND_TOPIC_FEEDBACK, sendTopicFeedback);
+  yield takeLatest(types.TRACK_VISIT, trackVisit);
 }

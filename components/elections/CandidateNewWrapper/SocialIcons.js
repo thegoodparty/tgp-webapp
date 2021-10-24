@@ -78,7 +78,7 @@ function SocialIcons({ candidate }) {
   return (
     <Wrapper>
       {channels.map(channel => (
-        <>
+        <React.Fragment key={channel.label}>
           {channel.link && (
             <SocialLink
               href={channel.link}
@@ -89,7 +89,7 @@ function SocialIcons({ candidate }) {
               {channel.icon}
             </SocialLink>
           )}
-        </>
+        </React.Fragment>
       ))}
     </Wrapper>
   );
