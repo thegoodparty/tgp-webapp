@@ -290,7 +290,7 @@ function AdminCandidateUpdatesWrapper({
             <div className="text-center">
               <Cancel onClick={handleCancelNew}>Cancel</Cancel>
               <PurpleButton onClick={handleCreate}>
-                &nbsp;{adminPage ? 'Create' : 'Submit request'}&nbsp;
+                &nbsp;{adminPage ? 'Create' : 'Submit'}&nbsp;
               </PurpleButton>
             </div>
           </EditUpdate>
@@ -391,7 +391,7 @@ function AdminCandidateUpdatesWrapper({
                   </div>
                 )}
                 {update.status === 'pending' && (
-                  <Pending>Pending Approval</Pending>
+                  <Pending>Pending Review</Pending>
                 )}
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={6}>

@@ -11,7 +11,6 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import styled from 'styled-components';
 
-import PortalContentTopMenu from 'components/candidate-portal/PortalContentTopMenu';
 import PortalPageWrapper from 'components/candidate-portal/CandidatePortalHomeWrapper/PortalPageWrapper';
 import AdminCandidateUpdatesWrapper from 'components/admin/AdminCandidateUpdatesWrapper';
 
@@ -39,10 +38,7 @@ export function CandidatePortalUpdatesContainer({
   const WrapperElement = ({ children }) =>
     pageLevel ? (
       <PortalPageWrapper>
-        <Wrapper>
-          <PortalContentTopMenu candidate={candidate} />
-          {children}
-        </Wrapper>
+        <Wrapper>{children}</Wrapper>
       </PortalPageWrapper>
     ) : (
       <div>{children}</div>
