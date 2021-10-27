@@ -215,12 +215,11 @@ function AdminCandidateUpdatesWrapper({
     <WrapperElement candidate={candidate} adminPage={adminPage}>
       <>
         <br />
-        <div className="text-right">
-          <PurpleButton onClick={handleNewUpdate} disabled={!!newUpdate}>
-            &nbsp;&nbsp;Add a new Update&nbsp;&nbsp;
-          </PurpleButton>
-        </div>
-        {adminPage && <H2>Candidate Updates</H2>}
+        <br />
+        <PurpleButton onClick={handleNewUpdate} disabled={!!newUpdate}>
+          <div style={{ padding: '0 32px' }}>Add a new Update</div>
+        </PurpleButton>
+
         <br />
         <br />
         {newUpdate && (
