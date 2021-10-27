@@ -30,8 +30,17 @@ function deleteUpdateAction(updateId, candidateId) {
   };
 }
 
+function approveUpdateAction(updateId, candidateId) {
+  return {
+    type: types.APPROVE_UPDATE,
+    updateId,
+    candidateId,
+  };
+}
+
 export default {
   createUpdateAction,
   saveUpdateAction,
   deleteUpdateAction,
+  approveUpdateAction,
 };

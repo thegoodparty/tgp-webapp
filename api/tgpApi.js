@@ -353,6 +353,11 @@ const api = {
       method: 'DELETE',
       withAuth: true,
     },
+    approveUpdate: {
+      url: `${base}new-candidate/approve-update`, // admin
+      method: 'PUT',
+      withAuth: true,
+    },
   },
   trackVisit: {
     url: `${base}visit`,
@@ -445,6 +450,13 @@ const api = {
         // admin
         url: `${base}candidate-ugcs/reject`,
         method: 'PUT',
+        withAuth: true,
+      },
+    },
+    updateRequest: {
+      create: {
+        url: `${base}candidate-user/update-request`,
+        method: 'POST',
         withAuth: true,
       },
     },

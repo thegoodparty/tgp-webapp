@@ -47,6 +47,7 @@ function PortalContentTopMenu({ candidate }) {
 
   const links = [
     { href: '/candidate-portal/campaign-manager', label: 'Content Manager' },
+    { href: '/candidate-portal/campaign-updates', label: 'Campaign Updates' },
     { href: '/candidate-portal/top-issues', label: 'Top Issues' },
   ];
   console.log('path', pathname);

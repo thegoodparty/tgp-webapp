@@ -55,9 +55,26 @@ function* deleteUpdate({ updateId, candidateId }) {
   }
 }
 
+function* approveUpdate({ updateId, candidateId }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Approving Update...'));
+    const api = tgpApi.newCandidate.approveUpdate;
+    const payload = { id: updateId };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('approved.'));
+    yield put(adminActions.loadCandidateAction(candidateId));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error approving update', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.CREATE_UPDATE, createUpdate);
   yield takeLatest(types.SAVE_UPDATE, saveUpdate);
   yield takeLatest(types.DELETE_UPDATE, deleteUpdate);
+  yield takeLatest(types.APPROVE_UPDATE, approveUpdate);
 }

@@ -4,13 +4,13 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import EditIcon from '@material-ui/icons/Edit';
 import { BsTrash } from 'react-icons/bs';
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
@@ -18,7 +18,7 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
 
 import CandidateTopMenu from '../CandidateTopMenu';
-import { Body13, H2, Body } from '../../shared/typogrophy';
+import { Body13, H2, Body, H3 } from '../../shared/typogrophy';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import { PurpleButton } from '../../shared/buttons';
@@ -76,17 +76,44 @@ const DeleteImage = styled.div`
   cursor: pointer;
 `;
 
+const Pending = styled.div`
+  font-size: 1.4rem;
+  color: orange;
+  font-weight: 600;
+  margin-bottom: 1rem;
+`;
+
+const WrapperElement = ({ adminPage, candidate, children }) => {
+  return adminPage ? (
+    <AdminPageWrapper>
+      <Wrapper>
+        <CandidateTopMenu candidate={candidate} />
+        {children}
+      </Wrapper>
+    </AdminPageWrapper>
+  ) : (
+    <div>{children}</div>
+  );
+};
+
 function AdminCandidateUpdatesWrapper({
   candidate,
   saveCallback,
   deleteCallback,
   createCallback,
+  approveUpdateCallback,
+  adminPage = true,
 }) {
   const [editUpdate, setEditUpdate] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [editedUpdate, setEditedUpdate] = useState({});
   const [newUpdate, setNewUpdate] = useState(false);
-  const updates = candidate?.updatesList || [];
+  const [updates, setUpdates] = useState([]);
+  useEffect(() => {
+    if (candidate?.updatesList) {
+      setUpdates(candidate?.updatesList.reverse());
+    }
+  }, [candidate]);
 
   const handleSetEdit = update => {
     setEditUpdate(update);
@@ -185,16 +212,15 @@ function AdminCandidateUpdatesWrapper({
   };
 
   return (
-    <AdminPageWrapper>
-      <Wrapper>
-        <CandidateTopMenu candidate={candidate} />
+    <WrapperElement candidate={candidate} adminPage={adminPage}>
+      <>
         <br />
         <div className="text-right">
           <PurpleButton onClick={handleNewUpdate} disabled={!!newUpdate}>
             &nbsp;&nbsp;Add a new Update&nbsp;&nbsp;
           </PurpleButton>
         </div>
-        <H2>Candidate Updates</H2>
+        {adminPage && <H2>Candidate Updates</H2>}
         <br />
         <br />
         {newUpdate && (
@@ -265,12 +291,15 @@ function AdminCandidateUpdatesWrapper({
             <div className="text-center">
               <Cancel onClick={handleCancelNew}>Cancel</Cancel>
               <PurpleButton onClick={handleCreate}>
-                &nbsp;Create&nbsp;
+                &nbsp;{adminPage ? 'Create' : 'Submit request'}&nbsp;
               </PurpleButton>
             </div>
           </EditUpdate>
         )}
-        {updates.map(update => (
+        <br />
+        <H3>Previous Updates</H3>
+        <br />
+        {updates.reverse().map(update => (
           <React.Fragment key={update.id}>
             {editUpdate && editUpdate.id === update.id ? (
               <EditUpdate>
@@ -340,14 +369,31 @@ function AdminCandidateUpdatesWrapper({
               </EditUpdate>
             ) : (
               <Update key={update.id}>
-                <div className="text-right">
-                  <EditWrapper onClick={() => handleSetEdit(update)}>
-                    <EditIcon />
-                  </EditWrapper>
-                  <EditWrapper onClick={() => setShowDeleteAlert(update.id)}>
-                    <BsTrash style={{ color: 'red' }} />
-                  </EditWrapper>
-                </div>
+                {adminPage && (
+                  <div className="text-right">
+                    <EditWrapper onClick={() => handleSetEdit(update)}>
+                      <EditIcon />
+                    </EditWrapper>
+                    <EditWrapper onClick={() => setShowDeleteAlert(update.id)}>
+                      <BsTrash style={{ color: 'red' }} />
+                    </EditWrapper>
+                    {update.status === 'pending' && (
+                      <EditWrapper
+                        onClick={() => {
+                          approveUpdateCallback(update.id, candidate.id);
+                        }}
+                      >
+                        <IoMdCheckmarkCircleOutline
+                          size={18}
+                          style={{ color: 'orange' }}
+                        />
+                      </EditWrapper>
+                    )}
+                  </div>
+                )}
+                {update.status === 'pending' && (
+                  <Pending>Pending Approval</Pending>
+                )}
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={6}>
                     <strong>Title:</strong>
@@ -387,7 +433,7 @@ function AdminCandidateUpdatesWrapper({
             )}
           </React.Fragment>
         ))}
-      </Wrapper>
+      </>
       <AlertDialog
         open={showDeleteAlert}
         handleClose={handleCloseAlert}
@@ -396,7 +442,7 @@ function AdminCandidateUpdatesWrapper({
         description="Are you sure you want to delete this update?"
         handleProceed={handleDeleteUpdate}
       />
-    </AdminPageWrapper>
+    </WrapperElement>
   );
 }
 
@@ -405,6 +451,8 @@ AdminCandidateUpdatesWrapper.propTypes = {
   saveCallback: PropTypes.func,
   deleteCallback: PropTypes.func,
   createCallback: PropTypes.func,
+  approveUpdateCallback: PropTypes.func,
+  adminPage: PropTypes.bool,
 };
 
 export default AdminCandidateUpdatesWrapper;
