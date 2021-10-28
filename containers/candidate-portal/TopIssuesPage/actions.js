@@ -1,27 +1,27 @@
 import types from './constants';
 
-function findUgcAction() {
+function findIssueAction() {
   return {
-    type: types.FIND_UGC,
+    type: types.FIND_ISSUE,
   };
 }
 
-function findUgcActionSuccess(candidateUgc) {
+function findIssueActionSuccess(candidateIssue) {
   return {
-    type: types.FIND_UGC_SUCCESS,
-    candidateUgc,
+    type: types.FIND_ISSUE_SUCCESS,
+    candidateIssue,
   };
 }
 
-function updateUgcAction(ugc) {
+function updateIssueAction(issue) {
   return {
-    type: types.UPDATE_UGC,
-    ugc,
+    type: types.UPDATE_ISSUE,
+    issue,
   };
 }
 
 export default {
-  findUgcAction,
-  findUgcActionSuccess,
-  updateUgcAction,
+  findIssueAction,
+  findIssueActionSuccess,
+  updateIssueAction,
 };

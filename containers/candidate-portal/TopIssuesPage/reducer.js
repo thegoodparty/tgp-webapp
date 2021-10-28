@@ -1,29 +1,29 @@
 /*
  *
- * AdminPage reducer
+ * TopIssuesPage reducer
  *
  */
 import produce from 'immer';
 import types from './constants';
 
 export const initialState = {
-  candidateUgc: false,
+  candidateIssue: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const portalCampaignManagerPageReducer = (state = initialState, action) =>
+const topIssuesPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case types.FIND_UGC:
+      case types.FIND_ISSUE:
         draft.loading = true;
         draft.error = false;
         break;
-      case types.FIND_UGC_SUCCESS:
-        draft.candidateUgc = action.candidateUgc;
+      case types.FIND_ISSUE_SUCCESS:
+        draft.candidateIssue = action.candidateIssue;
         draft.loading = false;
         draft.error = false;
         break;
     }
   });
 
-export default portalCampaignManagerPageReducer;
+export default topIssuesPageReducer;

@@ -18,6 +18,9 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectTopIssuesPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+
+import makeSelectAdminIssueTopicsPage from '../../admin/AdminIssueTopicsPage/selectors';
+
 import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
@@ -26,13 +29,17 @@ import makeSelectUser from '../../you/YouPage/selectors';
 import TopIssuesWrapper from '../../../components/candidate-portal/TopIssuesWrapper';
 import TgpHelmet from '../../../components/shared/TgpHelmet';
 import actions from './actions';
+import adminIssueTopicsPageReducer from '../../admin/AdminIssueTopicsPage/reducer';
+import adminIssueTopicsSaga from '../../admin/AdminIssueTopicsPage/saga';
+import adminIssueTopicsActions from '../../admin/AdminIssueTopicsPage/actions';
 
 export function TopIssuesPage({
   userState,
   dispatch,
   candidatePortalHomePage,
   topIssuesPage,
-  updateUgcCallback,
+  updateIssueCallback,
+  adminIssueTopicsPage,
 }) {
   useInjectReducer({ key: 'topIssuesPage', reducer });
   useInjectSaga({ key: 'topIssuesPage', saga });
@@ -43,6 +50,12 @@ export function TopIssuesPage({
   });
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
 
+  useInjectReducer({
+    key: 'adminIssueTopicsPage',
+    reducer: adminIssueTopicsPageReducer,
+  });
+  useInjectSaga({ key: 'adminIssueTopicsPage', saga: adminIssueTopicsSaga });
+
   const { candidate } = candidatePortalHomePage;
 
   let { user } = userState;
@@ -50,29 +63,31 @@ export function TopIssuesPage({
     user = getUserCookie(true);
   }
   useEffect(() => {
+    dispatch(adminIssueTopicsActions.loadIssueTopicsAction());
     if (user) {
       if (!user.isAdmin && !user.candidate) {
         dispatch(push('/'));
       }
       dispatch(portalHomeActions.findCandidate());
-      dispatch(actions.findUgcAction());
+      dispatch(actions.findIssueAction());
     }
   }, [user]);
 
-  const { candidateUgc } = topIssuesPage;
-
+  const { candidateIssue } = topIssuesPage;
+  const { topics } = adminIssueTopicsPage;
   const childProps = {
-    candidate,
     user,
-    candidateUgc,
-    updateUgcCallback,
+    candidate,
+    candidateIssue,
+    updateIssueCallback,
+    topics,
   };
 
   return (
     <div>
       <TgpHelmet
-        title="Campaign Manager - Candidate Portal"
-        description="Campaign Manager - Candidate Portal"
+        title="Campaign Manager - Top Issues"
+        description="Campaign Manager - Top Issues"
       />
       <TopIssuesWrapper {...childProps} />
     </div>
@@ -84,20 +99,22 @@ TopIssuesPage.propTypes = {
   userState: PropTypes.object,
   topIssuesPage: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
-  updateUgcCallback: PropTypes.func,
+  updateIssueCallback: PropTypes.func,
+  adminIssueTopicsPage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   topIssuesPage: makeSelectTopIssuesPage(),
   candidatePortalHomePage: makeSelectCandidatePortalHomePage(),
+  adminIssueTopicsPage: makeSelectAdminIssueTopicsPage(),
   userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateUgcCallback: ugc => {
-      dispatch(actions.updateUgcAction(ugc));
+    updateIssueCallback: issue => {
+      dispatch(actions.updateIssueAction(issue));
     },
   };
 }

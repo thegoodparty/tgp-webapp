@@ -6,25 +6,25 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* findUgc() {
+function* findIssue() {
   try {
-    const api = tgpApi.candidateUser.ugc.find;
-    const { candidateUgc } = yield call(requestHelper, api, null);
-    yield put(actions.findUgcActionSuccess(candidateUgc));
+    const api = tgpApi.candidateUser.issue.find;
+    const { candidateIssue } = yield call(requestHelper, api, null);
+    yield put(actions.findIssueActionSuccess(candidateIssue));
   } catch (error) {
     console.log(error);
   }
 }
 
-function* updateUgc({ ugc }) {
+function* updateIssue({ issue }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.candidateUser.ugc.update;
+    const api = tgpApi.candidateUser.issue.update;
     const payload = {
-      data: ugc,
+      data: issue,
     };
     yield call(requestHelper, api, payload);
-    yield put(actions.findUgcAction());
+    yield put(actions.findIssueAction());
     yield put(snackbarActions.showSnakbarAction('Your request was sent'));
   } catch (error) {
     console.log(error);
@@ -33,6 +33,6 @@ function* updateUgc({ ugc }) {
 
 // Individual exports for testing
 export default function* saga() {
-  yield takeLatest(types.FIND_UGC, findUgc);
-  yield takeLatest(types.UPDATE_UGC, updateUgc);
+  yield takeLatest(types.FIND_ISSUE, findIssue);
+  yield takeLatest(types.UPDATE_ISSUE, updateIssue);
 }

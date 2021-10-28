@@ -2,25 +2,24 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the portalCampaignManagerPage state domain
+ * Direct selector to the topIssuesPage state domain
  */
 
-const selectPortalCampaignManagerPageDomain = state =>
-  state.portalCampaignManagerPage || initialState;
+const selectTopIssuesPageDomain = state => state.topIssuesPage || initialState;
 
 /**
  * Other specific selectors
  */
 
 /**
- * Default selector used by PortalCampaignManagerPage
+ * Default selector used by TopIssuesPage
  */
 
-const makeSelectPortalCampaignManagerPage = () =>
+const makeSelectTopIssuesPage = () =>
   createSelector(
-    selectPortalCampaignManagerPageDomain,
+    selectTopIssuesPageDomain,
     substate => substate,
   );
 
-export default makeSelectPortalCampaignManagerPage;
-export { selectPortalCampaignManagerPageDomain };
+export default makeSelectTopIssuesPage;
+export { selectTopIssuesPageDomain };
