@@ -7,11 +7,11 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
-
+import TopIssuesWrapper from 'components/candidate-portal/TopIssuesWrapper';
+import TgpHelmet from 'components/shared/TgpHelmet';
 import { getUserCookie } from 'helpers/cookieHelper';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -26,8 +26,7 @@ import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
-import TopIssuesWrapper from '../../../components/candidate-portal/TopIssuesWrapper';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
+
 import actions from './actions';
 import adminIssueTopicsPageReducer from '../../admin/AdminIssueTopicsPage/reducer';
 import adminIssueTopicsSaga from '../../admin/AdminIssueTopicsPage/saga';

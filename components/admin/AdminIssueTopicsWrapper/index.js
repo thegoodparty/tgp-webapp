@@ -15,7 +15,6 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { makeStringId } from 'helpers/stringHelper';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { H3, H2 } from '../../shared/typogrophy';
 
@@ -30,6 +29,10 @@ const ControlButton = styled(IconButton)`
     padding: 8px;
   }
 `;
+const POSITION_STATUS = {
+  NONE: null,
+  CREATE: -1,
+};
 function AdminIssueTopic({
   topicIndex,
   topic,
@@ -42,7 +45,7 @@ function AdminIssueTopic({
 }) {
   const [form, setForm] = useState('');
   const [topicForm, setTopicForm] = useState(null);
-  const [index, setIndex] = useState(null);
+  const [index, setIndex] = useState(POSITION_STATUS.NONE);
   return (
     <React.Fragment key={topic}>
       <Grid item xs={12} md={6} container alignItems="center">
@@ -143,7 +146,7 @@ function AdminIssueTopic({
                     variant="contained"
                     disabled={!form}
                     onClick={() => {
-                      setIndex(null);
+                      setIndex(POSITION_STATUS.NONE);
                       updatePosition(topicIndex, form, pIndex);
                     }}
                   >
@@ -153,7 +156,7 @@ function AdminIssueTopic({
                   <Button
                     variant="text"
                     onClick={() => {
-                      setIndex(null);
+                      setIndex(POSITION_STATUS.NONE);
                     }}
                   >
                     Close
@@ -164,7 +167,7 @@ function AdminIssueTopic({
             <br />
           </Grid>
         ))}
-        {index === -1 && (
+        {index === POSITION_STATUS.CREATE && (
           <>
             <TextField
               fullWidth
@@ -177,13 +180,13 @@ function AdminIssueTopic({
             />
           </>
         )}
-        {index === -1 && (
+        {index === POSITION_STATUS.CREATE && (
           <Box mt={1}>
             <Button
               variant="contained"
               disabled={!form}
               onClick={() => {
-                setIndex(null);
+                setIndex(POSITION_STATUS.NONE);
                 addPosition(topicIndex, form);
               }}
             >
@@ -193,32 +196,24 @@ function AdminIssueTopic({
             <Button
               variant="text"
               onClick={() => {
-                setIndex(null);
+                setIndex(POSITION_STATUS.NONE);
               }}
             >
               Close
             </Button>
           </Box>
         )}
-        {index === null && (
+        {index === POSITION_STATUS.NONE && (
           <IconButton
             color="secondary"
             onClick={() => {
-              setIndex(-1);
+              setIndex(POSITION_STATUS.CREATE);
               setForm('');
             }}
           >
             <AddIcon />
           </IconButton>
         )}
-
-        {/* <TextField
-          fullWidth
-          name="Positions"
-          variant="outlined"
-          value={issueTopics[issue]}
-          onChange={e => addPosition(issue, e.target.value)}
-        /> */}
       </Grid>
       <Grid item xs={12}>
         <hr />
@@ -246,21 +241,15 @@ function AdminIssueTopicsWrapper({
   const [newTopic, setNewTopic] = useState(null);
   useEffect(() => {
     setIssueTopics(topics);
-    // setIssueTopics({
-    //   HealthCare: [
-    //     'Free Market Healthcare',
-    //     'Medicare for all',
-    //     'Public Option',
-    //   ],
-    //   Guns: ['Defend 2nd Amendment', 'Ban All guns', 'Sensible Gun Control'],
-    //   Taxiation: ['Tax the Rich', 'Cut Taxes for Everyone', 'Flat Tax'],
-    // });
   }, [topics]);
 
   const addPosition = (topicIndex, position) => {
     const oldAdminIssueTopics = [...issueTopics];
+    const uuid = Math.random()
+      .toString(36)
+      .substring(2, 12);
     oldAdminIssueTopics[topicIndex].positions.push({
-      id: makeStringId(10),
+      id: uuid,
       name: position,
     });
     setIssueTopics(oldAdminIssueTopics);
@@ -379,12 +368,6 @@ function AdminIssueTopicsWrapper({
               <AddIcon />
             </IconButton>
           )}
-
-          {/* <Grid item xs={12}>
-              <PurpleButton onClick={() => updateUgcCallback(ugc)} fullWidth>
-                SAVE
-              </PurpleButton>
-            </Grid> */}
         </Grid>
       </Wrapper>
     </AdminPageWrapper>

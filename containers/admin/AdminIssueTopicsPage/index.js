@@ -11,12 +11,13 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import TgpHelmet from 'components/shared/TgpHelmet';
+import AdminIssueTopicsWrapper from 'components/admin/AdminIssueTopicsWrapper';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectAdminIssueTopicsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import AdminIssueTopicsWrapper from '../../../components/admin/AdminIssueTopicsWrapper';
 import actions from './actions';
 
 export function AdminIssueTopicsPage({
@@ -43,9 +44,10 @@ export function AdminIssueTopicsPage({
 
   return (
     <div>
-      <Helmet>
-        <title>Admin Issue Topics Page</title>
-      </Helmet>
+      <TgpHelmet
+        title="Admin Issue Topics Page"
+        description="Admin Issue Topics Page"
+      />
       <AdminIssueTopicsWrapper {...childProps} />
     </div>
   );
