@@ -280,6 +280,28 @@ const api = {
         withAuth: true,
       },
     },
+    issueTopics: {
+      create: {
+        url: `${base}issue-topic`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}issue-topic`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}issue-topic`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}issue-topics`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
     logAsCandidate: {
       url: `${base}admin/log-as-candidate`,
       method: 'PUT',
@@ -424,6 +446,18 @@ const api = {
       url: `${base}candidate-user/stats`,
       method: 'GET',
       withAuth: true,
+    },
+    issue: {
+      find: {
+        url: `${base}candidate-issue`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}candidate-issue`,
+        method: 'PUT',
+        withAuth: true,
+      },
     },
     ugc: {
       find: {
