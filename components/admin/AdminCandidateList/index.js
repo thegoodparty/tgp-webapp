@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { IoIosSettings } from 'react-icons/io';
+import { BiLogInCircle } from 'react-icons/bi';
 import Link from 'next/link';
 import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
@@ -43,7 +43,11 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function Index({ candidates, deleteCandidateCallback }) {
+function Index({
+  candidates,
+  deleteCandidateCallback,
+  logAsCandidateCallback,
+}) {
   const [tableData, setTableData] = useState([]);
   const [deleteCandidate, setDeleteCandidate] = useState(false);
   const handleDeleteCandidate = id => {
@@ -169,6 +173,26 @@ function Index({ candidates, deleteCandidateCallback }) {
       maxWidth: 120,
     },
     {
+      Header: 'Log as',
+      maxWidth: 80,
+      accessor: 'name',
+      headerStyle,
+      filterMethod: customFilter,
+      Cell: row => {
+        return (
+          <div className="text-center">
+            {' '}
+            <BiLogInCircle
+              onClick={() => {
+                logAsCandidateCallback(row.original.id);
+              }}
+              style={{ color: 'green', cursor: 'pointer' }}
+            />
+          </div>
+        );
+      },
+    },
+    {
       Header: 'Delete',
       maxWidth: 80,
       accessor: 'name',
@@ -243,6 +267,7 @@ function Index({ candidates, deleteCandidateCallback }) {
 Index.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   deleteCandidateCallback: PropTypes.func,
+  logAsCandidateCallback: PropTypes.func,
 };
 
 export default Index;
