@@ -31,6 +31,7 @@ export function AdminCandidateUpdatesPage({
   saveCallback,
   deleteCallback,
   createCallback,
+  approveUpdateCallback,
 }) {
   useInjectReducer({ key: 'adminCandidateUpdatesPage', reducer });
   useInjectSaga({ key: 'adminCandidateUpdatesPage', saga });
@@ -53,6 +54,7 @@ export function AdminCandidateUpdatesPage({
     saveCallback,
     deleteCallback,
     createCallback,
+    approveUpdateCallback,
   };
 
   return (
@@ -71,6 +73,7 @@ AdminCandidateUpdatesPage.propTypes = {
   saveCallback: PropTypes.func,
   deleteCallback: PropTypes.func,
   createCallback: PropTypes.func,
+  approveUpdateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -89,6 +92,9 @@ function mapDispatchToProps(dispatch) {
     },
     createCallback: (update, candidateId) => {
       dispatch(actions.createUpdateAction(update, candidateId));
+    },
+    approveUpdateCallback: (updateId, candidateId) => {
+      dispatch(actions.approveUpdateAction(updateId, candidateId));
     },
   };
 }

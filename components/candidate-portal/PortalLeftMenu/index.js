@@ -13,8 +13,10 @@ import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
 
 import { ImEmbed2 } from 'react-icons/im';
-import { MdSettings } from 'react-icons/md';
 import { BiHomeHeart } from 'react-icons/bi';
+import { IoIosContact } from 'react-icons/io';
+import { MdUpdate } from 'react-icons/md';
+import { GoIssueClosed } from 'react-icons/go';
 
 import { Body13 } from 'components/shared/typogrophy/index';
 
@@ -48,6 +50,7 @@ const CloseWrapper = styled.div`
 
 const Icon = styled.span`
   margin-right: 12px;
+
 `;
 
 const IconLabel = styled(Body13)`
@@ -61,8 +64,18 @@ export const leftMenuItems = [
     link: '/candidate-portal',
   },
   {
-    icon: <MdSettings size={24} />,
-    label: 'Campaign Manager',
+    icon: <MdUpdate size={24} />,
+    label: 'Campaign Updates',
+    link: '/candidate-portal/campaign-updates',
+  },
+  {
+    icon: <GoIssueClosed size={24} />,
+    label: 'Top Issues',
+    link: '/candidate-portal/top-issues',
+  },
+  {
+    icon: <IoIosContact size={24} />,
+    label: 'Basic Info',
     link: '/candidate-portal/campaign-manager',
   },
   {
@@ -72,7 +85,7 @@ export const leftMenuItems = [
   },
 ];
 function PortalLeftMenu() {
-  const [leftOpen, setLeftOpen] = useState(false);
+  const [leftOpen, setLeftOpen] = useState(true);
   const toggleLeftPanel = () => {
     setLeftOpen(!leftOpen);
   };

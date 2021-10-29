@@ -7,14 +7,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 
+import CandidatePortalUpdatesContainer from 'containers/candidate-portal/CandidatePortalUpdatesPage/CandidatePortalUpdatesContainer';
+
 import PortalPageWrapper from './PortalPageWrapper';
-import { Body13, H2, H3, Body } from '../../shared/typogrophy';
+import { H2, H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
-import { partyResolver } from '../../../helpers/electionsHelper';
-import { leftMenuItems } from '../PortalLeftMenu';
 import CampaignStats from './CampaignStats';
 
 const Wrapper = styled.div`
@@ -24,7 +23,14 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-function CandidatePortalHomeWrapper({ candidate, stats, loadStatsCallback, }) {
+const UpdatesWrapper = styled.div`
+  border: solid 1px ${({ theme }) => theme.colors.gray7};
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 48px;
+`;
+
+function CandidatePortalHomeWrapper({ candidate, stats, loadStatsCallback }) {
   return (
     <PortalPageWrapper>
       <Wrapper>
@@ -39,15 +45,26 @@ function CandidatePortalHomeWrapper({ candidate, stats, loadStatsCallback, }) {
             Welcome to Good Party Candidate Portal
           </H2>
           {candidate && (
-            <div>
-              <Grid container spacing={3} alignItems="stretch">
-                <Grid item xs={12} md={6}>
-                  Tip of the day
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <CampaignStats stats={stats} loadStatsCallback={loadStatsCallback} />
-                </Grid>
-              </Grid>
+            <div className="text-left">
+              {/*<Grid container spacing={3} alignItems="stretch">*/}
+              {/*  <Grid item xs={12} md={6}>*/}
+              {/*    Tip of the day*/}
+              {/*  </Grid>*/}
+              {/*  <Grid item xs={12} md={6}>*/}
+              {/*    <CampaignStats stats={stats} loadStatsCallback={loadStatsCallback} />*/}
+              {/*  </Grid>*/}
+              {/*</Grid>*/}
+              <CampaignStats
+                stats={stats}
+                loadStatsCallback={loadStatsCallback}
+              />
+              <UpdatesWrapper>
+                <H3>Campaign Updates</H3>
+                <CandidatePortalUpdatesContainer
+                  candidate={candidate}
+                  pageLevel={false}
+                />
+              </UpdatesWrapper>
             </div>
           )}
         </div>

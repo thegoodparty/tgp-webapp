@@ -26,12 +26,16 @@ export default function* requestHelper(api, data, isFormData = false) {
   }
   let token;
   if (withAuth) {
-    token = yield select(makeSelectToken());
+    // try "asToken" first
+    token = getCookie('asToken');
     if (!token) {
-      token = getCookie('token');
+      token = yield select(makeSelectToken());
       if (!token) {
-        // yield put(userActions.signoutAction('/login'));
-        throw new Error({ message: 'missing token' });
+        token = getCookie('token');
+        if (!token) {
+          // yield put(userActions.signoutAction('/login'));
+          throw new Error({ message: 'missing token' });
+        }
       }
     }
   }

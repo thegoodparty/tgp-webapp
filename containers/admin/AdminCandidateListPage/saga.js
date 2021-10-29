@@ -1,5 +1,7 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { push } from 'connected-next-router';
 
+import { setCookie } from 'helpers/cookieHelper';
 import requestHelper from 'helpers/requestHelper';
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
@@ -40,8 +42,31 @@ function* deleteCandidate({ id }) {
   }
 }
 
+function* logAsCandidate({ id }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Logging in as a candidate'));
+    const api = tgpApi.admin.logAsCandidate;
+    const payload = {
+      id,
+    };
+    const { token } = yield call(requestHelper, api, payload);
+
+    setCookie('asToken', token);
+    yield put(push('/candidate-portal'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error logging in as candidate',
+        'error',
+      ),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_CANDIDATES, loadCandidates);
   yield takeLatest(types.DELETE_CANDIDATE, deleteCandidate);
+  yield takeLatest(types.LOG_AS_CANDIDATE, logAsCandidate);
 }

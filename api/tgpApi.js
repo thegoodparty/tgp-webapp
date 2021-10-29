@@ -302,6 +302,11 @@ const api = {
         withAuth: true,
       },
     },
+    logAsCandidate: {
+      url: `${base}admin/log-as-candidate`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
   newCandidate: {
     create: {
@@ -373,6 +378,11 @@ const api = {
     deleteCampaignUpdate: {
       url: `${base}new-candidate/campaign-update`,
       method: 'DELETE',
+      withAuth: true,
+    },
+    approveUpdate: {
+      url: `${base}new-candidate/approve-update`, // admin
+      method: 'PUT',
       withAuth: true,
     },
   },
@@ -479,6 +489,13 @@ const api = {
         // admin
         url: `${base}candidate-ugcs/reject`,
         method: 'PUT',
+        withAuth: true,
+      },
+    },
+    updateRequest: {
+      create: {
+        url: `${base}candidate-user/update-request`,
+        method: 'POST',
         withAuth: true,
       },
     },
