@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import { H2, Body11 } from '../../shared/typogrophy';
 import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
 import { BlueButton, PurpleButton } from '../../shared/buttons';
-import PortalContentTopMenu from '../PortalContentTopMenu';
 import TopIssue from './TopIssue';
 
 const Wrapper = styled.div`
@@ -20,12 +19,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-function TopIssuesWrapper({
-  candidate,
-  candidateIssue,
-  updateIssueCallback,
-  topics,
-}) {
+function TopIssuesWrapper({ candidateIssue, updateIssueCallback, topics }) {
   const [topIssues, setTopIssues] = useState([]);
   const [topicList, setTopicList] = useState([]);
   useEffect(() => {
@@ -66,8 +60,6 @@ function TopIssuesWrapper({
   return (
     <PortalPageWrapper>
       <Wrapper>
-        <PortalContentTopMenu candidate={candidate} />
-        <br />
         <H2 className="text-left">Issues</H2>
         <Body11 className="text-left">
           Select up to 10 top issues for your campaign in order of importance.
