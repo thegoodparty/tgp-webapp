@@ -27,7 +27,6 @@ export function AdminCandidateListPage({
   adminCandidateListPage,
   deleteCandidateCallback,
   userState,
-  logAsCandidateCallback,
 }) {
   useInjectReducer({ key: 'adminCandidateListPage', reducer });
   useInjectSaga({ key: 'adminCandidateListPage', saga });
@@ -48,7 +47,6 @@ export function AdminCandidateListPage({
   const childProps = {
     candidates,
     deleteCandidateCallback,
-    logAsCandidateCallback,
   };
 
   return (
@@ -65,7 +63,6 @@ AdminCandidateListPage.propTypes = {
   adminCandidateListPage: PropTypes.object,
   userState: PropTypes.object,
   deleteCandidateCallback: PropTypes.func,
-  logAsCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -77,8 +74,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     deleteCandidateCallback: id => dispatch(actions.deleteCandidateAction(id)),
-    logAsCandidateCallback: id =>
-      dispatch(actions.logAsCandidateCallbackAction(id)),
+
   };
 }
 

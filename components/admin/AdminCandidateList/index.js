@@ -43,11 +43,7 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function Index({
-  candidates,
-  deleteCandidateCallback,
-  logAsCandidateCallback,
-}) {
+function Index({ candidates, deleteCandidateCallback }) {
   const [tableData, setTableData] = useState([]);
   const [deleteCandidate, setDeleteCandidate] = useState(false);
   const handleDeleteCandidate = id => {
@@ -172,26 +168,7 @@ function Index({
       headerStyle,
       maxWidth: 120,
     },
-    {
-      Header: 'Log as',
-      maxWidth: 80,
-      accessor: 'name',
-      headerStyle,
-      filterMethod: customFilter,
-      Cell: row => {
-        return (
-          <div className="text-center">
-            {' '}
-            <BiLogInCircle
-              onClick={() => {
-                logAsCandidateCallback(row.original.id);
-              }}
-              style={{ color: 'green', cursor: 'pointer' }}
-            />
-          </div>
-        );
-      },
-    },
+
     {
       Header: 'Delete',
       maxWidth: 80,

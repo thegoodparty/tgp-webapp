@@ -1,12 +1,13 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { push } from 'connected-next-router';
 
 import requestHelper from 'helpers/requestHelper';
-import { trimObject } from 'helpers/stringHelper';
 
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
+import { setCookie } from '../../../helpers/cookieHelper';
 
 function* associateCandidateUser({ candidateId, userEmail }) {
   try {
@@ -49,9 +50,32 @@ function* removeAssociatedUser({ candidateId }) {
   }
 }
 
+function* logAsCandidate({ id }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Logging in as a candidate'));
+    const api = tgpApi.admin.logAsCandidate;
+    const payload = {
+      id,
+    };
+    const { token } = yield call(requestHelper, api, payload);
+
+    setCookie('asToken', token);
+    yield put(push('/candidate-portal'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error logging in as candidate',
+        'error',
+      ),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.ASSOCIATE_CANDIDATE_USER, associateCandidateUser);
   yield takeLatest(types.FIND_ASSOCIATED_USER, findAssociatedUser);
   yield takeLatest(types.REMOVE_ASSOCIATED_USER, removeAssociatedUser);
+  yield takeLatest(types.LOG_AS_CANDIDATE, logAsCandidate);
 }

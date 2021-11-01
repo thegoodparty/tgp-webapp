@@ -33,6 +33,7 @@ function AdminAssociateCandidateUserWrapper({
   saveCallback,
   user,
   removeUserCallback,
+  logAsCandidateCallback,
 }) {
   const [email, setEmail] = useState(user ? user.email : '');
 
@@ -86,6 +87,17 @@ function AdminAssociateCandidateUserWrapper({
             <br />
             {user.name} <br />
             Email: {user.email}
+            <br />
+            <br />
+            <PurpleButton
+              onClick={() => {
+                logAsCandidateCallback(candidate.id);
+              }}
+            >
+              LOG IN AS CANDIDATE
+            </PurpleButton>
+            <br />
+            <br />
             <Remove onClick={handleRemove}>Remove Associated User</Remove>
           </Body>
         ) : (
@@ -120,6 +132,7 @@ AdminAssociateCandidateUserWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   saveCallback: PropTypes.func,
   removeUserCallback: PropTypes.func,
+  logAsCandidateCallback: PropTypes.func,
 };
 
 export default AdminAssociateCandidateUserWrapper;

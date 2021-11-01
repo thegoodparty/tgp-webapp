@@ -34,12 +34,7 @@ function deleteCandidateAction(id) {
   };
 }
 
-function logAsCandidateCallbackAction(id) {
-  return {
-    type: types.LOG_AS_CANDIDATE,
-    id,
-  };
-}
+
 
 export default {
   loadCandidates,
@@ -48,5 +43,5 @@ export default {
 
   deleteCandidateAction,
 
-  logAsCandidateCallbackAction,
+
 };
