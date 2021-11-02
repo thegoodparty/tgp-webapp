@@ -28,6 +28,7 @@ if (typeof window !== 'undefined' && navigator && navigator.serviceWorker) {
   });
 }
 
+// empty
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     initGA4();
