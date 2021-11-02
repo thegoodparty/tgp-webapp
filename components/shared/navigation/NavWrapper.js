@@ -7,6 +7,7 @@ import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
 import AdminMenu from 'components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
+import FeedbackContainer from '../../../containers/shared/FeedbackContainer';
 
 const NavWrapper = ({
   pathname,
@@ -33,13 +34,13 @@ const NavWrapper = ({
         user={user}
         purpleNav={purpleNav || asCandidate}
         asCandidate={asCandidate}
-        asCandidate={asCandidate}
         logoutAsCandidateCallback={logoutAsCandidateCallback}
       />
     </Hidden>
 
     {user?.isAdmin && <AdminMenu />}
     {user?.isAdmin === false && user?.candidate && <AdminMenu candidateMode />}
+    {user && <FeedbackContainer />}
   </>
 );
 

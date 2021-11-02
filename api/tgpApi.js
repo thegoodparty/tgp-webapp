@@ -174,6 +174,11 @@ const api = {
     url: `${base}notifications/email-ama`,
     method: 'POST',
   },
+  sendFeedback: {
+    url: `${base}notifications/feedback`,
+    method: 'POST',
+    withAuth: true,
+  },
 
   logError: {
     url: `${base}notifications/log-error`,
