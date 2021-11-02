@@ -20,7 +20,7 @@ const FormWrapper = styled.form`
   padding: 40px 20px;
   background-color: #fff;
   border-radius: 8px;
-  width: 80vw;
+  width: 95vw;
   max-width: 900px;
   border: solid 2px ${({ theme }) => theme.colors.purple};
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
@@ -36,8 +36,11 @@ const FormWrapper = styled.form`
 
 const Logo = styled.img`
   margin-right: 8px;
-  width: 30px;
+  width: 18px;
   height: auto;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  width: 30px;
+  }
 `;
 
 const InnerButton = styled.div`
@@ -134,7 +137,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               fullWidth
               variant="outlined"
               multiline
-              label="Type your suggestion here, please give as much detail as you can. *"
+              placeholder="Type your suggestion here, please give as much detail as you can. *"
               rows={5}
               value={formState.suggestion}
               onChange={e => onChangeField('suggestion', e)}
