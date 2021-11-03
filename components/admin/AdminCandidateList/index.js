@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { IoIosSettings } from 'react-icons/io';
+import { BiLogInCircle } from 'react-icons/bi';
 import Link from 'next/link';
 import moment from 'moment';
 import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
@@ -168,6 +168,7 @@ function Index({ candidates, deleteCandidateCallback }) {
       headerStyle,
       maxWidth: 120,
     },
+
     {
       Header: 'Delete',
       maxWidth: 80,
@@ -243,6 +244,7 @@ function Index({ candidates, deleteCandidateCallback }) {
 Index.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   deleteCandidateCallback: PropTypes.func,
+  logAsCandidateCallback: PropTypes.func,
 };
 
 export default Index;

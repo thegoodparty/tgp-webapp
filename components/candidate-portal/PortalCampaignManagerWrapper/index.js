@@ -14,7 +14,6 @@ import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
 import { Body13, H3 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../../admin/AdminEditCandidate/JoditEditor';
 import { PurpleButton } from '../../shared/buttons';
-import PortalContentTopMenu from '../PortalContentTopMenu';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -62,8 +61,6 @@ function PortalCampaignManagerWrapper({
   return (
     <PortalPageWrapper>
       <Wrapper>
-        <PortalContentTopMenu candidate={candidate} />
-        <br />
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <H3 className="text-center">On Production</H3>

@@ -174,6 +174,11 @@ const api = {
     url: `${base}notifications/email-ama`,
     method: 'POST',
   },
+  sendFeedback: {
+    url: `${base}notifications/feedback`,
+    method: 'POST',
+    withAuth: true,
+  },
 
   logError: {
     url: `${base}notifications/log-error`,
@@ -280,6 +285,33 @@ const api = {
         withAuth: true,
       },
     },
+    issueTopics: {
+      create: {
+        url: `${base}issue-topic`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}issue-topic`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}issue-topic`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}issue-topics`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
+    logAsCandidate: {
+      url: `${base}admin/log-as-candidate`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
   newCandidate: {
     create: {
@@ -353,6 +385,11 @@ const api = {
       method: 'DELETE',
       withAuth: true,
     },
+    approveUpdate: {
+      url: `${base}new-candidate/approve-update`, // admin
+      method: 'PUT',
+      withAuth: true,
+    },
   },
   trackVisit: {
     url: `${base}visit`,
@@ -415,6 +452,18 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    issue: {
+      find: {
+        url: `${base}candidate-issue`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}candidate-issue`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
     ugc: {
       find: {
         url: `${base}candidate-ugc`,
@@ -445,6 +494,13 @@ const api = {
         // admin
         url: `${base}candidate-ugcs/reject`,
         method: 'PUT',
+        withAuth: true,
+      },
+    },
+    updateRequest: {
+      create: {
+        url: `${base}candidate-user/update-request`,
+        method: 'POST',
         withAuth: true,
       },
     },

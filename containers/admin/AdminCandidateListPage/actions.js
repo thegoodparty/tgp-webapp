@@ -34,10 +34,14 @@ function deleteCandidateAction(id) {
   };
 }
 
+
+
 export default {
   loadCandidates,
   loadCandidatesSuccess,
   loadCandidatesError,
 
   deleteCandidateAction,
+
+
 };

@@ -67,7 +67,6 @@ export function CandidateNewPage({
   useEffect(() => {
     const width = window.innerWidth || document.body.clientWidth;
     const height = window.innerHeight || document.body.clientHeight;
-    console.log('herer')
     dispatch(
       actions.trackVisitAction(
         window.location.pathname,

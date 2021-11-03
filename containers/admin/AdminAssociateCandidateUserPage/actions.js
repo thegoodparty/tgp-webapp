@@ -29,11 +29,19 @@ function removeAssociatedUserAction(candidateId) {
   };
 }
 
+function logAsCandidateCallbackAction(id) {
+  return {
+    type: types.LOG_AS_CANDIDATE,
+    id,
+  };
+}
+
 export default {
   associateCandidateUserAction,
 
   findAssociatedUserAction,
   findAssociatedUserActionSuccess,
 
-  removeAssociatedUserAction
+  removeAssociatedUserAction,
+  logAsCandidateCallbackAction,
 };

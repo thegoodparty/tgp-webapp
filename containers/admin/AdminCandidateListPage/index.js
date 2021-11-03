@@ -74,6 +74,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     deleteCandidateCallback: id => dispatch(actions.deleteCandidateAction(id)),
+
   };
 }
 

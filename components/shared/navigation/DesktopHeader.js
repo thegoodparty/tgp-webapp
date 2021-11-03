@@ -129,7 +129,23 @@ const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
-const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
+const AsCandidate = styled.div`
+  position: absolute;
+  background-color: white;
+  padding: 16px 8px;
+  color: ${({ theme }) => theme.colors.purple};
+  top: 14px;
+  left: 8px;
+  cursor: pointer;
+`;
+
+const DesktopHeader = ({
+  user,
+  trackShareCallback = () => {},
+  purpleNav,
+  asCandidate,
+  logoutAsCandidateCallback,
+}) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const router = useRouter();
@@ -178,6 +194,11 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
   };
   return (
     <Wrapper className={purpleNav && 'purple'}>
+      {asCandidate && (
+        <AsCandidate onClick={logoutAsCandidateCallback}>
+          Logout As candidate
+        </AsCandidate>
+      )}
       <ContentWrapper>
         <Grid container alignItems="center">
           <Grid item xs={4}>
@@ -374,6 +395,8 @@ DesktopHeader.propTypes = {
   navigateCallback: PropTypes.func,
   trackShareCallbackk: PropTypes.func,
   purpleNav: PropTypes.bool,
+  asCandidate: PropTypes.bool,
+  logoutAsCandidateCallback: PropTypes.func,
 };
 
 export default DesktopHeader;
