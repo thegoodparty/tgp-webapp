@@ -1,6 +1,6 @@
 /**
  *
- * AdminUpdateRequestsWrapper
+ * AdminTopIssueRequestsWrapper
  *
  */
 
@@ -10,7 +10,8 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
 import { candidateRoute } from 'helpers/electionsHelper';
-import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
+
+import RequestTopTab from './RequestTopTab';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { Body, H3 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
@@ -34,37 +35,38 @@ const RequestWrapper = styled.div`
   border-bottom: solid 1px #ccc;
 `;
 
-function AdminUpdateRequestsWrapper({
-  ugc,
-  acceptRequestCallback,
-  rejectRequestCallback,
+function AdminTopIssueRequestsWrapper({
+  topIssues,
+  topics,
+  acceptIssueRequestCallback,
+  rejectIssueRequestCallback,
 }) {
   const [candidateList, setCandidateList] = useState([]);
 
   useEffect(() => {
     const newCandidateList = [];
-    (ugc || []).forEach(item => {
+    (topIssues || []).forEach(item => {
       if (!newCandidateList.includes(item.candidate.id)) {
         newCandidateList.push(item.candidate.id);
       }
     });
     setCandidateList(newCandidateList);
-  }, [ugc]);
+  }, [topIssues]);
   return (
     <AdminPageWrapper>
       <Wrapper>
         <RequestTopTab />
-        <Title>Update Requests from Candidates</Title>
+        <Title>Top Issue Requests from Candidates</Title>
         <br />
         <br />
         {candidateList &&
           candidateList.map(candidateId => {
-            const ugcRequest = (ugc || []).find(
+            const issueRequest = (topIssues || []).find(
               item => item.candidate.id === candidateId,
             );
-            const { candidate } = ugcRequest;
+            const { candidate } = issueRequest;
             return (
-              <RequestWrapper key={ugcRequest.id}>
+              <RequestWrapper key={issueRequest.id}>
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <Body>
@@ -76,74 +78,87 @@ function AdminUpdateRequestsWrapper({
                   </Grid>
                   <Grid item xs={12} md={6} className="text-right" />
                 </Grid>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} md={6} />
-                  <Grid item xs={12} md={6} className="text-right">
-                    <Body>{dateUsHelper(ugcRequest.updatedAt)}</Body>
-                  </Grid>
-                </Grid>
-
                 <br />
                 <Grid container spacing={3}>
-                  <Grid item xs={12} md={4}>
+                  <Grid item xs={12} md={6}>
+                    <Body>Top Issues</Body>
+                  </Grid>
+                  <Grid item xs={12} md={6} className="text-right">
+                    <Body>{dateUsHelper(issueRequest.updatedAt)}</Body>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                  <Grid item xs={1}>
+                    <span />
+                  </Grid>
+                  <Grid item xs={2}>
                     <Body>
-                      <strong>Field</strong>
+                      <strong>Topic</strong>
                     </Body>
                   </Grid>
-                  <Grid item xs={12} md={4}>
+                  <Grid item xs={3}>
                     <Body>
-                      <strong>On Production</strong>
+                      <strong>Position</strong>
                     </Body>
                   </Grid>
-                  <Grid item xs={12} md={4} style={{ marginBottom: '12px' }}>
+                  <Grid item xs={3}>
                     <Body>
-                      <strong>Updates Requested</strong>
+                      <strong>Description</strong>
                     </Body>
                   </Grid>
-
-                  {Object.keys(ugcRequest.data).map(field => (
-                    <React.Fragment key={field}>
-                      <Grid item xs={12} md={4}>
-                        <strong>{field}</strong>
-                      </Grid>
-                      <Grid item xs={12} md={4}>
-                        {ugcRequest.candidate[field].charAt(0) === '<' ? (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: request.candidate[field],
-                            }}
-                          />
-                        ) : (
-                          ugcRequest.candidate[field] || '(empty)'
-                        )}
-                      </Grid>
-                      <Grid item xs={12} md={4}>
-                        {ugcRequest.data[field].charAt(0) === '<' ? (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: ugcRequest.data[field],
-                            }}
-                          />
-                        ) : (
-                          ugcRequest.data[field]
-                        )}
-                      </Grid>
-                    </React.Fragment>
-                  ))}
+                  <Grid item xs={3}>
+                    <Body>
+                      <strong>Website URL</strong>
+                    </Body>
+                  </Grid>
+                  {issueRequest.data.map((issue, index) => {
+                    const topic = (topics || []).find(
+                      item => item.id === issue.topicId,
+                    );
+                    const position = topic?.positions?.find(
+                      item => item.id === issue.positionId,
+                    );
+                    return (
+                      <>
+                        <Grid item xs={1}>
+                          <span>{index + 1}.</span>
+                        </Grid>
+                        <Grid item xs={2}>
+                          <strong>{topic.topic}</strong>
+                        </Grid>
+                        <Grid item xs={3}>
+                          {position.name}
+                        </Grid>
+                        <Grid item xs={3}>
+                          {issue.description}
+                        </Grid>
+                        <Grid item xs={3}>
+                          {issue.websiteUrl}
+                        </Grid>
+                        {/* <Grid item xs={12}>
+                        <hr />
+                      </Grid> */}
+                      </>
+                    );
+                  })}
                   <Grid item xs={12} md={8}>
                     &nbsp;
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <br />
                     <PurpleButton
-                      onClick={() => rejectRequestCallback(ugcRequest.id)}
+                      onClick={() =>
+                        rejectIssueRequestCallback(issueRequest.id)
+                      }
                       style={{ background: 'red', borderColor: 'red' }}
                     >
                       &nbsp;Deny Request&nbsp;
                     </PurpleButton>
                     &nbsp; &nbsp;
                     <PurpleButton
-                      onClick={() => acceptRequestCallback(ugcRequest.id)}
+                      onClick={() =>
+                        acceptIssueRequestCallback(issueRequest.id)
+                      }
                     >
                       &nbsp;Accept Request&nbsp;
                     </PurpleButton>
@@ -157,10 +172,11 @@ function AdminUpdateRequestsWrapper({
   );
 }
 
-AdminUpdateRequestsWrapper.propTypes = {
-  ugc: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  acceptRequestCallback: PropTypes.func,
-  rejectRequestCallback: PropTypes.func,
+AdminTopIssueRequestsWrapper.propTypes = {
+  topics: PropTypes.array,
+  topIssues: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  acceptIssueRequestCallback: PropTypes.func,
+  rejectIssueRequestCallback: PropTypes.func,
 };
 
-export default AdminUpdateRequestsWrapper;
+export default AdminTopIssueRequestsWrapper;
