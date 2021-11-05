@@ -15,7 +15,6 @@ import { push } from 'connected-next-router';
 import AdminUpdateRequestsWrapper from 'components/admin/AdminUpdateRequestsWrapper';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectAdminIssueTopicsPage from '../AdminIssueTopicsPage/selectors';
 import makeSelectAdminUpdateRequestsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -70,7 +69,6 @@ AdminUpdateRequestsPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   adminUpdateRequestsPage: makeSelectAdminUpdateRequestsPage(),
-  adminIssueTopicsPage: makeSelectAdminIssueTopicsPage(),
   userState: makeSelectUser(),
 });
 

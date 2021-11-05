@@ -8,7 +8,6 @@ import types from './constants';
 
 export const initialState = {
   ugc: false,
-  topIssues: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */

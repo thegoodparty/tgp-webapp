@@ -13,6 +13,7 @@ const REJECT_REQUEST = 'app/AdminUpdateRequestsPage/REJECT_REQUEST';
 export default {
   LOAD_UGC,
   LOAD_UGC_SUCCESS,
+
   ACCEPT_REQUEST,
   REJECT_REQUEST,
 };

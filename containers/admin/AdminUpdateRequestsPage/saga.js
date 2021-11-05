@@ -63,7 +63,6 @@ function* rejectRequest({ id }) {
   }
 }
 
-
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_UGC, loadUgc);

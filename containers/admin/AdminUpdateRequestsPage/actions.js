@@ -36,6 +36,7 @@ function rejectRequestAction(id) {
 export default {
   loadUgcsAction,
   loadUgcsActionSuccess,
+
   acceptRequestAction,
   rejectRequestAction,
 };
