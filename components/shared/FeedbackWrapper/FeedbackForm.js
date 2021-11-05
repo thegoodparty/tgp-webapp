@@ -34,12 +34,10 @@ const FormWrapper = styled.form`
   }
 `;
 
-const Logo = styled.img`
-  margin-right: 8px;
-  width: 18px;
-  height: auto;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-  width: 30px;
+const StarsWrapper = styled.div`
+  font-size: 24px;
+  i {
+    margin-left: 5px;
   }
 `;
 
@@ -70,10 +68,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
     });
   };
 
-  const canSubmit = () =>
-    formState.feedbackType !== '' &&
-    formState.suggestion !== '' &&
-    formState.stars > 0;
+  const canSubmit = () => formState.suggestion !== '';
 
   const submitForm = () => {
     sendFeedbackCallback(
@@ -104,14 +99,13 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
             <Body>How do you feel about Good Party right now?</Body>
           </Grid>
           <Grid item xs={6} md={7}>
-            <StarRatingComponent
-              name="stars"
-              renderStarIcon={() => (
-                <Logo src="/images/heart.svg" alt="" className="heart-star" />
-              )}
-              onStarClick={onStarClick}
-              value={formState.stars}
-            />
+            <StarsWrapper>
+              <StarRatingComponent
+                name="stars"
+                onStarClick={onStarClick}
+                value={formState.stars}
+              />
+            </StarsWrapper>
           </Grid>
           <Grid item xs={6} md={5}>
             <Body>Feedback Type*</Body>
