@@ -2,16 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { BsChevronDown } from 'react-icons/bs';
 import Image from 'next/image';
 import { MdIosShare } from 'react-icons/md';
-import Grid from '@material-ui/core/Grid';
-import Grow from '@material-ui/core/Grow';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import MenuList from '@material-ui/core/MenuList';
+
 import styled from 'styled-components';
 
 import { logEvent } from 'services/AnalyticsService';
@@ -51,41 +44,10 @@ const ContentWrapper = styled.div`
   height: 80px;
 `;
 
-const Works = styled.div`
-  font-size: 16px;
-  letter-spacing: 0.2px;
-  color: ${({ theme }) => theme.colors.purple};
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  align-self: flex-start;
-  span {
-    margin-right: 10px;
-  }
-
-  &.purple {
-    color: #fff;
-  }
-`;
-
-const ChevronDown = styled(BsChevronDown)`
-  transition: transform 0.3s;
-  &.open {
-    transform: rotate(180deg);
-  }
-`;
-
 const Share = styled.div`
   padding: 0 4px;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.purple};
-`;
-
-const ShareWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  text-align: right;
 `;
 
 const Logo = styled.img`
@@ -95,23 +57,7 @@ const Logo = styled.img`
 
 const AvatarWrapper = styled.div`
   cursor: pointer;
-  margin-left: 32px;
-`;
-
-const StyledMenuItem = styled(MenuItem)`
-  && {
-    color: ${({ theme }) => theme.colors.purple};
-    font-size: 16px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-
-    &.Mui-focusVisible {
-      background-color: #fff;
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
-      }
-    }
-  }
+  margin-left: 16px;
 `;
 
 const RightLinks = styled.div`
@@ -137,11 +83,7 @@ const TopLink = styled.div`
 
 const links = [
   { label: 'About', href: '/about' },
-  // { label: 'Crowd Voting', href: '/about' },
   { label: 'Candidates', href: '/candidates' },
-  // { label: 'Good Practices', href: '/good-practices' },
-  // { label: 'FAQs', href: '/faqs' },
-  { label: 'Login', href: '/login' },
 ];
 
 const InnerButton = styled(Body13)`
@@ -254,210 +196,63 @@ const DesktopHeader = ({
               </Link>
             </TopLink>
           ))}
-          <TopLink>
-            <PurpleButton>
-              <InnerButton>
-                <Image
-                  src="/images/white-heart.svg"
-                  style={{
-                    marginRight: '8px',
+          {user?.name ? (
+            <>
+              <Share onClick={handleShare}>
+                <MdIosShare size={20} />
+              </Share>
+              <Link
+                href="/profile"
+                passHref
+                onClick={() => {
+                  logEvent('Link', 'Profile', 'Top Nav');
+                }}
+              >
+                <a>
+                  <AvatarWrapper>
+                    <UserAvatar user={user} />
+                  </AvatarWrapper>
+                </a>
+              </Link>
+            </>
+          ) : (
+            <>
+              <TopLink>
+                <Link
+                  href="/login"
+                  passHref
+                  onClick={() => {
+                    logEvent('Link', 'Login', 'Top Nav');
                   }}
-                  width={24}
-                  height={18}
-                />
-                &nbsp; COUNT ME IN!
-              </InnerButton>
-            </PurpleButton>
-          </TopLink>
-          <Share onClick={handleShare}>
-            <MdIosShare size={20} />
-          </Share>
+                >
+                  <a>Login</a>
+                </Link>
+              </TopLink>
+              <TopLink>
+                <Link href="/register" passHref>
+                  <a>
+                    <PurpleButton>
+                      <InnerButton>
+                        <Image
+                          src="/images/white-heart.svg"
+                          style={{
+                            marginRight: '8px',
+                          }}
+                          width={24}
+                          height={18}
+                        />
+                        &nbsp; COUNT ME IN!
+                      </InnerButton>
+                    </PurpleButton>
+                  </a>
+                </Link>
+              </TopLink>
+              <Share onClick={handleShare}>
+                <MdIosShare size={20} />
+              </Share>
+            </>
+          )}
         </RightLinks>
-        {/*<Grid container alignItems="center">*/}
-        {/*  <Grid item xs={4}>*/}
-        {/*    <Works*/}
-        {/*      ref={anchorRef}*/}
-        {/*      aria-controls={open ? 'menu-list-grow' : undefined}*/}
-        {/*      aria-haspopup="true"*/}
-        {/*      onClick={handleToggle}*/}
-        {/*      className={purpleNav && 'purple'}*/}
-        {/*    >*/}
-        {/*      <span>HOW THIS WORKS</span>*/}
-        {/*      <ChevronDown size={14} className={open ? 'open' : 'closed'} />*/}
-        {/*    </Works>*/}
-        {/*    <Popper*/}
-        {/*      open={open}*/}
-        {/*      anchorEl={anchorRef.current}*/}
-        {/*      role={undefined}*/}
-        {/*      transition*/}
-        {/*      disablePortal*/}
-        {/*      placement="top-start"*/}
-        {/*      style={{ zIndex: 1000 }}*/}
-        {/*    >*/}
-        {/*      {({ TransitionProps, placement }) => (*/}
-        {/*        <Grow*/}
-        {/*          {...TransitionProps}*/}
-        {/*          style={{*/}
-        {/*            transformOrigin:*/}
-        {/*              placement === 'bottom' ? 'center top' : 'center bottom',*/}
-        {/*          }}*/}
-        {/*        >*/}
-        {/*          <Paper style={{ marginTop: '10px' }}>*/}
-        {/*            <ClickAwayListener onClickAway={handleClose}>*/}
-        {/*              <MenuList*/}
-        {/*                autoFocusItem={open}*/}
-        {/*                id="menu-list-grow"*/}
-        {/*                onKeyDown={handleListKeyDown}*/}
-        {/*              >*/}
-        {/*                <StyledMenuItem onClick={handleClose}>*/}
-        {/*                  <Link*/}
-        {/*                    href="/about"*/}
-        {/*                    passHref*/}
-        {/*                    onClick={() => {*/}
-        {/*                      logEvent('Link', 'About', 'Top Nav');*/}
-        {/*                    }}*/}
-        {/*                  >*/}
-        {/*                    <a>About Good Party</a>*/}
-        {/*                  </Link>*/}
-        {/*                </StyledMenuItem>*/}
-        {/*                <StyledMenuItem onClick={handleClose}>*/}
-        {/*                  <Link*/}
-        {/*                    href={`${*/}
-        {/*                      router.asPath*/}
-        {/*                    }?article=1ic6T6fhH0jZLNvX5aZkDe`}*/}
-        {/*                    passHref*/}
-        {/*                    onClick={() => {*/}
-        {/*                      logEvent(*/}
-        {/*                        'Link',*/}
-        {/*                        'How crowd-voting works',*/}
-        {/*                        'Top Nav',*/}
-        {/*                      );*/}
-        {/*                    }}*/}
-        {/*                  >*/}
-        {/*                    <a>How crowd-voting works</a>*/}
-        {/*                  </Link>*/}
-        {/*                </StyledMenuItem>*/}
-        {/*                <StyledMenuItem onClick={handleClose}>*/}
-        {/*                  <Link*/}
-        {/*                    href="/candidates"*/}
-        {/*                    passHref*/}
-        {/*                    onClick={() => {*/}
-        {/*                      logEvent('Link', 'Candidates', 'Top Nav');*/}
-        {/*                    }}*/}
-        {/*                  >*/}
-        {/*                    <a>Meet the candidates</a>*/}
-        {/*                  </Link>*/}
-        {/*                </StyledMenuItem>*/}
-        {/*                <StyledMenuItem>*/}
-        {/*                  <Link*/}
-        {/*                    href="/good-practices"*/}
-        {/*                    passHref*/}
-        {/*                    onClick={() => {*/}
-        {/*                      logEvent('Link', 'Good-Practices', 'Top Nav');*/}
-        {/*                    }}*/}
-        {/*                  >*/}
-        {/*                    <a>Good practices</a>*/}
-        {/*                  </Link>*/}
-        {/*                </StyledMenuItem>*/}
-        {/*                <StyledMenuItem>*/}
-        {/*                  <Link*/}
-        {/*                    href="/faqs"*/}
-        {/*                    passHref*/}
-        {/*                    onClick={() => {*/}
-        {/*                      logEvent('Link', 'FAQs', 'Top Nav');*/}
-        {/*                    }}*/}
-        {/*                  >*/}
-        {/*                    <a>FAQs</a>*/}
-        {/*                  </Link>*/}
-        {/*                </StyledMenuItem>*/}
-        {/*                {!user && (*/}
-        {/*                  <StyledMenuItem onClick={handleClose}>*/}
-        {/*                    <Link*/}
-        {/*                      href="/register"*/}
-        {/*                      passHref*/}
-        {/*                      onClick={() => {*/}
-        {/*                        logEvent('Link', 'Sign up', 'Top Nav');*/}
-        {/*                      }}*/}
-        {/*                    >*/}
-        {/*                      <a>Sign up / Login</a>*/}
-        {/*                    </Link>*/}
-        {/*                  </StyledMenuItem>*/}
-        {/*                )}*/}
-        {/*              </MenuList>*/}
-        {/*            </ClickAwayListener>*/}
-        {/*          </Paper>*/}
-        {/*        </Grow>*/}
-        {/*      )}*/}
-        {/*    </Popper>*/}
-        {/*  </Grid>*/}
-        {/*  <Grid item xs={4} className="text-center">*/}
-        {/*    <Link*/}
-        {/*      href="/"*/}
-        {/*      passHref*/}
-        {/*      onClick={() => {*/}
-        {/*        logEvent('Link', 'Logo', 'Top Nav');*/}
-        {/*      }}*/}
-        {/*    >*/}
-        {/*      <a>*/}
-        {/*        {purpleNav ? (*/}
-        {/*          <Logo*/}
-        {/*            src="/images/new-logo-white.svg"*/}
-        {/*            data-cy="logo"*/}
-        {/*            width={173}*/}
-        {/*            height={20}*/}
-        {/*            alt="GOOD PARTY"*/}
-        {/*          />*/}
-        {/*        ) : (*/}
-        {/*          <Logo*/}
-        {/*            src="/images/new-logo.svg"*/}
-        {/*            data-cy="logo"*/}
-        {/*            width={173}*/}
-        {/*            height={20}*/}
-        {/*            alt="GOOD PARTY"*/}
-        {/*          />*/}
-        {/*        )}*/}
-        {/*      </a>*/}
-        {/*    </Link>*/}
-        {/*  </Grid>*/}
-        {/*  <Grid item xs={4}>*/}
-        {/*    <ShareWrapper>*/}
-        {/*      <Share onClick={handleShare} className={purpleNav && 'purple'}>*/}
-        {/*        {purpleNav ? (*/}
-        {/*          <img*/}
-        {/*            src="/images/icons/share-icon-white.svg"*/}
-        {/*            alt="Share"*/}
-        {/*            width={20}*/}
-        {/*            height={20}*/}
-        {/*          />*/}
-        {/*        ) : (*/}
-        {/*          <img*/}
-        {/*            src="/images/icons/share-icon.svg"*/}
-        {/*            alt="Share"*/}
-        {/*            width={20}*/}
-        {/*            height={20}*/}
-        {/*          />*/}
-        {/*        )}*/}
-        {/*        <span>SHARE</span>*/}
-        {/*      </Share>*/}
-
-        {/*      {user?.name && (*/}
-        {/*        <Link*/}
-        {/*          href="/profile"*/}
-        {/*          passHref*/}
-        {/*          onClick={() => {*/}
-        {/*            logEvent('Link', 'Profile', 'Top Nav');*/}
-        {/*          }}*/}
-        {/*        >*/}
-        {/*          <a>*/}
-        {/*            <AvatarWrapper>*/}
-        {/*              <UserAvatar user={user} />*/}
-        {/*            </AvatarWrapper>*/}
-        {/*          </a>*/}
-        {/*        </Link>*/}
-        {/*      )}*/}
-        {/*    </ShareWrapper>*/}
-        {/*  </Grid>*/}
-        {/*</Grid>*/}
       </ContentWrapper>
     </Wrapper>
   );

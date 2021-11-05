@@ -16,7 +16,7 @@ const colors = {
   gray10: 'rgba(100,100,100,.37)',
   red: '#970003',
   orange: '#D63E04',
-  blue: '#117CB6',
+  blue: '#0027DC',
   lightBlue: '#21A8DD',
   lighterBlue: '#E1F3F8',
   green: '#00A91C',

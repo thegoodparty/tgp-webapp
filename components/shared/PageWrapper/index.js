@@ -13,10 +13,6 @@ import Wrapper from 'components/shared/Wrapper';
 import Footer from 'components/shared/Footer';
 
 const MainWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayBg};
-  &.white {
-    background-color: #fff;
-  }
   &.purple {
     background-color: ${({ theme }) => theme.colors.purple3};
   }
@@ -46,11 +42,6 @@ const HomeWrapper = styled.div`
     padding-left: 18px;
   }
 
-  &.purple-nav {
-    padding: 0;
-    background-color: ${({ theme }) => theme.colors.purple};
-  }
-
   &.no-padding {
     padding: 0;
   }
@@ -58,7 +49,6 @@ const HomeWrapper = styled.div`
 function PageWrapper({
   children,
   hideNav,
-  white,
   purple,
   wrapperStyles = {},
   style = {},
@@ -69,9 +59,7 @@ function PageWrapper({
 }) {
   const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
   let className = '';
-  if (white) {
-    className = 'white';
-  } else if (purple) {
+  if (purple) {
     className = 'purple';
   }
   return (
@@ -79,8 +67,8 @@ function PageWrapper({
       {!hideNav && <Nav purpleNav={purpleNav} />}
       {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
       <WrapperComp
-        white={white}
         purple={purple}
+        white
         style={wrapperStyles}
         noHeader={hideNav}
         className={`${purpleNav && 'purple-nav'} ${noPadding && 'no-padding '}`}
