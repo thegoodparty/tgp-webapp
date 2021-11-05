@@ -11,7 +11,6 @@ import styled from 'styled-components';
 import Nav from 'containers/shared/Nav';
 import Wrapper from 'components/shared/Wrapper';
 import Footer from 'components/shared/Footer';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
 
 const MainWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grayBg};

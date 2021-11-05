@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BsChevronDown } from 'react-icons/bs';
+import Image from 'next/image';
+import { MdIosShare } from 'react-icons/md';
 import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
@@ -14,11 +16,13 @@ import styled from 'styled-components';
 
 import { logEvent } from 'services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
+import { PurpleButton } from '../buttons';
+import { Body13 } from '../typogrophy';
 
 const Wrapper = styled.div`
   height: 80px;
   width: 100%;
-  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  border-bottom: solid 1px #e1e2e9;
   background-color: #fff;
   z-index: 100;
   padding: 0 32px;
@@ -72,28 +76,9 @@ const ChevronDown = styled(BsChevronDown)`
 `;
 
 const Share = styled.div`
-  font-size: 16px;
-  letter-spacing: 0.2px;
-  color: ${({ theme }) => theme.colors.purple};
-  padding: 10px 22px;
-  height: 56px;
-  border: solid 2px ${({ theme }) => theme.colors.purple};
-  display: flex;
-  border-radius: 8px;
-  font-weight: 600;
-  justify-content: center;
-  align-items: center;
+  padding: 0 4px;
   cursor: pointer;
-  img {
-    height: 20px;
-    width: auto;
-    margin-right: 8px;
-  }
-
-  &.purple {
-    color: #fff;
-    border-color: #fff;
-  }
+  color: ${({ theme }) => theme.colors.purple};
 `;
 
 const ShareWrapper = styled.div`
@@ -129,6 +114,12 @@ const StyledMenuItem = styled(MenuItem)`
   }
 `;
 
+const RightLinks = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
 const AsCandidate = styled.div`
   position: absolute;
   background-color: white;
@@ -137,6 +128,28 @@ const AsCandidate = styled.div`
   top: 14px;
   left: 8px;
   cursor: pointer;
+`;
+
+const TopLink = styled.div`
+  margin: 0 12px;
+  padding: 0 4px;
+`;
+
+const links = [
+  { label: 'About', href: '/about' },
+  // { label: 'Crowd Voting', href: '/about' },
+  { label: 'Candidates', href: '/candidates' },
+  // { label: 'Good Practices', href: '/good-practices' },
+  // { label: 'FAQs', href: '/faqs' },
+  { label: 'Login', href: '/login' },
+];
+
+const InnerButton = styled(Body13)`
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-weight: 700;
+  color: #fff;
 `;
 
 const DesktopHeader = ({
@@ -200,191 +213,251 @@ const DesktopHeader = ({
         </AsCandidate>
       )}
       <ContentWrapper>
-        <Grid container alignItems="center">
-          <Grid item xs={4}>
-            <Works
-              ref={anchorRef}
-              aria-controls={open ? 'menu-list-grow' : undefined}
-              aria-haspopup="true"
-              onClick={handleToggle}
-              className={purpleNav && 'purple'}
-            >
-              <span>HOW THIS WORKS</span>
-              <ChevronDown size={14} className={open ? 'open' : 'closed'} />
-            </Works>
-            <Popper
-              open={open}
-              anchorEl={anchorRef.current}
-              role={undefined}
-              transition
-              disablePortal
-              placement="top-start"
-              style={{ zIndex: 1000 }}
-            >
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
+        <Link
+          href="/"
+          passHref
+          onClick={() => {
+            logEvent('Link', 'Logo', 'Top Nav');
+          }}
+        >
+          <a>
+            {purpleNav ? (
+              <Logo
+                src="/images/new-logo-white.svg"
+                data-cy="logo"
+                width={173}
+                height={20}
+                alt="GOOD PARTY"
+              />
+            ) : (
+              <Logo
+                src="/images/new-logo.svg"
+                data-cy="logo"
+                width={173}
+                height={20}
+                alt="GOOD PARTY"
+              />
+            )}
+          </a>
+        </Link>
+        <RightLinks>
+          {links.map(link => (
+            <TopLink>
+              <Link
+                href={link.href}
+                passHref
+                onClick={() => {
+                  logEvent('Link', link.label, 'Top Nav');
+                }}
+              >
+                <a>{link.label}</a>
+              </Link>
+            </TopLink>
+          ))}
+          <TopLink>
+            <PurpleButton>
+              <InnerButton>
+                <Image
+                  src="/images/white-heart.svg"
                   style={{
-                    transformOrigin:
-                      placement === 'bottom' ? 'center top' : 'center bottom',
+                    marginRight: '8px',
                   }}
-                >
-                  <Paper style={{ marginTop: '10px' }}>
-                    <ClickAwayListener onClickAway={handleClose}>
-                      <MenuList
-                        autoFocusItem={open}
-                        id="menu-list-grow"
-                        onKeyDown={handleListKeyDown}
-                      >
-                        <StyledMenuItem onClick={handleClose}>
-                          <Link
-                            href="/about"
-                            passHref
-                            onClick={() => {
-                              logEvent('Link', 'About', 'Top Nav');
-                            }}
-                          >
-                            <a>About Good Party</a>
-                          </Link>
-                        </StyledMenuItem>
-                        <StyledMenuItem onClick={handleClose}>
-                          <Link
-                            href={`${
-                              router.asPath
-                            }?article=1ic6T6fhH0jZLNvX5aZkDe`}
-                            passHref
-                            onClick={() => {
-                              logEvent(
-                                'Link',
-                                'How crowd-voting works',
-                                'Top Nav',
-                              );
-                            }}
-                          >
-                            <a>How crowd-voting works</a>
-                          </Link>
-                        </StyledMenuItem>
-                        <StyledMenuItem onClick={handleClose}>
-                          <Link
-                            href="/candidates"
-                            passHref
-                            onClick={() => {
-                              logEvent('Link', 'Candidates', 'Top Nav');
-                            }}
-                          >
-                            <a>Meet the candidates</a>
-                          </Link>
-                        </StyledMenuItem>
-                        <StyledMenuItem>
-                          <Link
-                            href="/good-practices"
-                            passHref
-                            onClick={() => {
-                              logEvent('Link', 'Good-Practices', 'Top Nav');
-                            }}
-                          >
-                            <a>Good practices</a>
-                          </Link>
-                        </StyledMenuItem>
-                        <StyledMenuItem>
-                          <Link
-                            href="/faqs"
-                            passHref
-                            onClick={() => {
-                              logEvent('Link', 'FAQs', 'Top Nav');
-                            }}
-                          >
-                            <a>FAQs</a>
-                          </Link>
-                        </StyledMenuItem>
-                        {!user && (
-                          <StyledMenuItem onClick={handleClose}>
-                            <Link
-                              href="/register"
-                              passHref
-                              onClick={() => {
-                                logEvent('Link', 'Sign up', 'Top Nav');
-                              }}
-                            >
-                              <a>Sign up / Login</a>
-                            </Link>
-                          </StyledMenuItem>
-                        )}
-                      </MenuList>
-                    </ClickAwayListener>
-                  </Paper>
-                </Grow>
-              )}
-            </Popper>
-          </Grid>
-          <Grid item xs={4} className="text-center">
-            <Link
-              href="/"
-              passHref
-              onClick={() => {
-                logEvent('Link', 'Logo', 'Top Nav');
-              }}
-            >
-              <a>
-                {purpleNav ? (
-                  <Logo
-                    src="/images/new-logo-white.svg"
-                    data-cy="logo"
-                    width={173}
-                    height={20}
-                    alt="GOOD PARTY"
-                  />
-                ) : (
-                  <Logo
-                    src="/images/new-logo.svg"
-                    data-cy="logo"
-                    width={173}
-                    height={20}
-                    alt="GOOD PARTY"
-                  />
-                )}
-              </a>
-            </Link>
-          </Grid>
-          <Grid item xs={4}>
-            <ShareWrapper>
-              <Share onClick={handleShare} className={purpleNav && 'purple'}>
-                {purpleNav ? (
-                  <img
-                    src="/images/icons/share-icon-white.svg"
-                    alt="Share"
-                    width={20}
-                    height={20}
-                  />
-                ) : (
-                  <img
-                    src="/images/icons/share-icon.svg"
-                    alt="Share"
-                    width={20}
-                    height={20}
-                  />
-                )}
-                <span>SHARE</span>
-              </Share>
+                  width={24}
+                  height={18}
+                />
+                &nbsp; COUNT ME IN!
+              </InnerButton>
+            </PurpleButton>
+          </TopLink>
+          <Share onClick={handleShare}>
+            <MdIosShare size={20} />
+          </Share>
+        </RightLinks>
+        {/*<Grid container alignItems="center">*/}
+        {/*  <Grid item xs={4}>*/}
+        {/*    <Works*/}
+        {/*      ref={anchorRef}*/}
+        {/*      aria-controls={open ? 'menu-list-grow' : undefined}*/}
+        {/*      aria-haspopup="true"*/}
+        {/*      onClick={handleToggle}*/}
+        {/*      className={purpleNav && 'purple'}*/}
+        {/*    >*/}
+        {/*      <span>HOW THIS WORKS</span>*/}
+        {/*      <ChevronDown size={14} className={open ? 'open' : 'closed'} />*/}
+        {/*    </Works>*/}
+        {/*    <Popper*/}
+        {/*      open={open}*/}
+        {/*      anchorEl={anchorRef.current}*/}
+        {/*      role={undefined}*/}
+        {/*      transition*/}
+        {/*      disablePortal*/}
+        {/*      placement="top-start"*/}
+        {/*      style={{ zIndex: 1000 }}*/}
+        {/*    >*/}
+        {/*      {({ TransitionProps, placement }) => (*/}
+        {/*        <Grow*/}
+        {/*          {...TransitionProps}*/}
+        {/*          style={{*/}
+        {/*            transformOrigin:*/}
+        {/*              placement === 'bottom' ? 'center top' : 'center bottom',*/}
+        {/*          }}*/}
+        {/*        >*/}
+        {/*          <Paper style={{ marginTop: '10px' }}>*/}
+        {/*            <ClickAwayListener onClickAway={handleClose}>*/}
+        {/*              <MenuList*/}
+        {/*                autoFocusItem={open}*/}
+        {/*                id="menu-list-grow"*/}
+        {/*                onKeyDown={handleListKeyDown}*/}
+        {/*              >*/}
+        {/*                <StyledMenuItem onClick={handleClose}>*/}
+        {/*                  <Link*/}
+        {/*                    href="/about"*/}
+        {/*                    passHref*/}
+        {/*                    onClick={() => {*/}
+        {/*                      logEvent('Link', 'About', 'Top Nav');*/}
+        {/*                    }}*/}
+        {/*                  >*/}
+        {/*                    <a>About Good Party</a>*/}
+        {/*                  </Link>*/}
+        {/*                </StyledMenuItem>*/}
+        {/*                <StyledMenuItem onClick={handleClose}>*/}
+        {/*                  <Link*/}
+        {/*                    href={`${*/}
+        {/*                      router.asPath*/}
+        {/*                    }?article=1ic6T6fhH0jZLNvX5aZkDe`}*/}
+        {/*                    passHref*/}
+        {/*                    onClick={() => {*/}
+        {/*                      logEvent(*/}
+        {/*                        'Link',*/}
+        {/*                        'How crowd-voting works',*/}
+        {/*                        'Top Nav',*/}
+        {/*                      );*/}
+        {/*                    }}*/}
+        {/*                  >*/}
+        {/*                    <a>How crowd-voting works</a>*/}
+        {/*                  </Link>*/}
+        {/*                </StyledMenuItem>*/}
+        {/*                <StyledMenuItem onClick={handleClose}>*/}
+        {/*                  <Link*/}
+        {/*                    href="/candidates"*/}
+        {/*                    passHref*/}
+        {/*                    onClick={() => {*/}
+        {/*                      logEvent('Link', 'Candidates', 'Top Nav');*/}
+        {/*                    }}*/}
+        {/*                  >*/}
+        {/*                    <a>Meet the candidates</a>*/}
+        {/*                  </Link>*/}
+        {/*                </StyledMenuItem>*/}
+        {/*                <StyledMenuItem>*/}
+        {/*                  <Link*/}
+        {/*                    href="/good-practices"*/}
+        {/*                    passHref*/}
+        {/*                    onClick={() => {*/}
+        {/*                      logEvent('Link', 'Good-Practices', 'Top Nav');*/}
+        {/*                    }}*/}
+        {/*                  >*/}
+        {/*                    <a>Good practices</a>*/}
+        {/*                  </Link>*/}
+        {/*                </StyledMenuItem>*/}
+        {/*                <StyledMenuItem>*/}
+        {/*                  <Link*/}
+        {/*                    href="/faqs"*/}
+        {/*                    passHref*/}
+        {/*                    onClick={() => {*/}
+        {/*                      logEvent('Link', 'FAQs', 'Top Nav');*/}
+        {/*                    }}*/}
+        {/*                  >*/}
+        {/*                    <a>FAQs</a>*/}
+        {/*                  </Link>*/}
+        {/*                </StyledMenuItem>*/}
+        {/*                {!user && (*/}
+        {/*                  <StyledMenuItem onClick={handleClose}>*/}
+        {/*                    <Link*/}
+        {/*                      href="/register"*/}
+        {/*                      passHref*/}
+        {/*                      onClick={() => {*/}
+        {/*                        logEvent('Link', 'Sign up', 'Top Nav');*/}
+        {/*                      }}*/}
+        {/*                    >*/}
+        {/*                      <a>Sign up / Login</a>*/}
+        {/*                    </Link>*/}
+        {/*                  </StyledMenuItem>*/}
+        {/*                )}*/}
+        {/*              </MenuList>*/}
+        {/*            </ClickAwayListener>*/}
+        {/*          </Paper>*/}
+        {/*        </Grow>*/}
+        {/*      )}*/}
+        {/*    </Popper>*/}
+        {/*  </Grid>*/}
+        {/*  <Grid item xs={4} className="text-center">*/}
+        {/*    <Link*/}
+        {/*      href="/"*/}
+        {/*      passHref*/}
+        {/*      onClick={() => {*/}
+        {/*        logEvent('Link', 'Logo', 'Top Nav');*/}
+        {/*      }}*/}
+        {/*    >*/}
+        {/*      <a>*/}
+        {/*        {purpleNav ? (*/}
+        {/*          <Logo*/}
+        {/*            src="/images/new-logo-white.svg"*/}
+        {/*            data-cy="logo"*/}
+        {/*            width={173}*/}
+        {/*            height={20}*/}
+        {/*            alt="GOOD PARTY"*/}
+        {/*          />*/}
+        {/*        ) : (*/}
+        {/*          <Logo*/}
+        {/*            src="/images/new-logo.svg"*/}
+        {/*            data-cy="logo"*/}
+        {/*            width={173}*/}
+        {/*            height={20}*/}
+        {/*            alt="GOOD PARTY"*/}
+        {/*          />*/}
+        {/*        )}*/}
+        {/*      </a>*/}
+        {/*    </Link>*/}
+        {/*  </Grid>*/}
+        {/*  <Grid item xs={4}>*/}
+        {/*    <ShareWrapper>*/}
+        {/*      <Share onClick={handleShare} className={purpleNav && 'purple'}>*/}
+        {/*        {purpleNav ? (*/}
+        {/*          <img*/}
+        {/*            src="/images/icons/share-icon-white.svg"*/}
+        {/*            alt="Share"*/}
+        {/*            width={20}*/}
+        {/*            height={20}*/}
+        {/*          />*/}
+        {/*        ) : (*/}
+        {/*          <img*/}
+        {/*            src="/images/icons/share-icon.svg"*/}
+        {/*            alt="Share"*/}
+        {/*            width={20}*/}
+        {/*            height={20}*/}
+        {/*          />*/}
+        {/*        )}*/}
+        {/*        <span>SHARE</span>*/}
+        {/*      </Share>*/}
 
-              {user?.name && (
-                <Link
-                  href="/profile"
-                  passHref
-                  onClick={() => {
-                    logEvent('Link', 'Profile', 'Top Nav');
-                  }}
-                >
-                  <a>
-                    <AvatarWrapper>
-                      <UserAvatar user={user} />
-                    </AvatarWrapper>
-                  </a>
-                </Link>
-              )}
-            </ShareWrapper>
-          </Grid>
-        </Grid>
+        {/*      {user?.name && (*/}
+        {/*        <Link*/}
+        {/*          href="/profile"*/}
+        {/*          passHref*/}
+        {/*          onClick={() => {*/}
+        {/*            logEvent('Link', 'Profile', 'Top Nav');*/}
+        {/*          }}*/}
+        {/*        >*/}
+        {/*          <a>*/}
+        {/*            <AvatarWrapper>*/}
+        {/*              <UserAvatar user={user} />*/}
+        {/*            </AvatarWrapper>*/}
+        {/*          </a>*/}
+        {/*        </Link>*/}
+        {/*      )}*/}
+        {/*    </ShareWrapper>*/}
+        {/*  </Grid>*/}
+        {/*</Grid>*/}
       </ContentWrapper>
     </Wrapper>
   );
