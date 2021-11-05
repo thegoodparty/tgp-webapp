@@ -463,6 +463,26 @@ const api = {
         method: 'PUT',
         withAuth: true,
       },
+      list: {
+        // admin
+        url: `${base}candidate-issue/pending`,
+        method: 'GET',
+        withAuth: true,
+      },
+
+      accept: {
+        // admin
+        url: `${base}candidate-issue/accept`,
+        method: 'PUT',
+        withAuth: true,
+      },
+
+      reject: {
+        // admin
+        url: `${base}candidate-issue/reject`,
+        method: 'PUT',
+        withAuth: true,
+      },
     },
     ugc: {
       find: {

@@ -15,5 +15,5 @@ export default {
   LOAD_UGC_SUCCESS,
 
   ACCEPT_REQUEST,
-  REJECT_REQUEST
+  REJECT_REQUEST,
 };
