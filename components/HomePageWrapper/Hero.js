@@ -12,7 +12,7 @@ import { PurpleButton } from '../shared/buttons';
 const Wrapper = styled.div`
   padding: 80px 20px 0;
   min-height: 70vh;
-  background: url('https://assets.goodparty.org/homepage/top-section-bg.svg')
+  background: url('https://assets.goodparty.org/homepage/top-section-purple-bg.png')
     top center no-repeat;
   background-size: 100% 100%;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
