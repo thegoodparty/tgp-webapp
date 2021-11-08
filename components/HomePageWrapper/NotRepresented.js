@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import Image from 'next/image';
 
 const Wrapper = styled.div`
+  position: relative;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding-bottom: 48px;
@@ -45,6 +44,14 @@ const Blue = styled.span`
   font-weight: 600;
 `;
 
+const WalkImg = styled.img`
+  position: absolute;
+  width: 20%;
+  height: auto;
+  bottom: 80px;
+  right: 80px;
+`;
+
 const NotRepresented = () => {
   return (
     <Wrapper>
@@ -66,6 +73,7 @@ const NotRepresented = () => {
         <br />
         to mobilize and vote differently
       </MixText>
+      <WalkImg src="https://assets.goodparty.org/homepage/walk-social.svg" />
     </Wrapper>
   );
 };

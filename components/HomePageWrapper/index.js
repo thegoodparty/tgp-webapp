@@ -4,12 +4,22 @@ import styled from 'styled-components';
 import PageWrapper from 'components/shared/PageWrapper';
 import Hero from './Hero';
 import NotRepresented from './NotRepresented';
+import Testimonials from './Testimonials';
+import GoodPartyIs from './GoodPartyIs';
+import HowWorks from './HowWorks';
+import GoodCertified from './GoodCertified';
+import FeaturedCampaings from './FeaturedCampaigns';
 
 const HomePageWrapper = ({ homepageCandidates }) => {
   const sections = [
     { component: <Hero />, key: 'hero' },
     { component: <NotRepresented />, key: 'not-rep' },
-    ];
+    { component: <Testimonials />, key: 'testimonials' },
+    { component: <GoodPartyIs />, key: 'good-party-is' },
+    { component: <HowWorks />, key: 'how-works' },
+    { component: <GoodCertified />, key: 'good-certified' },
+    { component: <FeaturedCampaings />, key: 'featured' },
+  ];
 
   return (
     <PageWrapper isFullWidth>
