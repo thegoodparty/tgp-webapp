@@ -1,5 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Grid from '@material-ui/core/Grid';
+import { PurpleButton } from '../shared/buttons';
+import CandidateMiniCard from './CandidateMiniCard';
 
 const Wrapper = styled.div`
   position: relative;
@@ -29,18 +33,59 @@ const TextWrapper = styled.div`
   justify-content: center;
 `;
 
-const FeaturedCampaings = () => {
+const CandidatesWrapper = styled.div`
+  padding: 0 48px 120px;
+  position: relative;
+  top: -120px;
+  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  margin: 0 auto;
+`;
+
+const SeeMoreWrapper = styled.div`
+  width: 90%;
+  max-width: 300px;
+  margin: 24px auto 0;
+`;
+
+const FeaturedCampaigns = ({ homepageCandidates }) => {
   return (
-    <Wrapper>
-      <img
-        src="https://assets.goodparty.org/homepage/campaign-bg.svg"
-        className="hidden"
-      />
-      <TextWrapper> Featured Campaings</TextWrapper>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <img
+          src="https://assets.goodparty.org/homepage/campaign-bg.svg"
+          className="hidden"
+        />
+        <TextWrapper> Featured Campaigns</TextWrapper>
+      </Wrapper>
+      <CandidatesWrapper>
+        <Grid container spacing={3}>
+          {homepageCandidates.map(candidate => (
+            <>
+              <Grid xs={12} md={4} key={candidate.id}>
+                <CandidateMiniCard candidate={candidate} />
+              </Grid>
+              <Grid xs={12} md={4} key={candidate.id}>
+                <CandidateMiniCard candidate={candidate} />
+              </Grid>
+              <Grid xs={12} md={4} key={candidate.id}>
+                <CandidateMiniCard candidate={candidate} />
+              </Grid>
+            </>
+          ))}
+        </Grid>
+        <br />
+        <SeeMoreWrapper>
+          <PurpleButton fullWidth className="outline">
+            See More
+          </PurpleButton>
+        </SeeMoreWrapper>
+      </CandidatesWrapper>
+    </>
   );
 };
 
-FeaturedCampaings.propTypes = {};
+FeaturedCampaigns.propTypes = {
+  homepageCandidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+};
 
-export default FeaturedCampaings;
+export default FeaturedCampaigns;

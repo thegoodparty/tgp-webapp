@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import PageWrapper from 'components/shared/PageWrapper';
 import Hero from './Hero';
 import NotRepresented from './NotRepresented';
@@ -8,7 +8,7 @@ import Testimonials from './Testimonials';
 import GoodPartyIs from './GoodPartyIs';
 import HowWorks from './HowWorks';
 import GoodCertified from './GoodCertified';
-import FeaturedCampaings from './FeaturedCampaigns';
+import FeaturedCampaigns from './FeaturedCampaigns';
 
 const HomePageWrapper = ({ homepageCandidates }) => {
   const sections = [
@@ -18,7 +18,10 @@ const HomePageWrapper = ({ homepageCandidates }) => {
     { component: <GoodPartyIs />, key: 'good-party-is' },
     { component: <HowWorks />, key: 'how-works' },
     { component: <GoodCertified />, key: 'good-certified' },
-    { component: <FeaturedCampaings />, key: 'featured' },
+    {
+      component: <FeaturedCampaigns homepageCandidates={homepageCandidates} />,
+      key: 'featured',
+    },
   ];
 
   return (

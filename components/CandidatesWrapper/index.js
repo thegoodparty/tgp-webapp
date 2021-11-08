@@ -10,12 +10,12 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from '../shared/PageWrapper';
-import GoodCertifiedAreSection from '../HomePageWrapper/GoodCertifiedAreSection';
-import FeaturedCandidateSection from '../HomePageWrapper/CandidatesSection';
+import GoodCertifiedAreSection from '../HomePageWrapperOld/GoodCertifiedAreSection';
+import FeaturedCandidateSection from '../HomePageWrapperOld/CandidatesSection';
 import CandidatesSection from './CandidatesSection';
 import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
-import NominateButton from '../HomePageWrapper/NominateButton';
+import NominateButton from '../HomePageWrapperOld/NominateButton';
 
 const Content = styled.div`
   width: 100%;
