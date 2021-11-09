@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/Link';
 import CandidateAvatar from '../shared/CandidateCard/CandidateAvatar';
-import { partyResolver } from '../../helpers/electionsHelper';
+import { candidateRoute, partyResolver } from '../../helpers/electionsHelper';
 import { numberFormatter } from '../../helpers/numberHelper';
 import SupportersProgressBar from '../elections/SupportersProgressBar';
 import { achievementsHelper } from '../../helpers/achievementsHelper';
+import { PurpleButton } from '../shared/buttons';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -78,6 +80,12 @@ const Line = styled.div`
   z-index: 100;
 `;
 
+const ButtonWrapper = styled.div`
+  max-width: 200px;
+  text-align: center;
+  margin: 12px auto 0;
+`;
+
 const CandidateMiniCard = ({ candidate }) => {
   const {
     firstName,
@@ -136,6 +144,14 @@ const CandidateMiniCard = ({ candidate }) => {
         fullWidth
         showSuffix={false}
       />
+
+      <ButtonWrapper>
+        <Link href={candidateRoute(candidate)} passHref>
+          <a>
+            <PurpleButton fullWidth>See Campaign</PurpleButton>
+          </a>
+        </Link>
+      </ButtonWrapper>
     </Wrapper>
   );
 };

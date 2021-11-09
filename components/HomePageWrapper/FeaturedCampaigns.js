@@ -34,11 +34,10 @@ const TextWrapper = styled.div`
 `;
 
 const CandidatesWrapper = styled.div`
-  padding: 0 48px 120px;
+  padding: 0 48px;
   position: relative;
-  top: -120px;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
+  margin: -120px auto 0;
 `;
 
 const SeeMoreWrapper = styled.div`

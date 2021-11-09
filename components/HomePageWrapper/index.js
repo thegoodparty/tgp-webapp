@@ -9,6 +9,7 @@ import GoodPartyIs from './GoodPartyIs';
 import HowWorks from './HowWorks';
 import GoodCertified from './GoodCertified';
 import FeaturedCampaigns from './FeaturedCampaigns';
+import StayTuned from './StayTuned';
 
 const HomePageWrapper = ({ homepageCandidates }) => {
   const sections = [
@@ -22,6 +23,7 @@ const HomePageWrapper = ({ homepageCandidates }) => {
       component: <FeaturedCampaigns homepageCandidates={homepageCandidates} />,
       key: 'featured',
     },
+    { component: <StayTuned />, key: 'tuned' },
   ];
 
   return (

@@ -25,17 +25,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const InnerWrapper = styled(Body9)`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: auto auto;
-  padding: 8px;
-  color: ${({ theme }) => theme.colors.gray10};
-  text-align: center;
-  border: solid 1px ${({ theme }) => theme.colors.gray10};
-`;
 
 const GrayWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.gray3};
+  background-color: #3a3a48;;
   padding: 40px 16px;
 
   @media only screen and (min-width: ${({ theme }) =>

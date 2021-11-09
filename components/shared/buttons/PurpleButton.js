@@ -24,7 +24,7 @@ const StyledButton = styled(Button)`
       ${({ theme }) => theme.colors.purple};
     font-size: 1rem;
     &.outline {
-      background: ${({ theme }) => theme.colors.purple3};
+      background: #fff;
       border: 2px solid ${({ theme }) => theme.colors.purple};
       color: ${({ theme }) => theme.colors.purple};
       box-shadow: none;
@@ -39,7 +39,6 @@ const StyledButton = styled(Button)`
     &.Mui-disabled {
       background: ${({ theme }) => theme.colors.purple3};
       border: solid 2px #e0d4ea;
-
     }
     &.submit {
       padding: 12px 22px;

@@ -41,7 +41,7 @@ const CardContent = styled.div`
 const GoodCertified = () => {
   return (
     <Wrapper>
-      <img src="https://assets.goodparty.org/homepage/certified.svg" />
+      <img src="/images/homepage/certified.svg" />
       <Title>Good Certified candidates pledge to be:</Title>
       <Grid spacing={3} container>
         <Grid item xs={12} md={4}>
