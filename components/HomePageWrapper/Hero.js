@@ -10,43 +10,61 @@ import { numberFormatter } from '../../helpers/numberHelper';
 import { PurpleButton } from '../shared/buttons';
 
 const Wrapper = styled.div`
-  padding: 80px 20px 0;
+  padding: 20px 8px 0;
   min-height: 70vh;
-  background: url('https://assets.goodparty.org/homepage/top-section-purple-bg.png')
-    top center no-repeat;
-  background-size: 100% 100%;
+  background: url('/images/homepage/hero-bg-small.svg') center 35% no-repeat;
+  background-size: contain;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background: url('/images/homepage/top-section-purple-bg.png') top center
+      no-repeat;
+    background-size: 100% 100%;
+    padding: 80px 20px 0;
+    min-height: 70vh;
+  }
 `;
 
 const StyledH1 = styled(H1)`
   font-size: 30px;
   line-height: 36px;
   font-weight: 700;
+  text-align: center;
+  margin-bottom: 48px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
+    text-align: left;
     font-size: 42px;
     line-height: 48px;
+    margin-bottom: 0;
   }
 `;
 
-const StyledH2 = styled(H2)`
+const StyledH2 = styled.h2`
   color: #fff;
-  font-size: 30px;
+  font-size: 42px;
   line-height: 36px;
   font-weight: 700;
+  text-align: center;
+  margin: 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    font-size: 42px;
+    text-align: left;
     line-height: 48px;
   }
 
   .smaller {
     display: block;
-    font-size: 38px;
+    font-size: 28px;
     line-height: 33px;
     font-weight: 400;
     margin-top: 8px;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 38px;
+      line-height: 33px;
+    }
   }
 `;
 
@@ -58,7 +76,7 @@ const Relative = styled.div`
 const SoFarWrapper = styled.div`
   position: absolute;
   width: 100%;
-  height: 349px;
+  height: 100%;
   top: 0;
   left: 0;
   display: flex;
@@ -66,16 +84,38 @@ const SoFarWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   color: ${({ theme }) => theme.colors.blue};
-  font-size: 64px;
+  font-size: 40px;
   font-weight: 700;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 64px;
+  }
+`;
+
+const Heart = styled.img`
+  width: 80%;
+  height: auto;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    width: 424px;
+    height: 349px;
+  }
 `;
 
 const SoFarText = styled.div`
-  font-size: 38px;
+  font-size: 28px;
   font-style: italic;
   color: ${({ theme }) => theme.colors.purple};
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 38px;
+  }
 `;
 
+const ButtonWrapper = styled.div`
+  max-width: 424px;
+  margin: 0 auto;
+`;
 const Hero = ({ soFar = 1234567 }) => {
   return (
     <Wrapper>
@@ -97,11 +137,7 @@ const Hero = ({ soFar = 1234567 }) => {
         </Grid>
         <Grid item xs={12} md={6} className="text-center">
           <Relative>
-            <Image
-              src="https://assets.goodparty.org/homepage/blank-heart.svg"
-              width="424"
-              height="349"
-            />
+            <Heart src="/images/homepage/thick-heart.svg" />
             <SoFarWrapper>
               {numberFormatter(soFar)}
               <br />
@@ -109,21 +145,23 @@ const Hero = ({ soFar = 1234567 }) => {
             </SoFarWrapper>
           </Relative>
           <br />
-          <Link href="/register" passHref>
-            <a>
-              <PurpleButton style={{ width: '424px' }}>
-                <Image
-                  src="/images/white-heart.svg"
-                  style={{
-                    marginRight: '8px',
-                  }}
-                  width={24}
-                  height={18}
-                />
-                &nbsp; Count me in
-              </PurpleButton>
-            </a>
-          </Link>
+          <ButtonWrapper>
+            <Link href="/register" passHref>
+              <a>
+                <PurpleButton fullWidth>
+                  <Image
+                    src="/images/white-heart.svg"
+                    style={{
+                      marginRight: '8px',
+                    }}
+                    width={24}
+                    height={18}
+                  />
+                  &nbsp; Count me in
+                </PurpleButton>
+              </a>
+            </Link>
+          </ButtonWrapper>
         </Grid>
       </Grid>
     </Wrapper>
