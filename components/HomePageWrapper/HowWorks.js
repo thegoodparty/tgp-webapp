@@ -8,26 +8,64 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
+const TitleWrapper = styled.div`
+  background: url('/images/homepage/how-works-bg-small.svg') center center
+    no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 170px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background: none;
+    display: block;
+    min-height: unset;
+  }
+
+  .hidden {
+    opacity: 0;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      display: none;
+    }
+  }
+`;
+
 const Title = styled.h2`
-  background-color: #3a3a48;
-  padding: 24px;
-  margin: -24px 0 0;
+  margin: 0;
   color: #fff;
-  font-size: 36px;
+  font-size: 22px;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background-color: #3a3a48;
+    padding: 24px;
+    margin: -24px 0 0;
+    font-size: 36px;
+  }
 `;
 
 const P = styled.p`
-  font-size: 25px;
-  line-height: 38px;
+  font-size: 20px;
+  line-height: 28px;
   max-width: 720px;
   margin: 0 auto;
-  padding: 48px 12px;
+  padding: 48px 24px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 25px;
+    line-height: 38px;
+    padding: 48px 12px;
+  }
 `;
 
 const HowWorks = () => {
   return (
     <Wrapper>
-      <Title>How does it work?</Title>
+      <TitleWrapper>
+        <Title>How does it work?</Title>
+      </TitleWrapper>
       <P>
         We provide <strong>free crowd-voting tools</strong> to help Good
         Certified candidates run and win.
