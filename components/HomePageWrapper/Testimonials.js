@@ -1,22 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
+import Hidden from '@material-ui/core/Hidden';
 import { H2 } from '../shared/typogrophy';
 
 const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
-  padding: 48px 0;
+  padding: 48px 0 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 48px 0;
+  }
 `;
 
 const Padder = styled.div`
-  padding: 40px 80px 140px;
-  background-color: ${({ theme }) => theme.colors.grayF};
+  padding: 24px 20px;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 40px 80px 140px;
+    background-color: ${({ theme }) => theme.colors.grayF};
+  }
 `;
 
 const StyledH2 = styled(H2)`
-  font-size: 42px;
-  line-height: 58px;
+  font-size: 32px;
+  line-height: 38px;
   font-weight: 700;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 42px;
+    line-height: 58px;
+  }
 
   .large {
     margin-top: 40px;
@@ -27,17 +43,32 @@ const StyledH2 = styled(H2)`
 `;
 
 const Heart = styled.img`
-  width: 200px;
+  width: 120px;
   height: auto;
   margin-top: 40px;
+  z-index: 10;
+  position: relative;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    width: 200px;
+    height: auto;
+  }
 `;
 
 const GrayBg = styled.div`
   position: relative;
-  margin-top: -160px;
-  background: url('https://assets.goodparty.org/homepage/testimonial-bg.svg')
-    bottom center no-repeat;
-  background-size: contain;
+  background: url('/images/homepage/testimonial-bg-small.svg') bottom center
+    no-repeat;
+  background-size: 100% 100%;
+  margin-top: -120px;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background: url('/images/homepage/testimonial-bg.svg') bottom center
+      no-repeat;
+    background-size: contain;
+    margin-top: -160px;
+  }
 
   .hidden {
     opacity: 0;
@@ -46,49 +77,85 @@ const GrayBg = styled.div`
 
 const GrayText = styled.div`
   position: absolute;
-  top: 50%;
+  top: 40%;
   color: #fff;
-  left: 80px;
-  font-size: 36px;
+  text-align: center;
+  width: 100%;
+  font-size: 22px;
   font-weight: 700;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 36px;
+    left: 80px;
+    top: 50%;
+    text-align: left;
+    width: unset;
+  }
 `;
 
 const TestWrapper = styled.div`
   position: relative;
-  margin-top: -100px;
-  padding: 0 80px;
+  margin-top: -70px;
+  padding: 0 16px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 0 80px;
+    margin-top: -100px;
+  }
 `;
 
 const Test = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 32px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    align-items: center;
+  }
 
   img {
-    width: 160px;
+    width: 110px;
     border-radius: 50%;
     box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.15);
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      width: 160px;
+    }
   }
 `;
 
 const TestContent = styled.div`
-  margin-left: 36px;
-  font-size: 26px;
-  line-height: 32px;
+  margin-left: 24px;
+  font-size: 16px;
+  line-height: 22px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin-left: 36px;
+    font-size: 26px;
+    line-height: 32px;
+  }
 `;
 
 const Name = styled.div`
-  font-size: 25px;
+  font-size: 15px;
   color: ${({ theme }) => theme.colors.orange};
   font-weight: 500;
   margin-top: 8px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 25px;
+  }
 `;
 
 const Position = styled.div`
-  font-size: 18px;
+  font-size: 12px;
   color: ${({ theme }) => theme.colors.gray7};
   font-weight: 500;
   letter-spacing: 1px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 18px;
+  }
 `;
 
 const testimonials = [
@@ -117,10 +184,18 @@ const Testimonials = () => {
         <Heart src="/images/heart.svg" alt="admin menu" />
       </Padder>
       <GrayBg>
-        <img
-          src="https://assets.goodparty.org/homepage/testimonial-bg.svg"
-          className="full-image hidden"
-        />
+        <Hidden smDown>
+          <img
+            src="/images/homepage/testimonial-bg.svg"
+            className="full-image hidden"
+          />
+        </Hidden>
+        <Hidden mdUp>
+          <img
+            src="/images/homepage/testimonial-bg-small.svg"
+            className="full-image hidden"
+          />
+        </Hidden>
         <GrayText>Who’s Into it</GrayText>
       </GrayBg>
       <TestWrapper>
