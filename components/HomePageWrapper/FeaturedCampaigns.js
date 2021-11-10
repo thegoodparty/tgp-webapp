@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 import { PurpleButton } from '../shared/buttons';
 import CandidateMiniCard from './CandidateMiniCard';
 
@@ -9,10 +10,16 @@ const Wrapper = styled.div`
   position: relative;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 24px auto 0;
-  padding: 48px 0;
-  background: url('https://assets.goodparty.org/homepage/campaign-bg.svg')
-    center center no-repeat;
+  //padding: 48px 0;
+  background: url('/images/homepage/campaign-bg-small.svg') center center
+    no-repeat;
   background-size: contain;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background: url('/images/homepage/campaign-bg.svg') center center no-repeat;
+    padding: 48px 0;
+  }
 
   .hidden {
     opacity: 0;
@@ -25,19 +32,28 @@ const TextWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  font-size: 36px;
+  font-size: 22px;
   font-weight: 700;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 36px;
+  }
 `;
 
 const CandidatesWrapper = styled.div`
-  padding: 0 48px;
+  padding: 0 16px;
   position: relative;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: -120px auto 0;
+  margin: 36px auto;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin: -120px auto 0;
+    padding: 0 48px;
+  }
 `;
 
 const SeeMoreWrapper = styled.div`
@@ -50,10 +66,18 @@ const FeaturedCampaigns = ({ homepageCandidates }) => {
   return (
     <>
       <Wrapper>
-        <img
-          src="https://assets.goodparty.org/homepage/campaign-bg.svg"
-          className="hidden"
-        />
+        <Hidden smDown>
+          <img
+            src="/images/homepage/campaign-bg.svg"
+            className="hidden full-image"
+          />
+        </Hidden>
+        <Hidden mdUp>
+          <img
+            src="/images/homepage/campaign-bg-small.svg"
+            className="hidden full-image"
+          />
+        </Hidden>
         <TextWrapper> Featured Campaigns</TextWrapper>
       </Wrapper>
       <CandidatesWrapper>

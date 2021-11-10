@@ -7,14 +7,13 @@ import { PurpleButton } from '../shared/buttons';
 const Wrapper = styled.div`
   position: relative;
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-  //top: -120px;
+  margin: 24px auto 0;
   background: url('/images/homepage/homepage-footer.png') bottom center
     no-repeat;
   background-size: contain;
-
-  .hidden {
-    opacity: 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin-top: 0;
   }
 `;
 
@@ -22,23 +21,38 @@ const TextWrapper = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 70%;
   height: 100%;
   display: flex;
+  padding: 12px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h3`
-  font-size: 36px;
+  font-size: 22px;
   font-weight: 700;
   margin: 0;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 36px;
+  }
 `;
 
 const Subtitle = styled.div`
-  font-size: 26px;
+  font-size: 20px;
   margin: 16px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 26px;
+  }
 `;
 
 const InnerButton = styled.div`
@@ -49,11 +63,16 @@ const Img = styled.div`
   position: absolute;
   top: 0;
   right: 5%;
-  width: 20%;
+  width: 25%;
   height: 100%;
   background: url('/images/homepage/girl-comp.svg') center center no-repeat;
   background-size: contain;
   border: 0;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    width: 20%;
+  }
 `;
 
 const StayTuned = () => {

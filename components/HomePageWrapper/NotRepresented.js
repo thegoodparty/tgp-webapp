@@ -109,7 +109,7 @@ const NotRepresented = () => {
         (and aren’t organized, yet!)
       </MixText>
       <WalkSection>
-        <MixText style={{ marginTop: '48px', padding: '8px' }}>
+        <MixText style={{ marginTop: '48px' }}>
           <span className="larger">
             So we’re building free tools and a community
           </span>{' '}

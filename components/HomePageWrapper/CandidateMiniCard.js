@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   background-color: #efecf2;
   border-radius: 8px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 6px;
+  margin: 6px 6px 16px;
 
   .bar-bg {
     background-color: #fff; // progress bar bg
