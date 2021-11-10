@@ -12,9 +12,7 @@ const TitleWrapper = styled.div`
   background: url('/images/homepage/how-works-bg-small.svg') center center
     no-repeat;
   background-size: 100% 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   min-height: 170px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
@@ -36,9 +34,20 @@ const Title = styled.h2`
   margin: 0;
   color: #fff;
   font-size: 22px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
+    display: block;
+    position: static;
+    height: unset;
     background-color: #3a3a48;
     padding: 24px;
     margin: -24px 0 0;
@@ -65,6 +74,10 @@ const HowWorks = () => {
     <Wrapper>
       <TitleWrapper>
         <Title>How does it work?</Title>
+        <img
+          src="/images/homepage/how-works-bg-small.svg"
+          className="hidden full-image"
+        />
       </TitleWrapper>
       <P>
         We provide <strong>free crowd-voting tools</strong> to help Good

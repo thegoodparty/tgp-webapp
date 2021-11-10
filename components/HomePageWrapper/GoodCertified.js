@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Image from 'next/image';
-import { H2 } from '../shared/typogrophy';
 
 const Wrapper = styled.div`
   position: relative;
@@ -17,9 +15,55 @@ const Img = styled.img`
   margin-right: 10px;
 `;
 
+const CretifiedImg = styled.img`
+  position: relative;
+  z-index: 10;
+`;
+
+const TitleWrapper = styled.div`
+  position: relative;
+  background: url('/images/homepage/good-certified-bg-small.svg') center center
+    no-repeat;
+  background-size: 100% 100%;
+  margin-top: -100px;
+  margin-bottom: 24px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    background: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .hidden {
+    opacity: 0;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      display: none;
+    }
+  }
+`;
+
 const Title = styled.h2`
-  font-size: 36px;
+  font-size: 22px;
   margin: 24px 0;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 36px;
+    color: #000;
+    padding: 0;
+    position: static;
+    display: block;
+    height: unset;
+  }
 `;
 
 const Card = styled.div`
@@ -28,69 +72,94 @@ const Card = styled.div`
 `;
 
 const CardTitle = styled.h3`
-  font-size: 32px;
+  font-size: 22px;
   font-weight: 700;
   margin: 8px 0 12px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 32px;
+  }
+`;
+
+const CardsWrapper = styled.div`
+  padding: 0 16px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 0;
+  }
 `;
 
 const CardContent = styled.div`
   text-align: left;
-  font-size: 22px;
-  line-height: 38px;
+  font-size: 16px;
+  line-height: 26px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 22px;
+    line-height: 38px;
+  }
 `;
 const GoodCertified = () => {
   return (
     <Wrapper>
-      <img src="/images/homepage/certified.png" />
-      <Title>Good Certified candidates pledge to be:</Title>
-      <Grid spacing={3} container>
-        <Grid item xs={12} md={4}>
-          <Card>
-            <Img
-              src="images/icons/certification-badge.svg"
-              alt="tgp certified"
-              width={60}
-              height={60}
-            />
-            <CardContent>
-              <CardTitle>Independent</CardTitle>
-              They hold diverse beliefs across the political spectrum, but agree
-              Red and Blue are NOT the answer. They pledge not to pay dues or
-              fundraise for Democrats or Republicans.
-            </CardContent>
-          </Card>
+      <CretifiedImg src="/images/homepage/certified.png" />
+      <TitleWrapper>
+        <Title>Good Certified candidates pledge to be:</Title>
+        <img
+          src="/images/homepage/good-certified-bg-small.svg"
+          className="hidden full-image"
+        />
+      </TitleWrapper>
+      <CardsWrapper>
+        <Grid spacing={3} container>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <Img
+                src="images/icons/certification-badge.svg"
+                alt="tgp certified"
+                width={48}
+                height={48}
+              />
+              <CardContent>
+                <CardTitle>Independent</CardTitle>
+                They hold diverse beliefs across the political spectrum, but
+                agree Red and Blue are NOT the answer. They pledge not to pay
+                dues or fundraise for Democrats or Republicans.
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <Img
+                src="images/icons/certification-badge.svg"
+                alt="tgp certified"
+                width={48}
+                height={48}
+              />
+              <CardContent>
+                <CardTitle>People Powered</CardTitle>
+                They only accept donations from individuals – not from
+                corporations, unions, PACs, or other non-living entities.
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card>
+              <Img
+                src="images/icons/certification-badge.svg"
+                alt="tgp certified"
+                width={48}
+                height={48}
+              />
+              <CardContent>
+                <CardTitle>Anti-Corruption</CardTitle>
+                They openly share their public meeting calendars and advance the
+                Anti-Corruption Act
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Card>
-            <Img
-              src="images/icons/certification-badge.svg"
-              alt="tgp certified"
-              width={48}
-              height={48}
-            />
-            <CardContent>
-              <CardTitle>People Powered</CardTitle>
-              They only accept donations from individuals – not from
-              corporations, unions, PACs, or other non-living entities.
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card>
-            <Img
-              src="images/icons/certification-badge.svg"
-              alt="tgp certified"
-              width={60}
-              height={60}
-            />
-            <CardContent>
-              <CardTitle>Anti-Corruption</CardTitle>
-              They openly share their public meeting calendars and advance the
-              Anti-Corruption Act
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+      </CardsWrapper>
     </Wrapper>
   );
 };
