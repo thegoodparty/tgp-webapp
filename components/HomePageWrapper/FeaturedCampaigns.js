@@ -83,17 +83,9 @@ const FeaturedCampaigns = ({ homepageCandidates }) => {
       <CandidatesWrapper>
         <Grid container spacing={3}>
           {homepageCandidates.map(candidate => (
-            <>
-              <Grid xs={12} md={6} lg={4} key={candidate.id}>
-                <CandidateMiniCard candidate={candidate} />
-              </Grid>
-              <Grid xs={12} md={6} lg={4} key={candidate.id}>
-                <CandidateMiniCard candidate={candidate} />
-              </Grid>
-              <Grid xs={12} md={6} lg={4} key={candidate.id}>
-                <CandidateMiniCard candidate={candidate} />
-              </Grid>
-            </>
+            <Grid xs={12} md={6} lg={4} key={candidate.id}>
+              <CandidateMiniCard candidate={candidate} />
+            </Grid>
           ))}
         </Grid>
         <br />
