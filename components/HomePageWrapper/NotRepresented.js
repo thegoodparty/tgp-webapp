@@ -116,7 +116,7 @@ const NotRepresented = () => {
           <br />
           to mobilize and vote differently
         </MixText>
-        <WalkImg src="/images/homepage/walk-social.svg" />
+        <WalkImg src="/images/homepage/walk-social.png" />
       </WalkSection>
     </Wrapper>
   );
