@@ -15,7 +15,7 @@ const TitleWrapper = styled.div`
   position: relative;
   min-height: 170px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     background: none;
     display: block;
     min-height: unset;
@@ -24,7 +24,7 @@ const TitleWrapper = styled.div`
   .hidden {
     opacity: 0;
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.lg}) {
       display: none;
     }
   }
@@ -44,7 +44,7 @@ const Title = styled.h2`
   justify-content: center;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     display: block;
     position: static;
     height: unset;
@@ -62,7 +62,7 @@ const P = styled.p`
   margin: 0 auto;
   padding: 48px 24px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 25px;
     line-height: 38px;
     padding: 48px 12px;

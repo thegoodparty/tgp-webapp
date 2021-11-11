@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     background: url('/images/homepage/top-section-purple-bg.png') top center
       no-repeat;
     background-size: 100% 100%;
@@ -33,7 +33,7 @@ const StyledH1 = styled(H1)`
   text-align: center;
   margin-bottom: 48px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     text-align: left;
     font-size: 42px;
     line-height: 48px;
@@ -49,7 +49,7 @@ const StyledH2 = styled.h2`
   text-align: center;
   margin: 0;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     text-align: left;
     line-height: 48px;
   }
@@ -61,7 +61,7 @@ const StyledH2 = styled.h2`
     font-weight: 400;
     margin-top: 8px;
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.lg}) {
       font-size: 38px;
       line-height: 33px;
     }
@@ -87,7 +87,7 @@ const SoFarWrapper = styled.div`
   font-size: 40px;
   font-weight: 700;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 64px;
   }
 `;
@@ -96,7 +96,7 @@ const Heart = styled.img`
   width: 80%;
   height: auto;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     width: 424px;
     height: 349px;
   }
@@ -107,7 +107,7 @@ const SoFarText = styled.div`
   font-style: italic;
   color: ${({ theme }) => theme.colors.purple};
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 38px;
   }
 `;
@@ -130,12 +130,12 @@ const Hero = ({ soFar = 1234567 }) => {
             major parties
           </StyledH1>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} lg={6}>
           <StyledH2>
             Together<span className="smaller">we can change the game.</span>
           </StyledH2>
         </Grid>
-        <Grid item xs={12} md={6} className="text-center">
+        <Grid item xs={12} lg={6} className="text-center">
           <Relative>
             <Heart src="/images/homepage/thick-heart.svg" />
             <SoFarWrapper>

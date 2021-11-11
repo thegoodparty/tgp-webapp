@@ -14,7 +14,7 @@ const TopSection = styled.div`
   background-size: contain;
   margin-bottom: 48px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     height: 370px;
     background: url('/images/homepage/not-rep-bg.svg') bottom center no-repeat;
     background-size: contain;
@@ -27,7 +27,7 @@ const MixText = styled.div`
   padding: 20px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 25px;
     line-height: 38px;
     padding: 0 0 0 80px;
@@ -42,7 +42,7 @@ const MixText = styled.div`
   .mobile-break {
     display: block;
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.lg}) {
       display: inline;
     }
   }
@@ -53,7 +53,7 @@ const NotRepText = styled(MixText)`
   margin-top: 32px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     position: absolute;
     bottom: 10%;
     left: 80px;
@@ -75,7 +75,7 @@ const Blue = styled.span`
 const WalkSection = styled.div`
   display: flex;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     display: block;
   }
 `;
@@ -84,7 +84,7 @@ const WalkImg = styled.img`
   width: 50%;
   height: auto;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     position: absolute;
     width: 20%;
     height: auto;

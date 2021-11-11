@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     no-repeat;
   background-size: contain;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     margin-top: 0;
   }
 `;
@@ -30,7 +30,7 @@ const TextWrapper = styled.div`
   flex-direction: column;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     width: 100%;
   }
 `;
@@ -41,7 +41,7 @@ const Title = styled.h3`
   margin: 0;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 36px;
   }
 `;
@@ -50,7 +50,7 @@ const Subtitle = styled.div`
   font-size: 20px;
   margin: 16px 0;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 26px;
   }
 `;
@@ -70,7 +70,7 @@ const Img = styled.div`
   border: 0;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     width: 20%;
   }
 `;

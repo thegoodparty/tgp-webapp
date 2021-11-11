@@ -8,16 +8,17 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding: 48px 0 0;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     padding: 48px 0;
   }
 `;
 
 const Padder = styled.div`
   padding: 24px 20px;
+  position: relative;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     padding: 40px 80px 140px;
     background-color: ${({ theme }) => theme.colors.grayF};
   }
@@ -29,7 +30,7 @@ const StyledH2 = styled(H2)`
   font-weight: 700;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 42px;
     line-height: 58px;
   }
@@ -49,7 +50,7 @@ const Heart = styled.img`
   z-index: 10;
   position: relative;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     width: 200px;
     height: auto;
   }
@@ -57,22 +58,7 @@ const Heart = styled.img`
 
 const GrayBg = styled.div`
   position: relative;
-  background: url('/images/homepage/testimonial-bg-small.svg') bottom center
-    no-repeat;
-  background-size: 100% 100%;
   margin-top: -120px;
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    background: url('/images/homepage/testimonial-bg.svg') bottom center
-      no-repeat;
-    background-size: contain;
-    margin-top: -160px;
-  }
-
-  .hidden {
-    opacity: 0;
-  }
 `;
 
 const GrayText = styled.div`
@@ -84,7 +70,7 @@ const GrayText = styled.div`
   font-size: 22px;
   font-weight: 700;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 36px;
     left: 80px;
     top: 50%;
@@ -98,7 +84,7 @@ const TestWrapper = styled.div`
   margin-top: -70px;
   padding: 0 16px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     padding: 0 80px;
     margin-top: -100px;
   }
@@ -109,7 +95,7 @@ const Test = styled.div`
   align-items: flex-start;
   margin-bottom: 32px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     align-items: center;
   }
 
@@ -118,7 +104,7 @@ const Test = styled.div`
     border-radius: 50%;
     box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.15);
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.lg}) {
       width: 160px;
     }
   }
@@ -129,7 +115,7 @@ const TestContent = styled.div`
   font-size: 16px;
   line-height: 22px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     margin-left: 36px;
     font-size: 26px;
     line-height: 32px;
@@ -142,7 +128,7 @@ const Name = styled.div`
   font-weight: 500;
   margin-top: 8px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 25px;
   }
 `;
@@ -153,7 +139,7 @@ const Position = styled.div`
   font-weight: 500;
   letter-spacing: 1px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 18px;
   }
 `;
@@ -181,16 +167,16 @@ const Testimonials = () => {
         <StyledH2>
           Together we can change things for<span className="large">GOOD</span>
         </StyledH2>
-        <Heart src="/images/heart.svg" alt="admin menu" />
+        <Heart src="/images/heart.svg" alt="tgp logo" />
       </Padder>
       <GrayBg>
-        <Hidden smDown>
+        <Hidden mdDown>
           <img
             src="/images/homepage/testimonial-bg.svg"
             className="full-image hidden"
           />
         </Hidden>
-        <Hidden mdUp>
+        <Hidden lgUp>
           <img
             src="/images/homepage/testimonial-bg-small.svg"
             className="full-image hidden"

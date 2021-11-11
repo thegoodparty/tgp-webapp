@@ -28,7 +28,7 @@ const TitleWrapper = styled.div`
   margin-top: -100px;
   margin-bottom: 24px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     background: none;
     margin-top: 0;
     margin-bottom: 0;
@@ -36,7 +36,7 @@ const TitleWrapper = styled.div`
   .hidden {
     opacity: 0;
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.lg}) {
       display: none;
     }
   }
@@ -56,7 +56,7 @@ const Title = styled.h2`
   justify-content: center;
   padding: 20px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 36px;
     color: #000;
     padding: 0;
@@ -76,7 +76,7 @@ const CardTitle = styled.h3`
   font-weight: 700;
   margin: 8px 0 12px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 32px;
   }
 `;
@@ -84,7 +84,7 @@ const CardTitle = styled.h3`
 const CardsWrapper = styled.div`
   padding: 0 16px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     padding: 0;
   }
 `;
@@ -94,7 +94,7 @@ const CardContent = styled.div`
   font-size: 16px;
   line-height: 26px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 22px;
     line-height: 38px;
   }
@@ -112,7 +112,7 @@ const GoodCertified = () => {
       </TitleWrapper>
       <CardsWrapper>
         <Grid spacing={3} container>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} lg={4}>
             <Card>
               <Img
                 src="images/icons/certification-badge.svg"
@@ -128,7 +128,7 @@ const GoodCertified = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} lg={4}>
             <Card>
               <Img
                 src="images/icons/certification-badge.svg"
@@ -143,7 +143,7 @@ const GoodCertified = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} lg={4}>
             <Card>
               <Img
                 src="images/icons/certification-badge.svg"

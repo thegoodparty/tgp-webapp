@@ -9,14 +9,10 @@ const Wrapper = styled.div`
   padding: 48px 0;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     background: url('https://assets.goodparty.org/homepage/win-bg.png') bottom
       center no-repeat;
     background-size: contain;
-  }
-
-  .hidden {
-    opacity: 0;
   }
 `;
 
@@ -27,7 +23,7 @@ const TextWrapper = styled.div`
   line-height: 32px;
   padding: 0 8px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     text-align: left;
     margin-top: 0;
     position: absolute;
@@ -43,7 +39,7 @@ const TextWrapper = styled.div`
   .size26 {
     font-size: 20px;
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.lg}) {
       font-size: 26px;
     }
   }
@@ -54,7 +50,7 @@ const StyledH2 = styled.h2`
   font-size: 22px;
   font-weight: 700;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 36px;
   }
 `;
@@ -77,13 +73,13 @@ const Heart = styled.img`
 const GoodPartyIs = () => {
   return (
     <Wrapper>
-      <Hidden smDown>
+      <Hidden mdDown>
         <img
-          className="hidden full-image"
+          className="full-image"
           src="https://assets.goodparty.org/homepage/win-bg.png"
         />
       </Hidden>
-      <Hidden mdUp>
+      <Hidden lgUp>
         <img className="full-image" src="/images/homepage/win-small.png" />
       </Hidden>
       <TextWrapper>
@@ -95,7 +91,7 @@ const GoodPartyIs = () => {
           <br />
           <strong>For people</strong>, not the machine 🤖
         </p>
-        <Hidden mdUp>
+        <Hidden lgUp>
           <Heart src="/images/heart.svg" />
         </Hidden>
         <p className="size26">
