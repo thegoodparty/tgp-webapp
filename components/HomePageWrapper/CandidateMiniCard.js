@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Link from 'next/Link';
+import Link from 'next/link';
 import CandidateAvatar from '../shared/CandidateCard/CandidateAvatar';
 import { candidateRoute, partyResolver } from '../../helpers/electionsHelper';
 import { numberFormatter } from '../../helpers/numberHelper';
