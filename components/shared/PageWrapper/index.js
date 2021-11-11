@@ -11,13 +11,8 @@ import styled from 'styled-components';
 import Nav from 'containers/shared/Nav';
 import Wrapper from 'components/shared/Wrapper';
 import Footer from 'components/shared/Footer';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
 
 const MainWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.grayBg};
-  &.white {
-    background-color: #fff;
-  }
   &.purple {
     background-color: ${({ theme }) => theme.colors.purple3};
   }
@@ -31,25 +26,10 @@ const TopBannerWrapper = styled.div`
 
 const HomeWrapper = styled.div`
   width: 100%;
-  padding: 0 32px 0;
+  padding: 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.contentMax}) {
     padding: 0;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
-    padding-right: 18px;
-    padding-left: 18px;
-  }
-
-  &.purple-nav {
-    padding: 0;
-    background-color: ${({ theme }) => theme.colors.purple};
   }
 
   &.no-padding {
@@ -59,7 +39,6 @@ const HomeWrapper = styled.div`
 function PageWrapper({
   children,
   hideNav,
-  white,
   purple,
   wrapperStyles = {},
   style = {},
@@ -70,9 +49,7 @@ function PageWrapper({
 }) {
   const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
   let className = '';
-  if (white) {
-    className = 'white';
-  } else if (purple) {
+  if (purple) {
     className = 'purple';
   }
   return (
@@ -80,8 +57,8 @@ function PageWrapper({
       {!hideNav && <Nav purpleNav={purpleNav} />}
       {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
       <WrapperComp
-        white={white}
         purple={purple}
+        white
         style={wrapperStyles}
         noHeader={hideNav}
         className={`${purpleNav && 'purple-nav'} ${noPadding && 'no-padding '}`}
