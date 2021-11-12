@@ -116,7 +116,7 @@ const ButtonWrapper = styled.div`
   max-width: 424px;
   margin: 0 auto;
 `;
-const Hero = ({ soFar = 1234567 }) => {
+const Hero = ({ engagements = 134222 }) => {
   return (
     <Wrapper>
       <Grid container spacing={3} alignItems="center">
@@ -139,7 +139,7 @@ const Hero = ({ soFar = 1234567 }) => {
           <Relative>
             <Heart src="/images/homepage/thick-heart.svg" />
             <SoFarWrapper>
-              {numberFormatter(soFar)}
+              {numberFormatter(engagements)}
               <br />
               <SoFarText>so far!</SoFarText>
             </SoFarWrapper>
@@ -169,7 +169,7 @@ const Hero = ({ soFar = 1234567 }) => {
 };
 
 Hero.propTypes = {
-  soFar: PropTypes.number,
+  engagements: PropTypes.number,
 };
 
 export default Hero;

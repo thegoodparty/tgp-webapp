@@ -11,9 +11,9 @@ import GoodCertified from './GoodCertified';
 import FeaturedCampaigns from './FeaturedCampaigns';
 import StayTuned from './StayTuned';
 
-const HomePageWrapper = ({ homepageCandidates }) => {
+const HomePageWrapper = ({ homepageCandidates, engagements }) => {
   const sections = [
-    { component: <Hero />, key: 'hero' },
+    { component: <Hero engagements={engagements} />, key: 'hero' },
     { component: <NotRepresented />, key: 'not-rep' },
     { component: <Testimonials />, key: 'testimonials' },
     { component: <GoodPartyIs />, key: 'good-party-is' },
