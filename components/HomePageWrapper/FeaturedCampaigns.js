@@ -53,7 +53,7 @@ const CandidatesWrapper = styled.div`
   margin: 36px auto;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin: -120px auto 0;
+    margin: -160px auto 0;
     padding: 0 48px;
   }
 `;

@@ -58,7 +58,7 @@ const Heart = styled.img`
 
 const GrayBg = styled.div`
   position: relative;
-  margin-top: -120px;
+  margin-top: -160px;
 `;
 
 const GrayText = styled.div`
