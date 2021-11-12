@@ -68,7 +68,6 @@ const Title = styled.h2`
 
 const Card = styled.div`
   display: flex;
-  justify-content: center;
 `;
 
 const CardTitle = styled.h3`

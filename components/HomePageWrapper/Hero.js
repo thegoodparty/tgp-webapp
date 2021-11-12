@@ -87,7 +87,7 @@ const SoFarWrapper = styled.div`
   font-size: 40px;
   font-weight: 700;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.md}) {
     font-size: 64px;
   }
 `;
@@ -107,7 +107,7 @@ const SoFarText = styled.div`
   font-style: italic;
   color: ${({ theme }) => theme.colors.purple};
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.md}) {
     font-size: 38px;
   }
 `;

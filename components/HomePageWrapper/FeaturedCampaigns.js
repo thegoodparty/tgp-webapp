@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
+import Link from 'next/link';
+
 import { PurpleButton } from '../shared/buttons';
 import CandidateMiniCard from './CandidateMiniCard';
 
@@ -90,9 +92,13 @@ const FeaturedCampaigns = ({ homepageCandidates }) => {
         </Grid>
         <br />
         <SeeMoreWrapper>
-          <PurpleButton fullWidth className="outline">
-            See More
-          </PurpleButton>
+          <Link href="/candidates" passHref>
+            <a>
+              <PurpleButton fullWidth className="outline">
+                See More
+              </PurpleButton>
+            </a>
+          </Link>
         </SeeMoreWrapper>
       </CandidatesWrapper>
     </>

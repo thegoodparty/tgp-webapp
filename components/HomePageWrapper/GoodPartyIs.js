@@ -16,6 +16,12 @@ const Wrapper = styled.div`
   }
 `;
 
+const Img = styled.img`
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
+`;
+
 const TextWrapper = styled.div`
   text-align: center;
   margin-top: 24px;
@@ -80,7 +86,7 @@ const GoodPartyIs = () => {
         />
       </Hidden>
       <Hidden lgUp>
-        <img className="full-image" src="/images/homepage/win-small.png" />
+        <Img className="full-image" src="/images/homepage/win-small.png" />
       </Hidden>
       <TextWrapper>
         <StyledH2>Good Party is...</StyledH2>

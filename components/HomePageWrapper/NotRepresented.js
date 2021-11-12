@@ -83,6 +83,7 @@ const WalkSection = styled.div`
 const WalkImg = styled.img`
   width: 50%;
   height: auto;
+  max-width: 280px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     position: absolute;
@@ -90,6 +91,7 @@ const WalkImg = styled.img`
     height: auto;
     bottom: 80px;
     right: 80px;
+    max-width: unset;
   }
 `;
 
