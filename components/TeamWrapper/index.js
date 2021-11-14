@@ -6,15 +6,13 @@
 
 import React from 'react';
 import PageWrapper from '../shared/PageWrapper';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
-import { Body, Body13, H1, H2 } from '../shared/typogrophy';
+import { H1, H2 } from '../shared/typogrophy';
 import TeamSection from './TeamSection';
-import contentfulHelper, {
-  CmsContentWrapper,
-} from '../../helpers/contentfulHelper';
+import VolunteersSection from './VolunteersSection';
 
 const HeroPurple = styled.div`
   background: linear-gradient(
@@ -56,7 +54,7 @@ const StyledH1 = styled(H1)`
 `;
 
 const Content = styled(MaxContent)`
-  padding: 48px 0;
+  padding: 48px 12px;
   color: ${({ theme }) => theme.colors.gray2};
   font-size: 16px;
   line-height: 25px;
@@ -83,21 +81,7 @@ const StyledH2 = styled(H2)`
   }
 `;
 
-const Goal = styled(Body)`
-  margin-top: 24px;
-  color: ${({ theme }) => theme.colors.gray2};
-  line-height: 24px;
-  font-size: 18px;
-`;
-
-const StyledContentWrapper = styled(CmsContentWrapper)`
-  margin-top: 0;
-  p:first-child {
-    margin-top: 0;
-  }
-`;
-
-function TeamWrapper({ content }) {
+function TeamWrapper() {
   return (
     <PageWrapper isFullWidth white noPadding>
       <HeroPurple>
@@ -108,7 +92,7 @@ function TeamWrapper({ content }) {
                 <img src="images/team/team-heart.svg" />
               </Grid>
               <Grid item xs={12} md={6}>
-                <StyledH1>{content.title}</StyledH1>
+                <StyledH1>Meet the Good Party Team</StyledH1>
               </Grid>
             </ReverseGrid>
           </MaxContent>
@@ -117,27 +101,26 @@ function TeamWrapper({ content }) {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>{content.leftTitle}</StyledH2>
-            <Goal>
-              {content.leftSubtitle}
-              <br />
-              {content.leftSubtitleLine2}
-            </Goal>
+            <StyledH2>Team</StyledH2>
           </Grid>
           <Grid item xs={12} md={8}>
-            <StyledContentWrapper>
-              {contentfulHelper(content.mainContent)}
-            </StyledContentWrapper>
+            Good Party’s core team are the people working full-time, part-time,
+            or as dedicated volunteer contributors on our mission of making
+            people matter more than money in our democracy.
+            <br />
+            <br />
+            If you agree that fixing democracy so it creates rules that work for
+            people, not for money, is the problem that must be solved to make
+            all other problems solvable, please consider joining us!
           </Grid>
         </Grid>
       </Content>
       <TeamSection />
+      <VolunteersSection />
     </PageWrapper>
   );
 }
 
-TeamWrapper.propTypes = {
-  content: PropTypes.object,
-};
+TeamWrapper.propTypes = {};
 
 export default TeamWrapper;
