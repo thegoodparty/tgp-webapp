@@ -44,10 +44,18 @@ const Member = styled.div`
   margin-bottom: 24px;
   padding: 8px;
 
-  &:hover,
   &.selected {
     .member-inner {
       transform: rotateY(180deg);
+    }
+  }
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    &:hover {
+      .member-inner {
+        transform: rotateY(180deg);
+      }
     }
   }
 
@@ -98,7 +106,7 @@ const team = [
     perspective:
       '(AI + Robotics) x Moore’s Law, means that with the right rules, material concerns (food, shelter, health, safety) can all be sustainably provided for everyone!',
     party:
-      'I camp at YOUniversal at Burning Man;, come by for exotic desert treats and artisan elixirs.',
+      'I camp at YOUniversal at Burning Man; come by for exotic desert treats and artisan elixirs.',
     partyRole: 'Burner',
     partyPerspective:
       'Immortal until proven otherwise; I love people and create things!',
@@ -194,6 +202,7 @@ function TeamSection() {
   const [selected, setSelected] = useState(false);
 
   const handleSelected = index => {
+    console.log(index, selected);
     if (selected === index) {
       setSelected(false);
     } else {
