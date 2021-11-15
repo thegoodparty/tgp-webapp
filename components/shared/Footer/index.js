@@ -10,24 +10,12 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { Body9, Body12 } from '../typogrophy';
-
-const Wrapper = styled.div`
-  background-color: #fff;
-  padding: 16px;
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    margin-bottom: 0;
-  }
-`;
-
+import { Body12 } from '../typogrophy';
 
 const GrayWrapper = styled.div`
-  background-color: #3a3a48;;
+  background-color: #3a3a48;
   padding: 40px 16px;
 
   @media only screen and (min-width: ${({ theme }) =>
@@ -59,7 +47,6 @@ const ColumnHeader = styled.div`
   margin-bottom: 30px;
   font-weight: 500;
   font-size: 14px;
-  font-weight: 500;
   line-height: 20px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
@@ -174,7 +161,7 @@ function Footer({ isCreators = false }) {
             <Grid item xs={12} md={4}>
               <Column data-cy="footer-team">
                 <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
-                <Link href="/faqs" passHref>
+                <Link href="/team" passHref>
                   <WhiteLink>Meet our Good Party People</WhiteLink>
                 </Link>
                 Want to join the Good Party? We are always looking for good
