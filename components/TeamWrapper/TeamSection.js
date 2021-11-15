@@ -187,7 +187,7 @@ const team = [
   {
     name: 'Colton Hess ',
     role: 'Content Strategist',
-    link: '#',
+    link: 'https://www.tokthevote.com/',
     img: 'https://assets.goodparty.org/team/colton-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/colton-party.jpg',
     good: 'Let’s dare to build the future together.',
@@ -213,8 +213,6 @@ function TeamSection() {
   return (
     <Wrapper>
       <MaxContent>
-        <StyledH2 className="text-center">Core team</StyledH2>
-        <br />
         <Members>
           <Grid spacing={2} container>
             {team.map((member, index) => (

@@ -164,7 +164,7 @@ function Footer({ isCreators = false }) {
                 <Link href="/team" passHref>
                   <WhiteLink>Meet our Good Party People</WhiteLink>
                 </Link>
-                Want to join the Good Party? We are always looking for good
+                Want to join Good Party? We are always looking for good
                 people to collaborate with!
                 <div>
                   <a

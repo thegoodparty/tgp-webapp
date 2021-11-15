@@ -92,28 +92,21 @@ function TeamWrapper() {
                 <img src="images/team/team-heart.svg" />
               </Grid>
               <Grid item xs={12} md={6}>
-                <StyledH1>Meet the Good Party Team</StyledH1>
+                <StyledH1>Meet the team</StyledH1>
               </Grid>
             </ReverseGrid>
           </MaxContent>
         </Hero>
       </HeroPurple>
       <Content>
-        <Grid spacing={2} container>
-          <Grid item xs={12} md={4}>
-            <StyledH2>Team</StyledH2>
-          </Grid>
-          <Grid item xs={12} md={8}>
-            Good Party’s core team are the people working full-time, part-time,
-            or as dedicated volunteer contributors on our mission of making
-            people matter more than money in our democracy.
-            <br />
-            <br />
-            If you agree that fixing democracy so it creates rules that work for
-            people, not for money, is the problem that must be solved to make
-            all other problems solvable, please consider joining us!
-          </Grid>
-        </Grid>
+        Good Party’s core team are the people working full-time, part-time, or
+        as dedicated volunteer contributors on our mission of making people
+        matter more than money in our democracy.
+        <br />
+        <br />
+        If you agree that fixing democracy so it creates rules that work for
+        people, not for money, is the problem that must be solved to make all
+        other problems solvable, please consider joining us!
       </Content>
       <TeamSection />
       <VolunteersSection />
