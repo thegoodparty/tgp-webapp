@@ -26,7 +26,7 @@ const HeroPurple = styled.div`
 
 const Hero = styled.div`
   color: #fff;
-  padding: 70px 35px;
+  padding: 10px 35px;
   background: url('images/team/mobile-shadow.svg') center top no-repeat;
   background-size: contain;
 
@@ -34,6 +34,7 @@ const Hero = styled.div`
       theme.breakpointsPixels.md}) {
     background: url('images/team/desktop-shadow.svg') right center no-repeat;
     background-size: contain;
+    padding: 70px 35px;
   }
 `;
 

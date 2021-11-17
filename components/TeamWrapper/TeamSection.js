@@ -10,8 +10,6 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 
-import { Body, Body13, Body11 } from '../shared/typogrophy';
-
 const MaxContent = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
@@ -96,52 +94,25 @@ const Back = styled.div`
   transform: rotateY(180deg);
 `;
 
+const Body = styled.div`
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+`;
+
+const Body13 = styled.div`
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+`;
+
+const Body11 = styled.div`
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+`;
+
 const team = [
-  {
-    name: 'Farhad Mohit',
-    role: 'Founder',
-    link: 'http://www.farhadmohit.com',
-    img: 'https://assets.goodparty.org/team/farhad-good.jpg',
-    flipImg: 'https://assets.goodparty.org/team/farhad-party.jpg',
-    good: 'Working on a Good Party for all!',
-    perspective:
-      '(AI + Robotics) x Moore’s Law, means that with the right rules, material concerns (food, shelter, health, safety) can all be sustainably provided for everyone!',
-    party:
-      'I camp at YOUniversal at Burning Man; come by for exotic desert treats and artisan elixirs.',
-    partyRole: 'Burner',
-    partyPerspective:
-      'Immortal until proven otherwise; I love people and create things!',
-  },
-
-  {
-    name: 'Victoria Mitchell',
-    role: 'Chief Mobilization Officer',
-    link: 'http://www.victoriapmitchell.com',
-    img: 'https://assets.goodparty.org/team/victoria-good.jpg',
-    flipImg: 'https://assets.goodparty.org/team/victoria-party.jpg',
-    good: 'Connection unlocks real change',
-    perspective:
-      'Lived in almost every region of the US...I’m a blend of many perspectives',
-    party: 'Will instigate a party with anyone',
-    partyRole: 'Responsibly Wild Wanderer',
-    partyPerspective:
-      'We can strive for the good, be free, and have plenty of fun',
-  },
-
-  {
-    name: 'Žak Tomich',
-    role: 'Chief Operating Officer',
-    link: 'https://www.linkedin.com/in/zaktomich/',
-    img: 'https://assets.goodparty.org/team/zak-good.jpg',
-    flipImg: 'https://assets.goodparty.org/team/zak-party.jpg',
-    good: 'Reinventing democracy one good day at a time.',
-    perspective:
-      'Dancing with red, made me feel blue; declared independence so you can too! ',
-    party: 'Always laughing, learning and with loved ones.',
-    partyRole: 'Dad Joker',
-    partyPerspective: 'It’s all invented!',
-  },
-
   {
     name: 'Tomer Almog',
     role: 'Chief Technology Officer',
@@ -153,29 +124,15 @@ const team = [
     party:
       'Father of 4, husband, pianist, former Olympic athlete (Taekwondo), surfer, painter, vegan.',
     partyRole: 'Inner Warrior',
-    partyPerspective: 'The greatest illusion is the illusion of separation',
+    partyPerspective: 'The greatest illusion is the illusion of separation.',
   },
-
-  {
-    name: 'Jed Wheeler',
-    role: 'Product Guy',
-    link: 'https://jedwheeler.com',
-    img: 'https://assets.goodparty.org/team/jed-good.jpg',
-    flipImg: 'https://assets.goodparty.org/team/jed-party.jpg',
-    good: 'Building tools for Democracy',
-    perspective: 'For the self-emancipation of humanity',
-    party: 'Activist, organizer, maker, gardener',
-    partyRole: 'Dad',
-    partyPerspective: 'I just want a habitable planet for my kids',
-  },
-
   {
     name: 'Jared Alper',
     role: 'Political Director',
     link: 'https://www.facebook.com/tomer.almog.7',
     img: 'https://assets.goodparty.org/team/jared-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/jared-party.jpg',
-    good: 'Give Independence a Try',
+    good: 'Give Independence a Try.',
     perspective:
       'Never doubt that a small group of thoughtful, committed, citizens can change the world.',
     party: 'Time is our most precious resource. Spend it well.',
@@ -196,6 +153,62 @@ const team = [
     party: 'All the best ideas are on the brink of crazy.',
     partyRole: 'Radical Generalist',
     partyPerspective: 'There’s so much to care deeply about in the world.',
+  },
+  {
+    name: 'Victoria Mitchell',
+    role: 'Chief Mobilization Officer',
+    link: 'http://www.victoriapmitchell.com',
+    img: 'https://assets.goodparty.org/team/victoria-good.jpg',
+    flipImg: 'https://assets.goodparty.org/team/victoria-party.jpg',
+    good: 'Connection unlocks real change.',
+    perspective:
+      'Lived in almost every region of the US...I’m a blend of many perspectives.',
+    party: 'Will instigate a party with anyone.',
+    partyRole: 'Responsibly Wild Wanderer',
+    partyPerspective:
+      'We can strive for the good, be free, and have plenty of fun.',
+  },
+  {
+    name: 'Farhad Mohit',
+    role: 'Founder',
+    link: 'http://www.farhadmohit.com',
+    img: 'https://assets.goodparty.org/team/farhad-good.jpg',
+    flipImg: 'https://assets.goodparty.org/team/farhad-party.jpg',
+    good: 'Working on a Good Party for all!',
+    perspective:
+      '(AI + Robotics) x Moore’s Law, means that with the right rules, material concerns (food, shelter, health, safety) can all be sustainably provided for everyone!',
+    party:
+      'I camp at YOUniversal at Burning Man; come by for exotic desert treats and artisan elixirs.',
+    partyRole: 'Burner',
+    partyPerspective:
+      'Immortal until proven otherwise; I love people and create things!',
+  },
+
+  {
+    name: 'Žak Tomich',
+    role: 'Chief Operating Officer',
+    link: 'https://www.linkedin.com/in/zaktomich/',
+    img: 'https://assets.goodparty.org/team/zak-good.jpg',
+    flipImg: 'https://assets.goodparty.org/team/zak-party.jpg',
+    good: 'Reinventing democracy one good day at a time.',
+    perspective:
+      'Dancing with red, made me feel blue; declared independence so you can too! ',
+    party: 'Always laughing and learning with loved ones.',
+    partyRole: 'Dad Joker',
+    partyPerspective: 'It’s all invented!',
+  },
+
+  {
+    name: 'Jed Wheeler',
+    role: 'Product Guy',
+    link: 'https://jedwheeler.com',
+    img: 'https://assets.goodparty.org/team/jed-good.jpg',
+    flipImg: 'https://assets.goodparty.org/team/jed-party.jpg',
+    good: 'Building tools for Democracy.',
+    perspective: 'For the self-emancipation of humanity.',
+    party: 'Activist, organizer, maker, gardener.',
+    partyRole: 'Dad',
+    partyPerspective: 'I just want a habitable planet for my kids.',
   },
 ];
 

@@ -34,7 +34,7 @@ export function CareersPage() {
   return (
     <div>
       <TgpHelmet
-        title="Work With us | GOOD PARTY"
+        title="Work with us | GOOD PARTY"
         description="Good Party is building amazing, open-source social tools that empower the creative community to mobilize digital natives and have millions of people vote differently."
       />
       <CareersWrapper />
