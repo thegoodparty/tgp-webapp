@@ -24,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
    color: #5C00C7;
   }
 
-  a: hover {
+  a:hover {
    color: #6E26DB;
   }
 
