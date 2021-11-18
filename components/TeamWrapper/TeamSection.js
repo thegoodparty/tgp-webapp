@@ -26,15 +26,6 @@ const Wrapper = styled.section`
 
 const Members = styled.div``;
 
-const StyledH2 = styled.h2`
-  font-size: 27px;
-  line-height: 35px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    font-size: 40px;
-    line-height: 48px;
-  }
-`;
 
 const Member = styled.div`
   cursor: pointer;

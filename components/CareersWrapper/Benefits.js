@@ -12,6 +12,9 @@ import { H2 } from '../shared/typogrophy';
 
 const Wrapper = styled.section`
   padding: 48px 10px;
+  li {
+    margin-bottom: 16px;
+  }
 `;
 
 const MaxContent = styled.div`
@@ -44,7 +47,7 @@ function Benefits() {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>Core Team Benefits</StyledH2>
+            <StyledH2>Why you should join</StyledH2>
           </Grid>
           <Grid item xs={12} md={8}>
             <ul>
@@ -56,6 +59,11 @@ function Benefits() {
               <li>
                 We’re a <strong>Public Benefit Corporation</strong> that
                 prioritizes social impact over profit
+              </li>
+              <li>
+                <strong>Fully funded</strong> for our mission. No stressing over
+                whether the next round of funding will come through. Focus on
+                making an impact. That’s what matters here.
               </li>
               <li>
                 Work where and how you like, on a{' '}
@@ -74,11 +82,6 @@ function Benefits() {
                 <strong>unlimited PTO</strong> (sick and vacation) policy. This
                 is a marathon, not a sprint. We believe a work-life balance is
                 needed to get there.
-              </li>
-              <li>
-                <strong>Fully funded</strong> for our mission. No stressing over
-                whether the next round of funding will come through. Focus on
-                making an impact. That’s what matters here.
               </li>
             </ul>
           </Grid>
