@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 import MenuItem from '@material-ui/core/MenuItem';
+import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
@@ -72,6 +73,7 @@ export const leftMenuItems = [
   },
   { icon: <CompareIcon />, label: 'Topics', link: '/admin/topics' },
   { icon: <ArticletIcon />, label: 'Articles', link: '/admin/articles' },
+  { icon: <NewReleasesIcon />, label: 'Releases', link: '/admin/releases' },
   { icon: <StatsIcon />, label: 'User Stats', link: '/admin/user-stats' },
 ];
 function AdminLeftMenu() {
