@@ -4,4 +4,8 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/CareersPage/DEFAULT_ACTION';
+const UPDATES_SIGNUP = 'app/CareersPage/UPDATES_SIGNUP';
+
+export default {
+  UPDATES_SIGNUP,
+};

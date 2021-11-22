@@ -4,10 +4,14 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
+function updateSignupAction() {
   return {
-    type: DEFAULT_ACTION,
+    type: types.UPDATES_SIGNUP,
   };
 }
+
+export default {
+  updateSignupAction,
+};

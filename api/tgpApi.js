@@ -546,6 +546,12 @@ const api = {
         withAuth: true,
       },
     },
+    jobUpdates: {
+      create: {
+        url: `${base}updates`,
+        method: 'POST',
+      },
+    },
   },
 };
 export default api;

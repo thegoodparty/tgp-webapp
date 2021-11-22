@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import PageWrapper from '../shared/PageWrapper';
@@ -14,6 +14,7 @@ import PageWrapper from '../shared/PageWrapper';
 import { H1, H2 } from '../shared/typogrophy';
 import LeverCareers from './LeverCareers';
 import Benefits from './Benefits';
+import UpdatesForm from './UpdatesForm';
 
 const HeroPurple = styled.div`
   background: linear-gradient(
@@ -83,7 +84,7 @@ const StyledH2 = styled(H2)`
   }
 `;
 
-function CareersWrapper() {
+function CareersWrapper({ notificationsCallback }) {
   return (
     <PageWrapper isFullWidth white noPadding>
       <HeroPurple>
@@ -134,10 +135,13 @@ function CareersWrapper() {
       </Content>
       <LeverCareers />
       <Benefits />
+      <UpdatesForm notificationsCallback={notificationsCallback} />
     </PageWrapper>
   );
 }
 
-CareersWrapper.propTypes = {};
+CareersWrapper.propTypes = {
+  notificationsCallback: PropTypes.func,
+};
 
 export default CareersWrapper;
