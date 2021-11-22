@@ -184,7 +184,7 @@ const DesktopHeader = ({
         </Link>
         <RightLinks>
           {links.map(link => (
-            <TopLink>
+            <TopLink key={link.href}>
               <Link
                 href={link.href}
                 passHref

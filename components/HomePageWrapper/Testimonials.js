@@ -69,6 +69,8 @@ const GrayText = styled.div`
   width: 100%;
   font-size: 22px;
   font-weight: 700;
+  z-index: 10;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     font-size: 36px;
@@ -180,6 +182,7 @@ const Testimonials = () => {
           <img
             src="/images/homepage/testimonial-bg-small.svg"
             className="full-image hidden"
+            style={{ marginTop: '40px' }}
           />
         </Hidden>
         <GrayText>Who’s Into it</GrayText>
