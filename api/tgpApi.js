@@ -263,6 +263,28 @@ const api = {
       method: 'POST',
       withAuth: true,
     },
+    releases: {
+      create: {
+        url: `${base}release`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}release`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}release`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}releases`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
     topics: {
       create: {
         url: `${base}compare-topic`,
