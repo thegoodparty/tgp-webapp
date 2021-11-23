@@ -34,7 +34,9 @@ function* acceptRequest({ id }) {
     };
     yield call(requestHelper, api, payload);
     yield put(actions.loadUgcsAction());
-    yield put(snackbarActions.showSnakbarAction('Saved (check candidate page)'));
+    yield put(
+      snackbarActions.showSnakbarAction('Saved (check candidate page)'),
+    );
   } catch (error) {
     console.log(error);
     yield put(
@@ -46,7 +48,7 @@ function* acceptRequest({ id }) {
 function* rejectRequest({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.candidateUser.ugc.accept;
+    const api = tgpApi.candidateUser.ugc.reject;
     const payload = {
       id,
     };

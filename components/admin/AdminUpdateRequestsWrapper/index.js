@@ -11,9 +11,9 @@ import Grid from '@material-ui/core/Grid';
 
 import { candidateRoute } from 'helpers/electionsHelper';
 
+import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { Body, H3 } from '../../shared/typogrophy';
-import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { PurpleButton } from '../../shared/buttons';
 import { dateUsHelper } from '../../../helpers/dateHelper';
 
@@ -40,10 +40,10 @@ function AdminUpdateRequestsWrapper({
   acceptRequestCallback,
   rejectRequestCallback,
 }) {
-  console.log('ugc', ugc);
   return (
     <AdminPageWrapper>
       <Wrapper>
+        <RequestTopTab />
         <Title>Update Requests from Candidates</Title>
         <br />
         <br />

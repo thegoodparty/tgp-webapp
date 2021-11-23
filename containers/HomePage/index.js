@@ -27,6 +27,7 @@ export function HomePage({ ssrState, subscribeEmailCallback }) {
 
   const childProps = {
     homepageCandidates: ssrState.homepageCandidates,
+    engagements: ssrState.engagements,
     subscribeEmailCallback,
   };
 

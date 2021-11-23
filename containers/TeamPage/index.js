@@ -20,20 +20,17 @@ import makeSelectTeamPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export function TeamPage({ ssrState }) {
+export function TeamPage() {
   useInjectReducer({ key: 'teamPage', reducer });
   useInjectSaga({ key: 'teamPage', saga });
 
-  const { content } = ssrState;
-
-  const childProps = {
-    content,
-  };
-
   return (
     <div>
-      <TgpHelmet title="Team | GOOD PARTY" description="TGP team" />
-      <TeamWrapper {...childProps} />
+      <TgpHelmet
+        title="Team | GOOD PARTY"
+        description="Good Party’s core team are the people working full-time, part-time, or as dedicated volunteer contributors on our mission of making people matter more than money in our democracy."
+      />
+      <TeamWrapper />
     </div>
   );
 }
