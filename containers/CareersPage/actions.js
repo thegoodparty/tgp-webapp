@@ -6,9 +6,11 @@
 
 import types from './constants';
 
-function updateSignupAction() {
+function updateSignupAction(email, notifications) {
   return {
     type: types.UPDATES_SIGNUP,
+    email,
+    notifications,
   };
 }
 
