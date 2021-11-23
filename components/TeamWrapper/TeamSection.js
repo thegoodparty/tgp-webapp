@@ -26,11 +26,10 @@ const Wrapper = styled.section`
 
 const Members = styled.div``;
 
-
 const Member = styled.div`
   cursor: pointer;
   perspective: 1000px;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   padding: 8px;
 
   &.selected {
@@ -40,7 +39,8 @@ const Member = styled.div`
   }
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
+    margin-bottom: 24px;
     &:hover {
       .member-inner {
         transform: rotateY(180deg);
@@ -207,7 +207,6 @@ function TeamSection() {
   const [selected, setSelected] = useState(false);
 
   const handleSelected = index => {
-    console.log(index, selected);
     if (selected === index) {
       setSelected(false);
     } else {
@@ -293,6 +292,17 @@ function TeamSection() {
                       height={500}
                       alt={member.name}
                     />
+                    <Body>
+                      <strong>
+                        <a
+                          href={member.link}
+                          target="_blank"
+                          rel="noopener noreferrer nofollow"
+                        >
+                          {member.name}
+                        </a>
+                      </strong>
+                    </Body>
                     <Body13>
                       <strong>{member.role}</strong>
                     </Body13>

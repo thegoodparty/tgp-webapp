@@ -27,8 +27,10 @@ const Content = styled(MaxContent)`
 `;
 
 const StyledH2 = styled(H2)`
+  font-size: 20px;
+  line-height: 28px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     font-size: 48px;
     line-height: 62px;
   }

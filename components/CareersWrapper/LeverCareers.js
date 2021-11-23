@@ -32,6 +32,8 @@ const Content = styled(MaxContent)`
 `;
 
 const StyledH2 = styled(H2)`
+  font-size: 20px;
+  line-height: 28px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     font-size: 48px;
@@ -45,7 +47,7 @@ function LeverCareers() {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>Job Opportunities</StyledH2>
+            <StyledH2>Jobs</StyledH2>
           </Grid>
           <Grid item xs={12} md={8}>
             <div id="lever-jobs-container" />

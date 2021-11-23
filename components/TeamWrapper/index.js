@@ -9,6 +9,7 @@ import PageWrapper from '../shared/PageWrapper';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
 
 import { H1, H2 } from '../shared/typogrophy';
 import TeamSection from './TeamSection';
@@ -27,7 +28,7 @@ const Hero = styled.div`
   color: #fff;
   padding: 10px 35px;
   background: url('images/team/mobile-shadow.svg') center top no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
@@ -74,13 +75,6 @@ const ReverseGrid = styled(Grid)`
   }
 `;
 
-const StyledH2 = styled(H2)`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    font-size: 48px;
-    line-height: 62px;
-  }
-`;
 
 function TeamWrapper() {
   return (
@@ -107,7 +101,10 @@ function TeamWrapper() {
         <br />
         If you agree that fixing democracy so it creates rules that work for
         people, not for money, is the problem that must be solved to make all
-        other problems solvable, please consider joining us!
+        other problems solvable, please consider{' '}
+        <Link href="/careers" passHref>
+          <a> joining us!</a>
+        </Link>
       </Content>
       <TeamSection />
       <VolunteersSection />

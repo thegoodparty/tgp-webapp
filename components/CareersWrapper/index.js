@@ -28,8 +28,8 @@ const HeroPurple = styled.div`
 const Hero = styled.div`
   color: #fff;
   padding: 10px 35px;
-  background: url('images/team/mobile-shadow.svg') center top no-repeat;
-  background-size: contain;
+  background: url('images/team/mobile-shadow.svg') left top no-repeat;
+  background-size: 100% 100%;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
