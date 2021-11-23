@@ -185,7 +185,7 @@ const Testimonials = () => {
             style={{ marginTop: '40px' }}
           />
         </Hidden>
-        <GrayText>Who’s Into it</GrayText>
+        <GrayText>Who’s into it?</GrayText>
       </GrayBg>
       <TestWrapper>
         {testimonials.map((test, index) => (

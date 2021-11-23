@@ -157,7 +157,7 @@ const Hero = ({ engagements = 134222 }) => {
                     width={24}
                     height={18}
                   />
-                  &nbsp; Count me in
+                  &nbsp; Count me in!
                 </PurpleButton>
               </a>
             </Link>

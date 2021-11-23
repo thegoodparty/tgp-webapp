@@ -108,7 +108,7 @@ const NotRepresented = () => {
         <span className="larger mobile-break">
           But we don’t know each other
         </span>{' '}
-        (and aren’t organized, yet!)
+        (and aren’t organized, <i>yet!</i>)
       </MixText>
       <WalkSection>
         <MixText style={{ marginTop: '48px' }}>
