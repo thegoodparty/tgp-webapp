@@ -164,15 +164,14 @@ function Footer({ isCreators = false }) {
                 <Link href="/team" passHref>
                   <WhiteLink>Meet our Good Party People</WhiteLink>
                 </Link>
-                Want to join Good Party? We are always looking for good
-                people to collaborate with!
+                Want to join Good Party? We are always looking for good people
+                to collaborate with!
                 <div>
-                  <a
-                    href="mailto:ask@goodparty.org?subject=I'm interested!&body=[Include Bio and area of interest]"
-                    data-cy="footer-link-join"
-                  >
-                    <Apply>APPLY TO JOIN</Apply>
-                  </a>
+                  <Link href="/work-with-us" passHref>
+                    <a data-cy="footer-link-join">
+                      <Apply>WORK WITH US</Apply>
+                    </a>
+                  </Link>
                 </div>
               </Column>
             </Grid>
