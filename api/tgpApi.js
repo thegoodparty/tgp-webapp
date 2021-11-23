@@ -546,11 +546,11 @@ const api = {
         withAuth: true,
       },
     },
-    jobUpdates: {
-      create: {
-        url: `${base}updates`,
-        method: 'POST',
-      },
+  },
+  jobUpdates: {
+    create: {
+      url: `${base}updates`,
+      method: 'POST',
     },
   },
 };
