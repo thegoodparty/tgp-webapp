@@ -12,7 +12,24 @@ import { H2 } from '../shared/typogrophy';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
-  padding: 48px 10px;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 48px 10px;
+  }
+
+  #lever-jobs-container {
+    .lever-team-title {
+      font-size: 1.4em;
+    }
+
+    .lever-job-title {
+      font-size: 1.3em;
+    }
+    .lever-job-tag {
+      display: none;
+    }
+  }
 `;
 
 const MaxContent = styled.div`
@@ -32,8 +49,8 @@ const Content = styled(MaxContent)`
 `;
 
 const StyledH2 = styled(H2)`
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 32px;
+  line-height: 38px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     font-size: 48px;
@@ -47,7 +64,7 @@ function LeverCareers() {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>Jobs</StyledH2>
+            <StyledH2>Openings</StyledH2>
           </Grid>
           <Grid item xs={12} md={8}>
             <div id="lever-jobs-container" />

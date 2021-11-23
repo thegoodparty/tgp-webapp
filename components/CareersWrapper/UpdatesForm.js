@@ -16,10 +16,9 @@ import { validateEmail } from '../../helpers/emailHelper';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
-  padding: 12px 4px;
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.md}) {
-  padding: 48px 10px;
+      theme.breakpointsPixels.md}) {
+    padding: 48px 10px;
   }
 `;
 
@@ -42,10 +41,15 @@ const Content = styled(MaxContent)`
 
 const StyledH2 = styled(H2)`
   margin-bottom: 24px;
+  margin-top: 24px;
+
+  font-size: 32px;
+  line-height: 38px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     font-size: 48px;
     line-height: 62px;
+    margin-top: 8px;
   }
 `;
 
@@ -99,7 +103,7 @@ function UpdatesForm({ notificationsCallback }) {
       <Content>
         <Form>
           <div className="text-center">
-            <strong>Nothing available that matches your skillet?</strong>
+            <strong>Nothing available that matches your skill set?</strong>
             <StyledH2>Sign up for future updates</StyledH2>
           </div>
 

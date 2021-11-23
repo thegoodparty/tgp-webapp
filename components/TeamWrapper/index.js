@@ -102,7 +102,7 @@ function TeamWrapper() {
         If you agree that fixing democracy so it creates rules that work for
         people, not for money, is the problem that must be solved to make all
         other problems solvable, please consider{' '}
-        <Link href="/careers" passHref>
+        <Link href="/work-with-us" passHref>
           <a> joining us!</a>
         </Link>
       </Content>

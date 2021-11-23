@@ -11,9 +11,12 @@ import styled from 'styled-components';
 import { H2 } from '../shared/typogrophy';
 
 const Wrapper = styled.section`
-  padding: 48px 10px;
   li {
     margin-bottom: 16px;
+  }
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.md}) {
+    padding: 48px 10px;
   }
 `;
 
@@ -34,6 +37,8 @@ const Content = styled(MaxContent)`
 `;
 
 const StyledH2 = styled(H2)`
+  font-size: 32px;
+  line-height: 38px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     font-size: 48px;
@@ -47,7 +52,7 @@ function Benefits() {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>Why you should join</StyledH2>
+            <StyledH2>Why You Should Join Us</StyledH2>
           </Grid>
           <Grid item xs={12} md={8}>
             <ul>

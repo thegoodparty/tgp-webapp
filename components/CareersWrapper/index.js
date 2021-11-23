@@ -9,6 +9,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
+
 import PageWrapper from '../shared/PageWrapper';
 
 import { H1, H2 } from '../shared/typogrophy';
@@ -77,6 +79,8 @@ const ReverseGrid = styled(Grid)`
 `;
 
 const StyledH2 = styled(H2)`
+  font-size: 32px;
+  line-height: 38px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     font-size: 48px;
@@ -107,24 +111,12 @@ function CareersWrapper({ notificationsCallback }) {
             <StyledH2>Who Are We?</StyledH2>
           </Grid>
           <Grid item xs={12} md={8}>
-            Good Party is building amazing, open-source social tools that
-            empower the creative community to mobilize digital natives and have
-            millions of people vote differently. Our free technology and growing
-            movement is focused on giving independent, grassroots candidates
-            from across the political spectrum a real chance of running and
-            winning elections, without the need for money. So, for the first
-            time in modern history, we can do better than just the lesser evil
-            of red or blue! Learn more about what we’re doing over here.
-            <br />
-            <br />
-            To make this happen, we need good people to join us in our mission
-            of making people matter more than money, and fixing politics for
-            good!
-            <br />
-            <br />
             Good Party is a fully-funded startup organized as a Public Benefit
-            Corporation (people and impact over revenues or profit). Our diverse
-            team is 100% remote and from all across the political spectrum and
+            Corporation (people and impact over revenues or profit). Our diverse{' '}
+            <Link href="/team" passHref>
+              <a>team</a>
+            </Link>{' '}
+            is 100% remote coming from all across the political spectrum and
             country. We work hard and care about each other’s well being.
             <br />
             <br />
