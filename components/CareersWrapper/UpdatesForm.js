@@ -16,7 +16,11 @@ import { validateEmail } from '../../helpers/emailHelper';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
+  padding: 12px 4px;
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.md}) {
   padding: 48px 10px;
+  }
 `;
 
 const MaxContent = styled.div`
@@ -25,13 +29,14 @@ const MaxContent = styled.div`
 `;
 
 const Content = styled(MaxContent)`
-  padding: 48px 12px;
+  padding: 12px 4px;
   color: ${({ theme }) => theme.colors.gray2};
   font-size: 16px;
   line-height: 25px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     font-size: 18px;
+    padding: 48px 12px;
   }
 `;
 
@@ -56,11 +61,11 @@ const Form = styled.form`
 const notifications = [
   {
     key: 'new-job-notifications',
-    label: 'I Would like to receive an email when new jobs are announced',
+    label: 'I would like to receive an email when new jobs are announced',
   },
   {
     key: 'updates-notifications',
-    label: 'I Would like to receive Good Party updates',
+    label: 'I would like to receive Good Party updates',
   },
 ];
 
