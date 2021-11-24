@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
+import { Body19 } from '../shared/typogrophy';
 
 const MaxContent = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
@@ -24,7 +25,13 @@ const Wrapper = styled.section`
   }
 `;
 
-const Members = styled.div``;
+const Members = styled.div`
+  &.flipped {
+    .member-inner {
+      transform: rotateY(180deg);
+    }
+  }
+`;
 
 const Member = styled.div`
   cursor: pointer;
@@ -103,24 +110,37 @@ const Body11 = styled.div`
   letter-spacing: 0.1px;
 `;
 
+const Tap = styled(Body19)`
+  color: ${({ theme }) => theme.colors.purple};
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
+const Name = styled(Body)`
+  color: ${({ theme }) => theme.colors.purple};
+  font-weight: 700;
+  margin-top: 8px
+`;
+
 const team = [
   {
     name: 'Tomer Almog',
     role: 'Chief Technology Officer',
-    link: 'https://www.facebook.com/tomer.almog.7',
     img: 'https://assets.goodparty.org/team/tomer-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/tomer-party.jpg',
     good: 'Building software for good.',
     perspective: 'Open source, non profit for the greater good!',
     party:
-      'Father of 4, husband, pianist, former Olympic athlete (Taekwondo), surfer, painter, vegan.',
-    partyRole: 'Inner Warrior',
+      'Father of 4, husband, pianist, former Olympic athlete (Taekwondo), surfer, painter, powered by plants.',
+    partyRole: 'Peaceful Warrior',
     partyPerspective: 'The greatest illusion is the illusion of separation.',
   },
   {
     name: 'Jared Alper',
     role: 'Political Director',
-    link: 'https://www.facebook.com/tomer.almog.7',
     img: 'https://assets.goodparty.org/team/jared-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/jared-party.jpg',
     good: 'Give Independence a Try.',
@@ -135,7 +155,6 @@ const team = [
   {
     name: 'Colton Hess ',
     role: 'Content Strategist',
-    link: 'https://www.tokthevote.com/',
     img: 'https://assets.goodparty.org/team/colton-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/colton-party.jpg',
     good: 'Let’s dare to build the future together.',
@@ -148,7 +167,6 @@ const team = [
   {
     name: 'Victoria Mitchell',
     role: 'Chief Mobilization Officer',
-    link: 'http://www.victoriapmitchell.com',
     img: 'https://assets.goodparty.org/team/victoria-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/victoria-party.jpg',
     good: 'Connection unlocks real change.',
@@ -162,7 +180,6 @@ const team = [
   {
     name: 'Farhad Mohit',
     role: 'Founder',
-    link: 'http://www.farhadmohit.com',
     img: 'https://assets.goodparty.org/team/farhad-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/farhad-party.jpg',
     good: 'Working on a Good Party for all!',
@@ -178,7 +195,6 @@ const team = [
   {
     name: 'Žak Tomich',
     role: 'Chief Operating Officer',
-    link: 'https://www.linkedin.com/in/zaktomich/',
     img: 'https://assets.goodparty.org/team/zak-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/zak-party.jpg',
     good: 'Reinventing democracy one good day at a time.',
@@ -192,7 +208,6 @@ const team = [
   {
     name: 'Jed Wheeler',
     role: 'Product Guy',
-    link: 'https://jedwheeler.com',
     img: 'https://assets.goodparty.org/team/jed-good.jpg',
     flipImg: 'https://assets.goodparty.org/team/jed-party.jpg',
     good: 'Building tools for Democracy.',
@@ -205,6 +220,7 @@ const team = [
 
 function TeamSection() {
   const [selected, setSelected] = useState(false);
+  const [flipAll, setFlipAll] = useState(false);
 
   const handleSelected = index => {
     if (selected === index) {
@@ -216,7 +232,10 @@ function TeamSection() {
   return (
     <Wrapper>
       <MaxContent>
-        <Members>
+        <Tap onClick={() => setFlipAll(!flipAll)}>
+          Tap to see our {flipAll ? 'Good' : 'Party'} Side!
+        </Tap>
+        <Members className={flipAll && 'flipped'}>
           <Grid spacing={2} container>
             {team.map((member, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -233,17 +252,7 @@ function TeamSection() {
                         width={500}
                         height={500}
                       />
-                      <Body>
-                        <strong>
-                          <a
-                            href={member.link}
-                            target="_blank"
-                            rel="noopener noreferrer nofollow"
-                          >
-                            {member.name}
-                          </a>
-                        </strong>
-                      </Body>
+                      <Name>{member.name}</Name>
                       <Body13>
                         <strong>{member.role}</strong>
                       </Body13>
@@ -262,17 +271,7 @@ function TeamSection() {
                         width={500}
                         height={500}
                       />
-                      <Body>
-                        <strong>
-                          <a
-                            href={member.link}
-                            target="_blank"
-                            rel="noopener noreferrer nofollow"
-                          >
-                            {member.name}
-                          </a>
-                        </strong>
-                      </Body>
+                      <Name>{member.name}</Name>
                       <Body13>
                         <strong>{member.partyRole}</strong>
                       </Body13>
@@ -292,17 +291,7 @@ function TeamSection() {
                       height={500}
                       alt={member.name}
                     />
-                    <Body>
-                      <strong>
-                        <a
-                          href={member.link}
-                          target="_blank"
-                          rel="noopener noreferrer nofollow"
-                        >
-                          {member.name}
-                        </a>
-                      </strong>
-                    </Body>
+                    <Name>{member.name}</Name>
                     <Body13>
                       <strong>{member.role}</strong>
                     </Body13>

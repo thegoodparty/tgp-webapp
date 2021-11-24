@@ -186,7 +186,7 @@ function Footer({ isCreators = false }) {
                         Privacy Policy
                       </WhiteLink>
                     </Link>{' '}
-                    &copy; 2006-2021 Good Party. All rights reserved.
+                    &copy; 2019-2021 Good Party. All rights reserved.
                   </Hidden>
                 </Column>
               </Grid>
@@ -258,7 +258,7 @@ function Footer({ isCreators = false }) {
                         Privacy Policy
                       </WhiteLink>
                     </Link>{' '}
-                    &copy; 2006-2021 Good Party. All rights reserved.
+                    &copy; 2019-2021 Good Party. All rights reserved.
                   </Hidden>
                 </Column>
               </Grid>
