@@ -169,7 +169,7 @@ function Footer({ isCreators = false }) {
                 <div>
                   <Link href="/work-with-us" passHref>
                     <a data-cy="footer-link-join">
-                      <Apply>WORK WITH US</Apply>
+                      <Apply> WORK WITH US </Apply>
                     </a>
                   </Link>
                 </div>
