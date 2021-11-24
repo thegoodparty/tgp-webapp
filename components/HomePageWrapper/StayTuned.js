@@ -6,7 +6,6 @@ import { PurpleButton } from '../shared/buttons';
 
 const Wrapper = styled.div`
   position: relative;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 24px auto 0;
   background: url('/images/homepage/homepage-footer.png') bottom center
     no-repeat;
