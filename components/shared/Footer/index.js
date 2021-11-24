@@ -162,7 +162,7 @@ function Footer({ isCreators = false }) {
               <Column data-cy="footer-team">
                 <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
                 <Link href="/team" passHref>
-                  <WhiteLink>Meet our Good Party People</WhiteLink>
+                  <WhiteLink>Meet the Team</WhiteLink>
                 </Link>
                 Want to join Good Party? We are always looking for good people
                 to collaborate with!
@@ -186,7 +186,7 @@ function Footer({ isCreators = false }) {
                         Privacy Policy
                       </WhiteLink>
                     </Link>{' '}
-                    &copy; 2006-2021 Good Party. All rights reserved.
+                    &copy; 2019-2021 Good Party. All rights reserved.
                   </Hidden>
                 </Column>
               </Grid>
@@ -258,7 +258,7 @@ function Footer({ isCreators = false }) {
                         Privacy Policy
                       </WhiteLink>
                     </Link>{' '}
-                    &copy; 2006-2021 Good Party. All rights reserved.
+                    &copy; 2019-2021 Good Party. All rights reserved.
                   </Hidden>
                 </Column>
               </Grid>

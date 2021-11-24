@@ -141,7 +141,7 @@ const Hero = ({ engagements = 134222 }) => {
             <SoFarWrapper>
               {numberFormatter(engagements)}
               <br />
-              <SoFarText>so far!</SoFarText>
+              <SoFarText>are with us!</SoFarText>
             </SoFarWrapper>
           </Relative>
           <br />
