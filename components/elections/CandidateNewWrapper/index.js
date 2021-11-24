@@ -77,7 +77,7 @@ function CandidateNewWrapper({
     removeSupportCallback(candidate.id);
   };
   return (
-    <PageWrapper isFullWidth purple>
+    <PageWrapper isFullWidth>
       <ContentWrapper>
         <HeaderWrapper>
           <H1>{candidate.headline}</H1>

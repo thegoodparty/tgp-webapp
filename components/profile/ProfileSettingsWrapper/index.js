@@ -21,7 +21,7 @@ function ProfileSettingsWrapper({
   uploadImageCallback,
 }) {
   return (
-    <PageWrapper purple>
+    <PageWrapper>
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12} md={7}>
           <TopSection

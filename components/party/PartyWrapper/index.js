@@ -50,7 +50,7 @@ const ItemText = styled(Body)``;
 
 const PartyWrapper = ({ pageContent, candidates }) => {
   return (
-    <PageWrapper purple isFullWidth>
+    <PageWrapper isFullWidth>
       <div style={{ padding: '0 20px' }}>
         <Content>
           <Inner>
