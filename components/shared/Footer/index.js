@@ -130,7 +130,7 @@ function Footer() {
             <Grid item xs={12} md={4}>
               <Column>
                 <Link href="/team" passHref>
-                  <WhiteLink>Meet the Team</WhiteLink>
+                  <WhiteLink>Meet the team</WhiteLink>
                 </Link>
                 <Link href={`${router.asPath}?share=true`} passHref>
                   <WhiteLink data-cy="footer-link-share">
