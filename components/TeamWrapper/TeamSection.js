@@ -25,13 +25,7 @@ const Wrapper = styled.section`
   }
 `;
 
-const Members = styled.div`
-  &.flipped {
-    .member-inner {
-      transform: rotateY(180deg);
-    }
-  }
-`;
+const Members = styled.div``;
 
 const Member = styled.div`
   cursor: pointer;
@@ -48,11 +42,6 @@ const Member = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     margin-bottom: 24px;
-    &:hover {
-      .member-inner {
-        transform: rotateY(180deg);
-      }
-    }
   }
 
   .hidden {
@@ -122,7 +111,7 @@ const Tap = styled(Body19)`
 const Name = styled(Body)`
   color: ${({ theme }) => theme.colors.purple};
   font-weight: 700;
-  margin-top: 8px
+  margin-top: 8px;
 `;
 
 const team = [
@@ -219,21 +208,29 @@ const team = [
 ];
 
 function TeamSection() {
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState({});
   const [flipAll, setFlipAll] = useState(false);
 
   const handleSelected = index => {
-    if (selected === index) {
-      setSelected(false);
-    } else {
-      setSelected(index);
-    }
+    setSelected({
+      ...selected,
+      [index]: !selected[index],
+    });
+  };
+
+  const handleFlipAll = () => {
+    const all = {};
+    team.forEach((member, index) => {
+      all[index] = !flipAll;
+    });
+    setSelected(all);
+    setFlipAll(!flipAll);
   };
   return (
     <Wrapper>
       <MaxContent>
-        <Tap onClick={() => setFlipAll(!flipAll)}>
-          Tap to see our {flipAll ? 'Good' : 'Party'} Side!
+        <Tap onClick={handleFlipAll}>
+          Tap to see our {flipAll ? 'Good' : 'Party'} side!
         </Tap>
         <Members className={flipAll && 'flipped'}>
           <Grid spacing={2} container>
@@ -241,7 +238,7 @@ function TeamSection() {
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                 <Member
                   onClick={() => handleSelected(index)}
-                  className={index === selected && 'selected'}
+                  className={selected[index] ? 'selected' : 'not-selected'}
                 >
                   <MemberInner className="member-inner">
                     <Front>
