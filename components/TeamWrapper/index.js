@@ -75,7 +75,6 @@ const ReverseGrid = styled(Grid)`
   }
 `;
 
-
 function TeamWrapper() {
   return (
     <PageWrapper isFullWidth white noPadding>

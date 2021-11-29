@@ -43,22 +43,10 @@ const Column = styled.div`
   }
 `;
 
-const ColumnHeader = styled.div`
-  margin-bottom: 30px;
-  font-weight: 500;
-  font-size: 14px;
+const Work = styled.div`
+  font-size: 16px;
   line-height: 20px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    margin-bottom: 32px;
-    font-size: 16px;
-  }
-`;
-
-const Logo = styled.img`
-  width: 130px;
-  height: auto;
-  cursor: pointer;
+  margin-bottom: 36px;
 `;
 
 const WhiteLink = styled.a`
@@ -67,7 +55,7 @@ const WhiteLink = styled.a`
   color: #fff;
   text-decoration: underline;
   margin-bottom: 24px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
   &:hover {
     color: #ccc;
@@ -83,10 +71,12 @@ const Apply = styled.div`
 `;
 
 const SecondRow = styled.div`
-  margin-top: 60px;
+  margin-top: 36px;
+  text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     margin-top: 100px;
+    text-align: left;
   }
 `;
 
@@ -94,26 +84,20 @@ const SocialIcon = styled.img`
   margin: 0 20px;
 `;
 
-function Footer({ isCreators = false }) {
+const Rights = styled.div`
+  font-size: 11px;
+  color: #fff;
+`;
+
+function Footer() {
   const router = useRouter();
   return (
     <>
       <GrayWrapper>
         <GrayInnerWrapper>
-          <Grid container spacing={3}>
+          <Grid container spacing={0}>
             <Grid item xs={12} md={4}>
               <Column>
-                <ColumnHeader>
-                  <Link href="/">
-                    <Logo
-                      src="/images/white-logo.svg"
-                      alt="The Good Party Logo"
-                      data-cy="footer-logo"
-                      width="130px"
-                      height="15px"
-                    />
-                  </Link>
-                </ColumnHeader>
                 <Link
                   href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
                   passHref
@@ -138,131 +122,94 @@ function Footer({ isCreators = false }) {
                     Frequently asked questions
                   </WhiteLink>
                 </Link>
-              </Column>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Column>
-                <ColumnHeader data-cy="footer-community-title">
-                  Community
-                </ColumnHeader>
-                <Link href={`${router.asPath}?share=true`} passHref>
-                  <WhiteLink data-cy="footer-link-share">
-                    Share with friends
+                <Link href="/privacy">
+                  <WhiteLink data-cy="footer-link-policy">
+                    Privacy Policy
                   </WhiteLink>
                 </Link>
-                <WhiteLink
-                  href="mailto:ask@goodparty.org"
-                  data-cy="footer-link-email"
-                >
-                  Email us
-                </WhiteLink>
               </Column>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Column data-cy="footer-team">
-                <ColumnHeader data-cy="footer-team-title">Team</ColumnHeader>
+            <Grid item xs={12} md={8}>
+              <Column>
                 <Link href="/team" passHref>
-                  <WhiteLink>Meet the Team</WhiteLink>
+                  <WhiteLink>Meet the team</WhiteLink>
                 </Link>
-                Want to join Good Party? We are always looking for good people
-                to collaborate with!
-                <div>
-                  <Link href="/work-with-us" passHref>
-                    <a data-cy="footer-link-join">
-                      <Apply>&nbsp;WORK WITH US&nbsp;</Apply>
-                    </a>
-                  </Link>
-                </div>
+
+                <Work>
+                  Want to work at Good Party?
+                  <br />
+                  We’re always looking for Good People!
+                  <div>
+                    <Link href="/work-with-us" passHref>
+                      <a data-cy="footer-link-join">
+                        <Apply>&nbsp;Learn More&nbsp;</Apply>
+                      </a>
+                    </Link>
+                  </div>
+                </Work>
+
+                <a
+                  href="https://www.tiktok.com/@goodparty"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  data-cy="footer-link-tiktok"
+                  title="TikTok"
+                >
+                  <SocialIcon
+                    src="/images/icons/tiktok-white.svg"
+                    width={24}
+                    height={20}
+                    alt="TikTok"
+                    style={{ marginLeft: 0 }}
+                  />
+                </a>
+                <a
+                  href="https://www.instagram.com/goodpartyorg/"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  data-cy="footer-link-instagram"
+                  title="Instagram"
+                >
+                  <SocialIcon
+                    src="/images/icons/instagram-white.svg"
+                    width={20}
+                    height={20}
+                    alt="Instagram"
+                  />
+                </a>
+                <a
+                  href="https://www.facebook.com/goodpartyorg"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  data-cy="footer-link-facebook"
+                  title="Facebook"
+                >
+                  <SocialIcon
+                    src="/images/icons/facebook-white.svg"
+                    width={12}
+                    height={20}
+                    alt="Facebook"
+                  />
+                </a>
+                <a
+                  href="https://twitter.com/goodpartyorg"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  data-cy="footer-link-twitter"
+                  title="Twitter"
+                >
+                  <SocialIcon
+                    src="/images/icons/twitter.svg"
+                    width={23}
+                    height={20}
+                    alt="Twitter"
+                  />
+                </a>
               </Column>
             </Grid>
           </Grid>
           <SecondRow>
-            <Grid container spacing={3} alignItems="flex-end">
-              <Grid item xs={12} md={4}>
-                <Column>
-                  <Hidden smDown>
-                    <Link href="/privacy" passHref>
-                      <WhiteLink data-cy="footer-link-policy">
-                        Privacy Policy
-                      </WhiteLink>
-                    </Link>{' '}
-                    &copy; 2019-2021 Good Party. All rights reserved.
-                  </Hidden>
-                </Column>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Column>
-                  <a
-                    href="https://www.tiktok.com/@goodparty"
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    data-cy="footer-link-tiktok"
-                    title="TikTok"
-                  >
-                    <SocialIcon
-                      src="/images/icons/tiktok-white.svg"
-                      width={21}
-                      height={17}
-                      alt="TikTok"
-                    />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/goodpartyorg/"
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    data-cy="footer-link-instagram"
-                    title="Instagram"
-                  >
-                    <SocialIcon
-                      src="/images/icons/instagram-white.svg"
-                      width={17}
-                      height={17}
-                      alt="Instagram"
-                    />
-                  </a>
-                  <a
-                    href="https://www.facebook.com/goodpartyorg"
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    data-cy="footer-link-facebook"
-                    title="Facebook"
-                  >
-                    <SocialIcon
-                      src="/images/icons/facebook-white.svg"
-                      width={12}
-                      height={20}
-                      alt="Facebook"
-                    />
-                  </a>
-                  <a
-                    href="https://twitter.com/goodpartyorg"
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    data-cy="footer-link-twitter"
-                    title="Twitter"
-                  >
-                    <SocialIcon
-                      src="/images/icons/twitter.svg"
-                      width={20}
-                      height={17}
-                      alt="Twitter"
-                    />
-                  </a>
-                </Column>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Column>
-                  <Hidden mdUp>
-                    <Link href="/privacy">
-                      <WhiteLink data-cy="footer-link-policy">
-                        Privacy Policy
-                      </WhiteLink>
-                    </Link>{' '}
-                    &copy; 2019-2021 Good Party. All rights reserved.
-                  </Hidden>
-                </Column>
-              </Grid>
-            </Grid>
+            <Rights>&copy; 2019-2021 Good Party. All rights reserved.</Rights>
           </SecondRow>
         </GrayInnerWrapper>
       </GrayWrapper>

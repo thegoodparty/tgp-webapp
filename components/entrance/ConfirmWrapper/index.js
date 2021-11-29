@@ -123,7 +123,7 @@ function ConfirmWrapper({
     });
   };
   return (
-    <PageWrapper purple>
+    <PageWrapper>
       <Wrapper>
         <div
           className="text-center"

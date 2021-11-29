@@ -34,7 +34,7 @@ const ContentWrpper = styled(MaxWidth)`
 
 function ProfileWrapper({ user, crewPreview, crewCount, userSupported }) {
   return (
-    <PageWrapper purple isFullWidth>
+    <PageWrapper isFullWidth>
       <TopSection user={user} />
       <ContentWrpper>
         <Grid container spacing={3}>

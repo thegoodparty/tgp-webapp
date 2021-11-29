@@ -88,8 +88,8 @@ function VolunteersSection() {
         <Grid item xs={12} md={8}>
           <Grid spacing={2} container>
             {volunteers.map(volunteer => (
-              <Grid item xs={12} md={6}>
-                <Volunteer key={volunteer.name}>
+              <Grid item xs={12} md={6} key={volunteer.name}>
+                <Volunteer>
                   <a
                     href={volunteer.link}
                     target="_blank"

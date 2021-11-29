@@ -37,7 +37,7 @@ const NominateWrapper = styled.div`
 
 function CandidatesWrapper({ candidates, homepageCandidates }) {
   return (
-    <PageWrapper isFullWidth purple>
+    <PageWrapper isFullWidth>
       <Content>
         <GoodCertifiedAreSection headerElement="h1" />
         <br />

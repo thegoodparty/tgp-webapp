@@ -48,7 +48,7 @@ function PasswordCreationWrapper({ savePasswordCallback }) {
     });
   };
   return (
-    <PageWrapper purple>
+    <PageWrapper>
       <Wrapper>
         <H1 data-cy="title">Create a password</H1>
         <br />

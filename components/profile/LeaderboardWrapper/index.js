@@ -73,7 +73,7 @@ const Seperator = styled.span`
 
 function LeaderboardWrapper({ crew, user, leaderboard }) {
   return (
-    <PageWrapper purple isFullWidth>
+    <PageWrapper isFullWidth>
       <ContentWrpper>
         <H1>Good Party Leaderboard</H1>
         <StyledBody19>

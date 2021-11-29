@@ -172,7 +172,7 @@ const RegisterWrapper = ({
   };
 
   return (
-    <PageWrapper purple>
+    <PageWrapper>
       <Wrapper>
         <div
           className="text-center"
