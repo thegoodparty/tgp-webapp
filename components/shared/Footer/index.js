@@ -46,6 +46,7 @@ const Column = styled.div`
 const Work = styled.div`
   font-size: 16px;
   line-height: 20px;
+  margin-bottom: 36px;
 `;
 
 const WhiteLink = styled.a`
@@ -70,10 +71,12 @@ const Apply = styled.div`
 `;
 
 const SecondRow = styled.div`
-  margin-top: 60px;
+  margin-top: 36px;
+  text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     margin-top: 100px;
+    text-align: left;
   }
 `;
 
@@ -81,15 +84,9 @@ const SocialIcon = styled.img`
   margin: 0 20px;
 `;
 
-const Row = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  color: #fff;
-`;
-
 const Rights = styled.div`
   font-size: 11px;
+  color: #fff;
 `;
 
 function Footer() {
@@ -98,7 +95,7 @@ function Footer() {
     <>
       <GrayWrapper>
         <GrayInnerWrapper>
-          <Grid container spacing={3}>
+          <Grid container spacing={0}>
             <Grid item xs={12} md={4}>
               <Column>
                 <Link
@@ -125,24 +122,32 @@ function Footer() {
                     Frequently asked questions
                   </WhiteLink>
                 </Link>
+                <Link href="/privacy">
+                  <WhiteLink data-cy="footer-link-policy">
+                    Privacy Policy
+                  </WhiteLink>
+                </Link>
               </Column>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={8}>
               <Column>
                 <Link href="/team" passHref>
                   <WhiteLink>Meet the team</WhiteLink>
                 </Link>
-                <Link href={`${router.asPath}?share=true`} passHref>
-                  <WhiteLink data-cy="footer-link-share">
-                    Share with friends
-                  </WhiteLink>
-                </Link>
-                <WhiteLink
-                  href="mailto:ask@goodparty.org"
-                  data-cy="footer-link-email"
-                >
-                  Email us
-                </WhiteLink>
+
+                <Work>
+                  Want to work at Good Party?
+                  <br />
+                  We’re always looking for Good People!
+                  <div>
+                    <Link href="/work-with-us" passHref>
+                      <a data-cy="footer-link-join">
+                        <Apply>&nbsp;Learn More&nbsp;</Apply>
+                      </a>
+                    </Link>
+                  </div>
+                </Work>
+
                 <a
                   href="https://www.tiktok.com/@goodparty"
                   target="_blank"
@@ -202,52 +207,9 @@ function Footer() {
                 </a>
               </Column>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Column data-cy="footer-team">
-                <Work>
-                  Want to work at Good Party?
-                  <br />
-                  We’re always looking for Good People!
-                  <div>
-                    <Link href="/work-with-us" passHref>
-                      <a data-cy="footer-link-join">
-                        <Apply>&nbsp;Learn More&nbsp;</Apply>
-                      </a>
-                    </Link>
-                  </div>
-                </Work>
-              </Column>
-            </Grid>
           </Grid>
           <SecondRow>
-            <Grid container spacing={3} alignItems="flex-end">
-              <Grid item xs={12}>
-                <Hidden smDown>
-                  <Row>
-                    <Rights>
-                      &copy; 2019-2021 Good Party. All rights reserved.
-                    </Rights>
-                    <Link href="/privacy" passHref>
-                      <WhiteLink data-cy="footer-link-policy">
-                        Privacy Policy
-                      </WhiteLink>
-                    </Link>{' '}
-                  </Row>
-                </Hidden>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Column>
-                  <Hidden mdUp>
-                    <Link href="/privacy">
-                      <WhiteLink data-cy="footer-link-policy">
-                        Privacy Policy
-                      </WhiteLink>
-                    </Link>{' '}
-                    &copy; 2019-2021 Good Party. All rights reserved.
-                  </Hidden>
-                </Column>
-              </Grid>
-            </Grid>
+            <Rights>&copy; 2019-2021 Good Party. All rights reserved.</Rights>
           </SecondRow>
         </GrayInnerWrapper>
       </GrayWrapper>
