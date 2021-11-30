@@ -48,7 +48,7 @@ class CustomDocument extends NextDocument {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://connect.facebook.net" />
 
-          <meta property="og:site_name" content="THE GOOD PARTY" />
+          <meta property="og:site_name" content="GOOD PARTY" />
           <meta property="og:type" content="website" />
 
           <meta property="twitter:card" content="summary_large_image" />
