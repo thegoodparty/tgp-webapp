@@ -6,7 +6,7 @@ const TgpHead = ({ title, description }) => (
   <Head>
     <title>{title}</title>
     <link rel="icon" href="/favicon.ico" />
-    <meta property="og:site_name" content="The Good Party" />
+    <meta property="og:site_name" content="Good Party" />
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
     <meta
