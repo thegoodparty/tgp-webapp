@@ -28,7 +28,7 @@ export function FaqListPage({  ssrState }) {
     <div>
       <TgpHelmet
         title="FAQs | GOOD PARTY"
-        description="Frequently Asked Questions about GOOD PARTY"
+        description="Frequently Asked Questions about GOOD PARTY."
       />
       <FaqListWrapper {...childProps} />
     </div>
