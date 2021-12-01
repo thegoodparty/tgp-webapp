@@ -14,6 +14,7 @@ import TopSection from './TopSection';
 import PeopleSection from './PeopleSection';
 import SpreadSection from './SpreadSection';
 import CampaignSection from './CampaignsSection';
+import IncompleteProfileBanner from './IncompleteProfileBanner';
 
 export const MaxWidth = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
@@ -27,7 +28,8 @@ export const GrayText = styled.span`
 
 const ContentWrpper = styled(MaxWidth)`
   padding: 24px 20px 48px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 32px 20px 64px;
   }
 `;
@@ -36,6 +38,7 @@ function ProfileWrapper({ user, crewPreview, crewCount, userSupported }) {
   return (
     <PageWrapper isFullWidth>
       <TopSection user={user} />
+      <IncompleteProfileBanner user={user} />
       <ContentWrpper>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>

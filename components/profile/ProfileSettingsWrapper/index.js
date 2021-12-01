@@ -12,6 +12,7 @@ import PageWrapper from '../../shared/PageWrapper';
 import TopSection from './TopSection';
 import PersonalSection from './PersonalSection';
 import ImageSection from './ImageSection';
+import IncompleteProfileBanner from './IncompleteProfileBanner';
 
 function ProfileSettingsWrapper({
   user,
@@ -22,6 +23,7 @@ function ProfileSettingsWrapper({
 }) {
   return (
     <PageWrapper>
+      <IncompleteProfileBanner user={user} />
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12} md={7}>
           <TopSection
