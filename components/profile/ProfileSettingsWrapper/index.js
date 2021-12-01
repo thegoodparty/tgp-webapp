@@ -13,6 +13,7 @@ import TopSection from './TopSection';
 import PersonalSection from './PersonalSection';
 import ImageSection from './ImageSection';
 import IncompleteProfileBanner from './IncompleteProfileBanner';
+import MaxWidth from '../ProfileWrapper/MaxWidth';
 
 function ProfileSettingsWrapper({
   user,
@@ -22,25 +23,30 @@ function ProfileSettingsWrapper({
   uploadImageCallback,
 }) {
   return (
-    <PageWrapper>
+    <PageWrapper isFullWidth>
       <IncompleteProfileBanner user={user} />
-      <Grid container spacing={3} alignItems="center">
-        <Grid item xs={12} md={7}>
-          <TopSection
-            signoutCallback={signoutCallback}
-            user={user}
-            uploadImageCallback={uploadImageCallback}
-          />
-          <PersonalSection
-            user={user}
-            updateUserCallback={updateUserCallback}
-            changePasswordCallback={changePasswordCallback}
-          />
+      <MaxWidth style={{ padding: '12px' }}>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={12} md={7}>
+            <TopSection
+              signoutCallback={signoutCallback}
+              user={user}
+              uploadImageCallback={uploadImageCallback}
+            />
+            <PersonalSection
+              user={user}
+              updateUserCallback={updateUserCallback}
+              changePasswordCallback={changePasswordCallback}
+            />
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <ImageSection
+              user={user}
+              uploadImageCallback={uploadImageCallback}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={5}>
-          <ImageSection user={user} uploadImageCallback={uploadImageCallback} />
-        </Grid>
-      </Grid>
+      </MaxWidth>
     </PageWrapper>
   );
 }

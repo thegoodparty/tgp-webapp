@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -23,31 +23,68 @@ const Wrapper = styled.section`
   text-align: center;
 `;
 
-function IncompleteProfileBanner({ user }) {
+export const BarBg = styled.div`
+  margin: 24px auto 0;
+  position: relative;
+  height: 18px;
+  background-color: ${({ theme }) => theme.colors.gray7};
+  border-radius: 12px;
+  max-width: 500px;
+`;
+
+export const Bar = styled.div`
+  position: absolute;
+  height: 18px;
+  border-radius: 12px;
+
+  background-color: #fff;
+  left: 0;
+  width: 3%;
+  transition: width 0.5s;
+`;
+
+export const profileCompletion = user => {
   let completion = 0;
   if (user.name) {
-    completion += 25;
+    completion += 12.5;
   }
   if (user.email) {
-    completion += 25;
+    completion += 12.5;
   }
   if (user.phone) {
-    completion += 25;
+    completion += 12.5;
+  }
+  if (user.isPhoneVerified) {
+    completion += 12.5;
+  }
+  if (user.isEmailVerified) {
+    completion += 12.5;
+  }
+  if (user.avatar && user.avatar !== '') {
+    completion += 12.5;
   }
   if (user.zip) {
-    completion += 25;
+    completion += 12.5;
   }
+  if (user.hasPassword) {
+    completion += 12.5;
+  }
+  return completion;
+};
 
+function IncompleteProfileBanner({ user }) {
+  console.log('u', user);
+  const [completion, setCompletion] = useState(0);
+  useEffect(() => {
+    setCompletion(profileCompletion(user));
+  }, [user]);
   return (
     <Wrapper>
       <MaxWidth>
         Your profile is {completion}% complete{' '}
-        {completion === 100 && (
-          <span role="img" aria-label="100%">
-            💯
-          </span>
-        )}
-        <br />
+        <BarBg>
+          <Bar style={{ width: `${completion}%` }} />
+        </BarBg>
         <br />
         <Link href="/profile" passHref>
           <a>

@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -12,6 +12,11 @@ import Link from 'next/link';
 
 import MaxWidth from './MaxWidth';
 import { PurpleButton } from '../../shared/buttons';
+import {
+  Bar,
+  BarBg,
+  profileCompletion,
+} from '../ProfileSettingsWrapper/IncompleteProfileBanner';
 
 const Wrapper = styled.section`
   padding: 32px;
@@ -24,19 +29,10 @@ const Wrapper = styled.section`
 `;
 
 function IncompleteProfileBanner({ user }) {
-  let completion = 0;
-  if (user.name) {
-    completion += 25;
-  }
-  if (user.email) {
-    completion += 25;
-  }
-  if (user.phone) {
-    completion += 25;
-  }
-  if (user.zip) {
-    completion += 25;
-  }
+  const [completion, setCompletion] = useState(0);
+  useEffect(() => {
+    setCompletion(profileCompletion(user));
+  }, [user]);
   if (completion === 100) {
     return <></>;
   }
@@ -44,7 +40,9 @@ function IncompleteProfileBanner({ user }) {
     <Wrapper>
       <MaxWidth>
         Your profile is {completion}% complete
-        <br />
+        <BarBg>
+          <Bar style={{ width: `${completion}%` }} />
+        </BarBg>
         <br />
         <Link href="/profile/settings" passHref>
           <a>

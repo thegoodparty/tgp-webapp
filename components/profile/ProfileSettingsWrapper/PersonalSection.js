@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
 import { BsChevronRight, BsLock } from 'react-icons/bs';
+import Link from 'next/link';
 
 import { formatToPhone } from 'helpers/phoneHelper';
 
@@ -58,6 +59,11 @@ const Label = styled(Body13)`
 
 const Value = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
+  text-align: right;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    text-align: left;
+  }
 `;
 
 const Action = styled(Body13)`
@@ -117,7 +123,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [password, setPassword] = useState('');
   const [canChangePassword, setCanChangePassword] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
-  const { name, email, phone, zip } = user;
+  const { name, email, phone, zip, isPhoneVerified, isEmailVerified } = user;
 
   useEffect(() => {
     canSubmitPassword();
@@ -133,8 +139,8 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [formFields, setFormFields] = useState({
     name: { label: 'Full Name', value: initialValues.name },
     email: { label: 'Email', value: initialValues.email },
-    phone: { label: 'Mobile number', value: initialValues.phone },
     zip: { label: 'Zip Code', value: initialValues.zip },
+    phone: { label: 'Mobile number', value: initialValues.phone },
   });
 
   const onChangeField = (key, val) => {
@@ -162,6 +168,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
               value={field.value}
               onChange={e => onChangeField(fieldKey, e.target.value)}
             />
+
             <ButtonCancelWrapper>
               <PurpleButton
                 style={{ marginTop: '24px' }}
@@ -180,7 +187,14 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
             </ButtonCancelWrapper>
           </>
         ) : (
-          <Value>{field.value}</Value>
+          <Value>
+            {field.value} <br />
+            {field.label === 'Email' && !isEmailVerified && (
+              <span style={{ color: 'red', marginTop: '8px' }}>
+                This email is not verified (Check your inbox)
+              </span>
+            )}
+          </Value>
         )}
       </>
     );
@@ -242,7 +256,9 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
             <Label>
               {formFields[field].label} <BsLock size={12} color="#767676" />
             </Label>
-            <Hidden smDown>{EditableValue(field)}</Hidden>
+            <Hidden smDown>
+              {EditableValue(field)}
+            </Hidden>
           </div>
           <Hidden mdUp>
             {EditableValue(field)}
@@ -284,6 +300,18 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
           </Hidden>
         </Row>
       ))}
+      {phone && !isPhoneVerified && (
+        <Row>
+          <div style={{ flex: 1 }}>
+            <Label>Your Phone is not verified</Label>
+            <br />
+            <br />
+            <Link href="/register/confirm" passHref>
+              <a>Verify Your Phone</a>
+            </Link>
+          </div>
+        </Row>
+      )}
       <Row>
         <div style={{ flex: 1 }}>
           <Label>Password</Label>
@@ -359,6 +387,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
           )}
         </Hidden>
       </Row>
+
       <Privacy>
         <BsLock size={24} color="#919191" />
         <br />
