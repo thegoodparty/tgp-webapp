@@ -11,6 +11,8 @@ import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
 import { BsChevronRight, BsLock } from 'react-icons/bs';
 import Link from 'next/link';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import { formatToPhone } from 'helpers/phoneHelper';
 
@@ -66,6 +68,11 @@ const Value = styled(Body13)`
   }
 `;
 
+const NotVerified = styled.div`
+  color: red;
+  margin-top: 8px;
+`;
+
 const Action = styled(Body13)`
   color: ${({ theme }) => theme.colors.purple};
   cursor: pointer;
@@ -117,6 +124,29 @@ const Privacy = styled.div`
   color: ${({ theme }) => theme.colors.gray6};
 `;
 
+const PhoneWrapper = styled.div`
+  margin-bottom: 24px;
+  .phone-input {
+    width: 100%;
+    height: 60px;
+    line-height: 22px;
+    font-size: 16px;
+    padding-left: 16px;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 20px;
+      line-height: 26px;
+      ::placeholder {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .flag-dropdown {
+    display: none;
+  }
+`;
+
 function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [editEnabled, setEditEnabled] = useState({});
   const [editPassword, setEditPassword] = useState(false);
@@ -139,8 +169,9 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [formFields, setFormFields] = useState({
     name: { label: 'Full Name', value: initialValues.name },
     email: { label: 'Email', value: initialValues.email },
-    zip: { label: 'Zip Code', value: initialValues.zip },
     phone: { label: 'Mobile number', value: initialValues.phone },
+
+    zip: { label: 'Zip Code', value: initialValues.zip },
   });
 
   const onChangeField = (key, val) => {
@@ -157,17 +188,43 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
         ...editEnabled,
         [formFields[fieldKey].label]: false,
       });
+
+      // format the phone after save
+      if (fieldKey === 'phone') {
+        setFormFields({
+          ...formFields,
+          phone: {
+            ...formFields[fieldKey],
+            value: formatToPhone(formFields.phone.value),
+          },
+        });
+      }
     };
     return (
       <>
         {editEnabled[field.label] ? (
           <>
-            <StyledTextField
-              fullWidth
-              variant="outlined"
-              value={field.value}
-              onChange={e => onChangeField(fieldKey, e.target.value)}
-            />
+            {field.label === 'Mobile number' ? (
+              <PhoneWrapper>
+                <PhoneInput
+                  disableCountryCode
+                  country="us"
+                  disableDropdown
+                  inputClass="phone-input"
+                  placeholder="Phone Number"
+                  onlyCountries={['us']}
+                  value={field.value}
+                  onChange={phoneVal => onChangeField(fieldKey, phoneVal)}
+                />
+              </PhoneWrapper>
+            ) : (
+              <StyledTextField
+                fullWidth
+                variant="outlined"
+                value={field.value}
+                onChange={e => onChangeField(fieldKey, e.target.value)}
+              />
+            )}
 
             <ButtonCancelWrapper>
               <PurpleButton
@@ -189,11 +246,30 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
         ) : (
           <Value>
             {field.value} <br />
-            {field.label === 'Email' && !isEmailVerified && (
-              <span style={{ color: 'red', marginTop: '8px' }}>
-                This email is not verified (Check your inbox)
-              </span>
-            )}
+            {field.label === 'Email' &&
+              field.value &&
+              field.value !== '' &&
+              !isEmailVerified && (
+                <NotVerified>
+                  This email is not verified
+                  <br />
+                  <Link href="/register/confirm" passHref>
+                    <a>Verify Your Email</a>
+                  </Link>
+                </NotVerified>
+              )}
+            {field.label === 'Mobile number' &&
+              field.value &&
+              field.value !== '' &&
+              !isPhoneVerified && (
+                <NotVerified>
+                  This phone is not verified
+                  <br />
+                  <Link href="/register/confirm" passHref>
+                    <a>Verify Your Phone</a>
+                  </Link>
+                </NotVerified>
+              )}
           </Value>
         )}
       </>
@@ -256,9 +332,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
             <Label>
               {formFields[field].label} <BsLock size={12} color="#767676" />
             </Label>
-            <Hidden smDown>
-              {EditableValue(field)}
-            </Hidden>
+            <Hidden smDown>{EditableValue(field)}</Hidden>
           </div>
           <Hidden mdUp>
             {EditableValue(field)}
@@ -300,18 +374,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
           </Hidden>
         </Row>
       ))}
-      {phone && !isPhoneVerified && (
-        <Row>
-          <div style={{ flex: 1 }}>
-            <Label>Your Phone is not verified</Label>
-            <br />
-            <br />
-            <Link href="/register/confirm" passHref>
-              <a>Verify Your Phone</a>
-            </Link>
-          </div>
-        </Row>
-      )}
+
       <Row>
         <div style={{ flex: 1 }}>
           <Label>Password</Label>
