@@ -73,7 +73,6 @@ export const profileCompletion = user => {
 };
 
 function IncompleteProfileBanner({ user }) {
-  console.log('u', user);
   const [completion, setCompletion] = useState(0);
   useEffect(() => {
     setCompletion(profileCompletion(user));

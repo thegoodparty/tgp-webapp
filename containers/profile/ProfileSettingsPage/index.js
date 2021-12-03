@@ -29,6 +29,7 @@ export function ProfileSettingsPage({
   changePasswordCallback,
   uploadImageCallback,
   userState,
+  deleteAccountCallback,
 }) {
   useInjectReducer({ key: 'profileSettingsPage', reducer });
   useInjectSaga({ key: 'profileSettingsPage', saga });
@@ -48,6 +49,7 @@ export function ProfileSettingsPage({
     updateUserCallback,
     changePasswordCallback,
     uploadImageCallback,
+    deleteAccountCallback,
   };
 
   return (
@@ -64,6 +66,7 @@ ProfileSettingsPage.propTypes = {
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
   uploadImageCallback: PropTypes.func,
+  deleteAccountCallback: PropTypes.func,
   userState: PropTypes.object,
 };
 
@@ -92,6 +95,10 @@ function mapDispatchToProps(dispatch) {
 
     uploadImageCallback: base64 => {
       dispatch(actions.uploadAvatarAction(base64));
+    },
+
+    deleteAccountCallback: () => {
+      dispatch(actions.deleteAccountAction());
     },
   };
 }

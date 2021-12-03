@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-next-router';
 
 import requestHelper from 'helpers/requestHelper';
-import { setUserCookie } from 'helpers/cookieHelper';
+import { deleteCookies, setUserCookie } from 'helpers/cookieHelper';
 
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import globalActions from 'containers/App/actions';
@@ -102,9 +102,25 @@ function* uploadAvatar({ imageBase64 }) {
     );
   }
 }
+
+function* deleteAccount() {
+  try {
+    const api = tgpApi.deleteAccount;
+
+    yield call(requestHelper, api, null);
+    deleteCookies();
+    window.location.href = '/';
+  } catch (error) {
+    console.log('Error deleting account', error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting account', 'error'),
+    );
+  }
+}
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.UPDATE_USER, updateUser);
   yield takeLatest(types.CHANGE_PASSWORD, changePassword);
   yield takeLatest(types.UPLOAD_AVATAR, uploadAvatar);
+  yield takeLatest(types.DELETE_ACCOUNT, deleteAccount);
 }

@@ -14,6 +14,7 @@ import PersonalSection from './PersonalSection';
 import ImageSection from './ImageSection';
 import IncompleteProfileBanner from './IncompleteProfileBanner';
 import MaxWidth from '../ProfileWrapper/MaxWidth';
+import DeleteAccount from './DeleteAccount';
 
 function ProfileSettingsWrapper({
   user,
@@ -21,6 +22,7 @@ function ProfileSettingsWrapper({
   updateUserCallback,
   changePasswordCallback,
   uploadImageCallback,
+  deleteAccountCallback,
 }) {
   return (
     <PageWrapper isFullWidth>
@@ -38,6 +40,7 @@ function ProfileSettingsWrapper({
               updateUserCallback={updateUserCallback}
               changePasswordCallback={changePasswordCallback}
             />
+            <DeleteAccount deleteAccountCallback={deleteAccountCallback} />
           </Grid>
           <Grid item xs={12} md={5}>
             <ImageSection
@@ -57,6 +60,7 @@ ProfileSettingsWrapper.propTypes = {
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
   uploadImageCallback: PropTypes.func,
+  deleteAccountCallback: PropTypes.func,
 };
 
 export default ProfileSettingsWrapper;

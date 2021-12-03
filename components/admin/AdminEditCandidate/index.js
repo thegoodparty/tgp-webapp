@@ -416,7 +416,6 @@ function AdminEditCandidate({
           {updates &&
             updates.map((update, index) => (
               <>
-                {console.log('update', update)}
                 <br />
                 <br />
                 <DeleteUpdate

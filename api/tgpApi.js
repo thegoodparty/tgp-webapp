@@ -169,6 +169,12 @@ const api = {
     withAuth: true,
   },
 
+  deleteAccount: {
+    url: `${base}user`,
+    method: 'DELETE',
+    withAuth: true,
+  },
+
   // General
   sendAma: {
     url: `${base}notifications/email-ama`,

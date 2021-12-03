@@ -18,6 +18,7 @@ import { formatToPhone } from 'helpers/phoneHelper';
 
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
+import AlertDialog from '../../shared/AlertDialog';
 
 const Wrapper = styled.section`
   padding: 32px 0;
@@ -153,7 +154,16 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [password, setPassword] = useState('');
   const [canChangePassword, setCanChangePassword] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
-  const { name, email, phone, zip, isPhoneVerified, isEmailVerified } = user;
+  const {
+    name,
+    displayName,
+    pronouns,
+    email,
+    phone,
+    zip,
+    isPhoneVerified,
+    isEmailVerified,
+  } = user;
 
   useEffect(() => {
     canSubmitPassword();
@@ -161,17 +171,20 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
 
   const initialValues = {
     name,
+    displayName: displayName || '',
     email,
     phone: formatToPhone(phone),
     zip: zip || '',
+    pronouns: pronouns || '',
   };
 
   const [formFields, setFormFields] = useState({
     name: { label: 'Full Name', value: initialValues.name },
     email: { label: 'Email', value: initialValues.email },
     phone: { label: 'Mobile number', value: initialValues.phone },
-
     zip: { label: 'Zip Code', value: initialValues.zip },
+    displayName: { label: 'Display Name', value: initialValues.displayName },
+    pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
   });
 
   const onChangeField = (key, val) => {
@@ -183,6 +196,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const EditableValue = fieldKey => {
     const field = formFields[fieldKey];
     const handleSave = () => {
+      console.log('callback', fieldKey, field.value);
       updateUserCallback(fieldKey, field.value);
       setEditEnabled({
         ...editEnabled,
