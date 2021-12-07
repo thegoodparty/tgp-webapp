@@ -29,7 +29,12 @@ const Tab = styled.div`
   font-weight: 600;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  font-size: 18px;
+  font-size: 14px;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 18px;
+  }
 
   &.center {
     border-left: none;
@@ -64,8 +69,8 @@ function ProfileTabs({ activeTab = 'Profile' }) {
                 src={`/images/profile/${tab.img}${
                   tab.label === activeTab ? '-selected' : ''
                 }.png`}
-                width={80}
-                height={80}
+                width={40}
+                height={40}
               />
               {tab.label}
             </Tab>

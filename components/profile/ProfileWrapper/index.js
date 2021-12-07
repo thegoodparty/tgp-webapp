@@ -27,7 +27,7 @@ export const GrayText = styled.span`
 `;
 
 const ContentWrpper = styled(MaxWidth)`
-  padding: 24px 20px 48px;
+  padding: 24px 8px 48px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding: 32px 20px 64px;

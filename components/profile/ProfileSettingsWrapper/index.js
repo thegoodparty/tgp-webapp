@@ -28,7 +28,7 @@ function ProfileSettingsWrapper({
   return (
     <PageWrapper isFullWidth>
       <IncompleteProfileBanner user={user} />
-      <MaxWidth style={{ padding: '12px' }}>
+      <MaxWidth style={{ padding: '8px' }}>
         <ProfileTabs activeTab="Settings" />
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={7}>

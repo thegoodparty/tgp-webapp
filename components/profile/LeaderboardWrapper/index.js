@@ -83,7 +83,7 @@ function LeaderboardWrapper({
 }) {
   return (
     <PageWrapper isFullWidth>
-      <MaxWidth>
+      <MaxWidth style={{ padding: '8px' }}>
         <br />
         <ProfileTabs activeTab="Leaderboard" />
         <ContentWrpper>
