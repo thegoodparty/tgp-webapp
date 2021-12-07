@@ -17,7 +17,6 @@ import saga from 'containers/you/YouPage/saga';
 import reducer from 'containers/you/YouPage/reducer';
 import userActions from 'containers/you/YouPage/actions';
 
-import CrewWrapper from 'components/you/CrewWrapper';
 import makeSelectUser from '../YouPage/selectors';
 
 export function CrewPage({ userState, dispatch }) {
@@ -51,7 +50,6 @@ export function CrewPage({ userState, dispatch }) {
         <title data-cy="page-title">Crew Page</title>
         <meta name="description" content="Crew Page" />
       </Head>
-      <CrewWrapper {...childPros} />
     </div>
   );
 }

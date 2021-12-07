@@ -25,7 +25,7 @@ import districtReducer from 'containers/intro/ZipFinderPage/reducer';
 import districtActions from 'containers/intro/ZipFinderPage/actions';
 
 import YouWrapper from 'components/you/YouWrapper';
-import ProfileWrapper from 'components/you/ProfileWrapper/Loadable';
+
 import { getSignupRedirectCookie } from 'helpers/cookieHelper';
 import { userDistrict } from 'helpers/userHelper';
 import articlesHelper from 'helpers/articlesHelper';
@@ -109,11 +109,8 @@ export function YouPage({
         <title data-cy="page-title">You | The Good Party</title>
         <meta name="description" content="You | The Good Party" />
       </Head>
-      {user ? (
-        <ProfileWrapper {...accountProps} />
-      ) : (
-        <YouWrapper {...youProps} />
-      )}
+
+      <YouWrapper {...youProps} />
     </div>
   );
 }
