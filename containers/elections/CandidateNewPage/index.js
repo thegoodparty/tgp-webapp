@@ -109,7 +109,7 @@ export function CandidateNewPage({
       router.replace(
         `/candidate/${candidate.firstName}-${
           candidate.lastName
-        }/${candidateId}${window.location.search}`,
+        }/${candidateId}${window.location.search}${window.location.hash}`,
       );
     }
   }, [candidateId]);

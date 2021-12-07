@@ -19,10 +19,7 @@ export const slugify = text => {
   if (!text) {
     return '';
   }
-  return text
-    .toLowerCase()
-    .replace(/[^\w ]+/g, '')
-    .replace(/ +/g, '-');
+  return text.replace(/[^\w ]+/g, '').replace(/ +/g, '-');
 };
 
 export const getArticleById = (articles, id) => {
