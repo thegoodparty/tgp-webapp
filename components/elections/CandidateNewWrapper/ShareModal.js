@@ -204,8 +204,10 @@ const StyledTextField = styled(TextField)`
 const candidateMessage = (candidate, user) => {
   if (!candidate) {
     if (typeof window !== 'undefined') {
-      if (user && user.uuid) {
-        return `Vote different. ${window.location.href}?u=${user.uuid}`;
+      if (user?.uuid) {
+        let url = window.location.pathname;
+        url = uuidUrl(user, window.location.origin + url, '');
+        return `Vote different. ${url}`;
       }
       return `Vote different. ${window.location.href}`;
     }
@@ -223,7 +225,7 @@ const candidateMessage = (candidate, user) => {
 
 const ShareModal = ({ candidate, supportLink }) => {
   const user = getUserCookie(true);
-  const defaultMessage = candidateMessage(candidate);
+  const defaultMessage = candidateMessage(candidate, user);
 
   const [message, setMessage] = useState(defaultMessage);
   const [copied, setCopied] = useState(false);
@@ -233,7 +235,7 @@ const ShareModal = ({ candidate, supportLink }) => {
   };
 
   useEffect(() => {
-    setMessage(candidateMessage(candidate));
+    setMessage(candidateMessage(candidate, user));
     if (candidate) {
       logEvent(
         'Sharing',

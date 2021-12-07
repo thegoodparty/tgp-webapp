@@ -9,10 +9,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
+import Link from 'next/link';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 import { Body19, Body13 } from '../../shared/typogrophy';
+import { candidateRoute } from '../../../helpers/electionsHelper';
 
 const SectionWrapper = styled.div`
   margin-top: 48px;
@@ -79,6 +81,10 @@ const UpdatedTitle = styled(Body13)`
       theme.breakpointsPixels.md}) {
     font-size: 19px;
   }
+
+  &.purple {
+    color: ${({ theme }) => theme.colors.purple};
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -90,7 +96,12 @@ const ImageWrapper = styled.div`
   }
 `;
 
-function Updates({ candidate }) {
+const deepLink = update => {
+  const { candidate } = update;
+  return `${candidateRoute(candidate)}#candidate-update-${update.id}`;
+};
+
+function Updates({ candidate, withDeepLinks = false }) {
   const { updatesList } = candidate;
   if (!updatesList) {
     return <> </>;
@@ -107,11 +118,21 @@ function Updates({ candidate }) {
       <SectionHeader>Updates ({(updatesList || []).length})</SectionHeader>
       {sortedUpdates &&
         sortedUpdates.reverse().map(update => (
-          <UpdateWrapper id={`candidate-update-${update.id}`}>
+          <UpdateWrapper id={`candidate-update-${update.id}`} key={update.id}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={hasFeatured(update) ? 7 : 12}>
                 <YoutubePlayerWrapper key={update.id}>
-                  <UpdatedTitle>{update.title}</UpdatedTitle>
+                  {withDeepLinks ? (
+                    <Link href={deepLink(update)} passHref>
+                      <a>
+                        <UpdatedTitle className="purple">
+                          {update.title}
+                        </UpdatedTitle>
+                      </a>
+                    </Link>
+                  ) : (
+                    <UpdatedTitle>{update.title}</UpdatedTitle>
+                  )}
                   <UpdateDate>{update.date}</UpdateDate>
                   <Body13
                     dangerouslySetInnerHTML={{ __html: update.text }}
@@ -143,6 +164,7 @@ function Updates({ candidate }) {
 
 Updates.propTypes = {
   candidate: PropTypes.object,
+  withDeepLinks: PropTypes.bool,
 };
 
 export default Updates;

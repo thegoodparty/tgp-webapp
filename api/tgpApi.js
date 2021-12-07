@@ -464,6 +464,11 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    supportUpdates: {
+      url: `${base}support-updates`,
+      method: 'GET',
+      withAuth: true,
+    },
     candidateSupports: {
       url: `${base}candidate-supports`,
       method: 'GET',

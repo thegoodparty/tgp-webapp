@@ -11,10 +11,10 @@ import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import TopSection from './TopSection';
-import PeopleSection from './PeopleSection';
-import SpreadSection from './SpreadSection';
 import CampaignSection from './CampaignsSection';
 import IncompleteProfileBanner from './IncompleteProfileBanner';
+import ProfileTabs from './ProfileTabs';
+import UpdatesSection from './UpdatesSection';
 
 export const MaxWidth = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
@@ -34,25 +34,15 @@ const ContentWrpper = styled(MaxWidth)`
   }
 `;
 
-function ProfileWrapper({ user, crewPreview, crewCount, userSupported }) {
+function ProfileWrapper({ user, userSupported, updates }) {
   return (
     <PageWrapper isFullWidth>
       <TopSection user={user} />
       <IncompleteProfileBanner user={user} />
       <ContentWrpper>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <PeopleSection
-              user={user}
-              crewPreview={crewPreview}
-              crewCount={crewCount}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <SpreadSection user={user} />
-          </Grid>
-        </Grid>
+        <ProfileTabs />
         <CampaignSection userSupported={userSupported} />
+        <UpdatesSection updates={updates} />
       </ContentWrpper>
     </PageWrapper>
   );
@@ -60,9 +50,8 @@ function ProfileWrapper({ user, crewPreview, crewCount, userSupported }) {
 
 ProfileWrapper.propTypes = {
   user: PropTypes.object,
-  crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  crewCount: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   userSupported: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  updates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ProfileWrapper;

@@ -12,12 +12,16 @@ import Link from 'next/link';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body19, H1 } from '../../shared/typogrophy';
 import LeaderboardPerson from './LeaderboardPerson';
+import ProfileTabs from '../ProfileWrapper/ProfileTabs';
+import MaxWidth from '../ProfileWrapper/MaxWidth';
+import SpreadSection from './SpreadSection';
 
 const ContentWrpper = styled.div`
   max-width: 640px;
   margin: 0 auto;
   padding: 24px 0 48px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 40px 0 64px;
   }
 `;
@@ -70,44 +74,55 @@ const Seperator = styled.span`
   margin: 0 4px;
 `;
 
-
-function LeaderboardWrapper({ crew, user, leaderboard }) {
+function LeaderboardWrapper({
+  crew,
+  user,
+  leaderboard,
+  crewPreview,
+  crewCount,
+}) {
   return (
     <PageWrapper isFullWidth>
-      <ContentWrpper>
-        <H1>Good Party Leaderboard</H1>
-        <StyledBody19>
-          Invite Good Party people and move up the leaderboard when they join.
-        </StyledBody19>
-        <Title>
-          Your People <Seperator>|</Seperator>{' '}
-          <Link href="#everyone">
-            <Everyone>Everyone</Everyone>
-          </Link>
-        </Title>
-        <LeaderboardPerson you person={user} index={0} />
-        {crew &&
-          crew.map((crewMember, index) => (
-            <LeaderboardPerson person={crewMember} index={index + 1} />
-          ))}
+      <MaxWidth>
+        <br />
+        <ProfileTabs activeTab="Leaderboard" />
+        <ContentWrpper>
+          <H1>Good Party Leaderboard</H1>
+          <StyledBody19>
+            Invite Good Party people and move up the leaderboard when they join.
+          </StyledBody19>
+          <br />
+          <SpreadSection user={user} />
+          <Title>
+            Your People <Seperator>|</Seperator>{' '}
+            <Link href="#everyone">
+              <Everyone>Everyone</Everyone>
+            </Link>
+          </Title>
+          <LeaderboardPerson you person={user} index={0} />
+          {crew &&
+            crew.map((crewMember, index) => (
+              <LeaderboardPerson person={crewMember} index={index + 1} />
+            ))}
 
-        <Better>Good Parties are better with friends!</Better>
-        <div className="text-center">
-          <Link href="?share=true">
-            <Invite>INVITE PEOPLE</Invite>
-          </Link>
-        </div>
+          <Better>Good Parties are better with friends!</Better>
+          <div className="text-center">
+            <Link href="?share=true">
+              <Invite>INVITE PEOPLE</Invite>
+            </Link>
+          </div>
 
-        <Title id="everyone">Everyone</Title>
-        {leaderboard &&
-          leaderboard.map((member, index) => (
-            <LeaderboardPerson
-              you={member.uuid === user.uuid}
-              person={member}
-              index={index}
-            />
-          ))}
-      </ContentWrpper>
+          <Title id="everyone">Everyone</Title>
+          {leaderboard &&
+            leaderboard.map((member, index) => (
+              <LeaderboardPerson
+                you={member.uuid === user.uuid}
+                person={member}
+                index={index}
+              />
+            ))}
+        </ContentWrpper>
+      </MaxWidth>
     </PageWrapper>
   );
 }
@@ -116,6 +131,8 @@ LeaderboardWrapper.propTypes = {
   crew: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   leaderboard: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   user: PropTypes.object,
+  crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  crewCount: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default LeaderboardWrapper;

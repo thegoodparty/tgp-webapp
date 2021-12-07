@@ -6,29 +6,28 @@
 
 import types from './constants';
 
-const loadCrewPreviewAction = () => ({
-  type: types.LOAD_CREW_PREVIEW,
-});
-
-const loadCrewPreviewActionSuccess = (crewPreview, crewCount) => ({
-  type: types.LOAD_CREW_PREVIEW_SUCCESS,
-  crewPreview,
-  crewCount,
-});
-
 const loadUserSupportedAction = () => ({
   type: types.LOAD_USER_SUPPORTED,
 });
 
-const loadUserSupportedActionSuccess = (userSupported) => ({
+const loadUserSupportedActionSuccess = userSupported => ({
   type: types.LOAD_USER_SUPPORTED_SUCCESS,
-  userSupported
+  userSupported,
+});
+
+const loadUpdatesAction = () => ({
+  type: types.LOAD_UPDATES,
+});
+
+const loadUpdatesActionSuccess = updates => ({
+  type: types.LOAD_UPDATES_SUCCESS,
+  updates,
 });
 
 export default {
-  loadCrewPreviewAction,
-  loadCrewPreviewActionSuccess,
-
   loadUserSupportedAction,
   loadUserSupportedActionSuccess,
+
+  loadUpdatesAction,
+  loadUpdatesActionSuccess,
 };

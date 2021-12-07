@@ -31,15 +31,20 @@ export function ProfilePage({ dispatch, profilePage }) {
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
 
-  const { loading, crewPreview, crewCount, userSupported } = profilePage;
+  const {
+    loading,
+
+    userSupported,
+    updates,
+  } = profilePage;
   const user = getUserCookie(true);
 
   useEffect(() => {
-    if (user && !crewPreview) {
-      dispatch(actions.loadCrewPreviewAction());
-    }
     if (user && !userSupported) {
       dispatch(actions.loadUserSupportedAction());
+    }
+    if (!updates) {
+      dispatch(actions.loadUpdatesAction());
     }
     if (typeof window !== 'undefined' && !user) {
       router.push('login');
@@ -63,9 +68,8 @@ export function ProfilePage({ dispatch, profilePage }) {
   const childProps = {
     user,
     loading,
-    crewPreview,
-    crewCount,
     userSupported: supported,
+    updates,
   };
 
   return (
