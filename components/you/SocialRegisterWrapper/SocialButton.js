@@ -24,6 +24,7 @@ const StyledButton = styled(Button)`
     }
     &.google {
       background-color: #fff;
+      box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
     }
   }
 `;
