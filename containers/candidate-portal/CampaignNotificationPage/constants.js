@@ -1,0 +1,19 @@
+/*
+ *
+ * PortalCampaignManagerPage constants
+ *
+ */
+
+const FIND_CAMPAIGN_NOTIFICATION =
+  '@@tgp/CampaignNotificationPage/FIND_CAMPAIGN_NOTIFICATION';
+const FIND_CAMPAIGN_NOTIFICATION_SUCCESS =
+  '@@tgp/CampaignNotificationPage/FIND_CAMPAIGN_NOTIFICATION_SUCCESS';
+
+const UPDATE_CAMPAIGN_NOTIFICATION =
+  '@@tgp/CampaignNotificationPage/UPDATE_CAMPAIGN_NOTIFICATION';
+
+export default {
+  FIND_CAMPAIGN_NOTIFICATION,
+  FIND_CAMPAIGN_NOTIFICATION_SUCCESS,
+  UPDATE_CAMPAIGN_NOTIFICATION,
+};
