@@ -22,8 +22,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-
-
 const OrWrapper = styled.div`
   margin-top: 24px;
   height: 16px;
@@ -41,25 +39,11 @@ const Or = styled.div`
   text-align: center;
   left: calc(50% - 25px);
   top: 0;
-  background: ${({ theme }) => theme.colors.grayBg};
+  background: #fff;
 `;
 
-const Input = styled(TextField)`
-  && {
-    margin-bottom: 18px;
-
-    .MuiInputBase-input {
-      line-height: 22px;
-      font-size: 16px;
-      letter-spacing: 0.1px;
-
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.md}) {
-        font-size: 20px;
-        line-height: 26px;
-      }
-    }
-  }
+const GoogleBtnWrapper = styled.div`
+  margin-top: 24px;
 `;
 
 const LoginWrapper = ({
@@ -136,7 +120,7 @@ const LoginWrapper = ({
           Continue with Twitter
         </TwitterButton>
         <br />
-        <div data-cy="google-login">
+        <GoogleBtnWrapper data-cy="google-login">
           <SocialButton
             channel="google"
             provider="google"
@@ -146,7 +130,7 @@ const LoginWrapper = ({
           >
             Continue with GOOGLE
           </SocialButton>
-        </div>
+        </GoogleBtnWrapper>
       </Wrapper>
     </PageWrapper>
   );

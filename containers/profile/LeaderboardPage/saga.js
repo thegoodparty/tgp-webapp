@@ -27,6 +27,8 @@ function* loadLeaderboard() {
   }
 }
 
+
+
 export default function* profilePageSaga() {
   yield takeLatest(types.LOAD_CREW, loadCrew);
   yield takeLatest(types.LOAD_LEADERBOARD, loadLeaderboard);

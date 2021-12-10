@@ -169,6 +169,12 @@ const api = {
     withAuth: true,
   },
 
+  deleteAccount: {
+    url: `${base}user`,
+    method: 'DELETE',
+    withAuth: true,
+  },
+
   // General
   sendAma: {
     url: `${base}notifications/email-ama`,
@@ -455,6 +461,11 @@ const api = {
     },
     userSupports: {
       url: `${base}supports`,
+      method: 'GET',
+      withAuth: true,
+    },
+    supportUpdates: {
+      url: `${base}support-updates`,
       method: 'GET',
       withAuth: true,
     },

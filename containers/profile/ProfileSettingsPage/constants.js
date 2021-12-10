@@ -11,6 +11,8 @@ const CHANGE_PASSWORD = '@@tgp/ProfileSettingsPage/CHANGE_PASSWORD';
 
 const UPLOAD_AVATAR = '@@tgp/ProfileSettingsPage/UPLOAD_AVATAR';
 
+const DELETE_ACCOUNT = '@@tgp/ProfileSettingsPage/DELETE_ACCOUNT';
+
 export default {
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
@@ -18,4 +20,6 @@ export default {
   CHANGE_PASSWORD,
 
   UPLOAD_AVATAR,
+
+  DELETE_ACCOUNT,
 };

@@ -10,11 +10,15 @@ import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
 import { BsChevronRight, BsLock } from 'react-icons/bs';
+import Link from 'next/link';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import { formatToPhone } from 'helpers/phoneHelper';
 
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
+import AlertDialog from '../../shared/AlertDialog';
 
 const Wrapper = styled.section`
   padding: 32px 0;
@@ -58,6 +62,16 @@ const Label = styled(Body13)`
 
 const Value = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
+  text-align: right;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    text-align: left;
+  }
+`;
+
+const NotVerified = styled.div`
+  color: red;
+  margin-top: 8px;
 `;
 
 const Action = styled(Body13)`
@@ -111,13 +125,45 @@ const Privacy = styled.div`
   color: ${({ theme }) => theme.colors.gray6};
 `;
 
+const PhoneWrapper = styled.div`
+  margin-bottom: 24px;
+  .phone-input {
+    width: 100%;
+    height: 60px;
+    line-height: 22px;
+    font-size: 16px;
+    padding-left: 16px;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 20px;
+      line-height: 26px;
+      ::placeholder {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .flag-dropdown {
+    display: none;
+  }
+`;
+
 function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const [editEnabled, setEditEnabled] = useState({});
   const [editPassword, setEditPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [canChangePassword, setCanChangePassword] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
-  const { name, email, phone, zip } = user;
+  const {
+    name,
+    displayName,
+    pronouns,
+    email,
+    phone,
+    zip,
+    isPhoneVerified,
+    isEmailVerified,
+  } = user;
 
   useEffect(() => {
     canSubmitPassword();
@@ -125,9 +171,11 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
 
   const initialValues = {
     name,
+    displayName: displayName || '',
     email,
     phone: formatToPhone(phone),
     zip: zip || '',
+    pronouns: pronouns || '',
   };
 
   const [formFields, setFormFields] = useState({
@@ -135,6 +183,8 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
     email: { label: 'Email', value: initialValues.email },
     phone: { label: 'Mobile number', value: initialValues.phone },
     zip: { label: 'Zip Code', value: initialValues.zip },
+    displayName: { label: 'Display Name', value: initialValues.displayName },
+    pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
   });
 
   const onChangeField = (key, val) => {
@@ -146,22 +196,50 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const EditableValue = fieldKey => {
     const field = formFields[fieldKey];
     const handleSave = () => {
+      console.log('callback', fieldKey, field.value);
       updateUserCallback(fieldKey, field.value);
       setEditEnabled({
         ...editEnabled,
         [formFields[fieldKey].label]: false,
       });
+
+      // format the phone after save
+      if (fieldKey === 'phone') {
+        setFormFields({
+          ...formFields,
+          phone: {
+            ...formFields[fieldKey],
+            value: formatToPhone(formFields.phone.value),
+          },
+        });
+      }
     };
     return (
       <>
         {editEnabled[field.label] ? (
           <>
-            <StyledTextField
-              fullWidth
-              variant="outlined"
-              value={field.value}
-              onChange={e => onChangeField(fieldKey, e.target.value)}
-            />
+            {field.label === 'Mobile number' ? (
+              <PhoneWrapper>
+                <PhoneInput
+                  disableCountryCode
+                  country="us"
+                  disableDropdown
+                  inputClass="phone-input"
+                  placeholder="Phone Number"
+                  onlyCountries={['us']}
+                  value={field.value}
+                  onChange={phoneVal => onChangeField(fieldKey, phoneVal)}
+                />
+              </PhoneWrapper>
+            ) : (
+              <StyledTextField
+                fullWidth
+                variant="outlined"
+                value={field.value}
+                onChange={e => onChangeField(fieldKey, e.target.value)}
+              />
+            )}
+
             <ButtonCancelWrapper>
               <PurpleButton
                 style={{ marginTop: '24px' }}
@@ -180,7 +258,33 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
             </ButtonCancelWrapper>
           </>
         ) : (
-          <Value>{field.value}</Value>
+          <Value>
+            {field.value} <br />
+            {field.label === 'Email' &&
+              field.value &&
+              field.value !== '' &&
+              !isEmailVerified && (
+                <NotVerified>
+                  This email is not verified
+                  <br />
+                  <Link href="/register/confirm" passHref>
+                    <a>Verify Your Email</a>
+                  </Link>
+                </NotVerified>
+              )}
+            {field.label === 'Mobile number' &&
+              field.value &&
+              field.value !== '' &&
+              !isPhoneVerified && (
+                <NotVerified>
+                  This phone is not verified
+                  <br />
+                  <Link href="/register/confirm" passHref>
+                    <a>Verify Your Phone</a>
+                  </Link>
+                </NotVerified>
+              )}
+          </Value>
         )}
       </>
     );
@@ -284,6 +388,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
           </Hidden>
         </Row>
       ))}
+
       <Row>
         <div style={{ flex: 1 }}>
           <Label>Password</Label>
@@ -359,6 +464,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
           )}
         </Hidden>
       </Row>
+
       <Privacy>
         <BsLock size={24} color="#919191" />
         <br />

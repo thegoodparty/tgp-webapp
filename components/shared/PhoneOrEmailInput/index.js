@@ -105,7 +105,7 @@ function PhoneOrEmailInput({ onChangeCallback }) {
       required
       size="medium"
       fullWidth
-      name="password"
+      name={valueType}
       onChange={onChangeValue}
       variant="outlined"
       InputProps={{

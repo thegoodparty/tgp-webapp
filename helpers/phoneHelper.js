@@ -31,19 +31,23 @@ export const formatToPhone = value => {
   if (!value) {
     return '';
   }
-  const input = value.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
+  let noCountryCode = value;
+  if (value.charAt(0) === '1') {
+    noCountryCode = value.substring(1);
+  }
+  const input = noCountryCode.replace(/\D/g, '').substring(0, 10); // First ten digits of input only
   const zip = input.substring(0, 3);
   const middle = input.substring(3, 6);
   const last = input.substring(6, 10);
 
   if (input.length > 6) {
-    return `+1 (${zip}) ${middle}-${last}`;
+    return `(${zip}) ${middle}-${last}`;
   }
   if (input.length > 3) {
-    return `+1 (${zip}) ${middle}`;
+    return `(${zip}) ${middle}`;
   }
   if (input.length > 0) {
-    return `+1 (${zip}`;
+    return `(${zip}`;
   }
 };
 

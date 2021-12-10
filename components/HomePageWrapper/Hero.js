@@ -43,28 +43,16 @@ const StyledH1 = styled(H1)`
 
 const StyledH2 = styled.h2`
   color: #fff;
-  font-size: 42px;
-  line-height: 36px;
-  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
   text-align: center;
+  font-weight: 400;
   margin: 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     text-align: left;
-    line-height: 48px;
-  }
-
-  .smaller {
-    display: block;
-    font-size: 28px;
-    line-height: 33px;
-    font-weight: 400;
-    margin-top: 8px;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
-      font-size: 38px;
-      line-height: 33px;
-    }
+    font-size: 32px;
+    line-height: 38px;
   }
 `;
 
@@ -132,7 +120,8 @@ const Hero = ({ engagements = 134222 }) => {
         </Grid>
         <Grid item xs={12} lg={6}>
           <StyledH2>
-            Together<span className="smaller">we can change the game.</span>
+            We’re creating a simple, free way for people to help{' '}
+            <strong>good independent candidates</strong> run and win!
           </StyledH2>
         </Grid>
         <Grid item xs={12} lg={6} className="text-center">

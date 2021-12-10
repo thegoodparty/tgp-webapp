@@ -27,10 +27,16 @@ const uploadAvatarAction = imageBase64 => ({
   imageBase64,
 });
 
+const deleteAccountAction = () => ({
+  type: types.DELETE_ACCOUNT,
+});
+
 export default {
   updateUserAction,
   updateUserActionSuccess,
 
   changePasswordAction,
   uploadAvatarAction,
+
+  deleteAccountAction,
 };

@@ -21,24 +21,27 @@ import makeSelectProfileSettingsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import makeSelectUser from '../../you/YouPage/selectors';
 
 export function ProfileSettingsPage({
   signoutCallback,
   updateUserCallback,
   changePasswordCallback,
   uploadImageCallback,
+  userState,
+  deleteAccountCallback,
 }) {
   useInjectReducer({ key: 'profileSettingsPage', reducer });
   useInjectSaga({ key: 'profileSettingsPage', saga });
-
-  const cookieUser = getUserCookie(true);
-  const [user, setUser] = useState(cookieUser);
-  const router = useRouter();
-  const { updated } = router.query;
-  useEffect(() => {
-    const tempUser = getUserCookie(true);
-    setUser(tempUser);
-  }, [updated]);
+  const user = userState?.user || getUserCookie(true);
+  // const cookieUser = getUserCookie(true);
+  // const [user, setUser] = useState(cookieUser);
+  // const router = useRouter();
+  // const { updated } = router.query;
+  // useEffect(() => {
+  //   const tempUser = getUserCookie(true);
+  //   setUser(tempUser);
+  // }, [updated]);
 
   const childProps = {
     user,
@@ -46,6 +49,7 @@ export function ProfileSettingsPage({
     updateUserCallback,
     changePasswordCallback,
     uploadImageCallback,
+    deleteAccountCallback,
   };
 
   return (
@@ -62,10 +66,13 @@ ProfileSettingsPage.propTypes = {
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
   uploadImageCallback: PropTypes.func,
+  deleteAccountCallback: PropTypes.func,
+  userState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   profileSettingsPage: makeSelectProfileSettingsPage(),
+  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -83,12 +90,15 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.updateUserAction({ [key]: cleanValue }));
     },
     changePasswordCallback: (password, oldPassword) => {
-      console.log('in page');
       dispatch(actions.changePasswordAction(password, oldPassword));
     },
 
     uploadImageCallback: base64 => {
       dispatch(actions.uploadAvatarAction(base64));
+    },
+
+    deleteAccountCallback: () => {
+      dispatch(actions.deleteAccountAction());
     },
   };
 }

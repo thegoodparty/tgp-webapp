@@ -11,9 +11,10 @@ import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from 'components/shared/PageWrapper';
 import TopSection from './TopSection';
-import PeopleSection from './PeopleSection';
-import SpreadSection from './SpreadSection';
 import CampaignSection from './CampaignsSection';
+import IncompleteProfileBanner from './IncompleteProfileBanner';
+import ProfileTabs from './ProfileTabs';
+import UpdatesSection from './UpdatesSection';
 
 export const MaxWidth = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
@@ -26,30 +27,22 @@ export const GrayText = styled.span`
 `;
 
 const ContentWrpper = styled(MaxWidth)`
-  padding: 24px 20px 48px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  padding: 24px 8px 48px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     padding: 32px 20px 64px;
   }
 `;
 
-function ProfileWrapper({ user, crewPreview, crewCount, userSupported }) {
+function ProfileWrapper({ user, userSupported, updates }) {
   return (
     <PageWrapper isFullWidth>
       <TopSection user={user} />
+      <IncompleteProfileBanner user={user} />
       <ContentWrpper>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <PeopleSection
-              user={user}
-              crewPreview={crewPreview}
-              crewCount={crewCount}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <SpreadSection user={user} />
-          </Grid>
-        </Grid>
+        <ProfileTabs />
         <CampaignSection userSupported={userSupported} />
+        <UpdatesSection updates={updates} />
       </ContentWrpper>
     </PageWrapper>
   );
@@ -57,9 +50,8 @@ function ProfileWrapper({ user, crewPreview, crewCount, userSupported }) {
 
 ProfileWrapper.propTypes = {
   user: PropTypes.object,
-  crewPreview: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  crewCount: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   userSupported: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  updates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ProfileWrapper;

@@ -40,6 +40,8 @@ const leaderboardPageReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.leaderboard = action.leaderboard;
         break;
+
+
     }
   });
 

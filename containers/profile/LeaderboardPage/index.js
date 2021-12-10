@@ -37,6 +37,8 @@ export function LeaderboardPage({ leaderboardPage, dispatch }) {
     }
   }, [leaderboard]);
 
+
+
   const user = getUserCookie(true);
 
   const childProps = {
@@ -44,7 +46,7 @@ export function LeaderboardPage({ leaderboardPage, dispatch }) {
     user,
     leaderboard,
   };
-  console.log('leaderboard', leaderboard);
+
   return (
     <div>
       <TgpHelmet

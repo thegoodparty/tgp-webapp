@@ -31,7 +31,8 @@ const StyledH1 = styled(H1)`
 
 const TopRowText = styled.div`
   margin-left: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin-left: 24px;
   }
 `;
@@ -44,7 +45,8 @@ const Settings = styled(Body13)`
   top: 14px;
   right: 14px;
   cursor: pointer;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     position: static;
   }
 `;
@@ -57,12 +59,6 @@ function TopSection({ user }) {
           <UserAvatar user={user} size="large" />
           <TopRowText>
             <StyledH1>{user.name}</StyledH1>
-            <Link href="/profile/settings">
-              <Settings>
-                <span style={{ marginRight: '6px' }}>Settings</span>
-                <img src="/images/icons/settings.svg" />
-              </Settings>
-            </Link>
           </TopRowText>
         </Row>
       </MaxWidth>
