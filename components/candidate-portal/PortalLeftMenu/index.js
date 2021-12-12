@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/ChevronLeft';
 import OpenIcon from '@material-ui/icons/ChevronRight';
 
+import { AiOutlineNotification } from "react-icons/ai";
 import { ImEmbed2 } from 'react-icons/im';
 import { BiHomeHeart } from 'react-icons/bi';
 import { IoIosContact } from 'react-icons/io';
@@ -82,6 +83,11 @@ export const leftMenuItems = [
     icon: <ImEmbed2 size={24} />,
     label: 'Embed Button',
     link: '/candidate-portal/embed',
+  },
+  {
+    icon: <AiOutlineNotification size={24} />,
+    label: 'Notification',
+    link: '/candidate-portal/campaign-notification',
   },
 ];
 function PortalLeftMenu() {

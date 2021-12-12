@@ -517,6 +517,18 @@ const api = {
         withAuth: true,
       },
     },
+    notification: {
+      find: {
+        url: `${base}campaign-notification`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign-notification`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
     ugc: {
       find: {
         url: `${base}candidate-ugc`,
