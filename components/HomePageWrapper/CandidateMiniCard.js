@@ -60,9 +60,6 @@ const Endorsements = styled.div`
   font-size: 16px;
   line-height: 22px;
   margin-top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   .large {
     font-size: 22px;
@@ -70,11 +67,6 @@ const Endorsements = styled.div`
     color: ${({ theme }) => theme.colors.purple};
     font-weight: 700;
   }
-`;
-
-const NextStep = styled.div`
-  text-align: right;
-  font-size: 11px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -132,7 +124,6 @@ const CandidateMiniCard = ({ candidate }) => {
             <span className="large">{numberFormatter(supporters)}</span>{' '}
             endorsements
           </div>
-          <NextStep>{numberFormatter(achievements.nextStep)}</NextStep>
         </Endorsements>
 
         <SupportersProgressBar
