@@ -63,6 +63,7 @@ const StyledTooltip = styled(Body13)`
 const dateRanges = ['All time', 'last 12 months', 'last 30 days', 'last week'];
 
 function AdminUserStats({ users, loadUsersCallback }) {
+  console.log('user', users);
   const [dateRange, setDateRange] = useState(dateRanges[0]);
   const [verifiedEmailData, setVerifiedEmailData] = useState([]);
   const [socialRegisterData, setSocialRegisterData] = useState([]);
@@ -75,6 +76,7 @@ function AdminUserStats({ users, loadUsersCallback }) {
     let google = 0;
     let facebook = 0;
     let hasPassword = 0;
+    let phoneVerified = 0;
     const states = {};
     const zips = {};
     users &&
@@ -93,13 +95,16 @@ function AdminUserStats({ users, loadUsersCallback }) {
         if (user.hasPassword) {
           hasPassword++;
         }
+        if (user.isPhoneVerified) {
+          phoneVerified++;
+        }
         const state = user.shortState;
         if (!states[state]) {
           states[state] = 1;
         } else {
           states[state] = states[state] + 1;
         }
-        const zip = user.zipCode;
+        const zip = user.zip;
         if (!zips[zip]) {
           zips[zip] = 1;
         } else {
@@ -125,8 +130,13 @@ function AdminUserStats({ users, loadUsersCallback }) {
         fill: '#8884d8',
       },
       {
+        name: 'Phone Verified',
+        value: phoneVerified,
+        fill: '#309b13',
+      },
+      {
         name: 'Email - No Password',
-        value: users.length - socialRegister - hasPassword,
+        value: users.length - socialRegister - hasPassword - phoneVerified,
         fill: '#ed78b8',
       },
       {
@@ -277,6 +287,7 @@ function AdminUserStats({ users, loadUsersCallback }) {
 
 AdminUserStats.propTypes = {
   users: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  loadUsersCallback: PropTypes.func,
 };
 
 export default AdminUserStats;
