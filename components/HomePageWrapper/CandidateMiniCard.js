@@ -121,8 +121,10 @@ const CandidateMiniCard = ({ candidate }) => {
         </Row>
         <Endorsements>
           <div>
-            <span className="large">{numberFormatter(supporters)}</span>{' '}
-            endorsements
+            <span className="large">
+              {numberFormatter(supporters)} endorsements
+            </span>{' '}
+            so far
           </div>
         </Endorsements>
 
