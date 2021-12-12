@@ -21,6 +21,7 @@ import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
 import { H3 } from 'components/shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -31,6 +32,13 @@ const Title = styled(H3)`
   margin-bottom: 12px;
   text-align: center;
   position: relative;
+`;
+const LogAs = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.purple};
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const CSVLinkWrapper = styled.div`
@@ -43,7 +51,11 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function Index({ candidates, deleteCandidateCallback }) {
+function Index({
+  candidates,
+  deleteCandidateCallback,
+  logAsCandidateCallback,
+}) {
   const [tableData, setTableData] = useState([]);
   const [deleteCandidate, setDeleteCandidate] = useState(false);
   const handleDeleteCandidate = id => {
@@ -67,6 +79,7 @@ function Index({ candidates, deleteCandidateCallback }) {
           chamber: candidate.chamber,
           office: candidate.race,
           state: candidate.state ? candidate.state.toUpperCase() : '?',
+          canPortal: !!candidate.user,
         };
         data.push(fields);
       });
@@ -185,6 +198,27 @@ function Index({ candidates, deleteCandidateCallback }) {
               }}
               style={{ color: 'red', cursor: 'pointer' }}
             />
+          </div>
+        );
+      },
+    },
+
+    {
+      Header: 'Portal',
+      accessor: 'portal',
+      maxWidth: 120,
+      headerStyle,
+      filterMethod: customFilter,
+      Cell: row => {
+        return (
+          <div className="text-center">
+            {row.original.canPortal ? (
+              <LogAs onClick={() => logAsCandidateCallback(row.original.id)}>
+                Log as candidate
+              </LogAs>
+            ) : (
+              <>No user</>
+            )}
           </div>
         );
       },
