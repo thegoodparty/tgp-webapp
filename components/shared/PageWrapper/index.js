@@ -14,7 +14,7 @@ import Footer from 'components/shared/Footer';
 
 const MainWrapper = styled.div`
   &.purple {
-    background-color: ${({ theme }) => theme.colors.purple3};
+    background-color: ${({ theme }) => theme.colors.purpleBg};
   }
 `;
 const TopBannerWrapper = styled.div`

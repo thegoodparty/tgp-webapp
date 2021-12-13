@@ -38,6 +38,7 @@ export function ApplicationPage() {
         description="Complete this application to create your campaign on Good Party."
       />
       {step === 1 && <ApplicationStep1 {...childProps} />}
+      {step === 2 && <ApplicationStep1 {...childProps} />}
     </div>
   );
 }

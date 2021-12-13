@@ -8,12 +8,54 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { RiPencilFill } from 'react-icons/ri';
+import Grid from '@material-ui/core/Grid';
+
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
+import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`
-  padding: 36px 0;
+  padding: 16px 0;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 36px 0;
+    display: flex;
+  }
+`;
+
+const TopMobileNav = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.purple};
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: none;
+  }
+`;
+
+const TopLinks = styled.div`
+  display: flex;
+`;
+
+const TopLink = styled.div`
+  padding: 3px 8px;
+  text-align: center;
+  color: #caa9e9;
+  font-weight: 500;
+  border-radius: 4px;
+
+  &.active {
+    background-color: #e7d9f3;
+    color: ${({ theme }) => theme.colors.purple};
+    font-weight: 600;
+  }
 `;
 
 const LeftNav = styled.div`
@@ -40,7 +82,11 @@ const LeftLink = styled(Body13)`
 
 const MainWrapper = styled.div`
   flex: 1;
-  padding: 6px 32px;
+  padding: 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 6px 0 0 32px;
+  }
 `;
 
 const Paper = styled.div`
@@ -48,7 +94,27 @@ const Paper = styled.div`
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06),
     0 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
-  padding: 24px;
+  padding: 16px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 24px;
+  }
+`;
+
+const BottomFixed = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 24px 8px;
+  background-color: #fff;
+  text-align: center;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 90%;
+  max-width: 800px;
+  display: inline-block;
 `;
 
 const leftLinks = [
@@ -61,10 +127,34 @@ const leftLinks = [
   { step: 7, label: 'Checklist' },
 ];
 
+const topLinks = {};
+leftLinks.forEach(link => {
+  topLinks[link.step] = link;
+});
+
 function ApplicationWrapper({ step, children }) {
   return (
     <PageWrapper purple>
       <Wrapper>
+        <TopMobileNav>
+          <div>{topLinks[step].label}</div>
+          <TopLinks>
+            {leftLinks.map(link => (
+              <Link
+                href={`/campaign-application/${link.step}`}
+                passHref
+                key={link.step}
+              >
+                <a>
+                  <TopLink className={step === link.step && 'active'}>
+                    {link.step}
+                  </TopLink>
+                </a>
+              </Link>
+            ))}
+          </TopLinks>
+        </TopMobileNav>
+
         <LeftNav>
           {leftLinks.map(link => (
             <Link
@@ -79,10 +169,53 @@ function ApplicationWrapper({ step, children }) {
               </a>
             </Link>
           ))}
+          <br />
+          <PurpleButton
+            className="outline"
+            fullWidth
+            style={{ padding: '4px' }}
+          >
+            <RiPencilFill /> &nbsp; Finish Later
+          </PurpleButton>
         </LeftNav>
         <MainWrapper>
           <Paper>{children}</Paper>
         </MainWrapper>
+        <BottomFixed>
+          {step === 1 && (
+            <ButtonWrapper>
+              <Link href={`/campaign-application/2`} passHref>
+                <a>
+                  <PurpleButton fullWidth>
+                    I pledge to be a Good Candidate
+                  </PurpleButton>
+                </a>
+              </Link>
+            </ButtonWrapper>
+          )}
+          {step > 1 && (
+            <ButtonWrapper>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Link href={`/campaign-application/${step - 1}`} passHref>
+                    <a>
+                      <PurpleButton className="outline" fullWidth>
+                        Back
+                      </PurpleButton>
+                    </a>
+                  </Link>
+                </Grid>
+                <Grid item xs={6}>
+                  <Link href={`/campaign-application/${step + 1}`} passHref>
+                    <a>
+                      <PurpleButton fullWidth>Continue</PurpleButton>
+                    </a>
+                  </Link>
+                </Grid>
+              </Grid>
+            </ButtonWrapper>
+          )}
+        </BottomFixed>
       </Wrapper>
     </PageWrapper>
   );

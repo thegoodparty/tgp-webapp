@@ -7,12 +7,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import ApplicationWrapper from '../ApplicationWrapper';
+
+const Title = styled.h1`
+  font-size: 21px;
+  margin: 0 0 16px;
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.md}) {
+  font-size: 36px;
+  }
+`;
 
 function ApplicationStep1({ step }) {
   return (
     <ApplicationWrapper step={step}>
+      <Title>
+        Take the Good Party Pledge to get started{' '}
+        <span role="img" aria-label="victory">
+          ✌
+        </span>
+        ️
+      </Title>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Cras ornare arcu dui
       vivamus arcu felis bibendum. Dui accumsan sit amet nulla facilisi. Viverra

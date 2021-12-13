@@ -28,7 +28,7 @@ const WrapperDiv = styled.div`
     background-color: #fff;
   }
   &.purple {
-    background-color: ${({ theme }) => theme.colors.purple3};
+    background-color: ${({ theme }) => theme.colors.purpleBg};
   }
   &.no-header {
     min-height: calc(100vh);
