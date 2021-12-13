@@ -4,12 +4,13 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { RiPencilFill } from 'react-icons/ri';
 import Grid from '@material-ui/core/Grid';
+import Sticky from 'react-sticky-el';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
@@ -63,7 +64,10 @@ const LeftNav = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     display: block;
-    padding: 32px 0;
+    padding: 32px 16px 32px 0;
+    width: 180px;
+
+    background-color: ${({ theme }) => theme.colors.purpleBg};
   }
 `;
 
@@ -86,6 +90,9 @@ const MainWrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding: 6px 0 0 32px;
+    &.with-sticky {
+      margin-left: 180px;
+    }
   }
 `;
 
@@ -133,9 +140,11 @@ leftLinks.forEach(link => {
 });
 
 function ApplicationWrapper({ step, children }) {
+  const [isSticky, setIsSticky] = useState(false);
+
   return (
     <PageWrapper purple>
-      <Wrapper>
+      <Wrapper className="application-wrapper">
         <TopMobileNav>
           <div>{topLinks[step].label}</div>
           <TopLinks>
@@ -154,31 +163,35 @@ function ApplicationWrapper({ step, children }) {
             ))}
           </TopLinks>
         </TopMobileNav>
-
-        <LeftNav>
-          {leftLinks.map(link => (
-            <Link
-              href={`/campaign-application/${link.step}`}
-              passHref
-              key={link.step}
+        <Sticky
+          onFixedToggle={isOn => setIsSticky(isOn)}
+          boundaryElement=".application-wrapper"
+        >
+          <LeftNav>
+            {leftLinks.map(link => (
+              <Link
+                href={`/campaign-application/${link.step}`}
+                passHref
+                key={link.step}
+              >
+                <a>
+                  <LeftLink className={step === link.step && 'active'}>
+                    {link.label}
+                  </LeftLink>
+                </a>
+              </Link>
+            ))}
+            <br />
+            <PurpleButton
+              className="outline"
+              fullWidth
+              style={{ padding: '4px' }}
             >
-              <a>
-                <LeftLink className={step === link.step && 'active'}>
-                  {link.label}
-                </LeftLink>
-              </a>
-            </Link>
-          ))}
-          <br />
-          <PurpleButton
-            className="outline"
-            fullWidth
-            style={{ padding: '4px' }}
-          >
-            <RiPencilFill /> &nbsp; Finish Later
-          </PurpleButton>
-        </LeftNav>
-        <MainWrapper>
+              <RiPencilFill /> &nbsp; Finish Later
+            </PurpleButton>
+          </LeftNav>
+        </Sticky>
+        <MainWrapper className={isSticky && 'with-sticky'}>
           <Paper>{children}</Paper>
         </MainWrapper>
         <BottomFixed>
