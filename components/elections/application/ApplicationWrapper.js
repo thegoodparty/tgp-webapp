@@ -116,6 +116,7 @@ const BottomFixed = styled.div`
   padding: 24px 8px;
   background-color: #fff;
   text-align: center;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 `;
 
 const ButtonWrapper = styled.div`
