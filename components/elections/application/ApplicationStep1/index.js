@@ -152,7 +152,7 @@ function ApplicationStep1({ step }) {
       <Title>
         Take the Good Party Pledge to get started{' '}
         <span role="img" aria-label="victory">
-          ✌
+          ✌️
         </span>
         ️
       </Title>
