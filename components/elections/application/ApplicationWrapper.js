@@ -140,7 +140,7 @@ leftLinks.forEach(link => {
   topLinks[link.step] = link;
 });
 
-function ApplicationWrapper({ step, children }) {
+function ApplicationWrapper({ step, children, canContinue }) {
   const [isSticky, setIsSticky] = useState(false);
 
   return (
@@ -200,7 +200,7 @@ function ApplicationWrapper({ step, children }) {
             <ButtonWrapper>
               <Link href={`/campaign-application/2`} passHref>
                 <a>
-                  <PurpleButton fullWidth>
+                  <PurpleButton fullWidth disabled={!canContinue}>
                     I pledge to be a Good Candidate
                   </PurpleButton>
                 </a>
@@ -222,7 +222,9 @@ function ApplicationWrapper({ step, children }) {
                 <Grid item xs={6}>
                   <Link href={`/campaign-application/${step + 1}`} passHref>
                     <a>
-                      <PurpleButton fullWidth>Continue</PurpleButton>
+                      <PurpleButton fullWidth disabled={!canContinue}>
+                        Continue
+                      </PurpleButton>
                     </a>
                   </Link>
                 </Grid>
@@ -238,6 +240,7 @@ function ApplicationWrapper({ step, children }) {
 ApplicationWrapper.propTypes = {
   children: PropTypes.node,
   step: PropTypes.number,
+  canContinue: PropTypes.bool,
 };
 
 export default ApplicationWrapper;
