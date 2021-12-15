@@ -8,9 +8,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import ApplicationWrapper from '../ApplicationWrapper';
-import { Body, Body13 } from '../../../shared/typogrophy';
-import PurpleCheckbox from '../../../shared/PurpleCheckbox';
+import ApplicationWrapper from './ApplicationWrapper';
+import { Body, Body13 } from '../../shared/typogrophy';
+import PurpleCheckbox from '../../shared/PurpleCheckbox';
 
 const Title = styled.h1`
   font-size: 21px;

@@ -13,6 +13,7 @@ import { compose } from 'redux';
 
 import TgpHelmet from 'components/shared/TgpHelmet';
 import ApplicationStep1 from 'components/elections/application/ApplicationStep1';
+import ApplicationStep2 from 'components/elections/application/ApplicationStep2';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -38,7 +39,7 @@ export function ApplicationPage() {
         description="Complete this application to create your campaign on Good Party."
       />
       {step === 1 && <ApplicationStep1 {...childProps} />}
-      {step === 2 && <ApplicationStep1 {...childProps} />}
+      {step === 2 && <ApplicationStep2 {...childProps} />}
     </div>
   );
 }
