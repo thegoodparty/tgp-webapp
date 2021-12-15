@@ -348,6 +348,7 @@ function ApplicationStep2({ step }) {
         {fields.map(field => (
           <>{renderField(field)}</>
         ))}
+        <Label>Candidate social links</Label>
         {socials.map(field => (
           <SocialFieldWrapper key={field.key}>
             <TextField
