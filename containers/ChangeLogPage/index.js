@@ -12,9 +12,9 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import ChangeLogWrapper from 'components/ChangeLogWrapper';
-
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import TgpHelmet from '../../components/shared/TgpHelmet';
 import makeSelectChangeLogPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -36,9 +36,7 @@ export function ChangeLogPage({ dispatch, changeLogPage }) {
 
   return (
     <div>
-      <Helmet>
-        <title>ChangeLog Page</title>
-      </Helmet>
+      <TgpHelmet title="ChangeLog Page | GOOD PARTY" description="ChangeLog" />
       <ChangeLogWrapper {...childProps} />
     </div>
   );
