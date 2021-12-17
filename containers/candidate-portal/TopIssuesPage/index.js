@@ -35,6 +35,7 @@ import adminIssueTopicsActions from '../../admin/AdminIssueTopicsPage/actions';
 export function TopIssuesPage({
   userState,
   dispatch,
+  ssrState,
   candidatePortalHomePage,
   topIssuesPage,
   updateIssueCallback,
@@ -67,16 +68,20 @@ export function TopIssuesPage({
       if (!user.isAdmin && !user.candidate) {
         dispatch(push('/'));
       }
-      dispatch(portalHomeActions.findCandidate());
-      dispatch(actions.findIssueAction());
+      if (!ssrState.candidate.id) {
+        dispatch(portalHomeActions.findCandidate());
+      }
+      dispatch(actions.findIssueAction(ssrState.candidate.id));
     }
   }, [user]);
+  // const { candidate } = ssrState || {};
 
   const { candidateIssue } = topIssuesPage;
   const { topics } = adminIssueTopicsPage;
   const childProps = {
     user,
-    candidate,
+    candidate: ssrState.candidate || candidate,
+    candidateId: ssrState.candidate.id,
     candidateIssue,
     updateIssueCallback,
     topics,
@@ -96,6 +101,7 @@ export function TopIssuesPage({
 TopIssuesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
+  ssrState: PropTypes.object,
   topIssuesPage: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
   updateIssueCallback: PropTypes.func,
@@ -112,8 +118,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateIssueCallback: issue => {
-      dispatch(actions.updateIssueAction(issue));
+    updateIssueCallback: (issue, candidateId) => {
+      dispatch(actions.updateIssueAction(issue, candidateId));
     },
   };
 }

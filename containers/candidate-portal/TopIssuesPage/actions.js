@@ -1,8 +1,9 @@
 import types from './constants';
 
-function findIssueAction() {
+function findIssueAction(candidateId) {
   return {
     type: types.FIND_ISSUE,
+    candidateId,
   };
 }
 
@@ -13,10 +14,11 @@ function findIssueActionSuccess(candidateIssue) {
   };
 }
 
-function updateIssueAction(issue) {
+function updateIssueAction(issue, candidateId) {
   return {
     type: types.UPDATE_ISSUE,
     issue,
+    candidateId,
   };
 }
 

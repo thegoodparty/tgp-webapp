@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { H2, Body11 } from '../../shared/typogrophy';
 import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import AdminPageWrapper from '../../admin/AdminWrapper/AdminPageWrapper';
+
 import { BlueButton, PurpleButton } from '../../shared/buttons';
 import TopIssue from './TopIssue';
 
@@ -19,7 +21,13 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-function TopIssuesWrapper({ candidateIssue, updateIssueCallback, topics }) {
+function TopIssuesWrapper({
+  candidateIssue,
+  candidate,
+  updateIssueCallback,
+  topics,
+  candidateId,
+}) {
   const [topIssues, setTopIssues] = useState([]);
   const [topicList, setTopicList] = useState([]);
   useEffect(() => {
@@ -57,10 +65,14 @@ function TopIssuesWrapper({ candidateIssue, updateIssueCallback, topics }) {
     });
     return isValid;
   };
+  const PageWrapper = candidateId ? AdminPageWrapper : PortalPageWrapper;
   return (
-    <PortalPageWrapper>
+    <PageWrapper>
       <Wrapper>
-        <H2 className="text-left">Issues</H2>
+        <H2 className="text-left">
+          Issues
+          {candidateId ? ` - ${candidate.firstName} ${candidate.lastName}` : ''}
+        </H2>
         <Body11 className="text-left">
           Select up to 10 top issues for your campaign in order of importance.
         </Body11>
@@ -90,7 +102,7 @@ function TopIssuesWrapper({ candidateIssue, updateIssueCallback, topics }) {
           <Grid item xs={12}>
             <PurpleButton
               disabled={!isFormValidate()}
-              onClick={() => updateIssueCallback(topIssues)}
+              onClick={() => updateIssueCallback(topIssues, candidateId)}
               fullWidth
             >
               SAVE
@@ -98,13 +110,14 @@ function TopIssuesWrapper({ candidateIssue, updateIssueCallback, topics }) {
           </Grid>
         </Grid>
       </Wrapper>
-    </PortalPageWrapper>
+    </PageWrapper>
   );
 }
 
 TopIssuesWrapper.propTypes = {
   topics: PropTypes.array,
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  candidateId: PropTypes.number,
   candidateIssue: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateIssueCallback: PropTypes.func,
 };
