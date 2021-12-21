@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -20,16 +20,34 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectApplicationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import actions from './actions';
 
-export function ApplicationPage() {
+export function ApplicationPage({
+  applicationPage,
+  dispatch,
+  updateApplicationCallback,
+}) {
   useInjectReducer({ key: 'applicationPage', reducer });
   useInjectSaga({ key: 'applicationPage', saga });
 
   const router = useRouter();
-  const step = parseInt(router.query.step, 10);
+  const stepStr =
+    router.query.IdStep?.length > 1 ? router.query.IdStep[1] : '1';
+  const id = router.query.IdStep?.length > 0 ? router.query.IdStep[0] : false;
+  const step = parseInt(stepStr, 10);
+
+  const { application } = applicationPage;
+  useEffect(() => {
+    if (id) {
+      dispatch(actions.loadApplicationAction(id));
+    }
+  }, [id]);
 
   const childProps = {
     step,
+    id,
+    application,
+    updateApplicationCallback,
   };
 
   return (
@@ -38,14 +56,20 @@ export function ApplicationPage() {
         title="Campaign application | GOOD PARTY"
         description="Complete this application to create your campaign on Good Party."
       />
-      {step === 1 && <ApplicationStep1 {...childProps} />}
-      {step === 2 && <ApplicationStep2 {...childProps} />}
+      {id && application && (
+        <>
+          {step === 1 && <ApplicationStep1 {...childProps} />}
+          {step === 2 && <ApplicationStep2 {...childProps} />}
+        </>
+      )}
     </div>
   );
 }
 
 ApplicationPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  applicationPage: PropTypes.object,
+  updateApplicationCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -55,6 +79,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    updateApplicationCallback: (id, data) => {
+      dispatch(actions.updateApplicationAction(id, data));
+    },
   };
 }
 

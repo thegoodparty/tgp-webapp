@@ -576,5 +576,28 @@ const api = {
       method: 'POST',
     },
   },
+
+  candidateApplication: {
+    create: {
+      url: `${base}application`,
+      method: 'POST',
+      withAuth: true,
+    },
+    list: {
+      url: `${base}applications`,
+      method: 'GET',
+      withAuth: true,
+    },
+    find: {
+      url: `${base}application`,
+      method: 'GET',
+      withAuth: true,
+    },
+    update: {
+      url: `${base}application`,
+      method: 'PUT',
+      withAuth: true,
+    },
+  },
 };
 export default api;

@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { RiPencilFill } from 'react-icons/ri';
 import Grid from '@material-ui/core/Grid';
 import Sticky from 'react-sticky-el';
+import { useRouter } from 'next/router';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
@@ -140,8 +141,10 @@ leftLinks.forEach(link => {
   topLinks[link.step] = link;
 });
 
-function ApplicationWrapper({ step, children, canContinue }) {
+function ApplicationWrapper({ step, children, canContinue, id }) {
   const [isSticky, setIsSticky] = useState(false);
+
+  const router = useRouter();
 
   return (
     <PageWrapper purple>
@@ -171,7 +174,7 @@ function ApplicationWrapper({ step, children, canContinue }) {
           <LeftNav>
             {leftLinks.map(link => (
               <Link
-                href={`/campaign-application/${link.step}`}
+                href={`/campaign-application/${id}/${link.step}`}
                 passHref
                 key={link.step}
               >
@@ -198,7 +201,12 @@ function ApplicationWrapper({ step, children, canContinue }) {
         <BottomFixed>
           {step === 1 && (
             <ButtonWrapper>
-              <Link href={`/campaign-application/2`} passHref>
+              <Link
+                href={
+                  canContinue ? `/campaign-application/${id}/2` : router.asPath
+                }
+                passHref
+              >
                 <a>
                   <PurpleButton fullWidth disabled={!canContinue}>
                     I pledge to be a Good Candidate
@@ -211,7 +219,10 @@ function ApplicationWrapper({ step, children, canContinue }) {
             <ButtonWrapper>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
-                  <Link href={`/campaign-application/${step - 1}`} passHref>
+                  <Link
+                    href={`/campaign-application/${id}/${step - 1}`}
+                    passHref
+                  >
                     <a>
                       <PurpleButton className="outline" fullWidth>
                         Back
@@ -220,7 +231,14 @@ function ApplicationWrapper({ step, children, canContinue }) {
                   </Link>
                 </Grid>
                 <Grid item xs={6}>
-                  <Link href={`/campaign-application/${step + 1}`} passHref>
+                  <Link
+                    href={
+                      canContinue
+                        ? `/campaign-application/${id}/${step + 1}`
+                        : router.asPath
+                    }
+                    passHref
+                  >
                     <a>
                       <PurpleButton fullWidth disabled={!canContinue}>
                         Continue
@@ -241,6 +259,7 @@ ApplicationWrapper.propTypes = {
   children: PropTypes.node,
   step: PropTypes.number,
   canContinue: PropTypes.bool,
+  id: PropTypes.string,
 };
 
 export default ApplicationWrapper;

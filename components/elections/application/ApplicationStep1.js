@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -123,7 +123,7 @@ const cards = [
   },
 ];
 
-function ApplicationStep1({ step }) {
+function ApplicationStep1({ step, application, updateApplicationCallback }) {
   const [state, setState] = useState({
     disAffiliate: false,
     notJoin: false,
@@ -133,11 +133,34 @@ function ApplicationStep1({ step }) {
     antiCorruption: false,
   });
 
+  useEffect(() => {
+    if (application?.pledge) {
+      setState({
+        ...application.pledge,
+      });
+    }
+  }, [application]);
+
   const onChangeField = (key, value) => {
-    console.log('key', key, value);
-    setState({
+    const updatedState = {
       ...state,
       [key]: value,
+    };
+    setState(updatedState);
+    const isCompleted =
+      updatedState.disAffiliate &&
+      updatedState.notJoin &&
+      updatedState.noPay &&
+      updatedState.noNominee &&
+      updatedState.peoplePowered &&
+      updatedState.antiCorruption;
+
+    updateApplicationCallback(application.id, {
+      ...application,
+      pledge: {
+        ...updatedState,
+        isCompleted,
+      },
     });
   };
   const canSubmit = () =>
@@ -148,7 +171,11 @@ function ApplicationStep1({ step }) {
     state.peoplePowered &&
     state.antiCorruption;
   return (
-    <ApplicationWrapper step={step} canContinue={canSubmit()}>
+    <ApplicationWrapper
+      step={step}
+      canContinue={canSubmit()}
+      id={application.id}
+    >
       <Title>
         Take the Good Party Pledge to get started{' '}
         <span role="img" aria-label="victory">
@@ -185,6 +212,8 @@ function ApplicationStep1({ step }) {
 
 ApplicationStep1.propTypes = {
   step: PropTypes.number,
+  application: PropTypes.object,
+  updateApplicationCallback: PropTypes.func,
 };
 
 export default ApplicationStep1;

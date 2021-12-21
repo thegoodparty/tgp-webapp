@@ -8,22 +8,22 @@ import types from './constants';
 
 export const initialState = {
   loading: false,
-  application: false,
+  applications: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const applicationPageReducer = (state = initialState, action) =>
+const campaignApplicationsPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case types.LOAD_APPLICATION:
+      case types.LOAD_APPLICATIONS:
         draft.loading = true;
-        draft.application = false;
+        draft.applications = false;
         break;
-      case types.LOAD_APPLICATION_SUCCESS:
+      case types.LOAD_APPLICATIONS_SUCCESS:
         draft.loading = false;
-        draft.application = action.application;
+        draft.applications = action.applications;
         break;
     }
   });
 
-export default applicationPageReducer;
+export default campaignApplicationsPageReducer;

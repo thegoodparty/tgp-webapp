@@ -4,10 +4,33 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
+function loadApplicationAction(id) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.LOAD_APPLICATION,
+    id,
   };
 }
+
+function loadApplicationActionSuccess(application) {
+  return {
+    type: types.LOAD_APPLICATION_SUCCESS,
+    application,
+  };
+}
+
+function updateApplicationAction(id, data) {
+  return {
+    type: types.UPDATE_APPLICATION,
+    id,
+    data,
+  };
+}
+
+export default {
+  loadApplicationAction,
+  loadApplicationActionSuccess,
+
+  updateApplicationAction,
+};

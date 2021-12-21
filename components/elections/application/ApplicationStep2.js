@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
@@ -259,18 +259,40 @@ socials.forEach(field => {
   keys[field.key] = field.defaultValue;
 });
 
-function ApplicationStep2({ step }) {
+function ApplicationStep2({ step, application, updateApplicationCallback }) {
   const [state, setState] = useState(keys);
   const [hiddenElements, setHiddenElemtns] = useState({
     publicOffice: true,
     officeElected: true,
   });
+
+  useEffect(() => {
+    if (application?.candidate) {
+      setState({
+        ...application.candidate,
+      });
+    }
+  }, [application]);
+
   const handleSubmitForm = e => e.stopPropagation();
 
   const onChangeField = (key, e) => {
     setState({
       ...state,
       [key]: e.target.value,
+    });
+  };
+
+  const onBlurField = (key, e) => {
+    const updatedState = {
+      ...state,
+      [key]: e.target.value,
+    };
+    updateApplicationCallback(application.id, {
+      ...application,
+      candidate: {
+        ...updatedState,
+      },
     });
   };
 
@@ -288,12 +310,14 @@ function ApplicationStep2({ step }) {
       });
     }
     onChangeField(key, e);
+    onBlurField(key, e);
   };
 
   const renderField = field => {
     if (field.hidden && hiddenElements[field.key]) {
       return;
-    } else if (field.hidden && !hiddenElements[field.key]) {
+    }
+    if (field.hidden && !hiddenElements[field.key]) {
       return <FieldWrapper>{field.customElement}</FieldWrapper>;
     }
     return (
@@ -302,7 +326,18 @@ function ApplicationStep2({ step }) {
           {field.label} {field.required && <Req>required</Req>}
         </Label>
         {field.type === 'select' && (
-          <Select native value={state[field.key]} fullWidth variant="outlined">
+          <Select
+            native
+            value={state[field.key]}
+            fullWidth
+            variant="outlined"
+            onChange={e => {
+              onChangeField(field.key, e);
+            }}
+            onBlur={e => {
+              onBlurField(field.key, e);
+            }}
+          >
             <option value="">Select</option>
             {field.options.map(op => (
               <option value={op} key={op}>
@@ -319,6 +354,12 @@ function ApplicationStep2({ step }) {
             fullWidth
             required={field.required}
             placeholder={field.placeholder}
+            onChange={e => {
+              onChangeField(field.key, e);
+            }}
+            onBlur={e => {
+              onBlurField(field.key, e);
+            }}
           />
         )}
         {field.type === 'radio' && (
@@ -343,7 +384,7 @@ function ApplicationStep2({ step }) {
     );
   };
   return (
-    <ApplicationWrapper step={step} canContinue>
+    <ApplicationWrapper step={step} canContinue id={application.id}>
       <form noValidate onSubmit={handleSubmitForm}>
         {fields.map(field => (
           <>{renderField(field)}</>
@@ -366,6 +407,12 @@ function ApplicationStep2({ step }) {
                   </InputAdornment>
                 ),
               }}
+              onChange={e => {
+                onChangeField(field.key, e);
+              }}
+              onBlur={e => {
+                onBlurField(field.key, e);
+              }}
             />
           </SocialFieldWrapper>
         ))}
@@ -376,6 +423,8 @@ function ApplicationStep2({ step }) {
 
 ApplicationStep2.propTypes = {
   step: PropTypes.number,
+  application: PropTypes.object,
+  updateApplicationCallback: PropTypes.func,
 };
 
 export default ApplicationStep2;

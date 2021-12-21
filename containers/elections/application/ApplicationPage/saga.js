@@ -1,6 +1,52 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { push } from 'connected-next-router';
 
-// Individual exports for testing
-export default function* applicationPageSaga() {
-  // See example in containers/HomePage/saga.js
+import tgpApi from 'api/tgpApi';
+import requestHelper from 'helpers/requestHelper';
+import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+
+import actions from './actions';
+import types from './constants';
+
+function* loadApplication({ id }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading your application'));
+    const api = tgpApi.candidateApplication.find;
+    const payload = {
+      id,
+    };
+    const { application } = yield call(requestHelper, api, payload);
+    yield put(actions.loadApplicationActionSuccess(application));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error creating your application',
+        'error',
+      ),
+    );
+  }
+}
+
+function* updateApplication({ id, data }) {
+  try {
+    const api = tgpApi.candidateApplication.update;
+    const payload = {
+      id,
+      data,
+    };
+    const { application } = yield call(requestHelper, api, payload);
+    yield put(actions.loadApplicationActionSuccess(application));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error creating your application',
+        'error',
+      ),
+    );
+  }
+}
+
+export default function* profilePageSaga() {
+  yield takeLatest(types.LOAD_APPLICATION, loadApplication);
+  yield takeLatest(types.UPDATE_APPLICATION, updateApplication);
 }
