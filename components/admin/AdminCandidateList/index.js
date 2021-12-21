@@ -223,6 +223,28 @@ function Index({
         );
       },
     },
+    {
+      Header: 'Top Issues',
+      accessor: 'topIssues',
+      headerStyle,
+      filterMethod: customFilter,
+      Cell: row => {
+        const editRoute = `/admin/top-issues/${row.original.id}`;
+        return (
+          <>
+            <a
+              href={editRoute}
+              target="_blank"
+              style={{
+                textDecoration: row.original.isHidden ? 'line-through' : '',
+              }}
+            >
+              Edit Top Issues
+            </a>
+          </>
+        );
+      },
+    },
   ];
 
   const csvHeader = columns.map(column => ({
