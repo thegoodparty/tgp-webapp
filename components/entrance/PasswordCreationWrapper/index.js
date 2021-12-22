@@ -29,9 +29,11 @@ function PasswordCreationWrapper({ savePasswordCallback }) {
   const handleSubmitForm = e => {
     e.preventDefault();
   };
+  var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
 
   const enableSubmit = () =>
     formData.password !== '' &&
+    formData.password.match(decimal) && 
     formData.password.length >= 8 &&
     formData.password === formData.passwordConfirmation;
 
@@ -57,6 +59,7 @@ function PasswordCreationWrapper({ savePasswordCallback }) {
           <PasswordInput
             label="Password"
             onChangeCallback={pwd => onChangeField(pwd, 'password')}
+            helperText="at least 1 cap, 1 lowercase, and 1 special character and number, 8 characters minimum"
           />
           <PasswordInput
             label="Retype Password"
