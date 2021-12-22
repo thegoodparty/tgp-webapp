@@ -59,7 +59,7 @@ function PasswordCreationWrapper({ savePasswordCallback }) {
           <PasswordInput
             label="Password"
             onChangeCallback={pwd => onChangeField(pwd, 'password')}
-            helperText="at least 1 cap, 1 lowercase, and 1 special character and number, 8 characters minimum"
+            helperText="For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum"
           />
           <PasswordInput
             label="Retype Password"
