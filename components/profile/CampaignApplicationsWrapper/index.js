@@ -27,6 +27,18 @@ const ApplicationWrapper = styled.div`
   cursor: pointer;
 `;
 
+function candidateName(app) {
+  let name = 'n/a';
+  let { data } = app;
+  if (data && typeof data === 'string') {
+    data = JSON.parse(data);
+  }
+  if (data.candidate) {
+    name = `${data.candidate.firstName} ${data.candidate.lastName}`;
+  }
+  return name;
+}
+
 function CampaignApplicationsWrapper({
   createApplicationCallback,
   applications,
@@ -61,7 +73,7 @@ function CampaignApplicationsWrapper({
                       <a>
                         <ApplicationWrapper>
                           <Body>
-                            <strong>Candidate: Tomer Almog</strong>
+                            <strong>Candidate: {candidateName(app)}</strong>
                           </Body>
                           <br />
                           <br />

@@ -26,6 +26,8 @@ import {
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
+import OfficeSelector from './OfficeSelector';
+import ElectedOfficeSelector from './ElectedOfficeSelector';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -132,7 +134,6 @@ const fields = [
   {
     key: 'publicOffice',
     hidden: true,
-    customElement: <div>Office Selector</div>,
   },
   {
     label: 'Have you ever been elected or appointed to public office?',
@@ -146,7 +147,6 @@ const fields = [
   {
     key: 'officeElected',
     hidden: true,
-    customElement: <div>Office Elected</div>,
   },
 
   {
@@ -261,7 +261,7 @@ socials.forEach(field => {
 
 function ApplicationStep2({ step, application, updateApplicationCallback }) {
   const [state, setState] = useState(keys);
-  const [hiddenElements, setHiddenElemtns] = useState({
+  const [hiddenElements, setHiddenElements] = useState({
     publicOffice: true,
     officeElected: true,
   });
@@ -270,6 +270,10 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
     if (application?.candidate) {
       setState({
         ...application.candidate,
+      });
+      setHiddenElements({
+        publicOffice: application.candidate.ranBefore !== 'Yes',
+        officeElected: application.candidate.electedBefore !== 'Yes',
       });
     }
   }, [application]);
@@ -298,13 +302,13 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
 
   const handleRadioChange = (key, e, toggleElement) => {
     if (toggleElement && e.target.value === 'Yes') {
-      setHiddenElemtns({
+      setHiddenElements({
         ...hiddenElements,
         [toggleElement]: false,
       });
     }
     if (toggleElement && e.target.value === 'No') {
-      setHiddenElemtns({
+      setHiddenElements({
         ...hiddenElements,
         [toggleElement]: true,
       });
@@ -318,6 +322,26 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
       return;
     }
     if (field.hidden && !hiddenElements[field.key]) {
+      if (field.key === 'publicOffice') {
+        return (
+          <FieldWrapper>
+            <OfficeSelector
+              application={application}
+              updateApplicationCallback={updateApplicationCallback}
+            />
+          </FieldWrapper>
+        );
+      }
+      if (field.key === 'officeElected') {
+        return (
+          <FieldWrapper>
+            <ElectedOfficeSelector
+              application={application}
+              updateApplicationCallback={updateApplicationCallback}
+            />
+          </FieldWrapper>
+        );
+      }
       return <FieldWrapper>{field.customElement}</FieldWrapper>;
     }
     return (
@@ -387,7 +411,7 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
     <ApplicationWrapper step={step} canContinue id={application.id}>
       <form noValidate onSubmit={handleSubmitForm}>
         {fields.map(field => (
-          <>{renderField(field)}</>
+          <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
         <Label>Candidate social links</Label>
         {socials.map(field => (
