@@ -20,6 +20,10 @@ const JoinName = styled(Body13)`
   font-weight: 600;
   display: inline-block;
   margin-right: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 180px;
 `;
 
 const JoinTime = styled(Body11)`
@@ -43,6 +47,10 @@ const SeeMore = styled.div`
   cursor: pointer;
 `;
 
+const JoinWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const RecentJoin = styled.div`
   display: flex;
   align-items: center;
@@ -135,7 +143,7 @@ function RecentlyJoined({
             </AdminDelete>
           )}
           <Img src={AnonymousIconPurple} alt="share" />
-          <div>
+          <JoinWrapper>
             <JoinName>{supportUser(supporter)}</JoinName>
             <JoinTime>
               {supporter.type}d {supporter.timeAgo}
@@ -166,7 +174,7 @@ function RecentlyJoined({
                 )}
               </Message>
             )}
-          </div>
+          </JoinWrapper>
         </RecentJoin>
       ))}
       {previewMode && (
