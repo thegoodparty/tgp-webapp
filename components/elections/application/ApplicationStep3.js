@@ -1,6 +1,6 @@
 /**
  *
- * ApplicationStep2
+ * ApplicationStep3
  *
  */
 
@@ -63,8 +63,8 @@ const IconWrapper = styled.span`
 
 const fields = [
   {
-    label: 'Candidate First Name',
-    key: 'firstName',
+    label: 'What are you running for?',
+    key: 'running for',
     placeholder: 'First Name',
     required: true,
     defaultValue: '',
@@ -251,19 +251,15 @@ const socials = [
 ];
 
 const keys = {};
-const requiredKeys = [];
 fields.forEach(field => {
   keys[field.key] = field.defaultValue;
-  if (field.required) {
-    requiredKeys.push(field);
-  }
 });
 
 socials.forEach(field => {
   keys[field.key] = field.defaultValue;
 });
 
-function ApplicationStep2({ step, application, updateApplicationCallback }) {
+function ApplicationStep3({ step, application, updateApplicationCallback }) {
   const [state, setState] = useState(keys);
   const [hiddenElements, setHiddenElements] = useState({
     publicOffice: true,
@@ -319,16 +315,6 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
     }
     onChangeField(key, e);
     onBlurField(key, e);
-  };
-
-  const canSubmit = () => {
-    let returnVal = true;
-    requiredKeys.forEach(field => {
-      if (state[field.key] === field.defaultValue) {
-        returnVal = false;
-      }
-    });
-    return returnVal;
   };
 
   const renderField = field => {
@@ -422,11 +408,7 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
     );
   };
   return (
-    <ApplicationWrapper
-      step={step}
-      canContinue={canSubmit()}
-      id={application.id}
-    >
+    <ApplicationWrapper step={step} canContinue id={application.id}>
       <form noValidate onSubmit={handleSubmitForm}>
         {fields.map(field => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
@@ -463,10 +445,10 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
   );
 }
 
-ApplicationStep2.propTypes = {
+ApplicationStep3.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
 };
 
-export default ApplicationStep2;
+export default ApplicationStep3;

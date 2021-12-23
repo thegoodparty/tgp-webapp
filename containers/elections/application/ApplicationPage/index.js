@@ -21,6 +21,7 @@ import makeSelectApplicationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import ApplicationStep3 from '../../../../components/elections/application/ApplicationStep3';
 
 export function ApplicationPage({
   applicationPage,
@@ -60,6 +61,7 @@ export function ApplicationPage({
         <>
           {step === 1 && <ApplicationStep1 {...childProps} />}
           {step === 2 && <ApplicationStep2 {...childProps} />}
+          {step === 3 && <ApplicationStep3 {...childProps} />}
         </>
       )}
     </div>
