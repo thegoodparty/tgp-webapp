@@ -56,7 +56,7 @@ function* register({ name, email, phone, zip, callback }) {
       yield put(push('/login'));
     } else {
       console.log(error);
-      yield put(snackbarActions.showSnakbarAction(`Error Signing in`, 'error'));
+      yield put(snackbarActions.showSnakbarAction(error.response.message, 'error'));
     }
   }
 }
