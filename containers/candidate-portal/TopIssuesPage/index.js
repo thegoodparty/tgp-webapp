@@ -43,7 +43,7 @@ export function TopIssuesPage({
 }) {
   let ssrCandidate = null;
   if(ssrState) {
-    ssrCandidate = ssrCandidate;
+    ssrCandidate = ssrState.candidate;
   }
   useInjectReducer({ key: 'topIssuesPage', reducer });
   useInjectSaga({ key: 'topIssuesPage', saga });
