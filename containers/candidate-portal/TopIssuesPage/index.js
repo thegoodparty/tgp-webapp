@@ -41,9 +41,13 @@ export function TopIssuesPage({
   updateIssueCallback,
   adminIssueTopicsPage,
 }) {
+  let ssrCandidate = null;
+  if(ssrState) {
+    ssrCandidate = ssrCandidate;
+  }
   useInjectReducer({ key: 'topIssuesPage', reducer });
   useInjectSaga({ key: 'topIssuesPage', saga });
-
+  
   useInjectReducer({
     key: 'candidatePortalHomePage',
     reducer: portalHomeReducer,
@@ -68,10 +72,10 @@ export function TopIssuesPage({
       if (!user.isAdmin && !user.candidate) {
         dispatch(push('/'));
       }
-      if (!ssrState.candidate.id) {
+      if (!ssrCandidate?.id) {
         dispatch(portalHomeActions.findCandidate());
       }
-      dispatch(actions.findIssueAction(ssrState.candidate.id));
+      dispatch(actions.findIssueAction(ssrCandidate?.id));
     }
   }, [user]);
   // const { candidate } = ssrState || {};
@@ -80,8 +84,8 @@ export function TopIssuesPage({
   const { topics } = adminIssueTopicsPage;
   const childProps = {
     user,
-    candidate: ssrState.candidate || candidate,
-    candidateId: ssrState.candidate.id,
+    candidate: ssrCandidate || candidate,
+    candidateId: ssrCandidate?.id,
     candidateIssue,
     updateIssueCallback,
     topics,
