@@ -260,7 +260,7 @@ ApplicationWrapper.propTypes = {
   children: PropTypes.node,
   step: PropTypes.number,
   canContinue: PropTypes.bool,
-  id: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default ApplicationWrapper;

@@ -324,7 +324,10 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
   const canSubmit = () => {
     let returnVal = true;
     requiredKeys.forEach(field => {
-      if (state[field.key] === field.defaultValue) {
+      if (
+        typeof state[field.key] === 'undefined' ||
+        state[field.key] === field.defaultValue
+      ) {
         returnVal = false;
       }
     });

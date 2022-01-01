@@ -22,15 +22,22 @@ import {
   FaTiktok,
   FaRedditSquare,
   FaGlobeAmericas,
+  FaVideo,
+  FaDollarSign,
 } from 'react-icons/fa';
+
+import { IoIosPeople } from 'react-icons/io';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
-import OfficeSelector from './OfficeSelector';
-import ElectedOfficeSelector from './ElectedOfficeSelector';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
+  &.gray {
+    background-color: #f7f7f7;
+    padding: 16px;
+    border-radius: 8px;
+  }
 `;
 const SocialFieldWrapper = styled.div`
   margin-bottom: 12px;
@@ -61,101 +68,125 @@ const IconWrapper = styled.span`
   margin-right: 16px;
 `;
 
+const Subtitle = styled.div`
+  margin-bottom: 12px;
+  color: #666;
+`;
 const fields = [
   {
     label: 'What are you running for?',
     key: 'running for',
-    placeholder: 'First Name',
-    required: true,
+    placeholder: 'What are you running for?',
     defaultValue: '',
     type: 'text',
   },
   {
-    label: 'Candidate Last Name',
-    key: 'lastName',
-    placeholder: 'Last Name',
-    required: true,
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label: 'Preferred pronouns of candidate',
-    key: 'pronouns',
-    defaultValue: '',
-    type: 'select',
-    options: ['He/Him', 'She/Her', 'They/Them'],
-  },
-  {
-    label: 'Ethnicity of candidate',
-    key: 'ethnicity',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Ethnicity',
-  },
-  {
-    label: 'Race of candidate',
-    key: 'race',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Race',
-  },
-  {
-    label: 'Where is the primary residence of the candidate?',
-    key: 'zip',
-    placeholder: 'Enter Zip Code',
-    required: true,
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label: 'Is the candidate a U.S. Citizen?',
-    key: 'citizen',
-    required: true,
+    label: 'Have you filed your personal disclosure with the Congress?',
+    key: 'disclosure',
     defaultValue: '',
     type: 'radio',
     options: ['Yes', 'No'],
+    grayBg: true,
   },
-  // {
-  //   label: 'Length of citizenship',
-  //   key: 'citizenLength',
-  //   defaultValue: '',
-  //   type: 'radio',
-  //   options: ['Citizen at birth', 'Select date of naturalization'],
-  // },
   {
-    label: 'Have you ever run for public office before?',
-    key: 'ranBefore',
+    label: 'Campaign summary',
+    key: 'campaignSummary',
+    placeholder:
+      'Why are you running as an independent or 3rd party candidate?',
+    subtitle: 'Why are you running as an independent or 3rd party candidate?',
     defaultValue: '',
-    required: true,
-    type: 'radio',
-    options: ['Yes', 'No'],
-    toggleElement: 'publicOffice',
+    type: 'text',
+    multiline: true,
   },
   {
-    key: 'publicOffice',
-    hidden: true,
-  },
-  {
-    label: 'Have you ever been elected or appointed to public office?',
-    key: 'electedBefore',
+    label: 'Campaign video',
+    key: 'campaignVideo',
+    placeholder: 'Paste link to video...',
+    subtitle:
+      "A 60 second intro video about your campaign and why you're running.",
     defaultValue: '',
-    required: true,
-    type: 'radio',
-    options: ['Yes', 'No'],
-    toggleElement: 'officeElected',
+    type: 'text',
+    subLabel: 'Optional',
+    icon: (
+      <IconWrapper>
+        <FaVideo />
+      </IconWrapper>
+    ),
   },
   {
-    key: 'officeElected',
-    hidden: true,
+    label: 'What is the name of your candidate/campaign committee?',
+    key: 'committeeName',
+    placeholder: 'Enter...',
+    defaultValue: '',
+    type: 'text',
+    subLabel: 'If already filled',
   },
 
   {
-    label: 'Have you ever been a registered member of a political party?',
-    key: 'memberPolitical',
+    label: 'Have you registered and filed financial statements with the FEC?',
+    key: 'fecStatement',
     defaultValue: '',
-    required: true,
     type: 'radio',
     options: ['Yes', 'No'],
+  },
+
+  {
+    label: 'Have you filed any statement of candidacy with the State?',
+    key: 'candidacyStatement',
+    defaultValue: '',
+    type: 'radio',
+    options: ['Yes', 'No'],
+  },
+  {
+    label: 'How much money have you raised so far?',
+    required: true,
+    key: 'moneyRaisedAmount',
+    placeholder: '1,000.00',
+    defaultValue: '',
+    type: 'text',
+    icon: (
+      <IconWrapper>
+        <FaDollarSign />
+      </IconWrapper>
+    ),
+  },
+  {
+    label: '',
+    noLabel: true,
+    required: true,
+    key: 'fromWhom',
+    placeholder: 'From Whom?',
+    defaultValue: '',
+    type: 'text',
+    icon: (
+      <IconWrapper>
+        <IoIosPeople />
+      </IconWrapper>
+    ),
+  },
+  {
+    label:
+      'How many signatures are required for your name to appear on the ballot in your election (if applicable)?',
+    key: 'signatures',
+    placeholder: 'Enter...',
+    defaultValue: '',
+    type: 'text',
+  },
+  {
+    label:
+      'How many voters do you believe are likely to support an Independent or 3rd party candidate in your election?',
+    key: 'likelySupport',
+    placeholder: 'Enter...',
+    defaultValue: '',
+    type: 'text',
+  },
+  {
+    label:
+      'How many votes do you estimate will it take to win the elected office you are interested in running for in the General election?',
+    key: 'votesToWin',
+    placeholder: 'Enter...',
+    defaultValue: '',
+    type: 'text',
   },
 ];
 
@@ -251,8 +282,12 @@ const socials = [
 ];
 
 const keys = {};
+const requiredKeys = [];
 fields.forEach(field => {
   keys[field.key] = field.defaultValue;
+  if (field.required) {
+    requiredKeys.push(field);
+  }
 });
 
 socials.forEach(field => {
@@ -261,19 +296,11 @@ socials.forEach(field => {
 
 function ApplicationStep3({ step, application, updateApplicationCallback }) {
   const [state, setState] = useState(keys);
-  const [hiddenElements, setHiddenElements] = useState({
-    publicOffice: true,
-    officeElected: true,
-  });
 
   useEffect(() => {
-    if (application?.candidate) {
+    if (application?.campaign) {
       setState({
-        ...application.candidate,
-      });
-      setHiddenElements({
-        publicOffice: application.candidate.ranBefore !== 'Yes',
-        officeElected: application.candidate.electedBefore !== 'Yes',
+        ...application.campaign,
       });
     }
   }, [application]);
@@ -294,61 +321,39 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
     };
     updateApplicationCallback(application.id, {
       ...application,
-      candidate: {
+      campaign: {
         ...updatedState,
       },
     });
   };
 
-  const handleRadioChange = (key, e, toggleElement) => {
-    if (toggleElement && e.target.value === 'Yes') {
-      setHiddenElements({
-        ...hiddenElements,
-        [toggleElement]: false,
-      });
-    }
-    if (toggleElement && e.target.value === 'No') {
-      setHiddenElements({
-        ...hiddenElements,
-        [toggleElement]: true,
-      });
-    }
+  const handleRadioChange = (key, e) => {
     onChangeField(key, e);
     onBlurField(key, e);
   };
 
+  const canSubmit = () => {
+    let returnVal = true;
+    requiredKeys.forEach(field => {
+      if (
+        typeof state[field.key] === 'undefined' ||
+        state[field.key] === field.defaultValue
+      ) {
+        returnVal = false;
+      }
+    });
+    return returnVal;
+  };
+
   const renderField = field => {
-    if (field.hidden && hiddenElements[field.key]) {
-      return;
-    }
-    if (field.hidden && !hiddenElements[field.key]) {
-      if (field.key === 'publicOffice') {
-        return (
-          <FieldWrapper>
-            <OfficeSelector
-              application={application}
-              updateApplicationCallback={updateApplicationCallback}
-            />
-          </FieldWrapper>
-        );
-      }
-      if (field.key === 'officeElected') {
-        return (
-          <FieldWrapper>
-            <ElectedOfficeSelector
-              application={application}
-              updateApplicationCallback={updateApplicationCallback}
-            />
-          </FieldWrapper>
-        );
-      }
-      return <FieldWrapper>{field.customElement}</FieldWrapper>;
-    }
     return (
-      <FieldWrapper key={field.key}>
-        <Label>
-          {field.label} {field.required && <Req>required</Req>}
-        </Label>
+      <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
+        {!field.noLabel && (
+          <Label>
+            {field.label} {field.required && <Req>required</Req>}
+            {field.subLabel && <Req>{field.subLabel}</Req>}
+          </Label>
+        )}
         {field.type === 'select' && (
           <Select
             native
@@ -370,6 +375,7 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
             ))}
           </Select>
         )}
+        {field.subtitle && <Subtitle>{field.subtitle}</Subtitle>}
         {field.type === 'text' && (
           <TextField
             name={field.label}
@@ -378,6 +384,15 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
             fullWidth
             required={field.required}
             placeholder={field.placeholder}
+            multiline={!!field.multiline}
+            rows={field.multiline ? 5 : 1}
+            InputProps={
+              field.icon && {
+                startAdornment: (
+                  <InputAdornment position="start">{field.icon}</InputAdornment>
+                ),
+              }
+            }
             onChange={e => {
               onChangeField(field.key, e);
             }}
@@ -391,7 +406,7 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
             name={state[field.key]}
             value={state[field.key]}
             style={{ flexDirection: 'row' }}
-            onChange={e => handleRadioChange(field.key, e, field.toggleElement)}
+            onChange={e => handleRadioChange(field.key, e)}
           >
             {field.options.map(op => (
               <FormControlLabel
@@ -408,12 +423,16 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
     );
   };
   return (
-    <ApplicationWrapper step={step} canContinue id={application.id}>
+    <ApplicationWrapper
+      step={step}
+      canContinue={canSubmit()}
+      id={application.id}
+    >
       <form noValidate onSubmit={handleSubmitForm}>
         {fields.map(field => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
-        <Label>Candidate social links</Label>
+        <Label>Campaign social links</Label>
         {socials.map(field => (
           <SocialFieldWrapper key={field.key}>
             <TextField
