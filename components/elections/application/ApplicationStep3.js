@@ -24,12 +24,14 @@ import {
   FaGlobeAmericas,
   FaVideo,
   FaDollarSign,
+  FaImage,
 } from 'react-icons/fa';
 
 import { IoIosPeople } from 'react-icons/io';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
+import ImageUploadContainer from '../../../containers/shared/ImageUploadContainer';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -72,6 +74,49 @@ const Subtitle = styled.div`
   margin-bottom: 12px;
   color: #666;
 `;
+
+const PhotoInputWrapper = styled.div`
+  padding: 10px 16px;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  text-align: right;
+  position: relative;
+  margin-bottom: 12px;
+`;
+
+const PhotoPlaceholder = styled.div`
+  position: absolute;
+  opacity: 0.4;
+  top: 6px;
+  left: 12px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+`;
+
+const UploadWrapper = styled.div`
+  position: relative;
+  z-index: 5;
+`;
+
+const PhotoWrapper = styled.div`
+  text-align: center;
+  width: 100%;
+  padding: 8px;
+  margin: 8px;
+  display: inline-block;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    width: 33%;
+  }
+`;
+
+const Photo = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+`;
+
 const fields = [
   {
     label: 'What are you running for?',
@@ -112,6 +157,29 @@ const fields = [
         <FaVideo />
       </IconWrapper>
     ),
+  },
+  {
+    label: 'Campaign photos',
+    key: 'photos',
+    defaultValue: [
+      {
+        key: 'headshotPhoto',
+        label: 'Candidate headshot',
+        value: '',
+      },
+      {
+        key: 'trailPhoto',
+        label: 'Campaign trail photo',
+        value: '',
+      },
+      {
+        key: 'bannerPhoto',
+        label: 'Campaign page banner (16:9 aspect)',
+        value: '',
+      },
+    ],
+    subtitle: 'Including at least one good headshot.',
+    required: true,
   },
   {
     label: 'What is the name of your candidate/campaign committee?',
@@ -345,7 +413,57 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
     return returnVal;
   };
 
+  const handleUploadImage = (image, key) => {
+    console.log('handleUploadImage', image);
+
+    const e = {
+      target: {
+        value: image,
+      },
+    };
+
+    onBlurField(key, e);
+  };
+
   const renderField = field => {
+    if (field.key === 'photos') {
+      return (
+        <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
+          <Label>
+            {field.label} {field.required && <Req>required</Req>}
+            {field.subLabel && <Req>{field.subLabel}</Req>}
+          </Label>
+          <Subtitle>{field.subtitle}</Subtitle>
+          {keys.photos.map(photo => (
+            <>
+              {state[photo.key] ? (
+                <PhotoWrapper>
+                  <strong>{photo.label}</strong>
+                  <br />
+                  <Photo src={state[photo.key]} alt={photo.key} />
+                </PhotoWrapper>
+              ) : (
+                <PhotoInputWrapper key={photo.key}>
+                  <UploadWrapper>
+                    <ImageUploadContainer
+                      uploadCallback={image =>
+                        handleUploadImage(image, photo.key)
+                      }
+                    />
+                  </UploadWrapper>
+                  <PhotoPlaceholder>
+                    <IconWrapper>
+                      <FaImage style={{ marginTop: '6px' }} />
+                    </IconWrapper>
+                    {photo.label}
+                  </PhotoPlaceholder>
+                </PhotoInputWrapper>
+              )}
+            </>
+          ))}
+        </FieldWrapper>
+      );
+    }
     return (
       <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
         {!field.noLabel && (
