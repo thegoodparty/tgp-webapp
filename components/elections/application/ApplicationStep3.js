@@ -350,7 +350,7 @@ const socials = [
 ];
 
 const keys = {};
-const requiredKeys = [];
+const requiredKeys = [{ key: 'headshotPhoto', defaultValue: '' }];
 fields.forEach(field => {
   keys[field.key] = field.defaultValue;
   if (field.required) {
