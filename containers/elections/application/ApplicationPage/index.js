@@ -14,6 +14,8 @@ import { compose } from 'redux';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import ApplicationStep1 from 'components/elections/application/ApplicationStep1';
 import ApplicationStep2 from 'components/elections/application/ApplicationStep2';
+import ApplicationStep3 from 'components/elections/application/ApplicationStep3';
+import ApplicationStep4 from 'components/elections/application/ApplicationStep4';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -21,7 +23,6 @@ import makeSelectApplicationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
-import ApplicationStep3 from '../../../../components/elections/application/ApplicationStep3';
 
 export function ApplicationPage({
   applicationPage,
@@ -62,6 +63,7 @@ export function ApplicationPage({
           {step === 1 && <ApplicationStep1 {...childProps} />}
           {step === 2 && <ApplicationStep2 {...childProps} />}
           {step === 3 && <ApplicationStep3 {...childProps} />}
+          {step === 4 && <ApplicationStep4 {...childProps} />}
         </>
       )}
     </div>
