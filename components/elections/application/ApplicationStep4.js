@@ -162,7 +162,6 @@ function ApplicationStep4({ step, application, updateApplicationCallback }) {
 
   const canSubmit = () => {
     let returnVal = true;
-    console.log('requiredKeys', requiredKeys);
     requiredKeys.forEach(field => {
       if (
         typeof state[field.key] === 'undefined' ||

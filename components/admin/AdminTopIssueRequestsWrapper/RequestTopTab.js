@@ -17,6 +17,9 @@ function RequestTopTab() {
       <Link href="/admin/update-requests" passHref>
         <BlueButton>Update Requests</BlueButton>
       </Link>
+      <Link href="/admin/issue-topics" passHref>
+        <BlueButton>Top Issues Manager</BlueButton>
+      </Link>
       <Link href="/admin/top-issue-requests" passHref>
         <BlueButton>Top Issues Requests</BlueButton>
       </Link>
