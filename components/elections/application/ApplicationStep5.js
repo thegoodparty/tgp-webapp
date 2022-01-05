@@ -11,7 +11,12 @@ import styled from 'styled-components';
 import IssuePositionsPickerContainer from 'containers/shared/IssuePositionsPickerContainer';
 
 import ApplicationWrapper from './ApplicationWrapper';
-import { H2 } from '../../shared/typogrophy';
+import { Body, H2 } from '../../shared/typogrophy';
+
+const SubTitle = styled(Body)`
+  margin-top: 8px;
+  color: #666;
+`;
 
 function ApplicationStep4({ step, application, updateApplicationCallback }) {
   const [state, setState] = useState({});
@@ -37,9 +42,19 @@ function ApplicationStep4({ step, application, updateApplicationCallback }) {
     });
   };
 
+  const canSubmit = () => state.positions.length > 0;
+
   return (
-    <ApplicationWrapper step={step} canContinue id={application.id}>
-      <H2>Select Issues and positions you are aligned with</H2>
+    <ApplicationWrapper
+      step={step}
+      canContinue={canSubmit()}
+      id={application.id}
+    >
+      <H2>Top Issues for your Campaign</H2>
+      <SubTitle>
+        Please select any position tags you are aligned with to help distinguish
+        your campaign.
+      </SubTitle>
       <br />
       <br />
       <IssuePositionsPickerContainer
