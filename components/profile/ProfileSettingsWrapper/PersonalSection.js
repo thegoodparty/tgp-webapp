@@ -333,9 +333,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback, set
       });
     }
   };
-  useEffect(() => {
-    
-  }, [user]);
+
   return (
     <Wrapper>
       {Object.keys(formFields).map(field => (

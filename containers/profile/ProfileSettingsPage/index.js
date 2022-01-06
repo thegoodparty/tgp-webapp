@@ -45,10 +45,10 @@ export function ProfileSettingsPage({
   //   const tempUser = getUserCookie(true);
   //   setUser(tempUser);
   // }, [updated]);
-
+  const setUserCallback = (user) => setUser(user);
   const childProps = {
     user,
-    setUser,
+    setUserCallback,
     signoutCallback,
     updateUserCallback,
     changePasswordCallback,
