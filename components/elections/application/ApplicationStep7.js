@@ -108,7 +108,7 @@ function ApplicationStep7({ step, application }) {
         stepFields.forEach(field => {
           if (field.label) {
             sections[index + 1].fields.push({
-              label: field.label,
+              label: field.shortLabel || field.label,
               required: field.required,
               completed:
                 application.candidate[field.key] !== field.defaultValue,
@@ -159,7 +159,7 @@ function ApplicationStep7({ step, application }) {
                 {field.completed ? <FaCheck /> : <FiMinusCircle />}
               </IconWrapper>{' '}
               <div>{field.label}</div>
-              {field.required && <Req>Required</Req>}
+              {!field.completed && field.required && <Req>Required</Req>}
             </Field>
           ))}
         </SectionWrapper>

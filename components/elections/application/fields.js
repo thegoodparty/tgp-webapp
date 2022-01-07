@@ -27,6 +27,7 @@ export const step2fields = [
     required: true,
     defaultValue: '',
     type: 'text',
+    shortLabel: 'First name',
   },
   {
     label: 'Candidate Last Name',
@@ -35,6 +36,7 @@ export const step2fields = [
     required: true,
     defaultValue: '',
     type: 'text',
+    shortLabel: 'Last name',
   },
   {
     label: 'Preferred pronouns of candidate',
@@ -42,6 +44,7 @@ export const step2fields = [
     defaultValue: '',
     type: 'select',
     options: ['He/Him', 'She/Her', 'They/Them'],
+    shortLabel: 'Pronouns',
   },
   {
     label: 'Ethnicity of candidate',
@@ -49,6 +52,7 @@ export const step2fields = [
     defaultValue: '',
     type: 'text',
     placeholder: 'Ethnicity',
+    shortLabel: 'Ethnicity',
   },
   {
     label: 'Race of candidate',
@@ -56,6 +60,7 @@ export const step2fields = [
     defaultValue: '',
     type: 'text',
     placeholder: 'Race',
+    shortLabel: 'Race',
   },
   {
     label: 'Where is the primary residence of the candidate?',
@@ -64,6 +69,7 @@ export const step2fields = [
     required: true,
     defaultValue: '',
     type: 'text',
+    shortLabel: 'ZIP code',
   },
   {
     label: 'Is the candidate a U.S. Citizen?',
@@ -72,6 +78,7 @@ export const step2fields = [
     defaultValue: '',
     type: 'radio',
     options: ['Yes', 'No'],
+    shortLabel: 'US citizenship status',
   },
   // {
   //   label: 'Length of citizenship',
@@ -88,6 +95,7 @@ export const step2fields = [
     type: 'radio',
     options: ['Yes', 'No'],
     toggleElement: 'publicOffice',
+    shortLabel: 'Public office history',
   },
   {
     key: 'publicOffice',
@@ -101,6 +109,7 @@ export const step2fields = [
     type: 'radio',
     options: ['Yes', 'No'],
     toggleElement: 'officeElected',
+    shortLabel: 'Elected for public office?',
   },
   {
     key: 'officeElected',
@@ -114,6 +123,7 @@ export const step2fields = [
     required: true,
     type: 'radio',
     options: ['Yes', 'No'],
+    shortLabel: 'Political affiliation history',
   },
 ];
 
@@ -223,6 +233,7 @@ export const step3Fields = [
     placeholder: 'What are you running for?',
     defaultValue: '',
     type: 'text',
+    shortLabel: 'Office',
   },
   {
     label: 'Have you filed your personal disclosure with the Congress?',
@@ -231,6 +242,7 @@ export const step3Fields = [
     type: 'radio',
     options: ['Yes', 'No'],
     grayBg: true,
+    shortLabel: 'Congress disclosure',
   },
   {
     label: 'Campaign summary',
@@ -241,6 +253,7 @@ export const step3Fields = [
     defaultValue: '',
     type: 'text',
     multiline: true,
+    shortLabel: 'Summary',
   },
   {
     label: 'Campaign video',
@@ -287,6 +300,7 @@ export const step3Fields = [
     defaultValue: '',
     type: 'text',
     subLabel: 'If already filled',
+    shortLabel: 'Committee name',
   },
 
   {
@@ -295,6 +309,7 @@ export const step3Fields = [
     defaultValue: '',
     type: 'radio',
     options: ['Yes', 'No'],
+    shortLabel: 'Financial statements status',
   },
 
   {
@@ -303,6 +318,7 @@ export const step3Fields = [
     defaultValue: '',
     type: 'radio',
     options: ['Yes', 'No'],
+    shortLabel: 'Statement of candidacy history',
   },
   {
     label: 'How much money have you raised so far?',
@@ -316,6 +332,7 @@ export const step3Fields = [
         <FaDollarSign />
       </IconWrapper>
     ),
+    shortLabel: 'Money raised',
   },
   {
     label: '',
@@ -338,6 +355,7 @@ export const step3Fields = [
     placeholder: 'Enter...',
     defaultValue: '',
     type: 'text',
+    shortLabel: 'Required Signatures',
   },
   {
     label:
@@ -346,6 +364,7 @@ export const step3Fields = [
     placeholder: 'Enter...',
     defaultValue: '',
     type: 'text',
+    shortLabel: 'Likely voters',
   },
   {
     label:
@@ -354,6 +373,7 @@ export const step3Fields = [
     placeholder: 'Enter...',
     defaultValue: '',
     type: 'text',
+    shortLabel: 'Votes Needed',
   },
 ];
 
