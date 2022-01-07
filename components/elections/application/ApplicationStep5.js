@@ -1,6 +1,6 @@
 /**
  *
- * ApplicationStep4
+ * ApplicationStep5
  *
  */
 
@@ -18,7 +18,7 @@ const SubTitle = styled(Body)`
   color: #666;
 `;
 
-function ApplicationStep4({ step, application, updateApplicationCallback }) {
+function ApplicationStep5({ step, application, updateApplicationCallback }) {
   const [state, setState] = useState({});
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function ApplicationStep4({ step, application, updateApplicationCallback }) {
     });
   };
 
-  const canSubmit = () => state.positions.length > 0;
+  const canSubmit = () => state.positions?.length > 0;
 
   return (
     <ApplicationWrapper
@@ -65,10 +65,10 @@ function ApplicationStep4({ step, application, updateApplicationCallback }) {
   );
 }
 
-ApplicationStep4.propTypes = {
+ApplicationStep5.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
 };
 
-export default ApplicationStep4;
+export default ApplicationStep5;

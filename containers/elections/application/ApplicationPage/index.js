@@ -17,6 +17,7 @@ import ApplicationStep2 from 'components/elections/application/ApplicationStep2'
 import ApplicationStep3 from 'components/elections/application/ApplicationStep3';
 import ApplicationStep4 from 'components/elections/application/ApplicationStep4';
 import ApplicationStep5 from 'components/elections/application/ApplicationStep5';
+import ApplicationStep6 from 'components/elections/application/ApplicationStep6';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -66,6 +67,7 @@ export function ApplicationPage({
           {step === 3 && <ApplicationStep3 {...childProps} />}
           {step === 4 && <ApplicationStep4 {...childProps} />}
           {step === 5 && <ApplicationStep5 {...childProps} />}
+          {step === 6 && <ApplicationStep6 {...childProps} />}
         </>
       )}
     </div>

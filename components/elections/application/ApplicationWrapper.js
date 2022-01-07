@@ -107,6 +107,11 @@ const Paper = styled.div`
       theme.breakpointsPixels.md}) {
     padding: 24px;
   }
+
+  &.no-white {
+    background-color: transparent;
+    box-shadow: none;
+  }
 `;
 
 const BottomFixed = styled.div`
@@ -142,7 +147,13 @@ leftLinks.forEach(link => {
   topLinks[link.step] = link;
 });
 
-function ApplicationWrapper({ step, children, canContinue, id }) {
+function ApplicationWrapper({
+  step,
+  children,
+  canContinue,
+  id,
+  withWhiteBg = true,
+}) {
   const [isSticky, setIsSticky] = useState(false);
 
   const router = useRouter();
@@ -197,7 +208,7 @@ function ApplicationWrapper({ step, children, canContinue, id }) {
           </LeftNav>
         </Sticky>
         <MainWrapper className={isSticky && 'with-sticky'}>
-          <Paper>{children}</Paper>
+          <Paper className={!withWhiteBg && 'no-white'}>{children}</Paper>
         </MainWrapper>
         <BottomFixed>
           {step === 1 && (
@@ -260,6 +271,7 @@ ApplicationWrapper.propTypes = {
   children: PropTypes.node,
   step: PropTypes.number,
   canContinue: PropTypes.bool,
+  withWhiteBg: PropTypes.bool,
   id: PropTypes.number,
 };
 
