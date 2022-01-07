@@ -1,0 +1,176 @@
+/**
+ *
+ * ApplicationStep7
+ *
+ */
+
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { FaCheck } from 'react-icons/fa';
+import { FiMinusCircle } from 'react-icons/fi';
+import Link from 'next/link';
+
+import ApplicationWrapper from './ApplicationWrapper';
+import { Body14 } from '../../shared/typogrophy';
+import {
+  step2fields,
+  step2Socials,
+  step3Fields,
+  step3Socials,
+  step4Fields,
+  step4CampaignFields,
+} from './fields';
+
+const SectionWrapper = styled.div`
+  margin-bottom: 28px;
+`;
+
+const Title = styled(Body14)`
+  color: #1a1a1a;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+`;
+
+const Field = styled(Body14)`
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #808080;
+
+  &.completed {
+  color: #7DB212;
+`;
+
+const IconWrapper = styled.div`
+  margin-right: 8px;
+`;
+
+const Req = styled.div`
+  margin-left: 8px;
+  color: #cc3366;
+`;
+
+// const requiredKeys = [];
+// step2fields.forEach(field => {
+//   if (field.required) {
+//     requiredKeys.push(field);
+//   }
+// });
+
+const allFields = [
+  [...step2fields, ...step2Socials],
+  [...step3Fields, ...step3Socials],
+  [...step4Fields, ...step4CampaignFields],
+];
+
+function ApplicationStep7({ step, application }) {
+  console.log('app', application);
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    if (application) {
+      const sections = [
+        {
+          title: 'Good Party Pledge',
+          fields: [
+            {
+              label: 'Pledged',
+              required: true,
+              completed: application.pledge?.isCompleted,
+            },
+          ],
+        },
+        {
+          title: 'Candidate',
+          fields: [],
+        },
+        {
+          title: 'Campaign',
+          fields: [],
+        },
+        {
+          title: 'Contacts',
+          fields: [],
+        },
+        {
+          title: 'Issues',
+          fields: [],
+        },
+        {
+          title: 'Endorsements',
+          fields: [],
+        },
+      ];
+      allFields.forEach((stepFields, index) => {
+        stepFields.forEach(field => {
+          if (field.label) {
+            sections[index + 1].fields.push({
+              label: field.label,
+              required: field.required,
+              completed:
+                application.candidate[field.key] !== field.defaultValue,
+            });
+          }
+        });
+      });
+      // issues
+      const issuesCount = application.issues?.positions?.length || 0;
+      sections[4].fields.push({
+        label:
+          issuesCount === 0
+            ? 'No issues selected'
+            : `${issuesCount} issue${issuesCount > 1 ? 's' : ''} completed`,
+        completed: issuesCount > 0,
+        required: true,
+      });
+      // endorsements
+      const endorsementsCount = application.endorsements?.length || 0;
+      sections[5].fields.push({
+        label:
+          endorsementsCount === 0
+            ? 'No endorsements provided'
+            : `${endorsementsCount} endorsements${
+                endorsementsCount > 1 ? 's' : ''
+              } provided`,
+        completed: endorsementsCount > 0,
+      });
+
+      setState(sections);
+    }
+  }, [application]);
+  return (
+    <ApplicationWrapper step={step} canContinue id={application.id}>
+      {state.map((section, index) => (
+        <SectionWrapper>
+          <Link
+            href={`/campaign-application/${application.id}/${index + 1}`}
+            passHref
+          >
+            <a>
+              <Title>{section.title}</Title>
+            </a>
+          </Link>
+          {section.fields.map(field => (
+            <Field className={field.completed && 'completed'}>
+              <IconWrapper>
+                {field.completed ? <FaCheck /> : <FiMinusCircle />}
+              </IconWrapper>{' '}
+              <div>{field.label}</div>
+              {field.required && <Req>Required</Req>}
+            </Field>
+          ))}
+        </SectionWrapper>
+      ))}
+    </ApplicationWrapper>
+  );
+}
+
+ApplicationStep7.propTypes = {
+  step: PropTypes.number,
+  application: PropTypes.object,
+};
+
+export default ApplicationStep7;

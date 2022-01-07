@@ -13,21 +13,13 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import {
-  FaTwitterSquare,
-  FaFacebookSquare,
-  FaYoutubeSquare,
-  FaLinkedin,
-  FaSnapchatSquare,
-  FaTiktok,
-  FaRedditSquare,
-  FaGlobeAmericas,
-} from 'react-icons/fa';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 import OfficeSelector from './OfficeSelector';
 import ElectedOfficeSelector from './ElectedOfficeSelector';
+
+import { step2fields, step2Socials } from './fields';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -55,211 +47,18 @@ const Req = styled(Body11)`
   font-weight: 500;
 `;
 
-const IconWrapper = styled.span`
-  color: ${({ theme }) => theme.colors.purple};
-  font-size: 24px;
-  margin-right: 16px;
-`;
 
-const fields = [
-  {
-    label: 'Candidate First Name',
-    key: 'firstName',
-    placeholder: 'First Name',
-    required: true,
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label: 'Candidate Last Name',
-    key: 'lastName',
-    placeholder: 'Last Name',
-    required: true,
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label: 'Preferred pronouns of candidate',
-    key: 'pronouns',
-    defaultValue: '',
-    type: 'select',
-    options: ['He/Him', 'She/Her', 'They/Them'],
-  },
-  {
-    label: 'Ethnicity of candidate',
-    key: 'ethnicity',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Ethnicity',
-  },
-  {
-    label: 'Race of candidate',
-    key: 'race',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Race',
-  },
-  {
-    label: 'Where is the primary residence of the candidate?',
-    key: 'zip',
-    placeholder: 'Enter Zip Code',
-    required: true,
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label: 'Is the candidate a U.S. Citizen?',
-    key: 'citizen',
-    required: true,
-    defaultValue: '',
-    type: 'radio',
-    options: ['Yes', 'No'],
-  },
-  // {
-  //   label: 'Length of citizenship',
-  //   key: 'citizenLength',
-  //   defaultValue: '',
-  //   type: 'radio',
-  //   options: ['Citizen at birth', 'Select date of naturalization'],
-  // },
-  {
-    label: 'Have you ever run for public office before?',
-    key: 'ranBefore',
-    defaultValue: '',
-    required: true,
-    type: 'radio',
-    options: ['Yes', 'No'],
-    toggleElement: 'publicOffice',
-  },
-  {
-    key: 'publicOffice',
-    hidden: true,
-  },
-  {
-    label: 'Have you ever been elected or appointed to public office?',
-    key: 'electedBefore',
-    defaultValue: '',
-    required: true,
-    type: 'radio',
-    options: ['Yes', 'No'],
-    toggleElement: 'officeElected',
-  },
-  {
-    key: 'officeElected',
-    hidden: true,
-  },
-
-  {
-    label: 'Have you ever been a registered member of a political party?',
-    key: 'memberPolitical',
-    defaultValue: '',
-    required: true,
-    type: 'radio',
-    options: ['Yes', 'No'],
-  },
-];
-
-const socials = [
-  {
-    key: 'twitter',
-    adornment: 'twitter.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaTwitterSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'facebook',
-    adornment: 'facebook.com/',
-    placeholder: 'link',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaFacebookSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'youtube',
-    adornment: 'youtube.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaYoutubeSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'linkedin',
-    adornment: 'linkedin.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaLinkedin />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'snap',
-    adornment: 'snap.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaSnapchatSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'tiktok',
-    adornment: 'tiktok.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaTiktok />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'reddit',
-    adornment: 'reddit.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaRedditSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'website',
-    adornment: '',
-    placeholder: 'website.com',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaGlobeAmericas />
-      </IconWrapper>
-    ),
-  },
-];
 
 const keys = {};
 const requiredKeys = [];
-fields.forEach(field => {
+step2fields.forEach(field => {
   keys[field.key] = field.defaultValue;
   if (field.required) {
     requiredKeys.push(field);
   }
 });
 
-socials.forEach(field => {
+step2Socials.forEach(field => {
   keys[field.key] = field.defaultValue;
 });
 
@@ -431,11 +230,11 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
       id={application.id}
     >
       <form noValidate onSubmit={handleSubmitForm}>
-        {fields.map(field => (
+        {step2fields.map(field => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
         <Label>Candidate social links</Label>
-        {socials.map(field => (
+        {step2Socials.map(field => (
           <SocialFieldWrapper key={field.key}>
             <TextField
               key={field.key}

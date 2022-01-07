@@ -14,6 +14,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 
+import { step4Fields, step4CampaignFields } from './fields';
+
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
   &.gray {
@@ -50,77 +52,15 @@ const GrayWrapper = styled.div`
   }
 `;
 
-const fields = [
-  {
-    label: 'Email',
-    key: 'candidateEmail',
-    placeholder: 'email@domain.com',
-    defaultValue: '',
-    type: 'email',
-    required: true,
-  },
-  {
-    label: 'Phone',
-    key: 'candidatePhone',
-    placeholder: '(555) 555-5555',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-  },
-];
-
-const campaignFields = [
-  {
-    label: 'Contact Person',
-    key: 'contactName',
-    placeholder: 'First and last name',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-  },
-  {
-    label: 'Role',
-    key: 'contactRole',
-    placeholder: 'Role in the campaign',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-  },
-  {
-    label: 'Email',
-    key: 'contactEmail',
-    placeholder: 'email@domain.com',
-    defaultValue: '',
-    type: 'email',
-    required: true,
-  },
-  {
-    label: 'Phone',
-    key: 'contactPhone',
-    placeholder: '(555) 555-5555',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-  },
-  {
-    label: 'Mailing Address',
-    key: 'contactAddress',
-    placeholder: 'Street, City and ZIP Code',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-  },
-];
-
 const keys = {};
 const requiredKeys = [];
-fields.forEach(field => {
+step4Fields.forEach(field => {
   keys[field.key] = field.defaultValue;
   if (field.required) {
     requiredKeys.push(field);
   }
 });
-campaignFields.forEach(field => {
+step4CampaignFields.forEach(field => {
   keys[field.key] = field.defaultValue;
   if (field.required) {
     requiredKeys.push(field);
@@ -238,7 +178,7 @@ function ApplicationStep4({ step, application, updateApplicationCallback }) {
           CANDIDATE <Req>Required</Req>
         </Label>
         <GrayWrapper className="with-margin">
-          {fields.map(field => (
+          {step4Fields.map(field => (
             <React.Fragment key={field.key}>
               {renderField(field)}
             </React.Fragment>
@@ -248,7 +188,7 @@ function ApplicationStep4({ step, application, updateApplicationCallback }) {
           CAMPAIGN <Req>Required</Req>
         </Label>
         <GrayWrapper>
-          {campaignFields.map(field => (
+          {step4CampaignFields.map(field => (
             <React.Fragment key={field.key}>
               {renderField(field)}
             </React.Fragment>

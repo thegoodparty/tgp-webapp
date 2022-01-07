@@ -13,25 +13,13 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import {
-  FaTwitterSquare,
-  FaFacebookSquare,
-  FaYoutubeSquare,
-  FaLinkedin,
-  FaSnapchatSquare,
-  FaTiktok,
-  FaRedditSquare,
-  FaGlobeAmericas,
-  FaVideo,
-  FaDollarSign,
-  FaImage,
-} from 'react-icons/fa';
+import { FaImage } from 'react-icons/fa';
 
-import { IoIosPeople } from 'react-icons/io';
+import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
-import ImageUploadContainer from '../../../containers/shared/ImageUploadContainer';
+import { step3Fields, step3Socials } from './fields';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -117,248 +105,16 @@ const Photo = styled.img`
   border-radius: 12px;
 `;
 
-const fields = [
-  {
-    label: 'What are you running for?',
-    key: 'running for',
-    placeholder: 'What are you running for?',
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label: 'Have you filed your personal disclosure with the Congress?',
-    key: 'disclosure',
-    defaultValue: '',
-    type: 'radio',
-    options: ['Yes', 'No'],
-    grayBg: true,
-  },
-  {
-    label: 'Campaign summary',
-    key: 'campaignSummary',
-    placeholder:
-      'Why are you running as an independent or 3rd party candidate?',
-    subtitle: 'Why are you running as an independent or 3rd party candidate?',
-    defaultValue: '',
-    type: 'text',
-    multiline: true,
-  },
-  {
-    label: 'Campaign video',
-    key: 'campaignVideo',
-    placeholder: 'Paste link to video...',
-    subtitle:
-      "A 60 second intro video about your campaign and why you're running.",
-    defaultValue: '',
-    type: 'text',
-    subLabel: 'Optional',
-    icon: (
-      <IconWrapper>
-        <FaVideo />
-      </IconWrapper>
-    ),
-  },
-  {
-    label: 'Campaign photos',
-    key: 'photos',
-    defaultValue: [
-      {
-        key: 'headshotPhoto',
-        label: 'Candidate headshot',
-        value: '',
-      },
-      {
-        key: 'trailPhoto',
-        label: 'Campaign trail photo',
-        value: '',
-      },
-      {
-        key: 'bannerPhoto',
-        label: 'Campaign page banner (16:9 aspect)',
-        value: '',
-      },
-    ],
-    subtitle: 'Including at least one good headshot.',
-    required: true,
-  },
-  {
-    label: 'What is the name of your candidate/campaign committee?',
-    key: 'committeeName',
-    placeholder: 'Enter...',
-    defaultValue: '',
-    type: 'text',
-    subLabel: 'If already filled',
-  },
-
-  {
-    label: 'Have you registered and filed financial statements with the FEC?',
-    key: 'fecStatement',
-    defaultValue: '',
-    type: 'radio',
-    options: ['Yes', 'No'],
-  },
-
-  {
-    label: 'Have you filed any statement of candidacy with the State?',
-    key: 'candidacyStatement',
-    defaultValue: '',
-    type: 'radio',
-    options: ['Yes', 'No'],
-  },
-  {
-    label: 'How much money have you raised so far?',
-    required: true,
-    key: 'moneyRaisedAmount',
-    placeholder: '1,000.00',
-    defaultValue: '',
-    type: 'text',
-    icon: (
-      <IconWrapper>
-        <FaDollarSign />
-      </IconWrapper>
-    ),
-  },
-  {
-    label: '',
-    noLabel: true,
-    required: true,
-    key: 'fromWhom',
-    placeholder: 'From Whom?',
-    defaultValue: '',
-    type: 'text',
-    icon: (
-      <IconWrapper>
-        <IoIosPeople />
-      </IconWrapper>
-    ),
-  },
-  {
-    label:
-      'How many signatures are required for your name to appear on the ballot in your election (if applicable)?',
-    key: 'signatures',
-    placeholder: 'Enter...',
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label:
-      'How many voters do you believe are likely to support an Independent or 3rd party candidate in your election?',
-    key: 'likelySupport',
-    placeholder: 'Enter...',
-    defaultValue: '',
-    type: 'text',
-  },
-  {
-    label:
-      'How many votes do you estimate will it take to win the elected office you are interested in running for in the General election?',
-    key: 'votesToWin',
-    placeholder: 'Enter...',
-    defaultValue: '',
-    type: 'text',
-  },
-];
-
-const socials = [
-  {
-    key: 'twitter',
-    adornment: 'twitter.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaTwitterSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'facebook',
-    adornment: 'facebook.com/',
-    placeholder: 'link',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaFacebookSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'youtube',
-    adornment: 'youtube.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaYoutubeSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'linkedin',
-    adornment: 'linkedin.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaLinkedin />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'snap',
-    adornment: 'snap.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaSnapchatSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'tiktok',
-    adornment: 'tiktok.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaTiktok />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'reddit',
-    adornment: 'reddit.com/',
-    placeholder: 'username',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaRedditSquare />
-      </IconWrapper>
-    ),
-  },
-  {
-    key: 'website',
-    adornment: '',
-    placeholder: 'website.com',
-    defaultValue: '',
-    icon: (
-      <IconWrapper>
-        <FaGlobeAmericas />
-      </IconWrapper>
-    ),
-  },
-];
-
 const keys = {};
 const requiredKeys = [{ key: 'headshotPhoto', defaultValue: '' }];
-fields.forEach(field => {
+step3Fields.forEach(field => {
   keys[field.key] = field.defaultValue;
   if (field.required) {
     requiredKeys.push(field);
   }
 });
 
-socials.forEach(field => {
+step3Socials.forEach(field => {
   keys[field.key] = field.defaultValue;
 });
 
@@ -414,8 +170,6 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
   };
 
   const handleUploadImage = (image, key) => {
-    console.log('handleUploadImage', image);
-
     const e = {
       target: {
         value: image,
@@ -547,11 +301,11 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
       id={application.id}
     >
       <form noValidate onSubmit={handleSubmitForm}>
-        {fields.map(field => (
+        {step3Fields.map(field => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
         <Label>Campaign social links</Label>
-        {socials.map(field => (
+        {step3Socials.map(field => (
           <SocialFieldWrapper key={field.key}>
             <TextField
               key={field.key}
