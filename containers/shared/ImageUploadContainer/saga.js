@@ -9,7 +9,7 @@ import types from './constants';
 function* uploadImage({ image, uploadCallback }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Uploading Image'));
-    const api = tgpApi.admin.uploadImage;
+    const api = tgpApi.candidateApplication.uploadImage;
     const formData = new FormData();
     formData.append('files[0]', image);
     const res = yield call(requestHelper, api, formData, true);

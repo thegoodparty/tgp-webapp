@@ -603,6 +603,11 @@ const api = {
       method: 'POST',
       withAuth: true,
     },
+    uploadImage: {
+      url: `${base}application/upload-image`,
+      method: 'POST',
+      withAuth: true,
+    },
   },
 };
 export default api;
