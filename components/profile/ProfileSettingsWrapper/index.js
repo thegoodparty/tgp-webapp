@@ -24,6 +24,7 @@ function ProfileSettingsWrapper({
   changePasswordCallback,
   uploadImageCallback,
   deleteAccountCallback,
+  setUserCallback,
 }) {
   return (
     <PageWrapper isFullWidth>
@@ -39,6 +40,7 @@ function ProfileSettingsWrapper({
             />
             <PersonalSection
               user={user}
+              setUser={setUserCallback}
               updateUserCallback={updateUserCallback}
               changePasswordCallback={changePasswordCallback}
             />
@@ -63,6 +65,7 @@ ProfileSettingsWrapper.propTypes = {
   changePasswordCallback: PropTypes.func,
   uploadImageCallback: PropTypes.func,
   deleteAccountCallback: PropTypes.func,
+  setUserCallback: PropTypes.func,
 };
 
 export default ProfileSettingsWrapper;
