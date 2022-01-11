@@ -87,7 +87,7 @@ const LoginPasswordWrapper = ({
               {sentForgot ? (
                 <Body11 style={{ color: 'red', marginBottom: '24px' }}>
                   Your password recovery link was sent to{' '}
-                  {valueType ? formatToPhone(value) : value}
+                  {valueType === 'email'? value : formatToPhone(value)}
                 </Body11>
               ) : (
                 <ForgotLink
