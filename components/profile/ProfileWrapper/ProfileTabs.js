@@ -55,7 +55,7 @@ const tabs = [
   {
     label: 'Application',
     img: 'application',
-    link: 'profile/campaign-applications',
+    link: '/profile/campaign-applications',
   },
 ];
 
