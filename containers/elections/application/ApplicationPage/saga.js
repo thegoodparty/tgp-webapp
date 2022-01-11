@@ -39,7 +39,26 @@ function* updateApplication({ id, data }) {
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
-        'Error creating your application',
+        'Error updating your application',
+        'error',
+      ),
+    );
+  }
+}
+
+function* submitApplication({ id }) {
+  try {
+    const api = tgpApi.candidateApplication.submit;
+    const payload = {
+      id,
+    };
+    const { application } = yield call(requestHelper, api, payload);
+    yield put(actions.loadApplicationActionSuccess(application));
+    yield put(push(`/campaign-application/${id}/8`));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error submitting your application',
         'error',
       ),
     );
@@ -49,4 +68,5 @@ function* updateApplication({ id, data }) {
 export default function* profilePageSaga() {
   yield takeLatest(types.LOAD_APPLICATION, loadApplication);
   yield takeLatest(types.UPDATE_APPLICATION, updateApplication);
+  yield takeLatest(types.SUBMIT_APPLICATION, submitApplication);
 }

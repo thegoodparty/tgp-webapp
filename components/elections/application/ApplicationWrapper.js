@@ -153,6 +153,7 @@ function ApplicationWrapper({
   canContinue,
   id,
   withWhiteBg = true,
+  submitApplicationCallback,
 }) {
   const [isSticky, setIsSticky] = useState(false);
 
@@ -243,20 +244,30 @@ function ApplicationWrapper({
                   </Link>
                 </Grid>
                 <Grid item xs={6}>
-                  <Link
-                    href={
-                      canContinue
-                        ? `/campaign-application/${id}/${step + 1}`
-                        : router.asPath
-                    }
-                    passHref
-                  >
-                    <a>
-                      <PurpleButton fullWidth disabled={!canContinue}>
-                        Continue
-                      </PurpleButton>
-                    </a>
-                  </Link>
+                  {step === 7 ? (
+                    <PurpleButton
+                      fullWidth
+                      disabled={!canContinue}
+                      onClick={() => submitApplicationCallback(id)}
+                    >
+                      Submit for review
+                    </PurpleButton>
+                  ) : (
+                    <Link
+                      href={
+                        canContinue
+                          ? `/campaign-application/${id}/${step + 1}`
+                          : router.asPath
+                      }
+                      passHref
+                    >
+                      <a>
+                        <PurpleButton fullWidth disabled={!canContinue}>
+                          Continue
+                        </PurpleButton>
+                      </a>
+                    </Link>
+                  )}
                 </Grid>
               </Grid>
             </ButtonWrapper>
@@ -273,6 +284,7 @@ ApplicationWrapper.propTypes = {
   canContinue: PropTypes.bool,
   withWhiteBg: PropTypes.bool,
   id: PropTypes.number,
+  submitApplicationCallback: PropTypes.func,
 };
 
 export default ApplicationWrapper;

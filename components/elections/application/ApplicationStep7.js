@@ -66,11 +66,12 @@ const allFields = [
   [...step4Fields, ...step4CampaignFields],
 ];
 
-function ApplicationStep7({ step, application }) {
-  console.log('app', application);
+function ApplicationStep7({ step, application, submitApplicationCallback }) {
   const [state, setState] = useState([]);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   useEffect(() => {
+    let requiredFilled = true;
     if (application) {
       const sections = [
         {
@@ -104,15 +105,22 @@ function ApplicationStep7({ step, application }) {
           fields: [],
         },
       ];
+      requiredFilled = application.pledge?.isCompleted;
+
       allFields.forEach((stepFields, index) => {
         stepFields.forEach(field => {
           if (field.label) {
+            const completed =
+              application.candidate &&
+              application.candidate[field.key] !== field.defaultValue;
             sections[index + 1].fields.push({
               label: field.shortLabel || field.label,
               required: field.required,
-              completed:
-                application.candidate[field.key] !== field.defaultValue,
+              completed,
             });
+            if (field.required && !completed) {
+              requiredFilled = false;
+            }
           }
         });
       });
@@ -126,6 +134,9 @@ function ApplicationStep7({ step, application }) {
         completed: issuesCount > 0,
         required: true,
       });
+      if (issuesCount === 0) {
+        requiredFilled = false;
+      }
       // endorsements
       const endorsementsCount = application.endorsements?.length || 0;
       sections[5].fields.push({
@@ -139,10 +150,16 @@ function ApplicationStep7({ step, application }) {
       });
 
       setState(sections);
+      setCanSubmit(requiredFilled);
     }
   }, [application]);
   return (
-    <ApplicationWrapper step={step} canContinue id={application.id}>
+    <ApplicationWrapper
+      step={step}
+      canContinue={canSubmit}
+      id={application.id}
+      submitApplicationCallback={submitApplicationCallback}
+    >
       {state.map((section, index) => (
         <SectionWrapper>
           <Link
@@ -171,6 +188,7 @@ function ApplicationStep7({ step, application }) {
 ApplicationStep7.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
+  submitApplicationCallback: PropTypes.func,
 };
 
 export default ApplicationStep7;

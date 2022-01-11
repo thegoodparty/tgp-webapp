@@ -598,6 +598,11 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    submit: {
+      url: `${base}application/submit`,
+      method: 'POST',
+      withAuth: true,
+    },
   },
 };
 export default api;

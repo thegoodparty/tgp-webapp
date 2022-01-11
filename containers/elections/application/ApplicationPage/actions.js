@@ -28,9 +28,17 @@ function updateApplicationAction(id, data) {
   };
 }
 
+function submitApplicationAction(id) {
+  return {
+    type: types.SUBMIT_APPLICATION,
+    id,
+  };
+}
+
 export default {
   loadApplicationAction,
   loadApplicationActionSuccess,
 
   updateApplicationAction,
+  submitApplicationAction,
 };

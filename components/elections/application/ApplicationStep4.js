@@ -39,7 +39,7 @@ const Label = styled(Body)`
 const Req = styled(Body11)`
   display: inline-block;
   margin-left: 8px;
-  color: #666;
+  color: #cc3366;
   font-weight: 500;
 `;
 

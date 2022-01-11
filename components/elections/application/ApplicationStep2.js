@@ -43,11 +43,9 @@ const Label = styled(Body)`
 const Req = styled(Body11)`
   display: inline-block;
   margin-left: 8px;
-  color: #666;
+  color: #cc3366;
   font-weight: 500;
 `;
-
-
 
 const keys = {};
 const requiredKeys = [];
@@ -163,7 +161,7 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
     return (
       <FieldWrapper key={field.key}>
         <Label>
-          {field.label} {field.required && <Req>required</Req>}
+          {field.label} {field.required && <Req>Required</Req>}
         </Label>
         {field.type === 'select' && (
           <Select

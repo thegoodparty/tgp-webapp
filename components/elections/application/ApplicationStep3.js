@@ -48,7 +48,7 @@ const Label = styled(Body)`
 const Req = styled(Body11)`
   display: inline-block;
   margin-left: 8px;
-  color: #666;
+  color: #cc3366;
   font-weight: 500;
 `;
 
@@ -184,7 +184,7 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
       return (
         <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
           <Label>
-            {field.label} {field.required && <Req>required</Req>}
+            {field.label} {field.required && <Req>Required</Req>}
             {field.subLabel && <Req>{field.subLabel}</Req>}
           </Label>
           <Subtitle>{field.subtitle}</Subtitle>
@@ -222,7 +222,7 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
       <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
         {!field.noLabel && (
           <Label>
-            {field.label} {field.required && <Req>required</Req>}
+            {field.label} {field.required && <Req>Required</Req>}
             {field.subLabel && <Req>{field.subLabel}</Req>}
           </Label>
         )}

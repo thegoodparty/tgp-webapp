@@ -19,6 +19,7 @@ import ApplicationStep4 from 'components/elections/application/ApplicationStep4'
 import ApplicationStep5 from 'components/elections/application/ApplicationStep5';
 import ApplicationStep6 from 'components/elections/application/ApplicationStep6';
 import ApplicationStep7 from 'components/elections/application/ApplicationStep7';
+import ApplicationStep8 from 'components/elections/application/ApplicationStep8';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -31,6 +32,7 @@ export function ApplicationPage({
   applicationPage,
   dispatch,
   updateApplicationCallback,
+  submitApplicationCallback,
 }) {
   useInjectReducer({ key: 'applicationPage', reducer });
   useInjectSaga({ key: 'applicationPage', saga });
@@ -53,6 +55,7 @@ export function ApplicationPage({
     id,
     application,
     updateApplicationCallback,
+    submitApplicationCallback,
   };
 
   return (
@@ -70,6 +73,7 @@ export function ApplicationPage({
           {step === 5 && <ApplicationStep5 {...childProps} />}
           {step === 6 && <ApplicationStep6 {...childProps} />}
           {step === 7 && <ApplicationStep7 {...childProps} />}
+          {step === 8 && <ApplicationStep8 {...childProps} />}
         </>
       )}
     </div>
@@ -80,6 +84,7 @@ ApplicationPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   applicationPage: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
+  submitApplicationCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -91,6 +96,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     updateApplicationCallback: (id, data) => {
       dispatch(actions.updateApplicationAction(id, data));
+    },
+    submitApplicationCallback: id => {
+      dispatch(actions.submitApplicationAction(id));
     },
   };
 }
