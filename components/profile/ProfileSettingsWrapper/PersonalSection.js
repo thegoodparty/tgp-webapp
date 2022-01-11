@@ -148,7 +148,12 @@ const PhoneWrapper = styled.div`
   }
 `;
 
-function PersonalSection({ user, updateUserCallback, changePasswordCallback, setUser }) {
+function PersonalSection({
+  user,
+  updateUserCallback,
+  changePasswordCallback,
+  setUser,
+}) {
   const [editEnabled, setEditEnabled] = useState({});
   const [editPassword, setEditPassword] = useState(false);
   const [password, setPassword] = useState('');
@@ -168,7 +173,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback, set
   useEffect(() => {
     canSubmitPassword();
   }, [password, oldPassword]);
-  
+
   const initialValues = {
     name,
     displayName: displayName || '',
@@ -196,9 +201,8 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback, set
   const EditableValue = fieldKey => {
     const field = formFields[fieldKey];
     const handleSave = () => {
-      console.log('callback', fieldKey, field.value);
       updateUserCallback(fieldKey, field.value);
-      setUser({...user, [fieldKey]: field.value});
+      setUser({ ...user, [fieldKey]: field.value });
       setEditEnabled({
         ...editEnabled,
         [formFields[fieldKey].label]: false,
@@ -482,7 +486,7 @@ PersonalSection.propTypes = {
   user: PropTypes.object,
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
-  setUser: PropTypes.func
+  setUser: PropTypes.func,
 };
 
 export default PersonalSection;
