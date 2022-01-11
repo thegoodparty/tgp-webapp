@@ -169,29 +169,29 @@ function PersonalSection({
     isPhoneVerified,
     isEmailVerified,
   } = user;
-
   useEffect(() => {
     canSubmitPassword();
   }, [password, oldPassword]);
 
-  const initialValues = {
-    name,
-    displayName: displayName || '',
-    email,
-    phone: formatToPhone(phone),
-    zip: zip || '',
-    pronouns: pronouns || '',
-  };
-
-  const [formFields, setFormFields] = useState({
-    name: { label: 'Full Name', value: initialValues.name },
-    email: { label: 'Email', value: initialValues.email },
-    phone: { label: 'Mobile number', value: initialValues.phone },
-    zip: { label: 'Zip Code', value: initialValues.zip },
-    displayName: { label: 'Display Name', value: initialValues.displayName },
-    pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
-  });
-
+  const [formFields, setFormFields] = useState({});
+  useEffect(() => {
+    const initialValues = {
+      name,
+      displayName: displayName || '',
+      email,
+      phone: formatToPhone(phone),
+      zip: zip || '',
+      pronouns: pronouns || '',
+    };
+    setFormFields({
+      name: { label: 'Full Name', value: initialValues.name },
+      email: { label: 'Email', value: initialValues.email },
+      phone: { label: 'Mobile number', value: initialValues.phone },
+      zip: { label: 'Zip Code', value: initialValues.zip },
+      displayName: { label: 'Display Name', value: initialValues.displayName },
+      pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
+    });
+  }, [user]);
   const onChangeField = (key, val) => {
     setFormFields({
       ...formFields,
