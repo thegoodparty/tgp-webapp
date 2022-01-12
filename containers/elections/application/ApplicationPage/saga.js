@@ -29,6 +29,9 @@ function* loadApplication({ id }) {
 
 function* updateApplication({ id, data }) {
   try {
+    if (!id || !data) {
+      return;
+    }
     const api = tgpApi.candidateApplication.update;
     const payload = {
       id,

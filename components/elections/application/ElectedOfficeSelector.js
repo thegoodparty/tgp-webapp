@@ -39,6 +39,11 @@ const Trash = styled.div`
   }
 `;
 
+const Error = styled.div`
+  color: red;
+  margin-top: 8px;
+`;
+
 const generateYears = () => {
   let currentYear = new Date().getFullYear();
   const years = [];
@@ -59,6 +64,9 @@ function ElectedOfficeSelector({ application, updateApplicationCallback }) {
       office: '',
     },
   ]);
+
+  const [showError, setShowError] = useState(false);
+
   useEffect(() => {
     if (
       application?.candidate?.electedOffices &&
@@ -97,6 +105,16 @@ function ElectedOfficeSelector({ application, updateApplicationCallback }) {
       [key]: e.target.value,
     };
     setState(newState);
+
+    if (
+      newState[index].fromYear !== '' &&
+      newState[index].toYear !== '' &&
+      newState[index].fromYear > newState[index].toYear
+    ) {
+      setShowError(index);
+    } else {
+      setShowError(false);
+    }
   };
 
   const removeRow = index => {
@@ -109,14 +127,15 @@ function ElectedOfficeSelector({ application, updateApplicationCallback }) {
   const save = () => {
     const newState = [...state];
     newState.splice(newState.length - 1, 1); // remove last empty row
-    updateApplicationCallback(newState);
-    updateApplicationCallback(application.id, {
-      ...application,
-      candidate: {
-        ...application.candidate,
-        electedOffices: newState,
-      },
-    });
+    if (showError === false) {
+      updateApplicationCallback(application.id, {
+        ...application,
+        candidate: {
+          ...application.candidate,
+          electedOffices: newState,
+        },
+      });
+    }
   };
   return (
     <>
@@ -185,7 +204,10 @@ function ElectedOfficeSelector({ application, updateApplicationCallback }) {
                 </Trash>
               )}
             </Grid>
-          </Grid>
+          </Grid>{' '}
+          {index === showError && (
+            <Error>"To Year" can't be smaller than "From Year"</Error>
+          )}
         </Wrapper>
       ))}
     </>
