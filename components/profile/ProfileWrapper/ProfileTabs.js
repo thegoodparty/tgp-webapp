@@ -86,6 +86,6 @@ function ProfileTabs({ activeTab = 'Profile' }) {
   );
 }
 
-ProfileTabs.propTypes = { activeTab: PropTypes.number };
+ProfileTabs.propTypes = { activeTab: PropTypes.string };
 
 export default ProfileTabs;

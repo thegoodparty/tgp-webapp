@@ -613,6 +613,12 @@ const api = {
       method: 'POST',
       withAuth: true,
     },
+
+    adminList: {
+      url: `${base}applications/in-review`,
+      method: 'GET',
+      withAuth: true,
+    },
   },
 };
 export default api;

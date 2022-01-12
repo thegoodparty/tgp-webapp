@@ -83,7 +83,6 @@ function runningFor(app) {
 
 function ApplicationPreview({ app, deleteApplicationCallback }) {
   const photo = candidatePhoto(app);
-  console.log('app', JSON.parse(app.data));
   return (
     <Link href={`/campaign-application/${app.id}/1`} passHref>
       <a>
