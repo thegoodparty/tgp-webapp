@@ -6,41 +6,19 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { FaPlus } from 'react-icons/fa';
 import Link from 'next/link';
-import { FaTrash } from 'react-icons/fa';
-
-import { dateUsHelper } from 'helpers/dateHelper';
 
 import MaxWidth from '../ProfileWrapper/MaxWidth';
 import ProfileTabs from '../ProfileWrapper/ProfileTabs';
-import { Body, Body13, H1, H3 } from '../../shared/typogrophy';
+import { Body11, Body14, H1, H3 } from '../../shared/typogrophy';
 import PageWrapper from '../../shared/PageWrapper';
 import { PurpleButton } from '../../shared/buttons';
 import LoadingAnimation from '../../shared/LoadingAnimation';
 import AlertDialog from '../../shared/AlertDialog';
-
-const ApplicationWrapper = styled.div`
-  padding: 20px;
-  background: ${({ theme }) => theme.colors.purpleBg};
-  border-radius: 8px;
-  cursor: pointer;
-  overflow-wrap: break-word;
-`;
-
-function candidateName(app) {
-  let name = 'n/a';
-  let { data } = app;
-  if (data && typeof data === 'string') {
-    data = JSON.parse(data);
-  }
-  if (data.candidate) {
-    name = `${data.candidate.firstName} ${data.candidate.lastName}`;
-  }
-  return name;
-}
+import ApplicationPreview from './ApplicationPreview';
 
 function CampaignApplicationsWrapper({
   createApplicationCallback,
@@ -78,8 +56,10 @@ function CampaignApplicationsWrapper({
         <H1>Candidate registration and applications</H1>
         <div className="text-right">
           <PurpleButton onClick={createApplicationCallback}>
-            &nbsp; <FaPlus size={24} />
-            &nbsp; Create a new application &nbsp;
+            <Body11 style={{ color: '#FFF' }}>
+              &nbsp; <FaPlus size={12} />
+              &nbsp; Create a new application &nbsp;
+            </Body11>
           </PurpleButton>
         </div>
         {loading ? (
@@ -97,26 +77,10 @@ function CampaignApplicationsWrapper({
                   <Grid item xs={12} md={6} lg={4} kep={app.id}>
                     <Link href={`/campaign-application/${app.id}/1`} passHref>
                       <a>
-                        <ApplicationWrapper>
-                          <div className="text-right">
-                            <FaTrash onClick={e => handleDelete(app.id, e)} />
-                          </div>
-                          <Body>
-                            <strong>Candidate: {candidateName(app)}</strong>
-                          </Body>
-                          <br />
-                          <br />
-                          <br />
-                          <Body>
-                            <strong>Status: {app.status}</strong>
-                          </Body>
-                          <br />
-                          <Body13>
-                            Created At: {dateUsHelper(app.createdAt)}
-                            <br />
-                            Last Update: {dateUsHelper(app.updatedAt)}
-                          </Body13>
-                        </ApplicationWrapper>
+                        <ApplicationPreview
+                          app={app}
+                          deleteApplicationCallback={handleDelete}
+                        />
                       </a>
                     </Link>
                   </Grid>

@@ -199,13 +199,17 @@ function ApplicationWrapper({
               </Link>
             ))}
             <br />
-            <PurpleButton
-              className="outline"
-              fullWidth
-              style={{ padding: '4px' }}
-            >
-              <RiPencilFill /> &nbsp; Finish Later
-            </PurpleButton>
+            <Link href="/profile/campaign-applications" passHref>
+              <a>
+                <PurpleButton
+                  className="outline"
+                  fullWidth
+                  style={{ padding: '4px' }}
+                >
+                  <RiPencilFill /> &nbsp; Finish Later
+                </PurpleButton>
+              </a>
+            </Link>
           </LeftNav>
         </Sticky>
         <MainWrapper className={isSticky && 'with-sticky'}>
