@@ -25,6 +25,7 @@ export function CampaignApplicationsPage({
   createApplicationCallback,
   campaignApplicationsPage,
   dispatch,
+  deleteApplicationCallback,
 }) {
   useInjectReducer({ key: 'campaignApplicationsPage', reducer });
   useInjectSaga({ key: 'campaignApplicationsPage', saga });
@@ -39,6 +40,7 @@ export function CampaignApplicationsPage({
     createApplicationCallback,
     applications,
     loading,
+    deleteApplicationCallback,
   };
 
   return (
@@ -56,6 +58,7 @@ CampaignApplicationsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   createApplicationCallback: PropTypes.func,
   campaignApplicationsPage: PropTypes.object,
+  deleteApplicationCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -67,6 +70,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     createApplicationCallback: () => {
       dispatch(actions.createApplicationAction());
+    },
+    deleteApplicationCallback: id => {
+      dispatch(actions.deleteApplicationAction(id));
     },
   };
 }

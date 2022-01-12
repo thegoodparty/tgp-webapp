@@ -23,6 +23,25 @@ function* createApplication() {
   }
 }
 
+function* deleteApplication({ id }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Deleting application'));
+    const api = tgpApi.candidateApplication.delete;
+    const payload = {
+      id,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(actions.loadApplicationsAction());
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error creating your application',
+        'error',
+      ),
+    );
+  }
+}
+
 function* loadApplications() {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading your application'));
@@ -42,4 +61,5 @@ function* loadApplications() {
 export default function* profilePageSaga() {
   yield takeLatest(types.CREATE_APPLICATION, createApplication);
   yield takeLatest(types.LOAD_APPLICATIONS, loadApplications);
+  yield takeLatest(types.DELETE_APPLICATION, deleteApplication);
 }

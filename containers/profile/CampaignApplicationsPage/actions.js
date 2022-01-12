@@ -25,9 +25,18 @@ function loadApplicationsActionSuccess(applications) {
   };
 }
 
+function deleteApplicationAction(id) {
+  return {
+    type: types.DELETE_APPLICATION,
+    id,
+  };
+}
+
 export default {
   createApplicationAction,
 
   loadApplicationsAction,
   loadApplicationsActionSuccess,
+
+  deleteApplicationAction,
 };

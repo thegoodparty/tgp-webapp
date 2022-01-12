@@ -583,6 +583,11 @@ const api = {
       method: 'POST',
       withAuth: true,
     },
+    delete: {
+      url: `${base}application`,
+      method: 'DELETE',
+      withAuth: true,
+    },
     list: {
       url: `${base}applications`,
       method: 'GET',
