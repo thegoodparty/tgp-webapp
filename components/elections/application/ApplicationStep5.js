@@ -18,7 +18,12 @@ const SubTitle = styled(Body)`
   color: #666;
 `;
 
-function ApplicationStep5({ step, application, updateApplicationCallback }) {
+function ApplicationStep5({
+  step,
+  application,
+  updateApplicationCallback,
+  reviewMode,
+}) {
   const [state, setState] = useState({});
 
   useEffect(() => {
@@ -69,6 +74,7 @@ ApplicationStep5.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
+  reviewMode: PropTypes.bool,
 };
 
 export default ApplicationStep5;

@@ -619,6 +619,18 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+
+    adminApprove: {
+      url: `${base}applications/approve`,
+      method: 'PUT',
+      withAuth: true,
+    },
+
+    adminReject: {
+      url: `${base}applications/reject`,
+      method: 'PUT',
+      withAuth: true,
+    },
   },
 };
 export default api;

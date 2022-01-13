@@ -118,7 +118,12 @@ step3Socials.forEach(field => {
   keys[field.key] = field.defaultValue;
 });
 
-function ApplicationStep3({ step, application, updateApplicationCallback }) {
+function ApplicationStep3({
+  step,
+  application,
+  updateApplicationCallback,
+  reviewMode,
+}) {
   const [state, setState] = useState(keys);
 
   useEffect(() => {
@@ -299,6 +304,7 @@ function ApplicationStep3({ step, application, updateApplicationCallback }) {
       step={step}
       canContinue={canSubmit()}
       id={application.id}
+      reviewMode={reviewMode}
     >
       <form noValidate onSubmit={handleSubmitForm}>
         {step3Fields.map(field => (
@@ -340,6 +346,7 @@ ApplicationStep3.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
+  reviewMode: PropTypes.bool,
 };
 
 export default ApplicationStep3;

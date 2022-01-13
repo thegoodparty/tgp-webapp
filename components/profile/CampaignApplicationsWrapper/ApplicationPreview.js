@@ -23,6 +23,7 @@ const ApplicationWrapper = styled.div`
   overflow-wrap: break-word;
   box-shadow: 0 20px 20px -10px #a3a5ae;
   text-align: center;
+  margin-bottom: 10px;
   &.red {
     border-color: #cc3366;
     .trash {
@@ -67,7 +68,7 @@ function candidatePhoto(app) {
   if (data && typeof data === 'string') {
     data = JSON.parse(data);
   }
-  return data?.campaign?.photos?.headshot || false;
+  return data?.campaign?.headshotPhoto || false;
 }
 
 function runningFor(app) {
@@ -82,6 +83,7 @@ function runningFor(app) {
 }
 
 function ApplicationPreview({ app, deleteApplicationCallback }) {
+  console.log('data', JSON.parse(app.data));
   const photo = candidatePhoto(app);
   return (
     <Link href={`/campaign-application/${app.id}/1`} passHref>

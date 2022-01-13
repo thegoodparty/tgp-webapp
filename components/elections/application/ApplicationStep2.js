@@ -60,7 +60,12 @@ step2Socials.forEach(field => {
   keys[field.key] = field.defaultValue;
 });
 
-function ApplicationStep2({ step, application, updateApplicationCallback }) {
+function ApplicationStep2({
+  step,
+  application,
+  updateApplicationCallback,
+  reviewMode,
+}) {
   const [state, setState] = useState(keys);
   const [hiddenElements, setHiddenElements] = useState({
     publicOffice: true,
@@ -226,6 +231,7 @@ function ApplicationStep2({ step, application, updateApplicationCallback }) {
       step={step}
       canContinue={canSubmit()}
       id={application.id}
+      reviewMode={reviewMode}
     >
       <form noValidate onSubmit={handleSubmitForm}>
         {step2fields.map(field => (
@@ -267,6 +273,7 @@ ApplicationStep2.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
+  reviewMode: PropTypes.bool,
 };
 
 export default ApplicationStep2;

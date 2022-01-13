@@ -93,7 +93,12 @@ const emptyKeys = { body: '', link: '' };
 
 const keys = [emptyKeys];
 
-function ApplicationStep6({ step, application, updateApplicationCallback }) {
+function ApplicationStep6({
+  step,
+  application,
+  updateApplicationCallback,
+  reviewMode,
+}) {
   const [state, setState] = useState(keys);
   const [fieldsState, setFieldsState] = useState(fields);
 
@@ -179,6 +184,7 @@ function ApplicationStep6({ step, application, updateApplicationCallback }) {
       canContinue
       id={application.id}
       withWhiteBg={false}
+      reviewMode={reviewMode}
     >
       <form noValidate onSubmit={handleSubmitForm}>
         {fieldsState.map((field, index) => (
@@ -201,6 +207,7 @@ ApplicationStep6.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
+  reviewMode: PropTypes.func,
 };
 
 export default ApplicationStep6;

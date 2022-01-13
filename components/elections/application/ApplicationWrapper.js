@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
+import LightPurpleButton from '../../shared/buttons/LightPurpleButton';
 
 const Wrapper = styled.div`
   padding: 16px 0;
@@ -154,6 +155,9 @@ function ApplicationWrapper({
   id,
   withWhiteBg = true,
   submitApplicationCallback,
+  reviewMode,
+  approveApplicationCallback,
+  rejectApplicationCallback,
 }) {
   const [isSticky, setIsSticky] = useState(false);
 
@@ -225,9 +229,13 @@ function ApplicationWrapper({
                 passHref
               >
                 <a>
-                  <PurpleButton fullWidth disabled={!canContinue}>
-                    I pledge to be a Good Candidate
-                  </PurpleButton>
+                  {reviewMode ? (
+                    <PurpleButton fullWidth>Continue</PurpleButton>
+                  ) : (
+                    <PurpleButton fullWidth disabled={!canContinue}>
+                      I pledge to be a Good Candidate
+                    </PurpleButton>
+                  )}
                 </a>
               </Link>
             </ButtonWrapper>
@@ -249,13 +257,25 @@ function ApplicationWrapper({
                 </Grid>
                 <Grid item xs={6}>
                   {step === 7 ? (
-                    <PurpleButton
-                      fullWidth
-                      disabled={!canContinue}
-                      onClick={() => submitApplicationCallback(id)}
-                    >
-                      Submit for review
-                    </PurpleButton>
+                    <>
+                      {reviewMode ? (
+                        <Link href={`/campaign-application/${id}/8`} passHref>
+                          <a>
+                            <PurpleButton fullWidth>
+                              Approve/Reject
+                            </PurpleButton>
+                          </a>
+                        </Link>
+                      ) : (
+                        <PurpleButton
+                          fullWidth
+                          disabled={!canContinue}
+                          onClick={() => submitApplicationCallback(id)}
+                        >
+                          Submit for review
+                        </PurpleButton>
+                      )}
+                    </>
                   ) : (
                     <Link
                       href={
@@ -289,6 +309,9 @@ ApplicationWrapper.propTypes = {
   withWhiteBg: PropTypes.bool,
   id: PropTypes.number,
   submitApplicationCallback: PropTypes.func,
+  approveApplicationCallback: PropTypes.func,
+  rejectApplicationCallback: PropTypes.func,
+  reviewMode: PropTypes.bool,
 };
 
 export default ApplicationWrapper;

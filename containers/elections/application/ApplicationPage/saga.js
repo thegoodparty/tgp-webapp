@@ -15,8 +15,8 @@ function* loadApplication({ id }) {
     const payload = {
       id,
     };
-    const { application } = yield call(requestHelper, api, payload);
-    yield put(actions.loadApplicationActionSuccess(application));
+    const { application, reviewMode } = yield call(requestHelper, api, payload);
+    yield put(actions.loadApplicationActionSuccess(application, reviewMode));
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
@@ -68,8 +68,50 @@ function* submitApplication({ id }) {
   }
 }
 
+function* approveApplication({ id, feedback }) {
+  try {
+    const api = tgpApi.candidateApplication.adminApprove;
+    const payload = {
+      id,
+      feedback,
+    };
+    const { application } = yield call(requestHelper, api, payload);
+    yield put(actions.loadApplicationActionSuccess(application));
+    yield put(push('/admin/application-requests'));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error approving the application',
+        'error',
+      ),
+    );
+  }
+}
+
+function* rejectApplication({ id, feedback }) {
+  try {
+    const api = tgpApi.candidateApplication.adminReject;
+    const payload = {
+      id,
+      feedback,
+    };
+    const { application } = yield call(requestHelper, api, payload);
+    yield put(actions.loadApplicationActionSuccess(application));
+    yield put(push('/admin/application-requests'));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error rejecting the application',
+        'error',
+      ),
+    );
+  }
+}
+
 export default function* profilePageSaga() {
   yield takeLatest(types.LOAD_APPLICATION, loadApplication);
   yield takeLatest(types.UPDATE_APPLICATION, updateApplication);
   yield takeLatest(types.SUBMIT_APPLICATION, submitApplication);
+  yield takeLatest(types.APPROVE_APPLICATION, approveApplication);
+  yield takeLatest(types.REJECT_APPLICATION, rejectApplication);
 }

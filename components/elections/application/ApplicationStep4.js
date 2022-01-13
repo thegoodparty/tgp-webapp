@@ -67,7 +67,12 @@ step4CampaignFields.forEach(field => {
   }
 });
 
-function ApplicationStep4({ step, application, updateApplicationCallback }) {
+function ApplicationStep4({
+  step,
+  application,
+  updateApplicationCallback,
+  reviewMode,
+}) {
   const [state, setState] = useState(keys);
 
   useEffect(() => {
@@ -172,6 +177,7 @@ function ApplicationStep4({ step, application, updateApplicationCallback }) {
       step={step}
       canContinue={canSubmit()}
       id={application.id}
+      reviewMode={reviewMode}
     >
       <form noValidate onSubmit={handleSubmitForm}>
         <Label>
@@ -203,6 +209,7 @@ ApplicationStep4.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   updateApplicationCallback: PropTypes.func,
+  reviewMode: PropTypes.bool,
 };
 
 export default ApplicationStep4;

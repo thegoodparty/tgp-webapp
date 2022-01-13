@@ -43,12 +43,16 @@ export function AdminCandidateApplicationsPage({
   const { applications } = adminCandidateApplicationsPage;
   console.log('applications', applications);
 
+  const childProps = {
+    applications,
+  };
+
   return (
     <div>
       <Helmet>
         <title>Admin Candidate Applications Page</title>
       </Helmet>
-      <AdminCandidateApplicationsWrapper />
+      <AdminCandidateApplicationsWrapper {...childProps} />
     </div>
   );
 }

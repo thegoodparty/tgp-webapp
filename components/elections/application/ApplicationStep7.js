@@ -66,7 +66,12 @@ const allFields = [
   [...step4Fields, ...step4CampaignFields],
 ];
 
-function ApplicationStep7({ step, application, submitApplicationCallback }) {
+function ApplicationStep7({
+  step,
+  application,
+  submitApplicationCallback,
+  reviewMode,
+}) {
   const [state, setState] = useState([]);
   const [canSubmit, setCanSubmit] = useState(false);
 
@@ -159,6 +164,7 @@ function ApplicationStep7({ step, application, submitApplicationCallback }) {
       canContinue={canSubmit}
       id={application.id}
       submitApplicationCallback={submitApplicationCallback}
+      reviewMode={reviewMode}
     >
       {state.map((section, index) => (
         <SectionWrapper>
@@ -189,6 +195,7 @@ ApplicationStep7.propTypes = {
   step: PropTypes.number,
   application: PropTypes.object,
   submitApplicationCallback: PropTypes.func,
+  reviewMode: PropTypes.bool,
 };
 
 export default ApplicationStep7;

@@ -13,10 +13,11 @@ function loadApplicationAction(id) {
   };
 }
 
-function loadApplicationActionSuccess(application) {
+function loadApplicationActionSuccess(application, reviewMode) {
   return {
     type: types.LOAD_APPLICATION_SUCCESS,
     application,
+    reviewMode,
   };
 }
 
@@ -35,10 +36,29 @@ function submitApplicationAction(id) {
   };
 }
 
+function approveApplicationAction(id, feedback) {
+  return {
+    type: types.APPROVE_APPLICATION,
+    id,
+    feedback,
+  };
+}
+
+function rejectApplicationAction(id, feedback) {
+  return {
+    type: types.REJECT_APPLICATION,
+    id,
+    feedback,
+  };
+}
+
 export default {
   loadApplicationAction,
   loadApplicationActionSuccess,
 
   updateApplicationAction,
   submitApplicationAction,
+
+  approveApplicationAction,
+  rejectApplicationAction,
 };

@@ -123,7 +123,12 @@ const cards = [
   },
 ];
 
-function ApplicationStep1({ step, application, updateApplicationCallback }) {
+function ApplicationStep1({
+  step,
+  application,
+  updateApplicationCallback,
+  reviewMode,
+}) {
   const [state, setState] = useState({
     disAffiliate: false,
     notJoin: false,
@@ -175,6 +180,7 @@ function ApplicationStep1({ step, application, updateApplicationCallback }) {
       step={step}
       canContinue={canSubmit()}
       id={application.id}
+      reviewMode={reviewMode}
     >
       <Title>
         Take the Good Party Pledge to get started{' '}

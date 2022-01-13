@@ -20,6 +20,7 @@ import ApplicationStep5 from 'components/elections/application/ApplicationStep5'
 import ApplicationStep6 from 'components/elections/application/ApplicationStep6';
 import ApplicationStep7 from 'components/elections/application/ApplicationStep7';
 import ApplicationStep8 from 'components/elections/application/ApplicationStep8';
+import ApplicationStep8Review from 'components/elections/application/ApplicationStep8Review';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -33,6 +34,8 @@ export function ApplicationPage({
   dispatch,
   updateApplicationCallback,
   submitApplicationCallback,
+  approveApplicationCallback,
+  rejectApplicationCallback,
 }) {
   useInjectReducer({ key: 'applicationPage', reducer });
   useInjectSaga({ key: 'applicationPage', saga });
@@ -43,7 +46,7 @@ export function ApplicationPage({
   const id = router.query.IdStep?.length > 0 ? router.query.IdStep[0] : false;
   const step = parseInt(stepStr, 10);
 
-  const { application } = applicationPage;
+  const { application, reviewMode } = applicationPage;
   useEffect(() => {
     if (id) {
       dispatch(actions.loadApplicationAction(id));
@@ -54,8 +57,11 @@ export function ApplicationPage({
     step,
     id,
     application,
+    reviewMode,
     updateApplicationCallback,
     submitApplicationCallback,
+    approveApplicationCallback,
+    rejectApplicationCallback,
   };
 
   return (
@@ -73,7 +79,10 @@ export function ApplicationPage({
           {step === 5 && <ApplicationStep5 {...childProps} />}
           {step === 6 && <ApplicationStep6 {...childProps} />}
           {step === 7 && <ApplicationStep7 {...childProps} />}
-          {step === 8 && <ApplicationStep8 {...childProps} />}
+          {step === 8 && !reviewMode && <ApplicationStep8 {...childProps} />}
+          {step === 8 && reviewMode && (
+            <ApplicationStep8Review {...childProps} />
+          )}
         </>
       )}
     </div>
@@ -99,6 +108,12 @@ function mapDispatchToProps(dispatch) {
     },
     submitApplicationCallback: id => {
       dispatch(actions.submitApplicationAction(id));
+    },
+    approveApplicationCallback: (id, feedback) => {
+      dispatch(actions.approveApplicationAction(id, feedback));
+    },
+    rejectApplicationCallback: (id, feedback) => {
+      dispatch(actions.rejectApplicationAction(id, feedback));
     },
   };
 }
