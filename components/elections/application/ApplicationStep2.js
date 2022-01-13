@@ -174,6 +174,7 @@ function ApplicationStep2({
             value={state[field.key]}
             fullWidth
             variant="outlined"
+            disabled={reviewMode}
             onChange={e => {
               onChangeField(field.key, e);
             }}
@@ -196,6 +197,7 @@ function ApplicationStep2({
             value={state[field.key]}
             fullWidth
             required={field.required}
+            disabled={reviewMode}
             placeholder={field.placeholder}
             onChange={e => {
               onChangeField(field.key, e);
@@ -219,6 +221,7 @@ function ApplicationStep2({
                 key={op}
                 control={<Radio color="primary" />}
                 label={op}
+                disabled={reviewMode}
               />
             ))}
           </RadioGroup>
@@ -247,6 +250,7 @@ function ApplicationStep2({
               value={state[field.key]}
               fullWidth
               placeholder={field.placeholder}
+              disabled={reviewMode}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

@@ -202,21 +202,25 @@ function ApplicationStep3({
                   <Photo src={state[photo.key]} alt={photo.key} />
                 </PhotoWrapper>
               ) : (
-                <PhotoInputWrapper key={photo.key}>
-                  <UploadWrapper>
-                    <ImageUploadContainer
-                      uploadCallback={image =>
-                        handleUploadImage(image, photo.key)
-                      }
-                    />
-                  </UploadWrapper>
-                  <PhotoPlaceholder>
-                    <IconWrapper>
-                      <FaImage style={{ marginTop: '6px' }} />
-                    </IconWrapper>
-                    {photo.label}
-                  </PhotoPlaceholder>
-                </PhotoInputWrapper>
+                <>
+                  {!reviewMode && (
+                    <PhotoInputWrapper key={photo.key}>
+                      <UploadWrapper>
+                        <ImageUploadContainer
+                          uploadCallback={image =>
+                            handleUploadImage(image, photo.key)
+                          }
+                        />
+                      </UploadWrapper>
+                      <PhotoPlaceholder>
+                        <IconWrapper>
+                          <FaImage style={{ marginTop: '6px' }} />
+                        </IconWrapper>
+                        {photo.label}
+                      </PhotoPlaceholder>
+                    </PhotoInputWrapper>
+                  )}{' '}
+                </>
               )}
             </>
           ))}
@@ -237,6 +241,7 @@ function ApplicationStep3({
             value={state[field.key]}
             fullWidth
             variant="outlined"
+            disabled={reviewMode}
             onChange={e => {
               onChangeField(field.key, e);
             }}
@@ -263,6 +268,7 @@ function ApplicationStep3({
             placeholder={field.placeholder}
             multiline={!!field.multiline}
             rows={field.multiline ? 5 : 1}
+            disabled={reviewMode}
             InputProps={
               field.icon && {
                 startAdornment: (
@@ -292,6 +298,7 @@ function ApplicationStep3({
                 key={op}
                 control={<Radio color="primary" />}
                 label={op}
+                disabled={reviewMode}
               />
             ))}
           </RadioGroup>
@@ -320,6 +327,7 @@ function ApplicationStep3({
               value={state[field.key]}
               fullWidth
               placeholder={field.placeholder}
+              disabled={reviewMode}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

@@ -73,6 +73,13 @@ const LeftNav = styled.div`
   }
 `;
 
+const Review = styled.div`
+  color: red;
+  font-weight: 600;
+  margin-bottom: 24px;
+  padding: 8px;
+`
+
 const LeftLink = styled(Body13)`
   color: #caa9e9;
   padding: 8px;
@@ -189,6 +196,7 @@ function ApplicationWrapper({
           boundaryElement=".application-wrapper"
         >
           <LeftNav>
+            {reviewMode && <Review>REVIEW MODE</Review>}
             {leftLinks.map(link => (
               <Link
                 href={`/campaign-application/${id}/${link.step}`}
@@ -203,17 +211,19 @@ function ApplicationWrapper({
               </Link>
             ))}
             <br />
-            <Link href="/profile/campaign-applications" passHref>
-              <a>
-                <PurpleButton
-                  className="outline"
-                  fullWidth
-                  style={{ padding: '4px' }}
-                >
-                  <RiPencilFill /> &nbsp; Finish Later
-                </PurpleButton>
-              </a>
-            </Link>
+            {!reviewMode && (
+              <Link href="/profile/campaign-applications" passHref>
+                <a>
+                  <PurpleButton
+                    className="outline"
+                    fullWidth
+                    style={{ padding: '4px' }}
+                  >
+                    <RiPencilFill /> &nbsp; Finish Later
+                  </PurpleButton>
+                </a>
+              </Link>
+            )}
           </LeftNav>
         </Sticky>
         <MainWrapper className={isSticky && 'with-sticky'}>

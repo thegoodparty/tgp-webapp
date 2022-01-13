@@ -160,6 +160,7 @@ function ApplicationStep6({
             placeholder={field.placeholder}
             multiline={!!field.multiline}
             rows={field.multiline ? 5 : 1}
+            disabled={reviewMode}
             InputProps={
               field.icon && {
                 startAdornment: (
@@ -193,11 +194,13 @@ function ApplicationStep6({
             {renderField(field.link, index)}
           </EndorsementWrapper>
         ))}
-        <PurpleButton onClick={handleAddMore}>
-          <Body11 style={{ color: 'white' }}>
-            &nbsp;&nbsp;Add more endorsements&nbsp;&nbsp;
-          </Body11>
-        </PurpleButton>
+        {!reviewMode && (
+          <PurpleButton onClick={handleAddMore}>
+            <Body11 style={{ color: 'white' }}>
+              &nbsp;&nbsp;Add more endorsements&nbsp;&nbsp;
+            </Body11>
+          </PurpleButton>
+        )}
       </form>
     </ApplicationWrapper>
   );

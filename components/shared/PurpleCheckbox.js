@@ -39,10 +39,25 @@ const Checkbox = styled.input`
   }
 `;
 
-function PurpleCheckbox({ value = false, onChange = () => {} }) {
-  return <Checkbox type="checkbox" checked={value} onClick={onChange} />;
+function PurpleCheckbox({
+  value = false,
+  onChange = () => {},
+  disabled = false,
+}) {
+  return (
+    <Checkbox
+      type="checkbox"
+      checked={value}
+      onClick={onChange}
+      disabled={disabled}
+    />
+  );
 }
 
-PurpleCheckbox.propTypes = { value: PropTypes.bool, onChange: PropTypes.func };
+PurpleCheckbox.propTypes = {
+  value: PropTypes.bool,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+};
 
 export default PurpleCheckbox;

@@ -24,6 +24,7 @@ export function IssuePositionsPickerContainer({
   issuePositionsPickerContainer,
   selectedPositions,
   onChange,
+  disabled = false,
 }) {
   useInjectReducer({ key: 'issuePositionsPickerContainer', reducer });
   useInjectSaga({ key: 'issuePositionsPickerContainer', saga });
@@ -37,6 +38,7 @@ export function IssuePositionsPickerContainer({
     topics,
     selectedPositions: selectedPositions || [],
     onChange,
+    disabled,
   };
 
   return <IssuePositionsPickerWrapper {...childProps} />;
@@ -47,6 +49,7 @@ IssuePositionsPickerContainer.propTypes = {
   issuePositionsPickerContainer: PropTypes.object,
   selectedPositions: PropTypes.array,
   onChange: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({

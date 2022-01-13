@@ -205,6 +205,7 @@ function ApplicationStep1({
               <PurpleCheckbox
                 value={state[item.id]}
                 onChange={e => onChangeField(item.id, e.target.checked)}
+                disabled={reviewMode}
               />
 
               <div dangerouslySetInnerHTML={{ __html: item.text }} />

@@ -34,7 +34,12 @@ const TopicWrapper = styled.div`
   margin-bottom: 28px;
 `;
 
-function IssuePositionsPickerWrapper({ topics, selectedPositions, onChange }) {
+function IssuePositionsPickerWrapper({
+  topics,
+  selectedPositions,
+  onChange,
+  disabled,
+}) {
   const [selected, setSelected] = useState({});
   useEffect(() => {
     const hash = {};
@@ -45,6 +50,9 @@ function IssuePositionsPickerWrapper({ topics, selectedPositions, onChange }) {
   }, [selectedPositions]);
 
   const handleSelect = position => {
+    if (disabled) {
+      return;
+    }
     const updated = { ...selected };
     if (updated[position.id]) {
       // deselect

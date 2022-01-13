@@ -128,6 +128,7 @@ function ApplicationStep4({
             value={state[field.key]}
             fullWidth
             variant="outlined"
+            disabled={reviewMode}
             onChange={e => {
               onChangeField(field.key, e);
             }}
@@ -149,6 +150,7 @@ function ApplicationStep4({
             variant="outlined"
             value={state[field.key]}
             fullWidth
+            disabled={reviewMode}
             type={field.type}
             required={field.required}
             placeholder={field.placeholder}

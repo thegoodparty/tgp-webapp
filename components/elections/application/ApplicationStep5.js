@@ -65,6 +65,7 @@ function ApplicationStep5({
       <IssuePositionsPickerContainer
         selectedPositions={state.positions || []}
         onChange={handlePositionChange}
+        disabled={reviewMode}
       />
     </ApplicationWrapper>
   );
