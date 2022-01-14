@@ -66,14 +66,20 @@ const RightLinks = styled.div`
   justify-content: flex-end;
 `;
 
-const AsCandidate = styled.div`
+const AsCandidateWrapper = styled.div`
   position: absolute;
+  top: 14px;
+  left: 8px;
+`;
+
+const AsCandidate = styled.div`
   background-color: white;
   padding: 16px 8px;
   color: ${({ theme }) => theme.colors.purple};
-  top: 14px;
-  left: 8px;
   cursor: pointer;
+  display: inline-block;
+  margin-right: 12px;
+  border-radius: 8px;
 `;
 
 const TopLink = styled.div`
@@ -150,9 +156,16 @@ const DesktopHeader = ({
   return (
     <Wrapper className={purpleNav && 'purple'}>
       {asCandidate && (
-        <AsCandidate onClick={logoutAsCandidateCallback}>
-          Logout As candidate
-        </AsCandidate>
+        <AsCandidateWrapper>
+          <AsCandidate onClick={logoutAsCandidateCallback}>
+            Logout As candidate
+          </AsCandidate>
+          <Link href="candidate-portal" passHref>
+            <a>
+              <AsCandidate>Portal</AsCandidate>
+            </a>
+          </Link>
+        </AsCandidateWrapper>
       )}
       <ContentWrapper>
         <Link

@@ -5,9 +5,10 @@ import requestHelper from 'helpers/requestHelper';
 
 import tgpApi from 'api/tgpApi';
 import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import { setCookie } from 'helpers/cookieHelper';
+
 import types from './constants';
 import actions from './actions';
-import { setCookie } from '../../../helpers/cookieHelper';
 
 function* associateCandidateUser({ candidateId, userEmail }) {
   try {

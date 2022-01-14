@@ -576,5 +576,61 @@ const api = {
       method: 'POST',
     },
   },
+
+  candidateApplication: {
+    create: {
+      url: `${base}application`,
+      method: 'POST',
+      withAuth: true,
+    },
+    delete: {
+      url: `${base}application`,
+      method: 'DELETE',
+      withAuth: true,
+    },
+    list: {
+      url: `${base}applications`,
+      method: 'GET',
+      withAuth: true,
+    },
+    find: {
+      url: `${base}application`,
+      method: 'GET',
+      withAuth: true,
+    },
+    update: {
+      url: `${base}application`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    submit: {
+      url: `${base}application/submit`,
+      method: 'POST',
+      withAuth: true,
+    },
+    uploadImage: {
+      url: `${base}application/upload-image`,
+      method: 'POST',
+      withAuth: true,
+    },
+
+    adminList: {
+      url: `${base}applications/in-review`,
+      method: 'GET',
+      withAuth: true,
+    },
+
+    adminApprove: {
+      url: `${base}applications/approve`,
+      method: 'PUT',
+      withAuth: true,
+    },
+
+    adminReject: {
+      url: `${base}applications/reject`,
+      method: 'PUT',
+      withAuth: true,
+    },
+  },
 };
 export default api;

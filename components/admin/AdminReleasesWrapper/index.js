@@ -10,10 +10,12 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Chip from '@material-ui/core/Chip';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { FaSave } from 'react-icons/fa';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
@@ -83,6 +85,7 @@ function AdminReleasesWrapper({
     editCallback(editRelease);
     setEditTopic(false);
   };
+  const possibleTags = ['Campaigns', 'Voters'];
   return (
     <AdminPageWrapper>
       <Wrapper>
@@ -92,14 +95,17 @@ function AdminReleasesWrapper({
         <br />
         <br />
         <Grid container spacing={2}>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <Header>Date</Header>
           </Grid>
           <Grid item xs={2}>
             <Header>Type</Header>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <Header>Note</Header>
+          </Grid>
+          <Grid item xs={2}>
+            <Header>Tags</Header>
           </Grid>
           <Grid item xs={1}>
             <Header>Online?</Header>
@@ -107,7 +113,7 @@ function AdminReleasesWrapper({
           <Grid item xs={1}>
             <Header>Actions</Header>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <TextField
               type="date"
               fullWidth
@@ -135,7 +141,7 @@ function AdminReleasesWrapper({
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <TextField
               fullWidth
               variant="outlined"
@@ -144,6 +150,26 @@ function AdminReleasesWrapper({
               rows={3}
               onChange={e => onChangeField('releaseNote', e.target.value)}
               value={state.releaseNote}
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Autocomplete
+              multiple
+              id="tags-outlined"
+              options={possibleTags}
+              defaultValue={[]}
+              filterSelectedOptions
+              onChange={(event, options) => {
+                onChangeField('tags', options);
+              }}
+              renderInput={params => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="Tags"
+                  placeholder="Tag"
+                />
+              )}
             />
           </Grid>
           <Grid item xs={1}>
@@ -169,7 +195,7 @@ function AdminReleasesWrapper({
                 <>
                   {editRelease.id === release.id ? (
                     <>
-                      <Grid item xs={3}>
+                      <Grid item xs={2}>
                         <Field>
                           <Body>
                             <TextField
@@ -209,7 +235,7 @@ function AdminReleasesWrapper({
                           </Body>
                         </Field>
                       </Grid>
-                      <Grid item xs={5}>
+                      <Grid item xs={4}>
                         <Field>
                           <Body>
                             <TextField
@@ -225,6 +251,27 @@ function AdminReleasesWrapper({
                             />
                           </Body>
                         </Field>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Autocomplete
+                          multiple
+                          id="tags-outlined"
+                          options={possibleTags}
+                          defaultValue={[]}
+                          value={editRelease.tags || []}
+                          filterSelectedOptions
+                          onChange={(event, options) => {
+                            onChangeEdit('tags', options);
+                          }}
+                          renderInput={params => (
+                            <TextField
+                              {...params}
+                              variant="outlined"
+                              label="Tags"
+                              placeholder="Tag"
+                            />
+                          )}
+                        />
                       </Grid>
                       <Grid item xs={1}>
                         <Field>
@@ -250,7 +297,7 @@ function AdminReleasesWrapper({
                     </>
                   ) : (
                     <>
-                      <Grid item xs={3}>
+                      <Grid item xs={2}>
                         <Field>
                           <Body>{release.releaseDate}</Body>
                         </Field>
@@ -260,9 +307,14 @@ function AdminReleasesWrapper({
                           <Body>{release.releaseType}</Body>
                         </Field>
                       </Grid>
-                      <Grid item xs={5}>
+                      <Grid item xs={4}>
                         <Field>
                           <Body>{release.releaseNote}</Body>
+                        </Field>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Field>
+                          {release.tags?.map(tag => <Chip label={tag} />)}
                         </Field>
                       </Grid>
                       <Grid item xs={1}>

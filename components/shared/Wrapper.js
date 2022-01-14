@@ -11,7 +11,7 @@ const WrapperDiv = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
     theme.breakpointsPixels.contentMax}) {
     padding: 0;
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - 80px);
     //min-height: calc(var(--vh, 1vh) * 100 - 40px);
   }
   @media only screen and (max-width: ${({ theme }) =>
@@ -28,7 +28,7 @@ const WrapperDiv = styled.div`
     background-color: #fff;
   }
   &.purple {
-    background-color: ${({ theme }) => theme.colors.purple3};
+    background-color: ${({ theme }) => theme.colors.purpleBg};
   }
   &.no-header {
     min-height: calc(100vh);

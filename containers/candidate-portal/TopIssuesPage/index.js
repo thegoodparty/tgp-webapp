@@ -35,14 +35,19 @@ import adminIssueTopicsActions from '../../admin/AdminIssueTopicsPage/actions';
 export function TopIssuesPage({
   userState,
   dispatch,
+  ssrState,
   candidatePortalHomePage,
   topIssuesPage,
   updateIssueCallback,
   adminIssueTopicsPage,
 }) {
+  let ssrCandidate = null;
+  if(ssrState) {
+    ssrCandidate = ssrState.candidate;
+  }
   useInjectReducer({ key: 'topIssuesPage', reducer });
   useInjectSaga({ key: 'topIssuesPage', saga });
-
+  
   useInjectReducer({
     key: 'candidatePortalHomePage',
     reducer: portalHomeReducer,
@@ -67,16 +72,20 @@ export function TopIssuesPage({
       if (!user.isAdmin && !user.candidate) {
         dispatch(push('/'));
       }
-      dispatch(portalHomeActions.findCandidate());
-      dispatch(actions.findIssueAction());
+      if (!ssrCandidate?.id) {
+        dispatch(portalHomeActions.findCandidate());
+      }
+      dispatch(actions.findIssueAction(ssrCandidate?.id));
     }
   }, [user]);
+  // const { candidate } = ssrState || {};
 
   const { candidateIssue } = topIssuesPage;
   const { topics } = adminIssueTopicsPage;
   const childProps = {
     user,
-    candidate,
+    candidate: ssrCandidate || candidate,
+    candidateId: ssrCandidate?.id,
     candidateIssue,
     updateIssueCallback,
     topics,
@@ -96,6 +105,7 @@ export function TopIssuesPage({
 TopIssuesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
+  ssrState: PropTypes.object,
   topIssuesPage: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
   updateIssueCallback: PropTypes.func,
@@ -112,8 +122,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateIssueCallback: issue => {
-      dispatch(actions.updateIssueAction(issue));
+    updateIssueCallback: (issue, candidateId) => {
+      dispatch(actions.updateIssueAction(issue, candidateId));
     },
   };
 }

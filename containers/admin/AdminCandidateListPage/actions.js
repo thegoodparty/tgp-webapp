@@ -6,10 +6,9 @@
 
 import types from './constants';
 
-function loadCandidates(chamber) {
+function loadCandidates() {
   return {
     type: types.LOAD_CANDIDATES,
-    chamber,
   };
 }
 
@@ -34,14 +33,10 @@ function deleteCandidateAction(id) {
   };
 }
 
-
-
 export default {
   loadCandidates,
   loadCandidatesSuccess,
   loadCandidatesError,
 
   deleteCandidateAction,
-
-
 };

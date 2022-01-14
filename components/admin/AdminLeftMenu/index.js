@@ -68,7 +68,7 @@ export const leftMenuItems = [
   { icon: <UserIcon />, label: 'Users', link: '/admin/users' },
   {
     icon: <GiPortal size={24} />,
-    label: 'Update Requests',
+    label: 'Candidates Requests',
     link: '/admin/update-requests',
   },
   { icon: <CompareIcon />, label: 'Topics', link: '/admin/topics' },

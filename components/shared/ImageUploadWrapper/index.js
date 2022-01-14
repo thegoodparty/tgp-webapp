@@ -10,6 +10,14 @@ import styled from 'styled-components';
 import { RiImageAddFill } from 'react-icons/ri';
 
 import Button from '@material-ui/core/Button';
+import { PurpleButton } from '../buttons';
+
+const StyledButton = styled(Button)`
+  && {
+    background-color: ${({ theme }) => theme.colors.purple};
+    color: #fff;
+  }
+`;
 
 const Error = styled.div`
   margin-top: 12px;
@@ -33,8 +41,13 @@ function ImageUploadWrapper({ fileSelectCallback, uploadCallback }) {
 
   return (
     <>
-      <Button variant="contained" component="label">
-        <RiImageAddFill /> &nbsp; Upload Image
+      <StyledButton
+        variant="contained"
+        component="label"
+        style={{ padding: '6px 8px' }}
+      >
+        &nbsp;&nbsp;
+        <RiImageAddFill /> &nbsp; Select &nbsp;&nbsp;
         <input
           type="file"
           hidden
@@ -42,7 +55,7 @@ function ImageUploadWrapper({ fileSelectCallback, uploadCallback }) {
           accept="image/*"
           id="file-uploader"
         />
-      </Button>
+      </StyledButton>
       {fileSizeError && <Error>Max file size allowed: 400K </Error>}
     </>
   );

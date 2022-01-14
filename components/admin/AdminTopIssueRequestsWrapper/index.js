@@ -55,7 +55,7 @@ function AdminTopIssueRequestsWrapper({
   return (
     <AdminPageWrapper>
       <Wrapper>
-        <RequestTopTab />
+        <RequestTopTab activeTab="Top Issues Requests" />
         <Title>Top Issue Requests from Candidates</Title>
         <br />
         <br />

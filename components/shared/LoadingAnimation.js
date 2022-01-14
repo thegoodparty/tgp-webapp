@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const LoadingAnimation = ({ label }) => (
+const LoadingAnimation = ({ label,  }) => (
   <Wrapper>
     {label && (
       <H3>

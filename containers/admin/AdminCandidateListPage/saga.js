@@ -6,13 +6,11 @@ import snackbarActions from 'containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* loadCandidates(action) {
+function* loadCandidates() {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading Candidates'));
-    const { chamber } = action;
     const api = tgpApi.admin.candidates;
-    const payload = { chamber };
-    const { candidates } = yield call(requestHelper, api, payload);
+    const { candidates } = yield call(requestHelper, api, null);
     yield put(actions.loadCandidatesSuccess(candidates));
   } catch (error) {
     console.log(error);

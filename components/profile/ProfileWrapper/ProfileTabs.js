@@ -52,6 +52,11 @@ const tabs = [
   { label: 'Profile', img: 'profile', link: '/profile' },
   { label: 'Settings', img: 'settings', link: '/profile/settings' },
   { label: 'Leaderboard', img: 'leaderboard', link: '/profile/leaderboard' },
+  // {
+  //   label: 'Application',
+  //   img: 'application',
+  //   link: '/profile/campaign-applications',
+  // },
 ];
 
 function ProfileTabs({ activeTab = 'Profile' }) {
@@ -81,6 +86,6 @@ function ProfileTabs({ activeTab = 'Profile' }) {
   );
 }
 
-ProfileTabs.propTypes = { activeTab: PropTypes.number };
+ProfileTabs.propTypes = { activeTab: PropTypes.string };
 
 export default ProfileTabs;

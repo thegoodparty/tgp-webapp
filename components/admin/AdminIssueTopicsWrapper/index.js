@@ -16,6 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { H3, H2 } from '../../shared/typogrophy';
 import AdminIssueTopic from './AdminIssueTopic';
+import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -94,6 +95,7 @@ function AdminIssueTopicsWrapper({
   return (
     <AdminPageWrapper>
       <Wrapper>
+        <RequestTopTab activeTab="Top Issues Manager" />
         <br />
         <H2 className="text-center">Admin Issue Topics</H2>
 

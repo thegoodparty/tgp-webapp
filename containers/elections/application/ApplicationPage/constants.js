@@ -1,0 +1,28 @@
+/*
+ *
+ * ApplicationPage constants
+ *
+ */
+
+const LOAD_APPLICATION = 'app/ApplicationPage/LOAD_APPLICATION';
+const LOAD_APPLICATION_SUCCESS = 'app/ApplicationPage/LOAD_APPLICATION_SUCCESS';
+
+const UPDATE_APPLICATION = 'app/ApplicationPage/UPDATE_APPLICATION';
+
+const SUBMIT_APPLICATION = 'app/ApplicationPage/SUBMIT_APPLICATION';
+
+//admin
+const APPROVE_APPLICATION = 'app/ApplicationPage/APPROVE_APPLICATION';
+const REJECT_APPLICATION = 'app/ApplicationPage/REJECT_APPLICATION';
+
+export default {
+  LOAD_APPLICATION,
+  LOAD_APPLICATION_SUCCESS,
+
+  UPDATE_APPLICATION,
+
+  SUBMIT_APPLICATION,
+
+  APPROVE_APPLICATION,
+  REJECT_APPLICATION,
+};

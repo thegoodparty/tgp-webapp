@@ -33,7 +33,10 @@ export function ProfileSettingsPage({
 }) {
   useInjectReducer({ key: 'profileSettingsPage', reducer });
   useInjectSaga({ key: 'profileSettingsPage', saga });
-  const user = userState?.user || getUserCookie(true);
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    setUser(userState?.user || getUserCookie(true));
+  }, [userState]);
   // const cookieUser = getUserCookie(true);
   // const [user, setUser] = useState(cookieUser);
   // const router = useRouter();
@@ -42,9 +45,10 @@ export function ProfileSettingsPage({
   //   const tempUser = getUserCookie(true);
   //   setUser(tempUser);
   // }, [updated]);
-
+  const setUserCallback = (user) => setUser(user);
   const childProps = {
     user,
+    setUserCallback,
     signoutCallback,
     updateUserCallback,
     changePasswordCallback,

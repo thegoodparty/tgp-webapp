@@ -148,7 +148,12 @@ const PhoneWrapper = styled.div`
   }
 `;
 
-function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
+function PersonalSection({
+  user,
+  updateUserCallback,
+  changePasswordCallback,
+  setUser,
+}) {
   const [editEnabled, setEditEnabled] = useState({});
   const [editPassword, setEditPassword] = useState(false);
   const [password, setPassword] = useState('');
@@ -164,29 +169,29 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
     isPhoneVerified,
     isEmailVerified,
   } = user;
-
   useEffect(() => {
     canSubmitPassword();
   }, [password, oldPassword]);
 
-  const initialValues = {
-    name,
-    displayName: displayName || '',
-    email,
-    phone: formatToPhone(phone),
-    zip: zip || '',
-    pronouns: pronouns || '',
-  };
-
-  const [formFields, setFormFields] = useState({
-    name: { label: 'Full Name', value: initialValues.name },
-    email: { label: 'Email', value: initialValues.email },
-    phone: { label: 'Mobile number', value: initialValues.phone },
-    zip: { label: 'Zip Code', value: initialValues.zip },
-    displayName: { label: 'Display Name', value: initialValues.displayName },
-    pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
-  });
-
+  const [formFields, setFormFields] = useState({});
+  useEffect(() => {
+    const initialValues = {
+      name,
+      displayName: displayName || '',
+      email,
+      phone: formatToPhone(phone),
+      zip: zip || '',
+      pronouns: pronouns || '',
+    };
+    setFormFields({
+      name: { label: 'Full Name', value: initialValues.name },
+      email: { label: 'Email', value: initialValues.email },
+      phone: { label: 'Mobile number', value: initialValues.phone },
+      zip: { label: 'Zip Code', value: initialValues.zip },
+      displayName: { label: 'Display Name', value: initialValues.displayName },
+      pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
+    });
+  }, [user]);
   const onChangeField = (key, val) => {
     setFormFields({
       ...formFields,
@@ -196,8 +201,8 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
   const EditableValue = fieldKey => {
     const field = formFields[fieldKey];
     const handleSave = () => {
-      console.log('callback', fieldKey, field.value);
       updateUserCallback(fieldKey, field.value);
+      setUser({ ...user, [fieldKey]: field.value });
       setEditEnabled({
         ...editEnabled,
         [formFields[fieldKey].label]: false,
@@ -332,6 +337,7 @@ function PersonalSection({ user, updateUserCallback, changePasswordCallback }) {
       });
     }
   };
+
   return (
     <Wrapper>
       {Object.keys(formFields).map(field => (
@@ -480,6 +486,7 @@ PersonalSection.propTypes = {
   user: PropTypes.object,
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
+  setUser: PropTypes.func,
 };
 
 export default PersonalSection;
