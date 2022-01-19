@@ -61,6 +61,8 @@ function CampaignApplicationsWrapper({
               &nbsp; Create a new application &nbsp;
             </Body11>
           </PurpleButton>
+          <br />
+          &nbsp;
         </div>
         {loading ? (
           <LoadingAnimation />

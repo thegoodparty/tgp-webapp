@@ -70,6 +70,7 @@ export const step2fields = [
     defaultValue: '',
     type: 'text',
     shortLabel: 'ZIP code',
+    maxLength: 5,
   },
   {
     label: 'Is the candidate a U.S. Citizen?',
@@ -482,7 +483,7 @@ export const step4Fields = [
     key: 'candidatePhone',
     placeholder: '(555) 555-5555',
     defaultValue: '',
-    type: 'text',
+    type: 'phone',
     required: true,
   },
 ];
@@ -517,7 +518,7 @@ export const step4CampaignFields = [
     key: 'contactPhone',
     placeholder: '(555) 555-5555',
     defaultValue: '',
-    type: 'text',
+    type: 'phone',
     required: true,
   },
   {

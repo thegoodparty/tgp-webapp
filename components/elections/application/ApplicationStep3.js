@@ -227,6 +227,11 @@ function ApplicationStep3({
         </FieldWrapper>
       );
     }
+    let maxLength = field.maxLength || 30;
+    if (field.multiline) {
+      maxLength = 200;
+    }
+
     return (
       <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
         {!field.noLabel && (
@@ -269,6 +274,9 @@ function ApplicationStep3({
             multiline={!!field.multiline}
             rows={field.multiline ? 5 : 1}
             disabled={reviewMode}
+            inputProps={{
+              maxLength,
+            }}
             InputProps={
               field.icon && {
                 startAdornment: (
@@ -328,6 +336,9 @@ function ApplicationStep3({
               fullWidth
               placeholder={field.placeholder}
               disabled={reviewMode}
+              inputProps={{
+                maxLength: 50,
+              }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

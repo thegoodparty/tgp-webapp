@@ -15,6 +15,7 @@ import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 
 import { step4Fields, step4CampaignFields } from './fields';
+import PhoneInput, { isValidPhone } from '../../shared/PhoneInput';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -74,11 +75,19 @@ function ApplicationStep4({
   reviewMode,
 }) {
   const [state, setState] = useState(keys);
+  const [validPhones, setValidPhones] = useState({
+    candidatePhone: false,
+    contactPhone: false,
+  });
 
   useEffect(() => {
     if (application?.contacts) {
       setState({
         ...application.contacts,
+      });
+      setValidPhones({
+        candidatePhone: isValidPhone(application.contacts.candidatePhone),
+        contactPhone: isValidPhone(application.contacts.contactPhone),
       });
     }
   }, [application]);
@@ -89,6 +98,13 @@ function ApplicationStep4({
     setState({
       ...state,
       [key]: e.target.value,
+    });
+  };
+
+  const handlePhoneChange = (key, val, isValid) => {
+    setState({
+      ...state,
+      [key]: val,
     });
   };
 
@@ -115,6 +131,9 @@ function ApplicationStep4({
         returnVal = false;
       }
     });
+    if (!validPhones.candidatePhone || !validPhones.contactPhone) {
+      returnVal = false;
+    }
     return returnVal;
   };
 
@@ -144,6 +163,17 @@ function ApplicationStep4({
             ))}
           </Select>
         )}
+        {field.type === 'phone' && (
+          <PhoneInput
+            onChangeCallback={(val, isValid) => {
+              handlePhoneChange(field.key, val, isValid);
+            }}
+            onBlurCallback={val => {
+              const e = { target: { value: val } };
+              onBlurField(field.key, e);
+            }}
+          />
+        )}
         {(field.type === 'text' || field.type === 'email') && (
           <StyledTextField
             name={field.label}
@@ -154,8 +184,7 @@ function ApplicationStep4({
             type={field.type}
             required={field.required}
             placeholder={field.placeholder}
-            multiline={!!field.multiline}
-            rows={field.multiline ? 5 : 1}
+            inputProps={{ maxLength: field.maxLength || 30 }}
             InputProps={
               field.icon && {
                 startAdornment: (
