@@ -25,6 +25,14 @@ export const fullFirstLastInitials = name => {
   return '';
 };
 
+
+export const getName = user => {
+  if(user?.displayName) {
+    return user.displayName;
+  }
+  return fullFirstLastInitials(user?.name);
+}
+
 export const uuidUrl = (
   user,
   url = 'https://goodparty.org',
