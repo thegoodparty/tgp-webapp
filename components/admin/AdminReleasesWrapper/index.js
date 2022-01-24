@@ -105,7 +105,7 @@ function AdminReleasesWrapper({
             <Header>Note</Header>
           </Grid>
           <Grid item xs={2}>
-            <Header>Tags</Header>
+            <Header>Audience</Header>
           </Grid>
           <Grid item xs={1}>
             <Header>Online?</Header>
@@ -166,7 +166,7 @@ function AdminReleasesWrapper({
                 <TextField
                   {...params}
                   variant="outlined"
-                  label="Tags"
+                  label="Audience"
                   placeholder="Tag"
                 />
               )}
@@ -267,7 +267,7 @@ function AdminReleasesWrapper({
                             <TextField
                               {...params}
                               variant="outlined"
-                              label="Tags"
+                              label="Audience"
                               placeholder="Tag"
                             />
                           )}
