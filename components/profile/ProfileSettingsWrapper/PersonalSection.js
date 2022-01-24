@@ -191,6 +191,9 @@ function PersonalSection({
       displayName: { label: 'Display Name', value: initialValues.displayName },
       pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
     });
+    if(user.isEmailVerified) {
+      localStorage.setItem('verifiedEmail', user.email);
+    }
   }, [user]);
   const onChangeField = (key, val) => {
     setFormFields({
@@ -203,6 +206,16 @@ function PersonalSection({
     const handleSave = () => {
       updateUserCallback(fieldKey, field.value);
       setUser({ ...user, [fieldKey]: field.value });
+      if(fieldKey === 'email') {
+        if(localStorage.getItem('verifiedEmail') === field.value) {
+          setUser({ ...user, isEmailVerified: true });
+          updateUserCallback('isEmailVerified', true);
+        }
+        else {
+          setUser({ ...user, isEmailVerified: false });
+          updateUserCallback('isEmailVerified', false);
+        }
+      }
       setEditEnabled({
         ...editEnabled,
         [formFields[fieldKey].label]: false,
