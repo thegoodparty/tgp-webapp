@@ -84,8 +84,8 @@ function ImageSection({ user, mode = 'desktop', uploadImageCallback }) {
 
           <UserAvatar user={user} size="large" />
         </AvatarWrapper>
-        <H2 style={{ marginLeft: '12px' }}>
-          {fullFirstLastInitials(user.name)}
+        <H2 style={{ marginLeft: '12px', width: '80%', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {fullFirstLastInitials(user.displayName || user.name)}
         </H2>
       </Row>
 
