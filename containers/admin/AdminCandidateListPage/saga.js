@@ -13,7 +13,8 @@ function* loadCandidates() {
     const { candidates } = yield call(requestHelper, api, null);
     yield put(actions.loadCandidatesSuccess(candidates));
   } catch (error) {
-    console.log(error);
+    console.log('Error loading candidates', error);
+    console.log(JSON.stringify(error));
     yield put(
       snackbarActions.showSnakbarAction('Error Loading Candidates', 'error'),
     );
