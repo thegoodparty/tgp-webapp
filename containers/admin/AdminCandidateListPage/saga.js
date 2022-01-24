@@ -8,10 +8,15 @@ import actions from './actions';
 
 function* loadCandidates() {
   try {
+    console.log('loading candidates1');
     yield put(snackbarActions.showSnakbarAction('Loading Candidates'));
+    console.log('loading candidates2');
     const api = tgpApi.admin.candidates;
+    console.log('loading candidates3');
     const { candidates } = yield call(requestHelper, api, null);
+    console.log('loading candidates4');
     yield put(actions.loadCandidatesSuccess(candidates));
+    console.log('loading candidates5');
   } catch (error) {
     console.log('Error loading candidates', error);
     console.log(JSON.stringify(error));

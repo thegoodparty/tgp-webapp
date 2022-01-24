@@ -47,6 +47,7 @@ export default function* requestHelper(api, data, isFormData = false) {
   try {
     return yield call(fetchHelper, url, requestOptions);
   } catch (e) {
+    console.log('error in requestHelper', e);
     if (e && e.response && e.response.err === 'Invalid token') {
       yield put(
         snackbarActions.showSnakbarAction('Please login again', 'error'),
