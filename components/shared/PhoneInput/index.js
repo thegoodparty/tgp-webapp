@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { AsYouType } from 'libphonenumber-js';
@@ -41,28 +41,38 @@ export const isValidPhone = phone => {
   return formattedPhone.length === 10;
 };
 
-function PhoneInput({ onChangeCallback, onBlurCallback }) {
+function PhoneInput({ value, onChangeCallback, onBlurCallback }) {
   const [displayValue, setDisplayValue] = useState('');
   const [validPhone, setValidPhone] = useState(false);
+
+  useEffect(() => {
+    if (value) {
+      formatDisplay(value);
+      setValidPhone(value);
+    }
+  }, [value]);
 
   const onChangeValue = async event => {
     if (event) {
       const val = event.target.value;
       const isValid = isValidPhone(val);
       setValidPhone(isValid);
-
-      const formatted = new AsYouType('US').input(val);
-      // issue that we can't delete (XXX)
-      if (
-        val.length === 4 &&
-        formatted.length === 5 &&
-        formatted.charAt(4) === ')'
-      ) {
-        setDisplayValue(val);
-      } else {
-        setDisplayValue(formatted);
-      }
+      formatDisplay(val);
       onChangeCallback(val.replace(/\D/g, ''), isValid);
+    }
+  };
+
+  const formatDisplay = val => {
+    const formatted = new AsYouType('US').input(val);
+    // issue that we can't delete (XXX)
+    if (
+      val.length === 4 &&
+      formatted.length === 5 &&
+      formatted.charAt(4) === ')'
+    ) {
+      setDisplayValue(val);
+    } else {
+      setDisplayValue(formatted);
     }
   };
 
@@ -100,6 +110,7 @@ function PhoneInput({ onChangeCallback, onBlurCallback }) {
 PhoneInput.propTypes = {
   onChangeCallback: PropTypes.func,
   onBlurCallback: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default PhoneInput;

@@ -16,6 +16,7 @@ import { Body, Body11 } from '../../shared/typogrophy';
 
 import { step4Fields, step4CampaignFields } from './fields';
 import PhoneInput, { isValidPhone } from '../../shared/PhoneInput';
+import EmailInput, { isValidEmail } from '../../shared/EmailInput';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -79,6 +80,10 @@ function ApplicationStep4({
     candidatePhone: false,
     contactPhone: false,
   });
+  const [validEmails, setValidEmails] = useState({
+    candidateEmail: false,
+    contactEmail: false,
+  });
 
   useEffect(() => {
     if (application?.contacts) {
@@ -88,6 +93,10 @@ function ApplicationStep4({
       setValidPhones({
         candidatePhone: isValidPhone(application.contacts.candidatePhone),
         contactPhone: isValidPhone(application.contacts.contactPhone),
+      });
+      setValidEmails({
+        candidateEmail: isValidEmail(application.contacts.candidateEmail),
+        contactEmail: isValidEmail(application.contacts.contactEmail),
       });
     }
   }, [application]);
@@ -101,7 +110,7 @@ function ApplicationStep4({
     });
   };
 
-  const handlePhoneChange = (key, val, isValid) => {
+  const handlePhoneChange = (key, val) => {
     setState({
       ...state,
       [key]: val,
@@ -134,6 +143,11 @@ function ApplicationStep4({
     if (!validPhones.candidatePhone || !validPhones.contactPhone) {
       returnVal = false;
     }
+    if (!validEmails.candidateEmail || !validEmails.contactEmail) {
+      returnVal = false;
+    }
+    console.log('validPhones', validPhones);
+    console.log('validEmails', validEmails);
     return returnVal;
   };
 
@@ -165,6 +179,7 @@ function ApplicationStep4({
         )}
         {field.type === 'phone' && (
           <PhoneInput
+            value={state[field.key]}
             onChangeCallback={(val, isValid) => {
               handlePhoneChange(field.key, val, isValid);
             }}
@@ -174,7 +189,18 @@ function ApplicationStep4({
             }}
           />
         )}
-        {(field.type === 'text' || field.type === 'email') && (
+        {field.type === 'email' && (
+          <EmailInput
+            value={state[field.key]}
+            onChangeCallback={e => {
+              onChangeField(field.key, e);
+            }}
+            onBlurCallback={e => {
+              onBlurField(field.key, e);
+            }}
+          />
+        )}
+        {field.type === 'text' && (
           <StyledTextField
             name={field.label}
             variant="outlined"
