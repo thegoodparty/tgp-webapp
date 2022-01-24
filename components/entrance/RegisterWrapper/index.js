@@ -94,6 +94,7 @@ const fields = [
     type: 'text',
     required: true,
     isUpdatable: false,
+    helperText: '100 characters maximum'
   },
   {
     label: 'Email Address',
@@ -131,7 +132,7 @@ const RegisterWrapper = ({
 
   const enableSubmit = () => {
     return (
-      formData.name.length >= 2 &&
+      formData.name.length >= 2 && formData.name.length <= 100 &&
       validateZip() &&
       (validatePhone() || validateEmail())
     );
