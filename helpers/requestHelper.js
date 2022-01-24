@@ -10,6 +10,7 @@ import { getCookie } from './cookieHelper';
 
 export default function* requestHelper(api, data, isFormData = false) {
   let { url } = api;
+  console.log('requestHleper1', url);
   const { method, withAuth } = api;
   if ((method === 'GET' || method === 'DELETE') && data) {
     url = `${url}?`;
@@ -21,6 +22,7 @@ export default function* requestHelper(api, data, isFormData = false) {
     url = url.slice(0, -1);
   }
   let body = data;
+  console.log('requestHleper2', body);
   if ((method === 'POST' || method === 'PUT') && data && !isFormData) {
     body = JSON.stringify(data);
   }
@@ -39,15 +41,17 @@ export default function* requestHelper(api, data, isFormData = false) {
       }
     }
   }
+  console.log('requestHleper3', token);
 
   const requestOptions = headersOptions(body, api.method, token);
   // if (data instanceof FormData) {
   //   requestOptions.headers['Content-Type'] = 'multipart/form-data';
   // }
   try {
+    console.log('requestHleper4');
     return yield call(fetchHelper, url, requestOptions);
   } catch (e) {
-    console.log('error in requestHelper', e);
+    console.log('error in requestHelper5', e);
     if (e && e.response && e.response.err === 'Invalid token') {
       yield put(
         snackbarActions.showSnakbarAction('Please login again', 'error'),
@@ -55,6 +59,7 @@ export default function* requestHelper(api, data, isFormData = false) {
       // yield put(userActions.signoutAction('/login'));
       throw new Error({ message: 'invalid token' });
     } else {
+      console.log('error in requestHelper6', e);
       throw e;
     }
   }
