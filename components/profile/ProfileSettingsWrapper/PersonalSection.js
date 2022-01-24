@@ -302,12 +302,13 @@ function PersonalSection({
     });
     onChangeField(field, initialValues[field]);
   };
-
+  var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
   const canSubmitPassword = () => {
     if (
       user.hasPassword &&
       password !== '' &&
       oldPassword !== '' &&
+      password.match(decimal) &&
       password.length > 7
     ) {
       setCanChangePassword(true);
@@ -423,7 +424,7 @@ function PersonalSection({
                   setPassword(e.target.value);
                 }}
               />
-              <small>8 characters minimum</small>
+              <small>For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum</small>
               <br />
               <ButtonCancelWrapper>
                 <PurpleButton
