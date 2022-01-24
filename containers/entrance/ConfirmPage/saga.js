@@ -20,7 +20,6 @@ import globalActions from '../../App/actions';
 import actions from './actions';
 
 function* confirmCode({ code, value, valueType }) {
-  console.log('saga', code, value, valueType);
   try {
     const redirectCookie = getSignupRedirectCookie();
     if (redirectCookie) {

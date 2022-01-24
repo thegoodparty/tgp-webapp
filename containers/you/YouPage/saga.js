@@ -581,7 +581,6 @@ function* leaderboard() {
   try {
     const api = tgpApi.leaderboard;
     const response = yield call(requestHelper, api, null);
-    console.log('saga', response.leaderboard);
     yield put(actions.leaderboardActionSuccess(response.leaderboard));
   } catch (error) {
     console.log('crew error', JSON.stringify(error));
