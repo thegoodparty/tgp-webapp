@@ -14,12 +14,18 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { FaImage } from 'react-icons/fa';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 import { step3Fields, step3Socials } from './fields';
+import { dateUsHelper } from '../../../helpers/dateHelper';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -184,6 +190,13 @@ function ApplicationStep3({
     onBlurField(key, e);
   };
 
+  const handleDateChange = (key, date) => {
+    const formatted = dateUsHelper(date);
+    const e = { target: { value: formatted } };
+    onChangeField(key, e);
+    onBlurField(key, e);
+  };
+
   const renderField = field => {
     if (field.key === 'photos') {
       return (
@@ -310,6 +323,26 @@ function ApplicationStep3({
               />
             ))}
           </RadioGroup>
+        )}
+        {field.type === 'date' && (
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              fullWidth
+              disableToolbar
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id={field.key}
+              label={field.placeholder}
+              value={state[field.key]}
+              onChange={date => {
+                handleDateChange(field.key, date);
+              }}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </MuiPickersUtilsProvider>
         )}
       </FieldWrapper>
     );
