@@ -20,6 +20,7 @@ import { getCookie, setCookie } from 'helpers/cookieHelper';
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import AlertDialog from '../../shared/AlertDialog';
+import { emailRegExp } from '../../../helpers/userHelper';
 
 const Wrapper = styled.section`
   padding: 32px 0;
@@ -317,12 +318,12 @@ function PersonalSection({
     });
     onChangeField(field, initialValues[field]);
   };
-
   const canSubmitPassword = () => {
     if (
       user.hasPassword &&
       password !== '' &&
       oldPassword !== '' &&
+      password.match(emailRegExp) &&
       password.length > 7
     ) {
       setCanChangePassword(true);
@@ -438,7 +439,7 @@ function PersonalSection({
                   setPassword(e.target.value);
                 }}
               />
-              <small>8 characters minimum</small>
+              <small>For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum</small>
               <br />
               <ButtonCancelWrapper>
                 <PurpleButton
