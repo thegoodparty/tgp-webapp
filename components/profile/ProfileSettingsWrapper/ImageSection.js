@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import UserAvatar from '../../shared/UserAvatar';
 import { Body9, H2 } from '../../shared/typogrophy';
 
-import { getName } from '../../../helpers/userHelper';
+import { getDisplayName } from '../../../helpers/userHelper';
 import UploadModal from './UploadModal';
 
 const Wrapper = styled.section`
@@ -85,7 +85,7 @@ function ImageSection({ user, mode = 'desktop', uploadImageCallback }) {
           <UserAvatar user={user} size="large" />
         </AvatarWrapper>
         <H2 style={{ marginLeft: '12px', width: '80%', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          {getName(user)}
+          {getDisplayName(user)}
         </H2>
       </Row>
 

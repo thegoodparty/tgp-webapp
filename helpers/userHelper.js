@@ -26,7 +26,7 @@ export const fullFirstLastInitials = name => {
 };
 
 
-export const getName = user => {
+export const getDisplayName = user => {
   if(user?.displayName) {
     return user.displayName;
   }
