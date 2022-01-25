@@ -14,6 +14,7 @@ import { H1 } from 'components/shared/typogrophy';
 import { PurpleButton } from 'components/shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
 import { formatToPhone } from '../../../helpers/phoneHelper';
+import { emailRegExp } from '../../../helpers/userHelper';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -28,10 +29,9 @@ const VerticalWrapper = styled.div`
 function ResetPasswordWrapper({ email, phone, token, resetPasswordCallback }) {
   const [password, setPassword] = useState('');
 
-  var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
   const enableSubmit = () => 
     password !== '' &&
-    password.match(decimal) && 
+    password.match(emailRegExp) && 
     password.length >= 8;
 
   const handleSubmitForm = e => {
