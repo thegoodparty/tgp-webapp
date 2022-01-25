@@ -126,7 +126,7 @@ function RecentlyJoined({
       return supporter.user;
     }
     if (typeof supporter.user === 'object') {
-      return getDisplayName(supporter.user);
+      return supporter.user.name;
     }
     return 'Anonymous';
   };
