@@ -148,8 +148,10 @@ function AdminCandidateUpdatesWrapper({
   };
 
   const handleSave = () => {
-    saveCallback(editedUpdate, candidate.id);
-    handleCancelEdit();
+    if(editedUpdate.title) {
+      saveCallback(editedUpdate, candidate.id);
+      handleCancelEdit();
+    }
   };
 
   const handleCloseAlert = () => {
@@ -176,8 +178,10 @@ function AdminCandidateUpdatesWrapper({
   };
 
   const handleCreate = () => {
-    createCallback(newUpdate, candidate.id);
-    handleCancelNew();
+    if(newUpdate.title) {
+      createCallback(newUpdate, candidate.id);
+      handleCancelNew();
+    }
   };
 
   const handleUploadImage = (image, isNewUpdate) => {
@@ -240,6 +244,7 @@ function AdminCandidateUpdatesWrapper({
             <Input
               fullWidth
               label="Date"
+              type="date"
               variant="outlined"
               value={newUpdate.date}
               onChange={e => onChangeFieldNew(e.target.value, 'date')}
@@ -261,15 +266,20 @@ function AdminCandidateUpdatesWrapper({
             />
             <br />
             <br />
-            <Input
-              fullWidth
-              label="YouTube Start time (seconds)"
-              variant="outlined"
-              type="number"
-              value={newUpdate.start}
-              onChange={e => onChangeFieldNew(e.target.value, 'start')}
-            />
-
+            {newUpdate.youtubeId &&
+              <Input
+                fullWidth
+                label="YouTube Start time (seconds)"
+                variant="outlined"
+                type="number"
+                value={newUpdate.start}
+                onChange={e => {
+                  if(e.target.value >= 0) {
+                    onChangeFieldNew(e.target.value, 'start')
+                  }
+                }}
+              />
+            }
             <br />
             <br />
             <br />
@@ -289,7 +299,7 @@ function AdminCandidateUpdatesWrapper({
             <br />
             <div className="text-center">
               <Cancel onClick={handleCancelNew}>Cancel</Cancel>
-              <PurpleButton onClick={handleCreate}>
+              <PurpleButton disabled={!newUpdate.title} onClick={handleCreate}>
                 &nbsp;{adminPage ? 'Create' : 'Submit'}&nbsp;
               </PurpleButton>
             </div>
@@ -314,6 +324,7 @@ function AdminCandidateUpdatesWrapper({
                 <Input
                   label="date"
                   fullWidth
+                  type="date"
                   variant="outlined"
                   value={editedUpdate.date || ''}
                   onChange={e => onChangeField(e.target.value, 'date')}
@@ -329,14 +340,20 @@ function AdminCandidateUpdatesWrapper({
                 />
                 <br />
                 <br />
-                <Input
-                  label="YouTube Start time (seconds)"
-                  fullWidth
-                  variant="outlined"
-                  value={editedUpdate.start}
-                  type="number"
-                  onChange={e => onChangeField(e.target.value, 'start')}
-                />
+                {editedUpdate.youtubeId &&
+                  <Input
+                    label="YouTube Start time (seconds)"
+                    fullWidth
+                    variant="outlined"
+                    value={editedUpdate.start}
+                    type="number"
+                    onChange={e => {
+                      if(e.target.value >= 0) {
+                        onChangeField(e.target.value, 'start')
+                      }
+                    }}
+                  />
+                }
                 <br />
                 <br />
                 <JoditEditorWrapper
@@ -363,7 +380,7 @@ function AdminCandidateUpdatesWrapper({
                 <br />
                 <div className="text-center">
                   <Cancel onClick={handleCancelEdit}>Cancel</Cancel>
-                  <PurpleButton onClick={handleSave}>Save</PurpleButton>
+                  <PurpleButton disabled={!editedUpdate.title} onClick={handleSave}>Save</PurpleButton>
                 </div>
               </EditUpdate>
             ) : (
@@ -423,8 +440,23 @@ function AdminCandidateUpdatesWrapper({
                     </Grid>
                   )}
                   {update.image && update.image !== '' && (
-                    <Grid item xs={12} md={6}>
-                      <img src={update.image} className="full-image" />
+                    <Grid item xs={12} md={6} style={{paddingTop: 70}}>
+                      <div 
+                        style={{
+                          backgroundImage: `url(${update.image})`,
+                          backgroundSize: 'contain',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
+                          height: '100%'
+                        }}
+                      >
+
+                      </div>
+                      {/* <img 
+                        src={update.image} 
+                        className="full-image" 
+                        style={{ marginTop: 62 }}
+                      /> */}
                     </Grid>
                   )}
                 </Grid>
