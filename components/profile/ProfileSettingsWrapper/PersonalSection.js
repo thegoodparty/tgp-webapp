@@ -15,6 +15,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 import { formatToPhone } from 'helpers/phoneHelper';
+import { getCookie, setCookie } from 'helpers/cookieHelper';
 
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
@@ -191,6 +192,9 @@ function PersonalSection({
       displayName: { label: 'Display Name', value: initialValues.displayName },
       pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
     });
+    if(user.isEmailVerified) {
+      setCookie('verifedEmail', user.email);
+    }
   }, [user]);
   const onChangeField = (key, val) => {
     setFormFields({
@@ -203,6 +207,17 @@ function PersonalSection({
     const handleSave = () => {
       updateUserCallback(fieldKey, field.value);
       setUser({ ...user, [fieldKey]: field.value });
+      if(fieldKey === 'email') {
+        const verifiedEmail = getCookie('verifiedEmail');
+        if(verifiedEmail === field.value) {
+          setUser({ ...user, isEmailVerified: true });
+          updateUserCallback('isEmailVerified', true);
+        }
+        else {
+          setUser({ ...user, isEmailVerified: false });
+          updateUserCallback('isEmailVerified', false);
+        }
+      }
       setEditEnabled({
         ...editEnabled,
         [formFields[fieldKey].label]: false,
