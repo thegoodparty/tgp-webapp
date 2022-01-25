@@ -23,7 +23,6 @@ import reducer from './reducer';
 import saga from './saga';
 import userActions from './actions';
 import actions from './actions';
-import { fullFirstLastInitials } from '../../../helpers/userHelper';
 
 export function ProfilePage({ dispatch, profilePage }) {
   const [supported, setSupported] = useState(false);
