@@ -15,6 +15,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 import { formatToPhone } from 'helpers/phoneHelper';
+import { getCookie, setCookie } from 'helpers/cookieHelper';
 
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
@@ -192,7 +193,7 @@ function PersonalSection({
       pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
     });
     if(user.isEmailVerified) {
-      localStorage.setItem('verifiedEmail', user.email);
+      setCookie('verifedEmail', user.email);
     }
   }, [user]);
   const onChangeField = (key, val) => {
@@ -207,7 +208,8 @@ function PersonalSection({
       updateUserCallback(fieldKey, field.value);
       setUser({ ...user, [fieldKey]: field.value });
       if(fieldKey === 'email') {
-        if(localStorage.getItem('verifiedEmail') === field.value) {
+        const verifiedEmail = getCookie('verifiedEmail');
+        if(verifiedEmail === field.value) {
           setUser({ ...user, isEmailVerified: true });
           updateUserCallback('isEmailVerified', true);
         }
