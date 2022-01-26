@@ -14,10 +14,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { FaImage } from 'react-icons/fa';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
 import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
@@ -326,7 +323,8 @@ function ApplicationStep3({
         )}
         {field.type === 'date' && (
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
+            <DatePicker
+              autoOk
               fullWidth
               disableToolbar
               variant="inline"
