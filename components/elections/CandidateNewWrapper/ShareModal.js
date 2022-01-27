@@ -286,9 +286,9 @@ const ShareModal = ({ candidate, supportLink }) => {
   }
 
   const encodedUrl = encodeURIComponent(url);
-  const encodedMessageBody = `${message} \n\n ${encodedUrl}`;
+  const encodedMessageBody = `${messageNoUrl} \n\n ${encodedUrl}`;
 
-  const textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${message}`;
+  const textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${messageNoUrl}`;
 
   let emailSubject;
   if (candidate) {
