@@ -13,6 +13,7 @@ import { Link } from 'react-scroll';
 
 import { Body11, Body13, Body } from '../../shared/typogrophy';
 import { getUserCookie } from '../../../helpers/cookieHelper';
+import { getDisplayName } from '../../../helpers/userHelper';
 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
 
 const JoinName = styled(Body13)`

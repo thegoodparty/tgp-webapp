@@ -11,7 +11,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 import { numberFormatter } from 'helpers/numberHelper';
 import UserAvatar from '../../shared/UserAvatar';
-import { fullFirstLastInitials } from '../../../helpers/userHelper';
+import { getDisplayName } from '../../../helpers/userHelper';
 
 const heartImg = '/images/heart.svg';
 
@@ -77,7 +77,7 @@ function LeaderboardPerson({ you = false, person, index }) {
         <Index>{index + 1}</Index>
         <UserAvatar user={person} size="medium" you />
         <Name>
-          {you ? `${fullFirstLastInitials(name)} (you)` : name}
+          {you ? `${getDisplayName(person)} (you)` : name}
           <CrewCountWrapper>
             <Heart src={heartImg} />
             <div>

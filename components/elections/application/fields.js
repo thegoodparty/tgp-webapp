@@ -248,7 +248,6 @@ export const step3Fields = [
   {
     label: 'Date of election',
     key: 'electionDate',
-    placeholder: 'Date of election',
     defaultValue: '',
     type: 'date',
   },

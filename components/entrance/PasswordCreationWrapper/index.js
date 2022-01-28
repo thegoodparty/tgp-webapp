@@ -12,6 +12,7 @@ import PageWrapper from '../../shared/PageWrapper';
 import { H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
+import { emailRegExp } from '../../../helpers/userHelper';
 
 const Wrapper = styled.div`
   padding: 24px 0;
@@ -29,11 +30,10 @@ function PasswordCreationWrapper({ savePasswordCallback }) {
   const handleSubmitForm = e => {
     e.preventDefault();
   };
-  var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
 
   const enableSubmit = () =>
     formData.password !== '' &&
-    formData.password.match(decimal) && 
+    formData.password.match(emailRegExp) && 
     formData.password.length >= 8 &&
     formData.password === formData.passwordConfirmation;
 

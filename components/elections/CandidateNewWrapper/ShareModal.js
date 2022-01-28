@@ -223,11 +223,23 @@ const candidateMessage = (candidate, user) => {
   )}`;
 };
 
+const candidateMessageNoUrl = (candidate, user) => {
+  if (!candidate) {
+    return 'Vote different';
+  }
+
+  return `INDIE POWER!🗽💪 I just endorsed ${candidate.firstName} ${
+    candidate.lastName
+  }, the first people-powered candidate for ${candidate.race}!`;
+};
+
 const ShareModal = ({ candidate, supportLink }) => {
   const user = getUserCookie(true);
   const defaultMessage = candidateMessage(candidate, user);
+  const defaultMessageNoUrl = candidateMessageNoUrl(candidate, user);
 
   const [message, setMessage] = useState(defaultMessage);
+  const [messageNoUrl, setMessageNoUrl] = useState(defaultMessageNoUrl);
   const [copied, setCopied] = useState(false);
 
   const onChangeField = e => {
@@ -236,6 +248,7 @@ const ShareModal = ({ candidate, supportLink }) => {
 
   useEffect(() => {
     setMessage(candidateMessage(candidate, user));
+    setMessageNoUrl(candidateMessageNoUrl(candidate, user));
     if (candidate) {
       logEvent(
         'Sharing',
@@ -273,14 +286,9 @@ const ShareModal = ({ candidate, supportLink }) => {
   }
 
   const encodedUrl = encodeURIComponent(url);
-  let messageBody = `${message} \n\n ${url}`;
+  const encodedMessageBody = `${messageNoUrl} \n\n ${encodedUrl}`;
 
-  let encodedMessageBody = encodedUrl;
-  encodedMessageBody = `${message} \n\n ${encodedUrl}`;
-
-  const messageNoUrl = message;
-
-  const textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${message}`;
+  const textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${messageNoUrl}`;
 
   let emailSubject;
   if (candidate) {
@@ -300,7 +308,7 @@ const ShareModal = ({ candidate, supportLink }) => {
     emailSubject = 'Check this out';
   }
 
-  const emailBody = `${message}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
+  const emailBody = `${messageNoUrl}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
   const handleCopy = () => {
     setCopied(true);

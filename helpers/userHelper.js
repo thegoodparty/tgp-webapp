@@ -25,6 +25,14 @@ export const fullFirstLastInitials = name => {
   return '';
 };
 
+
+export const getDisplayName = user => {
+  if(user?.displayName) {
+    return user.displayName;
+  }
+  return fullFirstLastInitials(user?.name);
+}
+
 export const uuidUrl = (
   user,
   url = 'https://goodparty.org',
@@ -160,3 +168,6 @@ export const guestAccessOnly = (dispatch, redirectTo = '/profile') => {
     dispatch(push(redirectTo));
   }
 };
+
+
+export const emailRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
