@@ -52,6 +52,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     resetPasswordCallback: (email, phone, password, token) => {
+      console.log('reset password lalback');
       dispatch(actions.resetPasswordAction(email, phone, password, token));
     },
   };
