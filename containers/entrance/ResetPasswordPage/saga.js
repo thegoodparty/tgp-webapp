@@ -10,7 +10,6 @@ import tgpApi from 'api/tgpApi';
 import types from './constants';
 
 function* resetPassword({ email, phone, password, token }) {
-  console.log('saga1')
   try {
     const api = tgpApi.resetPassword;
     const payload = {
@@ -22,14 +21,12 @@ function* resetPassword({ email, phone, password, token }) {
     } else {
       payload.phone = phone;
     }
-    console.log('restPassword saga', api, payload);
     yield call(requestHelper, api, payload);
     yield put(push('/login'));
     yield put(
       snackbarActions.showSnakbarAction(`Your password has been reset`),
     );
   } catch (error) {
-    console.log('error saga', error);
     if (error.response?.expired) {
       yield put(
         snackbarActions.showSnakbarAction(

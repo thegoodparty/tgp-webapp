@@ -37,13 +37,11 @@ function ResetPasswordWrapper({ email, phone, token, resetPasswordCallback }) {
   };
 
   const onChangePassword = pwd => {
-    console.log('onChange Password', pwd);
     setPassword(pwd);
   };
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      console.log('handle submit', email, phone, password, token);
       resetPasswordCallback(email, phone, password, token);
     }
   };
