@@ -29,21 +29,21 @@ const VerticalWrapper = styled.div`
 function ResetPasswordWrapper({ email, phone, token, resetPasswordCallback }) {
   const [password, setPassword] = useState('');
 
-  const enableSubmit = () => 
-    password !== '' &&
-    password.match(emailRegExp) && 
-    password.length >= 8;
+  const enableSubmit = () =>
+    password !== '' && password.match(emailRegExp) && password.length >= 8;
 
   const handleSubmitForm = e => {
     e.preventDefault();
   };
 
   const onChangePassword = pwd => {
+    console.log('onChange Password', pwd);
     setPassword(pwd);
   };
 
   const handleSubmit = () => {
     if (enableSubmit()) {
+      console.log('handle submit', email, phone, password, token);
       resetPasswordCallback(email, phone, password, token);
     }
   };
@@ -67,8 +67,8 @@ function ResetPasswordWrapper({ email, phone, token, resetPasswordCallback }) {
               data-cy="reset-password-form"
             >
               <div style={{ marginTop: '54px', marginBottom: '22px' }}>
-                <PasswordInput 
-                  onChangeCallback={onChangePassword} 
+                <PasswordInput
+                  onChangeCallback={onChangePassword}
                   helperText="For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum"
                 />
               </div>
