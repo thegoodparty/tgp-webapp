@@ -33,7 +33,7 @@ export default function* requestHelper(api, data, isFormData = false) {
       if (!token) {
         token = getCookie('token');
         if (!token) {
-          // yield put(userActions.signoutAction('/login'));
+          yield put(userActions.signoutAction('/login'));
           throw new Error({ message: 'missing token' });
         }
       }

@@ -199,6 +199,7 @@ function ApplicationStep2({
             required={field.required}
             disabled={reviewMode}
             placeholder={field.placeholder}
+            inputProps={{ maxLength: field.maxLength || 30 }}
             onChange={e => {
               onChangeField(field.key, e);
             }}

@@ -107,6 +107,9 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
         </Grid>
       </Grid>
       <br />
+      <Body>
+        <strong>{dateRange}</strong>
+      </Body>
       {Object.keys(periodStats).map(key => (
         <Stat key={key}>
           {numberFormatter(periodStats[key].total)} {key}{' '}
@@ -162,7 +165,7 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
       </ChartWrapper>
       <br />
       <Body>
-        <strong>Totals</strong>
+        <strong>All time</strong>
       </Body>
       {Object.keys(totals).map(key => (
         <Total key={key}>

@@ -15,6 +15,8 @@ import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 
 import { step4Fields, step4CampaignFields } from './fields';
+import PhoneInput, { isValidPhone } from '../../shared/PhoneInput';
+import EmailInput, { isValidEmail } from '../../shared/EmailInput';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -74,11 +76,27 @@ function ApplicationStep4({
   reviewMode,
 }) {
   const [state, setState] = useState(keys);
+  const [validPhones, setValidPhones] = useState({
+    candidatePhone: false,
+    contactPhone: false,
+  });
+  const [validEmails, setValidEmails] = useState({
+    candidateEmail: false,
+    contactEmail: false,
+  });
 
   useEffect(() => {
     if (application?.contacts) {
       setState({
         ...application.contacts,
+      });
+      setValidPhones({
+        candidatePhone: isValidPhone(application.contacts.candidatePhone),
+        contactPhone: isValidPhone(application.contacts.contactPhone),
+      });
+      setValidEmails({
+        candidateEmail: isValidEmail(application.contacts.candidateEmail),
+        contactEmail: isValidEmail(application.contacts.contactEmail),
       });
     }
   }, [application]);
@@ -89,6 +107,13 @@ function ApplicationStep4({
     setState({
       ...state,
       [key]: e.target.value,
+    });
+  };
+
+  const handlePhoneChange = (key, val) => {
+    setState({
+      ...state,
+      [key]: val,
     });
   };
 
@@ -115,6 +140,14 @@ function ApplicationStep4({
         returnVal = false;
       }
     });
+    if (!validPhones.candidatePhone || !validPhones.contactPhone) {
+      returnVal = false;
+    }
+    if (!validEmails.candidateEmail || !validEmails.contactEmail) {
+      returnVal = false;
+    }
+    console.log('validPhones', validPhones);
+    console.log('validEmails', validEmails);
     return returnVal;
   };
 
@@ -144,7 +177,30 @@ function ApplicationStep4({
             ))}
           </Select>
         )}
-        {(field.type === 'text' || field.type === 'email') && (
+        {field.type === 'phone' && (
+          <PhoneInput
+            value={state[field.key]}
+            onChangeCallback={(val, isValid) => {
+              handlePhoneChange(field.key, val, isValid);
+            }}
+            onBlurCallback={val => {
+              const e = { target: { value: val } };
+              onBlurField(field.key, e);
+            }}
+          />
+        )}
+        {field.type === 'email' && (
+          <EmailInput
+            value={state[field.key]}
+            onChangeCallback={e => {
+              onChangeField(field.key, e);
+            }}
+            onBlurCallback={e => {
+              onBlurField(field.key, e);
+            }}
+          />
+        )}
+        {field.type === 'text' && (
           <StyledTextField
             name={field.label}
             variant="outlined"
@@ -154,8 +210,7 @@ function ApplicationStep4({
             type={field.type}
             required={field.required}
             placeholder={field.placeholder}
-            multiline={!!field.multiline}
-            rows={field.multiline ? 5 : 1}
+            inputProps={{ maxLength: field.maxLength || 30 }}
             InputProps={
               field.icon && {
                 startAdornment: (

@@ -61,9 +61,9 @@ const Req = styled.div`
 // });
 
 const allFields = [
-  [...step2fields, ...step2Socials],
-  [...step3Fields, ...step3Socials],
-  [...step4Fields, ...step4CampaignFields],
+  [{ stepKey: 'candidate' }, ...step2fields, ...step2Socials],
+  [{ stepKey: 'campaign' }, ...step3Fields, ...step3Socials],
+  [{ stepKey: 'contacts' }, ...step4Fields, ...step4CampaignFields],
 ];
 
 function ApplicationStep7({
@@ -113,11 +113,12 @@ function ApplicationStep7({
       requiredFilled = application.pledge?.isCompleted;
 
       allFields.forEach((stepFields, index) => {
+        const { stepKey } = stepFields[0];
         stepFields.forEach(field => {
           if (field.label) {
             const completed =
-              application.candidate &&
-              application.candidate[field.key] !== field.defaultValue;
+              application[stepKey] &&
+              application[stepKey][field.key] !== field.defaultValue;
             sections[index + 1].fields.push({
               label: field.shortLabel || field.label,
               required: field.required,

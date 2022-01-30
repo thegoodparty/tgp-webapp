@@ -13,6 +13,7 @@ import {
   FaDollarSign,
 } from 'react-icons/fa';
 import { IoIosPeople } from 'react-icons/io';
+import { flatStates } from '../../../helpers/statesHelper';
 
 const IconWrapper = styled.span`
   color: ${({ theme }) => theme.colors.purple};
@@ -70,6 +71,7 @@ export const step2fields = [
     defaultValue: '',
     type: 'text',
     shortLabel: 'ZIP code',
+    maxLength: 5,
   },
   {
     label: 'Is the candidate a U.S. Citizen?',
@@ -124,6 +126,14 @@ export const step2fields = [
     type: 'radio',
     options: ['Yes', 'No'],
     shortLabel: 'Political affiliation history',
+  },
+
+  {
+    label: 'What is your party affiliation?',
+    key: 'party',
+    defaultValue: '',
+    required: true,
+    type: 'text',
   },
 ];
 
@@ -234,6 +244,29 @@ export const step3Fields = [
     defaultValue: '',
     type: 'text',
     shortLabel: 'Office',
+  },
+  {
+    label: 'Date of election',
+    key: 'electionDate',
+    defaultValue: '',
+    type: 'date',
+  },
+  {
+    label: 'Which state are you running in?',
+    key: 'state',
+    defaultValue: '',
+    type: 'select',
+    options: flatStates,
+    shortLabel: 'State',
+    required: true,
+  },
+  {
+    label: 'Which district are you running in?',
+    key: 'district',
+    defaultValue: '',
+    type: 'text',
+    shortLabel: 'District',
+    required: true,
   },
   {
     label: 'Have you filed your personal disclosure with the Congress?',
@@ -482,7 +515,7 @@ export const step4Fields = [
     key: 'candidatePhone',
     placeholder: '(555) 555-5555',
     defaultValue: '',
-    type: 'text',
+    type: 'phone',
     required: true,
   },
 ];
@@ -517,7 +550,7 @@ export const step4CampaignFields = [
     key: 'contactPhone',
     placeholder: '(555) 555-5555',
     defaultValue: '',
-    type: 'text',
+    type: 'phone',
     required: true,
   },
   {

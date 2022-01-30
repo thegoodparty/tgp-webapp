@@ -9,6 +9,7 @@ import Link from 'next/link';
 import PasswordInput from '../../shared/PasswordInput';
 import { PurpleButton } from '../../shared/buttons';
 import { formatToPhone } from '../../../helpers/phoneHelper';
+import { emailRegExp } from '../../../helpers/userHelper';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -35,9 +36,8 @@ const LoginPasswordWrapper = ({
   const [password, setPassword] = useState('');
   const [sentForgot, setSentForgot] = useState(false);
 
-  const enableSubmit = () => {
-    return password.length >= 8;
-  };
+  const enableSubmit = () =>
+    password !== '' && password.match(emailRegExp) && password.length >= 8;
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -83,11 +83,15 @@ const LoginPasswordWrapper = ({
                 </Link>
               </Body13>
               <br />
-              <PasswordInput onChangeCallback={onChangePassword} autoFocus />
+              <PasswordInput
+                onChangeCallback={onChangePassword}
+                autoFocus
+                helperText="For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum"
+              />
               {sentForgot ? (
                 <Body11 style={{ color: 'red', marginBottom: '24px' }}>
                   Your password recovery link was sent to{' '}
-                  {valueType === 'email'? value : formatToPhone(value)}
+                  {valueType === 'email' ? value : formatToPhone(value)}
                 </Body11>
               ) : (
                 <ForgotLink

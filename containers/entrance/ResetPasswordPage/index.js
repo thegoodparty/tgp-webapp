@@ -19,7 +19,7 @@ import actions from './actions';
 import saga from './saga';
 
 export function ResetPasswordPage({ locationState, resetPasswordCallback }) {
-  useInjectSaga({ key: 'user', saga });
+  useInjectSaga({ key: 'resetPasswordPage', saga });
 
   const { search } = locationState;
   const email = queryHelper(search, 'email');

@@ -15,10 +15,12 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 import { formatToPhone } from 'helpers/phoneHelper';
+import { getCookie, setCookie } from 'helpers/cookieHelper';
 
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import AlertDialog from '../../shared/AlertDialog';
+import { emailRegExp } from '../../../helpers/userHelper';
 
 const Wrapper = styled.section`
   padding: 32px 0;
@@ -191,6 +193,9 @@ function PersonalSection({
       displayName: { label: 'Display Name', value: initialValues.displayName },
       pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
     });
+    if(user.isEmailVerified) {
+      setCookie('verifedEmail', user.email);
+    }
   }, [user]);
   const onChangeField = (key, val) => {
     setFormFields({
@@ -203,6 +208,17 @@ function PersonalSection({
     const handleSave = () => {
       updateUserCallback(fieldKey, field.value);
       setUser({ ...user, [fieldKey]: field.value });
+      if(fieldKey === 'email') {
+        const verifiedEmail = getCookie('verifiedEmail');
+        if(verifiedEmail === field.value) {
+          setUser({ ...user, isEmailVerified: true });
+          updateUserCallback('isEmailVerified', true);
+        }
+        else {
+          setUser({ ...user, isEmailVerified: false });
+          updateUserCallback('isEmailVerified', false);
+        }
+      }
       setEditEnabled({
         ...editEnabled,
         [formFields[fieldKey].label]: false,
@@ -302,12 +318,12 @@ function PersonalSection({
     });
     onChangeField(field, initialValues[field]);
   };
-
   const canSubmitPassword = () => {
     if (
       user.hasPassword &&
       password !== '' &&
       oldPassword !== '' &&
+      password.match(emailRegExp) &&
       password.length > 7
     ) {
       setCanChangePassword(true);
@@ -423,7 +439,7 @@ function PersonalSection({
                   setPassword(e.target.value);
                 }}
               />
-              <small>8 characters minimum</small>
+              <small>For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum</small>
               <br />
               <ButtonCancelWrapper>
                 <PurpleButton

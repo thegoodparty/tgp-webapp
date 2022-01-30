@@ -22,7 +22,7 @@ function* resetPassword({ email, phone, password, token }) {
       payload.phone = phone;
     }
     yield call(requestHelper, api, payload);
-    yield put(push('/login/password'));
+    yield put(push('/login'));
     yield put(
       snackbarActions.showSnakbarAction(`Your password has been reset`),
     );
@@ -34,7 +34,7 @@ function* resetPassword({ email, phone, password, token }) {
           'error',
         ),
       );
-      // yield put(push('/login'));
+      yield put(push('/login'));
     } else {
       yield put(
         snackbarActions.showSnakbarAction(
@@ -42,7 +42,7 @@ function* resetPassword({ email, phone, password, token }) {
           'error',
         ),
       );
-      // yield put(push('/login'));
+      yield put(push('/login'));
     }
   }
 }
