@@ -19,7 +19,7 @@ import actions from './actions';
 import saga from './saga';
 
 export function ResetPasswordPage({ locationState, resetPasswordCallback }) {
-  useInjectSaga({ key: 'user', saga });
+  useInjectSaga({ key: 'resetPasswordPage', saga });
 
   const { search } = locationState;
   const email = queryHelper(search, 'email');
@@ -52,7 +52,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     resetPasswordCallback: (email, phone, password, token) => {
-      console.log('reset password lalback');
+      console.log('reset password lalback', actions.resetPasswordAction);
       dispatch(actions.resetPasswordAction(email, phone, password, token));
     },
   };

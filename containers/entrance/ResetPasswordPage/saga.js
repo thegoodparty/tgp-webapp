@@ -10,6 +10,7 @@ import tgpApi from 'api/tgpApi';
 import types from './constants';
 
 function* resetPassword({ email, phone, password, token }) {
+  console.log('saga1')
   try {
     const api = tgpApi.resetPassword;
     const payload = {
