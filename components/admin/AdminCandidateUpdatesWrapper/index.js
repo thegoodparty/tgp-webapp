@@ -214,7 +214,6 @@ function AdminCandidateUpdatesWrapper({
       image: '',
     });
   };
-
   return (
     <WrapperElement candidate={candidate} adminPage={adminPage}>
       <>
@@ -246,8 +245,9 @@ function AdminCandidateUpdatesWrapper({
               label="Date"
               type="date"
               variant="outlined"
-              value={newUpdate.date}
+              value={newUpdate.date || ''}
               onChange={e => onChangeFieldNew(e.target.value, 'date')}
+              InputLabelProps={{ shrink: true }}
             />
             <br />
             <br />
@@ -308,7 +308,7 @@ function AdminCandidateUpdatesWrapper({
         <br />
         <H3>Previous Updates</H3>
         <br />
-        {updates.reverse().map(update => (
+        {([ ...updates ]).reverse().map(update => (
           <React.Fragment key={update.id}>
             {editUpdate && editUpdate.id === update.id ? (
               <EditUpdate>

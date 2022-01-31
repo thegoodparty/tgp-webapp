@@ -145,7 +145,7 @@ function RecentlyJoined({
           )}
           <Img src={AnonymousIconPurple} alt="share" />
           <JoinWrapper>
-            <JoinName>{supportUser(supporter)}</JoinName>
+            <JoinName>{supporter.user}</JoinName>
             <JoinTime>
               {supporter.type}d {supporter.timeAgo}
             </JoinTime>
