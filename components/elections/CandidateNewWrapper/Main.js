@@ -33,6 +33,14 @@ const Padder = styled.div`
   padding: 0;
 `;
 
+const MobilePadder = styled.div`
+  padding: 12px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.contentMax}) {
+    padding: 0;
+  }
+`;
+
 const SectionWrapper = styled.div`
   margin-top: 48px;
 `;
@@ -90,7 +98,6 @@ const SectionHeader = styled(Body19)`
 const SectionContent = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
-
 
 const YoutubePlayerWrapper = styled.div`
   overflow: hidden;
@@ -152,20 +159,22 @@ function MainWrapper({
         </YoutubePlayerWrapper>
       )}
       <Hidden mdUp>
-        <HeadlineWrapper>
-          <H1>{headline}</H1>
-        </HeadlineWrapper>
-        <ProfileInfo
-          candidate={candidate}
-          candidateSupports={candidateSupports}
-          total={total}
-          supportCallback={supportCallback}
-          isUserSupportCandidate={isUserSupportCandidate}
-          removeSupportCallback={removeSupportCallback}
-          isMobile
-        />
+        <MobilePadder>
+          <HeadlineWrapper>
+            <H1>{headline}</H1>
+          </HeadlineWrapper>
+          <ProfileInfo
+            candidate={candidate}
+            candidateSupports={candidateSupports}
+            total={total}
+            supportCallback={supportCallback}
+            isUserSupportCandidate={isUserSupportCandidate}
+            removeSupportCallback={removeSupportCallback}
+            isMobile
+          />
+        </MobilePadder>
       </Hidden>
-      <Padder>
+      <MobilePadder>
         <SectionWrapper style={{ marginTop: '24px' }}>
           <SectionContent dangerouslySetInnerHTML={{ __html: about }} />
         </SectionWrapper>
@@ -175,7 +184,7 @@ function MainWrapper({
           </SectionHeader>
           <SocialIcons candidate={candidate} />
         </SectionWrapper>
-      </Padder>
+      </MobilePadder>
     </>
   );
 }

@@ -105,6 +105,21 @@ function VolunteersSection() {
           </Grid>
         </Grid>
       </Grid>
+      <br />
+      <br />
+      If you’re interested in volunteering your time and talent, join us! Please
+      fill out{' '}
+      <a
+        href="https://forms.gle/TJmpYw6UwfWYS4GQA"
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+      >
+        {' '}
+        this form
+      </a>
+      . You can also email{' '}
+      <a href="mailto:ask@goodparty.org">ask@goodparty.org</a> if you have any
+      questions.
     </Content>
   );
 }

@@ -18,6 +18,11 @@ import { candidateRoute } from '../../../helpers/electionsHelper';
 
 const SectionWrapper = styled.div`
   margin-top: 48px;
+  padding: 12px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 0;
+  }
 `;
 
 const SectionHeader = styled(Body19)`
