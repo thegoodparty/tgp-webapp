@@ -23,6 +23,11 @@ import ShareButton from './ShareButton';
 
 const SectionWrapper = styled.div`
   margin-top: 48px;
+  padding: 12px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 0;
+  }
 `;
 
 const FixedEndorse = styled.div`
@@ -90,8 +95,6 @@ function ComparedSection({
   if (candidate.comparedCandidates?.candidates?.length > 0) {
     candidate.comparedCandidates.candidates[0].image = candidate.image;
   }
-
-
 
   return (
     <>

@@ -67,9 +67,12 @@ const RightLinks = styled.div`
 `;
 
 const AsCandidateWrapper = styled.div`
-  position: absolute;
-  top: 14px;
-  left: 8px;
+  @media only screen and (min-width: 1800px) {
+    position: absolute;
+    top: 14px;
+    left: 8px;
+  }
+  
 `;
 
 const AsCandidate = styled.div`
@@ -155,19 +158,20 @@ const DesktopHeader = ({
   };
   return (
     <Wrapper className={purpleNav && 'purple'}>
-      {asCandidate && (
-        <AsCandidateWrapper>
-          <AsCandidate onClick={logoutAsCandidateCallback}>
-            Logout As candidate
-          </AsCandidate>
-          <Link href="candidate-portal" passHref>
-            <a>
-              <AsCandidate>Portal</AsCandidate>
-            </a>
-          </Link>
-        </AsCandidateWrapper>
-      )}
+      
       <ContentWrapper>
+        {asCandidate && (
+          <AsCandidateWrapper>
+            <AsCandidate onClick={logoutAsCandidateCallback}>
+              Logout As candidate
+            </AsCandidate>
+            <Link href="candidate-portal" passHref>
+              <a>
+                <AsCandidate>Portal</AsCandidate>
+              </a>
+            </Link>
+          </AsCandidateWrapper>
+        )}
         <Link
           href="/"
           passHref
