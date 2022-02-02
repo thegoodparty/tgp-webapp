@@ -20,6 +20,7 @@ const IconWrapper = styled.span`
   font-size: 24px;
   margin-right: 16px;
 `;
+
 export const step2fields = [
   {
     label: 'Candidate First Name',
@@ -39,30 +40,7 @@ export const step2fields = [
     type: 'text',
     shortLabel: 'Last name',
   },
-  {
-    label: 'Preferred pronouns of candidate',
-    key: 'pronouns',
-    defaultValue: '',
-    type: 'select',
-    options: ['He/Him', 'She/Her', 'They/Them'],
-    shortLabel: 'Pronouns',
-  },
-  {
-    label: 'Ethnicity of candidate',
-    key: 'ethnicity',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Ethnicity',
-    shortLabel: 'Ethnicity',
-  },
-  {
-    label: 'Race of candidate',
-    key: 'race',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Race',
-    shortLabel: 'Race',
-  },
+
   {
     label: 'Where is the primary residence of the candidate?',
     key: 'zip',
@@ -82,13 +60,6 @@ export const step2fields = [
     options: ['Yes', 'No'],
     shortLabel: 'US citizenship status',
   },
-  // {
-  //   label: 'Length of citizenship',
-  //   key: 'citizenLength',
-  //   defaultValue: '',
-  //   type: 'radio',
-  //   options: ['Citizen at birth', 'Select date of naturalization'],
-  // },
   {
     label: 'Have you ever run for public office before?',
     key: 'ranBefore',
@@ -126,14 +97,17 @@ export const step2fields = [
     type: 'radio',
     options: ['Yes', 'No'],
     shortLabel: 'Political affiliation history',
+    toggleElement: 'partyHistory',
   },
 
   {
-    label: 'What is your party affiliation?',
-    key: 'party',
+    label: 'History of party affiliation?',
+    key: 'partyHistory',
     defaultValue: '',
-    required: true,
+    // required: true,
     type: 'text',
+    multiline: true,
+    hidden: true,
   },
 ];
 
@@ -233,6 +207,33 @@ export const step2Socials = [
         <FaGlobeAmericas />
       </IconWrapper>
     ),
+  },
+];
+
+export const step2fieldsB = [
+  {
+    label: 'Ethnicity of candidate',
+    key: 'ethnicity',
+    defaultValue: '',
+    type: 'text',
+    placeholder: 'Ethnicity',
+    shortLabel: 'Ethnicity',
+  },
+  {
+    label: 'Race of candidate',
+    key: 'race',
+    defaultValue: '',
+    type: 'text',
+    placeholder: 'Race',
+    shortLabel: 'Race',
+  },
+  {
+    label: 'Gender & Pronouns',
+    key: 'pronouns',
+    defaultValue: '',
+    type: 'select',
+    options: ['He/Him', 'She/Her', 'They/Them', 'Any/Other'],
+    shortLabel: 'Pronouns',
   },
 ];
 

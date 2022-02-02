@@ -182,16 +182,10 @@ function ApplicationStep1({
       id={application.id}
       reviewMode={reviewMode}
     >
-      <Title>
-        Take the Good Party Pledge to get started{' '}
-        <span role="img" aria-label="victory">
-          ✌️
-        </span>
-        ️
-      </Title>
+      <Title>Take the Good Party Pledge to get started</Title>
       <SubTitle>
         Good Party candidates take a pledge to be{' '}
-        <strong>Independent, People Powered</strong> and Anti-Corruption. Learn
+        <strong>Independent, People Powered and Anti-Corruption</strong>. Learn
         more about our pledge.
       </SubTitle>
       {cards.map(card => (

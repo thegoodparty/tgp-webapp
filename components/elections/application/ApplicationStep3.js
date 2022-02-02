@@ -239,7 +239,7 @@ function ApplicationStep3({
     }
     let maxLength = field.maxLength || 30;
     if (field.multiline) {
-      maxLength = 200;
+      maxLength = 300;
     }
 
     return (
