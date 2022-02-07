@@ -7,10 +7,11 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import { push } from 'connected-next-router';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import { getUserCookie } from 'helpers/cookieHelper';
 import TgpHelmet from 'components/shared/TgpHelmet';
 import AdminIssueTopicsWrapper from 'components/admin/AdminIssueTopicsWrapper';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -30,6 +31,13 @@ export function AdminIssueTopicsPage({
   useInjectReducer({ key: 'adminIssueTopicsPage', reducer });
   useInjectSaga({ key: 'adminIssueTopicsPage', saga });
 
+  const user = getUserCookie(true);
+  useEffect(() => {
+    if (user && !user.isAdmin) {
+      dispatch(push('/'));
+    }
+  }, [user]);
+
   useEffect(() => {
     dispatch(actions.loadIssueTopicsAction());
   }, []);
@@ -48,7 +56,11 @@ export function AdminIssueTopicsPage({
         title="Admin Issue Topics Page"
         description="Admin Issue Topics Page"
       />
-      <AdminIssueTopicsWrapper {...childProps} />
+      {user && user.isAdmin ? (
+        <AdminIssueTopicsWrapper {...childProps} />
+      ) : (
+        <div>No Admin Access</div>
+      )}
     </div>
   );
 }
