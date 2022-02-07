@@ -121,9 +121,9 @@ const GoodCertified = () => {
               />
               <CardContent>
                 <CardTitle>Independent</CardTitle>
-                They hold diverse beliefs across the political spectrum, but
-                agree Red and Blue are NOT the answer. They pledge not to pay
-                dues or fundraise for Democrats or Republicans.
+                Good Certified candidates are not Republican or Democratic
+                politicians. They're real people running grassroots campaigns
+                from across the political spectrum.
               </CardContent>
             </Card>
           </Grid>
@@ -137,8 +137,10 @@ const GoodCertified = () => {
               />
               <CardContent>
                 <CardTitle>People Powered</CardTitle>
-                They only accept donations from individuals – not from
-                corporations, unions, PACs, or other non-living entities.
+                Good Certified candidates run to serve real living people. So,
+                the majority of money raised for their campaign must come from
+                people -- not from corporations, unions, PACs, or other
+                non-living entities.
               </CardContent>
             </Card>
           </Grid>
@@ -152,8 +154,8 @@ const GoodCertified = () => {
               />
               <CardContent>
                 <CardTitle>Anti-Corruption</CardTitle>
-                They openly share their public meeting calendars and advance the
-                Anti-Corruption Act
+                Good Certified candidates are committed to serving as honest,
+                transparent, and responsive representatives of the people.
               </CardContent>
             </Card>
           </Grid>
