@@ -113,6 +113,7 @@ function AdminIssueTopicsWrapper({
           </Grid>
           {issueTopics.map((item, index) => (
             <AdminIssueTopic
+              key={item.id}
               topicIndex={index}
               issue={item}
               topic={item.topic}
