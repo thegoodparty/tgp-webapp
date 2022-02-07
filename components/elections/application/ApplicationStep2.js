@@ -283,7 +283,7 @@ function ApplicationStep2({
         {step2fields.map(field => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
-        <Label>Candidate social links</Label>
+        <Label>Candidate’s personal social media links</Label>
         {step2Socials.map(field => (
           <SocialFieldWrapper key={field.key}>
             <TextField
