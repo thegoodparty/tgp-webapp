@@ -20,6 +20,7 @@ const IconWrapper = styled.span`
   font-size: 24px;
   margin-right: 16px;
 `;
+
 export const step2fields = [
   {
     label: 'Candidate First Name',
@@ -39,30 +40,7 @@ export const step2fields = [
     type: 'text',
     shortLabel: 'Last name',
   },
-  {
-    label: 'Preferred pronouns of candidate',
-    key: 'pronouns',
-    defaultValue: '',
-    type: 'select',
-    options: ['He/Him', 'She/Her', 'They/Them'],
-    shortLabel: 'Pronouns',
-  },
-  {
-    label: 'Ethnicity of candidate',
-    key: 'ethnicity',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Ethnicity',
-    shortLabel: 'Ethnicity',
-  },
-  {
-    label: 'Race of candidate',
-    key: 'race',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Race',
-    shortLabel: 'Race',
-  },
+
   {
     label: 'Where is the primary residence of the candidate?',
     key: 'zip',
@@ -82,13 +60,6 @@ export const step2fields = [
     options: ['Yes', 'No'],
     shortLabel: 'US citizenship status',
   },
-  // {
-  //   label: 'Length of citizenship',
-  //   key: 'citizenLength',
-  //   defaultValue: '',
-  //   type: 'radio',
-  //   options: ['Citizen at birth', 'Select date of naturalization'],
-  // },
   {
     label: 'Have you ever run for public office before?',
     key: 'ranBefore',
@@ -126,14 +97,17 @@ export const step2fields = [
     type: 'radio',
     options: ['Yes', 'No'],
     shortLabel: 'Political affiliation history',
+    toggleElement: 'partyHistory',
   },
 
   {
-    label: 'What is your party affiliation?',
-    key: 'party',
+    label: 'History of party affiliation?',
+    key: 'partyHistory',
     defaultValue: '',
-    required: true,
+    // required: true,
     type: 'text',
+    multiline: true,
+    hidden: true,
   },
 ];
 
@@ -236,6 +210,33 @@ export const step2Socials = [
   },
 ];
 
+export const step2fieldsB = [
+  {
+    label: 'Ethnicity of candidate',
+    key: 'ethnicity',
+    defaultValue: '',
+    type: 'text',
+    placeholder: 'Ethnicity',
+    shortLabel: 'Ethnicity',
+  },
+  {
+    label: 'Race of candidate',
+    key: 'race',
+    defaultValue: '',
+    type: 'text',
+    placeholder: 'Race',
+    shortLabel: 'Race',
+  },
+  {
+    label: 'Gender & Pronouns',
+    key: 'pronouns',
+    defaultValue: '',
+    type: 'select',
+    options: ['He/Him', 'She/Her', 'They/Them', 'Any/Other'],
+    shortLabel: 'Pronouns',
+  },
+];
+
 export const step3Fields = [
   {
     label: 'What are you running for?',
@@ -261,21 +262,11 @@ export const step3Fields = [
     required: true,
   },
   {
-    label: 'Which district are you running in?',
+    label: 'District? (If applicable)',
     key: 'district',
     defaultValue: '',
     type: 'text',
     shortLabel: 'District',
-    required: true,
-  },
-  {
-    label: 'Have you filed your personal disclosure with the Congress?',
-    key: 'disclosure',
-    defaultValue: '',
-    type: 'radio',
-    options: ['Yes', 'No'],
-    grayBg: true,
-    shortLabel: 'Congress disclosure',
   },
   {
     label: 'Campaign summary',
@@ -319,11 +310,11 @@ export const step3Fields = [
       },
       {
         key: 'bannerPhoto',
-        label: 'Campaign page banner (16:9 aspect)',
+        label: 'Campaign page banner',
         value: '',
       },
     ],
-    subtitle: 'Including at least one good headshot.',
+    subtitle: 'Include at least one good headshot',
     required: true,
   },
   {
@@ -332,21 +323,11 @@ export const step3Fields = [
     placeholder: 'Enter...',
     defaultValue: '',
     type: 'text',
-    subLabel: 'If already filled',
+    subLabel: 'If already filed',
     shortLabel: 'Committee name',
   },
-
   {
-    label: 'Have you registered and filed financial statements with the FEC?',
-    key: 'fecStatement',
-    defaultValue: '',
-    type: 'radio',
-    options: ['Yes', 'No'],
-    shortLabel: 'Financial statements status',
-  },
-
-  {
-    label: 'Have you filed any statement of candidacy with the State?',
+    label: 'Have you filed a statement of candidacy',
     key: 'candidacyStatement',
     defaultValue: '',
     type: 'radio',
@@ -354,32 +335,31 @@ export const step3Fields = [
     shortLabel: 'Statement of candidacy history',
   },
   {
+    label: 'Have you filed any Campaign financial disclosure reports?',
+    key: 'fecStatement',
+    defaultValue: '',
+    type: 'radio',
+    options: ['Yes', 'No'],
+    shortLabel: 'Financial statements status',
+  },
+  {
     label: 'How much money have you raised so far?',
     required: true,
     key: 'moneyRaisedAmount',
-    placeholder: '1,000.00',
-    defaultValue: '',
-    type: 'text',
-    icon: (
-      <IconWrapper>
-        <FaDollarSign />
-      </IconWrapper>
-    ),
-    shortLabel: 'Money raised',
+    type: 'select',
+    options: [
+      'Less than $10,000',
+      '$10,000-$50,000',
+      '$50,000-$100,000',
+      'More than $100,000',
+    ],
   },
   {
-    label: '',
-    noLabel: true,
-    required: true,
+    label: 'Is the majority of money raised from individual contributions?',
     key: 'fromWhom',
-    placeholder: 'From Whom?',
     defaultValue: '',
-    type: 'text',
-    icon: (
-      <IconWrapper>
-        <IoIosPeople />
-      </IconWrapper>
-    ),
+    type: 'radio',
+    options: ['Yes', 'No'],
   },
   {
     label:
@@ -560,5 +540,6 @@ export const step4CampaignFields = [
     defaultValue: '',
     type: 'text',
     required: true,
+    maxLength: 300,
   },
 ];

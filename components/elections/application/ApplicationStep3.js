@@ -16,6 +16,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { FaImage } from 'react-icons/fa';
 import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
 
@@ -239,7 +240,7 @@ function ApplicationStep3({
     }
     let maxLength = field.maxLength || 30;
     if (field.multiline) {
-      maxLength = 200;
+      maxLength = 300;
     }
 
     return (
@@ -251,26 +252,46 @@ function ApplicationStep3({
           </Label>
         )}
         {field.type === 'select' && (
-          <Select
-            native
-            value={state[field.key]}
-            fullWidth
-            variant="outlined"
-            disabled={reviewMode}
-            onChange={e => {
-              onChangeField(field.key, e);
-            }}
-            onBlur={e => {
-              onBlurField(field.key, e);
-            }}
-          >
-            <option value="">Select</option>
-            {field.options.map(op => (
-              <option value={op} key={op}>
-                {op}
-              </option>
-            ))}
-          </Select>
+          <>
+            {field.key === 'state' ? (
+              <Autocomplete
+                options={field.options}
+                value={state[field.key]}
+                // getOptionLabel={item => item.name}
+                fullWidth
+                variant="outlined"
+                renderInput={params => (
+                  <TextField {...params} label="State" variant="outlined" />
+                )}
+                onChange={(event, item) => {
+                  const e = { target: { value: item } };
+                  onChangeField(field.key, e);
+                  onBlurField(field.key, e);
+                }}
+              />
+            ) : (
+              <Select
+                native
+                value={state[field.key]}
+                fullWidth
+                variant="outlined"
+                disabled={reviewMode}
+                onChange={e => {
+                  onChangeField(field.key, e);
+                }}
+                onBlur={e => {
+                  onBlurField(field.key, e);
+                }}
+              >
+                <option value="">Select</option>
+                {field.options.map(op => (
+                  <option value={op} key={op}>
+                    {op}
+                  </option>
+                ))}
+              </Select>
+            )}
+          </>
         )}
         {field.subtitle && <Subtitle>{field.subtitle}</Subtitle>}
         {field.type === 'text' && (
@@ -356,7 +377,7 @@ function ApplicationStep3({
         {step3Fields.map(field => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
-        <Label>Campaign social links</Label>
+        <Label>Official Campaign social media links</Label>
         {step3Socials.map(field => (
           <SocialFieldWrapper key={field.key}>
             <TextField
