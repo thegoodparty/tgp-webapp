@@ -86,15 +86,7 @@ function AdminReleasesWrapper({
     setEditTopic(false);
   };
   const possibleTags = ['Campaigns', 'Voters'];
-  const sortedReleases = releases?.sort((a, b) => {
-    if(new Date(a.releaseDate) < new Date(b.releaseDate)) {
-      return 1;
-    }
-    if(new Date(a.releaseDate) > new Date(b.releaseDate)) {
-      return -1;
-    }
-    return 0;
-  })
+  const sortedReleases = releases?.sort((a, b) => new Date(b.releaseDate)- new Date(a.releaseDate));
   return (
     <AdminPageWrapper>
       <Wrapper>
