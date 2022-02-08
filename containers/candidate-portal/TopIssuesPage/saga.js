@@ -26,7 +26,7 @@ function* updateIssue({ issue, candidateId }) {
       candidateId,
     };
     yield call(requestHelper, api, payload);
-    yield put(actions.findIssueAction());
+    yield put(actions.findIssueAction(candidateId));
     yield put(snackbarActions.showSnakbarAction('Your request was sent'));
   } catch (error) {
     console.log(error);

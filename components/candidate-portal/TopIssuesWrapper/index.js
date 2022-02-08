@@ -30,6 +30,7 @@ function TopIssuesWrapper({
 }) {
   const [topIssues, setTopIssues] = useState([]);
   const [topicList, setTopicList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setTopicList(
       topics.map(topic => ({
@@ -41,10 +42,14 @@ function TopIssuesWrapper({
   }, [topics]);
   useEffect(() => {
     if (candidateIssue) {
+      setIsLoading(false);
       setTopIssues(candidateIssue);
     }
   }, [candidateIssue]);
-
+  const onUpdateIssue = (topIssues, candidateId) => {
+    updateIssueCallback(topIssues, candidateId)
+    setIsLoading(true);
+  }
   const updateIssue = (issueIndex, issue) => {
     const newIssues = [...topIssues];
     newIssues[issueIndex] = issue;
@@ -101,8 +106,8 @@ function TopIssuesWrapper({
           </Grid>
           <Grid item xs={12}>
             <PurpleButton
-              disabled={!isFormValidate()}
-              onClick={() => updateIssueCallback(topIssues, candidateId)}
+              disabled={!isFormValidate() || isLoading}
+              onClick={() => onUpdateIssue(topIssues, candidateId)}
               fullWidth
             >
               SAVE
