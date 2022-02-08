@@ -86,6 +86,15 @@ function AdminReleasesWrapper({
     setEditTopic(false);
   };
   const possibleTags = ['Campaigns', 'Voters'];
+  const sortedReleases = releases?.sort((a, b) => {
+    if(new Date(a.releaseDate) < new Date(b.releaseDate)) {
+      return 1;
+    }
+    if(new Date(a.releaseDate) > new Date(b.releaseDate)) {
+      return -1;
+    }
+    return 0;
+  })
   return (
     <AdminPageWrapper>
       <Wrapper>
@@ -189,8 +198,8 @@ function AdminReleasesWrapper({
               <FaSave size={24} />
             </PurpleButton>
           </Grid>
-          {releases &&
-            releases.map(release => (
+          {sortedReleases &&
+            sortedReleases.map(release => (
               <React.Fragment key={release.id}>
                 <>
                   {editRelease.id === release.id ? (
