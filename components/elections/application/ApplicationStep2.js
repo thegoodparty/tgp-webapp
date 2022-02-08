@@ -19,7 +19,7 @@ import { Body, Body11 } from '../../shared/typogrophy';
 import OfficeSelector from './OfficeSelector';
 import ElectedOfficeSelector from './ElectedOfficeSelector';
 
-import { step2fields, step2Socials } from './fields';
+import { step2fields, step2fieldsB, step2Socials } from './fields';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -55,6 +55,12 @@ step2fields.forEach(field => {
     requiredKeys.push(field);
   }
 });
+step2fieldsB.forEach(field => {
+  keys[field.key] = field.defaultValue;
+  if (field.required) {
+    requiredKeys.push(field);
+  }
+});
 
 step2Socials.forEach(field => {
   keys[field.key] = field.defaultValue;
@@ -70,6 +76,7 @@ function ApplicationStep2({
   const [hiddenElements, setHiddenElements] = useState({
     publicOffice: true,
     officeElected: true,
+    partyHistory: true,
   });
 
   useEffect(() => {
@@ -80,6 +87,7 @@ function ApplicationStep2({
       setHiddenElements({
         publicOffice: application.candidate.ranBefore !== 'Yes',
         officeElected: application.candidate.electedBefore !== 'Yes',
+        partyHistory: application.candidate.memberPolitical !== 'Yes',
       });
     }
   }, [application]);
@@ -140,6 +148,10 @@ function ApplicationStep2({
     if (field.hidden && hiddenElements[field.key]) {
       return;
     }
+    let maxLength = field.maxLength || 30;
+    if (field.multiline) {
+      maxLength = 300;
+    }
     if (field.hidden && !hiddenElements[field.key]) {
       if (field.key === 'publicOffice') {
         return (
@@ -161,8 +173,36 @@ function ApplicationStep2({
           </FieldWrapper>
         );
       }
+      if (field.key === 'partyHistory') {
+        return (
+          <FieldWrapper key={field.key}>
+            <Label>
+              {field.label} {field.required && <Req>Required</Req>}
+            </Label>
+            <TextField
+              name={field.label}
+              variant="outlined"
+              value={state[field.key]}
+              fullWidth
+              required={field.required}
+              disabled={reviewMode}
+              placeholder={field.placeholder}
+              inputProps={{ maxLength }}
+              multiline={!!field.multiline}
+              rows={field.multiline ? 5 : 1}
+              onChange={e => {
+                onChangeField(field.key, e);
+              }}
+              onBlur={e => {
+                onBlurField(field.key, e);
+              }}
+            />
+          </FieldWrapper>
+        );
+      }
       return <FieldWrapper>{field.customElement}</FieldWrapper>;
     }
+
     return (
       <FieldWrapper key={field.key}>
         <Label>
@@ -199,7 +239,9 @@ function ApplicationStep2({
             required={field.required}
             disabled={reviewMode}
             placeholder={field.placeholder}
-            inputProps={{ maxLength: field.maxLength || 30 }}
+            inputProps={{ maxLength }}
+            multiline={!!field.multiline}
+            rows={field.multiline ? 5 : 1}
             onChange={e => {
               onChangeField(field.key, e);
             }}
@@ -241,7 +283,7 @@ function ApplicationStep2({
         {step2fields.map(field => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
-        <Label>Candidate social links</Label>
+        <Label>Candidate’s personal social media links</Label>
         {step2Socials.map(field => (
           <SocialFieldWrapper key={field.key}>
             <TextField
@@ -268,6 +310,15 @@ function ApplicationStep2({
               }}
             />
           </SocialFieldWrapper>
+        ))}
+        <br />
+        <br />
+        <Label>
+          Demographic information, will not impact your application.
+        </Label>
+        <br />
+        {step2fieldsB.map(field => (
+          <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
       </form>
     </ApplicationWrapper>

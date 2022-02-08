@@ -18,6 +18,7 @@ import RecentlyJoined from './RecentlyJoined';
 
 const SectionWrapper = styled.div`
   margin-top: 48px;
+  padding: 12px;
 `;
 
 function MobileRecentlySupport({ candidate, candidateSupports, total }) {

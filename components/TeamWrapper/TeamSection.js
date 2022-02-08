@@ -69,6 +69,7 @@ const Front = styled.div`
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
+  transform: rotateY(0deg);
   backface-visibility: hidden;
 `;
 

@@ -76,8 +76,8 @@ const fields = [
     },
     link: {
       key: 'link',
-      label: 'Social proof for voters',
-      subtitle: 'Link to a Tweet, TikTok, Facebook post, website or article.',
+      label: 'Proof of endorsement',
+      subtitle: 'For example a statement on the organization’s website or a newspaper article',
       placeholder: 'Enter...',
       defaultValue: '',
       type: 'text',
@@ -189,6 +189,13 @@ function ApplicationStep6({
       reviewMode={reviewMode}
     >
       <form noValidate onSubmit={handleSubmitForm}>
+        <Body>
+          Use this page to add any institutional endorsements you may have
+          received and want to highlight to voters. For example, your local
+          rotary club, labor union, chamber of commerce, etc. Add endorsements
+          one at a time.
+        </Body>
+        <br />
         {fieldsState.map((field, index) => (
           <EndorsementWrapper key={index}>
             {renderField(field.body, index)}

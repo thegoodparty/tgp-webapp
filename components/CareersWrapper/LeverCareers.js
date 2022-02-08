@@ -71,9 +71,19 @@ function LeverCareers() {
             <br />
             <br />
             Beyond these open positions for our core team, there are many ways
-            people are contributing to Good Party. To learn more about how you
-            can volunteer your time and talent, send a quick email to{' '}
-            <a href="mailto:ask@goodparty.org">ask@goodparty.org</a>.
+            people are contributing to Good Party. If you’re interested in
+            volunteering your time and talent, join us! Please fill out{' '}
+            <a
+              href="https://forms.gle/TJmpYw6UwfWYS4GQA"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              {' '}
+              this form
+            </a>
+            . You can also email{' '}
+            <a href="mailto:ask@goodparty.org">ask@goodparty.org</a> if you have
+            any questions.
             <br />
             <br />
             To make our country’s democracy a good party where all people are
