@@ -10,12 +10,13 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from '../shared/PageWrapper';
-import GoodCertifiedAreSection from '../HomePageWrapperOld/GoodCertifiedAreSection';
-import FeaturedCandidateSection from '../HomePageWrapperOld/CandidatesSection';
+// import GoodCertifiedAreSection from '../HomePageWrapperOld/GoodCertifiedAreSection';
+// import FeaturedCandidateSection from '../HomePageWrapperOld/CandidatesSection';
 import CandidatesSection from './CandidatesSection';
 import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
-import NominateButton from '../HomePageWrapperOld/NominateButton';
+import GoodCertified from '../HomePageWrapper/GoodCertified';
+import FeaturedCampaigns from '../HomePageWrapper/FeaturedCampaigns';
 
 const Content = styled.div`
   width: 100%;
@@ -30,25 +31,20 @@ const Content = styled.div`
   }
 `;
 
-const NominateWrapper = styled.div`
-  text-align: center;
-  margin: 42px 0;
-`;
 
 function CandidatesWrapper({ candidates, homepageCandidates }) {
   return (
     <PageWrapper isFullWidth>
       <Content>
-        <GoodCertifiedAreSection headerElement="h1" />
+        <GoodCertified />
+        {/*<GoodCertifiedAreSection headerElement="h1" />*/}
         <br />
         <br />
-        <FeaturedCandidateSection
-          homepageCandidates={homepageCandidates}
-          hideSeeMore
-        />
-        <NominateWrapper>
-          <NominateButton />
-        </NominateWrapper>
+        <FeaturedCampaigns homepageCandidates={homepageCandidates} />
+        {/*<FeaturedCandidateSection*/}
+        {/*  homepageCandidates={homepageCandidates}*/}
+        {/*  hideSeeMore*/}
+        {/*/>*/}
         <CandidatesSection candidates={candidates} />
         <Grid container spacing={5}>
           <Grid item xs={12} md={7}>

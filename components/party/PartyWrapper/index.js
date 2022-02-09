@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import CandidatesSection from 'components/HomePageWrapperOld/CandidatesSection';
+import CandidatesSection from 'components/CandidatesWrapper/CandidatesSection';
 
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import PageWrapper from 'components/shared/PageWrapper';
