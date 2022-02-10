@@ -353,7 +353,7 @@ const VerifyVoteWrapper = ({
                       <Grid container spacing={3}>
                         {registerResponse.buttons.map(button => (
                           <Grid item xs={6} key={button.url}>
-                            <a href={button.url} target="_blank">
+                            <a href={button.url} target="_blank" rel="noreferrer">
                               {button.primary ? (
                                 <BlueButton
                                   fullWidth
@@ -446,6 +446,7 @@ const VerifyVoteWrapper = ({
                               <a
                                 href="https://www.voteamerica.com/terms/sms/"
                                 target="_blank"
+                                rel="noreferrer"
                               >
                                 Terms
                               </a>{' '}
@@ -453,6 +454,7 @@ const VerifyVoteWrapper = ({
                               <a
                                 href="https://www.voteamerica.com/privacy/"
                                 target="_blank"
+                                rel="noreferrer"
                               >
                                 Privacy
                               </a>

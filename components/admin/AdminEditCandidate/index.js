@@ -350,7 +350,7 @@ function AdminEditCandidate({
             </>
           )}
           <H2 className="text-center">
-            <a href={candidateRoute(candidate)} target="_blank">
+            <a href={candidateRoute(candidate)} target="_blank" rel="noreferrer">
               {name}
             </a>
           </H2>

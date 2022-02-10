@@ -137,7 +137,7 @@ function ProfileInfo({
                 {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
                 endorsed.
               </strong>{' '}
-              Let's get to {numberFormatter(achievements.nextStep)}!
+              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
             </div>
           </Endorsed>
 

@@ -191,8 +191,8 @@ function AdminUserStats({ users, loadUsersCallback }) {
       <Wrapper>
         <div>
           <Select value={dateRange} onChange={handleChange} variant="outlined">
-            {dateRanges.map(range => (
-              <MenuItem value={range}>{range}</MenuItem>
+            {dateRanges.map((range, index) => (
+              <MenuItem value={range} key={index}>{range}</MenuItem>
             ))}
           </Select>
         </div>

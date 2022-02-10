@@ -54,7 +54,7 @@ function AdminUpdateRequestsWrapper({
                 <Grid item xs={12} md={6}>
                   <Body>
                     Candidate:{' '}
-                    <a href={candidateRoute(request.candidate)} target="_blank">
+                    <a href={candidateRoute(request.candidate)} target="_blank" rel="noreferrer">
                       {request.candidate.firstName} {request.candidate.lastName}
                     </a>
                   </Body>

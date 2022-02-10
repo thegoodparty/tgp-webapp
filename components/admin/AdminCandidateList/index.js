@@ -139,6 +139,7 @@ function Index({
             <a
               href={route}
               target="_blank"
+              rel="noreferrer"
               style={{
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}
@@ -235,6 +236,7 @@ function Index({
             <a
               href={editRoute}
               target="_blank"
+              rel="noreferrer"
               style={{
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}

@@ -189,8 +189,8 @@ function ApplicationStep3({
   };
 
   const handleDateChange = (key, date) => {
-    const formatted = dateUsHelper(date);
-    const e = { target: { value: formatted } };
+    // const formatted = dateUsHelper(date);
+    const e = { target: { value: date } };
     onChangeField(key, e);
     onBlurField(key, e);
   };
@@ -343,27 +343,18 @@ function ApplicationStep3({
           </RadioGroup>
         )}
         { /* TODO: Fix this! */}
-        {/*{field.type === 'date' && (*/}
-        {/*  <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
-        {/*    <DatePicker*/}
-        {/*      autoOk*/}
-        {/*      fullWidth*/}
-        {/*      disableToolbar*/}
-        {/*      variant="inline"*/}
-        {/*      format="MM/dd/yyyy"*/}
-        {/*      margin="normal"*/}
-        {/*      id={field.key}*/}
-        {/*      label={field.placeholder}*/}
-        {/*      value={state[field.key]}*/}
-        {/*      onChange={date => {*/}
-        {/*        handleDateChange(field.key, date);*/}
-        {/*      }}*/}
-        {/*      KeyboardButtonProps={{*/}
-        {/*        'aria-label': 'change date',*/}
-        {/*      }}*/}
-        {/*    />*/}
-        {/*  </MuiPickersUtilsProvider>*/}
-        {/*)}*/}
+        
+        {field.type === 'date' && (
+          <TextField 
+            variant="outlined"
+            fullWidth
+            type="date"
+            value={state[field.key]}
+            onChange={ev => {
+              handleDateChange(field.key, ev.target.value);
+            }}
+          />
+        )}
       </FieldWrapper>
     );
   };

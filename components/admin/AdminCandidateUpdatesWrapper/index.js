@@ -284,7 +284,7 @@ function AdminCandidateUpdatesWrapper({
             <br />
             <br />
             <strong>
-              Update Image (in case the update doesn't have a youtube video)
+              Update Image (in case the update doesn&apos;t have a youtube video)
             </strong>
             <br />
             <br />

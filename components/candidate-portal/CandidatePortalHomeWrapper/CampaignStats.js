@@ -100,8 +100,8 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
         </Grid>
         <Grid item xs={12} md={6} className="text-right">
           <Select value={dateRange} onChange={handleChange} variant="outlined">
-            {dateRanges.map(range => (
-              <MenuItem value={range}>{range}</MenuItem>
+            {dateRanges.map((range, index) => (
+              <MenuItem value={range} key={index}>{range}</MenuItem>
             ))}
           </Select>
         </Grid>

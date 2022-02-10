@@ -58,10 +58,10 @@ function PortalEmbedButtonWrapper({ candidate, content }) {
             <br />
             <br />
             Example of an embed button on{' '}
-            <a href="https://www.baddarforthepeople.org/" target="_blank">
+            <a href="https://www.baddarforthepeople.org/" target="_blank" rel="noreferrer">
               Youseff Baddar
             </a>
-            's site
+            &apos;s site
             <br />
             <Img src="https://assets.goodparty.org/portal/embed-example.jpg" />
           </div>

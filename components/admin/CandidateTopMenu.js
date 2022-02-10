@@ -116,7 +116,7 @@ function CandidateTopMenu({ candidate }) {
         )}
       </Wrapper>
       <br />
-      <a href={candidateRoute(candidate)} target="_blank">
+      <a href={candidateRoute(candidate)} target="_blank" rel="noreferrer">
         Candidate Page
       </a>
     </div>
