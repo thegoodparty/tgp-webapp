@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import CandidatesSection from 'components/CandidatesWrapper/CandidatesSection';
-
 import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
 import PageWrapper from 'components/shared/PageWrapper';
 import { Body, H2 } from 'components/shared/typogrophy';
+
+import CandidatesSection from './CandidatesSection';
 
 const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
@@ -49,6 +49,7 @@ const ItemTitle = styled(Body)`
 const ItemText = styled(Body)``;
 
 const PartyWrapper = ({ pageContent, candidates }) => {
+  console.log('ccc', candidates);
   return (
     <PageWrapper isFullWidth>
       <div style={{ padding: '0 20px' }}>
