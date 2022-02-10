@@ -87,6 +87,7 @@ function TopIssuesWrapper({
           </Grid>
           {topIssues.map((issue, index) => (
             <TopIssue
+              key={index}
               index={index}
               topicList={topicList.filter(
                 item =>

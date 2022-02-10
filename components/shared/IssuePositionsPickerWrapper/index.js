@@ -65,11 +65,12 @@ function IssuePositionsPickerWrapper({
   };
   return (
     <div>
-      {topics.map(topic => (
-        <TopicWrapper>
+      {topics.map((topic, index) => (
+        <TopicWrapper key={index}>
           <Title>{topic.topic}</Title>
-          {(topic.positions || []).map(position => (
+          {(topic.positions || []).map((position, index) => (
             <Position
+              key={index}
               className={selected[position.id] && 'active'}
               onClick={() => {
                 handleSelect(position);

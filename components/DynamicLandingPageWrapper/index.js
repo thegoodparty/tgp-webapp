@@ -28,7 +28,7 @@ function DynamicLandingPageWrapper({ pageContent }) {
           </div>
 
           {pageContent.buttonLink ? (
-            <a href={pageContent.buttonLink} target="_blank">
+            <a href={pageContent.buttonLink} target="_blank" rel="noreferrer">
               <PurpleButton className="outline" style={{ minWidth: '165px' }}>
                 {pageContent.buttonLabel}
               </PurpleButton>

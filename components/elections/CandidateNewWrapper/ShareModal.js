@@ -410,8 +410,9 @@ const ShareModal = ({ candidate, supportLink }) => {
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <WhiteBody11>PRIVATE</WhiteBody11>
-            {privateChannels.map(channel => (
+            {privateChannels.map((channel, index) => (
               <a
+                key={index}
                 href={channel.link}
                 onClick={() => {
                   trackShare(channel.label);
@@ -447,8 +448,9 @@ const ShareModal = ({ candidate, supportLink }) => {
 
           <Grid item xs={6}>
             <WhiteBody11>PUBLIC</WhiteBody11>
-            {publicChannels.map(channel => (
+            {publicChannels.map((channel, index) => (
               <a
+                key={index}
                 href={channel.link}
                 onClick={() => {
                   trackShare(channel.label);

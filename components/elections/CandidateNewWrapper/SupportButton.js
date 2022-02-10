@@ -224,8 +224,9 @@ function SupportButton({
           <form noValidate onSubmit={handleSubmitForm}>
             {withForm && !user && (
               <div>
-                {fields.map(field => (
+                {fields.map((field, index) => (
                   <Input
+                    key={index}
                     value={formData[field.key]}
                     label={field.label}
                     required={field.required}

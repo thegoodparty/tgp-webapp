@@ -102,7 +102,7 @@ function LeaderboardWrapper({
           <LeaderboardPerson you person={user} index={0} />
           {crew &&
             crew.map((crewMember, index) => (
-              <LeaderboardPerson person={crewMember} index={index + 1} />
+              <LeaderboardPerson person={crewMember} index={index + 1} key={index} />
             ))}
 
           <Better>Good Parties are better with friends!</Better>
@@ -116,6 +116,7 @@ function LeaderboardWrapper({
           {leaderboard &&
             leaderboard.map((member, index) => (
               <LeaderboardPerson
+                key={index}
                 you={member.uuid === user.uuid}
                 person={member}
                 index={index}

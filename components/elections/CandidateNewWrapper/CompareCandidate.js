@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import { BiLinkExternal } from 'react-icons/bi';
 import { getValidImgUrl } from '/helpers/linkHelper';
 import { logEvent } from '/services/AnalyticsService';
+import NotFound from '/containers/shared/NotFoundPage';
 
 import { H3, Body11 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
@@ -116,8 +117,8 @@ function ComparedCandidate({
         </Website>
       </a>
 
-      {factors.map(factor => (
-        <InfoWrapper>
+      {factors.map((factor, index) => (
+        <InfoWrapper key={index}>
           {ICONS[comparedFactors[factor]] ? (
             <img src={ICONS[comparedFactors[factor]]} alt="icon" />
           ) : (

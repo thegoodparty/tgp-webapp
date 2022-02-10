@@ -315,7 +315,7 @@ function AdminReleasesWrapper({
                       </Grid>
                       <Grid item xs={2}>
                         <Field>
-                          {release.tags?.map(tag => <Chip label={tag} />)}
+                          {release.tags?.map(tag => <Chip label={tag} key={tag} />)}
                         </Field>
                       </Grid>
                       <Grid item xs={1}>

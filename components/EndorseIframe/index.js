@@ -25,6 +25,7 @@ function EndorseIframe() {
     <a
       href={`https://${base}goodparty.org/embed/redirect/${intId}`}
       target="_blank"
+      rel="noreferrer"
       style={{
         minWidth: '150px',
       }}

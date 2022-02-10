@@ -54,7 +54,7 @@ function Stats({ candidate }) {
             href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`}
             passHref
           >
-            <a>What's this?</a>
+            <a>What&apos;s this?</a>
           </Link>
         </Row>
         {unrepVoters ? (

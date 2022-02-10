@@ -71,7 +71,7 @@ function AdminTopIssueRequestsWrapper({
                   <Grid item xs={12} md={6}>
                     <Body>
                       Candidate:{' '}
-                      <a href={candidateRoute(candidate)} target="_blank">
+                      <a href={candidateRoute(candidate)} target="_blank" rel="noreferrer">
                         {candidate.firstName} {candidate.lastName}
                       </a>
                     </Body>

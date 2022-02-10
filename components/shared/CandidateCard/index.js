@@ -116,7 +116,7 @@ function CandidateCard({ candidate }) {
               <strong>
                 {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
               </strong>{' '}
-              Let's get to {numberFormatter(achievements.nextStep)}!
+              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
             </div>
           </Endorsed>
 

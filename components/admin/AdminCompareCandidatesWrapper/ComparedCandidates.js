@@ -161,7 +161,7 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
   return (
     <Wrapper>
       {criteria.map((crit, index) => (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} key={index}>
           <Grid item xs style={{ flex: 0 }}>
             {index > disabledRows ? (
               <Delete>
