@@ -111,7 +111,8 @@ function AdminCandidateUpdatesWrapper({
   const [updates, setUpdates] = useState([]);
   useEffect(() => {
     if (candidate?.updatesList) {
-      setUpdates(candidate?.updatesList.reverse());
+      let updatesList = [ ...candidate?.updatesList ];
+      setUpdates(updatesList.reverse());
     }
   }, [candidate]);
 
