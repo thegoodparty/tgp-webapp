@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-import { achievementsHelper } from 'helpers/achievementsHelper';
-import { numberFormatter } from 'helpers/numberHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13, H1, H3 } from '../../shared/typogrophy';

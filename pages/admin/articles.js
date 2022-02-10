@@ -1,4 +1,4 @@
-import Page from 'containers/admin/AdminArticlesPage';
+import Page from '/containers/admin/AdminArticlesPage';
 import tgpApi from '../../api/tgpApi';
 
 export default function Admin({ ssrState }) {

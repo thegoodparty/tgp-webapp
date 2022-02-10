@@ -18,7 +18,7 @@ import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
+import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
@@ -342,27 +342,28 @@ function ApplicationStep3({
             ))}
           </RadioGroup>
         )}
-        {field.type === 'date' && (
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
-              autoOk
-              fullWidth
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id={field.key}
-              label={field.placeholder}
-              value={state[field.key]}
-              onChange={date => {
-                handleDateChange(field.key, date);
-              }}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-            />
-          </MuiPickersUtilsProvider>
-        )}
+        { /* TODO: Fix this! */}
+        {/*{field.type === 'date' && (*/}
+        {/*  <MuiPickersUtilsProvider utils={DateFnsUtils}>*/}
+        {/*    <DatePicker*/}
+        {/*      autoOk*/}
+        {/*      fullWidth*/}
+        {/*      disableToolbar*/}
+        {/*      variant="inline"*/}
+        {/*      format="MM/dd/yyyy"*/}
+        {/*      margin="normal"*/}
+        {/*      id={field.key}*/}
+        {/*      label={field.placeholder}*/}
+        {/*      value={state[field.key]}*/}
+        {/*      onChange={date => {*/}
+        {/*        handleDateChange(field.key, date);*/}
+        {/*      }}*/}
+        {/*      KeyboardButtonProps={{*/}
+        {/*        'aria-label': 'change date',*/}
+        {/*      }}*/}
+        {/*    />*/}
+        {/*  </MuiPickersUtilsProvider>*/}
+        {/*)}*/}
       </FieldWrapper>
     );
   };

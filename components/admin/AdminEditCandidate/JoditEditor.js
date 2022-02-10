@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, memo } from 'react';
-import { getCookie } from 'helpers/cookieHelper';
+import { getCookie } from '/helpers/cookieHelper';
 import PropTypes from 'prop-types';
-import tgpApi from 'api/tgpApi';
+import tgpApi from '/api/tgpApi';
 import dynamic from 'next/dynamic';
 
 const importJodit = () => import('jodit-react');

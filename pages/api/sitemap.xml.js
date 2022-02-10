@@ -1,6 +1,6 @@
-import { candidateRoute } from 'helpers/electionsHelper';
-import apiHelper from 'helpers/apiHelper';
-import api from 'api/tgpApi';
+import { candidateRoute } from '/helpers/electionsHelper';
+import apiHelper from '/helpers/apiHelper';
+import api from '/api/tgpApi';
 
 const { default: Axios } = require('axios');
 const moment = require('moment');

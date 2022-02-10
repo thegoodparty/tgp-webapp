@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-import { Body, Body19, H1 } from 'components/shared/typogrophy';
-import PageWrapper from 'components/shared/PageWrapper';
+import { Body, Body19, H1 } from '/components/shared/typogrophy';
+import PageWrapper from '/components/shared/PageWrapper';
 import Breadcrumbs from '../../shared/Breadcrumbs';
 
 const ArticleWrapper = styled.a`

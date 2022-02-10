@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { H3, Body, Body13 } from 'components/shared/typogrophy';
+import { H3, Body, Body13 } from '/components/shared/typogrophy';
 
 const Wrapper = styled.div`
   margin-top: 50px;

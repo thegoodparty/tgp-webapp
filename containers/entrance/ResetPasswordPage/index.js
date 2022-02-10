@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { useInjectSaga } from 'utils/injectSaga';
-import { makeSelectLocation } from 'containers/App/selectors';
-import queryHelper from 'helpers/queryHelper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { makeSelectLocation } from '/containers/App/selectors';
+import queryHelper from '/helpers/queryHelper';
 
-import ResetPasswordWrapper from 'components/entrance/ResetPasswordWrapper';
-import TgpHelmet from 'components/shared/TgpHelmet';
+import ResetPasswordWrapper from '/components/entrance/ResetPasswordWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
 import actions from './actions';
 import saga from './saga';
 

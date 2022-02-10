@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
+import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
 import PageWrapper from '../shared/PageWrapper';
 import { PurpleButton } from '../shared/buttons';
 

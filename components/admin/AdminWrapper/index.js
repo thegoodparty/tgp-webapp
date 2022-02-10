@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 
-import { Body, Body13, H1, H3 } from 'components/shared/typogrophy';
+import { Body, Body13, H1, H3 } from '/components/shared/typogrophy';
 
 import AdminPageWrapper from './AdminPageWrapper';
 import { leftMenuItems } from '../AdminLeftMenu';

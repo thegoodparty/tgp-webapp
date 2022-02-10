@@ -12,10 +12,10 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import AdminWrapper from 'components/admin/AdminWrapper';
+import AdminWrapper from '/components/admin/AdminWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectUser from '../../you/YouPage/selectors';

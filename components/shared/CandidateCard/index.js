@@ -8,8 +8,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import { partyResolver } from 'helpers/electionsHelper';
-import { kFormatter, numberFormatter } from 'helpers/numberHelper';
+import { partyResolver } from '/helpers/electionsHelper';
+import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import Link from 'next/link';
 
 import CandidateAvatar from './CandidateAvatar';

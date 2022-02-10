@@ -14,8 +14,8 @@ import Link from 'next/link';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-import { formatToPhone } from 'helpers/phoneHelper';
-import { getCookie, setCookie } from 'helpers/cookieHelper';
+import { formatToPhone } from '/helpers/phoneHelper';
+import { getCookie, setCookie } from '/helpers/cookieHelper';
 
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';

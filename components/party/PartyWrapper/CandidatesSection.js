@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
-import { Body, Body11, H2 } from 'components/shared/typogrophy';
-import CandidateCard from 'components/shared/CandidateCard';
+import { Body, Body11, H2 } from '/components/shared/typogrophy';
+import CandidateCard from '/components/shared/CandidateCard';
 
 const StyledH2 = styled.h2`
   color: #000;

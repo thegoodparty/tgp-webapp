@@ -7,7 +7,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Nav from 'containers/shared/Nav/index';
+import Nav from '/containers/shared/Nav/index';
 
 const Wrapper = styled.div`
   display: flex;

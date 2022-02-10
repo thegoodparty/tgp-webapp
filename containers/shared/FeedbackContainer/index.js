@@ -10,10 +10,10 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import FeedbackWrapper from 'components/shared/FeedbackWrapper';
+import FeedbackWrapper from '/components/shared/FeedbackWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectFeedbackContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';

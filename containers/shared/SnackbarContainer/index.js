@@ -10,9 +10,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import SnackbarWrapper from 'components/shared/SnackbarWrapper';
+import SnackbarWrapper from '/components/shared/SnackbarWrapper';
 
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectSnackbarContainer from './selectors';
 import reducer from './reducer';
 import snackbarActions from './actions';

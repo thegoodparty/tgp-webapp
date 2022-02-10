@@ -21,7 +21,7 @@ import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import CompareIcon from '@material-ui/icons/Compare';
 import { GiPortal } from 'react-icons/gi';
 
-import { Body13 } from 'components/shared/typogrophy/index';
+import { Body13 } from '/components/shared/typogrophy/index';
 
 const LeftPanel = styled.div`
   width: 250px;

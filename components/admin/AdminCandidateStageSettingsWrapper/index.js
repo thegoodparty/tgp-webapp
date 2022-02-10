@@ -16,8 +16,8 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
-import { PurpleButton } from 'components/shared/buttons';
-import Nav from 'containers/shared/Nav';
+import { PurpleButton } from '/components/shared/buttons';
+import Nav from '/containers/shared/Nav';
 import { H2, H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateAvatar';
 import CandidateTopMenu from '../CandidateTopMenu';

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
-import PageWrapper from 'components/shared/PageWrapper';
-import { H1, H3 } from 'components/shared/typogrophy/index';
-import LoadingAnimation from 'components/shared/LoadingAnimation';
-import tgpTheme from 'theme/index';
-import OutlinedButton from 'components/shared/buttons/OutlinedButton';
+import PageWrapper from '/components/shared/PageWrapper';
+import { H1, H3 } from '/components/shared/typogrophy/index';
+import LoadingAnimation from '/components/shared/LoadingAnimation';
+import tgpTheme from '/theme/index';
+import OutlinedButton from '/components/shared/buttons/OutlinedButton';
 
 const ExpiredTokenImage = '/images/expired-token.svg';
 const EmailErrorImage = '/images/email-error.svg';

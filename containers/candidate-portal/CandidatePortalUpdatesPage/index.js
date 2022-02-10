@@ -12,9 +12,9 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import TgpHelmet from 'components/shared/TgpHelmet';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectCandidatePortalUpdatesPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

@@ -12,7 +12,7 @@ import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 import { Element } from 'react-scroll';
 
-import NotFound from 'containers/shared/NotFoundPage';
+import NotFound from '/containers/shared/NotFoundPage';
 
 import RecentlyJoined from './RecentlyJoined';
 

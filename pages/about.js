@@ -1,5 +1,5 @@
-import PartyPage from 'containers/party/PartyPage';
-import tgpApi from 'api/tgpApi';
+import PartyPage from '/containers/party/PartyPage';
+import tgpApi from '/api/tgpApi';
 
 export default function Party({ ssrState }) {
   return <PartyPage ssrState={ssrState} />;

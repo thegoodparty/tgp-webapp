@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-import PageWrapper from 'components/shared/PageWrapper';
-import { Body13, H2 } from 'components/shared/typogrophy/index';
-import NextButton from 'components/shared/buttons/NextButton';
+import PageWrapper from '/components/shared/PageWrapper';
+import { Body13, H2 } from '/components/shared/typogrophy/index';
+import NextButton from '/components/shared/buttons/NextButton';
 
 import TextField from '@material-ui/core/TextField';
 
@@ -19,7 +19,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
 
       @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+          theme.breakpointsPixels.md}) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -43,13 +43,13 @@ const SubmitWrapper = styled.div`
 const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
   const [code, setCode] = useState('');
 
-  const onChangeCode = event => {
+  const onChangeCode = (event) => {
     setCode(event.target.value);
   };
 
   const validateCode = () => code.length === 6;
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
     handleSubmit();
   };
@@ -74,8 +74,10 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
           type="tel"
           onChange={onChangeCode}
         />
-        <Link href="/login" data-cy="return-link">
-          <StyledBody13>Didn’t receive the code?</StyledBody13>
+        <Link href="/login" data-cy="return-link" passHref>
+          <a>
+            <StyledBody13>Didn’t receive the code?</StyledBody13>
+          </a>
         </Link>
         <SubmitWrapper onClick={handleSubmit} data-cy="submit">
           <NextButton active={validateCode()}>Confirm</NextButton>

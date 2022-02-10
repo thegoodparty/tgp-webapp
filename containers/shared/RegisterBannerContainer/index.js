@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import RegisterBannerWrapper from 'components/shared/RegisterBannerWrapper';
+import RegisterBannerWrapper from '/components/shared/RegisterBannerWrapper';
 import makeSelectUser, { makeSelectRanking } from '../../you/YouPage/selectors';
 import { makeSelectLocation } from '../../App/selectors';
 import userActions from '../../you/YouPage/actions';

@@ -11,14 +11,14 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import AdminCandidateList from 'components/admin/AdminCandidateList';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import makeSelectUser from 'containers/you/YouPage/selectors';
-import associateSaga from 'containers/admin/AdminAssociateCandidateUserPage/saga';
-import associateActions from 'containers/admin/AdminAssociateCandidateUserPage/actions';
+import AdminCandidateList from '/components/admin/AdminCandidateList';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import makeSelectUser from '/containers/you/YouPage/selectors';
+import associateSaga from '/containers/admin/AdminAssociateCandidateUserPage/saga';
+import associateActions from '/containers/admin/AdminAssociateCandidateUserPage/actions';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectAdminCandidateListPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

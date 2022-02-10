@@ -20,8 +20,8 @@ import {
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 
-import { validateLink } from 'helpers/linkHelper';
-import { logEvent } from 'services/AnalyticsService';
+import { validateLink } from '/helpers/linkHelper';
+import { logEvent } from '/services/AnalyticsService';
 
 const SocialLink = styled.a`
   margin-right: 25px;

@@ -19,7 +19,7 @@ import { IoIosContact } from 'react-icons/io';
 import { MdUpdate } from 'react-icons/md';
 import { GoIssueClosed } from 'react-icons/go';
 
-import { Body13 } from 'components/shared/typogrophy/index';
+import { Body13 } from '/components/shared/typogrophy/index';
 
 const LeftPanel = styled.div`
   width: 250px;

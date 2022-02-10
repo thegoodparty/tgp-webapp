@@ -11,11 +11,11 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import styled from 'styled-components';
 
-import PortalPageWrapper from 'components/candidate-portal/CandidatePortalHomeWrapper/PortalPageWrapper';
-import AdminCandidateUpdatesWrapper from 'components/admin/AdminCandidateUpdatesWrapper';
+import PortalPageWrapper from '/components/candidate-portal/CandidatePortalHomeWrapper/PortalPageWrapper';
+import AdminCandidateUpdatesWrapper from '/components/admin/AdminCandidateUpdatesWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectCandidatePortalUpdatesContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';

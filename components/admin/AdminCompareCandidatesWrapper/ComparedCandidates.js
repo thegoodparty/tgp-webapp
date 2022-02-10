@@ -13,8 +13,8 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-import { getValidImgUrl } from 'helpers/linkHelper';
-import { BlueButton } from 'components/shared/buttons';
+import { getValidImgUrl } from '/helpers/linkHelper';
+import { BlueButton } from '/components/shared/buttons';
 
 import ImageCrop from '../../shared/ImageCrop';
 

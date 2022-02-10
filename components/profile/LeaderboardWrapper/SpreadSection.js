@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { uuidUrl } from 'helpers/userHelper';
+import { uuidUrl } from '/helpers/userHelper';
 
 import { Body, Body13 } from '../../shared/typogrophy';
 import { GrayText } from '../ProfileWrapper';

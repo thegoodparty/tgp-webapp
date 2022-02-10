@@ -5,10 +5,10 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Body11, Body13, H2 } from 'components/shared/typogrophy';
-import { uuidUrl } from 'helpers/userHelper';
-import { logEvent } from 'services/AnalyticsService';
-import QueryModalContainer from 'containers/shared/QueryModalContainer';
+import { Body11, Body13, H2 } from '/components/shared/typogrophy';
+import { uuidUrl } from '/helpers/userHelper';
+import { logEvent } from '/services/AnalyticsService';
+import QueryModalContainer from '/containers/shared/QueryModalContainer';
 
 import {
   IoIosText,
@@ -20,8 +20,8 @@ import {
 } from 'react-icons/io';
 import { ImWhatsapp } from 'react-icons/im';
 import { FaSnapchatGhost, FaFacebookF } from 'react-icons/fa';
-import { getUserCookie } from 'helpers/cookieHelper';
-import { candidateRoute } from 'helpers/electionsHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
+import { candidateRoute } from '/helpers/electionsHelper';
 // import { SiTiktok } from 'react-icons/si';
 //
 // const CopyPasteIcon = '/images/icons/copy-paste.svg';

@@ -15,7 +15,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import { numberFormatter } from 'helpers/numberHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 import { Body, Body11, Body13, H3 } from '../../shared/typogrophy';
 
 const Wrapper = styled.div`

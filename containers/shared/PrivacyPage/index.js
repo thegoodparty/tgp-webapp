@@ -11,8 +11,8 @@ import Head from 'next/head';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import PrivacyWrapper from 'components/shared/PrivacyWrapper';
-import { makeSelectContent } from 'containers/App/selectors';
+import PrivacyWrapper from '/components/shared/PrivacyWrapper';
+import { makeSelectContent } from '/containers/App/selectors';
 
 export function PrivacyPage({ ssrState }) {
   const { content } = ssrState;

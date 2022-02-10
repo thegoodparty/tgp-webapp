@@ -7,14 +7,14 @@ import dynamic from 'next/dynamic';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-import PageWrapper from 'components/shared/PageWrapper';
-import { Body13, H1, Body11 } from 'components/shared/typogrophy/index';
+import PageWrapper from '/components/shared/PageWrapper';
+import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
 import globals from 'globals';
-import { PurpleButton } from 'components/shared/buttons';
-import TwitterButton from 'components/shared/TwitterButton';
+import { PurpleButton } from '/components/shared/buttons';
+import TwitterButton from '/components/shared/TwitterButton';
 
 const SocialButton = dynamic(
-  () => import('components/you/SocialRegisterWrapper/SocialButton'),
+  () => import('/components/you/SocialRegisterWrapper/SocialButton'),
   { ssr: false },
 );
 

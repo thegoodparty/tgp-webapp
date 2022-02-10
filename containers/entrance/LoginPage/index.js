@@ -12,14 +12,14 @@ import { compose } from 'redux';
 import { push } from 'connected-next-router';
 import { createStructuredSelector } from 'reselect';
 
-import userActions from 'containers/you/YouPage/actions';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import userActions from '/containers/you/YouPage/actions';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 
-import LoginWrapper from 'components/entrance/LoginWrapper';
-import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import { getUserCookie } from 'helpers/cookieHelper';
+import LoginWrapper from '/components/entrance/LoginWrapper';
+import snackbarActions from '/containers/shared/SnackbarContainer/actions';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import { getUserCookie } from '/helpers/cookieHelper';
 
 import makeSelectLoginPage from './selectors';
 import reducer from './reducer';

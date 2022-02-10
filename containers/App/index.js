@@ -12,21 +12,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import history from 'utils/history';
+import history from '/utils/history';
 // import ReactGA from 'react-ga';
-import ENV from 'api/ENV';
+import ENV from '/api/ENV';
 import Head from 'next/head';
 
 import GlobalStyle from 'global-styles';
-import SnackbarContainer from 'containers/shared/SnackbarContainer';
+import SnackbarContainer from '/containers/shared/SnackbarContainer';
 
-import ErrorBoundary from 'containers/shared/ErrorBoundry';
+import ErrorBoundary from '/containers/shared/ErrorBoundry';
 
-import { fullStoryIdentify } from 'helpers/fullStoryHelper';
-import { getUserCookie } from 'helpers/cookieHelper';
+import { fullStoryIdentify } from '/helpers/fullStoryHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';

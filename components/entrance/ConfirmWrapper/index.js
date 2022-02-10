@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
 
-import { formatToPhone } from 'helpers/phoneHelper';
+import { formatToPhone } from '/helpers/phoneHelper';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body, Body13, H1 } from '../../shared/typogrophy';

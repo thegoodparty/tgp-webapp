@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
-import { candidateRoute } from 'helpers/electionsHelper';
+import { candidateRoute } from '/helpers/electionsHelper';
 
 import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';

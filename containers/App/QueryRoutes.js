@@ -13,13 +13,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import FaqArticlePage from 'containers/party/FaqArticlePage';
+import FaqArticlePage from '/containers/party/FaqArticlePage';
 
-import queryHelper from 'helpers/queryHelper';
-import { setCookie } from 'helpers/cookieHelper';
+import queryHelper from '/helpers/queryHelper';
+import { setCookie } from '/helpers/cookieHelper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';

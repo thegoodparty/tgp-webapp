@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { BiLinkExternal } from 'react-icons/bi';
-import { getValidImgUrl } from 'helpers/linkHelper';
-import { logEvent } from 'services/AnalyticsService';
+import { getValidImgUrl } from '/helpers/linkHelper';
+import { logEvent } from '/services/AnalyticsService';
 
 import { H3, Body11 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';

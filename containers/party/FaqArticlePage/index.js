@@ -12,11 +12,11 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 
-import queryHelper from 'helpers/queryHelper';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import { makeSelectLocation } from 'containers/App/selectors';
-import FaqArticleWrapper from 'components/party/FaqArticleWrapper';
+import queryHelper from '/helpers/queryHelper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
+import { makeSelectLocation } from '/containers/App/selectors';
+import FaqArticleWrapper from '/components/party/FaqArticleWrapper';
 
 import reducer from './reducer';
 import saga from './saga';

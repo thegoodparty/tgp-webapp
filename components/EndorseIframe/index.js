@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { PurpleButton } from 'components/shared/buttons';
+import { PurpleButton } from '/components/shared/buttons';
 
 function EndorseIframe() {
   const router = useRouter();

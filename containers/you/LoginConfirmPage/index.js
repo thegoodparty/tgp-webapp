@@ -12,15 +12,15 @@ import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/YouPage/selectors';
-import reducer from 'containers/you/YouPage/reducer';
-import saga from 'containers/you/YouPage/saga';
-import userActions from 'containers/you/YouPage/actions';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
+import makeSelectUser from '/containers/you/YouPage/selectors';
+import reducer from '/containers/you/YouPage/reducer';
+import saga from '/containers/you/YouPage/saga';
+import userActions from '/containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
 
-import LoginConfirmWrapper from 'components/you/LoginConfirmWrapper';
+import LoginConfirmWrapper from '/components/you/LoginConfirmWrapper';
 
 export function LoginConfirmPage({
   userState,

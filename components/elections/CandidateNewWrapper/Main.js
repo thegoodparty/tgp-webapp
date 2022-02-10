@@ -17,7 +17,7 @@ import { Element } from 'react-scroll';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import NotFound from 'containers/shared/NotFoundPage';
+import NotFound from '/containers/shared/NotFoundPage';
 
 import ProfileInfo from './ProfileInfo';
 import { H1, Body19, Body13 } from '../../shared/typogrophy';

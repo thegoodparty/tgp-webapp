@@ -12,11 +12,11 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import TgpHelmet from 'components/shared/TgpHelmet';
-import AdminUsersList from 'components/admin/AdminUsersList';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import AdminUsersList from '/components/admin/AdminUsersList';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectAdminUsersPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

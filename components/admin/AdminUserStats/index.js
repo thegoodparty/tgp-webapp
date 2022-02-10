@@ -24,8 +24,8 @@ import {
   CartesianGrid,
 } from 'recharts';
 
-import { H3, H1, H2, Body13 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
+import { H3, H1, H2, Body13 } from '/components/shared/typogrophy';
+import { numberFormatter } from '/helpers/numberHelper';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`

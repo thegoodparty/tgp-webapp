@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import tgpApi from 'api/tgpApi';
+import tgpApi from '/api/tgpApi';
 
 export default function UpdateContent() {
   return <div>updated</div>;

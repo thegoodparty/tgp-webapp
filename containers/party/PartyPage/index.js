@@ -10,15 +10,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { loadInitialState } from 'utils/loadInitialState';
+import { loadInitialState } from '/utils/loadInitialState';
 
 import {
   makeSelectAppVersion,
   makeSelectContent,
-} from 'containers/App/selectors';
+} from '/containers/App/selectors';
 
-import PartyWrapper from 'components/party/PartyWrapper';
-import TgpHelmet from 'components/shared/TgpHelmet';
+import PartyWrapper from '/components/party/PartyWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
 import actions from '../../HomePage/actions';
 
 export function PartyPage({ appVersion, ssrState }) {

@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
-import PageWrapper from 'components/shared/PageWrapper';
-import { H1 } from 'components/shared/typogrophy';
-import { PurpleButton } from 'components/shared/buttons';
+import PageWrapper from '/components/shared/PageWrapper';
+import { H1 } from '/components/shared/typogrophy';
+import { PurpleButton } from '/components/shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
 import { formatToPhone } from '../../../helpers/phoneHelper';
 import { emailRegExp } from '../../../helpers/userHelper';

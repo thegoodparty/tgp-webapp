@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Wrapper from 'components/shared/Wrapper';
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
+import Wrapper from '/components/shared/Wrapper';
+import MobileHeader from '/components/shared/navigation/MobileHeader';
+import Nav from '/containers/shared/Nav';
 import { H1 } from '../../components/shared/typogrophy';
 
 class ErrorBoundary extends React.Component {

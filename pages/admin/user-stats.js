@@ -1,4 +1,4 @@
-import Page from 'containers/admin/AdminUserStatsPage';
+import Page from '/containers/admin/AdminUserStatsPage';
 
 export default function Admin() {
   return <Page />;

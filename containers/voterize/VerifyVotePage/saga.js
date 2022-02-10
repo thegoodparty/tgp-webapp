@@ -1,14 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-next-router';
 
-import requestHelper from 'helpers/requestHelper';
-import tgpApi from 'api/tgpApi';
-import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import globalActions from 'containers/App/actions';
-import { electionRoute } from 'helpers/electionsHelper';
-import { logEvent } from 'services/AnalyticsService';
-import { getUserFromStateOrCookie } from 'helpers/userHelper';
-import makeSelectUser from 'containers/you/YouPage/selectors';
+import requestHelper from '/helpers/requestHelper';
+import tgpApi from '/api/tgpApi';
+import snackbarActions from '/containers/shared/SnackbarContainer/actions';
+import globalActions from '/containers/App/actions';
+import { electionRoute } from '/helpers/electionsHelper';
+import { logEvent } from '/services/AnalyticsService';
+import { getUserFromStateOrCookie } from '/helpers/userHelper';
+import makeSelectUser from '/containers/you/YouPage/selectors';
 
 import types from './constants';
 import actions from './actions';

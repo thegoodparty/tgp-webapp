@@ -11,8 +11,8 @@ import TextField from '@material-ui/core/TextField';
 
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
-import { PurpleButton } from 'components/shared/buttons';
-import { logEvent } from 'services/AnalyticsService';
+import { PurpleButton } from '/components/shared/buttons';
+import { logEvent } from '/services/AnalyticsService';
 
 import { Body11, Body13 } from '../../shared/typogrophy';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Body13, Body11 } from 'components/shared/typogrophy/index';
-import UserAvatar from 'components/shared/UserAvatar';
+import { Body13, Body11 } from '/components/shared/typogrophy/index';
+import UserAvatar from '/components/shared/UserAvatar';
 
 const heartImg = '/images/heart.svg';
 const Wrapper = styled(Body13)`

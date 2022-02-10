@@ -10,9 +10,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import IssuePositionsPickerWrapper from 'components/shared/IssuePositionsPickerWrapper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
+import IssuePositionsPickerWrapper from '/components/shared/IssuePositionsPickerWrapper';
 
 import makeSelectIssuePositionsPickerContainer from './selectors';
 import reducer from './reducer';

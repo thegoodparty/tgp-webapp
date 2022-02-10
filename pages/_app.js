@@ -3,14 +3,14 @@ import { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
 import { ConnectedRouter } from 'connected-next-router';
-import SnackbarContainer from 'containers/shared/SnackbarContainer';
+import SnackbarContainer from '/containers/shared/SnackbarContainer';
 
-import GlobalStyles from 'theme/GlobalStyles';
-import store from 'redux/store';
-import QueryRoutes from 'containers/App/QueryRoutes';
-import { initGA4 } from 'services/AnalyticsService';
+import GlobalStyles from '/theme/GlobalStyles';
+import store from '/redux/store';
+import QueryRoutes from '/containers/App/QueryRoutes';
+import { initGA4 } from '/services/AnalyticsService';
 
-import theme from 'theme';
+import theme from '/theme';
 
 /**
  * @param {object} initialState The store's initial state (on the client side, the state of the server-side store is passed here)

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
-import PageWrapper from 'components/shared/PageWrapper';
+import PageWrapper from '/components/shared/PageWrapper';
 import Hero from './Hero';
 import NotRepresented from './NotRepresented';
 import Testimonials from './Testimonials';
