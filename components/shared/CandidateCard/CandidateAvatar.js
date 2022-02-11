@@ -66,42 +66,44 @@ const ImageWrapper = styled.div`
 `;
 
 const PartyIcon = styled.img`
-  position: absolute;
-  bottom: -5px;
-  right: -5px;
-  border: 4px solid white;
-  background: white;
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
-    0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    height: 36px;
-    width: 36px;
-  }
-
-  &.small {
+  && {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    border: 4px solid white;
+    background: white;
+    border-radius: 50%;
     height: 25px;
     width: 25px;
-  }
+    box-shadow: 0px 0px 4.8436px rgba(0, 0, 0, 0.12),
+      0px 0px 3.6327px rgba(0, 0, 0, 0.08), 0px 0px 9.6872px rgba(0, 0, 0, 0.07);
 
-  &.medium {
-    height: 25px;
-    width: 25px;
-  }
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      height: 36px;
+      width: 36px;
+    }
 
-  &.party-I {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-  &.no-bg {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none;
+    &.small {
+      height: 25px;
+      width: 25px;
+    }
+
+    &.medium {
+      height: 25px;
+      width: 25px;
+    }
+
+    &.party-I {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+    &.no-bg {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none;
+    }
   }
 `;
 const CandidateAvatar = ({
