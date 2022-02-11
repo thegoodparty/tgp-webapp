@@ -92,9 +92,6 @@ function ComparedSection({
     return <NotFound />;
   }
   const { comparedCandidates } = candidate;
-  if (candidate.comparedCandidates?.candidates?.length > 0) {
-    candidate.comparedCandidates.candidates[0].image = candidate.image;
-  }
 
   return (
     <>
