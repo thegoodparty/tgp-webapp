@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "API_ENV=local next dev -p 4000",
-    "dev-dev": "cross-env API_ENV=development next dev -p 4000",
+    "dev-dev": "API_ENV=development next dev -p 4000",
     "deploy-dev": "git checkout develop && eb deploy",
     "deploy-prod": "git checkout master  && eb deploy",
     "build": "next build",
