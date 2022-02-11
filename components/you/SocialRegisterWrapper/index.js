@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import TextField from '@material-ui/core/TextField';
 
-import globals from 'globals';
+import globals from '/globals';
 import QueryModalContainer from 'containers/shared/QueryModalContainer';
 import { logEvent } from 'services/AnalyticsService';
 
