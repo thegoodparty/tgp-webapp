@@ -47,7 +47,6 @@ function SocialIcons({ candidate }) {
     reddit,
   } = candidate;
   if (candidate.comparedCandidates?.candidates?.length > 0) {
-    candidate.comparedCandidates.candidates[0].image = candidate.image;
     ({ website } = candidate.comparedCandidates.candidates[0]);
   }
 
