@@ -77,7 +77,8 @@ const fields = [
     link: {
       key: 'link',
       label: 'Proof of endorsement',
-      subtitle: 'For example a statement on the organization’s website or a newspaper article',
+      subtitle:
+        'For example a statement on the organization’s website or a newspaper article',
       placeholder: 'Enter...',
       defaultValue: '',
       type: 'text',
@@ -117,16 +118,16 @@ function ApplicationStep6({
     }
   }, [application]);
 
-  const handleSubmitForm = e => e.stopPropagation();
+  const handleSubmitForm = (e) => e.stopPropagation();
 
   const onChangeField = (key, e, index) => {
-    const updatedState = [...state];
+    const updatedState = JSON.parse(JSON.stringify(state));
     updatedState[index][key] = e.target.value;
     setState(updatedState);
   };
 
   const onBlurField = (key, e, index) => {
-    const updatedState = [...state];
+    const updatedState = JSON.parse(JSON.stringify(state));
     updatedState[index][key] = e.target.value;
 
     updateApplicationCallback(application.id, {
@@ -169,10 +170,10 @@ function ApplicationStep6({
                 ),
               }
             }
-            onChange={e => {
+            onChange={(e) => {
               onChangeField(field.key, e, index);
             }}
-            onBlur={e => {
+            onBlur={(e) => {
               onBlurField(field.key, e, index);
             }}
           />

@@ -14,8 +14,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { FaImage } from 'react-icons/fa';
-import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
@@ -23,7 +21,6 @@ import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 import { step3Fields, step3Socials } from './fields';
-import { dateUsHelper } from '../../../helpers/dateHelper';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -111,14 +108,14 @@ const Photo = styled.img`
 
 const keys = {};
 const requiredKeys = [{ key: 'headshotPhoto', defaultValue: '' }];
-step3Fields.forEach(field => {
+step3Fields.forEach((field) => {
   keys[field.key] = field.defaultValue;
   if (field.required) {
     requiredKeys.push(field);
   }
 });
 
-step3Socials.forEach(field => {
+step3Socials.forEach((field) => {
   keys[field.key] = field.defaultValue;
 });
 
@@ -138,7 +135,7 @@ function ApplicationStep3({
     }
   }, [application]);
 
-  const handleSubmitForm = e => e.stopPropagation();
+  const handleSubmitForm = (e) => e.stopPropagation();
 
   const onChangeField = (key, e) => {
     setState({
@@ -167,7 +164,7 @@ function ApplicationStep3({
 
   const canSubmit = () => {
     let returnVal = true;
-    requiredKeys.forEach(field => {
+    requiredKeys.forEach((field) => {
       if (
         typeof state[field.key] === 'undefined' ||
         state[field.key] === field.defaultValue
@@ -195,7 +192,7 @@ function ApplicationStep3({
     onBlurField(key, e);
   };
 
-  const renderField = field => {
+  const renderField = (field) => {
     if (field.key === 'photos') {
       return (
         <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
@@ -204,7 +201,7 @@ function ApplicationStep3({
             {field.subLabel && <Req>{field.subLabel}</Req>}
           </Label>
           <Subtitle>{field.subtitle}</Subtitle>
-          {keys.photos.map(photo => (
+          {keys.photos.map((photo) => (
             <>
               {state[photo.key] ? (
                 <PhotoWrapper>
@@ -218,7 +215,7 @@ function ApplicationStep3({
                     <PhotoInputWrapper key={photo.key}>
                       <UploadWrapper>
                         <ImageUploadContainer
-                          uploadCallback={image =>
+                          uploadCallback={(image) =>
                             handleUploadImage(image, photo.key)
                           }
                         />
@@ -260,7 +257,7 @@ function ApplicationStep3({
                 // getOptionLabel={item => item.name}
                 fullWidth
                 variant="outlined"
-                renderInput={params => (
+                renderInput={(params) => (
                   <TextField {...params} label="State" variant="outlined" />
                 )}
                 onChange={(event, item) => {
@@ -276,15 +273,15 @@ function ApplicationStep3({
                 fullWidth
                 variant="outlined"
                 disabled={reviewMode}
-                onChange={e => {
+                onChange={(e) => {
                   onChangeField(field.key, e);
                 }}
-                onBlur={e => {
+                onBlur={(e) => {
                   onBlurField(field.key, e);
                 }}
               >
                 <option value="">Select</option>
-                {field.options.map(op => (
+                {field.options.map((op) => (
                   <option value={op} key={op}>
                     {op}
                   </option>
@@ -315,10 +312,10 @@ function ApplicationStep3({
                 ),
               }
             }
-            onChange={e => {
+            onChange={(e) => {
               onChangeField(field.key, e);
             }}
-            onBlur={e => {
+            onBlur={(e) => {
               onBlurField(field.key, e);
             }}
           />
@@ -328,9 +325,9 @@ function ApplicationStep3({
             name={state[field.key]}
             value={state[field.key]}
             style={{ flexDirection: 'row' }}
-            onChange={e => handleRadioChange(field.key, e)}
+            onChange={(e) => handleRadioChange(field.key, e)}
           >
-            {field.options.map(op => (
+            {field.options.map((op) => (
               <FormControlLabel
                 style={{ display: 'inline-block' }}
                 value={op}
@@ -342,15 +339,15 @@ function ApplicationStep3({
             ))}
           </RadioGroup>
         )}
-        { /* TODO: Fix this! */}
-        
+        {/* TODO: Fix this! */}
+
         {field.type === 'date' && (
-          <TextField 
+          <TextField
             variant="outlined"
             fullWidth
             type="date"
             value={state[field.key]}
-            onChange={ev => {
+            onChange={(ev) => {
               handleDateChange(field.key, ev.target.value);
             }}
           />
@@ -366,11 +363,11 @@ function ApplicationStep3({
       reviewMode={reviewMode}
     >
       <form noValidate onSubmit={handleSubmitForm}>
-        {step3Fields.map(field => (
+        {step3Fields.map((field) => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
         <Label>Official Campaign social media links</Label>
-        {step3Socials.map(field => (
+        {step3Socials.map((field) => (
           <SocialFieldWrapper key={field.key}>
             <TextField
               key={field.key}
@@ -391,10 +388,10 @@ function ApplicationStep3({
                   </InputAdornment>
                 ),
               }}
-              onChange={e => {
+              onChange={(e) => {
                 onChangeField(field.key, e);
               }}
-              onBlur={e => {
+              onBlur={(e) => {
                 onBlurField(field.key, e);
               }}
             />
