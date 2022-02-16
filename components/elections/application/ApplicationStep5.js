@@ -34,7 +34,7 @@ function ApplicationStep5({
     }
   }, [application]);
 
-  const handlePositionChange = positions => {
+  const handlePositionChange = (positions) => {
     const updatedState = {
       ...state,
       positions,
@@ -57,8 +57,8 @@ function ApplicationStep5({
     >
       <H2>Top Issues for your Campaign</H2>
       <SubTitle>
-        Please select any position tags you are aligned with to help distinguish
-        your campaign.
+        Please select up to top five (5) issue tags you are aligned with to help
+        supporters distinguish your campaign.
       </SubTitle>
       <br />
       <br />
@@ -66,6 +66,7 @@ function ApplicationStep5({
         selectedPositions={state.positions || []}
         onChange={handlePositionChange}
         disabled={reviewMode}
+        maxSelected={5}
       />
     </ApplicationWrapper>
   );
