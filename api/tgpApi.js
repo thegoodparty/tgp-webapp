@@ -1,6 +1,5 @@
 import apiHelper from '../helpers/apiHelper';
 const base = apiHelper.apiBase;
-console.log('base from tgpApi', base);
 const api = {
   base,
   //

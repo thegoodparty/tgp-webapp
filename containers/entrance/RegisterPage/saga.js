@@ -22,7 +22,6 @@ import candidateActions from '../../elections/CandidateNewPage/actions';
 function* register({ name, email, phone, zip, callback }) {
   try {
     const api = tgpApi.register;
-    console.log('in saga', api);
     const payload = {
       name,
       email,

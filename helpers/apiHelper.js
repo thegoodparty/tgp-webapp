@@ -15,7 +15,5 @@ if (API_ENV === 'local') {
   base = 'https://goodparty.org';
 }
 
-console.log('apiBase', apiBase);
-console.log('base', base);
 const apiHelper = { apiBase, base };
 export default apiHelper;
