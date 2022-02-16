@@ -147,9 +147,10 @@ function ApplicationStep1({
     disAffiliate: false,
     notJoin: false,
     noPay: false,
-    noNominee: false,
     peoplePowered: false,
-    antiCorruption: false,
+    honest: false,
+    transparent: false,
+    choices: false,
   });
 
   useEffect(() => {
@@ -170,9 +171,10 @@ function ApplicationStep1({
       updatedState.disAffiliate &&
       updatedState.notJoin &&
       updatedState.noPay &&
-      updatedState.noNominee &&
       updatedState.peoplePowered &&
-      updatedState.antiCorruption;
+      updatedState.honest &&
+      updatedState.transparent &&
+      updatedState.choices;
 
     updateApplicationCallback(application.id, {
       ...application,
@@ -186,9 +188,11 @@ function ApplicationStep1({
     state.disAffiliate &&
     state.notJoin &&
     state.noPay &&
-    state.noNominee &&
     state.peoplePowered &&
-    state.antiCorruption;
+    state.honest &&
+    state.transparent &&
+    state.choices;
+  console.log('state', state);
   return (
     <ApplicationWrapper
       step={step}
