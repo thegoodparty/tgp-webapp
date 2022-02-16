@@ -1,6 +1,6 @@
 import produce from 'immer';
-import { deleteCookies, getCookie, getUserCookie } from 'helpers/cookieHelper';
-import { fullStoryIdentify } from 'helpers/fullStoryHelper';
+import { deleteCookies, getCookie, getUserCookie } from '/helpers/cookieHelper';
+import { fullStoryIdentify } from '/helpers/fullStoryHelper';
 
 import types from './constants';
 

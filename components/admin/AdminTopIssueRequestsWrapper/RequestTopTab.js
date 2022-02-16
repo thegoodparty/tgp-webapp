@@ -59,7 +59,7 @@ function RequestTopTab({ activeTab = 'Update Requests' }) {
   return (
     <Wrapper>
       {tabs.map((tab, index) => (
-        <Link href={tab.link} passHref>
+        <Link href={tab.link} passHref key={index}>
           <a>
             <Tab
               key={tab.label}

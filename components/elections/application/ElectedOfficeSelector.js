@@ -206,7 +206,7 @@ function ElectedOfficeSelector({ application, updateApplicationCallback }) {
             </Grid>
           </Grid>{' '}
           {index === showError && (
-            <Error>"To Year" can't be smaller than "From Year"</Error>
+            <Error>&quot;To Year&quot; can&apos;t be smaller than &quot;From Year&quot;</Error>
           )}
         </Wrapper>
       ))}

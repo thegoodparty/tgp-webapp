@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import CandidatesWrapper from 'components/CandidatesWrapper';
+import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '../../components/shared/TgpHelmet';
 
 export function CandidatesPage({ ssrState }) {

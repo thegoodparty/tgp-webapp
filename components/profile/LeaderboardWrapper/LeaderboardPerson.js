@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
 
-import { numberFormatter } from 'helpers/numberHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 import UserAvatar from '../../shared/UserAvatar';
 import { getDisplayName } from '../../../helpers/userHelper';
 

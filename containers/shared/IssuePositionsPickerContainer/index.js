@@ -10,14 +10,15 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import IssuePositionsPickerWrapper from 'components/shared/IssuePositionsPickerWrapper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
+import IssuePositionsPickerWrapper from '/components/shared/IssuePositionsPickerWrapper';
 
 import makeSelectIssuePositionsPickerContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import snackbarActions from '../SnackbarContainer/actions';
 
 export function IssuePositionsPickerContainer({
   dispatch,
@@ -25,6 +26,8 @@ export function IssuePositionsPickerContainer({
   selectedPositions,
   onChange,
   disabled = false,
+  maxSelected,
+  showMaxMessage,
 }) {
   useInjectReducer({ key: 'issuePositionsPickerContainer', reducer });
   useInjectSaga({ key: 'issuePositionsPickerContainer', saga });
@@ -39,6 +42,8 @@ export function IssuePositionsPickerContainer({
     selectedPositions: selectedPositions || [],
     onChange,
     disabled,
+    maxSelected,
+    showMaxMessage,
   };
 
   return <IssuePositionsPickerWrapper {...childProps} />;
@@ -50,6 +55,8 @@ IssuePositionsPickerContainer.propTypes = {
   selectedPositions: PropTypes.array,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
+  maxSelected: PropTypes.number,
+  showMaxMessage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -59,15 +66,12 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    showMaxMessage: (msg) => {
+      dispatch(snackbarActions.showSnakbarAction(msg, 'error'));
+    },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(IssuePositionsPickerContainer);
+export default compose(withConnect, memo)(IssuePositionsPickerContainer);

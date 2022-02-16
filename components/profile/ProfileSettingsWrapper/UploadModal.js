@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
 
-import ImageCrop from 'components/shared/ImageCrop';
+import ImageCrop from '/components/shared/ImageCrop';
 import { Body, H2 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 

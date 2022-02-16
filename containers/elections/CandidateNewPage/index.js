@@ -12,19 +12,19 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import CandidateNewWrapper from 'components/elections/CandidateNewWrapper';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import { getUserCookie, setSignupRedirectCookie } from 'helpers/cookieHelper';
-import queryHelper from 'helpers/queryHelper';
-import AdminMenuEditCandidate from 'components/admin/AdminMenu/AdminMenuEditCandidate';
-import { partyResolver } from 'helpers/electionsHelper';
+import CandidateNewWrapper from '/components/elections/CandidateNewWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import { getUserCookie, setSignupRedirectCookie } from '/helpers/cookieHelper';
+import queryHelper from '/helpers/queryHelper';
+import AdminMenuEditCandidate from '/components/admin/AdminMenu/AdminMenuEditCandidate';
+import { partyResolver } from '/helpers/electionsHelper';
 
-import registerReducer from 'containers/entrance/RegisterPage/reducer';
-import registerSaga from 'containers/entrance/RegisterPage/saga';
-import registerActions from 'containers/entrance/RegisterPage/actions';
+import registerReducer from '/containers/entrance/RegisterPage/reducer';
+import registerSaga from '/containers/entrance/RegisterPage/saga';
+import registerActions from '/containers/entrance/RegisterPage/actions';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import { push } from 'connected-next-router';
 import reducer from './reducer';
 import saga from './saga';

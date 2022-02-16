@@ -11,18 +11,18 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import TgpHelmet from 'components/shared/TgpHelmet';
-import SetZipWrapper from 'components/entrance/SetZipWrapper';
-import profileSaga from 'containers/profile/ProfileSettingsPage/saga';
-import profileActions from 'containers/profile/ProfileSettingsPage/actions';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import SetZipWrapper from '/components/entrance/SetZipWrapper';
+import profileSaga from '/containers/profile/ProfileSettingsPage/saga';
+import profileActions from '/containers/profile/ProfileSettingsPage/actions';
 import {
   deleteSignupRedirectCookie,
   getSignupRedirectCookie,
   getUserCookie,
-} from 'helpers/cookieHelper';
+} from '/helpers/cookieHelper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectSetZipPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

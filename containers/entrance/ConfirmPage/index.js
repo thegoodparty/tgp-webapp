@@ -11,13 +11,13 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { getCookie, getUserCookie } from 'helpers/cookieHelper';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import ConfirmWrapper from 'components/entrance/ConfirmWrapper';
-import candidateNewPageSaga from 'containers/elections/CandidateNewPage/saga';
+import { getCookie, getUserCookie } from '/helpers/cookieHelper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import ConfirmWrapper from '/components/entrance/ConfirmWrapper';
+import candidateNewPageSaga from '/containers/elections/CandidateNewPage/saga';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectConfirmPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

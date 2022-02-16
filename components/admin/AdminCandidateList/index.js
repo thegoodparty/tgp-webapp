@@ -17,8 +17,8 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { BiLogInCircle } from 'react-icons/bi';
 import Link from 'next/link';
 import moment from 'moment';
-import { candidateRoute, partyResolver } from 'helpers/electionsHelper';
-import { H3 } from 'components/shared/typogrophy';
+import { candidateRoute, partyResolver } from '/helpers/electionsHelper';
+import { H3 } from '/components/shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { PurpleButton } from '../../shared/buttons';
@@ -139,6 +139,7 @@ function Index({
             <a
               href={route}
               target="_blank"
+              rel="noreferrer"
               style={{
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}
@@ -235,6 +236,7 @@ function Index({
             <a
               href={editRoute}
               target="_blank"
+              rel="noreferrer"
               style={{
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}

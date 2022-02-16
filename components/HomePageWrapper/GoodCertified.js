@@ -122,7 +122,7 @@ const GoodCertified = () => {
               <CardContent>
                 <CardTitle>Independent</CardTitle>
                 Good Certified candidates are not Republican or Democratic
-                politicians. They're real people running grassroots campaigns
+                politicians. They&apos;re real people running grassroots campaigns
                 from across the political spectrum.
               </CardContent>
             </Card>

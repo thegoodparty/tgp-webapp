@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import queryHelper from 'helpers/queryHelper';
-import LoadingAnimation from 'components/shared/LoadingAnimation';
+import queryHelper from '/helpers/queryHelper';
+import LoadingAnimation from '/components/shared/LoadingAnimation';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectTwitterCallbackPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

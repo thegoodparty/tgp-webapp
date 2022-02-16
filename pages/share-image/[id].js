@@ -1,5 +1,5 @@
-import ShareImagePage from 'containers/elections/ShareImageContainer';
-import tgpApi from 'api/tgpApi';
+import ShareImagePage from '/containers/elections/ShareImageContainer';
+import tgpApi from '/api/tgpApi';
 export default function Candidate({ ssrState }) {
   return <ShareImagePage ssrState={ssrState} />;
 }

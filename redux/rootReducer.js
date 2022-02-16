@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'connected-next-router';
 import { HYDRATE } from 'next-redux-wrapper';
-import globalReducer from 'containers/App/reducer';
+import globalReducer from '/containers/App/reducer';
 
 const reducer = (state, action) => {
   if (action.type === HYDRATE) {

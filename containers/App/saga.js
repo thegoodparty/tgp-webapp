@@ -1,10 +1,10 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { setUserCookie, setCookie } from 'helpers/cookieHelper';
-import requestHelper from 'helpers/requestHelper';
-import { getUuid, getUserFromStateOrCookie } from 'helpers/userHelper';
-import youActions from 'containers/you/YouPage/actions';
+import { setUserCookie, setCookie } from '/helpers/cookieHelper';
+import requestHelper from '/helpers/requestHelper';
+import { getUuid, getUserFromStateOrCookie } from '/helpers/userHelper';
+import youActions from '/containers/you/YouPage/actions';
 
-import tgpApi from 'api/tgpApi';
+import tgpApi from '/api/tgpApi';
 import types from './constants';
 import actions from './actions';
 

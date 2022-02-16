@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 
-import HomePageWrapper from 'components/HomePageWrapper';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import { logEvent } from 'services/AnalyticsService';
+import HomePageWrapper from '/components/HomePageWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import { logEvent } from '/services/AnalyticsService';
 
 import reducer from './reducer';
 import saga from './saga';

@@ -1,20 +1,20 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-next-router';
 
-import requestHelper from 'helpers/requestHelper';
+import requestHelper from '/helpers/requestHelper';
 import {
   deleteCookie,
   setCookie,
   setUserCookie,
   getSignupRedirectCookie,
   deleteSignupRedirectCookie,
-} from 'helpers/cookieHelper';
+} from '/helpers/cookieHelper';
 
-import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 
-import tgpApi from 'api/tgpApi';
-import { logEvent } from 'services/AnalyticsService';
-import globalActions from 'containers/App/actions';
+import tgpApi from '/api/tgpApi';
+import { logEvent } from '/services/AnalyticsService';
+import globalActions from '/containers/App/actions';
 
 import types from './constants';
 import actions from './actions';

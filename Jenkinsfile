@@ -4,9 +4,11 @@ pipeline {
     nodejs "node 12"
   }
   environment {
-    DEV_BRANCH        = "develop"
-    EB_DEV                = "gp-app-dev"
+    DEV_BRANCH            = "develop"
+    QA_BRANCH            = "qa"
     PROD_BRANCH           = "master"
+    EB_DEV                = "gp-app-dev"
+    EB_QA                = "gp-app-dev"
     EB_PROD               = "gp-app-prod"
     EB_TEST               = "tgp-site-test"
 
@@ -34,6 +36,8 @@ pipeline {
           script {
             if(env.BRANCH_NAME == PROD_BRANCH) {
             sh '/var/lib/jenkins/eb deploy $EB_PROD'
+          } else if(env.BRANCH_NAME == QA_BRANCH) {
+            sh '/var/lib/jenkins/eb deploy $EB_QA'
           } else if(env.BRANCH_NAME == DEV_BRANCH) {
             sh '/var/lib/jenkins/eb deploy $EB_DEV'
           } else {

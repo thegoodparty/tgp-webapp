@@ -1,5 +1,5 @@
-import Page from 'containers/admin/AdminAssociateCandidateUserPage';
-import tgpApi from 'api/tgpApi';
+import Page from '/containers/admin/AdminAssociateCandidateUserPage';
+import tgpApi from '/api/tgpApi';
 
 export default function Admin({ ssrState }) {
   return <Page ssrState={ssrState} />;

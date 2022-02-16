@@ -14,7 +14,7 @@ import ReactPlayer from 'react-player/lazy';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import NotFound from 'containers/shared/NotFoundPage';
+import NotFound from '/containers/shared/NotFoundPage';
 
 import { Body19, Body13 } from '../../shared/typogrophy';
 import ComparedCandidateCarousel from './ComparedCandidateCarousel';
@@ -92,9 +92,6 @@ function ComparedSection({
     return <NotFound />;
   }
   const { comparedCandidates } = candidate;
-  if (candidate.comparedCandidates?.candidates?.length > 0) {
-    candidate.comparedCandidates.candidates[0].image = candidate.image;
-  }
 
   return (
     <>

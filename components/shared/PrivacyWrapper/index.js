@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import PageWrapper from 'components/shared/PageWrapper';
-import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
-import { dateUsHelper } from 'helpers/dateHelper';
+import PageWrapper from '/components/shared/PageWrapper';
+import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 
 import { H1, Body11 } from '../typogrophy';
 

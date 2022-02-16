@@ -11,9 +11,9 @@ import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { partyResolver } from 'helpers/electionsHelper';
-import { numberFormatter } from 'helpers/numberHelper';
-import { achievementsHelper } from 'helpers/achievementsHelper';
+import { partyResolver } from '/helpers/electionsHelper';
+import { numberFormatter } from '/helpers/numberHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
 
 import { H3, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
@@ -137,7 +137,7 @@ function ProfileInfo({
                 {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
                 endorsed.
               </strong>{' '}
-              Let's get to {numberFormatter(achievements.nextStep)}!
+              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
             </div>
           </Endorsed>
 

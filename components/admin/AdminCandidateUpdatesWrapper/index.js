@@ -15,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
-import ImageUploadContainer from 'containers/shared/ImageUploadContainer';
+import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 
 import CandidateTopMenu from '../CandidateTopMenu';
 import { Body13, H2, Body, H3 } from '../../shared/typogrophy';
@@ -111,7 +111,8 @@ function AdminCandidateUpdatesWrapper({
   const [updates, setUpdates] = useState([]);
   useEffect(() => {
     if (candidate?.updatesList) {
-      setUpdates(candidate?.updatesList.reverse());
+      let updatesList = [ ...candidate?.updatesList ];
+      setUpdates(updatesList.reverse());
     }
   }, [candidate]);
 
@@ -284,7 +285,7 @@ function AdminCandidateUpdatesWrapper({
             <br />
             <br />
             <strong>
-              Update Image (in case the update doesn't have a youtube video)
+              Update Image (in case the update doesn&apos;t have a youtube video)
             </strong>
             <br />
             <br />
@@ -441,7 +442,7 @@ function AdminCandidateUpdatesWrapper({
                   )}
                   {update.image && update.image !== '' && (
                     <Grid item xs={12} md={6} style={{paddingTop: 70}}>
-                      <div 
+                      <div
                         style={{
                           backgroundImage: `url(${update.image})`,
                           backgroundSize: 'contain',
@@ -452,9 +453,9 @@ function AdminCandidateUpdatesWrapper({
                       >
 
                       </div>
-                      {/* <img 
-                        src={update.image} 
-                        className="full-image" 
+                      {/* <img
+                        src={update.image}
+                        className="full-image"
                         style={{ marginTop: 62 }}
                       /> */}
                     </Grid>

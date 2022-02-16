@@ -4,7 +4,7 @@
  *
  */
 import produce from 'immer';
-import { getCookie, setCookie } from 'helpers/cookieHelper';
+import { getCookie, setCookie } from '/helpers/cookieHelper';
 
 import types from './constants';
 

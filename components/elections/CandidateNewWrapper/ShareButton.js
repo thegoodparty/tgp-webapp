@@ -9,8 +9,8 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import { PurpleButton } from 'components/shared/buttons';
-import { logEvent } from 'services/AnalyticsService';
+import { PurpleButton } from '/components/shared/buttons';
+import { logEvent } from '/services/AnalyticsService';
 
 import { Body13 } from '../../shared/typogrophy';
 

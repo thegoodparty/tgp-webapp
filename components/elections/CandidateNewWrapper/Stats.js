@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { numberFormatter } from 'helpers/numberHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 import { Body13 } from '../../shared/typogrophy';
 
 const Wrapper = styled.div`
@@ -54,7 +54,7 @@ function Stats({ candidate }) {
             href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`}
             passHref
           >
-            <a>What's this?</a>
+            <a>What&apos;s this?</a>
           </Link>
         </Row>
         {unrepVoters ? (

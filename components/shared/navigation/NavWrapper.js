@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Hidden from '@material-ui/core/Hidden';
 
-import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
-import AdminMenu from 'components/admin/AdminMenu';
+import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
+import AdminMenu from '/components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 import FeedbackContainer from '../../../containers/shared/FeedbackContainer';

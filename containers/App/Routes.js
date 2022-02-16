@@ -9,46 +9,46 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import SplashPage from 'containers/intro/SplashPage/Loadable';
-import ZipFinderPage from 'containers/intro/ZipFinderPage/Loadable';
+import SplashPage from '/containers/intro/SplashPage/Loadable';
+import ZipFinderPage from '/containers/intro/ZipFinderPage/Loadable';
 
-import DistrictPage from 'containers/elections/DistrictPage/Loadable';
-import ElectionPage from 'containers/elections/ElectionPage/Loadable';
-import CandidatePage from 'containers/elections/CandidatePage/Loadable';
-import IncumbentsPage from 'containers/elections/IncumbentsPage/Loadable';
+import DistrictPage from '/containers/elections/DistrictPage/Loadable';
+import ElectionPage from '/containers/elections/ElectionPage/Loadable';
+import CandidatePage from '/containers/elections/CandidatePage/Loadable';
+import IncumbentsPage from '/containers/elections/IncumbentsPage/Loadable';
 
-import EmailRegisterPage from 'containers/you/EmailRegisterPage/Loadable';
-import ConfirmationSentPage from 'containers/you/ConfirmationSentPage/Loadable';
-import EmailConfirmationPage from 'containers/you/EmailConfirmationPage/Loadable';
-import YouPage from 'containers/you/YouPage/Loadable';
-import CrewPage from 'containers/you/CrewPage/Loadable';
-import LoginPage from 'containers/entrance/LoginPage/Loadable';
-import LoginConfirmPage from 'containers/you/LoginConfirmPage/Loadable';
-import EditProfilePage from 'containers/you/EditProfilePage/Loadable';
-import ResetPasswordPage from 'containers/entrance/ResetPasswordPage/Loadable';
+import EmailRegisterPage from '/containers/you/EmailRegisterPage/Loadable';
+import ConfirmationSentPage from '/containers/you/ConfirmationSentPage/Loadable';
+import EmailConfirmationPage from '/containers/you/EmailConfirmationPage/Loadable';
+import YouPage from '/containers/you/YouPage/Loadable';
+import CrewPage from '/containers/you/CrewPage/Loadable';
+import LoginPage from '/containers/entrance/LoginPage/Loadable';
+import LoginConfirmPage from '/containers/you/LoginConfirmPage/Loadable';
+import EditProfilePage from '/containers/you/EditProfilePage/Loadable';
+import ResetPasswordPage from '/containers/entrance/ResetPasswordPage/Loadable';
 
-import PartyPage from 'containers/party/PartyPage/Loadable';
-import FaqListPage from 'containers/party/FaqListPage/Loadable';
-import EventsPage from 'containers/party/EventsPage/Loadable';
+import PartyPage from '/containers/party/PartyPage/Loadable';
+import FaqListPage from '/containers/party/FaqListPage/Loadable';
+import EventsPage from '/containers/party/EventsPage/Loadable';
 
-import IncumbentsToScrape from 'containers/scraping/IncumbentsToScrape/Loadable';
-import AllCandidatesToScrape from 'containers/scraping/AllCandidatesToScrape/Loadable';
-import Races from 'containers/scraping/Races/Loadable';
+import IncumbentsToScrape from '/containers/scraping/IncumbentsToScrape/Loadable';
+import AllCandidatesToScrape from '/containers/scraping/AllCandidatesToScrape/Loadable';
+import Races from '/containers/scraping/Races/Loadable';
 
-import CreatorsPage from 'containers/creators/CreatorsPage/Loadable';
-import VerifyVotePage from 'containers/voterize/VerifyVotePage/Loadable';
+import CreatorsPage from '/containers/creators/CreatorsPage/Loadable';
+import VerifyVotePage from '/containers/voterize/VerifyVotePage/Loadable';
 
-import AdminPage from 'containers/admin/AdminPage/Loadable';
-import AdminEditCandidatePage from 'containers/admin/AdminEditCandidatePage/Loadable';
-import AdminAddCandidatePage from 'containers/admin/AdminAddCandidatePage/Loadable';
+import AdminPage from '/containers/admin/AdminPage/Loadable';
+import AdminEditCandidatePage from '/containers/admin/AdminEditCandidatePage/Loadable';
+import AdminAddCandidatePage from '/containers/admin/AdminAddCandidatePage/Loadable';
 
-import DirectoryPage from 'containers/directory/DirectoryPage/Loadable';
+import DirectoryPage from '/containers/directory/DirectoryPage/Loadable';
 
-import PrivacyPage from 'containers/shared/PrivacyPage/Loadable';
-import ResearchPage from 'containers/shared/ResearchPage/Loadable';
-import NotFoundPage from 'containers/shared/NotFoundPage/Loadable';
-import TwitterCallbackPage from 'containers/you/TwitterCallbackPage/Loadable';
-import HomePage from 'containers/HomePage/Loadable';
+import PrivacyPage from '/containers/shared/PrivacyPage/Loadable';
+import ResearchPage from '/containers/shared/ResearchPage/Loadable';
+import NotFoundPage from '/containers/shared/NotFoundPage/Loadable';
+import TwitterCallbackPage from '/containers/you/TwitterCallbackPage/Loadable';
+import HomePage from '/containers/HomePage/Loadable';
 
 function Routes() {
   return (

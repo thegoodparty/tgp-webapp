@@ -62,25 +62,22 @@ const CheckboxWrapper = styled(Body13)`
 
 const cards = [
   {
-    title: 'Independence',
+    title: 'Independent',
     subtitle:
-      "Good Certified candidates are not Republican or Democratic politicians. They're real people running grassroots campaigns from across the political spectrum.",
+      'Good Certified candidates are not Republicans or Democrats, beholden to either corrupt party. They’re real people from across the political spectrum, running grassroots campaigns to serve us for a change.',
     icon: 'independence.svg',
     checkboxes: [
       {
         id: 'disAffiliate',
-        text:
-          'I pledge to disaffiliate from the Democratic or Republican Parties and declare myself an independent or alternative party candidate for office.',
+        text: 'I pledge to disaffiliate from the Democratic or Republican Parties and declare myself an independent or alternative party candidate for office.',
       },
       {
         id: 'notJoin',
-        text:
-          'I pledge that, if elected, I will NOT join the caucuses or conferences of either of the two major parties (e.g. the House Republican Conference, Senate Republican Conference, House Democratic Caucus, or Senate Democratic Caucus).',
+        text: 'I pledge that, if elected, I will NOT join the conferences or caucuses of either of the two major parties (e.g. the House Republican Conference, Senate Republican Conference, House Democratic Caucus, or Senate Democratic Caucus).',
       },
       {
         id: 'noPay',
-        text:
-          'I pledge that, if elected, I will NOT pay membership dues or otherwise engage in fundraising for either of the two major political party committees while in office.',
+        text: 'I pledge that, if elected, I will NOT pay membership dues or otherwise engage in fundraising for either of the two major political party committees while in office.',
       },
     ],
   },
@@ -93,8 +90,7 @@ const cards = [
     checkboxes: [
       {
         id: 'peoplePowered',
-        text:
-          'I pledge to raise a majority of my campaign funding from individuals. To this end, I will ensure that donations to my campaign by corporations, unions, political action committees, or other non-living entities, will not exceed 49% of the total funds raised.',
+        text: 'I pledge to raise a majority of my campaign funding from individuals. To this end, I will ensure that donations to my campaign by corporations, unions, political action committees, or other non-living entities, will not exceed 49% of the total funds raised.',
       },
     ],
   },
@@ -118,7 +114,7 @@ const cards = [
       {
         id: 'transparent',
         text: `<div>
-            I pledge to serve transparently and to be accountable and responsive to the people - That means that to the fullest extent possible:
+            I pledge to serve transparently and to be accountable and responsive to the people. That means that to the fullest extent possible:
             <br />
             <ol>
               <li>I pledge to openly share my official and campaign meeting calendars for my constituents to be able to see all my activity on their behalf.</li>
@@ -203,21 +199,20 @@ function ApplicationStep1({
       <Title>Take the Good Party Pledge to get started</Title>
       <SubTitle>
         Good Party candidates take a pledge to be{' '}
-        <strong>Independent, People Powered and Anti-Corruption</strong>. Learn
-        more about our pledge.
+        <strong>Independent, People Powered and Anti-Corruption</strong>.
       </SubTitle>
-      {cards.map(card => (
+      {cards.map((card) => (
         <PurpleCard key={card.title}>
           <CardTitle>
             <Icon src={`/images/application/${card.icon}`} alt="" />
             {card.title}
           </CardTitle>
           <CardSubtitle>{card.subtitle}</CardSubtitle>
-          {card.checkboxes.map(item => (
+          {card.checkboxes.map((item) => (
             <CheckboxWrapper key={item.id}>
               <PurpleCheckbox
                 value={state[item.id]}
-                onChange={e => onChangeField(item.id, e.target.checked)}
+                onChange={(e) => onChangeField(item.id, e.target.checked)}
                 disabled={reviewMode}
               />
 

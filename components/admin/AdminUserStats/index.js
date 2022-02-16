@@ -24,8 +24,8 @@ import {
   CartesianGrid,
 } from 'recharts';
 
-import { H3, H1, H2, Body13 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
+import { H3, H1, H2, Body13 } from '/components/shared/typogrophy';
+import { numberFormatter } from '/helpers/numberHelper';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`
@@ -191,8 +191,8 @@ function AdminUserStats({ users, loadUsersCallback }) {
       <Wrapper>
         <div>
           <Select value={dateRange} onChange={handleChange} variant="outlined">
-            {dateRanges.map(range => (
-              <MenuItem value={range}>{range}</MenuItem>
+            {dateRanges.map((range, index) => (
+              <MenuItem value={range} key={index}>{range}</MenuItem>
             ))}
           </Select>
         </div>

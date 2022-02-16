@@ -10,8 +10,8 @@ import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { PurpleButton } from 'components/shared/buttons';
-import { partyResolver } from 'helpers/electionsHelper';
+import { PurpleButton } from '/components/shared/buttons';
+import { partyResolver } from '/helpers/electionsHelper';
 import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
@@ -167,7 +167,7 @@ function ShareImage({
               {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
               endorsed.
             </strong>{' '}
-            Let's get to {numberFormatter(achievements.nextStep)}!
+            Let&apos;s get to {numberFormatter(achievements.nextStep)}!
           </div>
         </Endorsed>
         <SupportersProgressBar
@@ -222,7 +222,7 @@ function ShareImage({
                 {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
                 endorsed.
               </strong>{' '}
-              Let's get to {numberFormatter(achievements.nextStep)}!
+              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
             </div>
           </Endorsed>
           <SupportersProgressBar

@@ -13,7 +13,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
-import { Body11, Body13, H2 } from 'components/shared/typogrophy';
+import { Body11, Body13, H2 } from '/components/shared/typogrophy';
 import { PurpleButton, OutlinedButton } from '../../shared/buttons';
 
 const TgpDialog = styled(Dialog)`

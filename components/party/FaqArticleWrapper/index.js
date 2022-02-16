@@ -6,8 +6,8 @@ import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import { Body, Body11, H1, Body13 } from 'components/shared/typogrophy';
-import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
+import { Body, Body11, H1, Body13 } from '/components/shared/typogrophy';
+import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
 import { PurpleButton } from '../../shared/buttons';
 
 const TgpDialog = styled(Dialog)`

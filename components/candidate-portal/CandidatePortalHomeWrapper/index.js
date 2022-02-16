@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
-import CandidatePortalUpdatesContainer from 'containers/candidate-portal/CandidatePortalUpdatesPage/CandidatePortalUpdatesContainer';
+import CandidatePortalUpdatesContainer from '/containers/candidate-portal/CandidatePortalUpdatesPage/CandidatePortalUpdatesContainer';
 
 import PortalPageWrapper from './PortalPageWrapper';
 import { H2, H3 } from '../../shared/typogrophy';

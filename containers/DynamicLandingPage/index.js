@@ -11,8 +11,8 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import ErrorPage from 'next/error';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectDynamicLandingPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

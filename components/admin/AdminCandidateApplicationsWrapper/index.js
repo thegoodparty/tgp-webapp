@@ -41,7 +41,7 @@ function AdminCandidateApplicationsWrapper({ applications }) {
         ) : (
           <Grid container spacing={3}>
             {applications.map(app => (
-              <Grid item xs={12} md={6} lg={4} kep={app.id}>
+              <Grid item xs={12} md={6} lg={4} key={app.id}>
                 <ApplicationPreview app={app} />
                 <br />
                 <Body13 className="text-center">

@@ -11,12 +11,12 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import { getUserCookie } from 'helpers/cookieHelper';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import PortalEmbedButtonWrapper from 'components/candidate-portal/PortalEmbedButtonWrapper';
+import { getUserCookie } from '/helpers/cookieHelper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import PortalEmbedButtonWrapper from '/components/candidate-portal/PortalEmbedButtonWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectPortalEmbedButtonPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

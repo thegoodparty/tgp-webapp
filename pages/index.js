@@ -1,5 +1,5 @@
-import HomePage from 'containers/HomePage';
-import tgpApi from 'api/tgpApi';
+import HomePage from '/containers/HomePage';
+import tgpApi from '/api/tgpApi';
 
 export default function Home({ ssrState }) {
   return <HomePage ssrState={ssrState} />;

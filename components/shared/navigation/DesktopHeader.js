@@ -7,7 +7,7 @@ import { MdIosShare } from 'react-icons/md';
 
 import styled from 'styled-components';
 
-import { logEvent } from 'services/AnalyticsService';
+import { logEvent } from '/services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
 import { PurpleButton } from '../buttons';
 import { Body13 } from '../typogrophy';
@@ -158,7 +158,7 @@ const DesktopHeader = ({
   };
   return (
     <Wrapper className={purpleNav && 'purple'}>
-      
+
       <ContentWrapper>
         {asCandidate && (
           <AsCandidateWrapper>
@@ -180,7 +180,7 @@ const DesktopHeader = ({
             logEvent('Link', 'Logo', 'Top Nav');
           }}
         >
-          <a style={{position: 'absolute', right: '45%' }}>
+          <a style={{position: 'absolute' }}>
             {purpleNav ? (
               <Logo
                 src="/images/new-logo-white.svg"
@@ -210,7 +210,7 @@ const DesktopHeader = ({
                   logEvent('Link', link.label, 'Top Nav');
                 }}
               >
-                <a style={{color: purpleNav ? 'white' : 'inherit'}}>{link.label}</a>
+                <a style={{color: purpleNav ? 'white' : '#5C00C7'}}>{link.label}</a>
               </Link>
             </TopLink>
           ))}

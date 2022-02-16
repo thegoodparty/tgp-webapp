@@ -11,25 +11,25 @@ import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectUser, {
   makeSelectRanking,
-} from 'containers/you/YouPage/selectors';
-import reducer from 'containers/you/YouPage/reducer';
-import saga from 'containers/you/YouPage/saga';
-import userActions from 'containers/you/YouPage/actions';
+} from '/containers/you/YouPage/selectors';
+import reducer from '/containers/you/YouPage/reducer';
+import saga from '/containers/you/YouPage/saga';
+import userActions from '/containers/you/YouPage/actions';
 import { createStructuredSelector } from 'reselect';
-import districtSaga from 'containers/intro/ZipFinderPage/saga';
-import districtReducer from 'containers/intro/ZipFinderPage/reducer';
-import districtActions from 'containers/intro/ZipFinderPage/actions';
+import districtSaga from '/containers/intro/ZipFinderPage/saga';
+import districtReducer from '/containers/intro/ZipFinderPage/reducer';
+import districtActions from '/containers/intro/ZipFinderPage/actions';
 
-import YouWrapper from 'components/you/YouWrapper';
+import YouWrapper from '/components/you/YouWrapper';
 
-import { getSignupRedirectCookie } from 'helpers/cookieHelper';
-import { userDistrict } from 'helpers/userHelper';
-import articlesHelper from 'helpers/articlesHelper';
-import { countCandidates } from 'helpers/candidatesHelper';
+import { getSignupRedirectCookie } from '/helpers/cookieHelper';
+import { userDistrict } from '/helpers/userHelper';
+import articlesHelper from '/helpers/articlesHelper';
+import { countCandidates } from '/helpers/candidatesHelper';
 
 import makeSelectZipFinderPage from '../../intro/ZipFinderPage/selectors';
 import { makeSelectContent } from '../../App/selectors';

@@ -168,7 +168,7 @@ function ApplicationStep7({
       reviewMode={reviewMode}
     >
       {state.map((section, index) => (
-        <SectionWrapper>
+        <SectionWrapper key={index}>
           <Link
             href={`/campaign-application/${application.id}/${index + 1}`}
             passHref
@@ -177,8 +177,8 @@ function ApplicationStep7({
               <Title>{section.title}</Title>
             </a>
           </Link>
-          {section.fields.map(field => (
-            <Field className={field.completed && 'completed'}>
+          {section.fields.map((field, index) => (
+            <Field className={field.completed && 'completed'} key={index}>
               <IconWrapper>
                 {field.completed ? <FaCheck /> : <FiMinusCircle />}
               </IconWrapper>{' '}

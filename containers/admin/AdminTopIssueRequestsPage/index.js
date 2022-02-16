@@ -12,9 +12,9 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import AdminTopIssueRequestsWrapper from 'components/admin/AdminTopIssueRequestsWrapper';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import AdminTopIssueRequestsWrapper from '/components/admin/AdminTopIssueRequestsWrapper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import adminIssueTopicsPageReducer from '../AdminIssueTopicsPage/reducer';
 import makeSelectAdminIssueTopicsPage from '../AdminIssueTopicsPage/selectors';
 import adminIssueTopicsSaga from '../AdminIssueTopicsPage/saga';

@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import Ama from 'components/shared/Ama';
+import Ama from '/components/shared/Ama';
 
-import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectSaga } from '/utils/injectSaga';
 import saga from './saga';
 import amaActions from './actions';
 

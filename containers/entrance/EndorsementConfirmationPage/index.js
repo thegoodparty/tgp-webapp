@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import TgpHelmet from 'components/shared/TgpHelmet';
-import EndorsementConfirmationWrapper from 'components/entrance/EndorsementConfirmationWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import EndorsementConfirmationWrapper from '/components/entrance/EndorsementConfirmationWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectEndorsementConfirmationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

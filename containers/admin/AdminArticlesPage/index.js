@@ -12,12 +12,12 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import makeSelectUser from 'containers/you/YouPage/selectors';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import AdminArticlesFeedback from 'components/admin/AdminArticlesFeedback';
+import makeSelectUser from '/containers/you/YouPage/selectors';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import AdminArticlesFeedback from '/components/admin/AdminArticlesFeedback';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectAdminArticlesPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

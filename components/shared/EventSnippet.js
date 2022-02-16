@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player/lazy';
 import Grid from '@material-ui/core/Grid';
-import { Body, Body12 } from 'components/shared/typogrophy/index';
-import OutlinedButton from 'components/shared/buttons/OutlinedButton';
+import { Body, Body12 } from '/components/shared/typogrophy/index';
+import OutlinedButton from '/components/shared/buttons/OutlinedButton';
 
 const Wrapper = styled.div`
   margin-top: 36px;

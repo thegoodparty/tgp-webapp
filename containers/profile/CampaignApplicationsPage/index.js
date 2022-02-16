@@ -11,11 +11,11 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import TgpHelmet from 'components/shared/TgpHelmet';
-import CampaignApplicationsWrapper from 'components/profile/CampaignApplicationsWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import CampaignApplicationsWrapper from '/components/profile/CampaignApplicationsWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectCampaignApplicationsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Body19 } from 'components/shared/typogrophy';
+import { Body19 } from '/components/shared/typogrophy';
 import Updates from '../../elections/CandidateNewWrapper/Updates';
 
 const Wrapper = styled.section`

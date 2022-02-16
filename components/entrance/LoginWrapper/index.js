@@ -5,14 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
-import PageWrapper from 'components/shared/PageWrapper';
-import { Body13, H1 } from 'components/shared/typogrophy';
+import PageWrapper from '/components/shared/PageWrapper';
+import { Body13, H1 } from '/components/shared/typogrophy';
 import globals from '../../../globals';
 import { PurpleButton } from '../../shared/buttons';
 import TwitterButton from '../../shared/TwitterButton';
 import PhoneOrEmailInput from '../../shared/PhoneOrEmailInput';
 const SocialButton = dynamic(
-  () => import('components/you/SocialRegisterWrapper/SocialButton'),
+  () => import('/components/you/SocialRegisterWrapper/SocialButton'),
   { ssr: false },
 );
 

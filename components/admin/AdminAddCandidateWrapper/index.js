@@ -10,14 +10,14 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Link from 'next/link';
 
-import Nav from 'containers/shared/Nav';
-import { BlueButton, PurpleButton } from 'components/shared/buttons';
+import Nav from '/containers/shared/Nav';
+import { BlueButton, PurpleButton } from '/components/shared/buttons';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { BsTrash } from 'react-icons/bs';
-import { states } from 'helpers/statesHelper';
+import { states } from '/helpers/statesHelper';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';

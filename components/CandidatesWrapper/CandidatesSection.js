@@ -41,8 +41,8 @@ function CandidatesSection({ candidates }) {
         <>
           <StyledH3>{shortToLongState[state] || 'No State'}</StyledH3>
           <Grid container spacing={1}>
-            {candidates[state].map(candidate => (
-              <Grid item xs={12} md={6} lg={4}>
+            {candidates[state].map((candidate, index) => (
+              <Grid item xs={12} md={6} lg={4} key={index}>
                 <CandidateCard candidate={candidate} />
               </Grid>
             ))}

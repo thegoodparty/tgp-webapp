@@ -1,8 +1,8 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 
-import requestHelper from 'helpers/requestHelper';
-import tgpApi from 'api/tgpApi';
-import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import requestHelper from '/helpers/requestHelper';
+import tgpApi from '/api/tgpApi';
+import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 
 import types from './constants';
 

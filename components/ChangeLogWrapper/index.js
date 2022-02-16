@@ -55,7 +55,7 @@ function ChangeLogWrapper({ releases }) {
       <StyledH1>Change Log</StyledH1>
       <Timeline align="alternate">
         {sortedReleases?.map(release => (
-          <TimelineItem id={release.id}>
+          <TimelineItem id={release.id} key={release.id}>
             <TimelineOppositeContent>
               <Typography variant="body2" color="textSecondary">
                 {release.releaseDate}
