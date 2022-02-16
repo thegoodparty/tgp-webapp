@@ -7,6 +7,9 @@ if (API_ENV === 'local') {
 } else if (API_ENV === 'dev' || API_ENV === 'development') {
   apiBase = 'https://api-dev.goodparty.org/api/v1/';
   base = 'https://dev.goodparty.org';
+} else if (API_ENV === 'qa' || API_ENV === 'qa') {
+  apiBase = 'https://api-qa.goodparty.org/api/v1/';
+  base = 'https://qa.goodparty.org';
 } else if (API_ENV === 'prod') {
   apiBase = 'https://api.goodparty.org/api/v1/';
   base = 'https://goodparty.org';
