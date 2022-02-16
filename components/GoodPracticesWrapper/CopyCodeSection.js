@@ -15,8 +15,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ToggleButton from '@material-ui/lab/ToggleButton';
-import ColorPicker from 'material-ui-color-picker';
-
+import { ChromePicker } from 'react-color'
 import { CopyBlock, dracula } from 'react-code-blocks';
 
 const CopyCodeWrapper = styled.div`
@@ -35,7 +34,30 @@ const ReverseGrid = styled(Grid)`
     flex-direction: row-reverse;
   }
 `;
+const ColorPicker = ({color, onChange, label}) => {
+  const popover = {
+    position: 'absolute',
+    zIndex: '2',
+  }
+  const cover = {
+    position: 'fixed',
+    top: '0px',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+  }
+  const [open, setOpen] = useState(false);
 
+  return (
+    <>
+      <button style={{ fontSize: 17, color: color, width: 200, marginBottom: 15 }} onClick={ () => setOpen(true) }>{label}: {color}</button>
+      { open ? <div style={ popover }>
+        <div style={ cover } onClick={ () => setOpen(false) }/>
+        <ChromePicker color={ color } onChange={ color => onChange(color.hex)} />
+      </div> : null }
+    </>
+  )
+}
 function CopyCodeSection({ candidates, candidateSelected = false }) {
   const [selectedCandidate, setSelectedCandidate] = useState(candidateSelected);
   const [type, setType] = React.useState('endorse-btn');
@@ -80,7 +102,6 @@ function CopyCodeSection({ candidates, candidateSelected = false }) {
   <a href="${domain}/embed/redirect/${selectedCandidate}?type=endorse" 
     style="
       width: ${width}%; 
-      text-decoration: none; 
       font-size: 16px; 
       color: ${textColor}; 
       padding: 12px 3px; 
@@ -108,6 +129,7 @@ function CopyCodeSection({ candidates, candidateSelected = false }) {
     />
   </a>
       `;
+  
   return (
     <CopyCodeWrapper>
       <ReverseGrid container spacing={3}>
@@ -189,34 +211,12 @@ function CopyCodeSection({ candidates, candidateSelected = false }) {
                     <Grid item xd={12} md={4}>
                       <InputLabel>Colors</InputLabel>
                       <br />
-                      <ColorPicker
-                        name="color"
-                        defaultValue="#000"
-                        value={bgColor}
-                        // value={this.state.color} - for controlled component
-                        onChange={color => setBgColor(color)}
-                        label="Button"
-                        style={{ marginBottom: 10 }}
-                      />
+                      <ColorPicker label="Background" color={bgColor} onChange={setBgColor} />
                       <br />
-                      <ColorPicker
-                        name="color"
-                        defaultValue="#000"
-                        value={borderColor}
-                        // value={this.state.color} - for controlled component
-                        onChange={color => setBorderColor(color)}
-                        label="Borders"
-                        style={{ marginBottom: 10 }}
-                      />
+                      <ColorPicker label="Borders" color={borderColor} onChange={setBorderColor} />
                       <br />
-                      <ColorPicker
-                        name="color"
-                        defaultValue="#000"
-                        value={textColor}
-                        onChange={color => setTextColor(color)}
-                        label="Text"
-                        style={{ marginBottom: 10 }}
-                      />
+                      <ColorPicker label="Text" color={textColor} onChange={setTextColor} />
+
                     </Grid>
                     <Grid item xd={12} md={4}>
                       <InputLabel>Button Text</InputLabel>
@@ -227,7 +227,7 @@ function CopyCodeSection({ candidates, candidateSelected = false }) {
                         // label="Outlined"
                         variant="outlined"
                         value={buttonText}
-                        onChange={ev => setButtonText(ev.target.value)}
+                        onChange={ev => ev.target.value.length < 30 && setButtonText(ev.target.value)}
                       />
                     </Grid>
                   </>

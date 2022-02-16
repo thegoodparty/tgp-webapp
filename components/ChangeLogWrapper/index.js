@@ -23,16 +23,19 @@ import PageWrapper from '../shared/PageWrapper';
 import { H1, H2 } from '../shared/typogrophy';
 
 const StyledH1 = styled(H1)`
-  margin-top: 30px;
-  color: #000;
-  font-size: 40px;
-  line-height: 52px;
+  && {
+    margin-top: 30px;
+    color: #000;
+    font-size: 26px;
+    line-height: 52px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
-    font-size: 66px;
-    line-height: 82px;
+    @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+      font-size: 36px;
+      line-height: 82px;
+    }
   }
+  
 `;
 
 function ChangeLogWrapper({ releases }) {
@@ -52,7 +55,7 @@ function ChangeLogWrapper({ releases }) {
       <StyledH1>Change Log</StyledH1>
       <Timeline align="alternate">
         {sortedReleases?.map(release => (
-          <TimelineItem id={release.id}>
+          <TimelineItem id={release.id} key={release.id}>
             <TimelineOppositeContent>
               <Typography variant="body2" color="textSecondary">
                 {release.releaseDate}

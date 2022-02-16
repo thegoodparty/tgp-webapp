@@ -11,9 +11,9 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import ChangeLogWrapper from 'components/ChangeLogWrapper';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import ChangeLogWrapper from '/components/ChangeLogWrapper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import TgpHelmet from '../../components/shared/TgpHelmet';
 import makeSelectChangeLogPage from './selectors';
 import reducer from './reducer';

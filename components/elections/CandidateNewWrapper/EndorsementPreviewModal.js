@@ -8,8 +8,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
-import QueryModalContainer from 'containers/shared/QueryModalContainer';
-import { logEvent } from 'services/AnalyticsService';
+import QueryModalContainer from '/containers/shared/QueryModalContainer';
+import { logEvent } from '/services/AnalyticsService';
 
 import { Body11 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';

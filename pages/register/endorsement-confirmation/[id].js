@@ -1,5 +1,5 @@
-import Container from 'containers/entrance/EndorsementConfirmationPage';
-import tgpApi from 'api/tgpApi';
+import Container from '/containers/entrance/EndorsementConfirmationPage';
+import tgpApi from '/api/tgpApi';
 import requestHelper from '../../../helpers/requestHelper';
 import actions from '../../../containers/elections/CandidateNewPage/actions';
 export default function Page({ ssrState }) {

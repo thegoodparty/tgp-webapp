@@ -10,12 +10,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import LeaderboardWrapper from 'components/profile/LeaderboardWrapper';
-import TgpHelmet from 'components/shared/TgpHelmet';
-import { getUserCookie } from 'helpers/cookieHelper';
+import LeaderboardWrapper from '/components/profile/LeaderboardWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import { getUserCookie } from '/helpers/cookieHelper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectLeaderboardPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

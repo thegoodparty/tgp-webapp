@@ -8,8 +8,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import { partyResolver } from 'helpers/electionsHelper';
-import { kFormatter, numberFormatter } from 'helpers/numberHelper';
+import { partyResolver } from '/helpers/electionsHelper';
+import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import Link from 'next/link';
 
 import CandidateAvatar from './CandidateAvatar';
@@ -116,7 +116,7 @@ function CandidateCard({ candidate }) {
               <strong>
                 {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
               </strong>{' '}
-              Let's get to {numberFormatter(achievements.nextStep)}!
+              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
             </div>
           </Endorsed>
 

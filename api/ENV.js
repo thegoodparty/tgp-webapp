@@ -6,6 +6,8 @@ if (typeof window !== 'undefined') {
     ENV = 'local';
   } else if (host === 'dev.goodparty.org') {
     ENV = 'dev';
+  } else if (host === 'qa.goodparty.org') {
+    ENV = 'qa';
   } else if (host === 'goodparty.org') {
     ENV = 'prod';
   } else {
@@ -15,7 +17,6 @@ if (typeof window !== 'undefined') {
   ENV = 'prod';
 }
 
-export const GOOGLE_API_KEY = 'AIzaSyCPNVlxUzEl7uJaCmaxEVQFhsQP1jSS_pI';
 export const GA_ID = 'UA-146762622-1';
 
 export default ENV;

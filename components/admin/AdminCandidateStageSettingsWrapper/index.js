@@ -10,14 +10,8 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 
-import { PurpleButton } from 'components/shared/buttons';
-import Nav from 'containers/shared/Nav';
+import { PurpleButton } from '/components/shared/buttons';
 import { H2, H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateAvatar';
 import CandidateTopMenu from '../CandidateTopMenu';
@@ -129,51 +123,37 @@ function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
             <StageTitle>
               <Checkbox
                 checked={signatureState.isActive}
-                onChange={event =>
+                onChange={(event) =>
                   onChangeSignature('isActive', event.target.checked)
                 }
               />{' '}
               Signature Stage
             </StageTitle>
             <Item>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  fullWidth
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="signature-start-date"
-                  label="Start Date"
-                  value={signatureState.startDate}
-                  onChange={date => {
-                    onChangeSignature('startDate', date);
-                  }}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </MuiPickersUtilsProvider>
+              <TextField
+                fullWidth
+                label="Start Date"
+                type="date"
+                variant="outlined"
+                value={signatureState.startDate}
+                onChange={(ev) => {
+                  onChangeSignature('startDate', ev.target.value);
+                }}
+                InputLabelProps={{ shrink: true }}
+              />
             </Item>
             <Item>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  fullWidth
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="signature-end-date"
-                  label="End Date"
-                  value={signatureState.endDate}
-                  onChange={date => {
-                    onChangeSignature('endDate', date);
-                  }}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </MuiPickersUtilsProvider>
+              <TextField
+                fullWidth
+                label="End Date"
+                type="date"
+                variant="outlined"
+                value={signatureState.endDate}
+                onChange={(ev) => {
+                  onChangeSignature('endDate', ev.target.value);
+                }}
+                InputLabelProps={{ shrink: true }}
+              />
             </Item>
             <Item>
               <TextField
@@ -181,7 +161,7 @@ function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
                 variant="outlined"
                 label="Signature Needed"
                 value={signatureState.signaturesNeeded}
-                onChange={e =>
+                onChange={(e) =>
                   onChangeSignature('signaturesNeeded', e.target.value)
                 }
               />
@@ -193,31 +173,24 @@ function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
             <StageTitle>
               <Checkbox
                 checked={registrationState.isActive}
-                onChange={event =>
+                onChange={(event) =>
                   onChangeRegistration('isActive', event.target.checked)
                 }
               />{' '}
               Registration stage
             </StageTitle>
             <Item>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  fullWidth
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="registration-end-date"
-                  label="End Date"
-                  value={registrationState.endDate}
-                  onChange={date => {
-                    onChangeRegistration('endDate', date);
-                  }}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </MuiPickersUtilsProvider>
+              <TextField
+                fullWidth
+                label="End Date"
+                type="date"
+                variant="outlined"
+                value={registrationState.endDate}
+                onChange={(ev) => {
+                  onChangeRegistration('endDate', ev.target.value);
+                }}
+                InputLabelProps={{ shrink: true }}
+              />
             </Item>
 
             <Item>Registration #: 123</Item>
@@ -226,31 +199,24 @@ function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
             <StageTitle>
               <Checkbox
                 checked={gotvState.isActive}
-                onChange={event =>
+                onChange={(event) =>
                   onChangeGotv('isActive', event.target.checked)
                 }
               />{' '}
               GOTV stage
             </StageTitle>
             <Item>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  fullWidth
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="election-date"
-                  label="Election Day"
-                  value={gotvState.electionDay}
-                  onChange={date => {
-                    onChangeGotv('electionDay', date);
-                  }}
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
-                />
-              </MuiPickersUtilsProvider>
+              <TextField
+                fullWidth
+                label="Election Day"
+                type="date"
+                variant="outlined"
+                value={gotvState.electionDay}
+                onChange={(ev) => {
+                  onChangeGotv('electionDay', ev.target.value);
+                }}
+                InputLabelProps={{ shrink: true }}
+              />
             </Item>
           </Grid>
         </Grid>

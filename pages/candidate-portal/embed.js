@@ -1,4 +1,4 @@
-import Page from 'containers/candidate-portal/PortalEmbedButtonPage';
+import Page from '/containers/candidate-portal/PortalEmbedButtonPage';
 import tgpApi from '../../api/tgpApi';
 export default function Admin({ ssrState }) {
   return <Page ssrState={ssrState} />;

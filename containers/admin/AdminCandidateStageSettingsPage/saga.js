@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import requestHelper from 'helpers/requestHelper';
-import { trimObject } from 'helpers/stringHelper';
+import requestHelper from '/helpers/requestHelper';
+import { trimObject } from '/helpers/stringHelper';
 
-import tgpApi from 'api/tgpApi';
-import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import tgpApi from '/api/tgpApi';
+import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 
 function* updateCandidate({ candidate }) {

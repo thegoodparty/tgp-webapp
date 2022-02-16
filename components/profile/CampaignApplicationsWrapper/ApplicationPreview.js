@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { FaTrash } from 'react-icons/fa';
 
-import { dateUsHelper } from 'helpers/dateHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 
 import { Body, Body13, Body11 } from '../../shared/typogrophy';
 

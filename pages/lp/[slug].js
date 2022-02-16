@@ -1,4 +1,4 @@
-import Page from 'containers/DynamicLandingPage';
+import Page from '/containers/DynamicLandingPage';
 import tgpApi from '../../api/tgpApi';
 export default function LP({ ssrState }) {
   return <Page ssrState={ssrState} />;

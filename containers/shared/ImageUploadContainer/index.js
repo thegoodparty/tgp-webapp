@@ -10,10 +10,10 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import ImageUploadWrapper from 'components/shared/ImageUploadWrapper';
+import ImageUploadWrapper from '/components/shared/ImageUploadWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectImageUploadContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';

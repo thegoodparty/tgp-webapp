@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { H3 } from '../../shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
-import ENV from 'api/ENV';
+import ENV from '/api/ENV';
 import UserAvatar from '../../shared/UserAvatar';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 

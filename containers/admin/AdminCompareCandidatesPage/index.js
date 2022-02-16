@@ -12,10 +12,10 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useRouter } from 'next/router';
 
-import AdminCompareCandidatesWrapper from 'components/admin/AdminCompareCandidatesWrapper';
+import AdminCompareCandidatesWrapper from '/components/admin/AdminCompareCandidatesWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectAdminCompareCandidatesPage from './selectors';
 import adminCandidateImageReducer from '../AdminCandidateImagePage/reducer';
 import saga from './saga';

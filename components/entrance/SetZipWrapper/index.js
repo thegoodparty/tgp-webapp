@@ -10,9 +10,9 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-import PageWrapper from 'components/shared/PageWrapper';
-import { Body, Body13, H1 } from 'components/shared/typogrophy';
-import { PurpleButton } from 'components/shared/buttons';
+import PageWrapper from '/components/shared/PageWrapper';
+import { Body, Body13, H1 } from '/components/shared/typogrophy';
+import { PurpleButton } from '/components/shared/buttons';
 
 const Wrapper = styled.div`
   padding: 24px 0;

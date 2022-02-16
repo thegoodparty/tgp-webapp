@@ -1,8 +1,7 @@
 import { call, select, put } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
 
-import userActions from 'containers/you/YouPage/actions';
-import { makeSelectToken } from 'containers/you/YouPage/selectors';
+import userActions from '/containers/you/YouPage/actions';
+import { makeSelectToken } from '/containers/you/YouPage/selectors';
 import { headersOptions } from './httpHeaderHelper';
 import fetchHelper from './fetchHelper';
 import snackbarActions from '../containers/shared/SnackbarContainer/actions';

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import PageWrapper from 'components/shared/PageWrapper';
-import { H3 } from 'components/shared/typogrophy/index';
-import OutlinedButton from 'components/shared/buttons/OutlinedButton';
-import TopQuestions from 'components/shared/TopQuestions';
-import { AmaContainer } from 'containers/shared/AmaContainer';
+import PageWrapper from '/components/shared/PageWrapper';
+import { H3 } from '/components/shared/typogrophy/index';
+import OutlinedButton from '/components/shared/buttons/OutlinedButton';
+import TopQuestions from '/components/shared/TopQuestions';
+import { AmaContainer } from '/containers/shared/AmaContainer';
 
 const InnerWrapper = styled.div`
   display: flex;
@@ -16,7 +16,8 @@ const InnerWrapper = styled.div`
   align-items: center;
   min-height: calc(100vh);
   min-height: calc(var(--vh, 1vh) * 100 - 150px);
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     justify-content: flex-start;
     min-height: auto;
   }
@@ -27,7 +28,8 @@ const Login = styled.div`
   color: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
   text-align: right;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     position: static;
     text-align: right;
     width: 100%;
@@ -64,12 +66,12 @@ const YouWrapper = ({ articles }) => {
   return (
     <PageWrapper white>
       <Login>
-        <Link href="/register" data-cy="sign-up">
-          Sign-Up
+        <Link href="/register" data-cy="sign-up" passHref>
+          <a>Sign-Up</a>
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link href="login" data-cy="log-in">
-          Login
+        <Link href="login" data-cy="log-in" passHref>
+          <a>Login</a>
         </Link>
       </Login>
       <InnerWrapper>
@@ -80,10 +82,12 @@ const YouWrapper = ({ articles }) => {
           then we all vote to get them in.
         </H3Body>
         <ButtonWrapper>
-          <Link href="/register" data-cy="count-in">
-            <OutlinedButton active fullWidth>
-              COUNT ME IN!
-            </OutlinedButton>
+          <Link href="/register" data-cy="count-in" passHref>
+            <a>
+              <OutlinedButton active fullWidth>
+                COUNT ME IN!
+              </OutlinedButton>
+            </a>
           </Link>
         </ButtonWrapper>
       </InnerWrapper>

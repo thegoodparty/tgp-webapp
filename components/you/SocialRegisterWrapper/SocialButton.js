@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import tgpTheme from 'theme/index';
+import tgpTheme from '/theme/index';
 import { Body11 } from '../../shared/typogrophy';
 
 const StyledButton = styled(Button)`

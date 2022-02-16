@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Body9, Body11 } from 'components/shared/typogrophy';
-import { numberFormatter } from 'helpers/numberHelper';
-import { achievementsHelper } from 'helpers/achievementsHelper';
+import { Body9, Body11 } from '/components/shared/typogrophy';
+import { numberFormatter } from '/helpers/numberHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
 
 const ProgressBarWrapper = styled.div`
   display: flex;

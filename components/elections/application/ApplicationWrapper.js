@@ -243,7 +243,7 @@ function ApplicationWrapper({
                     <PurpleButton fullWidth>Continue</PurpleButton>
                   ) : (
                     <PurpleButton fullWidth disabled={!canContinue}>
-                      I pledge to be a Good Candidate
+                      Continue
                     </PurpleButton>
                   )}
                 </a>

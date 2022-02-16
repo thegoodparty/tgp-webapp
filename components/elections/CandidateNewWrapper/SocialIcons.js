@@ -20,8 +20,8 @@ import {
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 
-import { validateLink } from 'helpers/linkHelper';
-import { logEvent } from 'services/AnalyticsService';
+import { validateLink } from '/helpers/linkHelper';
+import { logEvent } from '/services/AnalyticsService';
 
 const SocialLink = styled.a`
   margin-right: 25px;
@@ -47,7 +47,6 @@ function SocialIcons({ candidate }) {
     reddit,
   } = candidate;
   if (candidate.comparedCandidates?.candidates?.length > 0) {
-    candidate.comparedCandidates.candidates[0].image = candidate.image;
     ({ website } = candidate.comparedCandidates.candidates[0]);
   }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import BlueButton from 'components/shared/buttons/BlueButton';
+import BlueButton from '/components/shared/buttons/BlueButton';
 import { Body13 } from './typogrophy';
 
 const StyledBody = styled(Body13)`

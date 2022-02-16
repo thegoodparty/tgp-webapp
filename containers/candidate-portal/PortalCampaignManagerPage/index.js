@@ -12,9 +12,9 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import { getUserCookie } from 'helpers/cookieHelper';
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { getUserCookie } from '/helpers/cookieHelper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectPortalCampaignManagerPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

@@ -1,11 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'connected-next-router';
 
-import requestHelper from 'helpers/requestHelper';
+import requestHelper from '/helpers/requestHelper';
 
-import tgpApi from 'api/tgpApi';
-import snackbarActions from 'containers/shared/SnackbarContainer/actions';
-import { setCookie } from 'helpers/cookieHelper';
+import tgpApi from '/api/tgpApi';
+import snackbarActions from '/containers/shared/SnackbarContainer/actions';
+import { setCookie } from '/helpers/cookieHelper';
 
 import types from './constants';
 import actions from './actions';

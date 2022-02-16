@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { logEvent } from 'services/AnalyticsService';
+import { logEvent } from '/services/AnalyticsService';
 
 import CompareCandidate from './CompareCandidate';
 import TooltipModal from './TooltipModal';

@@ -33,12 +33,15 @@ const Input = styled(TextField)`
   }
 `;
 
-export const isValidPhone = phone => {
+export const isValidPhone = (phone) => {
   if (!phone) {
     return false;
   }
   const formattedPhone = phone.replace(/\D/g, '');
-  return formattedPhone.length === 10;
+  return (
+    formattedPhone.length === 10 ||
+    (formattedPhone.length === 11 && formattedPhone.charAt(0) === '1')
+  );
 };
 
 function PhoneInput({ value, onChangeCallback, onBlurCallback }) {
@@ -52,7 +55,7 @@ function PhoneInput({ value, onChangeCallback, onBlurCallback }) {
     }
   }, [value]);
 
-  const onChangeValue = async event => {
+  const onChangeValue = async (event) => {
     if (event) {
       const val = event.target.value;
       const isValid = isValidPhone(val);
@@ -62,7 +65,7 @@ function PhoneInput({ value, onChangeCallback, onBlurCallback }) {
     }
   };
 
-  const formatDisplay = val => {
+  const formatDisplay = (val) => {
     const formatted = new AsYouType('US').input(val);
     // issue that we can't delete (XXX)
     if (
@@ -76,7 +79,7 @@ function PhoneInput({ value, onChangeCallback, onBlurCallback }) {
     }
   };
 
-  const onBlurChange = async event => {
+  const onBlurChange = async (event) => {
     if (event) {
       const val = event.target.value;
       onBlurCallback(val.replace(/\D/g, ''));

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { getInitials } from 'helpers/userHelper';
+import { getInitials } from '/helpers/userHelper';
 import { Body14, H1 } from './typogrophy';
 
 const Wrapper = styled(Body14)`

@@ -13,7 +13,7 @@ import { FaSave } from 'react-icons/fa';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 
-import Nav from 'containers/shared/Nav';
+import Nav from '/containers/shared/Nav';
 import { Body, H2 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';

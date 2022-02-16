@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
-import PageWrapper from 'components/shared/PageWrapper';
+import PageWrapper from '/components/shared/PageWrapper';
 import TopSection from './TopSection';
 import CampaignSection from './CampaignsSection';
 import IncompleteProfileBanner from './IncompleteProfileBanner';

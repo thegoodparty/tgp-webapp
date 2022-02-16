@@ -39,17 +39,19 @@ function IssuePositionsPickerWrapper({
   selectedPositions,
   onChange,
   disabled,
+  maxSelected,
+  showMaxMessage,
 }) {
   const [selected, setSelected] = useState({});
   useEffect(() => {
     const hash = {};
-    selectedPositions.forEach(topic => {
+    selectedPositions.forEach((topic) => {
       hash[topic.id] = topic;
     });
     setSelected(hash);
   }, [selectedPositions]);
 
-  const handleSelect = position => {
+  const handleSelect = (position) => {
     if (disabled) {
       return;
     }
@@ -58,18 +60,27 @@ function IssuePositionsPickerWrapper({
       // deselect
       delete updated[position.id];
     } else {
-      updated[position.id] = position;
+      if (maxSelected) {
+        if (maxSelected > Object.keys(updated).length) {
+          updated[position.id] = position;
+        } else {
+          showMaxMessage(`You can only select ${maxSelected} issues`);
+        }
+      } else {
+        updated[position.id] = position;
+      }
     }
     setSelected(updated);
     onChange(Object.values(updated));
   };
   return (
     <div>
-      {topics.map(topic => (
-        <TopicWrapper>
+      {topics.map((topic, index) => (
+        <TopicWrapper key={index}>
           <Title>{topic.topic}</Title>
-          {(topic.positions || []).map(position => (
+          {(topic.positions || []).map((position, index) => (
             <Position
+              key={index}
               className={selected[position.id] && 'active'}
               onClick={() => {
                 handleSelect(position);
@@ -88,6 +99,8 @@ IssuePositionsPickerWrapper.propTypes = {
   topics: PropTypes.array,
   selectedPositions: PropTypes.array,
   onChange: PropTypes.func,
+  maxSelected: PropTypes.number,
+  showMaxMessage: PropTypes.func,
 };
 
 export default IssuePositionsPickerWrapper;

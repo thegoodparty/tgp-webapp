@@ -1,4 +1,4 @@
-import Page from 'containers/profile/LeaderboardPage';
+import Page from '/containers/profile/LeaderboardPage';
 
 export default function You() {
   return <Page />;

@@ -8,9 +8,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Nav from 'containers/shared/Nav';
-import Wrapper from 'components/shared/Wrapper';
-import Footer from 'components/shared/Footer';
+import Nav from '/containers/shared/Nav';
+import Wrapper from '/components/shared/Wrapper';
+import Footer from '/components/shared/Footer';
 
 const MainWrapper = styled.div`
   &.purple {

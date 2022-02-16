@@ -13,16 +13,16 @@ import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-next-router';
 import { useRouter } from 'next/router';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/YouPage/selectors';
-import reducer from 'containers/you/YouPage/reducer';
-import saga from 'containers/you/YouPage/saga';
-import userActions from 'containers/you/YouPage/actions';
-import { makeSelectLocation } from 'containers/App/selectors';
-import queryHelper from 'helpers/queryHelper';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
+import makeSelectUser from '/containers/you/YouPage/selectors';
+import reducer from '/containers/you/YouPage/reducer';
+import saga from '/containers/you/YouPage/saga';
+import userActions from '/containers/you/YouPage/actions';
+import { makeSelectLocation } from '/containers/App/selectors';
+import queryHelper from '/helpers/queryHelper';
 
-import EmailConfirmationWrapper from 'components/you/EmailConfirmationWrapper';
+import EmailConfirmationWrapper from '/components/you/EmailConfirmationWrapper';
 
 export function EmailConfirmationPage({
   userState,

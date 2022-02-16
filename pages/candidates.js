@@ -1,5 +1,5 @@
-import Page from 'containers/CandidatesPage';
-import tgpApi from 'api/tgpApi';
+import Page from '/containers/CandidatesPage';
+import tgpApi from '/api/tgpApi';
 
 export default function Candidates({ ssrState }) {
   return <Page ssrState={ssrState} />;

@@ -1,4 +1,4 @@
-import PrivacyPage from 'containers/shared/PrivacyPage';
+import PrivacyPage from '/containers/shared/PrivacyPage';
 import tgpApi from '../api/tgpApi';
 export default function Privacy({ ssrState }) {
   return <PrivacyPage ssrState={ssrState} />;

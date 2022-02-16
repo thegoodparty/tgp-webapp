@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-scroll';
 import { Element } from 'react-scroll';
 
-import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
+import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
 import PageWrapper from '../shared/PageWrapper';
 import { Body11, H1, H3 } from '../shared/typogrophy';
 import VideoModal from '../shared/VideoModal';

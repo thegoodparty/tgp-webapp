@@ -1,8 +1,8 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 
-import requestHelper from 'helpers/requestHelper';
-import tgpApi from 'api/tgpApi';
-import snackbarActions from 'containers/shared/SnackbarContainer/actions';
+import requestHelper from '/helpers/requestHelper';
+import tgpApi from '/api/tgpApi';
+import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
@@ -26,7 +26,7 @@ function* updateIssue({ issue, candidateId }) {
       candidateId,
     };
     yield call(requestHelper, api, payload);
-    yield put(actions.findIssueAction());
+    yield put(actions.findIssueAction(candidateId));
     yield put(snackbarActions.showSnakbarAction('Your request was sent'));
   } catch (error) {
     console.log(error);

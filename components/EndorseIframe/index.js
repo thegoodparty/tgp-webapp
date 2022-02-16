@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { PurpleButton } from 'components/shared/buttons';
+import { PurpleButton } from '/components/shared/buttons';
 
 function EndorseIframe() {
   const router = useRouter();
@@ -25,6 +25,7 @@ function EndorseIframe() {
     <a
       href={`https://${base}goodparty.org/embed/redirect/${intId}`}
       target="_blank"
+      rel="noreferrer"
       style={{
         minWidth: '150px',
       }}

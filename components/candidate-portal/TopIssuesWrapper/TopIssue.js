@@ -51,6 +51,19 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
               topicId: item?.id,
             });
             setTopic(item);
+            if (currentTopic && currentTopic !== item && currentPosition) {
+              const newPositions = topicList?.find(
+                topic => topic.id === item.id,
+              )?.positions;
+              if (newPositions.length > 0) {
+                updateIssue(index, {
+                  ...issue,
+                  positionId: newPositions[0]?.id,
+                  topicId: item?.id,
+                });
+                setPosition(newPositions[0]);
+              }
+            }
           }}
         />
       </Grid>

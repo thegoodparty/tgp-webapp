@@ -12,16 +12,16 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 
-import userReducer from 'containers/you/YouPage/reducer';
-import queryHelper from 'helpers/queryHelper';
-import { logEvent } from 'services/AnalyticsService';
+import userReducer from '/containers/you/YouPage/reducer';
+import queryHelper from '/helpers/queryHelper';
+import { logEvent } from '/services/AnalyticsService';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectUser from 'containers/you/YouPage/selectors';
-import VerifyVoteWrapper from 'components/voterize/VerifyVoteWrapper';
-import { setSignupRedirectCookie } from 'helpers/cookieHelper';
-import userActions from 'containers/you/YouPage/actions';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
+import makeSelectUser from '/containers/you/YouPage/selectors';
+import VerifyVoteWrapper from '/components/voterize/VerifyVoteWrapper';
+import { setSignupRedirectCookie } from '/helpers/cookieHelper';
+import userActions from '/containers/you/YouPage/actions';
 
 import makeSelectVerifyVotePage from './selectors';
 import reducer from './reducer';

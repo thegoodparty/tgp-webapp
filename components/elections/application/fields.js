@@ -251,6 +251,7 @@ export const step3Fields = [
     key: 'electionDate',
     defaultValue: '',
     type: 'date',
+    required: true,
   },
   {
     label: 'Which state are you running in?',
@@ -314,8 +315,7 @@ export const step3Fields = [
         value: '',
       },
     ],
-    subtitle: 'Include at least one good headshot',
-    required: true,
+    subtitle: 'Include one good headshot',
   },
   {
     label: 'What is the name of your candidate/campaign committee?',

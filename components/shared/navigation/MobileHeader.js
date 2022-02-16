@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import RegisterBannerContainer from 'containers/shared/RegisterBannerContainer';
+import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
 import UserAvatar from '../UserAvatar';
 
 import { Body9, Body14 } from '../typogrophy';
@@ -160,14 +160,18 @@ function MobileHeader({
             className={purpleNav && 'purple'}
           />
         </LinkContainer>
-        <Link href="/" className="text-center">
-          <Logo
-            src={
-              purpleNav ? '/images/new-logo-white.svg' : '/images/new-logo.svg'
-            }
-            alt="The Good Party"
-            data-cy="logo"
-          />
+        <Link href="/" className="text-center" passHref>
+          <a>
+            <Logo
+              src={
+                purpleNav
+                  ? '/images/new-logo-white.svg'
+                  : '/images/new-logo.svg'
+              }
+              alt="The Good Party"
+              data-cy="logo"
+            />
+          </a>
         </Link>
         {user?.name ? (
           <Link href="/profile" passHref>
@@ -301,7 +305,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(MobileHeader);
+export default connect(null, mapDispatchToProps)(MobileHeader);

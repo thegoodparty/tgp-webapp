@@ -1,4 +1,4 @@
-import Page from 'containers/candidate-portal/CampaignNotificationPage';
+import Page from '/containers/candidate-portal/CampaignNotificationPage';
 export default function Admin() {
   return <Page />;
 }

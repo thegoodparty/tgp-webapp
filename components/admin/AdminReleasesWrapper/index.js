@@ -21,7 +21,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import moment from 'moment';
 
-import Nav from 'containers/shared/Nav';
+import Nav from '/containers/shared/Nav';
 import { Body, H2 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
@@ -86,6 +86,10 @@ function AdminReleasesWrapper({
     setEditTopic(false);
   };
   const possibleTags = ['Campaigns', 'Voters'];
+  const releasesCopy = JSON.parse(JSON.stringify(releases));
+  const sortedReleases = releasesCopy?.sort(
+    (a, b) => new Date(b.releaseDate) - new Date(a.releaseDate),
+  );
   return (
     <AdminPageWrapper>
       <Wrapper>
@@ -120,7 +124,7 @@ function AdminReleasesWrapper({
               variant="outlined"
               // label="Date"
               value={state.releaseDate}
-              onChange={e => onChangeField('releaseDate', e.target.value)}
+              onChange={(e) => onChangeField('releaseDate', e.target.value)}
             />
           </Grid>
           <Grid item xs={2}>
@@ -132,7 +136,7 @@ function AdminReleasesWrapper({
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 value={state.releaseType}
-                onChange={e => onChangeField('releaseType', e.target.value)}
+                onChange={(e) => onChangeField('releaseType', e.target.value)}
                 label="Age"
               >
                 <MenuItem value="fix">Fix</MenuItem>
@@ -148,7 +152,7 @@ function AdminReleasesWrapper({
               label="Note"
               multiline
               rows={3}
-              onChange={e => onChangeField('releaseNote', e.target.value)}
+              onChange={(e) => onChangeField('releaseNote', e.target.value)}
               value={state.releaseNote}
             />
           </Grid>
@@ -162,7 +166,7 @@ function AdminReleasesWrapper({
               onChange={(event, options) => {
                 onChangeField('tags', options);
               }}
-              renderInput={params => (
+              renderInput={(params) => (
                 <TextField
                   {...params}
                   variant="outlined"
@@ -176,7 +180,7 @@ function AdminReleasesWrapper({
             <Checkbox
               color="primary"
               value={state.isOnline}
-              onChange={e => onChangeField('isOnline', e.target.checked)}
+              onChange={(e) => onChangeField('isOnline', e.target.checked)}
               inputProps={{ 'aria-label': 'secondary checkbox' }}
             />
           </Grid>
@@ -189,8 +193,8 @@ function AdminReleasesWrapper({
               <FaSave size={24} />
             </PurpleButton>
           </Grid>
-          {releases &&
-            releases.map(release => (
+          {sortedReleases &&
+            sortedReleases.map((release) => (
               <React.Fragment key={release.id}>
                 <>
                   {editRelease.id === release.id ? (
@@ -204,7 +208,7 @@ function AdminReleasesWrapper({
                               variant="outlined"
                               // label="Date"
                               value={editRelease.releaseDate}
-                              onChange={e =>
+                              onChange={(e) =>
                                 onChangeEdit('releaseDate', e.target.value)
                               }
                             />
@@ -222,7 +226,7 @@ function AdminReleasesWrapper({
                                 labelId="demo-simple-select-outlined-label"
                                 id="demo-simple-select-outlined"
                                 value={editRelease.releaseType}
-                                onChange={e =>
+                                onChange={(e) =>
                                   onChangeEdit('releaseType', e.target.value)
                                 }
                                 label="Age"
@@ -244,7 +248,7 @@ function AdminReleasesWrapper({
                               label="Note"
                               multiline
                               rows={3}
-                              onChange={e =>
+                              onChange={(e) =>
                                 onChangeEdit('releaseNote', e.target.value)
                               }
                               value={editRelease.releaseNote}
@@ -263,7 +267,7 @@ function AdminReleasesWrapper({
                           onChange={(event, options) => {
                             onChangeEdit('tags', options);
                           }}
-                          renderInput={params => (
+                          renderInput={(params) => (
                             <TextField
                               {...params}
                               variant="outlined"
@@ -279,7 +283,7 @@ function AdminReleasesWrapper({
                             <Checkbox
                               color="primary"
                               value={editRelease.isOnline}
-                              onChange={e =>
+                              onChange={(e) =>
                                 onChangeEdit('isOnline', e.target.checked)
                               }
                               inputProps={{
@@ -314,7 +318,9 @@ function AdminReleasesWrapper({
                       </Grid>
                       <Grid item xs={2}>
                         <Field>
-                          {release.tags?.map(tag => <Chip label={tag} />)}
+                          {release.tags?.map((tag) => (
+                            <Chip label={tag} key={tag} />
+                          ))}
                         </Field>
                       </Grid>
                       <Grid item xs={1}>

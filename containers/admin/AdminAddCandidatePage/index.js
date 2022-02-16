@@ -11,10 +11,10 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import AdminAddCandidateWrapper from 'components/admin/AdminAddCandidateWrapper';
+import AdminAddCandidateWrapper from '/components/admin/AdminAddCandidateWrapper';
 
-import { useInjectSaga } from 'utils/injectSaga';
-import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectAdminAddCandidatePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

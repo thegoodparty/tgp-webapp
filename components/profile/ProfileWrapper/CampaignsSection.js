@@ -10,8 +10,8 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 
-import { Body19 } from 'components/shared/typogrophy';
-import CandidateCard from 'components/shared/CandidateCard';
+import { Body19 } from '/components/shared/typogrophy';
+import CandidateCard from '/components/shared/CandidateCard';
 import { GrayText } from './index';
 
 const Wrapper = styled.section`

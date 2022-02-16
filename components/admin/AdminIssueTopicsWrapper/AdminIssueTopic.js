@@ -99,7 +99,7 @@ function AdminIssueTopic({
       </Grid>
       <Grid item xs={12} md={6}>
         {(issue?.positions || []).map((position, pIndex) => (
-          <Grid item container alignItems="center">
+          <Grid item container alignItems="center" key={pIndex}>
             {pIndex !== index && (
               <>
                 <span>{position?.name}</span>

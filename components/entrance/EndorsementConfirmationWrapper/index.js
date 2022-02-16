@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-import { achievementsHelper } from 'helpers/achievementsHelper';
-import { numberFormatter } from 'helpers/numberHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13, H1, H3 } from '../../shared/typogrophy';
@@ -130,7 +130,7 @@ function EndorsementConfirmationWrapper({ candidate, total }) {
                 {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
                 endorsed.
               </strong>{' '}
-              Let's get to {numberFormatter(achievements.nextStep)}!
+              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
             </div>
           </Endorsed>
           <SupportersProgressBar

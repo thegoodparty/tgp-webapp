@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import theme from 'theme';
+import theme from '/theme';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 
-import { Body, Body13, H1, H3 } from 'components/shared/typogrophy';
+import { Body, Body13, H1, H3 } from '/components/shared/typogrophy';
 
 import AdminPageWrapper from './AdminPageWrapper';
 import { leftMenuItems } from '../AdminLeftMenu';
@@ -79,12 +79,12 @@ const AdminWrapper = () => (
       <Body style={{ marginTop: '40px' }}>
         <H3>Useful Links</H3>
         <br />
-        <a href="https://datastudio.google.com/s/jA995G5uXkg" target="_blank">
+        <a href="https://datastudio.google.com/s/jA995G5uXkg" target="_blank" rel="noreferrer">
           Analytics Dashboard
         </a>
         <br />
         <br />
-        <a href="https://zoom.goodparty.org" target="_blank">
+        <a href="https://zoom.goodparty.org" target="_blank" rel="noreferrer">
           GP Zoom
         </a>
         <br />
@@ -92,6 +92,7 @@ const AdminWrapper = () => (
         <a
           href="https://www.notion.so/goodparty/7c465bbf8bf9480e9a86c74edc938bbe?v=7b1c609de9474ed48ef0e85b917b21cc"
           target="_blank"
+          rel="noreferrer"
         >
           Notion Dev Board
         </a>
@@ -100,12 +101,13 @@ const AdminWrapper = () => (
         <a
           href="https://www.notion.so/goodparty/83449bb9d1a94dae80df683eae217ddb?v=f8246250568e45e9a994041cf17fffcb"
           target="_blank"
+          rel="noreferrer"
         >
           Roadmap
         </a>
         <br />
         <br />
-        <a href="https://intro.goodparty.org/" target="_blank">
+        <a href="https://intro.goodparty.org/" target="_blank" rel="noreferrer">
           intro.goodparty.org
         </a>
         <br />
@@ -113,6 +115,7 @@ const AdminWrapper = () => (
         <a
           href="https://docs.google.com/presentation/d/1XHUD0eNs0F_q08nMMG04tCTq0wB93is-g-3Uq1WdjoI/edit#slide=id.ge1899cc4d6_0_65"
           target="_blank"
+          rel="noreferrer"
         >
           GP Deck Template
         </a>
@@ -121,8 +124,9 @@ const AdminWrapper = () => (
         <a
           href="https://docs.google.com/document/d/1K2qP6VvpS4QPdC9pl_96L4b24BrreTU30hWDowxLhBo/edit#heading=h.rxv3nobisv34"
           target="_blank"
+          rel="noreferrer"
         >
-          Embed the "endorse" button instructions
+          Embed the &quot;endorse&quot; button instructions
         </a>
       </Body>
     </Wrapper>

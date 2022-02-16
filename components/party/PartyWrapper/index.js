@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import CandidatesSection from 'components/HomePageWrapperOld/CandidatesSection';
 
-import contentfulHelper, { CmsContentWrapper } from 'helpers/contentfulHelper';
-import PageWrapper from 'components/shared/PageWrapper';
-import { Body, H2 } from 'components/shared/typogrophy';
+
+import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
+import PageWrapper from '/components/shared/PageWrapper';
+import { Body, H2 } from '/components/shared/typogrophy';
+import CandidatesSection from './CandidatesSection';
 
 const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};

@@ -10,13 +10,13 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import MobileHeader from 'components/shared/navigation/MobileHeader';
-import Nav from 'containers/shared/Nav';
-import LoadingAnimation from 'components/shared/LoadingAnimation';
-import { Body11, H1, H2, H3 } from 'components/shared/typogrophy';
-import { candidateRoute } from 'helpers/electionsHelper';
-import { BlueButton } from 'components/shared/buttons';
-import CandidateAvatar from 'components/shared/CandidateAvatar';
+import MobileHeader from '/components/shared/navigation/MobileHeader';
+import Nav from '/containers/shared/Nav';
+import LoadingAnimation from '/components/shared/LoadingAnimation';
+import { Body11, H1, H2, H3 } from '/components/shared/typogrophy';
+import { candidateRoute } from '/helpers/electionsHelper';
+import { BlueButton } from '/components/shared/buttons';
+import CandidateAvatar from '/components/shared/CandidateAvatar';
 
 import JoditEditorWrapper from './JoditEditor';
 import ImageCrop from '../../shared/ImageCrop';
@@ -350,7 +350,7 @@ function AdminEditCandidate({
             </>
           )}
           <H2 className="text-center">
-            <a href={candidateRoute(candidate)} target="_blank">
+            <a href={candidateRoute(candidate)} target="_blank" rel="noreferrer">
               {name}
             </a>
           </H2>
