@@ -192,7 +192,6 @@ function ApplicationStep1({
     state.honest &&
     state.transparent &&
     state.choices;
-  console.log('state', state);
   return (
     <ApplicationWrapper
       step={step}
