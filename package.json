@@ -13,6 +13,7 @@
     "deploy-dev": "git checkout develop && eb deploy",
     "deploy-prod": "git checkout master  && eb deploy",
     "build": "next build",
+    "generate": "plop --plopfile internals/generators/index.js",
     "start": "next build && next start",
     "lint": "next lint"
   },
@@ -72,6 +73,8 @@
   "devDependencies": {
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
+    "node-plop": "0.18.0",
+    "plop": "2.3.0",
     "prettier": "^2.5.1"
   }
 }
