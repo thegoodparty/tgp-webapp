@@ -9,8 +9,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import TgpHelmet from '../../../../components/shared/TgpHelmet';
-import RedirectWrapper from '../../../../components/EndorseIframe/RedirectWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
+import RedirectWrapper from '/components/EndorseIframe/RedirectWrapper';
 
 export function RedirectPage({ ssrState }) {
   const { candidate } = ssrState;

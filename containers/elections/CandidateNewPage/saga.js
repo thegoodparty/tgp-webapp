@@ -8,7 +8,7 @@ import makeSelectUser from '/containers/you/YouPage/selectors';
 import tgpApi from '/api/tgpApi';
 import types from './constants';
 import actions from './actions';
-import { getCookie } from '../../../helpers/cookieHelper';
+import { getCookie } from '/helpers/cookieHelper';
 
 function* loadInactiveCandidate({ id }) {
   try {

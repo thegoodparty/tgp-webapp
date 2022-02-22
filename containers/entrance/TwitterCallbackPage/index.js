@@ -20,7 +20,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { makeSelectLocation } from '../../App/selectors';
 import actions from './actions';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
+import TgpHelmet from '/components/shared/TgpHelmet';
 
 export function TwitterCallbackPage({ dispatch, locationState }) {
   useInjectReducer({ key: 'twitterCallbackPage', reducer });

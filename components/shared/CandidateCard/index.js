@@ -16,7 +16,7 @@ import CandidateAvatar from './CandidateAvatar';
 import { Body11, Body13 } from '../typogrophy';
 import SupportersProgressBar from '../../elections/SupportersProgressBar';
 import { PurpleButton } from '../buttons';
-import { achievementsHelper } from '../../../helpers/achievementsHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.purple3};

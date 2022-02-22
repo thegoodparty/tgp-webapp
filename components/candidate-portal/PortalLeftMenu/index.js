@@ -22,7 +22,7 @@ import { GoIssueClosed } from 'react-icons/go';
 import { FaUsersCog } from 'react-icons/fa';
 
 import { Body13 } from '/components/shared/typogrophy/index';
-import { accessLevel } from '../../../containers/candidate-portal/CandidatePortalHomePage';
+import { accessLevel } from '/containers/candidate-portal/CandidatePortalHomePage';
 
 const LeftPanel = styled.div`
   width: 250px;

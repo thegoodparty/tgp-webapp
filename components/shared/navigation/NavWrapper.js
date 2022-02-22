@@ -7,7 +7,7 @@ import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer'
 import AdminMenu from '/components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
-import FeedbackContainer from '../../../containers/shared/FeedbackContainer';
+import FeedbackContainer from '/containers/shared/FeedbackContainer';
 
 const NavWrapper = ({
   pathname,

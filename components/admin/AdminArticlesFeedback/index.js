@@ -12,7 +12,7 @@ import 'react-table/react-table.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { H3 } from '../../shared/typogrophy';
-import { getArticleById } from '../../../helpers/articlesHelper';
+import { getArticleById } from '/helpers/articlesHelper';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 
 const Wrapper = styled.div`

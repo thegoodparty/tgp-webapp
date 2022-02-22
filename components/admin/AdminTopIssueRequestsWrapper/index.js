@@ -15,7 +15,7 @@ import RequestTopTab from './RequestTopTab';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { Body, H3 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
-import { dateUsHelper } from '../../../helpers/dateHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 
 const Wrapper = styled.div`
   padding: 16px;

@@ -20,7 +20,7 @@ import saga from './saga';
 import CandidatePortalUpdatesContainer from './CandidatePortalUpdatesContainer';
 import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import portalHomeSaga from '../CandidatePortalHomePage/saga';
-import { getUserCookie } from '../../../helpers/cookieHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';

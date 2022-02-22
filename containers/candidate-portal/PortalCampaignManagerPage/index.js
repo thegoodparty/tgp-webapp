@@ -23,8 +23,8 @@ import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
-import PortalCampaignManagerWrapper from '../../../components/candidate-portal/PortalCampaignManagerWrapper';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
+import PortalCampaignManagerWrapper from '/components/candidate-portal/PortalCampaignManagerWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
 import actions from './actions';
 
 export function PortalCampaignManagerPage({

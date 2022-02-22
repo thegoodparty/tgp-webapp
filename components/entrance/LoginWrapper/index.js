@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1 } from '/components/shared/typogrophy';
-import globals from '../../../globals';
+import globals from '/globals';
 import { PurpleButton } from '../../shared/buttons';
 import TwitterButton from '../../shared/TwitterButton';
 import PhoneOrEmailInput from '../../shared/PhoneOrEmailInput';

@@ -14,7 +14,7 @@ import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 import { Body19, Body13 } from '../../shared/typogrophy';
-import { candidateRoute } from '../../../helpers/electionsHelper';
+import { candidateRoute } from '/helpers/electionsHelper';
 
 const SectionWrapper = styled.div`
   margin-top: 48px;

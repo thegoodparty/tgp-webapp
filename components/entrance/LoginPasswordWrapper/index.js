@@ -8,8 +8,8 @@ import { Body11, Body13, H1 } from '/components/shared/typogrophy';
 import Link from 'next/link';
 import PasswordInput from '../../shared/PasswordInput';
 import { PurpleButton } from '../../shared/buttons';
-import { formatToPhone } from '../../../helpers/phoneHelper';
-import { emailRegExp } from '../../../helpers/userHelper';
+import { formatToPhone } from '/helpers/phoneHelper';
+import { emailRegExp } from '/helpers/userHelper';
 
 const VerticalWrapper = styled.div`
   display: flex;

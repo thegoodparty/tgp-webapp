@@ -13,7 +13,7 @@ import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
 import CopyCodeSection from '../../GoodPracticesWrapper/CopyCodeSection';
 import contentfulHelper, {
   CmsContentWrapper,
-} from '../../../helpers/contentfulHelper';
+} from '/helpers/contentfulHelper';
 
 const Wrapper = styled.div`
   text-align: center;

@@ -18,7 +18,7 @@ import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import {
   candidateRoute,
   partyResolver,
-} from '../../../helpers/electionsHelper';
+} from '/helpers/electionsHelper';
 import SupportersProgressBar from '../../elections/SupportersProgressBar';
 import { PurpleButton } from '../../shared/buttons';
 

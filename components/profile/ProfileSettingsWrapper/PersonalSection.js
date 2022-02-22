@@ -20,7 +20,7 @@ import { getCookie, setCookie } from '/helpers/cookieHelper';
 import { Body13, H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import AlertDialog from '../../shared/AlertDialog';
-import { emailRegExp } from '../../../helpers/userHelper';
+import { emailRegExp } from '/helpers/userHelper';
 
 const Wrapper = styled.section`
   padding: 32px 0;
