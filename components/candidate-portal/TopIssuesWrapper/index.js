@@ -27,13 +27,14 @@ function TopIssuesWrapper({
   updateIssueCallback,
   topics,
   candidateId,
+  role,
 }) {
   const [topIssues, setTopIssues] = useState([]);
   const [topicList, setTopicList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setTopicList(
-      topics.map(topic => ({
+      topics.map((topic) => ({
         id: topic.id,
         topic: topic.topic,
         positions: topic.positions,
@@ -47,15 +48,15 @@ function TopIssuesWrapper({
     }
   }, [candidateIssue]);
   const onUpdateIssue = (topIssues, candidateId) => {
-    updateIssueCallback(topIssues, candidateId)
+    updateIssueCallback(topIssues, candidateId);
     setIsLoading(true);
-  }
+  };
   const updateIssue = (issueIndex, issue) => {
     const newIssues = [...topIssues];
     newIssues[issueIndex] = issue;
     setTopIssues(newIssues);
   };
-  const deleteIssue = deleteIndex => {
+  const deleteIssue = (deleteIndex) => {
     setTopIssues(topIssues.filter((issue, index) => index !== deleteIndex));
   };
   const addNewIssue = () => {
@@ -63,7 +64,7 @@ function TopIssuesWrapper({
   };
   const isFormValidate = () => {
     let isValid = true;
-    topIssues.forEach(issue => {
+    topIssues.forEach((issue) => {
       if (!issue.topicId || !issue.positionId || !issue.description) {
         isValid = false;
       }
@@ -72,7 +73,7 @@ function TopIssuesWrapper({
   };
   const PageWrapper = candidateId ? AdminPageWrapper : PortalPageWrapper;
   return (
-    <PageWrapper>
+    <PageWrapper role={role}>
       <Wrapper>
         <H2 className="text-left">
           Issues
@@ -90,9 +91,9 @@ function TopIssuesWrapper({
               key={index}
               index={index}
               topicList={topicList.filter(
-                item =>
+                (item) =>
                   !topIssues
-                    .map(issueItem => issueItem.topicId)
+                    .map((issueItem) => issueItem.topicId)
                     .includes(item.id) || item.id === issue.topicId,
               )}
               issue={issue}
@@ -125,6 +126,7 @@ TopIssuesWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   candidateId: PropTypes.number,
   candidateIssue: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   updateIssueCallback: PropTypes.func,
 };
 

@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
+
 import TopIssuesWrapper from '/components/candidate-portal/TopIssuesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import { getUserCookie } from '/helpers/cookieHelper';
@@ -31,6 +32,7 @@ import actions from './actions';
 import adminIssueTopicsPageReducer from '../../admin/AdminIssueTopicsPage/reducer';
 import adminIssueTopicsSaga from '../../admin/AdminIssueTopicsPage/saga';
 import adminIssueTopicsActions from '../../admin/AdminIssueTopicsPage/actions';
+import { accessLevel } from '../CandidatePortalHomePage';
 
 export function TopIssuesPage({
   userState,
@@ -42,12 +44,12 @@ export function TopIssuesPage({
   adminIssueTopicsPage,
 }) {
   let ssrCandidate = null;
-  if(ssrState) {
+  if (ssrState) {
     ssrCandidate = ssrState.candidate;
   }
   useInjectReducer({ key: 'topIssuesPage', reducer });
   useInjectSaga({ key: 'topIssuesPage', saga });
-  
+
   useInjectReducer({
     key: 'candidatePortalHomePage',
     reducer: portalHomeReducer,
@@ -60,36 +62,45 @@ export function TopIssuesPage({
   });
   useInjectSaga({ key: 'adminIssueTopicsPage', saga: adminIssueTopicsSaga });
 
-  const { candidate } = candidatePortalHomePage;
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { candidate, role } = candidatePortalHomePage;
 
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
   }
+
+  useEffect(() => {
+    if (id) {
+      dispatch(portalHomeActions.loadRoleAction(id));
+    }
+  }, [id]);
+
   useEffect(() => {
     dispatch(adminIssueTopicsActions.loadIssueTopicsAction());
     if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
       if (!ssrCandidate?.id) {
-        dispatch(portalHomeActions.findCandidate());
+        dispatch(portalHomeActions.findCandidate(id));
       }
-      dispatch(actions.findIssueAction(ssrCandidate?.id));
+      dispatch(actions.findIssueAction(ssrCandidate?.id || id));
     }
   }, [user]);
-  // const { candidate } = ssrState || {};
 
   const { candidateIssue } = topIssuesPage;
   const { topics } = adminIssueTopicsPage;
   const childProps = {
     user,
     candidate: ssrCandidate || candidate,
-    candidateId: ssrCandidate?.id,
+    candidateId: ssrCandidate?.id || id,
     candidateIssue,
     updateIssueCallback,
     topics,
+    role,
   };
+
+  const access = accessLevel(role);
 
   return (
     <div>
@@ -97,7 +108,7 @@ export function TopIssuesPage({
         title="Campaign Manager - Top Issues"
         description="Campaign Manager - Top Issues"
       />
-      <TopIssuesWrapper {...childProps} />
+      {access > 15 ? <TopIssuesWrapper {...childProps} /> : <>Access Denied</>}
     </div>
   );
 }
@@ -128,12 +139,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(TopIssuesPage);
+export default compose(withConnect, memo)(TopIssuesPage);
