@@ -29,7 +29,18 @@ function* loadUpdates() {
   }
 }
 
+function* loadStaff() {
+  try {
+    const api = tgpApi.staff.userStaff;
+    const { staff } = yield call(requestHelper, api, null);
+    yield put(actions.loadStaffActionSuccess(staff));
+  } catch (error) {
+    console.log('staff error', JSON.stringify(error));
+  }
+}
+
 export default function* profilePageSaga() {
   yield takeLatest(types.LOAD_USER_SUPPORTED, loadUserSupported);
   yield takeLatest(types.LOAD_UPDATES, loadUpdates);
+  yield takeLatest(types.LOAD_STAFF, loadStaff);
 }

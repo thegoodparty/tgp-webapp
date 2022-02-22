@@ -30,12 +30,7 @@ export function ProfilePage({ dispatch, profilePage }) {
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
 
-  const {
-    loading,
-
-    userSupported,
-    updates,
-  } = profilePage;
+  const { loading, staff, userSupported, updates } = profilePage;
   const user = getUserCookie(true);
 
   useEffect(() => {
@@ -45,6 +40,9 @@ export function ProfilePage({ dispatch, profilePage }) {
     if (!updates) {
       dispatch(actions.loadUpdatesAction());
     }
+    if (!staff) {
+      dispatch(actions.loadStaffAction());
+    }
     if (typeof window !== 'undefined' && !user) {
       router.push('login');
     }
@@ -53,7 +51,7 @@ export function ProfilePage({ dispatch, profilePage }) {
   useEffect(() => {
     if (userSupported) {
       const tempSupported = [];
-      userSupported.forEach(support => {
+      userSupported.forEach((support) => {
         if (support.candidate?.data) {
           const parsed = JSON.parse(support.candidate.data);
           parsed.supporters = support.candidate.supporters;
@@ -69,6 +67,7 @@ export function ProfilePage({ dispatch, profilePage }) {
     loading,
     userSupported: supported,
     updates,
+    staff,
   };
 
   return (
@@ -97,9 +96,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(ProfilePage);

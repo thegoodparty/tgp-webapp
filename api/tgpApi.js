@@ -474,17 +474,58 @@ const api = {
       method: 'GET',
     },
   },
-  candidateUser: {
+  campaign: {
     find: {
-      url: `${base}candidate-user`,
+      url: `${base}campaign`,
       method: 'GET',
       withAuth: true,
     },
     stats: {
-      url: `${base}candidate-user/stats`,
+      url: `${base}campaign/stats`,
       method: 'GET',
       withAuth: true,
     },
+    updateRequest: {
+      create: {
+        url: `${base}campaign/update-request`,
+        method: 'POST',
+        withAuth: true,
+      },
+    },
+    staff: {
+      userStaff: {
+        url: `${base}user/staff`,
+        method: 'GET',
+        withAuth: true,
+      },
+      create: {
+        url: `${base}campaign/staff`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/staff`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}campaign/staff`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      role: {
+        url: `${base}campaign/staff-role`,
+        method: 'GET',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}campaign/staff`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
+  },
+  candidateUser: {
     issue: {
       find: {
         url: `${base}candidate-issue`,

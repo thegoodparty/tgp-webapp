@@ -30,9 +30,14 @@ const UpdatesWrapper = styled.div`
   margin-top: 48px;
 `;
 
-function CandidatePortalHomeWrapper({ candidate, stats, loadStatsCallback }) {
+function CandidatePortalHomeWrapper({
+  candidate,
+  stats,
+  loadStatsCallback,
+  role,
+}) {
   return (
-    <PortalPageWrapper>
+    <PortalPageWrapper role={role}>
       <Wrapper>
         <div>
           <CandidateAvatar
@@ -77,6 +82,7 @@ CandidatePortalHomeWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   stats: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   loadStatsCallback: PropTypes.func,
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default CandidatePortalHomeWrapper;
