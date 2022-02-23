@@ -28,6 +28,7 @@ function TopIssuesWrapper({
   topics,
   candidateId,
   role,
+  isAdmin,
 }) {
   const [topIssues, setTopIssues] = useState([]);
   const [topicList, setTopicList] = useState([]);
@@ -71,7 +72,7 @@ function TopIssuesWrapper({
     });
     return isValid;
   };
-  const PageWrapper = candidateId ? AdminPageWrapper : PortalPageWrapper;
+  const PageWrapper = isAdmin ? AdminPageWrapper : PortalPageWrapper;
   return (
     <PageWrapper role={role}>
       <Wrapper>
@@ -128,6 +129,7 @@ TopIssuesWrapper.propTypes = {
   candidateIssue: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   updateIssueCallback: PropTypes.func,
+  isAdmin: PropTypes.bool,
 };
 
 export default TopIssuesWrapper;

@@ -11,7 +11,7 @@ function* loadUgc() {
     yield put(
       snackbarActions.showSnakbarAction('Loading Candidate update requests'),
     );
-    const api = tgpApi.candidateUser.ugc.list;
+    const api = tgpApi.campaign.ugc.list;
     const { ugc } = yield call(requestHelper, api, null);
     yield put(actions.loadUgcsActionSuccess(ugc));
   } catch (error) {
@@ -28,7 +28,7 @@ function* loadUgc() {
 function* acceptRequest({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.candidateUser.ugc.accept;
+    const api = tgpApi.campaign.ugc.accept;
     const payload = {
       id,
     };
@@ -48,7 +48,7 @@ function* acceptRequest({ id }) {
 function* rejectRequest({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.candidateUser.ugc.reject;
+    const api = tgpApi.campaign.ugc.reject;
     const payload = {
       id,
     };

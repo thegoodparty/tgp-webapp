@@ -71,7 +71,7 @@ function PortalCampaignManagerWrapper({
           <Grid item xs={12}>
             <hr />
           </Grid>
-          {fields.map(field => (
+          {fields.map((field) => (
             <React.Fragment key={field.key}>
               <Grid item xs={12} md={6}>
                 <strong>{field.label}</strong>
@@ -87,7 +87,7 @@ function PortalCampaignManagerWrapper({
               <Grid item xs={12} md={6}>
                 {field.isRichText ? (
                   <JoditEditorWrapper
-                    onChangeCallback={value => updateUgc(field.key, value)}
+                    onChangeCallback={(value) => updateUgc(field.key, value)}
                     initialText={ugc[field.key]}
                   />
                 ) : (
@@ -97,7 +97,7 @@ function PortalCampaignManagerWrapper({
                     name={field.label}
                     variant="outlined"
                     value={ugc[field.key]}
-                    onChange={e => updateUgc(field.key, e.target.value)}
+                    onChange={(e) => updateUgc(field.key, e.target.value)}
                   />
                 )}
               </Grid>
@@ -107,7 +107,10 @@ function PortalCampaignManagerWrapper({
             </React.Fragment>
           ))}
           <Grid item xs={12}>
-            <PurpleButton onClick={() => updateUgcCallback(ugc)} fullWidth>
+            <PurpleButton
+              onClick={() => updateUgcCallback(candidate.id, ugc)}
+              fullWidth
+            >
               SAVE
             </PurpleButton>
           </Grid>

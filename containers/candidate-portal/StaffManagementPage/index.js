@@ -45,7 +45,9 @@ export function StaffManagementPage({
     reducer: portalHomeReducer,
   });
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
+
   const router = useRouter();
+  const { id } = router.query;
 
   const { staff, loading } = staffManagementPage;
 
@@ -54,8 +56,6 @@ export function StaffManagementPage({
   if (!user) {
     user = getUserCookie(true);
   }
-
-  const { id } = router.query;
 
   useEffect(() => {
     if (id) {

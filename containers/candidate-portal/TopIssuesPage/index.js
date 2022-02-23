@@ -94,6 +94,7 @@ export function TopIssuesPage({
     user,
     candidate: ssrCandidate || candidate,
     candidateId: ssrCandidate?.id || id,
+    isAdmin: ssrCandidate?.id,
     candidateIssue,
     updateIssueCallback,
     topics,

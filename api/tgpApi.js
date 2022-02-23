@@ -524,6 +524,39 @@ const api = {
         withAuth: true,
       },
     },
+    ugc: {
+      find: {
+        url: `${base}ugc`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}ugc`,
+        method: 'PUT',
+        withAuth: true,
+      },
+
+      list: {
+        // admin
+        url: `${base}ugcs`,
+        method: 'GET',
+        withAuth: true,
+      },
+
+      accept: {
+        // admin
+        url: `${base}ugcs/accept`,
+        method: 'PUT',
+        withAuth: true,
+      },
+
+      reject: {
+        // admin
+        url: `${base}ugcs/reject`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
   },
   candidateUser: {
     issue: {
@@ -570,39 +603,7 @@ const api = {
         withAuth: true,
       },
     },
-    ugc: {
-      find: {
-        url: `${base}candidate-ugc`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}candidate-ugc`,
-        method: 'PUT',
-        withAuth: true,
-      },
 
-      list: {
-        // admin
-        url: `${base}candidate-ugcs`,
-        method: 'GET',
-        withAuth: true,
-      },
-
-      accept: {
-        // admin
-        url: `${base}candidate-ugcs/accept`,
-        method: 'PUT',
-        withAuth: true,
-      },
-
-      reject: {
-        // admin
-        url: `${base}candidate-ugcs/reject`,
-        method: 'PUT',
-        withAuth: true,
-      },
-    },
     updateRequest: {
       create: {
         url: `${base}candidate-user/update-request`,

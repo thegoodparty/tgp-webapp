@@ -1,8 +1,9 @@
 import types from './constants';
 
-function findUgcAction() {
+function findUgcAction(id) {
   return {
     type: types.FIND_UGC,
+    id,
   };
 }
 
@@ -13,9 +14,10 @@ function findUgcActionSuccess(candidateUgc) {
   };
 }
 
-function updateUgcAction(ugc) {
+function updateUgcAction(id, ugc) {
   return {
     type: types.UPDATE_UGC,
+    id,
     ugc,
   };
 }

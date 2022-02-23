@@ -6,21 +6,25 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* findUgc() {
+function* findUgc({ id }) {
   try {
-    const api = tgpApi.candidateUser.ugc.find;
-    const { candidateUgc } = yield call(requestHelper, api, null);
+    const api = tgpApi.campaign.ugc.find;
+    const payload = {
+      id,
+    };
+    const { candidateUgc } = yield call(requestHelper, api, payload);
     yield put(actions.findUgcActionSuccess(candidateUgc));
   } catch (error) {
     console.log(error);
   }
 }
 
-function* updateUgc({ ugc }) {
+function* updateUgc({ id, ugc }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.candidateUser.ugc.update;
+    const api = tgpApi.campaign.ugc.update;
     const payload = {
+      id,
       data: ugc,
     };
     yield call(requestHelper, api, payload);
