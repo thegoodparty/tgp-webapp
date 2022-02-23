@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
 
 import { getUserCookie } from '/helpers/cookieHelper';
 import TgpHelmet from '/components/shared/TgpHelmet';
@@ -25,6 +26,8 @@ import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
+import actions from '../StaffManagementPage/actions';
+import { accessLevel } from '../CandidatePortalHomePage';
 
 export function PortalEmbedButtonPage({
   userState,
@@ -42,30 +45,44 @@ export function PortalEmbedButtonPage({
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
 
   const { content } = ssrState;
-  const { candidate } = candidatePortalHomePage;
+  const { candidate, role } = candidatePortalHomePage;
+  const router = useRouter();
+  const { id } = router.query;
+
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
   }
+
   useEffect(() => {
-    if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
-      dispatch(portalHomeActions.findCandidate());
+    if (id) {
+      dispatch(portalHomeActions.loadRoleAction(id));
     }
-  }, [user]);
+  }, [id]);
+
+  useEffect(() => {
+    if (user && id) {
+      dispatch(portalHomeActions.findCandidate(id));
+    }
+  }, [user, id]);
 
   const childProps = {
     candidate,
     user,
     content,
+    role,
   };
+
+  const access = accessLevel(role);
 
   return (
     <div>
       <TgpHelmet title="Candidate Portal" description="Candidate Portal" />
-      {user && <PortalEmbedButtonWrapper {...childProps} />}
+      {access > 15 ? (
+        <PortalEmbedButtonWrapper {...childProps} />
+      ) : (
+        <>Access Denied</>
+      )}
     </div>
   );
 }
@@ -89,12 +106,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(PortalEmbedButtonPage);
+export default compose(withConnect, memo)(PortalEmbedButtonPage);
