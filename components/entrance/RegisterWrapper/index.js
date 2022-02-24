@@ -41,7 +41,7 @@ const Or = styled.div`
   text-align: center;
   left: calc(50% - 25px);
   top: 0;
-  background-color: ${({ theme }) => theme.colors.purple3};
+  background-color: #fff;
 `;
 
 const PhoneWrapper = styled.div`
@@ -94,7 +94,7 @@ const fields = [
     type: 'text',
     required: true,
     isUpdatable: false,
-    helperText: '100 characters maximum'
+    helperText: '100 characters maximum',
   },
   {
     label: 'Email Address',
@@ -122,17 +122,19 @@ const RegisterWrapper = ({
   socialRegisterFailureCallback,
   twitterButtonCallback,
   isUpdate = false,
+  queryEmail,
 }) => {
   const [formData, setFormData] = useState({
     name: user?.name || '',
-    email: user?.email || '',
+    email: user?.email || queryEmail || '',
     phone: user?.phone || '',
     zipcode: user?.zip || '',
   });
 
   const enableSubmit = () => {
     return (
-      formData.name.length >= 2 && formData.name.length <= 100 &&
+      formData.name.length >= 2 &&
+      formData.name.length <= 100 &&
       validateZip() &&
       (validatePhone() || validateEmail())
     );
@@ -150,7 +152,7 @@ const RegisterWrapper = ({
 
   const validatePhone = () => formData.phone.length === 10;
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
@@ -185,7 +187,7 @@ const RegisterWrapper = ({
           Already have an account? <Link href="/login">login</Link>
         </Body13>
         <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-          {fields.map(field => (
+          {fields.map((field) => (
             <>
               {field.type === 'tel' ? (
                 <PhoneWrapper>
@@ -197,7 +199,7 @@ const RegisterWrapper = ({
                     placeholder="Phone Number"
                     onlyCountries={['us']}
                     value={formData.phone}
-                    onChange={phone =>
+                    onChange={(phone) =>
                       onChangeField({ target: { value: phone } }, 'phone')
                     }
                   />
@@ -216,7 +218,7 @@ const RegisterWrapper = ({
                   name={field.key}
                   variant="outlined"
                   disabled={isUpdate && !field.isUpdatable}
-                  onChange={e => onChangeField(e, field.key)}
+                  onChange={(e) => onChangeField(e, field.key)}
                   helperText={field.helperText}
                 />
               )}
