@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
@@ -124,6 +124,14 @@ const RegisterWrapper = ({
   isUpdate = false,
   queryEmail,
 }) => {
+  useEffect(() => {
+    if (queryEmail) {
+      setFormData({
+        ...formData,
+        email: queryEmail,
+      });
+    }
+  }, [queryEmail]);
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || queryEmail || '',

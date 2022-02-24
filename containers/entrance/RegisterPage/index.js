@@ -47,7 +47,7 @@ export function RegisterPage({
     socialRegisterCallback,
     socialRegisterFailureCallback,
     twitterButtonCallback,
-    queryEmail
+    queryEmail,
   };
 
   return (
