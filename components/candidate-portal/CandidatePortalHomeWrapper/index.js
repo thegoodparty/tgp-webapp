@@ -30,12 +30,7 @@ const UpdatesWrapper = styled.div`
   margin-top: 48px;
 `;
 
-function CandidatePortalHomeWrapper({
-  candidate,
-  stats,
-  loadStatsCallback,
-  role,
-}) {
+function CandidatePortalHomeWrapper({ candidate, stats, loadStatsCallback, role }) {
   return (
     <PortalPageWrapper role={role}>
       <Wrapper>
@@ -51,10 +46,17 @@ function CandidatePortalHomeWrapper({
           </H2>
           {candidate && (
             <div className="text-left">
+              {/*<Grid container spacing={3} alignItems="stretch">*/}
+              {/*  <Grid item xs={12} md={6}>*/}
+              {/*    Tip of the day*/}
+              {/*  </Grid>*/}
+              {/*  <Grid item xs={12} md={6}>*/}
+              {/*    <CampaignStats stats={stats} loadStatsCallback={loadStatsCallback} />*/}
+              {/*  </Grid>*/}
+              {/*</Grid>*/}
               <CampaignStats
                 stats={stats}
                 loadStatsCallback={loadStatsCallback}
-                id={candidate.id}
               />
               <UpdatesWrapper>
                 <H3>Campaign Updates</H3>

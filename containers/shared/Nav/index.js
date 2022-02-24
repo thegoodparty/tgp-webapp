@@ -22,13 +22,7 @@ import NavWrapper from '/components/shared/navigation/NavWrapper';
 import userActions from '/containers/you/YouPage/actions';
 import candidateActions from '/containers/elections/CandidateNewPage/actions';
 
-export function Nav({
-  userState,
-  dispatch,
-  trackShareCallback,
-  purpleNav,
-  logoutAsCandidateCallback,
-}) {
+export function Nav({ userState, dispatch, trackShareCallback, purpleNav }) {
   useInjectReducer({ key: 'user', reducer });
   useInjectSaga({ key: 'user', saga });
 
@@ -49,14 +43,10 @@ export function Nav({
     setUser(tempUser);
   }, [updated]);
 
-  const asToken = getCookie('asToken');
-
   const childProps = {
     user,
     trackShareCallback,
     purpleNav,
-    asCandidate: !!asToken,
-    logoutAsCandidateCallback,
   };
 
   return <NavWrapper {...childProps} />;
@@ -67,7 +57,6 @@ Nav.propTypes = {
   userState: PropTypes.object,
   trackShareCallback: PropTypes.func,
   purpleNav: PropTypes.bool,
-  logoutAsCandidateCallback: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -78,19 +67,12 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    trackShareCallback: candidateId => {
+    trackShareCallback: (candidateId) => {
       dispatch(candidateActions.trackShare(candidateId));
-    },
-    logoutAsCandidateCallback: () => {
-      deleteCookie('asToken');
-      dispatch(push('/admin'));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(Nav);

@@ -51,11 +51,7 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function Index({
-  candidates,
-  deleteCandidateCallback,
-  logAsCandidateCallback,
-}) {
+function Index({ candidates, deleteCandidateCallback }) {
   const [tableData, setTableData] = useState([]);
   const [deleteCandidate, setDeleteCandidate] = useState(false);
   const handleDeleteCandidate = (id) => {
@@ -126,7 +122,6 @@ function Index({
       Cell: (row) => {
         const route = candidateRoute(row.original);
         const editRoute = `/admin/add-candidate/${row.original.id}`;
-        const settingsRoute = `/admin/stage-settings/${row.original.id}`;
         return (
           <>
             <Link href={editRoute} target="_blank" passHref>
@@ -206,16 +201,15 @@ function Index({
     {
       Header: 'Portal',
       accessor: 'portal',
-      maxWidth: 120,
       headerStyle,
       filterMethod: customFilter,
       Cell: (row) => {
         const route = `/candidate-portal/${row.original.id}`;
         return (
           <div className="text-center">
-            <a href={route} target="_blank" rel="noreferrer">
-              Log as candidate
-            </a>
+            <Link href={route}>
+              <a>Candidate Portal</a>
+            </Link>
           </div>
         );
       },
@@ -229,16 +223,14 @@ function Index({
         const editRoute = `/admin/top-issues/${row.original.id}`;
         return (
           <>
-            <a
+            <Link
               href={editRoute}
-              target="_blank"
-              rel="noreferrer"
               style={{
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}
             >
-              Edit Top Issues
-            </a>
+              <a>Edit Top Issues</a>
+            </Link>
           </>
         );
       },
@@ -298,7 +290,6 @@ function Index({
 Index.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   deleteCandidateCallback: PropTypes.func,
-  logAsCandidateCallback: PropTypes.func,
 };
 
 export default Index;

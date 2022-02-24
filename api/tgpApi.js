@@ -335,11 +335,6 @@ const api = {
         withAuth: true,
       },
     },
-    logAsCandidate: {
-      url: `${base}admin/log-as-candidate`,
-      method: 'PUT',
-      withAuth: true,
-    },
   },
   newCandidate: {
     create: {
