@@ -68,7 +68,7 @@ const progressPerc = (thisTotal, lastTotal) => {
 
 const dateRanges = ['Last Week', 'Last 30 days'];
 
-const CampaignStats = ({ stats, loadStatsCallback }) => {
+const CampaignStats = ({ stats, loadStatsCallback, id }) => {
   const [dateRange, setDateRange] = useState(dateRanges[0]);
   if (!stats) {
     return <></>;
@@ -85,9 +85,9 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
     votesNeeded: 'Votes Needed',
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setDateRange(event.target.value);
-    loadStatsCallback(event.target.value);
+    loadStatsCallback(event.target.value, id);
   };
 
   return (
@@ -101,7 +101,9 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
         <Grid item xs={12} md={6} className="text-right">
           <Select value={dateRange} onChange={handleChange} variant="outlined">
             {dateRanges.map((range, index) => (
-              <MenuItem value={range} key={index}>{range}</MenuItem>
+              <MenuItem value={range} key={index}>
+                {range}
+              </MenuItem>
             ))}
           </Select>
         </Grid>
@@ -110,7 +112,7 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
       <Body>
         <strong>{dateRange}</strong>
       </Body>
-      {Object.keys(periodStats).map(key => (
+      {Object.keys(periodStats).map((key) => (
         <Stat key={key}>
           {numberFormatter(periodStats[key].total)} {key}{' '}
           <Perc
@@ -167,7 +169,7 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
       <Body>
         <strong>All time</strong>
       </Body>
-      {Object.keys(totals).map(key => (
+      {Object.keys(totals).map((key) => (
         <Total key={key}>
           {numberFormatter(totals[key])} {totalsLabel[key]}{' '}
         </Total>
@@ -179,6 +181,7 @@ const CampaignStats = ({ stats, loadStatsCallback }) => {
 CampaignStats.propTypes = {
   stats: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   loadStatsCallback: PropTypes.func,
+  id: PropTypes.string,
 };
 
 export default CampaignStats;

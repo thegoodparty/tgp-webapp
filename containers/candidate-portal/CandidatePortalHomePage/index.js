@@ -23,7 +23,6 @@ import saga from './saga';
 import makeSelectUser from '../../you/YouPage/selectors';
 import actions from './actions';
 
-
 export function CandidatePortalHomePage({
   userState,
   dispatch,
@@ -90,8 +89,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadStatsCallback: (range) => {
-      dispatch(actions.loadStatsAction(range));
+    loadStatsCallback: (range, id) => {
+      dispatch(actions.loadStatsAction(range, id));
     },
   };
 }
