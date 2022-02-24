@@ -474,17 +474,104 @@ const api = {
       method: 'GET',
     },
   },
-  candidateUser: {
+  campaign: {
     find: {
-      url: `${base}candidate-user`,
+      url: `${base}campaign`,
       method: 'GET',
       withAuth: true,
     },
     stats: {
-      url: `${base}candidate-user/stats`,
+      url: `${base}campaign/stats`,
       method: 'GET',
       withAuth: true,
     },
+    updateRequest: {
+      create: {
+        url: `${base}campaign/update-request`,
+        method: 'POST',
+        withAuth: true,
+      },
+    },
+    staff: {
+      userStaff: {
+        url: `${base}user/staff`,
+        method: 'GET',
+        withAuth: true,
+      },
+      create: {
+        url: `${base}campaign/staff`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/staff`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}campaign/staff`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      role: {
+        url: `${base}campaign/staff-role`,
+        method: 'GET',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}campaign/staff`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
+    ugc: {
+      find: {
+        url: `${base}ugc`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}ugc`,
+        method: 'PUT',
+        withAuth: true,
+      },
+
+      list: {
+        // admin
+        url: `${base}ugcs`,
+        method: 'GET',
+        withAuth: true,
+      },
+
+      accept: {
+        // admin
+        url: `${base}ugcs/accept`,
+        method: 'PUT',
+        withAuth: true,
+      },
+
+      reject: {
+        // admin
+        url: `${base}ugcs/reject`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
+
+    notification: {
+      find: {
+        url: `${base}campaign/notification`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/notification`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
+  },
+  candidateUser: {
     issue: {
       find: {
         url: `${base}candidate-issue`,
@@ -517,51 +604,7 @@ const api = {
         withAuth: true,
       },
     },
-    notification: {
-      find: {
-        url: `${base}campaign-notification`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}campaign-notification`,
-        method: 'PUT',
-        withAuth: true,
-      },
-    },
-    ugc: {
-      find: {
-        url: `${base}candidate-ugc`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}candidate-ugc`,
-        method: 'PUT',
-        withAuth: true,
-      },
 
-      list: {
-        // admin
-        url: `${base}candidate-ugcs`,
-        method: 'GET',
-        withAuth: true,
-      },
-
-      accept: {
-        // admin
-        url: `${base}candidate-ugcs/accept`,
-        method: 'PUT',
-        withAuth: true,
-      },
-
-      reject: {
-        // admin
-        url: `${base}candidate-ugcs/reject`,
-        method: 'PUT',
-        withAuth: true,
-      },
-    },
     updateRequest: {
       create: {
         url: `${base}candidate-user/update-request`,

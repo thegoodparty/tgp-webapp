@@ -13,7 +13,7 @@ import {
   FaDollarSign,
 } from 'react-icons/fa';
 import { IoIosPeople } from 'react-icons/io';
-import { flatStates } from '../../../helpers/statesHelper';
+import { flatStates } from '/helpers/statesHelper';
 
 const IconWrapper = styled.span`
   color: ${({ theme }) => theme.colors.purple};

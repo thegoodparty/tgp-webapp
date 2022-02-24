@@ -11,9 +11,7 @@ import styled from 'styled-components';
 import { Body, H2 } from '../../shared/typogrophy';
 import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
 import CopyCodeSection from '../../GoodPracticesWrapper/CopyCodeSection';
-import contentfulHelper, {
-  CmsContentWrapper,
-} from '../../../helpers/contentfulHelper';
+import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -35,9 +33,9 @@ const Img = styled.img`
     inset -1px -1px 1px rgba(224, 212, 234, 0.5);
 `;
 
-function PortalEmbedButtonWrapper({ candidate, content }) {
+function PortalEmbedButtonWrapper({ candidate, content, role }) {
   return (
-    <PortalPageWrapper>
+    <PortalPageWrapper role={role}>
       {candidate && (
         <Wrapper>
           <div>
@@ -58,7 +56,11 @@ function PortalEmbedButtonWrapper({ candidate, content }) {
             <br />
             <br />
             Example of an embed button on{' '}
-            <a href="https://www.baddarforthepeople.org/" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.baddarforthepeople.org/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Youseff Baddar
             </a>
             &apos;s site
@@ -74,6 +76,7 @@ function PortalEmbedButtonWrapper({ candidate, content }) {
 PortalEmbedButtonWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   content: PropTypes.object,
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default PortalEmbedButtonWrapper;

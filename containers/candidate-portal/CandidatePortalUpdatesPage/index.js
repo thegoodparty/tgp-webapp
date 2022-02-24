@@ -7,10 +7,9 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
 
 import TgpHelmet from '/components/shared/TgpHelmet';
 import { useInjectSaga } from '/utils/injectSaga';
@@ -21,7 +20,7 @@ import saga from './saga';
 import CandidatePortalUpdatesContainer from './CandidatePortalUpdatesContainer';
 import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import portalHomeSaga from '../CandidatePortalHomePage/saga';
-import { getUserCookie } from '../../../helpers/cookieHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
@@ -39,25 +38,33 @@ export function CandidatePortalUpdatesPage({
     reducer: portalHomeReducer,
   });
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
+  const router = useRouter();
 
-  const { candidate } = candidatePortalHomePage;
+  const { candidate, role } = candidatePortalHomePage;
+
+  const { id } = router.query;
 
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
   }
+
   useEffect(() => {
-    if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
-      dispatch(portalHomeActions.findCandidate());
+    if (user && id) {
+      dispatch(portalHomeActions.findCandidate(id));
     }
-  }, [user]);
+  }, [user, id]);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(portalHomeActions.loadRoleAction(id));
+    }
+  }, [id]);
 
   const childProps = {
     candidate,
     pageLevel: true,
+    role,
   };
 
   return (
@@ -66,7 +73,11 @@ export function CandidatePortalUpdatesPage({
         title="Campaign Updates - Candidate Portal"
         description="Campaign Updates - Candidate Portal"
       />
-      {candidate && <CandidatePortalUpdatesContainer {...childProps} />}
+      {role ? (
+        <CandidatePortalUpdatesContainer {...childProps} />
+      ) : (
+        <>Access Denied</>
+      )}
     </div>
   );
 }
@@ -89,12 +100,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(CandidatePortalUpdatesPage);
+export default compose(withConnect, memo)(CandidatePortalUpdatesPage);

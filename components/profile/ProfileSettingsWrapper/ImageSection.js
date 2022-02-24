@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import UserAvatar from '../../shared/UserAvatar';
 import { Body9, H2 } from '../../shared/typogrophy';
 
-import { getDisplayName } from '../../../helpers/userHelper';
+import { getDisplayName } from '/helpers/userHelper';
 import UploadModal from './UploadModal';
 
 const Wrapper = styled.section`

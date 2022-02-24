@@ -31,7 +31,7 @@ import saga from './saga';
 import actions from './actions';
 import { makeSelectContent } from '../../App/selectors';
 import makeSelectCandidateNewPage from './selectors';
-import { getExperiment } from '../../../helpers/optimizeHelper';
+import { getExperiment } from '/helpers/optimizeHelper';
 
 export function CandidateNewPage({
   ssrState,

@@ -6,10 +6,13 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* findCandidate() {
+function* findCandidate({ id }) {
   try {
-    const api = tgpApi.candidateUser.find;
-    const { candidate } = yield call(requestHelper, api, null);
+    const api = tgpApi.campaign.find;
+    const payload = {
+      id,
+    };
+    const { candidate } = yield call(requestHelper, api, payload);
     yield put(actions.findCandidateSuccess(candidate));
   } catch (error) {
     yield put(
@@ -19,15 +22,15 @@ function* findCandidate() {
   }
 }
 
-function* loadStats({ range }) {
+function* loadStats({ range, id }) {
   try {
-    const api = tgpApi.candidateUser.stats;
+    const api = tgpApi.campaign.stats;
     const payload = {
       range,
+      id,
     };
     const stats = yield call(requestHelper, api, payload);
-    const parsed = parseStats(stats);
-    yield put(actions.loadStatsActionSuccess(parsed));
+    yield put(actions.loadStatsActionSuccess(stats));
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction('Error loading stats', 'error'),
@@ -36,12 +39,25 @@ function* loadStats({ range }) {
   }
 }
 
-const parseStats = stats => {
-  return stats;
-};
+function* loadRole({ id }) {
+  try {
+    const api = tgpApi.campaign.staff.role;
+    const payload = {
+      id,
+    };
+    const role = yield call(requestHelper, api, payload);
+    yield put(actions.loadRoleActionSuccess(role));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Error loading stats', 'error'),
+    );
+    console.log(error);
+  }
+}
 
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.FIND_CANDIDATE, findCandidate);
   yield takeLatest(types.LOAD_STATS, loadStats);
+  yield takeLatest(types.LOAD_ROLE, loadRole);
 }

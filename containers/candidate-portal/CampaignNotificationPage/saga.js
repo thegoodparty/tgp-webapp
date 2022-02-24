@@ -6,10 +6,13 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* findCampaignNotification() {
+function* findCampaignNotification({ id }) {
   try {
-    const api = tgpApi.candidateUser.notification.find;
-    const { campaignNotification } = yield call(requestHelper, api, null);
+    const api = tgpApi.campaign.notification.find;
+    const payload = {
+      id,
+    };
+    const { campaignNotification } = yield call(requestHelper, api, payload);
     yield put(
       actions.findCampaignNotificationActionSuccess(campaignNotification),
     );
@@ -18,15 +21,16 @@ function* findCampaignNotification() {
   }
 }
 
-function* updateCampaignNotification({ campaignNotification }) {
+function* updateCampaignNotification({ campaignNotification, id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.candidateUser.notification.update;
+    const api = tgpApi.campaign.notification.update;
     const payload = {
       data: campaignNotification,
+      id,
     };
     yield call(requestHelper, api, payload);
-    yield put(actions.findCampaignNotificationAction());
+    yield put(actions.findCampaignNotificationAction(id));
     yield put(snackbarActions.showSnakbarAction('Your request was sent'));
   } catch (error) {
     console.log(error);

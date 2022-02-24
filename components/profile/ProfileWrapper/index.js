@@ -15,6 +15,7 @@ import CampaignSection from './CampaignsSection';
 import IncompleteProfileBanner from './IncompleteProfileBanner';
 import ProfileTabs from './ProfileTabs';
 import UpdatesSection from './UpdatesSection';
+import StaffSection from './StaffSection';
 
 export const MaxWidth = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
@@ -34,13 +35,14 @@ const ContentWrpper = styled(MaxWidth)`
   }
 `;
 
-function ProfileWrapper({ user, userSupported, updates }) {
+function ProfileWrapper({ user, userSupported, updates, staff }) {
   return (
     <PageWrapper isFullWidth>
       <TopSection user={user} />
       <IncompleteProfileBanner user={user} />
       <ContentWrpper>
         <ProfileTabs />
+        <StaffSection staff={staff} />
         <CampaignSection userSupported={userSupported} />
         <UpdatesSection updates={updates} />
       </ContentWrpper>
@@ -52,6 +54,7 @@ ProfileWrapper.propTypes = {
   user: PropTypes.object,
   userSupported: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   updates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  staff: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default ProfileWrapper;

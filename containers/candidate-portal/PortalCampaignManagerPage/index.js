@@ -7,10 +7,10 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
 
 import { getUserCookie } from '/helpers/cookieHelper';
 import { useInjectSaga } from '/utils/injectSaga';
@@ -23,9 +23,10 @@ import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
-import PortalCampaignManagerWrapper from '../../../components/candidate-portal/PortalCampaignManagerWrapper';
-import TgpHelmet from '../../../components/shared/TgpHelmet';
+import PortalCampaignManagerWrapper from '/components/candidate-portal/PortalCampaignManagerWrapper';
+import TgpHelmet from '/components/shared/TgpHelmet';
 import actions from './actions';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
 export function PortalCampaignManagerPage({
   userState,
@@ -43,29 +44,35 @@ export function PortalCampaignManagerPage({
   });
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
 
-  const { candidate } = candidatePortalHomePage;
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { candidate, role } = candidatePortalHomePage;
 
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
   }
+
   useEffect(() => {
-    if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
-      dispatch(portalHomeActions.findCandidate());
-      dispatch(actions.findUgcAction());
+    if (id) {
+      dispatch(portalHomeActions.loadRoleAction(id));
+      dispatch(portalHomeActions.findCandidate(id));
+      dispatch(actions.findUgcAction(id));
     }
-  }, [user]);
+  }, [id]);
 
   const { candidateUgc } = portalCampaignManagerPage;
+
+  const access = accessLevel(role);
+  console.log(access, role);
 
   const childProps = {
     candidate,
     user,
     candidateUgc,
     updateUgcCallback,
+    role,
   };
 
   return (
@@ -74,7 +81,11 @@ export function PortalCampaignManagerPage({
         title="Campaign Manager - Candidate Portal"
         description="Campaign Manager - Candidate Portal"
       />
-      <PortalCampaignManagerWrapper {...childProps} />
+      {access > ACCESS_ENUM.STAFF ? (
+        <PortalCampaignManagerWrapper {...childProps} />
+      ) : (
+        <>Access Denied</>
+      )}
     </div>
   );
 }
@@ -96,18 +107,12 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateUgcCallback: ugc => {
-      dispatch(actions.updateUgcAction(ugc));
+    updateUgcCallback: (id, ugc) => {
+      dispatch(actions.updateUgcAction(id, ugc));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(PortalCampaignManagerPage);
+export default compose(withConnect, memo)(PortalCampaignManagerPage);

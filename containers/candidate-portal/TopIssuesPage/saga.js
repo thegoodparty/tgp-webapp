@@ -9,7 +9,6 @@ import actions from './actions';
 function* findIssue({ candidateId }) {
   try {
     let api = tgpApi.candidateUser.issue.find;
-    console.log('Candidate:', candidateId, api);
     const { candidateIssue } = yield call(requestHelper, api, { candidateId });
     yield put(actions.findIssueActionSuccess(candidateIssue));
   } catch (error) {

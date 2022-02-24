@@ -4,13 +4,12 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
 
 import TgpHelmet from '/components/shared/TgpHelmet';
 import CandidatePortalHomeWrapper from '/components/candidate-portal/CandidatePortalHomeWrapper';
@@ -32,34 +31,45 @@ export function CandidatePortalHomePage({
 }) {
   useInjectReducer({ key: 'candidatePortalHomePage', reducer });
   useInjectSaga({ key: 'candidatePortalHomePage', saga });
-  const { candidate, stats } = candidatePortalHomePage;
+  const { candidate, stats, role } = candidatePortalHomePage;
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
   }
+
+  const router = useRouter();
+  const { id } = router.query;
   useEffect(() => {
-    if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
-      dispatch(actions.findCandidate());
+    if (id) {
+      dispatch(actions.loadRoleAction(id));
       if (!stats) {
-        dispatch(actions.loadStatsAction('Last Week'));
+        dispatch(actions.loadStatsAction('Last Week', id));
       }
     }
-  }, [user]);
+  }, [id]);
+
+  useEffect(() => {
+    if (!candidate && id) {
+      dispatch(actions.findCandidate(id));
+    }
+  }, [id, candidate]);
 
   const childProps = {
     candidate,
     user,
     stats,
     loadStatsCallback,
+    role,
   };
 
   return (
     <div>
       <TgpHelmet title="Candidate Portal" description="Candidate Portal" />
-      {user && <CandidatePortalHomeWrapper {...childProps} />}
+      {role ? (
+        <CandidatePortalHomeWrapper {...childProps} />
+      ) : (
+        <>Access Denied</>
+      )}
     </div>
   );
 }
@@ -79,18 +89,12 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadStatsCallback: range => {
-      dispatch(actions.loadStatsAction(range));
+    loadStatsCallback: (range, id) => {
+      dispatch(actions.loadStatsAction(range, id));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(CandidatePortalHomePage);
+export default compose(withConnect, memo)(CandidatePortalHomePage);

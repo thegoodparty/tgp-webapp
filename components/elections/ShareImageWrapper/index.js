@@ -15,8 +15,8 @@ import { partyResolver } from '/helpers/electionsHelper';
 import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
-import { kFormatter, numberFormatter } from '../../../helpers/numberHelper';
-import { achievementsHelper } from '../../../helpers/achievementsHelper';
+import { kFormatter, numberFormatter } from '/helpers/numberHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;

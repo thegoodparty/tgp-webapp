@@ -1,4 +1,4 @@
 import Page from '/containers/candidate-portal/CandidatePortalHomePage';
-export default function Admin() {
+export default function Portal() {
   return <Page />;
 }

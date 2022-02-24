@@ -29,6 +29,7 @@ function PortalCampaignManagerWrapper({
   candidate,
   candidateUgc,
   updateUgcCallback,
+  role,
 }) {
   const [ugc, setUgc] = useState({});
   useEffect(() => {
@@ -59,7 +60,7 @@ function PortalCampaignManagerWrapper({
   };
 
   return (
-    <PortalPageWrapper>
+    <PortalPageWrapper role={role}>
       <Wrapper>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -71,7 +72,7 @@ function PortalCampaignManagerWrapper({
           <Grid item xs={12}>
             <hr />
           </Grid>
-          {fields.map(field => (
+          {fields.map((field) => (
             <React.Fragment key={field.key}>
               <Grid item xs={12} md={6}>
                 <strong>{field.label}</strong>
@@ -87,7 +88,7 @@ function PortalCampaignManagerWrapper({
               <Grid item xs={12} md={6}>
                 {field.isRichText ? (
                   <JoditEditorWrapper
-                    onChangeCallback={value => updateUgc(field.key, value)}
+                    onChangeCallback={(value) => updateUgc(field.key, value)}
                     initialText={ugc[field.key]}
                   />
                 ) : (
@@ -97,7 +98,7 @@ function PortalCampaignManagerWrapper({
                     name={field.label}
                     variant="outlined"
                     value={ugc[field.key]}
-                    onChange={e => updateUgc(field.key, e.target.value)}
+                    onChange={(e) => updateUgc(field.key, e.target.value)}
                   />
                 )}
               </Grid>
@@ -107,7 +108,10 @@ function PortalCampaignManagerWrapper({
             </React.Fragment>
           ))}
           <Grid item xs={12}>
-            <PurpleButton onClick={() => updateUgcCallback(ugc)} fullWidth>
+            <PurpleButton
+              onClick={() => updateUgcCallback(candidate.id, ugc)}
+              fullWidth
+            >
               SAVE
             </PurpleButton>
           </Grid>
@@ -121,6 +125,7 @@ PortalCampaignManagerWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   candidateUgc: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateUgcCallback: PropTypes.func,
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default PortalCampaignManagerWrapper;

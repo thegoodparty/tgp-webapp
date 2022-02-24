@@ -63,7 +63,6 @@ const StyledTooltip = styled(Body13)`
 const dateRanges = ['All time', 'last 12 months', 'last 30 days', 'last week'];
 
 function AdminUserStats({ users, loadUsersCallback }) {
-  console.log('user', users);
   const [dateRange, setDateRange] = useState(dateRanges[0]);
   const [verifiedEmailData, setVerifiedEmailData] = useState([]);
   const [socialRegisterData, setSocialRegisterData] = useState([]);
