@@ -31,7 +31,7 @@ function* loadUpdates() {
 
 function* loadStaff() {
   try {
-    const api = tgpApi.staff.userStaff;
+    const api = tgpApi.campaign.staff.userStaff;
     const { staff } = yield call(requestHelper, api, null);
     yield put(actions.loadStaffActionSuccess(staff));
   } catch (error) {

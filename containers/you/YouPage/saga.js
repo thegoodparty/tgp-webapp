@@ -74,9 +74,7 @@ function* register(action) {
     if (error.response?.exists) {
       yield put(
         snackbarActions.showSnakbarAction(
-          `The email ${
-            action.email
-          } already exists in our system. Try signing in.`,
+          `The email ${action.email} already exists in our system. Try signing in.`,
           'error',
         ),
       );
@@ -268,11 +266,7 @@ function* login(action) {
     setUserCookie(user);
     setCookie('token', token);
     deleteCookie('guestRanking');
-    if (user.candidate) {
-      yield put(push('/candidate-portal'));
-    } else {
-      yield put(push('/profile'));
-    }
+    yield put(push('/profile'));
     logEvent('email-login', 'success');
   } catch (error) {
     yield put(
@@ -551,9 +545,7 @@ function* generateUuid() {
   const user = getUserCookie();
   const guestUuid = getCookie('guuid');
   if (!user && !guestUuid) {
-    const uuid = Math.random()
-      .toString(36)
-      .substring(2, 12);
+    const uuid = Math.random().toString(36).substring(2, 12);
     setCookie('guuid', uuid);
   }
 }

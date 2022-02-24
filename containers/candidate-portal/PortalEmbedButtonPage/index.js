@@ -27,7 +27,7 @@ import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
 import actions from '../StaffManagementPage/actions';
-import { accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
 
 export function PortalEmbedButtonPage({
   userState,
@@ -78,7 +78,7 @@ export function PortalEmbedButtonPage({
   return (
     <div>
       <TgpHelmet title="Candidate Portal" description="Candidate Portal" />
-      {access > 15 ? (
+      {access > ACCESS_ENUM.NO_ACCESS ? (
         <PortalEmbedButtonWrapper {...childProps} />
       ) : (
         <>Access Denied</>

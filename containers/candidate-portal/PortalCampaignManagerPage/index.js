@@ -26,7 +26,7 @@ import makeSelectUser from '../../you/YouPage/selectors';
 import PortalCampaignManagerWrapper from '/components/candidate-portal/PortalCampaignManagerWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import actions from './actions';
-import { accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
 
 export function PortalCampaignManagerPage({
   userState,
@@ -81,7 +81,7 @@ export function PortalCampaignManagerPage({
         title="Campaign Manager - Candidate Portal"
         description="Campaign Manager - Candidate Portal"
       />
-      {access > 15 ? (
+      {access > ACCESS_ENUM.STAFF ? (
         <PortalCampaignManagerWrapper {...childProps} />
       ) : (
         <>Access Denied</>

@@ -26,7 +26,7 @@ import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
-import { accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
 
 export function StaffManagementPage({
   staffManagementPage,
@@ -52,23 +52,14 @@ export function StaffManagementPage({
   const { staff, loading } = staffManagementPage;
 
   const { candidate, role } = candidatePortalHomePage;
-  let { user } = userState;
-  if (!user) {
-    user = getUserCookie(true);
-  }
 
   useEffect(() => {
     if (id) {
       dispatch(portalHomeActions.loadRoleAction(id));
       dispatch(actions.loadStaffAction(id));
-    }
-  }, [id]);
-
-  useEffect(() => {
-    if (user && id) {
       dispatch(portalHomeActions.findCandidate(id));
     }
-  }, [user, id]);
+  }, [id]);
 
   const childProps = {
     candidate,
@@ -85,7 +76,7 @@ export function StaffManagementPage({
   return (
     <div>
       <TgpHelmet title="Staff Management" description="Staff Management" />
-      {access > 15 ? (
+      {access > ACCESS_ENUM.STAFF ? (
         <StaffManagementWrapper {...childProps} />
       ) : (
         <>Access Denied</>

@@ -557,6 +557,19 @@ const api = {
         withAuth: true,
       },
     },
+
+    notification: {
+      find: {
+        url: `${base}campaign/notification`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/notification`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
   },
   candidateUser: {
     issue: {
@@ -587,18 +600,6 @@ const api = {
       reject: {
         // admin
         url: `${base}candidate-issue/reject`,
-        method: 'PUT',
-        withAuth: true,
-      },
-    },
-    notification: {
-      find: {
-        url: `${base}campaign-notification`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}campaign-notification`,
         method: 'PUT',
         withAuth: true,
       },

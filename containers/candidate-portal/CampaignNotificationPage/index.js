@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
+
 import CampaignNotificationWrapper from '/components/candidate-portal/CampaignNotificationWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import { getUserCookie } from '/helpers/cookieHelper';
@@ -19,7 +21,6 @@ import makeSelectCampaignNotificationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-
 import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
@@ -27,6 +28,7 @@ import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/select
 import makeSelectUser from '../../you/YouPage/selectors';
 
 import actions from './actions';
+import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
 
 export function CampaignNotificationPage({
   userState,
@@ -44,28 +46,27 @@ export function CampaignNotificationPage({
   });
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
 
-  const { candidate } = candidatePortalHomePage;
+  const router = useRouter();
+  const { id } = router.query;
 
-  let { user } = userState;
-  if (!user) {
-    user = getUserCookie(true);
-  }
+  const { candidate, role } = candidatePortalHomePage;
+
   useEffect(() => {
-    if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
-      dispatch(portalHomeActions.findCandidate());
-      dispatch(actions.findCampaignNotificationAction());
+    if (id) {
+      dispatch(portalHomeActions.loadRoleAction(id));
+      dispatch(portalHomeActions.findCandidate(id));
+      dispatch(actions.findCampaignNotificationAction(id));
     }
-  }, [user]);
+  }, [id]);
 
   const { campaignNotification } = campaignNotificationPage;
+
+  const access = accessLevel(role);
   const childProps = {
-    user,
     candidate,
     campaignNotification,
     updateCampaignNotificationCallback,
+    role,
   };
 
   return (
@@ -74,7 +75,11 @@ export function CampaignNotificationPage({
         title="Campaign Notification"
         description="Campaign Notification"
       />
-      <CampaignNotificationWrapper {...childProps} />
+      {access > ACCESS_ENUM.STAFF ? (
+        <CampaignNotificationWrapper {...childProps} />
+      ) : (
+        <>Access Denied</>
+      )}
     </div>
   );
 }
@@ -96,18 +101,12 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateCampaignNotificationCallback: notification => {
-      dispatch(actions.updateCampaignNotificationAction(notification));
+    updateCampaignNotificationCallback: (notification, id) => {
+      dispatch(actions.updateCampaignNotificationAction(notification, id));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(CampaignNotificationPage);
+export default compose(withConnect, memo)(CampaignNotificationPage);

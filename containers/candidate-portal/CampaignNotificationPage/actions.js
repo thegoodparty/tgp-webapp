@@ -1,8 +1,9 @@
 import types from './constants';
 
-function findCampaignNotificationAction() {
+function findCampaignNotificationAction(id) {
   return {
     type: types.FIND_CAMPAIGN_NOTIFICATION,
+    id,
   };
 }
 
@@ -13,10 +14,11 @@ function findCampaignNotificationActionSuccess(campaignNotification) {
   };
 }
 
-function updateCampaignNotificationAction(campaignNotification) {
+function updateCampaignNotificationAction(campaignNotification, id) {
   return {
     type: types.UPDATE_CAMPAIGN_NOTIFICATION,
     campaignNotification,
+    id,
   };
 }
 

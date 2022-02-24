@@ -22,7 +22,7 @@ import { GoIssueClosed } from 'react-icons/go';
 import { FaUsersCog } from 'react-icons/fa';
 
 import { Body13 } from '/components/shared/typogrophy/index';
-import { accessLevel } from '/containers/candidate-portal/CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '/containers/candidate-portal/CandidatePortalHomePage';
 
 const LeftPanel = styled.div`
   width: 250px;
@@ -65,43 +65,43 @@ export const leftMenuItems = [
     icon: <BiHomeHeart size={24} />,
     label: 'Portal Home',
     link: '/candidate-portal',
-    minAccessLevel: 0,
+    minAccessLevel: ACCESS_ENUM.STAFF,
   },
   {
     icon: <MdUpdate size={24} />,
     label: 'Campaign Updates',
     link: '/candidate-portal/campaign-updates',
-    minAccessLevel: 0,
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
     icon: <GoIssueClosed size={24} />,
     label: 'Top Issues',
     link: '/candidate-portal/top-issues',
-    minAccessLevel: 0,
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
     icon: <IoIosContact size={24} />,
     label: 'Basic Info',
     link: '/candidate-portal/campaign-manager',
-    minAccessLevel: 0,
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
     icon: <ImEmbed2 size={24} />,
     label: 'Embed Button',
     link: '/candidate-portal/embed',
-    minAccessLevel: 0,
+    minAccessLevel: ACCESS_ENUM.STAFF,
   },
   {
     icon: <AiOutlineNotification size={24} />,
     label: 'Notification',
     link: '/candidate-portal/campaign-notification',
-    minAccessLevel: 0,
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
     icon: <FaUsersCog size={24} />,
     label: 'Staff Management',
     link: '/candidate-portal/staff-management',
-    minAccessLevel: 15,
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
 ];
 function PortalLeftMenu({ id, role }) {

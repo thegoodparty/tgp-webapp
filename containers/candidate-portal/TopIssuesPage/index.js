@@ -32,7 +32,7 @@ import actions from './actions';
 import adminIssueTopicsPageReducer from '../../admin/AdminIssueTopicsPage/reducer';
 import adminIssueTopicsSaga from '../../admin/AdminIssueTopicsPage/saga';
 import adminIssueTopicsActions from '../../admin/AdminIssueTopicsPage/actions';
-import { accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
 
 export function TopIssuesPage({
   userState,
@@ -109,7 +109,7 @@ export function TopIssuesPage({
         title="Campaign Manager - Top Issues"
         description="Campaign Manager - Top Issues"
       />
-      {access > 15 ? <TopIssuesWrapper {...childProps} /> : <>Access Denied</>}
+      {access > ACCESS_ENUM.STAFF ? <TopIssuesWrapper {...childProps} /> : <>Access Denied</>}
     </div>
   );
 }

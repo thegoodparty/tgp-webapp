@@ -29,6 +29,7 @@ function PortalCampaignManagerWrapper({
   candidate,
   candidateUgc,
   updateUgcCallback,
+  role,
 }) {
   const [ugc, setUgc] = useState({});
   useEffect(() => {
@@ -59,7 +60,7 @@ function PortalCampaignManagerWrapper({
   };
 
   return (
-    <PortalPageWrapper>
+    <PortalPageWrapper role={role}>
       <Wrapper>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -124,6 +125,7 @@ PortalCampaignManagerWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   candidateUgc: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateUgcCallback: PropTypes.func,
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default PortalCampaignManagerWrapper;

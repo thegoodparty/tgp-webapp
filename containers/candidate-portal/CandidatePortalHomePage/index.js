@@ -23,19 +23,25 @@ import saga from './saga';
 import makeSelectUser from '../../you/YouPage/selectors';
 import actions from './actions';
 
+export const ACCESS_ENUM = {
+  NO_ACCESS: 0,
+  STAFF: 10,
+  MANAGER: 20,
+  OWNER: 30,
+};
 
 export const accessLevel = (role) => {
   if (!role) {
-    return 0;
+    return ACCESS_ENUM.NO_ACCESS;
   }
   if (role === 'staff') {
-    return 10;
+    return ACCESS_ENUM.STAFF;
   }
   if (role === 'manager') {
-    return 20;
+    return ACCESS_ENUM.MANAGER;
   }
   if (role === 'owner' || role === 'admin') {
-    return 30;
+    return ACCESS_ENUM.OWNER;
   }
 };
 
@@ -75,7 +81,7 @@ export function CandidatePortalHomePage({
     user,
     stats,
     loadStatsCallback,
-    role
+    role,
   };
 
   return (
