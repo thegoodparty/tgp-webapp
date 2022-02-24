@@ -26,7 +26,7 @@ import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import portalHomeSaga from '../CandidatePortalHomePage/saga';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
-import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
 export function StaffManagementPage({
   staffManagementPage,

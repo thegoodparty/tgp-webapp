@@ -28,7 +28,7 @@ import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/select
 import makeSelectUser from '../../you/YouPage/selectors';
 
 import actions from './actions';
-import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
 export function CampaignNotificationPage({
   userState,

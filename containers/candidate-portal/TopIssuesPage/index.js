@@ -32,7 +32,7 @@ import actions from './actions';
 import adminIssueTopicsPageReducer from '../../admin/AdminIssueTopicsPage/reducer';
 import adminIssueTopicsSaga from '../../admin/AdminIssueTopicsPage/saga';
 import adminIssueTopicsActions from '../../admin/AdminIssueTopicsPage/actions';
-import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
 export function TopIssuesPage({
   userState,

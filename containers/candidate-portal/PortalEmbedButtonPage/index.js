@@ -27,7 +27,7 @@ import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import makeSelectUser from '../../you/YouPage/selectors';
 import actions from '../StaffManagementPage/actions';
-import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
 export function PortalEmbedButtonPage({
   userState,

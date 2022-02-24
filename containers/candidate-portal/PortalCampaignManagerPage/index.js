@@ -26,7 +26,7 @@ import makeSelectUser from '../../you/YouPage/selectors';
 import PortalCampaignManagerWrapper from '/components/candidate-portal/PortalCampaignManagerWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import actions from './actions';
-import { ACCESS_ENUM, accessLevel } from '../CandidatePortalHomePage';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
 export function PortalCampaignManagerPage({
   userState,
