@@ -19,7 +19,7 @@ const roles = ['staff', 'manager'];
 
 function InviteUser({ addStaffCallback, candidate }) {
   const [showInvite, setShowInvite] = useState(false);
-  const [state, setState] = useState({ email: '', role: '' });
+  const [state, setState] = useState({ email: '', role: 'staff' });
 
   const onChangeField = (key, e) => {
     setState({
@@ -36,7 +36,7 @@ function InviteUser({ addStaffCallback, candidate }) {
     addStaffCallback(state.email, state.role, candidate.id);
     setState({
       email: '',
-      role: '',
+      role: 'staff',
     });
   };
   return (

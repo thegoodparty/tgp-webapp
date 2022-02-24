@@ -39,10 +39,11 @@ function loadStaffAction(id) {
   };
 }
 
-function loadStaffActionSuccess(staff) {
+function loadStaffActionSuccess(staff, staffInvitations) {
   return {
     type: types.LOAD_STAFF_SUCCESS,
     staff,
+    staffInvitations,
   };
 }
 

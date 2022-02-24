@@ -12,8 +12,8 @@ function* loadStaff({ id }) {
     const payload = {
       id,
     };
-    const { staff } = yield call(requestHelper, api, payload);
-    yield put(actions.loadStaffActionSuccess(staff));
+    const { staff, staffInvitations } = yield call(requestHelper, api, payload);
+    yield put(actions.loadStaffActionSuccess(staff, staffInvitations));
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(`Error loading staff`, 'error'),

@@ -49,7 +49,7 @@ export function StaffManagementPage({
   const router = useRouter();
   const { id } = router.query;
 
-  const { staff, loading } = staffManagementPage;
+  const { staff, staffInvitations, loading } = staffManagementPage;
 
   const { candidate, role } = candidatePortalHomePage;
 
@@ -66,6 +66,7 @@ export function StaffManagementPage({
     addStaffCallback,
     role,
     staff,
+    staffInvitations,
     updateStaffCallback,
     deleteStaffCallback,
     loading,

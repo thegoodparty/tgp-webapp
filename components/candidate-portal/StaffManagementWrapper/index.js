@@ -13,6 +13,7 @@ import { H1 } from '../../shared/typogrophy';
 
 import InviteUser from './InviteUser';
 import StaffSection from './StaffSection';
+import InvitationsSection from './InvitationsSection';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -26,6 +27,7 @@ function StaffManagementWrapper({
   candidate,
   role,
   staff,
+  staffInvitations,
   updateStaffCallback,
   loading,
   deleteStaffCallback,
@@ -43,6 +45,7 @@ function StaffManagementWrapper({
           candidate={candidate}
           deleteStaffCallback={deleteStaffCallback}
         />
+        <InvitationsSection staffInvitations={staffInvitations} />
       </Wrapper>
     </PortalPageWrapper>
   );
@@ -55,6 +58,7 @@ StaffManagementWrapper.propTypes = {
   candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   staff: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  staffInvitations: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
 };
 
 export default StaffManagementWrapper;
