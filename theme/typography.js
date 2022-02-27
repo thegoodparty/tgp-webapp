@@ -1,5 +1,5 @@
 const typography = {
-  fontFamily: 'Libre Franklin, sans-serif',
+  fontFamily: 'Lato, sans-serif',
 };
 
 export default typography;

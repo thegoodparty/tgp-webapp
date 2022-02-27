@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 import CandidateAvatar from './CandidateAvatar';
 import { Body11, Body13 } from '../typogrophy';
-import SupportersProgressBar from '../../elections/SupportersProgressBar';
+import SupportersProgressBar from '../../CandidateWrapper/SupportersProgressBar';
 import { PurpleButton } from '../buttons';
 import { achievementsHelper } from '/helpers/achievementsHelper';
 

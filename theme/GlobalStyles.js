@@ -15,7 +15,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.3;
   }
 
 

@@ -11,3 +11,11 @@ export { default as H3 } from './H3';
 export { default as Title } from './Title';
 export { default as Subtitle } from './Subtitle';
 export { default as Quote } from './Quote';
+
+
+// new styleguide
+
+export { default as Font16 } from './Font16';
+export { default as FontH1 } from './FontH1';
+export { default as FontH2 } from './FontH2';
+export { default as FontH3 } from './FontH3';

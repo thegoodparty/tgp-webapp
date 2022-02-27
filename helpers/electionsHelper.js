@@ -4,37 +4,37 @@ import { getCookie } from './cookieHelper';
 
 export const partyResolver = partyLetter => {
   if (partyLetter === 'D') {
-    return 'DEMOCRATIC';
+    return 'Democratic';
   }
   if (partyLetter === 'R') {
-    return 'REPUBLICAN';
+    return 'Republican';
   }
   if (partyLetter === 'GP') {
-    return 'GREEN PARTY';
+    return 'Green';
   }
   if (partyLetter === 'LP' || partyLetter === 'L') {
-    return 'LIBERTARIAN PARTY';
+    return 'Libertarian';
   }
   if (partyLetter === 'LI') {
-    return 'LIBERATION PARTY';
+    return 'Liberation';
   }
   if (partyLetter === 'I') {
-    return 'INDEPENDENT';
+    return 'Independent';
   }
   if (partyLetter === 'VC') {
-    return 'VETTING CHALLENGERS';
+    return 'Vetting Challengers';
   }
   if (partyLetter === 'U') {
-    return 'UNITY';
+    return 'Unity';
   }
   if (partyLetter === 'UUP') {
-    return 'UNITED UTAH PARTY';
+    return 'United Utah';
   }
   if (partyLetter === 'W') {
-    return 'Working Families Party';
+    return 'Working Families';
   }
   if (partyLetter === 'S') {
-    return 'SAM PARTY';
+    return 'SAM';
   }
   return '';
 };
