@@ -66,9 +66,15 @@ const deepLink = (update) => {
   return `#candidate-update-${update.id}`;
 };
 
-function Updates() {
-  const { candidate } = useContext(CandidateContext);
-  const { updatesList } = candidate;
+function Updates({ updates }) {
+  let updatesList;
+  if (updates) { // updates from profile (no context here)
+    updatesList = updates;
+  } else {
+    const { candidate } = useContext(CandidateContext);
+    ({ updatesList } = candidate);
+  }
+
   if (!updatesList || updatesList.length === 0) {
     return <> </>;
   }
