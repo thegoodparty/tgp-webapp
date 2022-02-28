@@ -15,7 +15,7 @@ const Wrapper = styled.article``;
 const IssueWrapper = styled.div`
   &.selected {
     .issue {
-      background-color: #00ffc2;
+      background-color: #e5e5e5;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -37,7 +37,7 @@ const Issue = styled(Font16)`
   text-transform: uppercase;
 
   &:hover {
-    background-color: #00ffc2;
+    background-color: #e5e5e5;
   }
 `;
 
