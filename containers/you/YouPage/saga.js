@@ -19,7 +19,7 @@ import tgpApi from '/api/tgpApi';
 import { logEvent } from '/services/AnalyticsService';
 import globalActions from '/containers/App/actions';
 import queryHelper from '/helpers/queryHelper';
-import candidateActions from '/containers/elections/CandidateNewPage/actions';
+import candidateActions from '/containers/CandidatePage/actions';
 
 import types from './constants';
 import actions from './actions';

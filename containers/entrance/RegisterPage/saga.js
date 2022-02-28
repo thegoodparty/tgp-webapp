@@ -17,7 +17,6 @@ import { logEvent } from '/services/AnalyticsService';
 import globalActions from '/containers/App/actions';
 
 import types from './constants';
-import candidateActions from '../../elections/CandidateNewPage/actions';
 
 function* register({ name, email, phone, zip, callback }) {
   try {

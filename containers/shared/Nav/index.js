@@ -20,7 +20,7 @@ import { useRouter } from 'next/router';
 import { deleteCookie, getCookie, getUserCookie } from '/helpers/cookieHelper';
 import NavWrapper from '/components/shared/navigation/NavWrapper';
 import userActions from '/containers/you/YouPage/actions';
-import candidateActions from '/containers/elections/CandidateNewPage/actions';
+import candidateActions from '/containers/CandidatePage/actions';
 
 export function Nav({ userState, dispatch, trackShareCallback, purpleNav }) {
   useInjectReducer({ key: 'user', reducer });

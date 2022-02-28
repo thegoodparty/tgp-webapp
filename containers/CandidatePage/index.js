@@ -47,7 +47,8 @@ export function CandidatePage({
   useInjectReducer({ key: 'registerUpdatePage', reducer: registerReducer });
   useInjectSaga({ key: 'registerUpdatePage', saga: registerSaga });
 
-  const { candidate, candidateSupports, supportCount, topIssues } = ssrState;
+  const { candidate, candidateSupports, supportCount, topIssues, userAgent } =
+    ssrState;
   const { userSupports } = candidatePage;
   const { firstName, lastName, party, race, id } = candidate;
 
@@ -61,6 +62,22 @@ export function CandidatePage({
     : supportCount;
 
   const user = getUserCookie(true);
+
+  useEffect(() => {
+    const width = window.innerWidth || document.body.clientWidth;
+    const height = window.innerHeight || document.body.clientHeight;
+    dispatch(
+      actions.trackVisitAction(
+        window.location.pathname,
+        JSON.stringify({
+          userAgent,
+          width,
+          height,
+          url: window.location.pathname,
+        }),
+      ),
+    );
+  }, []);
 
   useEffect(() => {
     if (user) {

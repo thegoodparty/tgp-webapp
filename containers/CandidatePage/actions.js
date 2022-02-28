@@ -86,10 +86,10 @@ const removeSupportAction = candidateId => ({
 //   candidateId,
 // });
 //
-// const trackShare = candidateId => ({
-//   type: types.TRACK_SHARE,
-//   candidateId,
-// });
+const trackShare = candidateId => ({
+  type: types.TRACK_SHARE,
+  candidateId,
+});
 //
 // const sendTopicFeedbackAction = (id, title, isHelpful, feedback) => ({
 //   type: types.SEND_TOPIC_FEEDBACK,
@@ -99,19 +99,14 @@ const removeSupportAction = candidateId => ({
 //   feedback,
 // });
 //
-// const trackVisitAction = (url, data) => ({
-//   type: types.TRACK_VISIT,
-//   url,
-//   data,
-// });
+const trackVisitAction = (url, data) => ({
+  type: types.TRACK_VISIT,
+  url,
+  data,
+});
 
 export default {
-  // loadInactiveCandidateAction,
-  //
-  // loadCandidateAction,
-  // loadCandidateActionSuccess,
-  // loadCandidateActionError,
-  // shareImageAction,
+
 
   supportAction,
   supportActionSuccess,
@@ -120,17 +115,14 @@ export default {
   candidateSupportsAction,
   candidateSupportsActionSuccess,
   candidateSupportsActionError,
-  //
   userSupportsAction,
   userSupportsActionSuccess,
   userSupportsActionError,
-  //
+
   removeSupportAction,
-  // updateSupportAction,
-  // adminDeleteSupportAction,
-  //
-  // trackShare,
+
+  trackShare,
   // sendTopicFeedbackAction,
   //
-  // trackVisitAction,
+  trackVisitAction,
 };

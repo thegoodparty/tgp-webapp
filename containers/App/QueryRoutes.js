@@ -17,6 +17,7 @@ import FaqArticlePage from '/containers/party/FaqArticlePage';
 
 import queryHelper from '/helpers/queryHelper';
 import { setCookie } from '/helpers/cookieHelper';
+import ShareModal from '/components/shared/ShareModal';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -24,7 +25,6 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectLocation } from './selectors';
-import ShareModal from '../../components/elections/CandidateNewWrapper/ShareModal';
 
 function QueryRoutes({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
@@ -77,9 +77,6 @@ const mapStateToProps = createStructuredSelector({
   locationState: makeSelectLocation(),
 });
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(QueryRoutes);
