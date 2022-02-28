@@ -7,6 +7,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 
 import NotFound from '/containers/shared/NotFoundPage';
 import PageWrapper from '../shared/PageWrapper';
@@ -43,7 +44,9 @@ function CandidateWrapper() {
             <Stats />
             <RecentlyJoined />
             <SupportButton />
-            <SimilarCampaigns />
+            <Hidden mdDown>
+              <SimilarCampaigns />
+            </Hidden>
           </Grid>
           <Grid item xs={12} md={8}>
             <HeroSection />
@@ -55,6 +58,9 @@ function CandidateWrapper() {
                 <TopIssues />
               </Grid>
             </Grid>
+            <Hidden lgUp>
+              <SimilarCampaigns />
+            </Hidden>
             <Follow />
             <Updates />
           </Grid>

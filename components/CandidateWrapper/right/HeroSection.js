@@ -17,15 +17,21 @@ const Wrapper = styled.section`
 `;
 
 const DaysUntil = styled.div`
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  color: #fff;
-  background-color: ${({ theme }) => theme.colors.purple};
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  padding: 12px 18px;
+  display: none;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.purple};
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px 18px;
+  }
 `;
 
 const Days = styled.div`
