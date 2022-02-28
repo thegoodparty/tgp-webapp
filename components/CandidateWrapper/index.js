@@ -11,14 +11,18 @@ import Grid from '@material-ui/core/Grid';
 import NotFound from '/containers/shared/NotFoundPage';
 import PageWrapper from '../shared/PageWrapper';
 
-import ProfileCard from './ProfileCard';
-import EndorseSection from './EndorseSection';
+import ProfileCard from './left/ProfileCard';
+import EndorseSection from './left/EndorseSection';
 import { CandidateContext } from '../../containers/CandidatePage';
-import Stats from './Stats';
-import SupportButton from './SupportButton';
-import RecentlyJoined from './RecentlyJoined';
-import SimilarCampaigns from './SimilarCampigns';
-import HeroSection from './HeroSection';
+import Stats from './left/Stats';
+import SupportButton from './left/SupportButton';
+import RecentlyJoined from './left/RecentlyJoined';
+import SimilarCampaigns from './left/SimilarCampigns';
+import HeroSection from './right/HeroSection';
+import Summary from './right/Summary';
+import TopIssues from './right/TopIssues';
+import Follow from './right/Follow';
+import Updates from './right/Updates';
 
 const InnerWrapper = styled.div`
   padding-top: 36px;
@@ -43,6 +47,16 @@ function CandidateWrapper() {
           </Grid>
           <Grid item xs={12} md={8}>
             <HeroSection />
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={7}>
+                <Summary />
+              </Grid>
+              <Grid item xs={12} md={5}>
+                <TopIssues />
+              </Grid>
+            </Grid>
+            <Follow />
+            <Updates />
           </Grid>
         </Grid>
       </InnerWrapper>

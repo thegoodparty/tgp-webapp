@@ -7,9 +7,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { Font16, FontH1 } from '../shared/typogrophy';
-import { partyResolver } from '../../helpers/electionsHelper';
-import { CandidateContext } from '../../containers/CandidatePage';
+import { Font16, FontH1 } from '../../shared/typogrophy';
+import { partyResolver } from '../../../helpers/electionsHelper';
+import { CandidateContext } from '../../../containers/CandidatePage';
 
 const ImgWrapper = styled.div`
   margin: 12px 0 24px;

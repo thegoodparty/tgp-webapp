@@ -1,37 +1,7 @@
-/**
- *
- * HeroSection
- *
- */
-
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-
-import { CandidateContext } from '/containers/CandidatePage';
-import { FontH2 } from '../shared/typogrophy';
-
-const Wrapper = styled.section`
-  margin: 48px 0;
-  position: relative;
-`;
-
-const DaysUntil = styled.div`
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  color: #fff;
-  background-color: ${({ theme }) => theme.colors.purple};
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  padding: 12px 18px;
-`;
-
-const Days = styled.div`
-  font-size: 35px;
-  font-weight: 900;
-`;
 
 const YoutubePlayerWrapper = styled.div`
   .yt-lite {
@@ -113,31 +83,20 @@ const YoutubePlayerWrapper = styled.div`
   }
 `;
 
-function HeroSection() {
-  const { candidate } = useContext(CandidateContext);
-  const { headline, about, comparedCandidates, heroVideo } = candidate;
-  console.log('heroVideo', heroVideo);
-  return (
-    <Wrapper>
-      <DaysUntil>
-        <Days>62</Days>
-        Days until
-        <br />
-        election
-      </DaysUntil>
-      <FontH2>
-        <span role="img" aria-label="Megaphone">
-          📣
-        </span>{' '}
-        {headline}
-      </FontH2>
-      {heroVideo && (
-        <YoutubePlayerWrapper>
-          <LiteYouTubeEmbed id={heroVideo} />
-        </YoutubePlayerWrapper>
-      )}
-    </Wrapper>
-  );
-}
+const YouTubeLazyPlayer = ({ id, params={}, height='auto' }) => {
+  if (!id) {
+    return <></>;
+  }
 
-export default HeroSection;
+  return (
+    <YoutubePlayerWrapper>
+      <LiteYouTubeEmbed id={id} params={params} height={height} />
+    </YoutubePlayerWrapper>
+  );
+};
+
+YouTubeLazyPlayer.propTypes = {
+  id: PropTypes.string,
+};
+
+export default YouTubeLazyPlayer;

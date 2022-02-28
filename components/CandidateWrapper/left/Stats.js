@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 
 import { numberFormatter } from '/helpers/numberHelper';
 import { Font16 } from '/components/shared/typogrophy';
-import { CandidateContext } from '../../containers/CandidatePage';
+import { CandidateContext } from '../../../containers/CandidatePage';
 
 const Wrapper = styled.div`
   margin: 18px 0 36px;

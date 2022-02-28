@@ -19,7 +19,7 @@ import {
   candidateRoute,
   partyResolver,
 } from '/helpers/electionsHelper';
-import SupportersProgressBar from '../../CandidateWrapper/SupportersProgressBar';
+import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
 import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`

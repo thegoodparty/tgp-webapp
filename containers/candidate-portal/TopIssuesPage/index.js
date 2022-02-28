@@ -109,7 +109,11 @@ export function TopIssuesPage({
         title="Campaign Manager - Top Issues"
         description="Campaign Manager - Top Issues"
       />
-      {access > ACCESS_ENUM.STAFF ? <TopIssuesWrapper {...childProps} /> : <>Access Denied</>}
+      {access > ACCESS_ENUM.STAFF ? (
+        <TopIssuesWrapper {...childProps} />
+      ) : (
+        <>Access Denied</>
+      )}
     </div>
   );
 }

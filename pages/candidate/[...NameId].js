@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
   const id = NameId?.length > 1 ? NameId[1] : false;
   if (id && id !== 'undefined' && typeof id !== 'undefined') {
     const api = tgpApi.newCandidate.find;
-    const url = `${api.url}?id=${id}`;
+    const url = `${api.url}?id=${id}&withIssues=true`;
     const res = await fetch(url);
     let candidate;
     try {
@@ -23,12 +23,12 @@ export async function getServerSideProps(context) {
       };
     }
 
-    const api2 = tgpApi.admin.topics.list;
-    const res2 = await fetch(`${api2.url}?format=hash`);
-    let topics = [];
-    try {
-      ({ topics } = await res2.json());
-    } catch (e) {}
+    // const api2 = tgpApi.admin.topics.list;
+    // const res2 = await fetch(`${api2.url}?format=hash`);
+    // let topics = [];
+    // try {
+    //   ({ topics } = await res2.json());
+    // } catch (e) {}
 
     const api3 = tgpApi.supportCandidate.candidateSupports;
     const res3 = await fetch(`${api3.url}?candidateId=${id}`);
@@ -42,8 +42,8 @@ export async function getServerSideProps(context) {
       props: {
         ssrState: {
           candidate: candidate.candidate,
+          topIssues: candidate.topIssues,
           id,
-          topics,
           candidateSupports,
           supportCount: total,
           userAgent: context.req.headers['user-agent'],

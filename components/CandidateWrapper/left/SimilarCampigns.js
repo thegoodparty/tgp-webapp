@@ -7,7 +7,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { FontH3 } from '../shared/typogrophy';
+import { FontH3 } from '../../shared/typogrophy';
 
 const Wrapper = styled.section`
   margin: 48px 0;

@@ -6,7 +6,7 @@
 
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { achievementsHelper } from '../../helpers/achievementsHelper';
+import { achievementsHelper } from '../../../helpers/achievementsHelper';
 
 import { numberFormatter } from '/helpers/numberHelper';
 import { CandidateContext } from '/containers/CandidatePage';

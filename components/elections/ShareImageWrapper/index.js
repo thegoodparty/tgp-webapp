@@ -13,7 +13,7 @@ import Box from '@material-ui/core/Box';
 import { PurpleButton } from '/components/shared/buttons';
 import { partyResolver } from '/helpers/electionsHelper';
 import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
-import SupportersProgressBar from '../../CandidateWrapper/SupportersProgressBar';
+import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import { achievementsHelper } from '/helpers/achievementsHelper';

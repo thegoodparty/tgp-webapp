@@ -47,7 +47,7 @@ export function CandidatePage({
   useInjectReducer({ key: 'registerUpdatePage', reducer: registerReducer });
   useInjectSaga({ key: 'registerUpdatePage', saga: registerSaga });
 
-  const { candidate, candidateSupports, supportCount } = ssrState;
+  const { candidate, candidateSupports, supportCount, topIssues } = ssrState;
   const { userSupports } = candidatePage;
   const { firstName, lastName, party, race, id } = candidate;
 
@@ -85,6 +85,7 @@ export function CandidatePage({
     user,
     candidateSupports: updatedSupports,
     supportCount: updatedSupportsCount,
+    topIssues,
   };
 
   return (

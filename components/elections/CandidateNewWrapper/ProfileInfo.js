@@ -16,7 +16,7 @@ import { numberFormatter } from '/helpers/numberHelper';
 import { achievementsHelper } from '/helpers/achievementsHelper';
 
 import { H3, Body13 } from '../../shared/typogrophy';
-import SupportersProgressBar from '../../CandidateWrapper/SupportersProgressBar';
+import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import RecentlyJoined from './RecentlyJoined';
 import SupportButton from './SupportButton';

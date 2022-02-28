@@ -6,7 +6,7 @@ import Link from 'next/link';
 import CandidateAvatar from '../shared/CandidateCard/CandidateAvatar';
 import { candidateRoute, partyResolver } from '../../helpers/electionsHelper';
 import { numberFormatter } from '../../helpers/numberHelper';
-import SupportersProgressBar from '../CandidateWrapper/SupportersProgressBar';
+import SupportersProgressBar from '../CandidateWrapper/left/SupportersProgressBar';
 import { achievementsHelper } from '../../helpers/achievementsHelper';
 import { PurpleButton } from '../shared/buttons';
 
