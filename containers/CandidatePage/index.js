@@ -47,8 +47,14 @@ export function CandidatePage({
   useInjectReducer({ key: 'registerUpdatePage', reducer: registerReducer });
   useInjectSaga({ key: 'registerUpdatePage', saga: registerSaga });
 
-  const { candidate, candidateSupports, supportCount, topIssues, userAgent } =
-    ssrState;
+  const {
+    candidate,
+    candidateSupports,
+    similarCampaigns,
+    supportCount,
+    topIssues,
+    userAgent,
+  } = ssrState;
   const { userSupports } = candidatePage;
   const { firstName, lastName, party, race, id } = candidate;
 
@@ -103,7 +109,10 @@ export function CandidatePage({
     candidateSupports: updatedSupports,
     supportCount: updatedSupportsCount,
     topIssues,
+    similarCampaigns,
   };
+
+  console.log('similarCampaigns', similarCampaigns);
 
   return (
     <CandidateContext.Provider value={childProps}>

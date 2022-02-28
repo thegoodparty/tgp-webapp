@@ -69,10 +69,10 @@ function TopIssues() {
             }}
             className="issue"
           >
-            #{issue.topic}
+            #{issue.candidatePosition}
           </Issue>
           <Position className="position">
-            Position: {issue.candidatePosition}
+            {issue.topic}
             <br />
             <br />
             {issue.description}
