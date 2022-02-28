@@ -58,6 +58,7 @@ const TextWrapper = styled.div`
 
   &.text-only {
     background-color: #f3f3f3;
+    height: 100%;
   }
 `;
 
