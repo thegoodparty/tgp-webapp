@@ -67,12 +67,13 @@ const deepLink = (update) => {
 };
 
 function Updates({ updates }) {
+  const context = useContext(CandidateContext);
   let updatesList;
-  if (updates) { // updates from profile (no context here)
-    updatesList = updates;
-  } else {
-    const { candidate } = useContext(CandidateContext);
+  if (context) {
+    const candidate = context.candidate;
     ({ updatesList } = candidate);
+  } else if (updates) {
+    updatesList = updates;
   }
 
   if (!updatesList || updatesList.length === 0) {
