@@ -1,5 +1,5 @@
 import tgpApi from '/api/tgpApi';
-import RedirectPage from '/containers/elections/CandidateNewPage/RedirectPage';
+import RedirectPage from '/containers/elections/RedirectPage';
 
 export default function Embed({ ssrState }) {
   return <RedirectPage ssrState={ssrState} />;

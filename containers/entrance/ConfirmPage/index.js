@@ -14,7 +14,6 @@ import { compose } from 'redux';
 import { getCookie, getUserCookie } from '/helpers/cookieHelper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import ConfirmWrapper from '/components/entrance/ConfirmWrapper';
-import candidateNewPageSaga from '/containers/elections/CandidateNewPage/saga';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -31,7 +30,6 @@ export function ConfirmPage({
 }) {
   useInjectReducer({ key: 'confirmPage', reducer });
   useInjectSaga({ key: 'confirmPage', saga });
-  useInjectSaga({ key: 'candidateNewPage', saga: candidateNewPageSaga });
 
   const user = getUserCookie(true);
   const loginValue = getCookie('login-value');
@@ -45,7 +43,7 @@ export function ConfirmPage({
     updateInfoCallback,
     fromLogin: !!loginValue,
     loginValue,
-    loginValueType
+    loginValueType,
   };
 
   return (
@@ -83,18 +81,12 @@ function mapDispatchToProps(dispatch) {
     confirmWithEmailCallback: () => {
       dispatch(actions.resendCodeAction(true));
     },
-    updateInfoCallback: updatedField => {
+    updateInfoCallback: (updatedField) => {
       dispatch(actions.updateUserAction(updatedField));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ConfirmPage);
+export default compose(withConnect, memo)(ConfirmPage);

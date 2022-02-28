@@ -16,8 +16,7 @@ if (typeof window !== 'undefined') {
 } else {
   ENV = 'prod';
 }
-console.log('ENV', ENV);
-console.log('API_ENV', API_ENV);
+
 export const GA_ID = 'UA-146762622-1';
 
 export default ENV;

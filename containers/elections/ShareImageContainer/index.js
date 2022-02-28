@@ -15,9 +15,9 @@ import TgpHelmet from '/components/shared/TgpHelmet';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
-import reducer from '../CandidateNewPage/reducer';
-import saga from '../CandidateNewPage/saga';
-import actions from '../CandidateNewPage/actions';
+import reducer from './reducer';
+import saga from './saga';
+import actions from './actions';
 
 export function ShareImageContainer({
   ssrState,
