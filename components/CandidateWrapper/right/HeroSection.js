@@ -34,6 +34,13 @@ const DaysUntil = styled.div`
   }
 `;
 
+const StyledFontH2 = styled(FontH2)`
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding-right: 120px;
+  }
+`;
+
 const Days = styled.div`
   font-size: 35px;
   font-weight: 900;
@@ -50,12 +57,12 @@ function HeroSection() {
         <br />
         election
       </DaysUntil>
-      <FontH2>
+      <StyledFontH2>
         <span role="img" aria-label="Megaphone">
           📣
         </span>{' '}
         {headline}
-      </FontH2>
+      </StyledFontH2>
       <YouTubeLazyPlayer id={heroVideo} />
     </Wrapper>
   );
