@@ -37,7 +37,7 @@
     "markdown-to-jsx": "^7.0.0",
     "material-ui-color-picker": "^3.5.1",
     "moment": "^2.29.1",
-    "next": "12.0.10",
+    "next": "12.1.0",
     "next-pwa": "^5.4.4",
     "next-redux-wrapper": "^7.0.5",
     "node-fetch": "^3.2.0",
