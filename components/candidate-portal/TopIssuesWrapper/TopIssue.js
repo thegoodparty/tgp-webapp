@@ -20,8 +20,7 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
 
   useEffect(() => {
     if (issue) {
-      const { topicId, positionId, websiteUrl, description } = issue;
-      const topic = topicList?.find(item => item.id === topicId);
+      const { topic, positionId, websiteUrl, description } = issue;
       setTopic(topic);
       setPosition(topic?.positions.find(item => item.id === positionId));
       setWebsiteUrl(websiteUrl);
@@ -38,9 +37,9 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
           size="small"
           options={topicList}
           value={
-            topicList?.find(item => item.id === issue.topicId) || currentTopic
+            issue.topic || currentTopic
           }
-          getOptionLabel={item => item.topic}
+          getOptionLabel={item => item?.topic}
           fullWidth
           renderInput={params => (
             <TextField {...params} label="Topic" variant="outlined" />
@@ -48,7 +47,7 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
           onChange={(event, item) => {
             updateIssue(index, {
               ...issue,
-              topicId: item?.id,
+              topic: item,
             });
             setTopic(item);
             if (currentTopic && currentTopic !== item && currentPosition) {
@@ -59,7 +58,7 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
                 updateIssue(index, {
                   ...issue,
                   positionId: newPositions[0]?.id,
-                  topicId: item?.id,
+                  topic: item,
                 });
                 setPosition(newPositions[0]);
               }
@@ -72,9 +71,7 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
           size="small"
           options={currentTopic?.positions || []}
           value={
-            topicList
-              ?.find(item => item.id === issue.topicId)
-              ?.positions.find(item => item.id === issue.positionId) ||
+            issue.topic?.positions.find(item => item.id === issue.positionId) ||
             currentPosition
           }
           getOptionLabel={item => item.name}
