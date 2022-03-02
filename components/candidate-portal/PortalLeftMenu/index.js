@@ -19,7 +19,7 @@ import { BiHomeHeart } from 'react-icons/bi';
 import { IoIosContact } from 'react-icons/io';
 import { MdUpdate } from 'react-icons/md';
 import { GoIssueClosed } from 'react-icons/go';
-import { FaUsersCog } from 'react-icons/fa';
+import { FaUsersCog, FaEdit } from 'react-icons/fa';
 
 import { Body13 } from '/components/shared/typogrophy/index';
 import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
@@ -101,6 +101,12 @@ export const leftMenuItems = [
     icon: <FaUsersCog size={24} />,
     label: 'Staff Management',
     link: '/candidate-portal/staff-management',
+    minAccessLevel: ACCESS_ENUM.MANAGER,
+  },
+  {
+    icon: <FaEdit size={24} />,
+    label: 'Admin',
+    link: '/candidate-portal/admin',
     minAccessLevel: ACCESS_ENUM.MANAGER,
   },
 ];

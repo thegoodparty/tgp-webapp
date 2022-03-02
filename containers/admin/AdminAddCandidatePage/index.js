@@ -12,6 +12,9 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import AdminAddCandidateWrapper from '/components/admin/AdminAddCandidateWrapper';
+import portalHomeSaga from '../../candidate-portal/CandidatePortalHomePage/saga';
+import portalHomeReducer from '../../candidate-portal/CandidatePortalHomePage/reducer';
+import makeSelectCandidatePortalHomePage from '../../candidate-portal/CandidatePortalHomePage/selectors';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -23,12 +26,18 @@ import actions from './actions';
 export function AdminAddCandidatePage({
   createCandidateCallback,
   editCandidateCallback,
+  candidatePortalHomePage,
   ssrState,
 }) {
   useInjectReducer({ key: 'adminAddCandidatePage', reducer });
   useInjectSaga({ key: 'adminAddCandidatePage', saga });
-
-  const { candidate } = ssrState || {};
+  useInjectReducer({
+    key: 'candidatePortalHomePage',
+    reducer: portalHomeReducer,
+  });
+  useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
+  const { candidate, isPortal } = ssrState || {};
+  const { role } = candidatePortalHomePage;
   const mode = candidate ? 'edit' : 'add';
 
   const childProps = {
@@ -36,6 +45,8 @@ export function AdminAddCandidatePage({
     editCandidateCallback,
     candidate,
     mode,
+    isPortal,
+    role
   };
 
   return (
@@ -57,6 +68,7 @@ AdminAddCandidatePage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   adminAddCandidatePage: makeSelectAdminAddCandidatePage(),
+  candidatePortalHomePage: makeSelectCandidatePortalHomePage(),
 });
 
 function mapDispatchToProps(dispatch) {

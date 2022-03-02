@@ -23,6 +23,7 @@ import { Body, H2 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
 import CandidateTopMenu from '../CandidateTopMenu';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import PortalPageWrapper from '../../candidate-portal/CandidatePortalHomeWrapper/PortalPageWrapper';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -73,7 +74,7 @@ const statesOptions = states.map(state => ({
   value: state.name,
 }));
 
-const fields = [
+const allFields = [
   {
     label: 'Show on Homepage?',
     key: 'isOnHomepage',
@@ -139,8 +140,11 @@ function AdminAddCandidateWrapper({
   editCandidateCallback,
   candidate,
   mode,
+  isPortal,
+  role
 }) {
   const initialState = {};
+  const fields = isPortal ? [allFields[0], allFields[1]] : allFields;
   fields.forEach(field => {
     initialState[field.key] = field.initialValue;
   });
@@ -189,12 +193,13 @@ function AdminAddCandidateWrapper({
       });
     }
   };
-
+  const PageWrapper = isPortal ? PortalPageWrapper : AdminPageWrapper;
   return (
-    <AdminPageWrapper>
+    <PageWrapper role={role}>
       <Wrapper>
-        <CandidateTopMenu candidate={candidate} />
-
+        {!isPortal &&
+          <CandidateTopMenu candidate={candidate} />
+        }
         <br />
 
         {fields.map(field => (
@@ -248,19 +253,22 @@ function AdminAddCandidateWrapper({
             )}
           </React.Fragment>
         ))}
-        <Label>About</Label>
-        <JoditEditorWrapper
-          onChangeCallback={value => setAbout(value)}
-          initialText={about}
-        />
-
+        {!isPortal &&
+          <>
+            <Label>About</Label>
+            <JoditEditorWrapper
+              onChangeCallback={value => setAbout(value)}
+              initialText={about}
+            />
+          </>
+        }
         <br />
         <br />
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>
           SAVE
         </BlueButton>
       </Wrapper>
-    </AdminPageWrapper>
+    </PageWrapper>
   );
 }
 
