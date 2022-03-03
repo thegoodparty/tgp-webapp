@@ -487,6 +487,18 @@ const api = {
         withAuth: true,
       },
     },
+    endorsement: {
+      create: {
+        url: `${base}campaign/endorsement`,
+        method: 'POST',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}campaign/endorsements`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
     staff: {
       userStaff: {
         url: `${base}user/staff`,

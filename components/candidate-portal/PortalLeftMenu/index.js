@@ -19,7 +19,7 @@ import { BiHomeHeart } from 'react-icons/bi';
 import { IoIosContact } from 'react-icons/io';
 import { MdUpdate } from 'react-icons/md';
 import { GoIssueClosed } from 'react-icons/go';
-import { FaUsersCog } from 'react-icons/fa';
+import { FaUsersCog, FaThumbsUp } from 'react-icons/fa';
 
 import { Body13 } from '/components/shared/typogrophy/index';
 import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
@@ -68,6 +68,12 @@ export const leftMenuItems = [
     minAccessLevel: ACCESS_ENUM.STAFF,
   },
   {
+    icon: <IoIosContact size={24} />,
+    label: 'Basic Info',
+    link: '/candidate-portal/campaign-manager',
+    minAccessLevel: ACCESS_ENUM.MANAGER,
+  },
+  {
     icon: <MdUpdate size={24} />,
     label: 'Campaign Updates',
     link: '/candidate-portal/campaign-updates',
@@ -80,9 +86,9 @@ export const leftMenuItems = [
     minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
-    icon: <IoIosContact size={24} />,
-    label: 'Basic Info',
-    link: '/candidate-portal/campaign-manager',
+    icon: <FaThumbsUp size={20} style={{ marginRight: '2px' }} />,
+    label: 'Endorsements',
+    link: '/candidate-portal/endorsements',
     minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {

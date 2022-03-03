@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-next-router';
 import { useRouter } from 'next/router';
 
 import { getUserCookie } from '/helpers/cookieHelper';
@@ -65,7 +64,6 @@ export function PortalCampaignManagerPage({
   const { candidateUgc } = portalCampaignManagerPage;
 
   const access = accessLevel(role);
-  console.log(access, role);
 
   const childProps = {
     candidate,

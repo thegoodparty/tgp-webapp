@@ -24,6 +24,7 @@ import Summary from './right/Summary';
 import TopIssues from './right/TopIssues';
 import Follow from './right/Follow';
 import Updates from './right/Updates';
+import Endorsements from './right/Endorsements';
 
 const InnerWrapper = styled.div`
   padding-top: 36px;
@@ -61,6 +62,7 @@ function CandidateWrapper() {
             <Hidden lgUp>
               <SimilarCampaigns />
             </Hidden>
+            <Endorsements />
             <Follow />
             <Updates />
           </Grid>

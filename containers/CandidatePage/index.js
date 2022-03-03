@@ -112,8 +112,6 @@ export function CandidatePage({
     similarCampaigns,
   };
 
-  console.log('similarCampaigns', similarCampaigns);
-
   return (
     <CandidateContext.Provider value={childProps}>
       {candidate && (
