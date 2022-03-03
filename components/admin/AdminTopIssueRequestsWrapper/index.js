@@ -61,12 +61,15 @@ function AdminTopIssueRequestsWrapper({
         <br />
         {candidateList &&
           candidateList.map(candidateId => {
-            const issueRequest = (topIssues || []).find(
+            const issues = (topIssues || []).filter(
               item => item.candidate.id === candidateId,
             );
-            const { candidate } = issueRequest;
+            if(issues.length === 0) {
+              return (<></>);
+            }
+            const { candidate } = issues[0];
             return (
-              <RequestWrapper key={issueRequest.id}>
+              <RequestWrapper key={issues[0].id}>
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <Body>
@@ -84,7 +87,7 @@ function AdminTopIssueRequestsWrapper({
                     <Body>Top Issues</Body>
                   </Grid>
                   <Grid item xs={12} md={6} className="text-right">
-                    <Body>{dateUsHelper(issueRequest.updatedAt)}</Body>
+                    <Body>{dateUsHelper(issues[0].updatedAt)}</Body>
                   </Grid>
                 </Grid>
                 <Grid container spacing={3}>
@@ -111,11 +114,8 @@ function AdminTopIssueRequestsWrapper({
                       <strong>Website URL</strong>
                     </Body>
                   </Grid>
-                  {issueRequest.data.map((issue, index) => {
-                    const topic = (topics || []).find(
-                      item => item.id === issue.topicId,
-                    );
-                    const position = topic?.positions?.find(
+                  {issues?.map((issue, index) => {
+                    const position = issue.topic?.positions?.find(
                       item => item.id === issue.positionId,
                     );
                     return (
@@ -124,7 +124,7 @@ function AdminTopIssueRequestsWrapper({
                           <span>{index + 1}.</span>
                         </Grid>
                         <Grid item xs={2}>
-                          <strong>{topic.topic}</strong>
+                          <strong>{issue.topic.topic}</strong>
                         </Grid>
                         <Grid item xs={3}>
                           {position.name}
@@ -148,7 +148,7 @@ function AdminTopIssueRequestsWrapper({
                     <br />
                     <PurpleButton
                       onClick={() =>
-                        rejectIssueRequestCallback(issueRequest.id)
+                        rejectIssueRequestCallback(candidateId)
                       }
                       style={{ background: 'red', borderColor: 'red' }}
                     >
@@ -157,7 +157,7 @@ function AdminTopIssueRequestsWrapper({
                     &nbsp; &nbsp;
                     <PurpleButton
                       onClick={() =>
-                        acceptIssueRequestCallback(issueRequest.id)
+                        acceptIssueRequestCallback(candidateId)
                       }
                     >
                       &nbsp;Accept Request&nbsp;

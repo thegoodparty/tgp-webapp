@@ -49,7 +49,10 @@ function TopIssuesWrapper({
     }
   }, [candidateIssue]);
   const onUpdateIssue = (topIssues, candidateId) => {
-    updateIssueCallback(topIssues, candidateId);
+    updateIssueCallback(
+      topIssues.map(topIssue => ({...topIssue, topic: topIssue.topic.id})), 
+      candidateId
+    );
     setIsLoading(true);
   };
   const updateIssue = (issueIndex, issue) => {
@@ -66,13 +69,18 @@ function TopIssuesWrapper({
   const isFormValidate = () => {
     let isValid = true;
     topIssues.forEach((issue) => {
-      if (!issue.topicId || !issue.positionId || !issue.description) {
+      if (!issue.topic || !issue.positionId || !issue.description) {
         isValid = false;
       }
     });
     return isValid;
   };
   const PageWrapper = isAdmin ? AdminPageWrapper : PortalPageWrapper;
+  const availTopicList = topicList.filter(
+    (item) =>
+      !topIssues
+        .map((issueItem) => issueItem.topic.id)
+        .includes(item.id));
   return (
     <PageWrapper role={role}>
       <Wrapper>
@@ -91,12 +99,7 @@ function TopIssuesWrapper({
             <TopIssue
               key={index}
               index={index}
-              topicList={topicList.filter(
-                (item) =>
-                  !topIssues
-                    .map((issueItem) => issueItem.topicId)
-                    .includes(item.id) || item.id === issue.topicId,
-              )}
+              topicList={[...availTopicList, issue.topic]}
               issue={issue}
               updateIssue={updateIssue}
               deleteIssue={() => deleteIssue(index)}
