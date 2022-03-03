@@ -79,8 +79,9 @@ function TopIssuesWrapper({
   const availTopicList = topicList.filter(
     (item) =>
       !topIssues
-        .map((issueItem) => issueItem.topic.id)
+        .map((issueItem) => issueItem.topic?.id)
         .includes(item.id));
+
   return (
     <PageWrapper role={role}>
       <Wrapper>
@@ -99,7 +100,7 @@ function TopIssuesWrapper({
             <TopIssue
               key={index}
               index={index}
-              topicList={[...availTopicList, issue.topic]}
+              topicList={issue.topic ? [...availTopicList, issue.topic]: availTopicList}
               issue={issue}
               updateIssue={updateIssue}
               deleteIssue={() => deleteIssue(index)}
