@@ -27,7 +27,6 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
       setDescription(description);
     }
   }, [issue]);
-  console.log('TopicList:', topicList);
   return (
     <React.Fragment key={issue?.id}>
       <Grid item xs={1}>
