@@ -59,7 +59,7 @@ function Endorsements() {
                   {<Img style={{ backgroundImage: `url(${item.image})` }} />}
                 </div>
               )}
-              <div style={{flex:1}}>
+              <div style={{ flex: 1 }}>
                 <div style={{ marginBottom: '12px' }}>
                   <strong>{item.title}</strong>
                 </div>
