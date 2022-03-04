@@ -112,8 +112,9 @@ export function CandidatePage({
     similarCampaigns,
   };
 
+
   return (
-    <CandidateContext.Provider value={childProps}>
+    <CandidateContext.Provider value={childProps}>`
       {candidate && (
         <TgpHelmet
           title={title}
