@@ -10,10 +10,13 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
+import { Body13, H3 } from '/components/shared/typogrophy';
+import JoditEditorWrapper from '/components/admin/AdminEditCandidate/JoditEditor';
+import { PurpleButton } from '/components/shared/buttons';
+import CandidateAvatar from '/components/shared/CandidateAvatar';
+import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
+
 import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
-import { Body13, H3 } from '../../shared/typogrophy';
-import JoditEditorWrapper from '../../admin/AdminEditCandidate/JoditEditor';
-import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -25,13 +28,25 @@ const SectionContent = styled(Body13)`
   color: ${({ theme }) => theme.colors.gray4};
 `;
 
+const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 24px 0;
+`;
+
 function PortalCampaignManagerWrapper({
   candidate,
   candidateUgc,
   updateUgcCallback,
   role,
+  uploadImageCallback,
+  loading,
+  s3Url,
 }) {
   const [ugc, setUgc] = useState({});
+  const [updateImage, setUpdateImage] = useState(false);
   useEffect(() => {
     if (candidateUgc) {
       setUgc(candidateUgc);
@@ -59,9 +74,39 @@ function PortalCampaignManagerWrapper({
     });
   };
 
+  const handleUpload = (url) => {
+    uploadImageCallback(candidate.id, url);
+  };
+
   return (
     <PortalPageWrapper role={role}>
       <Wrapper>
+        <ImageWrapper>
+          {loading ? (
+            <div>Uploading...</div>
+          ) : (
+            <>
+              {(candidate.image || s3Url) && !updateImage ? (
+                <div>
+                  <CandidateAvatar src={candidate.image} />
+                  <br />
+                  <PurpleButton onClick={() => setUpdateImage(true)}>
+                    <strong>Change Image</strong>
+                  </PurpleButton>
+                </div>
+              ) : (
+                <div>
+                  <strong>Upload an Image</strong>
+                  <br />
+                  <ImageUploadContainer
+                    uploadCallback={handleUpload}
+                    maxFileSize={1000000}
+                  />
+                </div>
+              )}
+            </>
+          )}
+        </ImageWrapper>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <H3 className="text-center">On Production</H3>
@@ -126,6 +171,7 @@ PortalCampaignManagerWrapper.propTypes = {
   candidateUgc: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateUgcCallback: PropTypes.func,
   role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  uploadImageCallback: PropTypes.func,
 };
 
 export default PortalCampaignManagerWrapper;

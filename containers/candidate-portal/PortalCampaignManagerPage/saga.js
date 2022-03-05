@@ -35,8 +35,25 @@ function* updateUgc({ id, ugc }) {
   }
 }
 
+function* saveImage({ id, url }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
+    const api = tgpApi.campaign.image.create;
+    const payload = {
+      id,
+      url,
+    };
+    const { image } = yield call(requestHelper, api, payload);
+    yield put(actions.saveImageActionSuccess(image));
+    yield put(snackbarActions.showSnakbarAction('Saved'));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.FIND_UGC, findUgc);
   yield takeLatest(types.UPDATE_UGC, updateUgc);
+  yield takeLatest(types.SAVE_IMAGE, saveImage);
 }

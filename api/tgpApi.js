@@ -499,6 +499,13 @@ const api = {
         withAuth: true,
       },
     },
+    image: {
+      create: {
+        url: `${base}campaign/image`,
+        method: 'POST',
+        withAuth: true,
+      },
+    },
     staff: {
       userStaff: {
         url: `${base}user/staff`,

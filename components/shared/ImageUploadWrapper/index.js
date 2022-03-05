@@ -24,14 +24,18 @@ const Error = styled.div`
   color: red;
 `;
 
-function ImageUploadWrapper({ fileSelectCallback, uploadCallback }) {
+function ImageUploadWrapper({
+  fileSelectCallback,
+  uploadCallback,
+  maxFileSize ,
+}) {
   const [fileSizeError, setFileSizeError] = useState(false);
-  const handleUploadImage = img => {
+  const handleUploadImage = (img) => {
     setFileSizeError(false);
     const node = document.getElementById('file-uploader');
     const file = node.files ? node.files[0] : false;
     if (file) {
-      if (file.size > 400000) {
+      if (file.size > maxFileSize) {
         setFileSizeError(true);
         return;
       }

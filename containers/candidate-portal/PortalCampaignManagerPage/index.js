@@ -33,6 +33,7 @@ export function PortalCampaignManagerPage({
   candidatePortalHomePage,
   portalCampaignManagerPage,
   updateUgcCallback,
+  uploadImageCallback,
 }) {
   useInjectReducer({ key: 'portalCampaignManagerPage', reducer });
   useInjectSaga({ key: 'portalCampaignManagerPage', saga });
@@ -61,7 +62,7 @@ export function PortalCampaignManagerPage({
     }
   }, [id]);
 
-  const { candidateUgc } = portalCampaignManagerPage;
+  const { candidateUgc, loading, s3Url } = portalCampaignManagerPage;
 
   const access = accessLevel(role);
 
@@ -71,6 +72,9 @@ export function PortalCampaignManagerPage({
     candidateUgc,
     updateUgcCallback,
     role,
+    uploadImageCallback,
+    loading,
+    s3Url,
   };
 
   return (
@@ -107,6 +111,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     updateUgcCallback: (id, ugc) => {
       dispatch(actions.updateUgcAction(id, ugc));
+    },
+    uploadImageCallback: (id, url) => {
+      dispatch(actions.saveImageAction(id, url));
     },
   };
 }

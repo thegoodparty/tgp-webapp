@@ -13,6 +13,14 @@ import { CandidateContext } from '../../../containers/CandidatePage';
 
 const ImgWrapper = styled.div`
   margin: 12px 0 24px;
+  height: 250px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    height: 400px;
+  }
 `;
 
 function ProfileCard() {
@@ -28,13 +36,9 @@ function ProfileCard() {
         {partyResolver(party)} Party Candidate <br />
         for <strong>{race}</strong>
       </Font16>
-      <ImgWrapper>
-        <img
-          src={candidate.image}
-          className="full-image"
-          alt={`${firstName} ${lastName}`}
-        />
-      </ImgWrapper>
+      {candidate.image && (
+        <ImgWrapper style={{ backgroundImage: `url(${candidate.image})` }} />
+      )}
     </section>
   );
 }
