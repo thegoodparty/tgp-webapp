@@ -78,7 +78,7 @@ const Review = styled.div`
   font-weight: 600;
   margin-bottom: 24px;
   padding: 8px;
-`
+`;
 
 const LeftLink = styled(Body13)`
   color: #caa9e9;
@@ -151,7 +151,7 @@ const leftLinks = [
 ];
 
 const topLinks = {};
-leftLinks.forEach(link => {
+leftLinks.forEach((link) => {
   topLinks[link.step] = link;
 });
 
@@ -176,7 +176,7 @@ function ApplicationWrapper({
         <TopMobileNav>
           <div>{topLinks[step].label}</div>
           <TopLinks>
-            {leftLinks.map(link => (
+            {leftLinks.map((link) => (
               <Link
                 href={`/campaign-application/${link.step}`}
                 passHref
@@ -192,12 +192,12 @@ function ApplicationWrapper({
           </TopLinks>
         </TopMobileNav>
         <Sticky
-          onFixedToggle={isOn => setIsSticky(isOn)}
+          onFixedToggle={(isOn) => setIsSticky(isOn)}
           boundaryElement=".application-wrapper"
         >
           <LeftNav>
             {reviewMode && <Review>REVIEW MODE</Review>}
-            {leftLinks.map(link => (
+            {leftLinks.map((link) => (
               <Link
                 href={`/campaign-application/${id}/${link.step}`}
                 passHref

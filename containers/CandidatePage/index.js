@@ -114,7 +114,7 @@ export function CandidatePage({
 
 
   return (
-    <CandidateContext.Provider value={childProps}>`
+    <CandidateContext.Provider value={childProps}>
       {candidate && (
         <TgpHelmet
           title={title}

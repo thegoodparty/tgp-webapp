@@ -56,6 +56,7 @@ function PortalCampaignManagerWrapper({
     { label: 'Race (Office Seeking)', key: 'race' },
     { label: 'Hero Video (YouTube id)', key: 'heroVideo' },
     { label: 'Headline', key: 'headline' },
+    { label: 'Race Date', key: 'raceDate', isDate: true },
     { label: 'About', key: 'about', isRichText: true },
     { label: 'Facebook', key: 'facebook' },
     { label: 'Twitter', key: 'twitter' },
@@ -65,6 +66,7 @@ function PortalCampaignManagerWrapper({
     { label: 'YouTube', key: 'youtube' },
     { label: 'Twitch', key: 'twitch' },
     { label: 'Reddit', key: 'reddit' },
+    { label: 'Website', key: 'website' },
   ];
 
   const updateUgc = (key, value) => {
@@ -139,10 +141,11 @@ function PortalCampaignManagerWrapper({
                 ) : (
                   <TextField
                     fullWidth
-                    label={field.label}
+                    label={field.isDate ? '' : field.label}
                     name={field.label}
                     variant="outlined"
                     value={ugc[field.key]}
+                    type={field.isDate ? 'date' : 'text'}
                     onChange={(e) => updateUgc(field.key, e.target.value)}
                   />
                 )}

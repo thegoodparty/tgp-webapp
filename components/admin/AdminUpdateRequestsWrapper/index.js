@@ -87,7 +87,7 @@ function AdminUpdateRequestsWrapper({
                       <strong>{field}</strong>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                      {request.candidate[field].charAt(0) === '<' ? (
+                      {request.candidate[field]?.charAt(0) === '<' ? (
                         <div
                           dangerouslySetInnerHTML={{
                             __html: request.candidate[field],

@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const ONE_HOUR = 60 * 60 * 1000;
 
-export const dateUsHelper = orgDate => {
+export const dateUsHelper = (orgDate) => {
   if (!orgDate) {
     return orgDate;
   }
@@ -21,13 +21,13 @@ export const dateUsHelper = orgDate => {
   }
 };
 
-export const validateDate = date => {
+export const validateDate = (date) => {
   const expression = /^([0-9]{4})\-([0-9]{2})\-([0-9]{2})$/;
 
   return expression.test(date);
 };
 
-export const parseDob = dob => {
+export const parseDob = (dob) => {
   if (dob.length === 8) {
     const dobString = `${dob.substr(4, 4)}-${dob.substr(0, 2)}-${dob.substr(
       2,
@@ -42,11 +42,20 @@ export const parseDob = dob => {
   return false;
 };
 
-export const parseDobUS = dob => {
+export const parseDobUS = (dob) => {
   if (dob.length === 8) {
     return `${dob.substr(0, 2)}/${dob.substr(2, 2)}/${dob.substr(4, 4)}`;
   }
   return dob;
+};
+
+export const daysTill = (date) => {
+  if (!date) return '0';
+
+  const now = new moment();
+  const till = new moment(date);
+  const duration = moment.duration(till.diff(now));
+  return parseInt(duration.as('days'), 10);
 };
 
 // // returns December 12, 2020 * 4 AM PST

@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { CandidateContext } from '/containers/CandidatePage';
 import { FontH2 } from '../../shared/typogrophy';
 import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
+import { daysTill } from '../../../helpers/dateHelper';
 
 const Wrapper = styled.section`
   margin: 48px 0;
@@ -48,11 +49,12 @@ const Days = styled.div`
 
 function HeroSection() {
   const { candidate } = useContext(CandidateContext);
-  const { headline, heroVideo } = candidate;
+  const { headline, heroVideo, raceDate } = candidate;
+  console.log('rr', raceDate);
   return (
     <Wrapper>
       <DaysUntil>
-        <Days>62</Days>
+        <Days>{daysTill(raceDate)}</Days>
         Days until
         <br />
         election
