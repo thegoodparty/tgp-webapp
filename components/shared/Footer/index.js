@@ -52,6 +52,20 @@ const Italic = styled.div`
   padding: 20px;
 `;
 
+const SecondRow = styled.div`
+  margin-top: 48px;
+  color: #777;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin-top: 120px;
+  }
+
+  a {
+    color: #000;
+    font-weight: 600;
+  }
+`;
+
 const columns = [
   {
     title: 'ORGANIZATION',
@@ -64,8 +78,11 @@ const columns = [
   {
     title: 'SUPPORT',
     links: [
-      { label: 'Contact Us', link: '/' },
-      { label: 'Press', link: '/' },
+      {
+        label: 'Contact Us',
+        link: 'mailto:ask@goodparty.org',
+        isExternal: true,
+      },
     ],
   },
   {
@@ -101,6 +118,8 @@ const columns = [
     ],
   },
 ];
+
+const year = new Date().getFullYear();
 
 function Footer() {
   return (
@@ -147,6 +166,12 @@ function Footer() {
             </Italic>
           </Grid>
         </Grid>
+        <SecondRow>
+          &copy; {year} Good Party. All rights reserved. &nbsp;
+          <Link href="/privacy" passHref>
+            <a>Privacy Policy</a>
+          </Link>
+        </SecondRow>
       </MaxWidth>
     </Wrapper>
   );
