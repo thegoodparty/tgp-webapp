@@ -4,12 +4,10 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Select from '@material-ui/core/Select';
-import AlertDialog from '../../shared/AlertDialog';
 import { H2 } from '../../shared/typogrophy';
 
 const Wrapper = styled.div`

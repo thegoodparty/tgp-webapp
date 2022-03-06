@@ -33,9 +33,15 @@ function* addStaff({ email, role, id }) {
     yield call(requestHelper, api, payload);
     yield put(actions.loadStaffAction(id));
   } catch (error) {
-    yield put(
-      snackbarActions.showSnakbarAction(`Error inviting ${email}`, 'error'),
-    );
+    if (error.response?.exists) {
+      yield put(
+        snackbarActions.showSnakbarAction(error.response.message, 'error'),
+      );
+    } else {
+      yield put(
+        snackbarActions.showSnakbarAction(`Error inviting ${email}`, 'error'),
+      );
+    }
     console.log(error);
   }
 }
