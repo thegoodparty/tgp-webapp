@@ -167,10 +167,12 @@ function Footer() {
           </Grid>
         </Grid>
         <SecondRow>
-          &copy; {year} Good Party. All rights reserved. &nbsp;
-          <Link href="/privacy" passHref>
-            <a>Privacy Policy</a>
-          </Link>
+          <Aligner>
+            &copy; {year} Good Party. All rights reserved. &nbsp;
+            <Link href="/privacy" passHref>
+              <a>Privacy Policy</a>
+            </Link>
+          </Aligner>
         </SecondRow>
       </MaxWidth>
     </Wrapper>
