@@ -12,9 +12,9 @@ import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body13 } from '../../shared/typogrophy';
 import PurpleCheckbox from '../../shared/PurpleCheckbox';
 
-const Title = styled.h1`
+export const Title = styled.h1`
   font-size: 21px;
-  margin: 0 0 16px;
+  margin: 0 0 32px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     font-size: 36px;

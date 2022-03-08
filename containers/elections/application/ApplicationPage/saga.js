@@ -108,10 +108,25 @@ function* rejectApplication({ id, feedback }) {
   }
 }
 
+function* loadTopIssues() {
+  try {
+    const api = tgpApi.admin.issueTopics.list;
+
+    const { topics } = yield call(requestHelper, api, null);
+    yield put(actions.loadATopIssuesActionSuccess(topics));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error loading topics', 'error'),
+    );
+  }
+}
+
 export default function* profilePageSaga() {
   yield takeLatest(types.LOAD_APPLICATION, loadApplication);
   yield takeLatest(types.UPDATE_APPLICATION, updateApplication);
   yield takeLatest(types.SUBMIT_APPLICATION, submitApplication);
   yield takeLatest(types.APPROVE_APPLICATION, approveApplication);
   yield takeLatest(types.REJECT_APPLICATION, rejectApplication);
+  yield takeLatest(types.LOAD_TOP_ISSUES, loadTopIssues);
 }

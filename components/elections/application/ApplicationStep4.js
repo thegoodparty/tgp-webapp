@@ -9,14 +9,20 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { FaImage } from 'react-icons/fa';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { FaTrash } from 'react-icons/fa';
+
+import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
-
-import { step4Fields, step4CampaignFields } from './fields';
-import PhoneInput, { isValidPhone } from '../../shared/PhoneInput';
-import EmailInput, { isValidEmail } from '../../shared/EmailInput';
+import { step2Socials, step3Socials } from './fields';
+import { Title } from './ApplicationStep1';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -26,10 +32,14 @@ const FieldWrapper = styled.div`
     border-radius: 8px;
   }
 `;
-
-const StyledTextField = styled(TextField)`
-  && {
-    background-color: #fff;
+const SocialFieldWrapper = styled.div`
+  margin-bottom: 12px;
+  .MuiInputAdornment-positionStart {
+    margin-right: 0;
+  }
+  .MuiTypography-colorTextSecondary {
+    color: #000;
+    font-weight: 500;
   }
 `;
 
@@ -45,28 +55,75 @@ const Req = styled(Body11)`
   font-weight: 500;
 `;
 
-const GrayWrapper = styled.div`
-  background-color: #f7f7f7;
-  padding: 16px;
-  border-radius: 8px;
-  &.with-margin {
-    margin-bottom: 48px;
+const IconWrapper = styled.span`
+  color: ${({ theme }) => theme.colors.purple};
+  font-size: 24px;
+  margin-right: 16px;
+`;
+
+const Subtitle = styled.div`
+  margin-bottom: 12px;
+  color: #666;
+`;
+
+const PhotoInputWrapper = styled.div`
+  padding: 10px 16px;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  text-align: right;
+  position: relative;
+  margin-bottom: 12px;
+`;
+
+const PhotoPlaceholder = styled.div`
+  position: absolute;
+  opacity: 0.4;
+  top: 6px;
+  left: 12px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+`;
+
+const UploadWrapper = styled.div`
+  position: relative;
+  z-index: 5;
+`;
+
+const PhotoWrapper = styled.div`
+  position: relative;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    width: 33%;
   }
 `;
 
+const Photo = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+`;
+
+const DeletePhoto = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  color: red;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+`;
+
 const keys = {};
-const requiredKeys = [];
-step4Fields.forEach(field => {
+
+step2Socials.forEach((field) => {
   keys[field.key] = field.defaultValue;
-  if (field.required) {
-    requiredKeys.push(field);
-  }
 });
-step4CampaignFields.forEach(field => {
+step3Socials.forEach((field) => {
   keys[field.key] = field.defaultValue;
-  if (field.required) {
-    requiredKeys.push(field);
-  }
 });
 
 function ApplicationStep4({
@@ -76,44 +133,21 @@ function ApplicationStep4({
   reviewMode,
 }) {
   const [state, setState] = useState(keys);
-  const [validPhones, setValidPhones] = useState({
-    candidatePhone: false,
-    contactPhone: false,
-  });
-  const [validEmails, setValidEmails] = useState({
-    candidateEmail: false,
-    contactEmail: false,
-  });
 
   useEffect(() => {
-    if (application?.contacts) {
+    if (application?.socialMedia) {
       setState({
-        ...application.contacts,
-      });
-      setValidPhones({
-        candidatePhone: isValidPhone(application.contacts.candidatePhone),
-        contactPhone: isValidPhone(application.contacts.contactPhone),
-      });
-      setValidEmails({
-        candidateEmail: isValidEmail(application.contacts.candidateEmail),
-        contactEmail: isValidEmail(application.contacts.contactEmail),
+        ...application.socialMedia,
       });
     }
   }, [application]);
 
-  const handleSubmitForm = e => e.stopPropagation();
+  const handleSubmitForm = (e) => e.stopPropagation();
 
   const onChangeField = (key, e) => {
     setState({
       ...state,
       [key]: e.target.value,
-    });
-  };
-
-  const handlePhoneChange = (key, val) => {
-    setState({
-      ...state,
-      [key]: val,
     });
   };
 
@@ -124,139 +158,84 @@ function ApplicationStep4({
     };
     updateApplicationCallback(application.id, {
       ...application,
-      contacts: {
+      socialMedia: {
         ...updatedState,
       },
     });
   };
-
-  const canSubmit = () => {
-    let returnVal = true;
-    requiredKeys.forEach(field => {
-      if (
-        typeof state[field.key] === 'undefined' ||
-        state[field.key] === field.defaultValue
-      ) {
-        returnVal = false;
-      }
-    });
-    if (!validPhones.candidatePhone || !validPhones.contactPhone) {
-      returnVal = false;
-    }
-    if (!validEmails.candidateEmail || !validEmails.contactEmail) {
-      returnVal = false;
-    }
-    console.log('validPhones', validPhones);
-    console.log('validEmails', validEmails);
-    return returnVal;
-  };
-
-  const renderField = field => {
-    return (
-      <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
-        <Label>{field.label}</Label>
-        {field.type === 'select' && (
-          <Select
-            native
-            value={state[field.key]}
-            fullWidth
-            variant="outlined"
-            disabled={reviewMode}
-            onChange={e => {
-              onChangeField(field.key, e);
-            }}
-            onBlur={e => {
-              onBlurField(field.key, e);
-            }}
-          >
-            <option value="">Select</option>
-            {field.options.map(op => (
-              <option value={op} key={op}>
-                {op}
-              </option>
-            ))}
-          </Select>
-        )}
-        {field.type === 'phone' && (
-          <PhoneInput
-            value={state[field.key]}
-            onChangeCallback={(val, isValid) => {
-              handlePhoneChange(field.key, val, isValid);
-            }}
-            onBlurCallback={val => {
-              const e = { target: { value: val } };
-              onBlurField(field.key, e);
-            }}
-          />
-        )}
-        {field.type === 'email' && (
-          <EmailInput
-            value={state[field.key]}
-            onChangeCallback={e => {
-              onChangeField(field.key, e);
-            }}
-            onBlurCallback={e => {
-              onBlurField(field.key, e);
-            }}
-          />
-        )}
-        {field.type === 'text' && (
-          <StyledTextField
-            name={field.label}
-            variant="outlined"
-            value={state[field.key]}
-            fullWidth
-            disabled={reviewMode}
-            type={field.type}
-            required={field.required}
-            placeholder={field.placeholder}
-            inputProps={{ maxLength: field.maxLength || 30 }}
-            InputProps={
-              field.icon && {
-                startAdornment: (
-                  <InputAdornment position="start">{field.icon}</InputAdornment>
-                ),
-              }
-            }
-            onChange={e => {
-              onChangeField(field.key, e);
-            }}
-            onBlur={e => {
-              onBlurField(field.key, e);
-            }}
-          />
-        )}
-      </FieldWrapper>
-    );
-  };
   return (
     <ApplicationWrapper
       step={step}
-      canContinue={canSubmit()}
+      canContinue={true}
       id={application.id}
       reviewMode={reviewMode}
     >
+      <Title>Step 4: Add Social Media</Title>
       <form noValidate onSubmit={handleSubmitForm}>
-        <Label>
-          CANDIDATE <Req>Required</Req>
-        </Label>
-        <GrayWrapper className="with-margin">
-          {step4Fields.map(field => (
-            <React.Fragment key={field.key}>
-              {renderField(field)}
-            </React.Fragment>
-          ))}
-        </GrayWrapper>
-        <Label>
-          CAMPAIGN <Req>Required</Req>
-        </Label>
-        <GrayWrapper>
-          {step4CampaignFields.map(field => (
-            <React.Fragment key={field.key}>
-              {renderField(field)}
-            </React.Fragment>
-          ))}
-        </GrayWrapper>
+        <Label>Official Campaign social media links</Label>
+        {step3Socials.map((field) => (
+          <SocialFieldWrapper key={field.key}>
+            <TextField
+              key={field.key}
+              name={field.key}
+              variant="outlined"
+              value={state[field.key]}
+              fullWidth
+              placeholder={field.placeholder}
+              disabled={reviewMode}
+              inputProps={{
+                maxLength: 50,
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {field.icon} &nbsp;
+                    {field.adornment}
+                  </InputAdornment>
+                ),
+              }}
+              onChange={(e) => {
+                onChangeField(field.key, e);
+              }}
+              onBlur={(e) => {
+                onBlurField(field.key, e);
+              }}
+            />
+          </SocialFieldWrapper>
+        ))}
+        <br />
+        <br />
+        <Label>Candidate’s personal social media links</Label>
+        {step2Socials.map((field) => (
+          <SocialFieldWrapper key={field.key}>
+            <TextField
+              key={field.key}
+              name={field.key}
+              variant="outlined"
+              value={state[field.key]}
+              fullWidth
+              placeholder={field.placeholder}
+              disabled={reviewMode}
+              inputProps={{
+                maxLength: 50,
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {field.icon} &nbsp;
+                    {field.adornment}
+                  </InputAdornment>
+                ),
+              }}
+              onChange={(e) => {
+                onChangeField(field.key, e);
+              }}
+              onBlur={(e) => {
+                onBlurField(field.key, e);
+              }}
+            />
+          </SocialFieldWrapper>
+        ))}
       </form>
     </ApplicationWrapper>
   );

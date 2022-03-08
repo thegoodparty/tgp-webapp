@@ -10,9 +10,7 @@ import {
   FaRedditSquare,
   FaGlobeAmericas,
   FaVideo,
-  FaDollarSign,
 } from 'react-icons/fa';
-import { IoIosPeople } from 'react-icons/io';
 import { flatStates } from '/helpers/statesHelper';
 
 const IconWrapper = styled.span`
@@ -23,7 +21,7 @@ const IconWrapper = styled.span`
 
 export const step2fields = [
   {
-    label: 'Candidate First Name',
+    label: 'First Name',
     key: 'firstName',
     placeholder: 'First Name',
     required: true,
@@ -32,7 +30,7 @@ export const step2fields = [
     shortLabel: 'First name',
   },
   {
-    label: 'Candidate Last Name',
+    label: 'Last Name',
     key: 'lastName',
     placeholder: 'Last Name',
     required: true,
@@ -40,9 +38,25 @@ export const step2fields = [
     type: 'text',
     shortLabel: 'Last name',
   },
+  {
+    label: 'Email',
+    key: 'candidateEmail',
+    placeholder: 'email@domain.com',
+    defaultValue: '',
+    type: 'email',
+    required: true,
+  },
+  {
+    label: 'Phone',
+    key: 'candidatePhone',
+    placeholder: '(555) 555-5555',
+    defaultValue: '',
+    type: 'phone',
+    required: true,
+  },
 
   {
-    label: 'Where is the primary residence of the candidate?',
+    label: 'Primary Residence',
     key: 'zip',
     placeholder: 'Enter Zip Code',
     required: true,
@@ -52,7 +66,7 @@ export const step2fields = [
     maxLength: 5,
   },
   {
-    label: 'Is the candidate a U.S. Citizen?',
+    label: 'U.S. Citizen',
     key: 'citizen',
     required: true,
     defaultValue: '',
@@ -61,7 +75,7 @@ export const step2fields = [
     shortLabel: 'US citizenship status',
   },
   {
-    label: 'Have you ever run for public office before?',
+    label: 'Previously ran for public office?',
     key: 'ranBefore',
     defaultValue: '',
     required: true,
@@ -75,7 +89,7 @@ export const step2fields = [
     hidden: true,
   },
   {
-    label: 'Have you ever been elected or appointed to public office?',
+    label: 'Previously elected or appointed to public office?',
     key: 'electedBefore',
     defaultValue: '',
     required: true,
@@ -113,7 +127,7 @@ export const step2fields = [
 
 export const step2Socials = [
   {
-    key: 'twitter',
+    key: 'candidateTwitter',
     label: 'Twitter',
     adornment: 'twitter.com/',
     placeholder: 'username',
@@ -125,7 +139,7 @@ export const step2Socials = [
     ),
   },
   {
-    key: 'facebook',
+    key: 'candidateFacebook',
     label: 'Facebook',
     adornment: 'facebook.com/',
     placeholder: 'link',
@@ -137,7 +151,7 @@ export const step2Socials = [
     ),
   },
   {
-    key: 'youtube',
+    key: 'candidateYoutube',
     label: 'YouTube',
     adornment: 'youtube.com/',
     placeholder: 'username',
@@ -149,7 +163,7 @@ export const step2Socials = [
     ),
   },
   {
-    key: 'linkedin',
+    key: 'candidateLinkedin',
     label: 'LinkedIn',
     adornment: 'linkedin.com/',
     placeholder: 'username',
@@ -161,7 +175,7 @@ export const step2Socials = [
     ),
   },
   {
-    key: 'snap',
+    key: 'candidateSnap',
     label: 'Snap',
     adornment: 'snap.com/',
     placeholder: 'username',
@@ -173,7 +187,7 @@ export const step2Socials = [
     ),
   },
   {
-    key: 'tiktok',
+    key: 'candidateTiktok',
     label: 'TikTok',
     adornment: 'tiktok.com/',
     placeholder: 'username',
@@ -185,7 +199,7 @@ export const step2Socials = [
     ),
   },
   {
-    key: 'reddit',
+    key: 'candidateReddit',
     label: 'Reddit',
     adornment: 'reddit.com/',
     placeholder: 'username',
@@ -197,7 +211,7 @@ export const step2Socials = [
     ),
   },
   {
-    key: 'website',
+    key: 'candidateWebsite',
     label: 'Website',
     adornment: '',
     placeholder: 'website.com',
@@ -210,42 +224,16 @@ export const step2Socials = [
   },
 ];
 
-export const step2fieldsB = [
-  {
-    label: 'Ethnicity of candidate',
-    key: 'ethnicity',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Ethnicity',
-    shortLabel: 'Ethnicity',
-  },
-  {
-    label: 'Race of candidate',
-    key: 'race',
-    defaultValue: '',
-    type: 'text',
-    placeholder: 'Race',
-    shortLabel: 'Race',
-  },
-  {
-    label: 'Gender & Pronouns',
-    key: 'pronouns',
-    defaultValue: '',
-    type: 'select',
-    options: ['He/Him', 'She/Her', 'They/Them', 'Any/Other'],
-    shortLabel: 'Pronouns',
-  },
-];
-
 export const step3Fields = [
   {
-    label: 'What are you running for?',
+    label: 'Which public office?',
     key: 'running for',
     placeholder: 'What are you running for?',
     defaultValue: '',
     type: 'text',
     shortLabel: 'Office',
   },
+
   {
     label: 'Date of election',
     key: 'electionDate',
@@ -254,7 +242,7 @@ export const step3Fields = [
     required: true,
   },
   {
-    label: 'Which state are you running in?',
+    label: 'State',
     key: 'state',
     defaultValue: '',
     type: 'select',
@@ -263,11 +251,20 @@ export const step3Fields = [
     required: true,
   },
   {
-    label: 'District? (If applicable)',
+    label: 'District (If applicable)',
     key: 'district',
     defaultValue: '',
     type: 'text',
     shortLabel: 'District',
+  },
+  {
+    label: 'Campaign Headline / slogan',
+    key: 'headline',
+    placeholder: 'headline',
+    defaultValue: '',
+    type: 'text',
+    maxLength: 120,
+    subtitle: '120 characters max',
   },
   {
     label: 'Campaign summary',
@@ -281,9 +278,9 @@ export const step3Fields = [
     shortLabel: 'Summary',
   },
   {
-    label: 'Campaign video',
+    label: 'Campaign video (YouTube)',
     key: 'campaignVideo',
-    placeholder: 'Paste link to video...',
+    placeholder: 'Paste link to a YouTube video...',
     subtitle:
       "A 60 second intro video about your campaign and why you're running.",
     defaultValue: '',
@@ -296,29 +293,12 @@ export const step3Fields = [
     ),
   },
   {
-    label: 'Campaign photos',
-    key: 'photos',
-    defaultValue: [
-      {
-        key: 'headshotPhoto',
-        label: 'Candidate headshot',
-        value: '',
-      },
-      {
-        key: 'trailPhoto',
-        label: 'Campaign trail photo',
-        value: '',
-      },
-      {
-        key: 'bannerPhoto',
-        label: 'Campaign page banner',
-        value: '',
-      },
-    ],
-    subtitle: 'Include one good headshot',
+    key: 'headshotPhoto',
+    label: 'Candidate headshot',
+    value: '',
   },
   {
-    label: 'What is the name of your candidate/campaign committee?',
+    label: 'Name of candidate/campaign committee',
     key: 'committeeName',
     placeholder: 'Enter...',
     defaultValue: '',
@@ -327,7 +307,7 @@ export const step3Fields = [
     shortLabel: 'Committee name',
   },
   {
-    label: 'Have you filed a statement of candidacy',
+    label: 'Has candidate filed statement of candidacy?',
     key: 'candidacyStatement',
     defaultValue: '',
     type: 'radio',
@@ -335,7 +315,7 @@ export const step3Fields = [
     shortLabel: 'Statement of candidacy history',
   },
   {
-    label: 'Have you filed any Campaign financial disclosure reports?',
+    label: 'Has candidate filed any campaign financial disclosures?',
     key: 'fecStatement',
     defaultValue: '',
     type: 'radio',
@@ -343,7 +323,7 @@ export const step3Fields = [
     shortLabel: 'Financial statements status',
   },
   {
-    label: 'How much money have you raised so far?',
+    label: 'Money raised so far?',
     required: true,
     key: 'moneyRaisedAmount',
     type: 'select',

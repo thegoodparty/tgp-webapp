@@ -19,7 +19,9 @@ import { Body, Body11 } from '../../shared/typogrophy';
 import OfficeSelector from './OfficeSelector';
 import ElectedOfficeSelector from './ElectedOfficeSelector';
 
-import { step2fields, step2fieldsB, step2Socials } from './fields';
+import { step2fields, step2Socials } from './fields';
+import { Title } from './ApplicationStep1';
+import PhoneInput from '../../shared/PhoneInput';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -49,20 +51,14 @@ const Req = styled(Body11)`
 
 const keys = {};
 const requiredKeys = [];
-step2fields.forEach(field => {
-  keys[field.key] = field.defaultValue;
-  if (field.required) {
-    requiredKeys.push(field);
-  }
-});
-step2fieldsB.forEach(field => {
+step2fields.forEach((field) => {
   keys[field.key] = field.defaultValue;
   if (field.required) {
     requiredKeys.push(field);
   }
 });
 
-step2Socials.forEach(field => {
+step2Socials.forEach((field) => {
   keys[field.key] = field.defaultValue;
 });
 
@@ -92,7 +88,7 @@ function ApplicationStep2({
     }
   }, [application]);
 
-  const handleSubmitForm = e => e.stopPropagation();
+  const handleSubmitForm = (e) => e.stopPropagation();
 
   const onChangeField = (key, e) => {
     setState({
@@ -131,9 +127,16 @@ function ApplicationStep2({
     onBlurField(key, e);
   };
 
+  const handlePhoneChange = (key, val) => {
+    setState({
+      ...state,
+      [key]: val,
+    });
+  };
+
   const canSubmit = () => {
     let returnVal = true;
-    requiredKeys.forEach(field => {
+    requiredKeys.forEach((field) => {
       if (
         typeof state[field.key] === 'undefined' ||
         state[field.key] === field.defaultValue
@@ -144,7 +147,7 @@ function ApplicationStep2({
     return returnVal;
   };
 
-  const renderField = field => {
+  const renderField = (field) => {
     if (field.hidden && hiddenElements[field.key]) {
       return;
     }
@@ -190,10 +193,10 @@ function ApplicationStep2({
               inputProps={{ maxLength }}
               multiline={!!field.multiline}
               rows={field.multiline ? 5 : 1}
-              onChange={e => {
+              onChange={(e) => {
                 onChangeField(field.key, e);
               }}
-              onBlur={e => {
+              onBlur={(e) => {
                 onBlurField(field.key, e);
               }}
             />
@@ -215,26 +218,39 @@ function ApplicationStep2({
             fullWidth
             variant="outlined"
             disabled={reviewMode}
-            onChange={e => {
+            onChange={(e) => {
               onChangeField(field.key, e);
             }}
-            onBlur={e => {
+            onBlur={(e) => {
               onBlurField(field.key, e);
             }}
           >
             <option value="">Select</option>
-            {field.options.map(op => (
+            {field.options.map((op) => (
               <option value={op} key={op}>
                 {op}
               </option>
             ))}
           </Select>
         )}
-        {field.type === 'text' && (
+        {field.type === 'phone' && (
+          <PhoneInput
+            value={state[field.key]}
+            onChangeCallback={(val, isValid) => {
+              handlePhoneChange(field.key, val, isValid);
+            }}
+            onBlurCallback={(val) => {
+              const e = { target: { value: val } };
+              onBlurField(field.key, e);
+            }}
+          />
+        )}
+        {(field.type === 'text' || field.type === 'email') && (
           <TextField
             name={field.label}
             variant="outlined"
             value={state[field.key]}
+            type={field.type}
             fullWidth
             required={field.required}
             disabled={reviewMode}
@@ -242,10 +258,10 @@ function ApplicationStep2({
             inputProps={{ maxLength }}
             multiline={!!field.multiline}
             rows={field.multiline ? 5 : 1}
-            onChange={e => {
+            onChange={(e) => {
               onChangeField(field.key, e);
             }}
-            onBlur={e => {
+            onBlur={(e) => {
               onBlurField(field.key, e);
             }}
           />
@@ -255,9 +271,11 @@ function ApplicationStep2({
             name={state[field.key]}
             value={state[field.key]}
             style={{ flexDirection: 'row' }}
-            onChange={e => handleRadioChange(field.key, e, field.toggleElement)}
+            onChange={(e) =>
+              handleRadioChange(field.key, e, field.toggleElement)
+            }
           >
-            {field.options.map(op => (
+            {field.options.map((op) => (
               <FormControlLabel
                 style={{ display: 'inline-block' }}
                 value={op}
@@ -279,45 +297,9 @@ function ApplicationStep2({
       id={application.id}
       reviewMode={reviewMode}
     >
+      <Title>Step 2: Add Candidate Details</Title>
       <form noValidate onSubmit={handleSubmitForm}>
-        {step2fields.map(field => (
-          <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
-        ))}
-        <Label>Candidate’s personal social media links</Label>
-        {step2Socials.map(field => (
-          <SocialFieldWrapper key={field.key}>
-            <TextField
-              key={field.key}
-              name={field.key}
-              variant="outlined"
-              value={state[field.key]}
-              fullWidth
-              placeholder={field.placeholder}
-              disabled={reviewMode}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    {field.icon} &nbsp;
-                    {field.adornment}
-                  </InputAdornment>
-                ),
-              }}
-              onChange={e => {
-                onChangeField(field.key, e);
-              }}
-              onBlur={e => {
-                onBlurField(field.key, e);
-              }}
-            />
-          </SocialFieldWrapper>
-        ))}
-        <br />
-        <br />
-        <Label>
-          Demographic information, will not impact your application.
-        </Label>
-        <br />
-        {step2fieldsB.map(field => (
+        {step2fields.map((field) => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
         ))}
       </form>

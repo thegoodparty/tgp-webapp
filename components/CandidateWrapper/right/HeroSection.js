@@ -50,7 +50,7 @@ const Days = styled.div`
 function HeroSection() {
   const { candidate } = useContext(CandidateContext);
   const { headline, heroVideo, raceDate } = candidate;
-  console.log('rr', raceDate);
+
   return (
     <Wrapper>
       <DaysUntil>

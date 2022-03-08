@@ -15,12 +15,14 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { FaImage } from 'react-icons/fa';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { FaTrash } from 'react-icons/fa';
 
 import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
-import { step3Fields, step3Socials } from './fields';
+import { step3Fields } from './fields';
+import { Title } from './ApplicationStep1';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -89,10 +91,9 @@ const UploadWrapper = styled.div`
 `;
 
 const PhotoWrapper = styled.div`
+  position: relative;
   text-align: center;
   width: 100%;
-  padding: 8px;
-  margin: 8px;
   display: inline-block;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
@@ -106,6 +107,16 @@ const Photo = styled.img`
   border-radius: 12px;
 `;
 
+const DeletePhoto = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  color: red;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+`;
+
 const keys = {};
 const requiredKeys = [{ key: 'headshotPhoto', defaultValue: '' }];
 step3Fields.forEach((field) => {
@@ -113,10 +124,6 @@ step3Fields.forEach((field) => {
   if (field.required) {
     requiredKeys.push(field);
   }
-});
-
-step3Socials.forEach((field) => {
-  keys[field.key] = field.defaultValue;
 });
 
 function ApplicationStep3({
@@ -185,6 +192,16 @@ function ApplicationStep3({
     onBlurField(key, e);
   };
 
+  const handleDeleteImage = (key) => {
+    const e = {
+      target: {
+        value: '',
+      },
+    };
+
+    onBlurField(key, e);
+  };
+
   const handleDateChange = (key, date) => {
     // const formatted = dateUsHelper(date);
     const e = { target: { value: date } };
@@ -193,7 +210,7 @@ function ApplicationStep3({
   };
 
   const renderField = (field) => {
-    if (field.key === 'photos') {
+    if (field.key === 'headshotPhoto') {
       return (
         <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
           <Label>
@@ -201,37 +218,34 @@ function ApplicationStep3({
             {field.subLabel && <Req>{field.subLabel}</Req>}
           </Label>
           <Subtitle>{field.subtitle}</Subtitle>
-          {keys.photos.map((photo) => (
+          {state[field.key] ? (
+            <PhotoWrapper>
+              <Photo src={state[field.key]} alt={field.key} />
+              <DeletePhoto onClick={() => handleDeleteImage(field.key)}>
+                <FaTrash />
+              </DeletePhoto>
+            </PhotoWrapper>
+          ) : (
             <>
-              {state[photo.key] ? (
-                <PhotoWrapper>
-                  <strong>{photo.label}</strong>
-                  <br />
-                  <Photo src={state[photo.key]} alt={photo.key} />
-                </PhotoWrapper>
-              ) : (
-                <>
-                  {!reviewMode && (
-                    <PhotoInputWrapper key={photo.key}>
-                      <UploadWrapper>
-                        <ImageUploadContainer
-                          uploadCallback={(image) =>
-                            handleUploadImage(image, photo.key)
-                          }
-                        />
-                      </UploadWrapper>
-                      <PhotoPlaceholder>
-                        <IconWrapper>
-                          <FaImage style={{ marginTop: '6px' }} />
-                        </IconWrapper>
-                        {photo.label}
-                      </PhotoPlaceholder>
-                    </PhotoInputWrapper>
-                  )}{' '}
-                </>
-              )}
+              {!reviewMode && (
+                <PhotoInputWrapper key={field.key}>
+                  <UploadWrapper>
+                    <ImageUploadContainer
+                      uploadCallback={(image) =>
+                        handleUploadImage(image, field.key)
+                      }
+                    />
+                  </UploadWrapper>
+                  <PhotoPlaceholder>
+                    <IconWrapper>
+                      <FaImage style={{ marginTop: '6px' }} />
+                    </IconWrapper>
+                    {field.label}
+                  </PhotoPlaceholder>
+                </PhotoInputWrapper>
+              )}{' '}
             </>
-          ))}
+          )}
         </FieldWrapper>
       );
     }
@@ -362,40 +376,10 @@ function ApplicationStep3({
       id={application.id}
       reviewMode={reviewMode}
     >
+      <Title>Step 3: Add Campaign Details</Title>
       <form noValidate onSubmit={handleSubmitForm}>
         {step3Fields.map((field) => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
-        ))}
-        <Label>Official Campaign social media links</Label>
-        {step3Socials.map((field) => (
-          <SocialFieldWrapper key={field.key}>
-            <TextField
-              key={field.key}
-              name={field.key}
-              variant="outlined"
-              value={state[field.key]}
-              fullWidth
-              placeholder={field.placeholder}
-              disabled={reviewMode}
-              inputProps={{
-                maxLength: 50,
-              }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    {field.icon} &nbsp;
-                    {field.adornment}
-                  </InputAdornment>
-                ),
-              }}
-              onChange={(e) => {
-                onChangeField(field.key, e);
-              }}
-              onBlur={(e) => {
-                onBlurField(field.key, e);
-              }}
-            />
-          </SocialFieldWrapper>
         ))}
       </form>
     </ApplicationWrapper>

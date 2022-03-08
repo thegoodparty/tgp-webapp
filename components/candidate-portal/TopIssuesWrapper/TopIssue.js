@@ -32,7 +32,7 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
       <Grid item xs={1}>
         <span>{index + 1}.</span>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={3}>
         <Autocomplete
           size="small"
           options={topicList}
@@ -106,25 +106,8 @@ function TopIssue({ index, topicList, issue, updateIssue, deleteIssue }) {
           }}
         />
       </Grid>
+
       <Grid item xs={2}>
-        <TextField
-          fullWidth
-          size="small"
-          primary
-          label="Website URL(optional)"
-          name="Description"
-          variant="outlined"
-          value={currentWebsiteUrl}
-          onChange={e => {
-            setWebsiteUrl(e.target.value);
-            updateIssue(index, {
-              ...issue,
-              websiteUrl: e.target.value,
-            });
-          }}
-        />
-      </Grid>
-      <Grid item xs={1}>
         <IconButton
           color="primary"
           onClick={() => {

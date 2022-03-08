@@ -16,14 +16,13 @@ import { useRouter } from 'next/router';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
-import LightPurpleButton from '../../shared/buttons/LightPurpleButton';
 
 const Wrapper = styled.div`
-  padding: 16px 0;
+  padding: 16px 0 140px;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    padding: 36px 0;
+    padding: 36px 0 140px;
     display: flex;
   }
 `;
@@ -66,8 +65,8 @@ const LeftNav = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     display: block;
-    padding: 32px 16px 32px 0;
-    width: 180px;
+    padding: 32px 16px 32px;
+    width: 210px;
 
     background-color: ${({ theme }) => theme.colors.purpleBg};
   }
@@ -100,7 +99,7 @@ const MainWrapper = styled.div`
       theme.breakpointsPixels.md}) {
     padding: 6px 0 0 32px;
     &.with-sticky {
-      margin-left: 180px;
+      margin-left: 210px;
     }
   }
 `;
@@ -141,13 +140,13 @@ const ButtonWrapper = styled.div`
 `;
 
 const leftLinks = [
-  { step: 1, label: 'Good Party Pledge' },
-  { step: 2, label: 'Candidate Details' },
-  { step: 3, label: 'Campaign Details' },
-  { step: 4, label: 'Contacts' },
-  { step: 5, label: 'Issues' },
-  { step: 6, label: 'Endorsements' },
-  { step: 7, label: 'Checklist' },
+  { step: 1, label: '1. Good Party Pledge' },
+  { step: 2, label: '2. Candidate Details' },
+  { step: 3, label: '3. Campaign Details' },
+  { step: 4, label: '4. Social Media' },
+  { step: 5, label: '5. Top Issues' },
+  { step: 6, label: '6. Key Endorsements' },
+  { step: 7, label: '7. Application Checklist' },
 ];
 
 const topLinks = {};
@@ -171,7 +170,7 @@ function ApplicationWrapper({
   const router = useRouter();
 
   return (
-    <PageWrapper purple>
+    <PageWrapper purple hideFooter>
       <Wrapper className="application-wrapper">
         <TopMobileNav>
           <div>{topLinks[step].label}</div>

@@ -330,7 +330,7 @@ const api = {
         withAuth: true,
       },
       list: {
-        url: `${base}issue-topics`,
+        url: `${base}issue-topics`, // non admin
         method: 'GET',
         withAuth: true,
       },

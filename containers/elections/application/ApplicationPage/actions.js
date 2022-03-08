@@ -52,6 +52,19 @@ function rejectApplicationAction(id, feedback) {
   };
 }
 
+function loadATopIssuesAction() {
+  return {
+    type: types.LOAD_TOP_ISSUES,
+  };
+}
+
+function loadATopIssuesActionSuccess(issues) {
+  return {
+    type: types.LOAD_TOP_ISSUES_SUCCESS,
+    issues,
+  };
+}
+
 export default {
   loadApplicationAction,
   loadApplicationActionSuccess,
@@ -61,4 +74,7 @@ export default {
 
   approveApplicationAction,
   rejectApplicationAction,
+
+  loadATopIssuesAction,
+  loadATopIssuesActionSuccess,
 };

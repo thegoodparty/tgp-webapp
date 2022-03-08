@@ -8,6 +8,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import { FaPlus } from 'react-icons/fa';
+
 import { H2, Body11 } from '../../shared/typogrophy';
 import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
 import AdminPageWrapper from '../../admin/AdminWrapper/AdminPageWrapper';
@@ -50,8 +52,8 @@ function TopIssuesWrapper({
   }, [candidateIssue]);
   const onUpdateIssue = (topIssues, candidateId) => {
     updateIssueCallback(
-      topIssues.map(topIssue => ({...topIssue, topic: topIssue.topic.id})), 
-      candidateId
+      topIssues.map((topIssue) => ({ ...topIssue, topic: topIssue.topic.id })),
+      candidateId,
     );
     setIsLoading(true);
   };
@@ -78,9 +80,8 @@ function TopIssuesWrapper({
   const PageWrapper = isAdmin ? AdminPageWrapper : PortalPageWrapper;
   const availTopicList = topicList.filter(
     (item) =>
-      !topIssues
-        .map((issueItem) => issueItem.topic?.id)
-        .includes(item.id));
+      !topIssues.map((issueItem) => issueItem.topic?.id).includes(item.id),
+  );
 
   return (
     <PageWrapper role={role}>
@@ -89,9 +90,23 @@ function TopIssuesWrapper({
           Issues
           {candidateId ? ` - ${candidate.firstName} ${candidate.lastName}` : ''}
         </H2>
-        <Body11 className="text-left">
-          Select up to 10 top issues for your campaign in order of importance.
-        </Body11>
+        <Grid container spacing={2}>
+          <Grid item xs={9}>
+            <Body11 className="text-left">
+              Select up to 10 top issues for your campaign in order of
+              importance.
+            </Body11>
+          </Grid>
+          <Grid item xs={3} className="text-right">
+            <BlueButton onClick={addNewIssue}>
+              &nbsp;
+              <FaPlus />
+              &nbsp;
+              <strong>Add New Issue</strong>
+              &nbsp;
+            </BlueButton>
+          </Grid>
+        </Grid>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12}>
             <hr />
@@ -100,17 +115,15 @@ function TopIssuesWrapper({
             <TopIssue
               key={index}
               index={index}
-              topicList={issue.topic ? [...availTopicList, issue.topic]: availTopicList}
+              topicList={
+                issue.topic ? [...availTopicList, issue.topic] : availTopicList
+              }
               issue={issue}
               updateIssue={updateIssue}
               deleteIssue={() => deleteIssue(index)}
             />
           ))}
-          <Grid item xs={3}>
-            <BlueButton onClick={addNewIssue} fullWidth>
-              Add New Issue
-            </BlueButton>
-          </Grid>
+
           <Grid item xs={12}>
             <PurpleButton
               disabled={!isFormValidate() || isLoading}

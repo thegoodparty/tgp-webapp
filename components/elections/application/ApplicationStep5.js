@@ -12,42 +12,74 @@ import IssuePositionsPickerContainer from '/containers/shared/IssuePositionsPick
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, H2 } from '../../shared/typogrophy';
+import TopIssue from '../../candidate-portal/TopIssuesWrapper/TopIssue';
+import TopIssueRow from './TopIssueRow';
 
 const SubTitle = styled(Body)`
   margin-top: 8px;
   color: #666;
 `;
 
+const initialState = {
+  selectedTopic: null,
+  selectedPosition: null,
+  description: '',
+};
+
 function ApplicationStep5({
   step,
   application,
   updateApplicationCallback,
   reviewMode,
+  issues,
 }) {
-  const [state, setState] = useState({});
+  const [state, setState] = useState([
+    initialState,
+    initialState,
+    initialState,
+    initialState,
+    initialState,
+  ]);
+
+  const [validIssues, setValidIssues] = useState(issues);
+
+  useState(() => {
+    setValidIssues(issues);
+  }, [issues]);
 
   useEffect(() => {
-    if (application?.issues) {
-      setState({
-        ...application.issues,
-      });
+    if (application?.topIssues) {
+      setState(application.topIssues);
     }
   }, [application]);
 
-  const handlePositionChange = (positions) => {
-    const updatedState = {
-      ...state,
-      positions,
-    };
+  const canSubmit = () =>
+    state &&
+    state.length > 0 &&
+    state[0].selectedTopic &&
+    state[0].selectedPosition;
+
+  const handleRowUpdate = (updatedRow, index) => {
+    const newState = [...state];
+    newState[index] = updatedRow;
+    setState(newState);
     updateApplicationCallback(application.id, {
       ...application,
-      issues: {
-        ...updatedState,
-      },
+      topIssues: newState,
     });
-  };
 
-  const canSubmit = () => state.positions?.length > 0;
+    const filteredIssues = issues.filter((issue) => {
+      let found = false;
+      newState.forEach((row) => {
+        if (row.selectedTopic?.id === issue.id) {
+          found = true;
+        }
+      });
+      return !found;
+    });
+
+    setValidIssues(filteredIssues);
+  };
 
   return (
     <ApplicationWrapper
@@ -62,12 +94,14 @@ function ApplicationStep5({
       </SubTitle>
       <br />
       <br />
-      <IssuePositionsPickerContainer
-        selectedPositions={state.positions || []}
-        onChange={handlePositionChange}
-        disabled={reviewMode}
-        maxSelected={5}
-      />
+      {(state || []).map((row, index) => (
+        <TopIssueRow
+          issues={validIssues}
+          row={row}
+          index={index}
+          updateCallback={handleRowUpdate}
+        />
+      ))}
     </ApplicationWrapper>
   );
 }
