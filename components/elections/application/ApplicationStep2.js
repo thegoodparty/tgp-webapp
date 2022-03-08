@@ -84,6 +84,7 @@ function ApplicationStep2({
         publicOffice: application.candidate.ranBefore !== 'Yes',
         officeElected: application.candidate.electedBefore !== 'Yes',
         partyHistory: application.candidate.memberPolitical !== 'Yes',
+        otherParty: application.candidate.party !== 'Other',
       });
     }
   }, [application]);
@@ -123,6 +124,29 @@ function ApplicationStep2({
         [toggleElement]: true,
       });
     }
+    onChangeField(key, e);
+    onBlurField(key, e);
+  };
+
+  const handleSelectChange = (key, e, toggleElement) => {
+    console.log('select1');
+    if (key === 'party') {
+      console.log('select2', toggleElement);
+      if (toggleElement && e.target.value === 'Other') {
+        console.log('select3');
+        setHiddenElements({
+          ...hiddenElements,
+          [toggleElement]: false,
+        });
+      } else if (toggleElement && e.target.value !== 'Other') {
+        console.log('select4');
+        setHiddenElements({
+          ...hiddenElements,
+          [toggleElement]: true,
+        });
+      }
+    }
+    console.log('select5');
     onChangeField(key, e);
     onBlurField(key, e);
   };
@@ -176,7 +200,8 @@ function ApplicationStep2({
           </FieldWrapper>
         );
       }
-      if (field.key === 'partyHistory') {
+      if (field.key === 'partyHistory' || field.key === 'otherParty') {
+        console.log('field.key', field.key, hiddenElements);
         return (
           <FieldWrapper key={field.key}>
             <Label>
@@ -203,6 +228,7 @@ function ApplicationStep2({
           </FieldWrapper>
         );
       }
+
       return <FieldWrapper>{field.customElement}</FieldWrapper>;
     }
 
@@ -218,9 +244,9 @@ function ApplicationStep2({
             fullWidth
             variant="outlined"
             disabled={reviewMode}
-            onChange={(e) => {
-              onChangeField(field.key, e);
-            }}
+            onChange={(e) =>
+              handleSelectChange(field.key, e, field.toggleElement)
+            }
             onBlur={(e) => {
               onBlurField(field.key, e);
             }}
@@ -245,7 +271,7 @@ function ApplicationStep2({
             }}
           />
         )}
-        {(field.type === 'text' || field.type === 'email') && (
+        {(field.type === 'text' || field.type === 'email' || field.type === 'date') && (
           <TextField
             name={field.label}
             variant="outlined"

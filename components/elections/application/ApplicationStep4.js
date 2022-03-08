@@ -205,7 +205,7 @@ function ApplicationStep4({
         ))}
         <br />
         <br />
-        <Label>Candidate’s personal social media links</Label>
+        <Label>Personal social media links for the Candidate</Label>
         {step2Socials.map((field) => (
           <SocialFieldWrapper key={field.key}>
             <TextField
