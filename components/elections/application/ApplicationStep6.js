@@ -15,6 +15,7 @@ import { FaLink } from 'react-icons/fa';
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
+import ImageUploadContainer from '../../../containers/shared/ImageUploadContainer';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -65,9 +66,16 @@ const EndorsementWrapper = styled.div`
 
 const fields = [
   {
+    title: {
+      key: 'title',
+      label: 'Endorsement Title',
+      placeholder: 'Enter...',
+      defaultValue: '',
+      type: 'text',
+    },
     body: {
       key: 'body',
-      label: 'Endorsement',
+      label: 'Endorsement Summary',
       subtitle: 'A snippet or summary of the endorsement.',
       placeholder: 'Enter...',
       defaultValue: '',
@@ -88,9 +96,15 @@ const fields = [
         </IconWrapper>
       ),
     },
+    image: {
+      key: 'image',
+      label: 'Image',
+      subtitle: 'Small square image associated with the endorsement',
+      type: 'image',
+    },
   },
 ];
-const emptyKeys = { body: '', link: '' };
+const emptyKeys = { body: '', link: '', title: '', image: '' };
 
 const keys = [emptyKeys];
 
@@ -124,6 +138,17 @@ function ApplicationStep6({
     const updatedState = JSON.parse(JSON.stringify(state));
     updatedState[index][key] = e.target.value;
     setState(updatedState);
+  };
+  const handleUploadImage = (key, image, index) => {
+    console.log('image', image);
+    const updatedState = JSON.parse(JSON.stringify(state));
+    updatedState[index][key] = image;
+    setState(updatedState);
+
+    updateApplicationCallback(application.id, {
+      ...application,
+      endorsements: updatedState,
+    });
   };
 
   const onBlurField = (key, e, index) => {
@@ -178,6 +203,19 @@ function ApplicationStep6({
             }}
           />
         )}
+        {field.type === 'image' && (
+          <>
+            {state[index][field.key] ? (
+              <img src={state[index][field.key]} style={{ width: '200px' }} />
+            ) : (
+              <ImageUploadContainer
+                uploadCallback={(image) =>
+                  handleUploadImage(field.key, image, index)
+                }
+              />
+            )}
+          </>
+        )}
       </FieldWrapper>
     );
   };
@@ -199,8 +237,10 @@ function ApplicationStep6({
         <br />
         {fieldsState.map((field, index) => (
           <EndorsementWrapper key={index}>
+            {renderField(field.title, index)}
             {renderField(field.body, index)}
             {renderField(field.link, index)}
+            {renderField(field.image, index)}
           </EndorsementWrapper>
         ))}
         {!reviewMode && (
