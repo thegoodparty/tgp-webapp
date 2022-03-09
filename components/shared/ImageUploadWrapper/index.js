@@ -60,7 +60,7 @@ function ImageUploadWrapper({
           id="file-uploader"
         />
       </StyledButton>
-      {fileSizeError && <Error>Max file size allowed: 400K </Error>}
+      {fileSizeError && <Error>Max file size allowed: {maxFileSize/1000}K </Error>}
     </>
   );
 }

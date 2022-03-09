@@ -234,6 +234,7 @@ function ApplicationStep3({
                       uploadCallback={(image) =>
                         handleUploadImage(image, field.key)
                       }
+                      maxFileSize={1000000}
                     />
                   </UploadWrapper>
                   <PhotoPlaceholder>
@@ -249,7 +250,7 @@ function ApplicationStep3({
         </FieldWrapper>
       );
     }
-    let maxLength = field.maxLength || 30;
+    let maxLength = field.maxLength || 120;
     if (field.multiline) {
       maxLength = 300;
     }

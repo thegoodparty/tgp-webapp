@@ -95,7 +95,7 @@ function ApplicationStep4({
     >
       <Title>Step 4: Add Social Media</Title>
       <form noValidate onSubmit={handleSubmitForm}>
-        <Label>Official Campaign social media links</Label>
+        <Label>Official campaign social media links</Label>
         {step3Socials.map((field) => (
           <SocialFieldWrapper key={field.key}>
             <TextField
@@ -128,7 +128,7 @@ function ApplicationStep4({
         ))}
         <br />
         <br />
-        <Label>Personal social media links for the Candidate</Label>
+        <Label>Personal social media links for the candidate</Label>
         {step2Socials.map((field) => (
           <SocialFieldWrapper key={field.key}>
             <TextField

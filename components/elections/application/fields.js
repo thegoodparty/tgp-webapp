@@ -288,13 +288,14 @@ export const step3Fields = [
     shortLabel: 'District',
   },
   {
-    label: 'Campaign Headline / slogan',
+    label: 'Campaign headline or slogan',
     key: 'headline',
     placeholder: 'headline',
     defaultValue: '',
     type: 'text',
     maxLength: 120,
     subtitle: '120 characters max',
+    required: true,
   },
   {
     label: 'Campaign summary',
@@ -306,6 +307,7 @@ export const step3Fields = [
     type: 'text',
     multiline: true,
     shortLabel: 'Summary',
+    required: true,
   },
   {
     label: 'Campaign video (YouTube)',
@@ -370,6 +372,7 @@ export const step3Fields = [
     defaultValue: '',
     type: 'radio',
     options: ['Yes', 'No'],
+    required: true,
   },
   {
     label:

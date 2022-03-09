@@ -90,7 +90,7 @@ function ApplicationStep5({
     >
       <Title>Step 5: Select Top Issues</Title>
       <SubTitle>
-        Please select up to top five (5) issue tags you are aligned with to help
+        Please select up to top five (5) issue you are aligned with to help
         supporters distinguish your campaign.
       </SubTitle>
       <br />
