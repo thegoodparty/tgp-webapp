@@ -14,6 +14,7 @@ import ApplicationWrapper from './ApplicationWrapper';
 import { Body, H2 } from '../../shared/typogrophy';
 import TopIssue from '../../candidate-portal/TopIssuesWrapper/TopIssue';
 import TopIssueRow from './TopIssueRow';
+import { Title } from './ApplicationStep1';
 
 const SubTitle = styled(Body)`
   margin-top: 8px;
@@ -87,7 +88,7 @@ function ApplicationStep5({
       canContinue={canSubmit()}
       id={application.id}
     >
-      <H2>Top Issues for your Campaign</H2>
+      <Title>Step 5: Select Top Issues</Title>
       <SubTitle>
         Please select up to top five (5) issue tags you are aligned with to help
         supporters distinguish your campaign.

@@ -20,18 +20,10 @@ import { FaTrash } from 'react-icons/fa';
 import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 
 import ApplicationWrapper from './ApplicationWrapper';
-import { Body, Body11 } from '../../shared/typogrophy';
+import { Body } from '../../shared/typogrophy';
 import { step2Socials, step3Socials } from './fields';
 import { Title } from './ApplicationStep1';
 
-const FieldWrapper = styled.div`
-  margin-bottom: 32px;
-  &.gray {
-    background-color: #f7f7f7;
-    padding: 16px;
-    border-radius: 8px;
-  }
-`;
 const SocialFieldWrapper = styled.div`
   margin-bottom: 12px;
   .MuiInputAdornment-positionStart {
@@ -46,75 +38,6 @@ const SocialFieldWrapper = styled.div`
 const Label = styled(Body)`
   margin-bottom: 8px;
   font-weight: 600;
-`;
-
-const Req = styled(Body11)`
-  display: inline-block;
-  margin-left: 8px;
-  color: #cc3366;
-  font-weight: 500;
-`;
-
-const IconWrapper = styled.span`
-  color: ${({ theme }) => theme.colors.purple};
-  font-size: 24px;
-  margin-right: 16px;
-`;
-
-const Subtitle = styled.div`
-  margin-bottom: 12px;
-  color: #666;
-`;
-
-const PhotoInputWrapper = styled.div`
-  padding: 10px 16px;
-  border: solid 1px #ccc;
-  border-radius: 4px;
-  text-align: right;
-  position: relative;
-  margin-bottom: 12px;
-`;
-
-const PhotoPlaceholder = styled.div`
-  position: absolute;
-  opacity: 0.4;
-  top: 6px;
-  left: 12px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-`;
-
-const UploadWrapper = styled.div`
-  position: relative;
-  z-index: 5;
-`;
-
-const PhotoWrapper = styled.div`
-  position: relative;
-  text-align: center;
-  width: 100%;
-  display: inline-block;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    width: 33%;
-  }
-`;
-
-const Photo = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-`;
-
-const DeletePhoto = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px;
-  color: red;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
 `;
 
 const keys = {};

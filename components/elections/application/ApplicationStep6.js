@@ -16,6 +16,7 @@ import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import ImageUploadContainer from '../../../containers/shared/ImageUploadContainer';
+import { Title } from './ApplicationStep1';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -227,6 +228,7 @@ function ApplicationStep6({
       withWhiteBg={false}
       reviewMode={reviewMode}
     >
+      <Title>Step 6: Highlight Key Endorsements </Title>
       <form noValidate onSubmit={handleSubmitForm}>
         <Body>
           Use this page to add any institutional endorsements you may have

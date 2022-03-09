@@ -21,12 +21,13 @@ import {
   step4Fields,
   step4CampaignFields,
 } from './fields';
+import { Title } from './ApplicationStep1';
 
 const SectionWrapper = styled.div`
   margin-bottom: 28px;
 `;
 
-const Title = styled(Body14)`
+const Title14 = styled(Body14)`
   color: #1a1a1a;
   font-weight: 600;
   text-transform: uppercase;
@@ -114,7 +115,7 @@ function ApplicationStep7({
 
       allFields.forEach((stepFields, index) => {
         const { stepKey } = stepFields[0];
-        stepFields.forEach(field => {
+        stepFields.forEach((field) => {
           if (field.label) {
             const completed =
               application[stepKey] &&
@@ -167,6 +168,7 @@ function ApplicationStep7({
       submitApplicationCallback={submitApplicationCallback}
       reviewMode={reviewMode}
     >
+      <Title>Step 7: Review Application Checklist</Title>
       {state.map((section, index) => (
         <SectionWrapper key={index}>
           <Link
@@ -174,7 +176,7 @@ function ApplicationStep7({
             passHref
           >
             <a>
-              <Title>{section.title}</Title>
+              <Title14>{section.title}</Title14>
             </a>
           </Link>
           {section.fields.map((field, index) => (
