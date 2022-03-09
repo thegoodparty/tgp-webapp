@@ -13,7 +13,10 @@ import TextField from '@material-ui/core/TextField';
 import { FaTrash } from 'react-icons/fa';
 
 const Wrapper = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 32px;
+  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  margin-bottom: 16px;
+  }
 `;
 
 const initialState = {
@@ -74,7 +77,7 @@ function TopIssueRow({ index, issues, updateCallback, row }) {
         <Grid item xs={1}>
           {index + 1}.
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={11} md={3}>
           <Autocomplete
             size="small"
             options={issues}
@@ -88,7 +91,7 @@ function TopIssueRow({ index, issues, updateCallback, row }) {
             onChange={(e, item) => onChangeField(item, 'selectedTopic')}
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={6} md={3}>
           <Autocomplete
             size="small"
             options={state.selectedTopic?.positions || []}
@@ -103,7 +106,7 @@ function TopIssueRow({ index, issues, updateCallback, row }) {
             disabled={!state.selectedTopic}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5} md={4}>
           <TextField
             size="small"
             fullWidth

@@ -66,7 +66,7 @@ const LeftNav = styled.div`
       theme.breakpointsPixels.md}) {
     display: block;
     padding: 32px 16px 32px;
-    width: 210px;
+    width: 225px;
 
     background-color: ${({ theme }) => theme.colors.purpleBg};
   }
@@ -99,7 +99,7 @@ const MainWrapper = styled.div`
       theme.breakpointsPixels.md}) {
     padding: 6px 0 0 32px;
     &.with-sticky {
-      margin-left: 210px;
+      margin-left: 225px;
     }
   }
 `;
@@ -177,7 +177,7 @@ function ApplicationWrapper({
           <TopLinks>
             {leftLinks.map((link) => (
               <Link
-                href={`/campaign-application/${link.step}`}
+                href={`/campaign-application/${id}/${link.step}`}
                 passHref
                 key={link.step}
               >

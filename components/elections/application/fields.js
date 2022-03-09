@@ -158,7 +158,7 @@ export const step2fields = [
 export const step2Socials = [
   {
     key: 'candidateTwitter',
-    label: 'Twitter',
+    label: 'Candidate Twitter',
     adornment: 'twitter.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -170,7 +170,7 @@ export const step2Socials = [
   },
   {
     key: 'candidateFacebook',
-    label: 'Facebook',
+    label: 'Candidate Facebook',
     adornment: 'facebook.com/',
     placeholder: 'link',
     defaultValue: '',
@@ -182,7 +182,7 @@ export const step2Socials = [
   },
   {
     key: 'candidateYoutube',
-    label: 'YouTube',
+    label: 'Candidate YouTube',
     adornment: 'youtube.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -194,7 +194,7 @@ export const step2Socials = [
   },
   {
     key: 'candidateLinkedin',
-    label: 'LinkedIn',
+    label: 'Candidate LinkedIn',
     adornment: 'linkedin.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -206,7 +206,7 @@ export const step2Socials = [
   },
   {
     key: 'candidateSnap',
-    label: 'Snap',
+    label: 'Candidate Snap',
     adornment: 'snap.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -218,7 +218,7 @@ export const step2Socials = [
   },
   {
     key: 'candidateTiktok',
-    label: 'TikTok',
+    label: 'Candidate TikTok',
     adornment: 'tiktok.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -230,7 +230,7 @@ export const step2Socials = [
   },
   {
     key: 'candidateReddit',
-    label: 'Reddit',
+    label: 'Candidate Reddit',
     adornment: 'reddit.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -242,7 +242,7 @@ export const step2Socials = [
   },
   {
     key: 'candidateWebsite',
-    label: 'Website',
+    label: 'Candidate Website',
     adornment: '',
     placeholder: 'website.com',
     defaultValue: '',
@@ -406,6 +406,7 @@ export const step3Fields = [
 export const step3Socials = [
   {
     key: 'twitter',
+    label: 'Campaign Twitter',
     adornment: 'twitter.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -417,6 +418,7 @@ export const step3Socials = [
   },
   {
     key: 'facebook',
+    label: 'Campaign Facebook',
     adornment: 'facebook.com/',
     placeholder: 'link',
     defaultValue: '',
@@ -428,6 +430,7 @@ export const step3Socials = [
   },
   {
     key: 'youtube',
+    label: 'Campaign YouTube',
     adornment: 'youtube.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -439,6 +442,7 @@ export const step3Socials = [
   },
   {
     key: 'linkedin',
+    label: 'Campaign Linkedin',
     adornment: 'linkedin.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -450,6 +454,7 @@ export const step3Socials = [
   },
   {
     key: 'snap',
+    label: 'Campaign Snap',
     adornment: 'snap.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -461,6 +466,7 @@ export const step3Socials = [
   },
   {
     key: 'tiktok',
+    label: 'Campaign TikTok',
     adornment: 'tiktok.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -472,6 +478,7 @@ export const step3Socials = [
   },
   {
     key: 'reddit',
+    label: 'Campaign Reddit',
     adornment: 'reddit.com/',
     placeholder: 'username',
     defaultValue: '',
@@ -483,6 +490,7 @@ export const step3Socials = [
   },
   {
     key: 'website',
+    label: 'Campaign Website',
     adornment: '',
     placeholder: 'website.com',
     defaultValue: '',
@@ -491,68 +499,5 @@ export const step3Socials = [
         <FaGlobeAmericas />
       </IconWrapper>
     ),
-  },
-];
-
-export const step4Fields = [
-  {
-    label: 'Email',
-    key: 'candidateEmail',
-    placeholder: 'email@domain.com',
-    defaultValue: '',
-    type: 'email',
-    required: true,
-  },
-  {
-    label: 'Phone',
-    key: 'candidatePhone',
-    placeholder: '(555) 555-5555',
-    defaultValue: '',
-    type: 'phone',
-    required: true,
-  },
-];
-
-export const step4CampaignFields = [
-  {
-    label: 'Contact Person',
-    key: 'contactName',
-    placeholder: 'First and last name',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-  },
-  {
-    label: 'Role',
-    key: 'contactRole',
-    placeholder: 'Role in the campaign',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-  },
-  {
-    label: 'Email',
-    key: 'contactEmail',
-    placeholder: 'email@domain.com',
-    defaultValue: '',
-    type: 'email',
-    required: true,
-  },
-  {
-    label: 'Phone',
-    key: 'contactPhone',
-    placeholder: '(555) 555-5555',
-    defaultValue: '',
-    type: 'phone',
-    required: true,
-  },
-  {
-    label: 'Mailing Address',
-    key: 'contactAddress',
-    placeholder: 'Street, City and ZIP Code',
-    defaultValue: '',
-    type: 'text',
-    required: true,
-    maxLength: 300,
   },
 ];
