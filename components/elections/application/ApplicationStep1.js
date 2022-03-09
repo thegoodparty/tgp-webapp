@@ -199,7 +199,7 @@ function ApplicationStep1({
       id={application.id}
       reviewMode={reviewMode}
     >
-      <Title>Take the Good Party Pledge to get started</Title>
+      <Title>Step 1: Take the Good Party Pledge to get started</Title>
       <SubTitle>
         Good Party candidates take a pledge to be{' '}
         <strong>Independent, People Powered and Anti-Corruption</strong>.

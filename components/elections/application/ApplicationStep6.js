@@ -100,7 +100,7 @@ const fields = [
     image: {
       key: 'image',
       label: 'Image',
-      subtitle: 'Small square image associated with the endorsement',
+      subtitle: 'Add image of endorsing organization’s logo',
       type: 'image',
     },
   },
