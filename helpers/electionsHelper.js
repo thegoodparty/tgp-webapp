@@ -2,7 +2,10 @@
 import { slugify } from './articlesHelper';
 import { getCookie } from './cookieHelper';
 
-export const partyResolver = partyLetter => {
+export const partyResolver = (partyLetter) => {
+  if (!partyLetter) {
+    return '';
+  }
   if (partyLetter === 'D') {
     return 'Democratic';
   }
@@ -36,10 +39,13 @@ export const partyResolver = partyLetter => {
   if (partyLetter === 'S') {
     return 'SAM';
   }
-  return '';
+  if (partyLetter === 'F') {
+    return 'Forward';
+  }
+  return partyLetter;
 };
 
-export const candidateRoute = candidate => {
+export const candidateRoute = (candidate) => {
   if (!candidate) {
     return '/';
   }
@@ -48,7 +54,7 @@ export const candidateRoute = candidate => {
   return `/candidate/${name}/${id}`;
 };
 
-export const rankText = number => {
+export const rankText = (number) => {
   if (number === 1) return 'FIRST';
   if (number === 2) return 'SECOND';
   if (number === 3) return 'THIRD';
@@ -69,7 +75,7 @@ export const rankText = number => {
 
 const hoursPerMonth = 2000 / 12;
 
-const calcHours = candidate => {
+const calcHours = (candidate) => {
   const {
     chamber,
     outsideReportDate,
@@ -108,7 +114,7 @@ function monthsDiff(d1, d2) {
   return years * 12 + (date2.getMonth() - date1.getMonth());
 }
 
-export const candidateCalculatedFields = orgCandidate => {
+export const candidateCalculatedFields = (orgCandidate) => {
   if (!orgCandidate) {
     return {};
   }
@@ -210,16 +216,16 @@ export const shortToLongState = {
   WY: 'Wyoming',
 };
 
-export const mapCandidateToHash = candidates => {
+export const mapCandidateToHash = (candidates) => {
   const candHash = {};
   if (candidates && candidates.good) {
-    candidates.good.forEach(cand => {
+    candidates.good.forEach((cand) => {
       candHash[cand.id] = { ...cand, isGood: true };
     });
-    candidates.unknown.forEach(cand => {
+    candidates.unknown.forEach((cand) => {
       candHash[cand.id] = { ...cand, isGood: null };
     });
-    candidates.notGood.forEach(cand => {
+    candidates.notGood.forEach((cand) => {
       candHash[cand.id] = { ...cand, isGood: false };
     });
   }
@@ -231,7 +237,7 @@ export const presidentialElectionLink = () => {
   return '/elections/presidential';
 };
 
-export const senateElectionLink = state => {
+export const senateElectionLink = (state) => {
   if (!state) {
     return '';
   }
@@ -257,7 +263,7 @@ export const isDistrictInCds = (districtNumber, cds) => {
   return false;
 };
 
-export const candidateFirstName = candidate => {
+export const candidateFirstName = (candidate) => {
   if (!candidate) {
     return '';
   }
@@ -265,7 +271,7 @@ export const candidateFirstName = candidate => {
   return candidate.name ? nameArr[0] : '';
 };
 
-export const candidateLastName = candidate => {
+export const candidateLastName = (candidate) => {
   if (!candidate) {
     return '';
   }
@@ -274,7 +280,7 @@ export const candidateLastName = candidate => {
   return candidate.name ? nameArr[nameArr.length - 1] : '';
 };
 
-export const candidateBlocName = candidate => {
+export const candidateBlocName = (candidate) => {
   if (!candidate) {
     return '';
   }
@@ -293,7 +299,7 @@ export const candidateBlocName = candidate => {
   return `#${lastName}Bloc`;
 };
 
-export const blocNameSuffix = blocName => {
+export const blocNameSuffix = (blocName) => {
   if (blocName?.charAt(0) === '@') {
     return 'Bloc';
   }
@@ -380,7 +386,7 @@ export const generateEmptyBlocCandidate = (districtNumber, chamber, state) => {
   };
 };
 
-export const isEmptyCandidates = candidates => {
+export const isEmptyCandidates = (candidates) => {
   return (
     candidates?.good?.length === 0 &&
     candidates.notGood?.length === 0 &&
@@ -388,7 +394,7 @@ export const isEmptyCandidates = candidates => {
   );
 };
 
-export const getElectionLink = zip => {
+export const getElectionLink = (zip) => {
   let electionLink;
   if (zip) {
     electionLink = `/elections/district/${zip}`;

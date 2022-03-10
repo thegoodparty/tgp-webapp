@@ -69,7 +69,6 @@ function ApplicationStep7({
   const [state, setState] = useState([]);
   const [canSubmit, setCanSubmit] = useState(false);
 
-
   useEffect(() => {
     let requiredFilled = true;
     if (application) {
@@ -126,7 +125,17 @@ function ApplicationStep7({
         });
       });
       // issues
-      const issuesCount = application.issues?.positions?.length || 0;
+      let issuesCount = 0;
+      const topIssues = application.topIssues;
+      for (let i = 0; i < topIssues.length || 0; i++) {
+        if (
+          topIssues[i].selectedTopic &&
+          topIssues[i].selectedPosition &&
+          topIssues[i].description !== ''
+        ) {
+          issuesCount++;
+        }
+      }
       sections[4].fields.push({
         label:
           issuesCount === 0

@@ -45,6 +45,7 @@ function ApplicationStep8({
 }) {
   const [state, setState] = useState({
     feedback: '',
+    loading: false,
   });
 
   const onChangeField = (key, e) => {
@@ -52,6 +53,16 @@ function ApplicationStep8({
       ...state,
       [key]: e.target.value,
     });
+  };
+
+  const approve = () => {
+    setState({ ...state, loading: true });
+    approveApplicationCallback(id, state.feedback);
+  };
+
+  const reject = () => {
+    setState({ ...state, loading: true });
+    rejectApplicationCallback(id, state.feedback);
   };
   return (
     <PageWrapper purple>
@@ -65,7 +76,7 @@ function ApplicationStep8({
             multiline
             required
             rows={6}
-            onChange={e => onChangeField('feedback', e)}
+            onChange={(e) => onChangeField('feedback', e)}
             value={state.feedback}
           />
           <br />
@@ -75,7 +86,7 @@ function ApplicationStep8({
               <LightPurpleButton
                 fullWidth
                 disabled={state.feedback === ''}
-                onClick={() => rejectApplicationCallback(id, state.feedback)}
+                onClick={reject}
               >
                 <InnerButton>Reject</InnerButton>
               </LightPurpleButton>
@@ -84,7 +95,7 @@ function ApplicationStep8({
               <PurpleButton
                 fullWidth
                 disabled={state.feedback === ''}
-                onClick={() => approveApplicationCallback(id, state.feedback)}
+                onClick={approve}
               >
                 <InnerButton>Approve</InnerButton>
               </PurpleButton>

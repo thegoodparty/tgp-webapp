@@ -14,8 +14,9 @@ import { FaTrash } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   margin-bottom: 32px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-  margin-bottom: 16px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin-bottom: 16px;
   }
 `;
 
@@ -32,6 +33,10 @@ function TopIssueRow({ index, issues, updateCallback, row }) {
 
   const topicAuto = useRef(null);
   const positionAuto = useRef(null);
+
+  if (!issues) {
+    return <></>;
+  }
 
   const onChangeField = (item, key) => {
     const newState = {
