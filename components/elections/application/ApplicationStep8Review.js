@@ -81,26 +81,30 @@ function ApplicationStep8({
           />
           <br />
           <br />
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              <LightPurpleButton
-                fullWidth
-                disabled={state.feedback === ''}
-                onClick={reject}
-              >
-                <InnerButton>Reject</InnerButton>
-              </LightPurpleButton>
+          {state.loading ? (
+            <div className="text-center">Saving...</div>
+          ) : (
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <LightPurpleButton
+                  fullWidth
+                  disabled={state.feedback === ''}
+                  onClick={reject}
+                >
+                  <InnerButton>Reject</InnerButton>
+                </LightPurpleButton>
+              </Grid>
+              <Grid item xs={6}>
+                <PurpleButton
+                  fullWidth
+                  disabled={state.feedback === ''}
+                  onClick={approve}
+                >
+                  <InnerButton>Approve</InnerButton>
+                </PurpleButton>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <PurpleButton
-                fullWidth
-                disabled={state.feedback === ''}
-                onClick={approve}
-              >
-                <InnerButton>Approve</InnerButton>
-              </PurpleButton>
-            </Grid>
-          </Grid>
+          )}
         </Inner>
       </Wrapper>
     </PageWrapper>
