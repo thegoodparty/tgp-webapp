@@ -51,9 +51,12 @@ export function ApplicationPage({
     if (id) {
       dispatch(actions.loadApplicationAction(id));
     }
+    if (!issues) {
+      dispatch(actions.loadATopIssuesAction());
+    }
   }, [id]);
   useEffect(() => {
-    if (step === 5) {
+    if (step === 5 && !issues) {
       dispatch(actions.loadATopIssuesAction());
     }
   }, [step]);

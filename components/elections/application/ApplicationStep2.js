@@ -175,7 +175,7 @@ function ApplicationStep2({
     if (field.hidden && hiddenElements[field.key]) {
       return;
     }
-    let maxLength = field.maxLength || 30;
+    let maxLength = field.maxLength || 120;
     if (field.multiline) {
       maxLength = 300;
     }

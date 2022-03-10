@@ -262,6 +262,7 @@ export const step3Fields = [
     defaultValue: '',
     type: 'text',
     shortLabel: 'Office',
+    required: true,
   },
 
   {
@@ -293,8 +294,8 @@ export const step3Fields = [
     placeholder: 'headline',
     defaultValue: '',
     type: 'text',
-    maxLength: 120,
-    subtitle: '120 characters max',
+    maxLength: 80,
+    subtitle: '80 characters max',
     required: true,
   },
   {

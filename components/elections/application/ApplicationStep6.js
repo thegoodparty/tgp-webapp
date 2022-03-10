@@ -187,7 +187,7 @@ function ApplicationStep6({
             placeholder={field.placeholder}
             multiline={!!field.multiline}
             rows={field.multiline ? 5 : 1}
-            inputProps={{ maxLength: field.multiline ? 300 : 30 }}
+            inputProps={{ maxLength: field.multiline ? 300 : 120 }}
             disabled={reviewMode}
             InputProps={
               field.icon && {
