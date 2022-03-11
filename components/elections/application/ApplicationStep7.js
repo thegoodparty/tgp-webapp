@@ -127,13 +127,15 @@ function ApplicationStep7({
       // issues
       let issuesCount = 0;
       const topIssues = application.topIssues;
-      for (let i = 0; i < topIssues.length || 0; i++) {
-        if (
-          topIssues[i].selectedTopic &&
-          topIssues[i].selectedPosition &&
-          topIssues[i].description !== ''
-        ) {
-          issuesCount++;
+      if (topIssues) {
+        for (let i = 0; i < topIssues.length; i++) {
+          if (
+            topIssues[i].selectedTopic &&
+            topIssues[i].selectedPosition &&
+            topIssues[i].description !== ''
+          ) {
+            issuesCount++;
+          }
         }
       }
       sections[4].fields.push({
