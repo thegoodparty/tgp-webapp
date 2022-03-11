@@ -28,6 +28,7 @@ import makeSelectApplicationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import { getUserCookie } from '../../../../helpers/cookieHelper';
 
 export function ApplicationPage({
   applicationPage,
@@ -45,7 +46,6 @@ export function ApplicationPage({
     router.query.IdStep?.length > 1 ? router.query.IdStep[1] : '1';
   const id = router.query.IdStep?.length > 0 ? router.query.IdStep[0] : false;
   const step = parseInt(stepStr, 10);
-  console.log('id', id)
 
   const { application, reviewMode, issues } = applicationPage;
   useEffect(() => {

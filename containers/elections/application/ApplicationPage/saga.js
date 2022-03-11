@@ -11,13 +11,19 @@ import {
   getApplicationStorage,
   setApplicationStorage,
 } from '../../../../helpers/localstorageHelper';
+import { getUserCookie } from '../../../../helpers/cookieHelper';
 
 function* loadApplication({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading your application'));
     if (id === 'guest') {
-      const app = getApplicationStorage() || { id: 'guest' };
-      yield put(actions.loadApplicationActionSuccess(app, false));
+      const user = getUserCookie(true);
+      if(user){
+        yield put(push(`/profile/campaign-applications`));
+      } else {
+        const app = getApplicationStorage() || { id: 'guest' };
+        yield put(actions.loadApplicationActionSuccess(app, false));
+      }
     } else {
       const api = tgpApi.candidateApplication.find;
       const payload = {
