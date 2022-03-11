@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { CandidateContext } from '/containers/CandidatePage';
 import { FontH2 } from '../../shared/typogrophy';
 import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
-import { daysTill } from '../../../helpers/dateHelper';
+import { dateUsHelper, daysTill } from '../../../helpers/dateHelper';
 
 const Wrapper = styled.section`
   margin: 48px 0;
@@ -50,15 +50,28 @@ const Days = styled.div`
 function HeroSection() {
   const { candidate } = useContext(CandidateContext);
   const { headline, heroVideo, raceDate } = candidate;
+  const days = daysTill(raceDate);
 
   return (
     <Wrapper>
-      <DaysUntil>
-        <Days>{daysTill(raceDate)}</Days>
-        Days until
-        <br />
-        election
-      </DaysUntil>
+      {raceDate && (
+        <DaysUntil>
+          {days >= 0 ? (
+            <>
+              <Days>{days}</Days>
+              Day{days !== 1}s until
+              <br />
+              election
+            </>
+          ) : (
+            <div className="text-center">
+              <Days>{new Date(raceDate).getFullYear()}</Days>
+              <br />
+              <strong>Archived</strong>
+            </div>
+          )}
+        </DaysUntil>
+      )}
       <StyledFontH2>
         <span role="img" aria-label="Megaphone">
           📣
