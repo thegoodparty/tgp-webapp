@@ -35,7 +35,6 @@ export function EndorsementConfirmationPage({ ssrState }) {
     <div>
       <TgpHelmet
         title="Endorsement Confirmation | GOOD PARTY"
-        description="You endorsed Tomer ggg"
       />
       <EndorsementConfirmationWrapper {...childProps} />
     </div>

@@ -176,6 +176,7 @@ function ApplicationStep1({
       updatedState.transparent &&
       updatedState.choices;
 
+    console.log('here')
     updateApplicationCallback(application.id, {
       ...application,
       pledge: {

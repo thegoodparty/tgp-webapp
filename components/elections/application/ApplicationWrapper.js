@@ -276,13 +276,28 @@ function ApplicationWrapper({
                           </a>
                         </Link>
                       ) : (
-                        <PurpleButton
-                          fullWidth
-                          disabled={!canContinue}
-                          onClick={() => submitApplicationCallback(id)}
-                        >
-                          Submit for review
-                        </PurpleButton>
+                        <>
+                          {id === 'guest' ? (
+                            <Link
+                              href={canContinue ? '/register' : '#'}
+                              passHref
+                            >
+                              <a>
+                                <PurpleButton fullWidth disabled={!canContinue}>
+                                  Register &amp; Submit for Review
+                                </PurpleButton>
+                              </a>
+                            </Link>
+                          ) : (
+                            <PurpleButton
+                              fullWidth
+                              disabled={!canContinue}
+                              onClick={() => submitApplicationCallback(id)}
+                            >
+                              Submit for review
+                            </PurpleButton>
+                          )}
+                        </>
                       )}
                     </>
                   ) : (

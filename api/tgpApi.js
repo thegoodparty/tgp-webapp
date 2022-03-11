@@ -332,7 +332,6 @@ const api = {
       list: {
         url: `${base}issue-topics`, // non admin
         method: 'GET',
-        withAuth: true,
       },
     },
   },
@@ -668,7 +667,6 @@ const api = {
     uploadImage: {
       url: `${base}application/upload-image`,
       method: 'POST',
-      withAuth: true,
     },
 
     adminList: {

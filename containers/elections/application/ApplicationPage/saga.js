@@ -7,16 +7,29 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 
 import actions from './actions';
 import types from './constants';
+import {
+  getApplicationStorage,
+  setApplicationStorage,
+} from '../../../../helpers/localstorageHelper';
 
 function* loadApplication({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading your application'));
-    const api = tgpApi.candidateApplication.find;
-    const payload = {
-      id,
-    };
-    const { application, reviewMode } = yield call(requestHelper, api, payload);
-    yield put(actions.loadApplicationActionSuccess(application, reviewMode));
+    if (id === 'guest') {
+      const app = getApplicationStorage() || { id: 'guest' };
+      yield put(actions.loadApplicationActionSuccess(app, false));
+    } else {
+      const api = tgpApi.candidateApplication.find;
+      const payload = {
+        id,
+      };
+      const { application, reviewMode } = yield call(
+        requestHelper,
+        api,
+        payload,
+      );
+      yield put(actions.loadApplicationActionSuccess(application, reviewMode));
+    }
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
@@ -32,13 +45,23 @@ function* updateApplication({ id, data }) {
     if (!id || !data) {
       return;
     }
-    const api = tgpApi.candidateApplication.update;
-    const payload = {
-      id,
-      data,
-    };
-    const { application } = yield call(requestHelper, api, payload);
-    yield put(actions.loadApplicationActionSuccess(application));
+    console.log('update', data);
+    if (id === 'guest') {
+      console.log('guest');
+
+      const app = getApplicationStorage() || { id: 'guest' };
+      const updated = { ...app, ...data };
+      setApplicationStorage(updated);
+      yield put(actions.loadApplicationActionSuccess(updated));
+    } else {
+      const api = tgpApi.candidateApplication.update;
+      const payload = {
+        id,
+        data,
+      };
+      const { application } = yield call(requestHelper, api, payload);
+      yield put(actions.loadApplicationActionSuccess(application));
+    }
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(

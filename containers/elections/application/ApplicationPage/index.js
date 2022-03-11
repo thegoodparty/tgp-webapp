@@ -45,6 +45,7 @@ export function ApplicationPage({
     router.query.IdStep?.length > 1 ? router.query.IdStep[1] : '1';
   const id = router.query.IdStep?.length > 0 ? router.query.IdStep[0] : false;
   const step = parseInt(stepStr, 10);
+  console.log('id', id)
 
   const { application, reviewMode, issues } = applicationPage;
   useEffect(() => {
@@ -113,6 +114,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     updateApplicationCallback: (id, data) => {
+      console.log('page', id, data)
       dispatch(actions.updateApplicationAction(id, data));
     },
     submitApplicationCallback: (id) => {
