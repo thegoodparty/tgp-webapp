@@ -53,7 +53,7 @@ function PortalCampaignManagerWrapper({
     }
   }, [candidateUgc]);
   const fields = [
-    { label: 'Race (Office Seeking)', key: 'race' },
+    { label: 'Race (Office Seeking)', key: 'race', maxLength: 120 },
     { label: 'Hero Video (YouTube id)', key: 'heroVideo' },
     { label: 'Headline', key: 'headline' },
     { label: 'Race Date', key: 'raceDate', isDate: true },
@@ -147,6 +147,7 @@ function PortalCampaignManagerWrapper({
                     value={ugc[field.key]}
                     type={field.isDate ? 'date' : 'text'}
                     onChange={(e) => updateUgc(field.key, e.target.value)}
+                    inputProps={{ maxLength: field.maxLength || 80 }}
                   />
                 )}
               </Grid>
