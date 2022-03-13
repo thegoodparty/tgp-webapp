@@ -36,8 +36,10 @@ function ProfileCard() {
         {partyResolver(party)} Party Candidate <br />
         for <strong>{race}</strong>
       </Font16>
-      {candidate.image && (
+      {candidate.image ? (
         <ImgWrapper style={{ backgroundImage: `url(${candidate.image})` }} />
+      ) : (
+        <div style={{ height: '32px' }}>&nbsp;</div>
       )}
     </section>
   );

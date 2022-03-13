@@ -20,9 +20,11 @@ import { IoIosContact } from 'react-icons/io';
 import { MdUpdate } from 'react-icons/md';
 import { GoIssueClosed } from 'react-icons/go';
 import { FaUsersCog, FaThumbsUp } from 'react-icons/fa';
+import { GrUserAdmin } from 'react-icons/gr';
 
 import { Body13 } from '/components/shared/typogrophy/index';
 import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
 
 const LeftPanel = styled.div`
   width: 250px;
@@ -86,7 +88,7 @@ export const leftMenuItems = [
     minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
-    icon: <FaThumbsUp size={20} style={{ marginRight: '2px' }} />,
+    icon: <FaThumbsUp size={24} />,
     label: 'Endorsements',
     link: '/candidate-portal/endorsements',
     minAccessLevel: ACCESS_ENUM.MANAGER,
@@ -124,6 +126,8 @@ function PortalLeftMenu({ id, role }) {
 
   const access = accessLevel(role);
 
+  const user = getUserCookie(true);
+
   return (
     <LeftPanel className={leftOpen ? 'open' : 'close'}>
       <LeftMenuItem onClick={toggleLeftPanel}>
@@ -145,6 +149,22 @@ function PortalLeftMenu({ id, role }) {
           )}
         </React.Fragment>
       ))}
+      {user?.isAdmin && (
+        <Link href={link('/candidate-portal/admin')} passHref>
+          <a>
+            <LeftMenuItem
+              className={
+                pathname === link('/candidate-portal/admin') ? 'selected' : ''
+              }
+            >
+              <Icon>
+                <GrUserAdmin size={24} />
+              </Icon>
+              <IconLabel>Admin</IconLabel>
+            </LeftMenuItem>
+          </a>
+        </Link>
+      )}
     </LeftPanel>
   );
 }
