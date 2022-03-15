@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
 
 import PageWrapper from '../shared/PageWrapper';
 // import GoodCertifiedAreSection from '../HomePageWrapperOld/GoodCertifiedAreSection';
@@ -18,6 +19,7 @@ import IllustrationSection from './IllustrationSection';
 import GoodCertified from '../HomePageWrapper/GoodCertified';
 import FeaturedCampaigns from '../HomePageWrapper/FeaturedCampaigns';
 import StartCampaignButton from '../RunWrapper/StartCampaignButton';
+import BlackButton from '../shared/buttons/BlackButton';
 
 const Content = styled.div`
   width: 100%;
@@ -32,6 +34,10 @@ const Content = styled.div`
   }
 `;
 
+const InnerButton = styled.div`
+  padding: 0 32px;
+`;
+
 function CandidatesWrapper({ candidates, homepageCandidates }) {
   return (
     <PageWrapper isFullWidth>
@@ -40,7 +46,13 @@ function CandidatesWrapper({ candidates, homepageCandidates }) {
         <br />
         <br />
         <div className="text-center">
-          <StartCampaignButton />
+          <Link href="/run" passHref>
+            <a>
+              <BlackButton>
+                <InnerButton>LEARN HOW TO RUN</InnerButton>
+              </BlackButton>
+            </a>
+          </Link>
         </div>
         <FeaturedCampaigns homepageCandidates={homepageCandidates} />
 
