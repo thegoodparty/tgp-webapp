@@ -37,7 +37,7 @@ function BecomingSection() {
           <Font20>
             <strong>Free Tools and Tech</strong>
           </Font20>
-          to run your campaigns.
+          to help you run your campaigns.
         </Grid>
 
         <Grid item xs={12} md={4}>
