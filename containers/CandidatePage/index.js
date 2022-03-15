@@ -5,6 +5,7 @@
  */
 
 import React, { memo, createContext, useEffect } from 'react';
+import Error from 'next/error';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -112,17 +113,22 @@ export function CandidatePage({
     similarCampaigns,
   };
 
-
+  const is404 = !candidate || Object.keys(candidate).length === 0;
+  if (is404) {
+    return <Error statusCode={404} />;
+  }
   return (
     <CandidateContext.Provider value={childProps}>
       {candidate && (
-        <TgpHelmet
-          title={title}
-          description={description}
-          image={shareImageUrl(candidate)}
-        />
+        <>
+          <TgpHelmet
+            title={title}
+            description={description}
+            image={shareImageUrl(candidate)}
+          />
+          <CandidateWrapper />
+        </>
       )}
-      <CandidateWrapper />
     </CandidateContext.Provider>
   );
 }

@@ -23,13 +23,6 @@ export async function getServerSideProps(context) {
       };
     }
 
-    // const api2 = tgpApi.admin.topics.list;
-    // const res2 = await fetch(`${api2.url}?format=hash`);
-    // let topics = [];
-    // try {
-    //   ({ topics } = await res2.json());
-    // } catch (e) {}
-
     const api3 = tgpApi.supportCandidate.candidateSupports;
     const res3 = await fetch(`${api3.url}?candidateId=${id}`);
     let candidateSupports = [];
@@ -42,8 +35,8 @@ export async function getServerSideProps(context) {
       props: {
         ssrState: {
           candidate: candidate.candidate,
-          topIssues: candidate.topIssues,
-          similarCampaigns: candidate.similarCampaigns,
+          topIssues: candidate.topIssues || [],
+          similarCampaigns: candidate.similarCampaigns || [],
           id,
           candidateSupports,
           supportCount: total,
