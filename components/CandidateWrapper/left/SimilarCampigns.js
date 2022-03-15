@@ -60,8 +60,8 @@ function SimilarCampaigns() {
             {similar.candidate.race}
           </Running>
           <div>
-            {similar.matchingIssues.map((match) => (
-              <Match>#{match}</Match>
+            {similar.matchingIssues.map((match, index) => (
+              <Match key={index}>#{match}</Match>
             ))}
           </div>
         </SimilarWrapper>

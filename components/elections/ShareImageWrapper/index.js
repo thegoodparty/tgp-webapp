@@ -121,6 +121,7 @@ function ShareImage({
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
+
         shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
       })
       .catch(function(error) {
@@ -129,6 +130,7 @@ function ShareImage({
   };
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
+  console.log({ ...candidate })
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
@@ -138,7 +140,7 @@ function ShareImage({
         <AvatarWrapper>
           <CandidateAvatar
             avatar={
-              withRender
+              imageAsBase64
                 ? `data:image/jpeg;base64, ${imageAsBase64}`
                 : candidate.image
             }
@@ -192,7 +194,7 @@ function ShareImage({
           <AvatarWrapper>
             <CandidateAvatar
               avatar={
-                withRender
+                imageAsBase64
                   ? `data:image/jpeg;base64, ${imageAsBase64}`
                   : candidate.image
               }
