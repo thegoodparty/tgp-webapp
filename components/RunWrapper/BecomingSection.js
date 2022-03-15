@@ -35,25 +35,25 @@ function BecomingSection() {
       <Grid container spacing={6}>
         <Grid item xs={12} md={4}>
           <Font20>
-            <strong>Free tools and technology</strong>
+            <strong>Free Tools and Tech</strong>
           </Font20>
-          to help you run your campaign.
+          to run your campaigns.
         </Grid>
 
         <Grid item xs={12} md={4}>
           <Font20>
-            <strong>Access to strategic guidance</strong>
+            <strong>Access to Strategic Guidance</strong>
           </Font20>
-          from experienced political operatives to walk you through the process
-          from thinking about running to Election Day.
+          from experienced politicos to walk you through the whole process, from
+          running to winning.
         </Grid>
 
         <Grid item xs={12} md={4}>
           <Font20>
-            <strong>A community of creators</strong>
+            <strong>A Community of Creators</strong>
           </Font20>
-          volunteers and organizers too - all working together to fix politics
-          for Good!
+          volunteers, organizers and influencers, gathered to help indie
+          candidates like you run and win.
         </Grid>
       </Grid>
 

@@ -162,8 +162,8 @@ function Footer() {
             />
             <br />
             <Italic>
-              We’re creating a simple, free way for people to help good
-              independent candidates run and win!
+              We’re creating free tools to change the rules, so good indie
+              candidates can run and win!
             </Italic>
           </Grid>
         </Grid>
