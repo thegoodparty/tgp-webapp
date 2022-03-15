@@ -162,8 +162,11 @@ function Footer() {
             />
             <br />
             <Italic>
-              We’re creating free tools to change the rules, so good indie
-              candidates can run and win!
+              Not a political party. We’re building free tools to change the
+              rules, so good independent candidates can run and win!{' '}
+              <Link href="/register" passHref>
+                <a>Join us!</a>
+              </Link>
             </Italic>
           </Grid>
         </Grid>
