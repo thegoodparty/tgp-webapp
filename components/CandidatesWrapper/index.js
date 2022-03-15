@@ -17,6 +17,7 @@ import VideoSection from './VideoSection';
 import IllustrationSection from './IllustrationSection';
 import GoodCertified from '../HomePageWrapper/GoodCertified';
 import FeaturedCampaigns from '../HomePageWrapper/FeaturedCampaigns';
+import StartCampaignButton from '../RunWrapper/StartCampaignButton';
 
 const Content = styled.div`
   width: 100%;
@@ -31,20 +32,18 @@ const Content = styled.div`
   }
 `;
 
-
 function CandidatesWrapper({ candidates, homepageCandidates }) {
   return (
     <PageWrapper isFullWidth>
       <Content>
         <GoodCertified />
-        {/*<GoodCertifiedAreSection headerElement="h1" />*/}
         <br />
         <br />
+        <div className="text-center">
+          <StartCampaignButton />
+        </div>
         <FeaturedCampaigns homepageCandidates={homepageCandidates} />
-        {/*<FeaturedCandidateSection*/}
-        {/*  homepageCandidates={homepageCandidates}*/}
-        {/*  hideSeeMore*/}
-        {/*/>*/}
+
         <CandidatesSection candidates={candidates} />
         <Grid container spacing={5}>
           <Grid item xs={12} md={7}>

@@ -90,6 +90,7 @@ const columns = [
     links: [
       { label: 'Meet the Candidates', link: '/candidates' },
       { label: 'FAQs', link: '/faqs' },
+      { label: 'Start Your Campaign', link: '/run' },
     ],
   },
   {
