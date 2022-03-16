@@ -114,7 +114,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     updateApplicationCallback: (id, data) => {
-      console.log('page', id, data)
       dispatch(actions.updateApplicationAction(id, data));
     },
     submitApplicationCallback: (id) => {

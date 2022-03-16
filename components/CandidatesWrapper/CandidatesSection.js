@@ -4,72 +4,32 @@
  *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import { Body, Body11, H2, H3 } from '../shared/typogrophy';
-import { shortToLongState } from '../../helpers/electionsHelper';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { CandidatesContext } from '/containers/CandidatesPage';
 import CandidateCard from '../shared/CandidateCard';
 
-const Wrapper = styled.div``;
-const StyledH3 = styled(H3)`
-  color: ${({ theme }) => theme.colors.gray2};
-  margin-top: 48px;
-  margin-bottom: 16px;
-  position: relative;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    margin-top: 66px;
-  }
+const Section = styled.section`
+  margin: 50px 0;
 `;
 
-const Nominate = styled(Body11)`
-  color: ${({ theme }) => theme.colors.purple};
-  border: solid 1px ${({ theme }) => theme.colors.purple};
-  display: inline-block;
-  border-radius: 8px;
-  padding: 14px 18px;
-  font-weight: 500;
-`;
-
-function CandidatesSection({ candidates }) {
-  const states = Object.keys(candidates);
+function CandidatesSection() {
+  const { candidates} = useContext(CandidatesContext);
   return (
-    <Wrapper>
-      {states.map(state => (
-        <>
-          <StyledH3>{shortToLongState[state] || 'No State'}</StyledH3>
-          <Grid container spacing={1}>
-            {candidates[state].map((candidate, index) => (
-              <Grid item xs={12} md={6} lg={4} key={index}>
-                <CandidateCard candidate={candidate} />
-              </Grid>
-            ))}
+    <Section>
+      <Grid container spacing={3} alignItems="center">
+        {candidates.map((candidate) => (
+          <Grid item xs={12} md={6} lg={4} key={candidate.id}>
+            <CandidateCard candidate={candidate} />
           </Grid>
-        </>
-      ))}
-      <H2 style={{ marginBottom: '4px', marginTop: '64px', color: '#000' }}>
-        Know any Good Candidates?
-      </H2>
-      <Body style={{ marginBottom: '24px' }}>
-        We are actively recruiting candidates now, and will have some to show
-        you very soon. In the meanwhile, if you know any good candidates please
-        nominate them!
-      </Body>
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSe78SJOH5edK4jTyOWVhs-b8AIf9_ElONlc5opPgzHnnpm_0Q/viewform?usp=sf_link"
-        target="_blank"
-        rel="noopener noreferrer nofollow"
-      >
-        <Nominate>NOMINATE A CANDIDATE</Nominate>
-      </a>
-    </Wrapper>
+        ))}
+      </Grid>
+    </Section>
   );
 }
-
-CandidatesSection.propTypes = {
-  candidates: PropTypes.object,
-};
 
 export default CandidatesSection;

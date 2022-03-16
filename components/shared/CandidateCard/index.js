@@ -7,64 +7,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 import { partyResolver } from '/helpers/electionsHelper';
-import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import Link from 'next/link';
-
-import CandidateAvatar from './CandidateAvatar';
-import { Body11, Body13 } from '../typogrophy';
-import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
-import { PurpleButton } from '../buttons';
-import { achievementsHelper } from '/helpers/achievementsHelper';
+import { FontH3 } from '../typogrophy';
+import BlackButton from '../buttons/BlackButton';
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.purple3};
-  border-radius: 8px;
-  padding: 20px 25px;
-  text-align: center;
-  box-shadow: -9px 18px 30px rgba(224, 212, 234, 0.2),
-    18px -18px 30px rgba(224, 212, 234, 0.2),
-    -18px -18px 30px rgba(255, 255, 255, 0.9),
-    18px 18px 30px rgba(224, 212, 234, 0.9),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.3),
-    inset -1px -1px 2px rgba(224, 212, 234, 0.5);
-`;
-
-const Name = styled.h3`
-  font-size: 23px;
-  font-weight: 700;
-  margin: 20px 0;
+  border-radius: 16px;
+  padding: 16px;
+  border: 2px solid #ededed;
   color: #000;
+  height: 100%;
 `;
 
-const TitleCase = styled.span`
-  text-transform: capitalize;
+const ImageWrapper = styled.div`
+  position: relative;
+  height: 375px;
+
+  img {
+    object-fit: contain;
+    object-position: center center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
 `;
 
-const For = styled.div`
-  font-size: 13px;
-  color: ${({ theme }) => theme.colors.gray4};
-  margin-bottom: 24px;
-  min-height: 36px;
+const Content = styled.div`
+  padding: 24px 8px 8px;
 `;
 
-const Headline = styled.div`
-  color: ${({ theme }) => theme.colors.gray4};
-  font-size: 16px;
-  margin: 18px 0;
-  min-height: 40px;
-  padding: 0 8px;
+const Name = styled(FontH3)`
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0 0 8px;
 `;
 
-const ButtonInner = styled.div`
-  padding: 0 40px;
-  font-size: 13px;
+const Gray = styled.div`
+  color: #4d4d4d;
 `;
 
-const Endorsed = styled(Body13)`
-  text-align: left;
-  color: ${({ theme }) => theme.colors.gray4};
+const Quote = styled.div`
+  border-left: solid 2px #e6e6e6;
+  margin: 24px 0;
+  padding-left: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  font-style: italic;
+`;
+
+const Topics = styled.div`
+  margin-top: 24px;
+  font-weight: 600;
+  font-size: 14px;
+`;
+
+const Topic = styled.div`
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  background-color: #e1e1e1;
+  margin: 4px 4px 0 0;
 `;
 
 function CandidateCard({ candidate }) {
@@ -74,66 +79,48 @@ function CandidateCard({ candidate }) {
     lastName,
     image,
     race,
+    state,
     party,
-    supporters,
     headline,
-    isDraft,
-    draftOffice,
+    topics,
   } = candidate;
 
-  const achievements = achievementsHelper(supporters);
   return (
     <Link href={`/candidate/${firstName}-${lastName}/${id}`} passHref>
       <a>
         <Wrapper>
-          <CandidateAvatar
-            avatar={image}
-            party={party}
-            size="medium"
-            partyBadge
-            centered
-            hideBadge={isDraft}
-          />
-          <Name>
-            {firstName} {lastName}
-          </Name>
-          <For>
-            {isDraft && draftOffice !== '' ? (
-              draftOffice
-            ) : (
-              <>
-                {party === 'S' ? (
-                  'SAM Party'
-                ) : (
-                  <TitleCase>{partyResolver(party).toLowerCase()}</TitleCase>
-                )}{' '}
-                candidate running for {race}
-              </>
+          <ImageWrapper>
+            <Image src={image} layout="fill" height="375px" alt="" />
+          </ImageWrapper>
+          <Content>
+            <Name>
+              {firstName} {lastName}
+            </Name>
+            <Gray>{race}</Gray>
+            <Gray>
+              {state} ({partyResolver(party)}
+              {party !== 'I' && ' Party'})
+            </Gray>
+            <Quote>{headline}</Quote>
+            {topics && topics.length > 0 && (
+              <Topics>
+                <div style={{ marginBottom: '12px' }}>
+                  Top Issues for this candidate
+                </div>
+                {topics.map((topic) => (
+                  <Topic>{topic.description}</Topic>
+                ))}
+              </Topics>
             )}
-          </For>
-          <Endorsed>
-            <div style={{ paddingLeft: '8px' }}>
-              <strong>
-                {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
-              </strong>{' '}
-              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
-            </div>
-          </Endorsed>
 
-          <SupportersProgressBar
-            showSupporters={false}
-            votesNeeded={achievements.nextStep}
-            peopleSoFar={supporters}
-            fullWidth
-            showSuffix={false}
-            withAchievement
-          />
-          <Headline>{headline}</Headline>
-
-          <PurpleButton>
-            <ButtonInner>See Campaign</ButtonInner>
-          </PurpleButton>
-        </Wrapper>{' '}
+            <BlackButton
+              fullWidth
+              style={{ textTransform: 'none', marginTop: '32px' }}
+            >
+              View Campaign
+            </BlackButton>
+          </Content>
+        </Wrapper>
       </a>
     </Link>
   );

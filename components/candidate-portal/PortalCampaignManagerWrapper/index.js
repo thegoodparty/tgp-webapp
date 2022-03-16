@@ -58,6 +58,7 @@ function PortalCampaignManagerWrapper({
     { label: 'Headline', key: 'headline' },
     { label: 'Race Date', key: 'raceDate', isDate: true },
     { label: 'About', key: 'about', isRichText: true },
+    { label: 'Zip Code', key: 'zip' },
     { label: 'Facebook', key: 'facebook' },
     { label: 'Twitter', key: 'twitter' },
     { label: 'TikTok', key: 'tiktok' },

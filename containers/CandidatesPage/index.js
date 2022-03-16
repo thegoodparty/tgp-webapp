@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -12,26 +12,31 @@ import { compose } from 'redux';
 
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '../../components/shared/TgpHelmet';
+import { getUserCookie } from '../../helpers/cookieHelper';
+
+export const CandidatesContext = createContext();
 
 export function CandidatesPage({ ssrState }) {
   let candidates = [];
-  let homepageCandidates = [];
+  let topics = [];
   if (ssrState) {
-    ({ candidates, homepageCandidates } = ssrState);
+    ({ candidates, topics } = ssrState);
   }
+  const user = getUserCookie(true);
   const childProps = {
     candidates,
-    homepageCandidates,
+    topics,
+    user,
   };
 
   return (
-    <div>
+    <CandidatesContext.Provider value={childProps}>
       <TgpHelmet
         title="Candidates | GOOD PARTY"
         description="Good Certified Candidates on GOOD PARTY are all Non-Partisan, Small Money and Anti-Corruption."
       />
-      <CandidatesWrapper {...childProps} />
-    </div>
+      <CandidatesWrapper />
+    </CandidatesContext.Provider>
   );
 }
 
@@ -43,12 +48,6 @@ CandidatesPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({});
 
-const withConnect = connect(
-  mapStateToProps,
-  null,
-);
+const withConnect = connect(mapStateToProps, null);
 
-export default compose(
-  withConnect,
-  memo,
-)(CandidatesPage);
+export default compose(withConnect, memo)(CandidatesPage);

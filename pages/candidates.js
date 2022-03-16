@@ -10,27 +10,20 @@ export async function getServerSideProps() {
   const res = await fetch(api.url);
 
   let candidates;
+  let topics;
   try {
-    ({ candidates } = await res.json());
+    ({ candidates, topics } = await res.json());
   } catch (e) {
     candidates = [];
-  }
-
-  let homepageCandidates = [];
-  try {
-    const api2 = tgpApi.homepageCandidates;
-    const res2 = await fetch(api2.url);
-    ({ homepageCandidates } = await res2.json());
-  } catch (e) {
-    homepageCandidates = [];
+    topics = [];
   }
 
   return {
     props: {
       ssrState: {
         candidates,
-        homepageCandidates,
+        topics,
       },
-    }, // will be passed to the page component as props
+    },
   };
 }

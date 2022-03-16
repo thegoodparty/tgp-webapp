@@ -132,7 +132,7 @@ function Footer() {
               <Aligner>
                 <Title>{column.title}</Title>
                 {column.links.map((link) => (
-                  <FooterLink>
+                  <FooterLink key={link.label}>
                     {link.isExternal ? (
                       <a
                         href={link.link}

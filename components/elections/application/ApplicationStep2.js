@@ -201,7 +201,6 @@ function ApplicationStep2({
         );
       }
       if (field.key === 'partyHistory' || field.key === 'otherParty') {
-        console.log('field.key', field.key, hiddenElements);
         return (
           <FieldWrapper key={field.key}>
             <Label>

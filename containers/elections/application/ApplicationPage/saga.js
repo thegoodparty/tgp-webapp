@@ -51,7 +51,6 @@ function* updateApplication({ id, data }) {
     if (!id || !data) {
       return;
     }
-    console.log('update', data);
     if (id === 'guest') {
       console.log('guest');
 
