@@ -16,10 +16,11 @@ import BlackButton from '../buttons/BlackButton';
 
 const Wrapper = styled.div`
   border-radius: 16px;
-  padding: 16px;
+  padding: 16px 16px 100px;
   border: 2px solid #ededed;
   color: #000;
   height: 100%;
+  position: relative;
 `;
 
 const ImageWrapper = styled.div`
@@ -55,6 +56,10 @@ const Quote = styled.div`
   font-weight: 600;
   font-size: 14px;
   font-style: italic;
+  min-height: 36px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const Topics = styled.div`
@@ -72,6 +77,13 @@ const Topic = styled.div`
   margin: 4px 4px 0 0;
 `;
 
+const ButtonWrapper = styled.div`
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: calc(100% - 48px);
+`;
+
 function CandidateCard({ candidate }) {
   const {
     id,
@@ -86,8 +98,12 @@ function CandidateCard({ candidate }) {
   } = candidate;
 
   return (
-    <Link href={`/candidate/${firstName}-${lastName}/${id}`} passHref>
-      <a>
+    <Link
+      href={`/candidate/${firstName}-${lastName}/${id}`}
+      passHref
+      style={{ height: '100%' }}
+    >
+      <a style={{ height: '100%' }}>
         <Wrapper>
           <ImageWrapper>
             <Image src={image} layout="fill" height="375px" alt="" />
@@ -112,13 +128,14 @@ function CandidateCard({ candidate }) {
                 ))}
               </Topics>
             )}
-
-            <BlackButton
-              fullWidth
-              style={{ textTransform: 'none', marginTop: '32px' }}
-            >
-              View Campaign
-            </BlackButton>
+            <ButtonWrapper>
+              <BlackButton
+                fullWidth
+                style={{ textTransform: 'none', marginTop: '32px' }}
+              >
+                View Campaign
+              </BlackButton>
+            </ButtonWrapper>
           </Content>
         </Wrapper>
       </a>
