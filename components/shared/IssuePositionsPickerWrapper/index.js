@@ -7,7 +7,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Body, Body11 } from '../typogrophy';
+import { Body, Body11, FontH3 } from '../typogrophy';
 
 const Title = styled(Body)`
   font-weight: 600;
@@ -18,7 +18,7 @@ const Position = styled(Body11)`
   font-weight: 600;
   padding: 4px 8px;
   display: inline-block;
-  margin-right: 8px;
+  margin: 0 8px 16px 0;
   background-color: #e5e5e5;
   border-radius: 4px;
   color: #666;
@@ -32,6 +32,10 @@ const Position = styled(Body11)`
 
 const TopicWrapper = styled.div`
   margin-bottom: 28px;
+`;
+
+const StyledFontH3 = styled(FontH3)`
+  color: ${({ theme }) => theme.colors.purple};
 `;
 
 function IssuePositionsPickerWrapper({
@@ -75,6 +79,7 @@ function IssuePositionsPickerWrapper({
   };
   return (
     <div>
+      <StyledFontH3>Filter by Issues &amp; Positions</StyledFontH3>
       {topics.map((topic, index) => (
         <TopicWrapper key={index}>
           <Title>{topic.topic}</Title>

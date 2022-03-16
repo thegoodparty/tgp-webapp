@@ -91,7 +91,7 @@ function TopSection() {
       {!user && (
         <Why>
           <Link
-            href={`${router.asPath}?article=5zIbKVU0wCIAszTOyogGAB`}
+            href={`${router.asPath}?article=FqZOWMEEYfcXbASjaRkMU`}
             passHref
           >
             <a>

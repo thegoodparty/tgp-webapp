@@ -8,11 +8,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import IssuePositionsPickerContainer from '/containers/shared/IssuePositionsPickerContainer';
-
 import ApplicationWrapper from './ApplicationWrapper';
-import { Body, H2 } from '../../shared/typogrophy';
-import TopIssue from '../../candidate-portal/TopIssuesWrapper/TopIssue';
+import { Body } from '../../shared/typogrophy';
 import TopIssueRow from './TopIssueRow';
 import { Title } from './ApplicationStep1';
 
