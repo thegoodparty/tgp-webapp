@@ -10,19 +10,16 @@ export async function getServerSideProps() {
   const res = await fetch(api.url);
 
   let candidates;
-  let topics;
   try {
-    ({ candidates, topics } = await res.json());
+    ({ candidates} = await res.json());
   } catch (e) {
     candidates = [];
-    topics = [];
   }
 
   return {
     props: {
       ssrState: {
         candidates,
-        topics,
       },
     },
   };

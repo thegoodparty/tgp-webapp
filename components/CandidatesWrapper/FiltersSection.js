@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
@@ -19,6 +19,7 @@ import IssuePositionsPickerContainer from '/containers/shared/IssuePositionsPick
 import { FontH3 } from '../shared/typogrophy';
 import BlackButton from '../shared/buttons/BlackButton';
 import Modal from '../shared/Modal';
+import BlackOutlinedButton from '../shared/buttons/BlackOutlinedButton';
 
 const Section = styled.section`
   padding: 16px 28px;
@@ -79,6 +80,8 @@ const ModalInner = styled.div`
   border-radius: 6px;
   min-width: 50vw;
   max-width: 80vw;
+  height: 90vh;
+  overflow-x: auto;
   position: relative;
 `;
 
@@ -88,15 +91,35 @@ const Close = styled.div`
   right: 8px;
   padding: 12px;
   cursor: pointer;
-`
+`;
+
+const ButtonsWrapper = styled.div`
+  background-color: #fff;
+  padding: 24px;
+`;
 
 function FiltersSection() {
-  const { candidates } = useContext(CandidatesContext);
+  const { candidates, positions, filterCandidatesCallback, allCandidates } =
+    useContext(CandidatesContext);
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPositions, setSelectedPositions] = useState(positions);
+  useEffect(() => {
+    setSelectedPositions(positions);
+  }, [positions]);
 
-  const handleIssueSelected = (selected) => {
-    console.log('topic', selected);
+  const handleIssueSelected = (positions) => {
+    setSelectedPositions(positions);
+  };
+
+  const showCandidates = () => {
+    filterCandidatesCallback(allCandidates, selectedPositions);
+    setIsModalOpen(false);
+  };
+
+  const clearCandidates = () => {
+    filterCandidatesCallback(allCandidates, []);
+    setIsModalOpen(false);
   };
   return (
     <>
@@ -143,7 +166,28 @@ function FiltersSection() {
           <Close onClick={() => setIsModalOpen(false)}>
             <CloseIcon />
           </Close>
-          <IssuePositionsPickerContainer onChange={handleIssueSelected} />
+          <IssuePositionsPickerContainer
+            onChange={handleIssueSelected}
+            selectedPositions={selectedPositions}
+          />
+          <ButtonsWrapper>
+            <Grid container spacing={3}>
+              <Grid item xs={6}>
+                <BlackButton
+                  className="outlined"
+                  fullWidth
+                  onClick={clearCandidates}
+                >
+                  Clear All filters
+                </BlackButton>
+              </Grid>
+              <Grid item xs={6}>
+                <BlackButton fullWidth onClick={showCandidates}>
+                  Show Candidates
+                </BlackButton>
+              </Grid>
+            </Grid>
+          </ButtonsWrapper>
         </ModalInner>
       </Modal>
     </>

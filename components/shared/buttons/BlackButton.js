@@ -13,6 +13,16 @@ const BlackButton = styled(PurpleButton)`
       color: #fff;
       border-color: #222;
     }
+
+    &.outlined {
+      background: #fff;
+      color: #000;
+      &:hover {
+        background: #999;
+        color: #fff;
+        border-color: #999;
+      }
+    }
   }
 `;
 

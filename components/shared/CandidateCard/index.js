@@ -106,7 +106,7 @@ function CandidateCard({ candidate }) {
       <a style={{ height: '100%' }}>
         <Wrapper>
           <ImageWrapper>
-            <Image src={image} layout="fill" height="375px" alt="" />
+            <Image src={image} layout="fill" alt={`${firstName} ${lastName}`} />
           </ImageWrapper>
           <Content>
             <Name>
@@ -124,7 +124,7 @@ function CandidateCard({ candidate }) {
                   Top Issues for this candidate
                 </div>
                 {topics.map((topic) => (
-                  <Topic>{topic.description}</Topic>
+                  <Topic key={topic.id}>{topic.description}</Topic>
                 ))}
               </Topics>
             )}
