@@ -14,7 +14,7 @@ const Title = styled(Body)`
   margin-bottom: 16px;
 `;
 
-const Position = styled(Body11)`
+export const PositionPill = styled(Body11)`
   font-weight: 600;
   padding: 4px 8px;
   display: inline-block;
@@ -84,7 +84,7 @@ function IssuePositionsPickerWrapper({
         <TopicWrapper key={index}>
           <Title>{topic.topic}</Title>
           {(topic.positions || []).map((position, index) => (
-            <Position
+            <PositionPill
               key={index}
               className={selected[position.id] && 'active'}
               onClick={() => {
@@ -92,7 +92,7 @@ function IssuePositionsPickerWrapper({
               }}
             >
               {position.name}
-            </Position>
+            </PositionPill>
           ))}
         </TopicWrapper>
       ))}

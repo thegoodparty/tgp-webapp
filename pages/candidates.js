@@ -5,21 +5,28 @@ export default function Candidates({ ssrState }) {
   return <Page ssrState={ssrState} />;
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const api = tgpApi.newCandidate.list;
-  const res = await fetch(api.url);
+  const { filters } = context.query;
+  const url = `${api.url}${filters ? `?filters=${filters}` : ''}`;
+
+  const res = await fetch(url);
 
   let candidates;
+  let positionNames;
   try {
-    ({ candidates} = await res.json());
+    ({ candidates, positionNames } = await res.json());
   } catch (e) {
     candidates = [];
+    positionNames = [];
   }
 
   return {
     props: {
       ssrState: {
         candidates,
+        filters: filters || '',
+        positionNames,
       },
     },
   };

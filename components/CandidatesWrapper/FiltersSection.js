@@ -20,6 +20,7 @@ import { FontH3 } from '../shared/typogrophy';
 import BlackButton from '../shared/buttons/BlackButton';
 import Modal from '../shared/Modal';
 import BlackOutlinedButton from '../shared/buttons/BlackOutlinedButton';
+import { PositionPill } from '../shared/IssuePositionsPickerWrapper';
 
 const Section = styled.section`
   padding: 16px 28px;
@@ -74,6 +75,12 @@ const FilterBtn = styled.div`
   }
 `;
 
+const Border = styled.div`
+  display: inline-block;
+  color: #e6e6e6;
+  margin: 0 16px;
+`;
+
 const ModalInner = styled.div`
   background-color: #fff;
   padding: 24px;
@@ -99,8 +106,14 @@ const ButtonsWrapper = styled.div`
 `;
 
 function FiltersSection() {
-  const { candidates, positions, filterCandidatesCallback, allCandidates } =
-    useContext(CandidatesContext);
+  const {
+    candidates,
+    positions,
+    filterCandidatesCallback,
+    allCandidates,
+    positionNames,
+  } = useContext(CandidatesContext);
+
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPositions, setSelectedPositions] = useState(positions);
@@ -127,8 +140,17 @@ function FiltersSection() {
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} lg={9}>
             <FontH3 style={{ margin: 0 }}>
-              {candidates.length} Good Certified Candidates who people should
-              know about
+              {candidates.length} Good Certified Candidates{' '}
+              {positionNames && positionNames.length > 0 ? (
+                <>
+                  who care about{' '}
+                  {(positionNames || []).map((position) => (
+                    <span key={position}>#{position} &nbsp;</span>
+                  ))}
+                </>
+              ) : (
+                <>who people should know about</>
+              )}
             </FontH3>
           </Grid>
           <Grid item xs={12} lg={3}>
@@ -152,6 +174,10 @@ function FiltersSection() {
               <BsFilter />
               &nbsp; FILTER BY...
             </FilterBtn>
+            {positionNames && positionNames.length > 0 && <Border>|</Border>}
+            {(positionNames || []).map((position) => (
+              <PositionPill key={position}>{position}</PositionPill>
+            ))}
           </FilterBy>
         </Sticky>
       </StickyWrapper>
