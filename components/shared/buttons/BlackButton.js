@@ -26,4 +26,8 @@ const BlackButton = styled(PurpleButton)`
   }
 `;
 
+export const InnerButton = styled.div`
+  padding: 0 24px;
+`;
+
 export default BlackButton;

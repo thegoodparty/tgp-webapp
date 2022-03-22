@@ -1,6 +1,6 @@
 /**
  *
- * Tests for PortalCampaignManagerPage
+ * Tests for AdminTopIssuesPage
  *
  * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
  *
@@ -10,13 +10,13 @@ import React from 'react';
 import { render } from 'react-testing-library';
 // import 'jest-dom/extend-expect'; // add some helpful assertions
 
-import { PortalCampaignManagerPage } from '../index';
+import { AdminTopIssuesPage } from '../index';
 
-describe('<PortalCampaignManagerPage />', () => {
+describe('<AdminTopIssuesPage />', () => {
   it('Expect to not log errors in console', () => {
     const spy = jest.spyOn(global.console, 'error');
     const dispatch = jest.fn();
-    render(<PortalCampaignManagerPage dispatch={dispatch} />);
+    render(<AdminTopIssuesPage dispatch={dispatch} />);
     expect(spy).not.toHaveBeenCalled();
   });
 
@@ -32,7 +32,7 @@ describe('<PortalCampaignManagerPage />', () => {
   it.skip('Should render and match the snapshot', () => {
     const {
       container: { firstChild },
-    } = render(<PortalCampaignManagerPage />);
+    } = render(<AdminTopIssuesPage />);
     expect(firstChild).toMatchSnapshot();
   });
 });

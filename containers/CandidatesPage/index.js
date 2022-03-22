@@ -14,15 +14,35 @@ import { push } from 'connected-next-router';
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import { getUserCookie } from '/helpers/cookieHelper';
+import { slugify } from '../../helpers/articlesHelper';
 
 export const CandidatesContext = createContext();
+
+const filtertopics = (candidates, topics) => {
+  const candidateTopics = {};
+  candidates.forEach((candidate) => {
+    candidate.topics.forEach((topic) => {
+      candidateTopics[topic.id] = true;
+    });
+  });
+  const filtered = [];
+  topics.forEach((topic) => {
+    if (candidateTopics[topic.id]) {
+      filtered.push(topic);
+    }
+  });
+  return filtered;
+};
 
 export function CandidatesPage({
   ssrState,
 
   filterCandidatesCallback,
 }) {
-  const { candidates, filters, positionNames } = ssrState;
+  const { candidates, filters, positionNames, topics } = ssrState;
+  // console.log('ssr', ssrState);
+  const filteredTopics = filtertopics(candidates, topics);
+  console.log('fil', filteredTopics);
 
   const queryPositions = filters.split(',');
   const positions = [];
@@ -68,16 +88,14 @@ function mapDispatchToProps(dispatch) {
     filterCandidatesCallback: (allCandidates, positions) => {
       let filterStr = '';
       positions.forEach((position) => {
-        filterStr += `${position.id},`;
+        filterStr += `${slugify(position.name)},`;
       });
-      const queryStr = filterStr.substring(0, filterStr.length - 1); // remove last |
+      const queryStr = filterStr.substring(0, filterStr.length - 1); // remove last ,
 
       if (positions.length === 0 || queryStr === '') {
         dispatch(push('/candidates'));
       } else {
-        dispatch(
-          push({ pathname: '/candidates', query: { filters: queryStr } }),
-        );
+        dispatch(push(`/candidates/${queryStr}`));
       }
     },
   };

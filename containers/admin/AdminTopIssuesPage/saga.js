@@ -1,23 +1,21 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import requestHelper from '/helpers/requestHelper';
-import { validateEmail } from '/helpers/emailHelper';
 import tgpApi from '/api/tgpApi';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 
-function* createIssueTopic({ topic, positions }) {
+function* createTopIssue({ name }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.admin.issueTopics.create;
+    const api = tgpApi.admin.topIssues.create;
     const payload = {
-      topic,
-      positions,
+      name,
     };
     yield call(requestHelper, api, payload);
     yield put(snackbarActions.showSnakbarAction('Saved'));
-    yield put(actions.loadIssueTopicsAction());
+    yield put(actions.loadTopIssuesAction());
   } catch (error) {
     console.log(error);
     yield put(
@@ -26,16 +24,17 @@ function* createIssueTopic({ topic, positions }) {
   }
 }
 
-function* editIssueTopic({ topic }) {
+function* createPosition({ name, topIssueId }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.admin.issueTopics.update;
+    const api = tgpApi.admin.position.create;
     const payload = {
-      topic,
+      name,
+      topIssueId,
     };
     yield call(requestHelper, api, payload);
     yield put(snackbarActions.showSnakbarAction('Saved'));
-    yield put(actions.loadIssueTopicsAction());
+    yield put(actions.loadTopIssuesAction());
   } catch (error) {
     console.log(error);
     yield put(
@@ -44,16 +43,16 @@ function* editIssueTopic({ topic }) {
   }
 }
 
-function* deleteIssueTopic({ id }) {
+function* deleteTopIssue({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Deleting...'));
-    const api = tgpApi.admin.issueTopics.delete;
+    const api = tgpApi.admin.topIssues.delete;
     const payload = {
       id,
     };
     yield call(requestHelper, api, payload);
     yield put(snackbarActions.showSnakbarAction('Deleted'));
-    yield put(actions.loadIssueTopicsAction());
+    yield put(actions.loadTopIssuesAction());
   } catch (error) {
     console.log(error);
     yield put(
@@ -62,24 +61,43 @@ function* deleteIssueTopic({ id }) {
   }
 }
 
-function* loadIssueTopics() {
+function* deletePosition({ id }) {
   try {
-    const api = tgpApi.admin.issueTopics.list;
-
-    const { topics } = yield call(requestHelper, api, null);
-    yield put(actions.loadIssueTopicsActionSuccess(topics));
+    yield put(snackbarActions.showSnakbarAction('Deleting...'));
+    const api = tgpApi.admin.position.delete;
+    const payload = {
+      id,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Deleted'));
+    yield put(actions.loadTopIssuesAction());
   } catch (error) {
     console.log(error);
     yield put(
-      snackbarActions.showSnakbarAction('Error loading topics', 'error'),
+      snackbarActions.showSnakbarAction('Error deleting position', 'error'),
+    );
+  }
+}
+
+function* loadTopIssues() {
+  try {
+    const api = tgpApi.admin.topIssues.list;
+    const { topIssues } = yield call(requestHelper, api, null);
+    yield put(actions.loadTopIssueActionSuccess(topIssues));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error saving issue topic', 'error'),
     );
   }
 }
 
 // Individual exports for testing
 export default function* saga() {
-  yield takeLatest(types.CREATE_ISSUE_TOPIC, createIssueTopic);
-  yield takeLatest(types.EDIT_ISSUE_TOPIC, editIssueTopic);
-  yield takeLatest(types.DELETE_ISSUE_TOPIC, deleteIssueTopic);
-  yield takeLatest(types.LOAD_ISSUE_TOPICS, loadIssueTopics);
+  yield takeLatest(types.CREATE_TOP_ISSUE, createTopIssue);
+  yield takeLatest(types.CREATE_POSITION, createPosition);
+  yield takeLatest(types.LOAD_TOP_ISSUES, loadTopIssues);
+
+  yield takeLatest(types.DELETE_TOP_ISSUE, deleteTopIssue);
+  yield takeLatest(types.DELETE_POSITION, deletePosition);
 }

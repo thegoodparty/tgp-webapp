@@ -1,9 +1,9 @@
 // import produce from 'immer';
-import portalCampaignManagerPageReducer from '../reducer';
+import adminTopIssuesPageReducer from '../reducer';
 // import { someAction } from '../actions';
 
 /* eslint-disable default-case, no-param-reassign */
-describe('portalCampaignManagerPageReducer', () => {
+describe('adminTopIssuesPageReducer', () => {
   let state;
   beforeEach(() => {
     state = {
@@ -13,9 +13,7 @@ describe('portalCampaignManagerPageReducer', () => {
 
   it('returns the initial state', () => {
     const expectedResult = state;
-    expect(portalCampaignManagerPageReducer(undefined, {})).toEqual(
-      expectedResult,
-    );
+    expect(adminTopIssuesPageReducer(undefined, {})).toEqual(expectedResult);
   });
 
   /**

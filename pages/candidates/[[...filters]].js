@@ -7,26 +7,32 @@ export default function Candidates({ ssrState }) {
 
 export async function getServerSideProps(context) {
   const api = tgpApi.newCandidate.list;
-  const { filters } = context.query;
-  const url = `${api.url}${filters ? `?filters=${filters}` : ''}`;
+  const { filters } = context.params;
+  const filter = filters?.length > 0 ? filters[0] : false;
+  const url = `${api.url}${filter ? `?filters=${filter}` : ''}`;
 
   const res = await fetch(url);
 
   let candidates;
   let positionNames;
+  let topics;
   try {
-    ({ candidates, positionNames } = await res.json());
+    ({ candidates, positionNames, topics } = await res.json());
+    console.log('topics here', topics);
   } catch (e) {
+    console.log('error on candiddates filters', e);
     candidates = [];
     positionNames = [];
+    topics = [];
   }
 
   return {
     props: {
       ssrState: {
         candidates,
-        filters: filters || '',
+        filters: filter || '',
         positionNames,
+        topics,
       },
     },
   };

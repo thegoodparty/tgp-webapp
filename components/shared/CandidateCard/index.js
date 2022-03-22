@@ -97,6 +97,8 @@ function CandidateCard({ candidate }) {
     topics,
   } = candidate;
 
+  console.log('card', topics)
+
   return (
     <Link
       href={`/candidate/${firstName}-${lastName}/${id}`}

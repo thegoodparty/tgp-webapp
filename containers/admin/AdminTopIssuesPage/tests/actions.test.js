@@ -1,7 +1,7 @@
 import { defaultAction } from '../actions';
 import { DEFAULT_ACTION } from '../constants';
 
-describe('PortalCampaignManagerPage actions', () => {
+describe('AdminTopIssuesPage actions', () => {
   describe('Default Action', () => {
     it('has a type of DEFAULT_ACTION', () => {
       const expected = {

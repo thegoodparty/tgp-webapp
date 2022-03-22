@@ -51,7 +51,7 @@ const Tab = styled.div`
 const tabs = [
   { label: 'Update Requests', link: '/admin/update-requests' },
   { label: 'Candidate Applications', link: '/admin/application-requests' },
-  { label: 'Top Issues Manager', link: '/admin/issue-topics' },
+  { label: 'Top Issues Manager', link: '/admin/top-issues' },
   { label: 'Top Issues Requests', link: '/admin/top-issue-requests' },
 ];
 

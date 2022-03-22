@@ -313,27 +313,49 @@ const api = {
         withAuth: true,
       },
     },
-    issueTopics: {
+    topIssues: {
       create: {
-        url: `${base}issue-topic`,
+        url: `${base}top-issue`,
         method: 'POST',
         withAuth: true,
       },
       update: {
-        url: `${base}issue-topic`,
+        url: `${base}top-issue`,
         method: 'PUT',
         withAuth: true,
       },
       delete: {
-        url: `${base}issue-topic`,
+        url: `${base}top-issue`,
         method: 'DELETE',
         withAuth: true,
       },
       list: {
-        url: `${base}issue-topics`, // non admin
+        url: `${base}top-issues`, // non admin
         method: 'GET',
       },
     },
+    position: {
+      create: {
+        url: `${base}position`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}position`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}position`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}positions`, // non admin
+        method: 'GET',
+      },
+    },
+
   },
   newCandidate: {
     create: {
@@ -567,6 +589,29 @@ const api = {
         // admin
         url: `${base}ugcs/reject`,
         method: 'PUT',
+        withAuth: true,
+      },
+    },
+
+    candidatePosition: {
+      create: {
+        url: `${base}candidate-position`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}candidate-position`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}candidate-position`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}candidate-positions`,
+        method: 'GET',
         withAuth: true,
       },
     },
