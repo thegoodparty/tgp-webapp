@@ -15,15 +15,15 @@ export async function getServerSideProps(context) {
 
   let candidates;
   let positionNames;
-  let topics;
+  let topIssues;
   try {
-    ({ candidates, positionNames, topics } = await res.json());
-    console.log('topics here', topics);
+    ({ candidates, positionNames, topIssues } = await res.json());
+    console.log('topIssues here', topIssues);
   } catch (e) {
     console.log('error on candiddates filters', e);
     candidates = [];
     positionNames = [];
-    topics = [];
+    topIssues = [];
   }
 
   return {
@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
         candidates,
         filters: filter || '',
         positionNames,
-        topics,
+        topIssues,
       },
     },
   };

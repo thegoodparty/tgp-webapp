@@ -62,13 +62,13 @@ const Quote = styled.div`
   flex-direction: column;
 `;
 
-const Topics = styled.div`
+const Positions = styled.div`
   margin-top: 24px;
   font-weight: 600;
   font-size: 14px;
 `;
 
-const Topic = styled.div`
+const Position = styled.div`
   display: inline-block;
   padding: 4px 8px;
   border-radius: 4px;
@@ -94,10 +94,8 @@ function CandidateCard({ candidate }) {
     state,
     party,
     headline,
-    topics,
+    positions,
   } = candidate;
-
-  console.log('card', topics)
 
   return (
     <Link
@@ -120,15 +118,15 @@ function CandidateCard({ candidate }) {
               {party !== 'I' && ' Party'})
             </Gray>
             <Quote>{headline}</Quote>
-            {topics && topics.length > 0 && (
-              <Topics>
+            {positions && positions.length > 0 && (
+              <Positions>
                 <div style={{ marginBottom: '12px' }}>
                   Top Issues for this candidate
                 </div>
-                {topics.map((topic) => (
-                  <Topic key={topic.id}>{topic.description}</Topic>
+                {positions.map((position) => (
+                  <Position key={position.id}>{position.name}</Position>
                 ))}
-              </Topics>
+              </Positions>
             )}
             <ButtonWrapper>
               <BlackButton

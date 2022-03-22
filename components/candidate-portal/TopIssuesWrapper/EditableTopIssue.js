@@ -41,13 +41,22 @@ function EditableTopIssue({
 
   const [availableIssues, setAvailableIssues] = useState(topIssues);
 
+  console.log('editable topIssues', topIssues);
+  console.log('editable candidatePositions', candidatePositions);
+
   useEffect(() => {
-    const available = topIssues.filter((issue) => {
-      return candidatePositions.find(
-        (position) => position.topIssue.id !== issue.id,
-      );
-    });
-    setAvailableIssues(available);
+    if (candidatePositions.length === topIssues.length) {
+      setAvailableIssues([]);
+    } else {
+      if (candidatePositions.length > 0) {
+        const available = topIssues.filter((issue) => {
+          return candidatePositions.find(
+            (position) => position.topIssue.id !== issue.id,
+          );
+        });
+        setAvailableIssues(available);
+      }
+    }
   }, [candidatePositions]);
 
   const save = () => {

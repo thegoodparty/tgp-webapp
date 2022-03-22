@@ -39,10 +39,10 @@ export function CandidatesPage({
 
   filterCandidatesCallback,
 }) {
-  const { candidates, filters, positionNames, topics } = ssrState;
+  const { candidates, filters, positionNames, topIssues } = ssrState;
   // console.log('ssr', ssrState);
-  const filteredTopics = filtertopics(candidates, topics);
-  console.log('fil', filteredTopics);
+  // const filteredTopics = filtertopics(candidates, positions);
+  // console.log('fil', filteredTopics);
 
   const queryPositions = filters.split(',');
   const positions = [];
@@ -50,9 +50,11 @@ export function CandidatesPage({
     positions.push({ id: position });
   });
 
+  console.log('candidates', candidates);
+
   const user = getUserCookie(true);
   const childProps = {
-    candidates: candidates,
+    candidates,
     positions,
     user,
     filterCandidatesCallback,
