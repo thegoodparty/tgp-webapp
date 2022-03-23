@@ -156,7 +156,8 @@ function FiltersSection() {
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} lg={9}>
             <FontH3 style={{ margin: 0 }}>
-              {candidates.length} Good Certified Candidates{' '}
+              {candidates.length} Good Certified Candidate
+              {candidates.length !== 1 ? 's ' : ' '}
               {state.position !== '' && state.position !== -1 ? (
                 <>
                   who care about{' '}
