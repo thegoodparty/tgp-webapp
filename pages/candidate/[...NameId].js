@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
   const id = NameId?.length > 1 ? NameId[1] : false;
   if (id && id !== 'undefined' && typeof id !== 'undefined') {
     const api = tgpApi.newCandidate.find;
-    const url = `${api.url}?id=${id}&withIssues=true&withSimilar=true&withEndorsements=true`;
+    const url = `${api.url}?id=${id}&allFields=true`;
     const res = await fetch(url);
     let candidate;
     try {
@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
       props: {
         ssrState: {
           candidate: candidate.candidate,
-          topIssues: candidate.topIssues || [],
+          candidatePositions: candidate.candidatePositions || [],
           similarCampaigns: candidate.similarCampaigns || [],
           id,
           candidateSupports,

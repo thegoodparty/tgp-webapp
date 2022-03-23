@@ -42,7 +42,6 @@ function SimilarCampaigns() {
   if (!similarCampaigns || similarCampaigns.length === 0) {
     return <> </>;
   }
-
   return (
     <Wrapper>
       <FontH3>View Similar Campaigns</FontH3>
@@ -60,8 +59,8 @@ function SimilarCampaigns() {
             {similar.candidate.race}
           </Running>
           <div>
-            {similar.matchingIssues.map((match, index) => (
-              <Match key={index}>#{match}</Match>
+            {similar.matchingIssues.map((match) => (
+              <Match key={match.id}>#{match.name}</Match>
             ))}
           </div>
         </SimilarWrapper>

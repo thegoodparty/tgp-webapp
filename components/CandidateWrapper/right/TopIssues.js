@@ -53,29 +53,30 @@ const Position = styled.div`
 `;
 
 function TopIssues() {
-  const { topIssues } = useContext(CandidateContext);
+  const { candidatePositions } = useContext(CandidateContext);
   const [selected, setSelected] = useState(false);
+  console.log('candidatePositions', candidatePositions);
   return (
     <Wrapper>
       <strong style={{ margin: '24px 0' }}>Top Issues</strong>
-      {topIssues.map((issue) => (
+      {candidatePositions.map((candPosition) => (
         <IssueWrapper
-          key={issue.positionId}
-          className={selected === issue.positionId && 'selected'}
+          key={candPosition.id}
+          className={selected === candPosition.id && 'selected'}
         >
           <Issue
             onClick={() => {
-              setSelected(issue.positionId);
+              setSelected(candPosition.id);
             }}
             className="issue"
           >
-            #{issue.candidatePosition}
+            #{candPosition.position?.name}
           </Issue>
           <Position className="position">
-            {issue.topic}
+            {candPosition.topIssue?.name}
             <br />
             <br />
-            {issue.description}
+            {candPosition.description}
           </Position>
         </IssueWrapper>
       ))}

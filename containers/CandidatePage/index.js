@@ -53,7 +53,7 @@ export function CandidatePage({
     candidateSupports,
     similarCampaigns,
     supportCount,
-    topIssues,
+    candidatePositions,
     userAgent,
   } = ssrState;
   const { userSupports } = candidatePage;
@@ -109,7 +109,7 @@ export function CandidatePage({
     user,
     candidateSupports: updatedSupports,
     supportCount: updatedSupportsCount,
-    topIssues,
+    candidatePositions,
     similarCampaigns,
   };
 
