@@ -4,21 +4,21 @@ import { push } from 'connected-next-router';
 import tgpApi from '/api/tgpApi';
 import requestHelper from '/helpers/requestHelper';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
-
-import actions from './actions';
-import types from './constants';
 import {
   getApplicationStorage,
   setApplicationStorage,
-} from '../../../../helpers/localstorageHelper';
-import { getUserCookie } from '../../../../helpers/cookieHelper';
+} from '/helpers/localstorageHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
+
+import actions from './actions';
+import types from './constants';
 
 function* loadApplication({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading your application'));
     if (id === 'guest') {
       const user = getUserCookie(true);
-      if(user){
+      if (user) {
         yield put(push(`/profile/campaign-applications`));
       } else {
         const app = getApplicationStorage() || { id: 'guest' };
@@ -138,10 +138,10 @@ function* rejectApplication({ id, feedback }) {
 
 function* loadTopIssues() {
   try {
-    const api = tgpApi.admin.issueTopics.list;
+    const api = tgpApi.admin.topIssues.list;
 
-    const { topics } = yield call(requestHelper, api, null);
-    yield put(actions.loadATopIssuesActionSuccess(topics));
+    const { topIssues } = yield call(requestHelper, api, null);
+    yield put(actions.loadATopIssuesActionSuccess(topIssues));
   } catch (error) {
     console.log(error);
     yield put(

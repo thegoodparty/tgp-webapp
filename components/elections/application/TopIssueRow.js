@@ -86,7 +86,7 @@ function TopIssueRow({ index, issues, updateCallback, row }) {
           <Autocomplete
             size="small"
             options={issues}
-            getOptionLabel={(item) => item?.topic}
+            getOptionLabel={(item) => item?.name}
             fullWidth
             ref={topicAuto}
             value={state.selectedTopic}
