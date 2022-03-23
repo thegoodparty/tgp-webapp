@@ -9,9 +9,8 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { BsFilter } from 'react-icons/bs';
 import Sticky from 'react-sticky-el';
-import CloseIcon from '@material-ui/icons/HighlightOff';
+import Select from '@material-ui/core/Select';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
 import IssuePositionsPickerContainer from '/containers/shared/IssuePositionsPickerContainer';
@@ -109,31 +108,48 @@ function FiltersSection() {
   const {
     candidates,
     positions,
+    states,
     filterCandidatesCallback,
-    allCandidates,
-    positionNames,
+    routePosition,
+    routeState,
   } = useContext(CandidatesContext);
 
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPositions, setSelectedPositions] = useState(positions);
+  const [state, setState] = useState({
+    position: '',
+    state: '',
+  });
+
   useEffect(() => {
-    setSelectedPositions(positions);
-  }, [positions]);
+    let position = '';
+    let state = '';
+    if (routePosition && routePosition !== 'all') {
+      const positionId = parseInt(routePosition.split('|')[1], 10);
+      position = positions.findIndex((item) => {
+        return item.id === positionId;
+      });
+    }
+    if (routeState) {
+      state = states.findIndex((item) => item === routeState);
+    }
+    setState({
+      position,
+      state,
+    });
+  }, [routePosition, routeState]);
 
-  const handleIssueSelected = (positions) => {
-    setSelectedPositions(positions);
+  const onChangeField = (key, val) => {
+    const newState = {
+      ...state,
+      [key]: val,
+    };
+    setState(newState);
+    filterCandidatesCallback(
+      positions[newState.position],
+      states[newState.state],
+    );
   };
 
-  const showCandidates = () => {
-    filterCandidatesCallback(allCandidates, selectedPositions);
-    setIsModalOpen(false);
-  };
-
-  const clearCandidates = () => {
-    filterCandidatesCallback(allCandidates, []);
-    setIsModalOpen(false);
-  };
   return (
     <>
       <Section>
@@ -141,15 +157,18 @@ function FiltersSection() {
           <Grid item xs={12} lg={9}>
             <FontH3 style={{ margin: 0 }}>
               {candidates.length} Good Certified Candidates{' '}
-              {positionNames && positionNames.length > 0 ? (
+              {state.position !== '' && state.position !== -1 ? (
                 <>
                   who care about{' '}
-                  {(positionNames || []).map((position) => (
-                    <span key={position}>#{position} &nbsp;</span>
-                  ))}
+                  <span>#{positions[state.position].name} &nbsp;</span>
                 </>
               ) : (
                 <>who people should know about</>
+              )}
+              {state.state !== '' && state.state !== -1 && (
+                <>
+                  in <span>{states[state.state]}</span>
+                </>
               )}
             </FontH3>
           </Grid>
@@ -170,52 +189,44 @@ function FiltersSection() {
       <StickyWrapper>
         <Sticky>
           <FilterBy className="sticky-el">
-            <FilterBtn onClick={() => setIsModalOpen(true)}>
-              <BsFilter />
-              &nbsp; FILTER BY...
-            </FilterBtn>
-            {positionNames && positionNames.length > 0 && <Border>|</Border>}
-            {(positionNames || []).map((position) => (
-              <PositionPill key={position}>{position}</PositionPill>
-            ))}
+            <Select
+              variant="outlined"
+              native
+              value={state.position}
+              onChange={(e) => {
+                onChangeField('position', e.target.value);
+              }}
+            >
+              <option value="">All Top Issues</option>
+              {(positions || []).map((position, index) => (
+                <option value={index} key={position.id}>
+                  {position.name}
+                </option>
+              ))}
+            </Select>
+            &nbsp; &nbsp;
+            <Select
+              variant="outlined"
+              native
+              value={state.state}
+              onChange={(e) => {
+                onChangeField('state', e.target.value);
+              }}
+            >
+              <option value="">All States</option>
+              {(states || []).map((state, index) => (
+                <option value={index} key={state}>
+                  {state}
+                </option>
+              ))}
+            </Select>
+            {/*{positionNames && positionNames.length > 0 && <Border>|</Border>}*/}
+            {/*{(positionNames || []).map((position) => (*/}
+            {/*  <PositionPill key={position}>{position}</PositionPill>*/}
+            {/*))}*/}
           </FilterBy>
         </Sticky>
       </StickyWrapper>
-      <Modal
-        open={isModalOpen}
-        closeModalCallback={() => {
-          setIsModalOpen(false);
-        }}
-        showCloseButton={false}
-      >
-        <ModalInner>
-          <Close onClick={() => setIsModalOpen(false)}>
-            <CloseIcon />
-          </Close>
-          <IssuePositionsPickerContainer
-            onChange={handleIssueSelected}
-            selectedPositions={selectedPositions}
-          />
-          <ButtonsWrapper>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <BlackButton
-                  className="outlined"
-                  fullWidth
-                  onClick={clearCandidates}
-                >
-                  Clear All filters
-                </BlackButton>
-              </Grid>
-              <Grid item xs={6}>
-                <BlackButton fullWidth onClick={showCandidates}>
-                  Show Candidates
-                </BlackButton>
-              </Grid>
-            </Grid>
-          </ButtonsWrapper>
-        </ModalInner>
-      </Modal>
     </>
   );
 }

@@ -8,31 +8,36 @@ export default function Candidates({ ssrState }) {
 export async function getServerSideProps(context) {
   const api = tgpApi.newCandidate.list;
   const { filters } = context.params;
-  const filter = filters?.length > 0 ? filters[0] : false;
-  const url = `${api.url}${filter ? `?filters=${filter}` : ''}`;
-
+  const position = filters?.length > 0 ? filters[0] : false;
+  const state = filters?.length > 0 ? filters[1] : false;
+  let url = api.url;
+  if (position) {
+    url += `?position=${position}`;
+  }
+  if (state) {
+    url += `&state=${state}`;
+  }
   const res = await fetch(url);
 
   let candidates;
-  let positionNames;
-  let topIssues;
+  let positions;
+  let states;
   try {
-    ({ candidates, positionNames, topIssues } = await res.json());
-    console.log('topIssues here', topIssues);
+    ({ candidates, positions, states } = await res.json());
   } catch (e) {
-    console.log('error on candiddates filters', e);
     candidates = [];
-    positionNames = [];
-    topIssues = [];
+    positions = [];
+    states = [];
   }
 
   return {
     props: {
       ssrState: {
         candidates,
-        filters: filter || '',
-        positionNames,
-        topIssues,
+        positions,
+        states,
+        routePosition: position || '',
+        routeState: state || '',
       },
     },
   };

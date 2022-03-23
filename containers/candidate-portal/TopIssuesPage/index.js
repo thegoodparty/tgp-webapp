@@ -87,8 +87,6 @@ export function TopIssuesPage({
 
   const { candidatePositions } = topIssuesPage;
   const { topIssues } = adminTopIssuesPage;
-  console.log('topIssues', topIssues);
-  console.log('candidatePositions', candidatePositions);
   const childProps = {
     user,
     candidate,

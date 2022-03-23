@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, createContext } from 'react';
+import React, { memo, createContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -36,30 +36,27 @@ const filtertopics = (candidates, topics) => {
 
 export function CandidatesPage({
   ssrState,
-
+  dispatch,
   filterCandidatesCallback,
 }) {
-  const { candidates, filters, positionNames, topIssues } = ssrState;
-  // console.log('ssr', ssrState);
-  // const filteredTopics = filtertopics(candidates, positions);
-  // console.log('fil', filteredTopics);
+  const { candidates, positions, states, routePosition, routeState } = ssrState;
 
-  const queryPositions = filters.split(',');
-  const positions = [];
-  queryPositions.forEach((position) => {
-    positions.push({ id: position });
-  });
-
-  console.log('candidates', candidates);
+  useEffect(() => {
+    if (states.length === 0 && routeState) {
+      dispatch(push(`/candidates/${routePosition}`));
+    }
+  }, [states, routeState]);
 
   const user = getUserCookie(true);
   const childProps = {
     candidates,
     positions,
+    states,
     user,
     filterCandidatesCallback,
     allCandidates: candidates,
-    positionNames,
+    routePosition,
+    routeState,
   };
 
   return (
@@ -87,17 +84,19 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
 
-    filterCandidatesCallback: (allCandidates, positions) => {
-      let filterStr = '';
-      positions.forEach((position) => {
-        filterStr += `${slugify(position.name)},`;
-      });
-      const queryStr = filterStr.substring(0, filterStr.length - 1); // remove last ,
-
-      if (positions.length === 0 || queryStr === '') {
-        dispatch(push('/candidates'));
+    filterCandidatesCallback: (position, state) => {
+      let positionRoute = 'all';
+      if (position && position !== '') {
+        positionRoute = `${slugify(position.name)}|${position.id}`;
+      }
+      let stateRoute = '';
+      if (state && state !== '') {
+        stateRoute = slugify(state);
+      }
+      if (positionRoute === 'all' && stateRoute === '') {
+        dispatch(push('/candidates/'));
       } else {
-        dispatch(push(`/candidates/${queryStr}`));
+        dispatch(push(`/candidates/${positionRoute}/${stateRoute}`));
       }
     },
   };

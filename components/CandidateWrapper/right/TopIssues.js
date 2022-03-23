@@ -55,7 +55,6 @@ const Position = styled.div`
 function TopIssues() {
   const { candidatePositions } = useContext(CandidateContext);
   const [selected, setSelected] = useState(false);
-  console.log('candidatePositions', candidatePositions);
   return (
     <Wrapper>
       <strong style={{ margin: '24px 0' }}>Top Issues</strong>
