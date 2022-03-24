@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -22,6 +22,8 @@ import reducer from './reducer';
 import saga from './saga';
 import makeSelectUser from '../../you/YouPage/selectors';
 import actions from './actions';
+
+export const CandidatePortalHomePageContext = createContext();
 
 export function CandidatePortalHomePage({
   userState,
@@ -63,14 +65,10 @@ export function CandidatePortalHomePage({
   };
 
   return (
-    <div>
+    <CandidatePortalHomePageContext.Provider value={childProps}>
       <TgpHelmet title="Candidate Portal" description="Candidate Portal" />
-      {role ? (
-        <CandidatePortalHomeWrapper {...childProps} />
-      ) : (
-        <>Access Denied</>
-      )}
-    </div>
+      {role ? <CandidatePortalHomeWrapper /> : <>Access Denied</>}
+    </CandidatePortalHomePageContext.Provider>
   );
 }
 

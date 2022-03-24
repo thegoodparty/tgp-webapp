@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Body, H2 } from '../../shared/typogrophy';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 import CopyCodeSection from '../../GoodPracticesWrapper/CopyCodeSection';
 import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
 

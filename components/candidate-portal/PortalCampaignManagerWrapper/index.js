@@ -16,7 +16,7 @@ import { PurpleButton } from '/components/shared/buttons';
 import CandidateAvatar from '/components/shared/CandidateAvatar';
 import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 
 const Wrapper = styled.div`
   padding: 24px;

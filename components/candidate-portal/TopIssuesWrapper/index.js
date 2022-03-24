@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { TopIssuesPageContext } from '/containers/candidate-portal/TopIssuesPage';
 import { FontH2, Font16 } from '../../shared/typogrophy';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 
 import TopIssue from './TopIssue';
 import EditableTopIssue from './EditableTopIssue';

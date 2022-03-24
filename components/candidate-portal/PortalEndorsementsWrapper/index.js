@@ -10,7 +10,7 @@ import { FaPlus } from 'react-icons/fa';
 import Grid from '@material-ui/core/Grid';
 
 import { EndorsementsContext } from '/containers/candidate-portal/PortalEndorsementsPage';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { FontH1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import NewEndorsementForm from './NewEndorsementForm';
