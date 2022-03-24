@@ -14,7 +14,7 @@ import { Font16, FontH3 } from '../../shared/typogrophy';
 import RangeSelector from '../shared/RangeSelector';
 import ChartBlur from './ChartBlur';
 import PinkButton from '../../shared/buttons/PinkButton';
-import { InnerButton } from '../../shared/buttons/BlackButton';
+import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import Tooltip from '../../shared/Tooltip';
 import CampaignChart from './CampaignChart';
 
@@ -120,6 +120,11 @@ function CampaignPanel() {
               </Stat>
               <Stat style={{ marginRight: 0 }}>(avg. 0%)</Stat>
             </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <BlackButton style={{ marginTop: '40px' }}>
+              <InnerButton>Add Campaign Update</InnerButton>
+            </BlackButton>
           </Grid>
         </Grid>
         <Grid item xs={12} lg={5} style={{ height: '100%' }}>

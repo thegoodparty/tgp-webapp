@@ -6,7 +6,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { AreaChart, Area, XAxis, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Wrapper = styled.div`
   height: 200px;
@@ -15,31 +15,31 @@ const Wrapper = styled.div`
 const data = [
   {
     name: 'Sun',
-    val: 200,
+    count: 200,
   },
   {
     name: 'Mon',
-    val: 590,
+    count: 590,
   },
   {
     name: 'Tue',
-    val: 330,
+    count: 330,
   },
   {
     name: 'Wed',
-    val: 780,
+    count: 780,
   },
   {
     name: 'Thu',
-    val: 480,
+    count: 480,
   },
   {
     name: 'Fri',
-    val: 590,
+    count: 590,
   },
   {
     name: 'Sat',
-    val: 300,
+    count: 300,
   },
 ];
 
@@ -65,9 +65,10 @@ function CampaignChart() {
             </linearGradient>
           </defs>
           <XAxis dataKey="name" />
+          <Tooltip />
           <Area
             type="monotone"
-            dataKey="val"
+            dataKey="count"
             stroke="#2CCDB0"
             fillOpacity={1}
             fill="url(#colorCampaign)"
