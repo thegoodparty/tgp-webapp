@@ -13,6 +13,7 @@ import PortalPageWrapper from '../shared/PortalPageWrapper';
 import CampaignStats from './CampaignStats';
 
 import EndorsePanel from './EndorsePanel';
+import CampaignPanel from './CampaignPanel';
 
 function CandidatePortalHomeWrapper() {
   const { role, candidate } = useContext(CandidatePortalHomePageContext);
@@ -22,6 +23,7 @@ function CandidatePortalHomeWrapper() {
       title={`Analytics Dashboard for ${candidate.firstName} ${candidate.lastName}`}
     >
       <EndorsePanel />
+      <CampaignPanel />
 
       {/*<Wrapper>*/}
       {/*  <div>*/}
