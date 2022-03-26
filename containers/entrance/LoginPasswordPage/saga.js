@@ -30,7 +30,7 @@ function* login({ value, password, valueType }) {
       if (user.candidate) {
         yield put(push('/candidate-portal'));
       } else {
-        yield put(push('/profile'));
+        yield put(push('/'));
       }
     } else {
       yield put(push('/register/set-zipcode'));

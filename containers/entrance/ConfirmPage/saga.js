@@ -54,7 +54,7 @@ function* confirmCode({ code, value, valueType }) {
       } else if (!user.zip) {
         yield put(push('/register/set-zipcode'));
       } else {
-        yield put(push('/profile'));
+        yield put(push('/'));
       }
     }
     yield put(snackbarActions.showSnakbarAction('Your account is verified.'));

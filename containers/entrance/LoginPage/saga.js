@@ -90,7 +90,7 @@ function* socialLogin({ user }) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      yield put(push('/profile'));
+      yield put(push('/'));
     }
 
     setUserCookie(responseUser);

@@ -1,6 +1,6 @@
 /**
  *
- * CampaignPanel
+ * GoalsPanel
  *
  */
 
@@ -14,6 +14,7 @@ import { Font16, FontH3 } from '../../shared/typogrophy';
 import RangeSelector from '../shared/RangeSelector';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import CampaignChart from './CampaignChart';
+import GoalsChart from './GoalsChart';
 
 const Row = styled.div`
   display: flex;
@@ -42,46 +43,20 @@ const Icon = styled.div`
   }
 `;
 
-function CampaignPanel() {
+function GoalsPanel() {
   return (
-    <PortalPanel color="#2CCDB0">
-      <Row>
-        <FontH3 style={{ margin: 0 }}>Campaign Page</FontH3>
-        <RangeSelector />
-      </Row>
+    <PortalPanel color="#422CCD">
+      <FontH3 style={{ margin: '0 0 45px 0' }}>Campaign Goals</FontH3>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>
           <Grid container spacing={2}>
-            <Grid item xs={12} lg={4}>
-              <Title>VIEWS</Title>
-              <Stat>1,000,000</Stat>
-              <Stat>
-                <Icon>
-                  <FaLongArrowAltUp />
-                </Icon>
-                0%
-              </Stat>
+            <Grid item xs={12} lg={6}>
+              <Title>VOTES NEEDED TO WIN 🎉</Title>
+              <Stat>7,432,234</Stat>
             </Grid>
-            <Grid item xs={12} lg={4}>
-              <Title>SHARES</Title>
-              <Stat>1,000,000</Stat>
-              <Stat>
-                <Icon>
-                  <FaLongArrowAltUp />
-                </Icon>
-                0%
-              </Stat>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Title>ENDORSEMENTS</Title>
-              <Stat>1,000,000</Stat>
-              <Stat>
-                <Icon className="down">
-                  <FaLongArrowAltDown />
-                </Icon>
-                0%
-              </Stat>
-              <Stat style={{ marginRight: 0 }}>(avg. 0%)</Stat>
+            <Grid item xs={12} lg={6}>
+              <Title>LIKELY VOTES SO FAR 🗳</Title>
+              <Stat>4,665,297</Stat>
             </Grid>
           </Grid>
           <Grid item xs={12}>
@@ -91,11 +66,11 @@ function CampaignPanel() {
           </Grid>
         </Grid>
         <Grid item xs={12} lg={5} style={{ height: '100%' }}>
-          <CampaignChart />
+          <GoalsChart />
         </Grid>
       </Grid>
     </PortalPanel>
   );
 }
 
-export default CampaignPanel;
+export default GoalsPanel;

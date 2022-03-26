@@ -37,7 +37,7 @@ function* setPassword({ password }) {
         if (application) {
           yield put(actions.saveApplicationAction(application));
         } else {
-          yield put(push('/profile'));
+          yield put(push('/'));
         }
       }
       yield put(

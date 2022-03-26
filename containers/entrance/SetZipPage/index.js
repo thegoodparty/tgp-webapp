@@ -80,7 +80,7 @@ function mapDispatchToProps(dispatch) {
         if (application) {
           dispatch(passCreationActions.saveApplicationAction(application));
         } else {
-          dispatch(push('/profile'));
+          dispatch(push('/'));
         }
       }
     },

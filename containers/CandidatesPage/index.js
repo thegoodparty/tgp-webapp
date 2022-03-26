@@ -39,7 +39,14 @@ export function CandidatesPage({
   dispatch,
   filterCandidatesCallback,
 }) {
-  const { candidates, positions, states, routePosition, routeState } = ssrState;
+  const {
+    candidates,
+    positions,
+    positionsByTopIssues,
+    states,
+    routePosition,
+    routeState,
+  } = ssrState;
 
   useEffect(() => {
     if (states.length === 0 && routeState) {
@@ -51,6 +58,7 @@ export function CandidatesPage({
   const childProps = {
     candidates,
     positions,
+    positionsByTopIssues,
     states,
     user,
     filterCandidatesCallback,

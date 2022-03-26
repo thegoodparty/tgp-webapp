@@ -14,6 +14,7 @@ import CampaignStats from './CampaignStats';
 
 import EndorsePanel from './EndorsePanel';
 import CampaignPanel from './CampaignPanel';
+import GoalsPanel from './GoalsPanel';
 
 function CandidatePortalHomeWrapper() {
   const { role, candidate } = useContext(CandidatePortalHomePageContext);
@@ -24,6 +25,7 @@ function CandidatePortalHomeWrapper() {
     >
       <EndorsePanel />
       <CampaignPanel />
+      <GoalsPanel />
 
       {/*<Wrapper>*/}
       {/*  <div>*/}
