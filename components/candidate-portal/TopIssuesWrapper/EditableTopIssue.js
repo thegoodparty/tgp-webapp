@@ -48,7 +48,7 @@ function EditableTopIssue({
       } else {
         const available = topIssues.filter((issue) => {
           return candidatePositions.find(
-            (position) => position.topIssue.id !== issue.id,
+            (position) => position.topIssue?.id !== issue.id,
           );
         });
         setAvailableIssues(available);

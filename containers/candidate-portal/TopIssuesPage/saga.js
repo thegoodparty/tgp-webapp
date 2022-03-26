@@ -15,6 +15,12 @@ function* findCandidatePositions({ candidateId }) {
     yield put(actions.findCandidatePositionsActionSuccess(candidatePositions));
   } catch (error) {
     console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error finding candidate positions',
+        'error',
+      ),
+    );
   }
 }
 
@@ -40,6 +46,12 @@ function* saveCandidatePosition({
     yield put(snackbarActions.showSnakbarAction('Saved.'));
   } catch (error) {
     console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error saving candidate positions',
+        'error',
+      ),
+    );
   }
 }
 
@@ -64,6 +76,12 @@ function* updateCandidatePosition({
     yield put(snackbarActions.showSnakbarAction('updated.'));
   } catch (error) {
     console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error updating candidate positions',
+        'error',
+      ),
+    );
   }
 }
 
@@ -79,6 +97,12 @@ function* deleteCandidatePosition({ id, candidateId }) {
     yield put(snackbarActions.showSnakbarAction('Deleted.'));
   } catch (error) {
     console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error deleting candidate positions',
+        'error',
+      ),
+    );
   }
 }
 
