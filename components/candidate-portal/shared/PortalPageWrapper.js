@@ -9,14 +9,19 @@ import PortalLeftMenu from './PortalLeftMenu';
 import LoadingAnimation from '../../shared/LoadingAnimation';
 import { MaxContent } from '../../TeamWrapper';
 import PortalPageTitle from './PortalPageTitle';
+import Footer from '../../shared/Footer';
 
 const Wrapper = styled(MaxContent)`
   min-height: calc(100vh - 80px);
-  display: flex;
-  flex-direction: row;
+
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
-  padding-top: 60px;
+  padding: 60px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: flex;
+    flex-direction: row;
+  }
 `;
 
 const MainPanel = styled.div`
@@ -40,6 +45,7 @@ const PortalPageWrapper = ({ children, role, loading, title }) => {
           </MainPanel>
         )}
       </Wrapper>
+      <Footer />
     </div>
   );
 };

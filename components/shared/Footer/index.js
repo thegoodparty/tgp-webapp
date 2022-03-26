@@ -15,6 +15,7 @@ import { Font16 } from '../typogrophy';
 const Wrapper = styled.div`
   padding: 40px 0;
   border-top: solid 1px #e1e2e9;
+  background-color: #fff;
 `;
 
 const Aligner = styled.div`

@@ -113,7 +113,6 @@ function EndorsePanel() {
                 </Icon>
                 0%
               </Stat>
-              <Stat style={{ marginRight: 0 }}>(avg. 0%)</Stat>
             </Grid>
           </Grid>
         </Grid>

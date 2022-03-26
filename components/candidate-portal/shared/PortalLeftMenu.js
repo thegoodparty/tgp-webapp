@@ -16,17 +16,39 @@ import { accessLevel } from '/helpers/staffHelper';
 import { getUserCookie } from '/helpers/cookieHelper';
 
 const LeftPanel = styled.div`
-  width: 220px;
-  overflow-x: hidden;
-  padding-top: 60px;
+  padding-bottom: 60px;
+  text-align: center;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    width: 220px;
+    overflow-x: hidden;
+    padding-top: 60px;
+    text-align: left;
+  }
 `;
 
 const Label = styled(Font16)`
+  display: inline-block;
   color: #636363;
-  padding-bottom: 40px;
+  padding-right: 20px;
+  padding-bottom: 16px;
   &.selected {
     font-weight: 900;
     color: #000;
+  }
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: block;
+    padding-bottom: 40px;
+    padding-right: 0;
+  }
+`;
+
+const Secondary = styled.div`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: block;
   }
 `;
 
@@ -92,8 +114,6 @@ function PortalLeftMenu({ id, role }) {
 
   const link = (itemLink) => `${itemLink}/${id}`;
 
-  const access = accessLevel(role);
-
   const user = getUserCookie(true);
 
   return (
@@ -107,29 +127,31 @@ function PortalLeftMenu({ id, role }) {
           </a>
         </Link>
       ))}
-      <div style={{ height: '90px' }}>&nbsp;</div>
-      {leftMenuItemsBottom.map((item) => (
-        <Link href={item.link} passHref key={item.label}>
-          <a>
-            <Label className={pathname === link(item.link) ? 'selected' : ''}>
-              {item.label}
-            </Label>
-          </a>
-        </Link>
-      ))}
-      {user?.isAdmin && (
-        <Link href={link('/candidate-portal/admin')} passHref>
-          <a>
-            <Label
-              className={
-                pathname === link('/candidate-portal/admin') ? 'selected' : ''
-              }
-            >
-              Admin
-            </Label>
-          </a>
-        </Link>
-      )}
+      <Secondary>
+        <div style={{ height: '90px' }}>&nbsp;</div>
+        {leftMenuItemsBottom.map((item) => (
+          <Link href={item.link} passHref key={item.label}>
+            <a>
+              <Label className={pathname === link(item.link) ? 'selected' : ''}>
+                {item.label}
+              </Label>
+            </a>
+          </Link>
+        ))}
+        {user?.isAdmin && (
+          <Link href={link('/candidate-portal/admin')} passHref>
+            <a>
+              <Label
+                className={
+                  pathname === link('/candidate-portal/admin') ? 'selected' : ''
+                }
+              >
+                Admin
+              </Label>
+            </a>
+          </Link>
+        )}
+      </Secondary>
     </LeftPanel>
   );
 }
