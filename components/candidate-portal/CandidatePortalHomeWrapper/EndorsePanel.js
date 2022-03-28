@@ -4,18 +4,19 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { FaLongArrowAltUp } from 'react-icons/fa';
+
+import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
 
 import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
 import RangeSelector from '../shared/RangeSelector';
 import ChartBlur from './ChartBlur';
-import PinkButton from '../../shared/buttons/PinkButton';
-import { InnerButton } from '../../shared/buttons/BlackButton';
 import Tooltip from '../../shared/Tooltip';
+import EndorseButtonModal from './EdorseButtonModal';
 
 const Row = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ const Whats = styled.div`
 `;
 
 function EndorsePanel() {
+  const { candidate } = useContext(CandidatePortalHomePageContext);
   return (
     <PortalPanel color="#CA2CCD">
       <Row>
@@ -125,9 +127,7 @@ function EndorsePanel() {
                   To <strong>get started</strong>, please customize and embed
                   your endorse button.
                 </Started>
-                <PinkButton>
-                  <InnerButton>Activate Endorse Button</InnerButton>
-                </PinkButton>
+                <EndorseButtonModal id={candidate.id} />
                 <Tooltip triggerEl={<Whats>What’s this?</Whats>}>
                   <strong>What’s the endorse button?</strong>
                   <br />
