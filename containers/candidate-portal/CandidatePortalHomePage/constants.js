@@ -14,6 +14,8 @@ const LOAD_STATS_SUCCESS = '@@tgp/CandidatePortalHomePage/LOAD_STATS_SUCCESS';
 const LOAD_ROLE = '@@tgp/CandidatePortalHomePage/LOAD_ROLE';
 const LOAD_ROLE_SUCCESS = '@@tgp/CandidatePortalHomePage/LOAD_ROLE_SUCCESS';
 
+const UPDATE_PREFERENCES = '@@tgp/CandidatePortalHomePage/UPDATE_PREFERENCES';
+
 export default {
   FIND_CANDIDATE,
   FIND_CANDIDATE_SUCCESS,
@@ -23,4 +25,6 @@ export default {
 
   LOAD_ROLE,
   LOAD_ROLE_SUCCESS,
+
+  UPDATE_PREFERENCES,
 };

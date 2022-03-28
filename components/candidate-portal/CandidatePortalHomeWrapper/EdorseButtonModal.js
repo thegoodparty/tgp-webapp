@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
@@ -12,6 +12,8 @@ import { MdContentCopy } from 'react-icons/md';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import apiHelper from '/helpers/apiHelper';
+import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
+
 import Modal from '../../shared/Modal';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import PinkButton from '../../shared/buttons/PinkButton';
@@ -125,9 +127,24 @@ const initialState = {
   copied: false,
 };
 
-function EndorseButtonModal({ id }) {
+function EndorseButtonModal() {
+  const { candidate, savePreferencesCallback } = useContext(
+    CandidatePortalHomePageContext,
+  );
+  const { id, preferences } = candidate;
   const [state, setState] = useState(initialState);
   const { apiBase, base } = apiHelper;
+
+  useEffect(() => {
+    if (preferences) {
+      setState({
+        ...state,
+        backgroundColor: preferences.backgroundColor,
+        textColor: preferences.textColor,
+        label: preferences.label,
+      });
+    }
+  }, [preferences]);
 
   const onChangeField = (key, value) => {
     setState({
@@ -142,6 +159,16 @@ function EndorseButtonModal({ id }) {
       backgroundColor: state.textColor,
       textColor: state.backgroundColor,
     });
+  };
+
+  const save = () => {
+    savePreferencesCallback(candidate.id, {
+      ...preferences,
+      backgroundColor: state.backgroundColor,
+      textColor: state.textColor,
+      label: state.label,
+    });
+    onChangeField('isOpen', false);
   };
 
   const handleColorChange = (color) => {
@@ -191,7 +218,7 @@ function EndorseButtonModal({ id }) {
                 text={buttonCode()}
                 onCopy={() => onChangeField('copied', true)}
               >
-                <BlackButton>
+                <BlackButton onClick={save}>
                   <InnerButton>Save &amp; Copy Code</InnerButton>
                 </BlackButton>
               </CopyToClipboard>

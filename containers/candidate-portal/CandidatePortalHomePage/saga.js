@@ -55,9 +55,32 @@ function* loadRole({ id }) {
   }
 }
 
+function* updatePreferences({ id, preferences }) {
+  try {
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Saving. Button code is copied to your clipboard',
+      ),
+    );
+    const api = tgpApi.campaign.preferences.update;
+    const payload = {
+      candidateId: id,
+      preferences,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(actions.findCandidate(id));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Error updating preferences', 'error'),
+    );
+    console.log(error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.FIND_CANDIDATE, findCandidate);
   yield takeLatest(types.LOAD_STATS, loadStats);
   yield takeLatest(types.LOAD_ROLE, loadRole);
+  yield takeLatest(types.UPDATE_PREFERENCES, updatePreferences);
 }

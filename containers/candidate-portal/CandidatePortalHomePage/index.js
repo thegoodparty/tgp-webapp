@@ -30,6 +30,7 @@ export function CandidatePortalHomePage({
   dispatch,
   candidatePortalHomePage,
   loadStatsCallback,
+  savePreferencesCallback,
 }) {
   useInjectReducer({ key: 'candidatePortalHomePage', reducer });
   useInjectSaga({ key: 'candidatePortalHomePage', saga });
@@ -61,6 +62,7 @@ export function CandidatePortalHomePage({
     user,
     stats,
     loadStatsCallback,
+    savePreferencesCallback,
     role,
   };
 
@@ -77,6 +79,7 @@ CandidatePortalHomePage.propTypes = {
   userState: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
   loadStatsCallback: PropTypes.func,
+  savePreferencesCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -89,6 +92,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     loadStatsCallback: (range, id) => {
       dispatch(actions.loadStatsAction(range, id));
+    },
+    savePreferencesCallback: (id, preferences) => {
+      dispatch(actions.updatePreferencesAction(id, preferences));
     },
   };
 }

@@ -76,7 +76,7 @@ const Whats = styled.div`
 `;
 
 function EndorsePanel() {
-  const { candidate } = useContext(CandidatePortalHomePageContext);
+
   return (
     <PortalPanel color="#CA2CCD">
       <Row>
@@ -127,7 +127,7 @@ function EndorsePanel() {
                   To <strong>get started</strong>, please customize and embed
                   your endorse button.
                 </Started>
-                <EndorseButtonModal id={candidate.id} />
+                <EndorseButtonModal />
                 <Tooltip triggerEl={<Whats>What’s this?</Whats>}>
                   <strong>What’s the endorse button?</strong>
                   <br />

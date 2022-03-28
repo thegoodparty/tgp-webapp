@@ -355,7 +355,6 @@ const api = {
         method: 'GET',
       },
     },
-
   },
   newCandidate: {
     create: {
@@ -500,6 +499,13 @@ const api = {
       url: `${base}campaign/stats`,
       method: 'GET',
       withAuth: true,
+    },
+    preferences: {
+      update: {
+        url: `${base}campaign/preferences`,
+        method: 'PUT',
+        withAuth: true,
+      },
     },
     updateRequest: {
       create: {
