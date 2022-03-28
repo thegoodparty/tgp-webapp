@@ -13,13 +13,9 @@ import Sticky from 'react-sticky-el';
 import Select from '@material-ui/core/Select';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
-import IssuePositionsPickerContainer from '/containers/shared/IssuePositionsPickerContainer';
 
 import { FontH3 } from '../shared/typogrophy';
 import BlackButton from '../shared/buttons/BlackButton';
-import Modal from '../shared/Modal';
-import BlackOutlinedButton from '../shared/buttons/BlackOutlinedButton';
-import { PositionPill } from '../shared/IssuePositionsPickerWrapper';
 
 const Section = styled.section`
   padding: 16px 28px;
@@ -58,56 +54,11 @@ const StickyWrapper = styled.div`
   }
 `;
 
-const FilterBtn = styled.div`
-  display: inline-block;
-  padding: 8px;
-  border: solid 1px #000;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-
-  transition: background-color 0.5s, color 0.5s;
-  &:hover {
-    background-color: #000;
-    color: #fff;
-  }
-`;
-
-const Border = styled.div`
-  display: inline-block;
-  color: #e6e6e6;
-  margin: 0 16px;
-`;
-
-const ModalInner = styled.div`
-  background-color: #fff;
-  padding: 24px;
-  border-radius: 6px;
-  min-width: 50vw;
-  max-width: 80vw;
-  height: 90vh;
-  overflow-x: auto;
-  position: relative;
-`;
-
-const Close = styled.div`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 12px;
-  cursor: pointer;
-`;
-
-const ButtonsWrapper = styled.div`
-  background-color: #fff;
-  padding: 24px;
-`;
-
 function FiltersSection() {
   const {
     candidates,
     positions,
+    positionsByTopIssues,
     states,
     filterCandidatesCallback,
     routePosition,
@@ -119,24 +70,32 @@ function FiltersSection() {
     position: '',
     state: '',
   });
+  const [positionsById, setPositionsById] = useState({});
 
   useEffect(() => {
-    let position = '';
-    let state = '';
-    if (routePosition && routePosition !== 'all') {
-      const positionId = parseInt(routePosition.split('|')[1], 10);
-      position = positions.findIndex((item) => {
-        return item.id === positionId;
+    const byId = {};
+    positions.forEach((position) => {
+      byId[position.id] = position;
+    });
+    setPositionsById(byId);
+  }, [positions]);
+
+  useEffect(() => {
+    if (Object.keys(positionsById).length > 0) {
+      let position = '';
+      let state = '';
+      if (routePosition && routePosition !== 'all') {
+        position = parseInt(routePosition.split('|')[1], 10);
+      }
+      if (routeState) {
+        state = states.findIndex((item) => item === routeState);
+      }
+      setState({
+        position,
+        state,
       });
     }
-    if (routeState) {
-      state = states.findIndex((item) => item === routeState);
-    }
-    setState({
-      position,
-      state,
-    });
-  }, [routePosition, routeState]);
+  }, [routePosition, routeState, positionsById]);
 
   const onChangeField = (key, val) => {
     const newState = {
@@ -145,7 +104,7 @@ function FiltersSection() {
     };
     setState(newState);
     filterCandidatesCallback(
-      positions[newState.position],
+      positionsById[newState.position],
       states[newState.state],
     );
   };
@@ -161,7 +120,7 @@ function FiltersSection() {
               {state.position !== '' && state.position !== -1 ? (
                 <>
                   who care about{' '}
-                  <span>#{positions[state.position].name} &nbsp;</span>
+                  <span>#{positionsById[state.position]?.name} &nbsp;</span>
                 </>
               ) : (
                 <>who people should know about</>
@@ -190,6 +149,7 @@ function FiltersSection() {
       <StickyWrapper>
         <Sticky>
           <FilterBy className="sticky-el">
+            <strong>Filter By</strong> &nbsp; &nbsp;
             <Select
               variant="outlined"
               native
@@ -198,12 +158,21 @@ function FiltersSection() {
                 onChangeField('position', e.target.value);
               }}
             >
-              <option value="">All Top Issues</option>
-              {(positions || []).map((position, index) => (
-                <option value={index} key={position.id}>
-                  {position.name}
-                </option>
-              ))}
+              <option value="">All Issues</option>
+              {positionsByTopIssues && (
+                <>
+                  {(Object.keys(positionsByTopIssues) || []).map((issue) => (
+                    <>
+                      <optgroup label={issue}>{issue}</optgroup>
+                      {positionsByTopIssues[issue].map((position) => (
+                        <option value={position.id} key={position.id}>
+                         &nbsp; {position.name}
+                        </option>
+                      ))}
+                    </>
+                  ))}
+                </>
+              )}
             </Select>
             &nbsp; &nbsp;
             <Select

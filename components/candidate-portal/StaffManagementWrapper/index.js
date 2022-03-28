@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 

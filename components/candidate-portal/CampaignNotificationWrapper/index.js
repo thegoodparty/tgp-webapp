@@ -17,7 +17,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import { H2 } from '../../shared/typogrophy';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`

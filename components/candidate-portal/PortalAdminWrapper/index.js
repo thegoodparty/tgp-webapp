@@ -10,7 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 
 import { PortalAdminPageContext } from '/containers/candidate-portal/PortalAdminPage';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { FontH1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 

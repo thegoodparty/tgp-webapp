@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import styled from 'styled-components';
 
-import PortalPageWrapper from '/components/candidate-portal/CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '/components/candidate-portal/shared/PortalPageWrapper';
 import AdminCandidateUpdatesWrapper from '/components/admin/AdminCandidateUpdatesWrapper';
 
 import { useInjectSaga } from '/utils/injectSaga';

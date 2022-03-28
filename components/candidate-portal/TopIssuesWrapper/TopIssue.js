@@ -34,10 +34,10 @@ function TopIssue({ index, candidatePosition }) {
         <span>{index + 1}.</span>
       </Grid>
       <Grid item xs={3}>
-        {candidatePosition.topIssue.name}
+        {candidatePosition.topIssue?.name}
       </Grid>
       <Grid item xs={3}>
-        {candidatePosition.position.name}
+        {candidatePosition.position?.name}
       </Grid>
       <Grid item xs={3}>
         {candidatePosition.description}

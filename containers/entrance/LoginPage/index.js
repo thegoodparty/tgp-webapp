@@ -39,7 +39,7 @@ export function LoginPage({
   useEffect(() => {
     const user = getUserCookie();
     if (user) {
-      dispatch(push('/profile'));
+      dispatch(push('/'));
     }
   }, []);
 

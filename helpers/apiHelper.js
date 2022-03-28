@@ -1,6 +1,7 @@
-import ENV, { API_ENV } from '../api/ENV';
-let apiBase;
-let base;
+import { API_ENV } from '../api/ENV';
+
+let apiBase = 'https://api.goodparty.org/api/v1/';
+let base = 'https://goodparty.org';
 if (API_ENV === 'local') {
   apiBase = 'http://localhost:1337/api/v1/';
   base = 'http://localhost:1337';
@@ -15,5 +16,4 @@ if (API_ENV === 'local') {
   base = 'https://goodparty.org';
 }
 
-const apiHelper = { apiBase, base };
-export default apiHelper;
+export default { apiBase, base };
