@@ -161,6 +161,19 @@ function EndorseButtonModal() {
     });
   };
 
+  const closeModal = () => {
+    // undo changes
+    if (preferences) {
+      setState({
+        ...state,
+        isOpen: false,
+        backgroundColor: preferences.backgroundColor,
+        textColor: preferences.textColor,
+        label: preferences.label,
+      });
+    }
+  };
+
   const save = () => {
     savePreferencesCallback(candidate.id, {
       ...preferences,
@@ -204,16 +217,14 @@ function EndorseButtonModal() {
       </PinkButton>
       <Modal
         open={state.isOpen}
-        closeModalCallback={() => onChangeField('isOpen', false)}
+        closeModalCallback={closeModal}
         showCloseButton={false}
       >
         <Inner>
           <Row>
             <FontH3 style={{ margin: 0 }}>Edit Button</FontH3>
             <div className="text-right">
-              <Cancel onClick={() => onChangeField('isOpen', false)}>
-                Cancel
-              </Cancel>
+              <Cancel onClick={closeModal}>Cancel</Cancel>
               <CopyToClipboard
                 text={buttonCode()}
                 onCopy={() => onChangeField('copied', true)}
