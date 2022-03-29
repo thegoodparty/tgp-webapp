@@ -109,7 +109,7 @@ const Hero = ({ engagements = 134222 }) => {
     <Wrapper>
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12}>
-          <StyledH1>
+          <StyledH1 data-cy="hero-title">
             Money has corrupted
             <br />
             <span className="purple-text">
@@ -119,15 +119,15 @@ const Hero = ({ engagements = 134222 }) => {
           </StyledH1>
         </Grid>
         <Grid item xs={12} lg={6}>
-          <StyledH2>
+          <StyledH2 data-cy="hero-subtitle">
             We’re creating a simple, free way for people to help{' '}
             <strong>good independent candidates</strong> run and win!
           </StyledH2>
         </Grid>
         <Grid item xs={12} lg={6} className="text-center">
           <Relative>
-            <Heart src="/images/homepage/thick-heart.svg" />
-            <SoFarWrapper>
+            <Heart src="/images/homepage/thick-heart.svg" data-cy="hero-heart"/>
+            <SoFarWrapper data-cy="hero-engagement">
               {numberFormatter(engagements)}
               <br />
               <SoFarText>are with us!</SoFarText>
@@ -136,7 +136,7 @@ const Hero = ({ engagements = 134222 }) => {
           <br />
           <ButtonWrapper>
             <Link href="/register" passHref>
-              <a>
+              <a data-cy="hero-register">
                 <PurpleButton fullWidth>
                   <Image
                     src="/images/white-heart.svg"
@@ -145,6 +145,7 @@ const Hero = ({ engagements = 134222 }) => {
                     }}
                     width={24}
                     height={18}
+                    data-cy="hero-white-heart"
                   />
                   &nbsp; Count me in!
                 </PurpleButton>

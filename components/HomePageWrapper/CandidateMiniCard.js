@@ -100,28 +100,29 @@ const CandidateMiniCard = ({ candidate }) => {
               partyBadge
               centered
               hideBadge={isDraft}
+              data-cy="mini-avatar"
             />
           </Grid>
           <Grid item xs={9}>
-            <Name>
+            <Name data-cy="mini-name">
               {firstName}
               <br />
               {lastName}
             </Name>
-            <Race>{race}</Race>
+            <Race data-cy="mini-race">{race}</Race>
           </Grid>
         </Grid>
         <Row>
-          <Icon src="/images/homepage/party-icon.svg" />
-          <div>{partyResolver(party)}</div>
+          <Icon src="/images/homepage/party-icon.svg" data-cy="mini-party-icon"/>
+          <div  data-cy="mini-party">{partyResolver(party)}</div>
         </Row>
         <Row>
-          <Icon src="/images/homepage/talk-bubble-icon.svg" />
-          <Headline>&quot;{headline}&quot;</Headline>
+          <Icon src="/images/homepage/talk-bubble-icon.svg" data-cy="mini-bubble-icon" />
+          <Headline data-cy="mini-headline">&quot;{headline}&quot;</Headline>
         </Row>
         <Endorsements>
           <div>
-            <span className="large">
+            <span className="large" data-cy="mini-endorsements">
               {numberFormatter(supporters)} endorsements
             </span>{' '}
             so far
@@ -138,7 +139,7 @@ const CandidateMiniCard = ({ candidate }) => {
 
         <ButtonWrapper>
           <Link href={candidateRoute(candidate)} passHref>
-            <a>
+            <a data-cy="mini-more">
               <PurpleButton fullWidth>See Campaign</PurpleButton>
             </a>
           </Link>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Hidden from '@material-ui/core/Hidden';
 import { H2 } from '../shared/typogrophy';
-
+import { TESTIMONIALS } from '../../utils/constants';
 const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
@@ -146,36 +146,23 @@ const Position = styled.div`
   }
 `;
 
-const testimonials = [
-  {
-    img: 'https://assets.goodparty.org/testimonials/jeff-ayeroff.jpg',
-    text: 'Good Party is rock the vote on steroids!',
-    name: 'Jeff Ayeroff',
-    position: 'FOUNDER, ROCK THE VOTE',
-  },
-  {
-    img: 'https://assets.goodparty.org/testimonials/naval-ravikant1.jpg',
-    text:
-      'Outside of Good Party hacks like crowd-voting, you’re never going to get an independent or 3rd party elected.',
-    name: 'Naval Ravikant',
-    position: 'FOUNDER & CHAIRMAN, ANGELLIST',
-  },
-];
 
 const Testimonials = () => {
   return (
     <Wrapper>
       <Padder className="text-center">
-        <StyledH2>
+        <StyledH2 data-cy="testimonial-section-title">
           Together we can change things for<span className="large">GOOD</span>
         </StyledH2>
-        <Heart src="/images/heart.svg" alt="tgp logo" />
+        <Heart data-cy="testimonial-heart" src="/images/heart.svg" alt="tgp logo" />
       </Padder>
       <GrayBg>
         <Hidden mdDown>
           <img
             src="/images/homepage/testimonial-bg.svg"
             className="full-image hidden"
+            alt="bg"
+            data-cy="testimonial-bg" 
           />
         </Hidden>
         <Hidden lgUp>
@@ -183,20 +170,23 @@ const Testimonials = () => {
             src="/images/homepage/testimonial-bg-small.svg"
             className="full-image hidden"
             style={{ marginTop: '40px' }}
+            alt="bg-small"
+            data-cy="testimonial-bg-small" 
           />
         </Hidden>
-        <GrayText>Who’s into it?</GrayText>
+        <GrayText data-cy="testimonial-subtitle">Who’s into it?</GrayText>
       </GrayBg>
       <TestWrapper>
-        {testimonials.map((test, index) => (
+        {TESTIMONIALS.map((test, index) => (
           <Test
             key={test.name}
-            style={index === testimonials.length - 1 ? { marginBottom: 0 } : {}}
+            style={index === TESTIMONIALS.length - 1 ? { marginBottom: 0 } : {}}
+            data-cy="testimonial-item"
           >
-            <img src={test.img} />
-            <TestContent>
-              &quot;{test.text}&quot;<Name>{test.name}</Name>
-              <Position>{test.position}</Position>
+            <img src={test.img} data-cy="testimonial-avatar" />
+            <TestContent data-cy="testimonial-content">
+              &quot;{test.text}&quot;<Name data-cy="testimonial-name">{test.name}</Name>
+              <Position data-cy="testimonial-position">{test.position}</Position>
             </TestContent>
           </Test>
         ))}

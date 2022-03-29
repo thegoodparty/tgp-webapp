@@ -73,13 +73,14 @@ const HowWorks = () => {
   return (
     <Wrapper>
       <TitleWrapper>
-        <Title>How does it work?</Title>
+        <Title data-cy="howworks-title">How does it work?</Title>
         <img
           src="/images/homepage/how-works-bg-small.svg"
           className="hidden full-image"
+          data-cy="howworks-image"
         />
       </TitleWrapper>
-      <P>
+      <P data-cy="howworks-description">
         We provide <strong>free crowd-voting tools</strong> to help Good
         Certified candidates run and win.
         <br />

@@ -80,12 +80,12 @@ const FeaturedCampaigns = ({ homepageCandidates }) => {
             className="hidden full-image"
           />
         </Hidden>
-        <TextWrapper> Featured Campaigns</TextWrapper>
+        <TextWrapper data-cy="campaigns-title"> Featured Campaigns</TextWrapper>
       </Wrapper>
       <CandidatesWrapper>
         <Grid container spacing={3}>
           {homepageCandidates.map(candidate => (
-            <Grid item xs={12} md={6} lg={4} key={candidate.id}>
+            <Grid item xs={12} md={6} lg={4} key={candidate.id} data-cy="campaign-card">
               <CandidateMiniCard candidate={candidate} />
             </Grid>
           ))}
@@ -93,7 +93,7 @@ const FeaturedCampaigns = ({ homepageCandidates }) => {
         <br />
         <SeeMoreWrapper>
           <Link href="/candidates" passHref>
-            <a>
+            <a data-cy="campaigns-more-link">
               <PurpleButton fullWidth className="outline">
                 See More
               </PurpleButton>

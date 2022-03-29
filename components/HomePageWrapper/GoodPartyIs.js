@@ -83,12 +83,13 @@ const GoodPartyIs = () => {
         <img
           className="full-image"
           src="https://assets.goodparty.org/homepage/win-bg.png"
+          data-cy="gp-bg"
         />
       </Hidden>
       <Hidden lgUp>
-        <Img className="full-image" src="/images/homepage/win-small.png" />
+        <Img className="full-image" src="/images/homepage/win-small.png" data-cy="gp-small-bg"/>
       </Hidden>
-      <TextWrapper>
+      <TextWrapper data-cy="gp-title">
         <StyledH2>Good Party is...</StyledH2>
         <p>
           <strong>For people</strong>, not money 💰

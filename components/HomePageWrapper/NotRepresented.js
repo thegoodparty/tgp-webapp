@@ -99,26 +99,26 @@ const NotRepresented = () => {
   return (
     <Wrapper>
       <TopSection>
-        <NotRepText>
+        <NotRepText data-cy="nrepresented-title">
           <span className="larger mobile-break">130M+ of us</span> don’t feel
           represented by <Red>Red</Red> or <Blue>Blue</Blue>
         </NotRepText>
       </TopSection>
-      <MixText>
+      <MixText data-cy="nrepresented-subtitle">
         <span className="larger mobile-break">
           But we don’t know each other
         </span>{' '}
         (and aren’t organized, <i>yet!</i>)
       </MixText>
       <WalkSection>
-        <MixText style={{ marginTop: '48px' }}>
+        <MixText style={{ marginTop: '48px' }} data-cy="nrepresented-description">
           <span className="larger">
             So we’re building free tools and a community
           </span>{' '}
           <br />
           to mobilize and vote differently
         </MixText>
-        <WalkImg src="/images/homepage/walk-social.png" />
+        <WalkImg src="/images/homepage/walk-social.png" data-cy="nrepresented-social"/>
       </WalkSection>
     </Wrapper>
   );

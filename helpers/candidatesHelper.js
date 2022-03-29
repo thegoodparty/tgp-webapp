@@ -115,3 +115,28 @@ export const getCandidateChamberDistrictOnly = candidate => {
   }
   return chamberTitle;
 };
+
+export const getPartyImage = (partyBadge, party, hideBadge) => {
+  let PartyImg;
+  if (partyBadge) {
+    PartyImg = '/images/icons/certification-badge.svg';
+  } else if (party === 'D') {
+    PartyImg = '/images/icons/democrat.png';
+  } else if (party === 'R') {
+    PartyImg = '/images/icons/republican.png';
+  } else if (party === 'I') {
+    PartyImg = '/images/icons/certification-badge.svg';
+  } else if (party === 'L') {
+    PartyImg = '/images/icons/libertarian.png';
+  } else if (party === 'LI') {
+    PartyImg = '/images/icons/liberation.png';
+  } else if (party === 'P') {
+    PartyImg = '/images/icons/progressive.png';
+  } else if (party === 'G' || party === 'GP') {
+    PartyImg = '/images/icons/green-party.png';
+  }
+  if (hideBadge) {
+    PartyImg = false;
+  }
+  return PartyImg;
+}

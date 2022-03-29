@@ -77,12 +77,16 @@ const Img = styled.div`
 const StayTuned = () => {
   return (
     <Wrapper>
-      <img src="/images/homepage/homepage-footer.png" className="full-image" />
+      <img 
+        src="/images/homepage/homepage-footer.png" 
+        lassName="full-image" 
+        data-cy="stay-img"
+      />
       <TextWrapper>
-        <Title>You made it this far!</Title>
-        <Subtitle>Want to stay tuned?</Subtitle>
+        <Title data-cy="stay-title">You made it this far!</Title>
+        <Subtitle data-cy="stay-subtitle">Want to stay tuned?</Subtitle>
         <Link href="/register" passHref>
-          <a>
+          <a data-cy="stay-link">
             <PurpleButton className="outline">
               <InnerButton>Stay in the loop</InnerButton>
             </PurpleButton>
