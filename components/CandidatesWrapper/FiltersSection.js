@@ -127,7 +127,7 @@ function FiltersSection() {
               )}
               {state.state !== '' && state.state !== -1 && (
                 <>
-                  in <span>{states[state.state]}</span>
+                  &nbsp; in <span>{states[state.state]}</span>
                 </>
               )}
             </FontH3>
