@@ -15,6 +15,7 @@ const LOAD_ROLE = '@@tgp/CandidatePortalHomePage/LOAD_ROLE';
 const LOAD_ROLE_SUCCESS = '@@tgp/CandidatePortalHomePage/LOAD_ROLE_SUCCESS';
 
 const UPDATE_PREFERENCES = '@@tgp/CandidatePortalHomePage/UPDATE_PREFERENCES';
+const CREATE_UPDATE = '@@tgp/CandidatePortalHomePage/CREATE_UPDATE';
 
 export default {
   FIND_CANDIDATE,
@@ -27,4 +28,5 @@ export default {
   LOAD_ROLE_SUCCESS,
 
   UPDATE_PREFERENCES,
+  CREATE_UPDATE
 };

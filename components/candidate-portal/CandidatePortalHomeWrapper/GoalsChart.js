@@ -4,9 +4,11 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+
+import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
 
 const Wrapper = styled.div`
   position: relative;
@@ -45,10 +47,6 @@ const Icon = styled.div`
   transform: rotate(-90deg);
 `;
 
-const data = [
-  { name: 'To Win', value: 100 },
-  { name: 'So Far', value: 11 },
-];
 const COLORS = ['#998ee2', '#422CCD'];
 
 const RADIAN = Math.PI / 180;
@@ -83,6 +81,13 @@ const renderCustomizedLabel = (props) => {
 };
 
 function GoalsChart() {
+  const { candidate } = useContext(CandidatePortalHomePageContext);
+  const { votesNeeded, likelyVoters } = candidate;
+  const data = [
+    { name: 'To Win', value: votesNeeded },
+    { name: 'So Far', value: likelyVoters },
+  ];
+  const perc = parseInt((likelyVoters * 100) / votesNeeded, 10);
   return (
     <Wrapper>
       <ChartWrapper>
@@ -113,7 +118,7 @@ function GoalsChart() {
       </ChartWrapper>
       <TextWrapper>
         <div className="text-center">
-          <Large>60%</Large>
+          <Large>{perc}%</Large>
           Votes Needed
           <br />
           To Win

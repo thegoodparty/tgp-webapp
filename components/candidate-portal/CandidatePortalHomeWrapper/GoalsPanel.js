@@ -4,16 +4,18 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
+
 import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
-import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import GoalsChart from './GoalsChart';
+import { numberFormatter } from '../../../helpers/numberHelper';
 
 const Title = styled(Font16)`
   font-weight: 700;
@@ -43,6 +45,13 @@ const ResponsiveAlign = styled.div`
 
 function GoalsPanel() {
   const router = useRouter();
+  const { candidate } = useContext(CandidatePortalHomePageContext);
+  const { votesNeeded, likelyVoters, unrepVoters } = candidate;
+
+  const votersX =
+    unrepVoters && votesNeeded && votesNeeded !== 0
+      ? Math.round((unrepVoters * 100) / votesNeeded) / 100 // to add decimal if needed
+      : 1;
   return (
     <PortalPanel color="#422CCD">
       <FontH3 style={{ margin: '0 0 45px 0' }}>Campaign Goals</FontH3>
@@ -51,11 +60,11 @@ function GoalsPanel() {
           <Grid container spacing={2}>
             <Grid item xs={12} lg={6}>
               <Title>VOTES NEEDED TO WIN 🎉</Title>
-              <Stat>7,432,234</Stat>
+              <Stat>{numberFormatter(votesNeeded)}</Stat>
             </Grid>
             <Grid item xs={12} lg={6}>
               <Title>LIKELY VOTES SO FAR 🗳</Title>
-              <Stat>4,665,297</Stat>
+              <Stat>{numberFormatter(likelyVoters)}</Stat>
             </Grid>
           </Grid>
         </Grid>
@@ -63,9 +72,10 @@ function GoalsPanel() {
           <GoalsChart />
         </Grid>
         <Grid item xs={12} lg={6}>
-          Good Party projects <strong>1,234,567</strong> voters are available
-          for the right independent or 3rd party in this race. That’s{' '}
-          <strong>3.7x</strong> the number of voters needed to win!
+          Good Party projects <strong>{numberFormatter(unrepVoters)}</strong>{' '}
+          voters are available for the right independent or 3rd party in this
+          race. That’s <strong>{votersX}x</strong> the number of voters needed
+          to win!
         </Grid>
         <Grid item xs={12} lg={6}>
           {' '}

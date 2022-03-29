@@ -35,6 +35,7 @@ function CandidateWrapper() {
   if (!candidate) {
     return <NotFound />;
   }
+  console.log('c', candidate)
   return (
     <PageWrapper>
       <InnerWrapper>

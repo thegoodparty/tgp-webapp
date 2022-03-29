@@ -48,11 +48,20 @@ function loadRoleActionSuccess(role) {
     role,
   };
 }
+
 function updatePreferencesAction(id, preferences) {
   return {
     type: types.UPDATE_PREFERENCES,
     id,
     preferences,
+  };
+}
+
+function createUpdateAction(id, update) {
+  return {
+    type: types.CREATE_UPDATE,
+    id,
+    update,
   };
 }
 
@@ -67,4 +76,6 @@ export default {
   loadRoleActionSuccess,
 
   updatePreferencesAction,
+
+  createUpdateAction,
 };

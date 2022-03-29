@@ -507,9 +507,9 @@ const api = {
         withAuth: true,
       },
     },
-    updateRequest: {
+    update: {
       create: {
-        url: `${base}campaign/update-request`,
+        url: `${base}campaign/update`,
         method: 'POST',
         withAuth: true,
       },

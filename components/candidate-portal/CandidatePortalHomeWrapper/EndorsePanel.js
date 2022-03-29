@@ -81,7 +81,7 @@ function EndorsePanel() {
     <PortalPanel color="#CA2CCD">
       <Row>
         <FontH3 style={{ margin: 0 }}>Endorse Button</FontH3>
-        <RangeSelector />
+        {/*<RangeSelector />*/}
       </Row>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>

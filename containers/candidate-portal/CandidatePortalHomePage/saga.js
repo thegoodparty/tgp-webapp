@@ -5,6 +5,7 @@ import tgpApi from '/api/tgpApi';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
+import portalHomeActions from './actions';
 
 function* findCandidate({ id }) {
   try {
@@ -77,10 +78,26 @@ function* updatePreferences({ id, preferences }) {
   }
 }
 
+function* createUpdate({ id, update }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Creating Update...'));
+    const api = tgpApi.campaign.update.create;
+    const payload = { update, candidateId: id };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Update Created'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error saving update', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.FIND_CANDIDATE, findCandidate);
   yield takeLatest(types.LOAD_STATS, loadStats);
   yield takeLatest(types.LOAD_ROLE, loadRole);
   yield takeLatest(types.UPDATE_PREFERENCES, updatePreferences);
+  yield takeLatest(types.CREATE_UPDATE, createUpdate);
 }

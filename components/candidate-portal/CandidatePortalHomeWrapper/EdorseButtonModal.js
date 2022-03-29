@@ -26,6 +26,8 @@ const Inner = styled.div`
   background-color: #fff;
   padding: 48px;
   border-radius: 16px;
+  max-height: 90vh;
+  overflow: auto;
 `;
 
 const Row = styled.div`
