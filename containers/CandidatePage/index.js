@@ -64,9 +64,10 @@ export function CandidatePage({
     ? candidatePage.candidateSupports
     : candidateSupports;
 
-  const updatedSupportsCount = candidatePage.supportCount
-    ? candidatePage.supportCount
-    : supportCount;
+  const updatedSupportsCount =
+    candidatePage.supportCount !== false
+      ? candidatePage.supportCount
+      : supportCount;
 
   const user = getUserCookie(true);
 
