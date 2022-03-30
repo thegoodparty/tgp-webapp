@@ -107,7 +107,7 @@ function AddCampaignUpdateModal() {
     delete newState.showVideo;
     delete newState.isOpen;
     delete newState.showSuccess;
-    newUpdateCallback(id, newState);
+    newUpdateCallback(candidate, newState);
     onChangeField('showSuccess', true);
     setTimeout(() => {
       setState(initialState);

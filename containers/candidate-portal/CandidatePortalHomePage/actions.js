@@ -57,10 +57,10 @@ function updatePreferencesAction(id, preferences) {
   };
 }
 
-function createUpdateAction(id, update) {
+function createUpdateAction(candidate, update) {
   return {
     type: types.CREATE_UPDATE,
-    id,
+    candidate,
     update,
   };
 }

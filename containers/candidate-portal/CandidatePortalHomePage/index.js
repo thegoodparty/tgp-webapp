@@ -99,8 +99,8 @@ function mapDispatchToProps(dispatch) {
     savePreferencesCallback: (id, preferences) => {
       dispatch(actions.updatePreferencesAction(id, preferences));
     },
-    newUpdateCallback: (id, update) => {
-      dispatch(actions.createUpdateAction(id, update));
+    newUpdateCallback: (candidate, update) => {
+      dispatch(actions.createUpdateAction(candidate, update));
     },
   };
 }

@@ -6,6 +6,7 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 import portalHomeActions from './actions';
+import { candidateRoute } from '../../../helpers/electionsHelper';
 
 function* findCandidate({ id }) {
   try {
@@ -78,13 +79,29 @@ function* updatePreferences({ id, preferences }) {
   }
 }
 
-function* createUpdate({ id, update }) {
+const Node = (
+  <span>
+    'Update Created'<a href="/">tomer</a>
+  </span>
+);
+
+function* createUpdate({ candidate, update }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Creating Update...'));
     const api = tgpApi.campaign.update.create;
-    const payload = { update, candidateId: id };
-    yield call(requestHelper, api, payload);
-    yield put(snackbarActions.showSnakbarAction('Update Created'));
+    const payload = { update, candidateId: candidate.id };
+    const { updateId } = yield call(requestHelper, api, payload);
+    const link = `${candidateRoute(candidate)}#candidate-update-${updateId}`;
+    yield put(
+      snackbarActions.showSnakbarAction(
+        <span>
+          Update {update.title} Created{' '}
+          <a href={link} target="_blank" style={{ color: '#FFF' }}>
+            <strong>View Update</strong>
+          </a>
+        </span>,
+      ),
+    );
   } catch (error) {
     console.log(error);
     yield put(
