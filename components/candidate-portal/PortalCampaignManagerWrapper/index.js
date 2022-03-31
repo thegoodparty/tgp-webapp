@@ -14,7 +14,6 @@ import Sticky from 'react-sticky-el';
 import { FontH3 } from '/components/shared/typogrophy';
 import JoditEditorWrapper from '/components/admin/AdminEditCandidate/JoditEditor';
 import { flatStates } from '/helpers/statesHelper';
-import { numberFormatter } from '/helpers/numberHelper';
 import { PortalCampaignManagerPageContext } from '/containers/candidate-portal/PortalCampaignManagerPage';
 import { partyResolver } from '/helpers/electionsHelper';
 
@@ -42,24 +41,8 @@ const SaveWrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  max-width: 200px;
+  max-width: 250px;
   margin: 24px 0;
-`;
-
-const DisabledWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #f0f0f0;
-  border-radius: 6px;
-  width: 100%;
-  padding: 30px 12px;
-  line-height: 34px;
-  color: #636363;
-  a {
-    color: #636363;
-    text-decoration: underline;
-  }
 `;
 
 const StickyWrapper = styled.div`
@@ -244,22 +227,6 @@ function PortalCampaignManagerWrapper() {
                       </>
                     )}
                   </ImageWrapper>
-                  <DisabledWrapper>
-                    <div>
-                      Likely voters: {numberFormatter(candidate.likelyVoters)}
-                      <br />
-                      Voters needed to win:{' '}
-                      {numberFormatter(candidate.votesNeeded)}
-                      <br />
-                      Unrepresented voters:{' '}
-                      {numberFormatter(candidate.unrepVoters)}
-                    </div>
-                    <div>
-                      <a href="mailto:politics@goodparty.org">
-                        Request a Change
-                      </a>
-                    </div>
-                  </DisabledWrapper>
                 </Grid>
               )}
             </Grid>

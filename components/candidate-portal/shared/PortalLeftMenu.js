@@ -16,13 +16,13 @@ import { accessLevel } from '/helpers/staffHelper';
 import { getUserCookie } from '/helpers/cookieHelper';
 
 const LeftPanel = styled.div`
-  padding-bottom: 60px;
+  padding: 0 10px 20px 10px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     width: 220px;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding: 60px 10px 0 10px;
     text-align: left;
   }
 `;
@@ -58,7 +58,7 @@ export const leftMenuItems = [
     link: '/candidate-portal',
   },
   {
-    label: 'Contact Info',
+    label: 'Campaign Page & Info',
     link: '/candidate-portal/campaign-manager',
   },
   {

@@ -16,10 +16,16 @@ import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
 import GoalsChart from './GoalsChart';
 import { numberFormatter } from '../../../helpers/numberHelper';
+import { dateUsHelper } from '../../../helpers/dateHelper';
 
 const Title = styled(Font16)`
   font-weight: 700;
   margin-bottom: 10px;
+`;
+
+const AsOf = styled.span`
+  font-weight: 400;
+  font-size: 18px;
 `;
 
 const Stat = styled(Font16)`
@@ -52,9 +58,17 @@ function GoalsPanel() {
     unrepVoters && votesNeeded && votesNeeded !== 0
       ? Math.round((unrepVoters * 100) / votesNeeded) / 100 // to add decimal if needed
       : 1;
+
+  const today = new Date();
   return (
     <PortalPanel color="#422CCD">
-      <FontH3 style={{ margin: '0 0 45px 0' }}>Campaign Goals</FontH3>
+      <FontH3 style={{ margin: '0 0 45px 0' }}>
+        Voter Projections{' '}
+        <AsOf>
+          (as of {dateUsHelper(today)}{' '}
+          {today.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')})
+        </AsOf>
+      </FontH3>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>
           <Grid container spacing={2}>
@@ -73,9 +87,9 @@ function GoalsPanel() {
         </Grid>
         <Grid item xs={12} lg={6}>
           Good Party projects <strong>{numberFormatter(unrepVoters)}</strong>{' '}
-          voters are available for the right independent or 3rd party in this
-          race. That’s <strong>{votersX}x</strong> the number of voters needed
-          to win!
+          voters are not going to vote Red or Blue in this race. That means{' '}
+          <strong>{votersX}x</strong> the number of votes needed to win are
+          available for a good independent or 3rd party candidate in this race!
         </Grid>
         <Grid item xs={12} lg={6}>
           {' '}
