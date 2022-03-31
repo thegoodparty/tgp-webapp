@@ -22,6 +22,7 @@ import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 import PortalPanel from '../shared/PortalPanel';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import { isValidUrl } from '../../../helpers/linkHelper';
 
 const Inner = styled.div`
   width: 100%;
@@ -45,6 +46,11 @@ const ImageWrapper = styled.div`
   margin: 24px 0;
 `;
 
+const Err = styled.div`
+  color: red;
+  margin-top: 8px;
+`;
+
 const StickyWrapper = styled.div`
   .sticky {
     z-index: 10;
@@ -55,40 +61,48 @@ const StickyWrapper = styled.div`
 `;
 
 const fields = [
-  { label: 'First Name', key: 'firstName' },
-  { label: 'Last Name', key: 'lastName' },
+  { label: 'First Name', key: 'firstName', required: true },
+  { label: 'Last Name', key: 'lastName', required: true },
   { label: 'Zip Code', key: 'zip' },
   {
     label: 'Political party affiliation',
     key: 'party',
     type: 'select',
     options: ['I', 'D', 'R', 'GP', 'L', 'W', 'F'],
+    required: true,
   },
 
-  { label: 'Twitter', key: 'twitter' },
-  { label: 'Facebook', key: 'facebook' },
-  { label: 'YouTube', key: 'youtube' },
-  { label: 'LinkedIn', key: 'linkedin' },
-  { label: 'Snap', key: 'snap' },
-  { label: 'TikTok', key: 'tiktok' },
-  { label: 'Instagram', key: 'instagram' },
-  { label: 'Twitch', key: 'twitch' },
-  { label: 'Website', key: 'website' },
+  { label: 'Twitter', key: 'twitter', isUrl: true },
+  { label: 'Facebook', key: 'facebook', isUrl: true },
+  { label: 'YouTube', key: 'youtube', isUrl: true },
+  { label: 'LinkedIn', key: 'linkedin', isUrl: true },
+  { label: 'Snap', key: 'snap', isUrl: true },
+  { label: 'TikTok', key: 'tiktok', isUrl: true },
+  { label: 'Instagram', key: 'instagram', isUrl: true },
+  { label: 'Twitch', key: 'twitch', isUrl: true },
+  { label: 'Website', key: 'website', isUrl: true },
 ];
 
 const fields2 = [
-  { label: 'Office being sought ', key: 'race' },
-  { label: 'Date of election ', key: 'electionDate', isDate: true, columns: 6 },
+  { label: 'Office being sought ', key: 'race', required: true },
+  {
+    label: 'Date of election ',
+    key: 'electionDate',
+    isDate: true,
+    columns: 6,
+    required: true,
+  },
   {
     label: 'State ',
     key: 'state',
     columns: 6,
     type: 'select',
     options: flatStates,
+    required: true,
   },
   { label: 'District (if applicable)', key: 'district' },
-  { label: 'Headline', key: 'headline' },
-  { label: 'Summary', key: 'about', isRichText: true },
+  { label: 'Headline', key: 'headline', required: true },
+  { label: 'Summary', key: 'about', isRichText: true, required: true },
   { label: 'Committee name', key: 'committeeName' },
   { label: 'Campaign Video (YouTube Id)', key: 'heroVideo' },
 ];
@@ -109,6 +123,7 @@ function PortalCampaignManagerWrapper() {
   } = useContext(PortalCampaignManagerPageContext);
 
   const [state, setState] = useState({});
+  const [errors, setErrors] = useState({});
   const [updateImage, setUpdateImage] = useState(false);
   useEffect(() => {
     const newState = {};
@@ -120,15 +135,59 @@ function PortalCampaignManagerWrapper() {
     setState(newState);
   }, [candidate]);
 
-  const onChangeField = (key, value) => {
+  const onChangeField = (key, value, isUrl, isRequired) => {
     setState({
       ...state,
       [key]: value,
     });
+
+    let urlFailed = false;
+    if (isUrl) {
+      if (value !== '' && !isValidUrl(value)) {
+        urlFailed = true;
+        setErrors({ ...errors, [key]: 'invalid URL' });
+      } else {
+        setErrors({ ...errors, [key]: false });
+      }
+    }
+    console.log('ff', key, value, isRequired);
+    if (!urlFailed) {
+      // don't override the non valid error
+      if (isRequired && value === '') {
+        setErrors({ ...errors, [key]: 'This field is required' });
+      } else {
+        setErrors({ ...errors, [key]: false });
+      }
+    }
   };
 
   const handleUpload = (url) => {
     uploadImageCallback(candidate.id, url);
+  };
+
+  const canSubmit = () => {
+    let valid = true;
+    try {
+      panels.forEach((panel) => {
+        panel.fields.forEach((field) => {
+          const val = state[field.key];
+          if (field.isUrl && val && val !== '') {
+            if (!isValidUrl(val)) {
+              valid = false;
+              throw new Error('invalid');
+            }
+          }
+          if (field.required && val === '') {
+            valid = false;
+            throw new Error('invalid');
+          }
+        });
+      });
+    } catch (_) {
+      return false;
+    }
+
+    return valid;
   };
 
   return (
@@ -151,26 +210,37 @@ function PortalCampaignManagerWrapper() {
                           }
                           initialText={state[field.key]}
                         />
+                        {errors[field.key] && <Err>{errors[field.key]}</Err>}
                         <br />
                       </>
                     )}
                     {field.type === 'select' && (
-                      <Select
-                        native
-                        value={state[field.key]}
-                        fullWidth
-                        variant="outlined"
-                        onChange={(e) =>
-                          onChangeField(field.key, e.target.value)
-                        }
-                      >
-                        <option value="">Select</option>
-                        {field.options.map((op) => (
-                          <option value={op} key={op}>
-                            {partyResolver(op)}
-                          </option>
-                        ))}
-                      </Select>
+                      <>
+                        <Select
+                          native
+                          value={state[field.key]}
+                          fullWidth
+                          variant="outlined"
+                          required={field.required}
+                          error={!!errors[field.key]}
+                          onChange={(e) =>
+                            onChangeField(
+                              field.key,
+                              e.target.value,
+                              false,
+                              field.required,
+                            )
+                          }
+                        >
+                          <option value="">Select</option>
+                          {field.options.map((op) => (
+                            <option value={op} key={op}>
+                              {partyResolver(op)}
+                            </option>
+                          ))}
+                        </Select>
+                        {errors[field.key] && <Err>{errors[field.key]}</Err>}
+                      </>
                     )}
                     {field.type !== 'select' && !field.isRichText && (
                       <TextField
@@ -182,12 +252,20 @@ function PortalCampaignManagerWrapper() {
                         initialValue={state[field.key]}
                         type={field.isDate ? 'date' : 'text'}
                         onChange={(e) =>
-                          onChangeField(field.key, e.target.value)
+                          onChangeField(
+                            field.key,
+                            e.target.value,
+                            field.isUrl,
+                            field.required,
+                          )
                         }
                         inputProps={{ maxLength: field.maxLength || 200 }}
                         InputLabelProps={{
                           shrink: !!state[field.key] || field.isDate,
                         }}
+                        error={!!errors[field.key]}
+                        helperText={errors[field.key] ? errors[field.key] : ''}
+                        required={field.required}
                       />
                     )}
                   </Grid>
@@ -239,6 +317,7 @@ function PortalCampaignManagerWrapper() {
                   <BlackButton
                     onClick={() => updateCandidateCallback(candidate.id, state)}
                     className="sticky-el"
+                    disabled={!canSubmit()}
                   >
                     <InnerButton>SAVE</InnerButton>
                   </BlackButton>
