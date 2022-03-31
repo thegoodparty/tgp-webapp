@@ -7,7 +7,6 @@ import produce from 'immer';
 import types from './constants';
 
 export const initialState = {
-  candidateUgc: false,
   loading: false,
   s3Url: false,
 };
@@ -16,12 +15,6 @@ export const initialState = {
 const portalCampaignManagerPageReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case types.FIND_UGC:
-        break;
-      case types.FIND_UGC_SUCCESS:
-        draft.candidateUgc = action.candidateUgc;
-        break;
-
       case types.SAVE_IMAGE:
         draft.loading = true;
         break;

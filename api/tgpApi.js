@@ -495,6 +495,11 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    update: {
+      url: `${base}campaign`,
+      method: 'PUT',
+      withAuth: true,
+    },
     stats: {
       url: `${base}campaign/stats`,
       method: 'GET',
@@ -507,7 +512,7 @@ const api = {
         withAuth: true,
       },
     },
-    update: {
+    updates: {
       create: {
         url: `${base}campaign/update`,
         method: 'POST',
@@ -562,39 +567,6 @@ const api = {
       list: {
         url: `${base}campaign/staff`,
         method: 'GET',
-        withAuth: true,
-      },
-    },
-    ugc: {
-      find: {
-        url: `${base}ugc`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}ugc`,
-        method: 'PUT',
-        withAuth: true,
-      },
-
-      list: {
-        // admin
-        url: `${base}ugcs`,
-        method: 'GET',
-        withAuth: true,
-      },
-
-      accept: {
-        // admin
-        url: `${base}ugcs/accept`,
-        method: 'PUT',
-        withAuth: true,
-      },
-
-      reject: {
-        // admin
-        url: `${base}ugcs/reject`,
-        method: 'PUT',
         withAuth: true,
       },
     },

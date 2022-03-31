@@ -129,24 +129,19 @@ function ApplicationStep2({
   };
 
   const handleSelectChange = (key, e, toggleElement) => {
-    console.log('select1');
     if (key === 'party') {
-      console.log('select2', toggleElement);
       if (toggleElement && e.target.value === 'Other') {
-        console.log('select3');
         setHiddenElements({
           ...hiddenElements,
           [toggleElement]: false,
         });
       } else if (toggleElement && e.target.value !== 'Other') {
-        console.log('select4');
         setHiddenElements({
           ...hiddenElements,
           [toggleElement]: true,
         });
       }
     }
-    console.log('select5');
     onChangeField(key, e);
     onBlurField(key, e);
   };

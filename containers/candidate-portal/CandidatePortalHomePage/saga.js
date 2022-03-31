@@ -88,7 +88,7 @@ const Node = (
 function* createUpdate({ candidate, update }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Creating Update...'));
-    const api = tgpApi.campaign.update.create;
+    const api = tgpApi.campaign.updates.create;
     const payload = { update, candidateId: candidate.id };
     const { updateId } = yield call(requestHelper, api, payload);
     const link = `${candidateRoute(candidate)}#candidate-update-${updateId}`;

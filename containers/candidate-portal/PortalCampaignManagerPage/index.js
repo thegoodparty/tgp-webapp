@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -27,12 +27,14 @@ import TgpHelmet from '/components/shared/TgpHelmet';
 import actions from './actions';
 import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
+export const PortalCampaignManagerPageContext = createContext();
+
 export function PortalCampaignManagerPage({
   userState,
   dispatch,
   candidatePortalHomePage,
   portalCampaignManagerPage,
-  updateUgcCallback,
+  updateCandidateCallback,
   uploadImageCallback,
 }) {
   useInjectReducer({ key: 'portalCampaignManagerPage', reducer });
@@ -58,19 +60,17 @@ export function PortalCampaignManagerPage({
     if (id) {
       dispatch(portalHomeActions.loadRoleAction(id));
       dispatch(portalHomeActions.findCandidate(id));
-      dispatch(actions.findUgcAction(id));
     }
   }, [id]);
 
-  const { candidateUgc, loading, s3Url } = portalCampaignManagerPage;
+  const { loading, s3Url } = portalCampaignManagerPage;
 
   const access = accessLevel(role);
 
   const childProps = {
     candidate,
     user,
-    candidateUgc,
-    updateUgcCallback,
+    updateCandidateCallback,
     role,
     uploadImageCallback,
     loading,
@@ -78,17 +78,17 @@ export function PortalCampaignManagerPage({
   };
 
   return (
-    <div>
+    <PortalCampaignManagerPageContext.Provider value={childProps}>
       <TgpHelmet
         title="Campaign Manager - Candidate Portal"
         description="Campaign Manager - Candidate Portal"
       />
       {access > ACCESS_ENUM.STAFF ? (
-        <PortalCampaignManagerWrapper {...childProps} />
+        <PortalCampaignManagerWrapper />
       ) : (
         <>Access Denied</>
       )}
-    </div>
+    </PortalCampaignManagerPageContext.Provider>
   );
 }
 
@@ -97,7 +97,7 @@ PortalCampaignManagerPage.propTypes = {
   userState: PropTypes.object,
   portalCampaignManagerPage: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
-  updateUgcCallback: PropTypes.func,
+  updateCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -109,8 +109,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateUgcCallback: (id, ugc) => {
-      dispatch(actions.updateUgcAction(id, ugc));
+    updateCandidateCallback: (id, candidate) => {
+      console.log('page id', id);
+      dispatch(actions.updateCandidateAction(id, candidate));
     },
     uploadImageCallback: (id, url) => {
       dispatch(actions.saveImageAction(id, url));

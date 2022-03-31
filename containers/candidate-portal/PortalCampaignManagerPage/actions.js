@@ -1,24 +1,10 @@
 import types from './constants';
 
-function findUgcAction(id) {
+function updateCandidateAction(id, candidate) {
   return {
-    type: types.FIND_UGC,
+    type: types.UPDATE_CANDIDATE,
     id,
-  };
-}
-
-function findUgcActionSuccess(candidateUgc) {
-  return {
-    type: types.FIND_UGC_SUCCESS,
-    candidateUgc,
-  };
-}
-
-function updateUgcAction(id, ugc) {
-  return {
-    type: types.UPDATE_UGC,
-    id,
-    ugc,
+    candidate,
   };
 }
 
@@ -38,10 +24,7 @@ function saveImageActionSuccess(s3Url) {
 }
 
 export default {
-  findUgcAction,
-  findUgcActionSuccess,
-  updateUgcAction,
-
+  updateCandidateAction,
   saveImageAction,
   saveImageActionSuccess,
 };
