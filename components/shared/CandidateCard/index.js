@@ -106,7 +106,13 @@ function CandidateCard({ candidate }) {
       <a style={{ height: '100%' }}>
         <Wrapper>
           <ImageWrapper>
-            <Image src={image} layout="fill" alt={`${firstName} ${lastName}`} />
+            {image && (
+              <Image
+                src={image}
+                layout="fill"
+                alt={`${firstName} ${lastName}`}
+              />
+            )}
           </ImageWrapper>
           <Content>
             <Name>
