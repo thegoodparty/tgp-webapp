@@ -10,6 +10,12 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 
+import { PortalUpdatesPageContext } from '/containers/candidate-portal/CandidatePortalUpdatesPage';
+import { dateUsHelper } from '/helpers/dateHelper';
+import YouTubeLazyPlayer from '/components/shared/YouTubeLazyPlayer';
+import { Font16 } from '/components/shared/typogrophy';
+import { candidateRoute } from '/helpers/electionsHelper';
+
 const Wrapper = styled.div`
   padding: 30px 0;
   border-bottom: 1px solid #e8e8e8;
@@ -53,11 +59,10 @@ const Title = styled.div`
   color: #000;
 `;
 
-import { PortalUpdatesPageContext } from '/containers/candidate-portal/CandidatePortalUpdatesPage';
-import { dateUsHelper } from '../../../helpers/dateHelper';
-import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
-import { Font16 } from '../../shared/typogrophy';
-import { candidateRoute } from '../../../helpers/electionsHelper';
+const Text = styled(Font16)`
+  line-height: 33px;
+  overflow-wrap: break-word;
+`;
 
 function Update({ update, last, editCallback }) {
   const { candidate } = useContext(PortalUpdatesPageContext);
@@ -93,10 +98,7 @@ function Update({ update, last, editCallback }) {
           >
             <Title>{title}</Title>
           </a>
-          <Font16
-            dangerouslySetInnerHTML={{ __html: text }}
-            style={{ lineHeight: '33px' }}
-          />
+          <Text dangerouslySetInnerHTML={{ __html: text }} />
         </Grid>
       </Grid>
     </Wrapper>
