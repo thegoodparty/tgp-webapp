@@ -25,6 +25,8 @@ function PortalUpdatesWrapper() {
   const { role, candidate } = useContext(PortalUpdatesPageContext);
   const [editUpdate, setEditUpdate] = useState(false);
   const editCallback = (update) => setEditUpdate(update);
+  const closeModalCallback = () => setEditUpdate(false);
+
   return (
     <PortalPageWrapper role={role} title="Edit Campaign Page">
       <PortalPanel color="#963D97">
@@ -33,6 +35,7 @@ function PortalUpdatesWrapper() {
           <AddCampaignUpdateModal
             context={PortalUpdatesPageContext}
             editUpdate={editUpdate}
+            closeModalCallback={closeModalCallback}
           />
         </Row>
         {(candidate?.updatesList || []).map((update, index) => (

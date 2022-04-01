@@ -82,7 +82,11 @@ const initialState = {
   image: '',
 };
 
-function AddCampaignUpdateModal({ context, editUpdate }) {
+function AddCampaignUpdateModal({
+  context,
+  editUpdate,
+  closeModalCallback = () => {},
+}) {
   const { candidate, newUpdateCallback, editUpdateCallback } =
     useContext(context);
   const { id } = candidate;
@@ -112,6 +116,7 @@ function AddCampaignUpdateModal({ context, editUpdate }) {
 
   const closeModal = () => {
     onChangeField('isOpen', false);
+    closeModalCallback();
   };
 
   const canPublish =

@@ -61,7 +61,6 @@ import { candidateRoute } from '../../../helpers/electionsHelper';
 
 function Update({ update, last, editCallback }) {
   const { candidate } = useContext(PortalUpdatesPageContext);
-  console.log('update', update);
 
   const { date, id, image, text, title, youtubeId } = update;
   const hasMedia = image || youtubeId;
