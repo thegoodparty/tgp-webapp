@@ -80,18 +80,14 @@ function Updates({ updates }) {
     return <> </>;
   }
 
-  const sortedUpdates = [...updatesList];
-  sortedUpdates.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-  );
   const hasFeatured = (update) => update.youtubeId || update.image;
 
   return (
     <Wrapper>
       <FontH3 style={{ margin: '0 0 24px' }}>Updates</FontH3>
       <Grid container spacing={6}>
-        {sortedUpdates &&
-          sortedUpdates.reverse().map((update) => (
+        {updatesList &&
+          updatesList.map((update) => (
             <Grid item xs={12} md={6} key={update.id}>
               <UpdateWrapper id={`candidate-update-${update.id}`}>
                 {hasFeatured(update) && (

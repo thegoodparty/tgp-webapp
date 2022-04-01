@@ -4,10 +4,16 @@
  *
  */
 
-import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export function defaultAction() {
+function editUpdateAction(id, update) {
   return {
-    type: DEFAULT_ACTION,
+    type: types.EDIT_UPDATE,
+    id,
+    update,
   };
 }
+
+export default {
+  editUpdateAction,
+};

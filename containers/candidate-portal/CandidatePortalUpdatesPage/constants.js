@@ -4,4 +4,8 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/CandidatePortalUpdatesPage/DEFAULT_ACTION';
+const EDIT_UPDATE = 'app/CandidatePortalUpdatesPage/EDIT_UPDATE';
+
+export default {
+  EDIT_UPDATE,
+};

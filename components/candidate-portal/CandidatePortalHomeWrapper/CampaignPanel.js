@@ -110,7 +110,9 @@ function CampaignPanel() {
           </Grid>
           <Grid item xs={12}>
             <div style={{ marginTop: '40px' }}>
-              <AddCampaignUpdateModal />
+              <AddCampaignUpdateModal
+                context={CandidatePortalHomePageContext}
+              />
             </div>
           </Grid>
         </Grid>

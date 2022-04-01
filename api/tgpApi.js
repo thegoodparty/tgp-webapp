@@ -518,6 +518,11 @@ const api = {
         method: 'POST',
         withAuth: true,
       },
+      update: {
+        url: `${base}campaign/update`,
+        method: 'PUT',
+        withAuth: true,
+      },
     },
     endorsement: {
       create: {

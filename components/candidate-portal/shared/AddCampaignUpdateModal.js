@@ -15,6 +15,7 @@ import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 import Modal from '../../shared/Modal';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { FontH3 } from '../../shared/typogrophy';
+import JoditEditorWrapper from '../../admin/AdminEditCandidate/JoditEditor';
 
 const Inner = styled.div`
   max-width: 820px;
@@ -81,12 +82,26 @@ const initialState = {
   image: '',
 };
 
-function AddCampaignUpdateModal() {
-  const { candidate, newUpdateCallback } = useContext(
-    CandidatePortalHomePageContext,
-  );
+function AddCampaignUpdateModal({ context, editUpdate }) {
+  const { candidate, newUpdateCallback, editUpdateCallback } =
+    useContext(context);
   const { id } = candidate;
   const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    if (editUpdate) {
+      setState({
+        isOpen: true,
+        title: editUpdate.title || '',
+        date: editUpdate.date || '',
+        text: editUpdate.text || '',
+        youtubeId: editUpdate.youtubeId || '',
+        image: editUpdate.image || '',
+      });
+    } else {
+      setState(initialState);
+    }
+  }, [editUpdate]);
 
   const onChangeField = (key, value) => {
     setState({
@@ -107,7 +122,12 @@ function AddCampaignUpdateModal() {
     delete newState.showVideo;
     delete newState.isOpen;
     delete newState.showSuccess;
-    newUpdateCallback(candidate, newState);
+    if (editUpdate) {
+      newState.id = editUpdate.id;
+      editUpdateCallback(id, newState);
+    } else {
+      newUpdateCallback(candidate, newState);
+    }
     onChangeField('showSuccess', true);
     setTimeout(() => {
       setState(initialState);
@@ -141,7 +161,9 @@ function AddCampaignUpdateModal() {
                 <div className="text-right">
                   <Cancel onClick={closeModal}>Cancel</Cancel>
                   <BlackButton onClick={publish} disabled={!canPublish}>
-                    <InnerButton>Publish</InnerButton>
+                    <InnerButton>
+                      {editUpdate ? 'Update' : 'Publish'}
+                    </InnerButton>
                   </BlackButton>
                 </div>
               </Row>
@@ -174,17 +196,11 @@ function AddCampaignUpdateModal() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    name="Content"
-                    variant="outlined"
-                    label="What's your update?"
-                    value={state.text}
-                    fullWidth
-                    multiline
-                    rows={6}
-                    onChange={(e) => {
-                      onChangeField('text', e.target.value);
-                    }}
+                  What's your update?
+                  <br />
+                  <JoditEditorWrapper
+                    onChangeCallback={(value) => onChangeField('text', value)}
+                    initialText={state.text}
                   />
                 </Grid>
                 {state.showVideo && (
