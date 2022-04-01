@@ -26,6 +26,11 @@ const Wrapper = styled(MaxContent)`
 
 const MainPanel = styled.div`
   flex: 1;
+  max-width: 100%;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    max-width: calc(100% - 220px);
+  }
 `;
 
 const PortalPageWrapper = ({ children, role, loading, title }) => {

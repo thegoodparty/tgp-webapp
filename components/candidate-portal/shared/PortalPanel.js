@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   background-color: #fff;
-  padding: 36px 50px;
+  padding: 24px;
   position: relative;
   margin-bottom: 10px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 36px 50px;
+  }
 `;
 
 const Color = styled.div`
