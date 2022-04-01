@@ -191,7 +191,7 @@ function PortalCampaignManagerWrapper() {
   };
 
   return (
-    <PortalPageWrapper role={role}>
+    <PortalPageWrapper role={role} title="Edit Campaign Page">
       {panels.map((panel, index) => (
         <PortalPanel color="#EE6C3B">
           <Inner>
