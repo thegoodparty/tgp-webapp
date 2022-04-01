@@ -79,12 +79,6 @@ function* updatePreferences({ id, preferences }) {
   }
 }
 
-const Node = (
-  <span>
-    'Update Created'<a href="/">tomer</a>
-  </span>
-);
-
 function* createUpdate({ candidate, update }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Creating Update...'));
@@ -92,6 +86,7 @@ function* createUpdate({ candidate, update }) {
     const payload = { update, candidateId: candidate.id };
     const { updateId } = yield call(requestHelper, api, payload);
     const link = `${candidateRoute(candidate)}#candidate-update-${updateId}`;
+    yield put(actions.findCandidate(candidate.id));
     yield put(
       snackbarActions.showSnakbarAction(
         <span>
