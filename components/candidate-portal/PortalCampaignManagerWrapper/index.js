@@ -163,6 +163,7 @@ function PortalCampaignManagerWrapper() {
 
   const handleUpload = (url) => {
     uploadImageCallback(candidate.id, url);
+    setUpdateImage(false);
   };
 
   const canSubmit = () => {
@@ -283,7 +284,10 @@ function PortalCampaignManagerWrapper() {
                       <>
                         {(candidate.image || s3Url) && !updateImage ? (
                           <div>
-                            <img src={candidate.image} className="full-image" />
+                            <img
+                              src={s3Url || candidate.image}
+                              className="full-image"
+                            />
                             <br />
                             <BlackButton
                               onClick={() => setUpdateImage(true)}

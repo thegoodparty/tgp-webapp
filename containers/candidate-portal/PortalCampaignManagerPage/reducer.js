@@ -16,6 +16,7 @@ const portalCampaignManagerPageReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case types.SAVE_IMAGE:
+        draft.s3Url = false;
         draft.loading = true;
         break;
       case types.SAVE_IMAGE_SUCCESS:
