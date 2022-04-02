@@ -27,8 +27,6 @@ function EditableTopIssue({
     updateIssueCallback,
   } = useContext(TopIssuesPageContext);
 
-  console.log('existin', existingIssue);
-
   const order = existingOrder
     ? existingOrder
     : candidatePositions?.length + 1 || 1;
@@ -46,12 +44,15 @@ function EditableTopIssue({
       if (candidatePositions.length === topIssues.length) {
         setAvailableIssues([]);
       } else {
-        const available = topIssues.filter((issue) => {
-          return candidatePositions.find(
-            (position) => position.topIssue?.id !== issue.id,
-          );
+        const topIssuesById = {};
+        topIssues.forEach((issue) => {
+          topIssuesById[issue.id] = issue;
         });
-        setAvailableIssues(available);
+        candidatePositions.forEach((position) => {
+          delete topIssuesById[position.topIssue?.id];
+        });
+
+        setAvailableIssues(Object.values(topIssuesById));
       }
     }
   }, [candidatePositions]);
@@ -103,7 +104,6 @@ function EditableTopIssue({
       </Grid>
       <Grid item xs={3}>
         <Autocomplete
-          size="small"
           options={availableIssues}
           value={state.topic}
           getOptionLabel={(item) => item?.name}
@@ -118,7 +118,6 @@ function EditableTopIssue({
       </Grid>
       <Grid item xs={3}>
         <Autocomplete
-          size="small"
           options={state.topic.positions || []}
           value={state.position}
           getOptionLabel={(item) => item.name}
@@ -134,7 +133,6 @@ function EditableTopIssue({
       <Grid item xs={3}>
         <TextField
           fullWidth
-          size="small"
           primary
           label="Description"
           name="Description"
@@ -150,9 +148,6 @@ function EditableTopIssue({
         <BlackButton onClick={save} disabled={!canSubmit()} fullWidth>
           <FaSave /> &nbsp; {existingIssue ? 'UPDATE' : 'SAVE'}
         </BlackButton>
-      </Grid>
-      <Grid item xs={12}>
-        <hr />
       </Grid>
     </React.Fragment>
   );

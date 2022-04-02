@@ -23,6 +23,10 @@ const BlackButton = styled(PurpleButton)`
         border-color: #999;
       }
     }
+    &.Mui-disabled {
+      background: #ccc;
+      border-color: #aaa;
+    }
   }
 `;
 

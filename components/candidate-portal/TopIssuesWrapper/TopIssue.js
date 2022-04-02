@@ -47,9 +47,6 @@ function TopIssue({ index, candidatePosition }) {
         <FaEdit onClick={() => setEditMode(true)} /> &nbsp; &nbsp; &nbsp;{' '}
         <FaTrash onClick={deleteIssue} />
       </Grid>
-      <Grid item xs={12}>
-        <hr />
-      </Grid>
     </React.Fragment>
   );
 }
