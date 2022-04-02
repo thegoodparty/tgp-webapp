@@ -540,6 +540,11 @@ const api = {
         method: 'GET',
         withAuth: true,
       },
+      delete: {
+        url: `${base}campaign/endorsement`,
+        method: 'DELETE',
+        withAuth: true,
+      },
     },
     image: {
       create: {

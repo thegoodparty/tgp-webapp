@@ -12,6 +12,7 @@ import { EndorsementsContext } from '/containers/candidate-portal/PortalEndorsem
 import { isValidUrl } from '/helpers/linkHelper';
 import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 import { PurpleButton } from '../../shared/buttons';
+import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -22,6 +23,28 @@ const Wrapper = styled.div`
 const Img = styled.img`
   max-width: 250px;
   height: auto;
+`;
+
+const UploadWrapper = styled.div`
+  border: solid 1px rgb(0, 0, 0, 0.2);
+  border-radius: 4px;
+  line-height: 1.1876em;
+  padding: 18.5px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Upload = styled.div`
+  text-decoration: underline;
+`;
+
+const Inner = styled.div`
+  width: 100%;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    width: 60%;
+  }
 `;
 
 const initialState = {
@@ -68,53 +91,61 @@ function NewEndorsementForm({ closeAdd }) {
   };
   return (
     <Wrapper>
-      <form noValidate onSubmit={(e) => e.preventDefault()}>
-        <TextField
-          fullWidth
-          variant="outlined"
-          label="Title"
-          onChange={(e) => onChangeField('title', e.target.value)}
-          value={state.title}
-        />
-        <br />
-        <br />
-        <TextField
-          fullWidth
-          variant="outlined"
-          label="Summary"
-          multiline
-          rows={3}
-          onChange={(e) => onChangeField('summary', e.target.value)}
-          value={state.summary}
-        />
-        <br />
-        <br />
-        <TextField
-          fullWidth
-          variant="outlined"
-          label="Link"
-          onChange={(e) => onChangeField('link', e.target.value)}
-          value={state.link}
-        />
-        <br />
-        <br />
-        Endorsement Image (small)
-        <br />
-        {state.image ? (
-          <Img src={state.image} />
-        ) : (
-          <ImageUploadContainer
-            uploadCallback={(image) => handleUploadImage(image)}
+      <Inner>
+        <form noValidate onSubmit={(e) => e.preventDefault()}>
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Title"
+            onChange={(e) => onChangeField('title', e.target.value)}
+            value={state.title}
           />
-        )}
-        <br />
-        <br />
-        <div className="text-right">
-          <PurpleButton disabled={!canSubmit()} onClick={onSave} type="submit">
-            &nbsp; Save &nbsp;
-          </PurpleButton>
-        </div>
-      </form>
+          <br />
+          <br />
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Summary"
+            multiline
+            rows={3}
+            onChange={(e) => onChangeField('summary', e.target.value)}
+            value={state.summary}
+          />
+          <br />
+          <br />
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Link"
+            onChange={(e) => onChangeField('link', e.target.value)}
+            value={state.link}
+          />
+          <br />
+          <br />
+          {state.image ? (
+            <>
+              Endorsement Image
+              <br />
+              <Img src={state.image} />
+            </>
+          ) : (
+            <UploadWrapper>
+              <div>Endorsement Image</div>
+              <ImageUploadContainer
+                uploadCallback={(image) => handleUploadImage(image)}
+                customElement={<Upload>Uplaod</Upload>}
+              />
+            </UploadWrapper>
+          )}
+          <br />
+          <br />
+          <div className="text-right">
+            <BlackButton disabled={!canSubmit()} onClick={onSave} type="submit">
+              <InnerButton>Save</InnerButton>
+            </BlackButton>
+          </div>
+        </form>
+      </Inner>
     </Wrapper>
   );
 }
