@@ -34,6 +34,7 @@ export function CandidatePortalUpdatesPage({
   candidatePortalHomePage,
   newUpdateCallback,
   editUpdateCallback,
+  deleteUpdateCallback,
 }) {
   useInjectReducer({ key: 'candidatePortalUpdatesPage', reducer });
   useInjectSaga({ key: 'candidatePortalUpdatesPage', saga });
@@ -71,6 +72,7 @@ export function CandidatePortalUpdatesPage({
     role,
     newUpdateCallback,
     editUpdateCallback,
+    deleteUpdateCallback,
   };
 
   return (
@@ -90,6 +92,7 @@ CandidatePortalUpdatesPage.propTypes = {
   candidatePortalHomePage: PropTypes.object,
   newUpdateCallback: PropTypes.func,
   editUpdateCallback: PropTypes.func,
+  deleteUpdateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -106,6 +109,9 @@ function mapDispatchToProps(dispatch) {
     },
     editUpdateCallback: (id, update) => {
       dispatch(actions.editUpdateAction(id, update));
+    },
+    deleteUpdateCallback: (id, candidateId) => {
+      dispatch(actions.deleteUpdateAction(id, candidateId));
     },
   };
 }

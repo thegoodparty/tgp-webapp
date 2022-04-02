@@ -20,12 +20,25 @@ import PortalPanel from '../shared/PortalPanel';
 import { FontH3 } from '../../shared/typogrophy';
 import Update from './Update';
 import AddCampaignUpdateModal from '../shared/AddCampaignUpdateModal';
+import AlertDialog from '../../shared/AlertDialog';
 
 function PortalUpdatesWrapper() {
-  const { role, candidate } = useContext(PortalUpdatesPageContext);
+  const { role, candidate, deleteUpdateCallback } = useContext(
+    PortalUpdatesPageContext,
+  );
   const [editUpdate, setEditUpdate] = useState(false);
+  const [deleteUpdate, setDeleteUpdate] = useState(false);
+
   const editCallback = (update) => setEditUpdate(update);
   const closeModalCallback = () => setEditUpdate(false);
+
+  const deleteCallback = (update) => setDeleteUpdate(update);
+  const cancelDeleteCallback = () => setDeleteUpdate(false);
+
+  const handleDelete = () => {
+    deleteUpdateCallback(deleteUpdate.id, candidate.id);
+    setDeleteUpdate(false);
+  };
 
   return (
     <PortalPageWrapper role={role} title="Edit Campaign Page">
@@ -43,9 +56,18 @@ function PortalUpdatesWrapper() {
             update={update}
             last={index === candidate?.updatesList?.length - 1}
             editCallback={editCallback}
+            deleteCallback={deleteCallback}
           />
         ))}{' '}
       </PortalPanel>
+      <AlertDialog
+        open={deleteUpdate}
+        handleClose={cancelDeleteCallback}
+        title="Delete Update"
+        ariaLabel="Delete Update"
+        description="Are you sure you want to delete this update? This cannot be undone."
+        handleProceed={handleDelete}
+      />
     </PortalPageWrapper>
   );
 }

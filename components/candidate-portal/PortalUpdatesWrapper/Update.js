@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ import { dateUsHelper } from '/helpers/dateHelper';
 import YouTubeLazyPlayer from '/components/shared/YouTubeLazyPlayer';
 import { Font16 } from '/components/shared/typogrophy';
 import { candidateRoute } from '/helpers/electionsHelper';
+import AlertDialog from '../../shared/AlertDialog';
 
 const Wrapper = styled.div`
   padding: 30px 0;
@@ -36,6 +37,8 @@ const Edit = styled.div`
   color: #636363;
   text-decoration: underline;
   cursor: pointer;
+  display: inline-block;
+  margin-left: 18px;
 `;
 
 const UpdateDate = styled.div`
@@ -64,16 +67,20 @@ const Text = styled(Font16)`
   overflow-wrap: break-word;
 `;
 
-function Update({ update, last, editCallback }) {
+function Update({ update, last, editCallback, deleteCallback }) {
   const { candidate } = useContext(PortalUpdatesPageContext);
 
   const { date, id, image, text, title, youtubeId } = update;
   const hasMedia = image || youtubeId;
+
   return (
     <Wrapper key={id} className={last && 'no-border'}>
       <Row>
         <UpdateDate>{dateUsHelper(date)}</UpdateDate>
-        <Edit onClick={() => editCallback(update)}>Edit</Edit>
+        <div>
+          <Edit onClick={() => deleteCallback(update)}>Delete</Edit>
+          <Edit onClick={() => editCallback(update)}>Edit</Edit>
+        </div>
       </Row>
       <Grid container spacing={3}>
         {hasMedia && (

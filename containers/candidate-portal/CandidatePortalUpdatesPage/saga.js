@@ -24,7 +24,24 @@ function* editUpdate({ id, update }) {
   }
 }
 
+function* deleteUpdate({ id, candidateId }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Deleting update...'));
+    const api = tgpApi.campaign.updates.delete;
+    const payload = { id, candidateId };
+    yield call(requestHelper, api, payload);
+    yield put(portalHomeActions.findCandidate(candidateId));
+    yield put(snackbarActions.showSnakbarAction('Updated Deleted'));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error deleting update', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.EDIT_UPDATE, editUpdate);
+  yield takeLatest(types.DELETE_UPDATE, deleteUpdate);
 }

@@ -14,6 +14,15 @@ function editUpdateAction(id, update) {
   };
 }
 
+function deleteUpdateAction(id, candidateId) {
+  return {
+    type: types.DELETE_UPDATE,
+    id,
+    candidateId,
+  };
+}
+
 export default {
   editUpdateAction,
+  deleteUpdateAction,
 };
