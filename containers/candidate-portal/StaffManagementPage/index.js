@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,7 +13,6 @@ import { useRouter } from 'next/router';
 
 import TgpHelmet from '/components/shared/TgpHelmet';
 import StaffManagementWrapper from '/components/candidate-portal/StaffManagementWrapper';
-import { getUserCookie } from '/helpers/cookieHelper';
 import makeSelectUser from '/containers/you/YouPage/selectors';
 
 import { useInjectSaga } from '/utils/injectSaga';
@@ -28,14 +27,16 @@ import portalHomeActions from '../CandidatePortalHomePage/actions';
 import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/selectors';
 import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
+export const StaffManagementPageContext = createContext();
+
 export function StaffManagementPage({
   staffManagementPage,
   candidatePortalHomePage,
-  userState,
   dispatch,
   addStaffCallback,
   updateStaffCallback,
   deleteStaffCallback,
+  deleteInvitationCallback,
 }) {
   useInjectReducer({ key: 'staffManagementPage', reducer });
   useInjectSaga({ key: 'staffManagementPage', saga });
@@ -70,19 +71,20 @@ export function StaffManagementPage({
     updateStaffCallback,
     deleteStaffCallback,
     loading,
+    deleteInvitationCallback,
   };
 
   const access = accessLevel(role);
 
   return (
-    <div>
+    <StaffManagementPageContext.Provider value={childProps}>
       <TgpHelmet title="Staff Management" description="Staff Management" />
       {access > ACCESS_ENUM.STAFF ? (
-        <StaffManagementWrapper {...childProps} />
+        <StaffManagementWrapper />
       ) : (
         <>Access Denied</>
       )}
-    </div>
+    </StaffManagementPageContext.Provider>
   );
 }
 
@@ -90,29 +92,31 @@ StaffManagementPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   candidatePortalHomePage: PropTypes.object,
   staffManagementPage: PropTypes.object,
-  userState: PropTypes.object,
   updateStaffCallback: PropTypes.func,
   addStaffCallback: PropTypes.func,
   deleteStaffCallback: PropTypes.func,
+  deleteInvitationCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   staffManagementPage: makeSelectStaffManagementPage(),
   candidatePortalHomePage: makeSelectCandidatePortalHomePage(),
-  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    addStaffCallback: (email, role, id) => {
-      dispatch(actions.addStaffAction(email, role, id));
+    addStaffCallback: (name, email, role, id) => {
+      dispatch(actions.addStaffAction(name, email, role, id));
     },
     updateStaffCallback: (userId, candidateId, role) => {
       dispatch(actions.updateStaffAction(userId, candidateId, role));
     },
     deleteStaffCallback: (id, candidateId) => {
       dispatch(actions.deleteStaffAction(id, candidateId));
+    },
+    deleteInvitationCallback: (id, candidateId) => {
+      dispatch(actions.deleteInvitationAction(id, candidateId));
     },
   };
 }

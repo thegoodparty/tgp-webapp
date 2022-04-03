@@ -22,10 +22,11 @@ function* loadStaff({ id }) {
   }
 }
 
-function* addStaff({ email, role, id }) {
+function* addStaff({ name, email, role, id }) {
   try {
     const api = tgpApi.campaign.staff.create;
     const payload = {
+      name,
       email,
       role,
       id,
@@ -81,10 +82,28 @@ function* deleteStaff({ id, candidateId }) {
   }
 }
 
+function* deleteInvitation({ id, candidateId }) {
+  try {
+    const api = tgpApi.campaign.staff.deleteInvitation;
+    const payload = {
+      id,
+      candidateId,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(actions.loadStaffAction(candidateId));
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction(`Error updating candidate`, 'error'),
+    );
+    console.log(error);
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.ADD_STAFF, addStaff);
   yield takeLatest(types.UPDATE_STAFF, updateStaff);
   yield takeLatest(types.DELETE_STAFF, deleteStaff);
+  yield takeLatest(types.DELETE_INVITATION, deleteInvitation);
   yield takeLatest(types.LOAD_STAFF, loadStaff);
 }

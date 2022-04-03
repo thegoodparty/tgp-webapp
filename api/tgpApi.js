@@ -574,6 +574,11 @@ const api = {
         method: 'DELETE',
         withAuth: true,
       },
+      deleteInvitation: {
+        url: `${base}campaign/staff-invitation`,
+        method: 'DELETE',
+        withAuth: true,
+      },
       role: {
         url: `${base}campaign/staff-role`,
         method: 'GET',

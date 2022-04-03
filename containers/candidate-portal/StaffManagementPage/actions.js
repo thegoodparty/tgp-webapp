@@ -6,9 +6,10 @@
 
 import types from './constants';
 
-function addStaffAction(email, role, id) {
+function addStaffAction(name, email, role, id) {
   return {
     type: types.ADD_STAFF,
+    name,
     email,
     role,
     id,
@@ -27,6 +28,14 @@ function updateStaffAction(userId, candidateId, role) {
 function deleteStaffAction(id, candidateId) {
   return {
     type: types.DELETE_STAFF,
+    id,
+    candidateId,
+  };
+}
+
+function deleteInvitationAction(id, candidateId) {
+  return {
+    type: types.DELETE_INVITATION,
     id,
     candidateId,
   };
@@ -51,6 +60,7 @@ export default {
   addStaffAction,
 
   updateStaffAction,
+  deleteInvitationAction,
 
   deleteStaffAction,
 

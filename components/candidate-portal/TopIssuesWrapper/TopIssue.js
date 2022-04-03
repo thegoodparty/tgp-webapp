@@ -8,8 +8,10 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+
+import { TopIssuesPageContext } from '/containers/candidate-portal/TopIssuesPage';
 import EditableTopIssue from './EditableTopIssue';
-import { TopIssuesPageContext } from '../../../containers/candidate-portal/TopIssuesPage';
+
 
 function TopIssue({ index, candidatePosition }) {
   const [editMode, setEditMode] = useState(false);
