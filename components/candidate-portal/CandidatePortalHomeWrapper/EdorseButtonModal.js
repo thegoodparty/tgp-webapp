@@ -113,6 +113,11 @@ const PickerWrapper = styled.div`
   padding-top: 10px;
 `;
 
+const CustomWrapper = styled.div`
+  cursor: pointer;
+  height: 100%;
+`;
+
 const labels = [
   'ENDORSE ME',
   'ADD YOUR NAME',
@@ -129,7 +134,7 @@ const initialState = {
   copied: false,
 };
 
-function EndorseButtonModal() {
+function EndorseButtonModal({ customElement }) {
   const { candidate, savePreferencesCallback } = useContext(
     CandidatePortalHomePageContext,
   );
@@ -214,9 +219,15 @@ function EndorseButtonModal() {
 
   return (
     <>
-      <PinkButton onClick={() => onChangeField('isOpen', true)}>
-        <InnerButton>Activate Endorse Button</InnerButton>
-      </PinkButton>
+      {customElement ? (
+        <CustomWrapper onClick={() => onChangeField('isOpen', true)}>
+          {customElement}
+        </CustomWrapper>
+      ) : (
+        <PinkButton onClick={() => onChangeField('isOpen', true)}>
+          <InnerButton>Activate Endorse Button</InnerButton>
+        </PinkButton>
+      )}
       <Modal
         open={state.isOpen}
         closeModalCallback={closeModal}

@@ -46,7 +46,7 @@ const Icon = styled.div`
   }
 `;
 
-const progressPerc = (thisTotal, lastTotal) => {
+export const progressPerc = (thisTotal, lastTotal) => {
   if (thisTotal === 0 && lastTotal === 0) {
     return (
       <>

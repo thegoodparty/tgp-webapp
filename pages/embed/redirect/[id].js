@@ -15,6 +15,10 @@ export async function getServerSideProps(context) {
     let candidate;
     try {
       candidate = await res.json();
+      // track click
+      const api2 = tgpApi.newCandidate.endorseButton.click;
+      const url2 = `${api2.url}?id=${id}`;
+      await fetch(url2);
     } catch (e) {
       candidate = {
         candidate: {},

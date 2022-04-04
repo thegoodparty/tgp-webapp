@@ -433,6 +433,12 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    endorseButton: {
+      click: {
+        url: `${base}button/click`,
+        method: 'GET',
+      },
+    },
   },
   trackVisit: {
     url: `${base}visit`,
