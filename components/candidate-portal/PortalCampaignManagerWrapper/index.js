@@ -68,7 +68,7 @@ const fields = [
     label: 'Political party affiliation',
     key: 'party',
     type: 'select',
-    options: ['I', 'D', 'R', 'GP', 'L', 'W', 'F'],
+    options: ['I', 'GP', 'L', 'W', 'F'],
     required: true,
   },
 

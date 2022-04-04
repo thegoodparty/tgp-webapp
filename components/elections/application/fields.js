@@ -89,8 +89,6 @@ export const step2fields = [
     type: 'select',
     options: [
       'Independent',
-      'Democrat',
-      'Republican',
       'Green Party',
       'Libertarian',
       'SAM',
