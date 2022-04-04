@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 import { GoIssueOpened } from 'react-icons/go';
 import { BsArrowRightShort } from 'react-icons/bs';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaEdit } from 'react-icons/fa';
 
 import { AdminTopIssuesPageContext } from '/containers/admin/AdminTopIssuesPage';
 
@@ -52,20 +52,31 @@ const SmallDelete = styled(Delete)`
   font-size: 12px;
 `;
 
+const EditPosition = styled.div`
+  display: inline-block;
+`;
+
 function TopIssuesList() {
   const {
     createPositionCallback,
     topIssues,
     deleteTopIssueCallback,
     deletePositionCallback,
+    editPositionCallback,
   } = useContext(AdminTopIssuesPageContext);
   const [addNewPosition, setAddNewPosition] = useState(false);
+  const [editPosition, setEditPosition] = useState(false);
   const [positionName, setPositionName] = useState('');
 
   const savePosition = (id) => {
     createPositionCallback(positionName, id);
     setAddNewPosition(false);
     setPositionName('');
+  };
+
+  const saveEdit = () => {
+    editPositionCallback(editPosition.id, editPosition.name);
+    setEditPosition(false);
   };
   return (
     <div>
@@ -129,14 +140,41 @@ function TopIssuesList() {
           {issue.positions.map((position) => (
             <Position>
               <BsArrowRightShort /> &nbsp; &nbsp;
-              {position.name}
-              <SmallDelete
-                onClick={() => {
-                  deletePositionCallback(position.id);
-                }}
-              >
-                <FaTrash />
-              </SmallDelete>
+              {editPosition && editPosition.id === position.id ? (
+                <EditPosition>
+                  <TextField
+                    primary
+                    label="Edit Position"
+                    variant="outlined"
+                    value={editPosition.name}
+                    onChange={(e) =>
+                      setEditPosition({ ...editPosition, name: e.target.value })
+                    }
+                  />
+                  &nbsp; &nbsp;
+                  <BlackButton onClick={saveEdit}>
+                    <InnerButton>Save</InnerButton>
+                  </BlackButton>
+                </EditPosition>
+              ) : (
+                <>
+                  {position.name}
+                  <SmallDelete
+                    onClick={() => {
+                      deletePositionCallback(position.id);
+                    }}
+                  >
+                    <FaTrash />
+                  </SmallDelete>
+                  <SmallDelete
+                    onClick={() => {
+                      setEditPosition(position);
+                    }}
+                  >
+                    <FaEdit />
+                  </SmallDelete>
+                </>
+              )}
             </Position>
           ))}
         </Issue>

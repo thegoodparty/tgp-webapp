@@ -10,6 +10,8 @@ const CREATE_POSITION = 'app/AdminTopIssuesPage/CREATE_POSITION';
 const DELETE_TOP_ISSUE = 'app/AdminTopIssuesPage/DELETE_TOP_ISSUE';
 const DELETE_POSITION = 'app/AdminTopIssuesPage/DELETE_POSITION';
 
+const EDIT_POSITION = 'app/AdminTopIssuesPage/EDIT_POSITION';
+
 const LOAD_TOP_ISSUES = 'app/AdminTopIssuesPage/LOAD_TOP_ISSUES';
 const LOAD_TOP_ISSUES_SUCCESS =
   'app/AdminTopIssuesPage/LOAD_TOP_ISSUES_SUCCESS';
@@ -20,6 +22,8 @@ export default {
 
   DELETE_TOP_ISSUE,
   DELETE_POSITION,
+
+  EDIT_POSITION,
 
   LOAD_TOP_ISSUES,
   LOAD_TOP_ISSUES_SUCCESS,

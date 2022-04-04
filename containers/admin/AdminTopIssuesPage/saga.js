@@ -79,6 +79,25 @@ function* deletePosition({ id }) {
   }
 }
 
+function* editPosition({ id, name }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
+    const api = tgpApi.admin.position.update;
+    const payload = {
+      id,
+      name,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Saved'));
+    yield put(actions.loadTopIssuesAction());
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error editing position', 'error'),
+    );
+  }
+}
+
 function* loadTopIssues() {
   try {
     const api = tgpApi.admin.topIssues.list;
@@ -100,4 +119,5 @@ export default function* saga() {
 
   yield takeLatest(types.DELETE_TOP_ISSUE, deleteTopIssue);
   yield takeLatest(types.DELETE_POSITION, deletePosition);
+  yield takeLatest(types.EDIT_POSITION, editPosition);
 }
