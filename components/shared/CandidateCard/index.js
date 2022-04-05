@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 import { partyResolver } from '/helpers/electionsHelper';
 import Link from 'next/link';
-import { FontH3 } from '../typogrophy';
+import { Font16, FontH3 } from '../typogrophy';
 import BlackButton from '../buttons/BlackButton';
 
 const Wrapper = styled.div`
@@ -118,10 +118,9 @@ function CandidateCard({ candidate }) {
             <Name>
               {firstName} {lastName}
             </Name>
-            <Gray>{race}</Gray>
             <Gray>
-              {state} ({partyResolver(party)}
-              {party !== 'I' && ' Party'})
+              {partyResolver(party)} Party Candidate <br />
+              for <strong>{race}</strong>
             </Gray>
             <Quote>{headline}</Quote>
             {positions && positions.length > 0 && (
