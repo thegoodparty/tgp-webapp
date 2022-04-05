@@ -16,6 +16,7 @@ import Modal from '../../shared/Modal';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { FontH3 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../../admin/AdminEditCandidate/JoditEditor';
+import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
 
 const Inner = styled.div`
   max-width: 820px;
@@ -101,6 +102,7 @@ function AddCampaignUpdateModal({
         text: editUpdate.text || '',
         youtubeId: editUpdate.youtubeId || '',
         image: editUpdate.image || '',
+        showVideo: !!editUpdate.youtubeId,
       });
     } else {
       setState(initialState);
@@ -120,7 +122,10 @@ function AddCampaignUpdateModal({
   };
 
   const canPublish =
-    state.title !== '' && state.date !== '' && state.text !== '';
+    state.title !== '' &&
+    state.date !== '' &&
+    state.text !== '' &&
+    (state.youtubeId == '' || state.youtubeId.length === 11);
 
   const publish = () => {
     const newState = { ...state };
@@ -162,7 +167,9 @@ function AddCampaignUpdateModal({
           ) : (
             <>
               <Row>
-                <FontH3 style={{ margin: 0 }}>New Campaign Update</FontH3>
+                <FontH3 style={{ margin: 0 }}>
+                  {editUpdate ? 'Edit' : 'New'} Campaign Update
+                </FontH3>
                 <div className="text-right">
                   <Cancel onClick={closeModal}>Cancel</Cancel>
                   <BlackButton onClick={publish} disabled={!canPublish}>
@@ -209,18 +216,24 @@ function AddCampaignUpdateModal({
                   />
                 </Grid>
                 {state.showVideo && (
-                  <Grid item xs={12}>
-                    <TextField
-                      name="YouTube Id"
-                      variant="outlined"
-                      label="YouTube id"
-                      value={state.youtubeId}
-                      fullWidth
-                      onChange={(e) => {
-                        onChangeField('youtubeId', e.target.value);
-                      }}
-                    />
-                  </Grid>
+                  <>
+                    <Grid item xs={state.youtubeId ? 6 : 12}>
+                      <TextField
+                        name="YouTube Id"
+                        variant="outlined"
+                        label="YouTube id"
+                        value={state.youtubeId}
+                        inputProps={{ maxLength: 11 }}
+                        fullWidth
+                        onChange={(e) => {
+                          onChangeField('youtubeId', e.target.value);
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={state.youtubeId ? 6 : 12}>
+                      <YouTubeLazyPlayer id={state.youtubeId} />
+                    </Grid>
+                  </>
                 )}{' '}
                 {state.image && (
                   <Grid item xs={6}>
