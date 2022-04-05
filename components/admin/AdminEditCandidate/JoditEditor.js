@@ -48,7 +48,7 @@ const JoditEditorWrapper = ({
     },
   };
 
-  const onBlur = value => {
+  const onBlur = (value) => {
     setContent(value);
     // console.log(value);
     onChangeCallback(value);

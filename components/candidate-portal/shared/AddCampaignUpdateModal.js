@@ -124,7 +124,6 @@ function AddCampaignUpdateModal({
   const canPublish =
     state.title !== '' &&
     state.date !== '' &&
-    state.text !== '' &&
     (state.youtubeId == '' || state.youtubeId.length === 11);
 
   const publish = () => {
