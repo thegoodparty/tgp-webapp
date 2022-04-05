@@ -118,7 +118,7 @@ function EditableTopIssue({
       </Grid>
       <Grid item xs={3}>
         <Autocomplete
-          options={state.topic.positions || []}
+          options={state.topic?.positions || []}
           value={state.position}
           getOptionLabel={(item) => item.name}
           fullWidth
