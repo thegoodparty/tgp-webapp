@@ -131,7 +131,8 @@ function CandidateCard({ candidate }) {
               {firstName} {lastName}
             </Name>
             <Gray>
-              {partyResolver(party, otherParty)} Party Candidate <br />
+              {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
+              Candidate <br />
               for <strong>{race}</strong>
             </Gray>
             <SoFar>

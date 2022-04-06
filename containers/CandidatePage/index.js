@@ -96,7 +96,7 @@ export function CandidatePage({
   const title = `${firstName} ${lastName} ${partyResolver(
     party,
     otherParty,
-  ).toLowerCase()} for ${race} | Crowd-voting on GOOD PARTY`;
+  ).toLowerCase()} ${party !== 'I' ? 'Party ' : ''}candidate for ${race} | Crowd-voting on GOOD PARTY`;
 
   const description = `Join the crowd-voting campaign for ${firstName} ${lastName}, ${partyResolver(
     party,

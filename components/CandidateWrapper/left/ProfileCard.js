@@ -33,7 +33,7 @@ function ProfileCard() {
         {firstName} {lastName}
       </FontH1>
       <Font16>
-        {partyResolver(party, otherParty)} Party Candidate <br />
+        {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''} Candidate <br />
         for <strong>{race}</strong>
       </Font16>
       {candidate.image ? (
