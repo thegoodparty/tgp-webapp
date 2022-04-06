@@ -194,7 +194,7 @@ function PortalCampaignManagerWrapper() {
   return (
     <PortalPageWrapper role={role} title="Edit Campaign Page">
       {panels.map((panel, index) => (
-        <PortalPanel color="#EE6C3B">
+        <PortalPanel color="#EE6C3B" key={panel.label}>
           <Inner>
             <FontH3 style={{ margin: '0 0 45px 0' }}>{panel.label}</FontH3>
             <Grid container spacing={2}>

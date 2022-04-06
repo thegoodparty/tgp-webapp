@@ -102,6 +102,7 @@ function Update({ update, last, editCallback, deleteCallback }) {
           <a
             href={`${candidateRoute(candidate)}#candidate-update-${id}`}
             target="_blank"
+            rel="noreferrer"
           >
             <Title>{title}</Title>
           </a>

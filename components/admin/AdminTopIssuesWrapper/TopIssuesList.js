@@ -138,7 +138,7 @@ function TopIssuesList() {
             </div>
           )}
           {issue.positions.map((position) => (
-            <Position>
+            <Position key={position.id}>
               <BsArrowRightShort /> &nbsp; &nbsp;
               {editPosition && editPosition.id === position.id ? (
                 <EditPosition>

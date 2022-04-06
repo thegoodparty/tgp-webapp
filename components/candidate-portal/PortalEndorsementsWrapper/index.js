@@ -53,6 +53,7 @@ function PortalEndorsementsWrapper() {
             endorsement={endorsement}
             last={index === endorsements.length - 1}
             deleteCallback={deleteCallback}
+            key={endorsement.id}
           />
         ))}
       </PortalPanel>

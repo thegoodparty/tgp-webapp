@@ -178,7 +178,7 @@ function HowWorksSection() {
               <Title>{box.title}</Title>
 
               {box.points.map((point) => (
-                <Point>
+                <Point key={point.title}>
                   <PointTitle className={expanded[index] && 'expanded'}>
                     {point.title}
                   </PointTitle>

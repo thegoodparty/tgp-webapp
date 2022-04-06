@@ -53,6 +53,7 @@ function PortalUpdatesWrapper() {
         </Row>
         {(candidate?.updatesList || []).map((update, index) => (
           <Update
+            key={update.id}
             update={update}
             last={index === candidate?.updatesList?.length - 1}
             editCallback={editCallback}
