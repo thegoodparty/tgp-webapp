@@ -6,7 +6,6 @@ import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
 
 import { PurpleButton } from '../shared/buttons';
-import CandidateMiniCard from './CandidateMiniCard';
 import CandidateCard from '../shared/CandidateCard';
 
 const Wrapper = styled.div`

@@ -110,27 +110,28 @@ function ShareImage({
   total,
 }) {
   const supportCount = total;
-  const { firstName, lastName, race, party, isDraft, draftOffice } = candidate;
-  const afterLoad = suffix => {
+  const { firstName, lastName, race, party, otherParty, isDraft, draftOffice } =
+    candidate;
+  const afterLoad = (suffix) => {
     if (!withRender) {
       return;
     }
     htmlToImage
       .toJpeg(document.getElementById(suffix), { quality: 1, pixelRatio: 1 })
-      .then(function(dataUrl) {
+      .then(function (dataUrl) {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
 
         shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error('oops, something went wrong!', error);
       });
   };
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
-  console.log({ ...candidate })
+  console.log({ ...candidate });
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
@@ -212,7 +213,7 @@ function ShareImage({
                 draftOffice
               ) : (
                 <>
-                  <PartyName>{partyResolver(party)} for</PartyName>
+                  <PartyName>{partyResolver(party, otherParty)} for</PartyName>
                   <PartyName>{race}</PartyName>
                 </>
               )}
