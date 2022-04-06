@@ -98,9 +98,7 @@ const MainWrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding: 6px 0 0 32px;
-    &.with-sticky {
-      margin-left: 225px;
-    }
+
   }
 `;
 
@@ -190,41 +188,43 @@ function ApplicationWrapper({
             ))}
           </TopLinks>
         </TopMobileNav>
-        <Sticky
-          onFixedToggle={(isOn) => setIsSticky(isOn)}
-          boundaryElement=".application-wrapper"
-        >
-          <LeftNav>
-            {reviewMode && <Review>REVIEW MODE</Review>}
-            {leftLinks.map((link) => (
-              <Link
-                href={`/campaign-application/${id}/${link.step}`}
-                passHref
-                key={link.step}
-              >
-                <a>
-                  <LeftLink className={step === link.step && 'active'}>
-                    {link.label}
-                  </LeftLink>
-                </a>
-              </Link>
-            ))}
-            <br />
-            {!reviewMode && (
-              <Link href="/profile/campaign-applications" passHref>
-                <a>
-                  <PurpleButton
-                    className="outline"
-                    fullWidth
-                    style={{ padding: '4px' }}
-                  >
-                    <RiPencilFill /> &nbsp; Finish Later
-                  </PurpleButton>
-                </a>
-              </Link>
-            )}
-          </LeftNav>
-        </Sticky>
+        <div style={{ width: '225px' }}>
+          <Sticky
+            onFixedToggle={(isOn) => setIsSticky(isOn)}
+            boundaryElement=".application-wrapper"
+          >
+            <LeftNav>
+              {reviewMode && <Review>REVIEW MODE</Review>}
+              {leftLinks.map((link) => (
+                <Link
+                  href={`/campaign-application/${id}/${link.step}`}
+                  passHref
+                  key={link.step}
+                >
+                  <a>
+                    <LeftLink className={step === link.step && 'active'}>
+                      {link.label}
+                    </LeftLink>
+                  </a>
+                </Link>
+              ))}
+              <br />
+              {!reviewMode && (
+                <Link href="/profile/campaign-applications" passHref>
+                  <a>
+                    <PurpleButton
+                      className="outline"
+                      fullWidth
+                      style={{ padding: '4px' }}
+                    >
+                      <RiPencilFill /> &nbsp; Finish Later
+                    </PurpleButton>
+                  </a>
+                </Link>
+              )}
+            </LeftNav>
+          </Sticky>
+        </div>
         <MainWrapper className={isSticky && 'with-sticky'}>
           <Paper className={!withWhiteBg && 'no-white'}>{children}</Paper>
         </MainWrapper>

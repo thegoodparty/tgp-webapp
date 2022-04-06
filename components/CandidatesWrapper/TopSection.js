@@ -112,7 +112,7 @@ function TopSection() {
             </ButtonWrapper>
           </a>
         </Link>
-        <Link href="run" passHref>
+        <Link href="/run" passHref>
           <a>
             <ButtonWrapper>
               <BlackOutlinedButton active>
