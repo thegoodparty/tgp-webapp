@@ -104,6 +104,7 @@ function CandidateCard({ candidate }) {
     race,
     supporters,
     party,
+    otherParty,
     headline,
     positions,
   } = candidate;
@@ -130,7 +131,7 @@ function CandidateCard({ candidate }) {
               {firstName} {lastName}
             </Name>
             <Gray>
-              {partyResolver(party)} Party Candidate <br />
+              {partyResolver(party, otherParty)} Party Candidate <br />
               for <strong>{race}</strong>
             </Gray>
             <SoFar>

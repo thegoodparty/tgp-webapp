@@ -2,9 +2,12 @@
 import { slugify } from './articlesHelper';
 import { getCookie } from './cookieHelper';
 
-export const partyResolver = (partyLetter) => {
+export const partyResolver = (partyLetter, otherParty) => {
   if (!partyLetter) {
     return '';
+  }
+  if (partyLetter === 'Other' && otherParty) {
+    return otherParty;
   }
   if (partyLetter === 'D') {
     return 'Democratic';
