@@ -116,7 +116,7 @@ function TopSection() {
           <a>
             <ButtonWrapper>
               <BlackOutlinedButton active>
-                Start Your Campaign
+                Want to Run for Office?
               </BlackOutlinedButton>
             </ButtonWrapper>
           </a>
