@@ -317,7 +317,6 @@ function PortalCampaignManagerWrapper() {
             <StickyWrapper>
               <Sticky>
                 <SaveWrapper>
-                  {console.log('component id', candidate)}
                   <BlackButton
                     onClick={() => updateCandidateCallback(candidate.id, state)}
                     className="sticky-el"

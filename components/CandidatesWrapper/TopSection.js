@@ -4,14 +4,12 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-import { CandidatesContext } from '/containers/CandidatesPage';
 
 import { Font16, FontH1, FontH3 } from '../shared/typogrophy';
 import CertifiedBadge from '../shared/CertifiedBadge';
@@ -36,7 +34,24 @@ const Point = styled.div`
 `;
 
 const Why = styled.div`
-  margin-top: 50 px;
+  margin: 20px 0;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: block;
+  margin: 10px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: inline-block;
+    margin: 0 10px;
+  }
 `;
 
 const points = [
@@ -61,7 +76,6 @@ const points = [
 ];
 
 function TopSection() {
-  const { user } = useContext(CandidatesContext);
   const router = useRouter();
   return (
     <section className="text-center">
@@ -83,25 +97,31 @@ function TopSection() {
                 />
                 <FontH3>&nbsp; {point.title}</FontH3>
               </Row>
-              {!user && <div>{point.content}</div>}
+              <div>{point.content}</div>
             </Point>
           </Grid>
         ))}
       </Grid>
-      {!user && (
-        <Why>
-          <Link
-            href={`${router.asPath}?article=FqZOWMEEYfcXbASjaRkMU`}
-            passHref
-          >
-            <a>
+      <Why>
+        <Link href={`${router.asPath}?article=FqZOWMEEYfcXbASjaRkMU`} passHref>
+          <a>
+            <ButtonWrapper>
               <BlackOutlinedButton active>
                 Why is this important?
               </BlackOutlinedButton>
-            </a>
-          </Link>
-        </Why>
-      )}
+            </ButtonWrapper>
+          </a>
+        </Link>
+        <Link href="run" passHref>
+          <a>
+            <ButtonWrapper>
+              <BlackOutlinedButton active>
+                Start Your Campaign
+              </BlackOutlinedButton>
+            </ButtonWrapper>
+          </a>
+        </Link>
+      </Why>
     </section>
   );
 }
