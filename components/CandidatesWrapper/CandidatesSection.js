@@ -22,7 +22,7 @@ function CandidatesSection() {
   return (
     <Section>
       <Grid container spacing={3} alignItems="stretch">
-        {candidates.map((candidate) => (
+        {(candidates || []).map((candidate) => (
           <Grid item xs={12} md={6} lg={4} key={candidate.id}>
             <CandidateCard candidate={candidate} />
           </Grid>
