@@ -119,6 +119,12 @@ function NewEndorsementForm({ closeAdd }) {
             label="Link"
             onChange={(e) => onChangeField('link', e.target.value)}
             value={state.link}
+            error={state.link != '' && !isValidUrl(state.link)}
+            helperText={
+              state.link != '' && !isValidUrl(state.link)
+                ? 'Your link is not valid. Make sure it starts with http or https.'
+                : ''
+            }
           />
           <br />
           <br />
@@ -133,7 +139,7 @@ function NewEndorsementForm({ closeAdd }) {
               <div>Endorsement Image</div>
               <ImageUploadContainer
                 uploadCallback={(image) => handleUploadImage(image)}
-                customElement={<Upload>Uplaod</Upload>}
+                customElement={<Upload>Upload</Upload>}
               />
             </UploadWrapper>
           )}
