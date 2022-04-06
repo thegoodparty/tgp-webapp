@@ -31,7 +31,7 @@ function TopIssue({ index, candidatePosition }) {
     );
   }
   return (
-    <React.Fragment>
+    <React.Fragment key={candidatePosition.id}>
       <Grid item xs={1}>
         <span>{index + 1}.</span>
       </Grid>

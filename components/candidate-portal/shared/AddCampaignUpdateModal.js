@@ -207,7 +207,7 @@ function AddCampaignUpdateModal({
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  What's your update?
+                  What&apos;s your update?
                   <br />
                   <JoditEditorWrapper
                     onChangeCallback={(value) => onChangeField('text', value)}

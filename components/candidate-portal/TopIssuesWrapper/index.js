@@ -15,6 +15,7 @@ import PortalPageWrapper from '../shared/PortalPageWrapper';
 import TopIssue from './TopIssue';
 import EditableTopIssue from './EditableTopIssue';
 import PortalPanel from '../shared/PortalPanel';
+import topIssuesPageReducer from '../../../containers/candidate-portal/TopIssuesPage/reducer';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -31,7 +32,11 @@ function TopIssuesWrapper() {
         <FontH3 style={{ margin: '0 0 45px 0' }}>Issues</FontH3>
         <Grid container spacing={3} alignItems="center">
           {candidatePositions.map((candidatePosition, index) => (
-            <TopIssue index={index} candidatePosition={candidatePosition} />
+            <TopIssue
+              index={index}
+              candidatePosition={candidatePosition}
+              key={candidatePosition.id}
+            />
           ))}
           <EditableTopIssue />
         </Grid>
