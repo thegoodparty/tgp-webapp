@@ -19,7 +19,7 @@ import tgpApi from '/api/tgpApi';
 import { logEvent } from '/services/AnalyticsService';
 import globalActions from '/containers/App/actions';
 import queryHelper from '/helpers/queryHelper';
-import candidateActions from '/containers/elections/CandidateNewPage/actions';
+import candidateActions from '/containers/CandidatePage/actions';
 
 import types from './constants';
 import actions from './actions';
@@ -74,9 +74,7 @@ function* register(action) {
     if (error.response?.exists) {
       yield put(
         snackbarActions.showSnakbarAction(
-          `The email ${
-            action.email
-          } already exists in our system. Try signing in.`,
+          `The email ${action.email} already exists in our system. Try signing in.`,
           'error',
         ),
       );
@@ -235,14 +233,14 @@ function* confirmEmail(action) {
       );
     }
     if (fromLogin) {
-      yield put(push('/profile'));
+      yield put(push('/'));
     } else {
       const cookieRedirect = getSignupRedirectCookie();
       if (cookieRedirect) {
         yield put(push(cookieRedirect.route));
         deleteSignupRedirectCookie();
       } else {
-        yield put(push('/profile'));
+        yield put(push('/'));
       }
     }
     logEvent('email-login-confirm', 'success');
@@ -268,11 +266,7 @@ function* login(action) {
     setUserCookie(user);
     setCookie('token', token);
     deleteCookie('guestRanking');
-    if (user.candidate) {
-      yield put(push('/candidate-portal'));
-    } else {
-      yield put(push('/profile'));
-    }
+    yield put(push('/'));
     logEvent('email-login', 'success');
   } catch (error) {
     yield put(
@@ -462,7 +456,7 @@ function* socialLogin(action) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      yield put(push('/profile'));
+      yield put(push('/'));
     }
 
     setUserCookie(responseUser);
@@ -551,9 +545,7 @@ function* generateUuid() {
   const user = getUserCookie();
   const guestUuid = getCookie('guuid');
   if (!user && !guestUuid) {
-    const uuid = Math.random()
-      .toString(36)
-      .substring(2, 12);
+    const uuid = Math.random().toString(36).substring(2, 12);
     setCookie('guuid', uuid);
   }
 }
@@ -639,7 +631,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      yield put(push('/profile'));
+      yield put(push('/'));
     }
 
     setUserCookie(user);

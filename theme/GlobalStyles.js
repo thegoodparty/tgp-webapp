@@ -15,7 +15,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.3;
+    -webkit-font-smoothing: antialiased;
   }
 
 
@@ -85,6 +87,10 @@ const GlobalStyles = createGlobalStyle`
   }
   .ReactCrop__image {
     max-width: 700px;
+  }
+  
+  .MuiPopover-paper.MuiPaper-root {
+    overflow: visible !important;
   }
 `;
 

@@ -75,13 +75,15 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
       );
       const newCriteria = [...initialCriteria];
       // insert website
-      existingCriteria.forEach(crit => {
+      existingCriteria.forEach((crit) => {
         if (!initialCriteria.includes(crit)) {
           newCriteria.push(crit);
         }
       });
       setCriteria(newCriteria);
-      const compared = candidate.comparedCandidates.candidates;
+      const compared = JSON.parse(
+        JSON.stringify(candidate.comparedCandidates.candidates),
+      );
       compared[0].name = `${candidate.firstName} ${candidate.lastName}`;
       compared[0].party = candidate.party;
       compared[0].image = candidate.image;
@@ -131,12 +133,12 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
     setUpdateParent(true);
   };
 
-  const deleteCriteria = index => {
+  const deleteCriteria = (index) => {
     const newCriteria = [...criteria];
     const newCandidates = [...candidates];
 
     const [removed] = newCriteria.splice(index, 1);
-    newCandidates.forEach(candidate => {
+    newCandidates.forEach((candidate) => {
       delete candidate[removed];
     });
     setCriteria(newCriteria);
@@ -144,7 +146,7 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
     setUpdateParent(true);
   };
 
-  const deleteCandidate = index => {
+  const deleteCandidate = (index) => {
     const newCandidates = [...candidates];
     newCandidates.splice(index, 1);
     setCandidates(newCandidates);
@@ -184,7 +186,7 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
                 fullWidth
                 variant="outlined"
                 value={crit}
-                onChange={e => onChangeCriteria(e.target.value, index)}
+                onChange={(e) => onChangeCriteria(e.target.value, index)}
                 onBlur={() => setUpdateParent(true)}
                 disabled
               />
@@ -192,12 +194,12 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
               <Select
                 native
                 value={crit}
-                onChange={e => setSelectedCriteria(e.target.value, index)}
+                onChange={(e) => setSelectedCriteria(e.target.value, index)}
                 fullWidth
                 variant="outlined"
               >
                 <option value="">Select Topic</option>
-                {topics?.map(topic => (
+                {topics?.map((topic) => (
                   <option
                     value={topic.name}
                     key={topic.id}
@@ -235,7 +237,7 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
                         <CropWrapper>
                           <ImageCrop
                             currentImage={getValidImgUrl(cand[crit])}
-                            uploadImageCallback={base64 => {
+                            uploadImageCallback={(base64) => {
                               handleUploadImage(index2, base64);
                             }}
                             showTitle={false}
@@ -251,7 +253,7 @@ function ComparedCandidates({ candidate, candidatesCallback, topics }) {
                   label={crit}
                   variant="outlined"
                   value={cand[crit]}
-                  onChange={e => onChangeCand(crit, e.target.value, index2)}
+                  onChange={(e) => onChangeCand(crit, e.target.value, index2)}
                   onBlur={() => setUpdateParent(true)}
                   disabled={index2 === 0 && index < 3}
                 />

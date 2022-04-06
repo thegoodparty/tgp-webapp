@@ -4,12 +4,13 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
+
 import TopIssuesWrapper from '/components/candidate-portal/TopIssuesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import { getUserCookie } from '/helpers/cookieHelper';
@@ -19,7 +20,7 @@ import makeSelectTopIssuesPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-import makeSelectAdminIssueTopicsPage from '../../admin/AdminIssueTopicsPage/selectors';
+import makeSelectAdminTopIssuesPage from '../../admin/AdminTopIssuesPage/selectors';
 
 import portalHomeReducer from '../CandidatePortalHomePage/reducer';
 import portalHomeSaga from '../CandidatePortalHomePage/saga';
@@ -28,26 +29,26 @@ import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/select
 import makeSelectUser from '../../you/YouPage/selectors';
 
 import actions from './actions';
-import adminIssueTopicsPageReducer from '../../admin/AdminIssueTopicsPage/reducer';
-import adminIssueTopicsSaga from '../../admin/AdminIssueTopicsPage/saga';
-import adminIssueTopicsActions from '../../admin/AdminIssueTopicsPage/actions';
+import adminTopIssuesPageReducer from '../../admin/AdminTopIssuesPage/reducer';
+import adminTopIssuesSaga from '../../admin/AdminTopIssuesPage/saga';
+import adminTopIssuesActions from '../../admin/AdminTopIssuesPage/actions';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
+
+export const TopIssuesPageContext = createContext();
 
 export function TopIssuesPage({
   userState,
   dispatch,
-  ssrState,
   candidatePortalHomePage,
   topIssuesPage,
+  saveIssueCallback,
   updateIssueCallback,
-  adminIssueTopicsPage,
+  deleteCandidatePositionCallback,
+  adminTopIssuesPage,
 }) {
-  let ssrCandidate = null;
-  if(ssrState) {
-    ssrCandidate = ssrState.candidate;
-  }
   useInjectReducer({ key: 'topIssuesPage', reducer });
   useInjectSaga({ key: 'topIssuesPage', saga });
-  
+
   useInjectReducer({
     key: 'candidatePortalHomePage',
     reducer: portalHomeReducer,
@@ -55,85 +56,122 @@ export function TopIssuesPage({
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
 
   useInjectReducer({
-    key: 'adminIssueTopicsPage',
-    reducer: adminIssueTopicsPageReducer,
+    key: 'adminTopIssuesPage',
+    reducer: adminTopIssuesPageReducer,
   });
-  useInjectSaga({ key: 'adminIssueTopicsPage', saga: adminIssueTopicsSaga });
+  useInjectSaga({ key: 'adminTopIssuesPage', saga: adminTopIssuesSaga });
 
-  const { candidate } = candidatePortalHomePage;
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { candidate, role } = candidatePortalHomePage;
 
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
   }
+
   useEffect(() => {
-    dispatch(adminIssueTopicsActions.loadIssueTopicsAction());
-    if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
-      if (!ssrCandidate?.id) {
-        dispatch(portalHomeActions.findCandidate());
-      }
-      dispatch(actions.findIssueAction(ssrCandidate?.id));
+    if (id) {
+      dispatch(portalHomeActions.loadRoleAction(id));
+    }
+  }, [id]);
+
+  useEffect(() => {
+    dispatch(adminTopIssuesActions.loadTopIssuesAction());
+    if (user && id) {
+      dispatch(portalHomeActions.findCandidate(id));
+      dispatch(actions.findCandidatePositionsAction(id));
     }
   }, [user]);
-  // const { candidate } = ssrState || {};
 
-  const { candidateIssue } = topIssuesPage;
-  const { topics } = adminIssueTopicsPage;
+  const { candidatePositions } = topIssuesPage;
+  const { topIssues } = adminTopIssuesPage;
   const childProps = {
     user,
-    candidate: ssrCandidate || candidate,
-    candidateId: ssrCandidate?.id,
-    candidateIssue,
+    candidate,
+    candidatePositions,
+    saveIssueCallback,
     updateIssueCallback,
-    topics,
+    deleteCandidatePositionCallback,
+    topIssues,
+    role,
   };
 
+  const access = accessLevel(role);
+
   return (
-    <div>
+    <TopIssuesPageContext.Provider value={childProps}>
       <TgpHelmet
         title="Campaign Manager - Top Issues"
         description="Campaign Manager - Top Issues"
       />
-      <TopIssuesWrapper {...childProps} />
-    </div>
+      {access > ACCESS_ENUM.STAFF ? <TopIssuesWrapper /> : <>Access Denied</>}
+    </TopIssuesPageContext.Provider>
   );
 }
 
 TopIssuesPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   userState: PropTypes.object,
-  ssrState: PropTypes.object,
   topIssuesPage: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
+  saveIssueCallback: PropTypes.func,
   updateIssueCallback: PropTypes.func,
-  adminIssueTopicsPage: PropTypes.object,
+  deleteCandidatePositionCallback: PropTypes.func,
+  adminTopIssuesPage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   topIssuesPage: makeSelectTopIssuesPage(),
   candidatePortalHomePage: makeSelectCandidatePortalHomePage(),
-  adminIssueTopicsPage: makeSelectAdminIssueTopicsPage(),
+  adminTopIssuesPage: makeSelectAdminTopIssuesPage(),
   userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateIssueCallback: (issue, candidateId) => {
-      dispatch(actions.updateIssueAction(issue, candidateId));
+    saveIssueCallback: (
+      topIssueId,
+      positionId,
+      description,
+      candidateId,
+      order,
+    ) => {
+      dispatch(
+        actions.saveCandidatePositionAction(
+          topIssueId,
+          positionId,
+          description,
+          candidateId,
+          order,
+        ),
+      );
+    },
+    updateIssueCallback: (
+      id,
+      topIssueId,
+      positionId,
+      description,
+      candidateId,
+    ) => {
+      dispatch(
+        actions.updateCandidatePositionAction(
+          id,
+          topIssueId,
+          positionId,
+          description,
+          candidateId,
+        ),
+      );
+    },
+    deleteCandidatePositionCallback: (id, candidateId) => {
+      dispatch(actions.deleteCandidatePositionAction(id, candidateId));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(TopIssuesPage);
+export default compose(withConnect, memo)(TopIssuesPage);

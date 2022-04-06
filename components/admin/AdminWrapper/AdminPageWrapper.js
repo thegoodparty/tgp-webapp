@@ -7,7 +7,7 @@ import Nav from '/containers/shared/Nav';
 import AdminLeftMenu from '../AdminLeftMenu';
 
 const Wrapper = styled.div`
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: row;
   padding-top: 0;

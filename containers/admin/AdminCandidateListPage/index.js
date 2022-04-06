@@ -14,8 +14,6 @@ import { push } from 'connected-next-router';
 import AdminCandidateList from '/components/admin/AdminCandidateList';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import makeSelectUser from '/containers/you/YouPage/selectors';
-import associateSaga from '/containers/admin/AdminAssociateCandidateUserPage/saga';
-import associateActions from '/containers/admin/AdminAssociateCandidateUserPage/actions';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -29,15 +27,9 @@ export function AdminCandidateListPage({
   adminCandidateListPage,
   deleteCandidateCallback,
   userState,
-  logAsCandidateCallback,
 }) {
   useInjectReducer({ key: 'adminCandidateListPage', reducer });
   useInjectSaga({ key: 'adminCandidateListPage', saga });
-
-  useInjectSaga({
-    key: 'adminAssociateCandidateUserPage',
-    saga: associateSaga,
-  });
 
   const { user } = userState;
   useEffect(() => {
@@ -55,7 +47,6 @@ export function AdminCandidateListPage({
   const childProps = {
     candidates,
     deleteCandidateCallback,
-    logAsCandidateCallback,
   };
 
   return (
@@ -72,7 +63,6 @@ AdminCandidateListPage.propTypes = {
   adminCandidateListPage: PropTypes.object,
   userState: PropTypes.object,
   deleteCandidateCallback: PropTypes.func,
-  logAsCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -83,18 +73,11 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    deleteCandidateCallback: id => dispatch(actions.deleteCandidateAction(id)),
-    logAsCandidateCallback: id =>
-      dispatch(associateActions.logAsCandidateCallbackAction(id)),
+    deleteCandidateCallback: (id) =>
+      dispatch(actions.deleteCandidateAction(id)),
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(AdminCandidateListPage);
+export default compose(withConnect, memo)(AdminCandidateListPage);

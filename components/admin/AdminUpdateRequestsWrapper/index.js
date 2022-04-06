@@ -15,7 +15,7 @@ import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { Body, H3 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
-import { dateUsHelper } from '../../../helpers/dateHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -87,7 +87,7 @@ function AdminUpdateRequestsWrapper({
                       <strong>{field}</strong>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                      {request.candidate[field].charAt(0) === '<' ? (
+                      {request.candidate[field]?.charAt(0) === '<' ? (
                         <div
                           dangerouslySetInnerHTML={{
                             __html: request.candidate[field],

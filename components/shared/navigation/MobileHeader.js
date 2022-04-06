@@ -123,22 +123,8 @@ const ButtonInner = styled.div`
   font-weight: 600;
 `;
 
-const AsCandidate = styled.div`
-  position: absolute;
-  background-color: white;
-  padding: 16px 8px;
-  color: ${({ theme }) => theme.colors.purple};
-  top: 14px;
-  left: 8px;
-  cursor: pointer;
-`;
 
-function MobileHeader({
-  user,
-  purpleNav,
-  asCandidate,
-  logoutAsCandidateCallback,
-}) {
+function MobileHeader({ user, purpleNav }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const handleShare = () => {
@@ -149,11 +135,6 @@ function MobileHeader({
   return (
     <Hidden mdUp>
       <Wrapper className={purpleNav && 'purple'}>
-        {asCandidate && (
-          <AsCandidate onClick={logoutAsCandidateCallback}>
-            Logout As candidate
-          </AsCandidate>
-        )}
         <LinkContainer>
           <MenuIconButton
             onClick={() => setOpen(true)}
@@ -295,8 +276,6 @@ function MobileHeader({
 MobileHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   purpleNav: PropTypes.bool,
-  asCandidate: PropTypes.bool,
-  logoutAsCandidateCallback: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {

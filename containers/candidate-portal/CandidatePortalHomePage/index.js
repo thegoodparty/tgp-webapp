@@ -4,13 +4,12 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
 
 import TgpHelmet from '/components/shared/TgpHelmet';
 import CandidatePortalHomeWrapper from '/components/candidate-portal/CandidatePortalHomeWrapper';
@@ -24,43 +23,56 @@ import saga from './saga';
 import makeSelectUser from '../../you/YouPage/selectors';
 import actions from './actions';
 
+export const CandidatePortalHomePageContext = createContext();
+
 export function CandidatePortalHomePage({
   userState,
   dispatch,
   candidatePortalHomePage,
   loadStatsCallback,
+  savePreferencesCallback,
+  newUpdateCallback,
 }) {
   useInjectReducer({ key: 'candidatePortalHomePage', reducer });
   useInjectSaga({ key: 'candidatePortalHomePage', saga });
-  const { candidate, stats } = candidatePortalHomePage;
+  const { candidate, stats, role } = candidatePortalHomePage;
   let { user } = userState;
   if (!user) {
     user = getUserCookie(true);
   }
+
+  const router = useRouter();
+  const { id } = router.query;
   useEffect(() => {
-    if (user) {
-      if (!user.isAdmin && !user.candidate) {
-        dispatch(push('/'));
-      }
-      dispatch(actions.findCandidate());
+    if (id) {
+      dispatch(actions.loadRoleAction(id));
       if (!stats) {
-        dispatch(actions.loadStatsAction('Last Week'));
+        dispatch(actions.loadStatsAction('Last Week', id));
       }
     }
-  }, [user]);
+  }, [id]);
+
+  useEffect(() => {
+    if (!candidate && id) {
+      dispatch(actions.findCandidate(id));
+    }
+  }, [id, candidate]);
 
   const childProps = {
     candidate,
     user,
     stats,
     loadStatsCallback,
+    savePreferencesCallback,
+    role,
+    newUpdateCallback,
   };
 
   return (
-    <div>
+    <CandidatePortalHomePageContext.Provider value={childProps}>
       <TgpHelmet title="Candidate Portal" description="Candidate Portal" />
-      {user && <CandidatePortalHomeWrapper {...childProps} />}
-    </div>
+      {role ? <CandidatePortalHomeWrapper /> : <>Access Denied</>}
+    </CandidatePortalHomePageContext.Provider>
   );
 }
 
@@ -69,6 +81,8 @@ CandidatePortalHomePage.propTypes = {
   userState: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
   loadStatsCallback: PropTypes.func,
+  savePreferencesCallback: PropTypes.func,
+  newUpdateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -79,18 +93,18 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadStatsCallback: range => {
-      dispatch(actions.loadStatsAction(range));
+    loadStatsCallback: (range, id) => {
+      dispatch(actions.loadStatsAction(range, id));
+    },
+    savePreferencesCallback: (id, preferences) => {
+      dispatch(actions.updatePreferencesAction(id, preferences));
+    },
+    newUpdateCallback: (candidate, update) => {
+      dispatch(actions.createUpdateAction(candidate, update));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(CandidatePortalHomePage);
+export default compose(withConnect, memo)(CandidatePortalHomePage);

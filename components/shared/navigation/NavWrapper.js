@@ -7,35 +7,21 @@ import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer'
 import AdminMenu from '/components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
-import FeedbackContainer from '../../../containers/shared/FeedbackContainer';
+import FeedbackContainer from '/containers/shared/FeedbackContainer';
 
-const NavWrapper = ({
-  pathname,
-  user,
-  trackShareCallback,
-  purpleNav,
-  asCandidate,
-  logoutAsCandidateCallback,
-}) => (
+const NavWrapper = ({ pathname, user, trackShareCallback, purpleNav }) => (
   <>
     <Hidden smDown>
       <DesktopHeader
         user={user}
         pathname={pathname}
         trackShareCallback={trackShareCallback}
-        purpleNav={purpleNav || asCandidate}
-        asCandidate={asCandidate}
-        logoutAsCandidateCallback={logoutAsCandidateCallback}
+        purpleNav={purpleNav}
       />
       <RegisterBannerContainer />
     </Hidden>
     <Hidden mdUp>
-      <MobileHeader
-        user={user}
-        purpleNav={purpleNav || asCandidate}
-        asCandidate={asCandidate}
-        logoutAsCandidateCallback={logoutAsCandidateCallback}
-      />
+      <MobileHeader user={user} purpleNav={purpleNav} />
     </Hidden>
 
     {user?.isAdmin && <AdminMenu />}
@@ -49,8 +35,6 @@ NavWrapper.propTypes = {
   user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   trackShareCallback: PropTypes.func,
   purpleNav: PropTypes.bool,
-  asCandidate: PropTypes.bool,
-  logoutAsCandidateCallback: PropTypes.func,
 };
 
 export default NavWrapper;

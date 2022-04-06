@@ -20,18 +20,22 @@ import {
   getSignupRedirectCookie,
   getUserCookie,
 } from '/helpers/cookieHelper';
+import { getApplicationStorage } from '/helpers/localstorageHelper';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectSetZipPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import passCreationActions from '../PasswordCreationPage/actions';
+import passCreationSaga from '../PasswordCreationPage/saga';
 
 export function SetZipPage({ setZipCallback }) {
   useInjectReducer({ key: 'setZipPage', reducer });
   useInjectSaga({ key: 'setZipPage', saga });
 
   useInjectSaga({ key: 'profileSettingsPage', saga: profileSaga });
+  useInjectSaga({ key: 'passwordCreationPage', saga: passCreationSaga });
 
   const childProps = {
     setZipCallback,
@@ -72,18 +76,17 @@ function mapDispatchToProps(dispatch) {
       } else if (user.candidate) {
         dispatch(push('/candidate-portal'));
       } else {
-        dispatch(push('/profile'));
+        const application = getApplicationStorage();
+        if (application) {
+          dispatch(passCreationActions.saveApplicationAction(application));
+        } else {
+          dispatch(push('/'));
+        }
       }
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(SetZipPage);
+export default compose(withConnect, memo)(SetZipPage);

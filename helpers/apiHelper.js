@@ -1,13 +1,14 @@
-import ENV, { API_ENV } from '../api/ENV';
-let apiBase;
-let base;
+import { API_ENV } from '../api/ENV';
+
+let apiBase = 'https://api.goodparty.org/api/v1/';
+let base = 'https://goodparty.org';
 if (API_ENV === 'local') {
   apiBase = 'http://localhost:1337/api/v1/';
   base = 'http://localhost:1337';
 } else if (API_ENV === 'dev' || API_ENV === 'development') {
   apiBase = 'https://api-dev.goodparty.org/api/v1/';
   base = 'https://dev.goodparty.org';
-} else if (API_ENV === 'qa' || API_ENV === 'qa') {
+} else if (API_ENV === 'qa') {
   apiBase = 'https://api-qa.goodparty.org/api/v1/';
   base = 'https://qa.goodparty.org';
 } else if (API_ENV === 'prod') {
@@ -15,5 +16,4 @@ if (API_ENV === 'local') {
   base = 'https://goodparty.org';
 }
 
-const apiHelper = { apiBase, base };
-export default apiHelper;
+export default { apiBase, base };

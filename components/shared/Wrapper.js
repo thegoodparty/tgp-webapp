@@ -78,7 +78,7 @@ const Wrapper = ({ children, style, white, purple, noHeader = false }) => {
 };
 
 Wrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  children: PropTypes.node,
   style: PropTypes.object,
   white: PropTypes.bool,
   noHeader: PropTypes.bool,

@@ -10,11 +10,12 @@ export const initialState = {
   loading: false,
   userSupported: false,
   updates: false,
+  staff: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const profilePageReducer = (state = initialState, action) =>
-  produce(state, draft => {
+  produce(state, (draft) => {
     switch (action.type) {
       case types.LOAD_USER_SUPPORTED:
         draft.loading = false;
@@ -34,6 +35,10 @@ const profilePageReducer = (state = initialState, action) =>
       case types.LOAD_UPDATES_SUCCESS:
         draft.loading = false;
         draft.updates = action.updates;
+        break;
+
+      case types.LOAD_STAFF_SUCCESS:
+        draft.staff = action.staff;
         break;
     }
   });

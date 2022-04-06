@@ -17,7 +17,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import { H2 } from '../../shared/typogrophy';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`
@@ -29,6 +29,8 @@ const Wrapper = styled.div`
 function CampaignNotificationWrapper({
   campaignNotification,
   updateCampaignNotificationCallback,
+  candidate,
+  role,
 }) {
   const [template, setTemplate] = useState('');
   const [isWeekly, setIsWeekly] = useState(false);
@@ -40,7 +42,7 @@ function CampaignNotificationWrapper({
   }, [campaignNotification]);
   const isFormValidate = () => template !== '';
   return (
-    <PortalPageWrapper>
+    <PortalPageWrapper role={role}>
       <Wrapper>
         <H2 className="text-left">Notification Setting</H2>
         <br />
@@ -52,7 +54,7 @@ function CampaignNotificationWrapper({
           rows={4}
           fullWidth
           value={template}
-          onChange={e => setTemplate(e.target.value)}
+          onChange={(e) => setTemplate(e.target.value)}
           variant="outlined"
         />
         <br />
@@ -64,7 +66,7 @@ function CampaignNotificationWrapper({
               color="primary"
               value={isWeekly}
               checked={isWeekly}
-              onChange={e => {
+              onChange={(e) => {
                 setIsWeekly(e.target.checked);
                 if (e.target.checked) {
                   setWeekday(5);
@@ -88,7 +90,7 @@ function CampaignNotificationWrapper({
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
               value={weekday}
-              onChange={e => setWeekday(e.target.value)}
+              onChange={(e) => setWeekday(e.target.value)}
               label="Age"
             >
               <MenuItem value={0}>Sunday</MenuItem>
@@ -106,7 +108,10 @@ function CampaignNotificationWrapper({
             <PurpleButton
               disabled={!isFormValidate()}
               onClick={() =>
-                updateCampaignNotificationCallback({ template, weekday })
+                updateCampaignNotificationCallback(
+                  { template, weekday },
+                  candidate.id,
+                )
               }
               fullWidth
             >
@@ -122,6 +127,8 @@ function CampaignNotificationWrapper({
 CampaignNotificationWrapper.propTypes = {
   campaignNotification: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   updateCampaignNotificationCallback: PropTypes.func,
+  candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 export default CampaignNotificationWrapper;

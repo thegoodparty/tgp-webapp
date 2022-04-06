@@ -51,14 +51,10 @@ const headerStyle = {
   fontSize: '1.05em',
 };
 
-function Index({
-  candidates,
-  deleteCandidateCallback,
-  logAsCandidateCallback,
-}) {
+function Index({ candidates, deleteCandidateCallback }) {
   const [tableData, setTableData] = useState([]);
   const [deleteCandidate, setDeleteCandidate] = useState(false);
-  const handleDeleteCandidate = id => {
+  const handleDeleteCandidate = (id) => {
     setDeleteCandidate(id);
   };
 
@@ -69,7 +65,7 @@ function Index({
   useEffect(() => {
     if (candidates) {
       const data = [];
-      candidates.map(candidate => {
+      candidates.map((candidate) => {
         const fields = {
           active: candidate.isActive ? 'Yes' : 'No',
           id: candidate.id,
@@ -79,7 +75,6 @@ function Index({
           chamber: candidate.chamber,
           office: candidate.race,
           state: candidate.state ? candidate.state.toUpperCase() : '?',
-          canPortal: !!candidate.user,
         };
         data.push(fields);
       });
@@ -124,10 +119,9 @@ function Index({
       accessor: 'firstName',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => {
+      Cell: (row) => {
         const route = candidateRoute(row.original);
         const editRoute = `/admin/add-candidate/${row.original.id}`;
-        const settingsRoute = `/admin/stage-settings/${row.original.id}`;
         return (
           <>
             <Link href={editRoute} target="_blank" passHref>
@@ -189,7 +183,7 @@ function Index({
       accessor: 'name',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => {
+      Cell: (row) => {
         return (
           <div className="text-center">
             {' '}
@@ -207,19 +201,15 @@ function Index({
     {
       Header: 'Portal',
       accessor: 'portal',
-      maxWidth: 120,
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => {
+      Cell: (row) => {
+        const route = `/candidate-portal/${row.original.id}`;
         return (
           <div className="text-center">
-            {row.original.canPortal ? (
-              <LogAs onClick={() => logAsCandidateCallback(row.original.id)}>
-                Log as candidate
-              </LogAs>
-            ) : (
-              <>No user</>
-            )}
+            <Link href={route}>
+              <a>Candidate Portal</a>
+            </Link>
           </div>
         );
       },
@@ -229,27 +219,25 @@ function Index({
       accessor: 'topIssues',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => {
+      Cell: (row) => {
         const editRoute = `/admin/top-issues/${row.original.id}`;
         return (
           <>
-            <a
+            <Link
               href={editRoute}
-              target="_blank"
-              rel="noreferrer"
               style={{
                 textDecoration: row.original.isHidden ? 'line-through' : '',
               }}
             >
-              Edit Top Issues
-            </a>
+              <a>Edit Top Issues</a>
+            </Link>
           </>
         );
       },
     },
   ];
 
-  const csvHeader = columns.map(column => ({
+  const csvHeader = columns.map((column) => ({
     label: column.Header,
     key: column.accessor,
   }));
@@ -302,7 +290,6 @@ function Index({
 Index.propTypes = {
   candidates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   deleteCandidateCallback: PropTypes.func,
-  logAsCandidateCallback: PropTypes.func,
 };
 
 export default Index;

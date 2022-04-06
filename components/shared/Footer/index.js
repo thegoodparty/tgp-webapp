@@ -9,216 +9,181 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
-import { useRouter } from 'next/router';
+import MaxWidth from '../../profile/ProfileWrapper/MaxWidth';
+import { Font16 } from '../typogrophy';
 
-import { Body12 } from '../typogrophy';
-
-const GrayWrapper = styled.div`
-  background-color: #3a3a48;
-  padding: 40px 16px;
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    padding: 60px 16px;
-  }
+const Wrapper = styled.div`
+  padding: 40px 0;
+  border-top: solid 1px #e1e2e9;
+  background-color: #fff;
 `;
 
-const GrayInnerWrapper = styled(Body12)`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-  padding: 0 10px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.contentMax}) {
-    padding: 0;
-  }
-`;
-
-const Column = styled.div`
-  color: #fff;
+const Aligner = styled.div`
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.lg}) {
     text-align: left;
   }
 `;
 
-const Work = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 36px;
+const Title = styled.div`
+  color: #888;
+  font-weight: 900;
+  margin-bottom: 20px;
 `;
 
-const WhiteLink = styled.a`
-  cursor: pointer;
-  display: block;
-  color: #fff;
-  text-decoration: underline;
-  margin-bottom: 24px;
-  font-size: 16px;
-  line-height: 20px;
-  &:hover {
-    color: #ccc;
+const FooterLink = styled.div`
+  font-weight: 600;
+  margin-bottom: 20px;
+  a {
+    color: #000;
   }
 `;
-const Apply = styled.div`
-  margin-top: 20px;
-  display: inline-block;
-  padding: 6px 16px;
-  border: solid 1px #fff;
-  border-radius: 30px;
-  color: #fff;
+
+const Logo = styled.img`
+  height: 20px;
+  width: auto;
+  margin-bottom: 30px;
+`;
+
+const Italic = styled.div`
+  font-style: italic;
+  line-height: 27px;
+  font-size: 17px;
+  padding: 20px;
 `;
 
 const SecondRow = styled.div`
-  margin-top: 36px;
-  text-align: center;
+  margin-top: 48px;
+  color: #777;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    margin-top: 100px;
-    text-align: left;
+      theme.breakpointsPixels.lg}) {
+    margin-top: 120px;
+  }
+
+  a {
+    color: #000;
+    font-weight: 600;
   }
 `;
 
-const SocialIcon = styled.img`
-  margin: 0 20px;
-`;
+const columns = [
+  {
+    title: 'ORGANIZATION',
+    links: [
+      { label: 'About Us', link: '/about' },
+      { label: 'Meet the Team', link: '/team' },
+      { label: 'Careers', link: '/work-with-us' },
+    ],
+  },
+  {
+    title: 'SUPPORT',
+    links: [
+      {
+        label: 'Contact Us',
+        link: 'mailto:ask@goodparty.org',
+        isExternal: true,
+      },
+    ],
+  },
+  {
+    title: 'CAMPAIGNS',
+    links: [
+      { label: 'Meet the Candidates', link: '/candidates' },
+      { label: 'FAQs', link: '/faqs' },
+      { label: 'How To Run', link: '/run' },
+    ],
+  },
+  {
+    title: 'CONNECT',
+    links: [
+      {
+        label: 'Twitter',
+        link: 'https://twitter.com/goodpartyorg',
+        isExternal: true,
+      },
+      {
+        label: 'Facebook',
+        link: 'https://www.facebook.com/goodpartyorg',
+        isExternal: true,
+      },
+      {
+        label: 'Instagram',
+        link: 'https://www.instagram.com/goodpartyorg/',
+        isExternal: true,
+      },
+      {
+        label: 'TikTok',
+        link: 'https://www.tiktok.com/@goodparty',
+        isExternal: true,
+      },
+    ],
+  },
+];
 
-const Rights = styled.div`
-  font-size: 11px;
-  color: #fff;
-`;
+const year = new Date().getFullYear();
 
 function Footer() {
-  const router = useRouter();
   return (
-    <>
-      <GrayWrapper>
-        <GrayInnerWrapper>
-          <Grid container spacing={0}>
-            <Grid item xs={12} md={4}>
-              <Column>
-                <Link
-                  href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-                  passHref
-                >
-                  <WhiteLink data-cy="footer-link-about">
-                    How crowd-voting works
-                  </WhiteLink>
-                </Link>
-
-                <Link href="/about" passHref>
-                  <WhiteLink data-cy="footer-link-elections">
-                    About Good Party
-                  </WhiteLink>
-                </Link>
-                <Link href="/candidates" passHref>
-                  <WhiteLink data-cy="footer-link-you">
-                    Meet the candidates
-                  </WhiteLink>
-                </Link>
-                <Link data-cy="footer-link-creators" href="/faqs" passHref>
-                  <WhiteLink data-cy="footer-link-creators">
-                    Frequently asked questions
-                  </WhiteLink>
-                </Link>
-                <Link href="/privacy">
-                  <WhiteLink data-cy="footer-link-policy">
-                    Privacy Policy
-                  </WhiteLink>
-                </Link>
-              </Column>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              <Column>
-                <Link href="/team" passHref>
-                  <WhiteLink>Meet the team</WhiteLink>
-                </Link>
-
-                <Work>
-                  Want to work at Good Party?
-                  <br />
-                  We’re always looking for Good People!
-                  <div>
-                    <Link href="/work-with-us" passHref>
-                      <a data-cy="footer-link-join">
-                        <Apply>&nbsp;Learn More&nbsp;</Apply>
+    <Wrapper>
+      <MaxWidth>
+        <Grid container spacing={2}>
+          {columns.map((column) => (
+            <Grid item xs={12} lg={2} key={column.title}>
+              <Aligner>
+                <Title>{column.title}</Title>
+                {column.links.map((link) => (
+                  <FooterLink key={link.label}>
+                    {link.isExternal ? (
+                      <a
+                        href={link.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        title={link.label}
+                      >
+                        {link.label}
                       </a>
-                    </Link>
-                  </div>
-                </Work>
-
-                <a
-                  href="https://www.tiktok.com/@goodparty"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  data-cy="footer-link-tiktok"
-                  title="TikTok"
-                >
-                  <SocialIcon
-                    src="/images/icons/tiktok-white.svg"
-                    width={24}
-                    height={20}
-                    alt="TikTok"
-                    style={{ marginLeft: 0 }}
-                  />
-                </a>
-                <a
-                  href="https://www.instagram.com/goodpartyorg/"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  data-cy="footer-link-instagram"
-                  title="Instagram"
-                >
-                  <SocialIcon
-                    src="/images/icons/instagram-white.svg"
-                    width={20}
-                    height={20}
-                    alt="Instagram"
-                  />
-                </a>
-                <a
-                  href="https://www.facebook.com/goodpartyorg"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  data-cy="footer-link-facebook"
-                  title="Facebook"
-                >
-                  <SocialIcon
-                    src="/images/icons/facebook-white.svg"
-                    width={12}
-                    height={20}
-                    alt="Facebook"
-                  />
-                </a>
-                <a
-                  href="https://twitter.com/goodpartyorg"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  data-cy="footer-link-twitter"
-                  title="Twitter"
-                >
-                  <SocialIcon
-                    src="/images/icons/twitter.svg"
-                    width={23}
-                    height={20}
-                    alt="Twitter"
-                  />
-                </a>
-              </Column>
+                    ) : (
+                      <Link href={link.link} passHref>
+                        <a>{link.label}</a>
+                      </Link>
+                    )}
+                  </FooterLink>
+                ))}
+              </Aligner>
             </Grid>
+          ))}
+          <Grid item xs={12} lg={4} className="text-center">
+            <Logo
+              src="/images/new-logo.svg"
+              data-cy="logo"
+              width={173}
+              height={20}
+              alt="GOOD PARTY"
+            />
+            <br />
+            <Italic>
+              Not a political party. We’re building free tools to change the
+              rules, so good independent candidates can run and win!{' '}
+              <Link href="/register" passHref>
+                <a>Join us!</a>
+              </Link>
+            </Italic>
           </Grid>
-          <SecondRow>
-            <Rights>&copy; 2019-2021 Good Party. All rights reserved.</Rights>
-          </SecondRow>
-        </GrayInnerWrapper>
-      </GrayWrapper>
-    </>
+        </Grid>
+        <SecondRow>
+          <Aligner>
+            &copy; {year} Good Party. All rights reserved. &nbsp;
+            <Link href="/privacy" passHref>
+              <a>Privacy Policy</a>
+            </Link>
+          </Aligner>
+        </SecondRow>
+      </MaxWidth>
+    </Wrapper>
   );
 }
 
-Footer.propTypes = {
-  isCreators: PropTypes.bool,
-};
+Footer.propTypes = {};
 
 export default memo(Footer);

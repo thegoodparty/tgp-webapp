@@ -46,6 +46,7 @@ function PageWrapper({
   isFullWidth = false,
   purpleNav = false,
   noPadding = false,
+  hideFooter = false,
 }) {
   const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
   let className = '';
@@ -66,13 +67,13 @@ function PageWrapper({
         {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
         {children}
       </WrapperComp>
-      <Footer />
+      {!hideFooter && <Footer />}
     </MainWrapper>
   );
 }
 
 PageWrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  children: PropTypes.node,
   hideNav: PropTypes.bool,
   white: PropTypes.bool,
   wrapperStyles: PropTypes.object,

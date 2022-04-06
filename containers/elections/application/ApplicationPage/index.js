@@ -28,6 +28,7 @@ import makeSelectApplicationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import { getUserCookie } from '../../../../helpers/cookieHelper';
 
 export function ApplicationPage({
   applicationPage,
@@ -46,12 +47,20 @@ export function ApplicationPage({
   const id = router.query.IdStep?.length > 0 ? router.query.IdStep[0] : false;
   const step = parseInt(stepStr, 10);
 
-  const { application, reviewMode } = applicationPage;
+  const { application, reviewMode, issues } = applicationPage;
   useEffect(() => {
     if (id) {
       dispatch(actions.loadApplicationAction(id));
     }
+    if (!issues) {
+      dispatch(actions.loadATopIssuesAction());
+    }
   }, [id]);
+  useEffect(() => {
+    if (step === 5 && !issues) {
+      dispatch(actions.loadATopIssuesAction());
+    }
+  }, [step]);
 
   const childProps = {
     step,
@@ -62,6 +71,7 @@ export function ApplicationPage({
     submitApplicationCallback,
     approveApplicationCallback,
     rejectApplicationCallback,
+    issues,
   };
 
   return (
@@ -106,7 +116,7 @@ function mapDispatchToProps(dispatch) {
     updateApplicationCallback: (id, data) => {
       dispatch(actions.updateApplicationAction(id, data));
     },
-    submitApplicationCallback: id => {
+    submitApplicationCallback: (id) => {
       dispatch(actions.submitApplicationAction(id));
     },
     approveApplicationCallback: (id, feedback) => {
@@ -118,12 +128,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(ApplicationPage);
+export default compose(withConnect, memo)(ApplicationPage);

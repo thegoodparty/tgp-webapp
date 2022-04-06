@@ -196,15 +196,27 @@ const team = [
   },
 
   {
-    name: 'Jed Wheeler',
-    role: 'Product Guy',
-    img: 'https://assets.goodparty.org/team/jed-good.jpg',
-    flipImg: 'https://assets.goodparty.org/team/jed-party.jpg',
-    good: 'Building tools for Democracy.',
-    perspective: 'For the self-emancipation of humanity.',
-    party: 'Activist, organizer, maker, gardener.',
+    name: 'Jack Nagel',
+    role: 'Growth Marketer',
+    img: 'https://assets.goodparty.org/team/jack-good.png',
+    flipImg: 'https://assets.goodparty.org/team/jack-party.png',
+    good: 'Because there is a better way.',
+    perspective: 'Good people + more choices = a brighter future for all.',
+    party: 'Seeking honesty in people and spaces.',
+    partyRole: 'Curious Plant Dad',
+    partyPerspective: "I'd rather have an opinion than be along for the ride.",
+  },
+
+  {
+    name: 'Evan Scronce',
+    role: 'Design',
+    img: 'https://assets.goodparty.org/team/evan-good.png',
+    flipImg: 'https://assets.goodparty.org/team/evan-party.png',
+    good: 'Designing tools for good!',
+    perspective: 'Sometimes the quietest voices have the loudest ideas.',
+    party: 'Always going on adventures with family and friends.',
     partyRole: 'Dad',
-    partyPerspective: 'I just want a habitable planet for my kids.',
+    partyPerspective: "Trying to make a Good place for my kids with Good choices. ",
   },
 ];
 

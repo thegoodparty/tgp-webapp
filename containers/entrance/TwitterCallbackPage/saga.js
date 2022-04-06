@@ -35,7 +35,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
     setUserCookie(user);
     setCookie('token', token);
     if (user.zip && user.hasPassword) {
-      yield put(push('/profile'));
+      yield put(push('/'));
     } else if (!user.hasPassword) {
       yield put(push('/register/password-creation'));
       yield call(setupCrew);

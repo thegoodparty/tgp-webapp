@@ -11,7 +11,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 import { numberFormatter } from '/helpers/numberHelper';
 import UserAvatar from '../../shared/UserAvatar';
-import { getDisplayName } from '../../../helpers/userHelper';
+import { getDisplayName } from '/helpers/userHelper';
 
 const heartImg = '/images/heart.svg';
 

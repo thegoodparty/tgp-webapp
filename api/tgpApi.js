@@ -313,32 +313,47 @@ const api = {
         withAuth: true,
       },
     },
-    issueTopics: {
+    topIssues: {
       create: {
-        url: `${base}issue-topic`,
+        url: `${base}top-issue`,
         method: 'POST',
         withAuth: true,
       },
       update: {
-        url: `${base}issue-topic`,
+        url: `${base}top-issue`,
         method: 'PUT',
         withAuth: true,
       },
       delete: {
-        url: `${base}issue-topic`,
+        url: `${base}top-issue`,
         method: 'DELETE',
         withAuth: true,
       },
       list: {
-        url: `${base}issue-topics`,
+        url: `${base}top-issues`, // non admin
         method: 'GET',
-        withAuth: true,
       },
     },
-    logAsCandidate: {
-      url: `${base}admin/log-as-candidate`,
-      method: 'PUT',
-      withAuth: true,
+    position: {
+      create: {
+        url: `${base}position`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}position`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}position`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}positions`, // non admin
+        method: 'GET',
+      },
     },
   },
   newCandidate: {
@@ -418,6 +433,12 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    endorseButton: {
+      click: {
+        url: `${base}button/click`,
+        method: 'GET',
+      },
+    },
   },
   trackVisit: {
     url: `${base}visit`,
@@ -474,17 +495,145 @@ const api = {
       method: 'GET',
     },
   },
-  candidateUser: {
+  campaign: {
     find: {
-      url: `${base}candidate-user`,
+      url: `${base}campaign`,
       method: 'GET',
+      withAuth: true,
+    },
+    update: {
+      url: `${base}campaign`,
+      method: 'PUT',
       withAuth: true,
     },
     stats: {
-      url: `${base}candidate-user/stats`,
+      url: `${base}campaign/stats`,
       method: 'GET',
       withAuth: true,
     },
+    preferences: {
+      update: {
+        url: `${base}campaign/preferences`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
+    updates: {
+      create: {
+        url: `${base}campaign/update`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/update`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}campaign/update`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+    },
+    endorsement: {
+      create: {
+        url: `${base}campaign/endorsement`,
+        method: 'POST',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}campaign/endorsements`,
+        method: 'GET',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}campaign/endorsement`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+    },
+    image: {
+      create: {
+        url: `${base}campaign/image`,
+        method: 'POST',
+        withAuth: true,
+      },
+    },
+    staff: {
+      userStaff: {
+        url: `${base}user/staff`,
+        method: 'GET',
+        withAuth: true,
+      },
+      create: {
+        url: `${base}campaign/staff`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/staff`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}campaign/staff`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      deleteInvitation: {
+        url: `${base}campaign/staff-invitation`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      role: {
+        url: `${base}campaign/staff-role`,
+        method: 'GET',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}campaign/staff`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
+
+    candidatePosition: {
+      create: {
+        url: `${base}candidate-position`,
+        method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}candidate-position`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}candidate-position`,
+        method: 'DELETE',
+        withAuth: true,
+      },
+      list: {
+        url: `${base}candidate-positions`,
+        method: 'GET',
+        withAuth: true,
+      },
+    },
+
+    notification: {
+      find: {
+        url: `${base}campaign/notification`,
+        method: 'GET',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/notification`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
+  },
+  candidateUser: {
     issue: {
       find: {
         url: `${base}candidate-issue`,
@@ -517,51 +666,7 @@ const api = {
         withAuth: true,
       },
     },
-    notification: {
-      find: {
-        url: `${base}campaign-notification`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}campaign-notification`,
-        method: 'PUT',
-        withAuth: true,
-      },
-    },
-    ugc: {
-      find: {
-        url: `${base}candidate-ugc`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}candidate-ugc`,
-        method: 'PUT',
-        withAuth: true,
-      },
 
-      list: {
-        // admin
-        url: `${base}candidate-ugcs`,
-        method: 'GET',
-        withAuth: true,
-      },
-
-      accept: {
-        // admin
-        url: `${base}candidate-ugcs/accept`,
-        method: 'PUT',
-        withAuth: true,
-      },
-
-      reject: {
-        // admin
-        url: `${base}candidate-ugcs/reject`,
-        method: 'PUT',
-        withAuth: true,
-      },
-    },
     updateRequest: {
       create: {
         url: `${base}candidate-user/update-request`,
@@ -611,7 +716,6 @@ const api = {
     uploadImage: {
       url: `${base}application/upload-image`,
       method: 'POST',
-      withAuth: true,
     },
 
     adminList: {

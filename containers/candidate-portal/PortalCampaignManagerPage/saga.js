@@ -5,27 +5,36 @@ import tgpApi from '/api/tgpApi';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
+import portalHomeActions from '../CandidatePortalHomePage/actions';
 
-function* findUgc() {
+function* updateCandidate({ id, candidate }) {
   try {
-    const api = tgpApi.candidateUser.ugc.find;
-    const { candidateUgc } = yield call(requestHelper, api, null);
-    yield put(actions.findUgcActionSuccess(candidateUgc));
+    console.log('saga id', id);
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
+    const api = tgpApi.campaign.update;
+    const payload = {
+      id,
+      candidate,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(portalHomeActions.findCandidate(id));
+    yield put(snackbarActions.showSnakbarAction('Saved'));
   } catch (error) {
     console.log(error);
   }
 }
 
-function* updateUgc({ ugc }) {
+function* saveImage({ id, url }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.candidateUser.ugc.update;
+    const api = tgpApi.campaign.image.create;
     const payload = {
-      data: ugc,
+      id,
+      url,
     };
-    yield call(requestHelper, api, payload);
-    yield put(actions.findUgcAction());
-    yield put(snackbarActions.showSnakbarAction('Your request was sent'));
+    const { image } = yield call(requestHelper, api, payload);
+    yield put(actions.saveImageActionSuccess(image));
+    yield put(snackbarActions.showSnakbarAction('Saved'));
   } catch (error) {
     console.log(error);
   }
@@ -33,6 +42,6 @@ function* updateUgc({ ugc }) {
 
 // Individual exports for testing
 export default function* saga() {
-  yield takeLatest(types.FIND_UGC, findUgc);
-  yield takeLatest(types.UPDATE_UGC, updateUgc);
+  yield takeLatest(types.UPDATE_CANDIDATE, updateCandidate);
+  yield takeLatest(types.SAVE_IMAGE, saveImage);
 }

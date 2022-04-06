@@ -24,7 +24,6 @@ export function EndorsementConfirmationPage({ ssrState }) {
   useInjectSaga({ key: 'endorsementConfirmationPage', saga });
 
   const { candidate, id, candidateSupports, total } = ssrState;
-  console.log('cc', candidate, candidateSupports, total);
 
   const childProps = {
     candidate,
@@ -35,7 +34,6 @@ export function EndorsementConfirmationPage({ ssrState }) {
     <div>
       <TgpHelmet
         title="Endorsement Confirmation | GOOD PARTY"
-        description="You endorsed Tomer ggg"
       />
       <EndorsementConfirmationWrapper {...childProps} />
     </div>

@@ -18,8 +18,8 @@ import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import {
   candidateRoute,
   partyResolver,
-} from '../../../helpers/electionsHelper';
-import SupportersProgressBar from '../../elections/SupportersProgressBar';
+} from '/helpers/electionsHelper';
+import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
 import { PurpleButton } from '../../shared/buttons';
 
 const Wrapper = styled.div`

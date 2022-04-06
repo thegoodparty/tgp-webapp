@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import styled from 'styled-components';
 
-import PortalPageWrapper from '/components/candidate-portal/CandidatePortalHomeWrapper/PortalPageWrapper';
+import PortalPageWrapper from '/components/candidate-portal/shared/PortalPageWrapper';
 import AdminCandidateUpdatesWrapper from '/components/admin/AdminCandidateUpdatesWrapper';
 
 import { useInjectSaga } from '/utils/injectSaga';
@@ -31,13 +31,14 @@ export function CandidatePortalUpdatesContainer({
   candidate,
   pageLevel,
   createCallback,
+  role,
 }) {
   useInjectReducer({ key: 'candidatePortalUpdatesContainer', reducer });
   useInjectSaga({ key: 'candidatePortalUpdatesContainer', saga });
 
   const WrapperElement = ({ children }) =>
     pageLevel ? (
-      <PortalPageWrapper>
+      <PortalPageWrapper role={role}>
         <Wrapper>{children}</Wrapper>
       </PortalPageWrapper>
     ) : (
@@ -63,6 +64,7 @@ CandidatePortalUpdatesContainer.propTypes = {
   pageLevel: PropTypes.bool,
 
   createCallback: PropTypes.func,
+  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -78,9 +80,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(CandidatePortalUpdatesContainer);

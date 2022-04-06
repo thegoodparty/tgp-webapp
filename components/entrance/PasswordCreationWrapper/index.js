@@ -12,7 +12,7 @@ import PageWrapper from '../../shared/PageWrapper';
 import { H1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
-import { emailRegExp } from '../../../helpers/userHelper';
+import { emailRegExp } from '/helpers/userHelper';
 
 const Wrapper = styled.div`
   padding: 24px 0;
@@ -33,7 +33,7 @@ function PasswordCreationWrapper({ savePasswordCallback }) {
 
   const enableSubmit = () =>
     formData.password !== '' &&
-    formData.password.match(emailRegExp) && 
+    formData.password.match(emailRegExp) &&
     formData.password.length >= 8 &&
     formData.password === formData.passwordConfirmation;
 

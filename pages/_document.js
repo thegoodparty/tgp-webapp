@@ -11,7 +11,7 @@ class CustomDocument extends NextDocument {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props =>
+          enhanceApp: (App) => (props) =>
             styledComponentSheet.collectStyles(
               materialUiSheets.collect(<App {...props} />),
             ),
@@ -45,8 +45,9 @@ class CustomDocument extends NextDocument {
         <Head>
           <meta charSet="utf-8" />
           <meta name="mobile-web-app-capable" content="yes" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://connect.facebook.net" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
 
           <meta property="og:site_name" content="GOOD PARTY" />
           <meta property="og:type" content="website" />
@@ -58,8 +59,13 @@ class CustomDocument extends NextDocument {
             name="google-signin-client_id"
             content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"
           />
+          {/*<link*/}
+          {/*  href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap"*/}
+          {/*  rel="stylesheet"*/}
+          {/*/>*/}
+
           <link
-            href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@300;600;900&display=swap"
             rel="stylesheet"
           />
           <link rel="manifest" href="/manifest.json" />
@@ -204,19 +210,6 @@ class CustomDocument extends NextDocument {
         `,
             }}
           />
-{/*          <noscript*/}
-{/*            dangerouslySetInnerHTML={{*/}
-{/*              __html: `*/}
-{/*            <img*/}
-{/*              height="1"*/}
-{/*              width="1"*/}
-{/*              style="display:none"*/}
-{/*              src="https://www.facebook.com/tr?id=1530862867115121&ev=PageView&noscript=1"*/}
-{/*            />*/}
-{/*          `,*/}
-{/*            }}*/}
-{/*          />*/}
-
           <script
             type="text/javascript"
             dangerouslySetInnerHTML={{

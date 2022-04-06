@@ -66,25 +66,6 @@ const RightLinks = styled.div`
   justify-content: flex-end;
 `;
 
-const AsCandidateWrapper = styled.div`
-  @media only screen and (min-width: 768px) {
-    position: absolute;
-    top: 14px;
-    left: 8px;
-  }
-  
-`;
-
-const AsCandidate = styled.div`
-  background-color: white;
-  padding: 16px 8px;
-  color: ${({ theme }) => theme.colors.purple};
-  cursor: pointer;
-  display: inline-block;
-  margin-right: 12px;
-  border-radius: 8px;
-`;
-
 const TopLink = styled.div`
   margin: 0 12px;
   padding: 0 4px;
@@ -103,35 +84,10 @@ const InnerButton = styled(Body13)`
   color: #fff;
 `;
 
-const DesktopHeader = ({
-  user,
-  trackShareCallback = () => {},
-  purpleNav,
-  asCandidate,
-  logoutAsCandidateCallback,
-}) => {
+const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const router = useRouter();
-
-  const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
-  };
-
-  const handleClose = event => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -158,20 +114,7 @@ const DesktopHeader = ({
   };
   return (
     <Wrapper className={purpleNav && 'purple'}>
-
       <ContentWrapper>
-        {asCandidate && (
-          <AsCandidateWrapper>
-            <AsCandidate onClick={logoutAsCandidateCallback}>
-              Logout As candidate
-            </AsCandidate>
-            <Link href="candidate-portal" passHref>
-              <a>
-                <AsCandidate>Portal</AsCandidate>
-              </a>
-            </Link>
-          </AsCandidateWrapper>
-        )}
         <span></span>
         <Link
           href="/"
@@ -180,7 +123,7 @@ const DesktopHeader = ({
             logEvent('Link', 'Logo', 'Top Nav');
           }}
         >
-          <a style={{position: 'absolute' }}>
+          <a style={{ position: 'absolute' }}>
             {purpleNav ? (
               <Logo
                 src="/images/new-logo-white.svg"
@@ -201,7 +144,7 @@ const DesktopHeader = ({
           </a>
         </Link>
         <RightLinks>
-          {links.map(link => (
+          {links.map((link) => (
             <TopLink key={link.href}>
               <Link
                 href={link.href}
@@ -210,7 +153,9 @@ const DesktopHeader = ({
                   logEvent('Link', link.label, 'Top Nav');
                 }}
               >
-                <a style={{color: purpleNav ? 'white' : '#5C00C7'}}>{link.label}</a>
+                <a style={{ color: purpleNav ? 'white' : '#5C00C7' }}>
+                  {link.label}
+                </a>
               </Link>
             </TopLink>
           ))}
@@ -281,8 +226,6 @@ DesktopHeader.propTypes = {
   navigateCallback: PropTypes.func,
   trackShareCallbackk: PropTypes.func,
   purpleNav: PropTypes.bool,
-  asCandidate: PropTypes.bool,
-  logoutAsCandidateCallback: PropTypes.func,
 };
 
 export default DesktopHeader;

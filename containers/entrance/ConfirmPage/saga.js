@@ -3,7 +3,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import requestHelper from '/helpers/requestHelper';
 import { push } from 'connected-next-router';
 import tgpApi from '/api/tgpApi';
-import candidateActions from '/containers/elections/CandidateNewPage/actions';
+import candidateActions from '/containers/CandidatePage/actions';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import {
   deleteCookie,
@@ -54,7 +54,7 @@ function* confirmCode({ code, value, valueType }) {
       } else if (!user.zip) {
         yield put(push('/register/set-zipcode'));
       } else {
-        yield put(push('/profile'));
+        yield put(push('/'));
       }
     }
     yield put(snackbarActions.showSnakbarAction('Your account is verified.'));

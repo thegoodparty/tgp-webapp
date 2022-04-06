@@ -19,13 +19,20 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
-export function ImageUploadContainer({ fileSelectCallback, uploadCallback }) {
+export function ImageUploadContainer({
+  fileSelectCallback,
+  uploadCallback,
+  maxFileSize = 400000,
+  customElement,
+}) {
   useInjectReducer({ key: 'imageUploadContainer', reducer });
   useInjectSaga({ key: 'imageUploadContainer', saga });
 
   const childProps = {
     fileSelectCallback,
     uploadCallback,
+    maxFileSize,
+    customElement,
   };
 
   return <ImageUploadWrapper {...childProps} />;
@@ -35,6 +42,8 @@ ImageUploadContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   uploadCallback: PropTypes.func,
   fileSelectCallback: PropTypes.func,
+  maxFileSize: PropTypes.number,
+  customElement: PropTypes.node,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -50,9 +59,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(ImageUploadContainer);

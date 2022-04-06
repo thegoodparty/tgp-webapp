@@ -16,14 +16,13 @@ import { useRouter } from 'next/router';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
-import LightPurpleButton from '../../shared/buttons/LightPurpleButton';
 
 const Wrapper = styled.div`
-  padding: 16px 0;
+  padding: 16px 0 140px;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    padding: 36px 0;
+    padding: 36px 0 140px;
     display: flex;
   }
 `;
@@ -66,8 +65,8 @@ const LeftNav = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     display: block;
-    padding: 32px 16px 32px 0;
-    width: 180px;
+    padding: 32px 16px 32px;
+    width: 225px;
 
     background-color: ${({ theme }) => theme.colors.purpleBg};
   }
@@ -78,7 +77,7 @@ const Review = styled.div`
   font-weight: 600;
   margin-bottom: 24px;
   padding: 8px;
-`
+`;
 
 const LeftLink = styled(Body13)`
   color: #caa9e9;
@@ -100,7 +99,7 @@ const MainWrapper = styled.div`
       theme.breakpointsPixels.md}) {
     padding: 6px 0 0 32px;
     &.with-sticky {
-      margin-left: 180px;
+      margin-left: 225px;
     }
   }
 `;
@@ -141,17 +140,17 @@ const ButtonWrapper = styled.div`
 `;
 
 const leftLinks = [
-  { step: 1, label: 'Good Party Pledge' },
-  { step: 2, label: 'Candidate Details' },
-  { step: 3, label: 'Campaign Details' },
-  { step: 4, label: 'Contacts' },
-  { step: 5, label: 'Issues' },
-  { step: 6, label: 'Endorsements' },
-  { step: 7, label: 'Checklist' },
+  { step: 1, label: '1. Good Party Pledge' },
+  { step: 2, label: '2. Candidate Details' },
+  { step: 3, label: '3. Campaign Details' },
+  { step: 4, label: '4. Social Media' },
+  { step: 5, label: '5. Top Issues' },
+  { step: 6, label: '6. Key Endorsements' },
+  { step: 7, label: '7. Application Checklist' },
 ];
 
 const topLinks = {};
-leftLinks.forEach(link => {
+leftLinks.forEach((link) => {
   topLinks[link.step] = link;
 });
 
@@ -171,14 +170,14 @@ function ApplicationWrapper({
   const router = useRouter();
 
   return (
-    <PageWrapper purple>
+    <PageWrapper purple hideFooter>
       <Wrapper className="application-wrapper">
         <TopMobileNav>
           <div>{topLinks[step].label}</div>
           <TopLinks>
-            {leftLinks.map(link => (
+            {leftLinks.map((link) => (
               <Link
-                href={`/campaign-application/${link.step}`}
+                href={`/campaign-application/${id}/${link.step}`}
                 passHref
                 key={link.step}
               >
@@ -192,12 +191,12 @@ function ApplicationWrapper({
           </TopLinks>
         </TopMobileNav>
         <Sticky
-          onFixedToggle={isOn => setIsSticky(isOn)}
+          onFixedToggle={(isOn) => setIsSticky(isOn)}
           boundaryElement=".application-wrapper"
         >
           <LeftNav>
             {reviewMode && <Review>REVIEW MODE</Review>}
-            {leftLinks.map(link => (
+            {leftLinks.map((link) => (
               <Link
                 href={`/campaign-application/${id}/${link.step}`}
                 passHref
@@ -277,13 +276,28 @@ function ApplicationWrapper({
                           </a>
                         </Link>
                       ) : (
-                        <PurpleButton
-                          fullWidth
-                          disabled={!canContinue}
-                          onClick={() => submitApplicationCallback(id)}
-                        >
-                          Submit for review
-                        </PurpleButton>
+                        <>
+                          {id === 'guest' ? (
+                            <Link
+                              href={canContinue ? '/register' : '#'}
+                              passHref
+                            >
+                              <a>
+                                <PurpleButton fullWidth disabled={!canContinue}>
+                                  Register &amp; Submit for Review
+                                </PurpleButton>
+                              </a>
+                            </Link>
+                          ) : (
+                            <PurpleButton
+                              fullWidth
+                              disabled={!canContinue}
+                              onClick={() => submitApplicationCallback(id)}
+                            >
+                              Submit for review
+                            </PurpleButton>
+                          )}
+                        </>
                       )}
                     </>
                   ) : (

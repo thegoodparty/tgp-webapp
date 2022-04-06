@@ -6,18 +6,13 @@ import {
   deleteCookie,
   setCookie,
   setUserCookie,
-  getSignupRedirectCookie,
-  deleteSignupRedirectCookie,
 } from '/helpers/cookieHelper';
 
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 
 import tgpApi from '/api/tgpApi';
-import { logEvent } from '/services/AnalyticsService';
-import globalActions from '/containers/App/actions';
 
 import types from './constants';
-import actions from './actions';
 
 function* login({ value, password, valueType }) {
   try {
@@ -35,7 +30,7 @@ function* login({ value, password, valueType }) {
       if (user.candidate) {
         yield put(push('/candidate-portal'));
       } else {
-        yield put(push('/profile'));
+        yield put(push('/'));
       }
     } else {
       yield put(push('/register/set-zipcode'));

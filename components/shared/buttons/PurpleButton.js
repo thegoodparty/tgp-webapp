@@ -8,6 +8,7 @@ const StyledButton = styled(Button)`
   && {
     border-radius: 8px;
     padding: 12px 3px;
+    font-weight: 600;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
     border: 2px solid ${({ theme }) => theme.colors.purple};

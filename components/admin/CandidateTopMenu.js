@@ -48,8 +48,6 @@ function CandidateTopMenu({ candidate }) {
         setActiveLink('stage');
       } else if (pathname.includes('compare-candidates')) {
         setActiveLink('compare');
-      } else if (pathname.includes('associate')) {
-        setActiveLink('associate');
       } else if (pathname.includes('updates')) {
         setActiveLink('updates');
       }
@@ -91,24 +89,12 @@ function CandidateTopMenu({ candidate }) {
             </Link>
             <Link href={`/admin/stage-settings/${candidate?.id}`} passHref>
               <a>
-                <Item className={activeLink === 'stage' && 'active'}>
-                  Stage Settings
-                </Item>
-              </a>
-            </Link>
-            <Link
-              href={`/admin/associate-candidate-user/${candidate?.id}`}
-              passHref
-            >
-              <a>
                 <Item
                   className={
-                    activeLink === 'associate'
-                      ? 'last-item active'
-                      : 'last-item'
+                    activeLink === 'stage' ? 'last-item active' : 'last-item'
                   }
                 >
-                  Associate Candidate-User
+                  Stage Settings
                 </Item>
               </a>
             </Link>

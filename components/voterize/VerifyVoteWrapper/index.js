@@ -31,8 +31,8 @@ import {
   PhoneNumberFormat,
 } from '/components/shared/customInputFormat';
 import { logEvent } from '/services/AnalyticsService';
-import { formatToPhone } from '../../../helpers/phoneHelper';
-import { deleteCookie } from '../../../helpers/cookieHelper';
+import { formatToPhone } from '/helpers/phoneHelper';
+import { deleteCookie } from '/helpers/cookieHelper';
 
 const LogoCaps = '/images/logo-caps.svg';
 const LeftWrapper = styled.div`

@@ -4,11 +4,10 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body, H1 } from '../../shared/typogrophy';
 import LightPurpleButton from '../../shared/buttons/LightPurpleButton';
@@ -38,7 +37,6 @@ const InnerButton = styled.span`
 `;
 
 function ApplicationStep8() {
-  const router = useRouter();
   return (
     <PageWrapper purple>
       <Wrapper>
@@ -49,24 +47,10 @@ function ApplicationStep8() {
           <Body style={{ marginBottom: '40px', color: '#1a1a1a' }}>
             We will review your submission and get back to you soon.
           </Body>
-          <Link href="/profile" passHref>
+          <Link href="/" passHref>
             <A>
               <LightPurpleButton fullWidth>
-                <InnerButton>Complete your Good Party profile</InnerButton>
-              </LightPurpleButton>
-            </A>
-          </Link>
-          <Link href={`${router.asPath}?share=true`}>
-            <A style={{ marginBottom: '8px', display: 'block' }}>
-              <LightPurpleButton fullWidth>
-                <InnerButton> Spread the word about Good Party</InnerButton>
-              </LightPurpleButton>
-            </A>
-          </Link>
-          <Link href="/candidates" passHref>
-            <A>
-              <LightPurpleButton fullWidth>
-                <InnerButton> Support other Good Party candidates</InnerButton>
+                <InnerButton>Back to Homepage</InnerButton>
               </LightPurpleButton>
             </A>
           </Link>

@@ -15,12 +15,7 @@ const TgpDialog = styled(Dialog)`
     z-index: 2501 !important;
 
     .MuiDialog-paper {
-      //position: relative;
-      //width: 100vw;
       background-color: rgba(255, 255, 255, 0.7);
-      //padding: 24px;
-      //border-radius: 8px;
-      //box-shadow: none;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -37,7 +32,7 @@ const TopWrapper = styled.div`
 const TopClose = styled(CloseIcon)`
   font-size: 24px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.purple};
+  color: #000;
   &.purple {
     color: #fff;
   }

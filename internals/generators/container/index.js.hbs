@@ -5,14 +5,14 @@
  */
 
 {{#if memo}}
-import React, { memo } from 'react';
+import React, { memo, createContext } from 'react';
 {{else}}
-import React from 'react';
+import React, { createContext } from 'react';
 {{/if}}
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 {{#if wantHeaders}}
-import { Helmet } from 'react-helmet';
+import TgpHelmet from '/components/shared/TgpHelmet';
 {{/if}}
 {{#if wantMessages}}
 import { FormattedMessage } from 'react-intl';
@@ -37,6 +37,8 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
+export const {{ properCase name }}Context = createContext();
+
 export function {{ properCase name }}() {
   {{#if wantActionsAndReducer}}
   useInjectReducer({ key: '{{ camelCase name }}', reducer });
@@ -45,18 +47,20 @@ export function {{ properCase name }}() {
   useInjectSaga({ key: '{{ camelCase name }}', saga });
   {{/if}}
 
+  const childProps = {};
+
   return (
-    <div>
+    <{{ properCase name }}Context.Provider value={childProps}>
     {{#if wantHeaders}}
-      <Helmet>
-        <title>{{properCase name}}</title>
-        <meta name="description" content="Description of {{properCase name}}" />
-      </Helmet>
+      <TgpHelmet
+        title="{{properCase name}}"
+        description="Description of {{properCase name}}"
+      />
     {{/if}}
     {{#if wantMessages}}
       <FormattedMessage {...messages.header} />
     {{/if}}
-    </div>
+    </{{ properCase name }}Context.Provider>
   );
 }
 

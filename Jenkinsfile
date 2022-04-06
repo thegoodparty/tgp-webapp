@@ -8,7 +8,7 @@ pipeline {
     QA_BRANCH            = "qa"
     PROD_BRANCH           = "master"
     EB_DEV                = "gp-app-dev"
-    EB_QA                = "gp-app-dev"
+    EB_QA                = "gp-app-qa"
     EB_PROD               = "gp-app-prod"
     EB_TEST               = "tgp-site-test"
 

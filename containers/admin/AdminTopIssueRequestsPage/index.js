@@ -15,10 +15,10 @@ import { push } from 'connected-next-router';
 import AdminTopIssueRequestsWrapper from '/components/admin/AdminTopIssueRequestsWrapper';
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
-import adminIssueTopicsPageReducer from '../AdminIssueTopicsPage/reducer';
-import makeSelectAdminIssueTopicsPage from '../AdminIssueTopicsPage/selectors';
-import adminIssueTopicsSaga from '../AdminIssueTopicsPage/saga';
-import adminIssueTopicsActions from '../AdminIssueTopicsPage/actions';
+import adminIssueTopicsPageReducer from '../AdminTopIssuesPage/reducer';
+import makeSelectAdminTopIssuesPage from '../AdminTopIssuesPage/selectors';
+import adminIssueTopicsSaga from '../AdminTopIssuesPage/saga';
+import adminIssueTopicsActions from '../AdminTopIssuesPage/actions';
 import makeSelectAdminTopIssueRequestsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -84,7 +84,7 @@ AdminTopIssueRequestsPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   adminTopIssueRequestsPage: makeSelectAdminTopIssueRequestsPage(),
-  adminIssueTopicsPage: makeSelectAdminIssueTopicsPage(),
+  adminIssueTopicsPage: makeSelectAdminTopIssuesPage(),
   userState: makeSelectUser(),
 });
 

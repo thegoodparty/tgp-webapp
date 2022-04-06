@@ -4,6 +4,11 @@ import { push } from 'connected-next-router';
 import tgpApi from '/api/tgpApi';
 import requestHelper from '/helpers/requestHelper';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
+import {
+  getApplicationStorage,
+  setApplicationStorage,
+} from '/helpers/localstorageHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
 
 import actions from './actions';
 import types from './constants';
@@ -11,12 +16,26 @@ import types from './constants';
 function* loadApplication({ id }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Loading your application'));
-    const api = tgpApi.candidateApplication.find;
-    const payload = {
-      id,
-    };
-    const { application, reviewMode } = yield call(requestHelper, api, payload);
-    yield put(actions.loadApplicationActionSuccess(application, reviewMode));
+    if (id === 'guest') {
+      const user = getUserCookie(true);
+      if (user) {
+        yield put(push(`/profile/campaign-applications`));
+      } else {
+        const app = getApplicationStorage() || { id: 'guest' };
+        yield put(actions.loadApplicationActionSuccess(app, false));
+      }
+    } else {
+      const api = tgpApi.candidateApplication.find;
+      const payload = {
+        id,
+      };
+      const { application, reviewMode } = yield call(
+        requestHelper,
+        api,
+        payload,
+      );
+      yield put(actions.loadApplicationActionSuccess(application, reviewMode));
+    }
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
@@ -32,13 +51,22 @@ function* updateApplication({ id, data }) {
     if (!id || !data) {
       return;
     }
-    const api = tgpApi.candidateApplication.update;
-    const payload = {
-      id,
-      data,
-    };
-    const { application } = yield call(requestHelper, api, payload);
-    yield put(actions.loadApplicationActionSuccess(application));
+    if (id === 'guest') {
+      console.log('guest');
+
+      const app = getApplicationStorage() || { id: 'guest' };
+      const updated = { ...app, ...data };
+      setApplicationStorage(updated);
+      yield put(actions.loadApplicationActionSuccess(updated));
+    } else {
+      const api = tgpApi.candidateApplication.update;
+      const payload = {
+        id,
+        data,
+      };
+      const { application } = yield call(requestHelper, api, payload);
+      yield put(actions.loadApplicationActionSuccess(application));
+    }
   } catch (error) {
     yield put(
       snackbarActions.showSnakbarAction(
@@ -108,10 +136,25 @@ function* rejectApplication({ id, feedback }) {
   }
 }
 
+function* loadTopIssues() {
+  try {
+    const api = tgpApi.admin.topIssues.list;
+
+    const { topIssues } = yield call(requestHelper, api, null);
+    yield put(actions.loadATopIssuesActionSuccess(topIssues));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error loading topics', 'error'),
+    );
+  }
+}
+
 export default function* profilePageSaga() {
   yield takeLatest(types.LOAD_APPLICATION, loadApplication);
   yield takeLatest(types.UPDATE_APPLICATION, updateApplication);
   yield takeLatest(types.SUBMIT_APPLICATION, submitApplication);
   yield takeLatest(types.APPROVE_APPLICATION, approveApplication);
   yield takeLatest(types.REJECT_APPLICATION, rejectApplication);
+  yield takeLatest(types.LOAD_TOP_ISSUES, loadTopIssues);
 }

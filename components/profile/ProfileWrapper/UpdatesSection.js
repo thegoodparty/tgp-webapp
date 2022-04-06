@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Body19 } from '/components/shared/typogrophy';
-import Updates from '../../elections/CandidateNewWrapper/Updates';
+import Updates from '/components/CandidateWrapper/right/Updates';
 
 const Wrapper = styled.section`
   margin-top: 36px;
@@ -22,7 +22,7 @@ const Wrapper = styled.section`
 function UpdatesSection({ updates }) {
   return (
     <Wrapper>
-      <Updates candidate={{ updatesList: updates }} withDeepLinks />
+      <Updates updates={updates || []} />
     </Wrapper>
   );
 }

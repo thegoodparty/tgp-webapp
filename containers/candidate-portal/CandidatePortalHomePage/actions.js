@@ -6,9 +6,10 @@
 
 import types from './constants';
 
-function findCandidate() {
+function findCandidate(id) {
   return {
     type: types.FIND_CANDIDATE,
+    id,
   };
 }
 
@@ -19,10 +20,11 @@ function findCandidateSuccess(candidate) {
   };
 }
 
-function loadStatsAction(range) {
+function loadStatsAction(range, id) {
   return {
     type: types.LOAD_STATS,
     range,
+    id,
   };
 }
 
@@ -33,10 +35,47 @@ function loadStatsActionSuccess(stats) {
   };
 }
 
+function loadRoleAction(id) {
+  return {
+    type: types.LOAD_ROLE,
+    id,
+  };
+}
+
+function loadRoleActionSuccess(role) {
+  return {
+    type: types.LOAD_ROLE_SUCCESS,
+    role,
+  };
+}
+
+function updatePreferencesAction(id, preferences) {
+  return {
+    type: types.UPDATE_PREFERENCES,
+    id,
+    preferences,
+  };
+}
+
+function createUpdateAction(candidate, update) {
+  return {
+    type: types.CREATE_UPDATE,
+    candidate,
+    update,
+  };
+}
+
 export default {
   findCandidate,
   findCandidateSuccess,
 
   loadStatsAction,
   loadStatsActionSuccess,
+
+  loadRoleAction,
+  loadRoleActionSuccess,
+
+  updatePreferencesAction,
+
+  createUpdateAction,
 };

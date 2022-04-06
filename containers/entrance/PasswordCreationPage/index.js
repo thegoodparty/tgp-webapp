@@ -28,7 +28,7 @@ export function PasswordCreationPage({ dispatch, savePasswordCallback }) {
 
   const user = getUserCookie(true);
   if (user && user.hasPassword) {
-    dispatch(push('/profile'));
+    dispatch(push('/'));
   }
 
   const childProps = {

@@ -24,7 +24,6 @@ export async function getServerSideProps() {
     const res2 = await fetch(`${api2.url}?key=partyPage`);
 
     pageContent = (await res2.json()).content;
-    console.log('pageContent', pageContent, `${api2.url}?key=partyPage`);
   } catch (e) {
     pageContent = false;
   }

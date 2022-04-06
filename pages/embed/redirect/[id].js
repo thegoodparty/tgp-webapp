@@ -1,5 +1,5 @@
 import tgpApi from '/api/tgpApi';
-import RedirectPage from '/containers/elections/CandidateNewPage/RedirectPage';
+import RedirectPage from '/containers/elections/RedirectPage';
 
 export default function Embed({ ssrState }) {
   return <RedirectPage ssrState={ssrState} />;
@@ -15,6 +15,10 @@ export async function getServerSideProps(context) {
     let candidate;
     try {
       candidate = await res.json();
+      // track click
+      const api2 = tgpApi.newCandidate.endorseButton.click;
+      const url2 = `${api2.url}?id=${id}`;
+      await fetch(url2);
     } catch (e) {
       candidate = {
         candidate: {},

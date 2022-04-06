@@ -4,16 +4,17 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import { H2, Body11 } from '../../shared/typogrophy';
-import PortalPageWrapper from '../CandidatePortalHomeWrapper/PortalPageWrapper';
-import AdminPageWrapper from '../../admin/AdminWrapper/AdminPageWrapper';
 
-import { BlueButton, PurpleButton } from '../../shared/buttons';
+import { TopIssuesPageContext } from '/containers/candidate-portal/TopIssuesPage';
+import { FontH2, Font16, FontH3 } from '../../shared/typogrophy';
+import PortalPageWrapper from '../shared/PortalPageWrapper';
+
 import TopIssue from './TopIssue';
+import EditableTopIssue from './EditableTopIssue';
+import PortalPanel from '../shared/PortalPanel';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -21,111 +22,22 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-function TopIssuesWrapper({
-  candidateIssue,
-  candidate,
-  updateIssueCallback,
-  topics,
-  candidateId,
-}) {
-  const [topIssues, setTopIssues] = useState([]);
-  const [topicList, setTopicList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    setTopicList(
-      topics.map(topic => ({
-        id: topic.id,
-        topic: topic.topic,
-        positions: topic.positions,
-      })),
-    );
-  }, [topics]);
-  useEffect(() => {
-    if (candidateIssue) {
-      setIsLoading(false);
-      setTopIssues(candidateIssue);
-    }
-  }, [candidateIssue]);
-  const onUpdateIssue = (topIssues, candidateId) => {
-    updateIssueCallback(topIssues, candidateId)
-    setIsLoading(true);
-  }
-  const updateIssue = (issueIndex, issue) => {
-    const newIssues = [...topIssues];
-    newIssues[issueIndex] = issue;
-    setTopIssues(newIssues);
-  };
-  const deleteIssue = deleteIndex => {
-    setTopIssues(topIssues.filter((issue, index) => index !== deleteIndex));
-  };
-  const addNewIssue = () => {
-    setTopIssues([...topIssues, {}]);
-  };
-  const isFormValidate = () => {
-    let isValid = true;
-    topIssues.forEach(issue => {
-      if (!issue.topicId || !issue.positionId || !issue.description) {
-        isValid = false;
-      }
-    });
-    return isValid;
-  };
-  const PageWrapper = candidateId ? AdminPageWrapper : PortalPageWrapper;
+function TopIssuesWrapper() {
+  const { candidatePositions, candidate, role } =
+    useContext(TopIssuesPageContext);
   return (
-    <PageWrapper>
-      <Wrapper>
-        <H2 className="text-left">
-          Issues
-          {candidateId ? ` - ${candidate.firstName} ${candidate.lastName}` : ''}
-        </H2>
-        <Body11 className="text-left">
-          Select up to 10 top issues for your campaign in order of importance.
-        </Body11>
+    <PortalPageWrapper role={role} title="Edit Campaign Issues">
+      <PortalPanel color="#14C285">
+        <FontH3 style={{ margin: '0 0 45px 0' }}>Issues</FontH3>
         <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12}>
-            <hr />
-          </Grid>
-          {topIssues.map((issue, index) => (
-            <TopIssue
-              key={index}
-              index={index}
-              topicList={topicList.filter(
-                item =>
-                  !topIssues
-                    .map(issueItem => issueItem.topicId)
-                    .includes(item.id) || item.id === issue.topicId,
-              )}
-              issue={issue}
-              updateIssue={updateIssue}
-              deleteIssue={() => deleteIssue(index)}
-            />
+          {candidatePositions.map((candidatePosition, index) => (
+            <TopIssue index={index} candidatePosition={candidatePosition} />
           ))}
-          <Grid item xs={3}>
-            <BlueButton onClick={addNewIssue} fullWidth>
-              Add New Issue
-            </BlueButton>
-          </Grid>
-          <Grid item xs={12}>
-            <PurpleButton
-              disabled={!isFormValidate() || isLoading}
-              onClick={() => onUpdateIssue(topIssues, candidateId)}
-              fullWidth
-            >
-              SAVE
-            </PurpleButton>
-          </Grid>
+          <EditableTopIssue />
         </Grid>
-      </Wrapper>
-    </PageWrapper>
+      </PortalPanel>
+    </PortalPageWrapper>
   );
 }
-
-TopIssuesWrapper.propTypes = {
-  topics: PropTypes.array,
-  candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  candidateId: PropTypes.number,
-  candidateIssue: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  updateIssueCallback: PropTypes.func,
-};
 
 export default TopIssuesWrapper;

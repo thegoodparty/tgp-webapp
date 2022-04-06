@@ -7,9 +7,9 @@
 import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { useRouter } from 'next/router';
 
 import TgpHelmet from '/components/shared/TgpHelmet';
 import RegisterWrapper from '/components/entrance/RegisterWrapper';
@@ -21,7 +21,6 @@ import makeSelectRegisterPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
-import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 export function RegisterPage({
   dispatch,
@@ -37,11 +36,18 @@ export function RegisterPage({
     guestAccessOnly(dispatch);
   }, []);
 
+  const router = useRouter();
+  let queryEmail;
+  if (router?.query?.email) {
+    queryEmail = router.query.email;
+  }
+
   const childProps = {
     registerCallback,
     socialRegisterCallback,
     socialRegisterFailureCallback,
     twitterButtonCallback,
+    queryEmail,
   };
 
   return (
@@ -73,7 +79,7 @@ function mapDispatchToProps(dispatch) {
     registerCallback: (name, email, phone, zip) => {
       dispatch(actions.registerAction(name, email, phone, zip));
     },
-    socialRegisterCallback: socialUser => {
+    socialRegisterCallback: (socialUser) => {
       dispatch(actions.socialRegisterAction(socialUser));
     },
     socialRegisterFailureCallback: () => {
@@ -86,12 +92,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(RegisterPage);
+export default compose(withConnect, memo)(RegisterPage);

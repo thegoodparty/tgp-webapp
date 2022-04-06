@@ -10,11 +10,12 @@ import portalHomeActions from '../../CandidatePortalHomePage/actions';
 function* createUpdate({ update, candidateId }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Creating Update Request...'));
-    const api = tgpApi.candidateUser.updateRequest.create;
+    console.log('tgpApi', tgpApi);
+    const api = tgpApi.campaign.updateRequest.create;
     const payload = { update, candidateId };
     yield call(requestHelper, api, payload);
     yield put(snackbarActions.showSnakbarAction('Update Request Created.'));
-    yield put(portalHomeActions.findCandidate());
+    yield put(portalHomeActions.findCandidate(candidateId));
   } catch (error) {
     console.log(error);
     yield put(
