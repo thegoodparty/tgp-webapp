@@ -123,7 +123,6 @@ const ButtonInner = styled.div`
   font-weight: 600;
 `;
 
-
 function MobileHeader({ user, purpleNav }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -205,7 +204,7 @@ function MobileHeader({ user, purpleNav }) {
             </Link>
           </PushMenuLink>
 
-          <PushMenuLink style={{ marginTop: '40px' }}>
+          <PushMenuLink>
             <Link
               href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
               passHref
@@ -220,13 +219,13 @@ function MobileHeader({ user, purpleNav }) {
             </Link>
           </PushMenuLink>
           <PushMenuLink>
-            <Link href="/good-practices" passHref>
-              <a>Good practices</a>
+            <Link href="/faqs" passHref>
+              <a>FAQs</a>
             </Link>
           </PushMenuLink>
           <PushMenuLink>
-            <Link href="/faqs" passHref>
-              <a>FAQs</a>
+            <Link href="/run" passHref>
+              <a>How To Run</a>
             </Link>
           </PushMenuLink>
 

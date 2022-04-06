@@ -87,7 +87,7 @@ const fields2 = [
   { label: 'Office being sought ', key: 'race', required: true },
   {
     label: 'Date of election ',
-    key: 'electionDate',
+    key: 'raceDate',
     isDate: true,
     columns: 6,
     required: true,
