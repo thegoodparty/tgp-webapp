@@ -178,6 +178,11 @@ function EndorseButtonModal({ customElement }) {
         textColor: preferences.textColor,
         label: preferences.label,
       });
+    } else {
+      setState({
+        ...state,
+        isOpen: false,
+      });
     }
   };
 
