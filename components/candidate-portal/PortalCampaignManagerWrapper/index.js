@@ -23,6 +23,7 @@ import PortalPageWrapper from '../shared/PortalPageWrapper';
 import PortalPanel from '../shared/PortalPanel';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { isValidUrl } from '../../../helpers/linkHelper';
+import PhoneInput from '../../shared/PhoneInput';
 
 const Inner = styled.div`
   width: 100%;
@@ -298,7 +299,15 @@ function PortalCampaignManagerWrapper() {
                             required={field.required}
                           />
                         )}
-                      {field.type === 'phone'}
+                      {field.type === 'phone' && (
+                        <PhoneInput
+                          value={state[field.key] || ''}
+                          onChangeCallback={(phone) =>
+                            onChangeField('contactPhone', phone)
+                          }
+                          hideIcon
+                        />
+                      )}
                     </Grid>
                   )}
                 </React.Fragment>

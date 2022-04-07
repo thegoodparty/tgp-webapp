@@ -44,7 +44,12 @@ export const isValidPhone = (phone) => {
   );
 };
 
-function PhoneInput({ value, onChangeCallback, onBlurCallback, hideIcon }) {
+function PhoneInput({
+  value,
+  onChangeCallback,
+  onBlurCallback = () => {},
+  hideIcon,
+}) {
   const [displayValue, setDisplayValue] = useState('');
   const [validPhone, setValidPhone] = useState(false);
 
