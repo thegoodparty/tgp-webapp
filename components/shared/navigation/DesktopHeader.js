@@ -28,10 +28,6 @@ const Wrapper = styled.div`
       theme.breakpointsPixels.sm}) {
     padding: 0 18px;
   }
-  &.purple {
-    background-color: ${({ theme }) => theme.colors.purple};
-    box-shadow: none;
-  }
 `;
 
 const ContentWrapper = styled.div`
@@ -50,11 +46,6 @@ const Share = styled.div`
   color: ${({ theme }) => theme.colors.purple};
 `;
 
-const Logo = styled.img`
-  height: 20px;
-  width: auto;
-`;
-
 const AvatarWrapper = styled.div`
   cursor: pointer;
   margin-left: 16px;
@@ -69,6 +60,9 @@ const RightLinks = styled.div`
 const TopLink = styled.div`
   margin: 0 12px;
   padding: 0 4px;
+  a {
+    color: #000;
+  }
 `;
 
 const links = [
@@ -84,7 +78,7 @@ const InnerButton = styled(Body13)`
   color: #fff;
 `;
 
-const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
+const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const router = useRouter();
@@ -113,9 +107,8 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
     logEvent('Share', 'top_nav_share', 'Top Nav');
   };
   return (
-    <Wrapper className={purpleNav && 'purple'}>
+    <Wrapper>
       <ContentWrapper>
-        <span></span>
         <Link
           href="/"
           passHref
@@ -123,24 +116,14 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
             logEvent('Link', 'Logo', 'Top Nav');
           }}
         >
-          <a style={{ position: 'absolute' }}>
-            {purpleNav ? (
-              <Logo
-                src="/images/new-logo-white.svg"
-                data-cy="logo"
-                width={173}
-                height={20}
-                alt="GOOD PARTY"
-              />
-            ) : (
-              <Logo
-                src="/images/new-logo.svg"
-                data-cy="logo"
-                width={173}
-                height={20}
-                alt="GOOD PARTY"
-              />
-            )}
+          <a>
+            <Image
+              src="/images/black-logo.svg"
+              data-cy="logo"
+              width={174}
+              height={20}
+              alt="GOOD PARTY"
+            />
           </a>
         </Link>
         <RightLinks>
@@ -153,31 +136,24 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                   logEvent('Link', link.label, 'Top Nav');
                 }}
               >
-                <a style={{ color: purpleNav ? 'white' : '#5C00C7' }}>
-                  {link.label}
-                </a>
+                <a>{link.label}</a>
               </Link>
             </TopLink>
           ))}
           {user?.name ? (
-            <>
-              <Share onClick={handleShare}>
-                <MdIosShare size={20} />
-              </Share>
-              <Link
-                href="/profile"
-                passHref
-                onClick={() => {
-                  logEvent('Link', 'Profile', 'Top Nav');
-                }}
-              >
-                <a>
-                  <AvatarWrapper>
-                    <UserAvatar user={user} />
-                  </AvatarWrapper>
-                </a>
-              </Link>
-            </>
+            <Link
+              href="/profile"
+              passHref
+              onClick={() => {
+                logEvent('Link', 'Profile', 'Top Nav');
+              }}
+            >
+              <a>
+                <AvatarWrapper>
+                  <UserAvatar user={user} />
+                </AvatarWrapper>
+              </a>
+            </Link>
           ) : (
             <>
               <TopLink>
@@ -192,27 +168,18 @@ const DesktopHeader = ({ user, trackShareCallback = () => {}, purpleNav }) => {
                 </Link>
               </TopLink>
               <TopLink>
-                <Link href="/register" passHref>
+                <Link
+                  href="/register"
+                  passHref
+                  onClick={() => {
+                    logEvent('Link', 'Register', 'Top Nav');
+                  }}
+                >
                   <a>
-                    <PurpleButton>
-                      <InnerButton>
-                        <Image
-                          src="/images/white-heart.svg"
-                          style={{
-                            marginRight: '8px',
-                          }}
-                          width={24}
-                          height={18}
-                        />
-                        &nbsp; COUNT ME IN!
-                      </InnerButton>
-                    </PurpleButton>
+                    <strong>Join Us</strong>
                   </a>
                 </Link>
               </TopLink>
-              <Share onClick={handleShare}>
-                <MdIosShare size={20} />
-              </Share>
             </>
           )}
         </RightLinks>
@@ -225,7 +192,6 @@ DesktopHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   navigateCallback: PropTypes.func,
   trackShareCallbackk: PropTypes.func,
-  purpleNav: PropTypes.bool,
 };
 
 export default DesktopHeader;

@@ -14,6 +14,7 @@ import UserAvatar from '../UserAvatar';
 
 import { Body9, Body14 } from '../typogrophy';
 import { PurpleButton } from '../buttons';
+import BlackButton from '../buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 0 20px;
@@ -30,11 +31,6 @@ const Wrapper = styled.div`
   @media only screen and (max-width: ${({ theme }) =>
       theme.breakpointsPixels.sm}) {
     padding: 0 18px;
-  }
-
-  &.purple {
-    background-color: ${({ theme }) => theme.colors.purple};
-    box-shadow: none;
   }
 `;
 
@@ -54,16 +50,13 @@ const AuthButtonWrapper = styled.div`
 `;
 const MenuIconButton = styled(MenuIcon)`
   && {
-    color: ${({ theme }) => theme.colors.purple};
+    color: #000;
     font-size: 2rem;
-    &.purple {
-      color: #fff;
-    }
   }
 `;
 const CloseIconButton = styled(CloseIcon)`
   && {
-    color: ${({ theme }) => theme.colors.purple};
+    color: #000;
     font-size: 2rem;
   }
 `;
@@ -123,7 +116,7 @@ const ButtonInner = styled.div`
   font-weight: 600;
 `;
 
-function MobileHeader({ user, purpleNav }) {
+function MobileHeader({ user }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const handleShare = () => {
@@ -133,21 +126,14 @@ function MobileHeader({ user, purpleNav }) {
 
   return (
     <Hidden mdUp>
-      <Wrapper className={purpleNav && 'purple'}>
+      <Wrapper>
         <LinkContainer>
-          <MenuIconButton
-            onClick={() => setOpen(true)}
-            className={purpleNav && 'purple'}
-          />
+          <MenuIconButton onClick={() => setOpen(true)} />
         </LinkContainer>
         <Link href="/" className="text-center" passHref>
           <a>
             <Logo
-              src={
-                purpleNav
-                  ? '/images/new-logo-white.svg'
-                  : '/images/new-logo.svg'
-              }
+              src="/images/black-logo.svg"
               alt="The Good Party"
               data-cy="logo"
             />
@@ -164,11 +150,7 @@ function MobileHeader({ user, purpleNav }) {
         ) : (
           <ShareWrapper>
             <Share
-              src={
-                purpleNav
-                  ? '/images/icons/share-icon-white.svg'
-                  : '/images/icons/share-icon.svg'
-              }
+              src="/images/icons/share-icon.svg"
               alt="Share"
               onClick={handleShare}
             />
@@ -186,7 +168,7 @@ function MobileHeader({ user, purpleNav }) {
                 <Link href="/" className="text-center" passHref>
                   <a>
                     <Logo
-                      src="/images/new-logo.svg"
+                      src="/images/black-logo.svg"
                       alt="The Good Party"
                       data-cy="logo"
                     />
@@ -247,9 +229,9 @@ function MobileHeader({ user, purpleNav }) {
                   <PushMenuLink className="text-center">
                     <Link href="/register" passHref>
                       <a>
-                        <PurpleButton fullWidth>
+                        <BlackButton fullWidth>
                           <ButtonInner>SIGN UP</ButtonInner>
-                        </PurpleButton>
+                        </BlackButton>
                       </a>
                     </Link>
                   </PushMenuLink>
@@ -274,7 +256,6 @@ function MobileHeader({ user, purpleNav }) {
 
 MobileHeader.propTypes = {
   user: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  purpleNav: PropTypes.bool,
 };
 
 function mapDispatchToProps(dispatch) {
