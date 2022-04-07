@@ -248,7 +248,7 @@ class CustomDocument extends NextDocument {
             dangerouslySetInnerHTML={{
               __html: `
               var _hsq = window._hsq = window._hsq || [];
-              _hsq.push(['setContentType', 'CONTENT_TYPE']);
+              _hsq.push(['setContentType', 'standard-page']);
            `,
             }}
           />

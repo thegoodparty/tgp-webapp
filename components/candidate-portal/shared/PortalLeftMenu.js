@@ -108,7 +108,7 @@ export const leftMenuItemsBottom = [
   },
   {
     label: 'Need Help?',
-    link: '/',
+    link: 'mailto:politics@goodparty.org',
   },
 ];
 
