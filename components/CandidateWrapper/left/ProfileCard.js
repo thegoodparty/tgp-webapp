@@ -25,7 +25,7 @@ const ImgWrapper = styled.div`
 
 function ProfileCard() {
   const { candidate } = useContext(CandidateContext);
-  const { firstName, lastName, party, race } = candidate;
+  const { firstName, lastName, party, otherParty, race } = candidate;
   return (
     <section>
       <Font16>Meet the Candidate</Font16>
@@ -33,7 +33,7 @@ function ProfileCard() {
         {firstName} {lastName}
       </FontH1>
       <Font16>
-        {partyResolver(party)} Party Candidate <br />
+        {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''} Candidate <br />
         for <strong>{race}</strong>
       </Font16>
       {candidate.image ? (

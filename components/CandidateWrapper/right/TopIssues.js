@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import { Font16 } from '../../shared/typogrophy';
+import { removeWhiteSpaces } from '../../../helpers/stringHelper';
 
 const Wrapper = styled.article``;
 
@@ -34,7 +35,6 @@ const Issue = styled(Font16)`
   font-weight: 900;
   cursor: pointer;
   transition: background-color 0.4s;
-  text-transform: uppercase;
 
   &:hover {
     background-color: #e5e5e5;
@@ -69,7 +69,7 @@ function TopIssues() {
             }}
             className="issue"
           >
-            #{candPosition.position?.name}
+            #{removeWhiteSpaces(candPosition.position?.name)}
           </Issue>
           <Position className="position">
             {candPosition.topIssue?.name}

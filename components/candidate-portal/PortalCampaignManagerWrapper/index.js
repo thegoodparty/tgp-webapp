@@ -68,10 +68,11 @@ const fields = [
     label: 'Political party affiliation',
     key: 'party',
     type: 'select',
-    options: ['I', 'GP', 'L', 'W', 'F'],
+    options: ['I', 'GP', 'L', 'W', 'F', 'Other'],
     required: true,
   },
 
+  { label: 'Other Party', key: 'otherParty', isHidden: true },
   { label: 'Twitter', key: 'twitter', isUrl: true },
   { label: 'Facebook', key: 'facebook', isUrl: true },
   { label: 'YouTube', key: 'youtube', isUrl: true },
@@ -125,6 +126,7 @@ function PortalCampaignManagerWrapper() {
   const [state, setState] = useState({});
   const [errors, setErrors] = useState({});
   const [updateImage, setUpdateImage] = useState(false);
+  const [showHidden, setShowHidden] = useState(false);
   useEffect(() => {
     const newState = {};
     panels.forEach((panel) => {
@@ -140,6 +142,12 @@ function PortalCampaignManagerWrapper() {
       ...state,
       [key]: value,
     });
+    if (key === 'party' && value === 'Other') {
+      setShowHidden(true);
+    }
+    if (key === 'party' && value !== 'Other') {
+      setShowHidden(false);
+    }
 
     let urlFailed = false;
     if (isUrl) {
@@ -150,7 +158,7 @@ function PortalCampaignManagerWrapper() {
         setErrors({ ...errors, [key]: false });
       }
     }
-    console.log('ff', key, value, isRequired);
+
     if (!urlFailed) {
       // don't override the non valid error
       if (isRequired && value === '') {
@@ -200,76 +208,80 @@ function PortalCampaignManagerWrapper() {
             <Grid container spacing={2}>
               {panel.fields.map((field) => (
                 <React.Fragment key={field.key}>
-                  <Grid item xs={12} lg={field.columns ? field.columns : 12}>
-                    {field.isRichText && (
-                      <>
-                        {field.label}
-                        <br />
-                        <JoditEditorWrapper
-                          onChangeCallback={(value) =>
-                            onChangeField(field.key, value)
-                          }
-                          initialText={state[field.key]}
-                        />
-                        {errors[field.key] && <Err>{errors[field.key]}</Err>}
-                        <br />
-                      </>
-                    )}
-                    {field.type === 'select' && (
-                      <>
-                        <Select
-                          native
-                          value={state[field.key]}
+                  {(!field.isHidden || showHidden) && (
+                    <Grid item xs={12} lg={field.columns ? field.columns : 12}>
+                      {field.isRichText && (
+                        <>
+                          {field.label}
+                          <br />
+                          <JoditEditorWrapper
+                            onChangeCallback={(value) =>
+                              onChangeField(field.key, value)
+                            }
+                            initialText={state[field.key]}
+                          />
+                          {errors[field.key] && <Err>{errors[field.key]}</Err>}
+                          <br />
+                        </>
+                      )}
+                      {field.type === 'select' && (
+                        <>
+                          <Select
+                            native
+                            value={state[field.key]}
+                            fullWidth
+                            variant="outlined"
+                            required={field.required}
+                            error={!!errors[field.key]}
+                            onChange={(e) =>
+                              onChangeField(
+                                field.key,
+                                e.target.value,
+                                false,
+                                field.required,
+                              )
+                            }
+                          >
+                            <option value="">Select</option>
+                            {field.options.map((op) => (
+                              <option value={op} key={op}>
+                                {partyResolver(op)}
+                              </option>
+                            ))}
+                          </Select>
+                          {errors[field.key] && <Err>{errors[field.key]}</Err>}
+                        </>
+                      )}
+                      {field.type !== 'select' && !field.isRichText && (
+                        <TextField
                           fullWidth
+                          label={field.label}
+                          name={field.label}
                           variant="outlined"
-                          required={field.required}
-                          error={!!errors[field.key]}
+                          value={state[field.key] || ''}
+                          initialValue={state[field.key]}
+                          type={field.isDate ? 'date' : 'text'}
                           onChange={(e) =>
                             onChangeField(
                               field.key,
                               e.target.value,
-                              false,
+                              field.isUrl,
                               field.required,
                             )
                           }
-                        >
-                          <option value="">Select</option>
-                          {field.options.map((op) => (
-                            <option value={op} key={op}>
-                              {partyResolver(op)}
-                            </option>
-                          ))}
-                        </Select>
-                        {errors[field.key] && <Err>{errors[field.key]}</Err>}
-                      </>
-                    )}
-                    {field.type !== 'select' && !field.isRichText && (
-                      <TextField
-                        fullWidth
-                        label={field.label}
-                        name={field.label}
-                        variant="outlined"
-                        value={state[field.key] || ''}
-                        initialValue={state[field.key]}
-                        type={field.isDate ? 'date' : 'text'}
-                        onChange={(e) =>
-                          onChangeField(
-                            field.key,
-                            e.target.value,
-                            field.isUrl,
-                            field.required,
-                          )
-                        }
-                        inputProps={{ maxLength: field.maxLength || 200 }}
-                        InputLabelProps={{
-                          shrink: !!state[field.key] || field.isDate,
-                        }}
-                        error={!!errors[field.key]}
-                        helperText={errors[field.key] ? errors[field.key] : ''}
-                        required={field.required}
-                      />
-                    )}
-                  </Grid>
+                          inputProps={{ maxLength: field.maxLength || 200 }}
+                          InputLabelProps={{
+                            shrink: !!state[field.key] || field.isDate,
+                          }}
+                          error={!!errors[field.key]}
+                          helperText={
+                            errors[field.key] ? errors[field.key] : ''
+                          }
+                          required={field.required}
+                        />
+                      )}
+                    </Grid>
+                  )}
                 </React.Fragment>
               ))}
               {index === 1 && (
@@ -317,7 +329,6 @@ function PortalCampaignManagerWrapper() {
             <StickyWrapper>
               <Sticky>
                 <SaveWrapper>
-                  {console.log('component id', candidate)}
                   <BlackButton
                     onClick={() => updateCandidateCallback(candidate.id, state)}
                     className="sticky-el"

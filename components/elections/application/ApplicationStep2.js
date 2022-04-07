@@ -263,6 +263,7 @@ function ApplicationStep2({
               const e = { target: { value: val } };
               onBlurField(field.key, e);
             }}
+            hideIcon
           />
         )}
         {(field.type === 'text' || field.type === 'email' || field.type === 'date') && (

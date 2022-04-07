@@ -57,7 +57,7 @@ export function CandidatePage({
     userAgent,
   } = ssrState;
   const { userSupports } = candidatePage;
-  const { firstName, lastName, party, race, id } = candidate;
+  const { firstName, lastName, party, otherParty, race, id } = candidate;
 
   // the reducer will be updated if the user took an action on the page.
   const updatedSupports = candidatePage.candidateSupports
@@ -95,10 +95,12 @@ export function CandidatePage({
 
   const title = `${firstName} ${lastName} ${partyResolver(
     party,
-  ).toLowerCase()} for ${race} | Crowd-voting on GOOD PARTY`;
+    otherParty,
+  ).toLowerCase()} ${party !== 'I' ? 'Party ' : ''}candidate for ${race} | Crowd-voting on GOOD PARTY`;
 
   const description = `Join the crowd-voting campaign for ${firstName} ${lastName}, ${partyResolver(
     party,
+    otherParty,
   ).toLowerCase()} for ${race}.`;
 
   const childProps = {

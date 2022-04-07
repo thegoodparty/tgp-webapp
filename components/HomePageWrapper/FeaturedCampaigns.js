@@ -6,7 +6,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
 
 import { PurpleButton } from '../shared/buttons';
-import CandidateMiniCard from './CandidateMiniCard';
+import CandidateCard from '../shared/CandidateCard';
 
 const Wrapper = styled.div`
   position: relative;
@@ -86,7 +86,7 @@ const FeaturedCampaigns = ({ homepageCandidates }) => {
         <Grid container spacing={3}>
           {homepageCandidates.map(candidate => (
             <Grid item xs={12} md={6} lg={4} key={candidate.id}>
-              <CandidateMiniCard candidate={candidate} />
+              <CandidateCard candidate={candidate} />
             </Grid>
           ))}
         </Grid>

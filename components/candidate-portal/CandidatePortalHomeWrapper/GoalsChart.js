@@ -54,7 +54,7 @@ const renderCustomizedLabel = (props) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, index } = props;
 
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const radiusPlus = radius + 5;
+  const radiusPlus = radius;
   const x = cx + radiusPlus * Math.cos(-startAngle * RADIAN);
   const y = cy + radiusPlus * Math.sin(-startAngle * RADIAN);
 
@@ -71,7 +71,8 @@ const renderCustomizedLabel = (props) => {
 
       {index === 1 && (
         <g>
-          <foreignObject x={xBase - 10} y={yBase - 10} width={20} height={20}>
+          {/*<foreignObject x={xBase - 10} y={yBase - 10} width={20} height={20}>*/}
+          <foreignObject x={x} y={y} width={20} height={20}>
             <WhiteCircle />
           </foreignObject>
         </g>
