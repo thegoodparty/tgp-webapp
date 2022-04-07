@@ -110,7 +110,8 @@ const fields2 = [
 ];
 
 const fields3 = [
-  { label: 'Name ', key: 'contactName' },
+  { label: 'First Name ', key: 'contactFirstName' },
+  { label: 'Last Name ', key: 'contactLastName' },
   { label: 'Email ', key: 'contactEmail', type: 'email' },
   { label: 'Phone ', key: 'contactPhone', type: 'phone' },
 ];
