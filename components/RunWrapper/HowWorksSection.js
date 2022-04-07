@@ -160,7 +160,7 @@ function HowWorksSection() {
   return (
     <Section>
       <Element name="questions">
-        <FontH2>
+        <FontH2 id="how">
           How it works
           <Line />
         </FontH2>
