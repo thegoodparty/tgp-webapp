@@ -236,6 +236,22 @@ class CustomDocument extends NextDocument {
         `,
             }}
           />
+          <script
+            type="text/javascript"
+            id="hs-script-loader"
+            async
+            defer
+            src="//js.hs-scripts.com/21589597.js"
+          />
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `
+              var _hsq = window._hsq = window._hsq || [];
+              _hsq.push(['setContentType', 'CONTENT_TYPE']);
+           `,
+            }}
+          />
         </body>
       </Html>
     );
