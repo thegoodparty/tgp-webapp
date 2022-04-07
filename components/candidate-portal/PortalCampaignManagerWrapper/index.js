@@ -108,9 +108,16 @@ const fields2 = [
   { label: 'Campaign Video (YouTube Id)', key: 'heroVideo' },
 ];
 
+const fields3 = [
+  { label: 'Name ', key: 'contactName' },
+  { label: 'Email ', key: 'contactEmail', type: 'email' },
+  { label: 'Phone ', key: 'contactPhone', type: 'phone' },
+];
+
 const panels = [
   { fields, label: 'Candidate Information' },
   { fields: fields2, label: 'Campaign Information' },
+  { fields: fields3, label: 'Contact Information' },
 ];
 
 function PortalCampaignManagerWrapper() {
@@ -135,6 +142,9 @@ function PortalCampaignManagerWrapper() {
       });
     });
     setState(newState);
+    if (candidate.party === 'Other') {
+      setShowHidden(true);
+    }
   }, [candidate]);
 
   const onChangeField = (key, value, isUrl, isRequired) => {
@@ -252,34 +262,43 @@ function PortalCampaignManagerWrapper() {
                           {errors[field.key] && <Err>{errors[field.key]}</Err>}
                         </>
                       )}
-                      {field.type !== 'select' && !field.isRichText && (
-                        <TextField
-                          fullWidth
-                          label={field.label}
-                          name={field.label}
-                          variant="outlined"
-                          value={state[field.key] || ''}
-                          initialValue={state[field.key]}
-                          type={field.isDate ? 'date' : 'text'}
-                          onChange={(e) =>
-                            onChangeField(
-                              field.key,
-                              e.target.value,
-                              field.isUrl,
-                              field.required,
-                            )
-                          }
-                          inputProps={{ maxLength: field.maxLength || 200 }}
-                          InputLabelProps={{
-                            shrink: !!state[field.key] || field.isDate,
-                          }}
-                          error={!!errors[field.key]}
-                          helperText={
-                            errors[field.key] ? errors[field.key] : ''
-                          }
-                          required={field.required}
-                        />
-                      )}
+                      {field.type !== 'select' &&
+                        !field.isRichText &&
+                        field.type !== 'phone' && (
+                          <TextField
+                            fullWidth
+                            label={field.label}
+                            name={field.label}
+                            variant="outlined"
+                            value={state[field.key] || ''}
+                            initialValue={state[field.key]}
+                            type={
+                              field.isDate
+                                ? 'date'
+                                : field.type === 'email'
+                                ? 'email'
+                                : 'text'
+                            }
+                            onChange={(e) =>
+                              onChangeField(
+                                field.key,
+                                e.target.value,
+                                field.isUrl,
+                                field.required,
+                              )
+                            }
+                            inputProps={{ maxLength: field.maxLength || 200 }}
+                            InputLabelProps={{
+                              shrink: !!state[field.key] || field.isDate,
+                            }}
+                            error={!!errors[field.key]}
+                            helperText={
+                              errors[field.key] ? errors[field.key] : ''
+                            }
+                            required={field.required}
+                          />
+                        )}
+                      {field.type === 'phone'}
                     </Grid>
                   )}
                 </React.Fragment>
