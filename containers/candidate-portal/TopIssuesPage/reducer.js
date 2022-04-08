@@ -8,6 +8,7 @@ import types from './constants';
 
 export const initialState = {
   candidatePositions: [],
+  topIssues: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -22,6 +23,9 @@ const topIssuesPageReducer = (state = initialState, action) =>
         draft.candidatePositions = action.candidatePositions;
         draft.loading = false;
         draft.error = false;
+        break;
+      case types.LOAD_TOP_ISSUES_SUCCESS:
+        draft.topIssues = action.topIssues;
         break;
     }
   });

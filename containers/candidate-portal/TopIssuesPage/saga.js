@@ -106,10 +106,24 @@ function* deleteCandidatePosition({ id, candidateId }) {
   }
 }
 
+function* loadTopIssues() {
+  try {
+    const api = tgpApi.admin.topIssues.list;
+    const { topIssues } = yield call(requestHelper, api, null);
+    yield put(actions.loadTopIssueActionSuccess(topIssues));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error saving issue topic', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.FIND_CANDIDATE_POSITIONS, findCandidatePositions);
   yield takeLatest(types.SAVE_CANDIDATE_POSITION, saveCandidatePosition);
   yield takeLatest(types.UPDATE_CANDIDATE_POSITION, updateCandidatePosition);
   yield takeLatest(types.DELETE_CANDIDATE_POSITION, deleteCandidatePosition);
+  yield takeLatest(types.LOAD_TOP_ISSUES, loadTopIssues);
 }

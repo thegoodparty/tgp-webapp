@@ -54,8 +54,10 @@ function EditableTopIssue({
 
         setAvailableIssues(Object.values(topIssuesById));
       }
+    } else if (topIssues) {
+      setAvailableIssues(topIssues);
     }
-  }, [candidatePositions]);
+  }, [candidatePositions, topIssues]);
 
   const save = () => {
     if (existingIssue) {

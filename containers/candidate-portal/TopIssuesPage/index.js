@@ -29,9 +29,6 @@ import makeSelectCandidatePortalHomePage from '../CandidatePortalHomePage/select
 import makeSelectUser from '../../you/YouPage/selectors';
 
 import actions from './actions';
-import adminTopIssuesPageReducer from '../../admin/AdminTopIssuesPage/reducer';
-import adminTopIssuesSaga from '../../admin/AdminTopIssuesPage/saga';
-import adminTopIssuesActions from '../../admin/AdminTopIssuesPage/actions';
 import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 
 export const TopIssuesPageContext = createContext();
@@ -44,7 +41,6 @@ export function TopIssuesPage({
   saveIssueCallback,
   updateIssueCallback,
   deleteCandidatePositionCallback,
-  adminTopIssuesPage,
 }) {
   useInjectReducer({ key: 'topIssuesPage', reducer });
   useInjectSaga({ key: 'topIssuesPage', saga });
@@ -54,12 +50,6 @@ export function TopIssuesPage({
     reducer: portalHomeReducer,
   });
   useInjectSaga({ key: 'candidatePortalHomePage', saga: portalHomeSaga });
-
-  useInjectReducer({
-    key: 'adminTopIssuesPage',
-    reducer: adminTopIssuesPageReducer,
-  });
-  useInjectSaga({ key: 'adminTopIssuesPage', saga: adminTopIssuesSaga });
 
   const router = useRouter();
   const { id } = router.query;
@@ -78,16 +68,15 @@ export function TopIssuesPage({
   }, [id]);
 
   useEffect(() => {
-    dispatch(adminTopIssuesActions.loadTopIssuesAction());
+    dispatch(actions.loadTopIssuesAction());
     if (user && id) {
       dispatch(portalHomeActions.findCandidate(id));
       dispatch(actions.findCandidatePositionsAction(id));
     }
   }, [user]);
 
-  const { candidatePositions } = topIssuesPage;
-  const { topIssues } = adminTopIssuesPage;
-  console.log('topIssues', topIssues)
+  const { candidatePositions, topIssues } = topIssuesPage;
+  console.log('topIssues', topIssues);
   const childProps = {
     user,
     candidate,
