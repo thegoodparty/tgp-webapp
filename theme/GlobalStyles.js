@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Lato', sans-serif;
     line-height: 1.3;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
 
