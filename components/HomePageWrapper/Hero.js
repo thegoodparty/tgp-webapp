@@ -129,7 +129,11 @@ const Hero = () => {
               <ButtonWrapper>
                 <Link href="/register" passHref>
                   <a>
-                    <BlackButton className="pill" fullWidth>
+                    <BlackButton
+                      className="pill"
+                      fullWidth
+                      style={{ textTransform: 'none' }}
+                    >
                       Count Me In!
                     </BlackButton>
                   </a>

@@ -29,7 +29,7 @@ const Text = styled.div`
 const HeartWrapper = styled.div`
   position: relative;
   text-align: center;
-  min-height: 350px;
+  min-height: 240px;
   width: 80%;
   margin-left: 10%;
 `;
