@@ -64,7 +64,7 @@ const WhosInIt = () => {
             <TestWrapper key={test.name}>
               <Img width={100} height={100} src={test.img} />
               <TextWrapper>
-                <strong>"{test.text}"</strong>
+                <strong>&quot;{test.text}&quot;</strong>
                 <br />
                 {test.name}
                 <br />
