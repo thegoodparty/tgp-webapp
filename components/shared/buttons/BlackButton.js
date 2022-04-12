@@ -27,6 +27,11 @@ const BlackButton = styled(PurpleButton)`
       background: #ccc;
       border-color: #aaa;
     }
+
+    &.pill {
+      border-radius: 30px;
+      padding: 16px 40px;
+    }
   }
 `;
 

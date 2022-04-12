@@ -1,14 +1,20 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import { FontH1 } from '../shared/typogrophy';
 import { MaxContent } from '../TeamWrapper';
 import { numberFormatter } from '../../helpers/numberHelper';
 import { HomePageContext } from '../../containers/HomePage';
+import BlackButton from '../shared/buttons/BlackButton';
 
 const Section = styled.section`
-  padding-top: 80px;
+  padding: 80px 16px 130px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding-bottom: 0;
+  }
 `;
 
 const H1 = styled(FontH1)`
@@ -40,12 +46,12 @@ const BottomText = styled.div`
   }
 `;
 
-const Red = styled.span`
-  color: red;
+export const Red = styled.span`
+  color: #d71f28;
 `;
 
-const Blue = styled.span`
-  color: blue;
+export const Blue = styled.span`
+  color: #0044c9;
 `;
 
 const HeartWrapper = styled.div`
@@ -73,7 +79,11 @@ const WithUsText = styled.div`
   font-weight: 700;
 `;
 
-const SoFarText = styled.div``;
+const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: -100px;
+  width: 100%;
+`;
 
 const Hero = () => {
   const { engagements } = useContext(HomePageContext);
@@ -116,6 +126,15 @@ const Hero = () => {
                 <br />
                 <WithUsText>are with us!</WithUsText>
               </WithUsWrapper>
+              <ButtonWrapper>
+                <Link href="/register" passHref>
+                  <a>
+                    <BlackButton className="pill" fullWidth>
+                      Count Me In!
+                    </BlackButton>
+                  </a>
+                </Link>
+              </ButtonWrapper>
             </HeartWrapper>
           </Grid>
         </Grid>

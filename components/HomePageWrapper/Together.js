@@ -1,14 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
-import Grid from '@material-ui/core/Grid';
-import { FontH1 } from '../shared/typogrophy';
-import { MaxContent } from '../TeamWrapper';
-import { numberFormatter } from '../../helpers/numberHelper';
-import { HomePageContext } from '../../containers/HomePage';
 
 const Section = styled.section`
-  padding: 62px 12px;
+  padding: 60px 16px;
   text-align: center;
   background-color: #f2f2f2;
 `;
