@@ -31,7 +31,7 @@ const HowWorks = () => {
           <br />
           <br />
           It’s kind of like crowd-funding (GoFundMe), but for{' '}
-          <strong>votes, instead of money.</strong>
+          <strong>votes instead of money.</strong>
         </div>
       </MaxContent>
     </Section>

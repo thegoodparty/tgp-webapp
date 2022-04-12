@@ -49,7 +49,7 @@ const GoodPartyIs = () => {
               <strong>For people,</strong> not the machine 🤖
               <br />
               <br />
-              Good Party is for 130 million people across the political spectrum
+              Good Party is for the 130 million people across the political spectrum
               who want a <strong>real democracy!</strong>
             </Text>
           </Grid>

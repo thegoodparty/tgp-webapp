@@ -98,7 +98,7 @@ const Hero = () => {
               <i>both</i> major parties.
             </H1>
             <Creating>
-              We’re creating a simple, free way for people to help good
+              We’re creating a simple, free way for people to help good,
               independent candidates run and win!
             </Creating>
             <BottomText>
@@ -110,7 +110,7 @@ const Hero = () => {
               aren&apos;t organized, yet!){' '}
               <strong>
                 So Good Party is building free tools and a community
-              </strong>
+              </strong>{' '}
               that mobilizes and votes differently
             </BottomText>
           </Grid>
