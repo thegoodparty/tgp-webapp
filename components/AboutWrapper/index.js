@@ -65,27 +65,39 @@ function AboutWrapper() {
     <PageWrapper>
       <H1>What does Good Party do?</H1>
       <Intro>
-        Hi there!
+        Our democracy has been <strong>corrupted by a two-party system</strong>{' '}
+        that serves moneyed interests. It leaves people apathetic, or having to
+        choose between the lesser of two evils. Neither of which truly serve
+        them. So, important issues continue to go unaddressed.
         <br />
         <br />
-        Thanks for coming here to find out more.
+        Whether you’re concerned about the climate, privacy, inequality, or our
+        individual freedoms, all are{' '}
+        <strong>
+          hampered by the dark doom-loop of dysfunctional partisan politics.
+        </strong>
         <br />
         <br />
-        First (and most importantly) we are NOT a political party. We are a
-        digital grassroots movement for political change.
+        It’s no wonder that a majority of eligible voters (over 130M Americans),
+        including more than half of Millennials and Gen Z, say that{' '}
+        <strong>neither Republicans, nor Democrats represent them</strong>.
         <br />
         <br />
-        Our goal is to get money out of politics and allow indie candidates to
-        run and win!
+        Good Party is <strong>not a political party</strong>. We’re building
+        tools to change the rules and disrupt the corrupt, creating a brighter
+        future for all!
         <br />
         <br />
-        We do this by building free and open-source technology that allows good
-        people to run crowd-voting campaigns and win! Just like GoFundMe or
-        change.org, but for politics!
+        Our plan is to use the free, open-source tech we create as a lever that
+        marshals the creative community and mobilizes digital natives – who will
+        be the majority of voters by 2024 – to <strong>vote differently</strong>
+        .
         <br />
         <br />
-        We empower people to join together, vote different and make a BIG
-        impact.
+        As they do, we’ll be building a viral, growing movement that gives truly
+        independent, grassroots candidates from across the political spectrum{' '}
+        <strong>a real chance of running and winning elections</strong>, for the
+        first time in modern history!
       </Intro>
       <H2>How Crowd Voting Works:</H2>
       {points.map((point) => (
