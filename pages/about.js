@@ -1,8 +1,8 @@
-import PartyPage from '/containers/party/PartyPage';
+import Page from '/containers/AboutPage';
 import tgpApi from '/api/tgpApi';
 
 export default function Party({ ssrState }) {
-  return <PartyPage ssrState={ssrState} />;
+  return <Page ssrState={ssrState} />;
 }
 
 export async function getServerSideProps() {
@@ -17,22 +17,10 @@ export async function getServerSideProps() {
     homepageCandidates = [];
   }
 
-  const api2 = tgpApi.contentByKey;
-
-  let pageContent;
-  try {
-    const res2 = await fetch(`${api2.url}?key=partyPage`);
-
-    pageContent = (await res2.json()).content;
-  } catch (e) {
-    pageContent = false;
-  }
-
   return {
     props: {
       ssrState: {
         candidates: homepageCandidates,
-        pageContent,
       },
     }, // will be passed to the page component as props
   };

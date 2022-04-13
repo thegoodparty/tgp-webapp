@@ -29,14 +29,20 @@ const SeeMoreWrapper = styled.div`
   margin: 24px auto 0;
 `;
 
-const FeaturedCampaigns = () => {
-  const { homepageCandidates } = useContext(HomePageContext);
+const FeaturedCampaigns = ({ featuredCandidates }) => {
+  let candidates = [];
+  if (featuredCandidates) {
+    candidates = featuredCandidates;
+  } else {
+    candidates = useContext(HomePageContext).homepageCandidates;
+  }
+
   return (
     <Section>
       <MaxContent>
         <H3>Featured Campaigns</H3>
         <Grid container spacing={3}>
-          {homepageCandidates.map((candidate) => (
+          {candidates.map((candidate) => (
             <Grid item xs={12} md={6} lg={4} key={candidate.id}>
               <CandidateCard candidate={candidate} />
             </Grid>
