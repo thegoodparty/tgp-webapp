@@ -30,11 +30,12 @@ const SeeMoreWrapper = styled.div`
 `;
 
 const FeaturedCampaigns = ({ featuredCandidates }) => {
+  const context = useContext(HomePageContext);
   let candidates = [];
   if (featuredCandidates) {
     candidates = featuredCandidates;
   } else {
-    candidates = useContext(HomePageContext).homepageCandidates;
+    candidates = context.homepageCandidates;
   }
 
   return (
