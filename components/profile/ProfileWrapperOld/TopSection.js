@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 import UserAvatar from '../../shared/UserAvatar';
 import { Body13, H1 } from '../../shared/typogrophy';
-import MaxWidth from '../../shared/MaxWidth';
+import MaxWidth from './MaxWidth';
 
 const Wrapper = styled.section`
   padding: 32px;

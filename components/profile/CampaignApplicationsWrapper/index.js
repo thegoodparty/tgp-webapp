@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { FaPlus } from 'react-icons/fa';
 import Link from 'next/link';
 
-import MaxWidth from '../ProfileWrapper/MaxWidth';
+import MaxWidth from '../../shared/MaxWidth';
 import ProfileTabs from '../ProfileWrapper/ProfileTabs';
 import { Body11, Body14, H1, H3 } from '../../shared/typogrophy';
 import PageWrapper from '../../shared/PageWrapper';

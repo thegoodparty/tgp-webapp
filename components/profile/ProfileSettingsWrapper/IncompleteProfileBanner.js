@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 import { PurpleButton } from '../../shared/buttons';
-import MaxWidth from '../ProfileWrapper/MaxWidth';
+import MaxWidth from '../../shared/MaxWidth';
 
 const Wrapper = styled.section`
   padding: 32px;

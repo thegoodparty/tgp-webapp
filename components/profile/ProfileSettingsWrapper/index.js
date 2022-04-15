@@ -13,7 +13,7 @@ import TopSection from './TopSection';
 import PersonalSection from './PersonalSection';
 import ImageSection from './ImageSection';
 import IncompleteProfileBanner from './IncompleteProfileBanner';
-import MaxWidth from '../ProfileWrapper/MaxWidth';
+import MaxWidth from '../../shared/MaxWidth';
 import DeleteAccount from './DeleteAccount';
 import ProfileTabs from '../ProfileWrapper/ProfileTabs';
 

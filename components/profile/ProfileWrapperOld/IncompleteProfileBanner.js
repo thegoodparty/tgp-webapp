@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import Link from 'next/link';
 
-import MaxWidth from '../../shared/MaxWidth';
+import MaxWidth from './MaxWidth';
 import { PurpleButton } from '../../shared/buttons';
 import {
   Bar,

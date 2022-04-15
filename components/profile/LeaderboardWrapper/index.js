@@ -13,7 +13,7 @@ import PageWrapper from '../../shared/PageWrapper';
 import { Body19, H1 } from '../../shared/typogrophy';
 import LeaderboardPerson from './LeaderboardPerson';
 import ProfileTabs from '../ProfileWrapper/ProfileTabs';
-import MaxWidth from '../ProfileWrapper/MaxWidth';
+import MaxWidth from '../../shared/MaxWidth';
 import SpreadSection from './SpreadSection';
 
 const ContentWrpper = styled.div`

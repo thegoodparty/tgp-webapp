@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
-import MaxWidth from '../../profile/ProfileWrapper/MaxWidth';
+import MaxWidth from '../MaxWidth';
 
 const Wrapper = styled.div`
   padding: 40px 0;
