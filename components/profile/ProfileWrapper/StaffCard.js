@@ -7,76 +7,94 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Image from 'next/image';
+import { partyResolver } from '/helpers/electionsHelper';
 import Link from 'next/link';
-import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
-import { PurpleButton } from '../../shared/buttons';
-import { Body, Body14 } from '../../shared/typogrophy';
+import { FontH3 } from '/components/shared/typogrophy';
+import BlackButton from '/components/shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.purple3};
-  border-radius: 8px;
-  padding: 20px 25px;
-  text-align: center;
-  box-shadow: -9px 18px 30px rgba(224, 212, 234, 0.2),
-    18px -18px 30px rgba(224, 212, 234, 0.2),
-    -18px -18px 30px rgba(255, 255, 255, 0.9),
-    18px 18px 30px rgba(224, 212, 234, 0.9),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.3),
-    inset -1px -1px 2px rgba(224, 212, 234, 0.5);
-`;
-
-const Name = styled.h3`
-  font-size: 23px;
-  font-weight: 700;
-  margin: 20px 0;
+  border-radius: 16px;
+  padding: 16px 16px 100px;
+  border: 2px solid #ededed;
   color: #000;
+  height: 100%;
+  position: relative;
+  background-color: #fff;
 `;
 
-const Role = styled(Body14)`
-  font-size: 23px;
-  font-weight: 500;
-  margin: 20px 0;
-  color: #666;
-  text-transform: capitalize;
+const ImageWrapper = styled.div`
+  position: relative;
+  height: 250px;
+
+  img {
+    object-fit: contain;
+    object-position: center center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
 `;
 
-const ButtonInner = styled.div`
-  padding: 0 40px;
-  font-size: 13px;
+const Content = styled.div`
+  padding: 24px 8px 8px;
+`;
+
+const Name = styled(FontH3)`
+  font-size: 21px;
   font-weight: 600;
+  margin: 0 0 8px;
 `;
 
-function StaffCard({ staff }) {
-  if (!staff || !staff.candidate) {
+const Gray = styled.div`
+  color: #4d4d4d;
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: calc(100% - 48px);
+`;
+
+function StaffCard({ candidate, role }) {
+  if (!candidate) {
     return <></>;
   }
-  if (typeof staff.candidate === 'string') {
-    staff.candidate = JSON.parse(staff.candidate);
-  }
-
-  const { id, image, firstName, lastName, party, isDraft } = staff.candidate;
+  const { id, firstName, lastName, image, race, party, otherParty } = candidate;
   return (
-    <Link href={`/candidate-portal/${id}`} passHref>
-      <a>
+    <Link href={`/candidate-portal/${id}`} passHref style={{ height: '100%' }}>
+      <a style={{ height: '100%' }}>
         <Wrapper>
-          <CandidateAvatar
-            avatar={image}
-            party={party}
-            size="medium"
-            partyBadge
-            centered
-            hideBadge={isDraft}
-          />
-          <Name>
-            {firstName} {lastName}
-          </Name>
-          <Role>
-            Role: {staff.role}
-          </Role>
-
-          <PurpleButton>
-            <ButtonInner>Manage Campaign</ButtonInner>
-          </PurpleButton>
+          <ImageWrapper>
+            {image && (
+              <Image
+                src={image}
+                layout="fill"
+                alt={`${firstName} ${lastName}`}
+              />
+            )}
+          </ImageWrapper>
+          <Content>
+            <Name>
+              {firstName} {lastName}
+            </Name>
+            <Gray>
+              {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
+              Candidate <br />
+              for <strong>{race}</strong>
+            </Gray>
+            <br />
+            <strong>Role: {role}</strong>
+            <br />
+            <ButtonWrapper>
+              <BlackButton
+                fullWidth
+                style={{ textTransform: 'none', marginTop: '32px' }}
+              >
+                Manage Campaign
+              </BlackButton>
+            </ButtonWrapper>
+          </Content>
         </Wrapper>
       </a>
     </Link>
@@ -84,7 +102,7 @@ function StaffCard({ staff }) {
 }
 
 StaffCard.propTypes = {
-  staff: PropTypes.object,
+  candidate: PropTypes.object,
 };
 
 export default StaffCard;

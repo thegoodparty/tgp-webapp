@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { MaxContent } from '../TeamWrapper';
+import MaxWidth from '/components/shared/MaxWidth';
 import GoodCertifiedPoints from '../CandidatesWrapper/GoodCertifiedPoints';
 
 const Section = styled.section`
@@ -18,10 +18,10 @@ const H3 = styled.h3`
 const Pledge = () => {
   return (
     <Section>
-      <MaxContent>
+      <MaxWidth>
         <H3 className="text-center">Good Certified candidates pledge to be:</H3>
         <GoodCertifiedPoints homepageMode />
-      </MaxContent>
+      </MaxWidth>
     </Section>
   );
 };

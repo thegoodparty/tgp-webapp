@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
-import { MaxContent } from '../TeamWrapper';
+import MaxWidth from '/components/shared/MaxWidth';
 
 const Section = styled.section`
   padding: 60px 16px;
@@ -57,7 +57,7 @@ const testimonials = [
 const WhosInIt = () => {
   return (
     <Section>
-      <MaxContent>
+      <MaxWidth>
         <H3>Who&apos;s into it?</H3>
         <Grid container spacing={4}>
           {testimonials.map((test) => (
@@ -73,7 +73,7 @@ const WhosInIt = () => {
             </TestWrapper>
           ))}
         </Grid>
-      </MaxContent>
+      </MaxWidth>
     </Section>
   );
 };

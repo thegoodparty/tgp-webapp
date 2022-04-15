@@ -9,7 +9,6 @@ import types from './constants';
 export const initialState = {
   loading: false,
   userSupported: false,
-  updates: false,
   staff: false,
 };
 
@@ -25,16 +24,6 @@ const profilePageReducer = (state = initialState, action) =>
       case types.LOAD_USER_SUPPORTED_SUCCESS:
         draft.loading = false;
         draft.userSupported = action.userSupported;
-        break;
-
-      case types.LOAD_UPDATES:
-        draft.loading = false;
-        draft.updates = false;
-        break;
-
-      case types.LOAD_UPDATES_SUCCESS:
-        draft.loading = false;
-        draft.updates = action.updates;
         break;
 
       case types.LOAD_STAFF_SUCCESS:

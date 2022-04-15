@@ -4,15 +4,14 @@
  *
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useRouter } from 'next/router';
 
-import { getUserCookie } from '/helpers/cookieHelper';
+import { deleteCookies, getUserCookie } from '/helpers/cookieHelper';
 import ProfileWrapper from '/components/profile/ProfileWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 
@@ -24,22 +23,22 @@ import saga from './saga';
 import userActions from './actions';
 import actions from './actions';
 
-export function ProfilePage({ dispatch, profilePage }) {
+export const ProfilePageContext = createContext();
+
+export function ProfilePage({ dispatch, profilePage, signoutCallback }) {
   const [supported, setSupported] = useState(false);
   const router = useRouter();
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
 
-  const { loading, staff, userSupported, updates } = profilePage;
+  const { loading, staff, userSupported } = profilePage;
   const user = getUserCookie(true);
 
   useEffect(() => {
     if (user && !userSupported) {
       dispatch(actions.loadUserSupportedAction());
     }
-    if (!updates) {
-      dispatch(actions.loadUpdatesAction());
-    }
+
     if (!staff) {
       dispatch(actions.loadStaffAction());
     }
@@ -66,24 +65,25 @@ export function ProfilePage({ dispatch, profilePage }) {
     user,
     loading,
     userSupported: supported,
-    updates,
     staff,
+    signoutCallback,
   };
 
   return (
-    <div>
+    <ProfilePageContext.Provider value={childProps}>
       <TgpHelmet
         title="Profile | GOOD PARTY"
         description="Sign into your profile on GOOD PARTY."
       />
-      {user && <ProfileWrapper {...childProps} />}
-    </div>
+      {user && <ProfileWrapper />}
+    </ProfilePageContext.Provider>
   );
 }
 
 ProfilePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   profilePage: PropTypes.object,
+  signoutCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -93,6 +93,10 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    signoutCallback: () => {
+      deleteCookies();
+      window.location.replace('/');
+    },
   };
 }
 

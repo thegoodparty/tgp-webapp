@@ -9,7 +9,7 @@ import { PurpleButton } from '../shared/buttons';
 import CandidateCard from '../shared/CandidateCard';
 import { HomePageContext } from '../../containers/HomePage';
 import BlackButton from '../shared/buttons/BlackButton';
-import { MaxContent } from '../TeamWrapper';
+import MaxWidth from '/components/shared/MaxWidth';
 
 const Section = styled.section`
   padding: 60px 16px;
@@ -40,7 +40,7 @@ const FeaturedCampaigns = ({ featuredCandidates }) => {
 
   return (
     <Section>
-      <MaxContent>
+      <MaxWidth>
         <H3>Featured Campaigns</H3>
         <Grid container spacing={3}>
           {candidates.map((candidate) => (
@@ -59,7 +59,7 @@ const FeaturedCampaigns = ({ featuredCandidates }) => {
             </a>
           </Link>
         </SeeMoreWrapper>
-      </MaxContent>
+      </MaxWidth>
     </Section>
   );
 };

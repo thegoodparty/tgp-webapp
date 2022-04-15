@@ -10,11 +10,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import { Body19 } from '../shared/typogrophy';
-
-const MaxContent = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-`;
+import MaxWidth from '../shared/MaxWidth';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
@@ -216,7 +212,8 @@ const team = [
     perspective: 'Sometimes the quietest voices have the loudest ideas.',
     party: 'Always going on adventures with family and friends.',
     partyRole: 'Dad',
-    partyPerspective: "Trying to make a Good place for my kids with Good choices. ",
+    partyPerspective:
+      'Trying to make a Good place for my kids with Good choices. ',
   },
 ];
 
@@ -224,7 +221,7 @@ function TeamSection() {
   const [selected, setSelected] = useState({});
   const [flipAll, setFlipAll] = useState(false);
 
-  const handleSelected = index => {
+  const handleSelected = (index) => {
     setSelected({
       ...selected,
       [index]: !selected[index],
@@ -241,7 +238,7 @@ function TeamSection() {
   };
   return (
     <Wrapper>
-      <MaxContent>
+      <MaxWidth>
         <Tap onClick={handleFlipAll}>
           Tap to see our {flipAll ? 'Good' : 'Party'} side!
         </Tap>
@@ -319,7 +316,7 @@ function TeamSection() {
             ))}
           </Grid>
         </Members>
-      </MaxContent>
+      </MaxWidth>
     </Wrapper>
   );
 }

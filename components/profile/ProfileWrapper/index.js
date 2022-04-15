@@ -4,57 +4,60 @@
  *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
 
-import PageWrapper from '/components/shared/PageWrapper';
-import TopSection from './TopSection';
-import CampaignSection from './CampaignsSection';
-import IncompleteProfileBanner from './IncompleteProfileBanner';
-import ProfileTabs from './ProfileTabs';
-import UpdatesSection from './UpdatesSection';
-import StaffSection from './StaffSection';
+import { ProfilePageContext } from '/containers/profile/ProfilePage';
 
-export const MaxWidth = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
+import ProfilePageWrapper from '../shared/ProfilePageWrapper';
+import UserAvatar from '../../shared/UserAvatar';
+import Row from '../../shared/Row';
+import PortalPanel from '../../candidate-portal/shared/PortalPanel';
+import { FontH3 } from '../../shared/typogrophy';
+import CandidateCard from '../../shared/CandidateCard';
+import BlackOutlinedButton from '../../shared/buttons/BlackOutlinedButton';
+import SupportedCampaigns from './SupportedCampaigns';
+import CampaignStaff from './CampaignStaff';
+
+const Name = styled.div`
+  margin-left: 24px;
 `;
 
-export const GrayText = styled.span`
-  color: ${({ theme }) => theme.colors.gray6};
-  font-weight: 400;
+const A = styled.a`
+  text-decoration: underline;
 `;
 
-const ContentWrpper = styled(MaxWidth)`
-  padding: 24px 8px 48px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    padding: 32px 20px 64px;
-  }
-`;
+function ProfileWrapper() {
+  const { user, signoutCallback } = useContext(ProfilePageContext);
 
-function ProfileWrapper({ user, userSupported, updates, staff }) {
   return (
-    <PageWrapper isFullWidth>
-      <TopSection user={user} />
-      <IncompleteProfileBanner user={user} />
-      <ContentWrpper>
-        <ProfileTabs />
-        <StaffSection staff={staff} />
-        <CampaignSection userSupported={userSupported} />
-        <UpdatesSection updates={updates} />
-      </ContentWrpper>
-    </PageWrapper>
+    <ProfilePageWrapper>
+      <Grid container spacing={3} style={{ marginBottom: '40px' }}>
+        <Grid item xs={9}>
+          <Row>
+            <UserAvatar user={user} size="large" />
+            <Name>
+              <FontH3 style={{ margin: '0 0 8px' }}>{user.name}</FontH3>
+              <Link href="/profile/settings" passHref>
+                <A>Edit</A>
+              </Link>
+            </Name>
+          </Row>
+        </Grid>
+        <Grid item xs={3}>
+          <div className="text-right">
+            <A href="#" onClick={signoutCallback}>
+              Sign Out
+            </A>
+          </div>
+        </Grid>
+      </Grid>
+      <CampaignStaff />
+      <SupportedCampaigns />
+    </ProfilePageWrapper>
   );
 }
-
-ProfileWrapper.propTypes = {
-  user: PropTypes.object,
-  userSupported: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  updates: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  staff: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-};
 
 export default ProfileWrapper;

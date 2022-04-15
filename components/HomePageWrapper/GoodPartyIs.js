@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 // import heart from '/images/heart.svg'
 
-import { MaxContent } from '../TeamWrapper';
+import MaxWidth from '/components/shared/MaxWidth';
 import { Blue, Red } from './Hero';
 
 const Section = styled.section`
@@ -39,7 +39,7 @@ const HeartWrapper = styled.div`
 const GoodPartyIs = () => {
   return (
     <Section>
-      <MaxContent>
+      <MaxWidth>
         <Grid container spacing={8}>
           <Grid item xs={12} md={8}>
             <H3>Good Party is...</H3>
@@ -65,7 +65,7 @@ const GoodPartyIs = () => {
             </HeartWrapper>
           </Grid>
         </Grid>
-      </MaxContent>
+      </MaxWidth>
     </Section>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { MaxContent } from '../TeamWrapper';
+import MaxWidth from '/components/shared/MaxWidth';
 
 const Section = styled.section`
   padding: 60px 16px;
@@ -19,7 +19,7 @@ const H3 = styled.h3`
 const HowWorks = () => {
   return (
     <Section>
-      <MaxContent>
+      <MaxWidth>
         <H3>How does it work?</H3>
         <div>
           We provide <strong>free crowd-voting tools</strong> to help Good
@@ -33,7 +33,7 @@ const HowWorks = () => {
           It’s kind of like crowd-funding (GoFundMe), but for{' '}
           <strong>votes instead of money.</strong>
         </div>
-      </MaxContent>
+      </MaxWidth>
     </Section>
   );
 };

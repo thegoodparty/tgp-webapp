@@ -40,10 +40,11 @@ const ContentWrapper = styled.div`
   height: 80px;
 `;
 
-const Share = styled.div`
-  padding: 0 4px;
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.purple};
+const A = styled.a`
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const AvatarWrapper = styled.div`
@@ -70,13 +71,7 @@ const links = [
   { label: 'Candidates', href: '/candidates' },
 ];
 
-const InnerButton = styled(Body13)`
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  font-weight: 700;
-  color: #fff;
-`;
+
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = React.useState(false);
@@ -136,7 +131,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                   logEvent('Link', link.label, 'Top Nav');
                 }}
               >
-                <a>{link.label}</a>
+                <A>{link.label}</A>
               </Link>
             </TopLink>
           ))}
@@ -164,7 +159,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                     logEvent('Link', 'Login', 'Top Nav');
                   }}
                 >
-                  <a>Login</a>
+                  <A>Login</A>
                 </Link>
               </TopLink>
               <TopLink>
@@ -175,9 +170,9 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                     logEvent('Link', 'Register', 'Top Nav');
                   }}
                 >
-                  <a>
+                  <A>
                     <strong>Join Us</strong>
-                  </a>
+                  </A>
                 </Link>
               </TopLink>
             </>

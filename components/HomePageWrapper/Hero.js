@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import { FontH1 } from '../shared/typogrophy';
-import { MaxContent } from '../TeamWrapper';
+import MaxWidth from '/components/shared/MaxWidth';
 import { numberFormatter } from '../../helpers/numberHelper';
 import { HomePageContext } from '../../containers/HomePage';
 import BlackButton from '../shared/buttons/BlackButton';
@@ -89,7 +89,7 @@ const Hero = () => {
   const { engagements } = useContext(HomePageContext);
   return (
     <Section>
-      <MaxContent>
+      <MaxWidth>
         <Grid container spacing={3}>
           <Grid item xs={12} md={7} lg={8}>
             <H1>
@@ -142,7 +142,7 @@ const Hero = () => {
             </HeartWrapper>
           </Grid>
         </Grid>
-      </MaxContent>
+      </MaxWidth>
     </Section>
   );
 };
