@@ -12,7 +12,7 @@ import { FaPlus } from 'react-icons/fa';
 import Link from 'next/link';
 
 import MaxWidth from '../../shared/MaxWidth';
-import ProfileTabs from '../ProfileWrapper/ProfileTabs';
+
 import { Body11, Body14, H1, H3 } from '../../shared/typogrophy';
 import PageWrapper from '../../shared/PageWrapper';
 import { PurpleButton } from '../../shared/buttons';
@@ -52,7 +52,6 @@ function CampaignApplicationsWrapper({
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '8px', minHeight: '80vh' }}>
         <br />
-        <ProfileTabs activeTab="Application" />
         <H1>Candidate registration and applications</H1>
         <div className="text-right">
           <PurpleButton onClick={createApplicationCallback}>

@@ -34,7 +34,7 @@ function SupportedCampaigns() {
         {!userSupported || userSupported.length === 0 ? (
           <div className="text-center">
             <FontH3>
-              You haven't endorsed any campaign yet. Find a campaign and let's
+              You haven&apos;t endorsed any campaign yet. Find a campaign and let&apos;s
               get the party started
             </FontH3>
             <br />
@@ -48,7 +48,7 @@ function SupportedCampaigns() {
         ) : (
           <>
             {(userSupported || []).map((candidate) => (
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} key={candidate.id}>
                 <CandidateCard candidate={candidate} />{' '}
               </Grid>
             ))}

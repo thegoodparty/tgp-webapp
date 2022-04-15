@@ -29,7 +29,7 @@ function CampaignStaff() {
         You are a staff member for the following campaigns
       </FontH3>
       {staff.map((candidateStaff) => (
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} key={candidateStaff.id}>
           <StaffCard
             candidate={candidateStaff.candidate}
             role={candidateStaff.role}

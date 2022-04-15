@@ -15,7 +15,6 @@ import ImageSection from './ImageSection';
 import IncompleteProfileBanner from './IncompleteProfileBanner';
 import MaxWidth from '../../shared/MaxWidth';
 import DeleteAccount from './DeleteAccount';
-import ProfileTabs from '../ProfileWrapper/ProfileTabs';
 
 function ProfileSettingsWrapper({
   user,
@@ -30,7 +29,6 @@ function ProfileSettingsWrapper({
     <PageWrapper isFullWidth>
       <IncompleteProfileBanner user={user} />
       <MaxWidth style={{ padding: '8px' }}>
-        <ProfileTabs activeTab="Settings" />
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={7}>
             <TopSection

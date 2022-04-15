@@ -12,7 +12,6 @@ import Link from 'next/link';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body19, H1 } from '../../shared/typogrophy';
 import LeaderboardPerson from './LeaderboardPerson';
-import ProfileTabs from '../ProfileWrapper/ProfileTabs';
 import MaxWidth from '../../shared/MaxWidth';
 import SpreadSection from './SpreadSection';
 
@@ -85,7 +84,7 @@ function LeaderboardWrapper({
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '8px' }}>
         <br />
-        <ProfileTabs activeTab="Leaderboard" />
+        {/*<ProfileTabs activeTab="Leaderboard" />*/}
         <ContentWrpper>
           <H1>Good Party Leaderboard</H1>
           <StyledBody19>
