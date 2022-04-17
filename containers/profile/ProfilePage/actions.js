@@ -15,19 +15,7 @@ const loadUserSupportedActionSuccess = (userSupported) => ({
   userSupported,
 });
 
-const loadStaffAction = () => ({
-  type: types.LOAD_STAFF,
-});
-
-const loadStaffActionSuccess = (staff) => ({
-  type: types.LOAD_STAFF_SUCCESS,
-  staff,
-});
-
 export default {
   loadUserSupportedAction,
   loadUserSupportedActionSuccess,
-
-  loadStaffAction,
-  loadStaffActionSuccess,
 };

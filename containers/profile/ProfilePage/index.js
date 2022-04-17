@@ -31,7 +31,7 @@ export function ProfilePage({ dispatch, profilePage, signoutCallback }) {
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
 
-  const { loading, staff, userSupported } = profilePage;
+  const { loading, userSupported } = profilePage;
   const user = getUserCookie(true);
 
   useEffect(() => {
@@ -39,9 +39,6 @@ export function ProfilePage({ dispatch, profilePage, signoutCallback }) {
       dispatch(actions.loadUserSupportedAction());
     }
 
-    if (!staff) {
-      dispatch(actions.loadStaffAction());
-    }
     if (typeof window !== 'undefined' && !user) {
       router.push('login');
     }
@@ -65,7 +62,6 @@ export function ProfilePage({ dispatch, profilePage, signoutCallback }) {
     user,
     loading,
     userSupported: supported,
-    staff,
     signoutCallback,
   };
 

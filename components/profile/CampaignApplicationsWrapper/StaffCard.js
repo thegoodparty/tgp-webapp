@@ -14,13 +14,16 @@ import { FontH3 } from '/components/shared/typogrophy';
 import BlackButton from '/components/shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
-  border-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  
   padding: 16px 16px 100px;
   border: 2px solid #ededed;
   color: #000;
   height: 100%;
   position: relative;
   background-color: #fff;
+  box-shadow: 0 20px 20px -10px #a3a5ae;
 `;
 
 const ImageWrapper = styled.div`
@@ -56,6 +59,15 @@ const ButtonWrapper = styled.div`
   width: calc(100% - 48px);
 `;
 
+const Role = styled.div`
+  text-align: center;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  text-transform: capitalize;
+`;
+
 function StaffCard({ candidate, role }) {
   if (!candidate) {
     return <></>;
@@ -64,6 +76,9 @@ function StaffCard({ candidate, role }) {
   return (
     <Link href={`/candidate-portal/${id}`} passHref style={{ height: '100%' }}>
       <a style={{ height: '100%' }}>
+        <Role>
+          <strong>Your Role: </strong>Campaign {role}
+        </Role>
         <Wrapper>
           <ImageWrapper>
             {image && (
@@ -84,7 +99,6 @@ function StaffCard({ candidate, role }) {
               for <strong>{race}</strong>
             </Gray>
             <br />
-            <strong>Role: {role}</strong>
             <br />
             <ButtonWrapper>
               <BlackButton

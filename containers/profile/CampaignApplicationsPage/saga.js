@@ -58,8 +58,19 @@ function* loadApplications() {
   }
 }
 
+function* loadStaff() {
+  try {
+    const api = tgpApi.campaign.staff.userStaff;
+    const { staff } = yield call(requestHelper, api, null);
+    yield put(actions.loadStaffActionSuccess(staff));
+  } catch (error) {
+    console.log('staff error', JSON.stringify(error));
+  }
+}
+
 export default function* profilePageSaga() {
   yield takeLatest(types.CREATE_APPLICATION, createApplication);
   yield takeLatest(types.LOAD_APPLICATIONS, loadApplications);
   yield takeLatest(types.DELETE_APPLICATION, deleteApplication);
+  yield takeLatest(types.LOAD_STAFF, loadStaff);
 }

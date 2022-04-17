@@ -60,8 +60,8 @@ export const leftMenuItems = [
     link: '/profile/settings',
   },
   {
-    label: 'Applications',
-    link: '/profile/application',
+    label: 'Campaigns',
+    link: '/profile/campaigns',
   },
 ];
 
