@@ -54,10 +54,8 @@ function PhoneInput({
   const [validPhone, setValidPhone] = useState(false);
 
   useEffect(() => {
-    if (value) {
-      formatDisplay(value);
-      setValidPhone(value);
-    }
+    formatDisplay(value);
+    setValidPhone(value);
   }, [value]);
 
   const onChangeValue = async (event) => {

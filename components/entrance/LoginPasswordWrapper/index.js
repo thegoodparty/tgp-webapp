@@ -9,7 +9,7 @@ import Link from 'next/link';
 import PasswordInput from '../../shared/PasswordInput';
 import { PurpleButton } from '../../shared/buttons';
 import { formatToPhone } from '/helpers/phoneHelper';
-import { emailRegExp } from '/helpers/userHelper';
+import { passwordRegex } from '/helpers/userHelper';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const LoginPasswordWrapper = ({
   const [sentForgot, setSentForgot] = useState(false);
 
   const enableSubmit = () =>
-    password !== '' && password.match(emailRegExp) && password.length >= 8;
+    password !== '' && password.match(passwordRegex) && password.length >= 8;
 
   const handleSubmitForm = e => {
     e.preventDefault();

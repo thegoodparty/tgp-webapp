@@ -14,7 +14,7 @@ import { H1 } from '/components/shared/typogrophy';
 import { PurpleButton } from '/components/shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
 import { formatToPhone } from '/helpers/phoneHelper';
-import { emailRegExp } from '/helpers/userHelper';
+import { passwordRegex } from '/helpers/userHelper';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ function ResetPasswordWrapper({ email, phone, token, resetPasswordCallback }) {
   const [password, setPassword] = useState('');
 
   const enableSubmit = () =>
-    password !== '' && password.match(emailRegExp) && password.length >= 8;
+    password !== '' && password.match(passwordRegex) && password.length >= 8;
 
   const handleSubmitForm = e => {
     e.preventDefault();

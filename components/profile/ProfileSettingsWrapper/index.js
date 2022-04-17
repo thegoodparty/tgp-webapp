@@ -5,65 +5,22 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
 
-import PageWrapper from '../../shared/PageWrapper';
-import TopSection from './TopSection';
-import PersonalSection from './PersonalSection';
+import ProfilePageWrapper from '../shared/ProfilePageWrapper';
 import ImageSection from './ImageSection';
-import IncompleteProfileBanner from './IncompleteProfileBanner';
-import MaxWidth from '../../shared/MaxWidth';
-import DeleteAccount from './DeleteAccount';
+import PersonalSection from './PersonalSection';
+import PasswordSection from './PasswordSection';
+import DeleteSection from './DeleteSection';
 
-function ProfileSettingsWrapper({
-  user,
-  signoutCallback,
-  updateUserCallback,
-  changePasswordCallback,
-  uploadImageCallback,
-  deleteAccountCallback,
-  setUserCallback,
-}) {
+function ProfileSettingsWrapper() {
   return (
-    <PageWrapper isFullWidth>
-      <IncompleteProfileBanner user={user} />
-      <MaxWidth style={{ padding: '8px' }}>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12} md={7}>
-            <TopSection
-              signoutCallback={signoutCallback}
-              user={user}
-              uploadImageCallback={uploadImageCallback}
-            />
-            <PersonalSection
-              user={user}
-              setUser={setUserCallback}
-              updateUserCallback={updateUserCallback}
-              changePasswordCallback={changePasswordCallback}
-            />
-            <DeleteAccount deleteAccountCallback={deleteAccountCallback} />
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <ImageSection
-              user={user}
-              uploadImageCallback={uploadImageCallback}
-            />
-          </Grid>
-        </Grid>
-      </MaxWidth>
-    </PageWrapper>
+    <ProfilePageWrapper>
+      <ImageSection />
+      <PersonalSection />
+      <PasswordSection />
+      <DeleteSection />
+    </ProfilePageWrapper>
   );
 }
-
-ProfileSettingsWrapper.propTypes = {
-  user: PropTypes.object,
-  signoutCallback: PropTypes.func,
-  updateUserCallback: PropTypes.func,
-  changePasswordCallback: PropTypes.func,
-  uploadImageCallback: PropTypes.func,
-  deleteAccountCallback: PropTypes.func,
-  setUserCallback: PropTypes.func,
-};
 
 export default ProfileSettingsWrapper;

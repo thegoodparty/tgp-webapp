@@ -32,6 +32,7 @@ function ImageUploadWrapper({
   uploadCallback,
   maxFileSize,
   customElement,
+  isUserImage,
 }) {
   const [fileSizeError, setFileSizeError] = useState(false);
   const handleUploadImage = (img) => {
@@ -43,7 +44,7 @@ function ImageUploadWrapper({
         setFileSizeError(true);
         return;
       }
-      fileSelectCallback(file, uploadCallback);
+      fileSelectCallback(file, uploadCallback, isUserImage);
     }
   };
 
@@ -92,6 +93,7 @@ function ImageUploadWrapper({
 ImageUploadWrapper.propTypes = {
   fileSelectCallback: PropTypes.func,
   uploadCallback: PropTypes.func,
+  isUserImage: PropTypes.bool,
 };
 
 export default ImageUploadWrapper;

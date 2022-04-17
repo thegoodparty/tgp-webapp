@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -23,8 +23,9 @@ import saga from './saga';
 import actions from './actions';
 import makeSelectUser from '../../you/YouPage/selectors';
 
+export const ProfileSettingsPageContext = createContext();
+
 export function ProfileSettingsPage({
-  signoutCallback,
   updateUserCallback,
   changePasswordCallback,
   uploadImageCallback,
@@ -49,7 +50,6 @@ export function ProfileSettingsPage({
   const childProps = {
     user,
     setUserCallback,
-    signoutCallback,
     updateUserCallback,
     changePasswordCallback,
     uploadImageCallback,
@@ -57,16 +57,15 @@ export function ProfileSettingsPage({
   };
 
   return (
-    <div>
+    <ProfileSettingsPageContext.Provider value={childProps}>
       <TgpHelmet title="GOOD PARTY | Profile Settings" />
-      <ProfileSettingsWrapper {...childProps} />
-    </div>
+      {user && <ProfileSettingsWrapper />}
+    </ProfileSettingsPageContext.Provider>
   );
 }
 
 ProfileSettingsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  signoutCallback: PropTypes.func,
   updateUserCallback: PropTypes.func,
   changePasswordCallback: PropTypes.func,
   uploadImageCallback: PropTypes.func,
@@ -82,22 +81,19 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    signoutCallback: () => {
-      deleteCookies();
-      window.location.replace('/');
-    },
-    updateUserCallback: (key, value) => {
-      let cleanValue = value;
-      if (key === 'phone') {
-        cleanValue = value.replace(/\D+/g, '');
-      }
-      dispatch(actions.updateUserAction({ [key]: cleanValue }));
+
+    updateUserCallback: (fields) => {
+      // let cleanValue = value;
+      // if (key === 'phone') {
+      //   cleanValue = value.replace(/\D+/g, '');
+      // }
+      dispatch(actions.updateUserAction(fields));
     },
     changePasswordCallback: (password, oldPassword) => {
       dispatch(actions.changePasswordAction(password, oldPassword));
     },
 
-    uploadImageCallback: base64 => {
+    uploadImageCallback: (base64) => {
       dispatch(actions.uploadAvatarAction(base64));
     },
 
@@ -107,9 +103,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(ProfileSettingsPage);
