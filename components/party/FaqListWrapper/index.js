@@ -10,7 +10,7 @@ import Breadcrumbs from '../../shared/Breadcrumbs';
 const ArticleWrapper = styled.a`
   .article-title {
     padding: 6px 0 6px 40px;
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
     @media only screen and (min-width: ${({ theme }) =>
         theme.breakpointsPixels.md}) {
       padding: 8px 0 8px 40px;

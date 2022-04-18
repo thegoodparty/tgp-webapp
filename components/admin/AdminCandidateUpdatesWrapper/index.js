@@ -52,7 +52,7 @@ const EditWrapper = styled.div`
   padding: 8px;
   cursor: pointer;
   &:hover {
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -67,7 +67,7 @@ const Cancel = styled.div`
   cursor: pointer;
   padding: 2px 8px;
   margin-right: 24px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const DeleteImage = styled.div`

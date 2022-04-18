@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledH1 = styled(H1)`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   margin-bottom: 16px;
 `;
 

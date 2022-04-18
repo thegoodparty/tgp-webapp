@@ -75,7 +75,7 @@ const TopWrapper = styled.div`
 const TopClose = styled(CloseIcon)`
   font-size: 24px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   &.purple {
     color: #fff;
   }

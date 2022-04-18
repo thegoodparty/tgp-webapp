@@ -35,7 +35,7 @@ const TopicWrapper = styled.div`
 `;
 
 const StyledFontH3 = styled(FontH3)`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 function IssuePositionsPickerWrapper({

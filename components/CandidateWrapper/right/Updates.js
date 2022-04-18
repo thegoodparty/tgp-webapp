@@ -40,7 +40,7 @@ const UpdatedTitle = styled(Font16)`
   }
 
   &.purple {
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 

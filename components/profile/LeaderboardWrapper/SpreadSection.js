@@ -27,7 +27,7 @@ const Wrapper = styled.section`
 
 const UniqueLink = styled.div`
   margin-top: 8px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {

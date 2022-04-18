@@ -11,7 +11,7 @@ const StyledButton = styled(Button)`
     font-weight: 600;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
-    border: 2px solid ${({ theme }) => theme.colors.purple};
+    border: 2px solid ${({ theme }) => theme.colors.primary};
     background: linear-gradient(
         103.63deg,
         rgba(255, 15, 19, 0.15) -3.51%,
@@ -22,12 +22,12 @@ const StyledButton = styled(Button)`
         rgba(67, 0, 211, 0.25) -11.17%,
         rgba(67, 0, 211, 0) 96.34%
       ),
-      ${({ theme }) => theme.colors.purple};
+      ${({ theme }) => theme.colors.primary};
     font-size: 1rem;
     &.outline {
       background: #fff;
-      border: 2px solid ${({ theme }) => theme.colors.purple};
-      color: ${({ theme }) => theme.colors.purple};
+      border: 2px solid ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.primary};
       box-shadow: none;
     }
     &.center {

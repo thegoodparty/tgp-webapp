@@ -73,14 +73,14 @@ const FeedbackButton = styled(Body11)`
   cursor: pointer;
 
   &.purple {
-    border-color: ${({ theme }) => theme.colors.purple};
-    color: ${({ theme }) => theme.colors.purple};
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
 const Close = styled(Body13)`
   text-align: center;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   padding: 10px;
 `;

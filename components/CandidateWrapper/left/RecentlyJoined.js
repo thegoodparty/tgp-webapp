@@ -40,7 +40,7 @@ const Message = styled(Font16)`
 const SeeMore = styled.div`
   font-size: 13px;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   margin-top: 8px;
   cursor: pointer;
 `;

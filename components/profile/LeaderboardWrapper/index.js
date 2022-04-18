@@ -51,15 +51,15 @@ const Invite = styled.div`
   display: inline-block;
   padding: 13px 17px;
   border-radius: 8px;
-  border: solid 2px ${({ theme }) => theme.colors.purple};
-  color: ${({ theme }) => theme.colors.purple};
+  border: solid 2px ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 500;
   cursor: pointer;
 `;
 
 const Everyone = styled.span`
   display: inline-block;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;

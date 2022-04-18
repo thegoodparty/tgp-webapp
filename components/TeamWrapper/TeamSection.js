@@ -97,7 +97,7 @@ const Body11 = styled.div`
 `;
 
 const Tap = styled(Body19)`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   text-align: center;
   margin-bottom: 24px;
   font-weight: 700;
@@ -106,7 +106,7 @@ const Tap = styled(Body19)`
 `;
 
 const Name = styled(Body)`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 700;
   margin-top: 8px;
 `;

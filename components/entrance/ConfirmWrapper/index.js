@@ -51,14 +51,14 @@ const Row = styled.div`
   }
 `;
 const BottomLink = styled(Body13)`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
 `;
 
 const Edit = styled(Body13)`
   display: inline-block;
   padding-left: 12px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
 `;
 
