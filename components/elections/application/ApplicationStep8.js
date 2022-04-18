@@ -41,7 +41,7 @@ function ApplicationStep8() {
     <PageWrapper purple>
       <Wrapper>
         <div>
-          <StyledH1 className="purple">
+          <StyledH1>
             Thanks for submitting your campaign!
           </StyledH1>
           <Body style={{ marginBottom: '40px', color: '#1a1a1a' }}>

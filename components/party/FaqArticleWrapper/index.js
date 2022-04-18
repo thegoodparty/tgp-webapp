@@ -158,7 +158,6 @@ const FaqArticleWrapper = ({
               {isHelpful === HELPFUL_STATES.notSelected && (
                 <ButtonsWrapper>
                   <FeedbackButton
-                    className="purple"
                     onClick={() => handleHelpful(true)}
                     data-cy="helpful-yes"
                   >

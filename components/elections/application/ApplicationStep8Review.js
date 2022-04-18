@@ -68,7 +68,7 @@ function ApplicationStep8({
     <PageWrapper purple>
       <Wrapper>
         <Inner>
-          <StyledH1 className="purple">Approve / Reject</StyledH1>
+          <StyledH1>Approve / Reject</StyledH1>
           <TextField
             fullWidth
             variant="outlined"
