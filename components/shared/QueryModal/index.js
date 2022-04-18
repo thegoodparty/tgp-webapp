@@ -21,9 +21,9 @@ const TgpDialog = styled(Dialog)`
     .MuiDialog-paper {
       position: relative;
       width: 100vw;
-      background-color: ${({ theme }) => theme.colors.purple3};
+      background-color: #FFF;
       padding: 24px;
-      border-radius: 8px;
+      border-radius: 4px;
       box-shadow: none;
     }
 

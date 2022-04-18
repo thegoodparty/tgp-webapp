@@ -7,6 +7,8 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
@@ -111,6 +113,8 @@ function SupportButton() {
     removeSupportCallback,
   } = useContext(CandidateContext);
 
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -212,15 +216,24 @@ function SupportButton() {
   return (
     <>
       {isUserSupportCandidate ? (
-        <Support>
-          <GrayLogo src="https://assets.goodparty.org/gray9-heart.svg" />
-          <AddName>YOU HAVE ENDORSED THIS CANDIDATE</AddName>
-          <IoMdCloseCircleOutline
-            size={16}
-            style={{ marginLeft: '4px', cursor: 'pointer' }}
-            onClick={handleRemoveSupport}
-          />
-        </Support>
+        <>
+          <Support>
+            <GrayLogo src="https://assets.goodparty.org/gray9-heart.svg" />
+            <AddName>YOU HAVE ENDORSED THIS CANDIDATE</AddName>
+            <IoMdCloseCircleOutline
+              size={16}
+              style={{ marginLeft: '4px', cursor: 'pointer' }}
+              onClick={handleRemoveSupport}
+            />
+          </Support>
+          <Link href={`${router.asPath}?share=true`} passHref>
+            <a>
+              <BlackButton fullWidth style={{ marginTop: '12px' }}>
+                Share
+              </BlackButton>
+            </a>
+          </Link>
+        </>
       ) : (
         <>
           <form noValidate onSubmit={handleSubmitForm}>
