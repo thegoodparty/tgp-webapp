@@ -19,7 +19,13 @@ import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import Row from '../../shared/Row';
 
 const fields = [
-  { key: 'name', label: 'Name', initialValue: '', maxLength: 20 },
+  {
+    key: 'name',
+    label: 'Name',
+    initialValue: '',
+    maxLength: 20,
+    required: true,
+  },
   {
     key: 'email',
     label: 'Email',
@@ -34,7 +40,13 @@ const fields = [
     maxLength: 12,
     type: 'phone',
   },
-  { key: 'zip', label: 'Zip Code', initialValue: '', maxLength: 5 },
+  {
+    key: 'zip',
+    label: 'Zip Code',
+    initialValue: '',
+    maxLength: 5,
+    required: true,
+  },
   {
     key: 'displayName',
     label: 'Display Name',
@@ -68,7 +80,6 @@ const Cancel = styled.div`
 
 function PersonalSection() {
   const { user, updateUserCallback } = useContext(ProfileSettingsPageContext);
-  console.log('u', user);
   const initialState = {};
   fields.forEach((field) => {
     initialState[field.key] = field.initialValue;
@@ -103,7 +114,15 @@ function PersonalSection() {
   };
 
   const canSave = () => {
-    if (!isPhoneValid) {
+    if (state.phone !== '' && !isPhoneValid) {
+      return false;
+    }
+    // required field
+    if (state.name === '' || state.zip === '') {
+      return false;
+    }
+    // one required
+    if (state.email === '' && state.phone === '') {
       return false;
     }
     if (state.email !== '' && !isValidEmail(state.email)) {
@@ -149,6 +168,7 @@ function PersonalSection() {
                       variant="outlined"
                       label={field.label}
                       onChange={(e) => onChangeField(field.key, e.target.value)}
+                      required={field.required}
                     />
                   )}
                 </>
