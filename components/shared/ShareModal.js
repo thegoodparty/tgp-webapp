@@ -55,8 +55,6 @@ const Border = styled.div`
   margin: 30px 0;
 `;
 
-
-
 const IconItem = styled.div`
   display: flex;
   align-items: center;
@@ -197,7 +195,7 @@ const candidateMessageNoUrl = (candidate, user) => {
   return `INDIE POWER!🗽💪 I just endorsed ${candidate.firstName} ${candidate.lastName}, the first people-powered candidate for ${candidate.race}!`;
 };
 
-const ShareModal = ({ candidate, supportLink }) => {
+const ShareModal = ({ candidate, supportLink, isCandidate }) => {
   const user = getUserCookie(true);
   const defaultMessage = candidateMessage(candidate, user);
   const defaultMessageNoUrl = candidateMessageNoUrl(candidate, user);
@@ -355,7 +353,11 @@ const ShareModal = ({ candidate, supportLink }) => {
     >
       <Wrapper>
         <FontH2 style={{ marginBottom: '22px' }}>Share</FontH2>
-        <Font16>Candidates shared on social networks get more support.</Font16>
+        {isCandidate && (
+          <Font16>
+            Candidates shared on social networks get more support.
+          </Font16>
+        )}
         <Border />
         {/*<StyledTextField*/}
         {/*  fullWidth*/}
@@ -409,7 +411,8 @@ const ShareModal = ({ candidate, supportLink }) => {
           color="blue"
         />
         <TipWrapper>
-          <strong>Tip:</strong> Paste this candidate link anywhere.
+          <strong>Tip:</strong> Paste this {isCandidate && 'candidate '}link
+          anywhere.
           <div style={{ marginTop: '12px' }}>
             <TipIcon>
               <Image

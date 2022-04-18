@@ -21,10 +21,16 @@ const TgpDialog = styled(Dialog)`
     .MuiDialog-paper {
       position: relative;
       width: 100vw;
-      background-color: #FFF;
-      padding: 24px;
+      background-color: #fff;
+      padding: 8px;
       border-radius: 4px;
       box-shadow: none;
+      margin: 12px;
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpointsPixels.md}) {
+        padding: 24px;
+        margin: 32px;
+      }
     }
 
     .MuiBackdrop-root {
