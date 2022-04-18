@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 16px 0 140px;
@@ -35,7 +35,7 @@ const TopMobileNav = styled.div`
   font-size: 13px;
   line-height: 16px;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.purple};
+  color: #000;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     display: none;
@@ -49,13 +49,13 @@ const TopLinks = styled.div`
 const TopLink = styled.div`
   padding: 3px 8px;
   text-align: center;
-  color: #caa9e9;
+  color: #000;
   font-weight: 500;
   border-radius: 4px;
 
   &.active {
-    background-color: #e7d9f3;
-    color: ${({ theme }) => theme.colors.purple};
+    background-color: #000;
+    color: #fff;
     font-weight: 600;
   }
 `;
@@ -67,8 +67,6 @@ const LeftNav = styled.div`
     display: block;
     padding: 32px 16px 32px;
     width: 225px;
-
-    background-color: ${({ theme }) => theme.colors.purpleBg};
   }
 `;
 
@@ -80,14 +78,14 @@ const Review = styled.div`
 `;
 
 const LeftLink = styled(Body13)`
-  color: #caa9e9;
+  color: #000;
   padding: 8px;
   margin-bottom: 8px;
   border-radius: 4px;
 
   &.active {
-    background-color: #e7d9f3;
-    color: ${({ theme }) => theme.colors.purple};
+    background-color: #000;
+    color: #fff;
     font-weight: 600;
   }
 `;
@@ -98,12 +96,11 @@ const MainWrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding: 6px 0 0 32px;
-
   }
 `;
 
 const Paper = styled.div`
-  background-color: #fff;
+  background-color: #f9f9f9;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06),
     0 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
@@ -168,7 +165,7 @@ function ApplicationWrapper({
   const router = useRouter();
 
   return (
-    <PageWrapper purple hideFooter>
+    <PageWrapper hideFooter>
       <Wrapper className="application-wrapper">
         <TopMobileNav>
           <div>{topLinks[step].label}</div>
@@ -212,13 +209,13 @@ function ApplicationWrapper({
               {!reviewMode && (
                 <Link href="/profile/campaign-applications" passHref>
                   <a>
-                    <PurpleButton
+                    <BlackButton
                       className="outline"
                       fullWidth
                       style={{ padding: '4px' }}
                     >
                       <RiPencilFill /> &nbsp; Finish Later
-                    </PurpleButton>
+                    </BlackButton>
                   </a>
                 </Link>
               )}
@@ -239,11 +236,11 @@ function ApplicationWrapper({
               >
                 <a>
                   {reviewMode ? (
-                    <PurpleButton fullWidth>Continue</PurpleButton>
+                    <BlackButton fullWidth>Continue</BlackButton>
                   ) : (
-                    <PurpleButton fullWidth disabled={!canContinue}>
+                    <BlackButton fullWidth disabled={!canContinue}>
                       Continue
-                    </PurpleButton>
+                    </BlackButton>
                   )}
                 </a>
               </Link>
@@ -258,9 +255,9 @@ function ApplicationWrapper({
                     passHref
                   >
                     <a>
-                      <PurpleButton className="outline" fullWidth>
+                      <BlackButton className="outline" fullWidth>
                         Back
-                      </PurpleButton>
+                      </BlackButton>
                     </a>
                   </Link>
                 </Grid>
@@ -270,9 +267,9 @@ function ApplicationWrapper({
                       {reviewMode ? (
                         <Link href={`/campaign-application/${id}/8`} passHref>
                           <a>
-                            <PurpleButton fullWidth>
+                            <BlackButton fullWidth>
                               Approve/Reject
-                            </PurpleButton>
+                            </BlackButton>
                           </a>
                         </Link>
                       ) : (
@@ -283,19 +280,19 @@ function ApplicationWrapper({
                               passHref
                             >
                               <a>
-                                <PurpleButton fullWidth disabled={!canContinue}>
+                                <BlackButton fullWidth disabled={!canContinue}>
                                   Register &amp; Submit for Review
-                                </PurpleButton>
+                                </BlackButton>
                               </a>
                             </Link>
                           ) : (
-                            <PurpleButton
+                            <BlackButton
                               fullWidth
                               disabled={!canContinue}
                               onClick={() => submitApplicationCallback(id)}
                             >
                               Submit for review
-                            </PurpleButton>
+                            </BlackButton>
                           )}
                         </>
                       )}
@@ -310,9 +307,9 @@ function ApplicationWrapper({
                       passHref
                     >
                       <a>
-                        <PurpleButton fullWidth disabled={!canContinue}>
+                        <BlackButton fullWidth disabled={!canContinue}>
                           Continue
-                        </PurpleButton>
+                        </BlackButton>
                       </a>
                     </Link>
                   )}

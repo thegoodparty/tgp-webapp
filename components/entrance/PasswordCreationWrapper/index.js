@@ -10,9 +10,9 @@ import styled from 'styled-components';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { H1 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
 import { passwordRegex } from '/helpers/userHelper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 24px 0;
@@ -20,14 +20,13 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-
 function PasswordCreationWrapper({ savePasswordCallback }) {
   const [formData, setFormData] = useState({
     password: '',
     passwordConfirmation: '',
   });
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
@@ -58,23 +57,25 @@ function PasswordCreationWrapper({ savePasswordCallback }) {
         <form noValidate onSubmit={handleSubmitForm}>
           <PasswordInput
             label="Password"
-            onChangeCallback={pwd => onChangeField(pwd, 'password')}
+            onChangeCallback={(pwd) => onChangeField(pwd, 'password')}
             helperText="For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum"
           />
           <PasswordInput
             label="Retype Password"
-            onChangeCallback={pwd => onChangeField(pwd, 'passwordConfirmation')}
+            onChangeCallback={(pwd) =>
+              onChangeField(pwd, 'passwordConfirmation')
+            }
             helperText=""
           />
 
-          <PurpleButton
+          <BlackButton
             fullWidth
             disabled={!enableSubmit()}
             onClick={handleSubmit}
             type="submit"
           >
             SAVE
-          </PurpleButton>
+          </BlackButton>
         </form>
       </Wrapper>
     </PageWrapper>

@@ -7,16 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 import { partyResolver } from '/helpers/electionsHelper';
-import { kFormatter, numberFormatter } from '/helpers/numberHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 import Link from 'next/link';
 
 import CandidateAvatar from './CandidateAvatar';
-import { Body11, Body13 } from '../typogrophy';
+import { Body13 } from '../typogrophy';
 import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
-import { PurpleButton } from '../buttons';
 import { achievementsHelper } from '/helpers/achievementsHelper';
+import BlackButton from '../buttons/BlackButton';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.purple3};
@@ -130,9 +129,9 @@ function CandidateCard({ candidate }) {
           />
           <Headline>{headline}</Headline>
 
-          <PurpleButton>
+          <BlackButton>
             <ButtonInner>See Campaign</ButtonInner>
-          </PurpleButton>
+          </BlackButton>
         </Wrapper>{' '}
       </a>
     </Link>

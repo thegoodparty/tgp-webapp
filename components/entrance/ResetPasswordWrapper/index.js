@@ -11,10 +11,10 @@ import Grid from '@material-ui/core/Grid';
 
 import PageWrapper from '/components/shared/PageWrapper';
 import { H1 } from '/components/shared/typogrophy';
-import { PurpleButton } from '/components/shared/buttons';
 import PasswordInput from '../../shared/PasswordInput';
 import { formatToPhone } from '/helpers/phoneHelper';
 import { passwordRegex } from '/helpers/userHelper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -70,14 +70,14 @@ function ResetPasswordWrapper({ email, phone, token, resetPasswordCallback }) {
                   helperText="For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum"
                 />
               </div>
-              <PurpleButton
+              <BlackButton
                 fullWidth
                 disabled={!enableSubmit()}
                 onClick={handleSubmit}
                 type="submit"
               >
                 CHANGE PASSWORD
-              </PurpleButton>
+              </BlackButton>
             </form>
           </VerticalWrapper>
         </Grid>

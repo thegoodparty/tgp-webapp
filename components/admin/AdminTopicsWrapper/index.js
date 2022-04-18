@@ -13,10 +13,9 @@ import { FaSave } from 'react-icons/fa';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 
-import Nav from '/containers/shared/Nav';
 import { Body, H2 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -55,13 +54,13 @@ function AdminTopicsWrapper({
   useEffect(() => {
     if (topicsFeedback) {
       const feedbackByTopicObj = {};
-      topics.map(topic => {
+      topics.map((topic) => {
         feedbackByTopicObj[topic.id] = {
           helpful: 0,
           notHelpful: 0,
         };
       });
-      topicsFeedback.map(feedback => {
+      topicsFeedback.map((feedback) => {
         if (!feedbackByTopicObj[feedback.topicId]) {
           feedbackByTopicObj[feedback.topicId] = {
             helpful: 0,
@@ -133,7 +132,7 @@ function AdminTopicsWrapper({
               variant="outlined"
               label="Name"
               value={state.name}
-              onChange={e => onChangeField('name', e)}
+              onChange={(e) => onChangeField('name', e)}
             />
           </Grid>
           <Grid item xs={4}>
@@ -143,22 +142,18 @@ function AdminTopicsWrapper({
               label="Description"
               multiline
               rows={3}
-              onChange={e => onChangeField('description', e)}
+              onChange={(e) => onChangeField('description', e)}
               value={state.description}
             />
           </Grid>
           <Grid item xs={4} />
           <Grid item xs={1} style={{ alignSelf: 'center' }}>
-            <PurpleButton
-              fullWidth
-              disabled={!canSave()}
-              onClick={handleCreate}
-            >
+            <BlackButton fullWidth disabled={!canSave()} onClick={handleCreate}>
               <FaSave size={24} />
-            </PurpleButton>
+            </BlackButton>
           </Grid>
           {topics &&
-            topics.map(topic => (
+            topics.map((topic) => (
               <React.Fragment key={topic.id}>
                 <>
                   {editTopic.id === topic.id ? (
@@ -171,7 +166,7 @@ function AdminTopicsWrapper({
                               variant="outlined"
                               label="Name"
                               value={editTopic.name}
-                              onChange={e => onChangeEdit('name', e)}
+                              onChange={(e) => onChangeEdit('name', e)}
                             />
                           </Body>
                         </Field>
@@ -185,7 +180,7 @@ function AdminTopicsWrapper({
                               label="Description"
                               multiline
                               rows={3}
-                              onChange={e => onChangeEdit('description', e)}
+                              onChange={(e) => onChangeEdit('description', e)}
                               value={editTopic.description}
                             />
                           </Body>

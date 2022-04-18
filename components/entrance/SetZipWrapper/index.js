@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body, Body13, H1 } from '/components/shared/typogrophy';
-import { PurpleButton } from '/components/shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 24px 0;
@@ -92,14 +92,14 @@ function SetZipWrapper({ setZipCallback }) {
               helperText="5 digits zip code"
             />
           </div>
-          <PurpleButton
+          <BlackButton
             fullWidth
             disabled={!enableSubmit()}
             onClick={handleSubmit}
             type="submit"
           >
             SAVE ZIP CODE
-          </PurpleButton>
+          </BlackButton>
           <br />
           <Skip onClick={() => setZipCallback(zip, true)}>Not Now</Skip>
         </form>

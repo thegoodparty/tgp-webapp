@@ -8,12 +8,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Nav from '/containers/shared/Nav';
 import CandidateTopMenu from '../CandidateTopMenu';
-import { Body, H2 } from '../../shared/typogrophy';
+import { H2 } from '../../shared/typogrophy';
 import ComparedCandidates from './ComparedCandidates';
-import { PurpleButton } from '../../shared/buttons';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -24,7 +23,7 @@ const Wrapper = styled.div`
 
 function AdminCompareCandidatesWrapper({ candidate, saveCallback, topics }) {
   const [comparedCandidates, setComparedCandidates] = useState(false);
-  const compareCandidatesCallback = comparedCands => {
+  const compareCandidatesCallback = (comparedCands) => {
     setComparedCandidates(comparedCands);
   };
 
@@ -50,14 +49,14 @@ function AdminCompareCandidatesWrapper({ candidate, saveCallback, topics }) {
         />
         <br />
         <br />
-        <PurpleButton
+        <BlackButton
           variant="contained"
           color="primary"
           fullWidth
           onClick={handleSave}
         >
           SAVE
-        </PurpleButton>
+        </BlackButton>
       </Wrapper>
     </AdminPageWrapper>
   );

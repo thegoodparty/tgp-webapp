@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -21,10 +21,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import moment from 'moment';
 
-import Nav from '/containers/shared/Nav';
 import { Body, H2 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -185,13 +184,9 @@ function AdminReleasesWrapper({
             />
           </Grid>
           <Grid item xs={1} style={{ alignSelf: 'center' }}>
-            <PurpleButton
-              fullWidth
-              disabled={!canSave()}
-              onClick={handleCreate}
-            >
+            <BlackButton fullWidth disabled={!canSave()} onClick={handleCreate}>
               <FaSave size={24} />
-            </PurpleButton>
+            </BlackButton>
           </Grid>
           {sortedReleases &&
             sortedReleases.map((release) => (

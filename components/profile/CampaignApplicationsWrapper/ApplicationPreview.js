@@ -17,19 +17,13 @@ import { Body, Body13, Body11 } from '../../shared/typogrophy';
 const ApplicationWrapper = styled.div`
   padding: 20px;
   background: #fff;
-  border-top: 3px solid ${({ theme }) => theme.colors.purple};
+  border-top: 3px solid #000;
   border-radius: 6px;
   cursor: pointer;
   overflow-wrap: break-word;
   box-shadow: 0 20px 20px -10px #a3a5ae;
   text-align: center;
   margin-bottom: 10px;
-  &.red {
-    border-color: #cc3366;
-    .trash {
-      color: #cc3366;
-    }
-  }
 `;
 const PhotoWrapper = styled.div`
   display: block;
@@ -38,7 +32,7 @@ const PhotoWrapper = styled.div`
   padding: 3px;
   border-radius: 50%;
   margin: 0 auto 12px;
-  border: solid 2px ${({ theme }) => theme.colors.purple};
+  border: solid 2px #000;
 `;
 
 const Photo = styled.div`
@@ -87,12 +81,13 @@ function ApplicationPreview({ app, deleteApplicationCallback }) {
   return (
     <Link href={`/campaign-application/${app.id}/1`} passHref>
       <a>
-        <ApplicationWrapper
-          className={app.status === 'in review' ? 'purple' : 'red'}
-        >
+        <ApplicationWrapper>
           {app.status === 'incomplete' ? (
             <div className="text-right trash">
-              <FaTrash onClick={e => deleteApplicationCallback(app.id, e)} />
+              <FaTrash
+                onClick={(e) => deleteApplicationCallback(app.id, e)}
+                color="red"
+              />
             </div>
           ) : (
             <div>&nbsp;</div>
@@ -100,8 +95,9 @@ function ApplicationPreview({ app, deleteApplicationCallback }) {
           <PhotoWrapper>
             <Photo
               style={{
-                backgroundImage: `url(${photo ||
-                  '/images/profile/application-selected.png'})`,
+                backgroundImage: `url(${
+                  photo || '/images/profile/application.png'
+                })`,
               }}
             />
           </PhotoWrapper>

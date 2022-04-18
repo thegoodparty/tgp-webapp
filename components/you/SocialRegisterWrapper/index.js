@@ -18,13 +18,14 @@ import { logEvent } from 'services/AnalyticsService';
 
 import SocialButton from './SocialButton';
 
-import { H1, H2, Body13, Body11, Body, Body9 } from '../../shared/typogrophy';
-import { OutlinedButton, PurpleButton } from '../../shared/buttons';
+import { H1, Body13, Body11, Body, Body9 } from '../../shared/typogrophy';
 import TwitterButton from '../../shared/TwitterButton';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const StyledH1 = styled(H1)`
   margin: 18px 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
     margin: 24px 0;
   }
 `;
@@ -124,11 +125,7 @@ function SocialRegisterWrapper({
   };
 
   const trackEmail = () => {
-    logEvent(
-      'Signup',
-      'Click Signup Method',
-      `Click Email Signup`,
-    );
+    logEvent('Signup', 'Click Signup Method', `Click Email Signup`);
   };
 
   const validateEmail = () => {
@@ -138,7 +135,7 @@ function SocialRegisterWrapper({
     return isValid;
   };
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
   };
   const enableSubmit = () => {
@@ -177,7 +174,7 @@ function SocialRegisterWrapper({
           variant="outlined"
           fullWidth
           data-cy="full-name"
-          onChange={e => onChangeField(e, 'name')}
+          onChange={(e) => onChangeField(e, 'name')}
           error={errors.name}
         />
         {errors.name && <Error>Please enter your name</Error>}
@@ -189,12 +186,12 @@ function SocialRegisterWrapper({
           variant="outlined"
           fullWidth
           data-cy="email"
-          onChange={e => onChangeField(e, 'email')}
+          onChange={(e) => onChangeField(e, 'email')}
           error={errors.email}
           type="email"
         />
         {errors.email && <Error>Please enter a valid email address</Error>}
-        <PurpleButton
+        <BlackButton
           fullWidth
           onClick={handleSubmit}
           type="submit"
@@ -203,7 +200,7 @@ function SocialRegisterWrapper({
           <ButtonText className={!enableSubmit() && 'disabled'}>
             CONTINUE
           </ButtonText>
-        </PurpleButton>
+        </BlackButton>
       </form>
       <OrWrapper>
         <Border />

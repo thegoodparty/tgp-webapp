@@ -32,16 +32,7 @@ const FieldWrapper = styled.div`
     border-radius: 8px;
   }
 `;
-const SocialFieldWrapper = styled.div`
-  margin-bottom: 12px;
-  .MuiInputAdornment-positionStart {
-    margin-right: 0;
-  }
-  .MuiTypography-colorTextSecondary {
-    color: #000;
-    font-weight: 500;
-  }
-`;
+
 
 const Label = styled(Body)`
   margin-bottom: 8px;
@@ -56,7 +47,7 @@ const Req = styled(Body11)`
 `;
 
 const IconWrapper = styled.span`
-  color: ${({ theme }) => theme.colors.purple};
+  color: #000;
   font-size: 24px;
   margin-right: 16px;
 `;

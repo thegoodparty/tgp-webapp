@@ -22,7 +22,7 @@ const Avatar = styled.div`
     width: 50px;
 
     @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.md}) {
       height: 60px;
       width: 60px;
     }
@@ -33,7 +33,7 @@ const Avatar = styled.div`
     width: 64px;
 
     @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.md}) {
       height: 94px;
       width: 94px;
     }
@@ -49,8 +49,9 @@ const UserInitials = styled(Body14)`
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.purple4};
-  border: solid 1px ${({ theme }) => theme.colors.purple};
+  background-color: #000;
+  border: solid 1px #999;
+  color: #fff;
   text-transform: uppercase;
 
   &.medium {
@@ -59,7 +60,7 @@ const UserInitials = styled(Body14)`
     font-size: 18px;
 
     @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.md}) {
       height: 60px;
       width: 60px;
       font-size: 24px;
@@ -72,7 +73,7 @@ const UserInitials = styled(Body14)`
     font-size: 18px;
 
     @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+        theme.breakpointsPixels.md}) {
       height: 94px;
       width: 94px;
       font-size: 36px;

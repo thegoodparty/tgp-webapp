@@ -8,15 +8,14 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { PurpleButton } from '/components/shared/buttons';
 import { partyResolver } from '/helpers/electionsHelper';
 import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import { achievementsHelper } from '/helpers/achievementsHelper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
@@ -183,9 +182,9 @@ function ShareImage({
         />
         {withRender && (
           <Box style={{ marginTop: 20, textAlign: 'center' }}>
-            <PurpleButton style={{ width: '50%' }}>
+            <BlackButton style={{ width: '50%' }}>
               <InnerButton>Join Me</InnerButton>
-            </PurpleButton>
+            </BlackButton>
           </Box>
         )}
       </ShareImageWrapper>
@@ -238,9 +237,9 @@ function ShareImage({
           />
           {withRender && (
             <Box style={{ marginTop: 20, textAlign: 'center' }}>
-              <PurpleButton style={{ width: '70%' }}>
+              <BlackButton style={{ width: '70%' }}>
                 <InnerButton>See Campaign</InnerButton>
-              </PurpleButton>
+              </BlackButton>
             </Box>
           )}
         </ShareImageWrapper>

@@ -18,7 +18,7 @@ import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import { H2 } from '../../shared/typogrophy';
 import PortalPageWrapper from '../shared/PortalPageWrapper';
-import { PurpleButton } from '../../shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -105,7 +105,7 @@ function CampaignNotificationWrapper({
         )}
         <Box mt={3}>
           <Grid item xs={12}>
-            <PurpleButton
+            <BlackButton
               disabled={!isFormValidate()}
               onClick={() =>
                 updateCampaignNotificationCallback(
@@ -116,7 +116,7 @@ function CampaignNotificationWrapper({
               fullWidth
             >
               SAVE
-            </PurpleButton>
+            </BlackButton>
           </Grid>
         </Box>
       </Wrapper>

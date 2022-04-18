@@ -10,11 +10,11 @@ import TextField from '@material-ui/core/TextField';
 
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
-import { PurpleButton } from '/components/shared/buttons';
 import { logEvent } from '/services/AnalyticsService';
 
 import { Font16 } from '/components/shared/typogrophy';
 import { CandidateContext } from '/containers/CandidatePage';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const HeartIconWhite = '/images/white-heart.svg';
 
@@ -247,7 +247,7 @@ function SupportButton() {
               </div>
             )}
 
-            <PurpleButton
+            <BlackButton
               fullWidth
               onClick={handleSupport}
               style={{ border: 'solid 2px #5C00C7' }}
@@ -257,7 +257,7 @@ function SupportButton() {
                 <Img src={HeartIconWhite} alt="share" />
                 <span>ENDORSE CANDIDATE</span>
               </InnerButton>
-            </PurpleButton>
+            </BlackButton>
           </form>
         </>
       )}

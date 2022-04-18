@@ -17,6 +17,7 @@ const BlackButton = styled(PurpleButton)`
     &.outlined, &.outline {
       background: #fff;
       color: #000;
+      border-color: #000;
       &:hover {
         background: #999;
         color: #fff;

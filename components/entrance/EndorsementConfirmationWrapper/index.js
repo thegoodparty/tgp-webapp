@@ -20,7 +20,7 @@ import {
   partyResolver,
 } from '/helpers/electionsHelper';
 import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
-import { PurpleButton } from '../../shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 24px 0;
@@ -145,9 +145,9 @@ function EndorsementConfirmationWrapper({ candidate, total }) {
         <br />
         <Link href="/register/password-creation" passHref>
           <a>
-            <PurpleButton>
+            <BlackButton>
               &nbsp; &nbsp; Create a password &nbsp; &nbsp;
-            </PurpleButton>
+            </BlackButton>
           </a>
         </Link>
         <br />

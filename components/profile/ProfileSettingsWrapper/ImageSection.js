@@ -38,6 +38,7 @@ function ImageSection() {
           customElement={<Change>Change Photo</Change>}
           isUserImage
           uploadCallback={(image) => setUploadedImage(image)}
+          maxFileSize={1000000}
         />
       </Wrapper>
     </section>

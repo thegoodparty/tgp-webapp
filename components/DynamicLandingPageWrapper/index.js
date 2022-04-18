@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
 import PageWrapper from '../shared/PageWrapper';
-import { PurpleButton } from '../shared/buttons';
+import BlackButton from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   max-width: 650px;
@@ -29,13 +29,13 @@ function DynamicLandingPageWrapper({ pageContent }) {
 
           {pageContent.buttonLink ? (
             <a href={pageContent.buttonLink} target="_blank" rel="noreferrer">
-              <PurpleButton className="outline" style={{ minWidth: '165px' }}>
+              <BlackButton className="outline" style={{ minWidth: '165px' }}>
                 {pageContent.buttonLabel}
-              </PurpleButton>
+              </BlackButton>
             </a>
           ) : (
             <Link href="/register" data-cy="sign-up">
-              <PurpleButton className="outline">Sign Up</PurpleButton>
+              <BlackButton className="outline">Sign Up</BlackButton>
             </Link>
           )}
           <div>{contentfulHelper(pageContent.content2)}</div>

@@ -14,7 +14,6 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 import { AdminTopIssuesPageContext } from '/containers/admin/AdminTopIssuesPage';
 
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { PurpleButton } from '../../shared/buttons';
 
 const Issue = styled.div`
   padding: 12px 0;
@@ -89,13 +88,13 @@ function TopIssuesList() {
               </strong>
             </div>
             <div>
-              <PurpleButton
+              <BlackButton
                 onClick={() => {
                   setAddNewPosition(issue.id);
                 }}
               >
                 <InnerButton>Add a position for {issue.name}</InnerButton>
-              </PurpleButton>{' '}
+              </BlackButton>{' '}
               <Delete
                 onClick={() => {
                   deleteTopIssueCallback(issue.id);

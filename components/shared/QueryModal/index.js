@@ -13,8 +13,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
-import { Body11, Body13, H2 } from '/components/shared/typogrophy';
-import { PurpleButton, OutlinedButton } from '../../shared/buttons';
+import { Body13, H2 } from '/components/shared/typogrophy';
+import BlackButton from '../buttons/BlackButton';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -130,18 +130,18 @@ function QueryModal({
           </Body13>
           <Grid container spacing={2} style={{ marginTop: 18 }}>
             <Grid item xs={6}>
-              <PurpleButton
+              <BlackButton
                 fullWidth
                 className="outline"
                 onClick={closeModalCallback}
               >
                 YES, EXIT
-              </PurpleButton>
+              </BlackButton>
             </Grid>
             <Grid item xs={6}>
-              <PurpleButton fullWidth onClick={() => setClose(false)}>
+              <BlackButton fullWidth onClick={() => setClose(false)}>
                 {closeBack}
-              </PurpleButton>
+              </BlackButton>
             </Grid>
           </Grid>
         </>

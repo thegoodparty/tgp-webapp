@@ -14,8 +14,8 @@ import { candidateRoute } from '/helpers/electionsHelper';
 import RequestTopTab from './RequestTopTab';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { Body, H3 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
 import { dateUsHelper } from '/helpers/dateHelper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -45,7 +45,7 @@ function AdminTopIssueRequestsWrapper({
 
   useEffect(() => {
     const newCandidateList = [];
-    (topIssues || []).forEach(item => {
+    (topIssues || []).forEach((item) => {
       if (!newCandidateList.includes(item.candidate.id)) {
         newCandidateList.push(item.candidate.id);
       }
@@ -60,12 +60,12 @@ function AdminTopIssueRequestsWrapper({
         <br />
         <br />
         {candidateList &&
-          candidateList.map(candidateId => {
+          candidateList.map((candidateId) => {
             const issues = (topIssues || []).filter(
-              item => item.candidate.id === candidateId,
+              (item) => item.candidate.id === candidateId,
             );
-            if(issues.length === 0) {
-              return (<></>);
+            if (issues.length === 0) {
+              return <></>;
             }
             const { candidate } = issues[0];
             return (
@@ -74,7 +74,11 @@ function AdminTopIssueRequestsWrapper({
                   <Grid item xs={12} md={6}>
                     <Body>
                       Candidate:{' '}
-                      <a href={candidateRoute(candidate)} target="_blank" rel="noreferrer">
+                      <a
+                        href={candidateRoute(candidate)}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         {candidate.firstName} {candidate.lastName}
                       </a>
                     </Body>
@@ -116,7 +120,7 @@ function AdminTopIssueRequestsWrapper({
                   </Grid>
                   {issues?.map((issue, index) => {
                     const position = issue.topic?.positions?.find(
-                      item => item.id === issue.positionId,
+                      (item) => item.id === issue.positionId,
                     );
                     return (
                       <>
@@ -146,22 +150,18 @@ function AdminTopIssueRequestsWrapper({
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <br />
-                    <PurpleButton
-                      onClick={() =>
-                        rejectIssueRequestCallback(candidateId)
-                      }
+                    <BlackButton
+                      onClick={() => rejectIssueRequestCallback(candidateId)}
                       style={{ background: 'red', borderColor: 'red' }}
                     >
                       &nbsp;Deny Request&nbsp;
-                    </PurpleButton>
+                    </BlackButton>
                     &nbsp; &nbsp;
-                    <PurpleButton
-                      onClick={() =>
-                        acceptIssueRequestCallback(candidateId)
-                      }
+                    <BlackButton
+                      onClick={() => acceptIssueRequestCallback(candidateId)}
                     >
                       &nbsp;Accept Request&nbsp;
-                    </PurpleButton>
+                    </BlackButton>
                   </Grid>
                 </Grid>
               </RequestWrapper>

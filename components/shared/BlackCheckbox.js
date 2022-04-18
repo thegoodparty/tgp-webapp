@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Checkbox = styled.input`
   -webkit-appearance: none;
   background-color: #fff;
-  border: 2px solid #bb91e4;
+  border: 2px solid #999;
   //box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
   //  inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
   padding: 11px;
@@ -21,8 +21,8 @@ const Checkbox = styled.input`
   }
 
   &:checked {
-    background-color: ${({ theme }) => theme.colors.purple3};
-    border: 2px solid ${({ theme }) => theme.colors.purple};
+    background-color: #eee;
+    border: 2px solid #000;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
       inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
       inset 15px 10px -12px rgba(255, 255, 255, 0.1);
@@ -35,11 +35,11 @@ const Checkbox = styled.input`
     position: absolute;
     top: 0;
     left: 3px;
-    color: ${({ theme }) => theme.colors.purple};
+    color: #000;
   }
 `;
 
-function PurpleCheckbox({
+function BlackCheckbox({
   value = false,
   onChange = () => {},
   disabled = false,
@@ -54,10 +54,10 @@ function PurpleCheckbox({
   );
 }
 
-PurpleCheckbox.propTypes = {
+BlackCheckbox.propTypes = {
   value: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
-export default PurpleCheckbox;
+export default BlackCheckbox;

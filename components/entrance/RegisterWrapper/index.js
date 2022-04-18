@@ -10,8 +10,8 @@ import 'react-phone-input-2/lib/style.css';
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
 import globals from '/globals';
-import { PurpleButton } from '/components/shared/buttons';
 import TwitterButton from '/components/shared/TwitterButton';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const SocialButton = dynamic(
   () => import('/components/you/SocialRegisterWrapper/SocialButton'),
@@ -234,14 +234,14 @@ const RegisterWrapper = ({
           ))}
 
           <div>
-            <PurpleButton
+            <BlackButton
               fullWidth
               disabled={!enableSubmit()}
               onClick={handleSubmit}
               type="submit"
             >
               {user ? 'UPDATE' : 'Sign Up'}
-            </PurpleButton>
+            </BlackButton>
           </div>
         </form>
         {!user && (

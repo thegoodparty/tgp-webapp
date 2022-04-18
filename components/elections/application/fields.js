@@ -14,7 +14,7 @@ import {
 import { flatStates } from '/helpers/statesHelper';
 
 const IconWrapper = styled.span`
-  color: ${({ theme }) => theme.colors.purple};
+  color: #000;
   font-size: 24px;
   margin-right: 16px;
 `;
@@ -326,6 +326,7 @@ export const step3Fields = [
   {
     key: 'headshotPhoto',
     label: 'Candidate headshot',
+    required: true,
     value: '',
   },
   {
