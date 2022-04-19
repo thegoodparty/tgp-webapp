@@ -237,6 +237,8 @@ function AddCampaignUpdateModal({
                 {state.image && (
                   <Grid item xs={6}>
                     <img src={state.image} className="full-image" />
+                    <br/>
+                    <BottomLink onClick={() => onChangeField('image', '')}>Remove Image</BottomLink>
                   </Grid>
                 )}
                 <Grid item xs={12}>
