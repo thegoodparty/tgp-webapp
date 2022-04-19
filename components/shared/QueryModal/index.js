@@ -110,7 +110,6 @@ function QueryModal({
       closeModalCallback();
     }
   }, [close]);
-  console.log('close', closeTitle)
   return (
     <TgpDialog
       onClose={() => setClose(true)}
