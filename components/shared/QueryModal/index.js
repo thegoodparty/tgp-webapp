@@ -110,6 +110,7 @@ function QueryModal({
       closeModalCallback();
     }
   }, [close]);
+  console.log('close', closeTitle)
   return (
     <TgpDialog
       onClose={() => setClose(true)}
@@ -118,7 +119,7 @@ function QueryModal({
       className={`${close && isCandidatePage && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
-      {!closeTitle && !hideClose && (
+      {!hideClose && (
         <TopWrapper className="top-wrapper">
           <TopClose
             onClick={() => setClose(true)}
