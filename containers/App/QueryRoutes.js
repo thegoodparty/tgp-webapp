@@ -52,9 +52,7 @@ function QueryRoutes({ locationState, dispatch }) {
     const queryShare = queryHelper(search, 'share');
 
     setShowShare(queryShare === 'true');
-    console.log('iscandidate', isCandidatePage, router.pathname);
   }, [search]);
-  console.log('show share', showShare);
 
   return (
     <>

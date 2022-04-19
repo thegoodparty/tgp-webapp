@@ -64,8 +64,8 @@ class CustomDocument extends NextDocument {
           {/*  rel="stylesheet"*/}
           {/*/>*/}
 
-          <style
-            data-href="https://fonts.googleapis.com/css2?family=Lato:wght@300;600;900&display=swap"
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@300;600;900&display=swap"
             rel="stylesheet"
           />
           <link rel="manifest" href="/manifest.json" />
