@@ -17,6 +17,7 @@ import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { FontH3 } from '../../shared/typogrophy';
 import JoditEditorWrapper from '../../admin/AdminEditCandidate/JoditEditor';
 import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
+import YouTubeInput from '../../shared/YouTubeInput';
 
 const Inner = styled.div`
   max-width: 820px;
@@ -143,6 +144,14 @@ function AddCampaignUpdateModal({
     }, 3000);
   };
 
+  const handleYoutubeInput = (url, youtubeId) => {
+    if (youtubeId) {
+      onChangeField('youtubeId', youtubeId);
+    } else {
+      onChangeField('youtubeId', '');
+    }
+  };
+
   return (
     <>
       <BlackButton onClick={() => onChangeField('isOpen', true)}>
@@ -217,16 +226,9 @@ function AddCampaignUpdateModal({
                 {state.showVideo && (
                   <>
                     <Grid item xs={state.youtubeId ? 6 : 12}>
-                      <TextField
-                        name="YouTube Id"
-                        variant="outlined"
-                        label="YouTube id"
-                        value={state.youtubeId}
-                        inputProps={{ maxLength: 11 }}
-                        fullWidth
-                        onChange={(e) => {
-                          onChangeField('youtubeId', e.target.value);
-                        }}
+                      <YouTubeInput
+                        onChangeCallback={handleYoutubeInput}
+                        initalId={state.youtubeId}
                       />
                     </Grid>
                     <Grid item xs={state.youtubeId ? 6 : 12}>
@@ -237,8 +239,10 @@ function AddCampaignUpdateModal({
                 {state.image && (
                   <Grid item xs={6}>
                     <img src={state.image} className="full-image" />
-                    <br/>
-                    <BottomLink onClick={() => onChangeField('image', '')}>Remove Image</BottomLink>
+                    <br />
+                    <BottomLink onClick={() => onChangeField('image', '')}>
+                      Remove Image
+                    </BottomLink>
                   </Grid>
                 )}
                 <Grid item xs={12}>

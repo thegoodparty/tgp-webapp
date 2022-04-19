@@ -315,13 +315,9 @@ export const step3Fields = [
     subtitle:
       "A 60 second intro video about your campaign and why you're running.",
     defaultValue: '',
-    type: 'text',
+    type: 'youtube',
     subLabel: 'Optional',
-    icon: (
-      <IconWrapper>
-        <FaVideo />
-      </IconWrapper>
-    ),
+    isYouTube: true,
   },
   {
     key: 'headshotPhoto',

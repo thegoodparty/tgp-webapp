@@ -23,6 +23,7 @@ import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
 import { step3Fields } from './fields';
 import { Title } from './ApplicationStep1';
+import YouTubeInput from '../../shared/YouTubeInput';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -32,7 +33,6 @@ const FieldWrapper = styled.div`
     border-radius: 8px;
   }
 `;
-
 
 const Label = styled(Body)`
   margin-bottom: 8px;
@@ -171,6 +171,16 @@ function ApplicationStep3({
       }
     });
     return returnVal;
+  };
+
+  const onChangeYoutube = (url, youTubeId) => {
+    const e = {
+      target: {
+        value: youTubeId || '',
+      },
+    };
+    onChangeField('campaignVideo', e);
+    onBlurField('campaignVideo', e);
   };
 
   const handleUploadImage = (image, key) => {
@@ -356,6 +366,13 @@ function ApplicationStep3({
             onChange={(ev) => {
               handleDateChange(field.key, ev.target.value);
             }}
+          />
+        )}
+
+        {field.type === 'youtube' && (
+          <YouTubeInput
+            initalId={state[field.key]}
+            onChangeCallback={onChangeYoutube}
           />
         )}
       </FieldWrapper>
