@@ -55,6 +55,8 @@ const ImageWrapper = styled.div`
 
 const TextWrapper = styled.div`
   padding: 24px 38px 38px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
   &.text-only {
     background-color: #f3f3f3;
