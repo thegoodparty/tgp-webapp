@@ -16,6 +16,10 @@ const Wrapper = styled.div`
 const ChartWrapper = styled.div`
   height: 200px;
   transform: scaleX(1) rotate(90deg);
+
+  svg:not(:root) {
+    overflow: visible;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -41,6 +45,8 @@ const WhiteCircle = styled.div`
   width: 20px;
   border-radius: 50%;
   border: solid 1px #998ee2;
+  position: relative;
+  z-index: 1;
 `;
 
 const Icon = styled.div`
@@ -54,7 +60,8 @@ const renderCustomizedLabel = (props) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, index } = props;
 
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const radiusPlus = radius;
+  console.log('radius', radius);
+  const radiusPlus = radius + 20;
   const x = cx + radiusPlus * Math.cos(-startAngle * RADIAN);
   const y = cy + radiusPlus * Math.sin(-startAngle * RADIAN);
 
@@ -63,27 +70,26 @@ const renderCustomizedLabel = (props) => {
 
   return (
     <>
-      <g>
-        <foreignObject x={x} y={y} width={20} height={20}>
-          {index === 0 ? <Icon>🎉️</Icon> : <Icon>🗳</Icon>}
-        </foreignObject>
-      </g>
-
       {index === 1 && (
         <g>
           {/*<foreignObject x={xBase - 10} y={yBase - 10} width={20} height={20}>*/}
-          <foreignObject x={x} y={y} width={20} height={20}>
+          <foreignObject x={xBase - 10} y={yBase - 10} width={20} height={20}>
             <WhiteCircle />
           </foreignObject>
         </g>
       )}
+      <g>
+        <foreignObject x={x - 10} y={y - 10} width={20} height={20}>
+          {index === 0 ? <Icon>🎉️</Icon> : <Icon>🗳</Icon>}
+        </foreignObject>
+      </g>
     </>
   );
 };
 
 function GoalsChart() {
   const { candidate } = useContext(CandidatePortalHomePageContext);
-  const { votesNeeded, likelyVoters } = candidate;
+  const { likelyVoters, votesNeeded } = candidate;
   const data = [
     { name: 'To Win', value: votesNeeded },
     { name: 'So Far', value: likelyVoters },
@@ -106,6 +112,7 @@ function GoalsChart() {
               fill="#8884d8"
               labelLine={false}
               label={renderCustomizedLabel}
+              isAnimationActive={false}
             >
               {data.map((entry, index) => (
                 <Cell
