@@ -9,6 +9,9 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { ImBlocked } from 'react-icons/im';
+
+import { PortalCampaignManagerPageContext } from '/containers/candidate-portal/PortalCampaignManagerPage';
 import Row from '../../shared/Row';
 
 const Wrapper = styled.div`
@@ -40,6 +43,12 @@ const Color = styled.div`
   border-radius: 6px;
   color: #fff;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.disabled {
+    cursor: not-allowed;
+  }
 `;
 
 const Label = styled.div`
@@ -49,6 +58,23 @@ const Label = styled.div`
   font-size: 11px;
   left: 0;
   bottom: 12px;
+`;
+
+const Party = styled.div`
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  left: 0;
+  top: 16px;
+  font-weight: 900;
+`;
+
+const Wrong = styled.div`
+  text-align: center;
+  font-size: 11px;
+  left: 0;
+  top: 16px;
 `;
 
 const Selected = styled.div`
@@ -154,11 +180,28 @@ const groups = [
 ];
 
 function CampaignColorPicker() {
+  const { candidate, updateCandidateCallback } = useContext(
+    PortalCampaignManagerPageContext,
+  );
   const slider = useRef(null);
   const [selected, setSelected] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(groups[0]);
+
+  useEffect(() => {
+    if (candidate?.color) {
+      setSelected(candidate.color);
+    }
+  }, [candidate]);
+
   const selectColor = (color) => {
+    if (color.wrong) {
+      return;
+    }
     setSelected(color);
+    updateCandidateCallback(candidate.id, {
+      ...candidate,
+      color,
+    });
   };
 
   const slideToGroup = (group) => {
@@ -202,7 +245,16 @@ function CampaignColorPicker() {
             <Color
               style={{ backgroundColor: color.color }}
               onClick={() => selectColor(color)}
+              className={color.wrong && 'disabled'}
             >
+              {color.type === 'political' && <Party>{color.party}</Party>}
+              {color.wrong && (
+                <Wrong>
+                  <ImBlocked size={36} />
+
+                  <div style={{ marginTop: '6px' }}>Wrong Site</div>
+                </Wrong>
+              )}
               <Label>{color.color}</Label>
             </Color>
             <Selected
