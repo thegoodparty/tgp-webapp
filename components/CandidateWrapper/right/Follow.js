@@ -15,6 +15,7 @@ import {
   FaYoutube,
   FaTwitch,
   FaRedditAlien,
+  FaLinkedinIn,
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
 
@@ -85,7 +86,11 @@ function Follow() {
     twitch,
     reddit,
     website,
+    linkedin,
+    color,
   } = candidate;
+
+  const brightColor = color?.color ? color.color : '#000';
 
   const trackSocial = (channel) => {
     logEvent('Click', channel, 'Candidate Social Links');
@@ -95,6 +100,11 @@ function Follow() {
     { label: 'Twitter', icon: <FaTwitter />, link: validateLink(twitter) },
     { label: 'Tiktok', icon: <SiTiktok />, link: validateLink(tiktok) },
     { label: 'Snap', icon: <FaSnapchatGhost />, link: validateLink(snap) },
+    {
+      label: 'LinkedIn',
+      icon: <FaLinkedinIn />,
+      link: validateLink(linkedin),
+    },
     {
       label: 'Instagram',
       icon: <FaInstagram />,
@@ -110,8 +120,19 @@ function Follow() {
     { label: 'Website', icon: <FaGlobe />, link: validateLink(website) },
   ];
 
+  const isSmall = typeof window !== 'undefined' && window?.innerWidth < 768;
+
   return (
-    <Wrapper>
+    <Wrapper
+      style={{
+        background: `linear-gradient(
+        ${isSmall ? '0deg' : '270deg'},
+      ${brightColor} 0%,
+      ${brightColor} 60%,
+      #fff 100%
+      )`,
+      }}
+    >
       <Title>
         <strong>Follow</strong> {firstName} {lastName}!
       </Title>

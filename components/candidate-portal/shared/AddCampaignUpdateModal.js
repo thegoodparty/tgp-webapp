@@ -223,6 +223,9 @@ function AddCampaignUpdateModal({
                     name="text"
                     variant="outlined"
                     value={state.text}
+                    inputProps={{
+                      maxLength: 400,
+                    }}
                     required
                     multiline
                     rows={4}

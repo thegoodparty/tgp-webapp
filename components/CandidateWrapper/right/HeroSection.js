@@ -49,13 +49,15 @@ const Days = styled.div`
 
 function HeroSection() {
   const { candidate } = useContext(CandidateContext);
-  const { headline, heroVideo, raceDate } = candidate;
+  const { headline, heroVideo, raceDate, color } = candidate;
   const days = daysTill(raceDate);
+
+  const brightColor = color?.color ? color.color : '#000';
 
   return (
     <Wrapper>
       {raceDate && (
-        <DaysUntil>
+        <DaysUntil style={{ backgroundColor: brightColor }}>
           {days >= 0 ? (
             <>
               <Days>{days}</Days>
