@@ -218,9 +218,18 @@ function AddCampaignUpdateModal({
                 <Grid item xs={12}>
                   What&apos;s your update?
                   <br />
-                  <JoditEditorWrapper
-                    onChangeCallback={(value) => onChangeField('text', value)}
-                    initialText={state.text}
+                  <TextField
+                    style={{ marginTop: '8px' }}
+                    name="text"
+                    variant="outlined"
+                    value={state.text}
+                    required
+                    multiline
+                    rows={4}
+                    fullWidth
+                    onChange={(e) => {
+                      onChangeField('text', e.target.value);
+                    }}
                   />
                 </Grid>
                 {state.showVideo && (
