@@ -24,6 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import { api, base } from '../../constants';
+import promisify from 'cypress-promise';
 
 Cypress.Commands.add(
     'sendRequest',
@@ -52,4 +53,28 @@ Cypress.Commands.add(
 Cypress.Commands.add('getHomepageCandidates', () => {
     cy.sendRequest(api.homepageCandidates.method, api.homepageCandidates.url);
 });
-  
+
+Cypress.Commands.add('getCandidate', (candidateId) => {
+  cy.sendRequest(api.newCandidate.find.method, `${api.newCandidate.find.url}?id=${candidateId}&allFields=true`);
+});
+
+Cypress.Commands.add('getCandidateSupports', (candidateId) => {
+  cy.sendRequest(api.supportCandidate.candidateSupports.method, `${api.supportCandidate.candidateSupports.url}?candidateId=${candidateId}`);
+});
+
+Cypress.Commands.add('getCandidatePageData', async (candidateId) => {
+  const candidate = await promisify(
+    cy.getCandidate().then(response => response.body),
+  );
+  const { candidateSupports, total } = await promisify(
+    cy.getCandidateSupports().then(response => response.body),
+  );
+  return {
+    candidate: candidate.candidate,
+    candidatePositions: candidate.candidatePositions || [],
+    similarCampaigns: candidate.similarCampaigns || [],
+    id: candidateId,
+    candidateSupports,
+    supportCount: total,
+  }
+});

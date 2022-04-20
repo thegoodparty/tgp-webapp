@@ -139,3 +139,74 @@ export const achievementsHelper = count => {
     ),
   };
 };
+
+export const achievementsNextStepHelper = count => {
+  if (count >= 10000) {
+    return {
+      nextStep: 50000,
+    };
+  }
+
+  if (count >= 5000) {
+    return {
+      nextStep: 10000,
+    };
+  }
+
+  if (count >= 2500) {
+    return {
+      nextStep: 5000,
+    };
+  }
+
+  if (count >= 1000) {
+    return {
+      nextStep: 2500,
+    };
+  }
+
+  if (count >= 500) {
+    return {
+      nextStep: 1000,
+    };
+  }
+
+  if (count >= 250) {
+    return {
+      nextStep: 500,
+    };
+  }
+
+  if (count >= 100) {
+    return {
+      nextStep: 250,
+    };
+  }
+
+  if (count >= 50) {
+    return {
+      nextStep: 100,
+    };
+  }
+
+  if (count >= 25) {
+    return {
+      nextStep: 50,
+    };
+  }
+
+  if (count >= 10) {
+    return {
+      nextStep: 25,
+    };
+  }
+
+  if (count >= 1) {
+    return {
+      nextStep: 10,
+    };
+  }
+  return {
+    nextStep: 10,
+  };
+}

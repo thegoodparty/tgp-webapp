@@ -44,23 +44,23 @@ function SimilarCampaigns() {
   }
   return (
     <Wrapper>
-      <FontH3>View Similar Campaigns</FontH3>
+      <FontH3 data-cy="similar-campaigns-title">View Similar Campaigns</FontH3>
       {similarCampaigns.map((similar) => (
-        <SimilarWrapper key={similar.candidate.id}>
+        <SimilarWrapper key={similar.candidate.id} data-cy="similar-campaigns-item">
           <Name>
             <Link href={candidateRoute(similar.candidate)} passHref>
-              <a>
+              <a data-cy="similar-campaigns-item-link">
                 {similar.candidate.firstName} {similar.candidate.lastName}
               </a>
             </Link>
           </Name>
-          <Running>
+          <Running data-cy="similar-campaigns-item-content">
             {partyResolver(similar.candidate.party)} candidate running for{' '}
             {similar.candidate.race}
           </Running>
           <div>
             {similar.matchingIssues.map((match) => (
-              <Match key={match.id}>#{match.name}</Match>
+              <Match key={match.id} data-cy="similar-campaigns-item-match">#{match.name}</Match>
             ))}
           </div>
         </SimilarWrapper>

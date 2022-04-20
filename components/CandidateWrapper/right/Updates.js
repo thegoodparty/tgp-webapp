@@ -88,11 +88,11 @@ function Updates({ updates }) {
 
   return (
     <Wrapper>
-      <FontH3 style={{ margin: '0 0 24px' }}>Updates</FontH3>
+      <FontH3 style={{ margin: '0 0 24px' }} data-cy="updates-title">Updates</FontH3>
       <Grid container spacing={6}>
         {sortedUpdates &&
           sortedUpdates.reverse().map((update) => (
-            <Grid item xs={12} md={6} key={update.id}>
+            <Grid item xs={12} md={6} key={update.id} data-cy="updates-item">
               <UpdateWrapper id={`candidate-update-${update.id}`}>
                 {hasFeatured(update) && (
                   <>
@@ -115,14 +115,15 @@ function Updates({ updates }) {
                   </>
                 )}
                 <TextWrapper className={!hasFeatured(update) && 'text-only'}>
-                  <a href={deepLink(update)}>
+                  <a href={deepLink(update)} data-cy="updates-link">
                     <UpdatedTitle>{update.title}</UpdatedTitle>
                   </a>
                   <Font16
                     dangerouslySetInnerHTML={{ __html: update.text }}
                     style={{ marginBottom: 20 }}
+                    data-cy="updates-content"
                   />{' '}
-                  <UpdateDate>{update.timeAgo}</UpdateDate>
+                  <UpdateDate data-cy="updates-time">{update.timeAgo}</UpdateDate>
                 </TextWrapper>
               </UpdateWrapper>
             </Grid>

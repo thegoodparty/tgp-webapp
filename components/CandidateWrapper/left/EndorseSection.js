@@ -21,8 +21,8 @@ function EndorseSection() {
   return (
     <Wrapper>
       <div>
-        <div style={{ paddingLeft: '10px' }}>
-          <strong>
+        <div style={{ paddingLeft: '10px' }} data-cy="endorse-supportcount-wrapper">
+          <strong data-cy="endorse-supportcount">
             {supportCount} {supportCount === 1 ? 'person' : 'people'} endorsed.
           </strong>{' '}
           Let&apos;s get to {numberFormatter(achievements.nextStep)}!

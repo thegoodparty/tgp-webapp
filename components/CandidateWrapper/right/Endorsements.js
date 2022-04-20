@@ -49,24 +49,24 @@ function Endorsements() {
   }
   return (
     <Wrapper>
-      <FontH3 style={{ margin: '0 0 24px' }}>Featured Endorsements</FontH3>
+      <FontH3 style={{ margin: '0 0 24px' }} data-cy="endorsement-title">Featured Endorsements</FontH3>
       <Grid container spacing={8}>
         {endorsements.map((item) => (
-          <Grid item xs={12} md={6} key={item.id}>
+          <Grid item xs={12} md={6} key={item.id} data-cy="endorsement-item">
             <EndorsementWrapper>
               {item.image && (
                 <div>
-                  {<Img style={{ backgroundImage: `url(${item.image})` }} />}
+                  {<Img style={{ backgroundImage: `url(${item.image})` }}  data-cy="endorsement-item-img"/>}
                 </div>
               )}
               <div style={{ flex: 1 }}>
-                <div style={{ marginBottom: '12px' }}>
+                <div style={{ marginBottom: '12px' }} data-cy="endorsement-item-title">
                   <strong>{item.title}</strong>
                 </div>
-                <Truncated>{item.summary}</Truncated>
+                <Truncated data-cy="endorsement-item-summary">{item.summary}</Truncated>
                 {item.link && (
                   <div className="text-right">
-                    <a href={item.link} target="_blank" rel="noreferrer">
+                    <a href={item.link} target="_blank" rel="noreferrer"  data-cy="endorsement-item-link">
                       Show More
                     </a>
                   </div>

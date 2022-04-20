@@ -57,21 +57,23 @@ function TopIssues() {
   const [selected, setSelected] = useState(false);
   return (
     <Wrapper>
-      <strong style={{ margin: '24px 0' }}>Top Issues</strong>
+      <strong style={{ margin: '24px 0' }} data-cy="top-issues-title">Top Issues</strong>
       {candidatePositions.map((candPosition) => (
         <IssueWrapper
           key={candPosition.id}
           className={selected === candPosition.id && 'selected'}
+          data-cy="top-issue"
         >
           <Issue
             onClick={() => {
               setSelected(candPosition.id);
             }}
             className="issue"
+            data-cy="top-issue-position"
           >
             #{candPosition.position?.name}
           </Issue>
-          <Position className="position">
+          <Position className="position"  data-cy="top-issue-name">
             {candPosition.topIssue?.name}
             <br />
             <br />

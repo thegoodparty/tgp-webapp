@@ -28,11 +28,11 @@ function ProfileCard() {
   const { firstName, lastName, party, race } = candidate;
   return (
     <section>
-      <Font16>Meet the Candidate</Font16>
-      <FontH1 style={{ margin: '10px 0 20px' }}>
+      <Font16 data-cy="profile-card-title">Meet the Candidate</Font16>
+      <FontH1 style={{ margin: '10px 0 20px' }} data-cy="profile-card-name">
         {firstName} {lastName}
       </FontH1>
-      <Font16>
+      <Font16 data-cy="profile-card-party">
         {partyResolver(party)} Party Candidate <br />
         for <strong>{race}</strong>
       </Font16>

@@ -51,7 +51,7 @@ function Stats() {
     <Link href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`}>
       <Wrapper>
         <Row>
-          <strong>Voting Stats &amp; Projections</strong>
+          <strong data-cy="stats-title">Voting Stats &amp; Projections</strong>
           <Link
             href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`}
             passHref
@@ -60,7 +60,7 @@ function Stats() {
           </Link>
         </Row>
         {unrepVoters ? (
-          <Stat>
+          <Stat data-cy="stats-unrepvoters">
             <StatNum>{numberFormatter(unrepVoters)} </StatNum> &nbsp;
             Unrepresented Voters in this race
           </Stat>
@@ -68,7 +68,7 @@ function Stats() {
           <></>
         )}
         {votesNeeded ? (
-          <Stat>
+          <Stat data-cy="stats-votesneeded">
             <StatNum>{numberFormatter(votesNeeded)} </StatNum> &nbsp; Votes
             Needed to win
           </Stat>
@@ -76,7 +76,7 @@ function Stats() {
           <></>
         )}
         {likelyVoters ? (
-          <Stat>
+          <Stat data-cy="stats-likelyvoters">
             <StatNum>{numberFormatter(likelyVoters)} </StatNum> &nbsp; Likely
             Voters so far
           </Stat>
