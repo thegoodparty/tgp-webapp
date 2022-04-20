@@ -17,18 +17,7 @@ const SideButton = styled.div`
   right: -36px;
   transform: rotate(-90deg);
   padding: 8px 16px;
-  background-color: ${({ theme }) => theme.colors.purple};
-  background: linear-gradient(
-      103.63deg,
-      rgba(255, 15, 19, 0.15) -3.51%,
-      rgba(191, 0, 32, 0) 94.72%
-    ),
-    linear-gradient(
-      257.82deg,
-      rgba(67, 0, 211, 0.25) -11.17%,
-      rgba(67, 0, 211, 0) 96.34%
-    ),
-    ${({ theme }) => theme.colors.purple};
+  background-color: #000;
   color: #fff;
   font-size: 14px;
   height: 50px;

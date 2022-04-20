@@ -43,7 +43,7 @@ const Tab = styled.div`
 
   &.active {
     background-color: #fff;
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
     border-bottom: none;
   }
 `;

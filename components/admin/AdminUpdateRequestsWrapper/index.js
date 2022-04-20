@@ -14,8 +14,8 @@ import { candidateRoute } from '/helpers/electionsHelper';
 import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import { Body, H3 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
 import { dateUsHelper } from '/helpers/dateHelper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -48,13 +48,17 @@ function AdminUpdateRequestsWrapper({
         <br />
         <br />
         {ugc &&
-          ugc.map(request => (
+          ugc.map((request) => (
             <RequestWrapper key={request.id}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
                   <Body>
                     Candidate:{' '}
-                    <a href={candidateRoute(request.candidate)} target="_blank" rel="noreferrer">
+                    <a
+                      href={candidateRoute(request.candidate)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {request.candidate.firstName} {request.candidate.lastName}
                     </a>
                   </Body>
@@ -81,7 +85,7 @@ function AdminUpdateRequestsWrapper({
                   </Body>
                 </Grid>
 
-                {Object.keys(request.data).map(field => (
+                {Object.keys(request.data).map((field) => (
                   <React.Fragment key={field}>
                     <Grid item xs={12} md={4}>
                       <strong>{field}</strong>
@@ -115,18 +119,18 @@ function AdminUpdateRequestsWrapper({
                 </Grid>
                 <Grid item xs={12} md={4}>
                   <br />
-                  <PurpleButton
+                  <BlackButton
                     onClick={() => rejectRequestCallback(request.id)}
                     style={{ background: 'red', borderColor: 'red' }}
                   >
                     &nbsp;Deny Request&nbsp;
-                  </PurpleButton>
+                  </BlackButton>
                   &nbsp; &nbsp;
-                  <PurpleButton
+                  <BlackButton
                     onClick={() => acceptRequestCallback(request.id)}
                   >
                     &nbsp;Accept Request&nbsp;
-                  </PurpleButton>
+                  </BlackButton>
                 </Grid>
               </Grid>
             </RequestWrapper>

@@ -10,6 +10,7 @@ import PageWrapper from '../shared/PageWrapper';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
+import MaxWidth from '/components/shared/MaxWidth';
 
 import { H1, H2 } from '../shared/typogrophy';
 import TeamSection from './TeamSection';
@@ -38,11 +39,6 @@ const Hero = styled.div`
   }
 `;
 
-export const MaxContent = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-`;
-
 const StyledH1 = styled(H1)`
   color: #fff;
   font-size: 40px;
@@ -55,7 +51,7 @@ const StyledH1 = styled(H1)`
   }
 `;
 
-const Content = styled(MaxContent)`
+const Content = styled(MaxWidth)`
   padding: 48px 12px;
   color: ${({ theme }) => theme.colors.gray2};
   font-size: 16px;
@@ -80,7 +76,7 @@ function TeamWrapper() {
     <PageWrapper isFullWidth white noPadding>
       <HeroPurple>
         <Hero>
-          <MaxContent>
+          <MaxWidth>
             <ReverseGrid spacing={2} container>
               <Grid item xs={12} md={6} className="text-right">
                 <img src="images/team/team-heart.svg" />
@@ -89,7 +85,7 @@ function TeamWrapper() {
                 <StyledH1>Meet the team</StyledH1>
               </Grid>
             </ReverseGrid>
-          </MaxContent>
+          </MaxWidth>
         </Hero>
       </HeroPurple>
       <Content>

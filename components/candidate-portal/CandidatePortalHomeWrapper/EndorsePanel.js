@@ -76,12 +76,12 @@ const Whats = styled.div`
 `;
 
 function EndorsePanel() {
-  const { candidate } = useContext(CandidatePortalHomePageContext);
+
   return (
     <PortalPanel color="#CA2CCD">
       <Row>
         <FontH3 style={{ margin: 0 }}>Endorse Button</FontH3>
-        <RangeSelector />
+        {/*<RangeSelector />*/}
       </Row>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>
@@ -127,7 +127,7 @@ function EndorsePanel() {
                   To <strong>get started</strong>, please customize and embed
                   your endorse button.
                 </Started>
-                <EndorseButtonModal id={candidate.id} />
+                <EndorseButtonModal />
                 <Tooltip triggerEl={<Whats>What’s this?</Whats>}>
                   <strong>What’s the endorse button?</strong>
                   <br />

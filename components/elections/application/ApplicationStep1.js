@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body13 } from '../../shared/typogrophy';
-import PurpleCheckbox from '../../shared/PurpleCheckbox';
+import BlackCheckbox from '../../shared/BlackCheckbox';
 
 export const Title = styled.h1`
   font-size: 21px;
@@ -23,14 +23,15 @@ export const Title = styled.h1`
 
 const SubTitle = styled(Body)`
   margin-bottom: 24px;
+  color: #000;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     margin-bottom: 36px;
   }
 `;
 
-const PurpleCard = styled.div`
-  background-color: #f9f7fa;
+const Card = styled.div`
+  background-color: #f9f9f9;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
@@ -38,7 +39,7 @@ const PurpleCard = styled.div`
 
 const CardTitle = styled(Body)`
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.purple};
+  color: #000;
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -176,7 +177,6 @@ function ApplicationStep1({
       updatedState.transparent &&
       updatedState.choices;
 
-    console.log('here')
     updateApplicationCallback(application.id, {
       ...application,
       pledge: {
@@ -206,7 +206,7 @@ function ApplicationStep1({
         <strong>Independent, People Powered and Anti-Corruption</strong>.
       </SubTitle>
       {cards.map((card) => (
-        <PurpleCard key={card.title}>
+        <Card key={card.title}>
           <CardTitle>
             <Icon src={`/images/application/${card.icon}`} alt="" />
             {card.title}
@@ -214,7 +214,7 @@ function ApplicationStep1({
           <CardSubtitle>{card.subtitle}</CardSubtitle>
           {card.checkboxes.map((item) => (
             <CheckboxWrapper key={item.id}>
-              <PurpleCheckbox
+              <BlackCheckbox
                 value={state[item.id]}
                 onChange={(e) => onChangeField(item.id, e.target.checked)}
                 disabled={reviewMode}
@@ -223,7 +223,7 @@ function ApplicationStep1({
               <div dangerouslySetInnerHTML={{ __html: item.text }} />
             </CheckboxWrapper>
           ))}
-        </PurpleCard>
+        </Card>
       ))}
     </ApplicationWrapper>
   );

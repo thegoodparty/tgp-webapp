@@ -11,11 +11,14 @@ import { RiImageAddFill } from 'react-icons/ri';
 
 import Button from '@material-ui/core/Button';
 import { PurpleButton } from '../buttons';
+import { InnerButton } from '../buttons/BlackButton';
 
 const StyledButton = styled(Button)`
   && {
-    background-color: ${({ theme }) => theme.colors.purple};
+    background-color: #000;
     color: #fff;
+    padding: 12px 0;
+    font-weight: 700;
   }
 `;
 
@@ -27,7 +30,9 @@ const Error = styled.div`
 function ImageUploadWrapper({
   fileSelectCallback,
   uploadCallback,
-  maxFileSize ,
+  maxFileSize,
+  customElement,
+  isUserImage,
 }) {
   const [fileSizeError, setFileSizeError] = useState(false);
   const handleUploadImage = (img) => {
@@ -39,28 +44,48 @@ function ImageUploadWrapper({
         setFileSizeError(true);
         return;
       }
-      fileSelectCallback(file, uploadCallback);
+      fileSelectCallback(file, uploadCallback, isUserImage);
     }
   };
 
   return (
     <>
-      <StyledButton
-        variant="contained"
-        component="label"
-        style={{ padding: '6px 8px' }}
-      >
-        &nbsp;&nbsp;
-        <RiImageAddFill /> &nbsp; Select &nbsp;&nbsp;
-        <input
-          type="file"
-          hidden
-          onChange={handleUploadImage}
-          accept="image/*"
-          id="file-uploader"
-        />
-      </StyledButton>
-      {fileSizeError && <Error>Max file size allowed: {maxFileSize/1000}K </Error>}
+      {customElement ? (
+        <Button
+          component="label"
+          style={{
+            textTransform: 'none',
+            fontSize: '16px',
+            padding: 0,
+            lineHeight: '1.3',
+          }}
+        >
+          {customElement}
+          <input
+            type="file"
+            hidden
+            onChange={handleUploadImage}
+            accept="image/*"
+            id="file-uploader"
+          />
+        </Button>
+      ) : (
+        <StyledButton variant="contained" component="label">
+          <InnerButton>
+            <RiImageAddFill /> &nbsp; Select &nbsp;&nbsp;
+            <input
+              type="file"
+              hidden
+              onChange={handleUploadImage}
+              accept="image/*"
+              id="file-uploader"
+            />
+          </InnerButton>
+        </StyledButton>
+      )}
+      {fileSizeError && (
+        <Error>Max file size allowed: {maxFileSize / 1000}K </Error>
+      )}
     </>
   );
 }
@@ -68,6 +93,7 @@ function ImageUploadWrapper({
 ImageUploadWrapper.propTypes = {
   fileSelectCallback: PropTypes.func,
   uploadCallback: PropTypes.func,
+  isUserImage: PropTypes.bool,
 };
 
 export default ImageUploadWrapper;

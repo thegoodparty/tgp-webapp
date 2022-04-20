@@ -12,17 +12,17 @@ import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import { Font16 } from '/components/shared/typogrophy';
-import { accessLevel } from '/helpers/staffHelper';
+import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 import { getUserCookie } from '/helpers/cookieHelper';
 
 const LeftPanel = styled.div`
-  padding-bottom: 60px;
+  padding: 0 10px 20px 10px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     width: 220px;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding: 60px 10px 0 10px;
     text-align: left;
   }
 `;
@@ -56,22 +56,27 @@ export const leftMenuItems = [
   {
     label: 'Analytics Dashboard',
     link: '/candidate-portal',
+    minAccessLevel: ACCESS_ENUM.STAFF,
   },
   {
-    label: 'Contact Info',
+    label: 'Campaign Page & Info',
     link: '/candidate-portal/campaign-manager',
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
     label: 'Campaign Updates',
     link: '/candidate-portal/campaign-updates',
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
     label: 'Policy Issues',
     link: '/candidate-portal/top-issues',
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   {
     label: 'Key Endorsers',
     link: '/candidate-portal/endorsements',
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
   // {
   //   icon: <ImEmbed2 size={24} />,
@@ -88,13 +93,14 @@ export const leftMenuItems = [
   {
     label: 'Invite Team Members',
     link: '/candidate-portal/staff-management',
+    minAccessLevel: ACCESS_ENUM.MANAGER,
   },
 ];
 
 export const leftMenuItemsBottom = [
   {
     label: 'Campaign Guide',
-    link: '/',
+    link: '/run#how',
   },
   {
     label: 'FAQs',
@@ -102,7 +108,7 @@ export const leftMenuItemsBottom = [
   },
   {
     label: 'Need Help?',
-    link: '/',
+    link: 'mailto:politics@goodparty.org',
   },
 ];
 
@@ -116,16 +122,24 @@ function PortalLeftMenu({ id, role }) {
 
   const user = getUserCookie(true);
 
+  const access = accessLevel(role);
+
   return (
     <LeftPanel>
       {leftMenuItems.map((item) => (
-        <Link href={link(item.link)} passHref key={item.label}>
-          <a>
-            <Label className={pathname === link(item.link) ? 'selected' : ''}>
-              {item.label}
-            </Label>
-          </a>
-        </Link>
+        <React.Fragment key={item.label}>
+          {access >= item.minAccessLevel && (
+            <Link href={link(item.link)} passHref>
+              <a>
+                <Label
+                  className={pathname === link(item.link) ? 'selected' : ''}
+                >
+                  {item.label}
+                </Label>
+              </a>
+            </Link>
+          )}
+        </React.Fragment>
       ))}
       <Secondary>
         <div style={{ height: '90px' }}>&nbsp;</div>

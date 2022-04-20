@@ -14,7 +14,7 @@ import {
 import { flatStates } from '/helpers/statesHelper';
 
 const IconWrapper = styled.span`
-  color: ${({ theme }) => theme.colors.purple};
+  color: #000;
   font-size: 24px;
   margin-right: 16px;
 `;
@@ -89,8 +89,6 @@ export const step2fields = [
     type: 'select',
     options: [
       'Independent',
-      'Democrat',
-      'Republican',
       'Green Party',
       'Libertarian',
       'SAM',
@@ -317,17 +315,14 @@ export const step3Fields = [
     subtitle:
       "A 60 second intro video about your campaign and why you're running.",
     defaultValue: '',
-    type: 'text',
+    type: 'youtube',
     subLabel: 'Optional',
-    icon: (
-      <IconWrapper>
-        <FaVideo />
-      </IconWrapper>
-    ),
+    isYouTube: true,
   },
   {
     key: 'headshotPhoto',
     label: 'Candidate headshot',
+    required: true,
     value: '',
   },
   {

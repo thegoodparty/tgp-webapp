@@ -23,6 +23,8 @@ export function ImageUploadContainer({
   fileSelectCallback,
   uploadCallback,
   maxFileSize = 400000,
+  customElement,
+  isUserImage,
 }) {
   useInjectReducer({ key: 'imageUploadContainer', reducer });
   useInjectSaga({ key: 'imageUploadContainer', saga });
@@ -31,6 +33,8 @@ export function ImageUploadContainer({
     fileSelectCallback,
     uploadCallback,
     maxFileSize,
+    customElement,
+    isUserImage,
   };
 
   return <ImageUploadWrapper {...childProps} />;
@@ -41,6 +45,8 @@ ImageUploadContainer.propTypes = {
   uploadCallback: PropTypes.func,
   fileSelectCallback: PropTypes.func,
   maxFileSize: PropTypes.number,
+  customElement: PropTypes.node,
+  isUserImage: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -50,8 +56,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    fileSelectCallback: (image, uploadCallback) => {
-      dispatch(actions.uploadImageAction(image, uploadCallback));
+    fileSelectCallback: (image, uploadCallback, isUserImage) => {
+      dispatch(actions.uploadImageAction(image, uploadCallback, isUserImage));
     },
   };
 }

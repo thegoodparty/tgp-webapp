@@ -16,6 +16,7 @@ import { CandidatesContext } from '/containers/CandidatesPage';
 
 import { FontH3 } from '../shared/typogrophy';
 import BlackButton from '../shared/buttons/BlackButton';
+import { removeWhiteSpaces } from '../../helpers/stringHelper';
 
 const Section = styled.section`
   padding: 16px 28px;
@@ -120,14 +121,16 @@ function FiltersSection() {
               {state.position !== '' && state.position !== -1 ? (
                 <>
                   who care about{' '}
-                  <span>#{positionsById[state.position]?.name} &nbsp;</span>
+                  <span>
+                    #{removeWhiteSpaces(positionsById[state.position]?.name)}
+                  </span>
                 </>
               ) : (
                 <>who people should know about</>
               )}
               {state.state !== '' && state.state !== -1 && (
                 <>
-                  in <span>{states[state.state]}</span>
+                  &nbsp;in <span>{states[state.state]}</span>
                 </>
               )}
             </FontH3>
@@ -166,7 +169,7 @@ function FiltersSection() {
                       <optgroup label={issue}>{issue}</optgroup>
                       {positionsByTopIssues[issue].map((position) => (
                         <option value={position.id} key={position.id}>
-                         &nbsp; {position.name}
+                          &nbsp; {position.name}
                         </option>
                       ))}
                     </>

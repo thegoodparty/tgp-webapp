@@ -14,6 +14,19 @@ function findCandidatePositionsActionSuccess(candidatePositions) {
   };
 }
 
+function loadTopIssuesAction() {
+  return {
+    type: types.LOAD_TOP_ISSUES,
+  };
+}
+
+function loadTopIssueActionSuccess(topIssues) {
+  return {
+    type: types.LOAD_TOP_ISSUES_SUCCESS,
+    topIssues,
+  };
+}
+
 function saveCandidatePositionAction(
   topIssueId,
   positionId,
@@ -63,4 +76,7 @@ export default {
   saveCandidatePositionAction,
   updateCandidatePositionAction,
   deleteCandidatePositionAction,
+
+  loadTopIssuesAction,
+  loadTopIssueActionSuccess,
 };

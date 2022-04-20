@@ -12,7 +12,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { uuidUrl } from '/helpers/userHelper';
 
 import { Body, Body13 } from '../../shared/typogrophy';
-import { GrayText } from '../ProfileWrapper';
+// import { GrayText } from '../ProfileWrapper';
 
 const Wrapper = styled.section`
   margin-top: 48px;
@@ -27,7 +27,7 @@ const Wrapper = styled.section`
 
 const UniqueLink = styled.div`
   margin-top: 8px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
@@ -44,7 +44,7 @@ function SpreadSection({ user }) {
       <Body>
         <strong>Spread the word</strong>
         <br />
-        <GrayText>This is your unique link</GrayText>
+        This is your unique link
         <UniqueLink>
           <CopyToClipboard text={uniqueUrl} onCopy={() => setCopied(true)}>
             <span>{cleanUrl}</span>

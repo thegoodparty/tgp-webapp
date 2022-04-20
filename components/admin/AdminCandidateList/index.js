@@ -36,7 +36,7 @@ const Title = styled(H3)`
 const LogAs = styled.div`
   font-size: 14px;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   text-decoration: underline;
   cursor: pointer;
 `;

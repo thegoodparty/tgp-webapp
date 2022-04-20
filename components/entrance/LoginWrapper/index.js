@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
-import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1 } from '/components/shared/typogrophy';
 import globals from '/globals';
-import { PurpleButton } from '../../shared/buttons';
 import TwitterButton from '../../shared/TwitterButton';
 import PhoneOrEmailInput from '../../shared/PhoneOrEmailInput';
+import BlackButton from '../../shared/buttons/BlackButton';
 const SocialButton = dynamic(
   () => import('/components/you/SocialRegisterWrapper/SocialButton'),
   { ssr: false },
@@ -87,14 +85,14 @@ const LoginWrapper = ({
         <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
           <PhoneOrEmailInput onChangeCallback={onChangeValue} />
           <div data-cy="login">
-            <PurpleButton
+            <BlackButton
               fullWidth
               disabled={!isValid}
               onClick={handleSubmit}
               type="submit"
             >
               NEXT
-            </PurpleButton>
+            </BlackButton>
           </div>
         </form>
         <OrWrapper>

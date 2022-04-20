@@ -56,7 +56,6 @@ export function AdminCompareCandidatesPage({
   }, [id]);
 
   const { topics } = adminCompareCandidatesPage;
-  console.log('topics', topics)
 
   const childProps = {
     candidate,

@@ -41,7 +41,6 @@ export function AdminCandidateApplicationsPage({
   }, []);
 
   const { applications } = adminCandidateApplicationsPage;
-  console.log('applications', applications);
 
   const childProps = {
     applications,

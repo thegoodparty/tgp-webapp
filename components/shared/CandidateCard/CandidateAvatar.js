@@ -59,7 +59,7 @@ const ImageWrapper = styled.div`
   height: 100%;
   overflow: hidden;
   border-radius: 50%;
-  border: solid 2px ${({ theme }) => theme.colors.purple};
+  border: solid 2px ${({ theme }) => theme.colors.primary};
   img {
     object-fit: cover;
     object-position: center center;

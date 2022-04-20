@@ -8,15 +8,14 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { PurpleButton } from '/components/shared/buttons';
 import { partyResolver } from '/helpers/electionsHelper';
 import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import { achievementsHelper } from '/helpers/achievementsHelper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
@@ -110,27 +109,28 @@ function ShareImage({
   total,
 }) {
   const supportCount = total;
-  const { firstName, lastName, race, party, isDraft, draftOffice } = candidate;
-  const afterLoad = suffix => {
+  const { firstName, lastName, race, party, otherParty, isDraft, draftOffice } =
+    candidate;
+  const afterLoad = (suffix) => {
     if (!withRender) {
       return;
     }
     htmlToImage
       .toJpeg(document.getElementById(suffix), { quality: 1, pixelRatio: 1 })
-      .then(function(dataUrl) {
+      .then(function (dataUrl) {
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
 
         shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error('oops, something went wrong!', error);
       });
   };
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
-  console.log({ ...candidate })
+  console.log({ ...candidate });
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
@@ -182,9 +182,9 @@ function ShareImage({
         />
         {withRender && (
           <Box style={{ marginTop: 20, textAlign: 'center' }}>
-            <PurpleButton style={{ width: '50%' }}>
+            <BlackButton style={{ width: '50%' }}>
               <InnerButton>Join Me</InnerButton>
-            </PurpleButton>
+            </BlackButton>
           </Box>
         )}
       </ShareImageWrapper>
@@ -212,7 +212,7 @@ function ShareImage({
                 draftOffice
               ) : (
                 <>
-                  <PartyName>{partyResolver(party)} for</PartyName>
+                  <PartyName>{partyResolver(party, otherParty)} for</PartyName>
                   <PartyName>{race}</PartyName>
                 </>
               )}
@@ -237,9 +237,9 @@ function ShareImage({
           />
           {withRender && (
             <Box style={{ marginTop: 20, textAlign: 'center' }}>
-              <PurpleButton style={{ width: '70%' }}>
+              <BlackButton style={{ width: '70%' }}>
                 <InnerButton>See Campaign</InnerButton>
-              </PurpleButton>
+              </BlackButton>
             </Box>
           )}
         </ShareImageWrapper>

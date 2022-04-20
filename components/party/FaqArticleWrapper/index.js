@@ -8,7 +8,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { Body, Body11, H1, Body13 } from '/components/shared/typogrophy';
 import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
-import { PurpleButton } from '../../shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -73,14 +73,14 @@ const FeedbackButton = styled(Body11)`
   cursor: pointer;
 
   &.purple {
-    border-color: ${({ theme }) => theme.colors.purple};
-    color: ${({ theme }) => theme.colors.purple};
+    border-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
 const Close = styled(Body13)`
   text-align: center;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   padding: 10px;
 `;
@@ -108,11 +108,11 @@ const FaqArticleWrapper = ({
   //   }
   // }, [isHelpful]);
 
-  const handleFeedback = event => {
+  const handleFeedback = (event) => {
     setFeedback(event.target.value);
   };
 
-  const handleHelpful = isHelpfulVal => {
+  const handleHelpful = (isHelpfulVal) => {
     if (isHelpfulVal) {
       setIsHelpful(HELPFUL_STATES.helpful);
       helpfulCallback(article.id, article.title, true, '');
@@ -158,7 +158,6 @@ const FaqArticleWrapper = ({
               {isHelpful === HELPFUL_STATES.notSelected && (
                 <ButtonsWrapper>
                   <FeedbackButton
-                    className="purple"
                     onClick={() => handleHelpful(true)}
                     data-cy="helpful-yes"
                   >
@@ -188,9 +187,9 @@ const FaqArticleWrapper = ({
                     onClick={handleSubmit}
                     data-cy="feedback-submit"
                   >
-                    <PurpleButton disabled={feedback === ''} fullWidth>
+                    <BlackButton disabled={feedback === ''} fullWidth>
                       SUBMIT
-                    </PurpleButton>
+                    </BlackButton>
                   </SubmitButtonWrapper>
                 </>
               )}

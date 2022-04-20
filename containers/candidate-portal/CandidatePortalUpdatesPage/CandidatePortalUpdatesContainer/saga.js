@@ -10,7 +10,6 @@ import portalHomeActions from '../../CandidatePortalHomePage/actions';
 function* createUpdate({ update, candidateId }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Creating Update Request...'));
-    console.log('tgpApi', tgpApi);
     const api = tgpApi.campaign.updateRequest.create;
     const payload = { update, candidateId };
     yield call(requestHelper, api, payload);

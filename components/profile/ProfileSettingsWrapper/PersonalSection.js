@@ -4,505 +4,191 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
-import { BsChevronRight, BsLock } from 'react-icons/bs';
-import Link from 'next/link';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import Grid from '@material-ui/core/Grid';
 
-import { formatToPhone } from '/helpers/phoneHelper';
-import { getCookie, setCookie } from '/helpers/cookieHelper';
+import { ProfileSettingsPageContext } from '/containers/profile/ProfileSettingsPage';
 
-import { Body13, H1 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
-import AlertDialog from '../../shared/AlertDialog';
-import { emailRegExp } from '/helpers/userHelper';
+import PortalPanel from '../../candidate-portal/shared/PortalPanel';
+import { FontH3 } from '../../shared/typogrophy';
+import { isValidEmail } from '../../shared/EmailInput';
+import PhoneInput from '../../shared/PhoneInput';
+import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import Row from '../../shared/Row';
 
-const Wrapper = styled.section`
-  padding: 32px 0;
-`;
+const fields = [
+  {
+    key: 'name',
+    label: 'Name',
+    initialValue: '',
+    maxLength: 20,
+    required: true,
+  },
+  {
+    key: 'email',
+    label: 'Email',
+    initialValue: '',
+    maxLength: 20,
+    type: 'email',
+  },
+  {
+    key: 'phone',
+    label: 'Mobile Number',
+    initialValue: '',
+    maxLength: 12,
+    type: 'phone',
+  },
+  {
+    key: 'zip',
+    label: 'Zip Code',
+    initialValue: '',
+    maxLength: 5,
+    required: true,
+  },
+  {
+    key: 'displayName',
+    label: 'Display Name',
+    initialValue: '',
+    maxLength: 16,
+  },
+  // { key: 'pronouns', label: 'Preferred Pronouns', initialValue: '' },
+];
 
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 0;
-  border-bottom: solid 1px ${({ theme }) => theme.colors.purple4};
-
-  &.with-save {
-    flex-direction: column;
-    align-items: flex-start;
-
-    .chevron {
-      display: none;
+const Section = styled.section`
+  .MuiInputBase-input {
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 16px !important;
+      line-height: 22px !important;
     }
   }
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    padding: 25px 0;
-    &.with-save {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      justify-content: ;
-    }
-  }
-`;
-
-const Label = styled(Body13)`
-  font-weight: 700;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    margin-bottom: 10px;
-  }
-`;
-
-const Value = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray4};
-  text-align: right;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    text-align: left;
-  }
-`;
-
-const NotVerified = styled.div`
-  color: red;
-  margin-top: 8px;
-`;
-
-const Action = styled(Body13)`
-  color: ${({ theme }) => theme.colors.purple};
-  cursor: pointer;
-  padding-left: 24px;
-  align-self: flex-start;
 `;
 
 const StyledTextField = styled(TextField)`
   && {
-    background-color: #fff;
-    box-shadow: 0 2px 0 rgba(17, 17, 31, 0.25);
-    border-radius: 8px;
-    margin-top: 8px;
+    margin-bottom: 16px;
   }
-`;
-
-const ChevronWrapper = styled.div`
-  font-size: 10px;
-  padding-left: 12px;
-  color: ${({ theme }) => theme.colors.gray4};
 `;
 
 const Cancel = styled.div`
-  margin-top: 20px;
-  margin-left: 12px;
-  color: ${({ theme }) => theme.colors.purple};
+  margin-left: 20px;
+  text-decoration: underline;
   cursor: pointer;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    display: none;
-  }
 `;
 
-const ButtonCancelWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    display: block;
-  }
-`;
+function PersonalSection() {
+  const { user, updateUserCallback } = useContext(ProfileSettingsPageContext);
+  const initialState = {};
+  fields.forEach((field) => {
+    initialState[field.key] = field.initialValue;
+  });
+  const [state, setState] = useState(initialState);
+  const [isPhoneValid, setIsPhoneValid] = useState(true);
 
-const Privacy = styled.div`
-  margin-top: 24px;
-  border: 1px solid ${({ theme }) => theme.colors.purple4};
-  padding: 38px;
-  border-radius: 8px;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.gray6};
-`;
-
-const PhoneWrapper = styled.div`
-  margin-bottom: 24px;
-  .phone-input {
-    width: 100%;
-    height: 60px;
-    line-height: 22px;
-    font-size: 16px;
-    padding-left: 16px;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 20px;
-      line-height: 26px;
-      ::placeholder {
-        font-size: 16px;
-      }
-    }
-  }
-
-  .flag-dropdown {
-    display: none;
-  }
-`;
-
-function PersonalSection({
-  user,
-  updateUserCallback,
-  changePasswordCallback,
-  setUser,
-}) {
-  const [editEnabled, setEditEnabled] = useState({});
-  const [editPassword, setEditPassword] = useState(false);
-  const [password, setPassword] = useState('');
-  const [canChangePassword, setCanChangePassword] = useState(false);
-  const [oldPassword, setOldPassword] = useState('');
-  const {
-    name,
-    displayName,
-    pronouns,
-    email,
-    phone,
-    zip,
-    isPhoneVerified,
-    isEmailVerified,
-  } = user;
   useEffect(() => {
-    canSubmitPassword();
-  }, [password, oldPassword]);
-
-  const [formFields, setFormFields] = useState({});
-  useEffect(() => {
-    const initialValues = {
-      name,
-      displayName: displayName || '',
-      email,
-      phone: formatToPhone(phone),
-      zip: zip || '',
-      pronouns: pronouns || '',
-    };
-    setFormFields({
-      name: { label: 'Full Name', value: initialValues.name },
-      email: { label: 'Email', value: initialValues.email },
-      phone: { label: 'Mobile number', value: initialValues.phone },
-      zip: { label: 'Zip Code', value: initialValues.zip },
-      displayName: { label: 'Display Name', value: initialValues.displayName },
-      pronouns: { label: 'Preferred Pronouns', value: initialValues.pronouns },
-    });
-    if(user.isEmailVerified) {
-      setCookie('verifedEmail', user.email);
+    if (user) {
+      const updatedState = {};
+      fields.forEach((field) => {
+        updatedState[field.key] = user[field.key] || field.initialValue;
+      });
+      setState(updatedState);
     }
   }, [user]);
+
   const onChangeField = (key, val) => {
-    setFormFields({
-      ...formFields,
-      [key]: { ...formFields[key], value: val },
+    setState({
+      ...state,
+      [key]: val,
     });
   };
-  const EditableValue = fieldKey => {
-    const field = formFields[fieldKey];
-    const handleSave = () => {
-      updateUserCallback(fieldKey, field.value);
-      setUser({ ...user, [fieldKey]: field.value });
-      if(fieldKey === 'email') {
-        const verifiedEmail = getCookie('verifiedEmail');
-        if(verifiedEmail === field.value) {
-          setUser({ ...user, isEmailVerified: true });
-          updateUserCallback('isEmailVerified', true);
-        }
-        else {
-          setUser({ ...user, isEmailVerified: false });
-          updateUserCallback('isEmailVerified', false);
-        }
-      }
-      setEditEnabled({
-        ...editEnabled,
-        [formFields[fieldKey].label]: false,
-      });
 
-      // format the phone after save
-      if (fieldKey === 'phone') {
-        setFormFields({
-          ...formFields,
-          phone: {
-            ...formFields[fieldKey],
-            value: formatToPhone(formFields.phone.value),
-          },
-        });
-      }
-    };
-    return (
-      <>
-        {editEnabled[field.label] ? (
-          <>
-            {field.label === 'Mobile number' ? (
-              <PhoneWrapper>
-                <PhoneInput
-                  disableCountryCode
-                  country="us"
-                  disableDropdown
-                  inputClass="phone-input"
-                  placeholder="Phone Number"
-                  onlyCountries={['us']}
-                  value={field.value}
-                  onChange={phoneVal => onChangeField(fieldKey, phoneVal)}
-                />
-              </PhoneWrapper>
-            ) : (
-              <StyledTextField
-                fullWidth
-                variant="outlined"
-                value={field.value}
-                onChange={e => onChangeField(fieldKey, e.target.value)}
-              />
-            )}
-
-            <ButtonCancelWrapper>
-              <PurpleButton
-                style={{ marginTop: '24px' }}
-                disabled={field.value === ''}
-                onClick={handleSave}
-              >
-                <span style={{ padding: '0 24px' }}>SAVE</span>
-              </PurpleButton>
-              <Cancel
-                onClick={() => {
-                  cancelField(fieldKey);
-                }}
-              >
-                Cancel
-              </Cancel>
-            </ButtonCancelWrapper>
-          </>
-        ) : (
-          <Value>
-            {field.value} <br />
-            {field.label === 'Email' &&
-              field.value &&
-              field.value !== '' &&
-              !isEmailVerified && (
-                <NotVerified>
-                  This email is not verified
-                  <br />
-                  <Link href="/register/confirm" passHref>
-                    <a>Verify Your Email</a>
-                  </Link>
-                </NotVerified>
-              )}
-            {field.label === 'Mobile number' &&
-              field.value &&
-              field.value !== '' &&
-              !isPhoneVerified && (
-                <NotVerified>
-                  This phone is not verified
-                  <br />
-                  <Link href="/register/confirm" passHref>
-                    <a>Verify Your Phone</a>
-                  </Link>
-                </NotVerified>
-              )}
-          </Value>
-        )}
-      </>
-    );
-  };
-
-  const cancelField = field => {
-    setEditEnabled({
-      ...editEnabled,
-      [formFields[field].label]: false,
+  const cancel = () => {
+    const updatedState = {};
+    fields.forEach((field) => {
+      updatedState[field.key] = user[field.key] || field.initialValue;
     });
-    onChangeField(field, initialValues[field]);
-  };
-  const canSubmitPassword = () => {
-    if (
-      user.hasPassword &&
-      password !== '' &&
-      oldPassword !== '' &&
-      password.match(emailRegExp) &&
-      password.length > 7
-    ) {
-      setCanChangePassword(true);
-      return true;
-    }
-    if (!user.hasPassword && password !== '' && password.length > 7) {
-      setCanChangePassword(true);
-      return true;
-    }
-    setCanChangePassword(false);
-    return false;
-  };
-  const handleSavePassword = () => {
-    if (canSubmitPassword()) {
-      changePasswordCallback(password, oldPassword);
-      setEditPassword(false);
-      setPassword('');
-      setOldPassword('');
-    }
+    setState(updatedState);
+    setIsPhoneValid(true);
   };
 
-  const showEdit = field => {
-    if (!editEnabled[formFields[field].label] && window.innerWidth < 960) {
-      setEditEnabled({
-        ...editEnabled,
-        [formFields[field].label]: true,
-      });
+  const canSave = () => {
+    if (state.phone !== '' && !isPhoneValid) {
+      return false;
     }
+    // required field
+    if (state.name === '' || state.zip === '') {
+      return false;
+    }
+    // one required
+    if (state.email === '' && state.phone === '') {
+      return false;
+    }
+    if (state.email !== '' && !isValidEmail(state.email)) {
+      return false;
+    }
+    if (state.zip !== '' && state.zip.length !== 5) {
+      return false;
+    }
+    return true;
   };
 
+  const submit = () => {
+    const fields = { ...state };
+    if (fields.phone) {
+      fields.phone = fields.phone.replace(/\D+/g, '');
+    }
+
+    updateUserCallback(fields);
+  };
   return (
-    <Wrapper>
-      {Object.keys(formFields).map(field => (
-        <Row
-          key={formFields[field].label}
-          className={editEnabled[formFields[field].label] && 'with-save'}
-          onClick={() => {
-            showEdit(field);
-          }}
-        >
-          <div style={{ flex: 1 }}>
-            <Label>
-              {formFields[field].label} <BsLock size={12} color="#767676" />
-            </Label>
-            <Hidden smDown>{EditableValue(field)}</Hidden>
-          </div>
-          <Hidden mdUp>
-            {EditableValue(field)}
-            <ChevronWrapper
-              className="chevron"
-              onClick={() => {
-                setEditEnabled({
-                  ...editEnabled,
-                  [formFields[field].label]: true,
-                });
-              }}
-            >
-              <BsChevronRight />
-            </ChevronWrapper>
-          </Hidden>
-          <Hidden smDown>
-            {editEnabled[formFields[field].label] ? (
-              <Action
-                onClick={() => {
-                  cancelField(field);
-                }}
-              >
-                Cancel
-              </Action>
-            ) : (
-              <Action
-                onClick={() => {
-                  setEditEnabled({
-                    ...editEnabled,
-                    [formFields[field].label]: true,
-                  });
-                }}
-              >
-                {!formFields[field].value || formFields[field].value === ''
-                  ? 'Add'
-                  : 'Edit'}
-              </Action>
-            )}
-          </Hidden>
-        </Row>
-      ))}
-
-      <Row>
-        <div style={{ flex: 1 }}>
-          <Label>Password</Label>
-          {editPassword ? (
-            <>
-              {user.hasPassword && (
-                <StyledTextField
-                  label="Old Password"
-                  fullWidth
-                  variant="outlined"
-                  type="password"
-                  value={oldPassword}
-                  onChange={e => {
-                    setOldPassword(e.target.value);
-                  }}
-                  style={{ marginBottom: '16px' }}
-                />
-              )}
-              <StyledTextField
-                label="Password"
-                fullWidth
-                variant="outlined"
-                value={password}
-                type="password"
-                onChange={e => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <small>For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum</small>
-              <br />
-              <ButtonCancelWrapper>
-                <PurpleButton
-                  style={{ marginTop: '24px' }}
-                  onClick={handleSavePassword}
-                  disabled={!canChangePassword}
+    <Section>
+      <PortalPanel color="#EE6C3B">
+        <FontH3 style={{ margin: '0 0 70px' }}>Settings</FontH3>
+        <form noValidate onSubmit={(e) => e.preventDefault()}>
+          <Grid container spacing={3}>
+            <Grid xs={12} lg={6}>
+              {fields.map((field) => (
+                <>
+                  {field.type === 'phone' ? (
+                    <PhoneInput
+                      value={state[field.key]}
+                      onChangeCallback={(phone, isValid) => {
+                        onChangeField(field.key, phone);
+                        setIsPhoneValid(isValid);
+                      }}
+                      hideIcon
+                    />
+                  ) : (
+                    <StyledTextField
+                      key={field.label}
+                      value={state[field.key]}
+                      fullWidth
+                      variant="outlined"
+                      label={field.label}
+                      onChange={(e) => onChangeField(field.key, e.target.value)}
+                      required={field.required}
+                    />
+                  )}
+                </>
+              ))}
+              <Row style={{ marginTop: '80px' }}>
+                <BlackButton
+                  disabled={!canSave()}
+                  type="submit"
+                  onClick={submit}
                 >
-                  <span style={{ padding: '0 24px' }}>SAVE</span>
-                </PurpleButton>
-                <Cancel onClick={() => setEditPassword(false)}>Cancel</Cancel>
-              </ButtonCancelWrapper>
-            </>
-          ) : (
-            <>{user.hasPassword ? '********' : 'Not Set Yet'}</>
-          )}
-        </div>
-        <Hidden mdUp>
-          <ChevronWrapper
-            className="chevron"
-            onClick={() => {
-              setEditPassword(true);
-            }}
-          >
-            <BsChevronRight />
-          </ChevronWrapper>
-        </Hidden>
-        <Hidden smDown>
-          {editPassword ? (
-            <Action
-              onClick={() => {
-                setEditPassword(false);
-              }}
-            >
-              Cancel
-            </Action>
-          ) : (
-            <Action
-              onClick={() => {
-                setEditPassword(true);
-              }}
-            >
-              {user.hasPassword ? 'Edit' : 'Add'}
-            </Action>
-          )}
-        </Hidden>
-      </Row>
-
-      <Privacy>
-        <BsLock size={24} color="#919191" />
-        <br />
-        Good Party doesn&apos;t sell or share
-        <br />
-        your personal data
-      </Privacy>
-    </Wrapper>
+                  <InnerButton>Save</InnerButton>
+                </BlackButton>
+                <Cancel onClick={cancel}>cancel</Cancel>
+              </Row>
+            </Grid>
+          </Grid>
+        </form>
+      </PortalPanel>
+    </Section>
   );
 }
-
-PersonalSection.propTypes = {
-  user: PropTypes.object,
-  updateUserCallback: PropTypes.func,
-  changePasswordCallback: PropTypes.func,
-  setUser: PropTypes.func,
-};
 
 export default PersonalSection;

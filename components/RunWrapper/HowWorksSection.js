@@ -160,7 +160,7 @@ function HowWorksSection() {
   return (
     <Section>
       <Element name="questions">
-        <FontH2>
+        <FontH2 id="how">
           How it works
           <Line />
         </FontH2>
@@ -178,7 +178,7 @@ function HowWorksSection() {
               <Title>{box.title}</Title>
 
               {box.points.map((point) => (
-                <Point>
+                <Point key={point.title}>
                   <PointTitle className={expanded[index] && 'expanded'}>
                     {point.title}
                   </PointTitle>

@@ -11,8 +11,11 @@ import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 import { partyResolver } from '/helpers/electionsHelper';
 import Link from 'next/link';
-import { FontH3 } from '../typogrophy';
+import { Font16, FontH3 } from '../typogrophy';
 import BlackButton from '../buttons/BlackButton';
+import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
+import { achievementsHelper } from '../../../helpers/achievementsHelper';
+import { numberFormatter } from '../../../helpers/numberHelper';
 
 const Wrapper = styled.div`
   border-radius: 16px;
@@ -21,6 +24,7 @@ const Wrapper = styled.div`
   color: #000;
   height: 100%;
   position: relative;
+  background-color: #fff;
 `;
 
 const ImageWrapper = styled.div`
@@ -47,6 +51,13 @@ const Name = styled(FontH3)`
 
 const Gray = styled.div`
   color: #4d4d4d;
+`;
+
+const SoFar = styled.div`
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Quote = styled.div`
@@ -91,12 +102,13 @@ function CandidateCard({ candidate }) {
     lastName,
     image,
     race,
-    state,
+    supporters,
     party,
+    otherParty,
     headline,
     positions,
   } = candidate;
-
+  const achievements = achievementsHelper(supporters);
   return (
     <Link
       href={`/candidate/${firstName}-${lastName}/${id}`}
@@ -106,17 +118,39 @@ function CandidateCard({ candidate }) {
       <a style={{ height: '100%' }}>
         <Wrapper>
           <ImageWrapper>
-            <Image src={image} layout="fill" alt={`${firstName} ${lastName}`} />
+            {image && (
+              <Image
+                src={image}
+                layout="fill"
+                alt={`${firstName} ${lastName}`}
+              />
+            )}
           </ImageWrapper>
           <Content>
             <Name>
               {firstName} {lastName}
             </Name>
-            <Gray>{race}</Gray>
             <Gray>
-              {state} ({partyResolver(party)}
-              {party !== 'I' && ' Party'})
+              {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
+              Candidate <br />
+              for <strong>{race}</strong>
             </Gray>
+            <SoFar>
+              <strong>
+                {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
+              </strong>
+              <div>
+                Let&apos;s get to {numberFormatter(achievements.nextStep)}!
+              </div>
+            </SoFar>
+            <SupportersProgressBar
+              showSupporters={false}
+              votesNeeded={achievements.nextStep}
+              peopleSoFar={supporters}
+              fullWidth
+              showSuffix={false}
+              // withAchievement
+            />
             <Quote>{headline}</Quote>
             {positions && positions.length > 0 && (
               <Positions>

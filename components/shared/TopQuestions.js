@@ -18,12 +18,12 @@ const Row = styled.div`
 
 const SeeFaq = styled(Body13)`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const ArticleTitle = styled(Body)`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   margin-top: 28px;
 
   &.first: {

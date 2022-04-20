@@ -5,10 +5,10 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { PurpleButton } from '/components/shared/buttons';
+import BlackButton from '../shared/buttons/BlackButton';
 
 function EndorseIframe() {
   const router = useRouter();
@@ -30,7 +30,7 @@ function EndorseIframe() {
         minWidth: '150px',
       }}
     >
-      <PurpleButton
+      <BlackButton
         fullWidth
         style={{
           minWidth: '150px',
@@ -43,7 +43,7 @@ function EndorseIframe() {
           }}
         />{' '}
         ENDORSE
-      </PurpleButton>
+      </BlackButton>
     </a>
   );
 }

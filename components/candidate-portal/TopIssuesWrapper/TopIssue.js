@@ -8,8 +8,10 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+
+import { TopIssuesPageContext } from '/containers/candidate-portal/TopIssuesPage';
 import EditableTopIssue from './EditableTopIssue';
-import { TopIssuesPageContext } from '../../../containers/candidate-portal/TopIssuesPage';
+
 
 function TopIssue({ index, candidatePosition }) {
   const [editMode, setEditMode] = useState(false);
@@ -29,7 +31,7 @@ function TopIssue({ index, candidatePosition }) {
     );
   }
   return (
-    <React.Fragment>
+    <React.Fragment key={candidatePosition.id}>
       <Grid item xs={1}>
         <span>{index + 1}.</span>
       </Grid>
@@ -46,9 +48,6 @@ function TopIssue({ index, candidatePosition }) {
       <Grid item xs={2}>
         <FaEdit onClick={() => setEditMode(true)} /> &nbsp; &nbsp; &nbsp;{' '}
         <FaTrash onClick={deleteIssue} />
-      </Grid>
-      <Grid item xs={12}>
-        <hr />
       </Grid>
     </React.Fragment>
   );

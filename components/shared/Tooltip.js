@@ -64,7 +64,7 @@ const Tooltip = ({ children, triggerEl }) => {
           vertical: 'top',
           horizontal: 'center',
         }}
-        style={{ marginTop: '20px', overflow: 'initial' }}
+        style={{ marginTop: '20px' }}
       >
         <Inner>
           <ArrowShadow />

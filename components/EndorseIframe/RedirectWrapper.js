@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   padding: 24px;
-  background: ${({ theme }) => theme.colors.purple};
+  background: ${({ theme }) => theme.colors.primary};
 
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@ const Title = styled.div`
 
 const Skip = styled(Body11)`
   text-align: center;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   text-decoration: underline;
   cursor: pointer;
   margin-top: 8px;

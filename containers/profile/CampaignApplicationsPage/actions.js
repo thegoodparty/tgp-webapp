@@ -32,6 +32,15 @@ function deleteApplicationAction(id) {
   };
 }
 
+const loadStaffAction = () => ({
+  type: types.LOAD_STAFF,
+});
+
+const loadStaffActionSuccess = (staff) => ({
+  type: types.LOAD_STAFF_SUCCESS,
+  staff,
+});
+
 export default {
   createApplicationAction,
 
@@ -39,4 +48,7 @@ export default {
   loadApplicationsActionSuccess,
 
   deleteApplicationAction,
+
+  loadStaffAction,
+  loadStaffActionSuccess,
 };

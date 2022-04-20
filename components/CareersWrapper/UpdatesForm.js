@@ -5,14 +5,13 @@
  */
 
 import React, { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { H2 } from '../shared/typogrophy';
-import { PurpleButton } from '../shared/buttons';
 import { validateEmail } from '../../helpers/emailHelper';
+import BlackButton from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
@@ -133,9 +132,9 @@ function UpdatesForm({ notificationsCallback }) {
           ))}
           <br />
           <br />
-          <PurpleButton disabled={!canSubmit()} onClick={submitForm}>
+          <BlackButton disabled={!canSubmit()} onClick={submitForm}>
             &nbsp;&nbsp; Get Notified &nbsp;&nbsp;
-          </PurpleButton>
+          </BlackButton>
         </Form>
       </Content>
     </Wrapper>

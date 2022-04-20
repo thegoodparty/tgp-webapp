@@ -35,7 +35,7 @@ const Trash = styled.div`
   padding: 4px;
   cursor: pointer;
   &:hover {
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 

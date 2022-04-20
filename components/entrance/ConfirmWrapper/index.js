@@ -9,12 +9,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
-
 import { formatToPhone } from '/helpers/phoneHelper';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { Body, Body13, H1 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 24px 0;
@@ -52,14 +51,14 @@ const Row = styled.div`
   }
 `;
 const BottomLink = styled(Body13)`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
 `;
 
 const Edit = styled(Body13)`
   display: inline-block;
   padding-left: 12px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
 `;
 
@@ -90,7 +89,7 @@ function ConfirmWrapper({
   const hasPhone = !!phone;
   const [field, setField] = useState(hasPhone ? phone : email);
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
@@ -110,7 +109,7 @@ function ConfirmWrapper({
     resendCodeCallback();
   };
 
-  const updateInfo = newValue => {
+  const updateInfo = (newValue) => {
     setField(newValue);
   };
 
@@ -142,15 +141,15 @@ function ConfirmWrapper({
                   label={`Edit your ${hasPhone ? 'phone' : 'email'}`}
                   size="medium"
                   variant="outlined"
-                  onChange={e => updateInfo(e.target.value)}
+                  onChange={(e) => updateInfo(e.target.value)}
                 />
 
-                <PurpleButton
+                <BlackButton
                   style={{ padding: '4px 8px', marginLeft: '8px' }}
                   onClick={handleSaveInfo}
                 >
                   Save
-                </PurpleButton>
+                </BlackButton>
               </Row>
             ) : (
               <div>
@@ -168,16 +167,16 @@ function ConfirmWrapper({
             fullWidth
             name="Code"
             variant="outlined"
-            onChange={e => setToken(e.target.value)}
+            onChange={(e) => setToken(e.target.value)}
           />
-          <PurpleButton
+          <BlackButton
             fullWidth
             disabled={!enableSubmit()}
             onClick={handleSubmit}
             type="submit"
           >
             Confirm
-          </PurpleButton>
+          </BlackButton>
         </form>
         <br />
         {!fromLogin && (

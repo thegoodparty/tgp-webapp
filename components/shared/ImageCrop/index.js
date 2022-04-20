@@ -12,7 +12,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 import Grid from '@material-ui/core/Grid';
 
 import { H3, Body13 } from '../typogrophy';
-import { PurpleButton } from '../buttons';
+import BlackButton from '../buttons/BlackButton';
 
 const CanvasWrapper = styled.div`
   overflow: hidden;
@@ -52,7 +52,7 @@ function ImageCrop({
   const [canvasWidth, setCanvasWidth] = useState(0);
   const [error, setError] = useState(false);
 
-  const onSelectFile = e => {
+  const onSelectFile = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       setError(false);
@@ -73,7 +73,7 @@ function ImageCrop({
       reader.readAsDataURL(file);
     }
   };
-  const onLoad = useCallback(img => {
+  const onLoad = useCallback((img) => {
     imgRef.current = img;
   }, []);
   useEffect(() => {
@@ -137,8 +137,8 @@ function ImageCrop({
                 src={upImg}
                 onImageLoaded={onLoad}
                 crop={crop}
-                onChange={c => setCrop(c)}
-                onComplete={c => setCompletedCrop(c)}
+                onChange={(c) => setCrop(c)}
+                onComplete={(c) => setCompletedCrop(c)}
               />
             </Grid>
             <Grid
@@ -172,7 +172,7 @@ function ImageCrop({
           </Grid>
           <ButtonWrapper onClick={handleUpload}>
             {additionalButton || ''} &nbsp;
-            <PurpleButton fullWidth>{label}</PurpleButton>
+            <BlackButton fullWidth>{label}</BlackButton>
           </ButtonWrapper>
         </>
       )}

@@ -11,11 +11,11 @@ import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 
-import { PurpleButton } from '/components/shared/buttons';
 import { H2, H3 } from '../../shared/typogrophy';
 import CandidateAvatar from '../../shared/CandidateAvatar';
 import CandidateTopMenu from '../CandidateTopMenu';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -220,9 +220,9 @@ function AdminCandidateStageSettingsWrapper({ candidate, saveCallback }) {
             </Item>
           </Grid>
         </Grid>
-        <PurpleButton onClick={save} fullWidth>
+        <BlackButton onClick={save} fullWidth>
           &nbsp;&nbsp;SAVE&nbsp;&nbsp;
-        </PurpleButton>
+        </BlackButton>
       </Wrapper>
     </AdminPageWrapper>
   );

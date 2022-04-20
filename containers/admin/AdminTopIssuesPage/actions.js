@@ -35,6 +35,14 @@ function deletePositionAction(id) {
   };
 }
 
+function editPositionAction(id, name) {
+  return {
+    type: types.EDIT_POSITION,
+    id,
+    name,
+  };
+}
+
 function loadTopIssuesAction() {
   return {
     type: types.LOAD_TOP_ISSUES,
@@ -54,6 +62,8 @@ export default {
 
   deleteTopIssueAction,
   deletePositionAction,
+
+  editPositionAction,
 
   loadTopIssuesAction,
   loadTopIssueActionSuccess,

@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body11, Body13, H1 } from '/components/shared/typogrophy';
 import Link from 'next/link';
 import PasswordInput from '../../shared/PasswordInput';
-import { PurpleButton } from '../../shared/buttons';
 import { formatToPhone } from '/helpers/phoneHelper';
-import { emailRegExp } from '/helpers/userHelper';
+import { passwordRegex } from '/helpers/userHelper';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const VerticalWrapper = styled.div`
   display: flex;
@@ -37,7 +36,7 @@ const LoginPasswordWrapper = ({
   const [sentForgot, setSentForgot] = useState(false);
 
   const enableSubmit = () =>
-    password !== '' && password.match(emailRegExp) && password.length >= 8;
+    password !== '' && password.match(passwordRegex) && password.length >= 8;
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -103,14 +102,14 @@ const LoginPasswordWrapper = ({
               )}
 
               <div data-cy="login">
-                <PurpleButton
+                <BlackButton
                   fullWidth
                   disabled={!enableSubmit()}
                   onClick={handleSubmit}
                   type="submit"
                 >
                   SIGN IN
-                </PurpleButton>
+                </BlackButton>
               </div>
             </form>
           </VerticalWrapper>

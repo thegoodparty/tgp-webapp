@@ -44,15 +44,18 @@ export const isValidPhone = (phone) => {
   );
 };
 
-function PhoneInput({ value, onChangeCallback, onBlurCallback }) {
+function PhoneInput({
+  value,
+  onChangeCallback,
+  onBlurCallback = () => {},
+  hideIcon,
+}) {
   const [displayValue, setDisplayValue] = useState('');
   const [validPhone, setValidPhone] = useState(false);
 
   useEffect(() => {
-    if (value) {
-      formatDisplay(value);
-      setValidPhone(value);
-    }
+    formatDisplay(value);
+    setValidPhone(value);
   }, [value]);
 
   const onChangeValue = async (event) => {
@@ -97,15 +100,19 @@ function PhoneInput({ value, onChangeCallback, onBlurCallback }) {
       onBlur={onBlurChange}
       variant="outlined"
       error={!validPhone && displayValue !== ''}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton>
-              <PhoneIcon />
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
+      InputProps={
+        !hideIcon
+          ? {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton>
+                    <PhoneIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }
+          : {}
+      }
     />
   );
 }
@@ -114,6 +121,7 @@ PhoneInput.propTypes = {
   onChangeCallback: PropTypes.func,
   onBlurCallback: PropTypes.func,
   value: PropTypes.string,
+  hideIcon: PropTypes.bool,
 };
 
 export default PhoneInput;

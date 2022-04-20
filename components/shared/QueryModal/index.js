@@ -13,18 +13,24 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
-import { Body11, Body13, H2 } from '/components/shared/typogrophy';
-import { PurpleButton, OutlinedButton } from '../../shared/buttons';
+import { Body13, H2 } from '/components/shared/typogrophy';
+import BlackButton from '../buttons/BlackButton';
 
 const TgpDialog = styled(Dialog)`
   && {
     .MuiDialog-paper {
       position: relative;
       width: 100vw;
-      background-color: ${({ theme }) => theme.colors.purple3};
-      padding: 24px;
-      border-radius: 8px;
+      background-color: #fff;
+      padding: 8px;
+      border-radius: 4px;
       box-shadow: none;
+      margin: 12px;
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpointsPixels.md}) {
+        padding: 24px;
+        margin: 32px;
+      }
     }
 
     .MuiBackdrop-root {
@@ -75,7 +81,7 @@ const TopWrapper = styled.div`
 const TopClose = styled(CloseIcon)`
   font-size: 24px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   &.purple {
     color: #fff;
   }
@@ -112,7 +118,7 @@ function QueryModal({
       className={`${close && isCandidatePage && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
-      {!closeTitle && !hideClose && (
+      {!hideClose && (
         <TopWrapper className="top-wrapper">
           <TopClose
             onClick={() => setClose(true)}
@@ -130,18 +136,18 @@ function QueryModal({
           </Body13>
           <Grid container spacing={2} style={{ marginTop: 18 }}>
             <Grid item xs={6}>
-              <PurpleButton
+              <BlackButton
                 fullWidth
                 className="outline"
                 onClick={closeModalCallback}
               >
                 YES, EXIT
-              </PurpleButton>
+              </BlackButton>
             </Grid>
             <Grid item xs={6}>
-              <PurpleButton fullWidth onClick={() => setClose(false)}>
+              <BlackButton fullWidth onClick={() => setClose(false)}>
                 {closeBack}
-              </PurpleButton>
+              </BlackButton>
             </Grid>
           </Grid>
         </>

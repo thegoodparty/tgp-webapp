@@ -33,6 +33,7 @@ export function PortalEndorsementsPage({
   candidatePortalHomePage,
   addEndorsementCallback,
   portalEndorsementsPage,
+  deleteEndorsementCallback,
 }) {
   useInjectReducer({ key: 'portalEndorsementsPage', reducer });
   useInjectSaga({ key: 'portalEndorsementsPage', saga });
@@ -45,21 +46,27 @@ export function PortalEndorsementsPage({
 
   const router = useRouter();
   const { id } = router.query;
-  const { role } = candidatePortalHomePage;
+  const { candidate, role } = candidatePortalHomePage;
   const { endorsements } = portalEndorsementsPage;
 
   useEffect(() => {
     if (id) {
       dispatch(portalHomeActions.loadRoleAction(id));
+      dispatch(portalHomeActions.findCandidate(id));
       dispatch(actions.loadEndorsementAction(id));
     }
   }, [id]);
 
   const access = accessLevel(role);
 
-  const childProps = { role, id, endorsements, addEndorsementCallback };
-
-  console.log('endorsements', endorsements);
+  const childProps = {
+    candidate,
+    role,
+    id,
+    endorsements,
+    addEndorsementCallback,
+    deleteEndorsementCallback,
+  };
 
   return (
     <EndorsementsContext.Provider value={childProps}>
@@ -80,6 +87,7 @@ PortalEndorsementsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   candidatePortalHomePage: PropTypes.object,
   addEndorsementCallback: PropTypes.func,
+  deleteEndorsementCallback: PropTypes.func,
   portalEndorsementsPage: PropTypes.object,
 };
 
@@ -93,6 +101,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     addEndorsementCallback: (id, title, summary, link, image) => {
       dispatch(actions.addEndorsementAction(id, title, summary, link, image));
+    },
+    deleteEndorsementCallback: (id, candidateId) => {
+      dispatch(actions.deleteEndorsementAction(id, candidateId));
     },
   };
 }

@@ -12,7 +12,6 @@ import Select from '@material-ui/core/Select';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
@@ -129,24 +128,19 @@ function ApplicationStep2({
   };
 
   const handleSelectChange = (key, e, toggleElement) => {
-    console.log('select1');
     if (key === 'party') {
-      console.log('select2', toggleElement);
       if (toggleElement && e.target.value === 'Other') {
-        console.log('select3');
         setHiddenElements({
           ...hiddenElements,
           [toggleElement]: false,
         });
       } else if (toggleElement && e.target.value !== 'Other') {
-        console.log('select4');
         setHiddenElements({
           ...hiddenElements,
           [toggleElement]: true,
         });
       }
     }
-    console.log('select5');
     onChangeField(key, e);
     onBlurField(key, e);
   };
@@ -268,6 +262,7 @@ function ApplicationStep2({
               const e = { target: { value: val } };
               onBlurField(field.key, e);
             }}
+            hideIcon
           />
         )}
         {(field.type === 'text' || field.type === 'email' || field.type === 'date') && (

@@ -17,6 +17,7 @@ import { H1, H2 } from '../shared/typogrophy';
 import LeverCareers from './LeverCareers';
 import Benefits from './Benefits';
 import UpdatesForm from './UpdatesForm';
+import MaxWidth from '../shared/MaxWidth';
 
 const HeroPurple = styled.div`
   background: linear-gradient(
@@ -41,11 +42,6 @@ const Hero = styled.div`
   }
 `;
 
-export const MaxContent = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-`;
-
 const StyledH1 = styled(H1)`
   color: #fff;
   font-size: 40px;
@@ -58,7 +54,7 @@ const StyledH1 = styled(H1)`
   }
 `;
 
-const Content = styled(MaxContent)`
+const Content = styled(MaxWidth)`
   padding: 48px 12px;
   color: ${({ theme }) => theme.colors.gray2};
   font-size: 16px;
@@ -93,7 +89,7 @@ function CareersWrapper({ notificationsCallback }) {
     <PageWrapper isFullWidth white noPadding>
       <HeroPurple>
         <Hero>
-          <MaxContent>
+          <MaxWidth>
             <ReverseGrid spacing={2} container>
               <Grid item xs={12} md={6} className="text-right">
                 <img src="images/team/team-heart.svg" />
@@ -102,7 +98,7 @@ function CareersWrapper({ notificationsCallback }) {
                 <StyledH1>Work With Us</StyledH1>
               </Grid>
             </ReverseGrid>
-          </MaxContent>
+          </MaxWidth>
         </Hero>
       </HeroPurple>
       <Content>

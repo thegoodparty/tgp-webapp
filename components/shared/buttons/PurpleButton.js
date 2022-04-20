@@ -11,23 +11,12 @@ const StyledButton = styled(Button)`
     font-weight: 600;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
-    border: 2px solid ${({ theme }) => theme.colors.purple};
-    background: linear-gradient(
-        103.63deg,
-        rgba(255, 15, 19, 0.15) -3.51%,
-        rgba(191, 0, 32, 0) 94.72%
-      ),
-      linear-gradient(
-        257.82deg,
-        rgba(67, 0, 211, 0.25) -11.17%,
-        rgba(67, 0, 211, 0) 96.34%
-      ),
-      ${({ theme }) => theme.colors.purple};
+    border: 2px solid ${({ theme }) => theme.colors.primary};
     font-size: 1rem;
     &.outline {
       background: #fff;
-      border: 2px solid ${({ theme }) => theme.colors.purple};
-      color: ${({ theme }) => theme.colors.purple};
+      border: 2px solid ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.primary};
       box-shadow: none;
     }
     &.center {
@@ -37,10 +26,10 @@ const StyledButton = styled(Button)`
     color: #fff;
     box-shadow: none;
 
-    &.Mui-disabled {
-      background: ${({ theme }) => theme.colors.purple3};
-      border: solid 2px #e0d4ea;
-    }
+    // &.Mui-disabled {
+    //   background: ${({ theme }) => theme.colors.purple3};
+    //   border: solid 2px #999;
+    // }
     &.submit {
       padding: 12px 22px;
     }

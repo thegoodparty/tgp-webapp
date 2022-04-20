@@ -30,6 +30,7 @@ export function AdminTopIssuesPage({
   adminTopIssuesPage,
   deleteTopIssueCallback,
   deletePositionCallback,
+  editPositionCallback,
 }) {
   useInjectReducer({ key: 'adminTopIssuesPage', reducer });
   useInjectSaga({ key: 'adminTopIssuesPage', saga });
@@ -45,6 +46,7 @@ export function AdminTopIssuesPage({
     createPositionCallback,
     deleteTopIssueCallback,
     deletePositionCallback,
+    editPositionCallback,
   };
 
   const user = getUserCookie(true);
@@ -79,6 +81,9 @@ function mapDispatchToProps(dispatch) {
     },
     deletePositionCallback: (id) => {
       dispatch(actions.deletePositionAction(id));
+    },
+    editPositionCallback: (id, name) => {
+      dispatch(actions.editPositionAction(id, name));
     },
   };
 }

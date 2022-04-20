@@ -129,11 +129,7 @@ function ApplicationStep7({
       const topIssues = application.topIssues;
       if (topIssues) {
         for (let i = 0; i < topIssues.length; i++) {
-          if (
-            topIssues[i].selectedTopic &&
-            topIssues[i].selectedPosition &&
-            topIssues[i].description !== ''
-          ) {
+          if (topIssues[i].selectedTopic && topIssues[i].selectedPosition) {
             issuesCount++;
           }
         }

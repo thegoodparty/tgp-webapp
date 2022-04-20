@@ -17,16 +17,19 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Lato', sans-serif;
     line-height: 1.3;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
 
   a {
    text-decoration: none;
-   color: #5C00C7;
+   color: #000;
   }
 
   a:hover {
-   color: #6E26DB;
+   color: #333;
+   
   }
 
   .bold700 {
@@ -86,6 +89,10 @@ const GlobalStyles = createGlobalStyle`
   }
   .ReactCrop__image {
     max-width: 700px;
+  }
+  
+  .MuiPopover-paper.MuiPaper-root {
+    overflow: visible !important;
   }
 `;
 

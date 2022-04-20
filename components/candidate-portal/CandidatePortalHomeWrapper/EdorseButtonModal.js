@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Select from '@material-ui/core/Select';
@@ -12,6 +12,8 @@ import { MdContentCopy } from 'react-icons/md';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import apiHelper from '/helpers/apiHelper';
+import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
+
 import Modal from '../../shared/Modal';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import PinkButton from '../../shared/buttons/PinkButton';
@@ -24,6 +26,8 @@ const Inner = styled.div`
   background-color: #fff;
   padding: 48px;
   border-radius: 16px;
+  max-height: 90vh;
+  overflow: auto;
 `;
 
 const Row = styled.div`
@@ -109,6 +113,11 @@ const PickerWrapper = styled.div`
   padding-top: 10px;
 `;
 
+const CustomWrapper = styled.div`
+  cursor: pointer;
+  height: 100%;
+`;
+
 const labels = [
   'ENDORSE ME',
   'ADD YOUR NAME',
@@ -125,9 +134,24 @@ const initialState = {
   copied: false,
 };
 
-function EndorseButtonModal({ id }) {
+function EndorseButtonModal({ customElement }) {
+  const { candidate, savePreferencesCallback } = useContext(
+    CandidatePortalHomePageContext,
+  );
+  const { id, preferences } = candidate;
   const [state, setState] = useState(initialState);
   const { apiBase, base } = apiHelper;
+
+  useEffect(() => {
+    if (preferences) {
+      setState({
+        ...state,
+        backgroundColor: preferences.backgroundColor,
+        textColor: preferences.textColor,
+        label: preferences.label,
+      });
+    }
+  }, [preferences]);
 
   const onChangeField = (key, value) => {
     setState({
@@ -142,6 +166,34 @@ function EndorseButtonModal({ id }) {
       backgroundColor: state.textColor,
       textColor: state.backgroundColor,
     });
+  };
+
+  const closeModal = () => {
+    // undo changes
+    if (preferences) {
+      setState({
+        ...state,
+        isOpen: false,
+        backgroundColor: preferences.backgroundColor,
+        textColor: preferences.textColor,
+        label: preferences.label,
+      });
+    } else {
+      setState({
+        ...state,
+        isOpen: false,
+      });
+    }
+  };
+
+  const save = () => {
+    savePreferencesCallback(candidate.id, {
+      ...preferences,
+      backgroundColor: state.backgroundColor,
+      textColor: state.textColor,
+      label: state.label,
+    });
+    onChangeField('isOpen', false);
   };
 
   const handleColorChange = (color) => {
@@ -172,26 +224,30 @@ function EndorseButtonModal({ id }) {
 
   return (
     <>
-      <PinkButton onClick={() => onChangeField('isOpen', true)}>
-        <InnerButton>Activate Endorse Button</InnerButton>
-      </PinkButton>
+      {customElement ? (
+        <CustomWrapper onClick={() => onChangeField('isOpen', true)}>
+          {customElement}
+        </CustomWrapper>
+      ) : (
+        <PinkButton onClick={() => onChangeField('isOpen', true)}>
+          <InnerButton>Activate Endorse Button</InnerButton>
+        </PinkButton>
+      )}
       <Modal
         open={state.isOpen}
-        closeModalCallback={() => onChangeField('isOpen', false)}
+        closeModalCallback={closeModal}
         showCloseButton={false}
       >
         <Inner>
           <Row>
             <FontH3 style={{ margin: 0 }}>Edit Button</FontH3>
             <div className="text-right">
-              <Cancel onClick={() => onChangeField('isOpen', false)}>
-                Cancel
-              </Cancel>
+              <Cancel onClick={closeModal}>Cancel</Cancel>
               <CopyToClipboard
                 text={buttonCode()}
                 onCopy={() => onChangeField('copied', true)}
               >
-                <BlackButton>
+                <BlackButton onClick={save}>
                   <InnerButton>Save &amp; Copy Code</InnerButton>
                 </BlackButton>
               </CopyToClipboard>

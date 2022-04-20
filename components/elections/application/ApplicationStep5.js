@@ -94,6 +94,7 @@ function ApplicationStep5({
       <br />
       {(state || []).map((row, index) => (
         <TopIssueRow
+          key={index}
           issues={validIssues}
           row={row}
           index={index}

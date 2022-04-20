@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -6,56 +6,21 @@ import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
 
 import { PurpleButton } from '../shared/buttons';
-import CandidateMiniCard from './CandidateMiniCard';
+import CandidateCard from '../shared/CandidateCard';
+import { HomePageContext } from '../../containers/HomePage';
+import BlackButton from '../shared/buttons/BlackButton';
+import MaxWidth from '/components/shared/MaxWidth';
 
-const Wrapper = styled.div`
-  position: relative;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 24px auto 0;
-  //padding: 48px 0;
-  background: url('/images/homepage/campaign-bg-small.svg') center center
-    no-repeat;
-  background-size: contain;
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    background: url('/images/homepage/campaign-bg.svg') center center no-repeat;
-    padding: 48px 0;
-  }
-
-  .hidden {
-    opacity: 0;
-  }
+const Section = styled.section`
+  padding: 60px 16px;
 `;
 
-const TextWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 22px;
-  font-weight: 700;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    font-size: 36px;
-  }
-`;
-
-const CandidatesWrapper = styled.div`
-  padding: 0 16px;
-  position: relative;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 36px auto;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    margin: -160px auto 0;
-    padding: 0 48px;
-  }
+const H3 = styled.h3`
+  margin: 0 0 45px;
+  font-size: 28px;
+  line-height: 53px;
+  font-weight: 900;
+  text-align: center;
 `;
 
 const SeeMoreWrapper = styled.div`
@@ -64,29 +29,23 @@ const SeeMoreWrapper = styled.div`
   margin: 24px auto 0;
 `;
 
-const FeaturedCampaigns = ({ homepageCandidates }) => {
+const FeaturedCampaigns = ({ featuredCandidates }) => {
+  const context = useContext(HomePageContext);
+  let candidates = [];
+  if (featuredCandidates) {
+    candidates = featuredCandidates;
+  } else {
+    candidates = context.homepageCandidates;
+  }
+
   return (
-    <>
-      <Wrapper>
-        <Hidden mdDown>
-          <img
-            src="/images/homepage/campaign-bg.svg"
-            className="hidden full-image"
-          />
-        </Hidden>
-        <Hidden lgUp>
-          <img
-            src="/images/homepage/campaign-bg-small.svg"
-            className="hidden full-image"
-          />
-        </Hidden>
-        <TextWrapper data-cy="campaigns-title"> Featured Campaigns</TextWrapper>
-      </Wrapper>
-      <CandidatesWrapper>
+    <Section>
+      <MaxWidth>
+        <H3>Featured Campaigns</H3>
         <Grid container spacing={3}>
-          {homepageCandidates.map(candidate => (
-            <Grid item xs={12} md={6} lg={4} key={candidate.id} data-cy="campaign-card">
-              <CandidateMiniCard candidate={candidate} />
+          {candidates.map((candidate) => (
+            <Grid item xs={12} md={6} lg={4} key={candidate.id}>
+              <CandidateCard candidate={candidate} />
             </Grid>
           ))}
         </Grid>
@@ -94,14 +53,14 @@ const FeaturedCampaigns = ({ homepageCandidates }) => {
         <SeeMoreWrapper>
           <Link href="/candidates" passHref>
             <a data-cy="campaigns-more-link">
-              <PurpleButton fullWidth className="outline">
+              <BlackButton fullWidth className="outlined pill">
                 See More
-              </PurpleButton>
+              </BlackButton>
             </a>
           </Link>
         </SeeMoreWrapper>
-      </CandidatesWrapper>
-    </>
+      </MaxWidth>
+    </Section>
   );
 };
 

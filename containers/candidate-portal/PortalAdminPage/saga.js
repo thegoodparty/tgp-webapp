@@ -8,13 +8,13 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import portalHomeActions from '../CandidatePortalHomePage/actions';
 
-function* updateCandidate({ fields}) {
+function* updateCandidate({ fields }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Saving...'));
-    const api = tgpApi.newCandidate.update;
+    const api = tgpApi.campaign.update;
+
     const candidate = fields;
-    trimObject(candidate);
-    const payload = { candidate };
+    const payload = { id: candidate.id, candidate };
     yield call(requestHelper, api, payload);
     yield put(snackbarActions.showSnakbarAction('Saved'));
     yield put(portalHomeActions.findCandidate(candidate.id));

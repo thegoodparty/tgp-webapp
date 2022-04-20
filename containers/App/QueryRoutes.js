@@ -39,7 +39,7 @@ function QueryRoutes({ locationState, dispatch }) {
       setCookie('referrer', uuid);
     }
   }, []);
-
+  const isCandidatePage = router.pathname === '/candidate/[...NameId]';
   useEffect(() => {
     const modalArticleId = queryHelper(search, 'article');
 
@@ -50,14 +50,14 @@ function QueryRoutes({ locationState, dispatch }) {
     }
 
     const queryShare = queryHelper(search, 'share');
-    const isCandidatePage = router.pathname === '/candidate/[...NameIdTab]';
-    setShowShare(queryShare === 'true' && !isCandidatePage);
+
+    setShowShare(queryShare === 'true');
   }, [search]);
 
   return (
     <>
       <FaqArticlePage />
-      {showShare && <ShareModal />}
+      {showShare && <ShareModal isCandidate={isCandidatePage} />}
     </>
   );
 }

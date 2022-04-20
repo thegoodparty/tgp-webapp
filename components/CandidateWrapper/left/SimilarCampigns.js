@@ -34,7 +34,7 @@ const Running = styled.div`
 const Match = styled.span`
   margin-right: 16px;
   font-size: 13px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 function SimilarCampaigns() {

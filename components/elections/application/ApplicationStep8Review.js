@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body, H1 } from '../../shared/typogrophy';
 import LightPurpleButton from '../../shared/buttons/LightPurpleButton';
-import { PurpleButton } from '../../shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const Inner = styled.div`
 `;
 
 const StyledH1 = styled(H1)`
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   margin-bottom: 16px;
 `;
 
@@ -68,7 +68,7 @@ function ApplicationStep8({
     <PageWrapper purple>
       <Wrapper>
         <Inner>
-          <StyledH1 className="purple">Approve / Reject</StyledH1>
+          <StyledH1>Approve / Reject</StyledH1>
           <TextField
             fullWidth
             variant="outlined"
@@ -95,13 +95,13 @@ function ApplicationStep8({
                 </LightPurpleButton>
               </Grid>
               <Grid item xs={6}>
-                <PurpleButton
+                <BlackButton
                   fullWidth
                   disabled={state.feedback === ''}
                   onClick={approve}
                 >
                   <InnerButton>Approve</InnerButton>
-                </PurpleButton>
+                </BlackButton>
               </Grid>
             </Grid>
           )}

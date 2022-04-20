@@ -7,11 +7,11 @@ import Nav from '/containers/shared/Nav';
 
 import PortalLeftMenu from './PortalLeftMenu';
 import LoadingAnimation from '../../shared/LoadingAnimation';
-import { MaxContent } from '../../TeamWrapper';
+import MaxWidth from '/components/shared/MaxWidth';
 import PortalPageTitle from './PortalPageTitle';
 import Footer from '../../shared/Footer';
 
-const Wrapper = styled(MaxContent)`
+const Wrapper = styled(MaxWidth)`
   min-height: calc(100vh - 80px);
 
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
@@ -26,6 +26,11 @@ const Wrapper = styled(MaxContent)`
 
 const MainPanel = styled.div`
   flex: 1;
+  max-width: 100%;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    max-width: calc(100% - 220px);
+  }
 `;
 
 const PortalPageWrapper = ({ children, role, loading, title }) => {

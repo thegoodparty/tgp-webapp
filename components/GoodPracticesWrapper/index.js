@@ -37,12 +37,12 @@ const Inner = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.purple};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 const StyledH1 = styled(H1)`
   color: #fff;
-  background-color: ${({ theme }) => theme.colors.purple};
+  background-color: ${({ theme }) => theme.colors.primary};
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
   padding: 32px 0;
@@ -72,7 +72,7 @@ const Box = styled.div`
 const BoxTitle = styled.div`
   font-size: 23px;
   line-height: 30px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 700;
 `;
 

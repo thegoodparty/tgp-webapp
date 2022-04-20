@@ -355,7 +355,6 @@ const api = {
         method: 'GET',
       },
     },
-
   },
   newCandidate: {
     create: {
@@ -434,6 +433,12 @@ const api = {
       method: 'PUT',
       withAuth: true,
     },
+    endorseButton: {
+      click: {
+        url: `${base}button/click`,
+        method: 'GET',
+      },
+    },
   },
   trackVisit: {
     url: `${base}visit`,
@@ -480,11 +485,7 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
-    supportUpdates: {
-      url: `${base}support-updates`,
-      method: 'GET',
-      withAuth: true,
-    },
+
     candidateSupports: {
       url: `${base}candidate-supports`,
       method: 'GET',
@@ -496,15 +497,37 @@ const api = {
       method: 'GET',
       withAuth: true,
     },
+    update: {
+      url: `${base}campaign`,
+      method: 'PUT',
+      withAuth: true,
+    },
     stats: {
       url: `${base}campaign/stats`,
       method: 'GET',
       withAuth: true,
     },
-    updateRequest: {
+    preferences: {
+      update: {
+        url: `${base}campaign/preferences`,
+        method: 'PUT',
+        withAuth: true,
+      },
+    },
+    updates: {
       create: {
-        url: `${base}campaign/update-request`,
+        url: `${base}campaign/update`,
         method: 'POST',
+        withAuth: true,
+      },
+      update: {
+        url: `${base}campaign/update`,
+        method: 'PUT',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}campaign/update`,
+        method: 'DELETE',
         withAuth: true,
       },
     },
@@ -517,6 +540,11 @@ const api = {
       list: {
         url: `${base}campaign/endorsements`,
         method: 'GET',
+        withAuth: true,
+      },
+      delete: {
+        url: `${base}campaign/endorsement`,
+        method: 'DELETE',
         withAuth: true,
       },
     },
@@ -548,6 +576,11 @@ const api = {
         method: 'DELETE',
         withAuth: true,
       },
+      deleteInvitation: {
+        url: `${base}campaign/staff-invitation`,
+        method: 'DELETE',
+        withAuth: true,
+      },
       role: {
         url: `${base}campaign/staff-role`,
         method: 'GET',
@@ -556,39 +589,6 @@ const api = {
       list: {
         url: `${base}campaign/staff`,
         method: 'GET',
-        withAuth: true,
-      },
-    },
-    ugc: {
-      find: {
-        url: `${base}ugc`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}ugc`,
-        method: 'PUT',
-        withAuth: true,
-      },
-
-      list: {
-        // admin
-        url: `${base}ugcs`,
-        method: 'GET',
-        withAuth: true,
-      },
-
-      accept: {
-        // admin
-        url: `${base}ugcs/accept`,
-        method: 'PUT',
-        withAuth: true,
-      },
-
-      reject: {
-        // admin
-        url: `${base}ugcs/reject`,
-        method: 'PUT',
         withAuth: true,
       },
     },

@@ -14,7 +14,7 @@ import Select from '@material-ui/core/Select';
 
 import Modal from '../Modal';
 import { Body, H3 } from '../typogrophy';
-import { OutlinedButton, PurpleButton } from '../buttons';
+import BlackButton from '../buttons/BlackButton';
 
 const FormWrapper = styled.form`
   padding: 40px 20px;
@@ -22,7 +22,7 @@ const FormWrapper = styled.form`
   border-radius: 8px;
   width: 95vw;
   max-width: 900px;
-  border: solid 2px ${({ theme }) => theme.colors.purple};
+  border: solid 2px #000;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
 
   .dv-star-rating-empty-star .heart-star {
@@ -142,16 +142,16 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
             />
           </Grid>
           <Grid item xs={12} className="text-right">
-            <PurpleButton className="outline" onClick={closeCallback}>
+            <BlackButton className="outlined" onClick={closeCallback}>
               <InnerButton>Cancel</InnerButton>
-            </PurpleButton>
-            <PurpleButton
+            </BlackButton>
+            <BlackButton
               style={{ marginLeft: '18px' }}
               disabled={!canSubmit()}
               onClick={submitForm}
             >
               <InnerButton>Send</InnerButton>
-            </PurpleButton>
+            </BlackButton>
           </Grid>
         </Grid>
       </FormWrapper>

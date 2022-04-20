@@ -12,8 +12,7 @@ import Link from 'next/link';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body19, H1 } from '../../shared/typogrophy';
 import LeaderboardPerson from './LeaderboardPerson';
-import ProfileTabs from '../ProfileWrapper/ProfileTabs';
-import MaxWidth from '../ProfileWrapper/MaxWidth';
+import MaxWidth from '../../shared/MaxWidth';
 import SpreadSection from './SpreadSection';
 
 const ContentWrpper = styled.div`
@@ -52,15 +51,15 @@ const Invite = styled.div`
   display: inline-block;
   padding: 13px 17px;
   border-radius: 8px;
-  border: solid 2px ${({ theme }) => theme.colors.purple};
-  color: ${({ theme }) => theme.colors.purple};
+  border: solid 2px ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 500;
   cursor: pointer;
 `;
 
 const Everyone = styled.span`
   display: inline-block;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
@@ -85,7 +84,7 @@ function LeaderboardWrapper({
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '8px' }}>
         <br />
-        <ProfileTabs activeTab="Leaderboard" />
+        {/*<ProfileTabs activeTab="Leaderboard" />*/}
         <ContentWrpper>
           <H1>Good Party Leaderboard</H1>
           <StyledBody19>

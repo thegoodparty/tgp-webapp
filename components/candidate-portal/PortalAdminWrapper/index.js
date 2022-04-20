@@ -13,6 +13,7 @@ import { PortalAdminPageContext } from '/containers/candidate-portal/PortalAdmin
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { FontH1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 120px);
@@ -40,6 +41,7 @@ const fields = [
   { label: 'Unrepresented voters', key: 'unrepVoters', initialValue: 0 },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
+  { label: 'hubspot company id', key: 'hubspotId', initialValue: '' },
 ];
 
 function PortalAdminWrapper() {
@@ -59,7 +61,7 @@ function PortalAdminWrapper() {
           ? candidate[field.key]
           : field.initialValue;
       });
-      newState.isActive = candidate.isActive;
+      // newState.isActive = candidate.isActive;
       setState(newState);
     }
   }, [candidate]);
@@ -117,7 +119,7 @@ function PortalAdminWrapper() {
         ))}
         <br />
         <br />
-        <PurpleButton
+        <BlackButton
           fullWidth
           onClick={() => {
             saveCallback({ ...candidate, ...state });
@@ -125,7 +127,7 @@ function PortalAdminWrapper() {
           disabled={!canSubmit()}
         >
           Save
-        </PurpleButton>
+        </BlackButton>
       </Wrapper>
     </PortalPageWrapper>
   );

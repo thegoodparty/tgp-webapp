@@ -21,8 +21,8 @@ import CandidateTopMenu from '../CandidateTopMenu';
 import { Body13, H2, Body, H3 } from '../../shared/typogrophy';
 import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
 import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
-import { PurpleButton } from '../../shared/buttons';
 import AlertDialog from '../../shared/AlertDialog';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 50px);
@@ -52,7 +52,7 @@ const EditWrapper = styled.div`
   padding: 8px;
   cursor: pointer;
   &:hover {
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -67,7 +67,7 @@ const Cancel = styled.div`
   cursor: pointer;
   padding: 2px 8px;
   margin-right: 24px;
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const DeleteImage = styled.div`
@@ -111,12 +111,12 @@ function AdminCandidateUpdatesWrapper({
   const [updates, setUpdates] = useState([]);
   useEffect(() => {
     if (candidate?.updatesList) {
-      let updatesList = [ ...candidate?.updatesList ];
+      let updatesList = [...candidate?.updatesList];
       setUpdates(updatesList.reverse());
     }
   }, [candidate]);
 
-  const handleSetEdit = update => {
+  const handleSetEdit = (update) => {
     setEditUpdate(update);
     setEditedUpdate({
       id: update.id,
@@ -149,7 +149,7 @@ function AdminCandidateUpdatesWrapper({
   };
 
   const handleSave = () => {
-    if(editedUpdate.title) {
+    if (editedUpdate.title) {
       saveCallback(editedUpdate, candidate.id);
       handleCancelEdit();
     }
@@ -179,7 +179,7 @@ function AdminCandidateUpdatesWrapper({
   };
 
   const handleCreate = () => {
-    if(newUpdate.title) {
+    if (newUpdate.title) {
       createCallback(newUpdate, candidate.id);
       handleCancelNew();
     }
@@ -220,9 +220,9 @@ function AdminCandidateUpdatesWrapper({
       <>
         <br />
         <br />
-        <PurpleButton onClick={handleNewUpdate} disabled={!!newUpdate}>
+        <BlackButton onClick={handleNewUpdate} disabled={!!newUpdate}>
           <div style={{ padding: '0 32px' }}>Add a new Update</div>
-        </PurpleButton>
+        </BlackButton>
 
         <br />
         <br />
@@ -237,7 +237,7 @@ function AdminCandidateUpdatesWrapper({
               label="Title"
               variant="outlined"
               value={newUpdate.title}
-              onChange={e => onChangeFieldNew(e.target.value, 'title')}
+              onChange={(e) => onChangeFieldNew(e.target.value, 'title')}
             />
             <br />
             <br />
@@ -247,13 +247,13 @@ function AdminCandidateUpdatesWrapper({
               type="date"
               variant="outlined"
               value={newUpdate.date || ''}
-              onChange={e => onChangeFieldNew(e.target.value, 'date')}
+              onChange={(e) => onChangeFieldNew(e.target.value, 'date')}
               InputLabelProps={{ shrink: true }}
             />
             <br />
             <br />
             <JoditEditorWrapper
-              onChangeCallback={value => onChangeFieldNew(value, 'text')}
+              onChangeCallback={(value) => onChangeFieldNew(value, 'text')}
               initialText={newUpdate.text}
             />
             <br />
@@ -263,29 +263,30 @@ function AdminCandidateUpdatesWrapper({
               label="YouTube Id"
               variant="outlined"
               value={newUpdate.youtubeId}
-              onChange={e => onChangeFieldNew(e.target.value, 'youtubeId')}
+              onChange={(e) => onChangeFieldNew(e.target.value, 'youtubeId')}
             />
             <br />
             <br />
-            {newUpdate.youtubeId &&
+            {newUpdate.youtubeId && (
               <Input
                 fullWidth
                 label="YouTube Start time (seconds)"
                 variant="outlined"
                 type="number"
                 value={newUpdate.start}
-                onChange={e => {
-                  if(e.target.value >= 0) {
-                    onChangeFieldNew(e.target.value, 'start')
+                onChange={(e) => {
+                  if (e.target.value >= 0) {
+                    onChangeFieldNew(e.target.value, 'start');
                   }
                 }}
               />
-            }
+            )}
             <br />
             <br />
             <br />
             <strong>
-              Update Image (in case the update doesn&apos;t have a youtube video)
+              Update Image (in case the update doesn&apos;t have a youtube
+              video)
             </strong>
             <br />
             <br />
@@ -293,23 +294,23 @@ function AdminCandidateUpdatesWrapper({
               <div>{newUpdate.image}</div>
             ) : (
               <ImageUploadContainer
-                uploadCallback={image => handleUploadImage(image, true)}
+                uploadCallback={(image) => handleUploadImage(image, true)}
               />
             )}
 
             <br />
             <div className="text-center">
               <Cancel onClick={handleCancelNew}>Cancel</Cancel>
-              <PurpleButton disabled={!newUpdate.title} onClick={handleCreate}>
+              <BlackButton disabled={!newUpdate.title} onClick={handleCreate}>
                 &nbsp;{adminPage ? 'Create' : 'Submit'}&nbsp;
-              </PurpleButton>
+              </BlackButton>
             </div>
           </EditUpdate>
         )}
         <br />
         <H3>Previous Updates</H3>
         <br />
-        {([ ...updates ]).reverse().map(update => (
+        {[...updates].reverse().map((update) => (
           <React.Fragment key={update.id}>
             {editUpdate && editUpdate.id === update.id ? (
               <EditUpdate>
@@ -318,7 +319,7 @@ function AdminCandidateUpdatesWrapper({
                   fullWidth
                   variant="outlined"
                   value={editedUpdate.title || ''}
-                  onChange={e => onChangeField(e.target.value, 'title')}
+                  onChange={(e) => onChangeField(e.target.value, 'title')}
                 />
                 <br />
                 <br />
@@ -328,7 +329,7 @@ function AdminCandidateUpdatesWrapper({
                   type="date"
                   variant="outlined"
                   value={editedUpdate.date || ''}
-                  onChange={e => onChangeField(e.target.value, 'date')}
+                  onChange={(e) => onChangeField(e.target.value, 'date')}
                 />
                 <br />
                 <br />
@@ -337,28 +338,28 @@ function AdminCandidateUpdatesWrapper({
                   fullWidth
                   variant="outlined"
                   value={editedUpdate.youtubeId || ''}
-                  onChange={e => onChangeField(e.target.value, 'youtubeId')}
+                  onChange={(e) => onChangeField(e.target.value, 'youtubeId')}
                 />
                 <br />
                 <br />
-                {editedUpdate.youtubeId &&
+                {editedUpdate.youtubeId && (
                   <Input
                     label="YouTube Start time (seconds)"
                     fullWidth
                     variant="outlined"
                     value={editedUpdate.start}
                     type="number"
-                    onChange={e => {
-                      if(e.target.value >= 0) {
-                        onChangeField(e.target.value, 'start')
+                    onChange={(e) => {
+                      if (e.target.value >= 0) {
+                        onChangeField(e.target.value, 'start');
                       }
                     }}
                   />
-                }
+                )}
                 <br />
                 <br />
                 <JoditEditorWrapper
-                  onChangeCallback={value => onChangeField(value, 'text')}
+                  onChangeCallback={(value) => onChangeField(value, 'text')}
                   initialText={editedUpdate.text}
                 />
                 <br />
@@ -374,14 +375,19 @@ function AdminCandidateUpdatesWrapper({
                   </div>
                 ) : (
                   <ImageUploadContainer
-                    uploadCallback={image => handleUploadImage(image, false)}
+                    uploadCallback={(image) => handleUploadImage(image, false)}
                   />
                 )}
                 <br />
                 <br />
                 <div className="text-center">
                   <Cancel onClick={handleCancelEdit}>Cancel</Cancel>
-                  <PurpleButton disabled={!editedUpdate.title} onClick={handleSave}>Save</PurpleButton>
+                  <BlackButton
+                    disabled={!editedUpdate.title}
+                    onClick={handleSave}
+                  >
+                    Save
+                  </BlackButton>
                 </div>
               </EditUpdate>
             ) : (
@@ -441,18 +447,16 @@ function AdminCandidateUpdatesWrapper({
                     </Grid>
                   )}
                   {update.image && update.image !== '' && (
-                    <Grid item xs={12} md={6} style={{paddingTop: 70}}>
+                    <Grid item xs={12} md={6} style={{ paddingTop: 70 }}>
                       <div
                         style={{
                           backgroundImage: `url(${update.image})`,
                           backgroundSize: 'contain',
                           backgroundRepeat: 'no-repeat',
                           backgroundPosition: 'center',
-                          height: '100%'
+                          height: '100%',
                         }}
-                      >
-
-                      </div>
+                      ></div>
                       {/* <img
                         src={update.image}
                         className="full-image"

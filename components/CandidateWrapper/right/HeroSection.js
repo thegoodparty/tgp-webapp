@@ -28,7 +28,7 @@ const DaysUntil = styled.div`
     top: 0;
     right: 0;
     color: #fff;
-    background-color: ${({ theme }) => theme.colors.purple};
+    background-color: ${({ theme }) => theme.colors.primary};
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 12px 18px;

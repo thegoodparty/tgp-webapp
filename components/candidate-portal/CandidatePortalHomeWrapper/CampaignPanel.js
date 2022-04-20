@@ -4,16 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { FaLongArrowAltUp, FaLongArrowAltDown } from 'react-icons/fa';
+
+import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
 
 import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
 import RangeSelector from '../shared/RangeSelector';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import CampaignChart from './CampaignChart';
+import { numberFormatter } from '../../../helpers/numberHelper';
+import AddCampaignUpdateModal from '../shared/AddCampaignUpdateModal';
 
 const Row = styled.div`
   display: flex;
@@ -42,52 +46,74 @@ const Icon = styled.div`
   }
 `;
 
+export const progressPerc = (thisTotal, lastTotal) => {
+  if (thisTotal === 0 && lastTotal === 0) {
+    return (
+      <>
+        <Icon>
+          <FaLongArrowAltUp />
+        </Icon>
+        0%
+      </>
+    );
+  }
+  if (lastTotal === 0) {
+    return (
+      <>
+        <Icon>
+          <FaLongArrowAltUp />
+        </Icon>
+        100%
+      </>
+    );
+  }
+  const perc = (thisTotal * 100) / lastTotal;
+  const sign =
+    thisTotal > lastTotal ? <FaLongArrowAltUp /> : <FaLongArrowAltDown />;
+  return (
+    <>
+      <Icon>{sign}</Icon>
+      {numberFormatter(parseInt(perc, 10))}%
+    </>
+  );
+};
+
 function CampaignPanel() {
+  const { stats } = useContext(CandidatePortalHomePageContext);
+  const visitors = stats?.stats?.visitors;
+  const shares = stats?.stats?.shares;
+  const endorsers = stats?.stats?.endorsers;
+
+  const fields = [
+    { label: 'VIEWS', data: visitors || {} },
+    { label: 'SHARES', data: shares || {} },
+    { label: 'ENDORSEMENTS', data: endorsers || {} },
+  ];
   return (
     <PortalPanel color="#2CCDB0">
       <Row>
         <FontH3 style={{ margin: 0 }}>Campaign Page</FontH3>
-        <RangeSelector />
+        {/*<RangeSelector />*/}
       </Row>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>
           <Grid container spacing={2}>
-            <Grid item xs={12} lg={4}>
-              <Title>VIEWS</Title>
-              <Stat>1,000,000</Stat>
-              <Stat>
-                <Icon>
-                  <FaLongArrowAltUp />
-                </Icon>
-                0%
-              </Stat>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Title>SHARES</Title>
-              <Stat>1,000,000</Stat>
-              <Stat>
-                <Icon>
-                  <FaLongArrowAltUp />
-                </Icon>
-                0%
-              </Stat>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Title>ENDORSEMENTS</Title>
-              <Stat>1,000,000</Stat>
-              <Stat>
-                <Icon className="down">
-                  <FaLongArrowAltDown />
-                </Icon>
-                0%
-              </Stat>
-              <Stat style={{ marginRight: 0 }}>(avg. 0%)</Stat>
-            </Grid>
+            {fields.map((field) => (
+              <Grid item xs={12} lg={4} key={field.label}>
+                <Title>{field.label}</Title>
+                <Stat>{numberFormatter(field.data.total)}</Stat>
+                <Stat>
+                  {progressPerc(field.data.total, field.data.lastPeriod)}
+                </Stat>
+              </Grid>
+            ))}
           </Grid>
           <Grid item xs={12}>
-            <BlackButton style={{ marginTop: '40px' }}>
-              <InnerButton>Add Campaign Update</InnerButton>
-            </BlackButton>
+            <div style={{ marginTop: '40px' }}>
+              <AddCampaignUpdateModal
+                context={CandidatePortalHomePageContext}
+              />
+            </div>
           </Grid>
         </Grid>
         <Grid item xs={12} lg={5} style={{ height: '100%' }}>

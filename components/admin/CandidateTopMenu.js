@@ -32,7 +32,7 @@ const Item = styled.div`
   }
 
   &.active {
-    background-color: ${({ theme }) => theme.colors.purple};
+    background-color: ${({ theme }) => theme.colors.primary};
     color: #fff;
   }
 `;

@@ -4,179 +4,377 @@
  *
  */
 
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import Sticky from 'react-sticky-el';
 
-import { Body13, H3 } from '/components/shared/typogrophy';
+import { FontH3 } from '/components/shared/typogrophy';
 import JoditEditorWrapper from '/components/admin/AdminEditCandidate/JoditEditor';
-import { PurpleButton } from '/components/shared/buttons';
-import CandidateAvatar from '/components/shared/CandidateAvatar';
+import { flatStates } from '/helpers/statesHelper';
+import { PortalCampaignManagerPageContext } from '/containers/candidate-portal/PortalCampaignManagerPage';
+import { partyResolver } from '/helpers/electionsHelper';
+
 import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 
 import PortalPageWrapper from '../shared/PortalPageWrapper';
+import PortalPanel from '../shared/PortalPanel';
+import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import { isValidUrl } from '../../../helpers/linkHelper';
+import PhoneInput from '../../shared/PhoneInput';
+import CampaignColorPicker from './CampaignColorPicker';
 
-const Wrapper = styled.div`
-  padding: 24px;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
+const Inner = styled.div`
+  width: 100%;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    width: 60%;
+  }
+
+  .jodit-status-bar__item.jodit-status-bar__item-right:last-child {
+    display: none;
+  }
 `;
 
-const SectionContent = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray4};
+const SaveWrapper = styled.div`
+  text-align: right;
+  padding: 20px 0;
 `;
 
 const ImageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  max-width: 250px;
   margin: 24px 0;
 `;
 
-function PortalCampaignManagerWrapper({
-  candidate,
-  candidateUgc,
-  updateUgcCallback,
-  role,
-  uploadImageCallback,
-  loading,
-  s3Url,
-}) {
-  const [ugc, setUgc] = useState({});
-  const [updateImage, setUpdateImage] = useState(false);
-  useEffect(() => {
-    if (candidateUgc) {
-      setUgc(candidateUgc);
-    }
-  }, [candidateUgc]);
-  const fields = [
-    { label: 'Race (Office Seeking)', key: 'race', maxLength: 120 },
-    { label: 'Hero Video (YouTube id)', key: 'heroVideo' },
-    { label: 'Headline', key: 'headline' },
-    { label: 'Race Date', key: 'raceDate', isDate: true },
-    { label: 'About', key: 'about', isRichText: true },
-    { label: 'Zip Code', key: 'zip' },
-    { label: 'Facebook', key: 'facebook' },
-    { label: 'Twitter', key: 'twitter' },
-    { label: 'TikTok', key: 'tiktok' },
-    { label: 'Snap', key: 'snap' },
-    { label: 'Instagram', key: 'instagram' },
-    { label: 'YouTube', key: 'youtube' },
-    { label: 'Twitch', key: 'twitch' },
-    { label: 'Reddit', key: 'reddit' },
-    { label: 'Website', key: 'website' },
-  ];
+const Err = styled.div`
+  color: red;
+  margin-top: 8px;
+`;
 
-  const updateUgc = (key, value) => {
-    setUgc({
-      ...ugc,
+const StickyWrapper = styled.div`
+  .sticky {
+    z-index: 10;
+  }
+  .sticky .sticky-el {
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const fields = [
+  { label: 'First Name', key: 'firstName', required: true },
+  { label: 'Last Name', key: 'lastName', required: true },
+  { label: 'Zip Code', key: 'zip' },
+  {
+    label: 'Political party affiliation',
+    key: 'party',
+    type: 'select',
+    options: ['I', 'GP', 'L', 'W', 'F', 'Other'],
+    required: true,
+  },
+
+  { label: 'Other Party', key: 'otherParty', isHidden: true },
+  { label: 'Twitter', key: 'twitter', isUrl: true },
+  { label: 'Facebook', key: 'facebook', isUrl: true },
+  { label: 'YouTube', key: 'youtube', isUrl: true },
+  { label: 'LinkedIn', key: 'linkedin', isUrl: true },
+  { label: 'Snap', key: 'snap', isUrl: true },
+  { label: 'TikTok', key: 'tiktok', isUrl: true },
+  { label: 'Instagram', key: 'instagram', isUrl: true },
+  { label: 'Twitch', key: 'twitch', isUrl: true },
+  { label: 'Website', key: 'website', isUrl: true },
+];
+
+const fields2 = [
+  { label: 'Office being sought ', key: 'race', required: true },
+  {
+    label: 'Date of election ',
+    key: 'raceDate',
+    isDate: true,
+    columns: 6,
+    required: true,
+  },
+  {
+    label: 'State ',
+    key: 'state',
+    columns: 6,
+    type: 'select',
+    options: flatStates,
+    required: true,
+  },
+  { label: 'District (if applicable)', key: 'district' },
+  { label: 'Headline', key: 'headline', required: true },
+  { label: 'Summary', key: 'about', isRichText: true, required: true },
+  { label: 'Committee name', key: 'committeeName' },
+  { label: 'Campaign Video (YouTube Id)', key: 'heroVideo' },
+];
+
+const fields3 = [
+  { label: 'First Name ', key: 'contactFirstName' },
+  { label: 'Last Name ', key: 'contactLastName' },
+  { label: 'Email ', key: 'contactEmail', type: 'email' },
+  { label: 'Phone ', key: 'contactPhone', type: 'phone' },
+];
+
+const panels = [
+  { fields, label: 'Candidate Information' },
+  { fields: fields2, label: 'Campaign Information' },
+  { fields: fields3, label: 'Contact Information' },
+];
+
+function PortalCampaignManagerWrapper() {
+  const {
+    candidate,
+    updateCandidateCallback,
+    role,
+    uploadImageCallback,
+    loading,
+    s3Url,
+  } = useContext(PortalCampaignManagerPageContext);
+
+  const [state, setState] = useState({});
+  const [errors, setErrors] = useState({});
+  const [updateImage, setUpdateImage] = useState(false);
+  const [showHidden, setShowHidden] = useState(false);
+  useEffect(() => {
+    const newState = {};
+    panels.forEach((panel) => {
+      panel.fields.forEach((field) => {
+        newState[field.key] = candidate[field.key] || '';
+      });
+    });
+    setState(newState);
+    if (candidate.party === 'Other') {
+      setShowHidden(true);
+    }
+  }, [candidate]);
+
+  const onChangeField = (key, value, isUrl, isRequired) => {
+    setState({
+      ...state,
       [key]: value,
     });
+    if (key === 'party' && value === 'Other') {
+      setShowHidden(true);
+    }
+    if (key === 'party' && value !== 'Other') {
+      setShowHidden(false);
+    }
+
+    let urlFailed = false;
+    if (isUrl) {
+      if (value !== '' && !isValidUrl(value)) {
+        urlFailed = true;
+        setErrors({ ...errors, [key]: 'invalid URL' });
+      } else {
+        setErrors({ ...errors, [key]: false });
+      }
+    }
+
+    if (!urlFailed) {
+      // don't override the non valid error
+      if (isRequired && value === '') {
+        setErrors({ ...errors, [key]: 'This field is required' });
+      } else {
+        setErrors({ ...errors, [key]: false });
+      }
+    }
   };
 
   const handleUpload = (url) => {
     uploadImageCallback(candidate.id, url);
+    setUpdateImage(false);
+  };
+
+  const canSubmit = () => {
+    let valid = true;
+    try {
+      panels.forEach((panel) => {
+        panel.fields.forEach((field) => {
+          const val = state[field.key];
+          if (field.isUrl && val && val !== '') {
+            if (!isValidUrl(val)) {
+              valid = false;
+              throw new Error('invalid');
+            }
+          }
+          if (field.required && val === '') {
+            valid = false;
+            throw new Error('invalid');
+          }
+        });
+      });
+    } catch (_) {
+      return false;
+    }
+
+    return valid;
   };
 
   return (
-    <PortalPageWrapper role={role}>
-      <Wrapper>
-        <ImageWrapper>
-          {loading ? (
-            <div>Uploading...</div>
-          ) : (
-            <>
-              {(candidate.image || s3Url) && !updateImage ? (
-                <div>
-                  <CandidateAvatar src={candidate.image} />
-                  <br />
-                  <PurpleButton onClick={() => setUpdateImage(true)}>
-                    <strong>Change Image</strong>
-                  </PurpleButton>
-                </div>
-              ) : (
-                <div>
-                  <strong>Upload an Image</strong>
-                  <br />
-                  <ImageUploadContainer
-                    uploadCallback={handleUpload}
-                    maxFileSize={1000000}
-                  />
-                </div>
+    <PortalPageWrapper role={role} title="Edit Campaign Page">
+      <CampaignColorPicker />
+      {panels.map((panel, index) => (
+        <PortalPanel color="#EE6C3B" key={panel.label}>
+          <Inner>
+            <FontH3 style={{ margin: '0 0 45px 0' }}>{panel.label}</FontH3>
+            <Grid container spacing={2}>
+              {panel.fields.map((field) => (
+                <React.Fragment key={field.key}>
+                  {(!field.isHidden || showHidden) && (
+                    <Grid item xs={12} lg={field.columns ? field.columns : 12}>
+                      {field.isRichText && (
+                        <>
+                          {field.label}
+                          <br />
+                          <JoditEditorWrapper
+                            onChangeCallback={(value) =>
+                              onChangeField(field.key, value)
+                            }
+                            initialText={state[field.key]}
+                          />
+                          {errors[field.key] && <Err>{errors[field.key]}</Err>}
+                          <br />
+                        </>
+                      )}
+                      {field.type === 'select' && (
+                        <>
+                          <Select
+                            native
+                            value={state[field.key]}
+                            fullWidth
+                            variant="outlined"
+                            required={field.required}
+                            error={!!errors[field.key]}
+                            onChange={(e) =>
+                              onChangeField(
+                                field.key,
+                                e.target.value,
+                                false,
+                                field.required,
+                              )
+                            }
+                          >
+                            <option value="">Select</option>
+                            {field.options.map((op) => (
+                              <option value={op} key={op}>
+                                {partyResolver(op)}
+                              </option>
+                            ))}
+                          </Select>
+                          {errors[field.key] && <Err>{errors[field.key]}</Err>}
+                        </>
+                      )}
+                      {field.type !== 'select' &&
+                        !field.isRichText &&
+                        field.type !== 'phone' && (
+                          <TextField
+                            fullWidth
+                            label={field.label}
+                            name={field.label}
+                            variant="outlined"
+                            value={state[field.key] || ''}
+                            initialValue={state[field.key]}
+                            type={
+                              field.isDate
+                                ? 'date'
+                                : field.type === 'email'
+                                ? 'email'
+                                : 'text'
+                            }
+                            onChange={(e) =>
+                              onChangeField(
+                                field.key,
+                                e.target.value,
+                                field.isUrl,
+                                field.required,
+                              )
+                            }
+                            inputProps={{ maxLength: field.maxLength || 200 }}
+                            InputLabelProps={{
+                              shrink: !!state[field.key] || field.isDate,
+                            }}
+                            error={!!errors[field.key]}
+                            helperText={
+                              errors[field.key] ? errors[field.key] : ''
+                            }
+                            required={field.required}
+                          />
+                        )}
+                      {field.type === 'phone' && (
+                        <PhoneInput
+                          value={state[field.key] || ''}
+                          onChangeCallback={(phone) =>
+                            onChangeField('contactPhone', phone)
+                          }
+                          hideIcon
+                        />
+                      )}
+                    </Grid>
+                  )}
+                </React.Fragment>
+              ))}
+              {index === 1 && (
+                <Grid item xs={12}>
+                  <ImageWrapper>
+                    Campaign Photo
+                    <br />
+                    <br />
+                    {loading ? (
+                      <div>Uploading...</div>
+                    ) : (
+                      <>
+                        {(candidate.image || s3Url) && !updateImage ? (
+                          <div>
+                            <img
+                              src={s3Url || candidate.image}
+                              className="full-image"
+                            />
+                            <br />
+                            <BlackButton
+                              onClick={() => setUpdateImage(true)}
+                              fullWidth
+                            >
+                              <InnerButton>Change Photo</InnerButton>
+                            </BlackButton>
+                          </div>
+                        ) : (
+                          <div>
+                            <strong>Upload an Image</strong>
+                            <br />
+                            <ImageUploadContainer
+                              uploadCallback={handleUpload}
+                              maxFileSize={1000000}
+                            />
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </ImageWrapper>
+                </Grid>
               )}
-            </>
+            </Grid>
+          </Inner>
+          {index === 0 && (
+            <StickyWrapper>
+              <Sticky>
+                <SaveWrapper>
+                  <BlackButton
+                    onClick={() => updateCandidateCallback(candidate.id, state)}
+                    className="sticky-el"
+                    disabled={!canSubmit()}
+                  >
+                    <InnerButton>SAVE</InnerButton>
+                  </BlackButton>
+                </SaveWrapper>
+              </Sticky>
+            </StickyWrapper>
           )}
-        </ImageWrapper>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <H3 className="text-center">On Production</H3>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <H3 className="text-center">Updates Requested</H3>
-          </Grid>
-          <Grid item xs={12}>
-            <hr />
-          </Grid>
-          {fields.map((field) => (
-            <React.Fragment key={field.key}>
-              <Grid item xs={12} md={6}>
-                <strong>{field.label}</strong>
-                <br />
-                {field.isRichText ? (
-                  <SectionContent
-                    dangerouslySetInnerHTML={{ __html: candidate[field.key] }}
-                  />
-                ) : (
-                  <Body13>{candidate[field.key] || 'N/A'}</Body13>
-                )}
-              </Grid>
-              <Grid item xs={12} md={6}>
-                {field.isRichText ? (
-                  <JoditEditorWrapper
-                    onChangeCallback={(value) => updateUgc(field.key, value)}
-                    initialText={ugc[field.key]}
-                  />
-                ) : (
-                  <TextField
-                    fullWidth
-                    label={field.isDate ? '' : field.label}
-                    name={field.label}
-                    variant="outlined"
-                    value={ugc[field.key]}
-                    type={field.isDate ? 'date' : 'text'}
-                    onChange={(e) => updateUgc(field.key, e.target.value)}
-                    inputProps={{ maxLength: field.maxLength || 80 }}
-                  />
-                )}
-              </Grid>
-              <Grid item xs={12}>
-                <hr />
-              </Grid>
-            </React.Fragment>
-          ))}
-          <Grid item xs={12}>
-            <PurpleButton
-              onClick={() => updateUgcCallback(candidate.id, ugc)}
-              fullWidth
-            >
-              SAVE
-            </PurpleButton>
-          </Grid>
-        </Grid>
-      </Wrapper>
+        </PortalPanel>
+      ))}
     </PortalPageWrapper>
   );
 }
-
-PortalCampaignManagerWrapper.propTypes = {
-  candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  candidateUgc: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  updateUgcCallback: PropTypes.func,
-  role: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  uploadImageCallback: PropTypes.func,
-};
 
 export default PortalCampaignManagerWrapper;

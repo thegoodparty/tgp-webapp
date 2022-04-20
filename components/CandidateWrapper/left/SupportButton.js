@@ -7,14 +7,16 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
-import { PurpleButton } from '/components/shared/buttons';
 import { logEvent } from '/services/AnalyticsService';
 
 import { Font16 } from '/components/shared/typogrophy';
 import { CandidateContext } from '/containers/CandidatePage';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const HeartIconWhite = '/images/white-heart.svg';
 
@@ -111,6 +113,8 @@ function SupportButton() {
     removeSupportCallback,
   } = useContext(CandidateContext);
 
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -120,12 +124,10 @@ function SupportButton() {
   });
 
   const handleSupport = () => {
-    console.log('handleSupport1');
     logEvent('Endorse Candidate', 'Candidate endorse button', 'Endorsements');
     if (user) {
       userSupportCallback(candidate.id);
     } else {
-      console.log('handleSupport2');
       if (formData.name === '') {
         setFormData({
           ...formData,
@@ -169,17 +171,14 @@ function SupportButton() {
         });
         return;
       }
-      console.log('handleSupport3');
       const tenDigits = /^\d{10}$/;
       if (tenDigits.test(formData.email)) {
-        console.log('handleSupport4');
         guestSupportCallback(candidate.id, {
           name: formData.name,
           phone: formData.email,
           zip: formData.zipcode,
         });
       } else {
-        console.log('handleSupport5');
         guestSupportCallback(candidate.id, {
           name: formData.name,
           email: formData.email,
@@ -212,15 +211,24 @@ function SupportButton() {
   return (
     <>
       {isUserSupportCandidate ? (
-        <Support>
-          <GrayLogo src="https://assets.goodparty.org/gray9-heart.svg" />
-          <AddName>YOU HAVE ENDORSED THIS CANDIDATE</AddName>
-          <IoMdCloseCircleOutline
-            size={16}
-            style={{ marginLeft: '4px', cursor: 'pointer' }}
-            onClick={handleRemoveSupport}
-          />
-        </Support>
+        <>
+          <Support>
+            <GrayLogo src="https://assets.goodparty.org/gray9-heart.svg" />
+            <AddName>YOU HAVE ENDORSED THIS CANDIDATE</AddName>
+            <IoMdCloseCircleOutline
+              size={16}
+              style={{ marginLeft: '4px', cursor: 'pointer' }}
+              onClick={handleRemoveSupport}
+            />
+          </Support>
+          <Link href={`${router.asPath}?share=true`} passHref>
+            <a>
+              <BlackButton fullWidth style={{ marginTop: '12px' }}>
+                Share
+              </BlackButton>
+            </a>
+          </Link>
+        </>
       ) : (
         <>
           <form noValidate onSubmit={handleSubmitForm}>
@@ -247,7 +255,7 @@ function SupportButton() {
               </div>
             )}
 
-            <PurpleButton
+            <BlackButton
               fullWidth
               onClick={handleSupport}
               style={{ border: 'solid 2px #5C00C7' }}
@@ -257,7 +265,7 @@ function SupportButton() {
                 <Img src={HeartIconWhite} alt="share" data-cy="support-icon"/>
                 <span  data-cy="support-button">ENDORSE CANDIDATE</span>
               </InnerButton>
-            </PurpleButton>
+            </BlackButton>
           </form>
         </>
       )}

@@ -4,104 +4,45 @@
  *
  */
 
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 
+import { ProfileSettingsPageContext } from '/containers/profile/ProfileSettingsPage';
+import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
+
 import UserAvatar from '../../shared/UserAvatar';
-import { Body9, H2 } from '../../shared/typogrophy';
+import { InnerButton } from '../../shared/buttons/BlackButton';
 
-import { getDisplayName } from '/helpers/userHelper';
-import UploadModal from './UploadModal';
-
-const Wrapper = styled.section`
-  padding: 24px 0;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    padding-left: 24px;
-  }
-`;
-
-const Row = styled.div`
-  display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    display: flex;
-    align-items: center;
-  }
-
-  &.top {
-    display: flex;
-    align-items: center;
-  }
-`;
-
-const AvatarWrapper = styled.div`
-  position: relative;
-  height: 64px;
-  width: 64px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    height: 94px;
-    width: 94px;
-  }
-`;
-
-const EditText = styled(Body9)`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 64px;
-  height: 20px;
-  background-color: rgba(232, 227, 236, 0.8);
-  color: ${({ theme }) => theme.colors.purple2};
+const Wrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    height: 30px;
-    width: 94px;
-  }
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 48px;
 `;
 
-function ImageSection({ user, mode = 'desktop', uploadImageCallback }) {
-  const [showModal, setShowModal] = useState(false);
+const Change = styled.div`
+  text-decoration: underline;
+`;
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+function ImageSection() {
+  const { user } = useContext(ProfileSettingsPageContext);
+  const [uploadedImage, setUploadedImage] = useState(false);
+  let updatedUser = uploadedImage ? { avatar: uploadedImage } : user;
   return (
-    <Wrapper>
-      <Row className={mode}>
-        <AvatarWrapper onClick={handleOpenModal}>
-          <EditText>EDIT</EditText>
-
-          <UserAvatar user={user} size="large" />
-        </AvatarWrapper>
-        <H2 style={{ marginLeft: '12px', width: '80%', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          {getDisplayName(user)}
-        </H2>
-      </Row>
-
-      <UploadModal
-        closeModalCallback={handleCloseModal}
-        open={showModal}
-        uploadImageCallback={uploadImageCallback}
-      />
-    </Wrapper>
+    <section>
+      <Wrapper>
+        <UserAvatar user={updatedUser} size="large" />
+        <br />
+        <ImageUploadContainer
+          customElement={<Change>Change Photo</Change>}
+          isUserImage
+          uploadCallback={(image) => setUploadedImage(image)}
+          maxFileSize={1000000}
+        />
+      </Wrapper>
+    </section>
   );
 }
-
-ImageSection.propTypes = {
-  user: PropTypes.object,
-  mode: PropTypes.string,
-  uploadImageCallback: PropTypes.func,
-};
 
 export default ImageSection;

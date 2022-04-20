@@ -24,7 +24,6 @@ export function EndorsementConfirmationPage({ ssrState }) {
   useInjectSaga({ key: 'endorsementConfirmationPage', saga });
 
   const { candidate, id, candidateSupports, total } = ssrState;
-  console.log('cc', candidate, candidateSupports, total);
 
   const childProps = {
     candidate,

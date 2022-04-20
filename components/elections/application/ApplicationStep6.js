@@ -14,9 +14,9 @@ import { FaLink } from 'react-icons/fa';
 
 import ApplicationWrapper from './ApplicationWrapper';
 import { Body, Body11 } from '../../shared/typogrophy';
-import { PurpleButton } from '../../shared/buttons';
 import ImageUploadContainer from '../../../containers/shared/ImageUploadContainer';
 import { Title } from './ApplicationStep1';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -44,7 +44,7 @@ const Subtitle = styled.div`
 `;
 
 const IconWrapper = styled.span`
-  background-color: #bb91e4;
+  background-color: #000;
   color: #fff;
   border-radius: 2px;
   padding: 4px 4px 2px;
@@ -141,7 +141,6 @@ function ApplicationStep6({
     setState(updatedState);
   };
   const handleUploadImage = (key, image, index) => {
-    console.log('image', image);
     const updatedState = JSON.parse(JSON.stringify(state));
     updatedState[index][key] = image;
     setState(updatedState);
@@ -246,11 +245,11 @@ function ApplicationStep6({
           </EndorsementWrapper>
         ))}
         {!reviewMode && (
-          <PurpleButton onClick={handleAddMore}>
+          <BlackButton onClick={handleAddMore}>
             <Body11 style={{ color: 'white' }}>
               &nbsp;&nbsp;Add more endorsements&nbsp;&nbsp;
             </Body11>
-          </PurpleButton>
+          </BlackButton>
         )}
       </form>
     </ApplicationWrapper>

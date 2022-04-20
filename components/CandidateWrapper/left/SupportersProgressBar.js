@@ -34,7 +34,7 @@ const Bar = styled.div`
   height: 18px;
   border-radius: 12px;
 
-  background-color: ${({ theme }) => theme.colors.purple};
+  background-color: #000;
   left: 0;
   width: 3%;
   transition: width 0.5s;

@@ -40,7 +40,7 @@ const UpdatedTitle = styled(Font16)`
   }
 
   &.purple {
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -55,6 +55,8 @@ const ImageWrapper = styled.div`
 
 const TextWrapper = styled.div`
   padding: 24px 38px 38px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
   &.text-only {
     background-color: #f3f3f3;
@@ -80,19 +82,21 @@ function Updates({ updates }) {
     return <> </>;
   }
 
-  const sortedUpdates = [...updatesList];
-  sortedUpdates.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-  );
   const hasFeatured = (update) => update.youtubeId || update.image;
 
   return (
     <Wrapper>
       <FontH3 style={{ margin: '0 0 24px' }} data-cy="updates-title">Updates</FontH3>
       <Grid container spacing={6}>
+<<<<<<< HEAD
         {sortedUpdates &&
           sortedUpdates.reverse().map((update) => (
             <Grid item xs={12} md={6} key={update.id} data-cy="updates-item">
+=======
+        {updatesList &&
+          updatesList.map((update) => (
+            <Grid item xs={12} md={6} key={update.id}>
+>>>>>>> 27a23a6305de1c04deba6051d2d59dc8e0149b32
               <UpdateWrapper id={`candidate-update-${update.id}`}>
                 {hasFeatured(update) && (
                   <>

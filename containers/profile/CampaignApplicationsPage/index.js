@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -23,6 +23,9 @@ import saga from './saga';
 import actions from './actions';
 import passCreationActions from '../../entrance/PasswordCreationPage/actions';
 import passCreationSaga from '../../entrance/PasswordCreationPage/saga';
+import { getUserCookie } from '../../../helpers/cookieHelper';
+
+export const CampaignApplicationsPageContext = createContext();
 
 export function CampaignApplicationsPage({
   createApplicationCallback,
@@ -34,6 +37,8 @@ export function CampaignApplicationsPage({
   useInjectSaga({ key: 'campaignApplicationsPage', saga });
 
   useInjectSaga({ key: 'passwordCreationPage', saga: passCreationSaga });
+  const user = getUserCookie(true);
+  const { applications, loading, staff } = campaignApplicationsPage;
 
   useEffect(() => {
     dispatch(actions.loadApplicationsAction());
@@ -41,25 +46,27 @@ export function CampaignApplicationsPage({
     if (application) {
       dispatch(passCreationActions.saveApplicationAction(application));
     }
+    if (!staff) {
+      dispatch(actions.loadStaffAction());
+    }
   }, []);
-
-  const { applications, loading } = campaignApplicationsPage;
 
   const childProps = {
     createApplicationCallback,
     applications,
     loading,
     deleteApplicationCallback,
+    staff,
   };
 
   return (
-    <div>
+    <CampaignApplicationsPageContext.Provider value={childProps}>
       <TgpHelmet
         title="Candidate Registration and applications | GOOD PARTY"
         description="The first step to become a Good Party candidate is to complete our application"
       />
-      <CampaignApplicationsWrapper {...childProps} />
-    </div>
+      {user && <CampaignApplicationsWrapper />}
+    </CampaignApplicationsPageContext.Provider>
   );
 }
 

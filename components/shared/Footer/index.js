@@ -8,9 +8,9 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
-import MaxWidth from '../../profile/ProfileWrapper/MaxWidth';
-import { Font16 } from '../typogrophy';
+import MaxWidth from '../MaxWidth';
 
 const Wrapper = styled.div`
   padding: 40px 0;
@@ -38,12 +38,6 @@ const FooterLink = styled.div`
   a {
     color: #000;
   }
-`;
-
-const Logo = styled.img`
-  height: 20px;
-  width: auto;
-  margin-bottom: 30px;
 `;
 
 const Italic = styled.div`
@@ -154,12 +148,13 @@ function Footer() {
             </Grid>
           ))}
           <Grid item xs={12} lg={4} className="text-center">
-            <Logo
-              src="/images/new-logo.svg"
+            <Image
+              src="/images/black-logo.svg"
               data-cy="logo"
-              width={173}
+              width={174}
               height={20}
               alt="GOOD PARTY"
+              style={{ matginBottom: '30px' }}
             />
             <br />
             <Italic>

@@ -10,7 +10,7 @@ import types from './constants';
 export const initialState = {
   userSupports: false,
   candidateSupports: false,
-  supportCount: 0,
+  supportCount: false,
 };
 
 const candidatePageReducer = (state = initialState, action) =>

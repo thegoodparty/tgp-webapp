@@ -49,6 +49,22 @@ function loadRoleActionSuccess(role) {
   };
 }
 
+function updatePreferencesAction(id, preferences) {
+  return {
+    type: types.UPDATE_PREFERENCES,
+    id,
+    preferences,
+  };
+}
+
+function createUpdateAction(candidate, update) {
+  return {
+    type: types.CREATE_UPDATE,
+    candidate,
+    update,
+  };
+}
+
 export default {
   findCandidate,
   findCandidateSuccess,
@@ -58,4 +74,8 @@ export default {
 
   loadRoleAction,
   loadRoleActionSuccess,
+
+  updatePreferencesAction,
+
+  createUpdateAction,
 };

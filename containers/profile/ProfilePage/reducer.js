@@ -9,8 +9,6 @@ import types from './constants';
 export const initialState = {
   loading: false,
   userSupported: false,
-  updates: false,
-  staff: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -27,19 +25,6 @@ const profilePageReducer = (state = initialState, action) =>
         draft.userSupported = action.userSupported;
         break;
 
-      case types.LOAD_UPDATES:
-        draft.loading = false;
-        draft.updates = false;
-        break;
-
-      case types.LOAD_UPDATES_SUCCESS:
-        draft.loading = false;
-        draft.updates = action.updates;
-        break;
-
-      case types.LOAD_STAFF_SUCCESS:
-        draft.staff = action.staff;
-        break;
     }
   });
 
