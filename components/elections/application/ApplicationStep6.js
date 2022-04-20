@@ -141,7 +141,6 @@ function ApplicationStep6({
     setState(updatedState);
   };
   const handleUploadImage = (key, image, index) => {
-    console.log('image', image);
     const updatedState = JSON.parse(JSON.stringify(state));
     updatedState[index][key] = image;
     setState(updatedState);

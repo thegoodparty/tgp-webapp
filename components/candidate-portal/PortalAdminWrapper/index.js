@@ -46,7 +46,6 @@ const fields = [
 
 function PortalAdminWrapper() {
   const { candidate, saveCallback } = useContext(PortalAdminPageContext);
-  console.log('cc', candidate)
 
   const initialState = {};
   fields.forEach((field) => {

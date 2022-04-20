@@ -124,12 +124,10 @@ function SupportButton() {
   });
 
   const handleSupport = () => {
-    console.log('handleSupport1');
     logEvent('Endorse Candidate', 'Candidate endorse button', 'Endorsements');
     if (user) {
       userSupportCallback(candidate.id);
     } else {
-      console.log('handleSupport2');
       if (formData.name === '') {
         setFormData({
           ...formData,
@@ -173,17 +171,14 @@ function SupportButton() {
         });
         return;
       }
-      console.log('handleSupport3');
       const tenDigits = /^\d{10}$/;
       if (tenDigits.test(formData.email)) {
-        console.log('handleSupport4');
         guestSupportCallback(candidate.id, {
           name: formData.name,
           phone: formData.email,
           zip: formData.zipcode,
         });
       } else {
-        console.log('handleSupport5');
         guestSupportCallback(candidate.id, {
           name: formData.name,
           email: formData.email,

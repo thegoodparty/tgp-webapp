@@ -9,7 +9,6 @@ import portalHomeActions from '../CandidatePortalHomePage/actions';
 
 function* updateCandidate({ id, candidate }) {
   try {
-    console.log('saga id', id);
     yield put(snackbarActions.showSnakbarAction('Saving...'));
     const api = tgpApi.campaign.update;
     const payload = {

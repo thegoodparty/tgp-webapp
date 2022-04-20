@@ -52,8 +52,6 @@ function* updateApplication({ id, data }) {
       return;
     }
     if (id === 'guest') {
-      console.log('guest');
-
       const app = getApplicationStorage() || { id: 'guest' };
       const updated = { ...app, ...data };
       setApplicationStorage(updated);

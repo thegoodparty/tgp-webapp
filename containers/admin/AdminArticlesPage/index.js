@@ -42,7 +42,6 @@ export function AdminArticlesPage({
   }, [user]);
 
   useEffect(() => {
-    console.log('loading articles');
     dispatch(actions.loadArticlesFeedback());
   }, []);
 

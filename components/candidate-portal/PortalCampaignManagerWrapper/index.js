@@ -24,6 +24,7 @@ import PortalPanel from '../shared/PortalPanel';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { isValidUrl } from '../../../helpers/linkHelper';
 import PhoneInput from '../../shared/PhoneInput';
+import CampaignColorPicker from './CampaignColorPicker';
 
 const Inner = styled.div`
   width: 100%;
@@ -213,6 +214,7 @@ function PortalCampaignManagerWrapper() {
 
   return (
     <PortalPageWrapper role={role} title="Edit Campaign Page">
+      <CampaignColorPicker />
       {panels.map((panel, index) => (
         <PortalPanel color="#EE6C3B" key={panel.label}>
           <Inner>

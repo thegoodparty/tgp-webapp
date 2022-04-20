@@ -60,7 +60,6 @@ const renderCustomizedLabel = (props) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, index } = props;
 
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  console.log('radius', radius);
   const radiusPlus = radius + 20;
   const x = cx + radiusPlus * Math.cos(-startAngle * RADIAN);
   const y = cy + radiusPlus * Math.sin(-startAngle * RADIAN);

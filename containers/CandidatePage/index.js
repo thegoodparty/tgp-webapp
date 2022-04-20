@@ -156,7 +156,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.supportAction(candidateId));
     },
     guestSupportCallback: (candidateId, newUser) => {
-      console.log('callback page', candidateId, newUser);
       setSignupRedirectCookie(`${window.location.pathname}?share=true`);
       const callback = () => {
         dispatch(actions.supportAction(candidateId));

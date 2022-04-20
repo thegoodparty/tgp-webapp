@@ -110,7 +110,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     updateCandidateCallback: (id, candidate) => {
-      console.log('page id', id);
       dispatch(actions.updateCandidateAction(id, candidate));
     },
     uploadImageCallback: (id, url) => {
