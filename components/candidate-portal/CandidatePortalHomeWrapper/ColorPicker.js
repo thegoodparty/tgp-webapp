@@ -27,9 +27,14 @@ const Wrapper = styled.div`
     //  display: none !important;
     //}
   }
+
+  &.lean {
+    padding: 8px;
+    box-shadow: none;
+  }
 `;
 
-function ColorPicker({ onColorPick, initialColor = '#000' }) {
+function ColorPicker({ onColorPick, initialColor = '#000', mode }) {
   const [color, setColor] = useState(initialColor);
   useEffect(() => {
     setColor(initialColor);
@@ -39,8 +44,12 @@ function ColorPicker({ onColorPick, initialColor = '#000' }) {
     onColorPick(color.hex);
   };
   return (
-    <Wrapper>
-      <ChromePicker color={color} onChange={handleColorChange} disableAlpha />
+    <Wrapper className={mode ?? ''}>
+      <ChromePicker
+        color={color}
+        onChange={handleColorChange}
+        disableAlpha
+      />
     </Wrapper>
   );
 }
