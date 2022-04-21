@@ -115,22 +115,22 @@ function ShareImage({
     if (!withRender) {
       return;
     }
-    htmlToImage
+    setTimeout(() => {
+      htmlToImage
       .toJpeg(document.getElementById(suffix), { quality: 1, pixelRatio: 1 })
       .then(function (dataUrl) {
+        shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
         const img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
-
-        shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
       });
+    }, 2000)
   };
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
-  console.log({ ...candidate });
   return (
     <>
       <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
