@@ -90,7 +90,7 @@ function Follow() {
     color,
   } = candidate;
 
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = color?.color ? color.color : false;
 
   const trackSocial = (channel) => {
     logEvent('Click', channel, 'Candidate Social Links');
@@ -124,14 +124,18 @@ function Follow() {
 
   return (
     <Wrapper
-      style={{
-        background: `linear-gradient(
+      style={
+        brightColor
+          ? {
+              background: `linear-gradient(
         ${isSmall ? '0deg' : '270deg'},
       ${brightColor} 0%,
       ${brightColor} 60%,
       #fff 100%
       )`,
-      }}
+            }
+          : {}
+      }
     >
       <Title>
         <strong>Follow</strong> {firstName} {lastName}!
