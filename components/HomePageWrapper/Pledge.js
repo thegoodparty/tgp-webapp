@@ -19,7 +19,7 @@ const Pledge = () => {
   return (
     <Section>
       <MaxWidth>
-        <H3 className="text-center">Good Certified candidates pledge to be:</H3>
+        <H3 className="text-center" data-cy="gc-title">Good Certified candidates pledge to be:</H3>
         <GoodCertifiedPoints homepageMode />
       </MaxWidth>
     </Section>

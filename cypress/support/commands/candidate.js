@@ -6,12 +6,10 @@ Cypress.Commands.add('testCandidateMiniCard', ($el, candidate) => {
   const {
     firstName,
     lastName,
-    image,
     race,
     party,
     supporters,
     headline,
-    isDraft,
   } = candidate;
   cy.wrap($el)
     .find('[data-cy=mini-name]')
@@ -45,5 +43,35 @@ Cypress.Commands.add('testCandidateMiniCard', ($el, candidate) => {
   //   .find('[data-cy=candidate-role]')
   //   .should('contain', partyResolver(candidate.party))
   //   .and('contain', candidate.isIncumbent ? 'INCUMBENT' : '');
+});
+
+Cypress.Commands.add('testCandidateCard', ($el, candidate) => {
+  const {
+    id,
+    firstName,
+    lastName,
+    party,
+    otherParty,
+    positions,
+  } = candidate;
+  cy.wrap($el)
+    .find('[data-cy=candidate-name]')
+    .contains(firstName)
+    .contains(lastName);
+  cy.wrap($el)
+    .find('[data-cy=candidate-party]')
+    .contains(partyResolver(party, otherParty));
+  if(positions && positions.length > 0) {
+    cy.wrap($el)
+      .find('[data-cy=position-title]')
+      .contains("Top Issues for this candidate");
+    cy.wrap($el)
+      .find('[data-cy=position]')
+      .should('have.length', positions.length)
+      .each(($el1, index) => {
+        cy.wrap($el)
+          .contains(positions[index]);
+      });
+  }
 });
   

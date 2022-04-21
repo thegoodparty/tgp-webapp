@@ -15,6 +15,7 @@ function CertifiedBadge({ height = 70 }) {
       alt="Good Certified"
       height={height}
       width={height}
+      data-cy="certified-badge"
     />
   );
 }

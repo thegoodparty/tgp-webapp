@@ -53,7 +53,9 @@ Cypress.Commands.add(
 Cypress.Commands.add('getHomepageCandidates', () => {
     cy.sendRequest(api.homepageCandidates.method, api.homepageCandidates.url);
 });
-
+Cypress.Commands.add('getCandidateList', () => {
+  cy.sendRequest(api.newCandidate.list.method, api.newCandidate.list.url);
+});
 Cypress.Commands.add('getCandidate', (candidateId) => {
   cy.sendRequest(api.newCandidate.find.method, `${api.newCandidate.find.url}?id=${candidateId}&allFields=true`);
 });
@@ -76,5 +78,17 @@ Cypress.Commands.add('getCandidatePageData', async (candidateId) => {
     id: candidateId,
     candidateSupports,
     supportCount: total,
+  }
+});
+
+Cypress.Commands.add('getCandidatesPageData', async (candidateId) => {
+  const { candidates, positions, positionsByTopIssues, states } = await promisify(
+    cy.getCandidateList().then(response => response.body),
+  );
+  return {
+    candidates,
+    positions,
+    positionsByTopIssues,
+    states,
   }
 });

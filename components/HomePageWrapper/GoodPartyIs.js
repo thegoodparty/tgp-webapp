@@ -42,8 +42,8 @@ const GoodPartyIs = () => {
       <MaxWidth>
         <Grid container spacing={8}>
           <Grid item xs={12} md={8}>
-            <H3>Good Party is...</H3>
-            <Text>
+            <H3 data-cy="gp-title">Good Party is...</H3>
+            <Text data-cy="gp-content">
               <strong>For people,</strong> not money 💰 <br />
               <strong>For people,</strong> not <Red>red</Red> and{' '}
               <Blue>blue</Blue>

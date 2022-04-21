@@ -23,7 +23,7 @@ const Good = styled.div`
 const Together = () => {
   return (
     <Section>
-      <H2>
+      <H2 data-cy="together-section">
         Together we can change things for <Good>GOOD</Good>
       </H2>
     </Section>

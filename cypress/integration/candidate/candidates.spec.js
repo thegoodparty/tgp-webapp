@@ -1,0 +1,40 @@
+import promisify from 'cypress-promise';
+import { numberFormatter } from '../../../helpers/numberHelper';
+import { TESTIMONIALS, GOOD_CERTIFIED } from '../../../utils/constants';
+
+let candidates, positions, positionsByTopIssues, states;
+describe('CandidatesPage', () => {
+    beforeEach(() => {
+        cy.visit('/candidates');
+    });
+    it('load Candidates', async () => {
+        const content = await promisify(
+        cy.getCandidateList().then(response => response.body),
+        );
+        ({candidates, positions, positionsByTopIssues, states} = content);
+        console.log(content);
+    });
+    it('test Top Section', () => {
+        cy.get('[data-cy=candidates-top-section-title]')
+        .contains('Good Certified Candidates are...');
+        cy.get('[data-cy=certified-badge]')
+        .should('have.attr', 'src', '/images/certified-black.svg');
+        cy.get('[data-cy=candidates-top-section-subtitle]')
+        .contains('FROM ACROSS THE POLITICAL SPECTRUM');
+        cy.get('[data-cy=candidates-article-link]')
+        .should('have.attr', 'href', '?article=FqZOWMEEYfcXbASjaRkMU');
+        cy.get('[data-cy=candidates-article-link-label]')
+        .contains('Why is this important?');
+        cy.get('[data-cy=candidates-run-link]')
+        .should('have.attr', 'href', '/run');
+        cy.get('[data-cy=candidates-run-link-label]')
+        .contains('Want to Run for Office?');
+    });
+    it('test Candidates Section', () => {
+        cy.get('[data-cy=candidate-card]')
+        .should('have.length', candidates.length)
+        .each(($el, index) => {
+            cy.testCandidateCard($el, candidates[index]);
+        });
+    });
+});

@@ -16,9 +16,9 @@ const InnerButton = styled.div`
 function StartCampaignButton() {
   return (
     <Link href="/campaign-application/guest/1" passHref>
-      <a>
+      <a data-cy="campaign-start-button-link">
         <BlackButton>
-          <InnerButton>Start your Campaign</InnerButton>
+          <InnerButton data-cy="campaign-start-button-label">Start your Campaign</InnerButton>
         </BlackButton>
       </a>
     </Link>

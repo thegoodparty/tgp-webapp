@@ -92,20 +92,20 @@ const Hero = () => {
       <MaxWidth>
         <Grid container spacing={3}>
           <Grid item xs={12} md={7} lg={8}>
-            <H1>
+            <H1 data-cy="hero-title">
               Money has corrupted
               <br />
               <i>both</i> major parties.
             </H1>
-            <Creating>
+            <Creating data-cy="hero-subtitle">
               We’re creating a simple, free way for people to help good,
               independent candidates run and win!
             </Creating>
-            <BottomText>
+            <BottomText data-cy="hero-bottom">
               <strong>130M+ of us</strong> don’t feel represented by{' '}
               <Red>Republicans</Red> or <Blue>Democrats</Blue>
             </BottomText>
-            <BottomText style={{ display: 'inline-block', maxWidth: '620px' }}>
+            <BottomText style={{ display: 'inline-block', maxWidth: '620px' }} data-cy="hero-bottom1">
               <strong>But we don&apos;t know each other</strong> (and
               aren&apos;t organized, yet!){' '}
               <strong>
@@ -120,15 +120,16 @@ const Hero = () => {
                 src="/images/homepage/thick-heart.svg"
                 layout="fill"
                 className="full-image"
+                data-cy="hero-heart"
               />
-              <WithUsWrapper>
+              <WithUsWrapper data-cy="hero-engagement">
                 {numberFormatter(engagements)}
                 <br />
                 <WithUsText>are with us!</WithUsText>
               </WithUsWrapper>
               <ButtonWrapper>
                 <Link href="/register" passHref>
-                  <a>
+                  <a data-cy="hero-register">
                     <BlackButton
                       className="pill"
                       fullWidth

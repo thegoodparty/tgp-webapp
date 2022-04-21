@@ -20,8 +20,8 @@ const HowWorks = () => {
   return (
     <Section>
       <MaxWidth>
-        <H3>How does it work?</H3>
-        <div>
+        <H3 data-cy="howworks-title">How does it work?</H3>
+        <div data-cy="howworks-description">
           We provide <strong>free crowd-voting tools</strong> to help Good
           Certified candidates run and win.
           <br />

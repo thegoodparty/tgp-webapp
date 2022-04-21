@@ -3,6 +3,7 @@ import { candidateRoute, partyResolver } from '../../../helpers/electionsHelper'
 import { achievementsNextStepHelper } from '../../../helpers/achievementsHelper';
 import { numberFormatter } from '../../../helpers/numberHelper';
 import { daysTill } from '../../../helpers/dateHelper';
+import { validateLink } from '../../../helpers/linkHelper';
 
 const sampleCandidateList = [26, 29, 43];
 context('Candidate', async () => {
@@ -88,29 +89,25 @@ context('Candidate', async () => {
                 });
             });
             it(`test Updates`, async () => {
-                const { updates } = candidate.candidate;
-                const sortedUpdates = [...updates];
-                sortedUpdates.sort(
-                  (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-                );
+                const { updatesList } = candidate.candidate;
+                console.log(updatesList);
                 const deepLink = (update) => {
                     return `#candidate-update-${update.id}`;
                 };
-                sortedUpdates = sortedUpdates.reverse();
                 cy.get('[data-cy=updates-title]')
                   .contains('Updates');
                 cy.get('[data-cy=updates-item]')
-                  .should('have.length', updates.length)
+                  .should('have.length', updatesList.length)
                   .each(($el, index) => {
                     cy.wrap($el)
                       .find('[data-cy=updates-link]')
-                      .should('have.attr', 'href', deepLink(updates[index]));
+                      .should('have.attr', 'href', deepLink(updatesList[index]));
                     cy.wrap($el)
                       .find('[data-cy=updates-link]')
-                      .contains(updates[index].title);
+                      .contains(updatesList[index].title);
                     cy.wrap($el)
                       .find('[data-cy=updates-time]')
-                      .contains(updates[index].timeAgo);
+                      .contains(updatesList[index].timeAgo);
                 });
             });
             it(`test Follow`, async () => {
@@ -179,29 +176,32 @@ context('Candidate', async () => {
             });
             it(`test SimliarCampaigns`, async () => {
                 const { similarCampaigns } = candidate.candidate;
-                cy.get('[data-cy=similar-campaigns-title]')
-                  .contains('View Similar Campaigns');
-                cy.get('[data-cy=similar-campaigns-item]')
-                  .should('have.length', similarCampaigns.length)
-                  .each(($el, index) => {
-                        cy.wrap($el)
-                          .find('[data-cy=similar-campaigns-item-link]')
-                          .should('have.attr', 'href', candidateRoute(similarCampaigns[index].candidate));
-                        cy.wrap($el)
-                          .find('[data-cy=similar-campaigns-item-link]')
-                          .contains(similarCampaigns[index].candidate.firstName)
-                          .contains(similarCampaigns[index].candidate.lastName);
-                        cy.wrap($el)
-                          .find('[data-cy=similar-campaigns-item-content]')
-                          .contains(partyResolver(similarCampaigns[index].candidate.party))
-                          .contains(partyResolver(similarCampaigns[index].candidate.race));
-                        cy.get('[data-cy=similar-campaigns-item-match]')
-                          .should('have.length', similarCampaigns[index].matchingIssues.length)
-                          .each(($el1, index) => {
-                                cy.wrap($el1)
-                                  .contains(similarCampaigns[index].matchingIssues[index].name);
-                          });
-                });
+                if(similarCampaigns && similarCampaigns.length > 0) {
+                  cy.get('[data-cy=similar-campaigns-title]')
+                    .contains('View Similar Campaigns');
+                  cy.get('[data-cy=similar-campaigns-item]')
+                    .should('have.length', similarCampaigns.length)
+                    .each(($el, index) => {
+                          cy.wrap($el)
+                            .find('[data-cy=similar-campaigns-item-link]')
+                            .should('have.attr', 'href', candidateRoute(similarCampaigns[index].candidate));
+                          cy.wrap($el)
+                            .find('[data-cy=similar-campaigns-item-link]')
+                            .contains(similarCampaigns[index].candidate.firstName)
+                            .contains(similarCampaigns[index].candidate.lastName);
+                          cy.wrap($el)
+                            .find('[data-cy=similar-campaigns-item-content]')
+                            .contains(partyResolver(similarCampaigns[index].candidate.party))
+                            .contains(partyResolver(similarCampaigns[index].candidate.race));
+                          cy.get('[data-cy=similar-campaigns-item-match]')
+                            .should('have.length', similarCampaigns[index].matchingIssues.length)
+                            .each(($el1, index) => {
+                                  cy.wrap($el1)
+                                    .contains(similarCampaigns[index].matchingIssues[index].name);
+                            });
+                  });
+                }
+                
             });
             it(`test HeroSection`, async () => {
                 const { headline, heroVideo, raceDate } = candidate.candidate;
@@ -217,19 +217,22 @@ context('Candidate', async () => {
             });
             it(`test TopIssues`, async () => {
                 const { candidatePositions } = candidate.candidate;
-                cy.get('[data-cy=top-issues-title]')
-                  .contains('Top Issues');
-                cy.get('[data-cy=top-issue]')
-                  .should('have.length', candidatePositions.length)
-                  .each(($el, index) => {
-                    cy.wrap($el)
-                      .find('[data-cy=top-issue-position]')
-                      .contains(candidatePositions[index].position?.name);
-                    cy.wrap($el)
-                      .find('[data-cy=top-issue-name]')
-                      .contains(candidatePositions[index].topIssue?.name)
-                      .contains(candidatePositions[index].description);
-                });
+                if(candidatePositions && candidatePositions.length > 0) {
+                  cy.get('[data-cy=top-issues-title]')
+                    .contains('Top Issues');
+                  cy.get('[data-cy=top-issue]')
+                    .should('have.length', candidatePositions.length)
+                    .each(($el, index) => {
+                      cy.wrap($el)
+                        .find('[data-cy=top-issue-position]')
+                        .contains(candidatePositions[index].position?.name);
+                      cy.wrap($el)
+                        .find('[data-cy=top-issue-name]')
+                        .contains(candidatePositions[index].topIssue?.name)
+                        .contains(candidatePositions[index].description);
+                  });
+                }
+                
             });
             it(`test Summary`, async () => {
                 cy.get('[data-cy=summary-title]')

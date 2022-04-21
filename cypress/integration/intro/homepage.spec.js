@@ -11,39 +11,29 @@ describe('HomePage', () => {
     );
     ({engagements, homepageCandidates} = content);
   });
-  it('test Hero section', async () => {
-    console.log(content);
+  it('test Hero section', () => {
     cy.get('[data-cy=hero-title]')
       .contains('Money has corrupted');
     cy.get('[data-cy=hero-subtitle]')
       .contains('We’re creating a simple, free way for people to help');
+    cy.get('[data-cy=hero-bottom]')
+      .contains('130M+ of us');
+    cy.get('[data-cy=hero-bottom1]')
+      .contains('So Good Party is building free tools and a community');
     cy.get('[data-cy=hero-heart]')
       .should('have.attr', 'src', '/images/homepage/thick-heart.svg');
     cy.get('[data-cy=hero-engagement]')
       .contains(numberFormatter(engagements));
     cy.get('[data-cy=hero-register]')
       .should('have.attr', 'href', '/register');
-    cy.get('[data-cy=hero-white-heart]')
-      .should('have.attr', 'src', '/images/white-heart.svg');
   });
-  it('test NotRepresented section', () => {
-    cy.get('[data-cy=nrepresented-title]')
-      .contains("don’t feel");
-    cy.get('[data-cy=nrepresented-subtitle]')
-      .contains("(and aren’t organized,");
-
-    cy.get('[data-cy=nrepresented-description]')
-      .contains("to mobilize and vote differently");
-    cy.get('[data-cy=nrepresented-social]')
-      .should('have.attr', 'src', '/images/homepage/walk-social.png');
-  });
-  it('test Testimonial section', () => {
-    cy.get('[data-cy=testimonial-section-title]')
+  it('test Together section', () => {
+    cy.get('[data-cy=together-section]')
       .contains("Together we can change things for");
-    cy.get('[data-cy=testimonial-heart]')
-      .should('have.attr', 'src', '/images/heart.svg');
+  });
+  it('test WhosInIt section', () => {
     cy.get('[data-cy=testimonial-subtitle]')
-      .contains("Who’s into it?");
+      .contains("into it?");
 
     cy.get('[data-cy=testimonial-item]')
       .should('have.length', TESTIMONIALS.length)
@@ -55,48 +45,43 @@ describe('HomePage', () => {
           .find('[data-cy=testimonial-content]')
           .contains(TESTIMONIALS[index].text);
         cy.wrap($el)
-          .find('[data-cy=testimonial-name]')
-          .contains(TESTIMONIALS[index].name);
-        cy.wrap($el)
           .find('[data-cy=testimonial-position]')
           .contains(TESTIMONIALS[index].position);
       });
   });
   it('test GoodPartyIs section', () => {
     cy.get('[data-cy=gp-title]')
-      .contains('Good Party is for 130 million people across the political spectrum who');
+      .contains('Good Party is');
+    cy.get('[data-cy=gp-content]')
+      .contains('Good Party is for the 130 million people across the political');
   });
   it('test HowWorks section', () => {
     cy.get('[data-cy=howworks-title]')
       .contains('How does it work?');
     cy.get('[data-cy=howworks-description]')
       .contains('It’s kind of like crowd-funding (GoFundMe), but for')
-    cy.get('[data-cy=howworks-image]')
-      .should('have.attr', 'src', '/images/homepage/how-works-bg-small.svg');
-    
   });
-  it('test GoodCertified section', () => {
+  it('test Pledge section', () => {
     cy.get('[data-cy=gc-title]')
       .contains("Good Certified candidates pledge to be:");
-    cy.get('[data-cy=gc-image]')
-      .should('have.attr', 'src', '/images/homepage/certified.png');
 
     cy.get('[data-cy=gc-item]')
       .should('have.length', GOOD_CERTIFIED.length)
       .each(($el, index) => {
-        cy.wrap($el)
-          .find('[data-cy=gc-item-img]')
-          .should('have.attr', 'src', GOOD_CERTIFIED[index].img);
+        // cy.wrap($el)
+        //   .find('[data-cy=gc-item-img]')
+        //   .should('have.attr', 'src', `/images/icons/${GOOD_CERTIFIED[index].icon}`);
         cy.wrap($el)
           .find('[data-cy=gc-item-title]')
           .contains(GOOD_CERTIFIED[index].title);
+        cy.wrap($el)
+          .find('[data-cy=gc-item-content]')
+          .contains(GOOD_CERTIFIED[index].content);
       });
   });
   it('test FeaturedCampaigns section', () => {
     cy.get('[data-cy=campaigns-title]')
       .contains("Featured Campaigns");
-    cy.get('[data-cy=gc-image]')
-      .should('have.attr', 'src', '/images/homepage/certified.png');
     cy.get('[data-cy=campaigns-more-link]')
       .should('have.attr', 'href', '/candidates');
     cy.get('[data-cy=campaigns-more-link]')
@@ -105,19 +90,19 @@ describe('HomePage', () => {
     cy.get('[data-cy=campaign-card]')
       .should('have.length', homepageCandidates.length)
       .each(($el, index) => {
-          cy.testCandidateMiniCard($el, homepageCandidates[index]);
+        cy.testCandidateCard($el, homepageCandidates[index]);
       });
   });
-  it('test StayTuned section', () => {
-    cy.get('[data-cy=stay-img]')
-      .should('have.attr', 'src', '/images/homepage/homepage-footer.png');
-    cy.get('[data-cy=stay-title]')
-      .contains("You made it this far!");
-    cy.get('[data-cy=stay-subtitle]')
-      .contains("Want to stay tuned?");    
-    cy.get('[data-cy=stay-link]')
-      .should('have.attr', 'href', '/register');
-    cy.get('[data-cy=stay-link]')
-      .contains("Stay in the loop");  
-  });
+  // it('test StayTuned section', () => {
+  //   cy.get('[data-cy=stay-img]')
+  //     .should('have.attr', 'src', '/images/homepage/homepage-footer.png');
+  //   cy.get('[data-cy=stay-title]')
+  //     .contains("You made it this far!");
+  //   cy.get('[data-cy=stay-subtitle]')
+  //     .contains("Want to stay tuned?");    
+  //   cy.get('[data-cy=stay-link]')
+  //     .should('have.attr', 'href', '/register');
+  //   cy.get('[data-cy=stay-link]')
+  //     .contains("Stay in the loop");  
+  // });
 });

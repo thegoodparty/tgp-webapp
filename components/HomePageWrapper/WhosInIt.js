@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 import MaxWidth from '/components/shared/MaxWidth';
+import { TESTIMONIALS } from '../../utils/constants';
 
 const Section = styled.section`
   padding: 60px 16px;
@@ -39,36 +40,21 @@ const TextWrapper = styled.div`
   line-height: 30px;
 `;
 
-const testimonials = [
-  {
-    img: 'https://assets.goodparty.org/testimonials/jeff-ayeroff.jpg',
-    text: 'Good Party is rock the vote on steroids!',
-    name: 'Jeff Ayeroff',
-    position: 'FOUNDER, ROCK THE VOTE',
-  },
-  {
-    img: 'https://assets.goodparty.org/testimonials/naval-ravikant1.jpg',
-    text: 'Outside of Good Party hacks like crowd-voting, you’re never going to get an independent or 3rd party elected.',
-    name: 'Naval Ravikant',
-    position: 'FOUNDER & CHAIRMAN, ANGELLIST',
-  },
-];
-
 const WhosInIt = () => {
   return (
     <Section>
       <MaxWidth>
-        <H3>Who&apos;s into it?</H3>
+        <H3 data-cy="testimonial-subtitle">Who&apos;s into it?</H3>
         <Grid container spacing={4}>
-          {testimonials.map((test) => (
-            <TestWrapper key={test.name}>
-              <Img width={100} height={100} src={test.img} />
+          {TESTIMONIALS.map((test) => (
+            <TestWrapper key={test.name} data-cy="testimonial-item">
+              <Img width={100} height={100} src={test.img} data-cy="testimonial-avatar" />
               <TextWrapper>
-                <strong>&quot;{test.text}&quot;</strong>
+                <strong data-cy="testimonial-content">&quot;{test.text}&quot;</strong>
                 <br />
                 {test.name}
                 <br />
-                <strong>{test.position}</strong>
+                <strong data-cy="testimonial-position">{test.position}</strong>
               </TextWrapper>
             </TestWrapper>
           ))}

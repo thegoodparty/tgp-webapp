@@ -41,10 +41,10 @@ const FeaturedCampaigns = ({ featuredCandidates }) => {
   return (
     <Section>
       <MaxWidth>
-        <H3>Featured Campaigns</H3>
+        <H3 data-cy="campaigns-title">Featured Campaigns</H3>
         <Grid container spacing={3}>
           {candidates.map((candidate) => (
-            <Grid item xs={12} md={6} lg={4} key={candidate.id}>
+            <Grid item xs={12} md={6} lg={4} key={candidate.id} data-cy="campaign-card">
               <CandidateCard candidate={candidate} />
             </Grid>
           ))}
