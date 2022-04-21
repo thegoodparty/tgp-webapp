@@ -52,10 +52,31 @@ function* deleteEndorsement({ id, candidateId }) {
     yield put(actions.loadEndorsementAction(candidateId));
     yield put(snackbarActions.showSnakbarAction('Deleted'));
   } catch (error) {
-    console.log('saga loadEndorsements error', error);
+    console.log('saga deleteEndorsements error', error);
     yield put(
       snackbarActions.showSnakbarAction(
         'Error deleting your endorsement',
+        'error',
+      ),
+    );
+  }
+}
+
+function* editEndorsement({ endorsement, candidateId }) {
+  try {
+    const api = tgpApi.campaign.endorsement.update;
+    const payload = {
+      endorsement,
+      candidateId,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(actions.loadEndorsementAction(candidateId));
+    yield put(snackbarActions.showSnakbarAction('Updated'));
+  } catch (error) {
+    console.log('saga editEndorsements error', error);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'Error editing your endorsement',
         'error',
       ),
     );
@@ -67,4 +88,5 @@ export default function* saga() {
   yield takeLatest(types.ADD_ENDORSEMENT, addEndorsements);
   yield takeLatest(types.LOAD_ENDORSEMENTS, loadEndorsements);
   yield takeLatest(types.DELETE_ENDORSEMENT, deleteEndorsement);
+  yield takeLatest(types.EDIT_ENDORSEMENT, editEndorsement);
 }

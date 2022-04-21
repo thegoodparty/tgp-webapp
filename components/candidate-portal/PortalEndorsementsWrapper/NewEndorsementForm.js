@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
@@ -47,15 +47,31 @@ const Inner = styled.div`
   }
 `;
 
+const Change = styled.div`
+  margin-top: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
 const initialState = {
   title: '',
   summary: '',
   link: '',
   image: '',
 };
-function NewEndorsementForm({ closeAdd }) {
+function NewEndorsementForm({
+  closeAdd,
+  existingEndorsement,
+  updateEndorsementCallback,
+}) {
   const { id, addEndorsementCallback } = useContext(EndorsementsContext);
   const [state, setState] = useState(initialState);
+
+  useEffect(() => {
+    if (existingEndorsement) {
+      setState(existingEndorsement);
+    }
+  }, [existingEndorsement]);
 
   const onChangeField = (key, value) => {
     setState({
@@ -65,15 +81,19 @@ function NewEndorsementForm({ closeAdd }) {
   };
 
   const onSave = () => {
-    addEndorsementCallback(
-      id,
-      state.title,
-      state.summary,
-      state.link,
-      state.image,
-    );
+    if (existingEndorsement) {
+      updateEndorsementCallback(state);
+    } else {
+      addEndorsementCallback(
+        id,
+        state.title,
+        state.summary,
+        state.link,
+        state.image,
+      );
+      closeAdd();
+    }
     setState(initialState);
-    closeAdd();
   };
 
   const canSubmit = () =>
@@ -133,6 +153,9 @@ function NewEndorsementForm({ closeAdd }) {
               Endorsement Image
               <br />
               <Img src={state.image} />
+              <Change onClick={() => onChangeField('image', '')}>
+                Change Image
+              </Change>
             </>
           ) : (
             <UploadWrapper>

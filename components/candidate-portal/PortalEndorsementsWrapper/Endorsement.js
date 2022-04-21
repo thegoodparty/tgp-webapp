@@ -10,6 +10,9 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 
+import { EndorsementsContext } from '/containers/candidate-portal/PortalEndorsementsPage';
+import NewEndorsementForm from './NewEndorsementForm';
+
 const Wrapper = styled.div`
   padding: 30px 0;
   border-bottom: 1px solid #e8e8e8;
@@ -47,12 +50,21 @@ const Delete = styled.div`
 `;
 
 function Endorsement({ endorsement, last, deleteCallback }) {
+  const [showEdit, setShowEdit] = useState(false);
   const { summary, id, image, link, title } = endorsement;
+  const { editEndorsementCallback, candidate } =
+    useContext(EndorsementsContext);
+
+  const handleUpdate = (updated) => {
+    editEndorsementCallback(updated, candidate.id);
+    setShowEdit(false);
+  };
 
   return (
     <Wrapper key={id} className={last && 'no-border'}>
       <DeleteWrapper>
         <Delete onClick={() => deleteCallback(endorsement)}>Delete</Delete>
+        <Delete onClick={() => setShowEdit(true)}>Edit</Delete>
       </DeleteWrapper>
       <Grid container spacing={3}>
         {image && (
@@ -69,6 +81,12 @@ function Endorsement({ endorsement, last, deleteCallback }) {
           {link}
         </Grid>
       </Grid>
+      {showEdit && (
+        <NewEndorsementForm
+          existingEndorsement={endorsement}
+          updateEndorsementCallback={handleUpdate}
+        />
+      )}
     </Wrapper>
   );
 }
