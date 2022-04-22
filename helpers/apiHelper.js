@@ -4,7 +4,7 @@ let apiBase = 'https://api.goodparty.org/api/v1/';
 let base = 'https://goodparty.org';
 if (API_ENV === 'local') {
   apiBase = 'http://localhost:1337/api/v1/';
-  base = 'http://localhost:1337';
+  base = 'http://localhost:4000';
 } else if (API_ENV === 'dev' || API_ENV === 'development') {
   apiBase = 'https://api-dev.goodparty.org/api/v1/';
   base = 'https://dev.goodparty.org';
