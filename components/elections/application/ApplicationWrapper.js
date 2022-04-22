@@ -207,7 +207,7 @@ function ApplicationWrapper({
               ))}
               <br />
               {!reviewMode && (
-                <Link href="/profile/campaign-applications" passHref>
+                <Link href="/profile/campaigns" passHref>
                   <a>
                     <BlackButton
                       className="outline"
