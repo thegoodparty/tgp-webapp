@@ -34,7 +34,7 @@
     "immer": "^9.0.12",
     "invariant": "^2.2.4",
     "jodit-react": "^1.1.21",
-    "libphonenumber-js": "^1.9.48",
+    "libphonenumber-js": "1.9.48",
     "markdown-to-jsx": "^7.0.0",
     "material-ui-color-picker": "^3.5.1",
     "moment": "^2.29.1",

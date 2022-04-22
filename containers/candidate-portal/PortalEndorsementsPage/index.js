@@ -34,6 +34,7 @@ export function PortalEndorsementsPage({
   addEndorsementCallback,
   portalEndorsementsPage,
   deleteEndorsementCallback,
+  editEndorsementCallback,
 }) {
   useInjectReducer({ key: 'portalEndorsementsPage', reducer });
   useInjectSaga({ key: 'portalEndorsementsPage', saga });
@@ -66,6 +67,7 @@ export function PortalEndorsementsPage({
     endorsements,
     addEndorsementCallback,
     deleteEndorsementCallback,
+    editEndorsementCallback,
   };
 
   return (
@@ -104,6 +106,9 @@ function mapDispatchToProps(dispatch) {
     },
     deleteEndorsementCallback: (id, candidateId) => {
       dispatch(actions.deleteEndorsementAction(id, candidateId));
+    },
+    editEndorsementCallback: (endorsement, candidateId) => {
+      dispatch(actions.editEndorsementAction(endorsement, candidateId));
     },
   };
 }
