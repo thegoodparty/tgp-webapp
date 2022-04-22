@@ -30,7 +30,11 @@ const shareImageUrl = (candidate) => {
   const { firstName, lastName, id } = candidate;
   return `https://s3-us-west-2.amazonaws.com/assets.goodparty.org/share-image/${firstName
     ?.trim()
-    ?.toLowerCase()}-${lastName?.trim()?.toLowerCase()}-${id}-share.jpeg`;
+    ?.toLowerCase()
+    .replace(' ', '-')}-${lastName
+    ?.trim()
+    ?.toLowerCase()
+    .replace(' ', '-')}-${id}-share.jpeg`;
 };
 
 export const CandidateContext = createContext();
@@ -96,7 +100,9 @@ export function CandidatePage({
   const title = `${firstName} ${lastName} ${partyResolver(
     party,
     otherParty,
-  ).toLowerCase()} ${party !== 'I' ? 'Party ' : ''}candidate for ${race} | Crowd-voting on GOOD PARTY`;
+  ).toLowerCase()} ${
+    party !== 'I' ? 'Party ' : ''
+  }candidate for ${race} | Crowd-voting on GOOD PARTY`;
 
   const description = `Join the crowd-voting campaign for ${firstName} ${lastName}, ${partyResolver(
     party,
