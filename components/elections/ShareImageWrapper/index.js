@@ -111,29 +111,27 @@ function ShareImage({
   const supportCount = total;
   const { firstName, lastName, race, party, otherParty, isDraft, draftOffice } =
     candidate;
-  const afterLoad = (suffix) => {
+  const afterLoad = async (suffix) => {
     if (!withRender) {
       return;
     }
-    setTimeout(() => {
-      htmlToImage
-      .toJpeg(document.getElementById(suffix), { quality: 1, pixelRatio: 1 })
-      .then(function (dataUrl) {
-        shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
-        const img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
-    }, 2000)
+    htmlToImage
+    .toJpeg(document.getElementById(suffix), { quality: 1, pixelRatio: 1, style: {fontFamily: `'Lato',sans-serif`}})
+    .then(async function (dataUrl) {
+      shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
+      const img = new Image();
+      img.src = dataUrl;
+      document.body.appendChild(img);
+    })
+    .catch(function (error) {
+      console.error('oops, something went wrong!', error);
+    });
   };
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
   return (
     <>
-      <ShareImageWrapper id="support" className={!withRender && 'no-bg'}>
+      <ShareImageWrapper id="support" className={!withRender && 'no-bg'} style={{fontFamily: "'Lato',sans-serif"}}>
         <WrapperTitle>
           Hey, {fromShareLink ? 'Check out' : 'I’m endorsing'}...
         </WrapperTitle>
@@ -189,7 +187,7 @@ function ShareImage({
         )}
       </ShareImageWrapper>
       {withRender && (
-        <ShareImageWrapper id="share" className={!withRender && 'no-bg'}>
+        <ShareImageWrapper id="share" className={!withRender && 'no-bg'} style={{fontFamily: "'Lato',sans-serif"}}>
           <WrapperTitle>Hey, check out...</WrapperTitle>
           <AvatarWrapper>
             <CandidateAvatar
