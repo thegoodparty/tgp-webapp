@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "API_ENV=local next dev -p 4000",
     "dev-dev": "API_ENV=development next dev -p 4000",
+    "dev-prod": "API_ENV=prod next dev -p 4000",
     "deploy-dev": "git checkout develop && eb deploy",
     "deploy-qa": "git checkout qa && eb deploy",
     "deploy-prod": "git checkout master  && eb deploy",
