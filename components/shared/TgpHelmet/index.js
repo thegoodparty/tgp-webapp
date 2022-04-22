@@ -40,6 +40,8 @@ function TgpHelmet({ title, ogTitle, description, image }) {
           content="https://assets.goodparty.org/share.jpg"
         />
       )}
+      <link rel="icon" href="https://assets.goodparty.org/favicon.ico" />
+      <link rel="icon" type="image/png" href="https://assets.goodparty.org/favicon.png" />
     </Head>
   );
 }

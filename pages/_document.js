@@ -69,9 +69,6 @@ class CustomDocument extends NextDocument {
             rel="stylesheet"
           />
           <link rel="manifest" href="/manifest.json" />
-
-          <link rel="icon" href="https://assets.goodparty.org/favicon.ico" />
-          <link rel="icon" type="image/png" href="https://assets.goodparty.org/favicon.png" />
           <link
             rel="apple-touch-icon"
             sizes="57x57"
@@ -148,22 +145,6 @@ class CustomDocument extends NextDocument {
             href="https://assets.goodparty.org/favicon/favicon-16x16.png"
           />
           {this.props.styles}
-          {/*<script*/}
-          {/*  async*/}
-          {/*  src="https://www.googletagmanager.com/gtag/js?id=UA-146762622-1"*/}
-          {/*/>*/}
-
-          {/*<script*/}
-          {/*  type="text/javascript"*/}
-          {/*  dangerouslySetInnerHTML={{*/}
-          {/*    __html: `*/}
-          {/* window.dataLayer = window.dataLayer || [];*/}
-          {/*  function gtag(){dataLayer.push(arguments);}*/}
-          {/*  gtag('js', new Date());*/}
-
-          {/*  gtag('config', 'UA-146762622-1');`,*/}
-          {/*  }}*/}
-          {/*/>*/}
 
           {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />*/}
         </Head>
