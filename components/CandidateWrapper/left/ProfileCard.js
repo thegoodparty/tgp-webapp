@@ -33,11 +33,14 @@ function ProfileCard() {
         {firstName} {lastName}
       </FontH1>
       <Font16>
-        {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''} Candidate <br />
+        {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
+        Candidate <br />
         for <strong>{race}</strong>
       </Font16>
       {candidate.image ? (
-        <ImgWrapper style={{ backgroundImage: `url(${candidate.image})` }} />
+        <ImgWrapper
+          style={{ backgroundImage: `url(${encodeURI(candidate.image)})` }}
+        />
       ) : (
         <div style={{ height: '32px' }}>&nbsp;</div>
       )}
