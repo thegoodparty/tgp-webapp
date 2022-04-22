@@ -63,8 +63,14 @@ function Endorsement({ endorsement, last, deleteCallback }) {
   return (
     <Wrapper key={id} className={last && 'no-border'}>
       <DeleteWrapper>
-        <Delete onClick={() => deleteCallback(endorsement)}>Delete</Delete>
-        <Delete onClick={() => setShowEdit(true)}>Edit</Delete>
+        {showEdit ? (
+          <Delete onClick={() => setShowEdit(false)}>Cancel</Delete>
+        ) : (
+          <>
+            <Delete onClick={() => deleteCallback(endorsement)}>Delete</Delete>
+            <Delete onClick={() => setShowEdit(true)}>Edit</Delete>
+          </>
+        )}
       </DeleteWrapper>
       <Grid container spacing={3}>
         {image && (
