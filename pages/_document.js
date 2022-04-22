@@ -70,7 +70,8 @@ class CustomDocument extends NextDocument {
           />
           <link rel="manifest" href="/manifest.json" />
 
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="https://assets.goodparty.org/favicon.ico" />
+          <link rel="icon" type="image/png" href="https://assets.goodparty.org/favicon.png" />
           <link
             rel="apple-touch-icon"
             sizes="57x57"
