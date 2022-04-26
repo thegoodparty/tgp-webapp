@@ -139,12 +139,19 @@ function PortalCampaignManagerWrapper() {
   const [showHidden, setShowHidden] = useState(false);
   useEffect(() => {
     const newState = {};
+    const newErrors = {};
     panels.forEach((panel) => {
       panel.fields.forEach((field) => {
         newState[field.key] = candidate[field.key] || '';
+        if (field.isUrl && candidate[field.key] && candidate[field.key] !== '') {
+          if (!isValidUrl(candidate[field.key])) {
+            newErrors[field.key] = 'invalid URL';
+          }
+        }
       });
     });
     setState(newState);
+    setErrors(newErrors);
     if (candidate.party === 'Other') {
       setShowHidden(true);
     }
@@ -246,7 +253,7 @@ function PortalCampaignManagerWrapper() {
                             fullWidth
                             variant="outlined"
                             required={field.required}
-                            error={!!errors[field.key]}
+                            error={field.required && state[field.key] === ''}
                             onChange={(e) =>
                               onChangeField(
                                 field.key,
@@ -295,7 +302,10 @@ function PortalCampaignManagerWrapper() {
                             InputLabelProps={{
                               shrink: !!state[field.key] || field.isDate,
                             }}
-                            error={!!errors[field.key]}
+                            error={
+                              (field.required && state[field.key] === '') ||
+                              !!errors[field.key]
+                            }
                             helperText={
                               errors[field.key] ? errors[field.key] : ''
                             }
