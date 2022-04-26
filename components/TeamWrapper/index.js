@@ -15,6 +15,7 @@ import MaxWidth from '/components/shared/MaxWidth';
 import { H1, H2 } from '../shared/typogrophy';
 import TeamSection from './TeamSection';
 import VolunteersSection from './VolunteersSection';
+import HeroSection from './HeroSection';
 
 const HeroPurple = styled.div`
   background: linear-gradient(
@@ -73,34 +74,8 @@ const ReverseGrid = styled(Grid)`
 
 function TeamWrapper() {
   return (
-    <PageWrapper isFullWidth white noPadding>
-      <HeroPurple>
-        <Hero>
-          <MaxWidth>
-            <ReverseGrid spacing={2} container>
-              <Grid item xs={12} md={6} className="text-right">
-                <img src="images/team/team-heart.svg" />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <StyledH1>Meet the team</StyledH1>
-              </Grid>
-            </ReverseGrid>
-          </MaxWidth>
-        </Hero>
-      </HeroPurple>
-      <Content>
-        Good Party’s core team are the people working full-time, part-time, or
-        as dedicated volunteer contributors on our mission of making people
-        matter more than money in our democracy.
-        <br />
-        <br />
-        If you agree that fixing democracy so it creates rules that work for
-        people, not for money, is the problem that must be solved to make all
-        other problems solvable, please consider{' '}
-        <Link href="/work-with-us" passHref>
-          <a> joining us!</a>
-        </Link>
-      </Content>
+    <PageWrapper>
+      <HeroSection />
       <TeamSection />
       <VolunteersSection />
     </PageWrapper>

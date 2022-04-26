@@ -9,16 +9,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
-import { Body19 } from '../shared/typogrophy';
+import { Body19, Font18 } from '../shared/typogrophy';
 import MaxWidth from '../shared/MaxWidth';
 
 const Wrapper = styled.section`
-  background-color: ${({ theme }) => theme.colors.grayE};
-  padding: 32px 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    padding: 64px 0;
-  }
+
 `;
 
 const Members = styled.div``;
@@ -108,7 +103,8 @@ const Tap = styled(Body19)`
 const Name = styled(Body)`
   color: ${({ theme }) => theme.colors.primary};
   font-weight: 700;
-  margin-top: 8px;
+  margin: 8px 0 16px;
+  font-size: 24px;
 `;
 
 const team = [
@@ -238,85 +234,79 @@ function TeamSection() {
   };
   return (
     <Wrapper>
-      <MaxWidth>
-        <Tap onClick={handleFlipAll}>
-          Tap to see our {flipAll ? 'Good' : 'Party'} side!
-        </Tap>
-        <Members className={flipAll && 'flipped'}>
-          <Grid spacing={2} container>
-            {team.map((member, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                <Member
-                  onClick={() => handleSelected(index)}
-                  className={selected[index] ? 'selected' : 'not-selected'}
-                >
-                  <MemberInner className="member-inner">
-                    <Front>
-                      <Img
-                        src={member.img}
-                        className="full-image"
-                        alt={member.name}
-                        width={500}
-                        height={500}
-                      />
-                      <Name>{member.name}</Name>
-                      <Body13>
-                        <strong>{member.role}</strong>
-                      </Body13>
-                      <Body13 style={{ marginTop: '8px' }}>
-                        {member.good}
-                      </Body13>
-                      <Body11 style={{ marginTop: '8px' }}>
-                        <i>{member.perspective}</i>
-                      </Body11>
-                    </Front>
-                    <Back>
-                      <Img
-                        src={member.flipImg}
-                        className="full-image"
-                        alt={member.name}
-                        width={500}
-                        height={500}
-                      />
-                      <Name>{member.name}</Name>
-                      <Body13>
-                        <strong>{member.partyRole}</strong>
-                      </Body13>
-                      <Body13 style={{ marginTop: '8px' }}>
-                        {member.party}
-                      </Body13>
-                      <Body11 style={{ marginTop: '8px' }}>
-                        <i>{member.partyPerspective}</i>
-                      </Body11>
-                    </Back>
-                  </MemberInner>
-                  <div className="hidden">
+      <Tap onClick={handleFlipAll}>
+        Tap to see our {flipAll ? 'Good' : 'Party'} side!
+      </Tap>
+      <Members className={flipAll && 'flipped'}>
+        <Grid spacing={2} container>
+          {team.map((member, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <Member
+                onClick={() => handleSelected(index)}
+                className={selected[index] ? 'selected' : 'not-selected'}
+              >
+                <MemberInner className="member-inner">
+                  <Front>
                     <Img
                       src={member.img}
                       className="full-image"
+                      alt={member.name}
                       width={500}
                       height={500}
-                      alt={member.name}
                     />
                     <Name>{member.name}</Name>
-                    <Body13>
-                      <strong>{member.role}</strong>
-                    </Body13>
-                    <Body13 style={{ marginTop: '8px' }}>
-                      {member.good.length > member.party.length
-                        ? member.good
-                        : member.party}
-                    </Body13>
-                    <Body11 style={{ marginTop: '8px' }}>
-                      <i>{member.perspective}</i>
-                    </Body11>
-                  </div>
-                </Member>
-              </Grid>
-            ))}
-          </Grid>
-        </Members>
-      </MaxWidth>
+                    <Font18>
+                      {member.role}
+                    </Font18>
+                    {/*<Body13 style={{ marginTop: '8px' }}>{member.good}</Body13>*/}
+                    {/*<Body11 style={{ marginTop: '8px' }}>*/}
+                    {/*  <i>{member.perspective}</i>*/}
+                    {/*</Body11>*/}
+                  </Front>
+                  <Back>
+                    <Img
+                      src={member.flipImg}
+                      className="full-image"
+                      alt={member.name}
+                      width={500}
+                      height={500}
+                    />
+                    <Name>{member.name}</Name>
+                    <Font18>
+                      {member.partyRole}
+                    </Font18>
+                    {/*<Body13 style={{ marginTop: '8px' }}>{member.party}</Body13>*/}
+                    {/*<Body11 style={{ marginTop: '8px' }}>*/}
+                    {/*  <i>{member.partyPerspective}</i>*/}
+                    {/*</Body11>*/}
+                  </Back>
+                </MemberInner>
+                <div className="hidden">
+                  <Img
+                    src={member.img}
+                    className="full-image"
+                    width={500}
+                    height={500}
+                    alt={member.name}
+                  />
+                  <Name>{member.name}</Name>
+                  <Body13>
+                    {member.role}
+                  </Body13>
+                  {/*<Body13 style={{ marginTop: '8px' }}>*/}
+                  {/*  {member.good.length > member.party.length*/}
+                  {/*    ? member.good*/}
+                  {/*    : member.party}*/}
+                  {/*</Body13>*/}
+                  {/*<Body11 style={{ marginTop: '8px' }}>*/}
+                  {/*  <i>{member.perspective}</i>*/}
+                  {/*</Body11>*/}
+                </div>
+              </Member>
+            </Grid>
+          ))}
+        </Grid>
+      </Members>
     </Wrapper>
   );
 }
