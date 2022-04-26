@@ -170,6 +170,18 @@ function ApplicationStep6({
     setState(updatedSate);
   };
 
+  const canSubmit = () => {
+    for (let i = 0; i < state.length; i++) {
+      const endors = state[i];
+      if (endors.body !== '' || endors.title !== '') {
+        if (endors.body === '' || endors.title === '') {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
   const renderField = (field, index) => {
     return (
       <FieldWrapper key={field.key} className={field.grayBg && 'gray'}>
@@ -222,7 +234,7 @@ function ApplicationStep6({
   return (
     <ApplicationWrapper
       step={step}
-      canContinue
+      canContinue={canSubmit()}
       id={application.id}
       withWhiteBg={false}
       reviewMode={reviewMode}
