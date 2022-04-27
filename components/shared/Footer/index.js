@@ -13,9 +13,19 @@ import Grid from '@material-ui/core/Grid';
 import MaxWidth from '../MaxWidth';
 
 const Wrapper = styled.div`
-  padding: 40px 0;
+  margin-top: 400px;
+  padding: 40px 32px;
   border-top: solid 1px #e1e2e9;
   background-color: #fff;
+  position: relative;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 40px 24px;
+  }
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.sm}) {
+    padding: 40px 18px;
+  }
 `;
 
 const Aligner = styled.div`

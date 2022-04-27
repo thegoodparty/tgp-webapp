@@ -47,7 +47,6 @@ const Position = styled.div`
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   overflow: hidden;
-  transition: height 0.4s, padding 0.4s;
   max-height: 0;
   padding: 0;
 `;
@@ -55,6 +54,18 @@ const Position = styled.div`
 function TopIssues() {
   const { candidatePositions } = useContext(CandidateContext);
   const [selected, setSelected] = useState(false);
+
+  if (candidatePositions?.length === 0) {
+    return <></>;
+  }
+
+  const handleSelected = (id) => {
+    if (id === selected) {
+      setSelected(false);
+    } else {
+      setSelected(id);
+    }
+  };
   return (
     <Wrapper>
       <strong style={{ margin: '24px 0' }}>Top Issues</strong>
@@ -65,7 +76,7 @@ function TopIssues() {
         >
           <Issue
             onClick={() => {
-              setSelected(candPosition.id);
+              handleSelected(candPosition.id);
             }}
             className="issue"
           >

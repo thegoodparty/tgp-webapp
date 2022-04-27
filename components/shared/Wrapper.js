@@ -6,23 +6,13 @@ const WrapperDiv = styled.div`
   //min-height: calc(var(--vh, 1vh) * 100 - 140px);
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 24px;
   background-color: ${({ theme }) => theme.colors.grayBg};
   @media only screen and (min-width: ${({ theme }) =>
     theme.breakpointsPixels.contentMax}) {
     padding: 0;
     min-height: calc(100vh - 80px);
     //min-height: calc(var(--vh, 1vh) * 100 - 40px);
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.lg}) {
-    padding-right: 24px;
-    padding-left: 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-    theme.breakpointsPixels.sm}) {
-    padding-right: 18px;
-    padding-left: 18px;
   }
   &.white {
     background-color: #fff;

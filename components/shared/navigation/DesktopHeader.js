@@ -18,16 +18,9 @@ const Wrapper = styled.div`
   border-bottom: solid 1px #e1e2e9;
   background-color: #fff;
   z-index: 100;
-  padding: 0 32px;
+  padding: 0 24px;
+
   position: relative;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding: 0 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
-    padding: 0 18px;
-  }
 `;
 
 const ContentWrapper = styled.div`
@@ -70,8 +63,6 @@ const links = [
   { label: 'About', href: '/about' },
   { label: 'Candidates', href: '/candidates' },
 ];
-
-
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = React.useState(false);

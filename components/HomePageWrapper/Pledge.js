@@ -5,7 +5,7 @@ import MaxWidth from '/components/shared/MaxWidth';
 import GoodCertifiedPoints from '../CandidatesWrapper/GoodCertifiedPoints';
 
 const Section = styled.section`
-  padding: 60px 16px;
+  padding: 60px 24px;
 `;
 
 const H3 = styled.h3`

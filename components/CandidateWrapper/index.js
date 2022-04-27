@@ -31,10 +31,11 @@ const InnerWrapper = styled.div`
 `;
 
 function CandidateWrapper() {
-  const { candidate } = useContext(CandidateContext);
+  const { candidate, candidatePositions } = useContext(CandidateContext);
   if (!candidate) {
     return <NotFound />;
   }
+  const withTopIssues = candidatePositions?.length > 0;
   return (
     <PageWrapper>
       <InnerWrapper>
@@ -52,12 +53,14 @@ function CandidateWrapper() {
           <Grid item xs={12} md={8}>
             <HeroSection />
             <Grid container spacing={4}>
-              <Grid item xs={12} md={7}>
+              <Grid item xs={12} md={withTopIssues ? 7 : 12}>
                 <Summary />
               </Grid>
-              <Grid item xs={12} md={5}>
-                <TopIssues />
-              </Grid>
+              {withTopIssues && (
+                <Grid item xs={12} md={5}>
+                  <TopIssues />
+                </Grid>
+              )}
             </Grid>
             <Hidden lgUp>
               <SimilarCampaigns />

@@ -2,17 +2,19 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
 
-import { PurpleButton } from '../shared/buttons';
 import CandidateCard from '../shared/CandidateCard';
 import { HomePageContext } from '../../containers/HomePage';
 import BlackButton from '../shared/buttons/BlackButton';
 import MaxWidth from '/components/shared/MaxWidth';
 
 const Section = styled.section`
-  padding: 60px 16px;
+  padding: 60px 24px 0;
+
+  &.no-padding {
+    padding: 60px 0 0;
+  }
 `;
 
 const H3 = styled.h3`
@@ -29,7 +31,7 @@ const SeeMoreWrapper = styled.div`
   margin: 24px auto 0;
 `;
 
-const FeaturedCampaigns = ({ featuredCandidates }) => {
+const FeaturedCampaigns = ({ featuredCandidates, removePadding = false }) => {
   const context = useContext(HomePageContext);
   let candidates = [];
   if (featuredCandidates) {
@@ -39,7 +41,7 @@ const FeaturedCampaigns = ({ featuredCandidates }) => {
   }
 
   return (
-    <Section>
+    <Section className={removePadding && 'no-padding'}>
       <MaxWidth>
         <H3>Featured Campaigns</H3>
         <Grid container spacing={3}>

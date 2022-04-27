@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import MaxWidth from '/components/shared/MaxWidth';
 
 const Section = styled.section`
-  padding: 60px 16px;
+  padding: 60px 24px;
   text-align: center;
   font-size: 24px;
   line-height: 36px;

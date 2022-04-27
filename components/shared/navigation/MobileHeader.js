@@ -17,21 +17,14 @@ import { PurpleButton } from '../buttons';
 import BlackButton from '../buttons/BlackButton';
 
 const Wrapper = styled.div`
-  padding: 0 20px;
+  padding: 0 24px;
   height: 80px;
   display: flex;
   align-items: center;
-  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   justify-content: space-between;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding: 0 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
-    padding: 0 18px;
-  }
+  
 `;
 
 const Logo = styled.img`

@@ -16,7 +16,7 @@ import BecomingSection from './BecomingSection';
 import HowWorksSection from './HowWorksSection';
 
 const Wrapper = styled.div`
-  padding: 80px 0;
+  padding: 80px 0 0;
   text-align: center;
 `;
 

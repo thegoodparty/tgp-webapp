@@ -110,7 +110,8 @@ function AboutWrapper() {
           </div>
         </Point>
       ))}
-      <FeaturedCampaigns featuredCandidates={featuredCandidates} />
+      <FeaturedCampaigns featuredCandidates={featuredCandidates} removePadding />
+
     </PageWrapper>
   );
 }

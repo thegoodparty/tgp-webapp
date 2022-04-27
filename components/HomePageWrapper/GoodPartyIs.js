@@ -8,7 +8,7 @@ import MaxWidth from '/components/shared/MaxWidth';
 import { Blue, Red } from './Hero';
 
 const Section = styled.section`
-  padding: 60px 16px;
+  padding: 60px 24px;
 `;
 
 const H3 = styled.h3`

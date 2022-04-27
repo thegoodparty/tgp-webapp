@@ -10,7 +10,7 @@ import { HomePageContext } from '../../containers/HomePage';
 import BlackButton from '../shared/buttons/BlackButton';
 
 const Section = styled.section`
-  padding: 80px 16px 130px;
+  padding: 80px 24px 130px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
     padding-bottom: 0;
