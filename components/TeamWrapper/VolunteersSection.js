@@ -12,6 +12,7 @@ import { Body, H2 } from '../shared/typogrophy';
 
 const Content = styled.div`
   padding: 48px 8px;
+  margin-bottom: 300px;
 `;
 
 const StyledH2 = styled(H2)`
