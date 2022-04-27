@@ -143,7 +143,11 @@ function PortalCampaignManagerWrapper() {
     panels.forEach((panel) => {
       panel.fields.forEach((field) => {
         newState[field.key] = candidate[field.key] || '';
-        if (field.isUrl && candidate[field.key] && candidate[field.key] !== '') {
+        if (
+          field.isUrl &&
+          candidate[field.key] &&
+          candidate[field.key] !== ''
+        ) {
           if (!isValidUrl(candidate[field.key])) {
             newErrors[field.key] = 'invalid URL';
           }
