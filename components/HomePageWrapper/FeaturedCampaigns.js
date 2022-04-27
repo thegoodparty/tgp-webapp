@@ -54,7 +54,7 @@ const FeaturedCampaigns = ({ featuredCandidates, removePadding = false }) => {
         <br />
         <SeeMoreWrapper>
           <Link href="/candidates" passHref>
-            <a>
+            <a className="no-underline">
               <BlackButton fullWidth className="outlined pill">
                 See More
               </BlackButton>

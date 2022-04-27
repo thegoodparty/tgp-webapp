@@ -128,7 +128,7 @@ const Hero = () => {
               </WithUsWrapper>
               <ButtonWrapper>
                 <Link href="/register" passHref>
-                  <a>
+                  <a className="no-underline">
                     <BlackButton
                       className="pill"
                       fullWidth

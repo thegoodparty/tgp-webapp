@@ -117,7 +117,7 @@ function CandidateCard({ candidate }) {
       passHref
       style={{ height: '100%' }}
     >
-      <a style={{ height: '100%' }}>
+      <a style={{ height: '100%' }} className="no-underline">
         <Wrapper>
           <ImageWrapper>
             {image && (

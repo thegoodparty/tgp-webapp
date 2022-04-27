@@ -67,14 +67,10 @@ function ApplicationSection() {
           <Grid container spacing={3}>
             {applications.map((app) => (
               <Grid item xs={12} md={6} lg={4} key={app.id}>
-                <Link href={`/campaign-application/${app.id}/1`} passHref>
-                  <a>
-                    <ApplicationPreview
-                      app={app}
-                      deleteApplicationCallback={handleDelete}
-                    />
-                  </a>
-                </Link>
+                <ApplicationPreview
+                  app={app}
+                  deleteApplicationCallback={handleDelete}
+                />
               </Grid>
             ))}
           </Grid>

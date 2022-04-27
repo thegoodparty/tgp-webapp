@@ -29,7 +29,11 @@ const GlobalStyles = createGlobalStyle`
 
   a:hover {
    color: #333;
-   
+   text-decoration: underline;
+  }
+  
+  a.no-underline:hover {
+    text-decoration: none;
   }
 
   .bold700 {
