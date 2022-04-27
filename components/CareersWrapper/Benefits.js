@@ -52,9 +52,9 @@ function Benefits() {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>Why You Should Join Us</StyledH2>
+            <StyledH2 data-cy="benefits-title">Why You Should Join Us</StyledH2>
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={8} data-cy="benefits-content">
             <ul>
               <li>
                 <strong>Be part of a mission</strong> to solve the biggest

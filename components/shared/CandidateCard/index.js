@@ -107,8 +107,10 @@ function CandidateCard({ candidate }) {
     otherParty,
     headline,
     positions,
+    color,
   } = candidate;
   const achievements = achievementsHelper(supporters);
+  const brightColor = color?.color ? color.color : '#000';
   return (
     <Link
       href={`/candidate/${firstName}-${lastName}/${id}`}
@@ -150,6 +152,7 @@ function CandidateCard({ candidate }) {
               peopleSoFar={supporters}
               fullWidth
               showSuffix={false}
+              color={brightColor}
               // withAchievement
             />
             <Quote>{headline}</Quote>
@@ -166,7 +169,12 @@ function CandidateCard({ candidate }) {
             <ButtonWrapper>
               <BlackButton
                 fullWidth
-                style={{ textTransform: 'none', marginTop: '32px' }}
+                style={{
+                  textTransform: 'none',
+                  marginTop: '32px',
+                  backgroundColor: brightColor,
+                  borderColor: brightColor,
+                }}
                 data-cy="candidate-view"
               >
                 View Campaign

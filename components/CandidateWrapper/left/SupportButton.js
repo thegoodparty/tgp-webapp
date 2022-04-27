@@ -208,6 +208,9 @@ function SupportButton() {
     e.preventDefault();
   };
 
+  const { color } = candidate;
+  const brightColor = color?.color ? color.color : '#000';
+
   return (
     <>
       {isUserSupportCandidate ? (
@@ -223,7 +226,14 @@ function SupportButton() {
           </Support>
           <Link href={`${router.asPath}?share=true`} passHref>
             <a>
-              <BlackButton fullWidth style={{ marginTop: '12px' }}>
+              <BlackButton
+                fullWidth
+                style={{
+                  marginTop: '12px',
+                  backgroundColor: brightColor,
+                  borderColor: brightColor,
+                }}
+              >
                 Share
               </BlackButton>
             </a>
@@ -258,7 +268,10 @@ function SupportButton() {
             <BlackButton
               fullWidth
               onClick={handleSupport}
-              style={{ border: 'solid 2px #5C00C7' }}
+              style={{
+                border: `solid 2px ${brightColor}`,
+                backgroundColor: brightColor,
+              }}
               type="submit"
             >
               <InnerButton>

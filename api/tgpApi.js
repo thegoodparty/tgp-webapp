@@ -547,6 +547,11 @@ const api = {
         method: 'DELETE',
         withAuth: true,
       },
+      update: {
+        url: `${base}campaign/endorsement`,
+        method: 'PUT',
+        withAuth: true,
+      },
     },
     image: {
       create: {

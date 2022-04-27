@@ -15,6 +15,7 @@ import ApplicationWrapper from './ApplicationWrapper';
 import { Body14 } from '../../shared/typogrophy';
 import { step2fields, step2Socials, step3Fields, step3Socials } from './fields';
 import { Title } from './ApplicationStep1';
+import { isValidPhone } from '../../shared/PhoneInput';
 
 const SectionWrapper = styled.div`
   margin-bottom: 28px;
@@ -110,9 +111,16 @@ function ApplicationStep7({
         const { stepKey } = stepFields[0];
         stepFields.forEach((field) => {
           if (field.label) {
-            const completed =
+            let completed =
               application[stepKey] &&
               application[stepKey][field.key] !== field.defaultValue;
+            if (
+              field.type === 'phone' &&
+              !isValidPhone(application[stepKey][field.key])
+            ) {
+              completed = false;
+              requiredFilled = false;
+            }
             sections[index + 1].fields.push({
               label: field.shortLabel || field.label,
               required: field.required,

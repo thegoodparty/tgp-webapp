@@ -13,7 +13,12 @@ describe('Run Page', () => {
       .contains('Start your Campaign');
     cy.get('[data-cy=run-questions]')
       .contains('Have more questions?');
-      
+  });
+  it('test Site Header', () => {
+    cy.testSiteHeader();
+  });
+  it('test Site Footer', () => {
+    cy.testSiteFooter();
   });
   it('test Becoming Section', () => {
     cy.get('[data-cy=becoming-title]')

@@ -92,10 +92,10 @@ function CareersWrapper({ notificationsCallback }) {
           <MaxWidth>
             <ReverseGrid spacing={2} container>
               <Grid item xs={12} md={6} className="text-right">
-                <img src="images/team/team-heart.svg" />
+                <img data-cy="team-heart-icon" src="images/team/team-heart.svg" />
               </Grid>
               <Grid item xs={12} md={6}>
-                <StyledH1>Work With Us</StyledH1>
+                <StyledH1 data-cy="wwu-title">Work With Us</StyledH1>
               </Grid>
             </ReverseGrid>
           </MaxWidth>
@@ -104,13 +104,13 @@ function CareersWrapper({ notificationsCallback }) {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>Who Are We?</StyledH2>
+            <StyledH2 data-cy="waw-title">Who Are We?</StyledH2>
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={8} data-cy="waw-content">
             Good Party is a fully-funded startup organized as a Public Benefit
             Corporation (people and impact over revenues or profit). Our diverse{' '}
             <Link href="/team" passHref>
-              <a>team</a>
+              <a data-cy="team-link">team</a>
             </Link>{' '}
             is 100% remote coming from all across the political spectrum and
             country. We work hard and care about each other’s well being.

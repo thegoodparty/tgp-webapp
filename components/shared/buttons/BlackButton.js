@@ -5,7 +5,7 @@ const BlackButton = styled(PurpleButton)`
   && {
     background: #000;
     color: #fff;
-    border: 2px solid #000 !important;
+    border: 2px solid #000;
     transition: background-color 0.4s, color 0.4s;
 
     &:hover {

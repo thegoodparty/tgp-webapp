@@ -11,6 +11,12 @@ describe('HomePage', () => {
     );
     ({engagements, homepageCandidates} = content);
   });
+  it('test Site Header', () => {
+    cy.testSiteHeader();
+  });
+  it('test Site Footer', () => {
+    cy.testSiteFooter();
+  });
   it('test Hero section', () => {
     cy.get('[data-cy=hero-title]')
       .contains('Money has corrupted');
@@ -68,9 +74,6 @@ describe('HomePage', () => {
     cy.get('[data-cy=gc-item]')
       .should('have.length', GOOD_CERTIFIED.length)
       .each(($el, index) => {
-        // cy.wrap($el)
-        //   .find('[data-cy=gc-item-img]')
-        //   .should('have.attr', 'src', `/images/icons/${GOOD_CERTIFIED[index].icon}`);
         cy.wrap($el)
           .find('[data-cy=gc-item-title]')
           .contains(GOOD_CERTIFIED[index].title);
@@ -80,29 +83,6 @@ describe('HomePage', () => {
       });
   });
   it('test FeaturedCampaigns section', () => {
-    cy.get('[data-cy=campaigns-title]')
-      .contains("Featured Campaigns");
-    cy.get('[data-cy=campaigns-more-link]')
-      .should('have.attr', 'href', '/candidates');
-    cy.get('[data-cy=campaigns-more-link]')
-      .contains("See More");
-
-    cy.get('[data-cy=campaign-card]')
-      .should('have.length', homepageCandidates.length)
-      .each(($el, index) => {
-        cy.testCandidateCard($el, homepageCandidates[index]);
-      });
+    cy.testFeaturedCampaignsComponent(homepageCandidates);
   });
-  // it('test StayTuned section', () => {
-  //   cy.get('[data-cy=stay-img]')
-  //     .should('have.attr', 'src', '/images/homepage/homepage-footer.png');
-  //   cy.get('[data-cy=stay-title]')
-  //     .contains("You made it this far!");
-  //   cy.get('[data-cy=stay-subtitle]')
-  //     .contains("Want to stay tuned?");    
-  //   cy.get('[data-cy=stay-link]')
-  //     .should('have.attr', 'href', '/register');
-  //   cy.get('[data-cy=stay-link]')
-  //     .contains("Stay in the loop");  
-  // });
 });

@@ -7,6 +7,12 @@ describe('CandidatesPage', () => {
     beforeEach(() => {
         cy.visit('/candidates');
     });
+    it('test Site Header', () => {
+        cy.testSiteHeader();
+    });
+    it('test Site Footer', () => {
+        cy.testSiteFooter();
+    });
     it('load Candidates', async () => {
         const content = await promisify(
         cy.getCandidateList().then(response => response.body),

@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "API_ENV=local next dev -p 4000",
     "dev-dev": "API_ENV=development next dev -p 4000",
+    "dev-prod": "API_ENV=prod next dev -p 4000",
     "deploy-dev": "git checkout develop && eb deploy",
     "deploy-qa": "git checkout qa && eb deploy",
     "deploy-prod": "git checkout master  && eb deploy",
@@ -42,8 +43,8 @@
     "immer": "^9.0.12",
     "invariant": "^2.2.4",
     "jodit-react": "^1.1.21",
+    "libphonenumber-js": "1.9.48",
     "cypress-promise": "^1.1.0",
-    "libphonenumber-js": "^1.9.48",
     "markdown-to-jsx": "^7.0.0",
     "material-ui-color-picker": "^3.5.1",
     "moment": "^2.29.1",

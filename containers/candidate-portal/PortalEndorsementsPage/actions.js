@@ -39,10 +39,19 @@ function deleteEndorsementAction(id, candidateId) {
   };
 }
 
+function editEndorsementAction(endorsement, candidateId) {
+  return {
+    type: types.EDIT_ENDORSEMENT,
+    endorsement,
+    candidateId,
+  };
+}
+
 export default {
   addEndorsementAction,
   loadEndorsementAction,
   loadEndorsementActionSuccess,
 
   deleteEndorsementAction,
+  editEndorsementAction,
 };

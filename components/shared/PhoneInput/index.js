@@ -69,6 +69,9 @@ function PhoneInput({
   };
 
   const formatDisplay = (val) => {
+    if (!val) {
+      return '';
+    }
     const formatted = new AsYouType('US').input(val);
     // issue that we can't delete (XXX)
     if (
@@ -125,3 +128,6 @@ PhoneInput.propTypes = {
 };
 
 export default PhoneInput;
+
+
+

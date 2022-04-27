@@ -7,12 +7,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+
+import apiHelper from '/helpers/apiHelper';
+const { base } = apiHelper;
 
 function TgpHelmet({ title, ogTitle, description, image }) {
+  const router = useRouter();
+  const url = `${base}${router.asPath}`;
   return (
     <Head>
       {title && <title data-cy="page-title">{title}</title>}
       {title && <meta property="og:title" content={ogTitle || title} />}
+      <meta property="og:url" content={url} />
+      {base !== 'https://goodparty.org' && (
+        <meta name="robots" content="noindex" />
+      )}
+      <link rel="canonical" href={url} />
       {description && (
         <meta
           name="description"
@@ -29,6 +40,8 @@ function TgpHelmet({ title, ogTitle, description, image }) {
           content="https://assets.goodparty.org/share.jpg"
         />
       )}
+      <link rel="icon" href="https://assets.goodparty.org/favicon.ico" />
+      <link rel="icon" type="image/png" href="https://assets.goodparty.org/favicon.png" />
     </Head>
   );
 }

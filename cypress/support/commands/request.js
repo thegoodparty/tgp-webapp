@@ -49,7 +49,12 @@ Cypress.Commands.add(
       cy.request(options);
     },
   );
-  
+Cypress.Commands.add('getFaqArticles', () => {
+  cy.sendRequest(api.contentByKey.method, `${api.contentByKey.url}?key=articleCategories`);
+});
+Cypress.Commands.add('getPrivacyPageContent', () => {
+  cy.sendRequest(api.contentByKey.method, `${api.contentByKey.url}?key=privacyPage`);
+});
 Cypress.Commands.add('getHomepageCandidates', () => {
     cy.sendRequest(api.homepageCandidates.method, api.homepageCandidates.url);
 });

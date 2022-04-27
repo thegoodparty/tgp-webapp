@@ -75,3 +75,18 @@ Cypress.Commands.add('testCandidateCard', ($el, candidate) => {
   }
 });
   
+Cypress.Commands.add('testFeaturedCampaignsComponent', (homepageCandidates) => {
+  cy.get('[data-cy=campaigns-title]')
+    .contains("Featured Campaigns");
+  cy.get('[data-cy=campaigns-more-link]')
+    .should('have.attr', 'href', '/candidates');
+  cy.get('[data-cy=campaigns-more-link]')
+    .contains("See More");
+
+  cy.get('[data-cy=campaign-card]')
+    .should('have.length', homepageCandidates.length)
+    .each(($el, index) => {
+      cy.testCandidateCard($el, homepageCandidates[index]);
+    });
+});
+  

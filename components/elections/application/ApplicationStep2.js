@@ -20,7 +20,7 @@ import ElectedOfficeSelector from './ElectedOfficeSelector';
 
 import { step2fields, step2Socials } from './fields';
 import { Title } from './ApplicationStep1';
-import PhoneInput from '../../shared/PhoneInput';
+import PhoneInput, { isValidPhone } from '../../shared/PhoneInput';
 
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
@@ -153,6 +153,9 @@ function ApplicationStep2({
   };
 
   const canSubmit = () => {
+    if(!isValidPhone(state.candidatePhone)){
+      return false;
+    }
     let returnVal = true;
     requiredKeys.forEach((field) => {
       if (

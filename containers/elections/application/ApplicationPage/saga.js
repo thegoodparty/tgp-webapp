@@ -19,7 +19,7 @@ function* loadApplication({ id }) {
     if (id === 'guest') {
       const user = getUserCookie(true);
       if (user) {
-        yield put(push(`/profile/campaign-applications`));
+        yield put(push(`/profile/campaigns`));
       } else {
         const app = getApplicationStorage() || { id: 'guest' };
         yield put(actions.loadApplicationActionSuccess(app, false));

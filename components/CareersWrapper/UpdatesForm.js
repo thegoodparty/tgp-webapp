@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { H2 } from '../shared/typogrophy';
 import { validateEmail } from '../../helpers/emailHelper';
 import BlackButton from '../shared/buttons/BlackButton';
+import { UPDATE_FORM_NOTIFICATIONS } from '../../utils/constants';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
@@ -60,18 +61,6 @@ const Form = styled.form`
   padding: 24px;
   border-radius: 8px;
 `;
-
-const notifications = [
-  {
-    key: 'new-job-notifications',
-    label: 'I would like to receive an email when new jobs are announced',
-  },
-  {
-    key: 'updates-notifications',
-    label: 'I would like to receive Good Party updates',
-  },
-];
-
 function UpdatesForm({ notificationsCallback }) {
   const [email, setEmail] = useState('');
   const [notificationsPref, setNotificationPref] = useState({});
@@ -102,8 +91,8 @@ function UpdatesForm({ notificationsCallback }) {
       <Content>
         <Form>
           <div className="text-center">
-            <strong>Nothing available that matches your skill set?</strong>
-            <StyledH2>Sign up for future updates</StyledH2>
+            <strong data-cy="update-form-question">Nothing available that matches your skill set?</strong>
+            <StyledH2 data-cy="update-form-title">Sign up for future updates</StyledH2>
           </div>
 
           <strong>Your email</strong>
@@ -119,8 +108,8 @@ function UpdatesForm({ notificationsCallback }) {
           />
           <br />
           <br />
-          {notifications.map(notification => (
-            <div key={notification.key}>
+          {UPDATE_FORM_NOTIFICATIONS.map(notification => (
+            <div key={notification.key} data-cy="notification">
               <Checkbox
                 color="primary"
                 onChange={event =>
@@ -132,7 +121,7 @@ function UpdatesForm({ notificationsCallback }) {
           ))}
           <br />
           <br />
-          <BlackButton disabled={!canSubmit()} onClick={submitForm}>
+          <BlackButton disabled={!canSubmit()} onClick={submitForm} data-cy="update-form-submit">
             &nbsp;&nbsp; Get Notified &nbsp;&nbsp;
           </BlackButton>
         </Form>

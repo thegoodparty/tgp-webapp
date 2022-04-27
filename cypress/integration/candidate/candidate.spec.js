@@ -16,6 +16,12 @@ context('Candidate', async () => {
                     cy.getCandidate(candidateId).then(response => response.body),
                 );
             });
+            it('test Site Header', () => {
+              cy.testSiteHeader();
+            });
+            it('test Site Footer', () => {
+              cy.testSiteFooter();
+            });
             it(`loads candidate support data`, async () => {
                 console.log(candidate);
                 ({ candidateSupports, total } = await promisify(

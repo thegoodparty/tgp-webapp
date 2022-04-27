@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { H2 } from '../shared/typogrophy';
+import { CONTACT_EMAIL, JOIN_FORM_LINK } from '../../utils/constants';
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.grayE};
@@ -64,9 +65,9 @@ function LeverCareers() {
       <Content>
         <Grid spacing={2} container>
           <Grid item xs={12} md={4}>
-            <StyledH2>Openings</StyledH2>
+            <StyledH2 data-cy="opening-title">Openings</StyledH2>
           </Grid>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={8} data-cy="opening-content">
             <div id="lever-jobs-container" />
             <br />
             <br />
@@ -74,15 +75,16 @@ function LeverCareers() {
             people are contributing to Good Party. If you’re interested in
             volunteering your time and talent, join us! Please fill out{' '}
             <a
-              href="https://forms.gle/TJmpYw6UwfWYS4GQA"
+              href={JOIN_FORM_LINK}
               target="_blank"
               rel="noopener noreferrer nofollow"
+              data-cy="opening-form-link"
             >
               {' '}
               this form
             </a>
             . You can also email{' '}
-            <a href="mailto:ask@goodparty.org">ask@goodparty.org</a> if you have
+            <a href={`mailto:${CONTACT_EMAIL}`} data-cy="opening-contact-email">{ CONTACT_EMAIL }</a> if you have
             any questions.
             <br />
             <br />

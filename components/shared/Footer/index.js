@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 import MaxWidth from '../MaxWidth';
+import { CONTACT_EMAIL } from '../../../utils/constants';
 
 const Wrapper = styled.div`
   padding: 40px 0;
@@ -75,7 +76,7 @@ const columns = [
     links: [
       {
         label: 'Contact Us',
-        link: 'mailto:ask@goodparty.org',
+        link: `mailto:${CONTACT_EMAIL}`,
         isExternal: true,
       },
     ],

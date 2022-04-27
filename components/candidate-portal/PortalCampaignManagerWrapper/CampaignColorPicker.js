@@ -9,7 +9,11 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { ImBlocked } from 'react-icons/im';
+
+import { PortalCampaignManagerPageContext } from '/containers/candidate-portal/PortalCampaignManagerPage';
 import Row from '../../shared/Row';
+import ColorPicker from '../CandidatePortalHomeWrapper/ColorPicker';
 
 const Wrapper = styled.div`
   margin-bottom: 12px;
@@ -35,11 +39,17 @@ const ColorWrapper = styled.div`
 `;
 
 const Color = styled.div`
-  height: 145px;
+  height: 250px;
   position: relative;
   border-radius: 6px;
   color: #fff;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.disabled {
+    cursor: not-allowed;
+  }
 `;
 
 const Label = styled.div`
@@ -49,6 +59,23 @@ const Label = styled.div`
   font-size: 11px;
   left: 0;
   bottom: 12px;
+`;
+
+const Party = styled.div`
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  left: 0;
+  top: 16px;
+  font-weight: 900;
+`;
+
+const Wrong = styled.div`
+  text-align: center;
+  font-size: 11px;
+  left: 0;
+  top: 16px;
 `;
 
 const Selected = styled.div`
@@ -118,15 +145,15 @@ const settings = {
   dots: false,
   infinite: false,
   speed: 500,
-  slidesToShow: 10,
-  slidesToScroll: 10,
+  slidesToShow: 8,
+  slidesToScroll: 8,
   initialSlide: 0,
   responsive: [
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 8,
-        slidesToScroll: 8,
+        slidesToShow: 6,
+        slidesToScroll: 6,
       },
     },
     {
@@ -154,11 +181,28 @@ const groups = [
 ];
 
 function CampaignColorPicker() {
+  const { candidate, updateCandidateCallback } = useContext(
+    PortalCampaignManagerPageContext,
+  );
   const slider = useRef(null);
   const [selected, setSelected] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState(groups[0]);
+
+  useEffect(() => {
+    if (candidate?.color) {
+      setSelected(candidate.color);
+    }
+  }, [candidate]);
+
   const selectColor = (color) => {
+    if (color.wrong) {
+      return;
+    }
     setSelected(color);
+    updateCandidateCallback(candidate.id, {
+      ...candidate,
+      color,
+    });
   };
 
   const slideToGroup = (group) => {
@@ -180,6 +224,17 @@ function CampaignColorPicker() {
     }
     setSelectedGroup(groups[0]);
   };
+
+  const handleColorPicker = (color) => {
+    debounce(selectColor, { color, type: 'custom' });
+  };
+
+  function debounce(func, args, timeout = 600) {
+    clearTimeout(window.timer);
+    window.timer = setTimeout(() => {
+      func(args);
+    }, timeout);
+  }
   return (
     <Wrapper>
       <Row>
@@ -202,7 +257,16 @@ function CampaignColorPicker() {
             <Color
               style={{ backgroundColor: color.color }}
               onClick={() => selectColor(color)}
+              className={color.wrong && 'disabled'}
             >
+              {color.type === 'political' && <Party>{color.party}</Party>}
+              {color.wrong && (
+                <Wrong>
+                  <ImBlocked size={36} />
+
+                  <div style={{ marginTop: '6px' }}>Wrong Site</div>
+                </Wrong>
+              )}
               <Label>{color.color}</Label>
             </Color>
             <Selected
@@ -214,6 +278,11 @@ function CampaignColorPicker() {
             />
           </ColorWrapper>
         ))}
+        <div>
+          <ColorPicker mode="lean" onColorPick={handleColorPicker} />
+        </div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
       </Slider>
     </Wrapper>
   );

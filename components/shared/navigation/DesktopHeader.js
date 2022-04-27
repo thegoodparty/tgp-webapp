@@ -11,6 +11,7 @@ import { logEvent } from '/services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
 import { PurpleButton } from '../buttons';
 import { Body13 } from '../typogrophy';
+import { HEADER_LINKS } from '../../../utils/constants';
 
 const Wrapper = styled.div`
   height: 80px;
@@ -66,12 +67,6 @@ const TopLink = styled.div`
   }
 `;
 
-const links = [
-  { label: 'About', href: '/about' },
-  { label: 'Candidates', href: '/candidates' },
-];
-
-
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = React.useState(false);
@@ -122,8 +117,8 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
           </a>
         </Link>
         <RightLinks>
-          {links.map((link) => (
-            <TopLink key={link.href}>
+          {HEADER_LINKS.map((link) => (
+            <TopLink key={link.href} data-cy="header-link">
               <Link
                 href={link.href}
                 passHref
@@ -131,7 +126,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                   logEvent('Link', link.label, 'Top Nav');
                 }}
               >
-                <A>{link.label}</A>
+                <A data-cy="header-link-label">{link.label}</A>
               </Link>
             </TopLink>
           ))}
@@ -143,7 +138,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                 logEvent('Link', 'Profile', 'Top Nav');
               }}
             >
-              <a>
+              <a data-cy="header-name">
                 <AvatarWrapper>
                   <UserAvatar user={user} />
                 </AvatarWrapper>
@@ -159,7 +154,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                     logEvent('Link', 'Login', 'Top Nav');
                   }}
                 >
-                  <A>Login</A>
+                  <A data-cy="header-login">Login</A>
                 </Link>
               </TopLink>
               <TopLink>
@@ -170,7 +165,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                     logEvent('Link', 'Register', 'Top Nav');
                   }}
                 >
-                  <A>
+                  <A data-cy="header-register">
                     <strong>Join Us</strong>
                   </A>
                 </Link>

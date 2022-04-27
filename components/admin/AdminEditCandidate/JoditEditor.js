@@ -18,8 +18,10 @@ const JoditEditorWrapper = ({
   const [content, setContent] = useState('');
   const token = getCookie('token');
   useEffect(() => {
-    setContent(initialText);
-  }, []);
+    if (content !== initialText) {
+      setContent(initialText);
+    }
+  }, [initialText]);
 
   const config = {
     readonly: false, // all options from https://xdsoft.net/jodit/doc/
@@ -60,7 +62,7 @@ const JoditEditorWrapper = ({
       value={content}
       config={config}
       tabIndex={1} // tabIndex of textarea
-      onBlur={newContent => {
+      onBlur={(newContent) => {
         if (typeof newContent === 'string') {
           onBlur(newContent);
         } else {

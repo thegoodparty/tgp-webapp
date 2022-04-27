@@ -16,8 +16,10 @@ import SupportersProgressBar from './SupportersProgressBar';
 const Wrapper = styled.section``;
 
 function EndorseSection() {
-  const { supportCount } = useContext(CandidateContext);
+  const { supportCount, candidate } = useContext(CandidateContext);
   const achievements = achievementsHelper(supportCount);
+  const { color } = candidate;
+  const brightColor = color?.color ? color.color : '#000';
   return (
     <Wrapper>
       <div>
@@ -35,6 +37,7 @@ function EndorseSection() {
           fullWidth
           showSuffix={false}
           withAchievement
+          color={brightColor}
         />
       </div>
     </Wrapper>
