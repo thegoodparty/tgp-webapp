@@ -32,22 +32,22 @@ const Point = styled.div`
 
 const points = [
   {
+    icon: 'anti-corruption-black.svg',
+    title: 'Honest',
+    content:
+      "Good Certified candidates are committed to serving with utmost integrity, and using technology to be open, transparent and responsive representatives of the people.",
+  },
+  {
     icon: 'independent.svg',
     title: 'Independent',
     content:
-      "Good Certified candidates are not Republican or Democratic politicians. They're real people running grassroots campaigns from across the political spectrum.",
+      'Good Certified candidates are not Republican or Democratic politicians. They are independent-minded people from across the political spectrum, dedicated to advancing the priorities of their constituents.',
   },
   {
     icon: 'people-powered-black.svg',
-    title: 'People Powered',
+    title: 'People-Powered',
     content:
-      'Good Certified candidates run to serve real living people. So, the majority of money raised for their campaign must come from people -- not from corporations, unions, PACs, or other non-living entities.',
-  },
-  {
-    icon: 'anti-corruption-black.svg',
-    title: 'Anti-Corruption',
-    content:
-      'Good Certified candidates are committed to serving as honest, transparent, and responsive representatives of the people.',
+      'Good Certified candidates run to serve people, not corporations, unions, political action committees or special interests. They run  grass-roots campaigns that depend on being connected to and promoted by the people that they’ll be serving.',
   },
 ];
 

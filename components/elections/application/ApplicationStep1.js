@@ -63,76 +63,78 @@ const CheckboxWrapper = styled(Body13)`
 
 const cards = [
   {
-    title: 'Independent',
+    title: 'Honest',
     subtitle:
-      'Good Certified candidates are not Republicans or Democrats, beholden to either corrupt party. They’re real people from across the political spectrum, running grassroots campaigns to serve us for a change.',
-    icon: 'independence.svg',
-    checkboxes: [
-      {
-        id: 'disAffiliate',
-        text: 'I pledge to disaffiliate from the Democratic or Republican Parties and declare myself an independent or alternative party candidate for office.',
-      },
-      {
-        id: 'notJoin',
-        text: 'I pledge that, if elected, I will NOT join the conferences or caucuses of either of the two major parties (e.g. the House Republican Conference, Senate Republican Conference, House Democratic Caucus, or Senate Democratic Caucus).',
-      },
-      {
-        id: 'noPay',
-        text: 'I pledge that, if elected, I will NOT pay membership dues or otherwise engage in fundraising for either of the two major political party committees while in office.',
-      },
-    ],
-  },
-
-  {
-    title: 'People Powered',
-    subtitle:
-      'Good Certified candidates run to serve real living people. So, the majority of money raised for their campaign must come from people -- not from corporations, unions, PACs, or other non-living entities.',
-    icon: 'people-powered.svg',
-    checkboxes: [
-      {
-        id: 'peoplePowered',
-        text: 'I pledge to raise a majority of my campaign funding from individuals. To this end, I will ensure that donations to my campaign by corporations, unions, political action committees, or other non-living entities, will not exceed 49% of the total funds raised.',
-      },
-    ],
-  },
-
-  {
-    title: 'Anti-Corruption',
-    subtitle:
-      'Good Certified candidates are committed to serving as honest, transparent, and responsive representatives of the people.',
+      'Good Certified candidates are committed to serving with utmost integrity, and using technology to be open, transparent and responsive representatives of the people.',
     icon: 'anti-corruption.svg',
     checkboxes: [
       {
-        id: 'honest',
+        id: 'disAffiliate',
+        text: 'I pledge to serve with the highest levels of integrity and honesty and to report and disclose to appropriate authorities (constituents, law enforcement, etc.) any attempts to unfairly influence me or members of my campaign staff within 48 hours.',
+      },
+      {
+        id: 'notJoin',
         text: `<div>
-            I pledge to serve with the highest levels of integrity and honesty.
-            <br />
-            <ol>
-              <li>I pledge to report and disclose any attempts to unfairly influence me or members of my campaign staff immediately to appropriate authorities (constituents, law enforcement, etc.) </li>
-            </ol>
-          </div>`,
+                I pledge to serve transparently and to be accountable and responsive to the people - including to the extent possible to:
+                <br/>
+                <ul>
+                  <li>Openly share my calendar, and to have my meetings on public time be live-streamed, closed-captioned, archived and searchable.</li>
+                  <li> Allocate a reasonable portion of official and campaign resources to the technology (e.g. mobile apps, phone, body cam, Youtube, Facebook Live, etc.) necessary to do so.</li>
+                  <li>Push for transparency and accountability in all government spending and accounting, including the use of technologies for such purposes.</li>
+                </ul>
+              </div>`,
+      },
+      {
+        id: 'noPay',
+        text: `<div>
+                I pledge that, if elected, I will always work to champion or support anti-corruption policies that enable more competition and choices in elections and transparency and accountability in government - including but not limited to examples such as:
+                <br/>
+                <ul>
+                  <li>Rank-choice voting, non-partisan primaries, ending gerrymandering, proportional representation, closing the revolving door from politics to lobbying and eliminating influence of dark money.</li>
+                </ul>
+              </div>`,
+      },
+    ],
+  },
+
+  {
+    title: 'Independent',
+    subtitle:
+      'Good Certified candidates are not Republican or Democratic politicians. They are independent-minded people from across the political spectrum, dedicated to advancing the priorities of their constituents.',
+    icon: 'independence.svg',
+    checkboxes: [
+      {
+        id: 'alternative',
+        text: 'I pledge to disaffiliate from the Democratic or Republican Parties and declare myself an independent or alternative party candidate for office.',
+      },
+      {
+        id: 'fundraising',
+        text: 'I pledge that, if elected, I will NOT pay membership dues or otherwise engage in fundraising for either of the two major political party committees while in office.',
+      },
+      {
+        id: 'nopartisan',
+        text: 'I pledge that, if elected, I will remain independent of partisan politics and be open to working with all sides to the benefit of my constituents.',
+      },
+    ],
+  },
+
+  {
+    title: 'People-Powered',
+    subtitle:
+      'Good Certified candidates run to serve people, not corporations, unions, political action committees or special interests. They run  grass-roots campaigns that depend on being connected to and promoted by the people that they’ll be serving.\n',
+    icon: 'people-powered.svg',
+    checkboxes: [
+      {
+        id: 'honest',
+        text: 'I pledge that the majority of my support will come from living people and individual donors, NOT from corporations, unions, political action committees, or other non-living entities.',
       },
       {
         id: 'transparent',
-        text: `<div>
-            I pledge to serve transparently and to be accountable and responsive to the people. That means that to the fullest extent possible:
-            <br />
-            <ol>
-              <li>I pledge to openly share my official and campaign meeting calendars for my constituents to be able to see all my activity on their behalf.</li>
-              <li>I pledge to pursue and implement innovations in communication technology that allow me to interact with, inform and be informed by my constituents (e.g. live-streaming, closed-captioning, recording and searchable-archiving every possible meeting occurring on public time).</li>
-              <li>I pledge to allocate a reasonable portion of official and campaign resources to the technology (mobile apps, phone, body cam, Youtube, Facebook Live, etc.) necessary to serve transparently</li>
-            </ol>
-          </div>`,
+        text: 'I pledge to run a grass-roots campaign, centered on ideas, earned media and word-of-mouth promotion, so that I’m dependent on the people, not on big-money and special interests.',
       },
       {
         id: 'choices',
-        text: `<div>
-            I pledge that, if elected, I will always work to champion or support policies that enable more competition and choices in elections - including but not limited to:
-            <br />
-            <ol>
-              <li>Support for rank choice voting initiatives, non-partisan primaries, ending gerrymandering, proportional representation, closing the revolving door from politics to lobbying, eliminating the influence of dark money. </li>
-            </ol>
-          </div>`,
+        text: 'I pledge that after I’m elected I will stay connected to my constituency using technology and tools that ensure my decisions on important issues and legislation are informed by their best ideas and interests. ',
       },
     ],
   },
@@ -148,7 +150,11 @@ function ApplicationStep1({
     disAffiliate: false,
     notJoin: false,
     noPay: false,
-    peoplePowered: false,
+
+    alternative: false,
+    fundraising: false,
+    nopartisan: false,
+
     honest: false,
     transparent: false,
     choices: false,
@@ -172,7 +178,11 @@ function ApplicationStep1({
       updatedState.disAffiliate &&
       updatedState.notJoin &&
       updatedState.noPay &&
-      updatedState.peoplePowered &&
+
+      updatedState.alternative &&
+      updatedState.fundraising &&
+      updatedState.nopartisan &&
+
       updatedState.honest &&
       updatedState.transparent &&
       updatedState.choices;
@@ -189,7 +199,11 @@ function ApplicationStep1({
     state.disAffiliate &&
     state.notJoin &&
     state.noPay &&
-    state.peoplePowered &&
+
+    state.alternative &&
+    state.fundraising &&
+    state.nopartisan &&
+
     state.honest &&
     state.transparent &&
     state.choices;
