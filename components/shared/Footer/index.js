@@ -85,8 +85,7 @@ const columns = [
     links: [
       {
         label: 'Contact Us',
-        link: 'mailto:ask@goodparty.org',
-        isExternal: true,
+        link: '/contact',
       },
     ],
   },

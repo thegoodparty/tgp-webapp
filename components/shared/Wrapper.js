@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 const WrapperDiv = styled.div`
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 140px - 400px);
   //min-height: calc(var(--vh, 1vh) * 100 - 140px);
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
   margin: 0 auto;
@@ -11,7 +11,7 @@ const WrapperDiv = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
     theme.breakpointsPixels.contentMax}) {
     padding: 0;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px - 400px);
     //min-height: calc(var(--vh, 1vh) * 100 - 40px);
   }
   &.white {

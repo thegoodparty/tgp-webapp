@@ -130,7 +130,7 @@ function Follow() {
               background: `linear-gradient(
         ${isSmall ? '0deg' : '270deg'},
       ${brightColor} 0%,
-      ${brightColor} 60%,
+      ${brightColor} 45%,
       #fff 100%
       )`,
             }
