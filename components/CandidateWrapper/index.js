@@ -18,7 +18,7 @@ import { CandidateContext } from '../../containers/CandidatePage';
 import Stats from './left/Stats';
 import SupportButton from './left/SupportButton';
 import RecentlyJoined from './left/RecentlyJoined';
-import SimilarCampaigns from './left/SimilarCampigns';
+// import SimilarCampaigns from './left/SimilarCampigns';
 import HeroSection from './right/HeroSection';
 import Summary from './right/Summary';
 import TopIssues from './right/TopIssues';
@@ -46,9 +46,9 @@ function CandidateWrapper() {
             <Stats />
             <RecentlyJoined />
             <SupportButton />
-            <Hidden mdDown>
-              <SimilarCampaigns />
-            </Hidden>
+            {/*<Hidden mdDown>*/}
+            {/*  <SimilarCampaigns />*/}
+            {/*</Hidden>*/}
           </Grid>
           <Grid item xs={12} md={8}>
             <HeroSection />
@@ -62,9 +62,9 @@ function CandidateWrapper() {
                 </Grid>
               )}
             </Grid>
-            <Hidden lgUp>
-              <SimilarCampaigns />
-            </Hidden>
+            {/*<Hidden lgUp>*/}
+            {/*  <SimilarCampaigns />*/}
+            {/*</Hidden>*/}
             <Endorsements />
             <Follow />
             <Updates />
