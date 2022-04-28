@@ -80,7 +80,6 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
     prevOpen.current = open;
   }, [open]);
 
-  console.log('router', router);
   const candidateRoute = router.pathname === '/candidate/[...NameId]';
   let id = false;
   if (
