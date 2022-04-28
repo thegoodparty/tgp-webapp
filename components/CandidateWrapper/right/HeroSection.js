@@ -73,12 +73,6 @@ function HeroSection() {
           📣
         </span>{' '}
         {headline}
-        {headline}
-        {headline}
-        {headline}
-        {headline}
-        {headline}
-        {headline}
       </StyledFontH2>
       <Relative className={heroVideo && 'active'}>
         {raceDate && (
