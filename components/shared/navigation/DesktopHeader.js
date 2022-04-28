@@ -11,6 +11,7 @@ import { logEvent } from '/services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
 import { PurpleButton } from '../buttons';
 import { Body13 } from '../typogrophy';
+import AdminMenu from '../../admin/AdminMenu';
 
 const Wrapper = styled.div`
   height: 80px;
@@ -79,19 +80,30 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
     prevOpen.current = open;
   }, [open]);
 
-  const handleShare = () => {
-    // if we are on the candidate page, track the share
-    if (router.pathname === '/candidate/[...NameIdTab]') {
-      trackShareCallback(
-        router.components['/candidate/[...NameIdTab]']?.props?.pageProps
-          ?.ssrState?.id,
-      );
-    }
-    router.query.share = 'true';
-    router.push(router);
+  console.log('router', router);
+  const candidateRoute = router.pathname === '/candidate/[...NameId]';
+  let id = false;
+  if (
+    candidateRoute &&
+    router.query['NameId'] &&
+    router.query['NameId'].length === 2
+  ) {
+    id = router.query['NameId'][1];
+  }
 
-    logEvent('Share', 'top_nav_share', 'Top Nav');
-  };
+  // const handleShare = () => {
+  //   // if we are on the candidate page, track the share
+  //   if (router.pathname === '/candidate/[...NameIdTab]') {
+  //     trackShareCallback(
+  //       router.components['/candidate/[...NameIdTab]']?.props?.pageProps
+  //         ?.ssrState?.id,
+  //     );
+  //   }
+  //   router.query.share = 'true';
+  //   router.push(router);
+  //
+  //   logEvent('Share', 'top_nav_share', 'Top Nav');
+  // };
   return (
     <Wrapper>
       <ContentWrapper>
@@ -166,6 +178,12 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                   </A>
                 </Link>
               </TopLink>
+            </>
+          )}
+          {user?.isAdmin && (
+            <>
+              <AdminMenu />
+              {candidateRoute && <AdminMenu candidateMode id={id} />}
             </>
           )}
         </RightLinks>

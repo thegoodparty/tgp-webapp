@@ -15,6 +15,7 @@ import UserAvatar from '../UserAvatar';
 import { Body9, Body14 } from '../typogrophy';
 import { PurpleButton } from '../buttons';
 import BlackButton from '../buttons/BlackButton';
+import AdminMenu from '../../admin/AdminMenu';
 
 const Wrapper = styled.div`
   padding: 0 24px;
@@ -24,7 +25,6 @@ const Wrapper = styled.div`
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   justify-content: space-between;
-  
 `;
 
 const Logo = styled.img`
@@ -239,6 +239,15 @@ function MobileHeader({ user }) {
               </Grid>
             )}
           </AuthButtonWrapper>
+          {user?.isAdmin && (
+            <div className={!user?.name && 'auth-button'}>
+              <PushAvatarWrapper>
+                <Link href="/admin" className="text-center" passHref>
+                  <a style={{ width: '100%', padding: '10px 0' }}>Admin</a>
+                </Link>
+              </PushAvatarWrapper>
+            </div>
+          )}
         </PushMenuWrapper>
       </MenuItemWrapper>
 

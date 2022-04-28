@@ -8,27 +8,18 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { FaUserEdit } from 'react-icons/fa';
 
 const MenuWrapper = styled.div`
-  position: fixed;
-  z-index: 2001;
-  top: 10px;
-  right: 60px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    top: 10px;
-    right: 10px;
-  }
+  margin-left: 24px;
 `;
 
 const HeartWrapper = styled.div`
   background-color: #fff;
-  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.07), 0px 0px 12px rgba(0, 0, 0, 0.08),
-    0px 0px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  margin: 10px 10px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,14 +31,21 @@ const Heart = styled.img`
   height: auto;
 `;
 
-function AdminMenu({ candidateMode }) {
+function AdminMenu({ candidateMode, id }) {
   return (
     <>
       <MenuWrapper>
-        <Link href={candidateMode ? `/candidate-portal` : '/admin'} passHref>
+        <Link
+          href={candidateMode && id ? `/candidate-portal/${id}` : '/admin'}
+          passHref
+        >
           <a>
             <HeartWrapper>
-              <Heart src="/images/heart.svg" alt="admin menu" />
+              {candidateMode && id ? (
+                <FaUserEdit />
+              ) : (
+                <Heart src="/images/heart.svg" alt="admin menu" />
+              )}
             </HeartWrapper>
           </a>
         </Link>
