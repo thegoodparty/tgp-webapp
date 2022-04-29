@@ -300,3 +300,31 @@ export const HEADER_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Candidates', href: '/candidates' },
 ];
+
+export const REGISTER_FIELDS = [
+  {
+    label: 'Full Name',
+    key: 'name',
+    type: 'text',
+    required: true,
+    isUpdatable: false,
+    helperText: '100 characters maximum',
+  },
+  {
+    label: 'Email Address',
+    key: 'email',
+    type: 'email',
+    required: false,
+    isUpdatable: false,
+  },
+  {
+    type: 'tel',
+  },
+  {
+    label: 'Zip Code',
+    key: 'zipcode',
+    type: 'text',
+    required: true,
+    isUpdatable: true,
+  },
+];

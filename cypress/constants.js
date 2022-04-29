@@ -743,9 +743,5 @@ export const api = {
   },
 };
 
-export const testZipcodes = {
-  '40047': '(with Senate)',
-  '90058': '(without Senate)',
-  '50321': '(with Senate)',
-  '84322': '(without Senate)',
-};
+export const TEST_ACCOUNT_EMAIL = 'blueshark0811@gmail.com';
+export const TEST_ACCOUNT_PWD = 'myFirst100!@#';

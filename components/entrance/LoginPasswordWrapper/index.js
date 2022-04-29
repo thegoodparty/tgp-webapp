@@ -64,17 +64,17 @@ const LoginPasswordWrapper = ({
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
-            <H1 data-cy="title">Sign into your account</H1>
+            <H1 data-cy="login-pwd-title">Sign into your account</H1>
           </VerticalWrapper>
         </Grid>
         <Grid item xs={12} md={6}>
           <VerticalWrapper>
             <form noValidate onSubmit={handleSubmitForm} data-cy="value-form">
-              <Body13>
+              <Body13 data-cy="email-label">
                 {valueType === 'phone' ? formatToPhone(value) : value} &nbsp;
                 &nbsp;{' '}
                 <Link href="/login" passHref>
-                  <a>
+                  <a data-cy="redirect-to-login">
                     <ForgotLink style={{ display: 'inline' }}>
                       Change {valueType === 'email' ? 'email' : 'phone'}
                     </ForgotLink>
@@ -88,7 +88,7 @@ const LoginPasswordWrapper = ({
                 helperText="For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum"
               />
               {sentForgot ? (
-                <Body11 style={{ color: 'red', marginBottom: '24px' }}>
+                <Body11 style={{ color: 'red', marginBottom: '24px' }} data-cy="sent-forgot">
                   Your password recovery link was sent to{' '}
                   {valueType === 'email' ? value : formatToPhone(value)}
                 </Body11>

@@ -108,6 +108,7 @@ function PhoneOrEmailInput({ onChangeCallback }) {
       name={valueType}
       onChange={onChangeValue}
       variant="outlined"
+      data-cy="id-input"
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
