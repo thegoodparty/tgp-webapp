@@ -380,6 +380,13 @@ export const step3Fields = [
     shortLabel: 'Required Signatures',
   },
   {
+    label: 'When is the filing deadline to get your name on the ballot?',
+    key: 'ballotDate',
+    defaultValue: '',
+    type: 'date',
+    required: true,
+  },
+  {
     label:
       'How many voters do you believe are likely to support an Independent or 3rd party candidate in your election?',
     key: 'likelySupport',
@@ -396,6 +403,14 @@ export const step3Fields = [
     defaultValue: '',
     type: 'text',
     shortLabel: 'Votes Needed',
+  },
+
+  {
+    label: 'When is the filing deadline to get your name on the ballot?',
+    key: 'fillingDate',
+    defaultValue: '',
+    type: 'date',
+    required: true,
   },
 ];
 
