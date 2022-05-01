@@ -19,12 +19,13 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
-export function FeedbackContainer({ sendFeedbackCallback }) {
+export function FeedbackContainer({ sendFeedbackCallback, mode }) {
   useInjectReducer({ key: 'feedbackContainer', reducer });
   useInjectSaga({ key: 'feedbackContainer', saga });
 
   const childProps = {
     sendFeedbackCallback,
+    mode,
   };
 
   return <FeedbackWrapper {...childProps} />;
@@ -33,6 +34,7 @@ export function FeedbackContainer({ sendFeedbackCallback }) {
 FeedbackContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   sendFeedbackCallback: PropTypes.func,
+  mode: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -48,12 +50,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(FeedbackContainer);
+export default compose(withConnect, memo)(FeedbackContainer);
