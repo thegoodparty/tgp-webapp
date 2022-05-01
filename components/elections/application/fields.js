@@ -406,8 +406,8 @@ export const step3Fields = [
   },
 
   {
-    label: 'When is the filing deadline to get your name on the ballot?',
-    key: 'fillingDate',
+    label: 'When does early voting begin in your election?',
+    key: 'earlyVotingDate',
     defaultValue: '',
     type: 'date',
     required: true,
