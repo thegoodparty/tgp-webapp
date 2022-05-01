@@ -30,21 +30,38 @@ const Point = styled.div`
   }
 `;
 
+const Icon = styled.span`
+  font-size: 20px;
+  margin-right: 8px;
+`;
+
 const points = [
   {
-    icon: 'anti-corruption-black.svg',
+    icon: (
+      <Icon role="img" aria-label="honest">
+        😇
+      </Icon>
+    ),
     title: 'Honest',
     content:
-      "Good Certified candidates are committed to serving with utmost integrity, and using technology to be open, transparent and responsive representatives of the people.",
+      'Good Certified candidates are committed to serving with utmost integrity, and using technology to be open, transparent and responsive representatives of the people.',
   },
   {
-    icon: 'independent.svg',
+    icon: (
+      <Icon role="img" aria-label="Independent">
+        🗽
+      </Icon>
+    ),
     title: 'Independent',
     content:
       'Good Certified candidates are not Republican or Democratic politicians. They are independent-minded people from across the political spectrum, dedicated to advancing the priorities of their constituents.',
   },
   {
-    icon: 'people-powered-black.svg',
+    icon: (
+      <Icon role="img" aria-label="People-Powered">
+        🙌🏼
+      </Icon>
+    ),
     title: 'People-Powered',
     content:
       'Good Certified candidates run to serve people, not corporations, unions, political action committees or special interests. They run  grass-roots campaigns that depend on being connected to and promoted by the people that they’ll be serving.',
@@ -58,17 +75,7 @@ function GoodCertifiedPoints({ homepageMode = false }) {
         <Grid item xs={12} lg={4} key={point.title}>
           <Point className={homepageMode && 'homepage-mode'}>
             <Row className="row">
-              {!homepageMode && (
-                <>
-                  <Image
-                    src={`/images/icons/${point.icon}`}
-                    height={24}
-                    width={24}
-                    className="img"
-                  />
-                  &nbsp;
-                </>
-              )}
+              {!homepageMode && <>{point.icon}</>}
               <FontH3>{point.title}</FontH3>
             </Row>
             <div>{point.content}</div>

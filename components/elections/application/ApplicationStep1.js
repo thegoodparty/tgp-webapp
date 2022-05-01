@@ -55,6 +55,11 @@ const Icon = styled.img`
   margin-right: 16px;
 `;
 
+const IconEmoji = styled.span`
+  font-size: 20px;
+  margin-right: 8px;
+`;
+
 const CheckboxWrapper = styled(Body13)`
   display: flex;
   align-items: flex-start;
@@ -66,7 +71,11 @@ const cards = [
     title: 'Honest',
     subtitle:
       'Good Certified candidates are committed to serving with utmost integrity, and using technology to be open, transparent and responsive representatives of the people.',
-    icon: 'anti-corruption.svg',
+    icon: (
+      <IconEmoji role="img" aria-label="honest">
+        😇
+      </IconEmoji>
+    ),
     checkboxes: [
       {
         id: 'disAffiliate',
@@ -101,7 +110,11 @@ const cards = [
     title: 'Independent',
     subtitle:
       'Good Certified candidates are not Republican or Democratic politicians. They are independent-minded people from across the political spectrum, dedicated to advancing the priorities of their constituents.',
-    icon: 'independence.svg',
+    icon: (
+      <IconEmoji role="img" aria-label="Independent">
+        🗽
+      </IconEmoji>
+    ),
     checkboxes: [
       {
         id: 'alternative',
@@ -122,7 +135,11 @@ const cards = [
     title: 'People-Powered',
     subtitle:
       'Good Certified candidates run to serve people, not corporations, unions, political action committees or special interests. They run  grass-roots campaigns that depend on being connected to and promoted by the people that they’ll be serving.\n',
-    icon: 'people-powered.svg',
+    icon: (
+      <IconEmoji role="img" aria-label="People-Powered">
+        🙌🏼
+      </IconEmoji>
+    ),
     checkboxes: [
       {
         id: 'honest',
@@ -178,11 +195,9 @@ function ApplicationStep1({
       updatedState.disAffiliate &&
       updatedState.notJoin &&
       updatedState.noPay &&
-
       updatedState.alternative &&
       updatedState.fundraising &&
       updatedState.nopartisan &&
-
       updatedState.honest &&
       updatedState.transparent &&
       updatedState.choices;
@@ -199,11 +214,9 @@ function ApplicationStep1({
     state.disAffiliate &&
     state.notJoin &&
     state.noPay &&
-
     state.alternative &&
     state.fundraising &&
     state.nopartisan &&
-
     state.honest &&
     state.transparent &&
     state.choices;
@@ -222,7 +235,7 @@ function ApplicationStep1({
       {cards.map((card) => (
         <Card key={card.title}>
           <CardTitle>
-            <Icon src={`/images/application/${card.icon}`} alt="" />
+            {card.icon}
             {card.title}
           </CardTitle>
           <CardSubtitle>{card.subtitle}</CardSubtitle>
