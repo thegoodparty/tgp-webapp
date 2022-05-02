@@ -12,9 +12,9 @@ import { partyResolver } from '../../../helpers/electionsHelper';
 import { CandidateContext } from '../../../containers/CandidatePage';
 
 const ImgWrapper = styled.div`
-  margin: 12px 0 24px;
+  margin: 12px 0 0;
   height: 250px;
-  background-position: center center;
+  background-position: center bottom;
   background-size: contain;
   background-repeat: no-repeat;
   @media only screen and (min-width: ${({ theme }) =>

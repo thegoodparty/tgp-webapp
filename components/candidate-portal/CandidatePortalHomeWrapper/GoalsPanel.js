@@ -83,7 +83,7 @@ function GoalsPanel() {
           </Grid>
         </Grid>
         <Grid item xs={12} lg={5} style={{ height: '100%' }}>
-          <GoalsChart />
+          <GoalsChart candidate={candidate} />
         </Grid>
         <Grid item xs={12} lg={6}>
           Good Party projects <strong>{numberFormatter(unrepVoters)}</strong>{' '}

@@ -8,7 +8,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Truncate from 'react-truncate';
 
-import { Font16 } from '/components/shared/typogrophy';
+import { Font16, FontH3 } from '/components/shared/typogrophy';
 import { CandidateContext } from '/containers/CandidatePage';
 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
 
@@ -108,7 +108,8 @@ function RecentlyJoined() {
     return 'Anonymous';
   };
   return (
-    <div style={{ marginTop: '14px' }}>
+    <div style={{ marginTop: '72px' }}>
+      <FontH3>Latest People Endorsing</FontH3>
       {displaySupporters.map((supporter) => (
         <RecentJoin key={supporter.id}>
           <Img src={AnonymousIconPurple} alt="share" />

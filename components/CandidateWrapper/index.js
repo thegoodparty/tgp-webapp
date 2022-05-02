@@ -15,16 +15,15 @@ import PageWrapper from '../shared/PageWrapper';
 import ProfileCard from './left/ProfileCard';
 import EndorseSection from './left/EndorseSection';
 import { CandidateContext } from '../../containers/CandidatePage';
-import Stats from './left/Stats';
 import SupportButton from './left/SupportButton';
 import RecentlyJoined from './left/RecentlyJoined';
-// import SimilarCampaigns from './left/SimilarCampigns';
 import HeroSection from './right/HeroSection';
 import Summary from './right/Summary';
 import TopIssues from './right/TopIssues';
 import Follow from './right/Follow';
 import Updates from './right/Updates';
 import Endorsements from './right/Endorsements';
+import DateBox from './left/DateBox';
 
 const InnerWrapper = styled.div`
   padding-top: 36px;
@@ -42,10 +41,12 @@ function CandidateWrapper() {
         <Grid container spacing={8}>
           <Grid item xs={12} md={4}>
             <ProfileCard />
+            <DateBox showPast={false} />
             <EndorseSection />
-            <Stats />
+
+            <DateBox showPast />
             <RecentlyJoined />
-            <SupportButton />
+
             {/*<Hidden mdDown>*/}
             {/*  <SimilarCampaigns />*/}
             {/*</Hidden>*/}

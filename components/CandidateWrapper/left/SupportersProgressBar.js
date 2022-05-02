@@ -20,8 +20,8 @@ const BarBg = styled.div`
   margin: 10px 0;
   width: 80%;
   position: relative;
-  height: 18px;
-  background-color: ${({ theme }) => theme.colors.grayC};
+  height: 12px;
+  background-color: #f0f0f0;
   border-radius: 12px;
 
   &.full-width {
@@ -31,8 +31,9 @@ const BarBg = styled.div`
 
 const Bar = styled.div`
   position: absolute;
-  height: 18px;
-  border-radius: 12px;
+  height: 12px;
+  border-bottom-left-radius: 12px;
+  border-top-left-radius: 12px;
 
   background-color: #000;
   left: 0;
@@ -56,9 +57,10 @@ const AchievementWrapper = styled.div`
   text-align: left;
   width: 100%;
   font-size: 13px;
-  line-height: 18px;
+  line-height: 12px;
   color: ${({ theme }) => theme.colors.gray4};
   padding-left: 8px;
+  margin-top: 16px;
 `;
 
 const Icon = styled.img`
