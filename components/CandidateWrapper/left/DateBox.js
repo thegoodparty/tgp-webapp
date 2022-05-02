@@ -28,8 +28,10 @@ function DateBox({ showPast }) {
     return <></>;
   }
 
-  const { certifiedDate, ballotDate, earlyVotingDate, electionDate } =
+  const { certifiedDate, ballotDate, earlyVotingDate, raceDate } =
     candidate;
+
+  console.log('ca', candidate)
 
   return (
     <Wrapper className={showPast && 'rounded'}>
@@ -50,7 +52,7 @@ function DateBox({ showPast }) {
       />
       <VoteDate
         title="Election Night"
-        date={electionDate}
+        date={raceDate}
         showPast={showPast}
       />
     </Wrapper>

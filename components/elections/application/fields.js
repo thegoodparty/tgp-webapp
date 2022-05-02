@@ -265,7 +265,7 @@ export const step3Fields = [
 
   {
     label: 'Date of election',
-    key: 'electionDate',
+    key: 'raceDate',
     defaultValue: '',
     type: 'date',
     required: true,
