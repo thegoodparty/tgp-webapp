@@ -97,13 +97,14 @@ function hexToRgb(hex) {
 function GoalsChart({ candidate }) {
   const { likelyVoters, votesNeeded, color } = candidate;
   const data = [
-    { name: 'To Win', value: votesNeeded },
+    { name: 'To Win', value: votesNeeded - likelyVoters },
     { name: 'So Far', value: likelyVoters },
   ];
   const perc = parseInt((likelyVoters * 100) / votesNeeded, 10);
   const brightColor = color?.color ? color.color : '#000000';
   const rgb = hexToRgb(brightColor);
   const COLORS = [`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`, brightColor];
+
   return (
     <Wrapper>
       <ChartWrapper>
