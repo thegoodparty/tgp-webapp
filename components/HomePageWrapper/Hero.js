@@ -41,7 +41,7 @@ const Hero = () => {
       <br />
       <span className="large">
         <span className="yellow" />
-        Fuck <u>It</u>!
+        Fuck <u><i>It</i></u>!
       </span>{' '}
       <span className="smaller">(with a #goodparty)</span>
     </H1>
