@@ -35,7 +35,7 @@ const ModalInner = () => {
       <strong>#goodparty Tuesdays are coming soon...</strong>
       <br />
       <br />
-      Sign up to be the first to know!
+      Sign up to be the first to know! ❤️ 🎉
 
       <br />
       <br />
