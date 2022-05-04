@@ -22,11 +22,31 @@ const H2 = styled.h2`
   }
 `;
 
+const Relative = styled.div`
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+`;
+
+const Yellow = styled.div`
+  position: absolute;
+  height: 28px;
+  width: calc(100% + 10px);
+  bottom: 10px;
+  left: -5px;
+  background-color: #ffe600;
+  z-index: -1;
+`;
+
 const GrayParty = () => {
   return (
     <Wrapper>
       <H2>
-        We party every Tuesday.
+        We party every{' '}
+        <Relative>
+          Tuesday.
+          <Yellow />
+        </Relative>
         <br />
         Because{' '}
         <i>
