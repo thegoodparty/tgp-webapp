@@ -4,10 +4,9 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import { FaLongArrowAltUp } from 'react-icons/fa';
 
 import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
 
@@ -18,6 +17,7 @@ import CandidateButton from './CandidateButton';
 import EndorseButtonModal from './EdorseButtonModal';
 import EndorseChart from './EndorseChart';
 import { numberFormatter } from '../../../helpers/numberHelper';
+import RangeSelector from '../shared/RangeSelector';
 
 const Row = styled.div`
   display: flex;
@@ -36,12 +36,6 @@ const Stat = styled(Font16)`
   color: #636363;
 `;
 
-const Icon = styled.div`
-  display: inline-block;
-  color: #2cc987;
-  margin-right: 2px;
-`;
-
 const EditWrapper = styled.div`
   height: 100%;
   display: flex;
@@ -49,7 +43,7 @@ const EditWrapper = styled.div`
   text-decoration: underline;
 `;
 
-function ActiveEndorsePanel() {
+function ActiveEndorsePanel({ range, onChangeRange }) {
   const { stats, candidate } = useContext(CandidatePortalHomePageContext);
   const impressions = stats?.stats?.impressions;
   const clicks = stats?.stats?.clicks;
@@ -77,7 +71,7 @@ function ActiveEndorsePanel() {
     <PortalPanel color="#CA2CCD">
       <Row>
         <FontH3 style={{ margin: 0 }}>Endorse Button</FontH3>
-        {/*<RangeSelector />*/}
+        <RangeSelector range={range} onChange={onChangeRange} />
       </Row>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>

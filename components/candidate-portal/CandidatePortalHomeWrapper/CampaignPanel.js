@@ -78,7 +78,7 @@ export const progressPerc = (thisTotal, lastTotal) => {
   );
 };
 
-function CampaignPanel() {
+function CampaignPanel({ range, onChangeRange }) {
   const { stats } = useContext(CandidatePortalHomePageContext);
   const visitors = stats?.stats?.visitors;
   const shares = stats?.stats?.shares;
@@ -93,7 +93,7 @@ function CampaignPanel() {
     <PortalPanel color="#2CCDB0">
       <Row>
         <FontH3 style={{ margin: 0 }}>Campaign Page</FontH3>
-        {/*<RangeSelector />*/}
+        <RangeSelector range={range} onChange={onChangeRange} />
       </Row>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>
