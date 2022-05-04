@@ -8,7 +8,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PageWrapper from '../shared/PageWrapper';
 import { AboutPageContext } from '../../containers/AboutPage';
-import FeaturedCampaigns from '../HomePageWrapper/FeaturedCampaigns';
+import FeaturedCampaigns from './FeaturedCampaigns';
 
 const H1 = styled.h1`
   margin: 80px 0 40px;
