@@ -4,14 +4,22 @@ import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.section`
   background-color: #f3f3f3;
-  padding: 116px 24px;
+  padding: 80px 24px;
   text-align: center;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 116px 24px;
+  }
 `;
 
 const H2 = styled.h2`
   margin: 0 0 40px;
-  font-size: 64px;
+  font-size: 42px;
   font-weight: 900;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 64px;
+  }
 `;
 
 const GrayParty = () => {

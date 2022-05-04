@@ -8,7 +8,12 @@ const H1 = styled.h1`
 
   .smaller {
     font-style: italic;
-    font-size: 48px;
+    font-size: 40px;
+
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.lg}) {
+      font-size: 48px;
+    }
   }
 
   .large {

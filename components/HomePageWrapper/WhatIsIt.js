@@ -4,20 +4,33 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 
 const Wrapper = styled.section`
-  padding: 130px 0;
-  font-size: 48px;
+  padding: 80px 0;
+  font-size: 36px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 48px;
+    padding: 130px 0;
+  }
 `;
 
 const H2 = styled.h2`
-  font-size: 80px;
+  font-size: 60px;
   font-weight: 900;
   margin: 0 0 60px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 80px;
+  }
 `;
 
 const H3 = styled.h3`
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 900;
   margin: 0 0 10px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 48px;
+  }
 `;
 
 const Manifesto = styled.div`

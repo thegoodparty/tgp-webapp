@@ -10,15 +10,26 @@ const Wrapper = styled.section`
   padding-bottom: 130px;
 `;
 
-const TopRow = styled(Row)`
-  justify-content: space-between;
-  align-items: flex-end;
+const TopRow = styled.div`
+  display: block;
   margin-bottom: 30px;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 `;
 
-const Stat = styled(Row)`
-  align-items: initial;
+const Stat = styled.div`
   margin-right: 70px;
+  margin-bottom: 40px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: flex;
+    margin-bottom: 0;
+  }
 `;
 const Icon = styled.div`
   font-size: 40px;
@@ -33,6 +44,13 @@ const Label = styled.div`
   font-weight: 900;
 `;
 
+const ResponsiveRow = styled.div`
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: flex;
+    align-items: center;
+  }
+`;
 
 const stats = [
   { label: '#goodparty posts', count: '146123', icon: <>😁</> },
@@ -43,7 +61,7 @@ const SocialSection = () => {
   return (
     <Wrapper>
       <TopRow>
-        <Row>
+        <ResponsiveRow>
           {stats.map((stat) => (
             <Stat key={stat.label}>
               <Icon>{stat.icon}</Icon>
@@ -53,7 +71,7 @@ const SocialSection = () => {
               </div>
             </Stat>
           ))}
-        </Row>
+        </ResponsiveRow>
         <div>What does partying accomplish?</div>
       </TopRow>
       <Grid container spacing={8} className="text-center">

@@ -6,14 +6,23 @@ import Image from 'next/image';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.section`
-  padding: 130px 0;
+  padding: 80px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 130px 0;
+  }
 `;
 
 const H2 = styled.h2`
-  font-size: 54px;
+  font-size: 42px;
   font-weight: 900;
   margin: 0 0 30px;
-  line-height: 59px;
+  line-height: 48px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 54px;
+    line-height: 59px;
+  }
 `;
 
 const Manifesto = styled.div`

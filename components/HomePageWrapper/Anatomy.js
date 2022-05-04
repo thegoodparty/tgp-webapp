@@ -3,18 +3,31 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
 const Wrapper = styled.section`
-  padding: 130px 0;
+  padding: 80px 0;
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.lg}) {
+    padding: 130px 0;
+  }
 `;
 
 const H2 = styled.h2`
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 900;
-  margin: 0 0 72px;
+  margin: 0 0 48px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 64px;
+    margin: 0 0 72px;
+  }
 `;
 
 const Icons = styled.div`
-  font-size: 64px;
+  font-size: 50px;
   margin-bottom: 50px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 64px;
+  }
 `;
 
 const Content = styled.div`
