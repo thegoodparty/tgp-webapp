@@ -9,59 +9,43 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { useInjectSaga } from '/utils/injectSaga';
-import { useInjectReducer } from '/utils/injectReducer';
+// import { useInjectSaga } from '/utils/injectSaga';
+// import { useInjectReducer } from '/utils/injectReducer';
 
 import HomePageWrapper from '/components/HomePageWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
-import { logEvent } from '/services/AnalyticsService';
+// import { logEvent } from '/services/AnalyticsService';
+//
+// import reducer from './reducer';
+// import saga from './saga';
+// import makeSelectHomePage from './selectors';
+// import actions from './actions';
 
-import reducer from './reducer';
-import saga from './saga';
-import makeSelectHomePage from './selectors';
-import actions from './actions';
+// export const HomePageContext = createContext();
 
-export const HomePageContext = createContext();
-
-export function HomePage({ ssrState, subscribeEmailCallback }) {
-  useInjectReducer({ key: 'homePage', reducer });
-  useInjectSaga({ key: 'homePage', saga });
-
-  const childProps = {
-    homepageCandidates: ssrState.homepageCandidates,
-    engagements: ssrState.engagements,
-    subscribeEmailCallback,
-  };
-
+export function HomePage() {
   return (
-    <HomePageContext.Provider value={childProps}>
+    <div>
       <TgpHelmet
-        title="GOOD PARTY | Free software for free elections"
-        description="GOOD PARTY builds free software for free elections. We're helping good indie candidates run and win, because BOTH Red + Blue have been corrupted beyond repair."
+        title="GOOD PARTY | Free tools to change the rules and disrupt the corrupt."
+        description="Not a political party, we’re building tools to change the rules, empowering creatives to mobilize community & disrupt the corrupt two-party system. Join us!"
       />
       <HomePageWrapper />
-    </HomePageContext.Provider>
+    </div>
   );
 }
 
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  homeState: PropTypes.object,
-  subscribeEmailCallback: PropTypes.func,
-  ssrState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  homeState: makeSelectHomePage(),
+  // homeState: makeSelectHomePage(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    subscribeEmailCallback: (email) => {
-      logEvent('Email & Marketing', 'Subscribe to Newsletter');
-      dispatch(actions.subscribeEmailAction(email));
-    },
   };
 }
 
