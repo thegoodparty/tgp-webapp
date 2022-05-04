@@ -2,13 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const H1 = styled.h1`
-  font-size: 64px;
-  margin: 70px 0;
+  font-size: 48px;
+  margin: 16px 0 20px;
   font-weight: 900;
+  
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.lg}) {
+       margin: 70px 0;
+       font-size: 56px;
+    }
 
   .smaller {
     font-style: italic;
-    font-size: 40px;
+    font-size: 36px;
 
     @media only screen and (min-width: ${({ theme }) =>
         theme.breakpointsPixels.lg}) {
@@ -17,10 +23,14 @@ const H1 = styled.h1`
   }
 
   .large {
-    font-size: 90px;
+    font-size: 70px;
     display: inline-block;
     position: relative;
     z-index: 10;
+    @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.lg}) {
+      font-size: 90px;
+    }
   }
 
   .yellow {

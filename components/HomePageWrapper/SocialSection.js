@@ -24,8 +24,7 @@ const TopRow = styled.div`
 `;
 
 const Stat = styled.div`
-  margin-right: 70px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     display: flex;
@@ -37,25 +36,25 @@ const Icon = styled.div`
   margin-right: 16px;
 `;
 const Count = styled.div`
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 900;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 48px;
+  }
 `;
 const Label = styled.div`
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 900;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 19px;
+  }
 `;
 
 const ScrollLink = styled.div`
   text-decoration: underline;
   cursor: pointer;
-`;
-
-const ResponsiveRow = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    display: flex;
-    align-items: center;
-  }
 `;
 
 const stats = [
@@ -67,9 +66,12 @@ const SocialSection = () => {
   return (
     <Wrapper>
       <TopRow>
-        <ResponsiveRow>
-          {stats.map((stat) => (
-            <Stat key={stat.label}>
+        <Row>
+          {stats.map((stat, index) => (
+            <Stat
+              key={stat.label}
+              style={index === 0 ? { marginRight: '70px' } : {}}
+            >
               <Icon>{stat.icon}</Icon>
               <div>
                 <Count>{numberFormatter(stat.count)}</Count>
@@ -77,7 +79,7 @@ const SocialSection = () => {
               </div>
             </Stat>
           ))}
-        </ResponsiveRow>
+        </Row>
         <Link to="accomplish" duration={350} smooth>
           <ScrollLink>What does partying accomplish?</ScrollLink>
         </Link>
