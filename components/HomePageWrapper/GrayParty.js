@@ -38,7 +38,7 @@ const Yellow = styled.div`
   z-index: -1;
 `;
 
-const GrayParty = () => {
+const GrayParty = ({ openModalCallback }) => {
   return (
     <Wrapper>
       <H2>
@@ -54,7 +54,7 @@ const GrayParty = () => {
         </i>{' '}
         doesn’t want us to.
       </H2>
-      <BlackButton>
+      <BlackButton onClick={openModalCallback}>
         <InnerButton style={{ textTransform: 'none', padding: '0 80px' }}>
           Host a #goodparty
         </InnerButton>

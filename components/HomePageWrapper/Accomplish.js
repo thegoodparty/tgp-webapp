@@ -45,7 +45,7 @@ const WeCan = styled.div`
   font-weight: 900;
 `;
 
-const Accomplish = () => {
+const Accomplish = ({openModalCallback}) => {
   return (
     <Wrapper>
       <Grid container spacing={8}>
@@ -69,7 +69,7 @@ const Accomplish = () => {
           </div>
           <WeCan>Then, WE CAN...</WeCan>
           <div style={{ display: 'inline-block' }}>
-            <BlackButton>
+            <BlackButton onClick={openModalCallback}>
               <InnerButton style={{ textTransform: 'none', padding: '0 80px' }}>
                 Host a #goodparty
               </InnerButton>

@@ -67,7 +67,7 @@ const Inner = styled.div`
   }
 `;
 
-const SoFIt = ({ noTitle = false }) => {
+const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
   return (
     <Wrapper>
       {!noTitle && (
@@ -85,7 +85,7 @@ const SoFIt = ({ noTitle = false }) => {
         <Title>Host a #goodparty</Title>
         We’ll send you #goodparty stickers and more!
         <br />
-        <BlackButton style={{ marginTop: '40px' }}>
+        <BlackButton style={{ marginTop: '40px' }} onClick={openModalCallback}>
           <InnerButton>Host a #goodparty</InnerButton>
         </BlackButton>
       </Banner>
@@ -95,7 +95,7 @@ const SoFIt = ({ noTitle = false }) => {
         <Title> Post a #goodparty</Title>
         Tag a #goodparty to join us and unlock good times!
         <br />
-        <BlackButton style={{ marginTop: '40px' }}>
+        <BlackButton style={{ marginTop: '40px' }} onClick={openModalCallback}>
           <Inner>
             Post a #goodparty{' '}
             <Row>
