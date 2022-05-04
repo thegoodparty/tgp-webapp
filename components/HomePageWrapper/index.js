@@ -13,7 +13,7 @@ import Modal from '../shared/Modal';
 import ModalInner from './ModalInner';
 
 const HomePageWrapper = () => {
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const handleOpenModal = () => {
     setModalOpen(true);
   };
