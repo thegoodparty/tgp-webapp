@@ -49,10 +49,10 @@ const Icon = styled.span`
   display: inline-block;
   margin: 8px 14px 0;
   font-size: 28px;
-   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.lg}) {
-   margin: 0 14px;
-   }
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin: 0 14px;
+  }
 `;
 
 const Inner = styled.div`
@@ -67,16 +67,18 @@ const Inner = styled.div`
   }
 `;
 
-const SoFIt = () => {
+const SoFIt = ({ noTitle = false }) => {
   return (
     <Wrapper>
-      <H2>
-        So, Fuck{' '}
-        <u>
-          <i>it</i>
-        </u>
-        ...
-      </H2>
+      {!noTitle && (
+        <H2>
+          So, Fuck{' '}
+          <u>
+            <i>it</i>
+          </u>
+          ...
+        </H2>
+      )}
       <Banner
         style={{ backgroundImage: 'url(/images/homepage/banner-bg1.png)' }}
       >

@@ -9,6 +9,7 @@ import PageWrapper from '../shared/PageWrapper';
 import { FontH1, FontH2 } from '../shared/typogrophy';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import SoFIt from '../HomePageWrapper/SoFIt';
 
 const Wrapper = styled.div`
   margin-top: 60px;
@@ -138,6 +139,7 @@ function ManifestoWrapper() {
           <br />
           It’s that simple, and it’s that fun! So let’s get this party started!
         </p>
+        <SoFIt noTitle />
       </Wrapper>
     </PageWrapper>
   );
