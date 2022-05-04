@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
+import { Link } from 'react-scroll';
 
 import { numberFormatter } from '/helpers/numberHelper';
 import Row from '../shared/Row';
@@ -44,6 +45,11 @@ const Label = styled.div`
   font-weight: 900;
 `;
 
+const ScrollLink = styled.div`
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 const ResponsiveRow = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
@@ -72,7 +78,9 @@ const SocialSection = () => {
             </Stat>
           ))}
         </ResponsiveRow>
-        <div>What does partying accomplish?</div>
+        <Link to="accomplish" duration={350} smooth>
+          <ScrollLink>What does partying accomplish?</ScrollLink>
+        </Link>
       </TopRow>
       <Grid container spacing={8} className="text-center">
         <Grid item xs={12} lg={4}>

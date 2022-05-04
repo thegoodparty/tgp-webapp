@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
+import { Element } from 'react-scroll';
 
 const Wrapper = styled.section`
   padding: 80px 0;
@@ -43,13 +44,15 @@ const Manifesto = styled.div`
 const WhatIsIt = () => {
   return (
     <Wrapper>
-      <H2>
-        What is{' '}
-        <u>
-          <i>it</i>
-        </u>{' '}
-        ?
-      </H2>
+      <Element name="what-is-it">
+        <H2>
+          What is{' '}
+          <u>
+            <i>it</i>
+          </u>{' '}
+          ?
+        </H2>
+      </Element>
       <Grid container spacing={8}>
         <Grid item xs={12} lg={4}>
           <H3>

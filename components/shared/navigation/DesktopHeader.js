@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { Link as ScrollLink } from 'react-scroll';
 import { MdIosShare } from 'react-icons/md';
 
 import styled from 'styled-components';
@@ -55,6 +56,7 @@ const RightLinks = styled.div`
 const TopLink = styled.div`
   margin: 0 12px;
   padding: 0 4px;
+  cursor: pointer;
   a {
     color: #000;
   }
@@ -62,7 +64,7 @@ const TopLink = styled.div`
 
 const links = [
   { label: 'About', href: '/about' },
-  { label: 'Candidates', href: '/candidates' },
+  { label: 'Campaigns', href: '/candidates' },
 ];
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
@@ -81,6 +83,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   }, [open]);
 
   const candidateRoute = router.pathname === '/candidate/[...NameId]';
+  const isHomePage = router.pathname === '/';
   let id = false;
   if (
     candidateRoute &&
@@ -124,6 +127,11 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
           </a>
         </Link>
         <RightLinks>
+          {isHomePage && (
+            <ScrollLink to="what-is-it"  duration={350} smooth>
+              <TopLink>What is <u><i>it</i></u> ?</TopLink>
+            </ScrollLink>
+          )}
           {links.map((link) => (
             <TopLink key={link.href}>
               <Link

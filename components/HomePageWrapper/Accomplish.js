@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Element } from 'react-scroll';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.section`
@@ -52,7 +53,9 @@ const Accomplish = () => {
           <Image src="/images/homepage/party.jpg" height={779} width={624} />
         </Grid>
         <Grid item xs={12} lg={6}>
-          <H2>What does partying accomplish?</H2>
+          <Element name="accomplish">
+            <H2>What does partying accomplish?</H2>
+          </Element>
           <div>
             <Title>FUN with FRIENDS</Title>
             Partying brings us together with friends for fun! Isn’t that the
