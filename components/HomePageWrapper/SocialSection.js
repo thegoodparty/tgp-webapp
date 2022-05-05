@@ -97,7 +97,7 @@ const SocialSection = ({ openModalCallback }) => {
             <Stat style={{ marginRight: '70px', display: 'flex' }}>
               <Icon>😁</Icon>
               <div>
-                <Count>146,123 </Count>
+                <Count>85,174</Count>
                 <Label>#goodparty posts</Label>
               </div>
             </Stat>{' '}
