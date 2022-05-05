@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/Cancel';
+
+import { HomePageContext } from '/containers/HomePage';
 import BlackButton from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
@@ -18,7 +20,17 @@ const CloseWrapper = styled.div`
   cursor: pointer;
 `;
 
+const Feedback = styled.div`
+  margin-top: 12px;
+  font-size: 16px;
+  text-decoration: underline;
+  color: gray;
+  text-align: center;
+  cursor: pointer;
+`;
+
 const ModalInner = ({ closeModalCallback }) => {
+  const { showFeedbackCallback } = useContext(HomePageContext);
   const [showForm, setShowForm] = useState(false);
   useEffect(() => {
     if (window.hbspt) {
@@ -30,6 +42,11 @@ const ModalInner = ({ closeModalCallback }) => {
       });
     }
   }, []);
+
+  const handleFeedback = () => {
+    closeModalCallback();
+    showFeedbackCallback();
+  };
   return (
     <Wrapper>
       <div className="text-right">
@@ -61,6 +78,7 @@ const ModalInner = ({ closeModalCallback }) => {
         id="hubspotFormModal"
         style={{ display: showForm ? 'block' : 'none' }}
       />
+      <Feedback onClick={handleFeedback}>Give Feedback</Feedback>
     </Wrapper>
   );
 };

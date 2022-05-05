@@ -20,23 +20,26 @@ import TgpHelmet from '/components/shared/TgpHelmet';
 // import saga from './saga';
 // import makeSelectHomePage from './selectors';
 // import actions from './actions';
+import feedbackActions from '/containers/shared/FeedbackContainer/actions';
 
-// export const HomePageContext = createContext();
+export const HomePageContext = createContext();
 
-export function HomePage() {
+export function HomePage({ showFeedbackCallback }) {
+  const childProps = { showFeedbackCallback };
   return (
-    <div>
+    <HomePageContext.Provider value={childProps}>
       <TgpHelmet
         title="GOOD PARTY | Free tools to change the rules and disrupt the corrupt."
         description="Not a political party, we’re building tools to change the rules, empowering creatives to mobilize community & disrupt the corrupt two-party system. Join us!"
       />
       <HomePageWrapper />
-    </div>
+    </HomePageContext.Provider>
   );
 }
 
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  showFeedbackCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -46,6 +49,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    showFeedbackCallback: () => {
+      dispatch(feedbackActions.toggleModalAction(true));
+    },
   };
 }
 

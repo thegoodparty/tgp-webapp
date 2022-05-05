@@ -19,13 +19,22 @@ import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
-export function FeedbackContainer({ sendFeedbackCallback, mode }) {
+export function FeedbackContainer({
+  sendFeedbackCallback,
+  mode,
+  toggleModalCallback,
+  feedbackContainer,
+}) {
   useInjectReducer({ key: 'feedbackContainer', reducer });
   useInjectSaga({ key: 'feedbackContainer', saga });
+
+  const { isOpen } = feedbackContainer;
 
   const childProps = {
     sendFeedbackCallback,
     mode,
+    toggleModalCallback,
+    isOpen,
   };
 
   return <FeedbackWrapper {...childProps} />;
@@ -34,6 +43,7 @@ export function FeedbackContainer({ sendFeedbackCallback, mode }) {
 FeedbackContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   sendFeedbackCallback: PropTypes.func,
+  toggleModalCallback: PropTypes.func,
   mode: PropTypes.string,
 };
 
@@ -46,6 +56,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     sendFeedbackCallback: (stars, feedbackType, suggestion) => {
       dispatch(actions.sendFeedbackAction(stars, feedbackType, suggestion));
+    },
+    toggleModalCallback: (isOpen) => {
+      dispatch(actions.toggleModalAction(isOpen));
     },
   };
 }

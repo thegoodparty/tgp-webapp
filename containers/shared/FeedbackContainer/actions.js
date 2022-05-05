@@ -15,6 +15,14 @@ function sendFeedbackAction(stars, feedbackType, suggestion) {
   };
 }
 
+function toggleModalAction(isOpen) {
+  return {
+    type: types.TOGGLE_MODAL,
+    isOpen,
+  };
+}
+
 export default {
   sendFeedbackAction,
+  toggleModalAction,
 };

@@ -24,12 +24,12 @@ const TopRow = styled.div`
 `;
 
 const Stat = styled.div`
-  margin-bottom: 24px;
   display: flex;
+  align-items: initial;
   color: #000;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin-bottom: 0;
+    margin-bottom: 24px;
   }
 `;
 const Icon = styled.div`
@@ -74,20 +74,37 @@ const Clickable = styled.div`
 `;
 
 const Coming = styled.span`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    color: #8f8f8f;
+    font-size: 19px;
+    margin-left: 8px;
+    display: inline-block;
+    text-decoration: underline;
+    font-weight: 400;
+    cursor: pointer;
+  }
+`;
+
+const ComingMobile = styled.div`
   color: #8f8f8f;
-  font-size: 19px;
-  margin-left: 8px;
-  display: inline-block;
+  font-size: 16px;
   text-decoration: underline;
   font-weight: 400;
   cursor: pointer;
+  margin-bottom: 24px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: none;
+  }
 `;
 
 const SocialSection = ({ openModalCallback }) => {
   return (
     <Wrapper>
       <TopRow>
-        <Row>
+        <Row style={{ alignItems: 'initial' }}>
           <a
             href="https://www.tiktok.com/tag/goodparty?lang=en"
             target="_blank"
@@ -110,6 +127,9 @@ const SocialSection = ({ openModalCallback }) => {
                 0 <Coming onClick={openModalCallback}>Coming Soon</Coming>
               </Count>
               <Label>#goodparty posts</Label>
+              <ComingMobile onClick={openModalCallback}>
+                Coming Soon
+              </ComingMobile>
             </div>
           </Stat>
         </Row>

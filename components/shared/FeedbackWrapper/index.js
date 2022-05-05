@@ -13,8 +13,9 @@ const FeedbackForm = dynamic(() => import('./FeedbackForm'));
 
 const SideButton = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-  display: block;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: block;
     position: fixed;
     bottom: 40px;
     right: -36px;
@@ -52,16 +53,20 @@ const SideButton = styled.div`
   }
 `;
 
-function FeedbackWrapper({ sendFeedbackCallback, mode = 'desktop' }) {
-  const [showForm, setShowForm] = useState(false);
+function FeedbackWrapper({
+  sendFeedbackCallback,
+  mode = 'desktop',
+  toggleModalCallback,
+  isOpen,
+}) {
   return (
     <>
-      <SideButton onClick={() => setShowForm(true)} className={mode}>
+      <SideButton onClick={() => toggleModalCallback(true)} className={mode}>
         Feedback
       </SideButton>
-      {showForm && (
+      {isOpen && (
         <FeedbackForm
-          closeCallback={() => setShowForm(false)}
+          closeCallback={() => toggleModalCallback(false)}
           sendFeedbackCallback={sendFeedbackCallback}
         />
       )}
