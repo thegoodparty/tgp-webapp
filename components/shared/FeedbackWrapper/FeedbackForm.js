@@ -53,7 +53,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
     feedbackType: '',
     suggestion: '',
   });
-  const onStarClick = nextValue => {
+  const onStarClick = (nextValue) => {
     setFormState({
       ...formState,
       stars: nextValue,
@@ -87,15 +87,23 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
     <Modal open closeModalCallback={closeCallback} showCloseButton={false}>
       <FormWrapper>
         <H3>
-          <strong>
-            Please let us know your thoughts and how we can improve
-          </strong>
+          <strong>Please let us know your thoughts about Good Party</strong>
         </H3>
         <br />
         <br />
         <Grid container spacing={3}>
           <Grid item xs={12} md={5}>
-            <Body>How do you feel about Good Party right now?</Body>
+            <Body>
+              How do you feel about our plans to{' '}
+              <strong>
+                Fuck{' '}
+                <u>
+                  <i>It</i>
+                </u>
+                !
+              </strong>{' '}
+              (with a #goodparty)?
+            </Body>
           </Grid>
           <Grid item xs={12} md={7}>
             <StarsWrapper>
@@ -114,11 +122,11 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               fullWidth
               variant="outlined"
               native
-              onChange={e => onChangeField('feedbackType', e)}
+              onChange={(e) => onChangeField('feedbackType', e)}
               value={formState.feedbackType}
             >
               <option value="">Suggestion</option>
-              {feedbackTypes.map(type => (
+              {feedbackTypes.map((type) => (
                 <option value={type} key={type}>
                   {type}
                 </option>
@@ -133,7 +141,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               placeholder="Type your suggestion here, please give as much detail as you can. *"
               rows={5}
               value={formState.suggestion}
-              onChange={e => onChangeField('suggestion', e)}
+              onChange={(e) => onChangeField('suggestion', e)}
               inputProps={{
                 maxlength: CHARACTER_LIMIT,
               }}
