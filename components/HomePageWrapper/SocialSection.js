@@ -73,12 +73,11 @@ const Clickable = styled.div`
   cursor: pointer;
 `;
 
-const stats = [
-  { label: '#goodparty posts', count: '146123', icon: <>😁</> },
-  { label: '#goodparty hosts', count: '621', icon: <>🎉</> },
-];
-
 const SocialSection = ({ openModalCallback }) => {
+  const stats = [
+    { label: '#goodparty posts', count: '146123', icon: <>😁</> },
+    { label: '#goodparty hosts', count: '621', icon: <>🎉</> },
+  ];
   return (
     <Wrapper>
       <TopRow>
