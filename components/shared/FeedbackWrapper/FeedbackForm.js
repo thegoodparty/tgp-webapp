@@ -19,8 +19,7 @@ import BlackButton from '../buttons/BlackButton';
 const FormWrapper = styled.form`
   padding: 40px 20px;
   background-color: #fff;
-  border-radius: 8px;
-  width: 95vw;
+  width: 85vw;
   max-width: 900px;
   border: solid 2px #000;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
@@ -95,10 +94,10 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
         <br />
         <br />
         <Grid container spacing={3}>
-          <Grid item xs={6} md={5}>
+          <Grid item xs={12} md={5}>
             <Body>How do you feel about Good Party right now?</Body>
           </Grid>
-          <Grid item xs={6} md={7}>
+          <Grid item xs={12} md={7}>
             <StarsWrapper>
               <StarRatingComponent
                 name="stars"

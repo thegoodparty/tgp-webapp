@@ -43,6 +43,7 @@ function Modal({ closeModalCallback, children, open, showCloseButton = true }) {
     <TgpDialog
       onClose={closeModalCallback}
       open={open}
+      maxWidth="lg"
       // fullScreen
     >
       {showCloseButton && (
