@@ -25,9 +25,9 @@ const TopRow = styled.div`
 
 const Stat = styled.div`
   margin-bottom: 24px;
+  display: flex;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    display: flex;
     margin-bottom: 0;
   }
 `;
@@ -58,12 +58,26 @@ const ScrollLink = styled.div`
   font-weight: 900;
 `;
 
+const Relative = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const Clickable = styled.div`
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  width: 100%;
+  cursor: pointer;
+`;
+
 const stats = [
   { label: '#goodparty posts', count: '146123', icon: <>😁</> },
   { label: '#goodparty hosts', count: '621', icon: <>🎉</> },
 ];
 
-const SocialSection = () => {
+const SocialSection = ({ openModalCallback }) => {
   return (
     <Wrapper>
       <TopRow>
@@ -87,13 +101,34 @@ const SocialSection = () => {
       </TopRow>
       <Grid container spacing={8} className="text-center">
         <Grid item xs={12} lg={4}>
-          <Image src="/images/homepage/social1.jpg" height={615} width={369} />
+          <Relative>
+            <Image
+              src="/images/homepage/social1.jpg"
+              height={615}
+              width={369}
+            />
+            <Clickable onClick={openModalCallback} />
+          </Relative>
         </Grid>
         <Grid item xs={12} lg={4}>
-          <Image src="/images/homepage/social2.jpg" height={615} width={369} />
+          <Relative>
+            <Image
+              src="/images/homepage/social2.jpg"
+              height={615}
+              width={369}
+            />
+            <Clickable onClick={openModalCallback} />
+          </Relative>
         </Grid>
         <Grid item xs={12} lg={4}>
-          <Image src="/images/homepage/social3.jpg" height={615} width={369} />
+          <Relative>
+            <Image
+              src="/images/homepage/social3.jpg"
+              height={615}
+              width={369}
+            />
+            <Clickable onClick={openModalCallback} />
+          </Relative>
         </Grid>
       </Grid>
     </Wrapper>

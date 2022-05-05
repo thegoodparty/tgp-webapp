@@ -56,9 +56,11 @@ const MobileBr = styled.span`
 const Hero = () => {
   return (
     <H1>
-      <u>
-        <i>It</i>
-      </u>{' '}
+      <ScrollLink className="pointer" to="what-is-it" duration={350} smooth>
+        <u>
+          <i>It</i>
+        </u>
+      </ScrollLink>{' '}
       wants us divided & hopeless.
       <br />
       <span className="large">
