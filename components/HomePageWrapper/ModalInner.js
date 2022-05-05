@@ -18,10 +18,6 @@ const CloseWrapper = styled.div`
   cursor: pointer;
 `;
 
-const Feedback = styled.div`
-
-`
-
 const ModalInner = ({ closeModalCallback }) => {
   const [showForm, setShowForm] = useState(false);
   useEffect(() => {
@@ -65,8 +61,6 @@ const ModalInner = ({ closeModalCallback }) => {
         id="hubspotFormModal"
         style={{ display: showForm ? 'block' : 'none' }}
       />
-
-      <Feedback>Give Feedback</Feedback>
     </Wrapper>
   );
 };
