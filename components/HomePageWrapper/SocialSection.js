@@ -73,31 +73,45 @@ const Clickable = styled.div`
   cursor: pointer;
 `;
 
+const Coming = styled.span`
+  color: #8f8f8f;
+  font-size: 19px;
+  margin-left: 8px;
+  display: inline-block;
+  text-decoration: underline;
+  font-weight: 400;
+  cursor: pointer;
+`;
+
 const SocialSection = ({ openModalCallback }) => {
-  const stats = [
-    { label: '#goodparty posts', count: '146123', icon: <>😁</> },
-    { label: '#goodparty hosts', count: '621', icon: <>🎉</> },
-  ];
   return (
     <Wrapper>
       <TopRow>
         <Row>
-          {stats.map((stat, index) => (
-            <Stat
-              key={stat.label}
-              style={
-                index === 0
-                  ? { marginRight: '70px', display: 'flex' }
-                  : { display: 'flex' }
-              }
-            >
-              <Icon>{stat.icon}</Icon>
+          <a
+            href="https://www.tiktok.com/tag/goodparty?lang=en"
+            target="_blank"
+            rel="noreferrer"
+            className="no-underline"
+          >
+            <Stat style={{ marginRight: '70px', display: 'flex' }}>
+              <Icon>😁</Icon>
               <div>
-                <Count>{numberFormatter(stat.count)}</Count>
-                <Label>{stat.label}</Label>
+                <Count>146,123 </Count>
+                <Label>#goodparty posts</Label>
               </div>
-            </Stat>
-          ))}
+            </Stat>{' '}
+          </a>
+
+          <Stat style={{ display: 'flex' }}>
+            <Icon>🎉</Icon>
+            <div>
+              <Count>
+                0 <Coming onClick={openModalCallback}>Coming Soon</Coming>
+              </Count>
+              <Label>#goodparty posts</Label>
+            </div>
+          </Stat>
         </Row>
         <Link to="accomplish" duration={350} smooth>
           <ScrollLink>What does partying accomplish?</ScrollLink>

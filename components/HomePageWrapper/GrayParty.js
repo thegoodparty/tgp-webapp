@@ -52,7 +52,7 @@ const GrayParty = ({ openModalCallback }) => {
         Because{' '}
         <ScrollLink className="pointer" to="what-is-it" duration={350} smooth>
           <u>
-            <i>it</i>
+            <i>It</i>
           </u>
         </ScrollLink>{' '}
         doesn’t want us to.

@@ -74,7 +74,7 @@ const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
         <H2>
           So, Fuck{' '}
           <u>
-            <i>it</i>
+            <i>It</i>
           </u>
           ...
         </H2>

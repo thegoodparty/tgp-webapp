@@ -77,7 +77,7 @@ const Accomplish = ({ openModalCallback }) => {
                   >
                     Vote{' '}
                     <u>
-                      <i>it</i>
+                      <i>It</i>
                     </u>{' '}
                     &nbsp;Out!
                   </InnerButton>
@@ -86,7 +86,7 @@ const Accomplish = ({ openModalCallback }) => {
             </Link>
             <Link href="/manifesto" passHref>
               <a>
-                <Manifesto>read our Manifesto</Manifesto>
+                <Manifesto>Read our Manifesto</Manifesto>
               </a>
             </Link>
           </div>

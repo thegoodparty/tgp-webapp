@@ -48,7 +48,7 @@ const WhatIsIt = () => {
         <H2>
           What is{' '}
           <u>
-            <i>it</i>
+            <i>It</i>
           </u>{' '}
           ?
         </H2>
@@ -84,7 +84,7 @@ const WhatIsIt = () => {
       </Grid>
       <Link href="/manifesto" passHref>
         <a>
-          <Manifesto>read our Manifesto</Manifesto>
+          <Manifesto>Read our Manifesto</Manifesto>
         </a>
       </Link>
     </Wrapper>

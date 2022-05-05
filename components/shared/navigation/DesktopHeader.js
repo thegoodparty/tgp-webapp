@@ -128,8 +128,14 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
         </Link>
         <RightLinks>
           {isHomePage && (
-            <ScrollLink to="what-is-it"  duration={350} smooth>
-              <TopLink>What is <u><i>it</i></u> ?</TopLink>
+            <ScrollLink to="what-is-it" duration={350} smooth>
+              <TopLink>
+                What is{' '}
+                <u>
+                  <i>It</i>
+                </u>{' '}
+                ?
+              </TopLink>
             </ScrollLink>
           )}
           {links.map((link) => (

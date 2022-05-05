@@ -31,13 +31,15 @@ function ManifestoWrapper() {
         <FontH1 style={{ marginBottom: '16px' }}>
           The #goodparty Manifesto
         </FontH1>
-        <H2>for the love of us over <u>it</u>!</H2>
+        <H2>
+          for the love of us over <u>It</u>!
+        </H2>
         <br />
         <br />
         <strong>
           First tell us, what is{' '}
           <u>
-            <i>it</i>
+            <i>It</i>
           </u>
           ?
         </strong>
@@ -82,7 +84,7 @@ function ManifestoWrapper() {
         <strong>
           Don’t let{' '}
           <u>
-            <i>it</i>
+            <i>It</i>
           </u>{' '}
           define us!
         </strong>
@@ -112,7 +114,7 @@ function ManifestoWrapper() {
         <strong>
           Fuck{' '}
           <u>
-            <i>it</i>
+            <i>It</i>
           </u>
           ! (with a #goodparty)
         </strong>
@@ -137,15 +139,22 @@ function ManifestoWrapper() {
           love, we talk. We share our ideas, our values and our culture. We
           create a space for all to feel good, welcome and empowered. At a
           #goodparty together, we find that we are all we really need. And, we
-          find that we have more in common than it wants us to believe.
+          find that we have more in common than{' '}
+          <u>
+            <i>It</i>
+          </u>{' '}
+          wants us to believe.
           <br />
           <br />
           And, in a democracy when enough people come together - all at once and
           everywhere - we gain real power. With that power, we gain the energy
           to inspire each other. We create hope. We realize that if we can party
           together, then we can unite together to do much more. Before you know
-          it, we’ll have enough support to vote it out, and the good among us,
-          in!
+          it, we’ll have enough support to vote{' '}
+          <u>
+            <i>It</i>
+          </u>{' '}
+          out, and the good among us, in!
           <br />
           <br />
           It’s that simple, and it’s that fun! So let’s get this party started!
