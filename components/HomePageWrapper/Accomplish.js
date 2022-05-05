@@ -45,7 +45,7 @@ const WeCan = styled.div`
   font-weight: 900;
 `;
 
-const Accomplish = ({openModalCallback}) => {
+const Accomplish = ({ openModalCallback }) => {
   return (
     <Wrapper>
       <Grid container spacing={8}>
@@ -67,11 +67,15 @@ const Accomplish = ({openModalCallback}) => {
             Partying together, everywhere shows and grows our power to unite
             around something positive.
           </div>
-          <WeCan>Then, WE CAN...</WeCan>
+          <WeCan>TOGETHER, WE CAN...</WeCan>
           <div style={{ display: 'inline-block' }}>
             <BlackButton onClick={openModalCallback}>
               <InnerButton style={{ textTransform: 'none', padding: '0 80px' }}>
-                Host a #goodparty
+                Vote{' '}
+                <u>
+                  <i>it</i>
+                </u>{' '}
+                &nbsp;Out!
               </InnerButton>
             </BlackButton>
             <Link href="/manifesto" passHref>

@@ -18,8 +18,10 @@ const Wrapper = styled.div`
 `;
 
 const H2 = styled.h2`
-  font-weight: 400;
   margin-top: 0;
+  color: #666;
+  font-style: italic;
+  font-weight: 900;
 `;
 
 function ManifestoWrapper() {
@@ -29,7 +31,7 @@ function ManifestoWrapper() {
         <FontH1 style={{ marginBottom: '16px' }}>
           The #goodparty Manifesto
         </FontH1>
-        <H2>for the love of us over it!</H2>
+        <H2>for the love of us over <u>it</u>!</H2>
         <br />
         <br />
         <strong>
