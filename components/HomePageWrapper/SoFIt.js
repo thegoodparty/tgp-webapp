@@ -80,7 +80,7 @@ const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
         </H2>
       )}
       <Banner
-        style={{ backgroundImage: 'url(/images/homepage/banner-bg1.png)' }}
+        style={{ backgroundImage: 'url(/images/homepage/banner-bg-1.png)' }}
       >
         <Title>Host a #goodparty</Title>
         We’ll send you #goodparty stickers and more!

@@ -35,6 +35,10 @@ const GlobalStyles = createGlobalStyle`
   a.no-underline:hover {
     text-decoration: none;
   }
+  
+  a.underline {
+    text-decoration: underline;
+  }
 
   .bold700 {
     font-weight: 700;

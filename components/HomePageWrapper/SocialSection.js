@@ -55,6 +55,7 @@ const Label = styled.div`
 const ScrollLink = styled.div`
   text-decoration: underline;
   cursor: pointer;
+  font-weight: 900;
 `;
 
 const stats = [

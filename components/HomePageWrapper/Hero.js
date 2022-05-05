@@ -44,10 +44,21 @@ const H1 = styled.h1`
   }
 `;
 
+const MobileBr = styled.span`
+  display: block;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: inline;
+  }
+`;
+
 const Hero = () => {
   return (
     <H1>
-      It wants us divided & hopeless.
+      <u>
+        <i>It</i>
+      </u>{' '}
+      wants us divided & hopeless.
       <br />
       <span className="large">
         <span className="yellow" />
@@ -57,6 +68,7 @@ const Hero = () => {
         </u>
         !
       </span>{' '}
+      <MobileBr />
       <span className="smaller">(with a #goodparty)</span>
     </H1>
   );

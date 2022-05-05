@@ -14,14 +14,22 @@ import SoFIt from '../HomePageWrapper/SoFIt';
 const Wrapper = styled.div`
   margin-top: 60px;
   font-size: 24px;
+  line-height: 36px;
+`;
+
+const H2 = styled.h2`
+  font-weight: 400;
+  margin-top: 0;
 `;
 
 function ManifestoWrapper() {
   return (
     <PageWrapper>
       <Wrapper>
-        <FontH1>The #goodparty Manifesto</FontH1>
-        <FontH2>for the love of us over it!</FontH2>
+        <FontH1 style={{ marginBottom: '16px' }}>
+          The #goodparty Manifesto
+        </FontH1>
+        <H2>for the love of us over it!</H2>
         <br />
         <br />
         <strong>
@@ -51,11 +59,12 @@ function ManifestoWrapper() {
             <i>It</i> is the manufactured doom loop that darkens our souls.
           </li>
           <li>
-            It is{' '}
+            <i>It</i> is{' '}
             <a
               href="https://mindlevelup.wordpress.com/2016/10/23/canaanite-gods-explained/"
               rel="noreferrer"
               target="_blank"
+              className="underline"
             >
               Moloch
             </a>

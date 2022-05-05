@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import styled from 'styled-components';
 import PageWrapper from '/components/shared/PageWrapper';
 import Hero from './Hero';
@@ -17,6 +17,14 @@ const HomePageWrapper = () => {
   const handleOpenModal = () => {
     setModalOpen(true);
   };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://js.hsforms.net/forms/v2.js';
+    script.async = true;
+
+    document.body.appendChild(script);
+  }, []);
   return (
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '0 24px' }}>
@@ -32,10 +40,10 @@ const HomePageWrapper = () => {
       </MaxWidth>
       <Modal
         open={modalOpen}
-        showCloseButton
+        showCloseButton={false}
         closeModalCallback={() => setModalOpen(false)}
       >
-        <ModalInner />
+        <ModalInner closeModalCallback={() => setModalOpen(false)} />
       </Modal>
     </PageWrapper>
   );
