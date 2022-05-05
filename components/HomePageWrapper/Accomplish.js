@@ -69,15 +69,21 @@ const Accomplish = ({ openModalCallback }) => {
           </div>
           <WeCan>TOGETHER, WE CAN...</WeCan>
           <div style={{ display: 'inline-block' }}>
-            <BlackButton onClick={openModalCallback}>
-              <InnerButton style={{ textTransform: 'none', padding: '0 80px' }}>
-                Vote{' '}
-                <u>
-                  <i>it</i>
-                </u>{' '}
-                &nbsp;Out!
-              </InnerButton>
-            </BlackButton>
+            <Link href="/candidates" passHref>
+              <a>
+                <BlackButton>
+                  <InnerButton
+                    style={{ textTransform: 'none', padding: '0 80px' }}
+                  >
+                    Vote{' '}
+                    <u>
+                      <i>it</i>
+                    </u>{' '}
+                    &nbsp;Out!
+                  </InnerButton>
+                </BlackButton>
+              </a>
+            </Link>
             <Link href="/manifesto" passHref>
               <a>
                 <Manifesto>read our Manifesto</Manifesto>

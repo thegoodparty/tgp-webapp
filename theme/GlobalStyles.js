@@ -26,6 +26,10 @@ const GlobalStyles = createGlobalStyle`
    text-decoration: none;
    color: #000;
   }
+  
+  .pointer {
+    cursor: pointer;
+  }
 
   a:hover {
    color: #333;

@@ -44,16 +44,20 @@ const ModalInner = ({ closeModalCallback }) => {
       Sign up to be the first to know! ❤️ 🎉
       <br />
       <br />
-      <BlackButton
-        fullWidth
-        onClick={() => {
-          setShowForm(true);
-        }}
-      >
-        Sign Up
-      </BlackButton>
-      <br/>
-      <br/>
+      {!showForm && (
+        <>
+          <BlackButton
+            fullWidth
+            onClick={() => {
+              setShowForm(true);
+            }}
+          >
+            Sign Up
+          </BlackButton>
+          <br />
+          <br />
+        </>
+      )}
       <div
         id="hubspotFormModal"
         style={{ display: showForm ? 'block' : 'none' }}

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link as ScrollLink } from 'react-scroll';
 
 const H1 = styled.h1`
   font-size: 48px;
@@ -63,9 +64,11 @@ const Hero = () => {
       <span className="large">
         <span className="yellow" />
         Fuck{' '}
-        <u>
-          <i>It</i>
-        </u>
+        <ScrollLink className="pointer" to="what-is-it" duration={350} smooth>
+          <u>
+            <i>It</i>
+          </u>
+        </ScrollLink>
         !
       </span>{' '}
       <MobileBr />

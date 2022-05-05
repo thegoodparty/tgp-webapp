@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
+import { Link as ScrollLink } from 'react-scroll';
 
 const Wrapper = styled.section`
   background-color: #f3f3f3;
@@ -49,9 +50,11 @@ const GrayParty = ({ openModalCallback }) => {
         </Relative>
         <br />
         Because{' '}
-        <i>
-          <u>it</u>
-        </i>{' '}
+        <ScrollLink className="pointer" to="what-is-it" duration={350} smooth>
+          <u>
+            <i>it</i>
+          </u>
+        </ScrollLink>{' '}
         doesn’t want us to.
       </H2>
       <BlackButton onClick={openModalCallback}>
