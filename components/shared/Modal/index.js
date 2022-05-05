@@ -15,7 +15,7 @@ const TgpDialog = styled(Dialog)`
     z-index: 2501 !important;
 
     .MuiDialog-paper {
-      background-color: rgba(255, 255, 255, 0.7);
+    //  background-color: rgba(255, 255, 255, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -43,8 +43,7 @@ function Modal({ closeModalCallback, children, open, showCloseButton = true }) {
     <TgpDialog
       onClose={closeModalCallback}
       open={open}
-      fullScreen
-      // style={modalStyles.dialog}
+      // fullScreen
     >
       {showCloseButton && (
         <TopWrapper className="top-wrapper">
