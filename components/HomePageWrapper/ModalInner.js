@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/Cancel';
+import BlackButton from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 36px;
@@ -19,6 +20,7 @@ const CloseWrapper = styled.div`
 `;
 
 const ModalInner = ({ closeModalCallback }) => {
+  const [showForm, setShowForm] = useState(false);
   useEffect(() => {
     if (window.hbspt) {
       window.hbspt.forms.create({
@@ -42,7 +44,20 @@ const ModalInner = ({ closeModalCallback }) => {
       Sign up to be the first to know! ❤️ 🎉
       <br />
       <br />
-      <div id="hubspotFormModal" />
+      <BlackButton
+        fullWidth
+        onClick={() => {
+          setShowForm(true);
+        }}
+      >
+        Sign Up
+      </BlackButton>
+      <br/>
+      <br/>
+      <div
+        id="hubspotFormModal"
+        style={{ display: showForm ? 'block' : 'none' }}
+      />
     </Wrapper>
   );
 };
