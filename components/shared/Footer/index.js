@@ -58,16 +58,18 @@ const Italic = styled.div`
 `;
 
 const SecondRow = styled.div`
-  margin-top: 48px;
-  color: #777;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    margin-top: 120px;
-  }
+  &.footer-row {
+    margin-top: 48px;
+    color: #777;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.lg}) {
+      margin-top: 120px;
+    }
 
-  a {
-    color: #000;
-    font-weight: 600;
+    a {
+      color: #000;
+      font-weight: 600;
+    }
   }
 `;
 
@@ -175,7 +177,7 @@ function Footer() {
             </Italic>
           </Grid>
         </Grid>
-        <SecondRow>
+        <SecondRow className="footer-row">
           <Aligner>
             &copy; {year} Good Party. All rights reserved. &nbsp;
             <Link href="/privacy" passHref>

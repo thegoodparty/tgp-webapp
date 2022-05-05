@@ -26,6 +26,7 @@ const TopRow = styled.div`
 const Stat = styled.div`
   margin-bottom: 24px;
   display: flex;
+  color: #000;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     margin-bottom: 0;
