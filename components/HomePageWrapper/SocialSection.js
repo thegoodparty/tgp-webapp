@@ -85,7 +85,11 @@ const SocialSection = ({ openModalCallback }) => {
           {stats.map((stat, index) => (
             <Stat
               key={stat.label}
-              style={index === 0 ? { marginRight: '70px' } : {}}
+              style={
+                index === 0
+                  ? { marginRight: '70px', display: 'flex' }
+                  : { display: 'flex' }
+              }
             >
               <Icon>{stat.icon}</Icon>
               <div>
