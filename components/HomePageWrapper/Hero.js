@@ -5,12 +5,12 @@ const H1 = styled.h1`
   font-size: 48px;
   margin: 16px 0 20px;
   font-weight: 900;
-  
+
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.lg}) {
-       margin: 70px 0;
-       font-size: 56px;
-    }
+      theme.breakpointsPixels.lg}) {
+    margin: 70px 0;
+    font-size: 56px;
+  }
 
   .smaller {
     font-style: italic;
@@ -28,7 +28,7 @@ const H1 = styled.h1`
     position: relative;
     z-index: 10;
     @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.lg}) {
+        theme.breakpointsPixels.lg}) {
       font-size: 90px;
     }
   }
@@ -51,8 +51,12 @@ const Hero = () => {
       <br />
       <span className="large">
         <span className="yellow" />
-        Fuck <u><i>It</i></u>!
-      </span>{' '}<br/>
+        Fuck{' '}
+        <u>
+          <i>It</i>
+        </u>
+        !
+      </span>{' '}
       <span className="smaller">(with a #goodparty)</span>
     </H1>
   );
