@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
+import FeedbackContainer from '/containers/shared/FeedbackContainer';
+
 import MaxWidth from '../MaxWidth';
 
 const Wrapper = styled.div`
@@ -132,6 +134,9 @@ function Footer() {
   return (
     <Wrapper>
       <MaxWidth>
+        <Aligner>
+          <FeedbackContainer mode="mobile" />
+        </Aligner>
         <Grid container spacing={2}>
           {columns.map((column) => (
             <Grid item xs={12} lg={2} key={column.title}>

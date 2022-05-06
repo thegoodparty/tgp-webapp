@@ -47,7 +47,9 @@ const SideButton = styled.div`
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    @media only screen and (min-width: 1380px) {
+    margin-bottom: 48px;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
       display: none;
     }
   }

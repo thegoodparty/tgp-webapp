@@ -19,8 +19,8 @@ import BlackButton from '../buttons/BlackButton';
 const FormWrapper = styled.form`
   padding: 40px 20px;
   background-color: #fff;
-  width: 85vw;
-  max-width: 900px;
+  width: 80vw;
+  max-width: 600px;
   border: solid 2px #000;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
 
@@ -44,13 +44,11 @@ const InnerButton = styled.div`
   padding: 0 20px;
 `;
 
-const feedbackTypes = ['Bug Report', 'Feature Request', 'Question', 'Other'];
 const CHARACTER_LIMIT = 1000;
 
 function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
   const [formState, setFormState] = useState({
     stars: 0,
-    feedbackType: '',
     suggestion: '',
   });
   const onStarClick = (nextValue) => {
@@ -72,13 +70,11 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
   const submitForm = () => {
     sendFeedbackCallback(
       formState.stars,
-      formState.feedbackType,
       formState.suggestion,
     );
     closeCallback();
     setFormState({
       stars: 0,
-      feedbackType: '',
       suggestion: '',
     });
   };
@@ -92,7 +88,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
         <br />
         <br />
         <Grid container spacing={3}>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={9}>
             <Body>
               How do you feel about our plans to{' '}
               <strong>
@@ -105,7 +101,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               (with a #goodparty)?
             </Body>
           </Grid>
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={3}>
             <StarsWrapper>
               <StarRatingComponent
                 name="stars"
@@ -114,25 +110,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               />
             </StarsWrapper>
           </Grid>
-          <Grid item xs={6} md={5}>
-            <Body>Feedback Type*</Body>
-          </Grid>
-          <Grid item xs={6} md={7}>
-            <Select
-              fullWidth
-              variant="outlined"
-              native
-              onChange={(e) => onChangeField('feedbackType', e)}
-              value={formState.feedbackType}
-            >
-              <option value="">Suggestion</option>
-              {feedbackTypes.map((type) => (
-                <option value={type} key={type}>
-                  {type}
-                </option>
-              ))}
-            </Select>
-          </Grid>
+
           <Grid item xs={12}>
             <TextField
               fullWidth

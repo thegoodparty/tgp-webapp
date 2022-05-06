@@ -126,7 +126,7 @@ const SocialSection = ({ openModalCallback }) => {
               <Count>
                 0 <Coming onClick={openModalCallback}>Coming Soon</Coming>
               </Count>
-              <Label>#goodparty posts</Label>
+              <Label>#goodparty hosts</Label>
               <ComingMobile onClick={openModalCallback}>
                 Coming Soon
               </ComingMobile>

@@ -16,7 +16,6 @@ import { Body9, Body14 } from '../typogrophy';
 import { PurpleButton } from '../buttons';
 import BlackButton from '../buttons/BlackButton';
 import AdminMenu from '../../admin/AdminMenu';
-import FeedbackContainer from '../../../containers/shared/FeedbackContainer';
 
 const Wrapper = styled.div`
   padding: 0 24px;
@@ -204,11 +203,6 @@ function MobileHeader({ user }) {
               <a>How To Run</a>
             </Link>
           </PushMenuLink>
-          {user && (
-            <PushMenuLink>
-              <FeedbackContainer mode="mobile" />
-            </PushMenuLink>
-          )}
 
           <AuthButtonWrapper className={!user?.name && 'auth-button'}>
             {user?.name ? (
