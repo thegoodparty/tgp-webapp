@@ -19,12 +19,11 @@ const NavWrapper = ({ pathname, user, trackShareCallback, purpleNav }) => (
         purpleNav={purpleNav}
       />
       <RegisterBannerContainer />
-      {user && <FeedbackContainer />}
+      <FeedbackContainer />
     </Hidden>
     <Hidden mdUp>
       <MobileHeader user={user} purpleNav={purpleNav} />
     </Hidden>
-
   </>
 );
 
