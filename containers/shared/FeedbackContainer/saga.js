@@ -6,12 +6,11 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 
 import types from './constants';
 
-function* sendFeedback({ stars, feedbackType, suggestion }) {
+function* sendFeedback({ thumbs, suggestion }) {
   try {
     const api = tgpApi.sendFeedback;
     const payload = {
-      stars,
-      feedbackType,
+      thumbs,
       suggestion,
       url: window.location.pathname,
     };

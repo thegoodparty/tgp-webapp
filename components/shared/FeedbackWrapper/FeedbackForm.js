@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import StarRatingComponent from 'react-star-rating-component';
-import Select from '@material-ui/core/Select';
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 import Modal from '../Modal';
 import { Body, H3 } from '../typogrophy';
@@ -44,17 +44,42 @@ const InnerButton = styled.div`
   padding: 0 20px;
 `;
 
+const Thumbs = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+`;
+
+const Thumb = styled.div`
+  padding: 0 8px;
+  color: gray;
+  transition: color 0.3s;
+  cursor: pointer;
+  
+  &.red {
+    padding-top: 12px;
+  }
+
+  &.red:hover, &.red.active {
+    color: red;
+  }
+  
+  &.green:hover, &.green.active { {
+    color: green;
+  }
+`;
+
 const CHARACTER_LIMIT = 1000;
 
 function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
   const [formState, setFormState] = useState({
-    stars: 0,
+    thumbs: 'none',
     suggestion: '',
   });
-  const onStarClick = (nextValue) => {
+  const onThumbClick = (value) => {
     setFormState({
       ...formState,
-      stars: nextValue,
+      thumbs: value,
     });
   };
 
@@ -68,13 +93,10 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
   const canSubmit = () => formState.suggestion !== '';
 
   const submitForm = () => {
-    sendFeedbackCallback(
-      formState.stars,
-      formState.suggestion,
-    );
+    sendFeedbackCallback(formState.thumbs, formState.suggestion);
     closeCallback();
     setFormState({
-      stars: 0,
+      thumbs: 'none',
       suggestion: '',
     });
   };
@@ -88,7 +110,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
         <br />
         <br />
         <Grid container spacing={3}>
-          <Grid item xs={12} md={9}>
+          <Grid item xs={9}>
             <Body>
               How do you feel about our plans to{' '}
               <strong>
@@ -101,14 +123,21 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               (with a #goodparty)?
             </Body>
           </Grid>
-          <Grid item xs={12} md={3}>
-            <StarsWrapper>
-              <StarRatingComponent
-                name="stars"
-                onStarClick={onStarClick}
-                value={formState.stars}
-              />
-            </StarsWrapper>
+          <Grid item xs={3}>
+            <Thumbs>
+              <Thumb
+                className={`red ${formState.thumbs === 'down' && 'active'}`}
+                onClick={() => onThumbClick('down')}
+              >
+                <FaThumbsDown />
+              </Thumb>
+              <Thumb
+                className={`green ${formState.thumbs === 'up' && 'active'}`}
+                onClick={() => onThumbClick('up')}
+              >
+                <FaThumbsUp />
+              </Thumb>
+            </Thumbs>
           </Grid>
 
           <Grid item xs={12}>

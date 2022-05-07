@@ -54,8 +54,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    sendFeedbackCallback: (stars, feedbackType, suggestion) => {
-      dispatch(actions.sendFeedbackAction(stars, feedbackType, suggestion));
+    sendFeedbackCallback: (thumbs,  suggestion) => {
+      dispatch(actions.sendFeedbackAction(thumbs, suggestion));
     },
     toggleModalCallback: (isOpen) => {
       dispatch(actions.toggleModalAction(isOpen));

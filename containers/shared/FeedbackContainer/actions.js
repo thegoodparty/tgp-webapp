@@ -6,11 +6,10 @@
 
 import types from './constants';
 
-function sendFeedbackAction(stars, feedbackType, suggestion) {
+function sendFeedbackAction(thumbs, suggestion) {
   return {
     type: types.SEND_FEEDBACK,
-    stars,
-    feedbackType,
+    thumbs,
     suggestion,
   };
 }
