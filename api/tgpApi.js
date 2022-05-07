@@ -185,6 +185,10 @@ const api = {
     method: 'POST',
     withAuth: true,
   },
+  sendGuestFeedback: {
+    url: `${base}notifications/guest-feedback`,
+    method: 'POST',
+  },
 
   logError: {
     url: `${base}notifications/log-error`,
