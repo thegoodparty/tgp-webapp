@@ -112,7 +112,8 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
         <Grid container spacing={3}>
           <Grid item xs={9}>
             <Body>
-              How do you feel about our plans to{' '}
+              How do you feel about our plans to:
+              <br />
               <strong>
                 Fuck{' '}
                 <u>
