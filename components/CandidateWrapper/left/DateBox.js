@@ -33,7 +33,7 @@ function DateBox({ showPast }) {
   return (
     <Wrapper className={showPast && 'rounded'}>
       <VoteDate
-        title="Good People Certified"
+        title="Good Certified"
         date={certifiedDate}
         showPast={showPast}
       />
