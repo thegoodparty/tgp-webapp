@@ -158,6 +158,7 @@ const TipWrapper = styled.div`
   background-color: #f6f8fb;
   padding: 14px;
   font-size: 15px;
+  cursor: pointer;
 `;
 
 const TipIcon = styled.span`
@@ -269,6 +270,7 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
   const emailBody = `${messageNoUrl}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
   const handleCopy = () => {
+    console.log('copy');
     setCopied(true);
 
     trackShare('Copy to Clipboard');
@@ -410,33 +412,36 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
           messenger_app_id="1530862867115121"
           color="blue"
         />
-        <TipWrapper>
-          <strong>Tip:</strong> Paste this {isCandidate && 'candidate '}link
-          anywhere.
-          <div style={{ marginTop: '12px' }}>
-            <TipIcon>
-              <Image
-                src="/images/icons/slack-logo.svg"
-                width={20}
-                height={20}
-              />
-            </TipIcon>
-            <TipIcon>
-              <FaYoutube style={{ color: '#FF0302' }} />
-            </TipIcon>
-            <TipIcon>
-              <FaDiscord style={{ color: '#5865F2' }} />
-            </TipIcon>
-            <TipIcon>
-              <FaReddit style={{ color: '#FF4500' }} />
-            </TipIcon>
-          </div>
-        </TipWrapper>
-        {/*{copied && (*/}
-        {/*  <CopiedWrapper>*/}
-        {/*    <Copied>TEXT LINK COPIED TO CLIPBOARD</Copied>*/}
-        {/*  </CopiedWrapper>*/}
-        {/*)}*/}
+        <Tooltip
+          triggerEl={
+            <CopyToClipboard text={url} onCopy={handleCopy}>
+              <TipWrapper>
+                <strong>Tip:</strong> Paste this {isCandidate && 'candidate '}
+                link anywhere.
+                <div style={{ marginTop: '12px' }}>
+                  <TipIcon>
+                    <Image
+                      src="/images/icons/slack-logo.svg"
+                      width={20}
+                      height={20}
+                    />
+                  </TipIcon>
+                  <TipIcon>
+                    <FaYoutube style={{ color: '#FF0302' }} />
+                  </TipIcon>
+                  <TipIcon>
+                    <FaDiscord style={{ color: '#5865F2' }} />
+                  </TipIcon>
+                  <TipIcon>
+                    <FaReddit style={{ color: '#FF4500' }} />
+                  </TipIcon>
+                </div>
+              </TipWrapper>
+            </CopyToClipboard>
+          }
+        >
+          Link Copied!
+        </Tooltip>
       </Wrapper>
     </QueryModalContainer>
   );
