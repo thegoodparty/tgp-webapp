@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import Sticky from 'react-sticky-el';
 
 import { FontH3 } from '/components/shared/typogrophy';
-import JoditEditorWrapper from '/components/admin/AdminEditCandidate/JoditEditor';
+import JoditEditorWrapper from '/components/admin/shared/JoditEditor';
 import { flatStates } from '/helpers/statesHelper';
 import { PortalCampaignManagerPageContext } from '/containers/candidate-portal/PortalCampaignManagerPage';
 import { partyResolver } from '/helpers/electionsHelper';

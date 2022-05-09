@@ -16,7 +16,9 @@ import { H3 } from '../../shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
 import ENV from '/api/ENV';
 import UserAvatar from '../../shared/UserAvatar';
-import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import AdminPageWrapper from '../shared/AdminPageWrapper';
+import AdminPanel from '../shared/AdminPanel';
+import { formatToPhone } from '../../../helpers/phoneHelper';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -41,9 +43,8 @@ const NameWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  && {
-    text-align: center;
-  }
+  text-align: center;
+  color: red;
 `;
 
 function AdminUsersList({ users, deleteUserCallback }) {
@@ -54,7 +55,7 @@ function AdminUsersList({ users, deleteUserCallback }) {
     if (users) {
       const data = [];
 
-      users.map(user => {
+      users.map((user) => {
         const fields = {
           ...user,
           isAdmin: user.isAdmin ? 'admin' : user.candidate ? 'candidate' : 'no',
@@ -97,19 +98,14 @@ function AdminUsersList({ users, deleteUserCallback }) {
       accessor: 'name',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => (
-        <NameWrapper>
-          <span>{row.original.name}</span>
-          {row.original.avatar && <UserAvatar user={row.original} size="sm" />}
-        </NameWrapper>
-      ),
     },
+
     {
       Header: 'Email',
       accessor: 'email',
       headerStyle,
       filterMethod: customFilter,
-      Cell: row => (
+      Cell: (row) => (
         <Tooltip title={row.original.email}>
           <a href={`mailto:${row.original.email}`}>{row.original.email}</a>
         </Tooltip>
@@ -120,39 +116,22 @@ function AdminUsersList({ users, deleteUserCallback }) {
       accessor: 'phone',
       headerStyle,
       filterMethod: customFilter,
-    },
-    {
-      Header: 'Feedback',
-      accessor: 'feedback',
-      headerStyle,
-      filterMethod: customFilter,
-      Cell: row => (
-        <div style={{ overflow: 'auto', height: '100%' }}>
-          {row.original.feedback}
-        </div>
+      Cell: (row) => (
+        <Tooltip title={row.original.phone}>
+          <a href={`tel:${row.original.phone}`}>
+            {formatToPhone(row.original.phone)}
+          </a>
+        </Tooltip>
       ),
     },
+
     {
-      Header: 'State',
-      accessor: 'shortState',
+      Header: 'Zip',
+      accessor: 'zip',
       headerStyle,
       filterMethod: customFilter,
-      maxWidth: 80,
     },
-    {
-      Header: 'District',
-      accessor: 'districtNumber',
-      headerStyle,
-      filterMethod: customFilter,
-      maxWidth: 80,
-      Cell: row => {
-        let { districtNumber } = row.original;
-        if (districtNumber > 0 && districtNumber < 10) {
-          districtNumber = `0${districtNumber}`;
-        }
-        return <div>{districtNumber}</div>;
-      },
-    },
+
     {
       Header: 'Admin?',
       accessor: 'isAdmin',
@@ -167,14 +146,9 @@ function AdminUsersList({ users, deleteUserCallback }) {
       headerStyle,
       maxWidth: 80,
       filterable: false,
-      Cell: row => (
+      Cell: (row) => (
         <ButtonWrapper>
-          <IconButton
-            aria-label="delete"
-            onClick={() => handleOpenAlert(row.original)}
-          >
-            <DeleteIcon />
-          </IconButton>
+          <DeleteIcon onClick={() => handleOpenAlert(row.original)} />
         </ButtonWrapper>
       ),
     });
@@ -183,15 +157,14 @@ function AdminUsersList({ users, deleteUserCallback }) {
     deleteUserCallback(selectedUser);
     toggleShowDeleteAlert(false);
   };
-  const handleOpenAlert = user => {
+  const handleOpenAlert = (user) => {
     setSelectedUser(user);
     toggleShowDeleteAlert(true);
   };
   const handleCloseAlert = () => toggleShowDeleteAlert(false);
   return (
-    <AdminPageWrapper>
-      <Wrapper>
-        <Title>All Users</Title>
+    <AdminPageWrapper title="All Users">
+      <AdminPanel>
         <ReactTable
           className="-striped -highlight"
           data={tableData}
@@ -210,7 +183,7 @@ function AdminUsersList({ users, deleteUserCallback }) {
             handleProceed={handleDeleteUser}
           />
         )}
-      </Wrapper>
+      </AdminPanel>
     </AdminPageWrapper>
   );
 }

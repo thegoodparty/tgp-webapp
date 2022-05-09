@@ -10,11 +10,12 @@ import TextField from '@material-ui/core/TextField';
 
 import { AdminTopIssuesPageContext } from '/containers/admin/AdminTopIssuesPage';
 
-import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import AdminPageWrapper from '../shared/AdminPageWrapper';
 import { FontH1 } from '../../shared/typogrophy';
 import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import TopIssuesList from './TopIssuesList';
+import AdminPanel from '../shared/AdminPanel';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 80px);
@@ -33,12 +34,8 @@ function AdminTopIssuesWrapper() {
     setTopIssueName('');
   };
   return (
-    <AdminPageWrapper>
-      <Wrapper>
-        <RequestTopTab activeTab="Top Issues Manager" />
-        <FontH1>Top Issues Manager</FontH1>
-        <br />
-        <br />
+    <AdminPageWrapper title="Top Issues Manager">
+      <AdminPanel>
         <BlackButton
           onClick={() => {
             setAddNewIssue(true);
@@ -74,7 +71,7 @@ function AdminTopIssuesWrapper() {
         <br />
         <br />
         <TopIssuesList />
-      </Wrapper>
+      </AdminPanel>
     </AdminPageWrapper>
   );
 }

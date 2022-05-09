@@ -13,7 +13,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { H3 } from '../../shared/typogrophy';
 import { getArticleById } from '/helpers/articlesHelper';
-import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import AdminPageWrapper from '../shared/AdminPageWrapper';
+import AdminPanel from '../shared/AdminPanel';
 
 const Wrapper = styled.div`
   padding: 16px;
@@ -36,7 +37,7 @@ function AdminArticlesFeedback({ articles, content }) {
   useEffect(() => {
     if (articles) {
       const feedbackByArticle = {};
-      articles.map(article => {
+      articles.map((article) => {
         if (!feedbackByArticle[article.cmsId]) {
           feedbackByArticle[article.cmsId] = {
             helpful: 0,
@@ -50,7 +51,7 @@ function AdminArticlesFeedback({ articles, content }) {
         }
       });
       const data = [];
-      Object.keys(feedbackByArticle).map(articleId => {
+      Object.keys(feedbackByArticle).map((articleId) => {
         data.push({
           id: articleId,
           title: getArticleById(content, articleId)?.title,
@@ -92,7 +93,7 @@ function AdminArticlesFeedback({ articles, content }) {
       filterMethod: customFilter,
       headerStyle,
 
-      Cell: row => {
+      Cell: (row) => {
         return (
           <>
             {row.original.title && typeof row.original.title === 'string' && (
@@ -120,9 +121,8 @@ function AdminArticlesFeedback({ articles, content }) {
     },
   ];
   return (
-    <AdminPageWrapper>
-      <Wrapper>
-        <Title>Articles Feedback</Title>
+    <AdminPageWrapper title="Articles Feedback">
+      <AdminPanel>
         <ReactTable
           className="-striped -highlight"
           data={tableData}
@@ -131,7 +131,7 @@ function AdminArticlesFeedback({ articles, content }) {
           showPagination
           filterable
         />
-      </Wrapper>
+      </AdminPanel>
     </AdminPageWrapper>
   );
 }

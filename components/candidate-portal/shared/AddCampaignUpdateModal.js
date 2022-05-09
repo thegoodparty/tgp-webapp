@@ -15,7 +15,7 @@ import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 import Modal from '../../shared/Modal';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { FontH3 } from '../../shared/typogrophy';
-import JoditEditorWrapper from '../../admin/AdminEditCandidate/JoditEditor';
+import JoditEditorWrapper from '../../admin/shared/JoditEditor';
 import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
 import YouTubeInput from '../../shared/YouTubeInput';
 

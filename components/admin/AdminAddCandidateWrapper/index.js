@@ -8,38 +8,20 @@ import React, { useState, memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
-import Link from 'next/link';
-
-import Nav from '/containers/shared/Nav';
-import { BlueButton, PurpleButton } from '/components/shared/buttons';
+import { BlueButton } from '/components/shared/buttons';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { BsTrash } from 'react-icons/bs';
 import { states } from '/helpers/statesHelper';
 
-import { Body, H2 } from '../../shared/typogrophy';
-import JoditEditorWrapper from '../AdminEditCandidate/JoditEditor';
-import CandidateTopMenu from '../CandidateTopMenu';
-import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
+import { Body } from '../../shared/typogrophy';
+import JoditEditorWrapper from '../shared/JoditEditor';
 
-const Wrapper = styled.div`
-  min-height: calc(100vh - 50px);
-  padding: 36px 0;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-`;
+import AdminPageWrapper from '../shared/AdminPageWrapper';
+import AdminPanel from '../shared/AdminPanel';
 
-const CropWrapper = styled.div`
-  position: relative;
-`;
 
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const Input = styled(TextField)`
   && {
@@ -68,42 +50,35 @@ const chmaberOptions = [
   { key: 'federal', value: 'Federal' },
 ];
 
-const statesOptions = states.map(state => ({
+const statesOptions = states.map((state) => ({
   key: state.abbreviation,
   value: state.name,
 }));
 
 const fields = [
-  {
-    label: 'Show on Homepage?',
-    key: 'isOnHomepage',
-    initialValue: false,
-    isCheckbox: true,
-  },
+  // {
+  //   label: 'Show on Homepage?',
+  //   key: 'isOnHomepage',
+  //   initialValue: false,
+  //   isCheckbox: true,
+  // },
   {
     label: 'Is Active',
     key: 'isActive',
     initialValue: true,
     isCheckbox: true,
   },
-  {
-    label: 'Draft Candidate',
-    key: 'isDraft',
-    initialValue: false,
-    isCheckbox: true,
-  },
-  { label: 'Draft Office', key: 'draftOffice', initialValue: '' },
   { label: 'First Name', key: 'firstName', initialValue: '' },
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
   { label: 'Headline', key: 'headline', initialValue: '' },
-  {
-    label: 'Chamber',
-    key: 'chamber',
-    initialValue: 'local',
-    isSelect: true,
-    options: chmaberOptions,
-  },
+  // {
+  //   label: 'Chamber',
+  //   key: 'chamber',
+  //   initialValue: 'local',
+  //   isSelect: true,
+  //   options: chmaberOptions,
+  // },
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
   {
     label: 'State',
@@ -141,7 +116,7 @@ function AdminAddCandidateWrapper({
   mode,
 }) {
   const initialState = {};
-  fields.forEach(field => {
+  fields.forEach((field) => {
     initialState[field.key] = field.initialValue;
   });
 
@@ -151,7 +126,7 @@ function AdminAddCandidateWrapper({
   useEffect(() => {
     if (candidate) {
       const newState = {};
-      fields.forEach(field => {
+      fields.forEach((field) => {
         newState[field.key] = candidate
           ? candidate[field.key]
           : field.initialValue;
@@ -174,30 +149,26 @@ function AdminAddCandidateWrapper({
   };
 
   const createCandidate = () => {
-    if (mode === 'add') {
-      createCandidateCallback({
-        ...candidate,
-        ...formState,
-        about,
-      });
-    } else {
-      editCandidateCallback({
-        ...candidate,
-        ...formState,
-        about,
-        id: candidate.id,
-      });
-    }
+    // if (mode === 'add') {
+    createCandidateCallback({
+      ...candidate,
+      ...formState,
+      about,
+    });
+    // } else {
+    //   editCandidateCallback({
+    //     ...candidate,
+    //     ...formState,
+    //     about,
+    //     id: candidate.id,
+    //   });
+    // }
   };
 
   return (
-    <AdminPageWrapper>
-      <Wrapper>
-        <CandidateTopMenu candidate={candidate} />
-
-        <br />
-
-        {fields.map(field => (
+    <AdminPageWrapper title="Add a new candidate">
+      <AdminPanel>
+        {fields.map((field) => (
           <React.Fragment key={field.key}>
             {field.isSelect ? (
               <FormControl style={{ width: '100%' }}>
@@ -206,13 +177,13 @@ function AdminAddCandidateWrapper({
                   native
                   value={formState[field.key]}
                   labelId={field.key}
-                  onChange={e => onChangeField(field.key, e.target.value)}
+                  onChange={(e) => onChangeField(field.key, e.target.value)}
                   fullWidth
                   variant="outlined"
                   style={{ marginTop: '2rem' }}
                 >
                   <option value="">{field.emptySelectLabel}</option>
-                  {field.options?.map(item => (
+                  {field.options?.map((item) => (
                     <option value={item.key} key={item.key}>
                       {item.value}
                     </option>
@@ -224,7 +195,7 @@ function AdminAddCandidateWrapper({
                 <div>
                   <Checkbox
                     checked={formState[field.key]}
-                    onChange={e => onChangeField(field.key, e.target.checked)}
+                    onChange={(e) => onChangeField(field.key, e.target.checked)}
                   />
                   &nbsp; &nbsp; {field.label}
                 </div>
@@ -237,7 +208,7 @@ function AdminAddCandidateWrapper({
                 variant="outlined"
                 value={formState[field.key]}
                 type={field.initialValue === 0 ? 'number' : 'text'}
-                onChange={e =>
+                onChange={(e) =>
                   onChangeField(
                     field.key,
                     e.target.value,
@@ -250,7 +221,7 @@ function AdminAddCandidateWrapper({
         ))}
         <Label>About</Label>
         <JoditEditorWrapper
-          onChangeCallback={value => setAbout(value)}
+          onChangeCallback={(value) => setAbout(value)}
           initialText={about}
         />
 
@@ -259,7 +230,7 @@ function AdminAddCandidateWrapper({
         <BlueButton fullWidth onClick={createCandidate} disabled={!canSubmit()}>
           SAVE
         </BlueButton>
-      </Wrapper>
+      </AdminPanel>
     </AdminPageWrapper>
   );
 }
