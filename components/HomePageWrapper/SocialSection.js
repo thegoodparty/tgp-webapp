@@ -25,7 +25,7 @@ const TopRow = styled.div`
 
 const Stat = styled.div`
   display: flex;
-  align-items: initial;
+  align-items: flex-start;
   color: #000;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
@@ -100,6 +100,11 @@ const ComingMobile = styled.div`
   }
 `;
 
+const Heart = styled.div`
+  margin-right: 12px;
+  padding-top: 12px;
+`;
+
 const SocialSection = ({ openModalCallback }) => {
   return (
     <Wrapper>
@@ -112,7 +117,7 @@ const SocialSection = ({ openModalCallback }) => {
             className="no-underline"
           >
             <Stat style={{ marginRight: '70px', display: 'flex' }}>
-              <Icon>😁</Icon>
+              <Icon>🎉</Icon>
               <div>
                 <Count>85,174</Count>
                 <Label>#goodparty posts</Label>
@@ -121,7 +126,9 @@ const SocialSection = ({ openModalCallback }) => {
           </a>
 
           <Stat style={{ display: 'flex' }}>
-            <Icon>🎉</Icon>
+            <Heart>
+              <Image src="/images/heart.svg" width="42" height="34" />
+            </Heart>
             <div>
               <Count>
                 0 <Coming onClick={openModalCallback}>Coming Soon</Coming>
