@@ -11,18 +11,9 @@ import TextField from '@material-ui/core/TextField';
 import { AdminTopIssuesPageContext } from '/containers/admin/AdminTopIssuesPage';
 
 import AdminPageWrapper from '../shared/AdminPageWrapper';
-import { FontH1 } from '../../shared/typogrophy';
-import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import TopIssuesList from './TopIssuesList';
 import AdminPanel from '../shared/AdminPanel';
-
-const Wrapper = styled.div`
-  min-height: calc(100vh - 80px);
-  padding: 36px 0;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-`;
 
 function AdminTopIssuesWrapper() {
   const { createTopIssueCallback } = useContext(AdminTopIssuesPageContext);
