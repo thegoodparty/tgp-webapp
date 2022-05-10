@@ -230,7 +230,7 @@ function ApplicationStep1({
       <Title>Step 1: Take the Good Party Pledge to get started</Title>
       <SubTitle>
         Good Party candidates take a pledge to be{' '}
-        <strong>Independent, People Powered and Anti-Corruption</strong>.
+        <strong>Honest, Independent and People-Powered</strong>.
       </SubTitle>
       {cards.map((card) => (
         <Card key={card.title}>
