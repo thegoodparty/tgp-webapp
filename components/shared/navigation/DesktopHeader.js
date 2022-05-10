@@ -4,25 +4,29 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Link as ScrollLink } from 'react-scroll';
-import { MdIosShare } from 'react-icons/md';
 
 import styled from 'styled-components';
 
 import { logEvent } from '/services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
-import { PurpleButton } from '../buttons';
-import { Body13 } from '../typogrophy';
+
 import AdminMenu from '../../admin/AdminMenu';
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   height: 80px;
   width: 100%;
   border-bottom: solid 1px #e1e2e9;
   background-color: #fff;
   z-index: 100;
   padding: 0 24px;
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.1);
 
-  position: relative;
+  position: fixed;
+  top: 0;
+`;
+
+const Padder = styled.div`
+  height: 80px;
 `;
 
 const ContentWrapper = styled.div`
@@ -107,101 +111,104 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   //   logEvent('Share', 'top_nav_share', 'Top Nav');
   // };
   return (
-    <Wrapper>
-      <ContentWrapper>
-        <Link
-          href="/"
-          passHref
-          onClick={() => {
-            logEvent('Link', 'Logo', 'Top Nav');
-          }}
-        >
-          <a>
-            <Image
-              src="/images/black-logo.svg"
-              data-cy="logo"
-              width={174}
-              height={20}
-              alt="GOOD PARTY"
-            />
-          </a>
-        </Link>
-        <RightLinks>
-          {isHomePage && (
-            <ScrollLink to="what-is-it" duration={350} smooth>
-              <TopLink>
-                What is{' '}
-                <u>
-                  <i>It</i>
-                </u>{' '}
-                ?
+    <>
+      <Wrapper>
+        <ContentWrapper>
+          <Link
+            href="/"
+            passHref
+            onClick={() => {
+              logEvent('Link', 'Logo', 'Top Nav');
+            }}
+          >
+            <a>
+              <Image
+                src="/images/black-logo.svg"
+                data-cy="logo"
+                width={174}
+                height={20}
+                alt="GOOD PARTY"
+              />
+            </a>
+          </Link>
+          <RightLinks>
+            {isHomePage && (
+              <ScrollLink to="what-is-it" duration={350} smooth>
+                <TopLink>
+                  What is{' '}
+                  <u>
+                    <i>It</i>
+                  </u>{' '}
+                  ?
+                </TopLink>
+              </ScrollLink>
+            )}
+            {links.map((link) => (
+              <TopLink key={link.href}>
+                <Link
+                  href={link.href}
+                  passHref
+                  onClick={() => {
+                    logEvent('Link', link.label, 'Top Nav');
+                  }}
+                >
+                  <A>{link.label}</A>
+                </Link>
               </TopLink>
-            </ScrollLink>
-          )}
-          {links.map((link) => (
-            <TopLink key={link.href}>
+            ))}
+            {user?.name ? (
               <Link
-                href={link.href}
+                href="/profile"
                 passHref
                 onClick={() => {
-                  logEvent('Link', link.label, 'Top Nav');
+                  logEvent('Link', 'Profile', 'Top Nav');
                 }}
               >
-                <A>{link.label}</A>
+                <a>
+                  <AvatarWrapper>
+                    <UserAvatar user={user} />
+                  </AvatarWrapper>
+                </a>
               </Link>
-            </TopLink>
-          ))}
-          {user?.name ? (
-            <Link
-              href="/profile"
-              passHref
-              onClick={() => {
-                logEvent('Link', 'Profile', 'Top Nav');
-              }}
-            >
-              <a>
-                <AvatarWrapper>
-                  <UserAvatar user={user} />
-                </AvatarWrapper>
-              </a>
-            </Link>
-          ) : (
-            <>
-              <TopLink>
-                <Link
-                  href="/login"
-                  passHref
-                  onClick={() => {
-                    logEvent('Link', 'Login', 'Top Nav');
-                  }}
-                >
-                  <A>Login</A>
-                </Link>
-              </TopLink>
-              <TopLink>
-                <Link
-                  href="/register"
-                  passHref
-                  onClick={() => {
-                    logEvent('Link', 'Register', 'Top Nav');
-                  }}
-                >
-                  <A>
-                    <strong>Join Us</strong>
-                  </A>
-                </Link>
-              </TopLink>
-            </>
-          )}
-          {user?.isAdmin && (
-            <>
-              <AdminMenu />
-              {candidateRoute && <AdminMenu candidateMode id={id} />}
-            </>
-          )}
-        </RightLinks>
-      </ContentWrapper>
-    </Wrapper>
+            ) : (
+              <>
+                <TopLink>
+                  <Link
+                    href="/login"
+                    passHref
+                    onClick={() => {
+                      logEvent('Link', 'Login', 'Top Nav');
+                    }}
+                  >
+                    <A>Login</A>
+                  </Link>
+                </TopLink>
+                <TopLink>
+                  <Link
+                    href="/register"
+                    passHref
+                    onClick={() => {
+                      logEvent('Link', 'Register', 'Top Nav');
+                    }}
+                  >
+                    <A>
+                      <strong>Join Us</strong>
+                    </A>
+                  </Link>
+                </TopLink>
+              </>
+            )}
+            {user?.isAdmin && (
+              <>
+                <AdminMenu />
+                {candidateRoute && <AdminMenu candidateMode id={id} />}
+              </>
+            )}
+          </RightLinks>
+        </ContentWrapper>
+      </Wrapper>
+      <Padder />
+    </>
   );
 };
 

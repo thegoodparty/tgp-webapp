@@ -8,7 +8,7 @@ const H1 = styled.h1`
   font-weight: 900;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.xl}) {
     margin: 70px 0;
     font-size: 56px;
   }
@@ -18,7 +18,7 @@ const H1 = styled.h1`
     font-size: 36px;
 
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
+        theme.breakpointsPixels.xl}) {
       font-size: 48px;
     }
   }
@@ -29,7 +29,7 @@ const H1 = styled.h1`
     position: relative;
     z-index: 10;
     @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
+        theme.breakpointsPixels.xl}) {
       font-size: 90px;
     }
   }

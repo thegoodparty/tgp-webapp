@@ -28,7 +28,7 @@ const Stat = styled.div`
   align-items: flex-start;
   color: #000;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.xl}) {
     margin-bottom: 24px;
   }
 `;
@@ -40,7 +40,7 @@ const Count = styled.div`
   font-size: 30px;
   font-weight: 900;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.xl}) {
     font-size: 48px;
   }
 `;
@@ -48,7 +48,7 @@ const Label = styled.div`
   font-size: 16px;
   font-weight: 900;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.xl}) {
     font-size: 19px;
   }
 `;
