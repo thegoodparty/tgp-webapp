@@ -127,7 +127,7 @@ const SocialSection = ({ openModalCallback }) => {
 
           <Stat style={{ display: 'flex' }}>
             <Heart>
-              <Image src="/images/heart.svg" width="42" height="34" />
+              <img src="/images/heart.svg" width="42" height="34" alt="" />
             </Heart>
             <div>
               <Count>
