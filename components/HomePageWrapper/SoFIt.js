@@ -69,8 +69,12 @@ const Inner = styled.div`
 `;
 
 const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
-  const { experimentVariant } = useContext(HomePageContext);
-  const verb = experimentVariant === '0' ? 'Fuck' : 'We’re over';
+  let variant = '0';
+  const context = useContext(HomePageContext);
+  if (context && context.experimentVariant) {
+    variant = context.experimentVariant;
+  }
+  const verb = variant === '0' ? 'Fuck' : 'We’re over';
   return (
     <Wrapper>
       {!noTitle && (
