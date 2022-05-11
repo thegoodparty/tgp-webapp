@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link as ScrollLink } from 'react-scroll';
+
+import { HomePageContext } from '/containers/HomePage';
 
 const H1 = styled.h1`
   font-size: 48px;
@@ -54,6 +56,8 @@ const MobileBr = styled.span`
 `;
 
 const Hero = () => {
+  const { experimentVariant } = useContext(HomePageContext);
+  const verb = experimentVariant === '0' ? 'Fuck' : 'We’re over';
   return (
     <H1>
       <ScrollLink className="pointer" to="what-is-it" duration={350} smooth>
@@ -65,7 +69,7 @@ const Hero = () => {
       <br />
       <span className="large">
         <span className="yellow" />
-        Fuck{' '}
+        {verb}{' '}
         <ScrollLink className="pointer" to="what-is-it" duration={350} smooth>
           <u>
             <i>It</i>
@@ -73,8 +77,12 @@ const Hero = () => {
         </ScrollLink>
         !
       </span>{' '}
-      <MobileBr />
-      <span className="smaller">(with a #goodparty)</span>
+      {experimentVariant === '0' && (
+        <>
+          <MobileBr />
+          <span className="smaller">(with a #goodparty)</span>
+        </>
+      )}
     </H1>
   );
 };

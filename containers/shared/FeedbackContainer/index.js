@@ -4,13 +4,14 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import FeedbackWrapper from '/components/shared/FeedbackWrapper';
+import { getExperiment } from '/helpers/optimizeHelper';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -28,6 +29,13 @@ export function FeedbackContainer({
   useInjectReducer({ key: 'feedbackContainer', reducer });
   useInjectSaga({ key: 'feedbackContainer', saga });
 
+  const [experimentVariant, setExperimentVariant] = useState('0');
+  useEffect(() => {
+    getExperiment('homepage-language', 'uoIDTR6vRKeDD-7mW_1Xmg', (type) => {
+      setExperimentVariant(type);
+    });
+  }, []);
+
   const { isOpen } = feedbackContainer;
 
   const childProps = {
@@ -35,6 +43,7 @@ export function FeedbackContainer({
     mode,
     toggleModalCallback,
     isOpen,
+    experimentVariant,
   };
 
   return <FeedbackWrapper {...childProps} />;
@@ -54,7 +63,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    sendFeedbackCallback: (thumbs,  suggestion) => {
+    sendFeedbackCallback: (thumbs, suggestion) => {
       dispatch(actions.sendFeedbackAction(thumbs, suggestion));
     },
     toggleModalCallback: (isOpen) => {

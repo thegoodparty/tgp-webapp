@@ -71,7 +71,9 @@ const Thumb = styled.div`
 
 const CHARACTER_LIMIT = 1000;
 
-function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
+function FeedbackForm({ closeCallback, sendFeedbackCallback, experimentVariant }) {
+  const verb = experimentVariant === '0' ? 'Fuck' : 'We’re over';
+  const plans = experimentVariant === '0' ? 'our plans to:' : 'statement:';
   const [formState, setFormState] = useState({
     thumbs: 'none',
     suggestion: '',
@@ -112,16 +114,16 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
         <Grid container spacing={3}>
           <Grid item xs={9}>
             <Body>
-              How do you feel about our plans to:
+              How do you feel about {plans}
               <br />
               <strong>
-                Fuck{' '}
+                {verb}{' '}
                 <u>
                   <i>It</i>
                 </u>
                 !
               </strong>{' '}
-              (with a #goodparty)?
+              {experimentVariant === '0' && '(with a #goodparty)'}?
             </Body>
           </Grid>
           <Grid item xs={3}>

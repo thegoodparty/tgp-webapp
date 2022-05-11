@@ -60,6 +60,7 @@ function FeedbackWrapper({
   mode = 'desktop',
   toggleModalCallback,
   isOpen,
+  experimentVariant,
 }) {
   return (
     <>
@@ -70,6 +71,7 @@ function FeedbackWrapper({
         <FeedbackForm
           closeCallback={() => toggleModalCallback(false)}
           sendFeedbackCallback={sendFeedbackCallback}
+          experimentVariant={experimentVariant}
         />
       )}
     </>
