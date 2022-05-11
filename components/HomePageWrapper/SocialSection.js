@@ -140,7 +140,7 @@ const SocialSection = ({ openModalCallback }) => {
             </div>
           </Stat>
         </Row>
-        <Link to="accomplish" duration={350} smooth>
+        <Link to="accomplish" duration={350} smooth offset={-90}>
           <ScrollLink>What does partying accomplish?</ScrollLink>
         </Link>
       </TopRow>

@@ -133,7 +133,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
           </Link>
           <RightLinks>
             {isHomePage && (
-              <ScrollLink to="what-is-it" duration={350} smooth>
+              <ScrollLink to="what-is-it" duration={350} smooth offset={-90}>
                 <TopLink>
                   What is{' '}
                   <u>

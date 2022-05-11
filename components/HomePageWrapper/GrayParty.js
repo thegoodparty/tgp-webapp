@@ -50,7 +50,7 @@ const GrayParty = ({ openModalCallback }) => {
         </Relative>
         <br />
         Because{' '}
-        <ScrollLink className="pointer" to="what-is-it" duration={350} smooth>
+        <ScrollLink className="pointer" to="what-is-it" duration={350} smooth  offset={-90}>
           <u>
             <i>It</i>
           </u>

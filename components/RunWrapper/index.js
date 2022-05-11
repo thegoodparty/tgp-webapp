@@ -50,7 +50,7 @@ function RunWrapper() {
         </Font18>
         <Free>we’re always free</Free>
         <StartCampaignButton />
-        <Link to="questions" duration={500} smooth>
+        <Link to="questions" duration={500} smooth offset={-90}>
           <Questions>Have more questions?</Questions>
         </Link>
         <BadgeWrapper>
