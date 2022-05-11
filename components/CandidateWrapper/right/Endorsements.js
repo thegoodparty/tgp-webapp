@@ -66,7 +66,7 @@ function Endorsements() {
                 <Truncated>{item.summary}</Truncated>
                 {item.link && (
                   <div className="text-right">
-                    <a href={item.link} target="_blank" rel="noreferrer">
+                    <a href={item.link} target="_blank" rel="noopener noreferrer nofollow">
                       Show More
                     </a>
                   </div>

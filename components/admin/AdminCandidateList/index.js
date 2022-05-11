@@ -111,7 +111,7 @@ function Index({ candidates, deleteCandidateCallback }) {
           <a
             href={route}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer nofollow"
             style={{
               textDecoration: row.original.isHidden ? 'line-through' : '',
             }}

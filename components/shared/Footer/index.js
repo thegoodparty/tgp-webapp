@@ -148,7 +148,7 @@ function Footer() {
                       <a
                         href={link.link}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer nofollow"
                         title={link.label}
                       >
                         {link.label}

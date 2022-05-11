@@ -113,7 +113,7 @@ const SocialSection = ({ openModalCallback }) => {
           <a
             href="https://www.tiktok.com/tag/goodparty?lang=en"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer nofollow"
             className="no-underline"
           >
             <Stat style={{ marginRight: '70px', display: 'flex' }}>

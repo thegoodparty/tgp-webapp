@@ -59,7 +59,7 @@ function PortalEmbedButtonWrapper({ candidate, content, role }) {
             <a
               href="https://www.baddarforthepeople.org/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer nofollow"
             >
               Youseff Baddar
             </a>

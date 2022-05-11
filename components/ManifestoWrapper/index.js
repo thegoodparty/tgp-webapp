@@ -66,7 +66,7 @@ function ManifestoWrapper() {
             <i>It</i> is{' '}
             <a
               href="https://mindlevelup.wordpress.com/2016/10/23/canaanite-gods-explained/"
-              rel="noreferrer"
+              rel="noopener noreferrer nofollow"
               target="_blank"
               className="underline"
             >
