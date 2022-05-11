@@ -74,7 +74,7 @@ const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
   if (context && context.experimentVariant) {
     variant = context.experimentVariant;
   }
-  const verb = variant === '0' ? 'Fuck' : 'We’re over';
+  const verb = variant === '0' ? 'Fuck' : 'Get over';
   return (
     <Wrapper>
       {!noTitle && (

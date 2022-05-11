@@ -72,7 +72,7 @@ const Thumb = styled.div`
 const CHARACTER_LIMIT = 1000;
 
 function FeedbackForm({ closeCallback, sendFeedbackCallback, experimentVariant }) {
-  const verb = experimentVariant === '0' ? 'Fuck' : 'We’re over';
+  const verb = experimentVariant === '0' ? 'Fuck' : 'Get over';
   const plans = experimentVariant === '0' ? 'our plans to:' : 'statement:';
   const [formState, setFormState] = useState({
     thumbs: 'none',

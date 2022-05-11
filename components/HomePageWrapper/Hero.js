@@ -57,10 +57,16 @@ const MobileBr = styled.span`
 
 const Hero = () => {
   const { experimentVariant } = useContext(HomePageContext);
-  const verb = experimentVariant === '0' ? 'Fuck' : 'We’re over';
+  const verb = experimentVariant === '0' ? 'Fuck' : 'Get over';
   return (
     <H1>
-      <ScrollLink className="pointer" to="what-is-it" duration={350} smooth  offset={-90}>
+      <ScrollLink
+        className="pointer"
+        to="what-is-it"
+        duration={350}
+        smooth
+        offset={-90}
+      >
         <u>
           <i>It</i>
         </u>
@@ -70,19 +76,21 @@ const Hero = () => {
       <span className="large">
         <span className="yellow" />
         {verb}{' '}
-        <ScrollLink className="pointer" to="what-is-it" duration={350} smooth  offset={-90}>
+        <ScrollLink
+          className="pointer"
+          to="what-is-it"
+          duration={350}
+          smooth
+          offset={-90}
+        >
           <u>
             <i>It</i>
           </u>
         </ScrollLink>
         !
       </span>{' '}
-      {experimentVariant === '0' && (
-        <>
-          <MobileBr />
-          <span className="smaller">(with a #goodparty)</span>
-        </>
-      )}
+      <MobileBr />
+      <span className="smaller">(with a #goodparty)</span>
     </H1>
   );
 };
