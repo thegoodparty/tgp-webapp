@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FaTwitter, FaTiktok, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Row from '../shared/Row';
+import { HomePageContext } from '../../containers/HomePage';
 
 const Wrapper = styled.section`
   padding: 60px 0 0;
@@ -68,11 +69,13 @@ const Inner = styled.div`
 `;
 
 const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
+  const { experimentVariant } = useContext(HomePageContext);
+  const verb = experimentVariant === '0' ? 'Fuck' : 'We’re over';
   return (
     <Wrapper>
       {!noTitle && (
         <H2>
-          So, Fuck{' '}
+          So, {verb}{' '}
           <u>
             <i>It</i>
           </u>
