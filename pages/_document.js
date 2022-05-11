@@ -146,7 +146,7 @@ class CustomDocument extends NextDocument {
           />
           {this.props.styles}
 
-          {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />*/}
+          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST" />
         </Head>
         <body>
           <Main />

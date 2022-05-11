@@ -4,7 +4,7 @@
  *
  */
 
-import React, { createContext, memo } from 'react';
+import React, { createContext, memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -21,11 +21,19 @@ import TgpHelmet from '/components/shared/TgpHelmet';
 // import makeSelectHomePage from './selectors';
 // import actions from './actions';
 import feedbackActions from '/containers/shared/FeedbackContainer/actions';
+import { getExperiment } from '/helpers/optimizeHelper';
 
 export const HomePageContext = createContext();
 
 export function HomePage({ showFeedbackCallback }) {
-  const childProps = { showFeedbackCallback };
+  const [experimentVariant, setExperimentVariant] = useState('0');
+  useEffect(() => {
+    getExperiment('homepage-language', 'uoIDTR6vRKeDD-7mW_1Xmg', (type) => {
+      setExperimentVariant(type);
+    });
+  }, []);
+  console.log('experimentVariant', experimentVariant);
+  const childProps = { showFeedbackCallback, experimentVariant };
   return (
     <HomePageContext.Provider value={childProps}>
       <TgpHelmet
