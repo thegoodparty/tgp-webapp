@@ -175,32 +175,13 @@ function MobileHeader({ user }) {
           </Grid>
           <PushMenuLink>
             <Link href="/about" passHref>
-              <a>About Good Party</a>
-            </Link>
-          </PushMenuLink>
-
-          <PushMenuLink>
-            <Link
-              href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-              passHref
-            >
-              <a>How crowd-voting works</a>
+              <a>About</a>
             </Link>
           </PushMenuLink>
 
           <PushMenuLink>
             <Link href="/candidates" passHref>
-              <a>Meet the candidates</a>
-            </Link>
-          </PushMenuLink>
-          <PushMenuLink>
-            <Link href="/faqs" passHref>
-              <a>FAQs</a>
-            </Link>
-          </PushMenuLink>
-          <PushMenuLink>
-            <Link href="/run" passHref>
-              <a>How To Run</a>
+              <a>Campaigns</a>
             </Link>
           </PushMenuLink>
 
