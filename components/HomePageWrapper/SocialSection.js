@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 
-import { numberFormatter } from '/helpers/numberHelper';
 import Row from '../shared/Row';
+import BlackButton from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.section`
   padding-bottom: 130px;
@@ -53,7 +54,7 @@ const Label = styled.div`
   }
 `;
 
-const ScrollLink = styled.div`
+const LinkScroll = styled.div`
   text-decoration: underline;
   cursor: pointer;
   font-weight: 900;
@@ -105,6 +106,37 @@ const Heart = styled.div`
   padding-top: 12px;
 `;
 
+const BlackBox = styled.div`
+  background-color: #000;
+  padding: 36px;
+  color: #fff;
+  border-radius: 35px;
+  margin-top: 20px;
+  font-size: 40px;
+  line-height: 46px;
+  font-weight: 900;
+`;
+
+const Small = styled.div`
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  margin-top: 22px;
+`;
+
+const WhiteButton = styled(BlackButton)`
+  && {
+    margin-top: 30px;
+    background-color: #fff;
+    color: #000;
+
+    &:hover {
+      background-color: #eee;
+      color: #000;
+    }
+  }
+`;
+
 const SocialSection = ({ openModalCallback }) => {
   return (
     <Wrapper>
@@ -141,10 +173,10 @@ const SocialSection = ({ openModalCallback }) => {
           </Stat>
         </Row>
         <Link to="accomplish" duration={350} smooth offset={-90}>
-          <ScrollLink>What does partying accomplish?</ScrollLink>
+          <LinkScroll>What does partying accomplish?</LinkScroll>
         </Link>
       </TopRow>
-      <Grid container spacing={8} className="text-center">
+      <Grid container spacing={2} className="text-center">
         <Grid item xs={12} lg={4}>
           <Relative>
             <Image
@@ -169,10 +201,46 @@ const SocialSection = ({ openModalCallback }) => {
           <Relative>
             <Image
               src="/images/homepage/social3.jpg"
-              height={615}
+              height={298}
               width={369}
             />
-            <Clickable onClick={openModalCallback} />
+            <BlackBox>
+              Just say no...
+              <br />
+              to{' '}
+              <ScrollLink
+                className="pointer"
+                to="what-is-it"
+                duration={350}
+                smooth
+                offset={-90}
+                style={{ color: '#fff' }}
+              >
+                <u>
+                  <i>It</i>
+                </u>
+              </ScrollLink>
+              .
+              <WhiteButton fullWidth onClick={openModalCallback}>
+                Host a #goodparty
+              </WhiteButton>
+              <Small>
+                What is{' '}
+                <ScrollLink
+                  className="pointer"
+                  to="what-is-it"
+                  duration={350}
+                  smooth
+                  offset={-90}
+                  style={{ color: '#fff' }}
+                >
+                  <u>
+                    <i>It</i>
+                  </u>
+                </ScrollLink>
+                ?
+              </Small>
+            </BlackBox>
           </Relative>
         </Grid>
       </Grid>
