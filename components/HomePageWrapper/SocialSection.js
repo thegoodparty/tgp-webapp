@@ -74,6 +74,15 @@ const Clickable = styled.div`
   cursor: pointer;
 `;
 
+const ClickableSmall = styled.div`
+  position: absolute;
+  top: 11%;
+  height: 50px;
+  right: 0;
+  width: 30%;
+  cursor: pointer;
+`;
+
 const Coming = styled.span`
   display: none;
   @media only screen and (min-width: ${({ theme }) =>
@@ -204,6 +213,13 @@ const SocialSection = ({ openModalCallback }) => {
               height={298}
               width={369}
             />
+            <a
+              href="https://www.tiktok.com/tag/goodparty?lang=en"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              <ClickableSmall />
+            </a>
             <BlackBox>
               Just say no...
               <br />
