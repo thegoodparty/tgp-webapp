@@ -17,6 +17,6 @@ if (typeof window !== 'undefined') {
   ENV = 'prod';
 }
 
-export const GA_ID = 'UA-146762622-1';
+// export const GA_ID = 'UA-146762622-1';
 
 export default ENV;

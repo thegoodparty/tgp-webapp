@@ -31,7 +31,7 @@ export function FeedbackContainer({
 
   const [experimentVariant, setExperimentVariant] = useState('0');
   useEffect(() => {
-    getExperiment('homepage-language', 'uoIDTR6vRKeDD-7mW_1Xmg', (type) => {
+    getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
       setExperimentVariant(type);
     });
   }, []);

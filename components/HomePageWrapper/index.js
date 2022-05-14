@@ -18,13 +18,6 @@ const HomePageWrapper = () => {
     setModalOpen(true);
   };
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://js.hsforms.net/forms/v2.js';
-    script.async = true;
-
-    document.body.appendChild(script);
-  }, []);
   return (
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '0 24px' }}>

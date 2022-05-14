@@ -22,18 +22,35 @@ import TgpHelmet from '/components/shared/TgpHelmet';
 // import actions from './actions';
 import feedbackActions from '/containers/shared/FeedbackContainer/actions';
 import { getExperiment } from '/helpers/optimizeHelper';
+import actions from '../entrance/RegisterPage/actions';
+import { useInjectSaga } from '../../utils/injectSaga';
+import registerSaga from '../entrance/RegisterPage/saga';
+import { logEvent } from '../../services/AnalyticsService';
+import makeSelectUser from '../you/YouPage/selectors';
 
 export const HomePageContext = createContext();
 
-export function HomePage({ showFeedbackCallback }) {
+export function HomePage({
+  showFeedbackCallback,
+  registerCallback,
+  userState,
+}) {
+  useInjectSaga({ key: 'registerPage', saga: registerSaga });
   const [experimentVariant, setExperimentVariant] = useState('0');
   useEffect(() => {
-    getExperiment('homepage-language', 'uoIDTR6vRKeDD-7mW_1Xmg', (type) => {
+    getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
       setExperimentVariant(type);
     });
   }, []);
+
+  const { user } = userState;
   console.log('experimentVariant', experimentVariant);
-  const childProps = { showFeedbackCallback, experimentVariant };
+  const childProps = {
+    registerCallback,
+    showFeedbackCallback,
+    experimentVariant,
+    user,
+  };
   return (
     <HomePageContext.Provider value={childProps}>
       <TgpHelmet
@@ -48,10 +65,13 @@ export function HomePage({ showFeedbackCallback }) {
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   showFeedbackCallback: PropTypes.func,
+  registerCallback: PropTypes.func,
+  userState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   // homeState: makeSelectHomePage(),
+  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -59,6 +79,12 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     showFeedbackCallback: () => {
       dispatch(feedbackActions.toggleModalAction(true));
+    },
+    registerCallback: (name, email, phone, zip) => {
+      logEvent('signup', 'homepage-modal-form');
+      dispatch(
+        actions.registerAction(name, email, phone, zip, false, 'homepageModal'),
+      );
     },
   };
 }

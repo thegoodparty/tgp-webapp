@@ -4,6 +4,7 @@ import CloseIcon from '@material-ui/icons/Cancel';
 
 import { HomePageContext } from '/containers/HomePage';
 import BlackButton from '../shared/buttons/BlackButton';
+import RegisterForm from './RegisterForm';
 
 const Wrapper = styled.div`
   padding: 36px;
@@ -31,17 +32,6 @@ const Feedback = styled.div`
 
 const ModalInner = ({ closeModalCallback }) => {
   const { showFeedbackCallback } = useContext(HomePageContext);
-  const [showForm, setShowForm] = useState(false);
-  useEffect(() => {
-    if (window.hbspt) {
-      window.hbspt.forms.create({
-        region: 'na1',
-        portalId: '21589597',
-        formId: '39b42d7f-826d-435d-a41f-bd692ee1298e',
-        target: '#hubspotFormModal',
-      });
-    }
-  }, []);
 
   const handleFeedback = () => {
     closeModalCallback();
@@ -60,24 +50,7 @@ const ModalInner = ({ closeModalCallback }) => {
       Sign up to be the first to know! ❤️ 🎉
       <br />
       <br />
-      {!showForm && (
-        <>
-          <BlackButton
-            fullWidth
-            onClick={() => {
-              setShowForm(true);
-            }}
-          >
-            Sign Up
-          </BlackButton>
-          <br />
-          <br />
-        </>
-      )}
-      <div
-        id="hubspotFormModal"
-        style={{ display: showForm ? 'block' : 'none' }}
-      />
+      <RegisterForm submitCallback={closeModalCallback} />
       <Feedback onClick={handleFeedback}>Give Feedback</Feedback>
     </Wrapper>
   );
