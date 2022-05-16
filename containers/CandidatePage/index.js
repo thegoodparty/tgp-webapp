@@ -97,10 +97,7 @@ export function CandidatePage({
     }
   }, [id]);
 
-  const title = `${firstName} ${lastName} ${partyResolver(
-    party,
-    otherParty,
-  ).toLowerCase()} ${
+  const title = `${firstName} ${lastName} ${partyResolver(party, otherParty)} ${
     party !== 'I' ? 'Party ' : ''
   }candidate for ${race} | Crowd-voting on GOOD PARTY`;
 
