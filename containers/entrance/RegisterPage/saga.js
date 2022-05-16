@@ -28,6 +28,7 @@ function* register({ name, email, phone, zip, callback, source }) {
       phone,
       zip,
       source,
+      uri: window.location.href,
     };
 
     const guestUuid = getCookie('guuid');
@@ -130,6 +131,8 @@ function* socialRegister({ socialUser }) {
       name,
       email,
       socialToken: idToken,
+      source: 'registerPage',
+      uri: window.location.href,
     };
 
     const guestUuid = getCookie('guuid');

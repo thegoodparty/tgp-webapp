@@ -173,6 +173,7 @@ function mapDispatchToProps(dispatch) {
           newUser.phone,
           newUser.zip,
           callback,
+          'candidatePage',
         ),
       );
     },
