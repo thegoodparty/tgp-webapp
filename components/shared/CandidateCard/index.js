@@ -95,6 +95,8 @@ const ButtonWrapper = styled.div`
   width: calc(100% - 48px);
 `;
 
+const MAX_POSITIONS = 3;
+
 function CandidateCard({ candidate }) {
   const {
     id,
@@ -111,6 +113,11 @@ function CandidateCard({ candidate }) {
   } = candidate;
   const achievements = achievementsHelper(supporters);
   const brightColor = color?.color ? color.color : '#000';
+  let topPositions = positions;
+
+  if (positions.length > MAX_POSITIONS) {
+    topPositions = positions.slice(0, MAX_POSITIONS);
+  }
   return (
     <Link
       href={`/candidate/${firstName}-${lastName}/${id}`}
@@ -155,12 +162,12 @@ function CandidateCard({ candidate }) {
               // withAchievement
             />
             <Quote>{headline}</Quote>
-            {positions && positions.length > 0 && (
+            {topPositions && topPositions.length > 0 && (
               <Positions>
                 <div style={{ marginBottom: '12px' }}>
                   Top Issues for this candidate
                 </div>
-                {positions.map((position) => (
+                {topPositions.map((position) => (
                   <Position key={position.id}>{position.name}</Position>
                 ))}
               </Positions>
