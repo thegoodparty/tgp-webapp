@@ -115,7 +115,7 @@ function CandidateCard({ candidate }) {
   const brightColor = color?.color ? color.color : '#000';
   let topPositions = positions;
 
-  if (positions.length > MAX_POSITIONS) {
+  if (positions && positions.length > MAX_POSITIONS) {
     topPositions = positions.slice(0, MAX_POSITIONS);
   }
   return (
