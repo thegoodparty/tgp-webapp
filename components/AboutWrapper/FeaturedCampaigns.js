@@ -32,6 +32,9 @@ const SeeMoreWrapper = styled.div`
 
 const FeaturedCampaigns = ({ featuredCandidates, removePadding = false }) => {
   let candidates = featuredCandidates;
+  if (!candidates || candidates.length === 0) {
+    return <></>;
+  }
 
   return (
     <Section className={removePadding && 'no-padding'}>
