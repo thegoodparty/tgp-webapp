@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import { Link } from 'react-scroll';
 import { Link as ScrollLink } from 'react-scroll';
+import Hidden from '@material-ui/core/Hidden'
 
 import Row from '../shared/Row';
 import BlackButton from '../shared/buttons/BlackButton';
@@ -172,9 +173,10 @@ const SocialSection = ({ openModalCallback }) => {
             </Heart>
             <div>
               <Count>
-                0 <Coming onClick={openModalCallback}>Coming Soon</Coming>
+                8,668
+                {/*<Coming onClick={openModalCallback}>Coming Soon</Coming>*/}
               </Count>
-              <Label>#goodparty hosts</Label>
+              <Label>#goodparty people</Label>
               <ComingMobile onClick={openModalCallback}>
                 Coming Soon
               </ComingMobile>
@@ -186,6 +188,7 @@ const SocialSection = ({ openModalCallback }) => {
         </Link>
       </TopRow>
       <Grid container spacing={2} className="text-center">
+        <Hidden mdDown>
         <Grid item xs={12} lg={4}>
           <Relative>
             <Image
@@ -206,6 +209,7 @@ const SocialSection = ({ openModalCallback }) => {
             <Clickable onClick={openModalCallback} />
           </Relative>
         </Grid>
+        </Hidden>
         <Grid item xs={12} lg={4}>
           <Relative>
             <Image
