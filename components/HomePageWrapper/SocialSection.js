@@ -177,9 +177,9 @@ const SocialSection = ({ openModalCallback }) => {
                 {/*<Coming onClick={openModalCallback}>Coming Soon</Coming>*/}
               </Count>
               <Label>#goodparty people</Label>
-              <ComingMobile onClick={openModalCallback}>
-                Coming Soon
-              </ComingMobile>
+              {/*<ComingMobile onClick={openModalCallback}>*/}
+              {/*  Coming Soon*/}
+              {/*</ComingMobile>*/}
             </div>
           </Stat>
         </Row>
