@@ -4,29 +4,30 @@
  *
  */
 
-import React, { createContext, memo, useState, useEffect } from 'react';
+import React, { createContext, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { useRouter } from 'next/router';
 // import { useInjectSaga } from '/utils/injectSaga';
 // import { useInjectReducer } from '/utils/injectReducer';
 
 import HomePageWrapper from '/components/HomePageWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
-// import { logEvent } from '/services/AnalyticsService';
 //
 // import reducer from './reducer';
 // import saga from './saga';
 // import makeSelectHomePage from './selectors';
 // import actions from './actions';
 import feedbackActions from '/containers/shared/FeedbackContainer/actions';
-import { getExperiment } from '/helpers/optimizeHelper';
+// import { getExperiment } from '/helpers/optimizeHelper';
 import actions from '../entrance/RegisterPage/actions';
 import { useInjectSaga } from '../../utils/injectSaga';
 import registerSaga from '../entrance/RegisterPage/saga';
 import { logEvent } from '../../services/AnalyticsService';
 import makeSelectUser from '../you/YouPage/selectors';
+import { getUtmExperiment } from '../../helpers/utmHelper';
 
 export const HomePageContext = createContext();
 
@@ -34,22 +35,30 @@ export function HomePage({
   showFeedbackCallback,
   registerCallback,
   userState,
+  ssrState,
 }) {
+  const { utmContent, utmSource } = ssrState;
+
   useInjectSaga({ key: 'registerPage', saga: registerSaga });
-  const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
-      setExperimentVariant(type);
-    });
-  }, []);
+
+  const utmExperiment = getUtmExperiment(utmContent, utmSource);
+
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
+  //     setExperimentVariant(type);
+  //   });
+  // }, []);
 
   const { user } = userState;
-  console.log('experimentVariant', experimentVariant);
+  console.log('utm_content', utmContent);
+  console.log('utm_source', utmSource);
+  console.log('utmExperiment', utmExperiment);
   const childProps = {
     registerCallback,
     showFeedbackCallback,
-    experimentVariant,
     user,
+    utmExperiment,
   };
   return (
     <HomePageContext.Provider value={childProps}>

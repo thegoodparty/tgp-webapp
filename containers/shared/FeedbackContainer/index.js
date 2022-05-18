@@ -9,9 +9,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { useRouter } from 'next/router';
 
 import FeedbackWrapper from '/components/shared/FeedbackWrapper';
-import { getExperiment } from '/helpers/optimizeHelper';
+import { getUtmExperiment } from '/helpers/utmHelper';
+
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -28,13 +30,16 @@ export function FeedbackContainer({
 }) {
   useInjectReducer({ key: 'feedbackContainer', reducer });
   useInjectSaga({ key: 'feedbackContainer', saga });
+  // const router = useRouter();
+  // const { utm_content } = router.query;
+  // const utmExperiment = getUtmExperiment(utm_content);
 
-  const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
-      setExperimentVariant(type);
-    });
-  }, []);
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
+  //     setExperimentVariant(type);
+  //   });
+  // }, []);
 
   const { isOpen } = feedbackContainer;
 
@@ -43,7 +48,7 @@ export function FeedbackContainer({
     mode,
     toggleModalCallback,
     isOpen,
-    experimentVariant,
+    // utmExperiment,
   };
 
   return <FeedbackWrapper {...childProps} />;

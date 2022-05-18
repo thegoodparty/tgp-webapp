@@ -71,9 +71,9 @@ const Thumb = styled.div`
 
 const CHARACTER_LIMIT = 1000;
 
-function FeedbackForm({ closeCallback, sendFeedbackCallback, experimentVariant }) {
-  const verb = experimentVariant === '0' ? 'Fuck' : 'Get over';
-  const plans = experimentVariant === '0' ? 'our plans to:' : 'statement:';
+function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
+  const verb =  'Fuck';
+  const plans = 'our plans to:';
   const [formState, setFormState] = useState({
     thumbs: 'none',
     suggestion: '',
@@ -123,7 +123,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback, experimentVariant }
                 </u>
                 !
               </strong>{' '}
-              {experimentVariant === '0' && '(with a #goodparty)'}?
+              (with a #goodparty)?
             </Body>
           </Grid>
           <Grid item xs={3}>

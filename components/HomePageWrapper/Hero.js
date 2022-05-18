@@ -56,41 +56,20 @@ const MobileBr = styled.span`
 `;
 
 const Hero = () => {
-  const { experimentVariant } = useContext(HomePageContext);
-  const verb = experimentVariant === '0' ? 'Fuck' : 'Get over';
+  const { utmExperiment } = useContext(HomePageContext);
+
   return (
     <H1>
-      <ScrollLink
-        className="pointer"
-        to="what-is-it"
-        duration={350}
-        smooth
-        offset={-90}
-      >
-        <u>
-          <i>It</i>
-        </u>
-      </ScrollLink>{' '}
-      wants us divided & hopeless.
+      {utmExperiment.text1}
       <br />
-      <span className="large">
-        <span className="yellow" />
-        {verb}{' '}
-        <ScrollLink
-          className="pointer"
-          to="what-is-it"
-          duration={350}
-          smooth
-          offset={-90}
-        >
-          <u>
-            <i>It</i>
-          </u>
-        </ScrollLink>
-        !
-      </span>{' '}
+      {utmExperiment.text2 !== '' && (
+        <span className="large">
+          <span className="yellow" />
+          {utmExperiment.text2}
+        </span>
+      )}{' '}
       <MobileBr />
-      <span className="smaller">(with a #goodparty)</span>
+      <span className="smaller">{utmExperiment.text3}</span>
     </H1>
   );
 };

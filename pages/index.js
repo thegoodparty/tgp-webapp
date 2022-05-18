@@ -1,8 +1,8 @@
 import HomePage from '/containers/HomePage';
 import tgpApi from '/api/tgpApi';
 
-export default function Home() {
-  return <HomePage />;
+export default function Home({ ssrState }) {
+  return <HomePage ssrState={ssrState} />;
 }
 
 // export async function getServerSideProps() {
@@ -26,3 +26,16 @@ export default function Home() {
 //     }, // will be passed to the page component as props
 //   };
 // }
+
+export async function getServerSideProps(context) {
+  const utmContent = context.query.utm_content || '';
+  const utmSource = context.query.utm_source || '';
+  return {
+    props: {
+      ssrState: {
+        utmContent,
+        utmSource,
+      },
+    },
+  };
+}
