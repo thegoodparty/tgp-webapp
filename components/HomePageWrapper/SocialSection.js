@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import { Link } from 'react-scroll';
 import { Link as ScrollLink } from 'react-scroll';
-import Hidden from '@material-ui/core/Hidden'
+import Hidden from '@material-ui/core/Hidden';
 
 import Row from '../shared/Row';
 import BlackButton from '../shared/buttons/BlackButton';
@@ -41,6 +41,7 @@ const Icon = styled.div`
 const Count = styled.div`
   font-size: 30px;
   font-weight: 900;
+  text-decoration: underline;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.xl}) {
     font-size: 48px;
@@ -176,7 +177,7 @@ const SocialSection = ({ openModalCallback }) => {
                 8,668
                 {/*<Coming onClick={openModalCallback}>Coming Soon</Coming>*/}
               </Count>
-              <Label>#goodparty people</Label>
+              <Label>@goodparty people</Label>
               {/*<ComingMobile onClick={openModalCallback}>*/}
               {/*  Coming Soon*/}
               {/*</ComingMobile>*/}
@@ -189,26 +190,26 @@ const SocialSection = ({ openModalCallback }) => {
       </TopRow>
       <Grid container spacing={2} className="text-center">
         <Hidden mdDown>
-        <Grid item xs={12} lg={4}>
-          <Relative>
-            <Image
-              src="/images/homepage/social1.jpg"
-              height={615}
-              width={369}
-            />
-            <Clickable onClick={openModalCallback} />
-          </Relative>
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          <Relative>
-            <Image
-              src="/images/homepage/social2.jpg"
-              height={615}
-              width={369}
-            />
-            <Clickable onClick={openModalCallback} />
-          </Relative>
-        </Grid>
+          <Grid item xs={12} lg={4}>
+            <Relative>
+              <Image
+                src="/images/homepage/social1.jpg"
+                height={615}
+                width={369}
+              />
+              <Clickable onClick={openModalCallback} />
+            </Relative>
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <Relative>
+              <Image
+                src="/images/homepage/social2.jpg"
+                height={615}
+                width={369}
+              />
+              <Clickable onClick={openModalCallback} />
+            </Relative>
+          </Grid>
         </Hidden>
         <Grid item xs={12} lg={4}>
           <Relative>
@@ -225,7 +226,7 @@ const SocialSection = ({ openModalCallback }) => {
               <ClickableSmall />
             </a>
             <BlackBox>
-              Just say no...
+              Just do it...
               <br />
               to{' '}
               <ScrollLink
