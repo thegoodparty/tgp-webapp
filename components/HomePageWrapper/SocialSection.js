@@ -8,6 +8,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 import Row from '../shared/Row';
 import BlackButton from '../shared/buttons/BlackButton';
+import Emoji from '../shared/Emoji';
 
 const Wrapper = styled.section`
   padding-bottom: 130px;
@@ -160,7 +161,9 @@ const SocialSection = ({ openModalCallback }) => {
             className="no-underline"
           >
             <Stat style={{ marginRight: '70px', display: 'flex' }}>
-              <Icon>🎉</Icon>
+              <Icon>
+                <Emoji symbol="🎉" label="Party Popper" />
+              </Icon>
               <div>
                 <Count>85,174</Count>
                 <Label>#goodparty posts</Label>
