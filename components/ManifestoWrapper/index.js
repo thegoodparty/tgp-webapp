@@ -112,7 +112,7 @@ function ManifestoWrapper() {
         <br />
         <br />
         <strong>
-          Fuck{' '}
+          Let&apos;s do it... to{' '}{' '}
           <u>
             <i>It</i>
           </u>

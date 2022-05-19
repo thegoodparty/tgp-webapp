@@ -69,21 +69,14 @@ const Inner = styled.div`
 `;
 
 const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
-  let variant = '0';
-  const context = useContext(HomePageContext);
-  if (context && context.experimentVariant) {
-    variant = context.experimentVariant;
-  }
-  const verb = variant === '0' ? 'Fuck' : 'Get over';
   return (
     <Wrapper>
       {!noTitle && (
         <H2>
-          So, {verb}{' '}
+          So, let&apos;s do it... to{' '}
           <u>
             <i>It</i>
           </u>
-          ...
         </H2>
       )}
       <Banner

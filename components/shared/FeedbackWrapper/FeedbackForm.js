@@ -72,8 +72,6 @@ const Thumb = styled.div`
 const CHARACTER_LIMIT = 1000;
 
 function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
-  const verb =  'Fuck';
-  const plans = 'our plans to:';
   const [formState, setFormState] = useState({
     thumbs: 'none',
     suggestion: '',
@@ -114,10 +112,10 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
         <Grid container spacing={3}>
           <Grid item xs={9}>
             <Body>
-              How do you feel about {plans}
+              How do you feel about plans to:
               <br />
               <strong>
-                {verb}{' '}
+                Just do it... to{' '}
                 <u>
                   <i>It</i>
                 </u>
