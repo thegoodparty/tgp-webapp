@@ -26,7 +26,6 @@ function* loadCandidates(action) {
 
 function* loadAllUsers() {
   try {
-    yield put(snackbarActions.showSnakbarAction('Loading Users'));
     const api = tgpApi.admin.allUsers;
     const { users } = yield call(requestHelper, api, null);
     yield put(actions.loadAllUsersSuccess(users));

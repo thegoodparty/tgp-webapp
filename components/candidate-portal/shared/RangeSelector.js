@@ -7,7 +7,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const Wrapper = styled.div`
   display: flex;
   margin-left: 24px;
@@ -28,11 +27,29 @@ const Range = styled.div`
   }
 `;
 
-function RangeSelector({}) {
+function RangeSelector({ range, onChange }) {
   return (
     <Wrapper>
-      <Range className="active">WEEK</Range>
-      <Range>ALL TIME</Range>
+      <Range
+        className={range === 7 && 'active'}
+        onClick={() => {
+          if (range !== 7) {
+            onChange(7);
+          }
+        }}
+      >
+        WEEK
+      </Range>
+      <Range
+        className={range === 30 && 'active'}
+        onClick={() => {
+          if (range !== 30) {
+            onChange(30);
+          }
+        }}
+      >
+        LAST 30 DAYS
+      </Range>
     </Wrapper>
   );
 }

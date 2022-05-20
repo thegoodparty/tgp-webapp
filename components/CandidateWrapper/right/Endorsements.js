@@ -66,7 +66,7 @@ function Endorsements() {
                 <Truncated data-cy="endorsement-item-summary">{item.summary}</Truncated>
                 {item.link && (
                   <div className="text-right">
-                    <a href={item.link} target="_blank" rel="noreferrer"  data-cy="endorsement-item-link">
+                    <a href={item.link} target="_blank" rel="noopener noreferrer nofollow" data-cy="endorsement-item-link">
                       Show More
                     </a>
                   </div>

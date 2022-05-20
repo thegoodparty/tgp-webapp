@@ -275,8 +275,7 @@ function SupportButton() {
               type="submit"
             >
               <InnerButton>
-                <Img src={HeartIconWhite} alt="share" data-cy="support-icon"/>
-                <span  data-cy="support-button">ENDORSE CANDIDATE</span>
+                <span data-cy="support-button">ENDORSE NOW</span>
               </InnerButton>
             </BlackButton>
           </form>

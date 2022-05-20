@@ -21,6 +21,7 @@ const StyledButton = styled(Button)`
       border: solid 1.5px #000;
       background-color: #000;
       color: #fff;
+      text-decoration: none;
     }
   }
 `;

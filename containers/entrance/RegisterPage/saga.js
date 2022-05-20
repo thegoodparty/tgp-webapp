@@ -6,6 +6,7 @@ import tgpApi from '/api/tgpApi';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import {
   deleteCookie,
+  deleteSignupRedirectCookie,
   getCookie,
   getSignupRedirectCookie,
   setCookie,
@@ -18,7 +19,7 @@ import globalActions from '/containers/App/actions';
 
 import types from './constants';
 
-function* register({ name, email, phone, zip, callback }) {
+function* register({ name, email, phone, zip, callback, source }) {
   try {
     const api = tgpApi.register;
     const payload = {
@@ -26,6 +27,8 @@ function* register({ name, email, phone, zip, callback }) {
       email,
       phone,
       zip,
+      source,
+      uri: window.location.href,
     };
 
     const guestUuid = getCookie('guuid');
@@ -43,8 +46,15 @@ function* register({ name, email, phone, zip, callback }) {
     const redirectCookie = getSignupRedirectCookie();
     if (redirectCookie) {
       yield put(push(redirectCookie.route));
+      deleteSignupRedirectCookie();
     } else {
-      yield put(push('/register/confirm'));
+      if (source === 'homepageModal') {
+        yield put(
+          snackbarActions.showSnakbarAction('Thank you for signing up!'),
+        );
+      } else {
+        yield put(push('/register/confirm'));
+      }
     }
     yield put(globalActions.refreshTokenAction());
   } catch (error) {
@@ -121,6 +131,8 @@ function* socialRegister({ socialUser }) {
       name,
       email,
       socialToken: idToken,
+      source: 'registerPage',
+      uri: window.location.href,
     };
 
     const guestUuid = getCookie('guuid');

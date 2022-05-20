@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 export const RESTART_ON_REMOUNT = '@@saga-injector/restart-on-remount';
 export const DAEMON = '@@saga-injector/daemon';
 export const ONCE_TILL_UNMOUNT = '@@saga-injector/once-till-unmount';
@@ -16,24 +17,41 @@ export const TESTIMONIALS = [
     position: 'FOUNDER & CHAIRMAN, ANGELLIST',
   },
 ];
+const Icon = styled.span`
+  font-size: 20px;
+  margin-right: 8px;
+`;
+
 export const GOOD_CERTIFIED = [
   {
-    icon: 'independent.svg',
+    icon: (
+      <Icon role="img" aria-label="honest">
+        😇
+      </Icon>
+    ),
+    title: 'Honest',
+    content:
+      'Good Certified candidates are committed to serving with utmost integrity, and using technology to be open, transparent and responsive representatives of the people.',
+  },
+  {
+    icon: (
+      <Icon role="img" aria-label="Independent">
+        🗽
+      </Icon>
+    ),
     title: 'Independent',
     content:
-      "Good Certified candidates are not Republican or Democratic politicians. They're real people running grassroots campaigns from across the political spectrum.",
+      'Good Certified candidates are not Republican or Democratic politicians. They are independent-minded people from across the political spectrum, dedicated to advancing the priorities of their constituents.',
   },
   {
-    icon: 'people-powered-black.svg',
-    title: 'People Powered',
+    icon: (
+      <Icon role="img" aria-label="People-Powered">
+        🙌🏼
+      </Icon>
+    ),
+    title: 'People-Powered',
     content:
-      'Good Certified candidates run to serve real living people. So, the majority of money raised for their campaign must come from people -- not from corporations, unions, PACs, or other non-living entities.',
-  },
-  {
-    icon: 'anti-corruption-black.svg',
-    title: 'Anti-Corruption',
-    content:
-      'Good Certified candidates are committed to serving as honest, transparent, and responsive representatives of the people.',
+      'Good Certified candidates run to serve people, not corporations, unions, political action committees or special interests. They run  grass-roots campaigns that depend on being connected to and promoted by the people that they’ll be serving.',
   },
 ];
 

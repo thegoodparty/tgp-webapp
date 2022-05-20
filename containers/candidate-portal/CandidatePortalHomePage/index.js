@@ -47,7 +47,7 @@ export function CandidatePortalHomePage({
     if (id) {
       dispatch(actions.loadRoleAction(id));
       if (!stats) {
-        dispatch(actions.loadStatsAction('Last Week', id));
+        dispatch(actions.loadStatsAction(7, id));
       }
     }
   }, [id]);

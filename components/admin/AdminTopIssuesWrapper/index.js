@@ -10,18 +10,10 @@ import TextField from '@material-ui/core/TextField';
 
 import { AdminTopIssuesPageContext } from '/containers/admin/AdminTopIssuesPage';
 
-import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
-import { FontH1 } from '../../shared/typogrophy';
-import RequestTopTab from '../AdminTopIssueRequestsWrapper/RequestTopTab';
+import AdminPageWrapper from '../shared/AdminPageWrapper';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import TopIssuesList from './TopIssuesList';
-
-const Wrapper = styled.div`
-  min-height: calc(100vh - 80px);
-  padding: 36px 0;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-`;
+import AdminPanel from '../shared/AdminPanel';
 
 function AdminTopIssuesWrapper() {
   const { createTopIssueCallback } = useContext(AdminTopIssuesPageContext);
@@ -33,12 +25,8 @@ function AdminTopIssuesWrapper() {
     setTopIssueName('');
   };
   return (
-    <AdminPageWrapper>
-      <Wrapper>
-        <RequestTopTab activeTab="Top Issues Manager" />
-        <FontH1>Top Issues Manager</FontH1>
-        <br />
-        <br />
+    <AdminPageWrapper title="Top Issues Manager">
+      <AdminPanel>
         <BlackButton
           onClick={() => {
             setAddNewIssue(true);
@@ -74,7 +62,7 @@ function AdminTopIssuesWrapper() {
         <br />
         <br />
         <TopIssuesList />
-      </Wrapper>
+      </AdminPanel>
     </AdminPageWrapper>
   );
 }

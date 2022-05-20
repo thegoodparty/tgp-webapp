@@ -10,13 +10,25 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
+import FeedbackContainer from '/containers/shared/FeedbackContainer';
+
 import MaxWidth from '../MaxWidth';
 import { CONTACT_EMAIL } from '../../../utils/constants';
 
 const Wrapper = styled.div`
-  padding: 40px 0;
+  margin-top: 400px;
+  padding: 40px 32px;
   border-top: solid 1px #e1e2e9;
   background-color: #fff;
+  position: relative;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 40px 24px;
+  }
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.sm}) {
+    padding: 40px 18px;
+  }
 `;
 
 const Aligner = styled.div`
@@ -49,16 +61,18 @@ const Italic = styled.div`
 `;
 
 const SecondRow = styled.div`
-  margin-top: 48px;
-  color: #777;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    margin-top: 120px;
-  }
+  &.footer-row {
+    margin-top: 48px;
+    color: #777;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.lg}) {
+      margin-top: 120px;
+    }
 
-  a {
-    color: #000;
-    font-weight: 600;
+    a {
+      color: #000;
+      font-weight: 600;
+    }
   }
 `;
 
@@ -76,8 +90,7 @@ const columns = [
     links: [
       {
         label: 'Contact Us',
-        link: `mailto:${CONTACT_EMAIL}`,
-        isExternal: true,
+        link: '/contact',
       },
     ],
   },
@@ -122,6 +135,9 @@ function Footer() {
   return (
     <Wrapper>
       <MaxWidth>
+        <Aligner>
+          <FeedbackContainer mode="mobile" />
+        </Aligner>
         <Grid container spacing={2}>
           {columns.map((column) => (
             <Grid item xs={12} lg={2} key={column.title}>
@@ -133,7 +149,7 @@ function Footer() {
                       <a
                         href={link.link}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer nofollow"
                         title={link.label}
                       >
                         {link.label}
@@ -167,7 +183,7 @@ function Footer() {
             </Italic>
           </Grid>
         </Grid>
-        <SecondRow>
+        <SecondRow className="footer-row">
           <Aligner>
             &copy; {year} Good Party. All rights reserved. &nbsp;
             <Link href="/privacy" passHref>

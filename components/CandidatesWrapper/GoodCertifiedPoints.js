@@ -31,6 +31,8 @@ const Point = styled.div`
   }
 `;
 
+
+
 function GoodCertifiedPoints({ homepageMode = false }) {
   return (
     <Grid container spacing={3}>
@@ -38,19 +40,9 @@ function GoodCertifiedPoints({ homepageMode = false }) {
         <Grid item xs={12} lg={4} key={point.title} data-cy="gc-item">
           <Point className={homepageMode && 'homepage-mode'}>
             <Row className="row">
-              {!homepageMode && (
-                <>
-                  <Image
-                    src={`/images/icons/${point.icon}`}
-                    height={24}
-                    width={24}
-                    className="img"
-                    data-cy="gc-item-img"
-                  />
-                  &nbsp;
-                </>
-              )}
+              {!homepageMode && <>{point.icon}</>}
               <FontH3 data-cy="gc-item-title">{point.title}</FontH3>
+
             </Row>
             <div data-cy="gc-item-content">{point.content}</div>
           </Point>

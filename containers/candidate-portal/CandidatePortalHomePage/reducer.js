@@ -17,7 +17,6 @@ const candidatePortalHomePageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case types.FIND_CANDIDATE:
-        draft.candidate = false;
         draft.loading = true;
         draft.error = false;
         break;

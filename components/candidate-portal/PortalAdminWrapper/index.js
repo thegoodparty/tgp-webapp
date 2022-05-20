@@ -61,7 +61,7 @@ function PortalAdminWrapper() {
           ? candidate[field.key]
           : field.initialValue;
       });
-      // newState.isActive = candidate.isActive;
+      newState.isActive = candidate.isActive;
       setState(newState);
     }
   }, [candidate]);

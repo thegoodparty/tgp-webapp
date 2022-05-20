@@ -49,7 +49,7 @@ function ApplicationPreview({ app, deleteApplicationCallback }) {
   const photo = candidatePhoto(app);
   return (
     <Link href={`/campaign-application/${app.id}/1`} passHref>
-      <a data-cy="application-link">
+      <a className="no-underline" data-cy="application-link">
         <ApplicationWrapper>
           {app.status === 'incomplete' ? (
             <div className="text-right trash">

@@ -5,21 +5,25 @@
  */
 
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-// import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { H2 } from '../shared/typogrophy';
-import { CONTACT_EMAIL, JOIN_FORM_LINK } from '../../utils/constants';
+import { FontH2, H2 } from '../shared/typogrophy';
 
 const Wrapper = styled.section`
-  background-color: ${({ theme }) => theme.colors.grayE};
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    padding: 48px 10px;
-  }
-
   #lever-jobs-container {
+    display: flex;
+    flex-wrap: wrap;
+    
+    ul.lever-team {
+      flex-grow: 0;
+      flex-basis: 100%;
+      width: 100%;
+      @media only screen and (min-width: ${({ theme }) =>
+          theme.breakpointsPixels.lg}) {
+        flex-grow: 0;
+        max-width: 50%;
+        flex-basis: 50%;
+      }
+    }
     .lever-team-title {
       font-size: 1.4em;
     }
@@ -30,73 +34,50 @@ const Wrapper = styled.section`
     .lever-job-tag {
       display: none;
     }
+    a {
+      color: #000;
+    }
   }
 `;
 
-const MaxContent = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
-`;
-
-const Content = styled(MaxContent)`
-  padding: 48px 12px;
-  color: ${({ theme }) => theme.colors.gray2};
-  font-size: 16px;
-  line-height: 25px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    font-size: 18px;
-  }
-`;
-
-const StyledH2 = styled(H2)`
+const Interested = styled.div`
   font-size: 32px;
-  line-height: 38px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    font-size: 48px;
-    line-height: 62px;
+  margin: 60px 0;
+  a {
+    text-decoration: underline;
   }
+`;
+
+const Text = styled.div`
+  font-size: 19px;
+  line-height: 36px;
 `;
 
 function LeverCareers() {
   return (
     <Wrapper>
-      <Content>
-        <Grid spacing={2} container>
-          <Grid item xs={12} md={4}>
-            <StyledH2 data-cy="opening-title">Openings</StyledH2>
-          </Grid>
-          <Grid item xs={12} md={8} data-cy="opening-content">
-            <div id="lever-jobs-container" />
-            <br />
-            <br />
-            Beyond these open positions for our core team, there are many ways
-            people are contributing to Good Party. If you’re interested in
-            volunteering your time and talent, join us! Please fill out{' '}
-            <a
-              href={JOIN_FORM_LINK}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              data-cy="opening-form-link"
-            >
-              {' '}
-              this form
-            </a>
-            . You can also email{' '}
-            <a href={`mailto:${CONTACT_EMAIL}`} data-cy="opening-contact-email">{ CONTACT_EMAIL }</a> if you have
-            any questions.
-            <br />
-            <br />
-            To make our country’s democracy a good party where all people are
-            actually represented, our organization’s makeup must reflect that
-            larger goal. We come from different backgrounds. We were born with
-            and have chosen different characteristics and identities. We hold
-            different political ideologies. We live all over the country.
-            Everyone’s welcome at a good party!
-          </Grid>
-        </Grid>
-      </Content>
+      <FontH2 data-cy="opening-title">Openings</FontH2>
+      <div id="lever-jobs-container" />
+      <Interested>
+        Interested in <strong>volunteering</strong> at Good Party?
+        <a
+          href="https://forms.gle/TJmpYw6UwfWYS4GQA"
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+        >
+          {' '}
+          Fill out this form
+        </a>
+      </Interested>
+      <Text>
+        Good Party reflects what we want for our democracy and country: a place
+        where all people are welcome and authentically valued. So, we actively
+        seek people from different backgrounds and beliefs. We know that we are
+        each born with and have chosen different characteristics and identities.
+        We strive to include people who hold different political ideologies, and
+        live in different parts of the country. Everyone with good intention is
+        welcome at a good party!
+      </Text>
     </Wrapper>
   );
 }

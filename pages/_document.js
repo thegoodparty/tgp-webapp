@@ -46,7 +46,6 @@ class CustomDocument extends NextDocument {
           <meta charSet="utf-8" />
           <meta name="mobile-web-app-capable" content="yes" />
           <link rel="preconnect" href="https://connect.facebook.net" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
 
           <meta property="og:site_name" content="GOOD PARTY" />
@@ -55,98 +54,18 @@ class CustomDocument extends NextDocument {
           <meta property="twitter:card" content="summary_large_image" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="fb:app_id" content="241239336921963" />
-          <meta
-            name="google-signin-client_id"
-            content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"
-          />
-          {/*<link*/}
-          {/*  href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&display=swap"*/}
-          {/*  rel="stylesheet"*/}
+          {/*<meta*/}
+          {/*  name="google-signin-client_id"*/}
+          {/*  content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"*/}
           {/*/>*/}
-
           <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@300;600;900&display=swap"
             rel="stylesheet"
           />
           <link rel="manifest" href="/manifest.json" />
-          <link
-            rel="apple-touch-icon"
-            sizes="57x57"
-            href="https://assets.goodparty.org/favicon/apple-icon-57x57.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="60x60"
-            href="https://assets.goodparty.org/favicon/apple-icon-60x60.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="72x72"
-            href="https://assets.goodparty.org/favicon/apple-icon-72x72.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="76x76"
-            href="https://assets.goodparty.org/favicon/apple-icon-76x76.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="114x114"
-            href="https://assets.goodparty.org/favicon/apple-icon-114x114.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="120x120"
-            href="https://assets.goodparty.org/favicon/apple-icon-120x120.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="144x144"
-            href="https://assets.goodparty.org/favicon/apple-icon-144x144.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="152x152"
-            href="https://assets.goodparty.org/favicon/apple-icon-152x152.png"
-          />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="https://assets.goodparty.org/favicon/apple-icon-180x180.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="192x192"
-            href="https://assets.goodparty.org/favicon/android-icon-192x192.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="512x512"
-            href="https://assets.goodparty.org/favicon/favicon-512x512.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="https://assets.goodparty.org/favicon/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="96x96"
-            href="https://assets.goodparty.org/favicon/favicon-96x96.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="https://assets.goodparty.org/favicon/favicon-16x16.png"
-          />
           {this.props.styles}
 
-          {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-TTWCN3W" />*/}
+          {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST" />*/}
         </Head>
         <body>
           <Main />
@@ -177,17 +96,6 @@ class CustomDocument extends NextDocument {
           if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
           g._v='1.2.0';
         })(window,document,window['_fs_namespace'],'script','user');
-
-          // fb pixel
-        //   !function(f,b,e,v,n,t,s)
-        // {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        //   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        //   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        //   n.queue=[];t=b.createElement(e);t.async=!0;
-        //   t.src=v;s=b.getElementsByTagName(e)[0];
-        //   s.parentNode.insertBefore(t,s)}(window, document,'script',
-        //   'https://connect.facebook.net/en_US/fbevents.js');
-        //   fbq('init', '1530862867115121');
         }
         `,
             }}
@@ -215,6 +123,13 @@ class CustomDocument extends NextDocument {
           js.src = 'https://connect.facebook.net/en_US/sdk.js';
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+        
+        // GTM
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M53W2ZV');
         `,
             }}
           />
@@ -234,6 +149,14 @@ class CustomDocument extends NextDocument {
            `,
             }}
           />
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-M53W2ZV"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
         </body>
       </Html>
     );

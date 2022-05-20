@@ -43,7 +43,6 @@ const Member = styled.div`
 
 const Img = styled(Image)`
   display: block;
-  border-radius: 8px;
   margin-bottom: 12px;
 `;
 

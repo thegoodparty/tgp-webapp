@@ -77,7 +77,9 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     registerCallback: (name, email, phone, zip) => {
-      dispatch(actions.registerAction(name, email, phone, zip));
+      dispatch(
+        actions.registerAction(name, email, phone, zip, false, 'registerPage'),
+      );
     },
     socialRegisterCallback: (socialUser) => {
       dispatch(actions.socialRegisterAction(socialUser));

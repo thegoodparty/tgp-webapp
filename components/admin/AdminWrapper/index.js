@@ -1,39 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 
-import { Body, Body13, H1, H3 } from '/components/shared/typogrophy';
+import { Body13 } from '/components/shared/typogrophy';
 
-import AdminPageWrapper from './AdminPageWrapper';
-import { leftMenuItems } from '../AdminLeftMenu';
-
-const Wrapper = styled.div`
-  text-align: center;
-  padding: 24px;
-`;
-
-const Heart = styled.div`
-  width: 84px;
-  height: 76px;
-  margin: 12px auto;
-  position: relative;
-`;
+import AdminPageWrapper from '../shared/AdminPageWrapper';
+import { leftMenuItems } from '../shared/AdminLeftMenu';
+import AdminPanel from '../shared/AdminPanel';
+import StatsSection from './StatsSection';
 
 const IconLabel = styled(Body13)`
   color: #fff;
 `;
 
 const NavItem = styled.div`
-  padding: 24px 8px;
-  background: linear-gradient(
-    180deg,
-    rgba(67, 0, 211, 0.4) 11.17%,
-    rgba(67, 0, 211, 0.6) 76.34%
-  );
+  padding: 24px 16px;
+  background: #000;
   color: #fff;
   border-radius: 8px;
+  text-align: center;
+  font-weight: 900;
 
   @keyframes shadow-drop-2-center {
     0% {
@@ -52,18 +39,11 @@ const NavItem = styled.div`
 `;
 
 const AdminWrapper = () => (
-  <AdminPageWrapper>
-    <Wrapper>
-      <br />
-      <H1>Admin Dashboard</H1>
-      <Heart>
-        <Image src="/images/heart.svg" layout="fill" />
-      </Heart>
-      <br />
-      <br />
+  <AdminPageWrapper title="Admin Dashboard">
+    <AdminPanel>
       <Grid container spacing={3} alignItems="center" justify="center">
-        {leftMenuItems.map(item => (
-          <Grid item xs={12} md={6} lg={3} xl={2} key={item.label}>
+        {leftMenuItems.map((item) => (
+          <Grid item xs={12} md={6} lg={4} key={item.label}>
             <Link href={item.link} passHref>
               <a>
                 <NavItem>
@@ -75,61 +55,11 @@ const AdminWrapper = () => (
           </Grid>
         ))}
       </Grid>
-      <br />
-      <Body style={{ marginTop: '40px' }}>
-        <H3>Useful Links</H3>
-        <br />
-        <a href="https://datastudio.google.com/s/jA995G5uXkg" target="_blank" rel="noreferrer">
-          Analytics Dashboard
-        </a>
-        <br />
-        <br />
-        <a href="https://zoom.goodparty.org" target="_blank" rel="noreferrer">
-          GP Zoom
-        </a>
-        <br />
-        <br />
-        <a
-          href="https://www.notion.so/goodparty/7c465bbf8bf9480e9a86c74edc938bbe?v=7b1c609de9474ed48ef0e85b917b21cc"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Notion Dev Board
-        </a>
-        <br />
-        <br />
-        <a
-          href="https://www.notion.so/goodparty/83449bb9d1a94dae80df683eae217ddb?v=f8246250568e45e9a994041cf17fffcb"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Roadmap
-        </a>
-        <br />
-        <br />
-        <a href="https://intro.goodparty.org/" target="_blank" rel="noreferrer">
-          intro.goodparty.org
-        </a>
-        <br />
-        <br />
-        <a
-          href="https://docs.google.com/presentation/d/1XHUD0eNs0F_q08nMMG04tCTq0wB93is-g-3Uq1WdjoI/edit#slide=id.ge1899cc4d6_0_65"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GP Deck Template
-        </a>
-        <br />
-        <br />
-        <a
-          href="https://docs.google.com/document/d/1K2qP6VvpS4QPdC9pl_96L4b24BrreTU30hWDowxLhBo/edit#heading=h.rxv3nobisv34"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Embed the &quot;endorse&quot; button instructions
-        </a>
-      </Body>
-    </Wrapper>
+    </AdminPanel>
+
+    <AdminPanel>
+      <StatsSection />
+    </AdminPanel>
   </AdminPageWrapper>
 );
 

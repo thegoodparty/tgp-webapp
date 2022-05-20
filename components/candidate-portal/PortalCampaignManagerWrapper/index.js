@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import Sticky from 'react-sticky-el';
 
 import { FontH3 } from '/components/shared/typogrophy';
-import JoditEditorWrapper from '/components/admin/AdminEditCandidate/JoditEditor';
+import JoditEditorWrapper from '/components/admin/shared/JoditEditor';
 import { flatStates } from '/helpers/statesHelper';
 import { PortalCampaignManagerPageContext } from '/containers/candidate-portal/PortalCampaignManagerPage';
 import { partyResolver } from '/helpers/electionsHelper';
@@ -102,6 +102,18 @@ const fields2 = [
     type: 'select',
     options: flatStates,
     required: true,
+  },
+  {
+    label: 'Ballot filing deadline ',
+    key: 'ballotDate',
+    isDate: true,
+    columns: 6,
+  },
+  {
+    label: 'Early voting date',
+    key: 'earlyVotingDate',
+    isDate: true,
+    columns: 6,
   },
   { label: 'District (if applicable)', key: 'district' },
   { label: 'Headline', key: 'headline', required: true },

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import StarRatingComponent from 'react-star-rating-component';
-import Select from '@material-ui/core/Select';
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 import Modal from '../Modal';
 import { Body, H3 } from '../typogrophy';
@@ -19,9 +19,8 @@ import BlackButton from '../buttons/BlackButton';
 const FormWrapper = styled.form`
   padding: 40px 20px;
   background-color: #fff;
-  border-radius: 8px;
-  width: 95vw;
-  max-width: 900px;
+  width: 80vw;
+  max-width: 600px;
   border: solid 2px #000;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
 
@@ -45,19 +44,42 @@ const InnerButton = styled.div`
   padding: 0 20px;
 `;
 
-const feedbackTypes = ['Bug Report', 'Feature Request', 'Question', 'Other'];
+const Thumbs = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+`;
+
+const Thumb = styled.div`
+  padding: 0 8px;
+  color: gray;
+  transition: color 0.3s;
+  cursor: pointer;
+  
+  &.red {
+    padding-top: 12px;
+  }
+
+  &.red:hover, &.red.active {
+    color: red;
+  }
+  
+  &.green:hover, &.green.active { {
+    color: green;
+  }
+`;
+
 const CHARACTER_LIMIT = 1000;
 
 function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
   const [formState, setFormState] = useState({
-    stars: 0,
-    feedbackType: '',
+    thumbs: 'none',
     suggestion: '',
   });
-  const onStarClick = nextValue => {
+  const onThumbClick = (value) => {
     setFormState({
       ...formState,
-      stars: nextValue,
+      thumbs: value,
     });
   };
 
@@ -71,15 +93,10 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
   const canSubmit = () => formState.suggestion !== '';
 
   const submitForm = () => {
-    sendFeedbackCallback(
-      formState.stars,
-      formState.feedbackType,
-      formState.suggestion,
-    );
+    sendFeedbackCallback(formState.thumbs, formState.suggestion);
     closeCallback();
     setFormState({
-      stars: 0,
-      feedbackType: '',
+      thumbs: 'none',
       suggestion: '',
     });
   };
@@ -88,44 +105,42 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
     <Modal open closeModalCallback={closeCallback} showCloseButton={false}>
       <FormWrapper>
         <H3>
-          <strong>
-            Please let us know your thoughts and how we can improve
-          </strong>
+          <strong>Please let us know your thoughts about Good Party</strong>
         </H3>
         <br />
         <br />
         <Grid container spacing={3}>
-          <Grid item xs={6} md={5}>
-            <Body>How do you feel about Good Party right now?</Body>
+          <Grid item xs={9}>
+            <Body>
+              How do you feel about plans to:
+              <br />
+              <strong>
+                Just do it... to{' '}
+                <u>
+                  <i>It</i>
+                </u>
+                !
+              </strong>{' '}
+              (with a #goodparty)?
+            </Body>
           </Grid>
-          <Grid item xs={6} md={7}>
-            <StarsWrapper>
-              <StarRatingComponent
-                name="stars"
-                onStarClick={onStarClick}
-                value={formState.stars}
-              />
-            </StarsWrapper>
+          <Grid item xs={3}>
+            <Thumbs>
+              <Thumb
+                className={`red ${formState.thumbs === 'down' && 'active'}`}
+                onClick={() => onThumbClick('down')}
+              >
+                <FaThumbsDown />
+              </Thumb>
+              <Thumb
+                className={`green ${formState.thumbs === 'up' && 'active'}`}
+                onClick={() => onThumbClick('up')}
+              >
+                <FaThumbsUp />
+              </Thumb>
+            </Thumbs>
           </Grid>
-          <Grid item xs={6} md={5}>
-            <Body>Feedback Type*</Body>
-          </Grid>
-          <Grid item xs={6} md={7}>
-            <Select
-              fullWidth
-              variant="outlined"
-              native
-              onChange={e => onChangeField('feedbackType', e)}
-              value={formState.feedbackType}
-            >
-              <option value="">Suggestion</option>
-              {feedbackTypes.map(type => (
-                <option value={type} key={type}>
-                  {type}
-                </option>
-              ))}
-            </Select>
-          </Grid>
+
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -134,7 +149,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               placeholder="Type your suggestion here, please give as much detail as you can. *"
               rows={5}
               value={formState.suggestion}
-              onChange={e => onChangeField('suggestion', e)}
+              onChange={(e) => onChangeField('suggestion', e)}
               inputProps={{
                 maxlength: CHARACTER_LIMIT,
               }}

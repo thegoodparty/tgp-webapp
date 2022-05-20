@@ -4,17 +4,15 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-
-import { CandidatePortalHomePageContext } from '/containers/candidate-portal/CandidatePortalHomePage';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const Wrapper = styled.div`
   position: relative;
 `;
 const ChartWrapper = styled.div`
-  height: 200px;
+  height: 150px;
   transform: scaleX(1) rotate(90deg);
 
   svg:not(:root) {
@@ -53,8 +51,6 @@ const Icon = styled.div`
   transform: rotate(-90deg);
 `;
 
-const COLORS = ['#998ee2', '#422CCD'];
-
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = (props) => {
   const { cx, cy, innerRadius, outerRadius, startAngle, index } = props;
@@ -79,21 +75,36 @@ const renderCustomizedLabel = (props) => {
       )}
       <g>
         <foreignObject x={x - 10} y={y - 10} width={20} height={20}>
-          {index === 0 ? <Icon>🎉️</Icon> : <Icon>🗳</Icon>}
+          {/*{index === 0 ? <Icon>🎉️</Icon> : <Icon>🗳</Icon>}*/}
+          {index === 1 &&  <Icon>🗳</Icon>}
         </foreignObject>
       </g>
     </>
   );
 };
 
-function GoalsChart() {
-  const { candidate } = useContext(CandidatePortalHomePageContext);
-  const { likelyVoters, votesNeeded } = candidate;
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+
+function GoalsChart({ candidate }) {
+  const { likelyVoters, votesNeeded, color } = candidate;
   const data = [
-    { name: 'To Win', value: votesNeeded },
+    { name: 'To Win', value: votesNeeded - likelyVoters },
     { name: 'So Far', value: likelyVoters },
   ];
   const perc = parseInt((likelyVoters * 100) / votesNeeded, 10);
+  const brightColor = color?.color ? color.color : '#000000';
+  const rgb = hexToRgb(brightColor);
+  const COLORS = [`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`, brightColor];
+
   return (
     <Wrapper>
       <ChartWrapper>
@@ -104,11 +115,11 @@ function GoalsChart() {
               dataKey="value"
               cx="50%"
               cy="50%"
-              innerRadius={70}
+              innerRadius={75}
               outerRadius={90}
               startAngle={50}
               endAngle={310}
-              fill="#8884d8"
+              fill={brightColor}
               labelLine={false}
               label={renderCustomizedLabel}
               isAnimationActive={false}

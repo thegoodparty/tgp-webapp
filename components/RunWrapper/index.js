@@ -16,7 +16,7 @@ import BecomingSection from './BecomingSection';
 import HowWorksSection from './HowWorksSection';
 
 const Wrapper = styled.div`
-  padding: 80px 0;
+  padding: 80px 0 0;
   text-align: center;
 `;
 
@@ -50,7 +50,7 @@ function RunWrapper() {
         </Font18>
         <Free>we’re always free</Free>
         <StartCampaignButton />
-        <Link to="questions" duration={500} smooth>
+        <Link to="questions" duration={500} smooth offset={-90}>
           <Questions data-cy="run-questions">Have more questions?</Questions>
         </Link>
         <BadgeWrapper>

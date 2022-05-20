@@ -9,35 +9,59 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { useInjectSaga } from '/utils/injectSaga';
-import { useInjectReducer } from '/utils/injectReducer';
+import { useRouter } from 'next/router';
+// import { useInjectSaga } from '/utils/injectSaga';
+// import { useInjectReducer } from '/utils/injectReducer';
 
 import HomePageWrapper from '/components/HomePageWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
-import { logEvent } from '/services/AnalyticsService';
-
-import reducer from './reducer';
-import saga from './saga';
-import makeSelectHomePage from './selectors';
-import actions from './actions';
+//
+// import reducer from './reducer';
+// import saga from './saga';
+// import makeSelectHomePage from './selectors';
+// import actions from './actions';
+import feedbackActions from '/containers/shared/FeedbackContainer/actions';
+// import { getExperiment } from '/helpers/optimizeHelper';
+import actions from '../entrance/RegisterPage/actions';
+import { useInjectSaga } from '../../utils/injectSaga';
+import registerSaga from '../entrance/RegisterPage/saga';
+import { logEvent } from '../../services/AnalyticsService';
+import makeSelectUser from '../you/YouPage/selectors';
+import { getUtmExperiment } from '../../helpers/utmHelper';
 
 export const HomePageContext = createContext();
 
-export function HomePage({ ssrState, subscribeEmailCallback }) {
-  useInjectReducer({ key: 'homePage', reducer });
-  useInjectSaga({ key: 'homePage', saga });
+export function HomePage({
+  showFeedbackCallback,
+  registerCallback,
+  userState,
+  ssrState,
+}) {
+  const { utmContent, utmSource } = ssrState;
 
+  useInjectSaga({ key: 'registerPage', saga: registerSaga });
+
+  const utmExperiment = getUtmExperiment(utmContent, utmSource);
+
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
+  //     setExperimentVariant(type);
+  //   });
+  // }, []);
+
+  const { user } = userState;
   const childProps = {
-    homepageCandidates: ssrState.homepageCandidates,
-    engagements: ssrState.engagements,
-    subscribeEmailCallback,
+    registerCallback,
+    showFeedbackCallback,
+    user,
+    utmExperiment,
   };
-
   return (
     <HomePageContext.Provider value={childProps}>
       <TgpHelmet
-        title="GOOD PARTY | Free software for free elections"
-        description="GOOD PARTY builds free software for free elections. We're helping good indie candidates run and win, because BOTH Red + Blue have been corrupted beyond repair."
+        title="GOOD PARTY | Free tools to change the rules and disrupt the corrupt."
+        description="Not a political party, we’re building tools to change the rules, empowering creatives to mobilize community & disrupt the corrupt two-party system. Join us!"
       />
       <HomePageWrapper />
     </HomePageContext.Provider>
@@ -46,21 +70,27 @@ export function HomePage({ ssrState, subscribeEmailCallback }) {
 
 HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  homeState: PropTypes.object,
-  subscribeEmailCallback: PropTypes.func,
-  ssrState: PropTypes.object,
+  showFeedbackCallback: PropTypes.func,
+  registerCallback: PropTypes.func,
+  userState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  homeState: makeSelectHomePage(),
+  // homeState: makeSelectHomePage(),
+  userState: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    subscribeEmailCallback: (email) => {
-      logEvent('Email & Marketing', 'Subscribe to Newsletter');
-      dispatch(actions.subscribeEmailAction(email));
+    showFeedbackCallback: () => {
+      dispatch(feedbackActions.toggleModalAction(true));
+    },
+    registerCallback: (name, email, phone, zip) => {
+      logEvent('signup', 'homepage-modal-form');
+      dispatch(
+        actions.registerAction(name, email, phone, zip, false, 'homepageModal'),
+      );
     },
   };
 }

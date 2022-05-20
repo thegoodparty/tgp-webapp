@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Lato', sans-serif;
     line-height: 1.3;
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: subpixel-antialiased;
   }
 
 
@@ -26,10 +26,22 @@ const GlobalStyles = createGlobalStyle`
    text-decoration: none;
    color: #000;
   }
+  
+  .pointer {
+    cursor: pointer;
+  }
 
   a:hover {
    color: #333;
-   
+   text-decoration: underline;
+  }
+  
+  a.no-underline:hover {
+    text-decoration: none;
+  }
+  
+  a.underline {
+    text-decoration: underline;
   }
 
   .bold700 {

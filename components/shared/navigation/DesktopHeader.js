@@ -3,32 +3,31 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { MdIosShare } from 'react-icons/md';
+import { Link as ScrollLink } from 'react-scroll';
 
 import styled from 'styled-components';
 
 import { logEvent } from '/services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
-import { PurpleButton } from '../buttons';
-import { Body13 } from '../typogrophy';
 import { HEADER_LINKS } from '../../../utils/constants';
 
-const Wrapper = styled.div`
+import AdminMenu from '../../admin/AdminMenu';
+
+const Wrapper = styled.header`
   height: 80px;
   width: 100%;
   border-bottom: solid 1px #e1e2e9;
   background-color: #fff;
   z-index: 100;
-  padding: 0 32px;
-  position: relative;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding: 0 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
-    padding: 0 18px;
-  }
+  padding: 0 24px;
+  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.1);
+
+  position: fixed;
+  top: 0;
+`;
+
+const Padder = styled.div`
+  height: 80px;
 `;
 
 const ContentWrapper = styled.div`
@@ -62,6 +61,7 @@ const RightLinks = styled.div`
 const TopLink = styled.div`
   margin: 0 12px;
   padding: 0 4px;
+  cursor: pointer;
   a {
     color: #000;
   }
@@ -83,98 +83,129 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
     prevOpen.current = open;
   }, [open]);
 
-  const handleShare = () => {
-    // if we are on the candidate page, track the share
-    if (router.pathname === '/candidate/[...NameIdTab]') {
-      trackShareCallback(
-        router.components['/candidate/[...NameIdTab]']?.props?.pageProps
-          ?.ssrState?.id,
-      );
-    }
-    router.query.share = 'true';
-    router.push(router);
+  const candidateRoute = router.pathname === '/candidate/[...NameId]';
+  const isHomePage = router.pathname === '/';
+  let id = false;
+  if (
+    candidateRoute &&
+    router.query['NameId'] &&
+    router.query['NameId'].length === 2
+  ) {
+    id = router.query['NameId'][1];
+  }
 
-    logEvent('Share', 'top_nav_share', 'Top Nav');
-  };
+  // const handleShare = () => {
+  //   // if we are on the candidate page, track the share
+  //   if (router.pathname === '/candidate/[...NameIdTab]') {
+  //     trackShareCallback(
+  //       router.components['/candidate/[...NameIdTab]']?.props?.pageProps
+  //         ?.ssrState?.id,
+  //     );
+  //   }
+  //   router.query.share = 'true';
+  //   router.push(router);
+  //
+  //   logEvent('Share', 'top_nav_share', 'Top Nav');
+  // };
   return (
-    <Wrapper>
-      <ContentWrapper>
-        <Link
-          href="/"
-          passHref
-          onClick={() => {
-            logEvent('Link', 'Logo', 'Top Nav');
-          }}
-        >
-          <a>
-            <Image
-              src="/images/black-logo.svg"
-              data-cy="logo"
-              width={174}
-              height={20}
-              alt="GOOD PARTY"
-            />
-          </a>
-        </Link>
-        <RightLinks>
-          {HEADER_LINKS.map((link) => (
-            <TopLink key={link.href} data-cy="header-link">
+    <>
+      <Wrapper>
+        <ContentWrapper>
+          <Link
+            href="/"
+            passHref
+            onClick={() => {
+              logEvent('Link', 'Logo', 'Top Nav');
+            }}
+          >
+            <a>
+              <Image
+                src="/images/black-logo.svg"
+                data-cy="logo"
+                width={174}
+                height={20}
+                alt="GOOD PARTY"
+              />
+            </a>
+          </Link>
+          <RightLinks>
+            {isHomePage && (
+              <ScrollLink to="what-is-it" duration={350} smooth offset={-90}>
+                <TopLink>
+                  What is{' '}
+                  <u>
+                    <i>It</i>
+                  </u>{' '}
+                  ?
+                </TopLink>
+              </ScrollLink>
+            )}
+            {HEADER_LINKS.map((link) => (
+              <TopLink key={link.href}>
+                <Link
+                  href={link.href}
+                  passHref
+                  onClick={() => {
+                    logEvent('Link', link.label, 'Top Nav');
+                  }}
+                >
+                  <A>{link.label}</A>
+                </Link>
+              </TopLink>
+            ))}
+            {user?.name ? (
               <Link
-                href={link.href}
+                href="/profile"
                 passHref
                 onClick={() => {
-                  logEvent('Link', link.label, 'Top Nav');
+                  logEvent('Link', 'Profile', 'Top Nav');
                 }}
               >
-                <A data-cy="header-link-label">{link.label}</A>
+                <a>
+                  <AvatarWrapper>
+                    <UserAvatar user={user} />
+                  </AvatarWrapper>
+                </a>
               </Link>
-            </TopLink>
-          ))}
-          {user?.name ? (
-            <Link
-              href="/profile"
-              passHref
-              onClick={() => {
-                logEvent('Link', 'Profile', 'Top Nav');
-              }}
-            >
-              <a data-cy="header-name">
-                <AvatarWrapper>
-                  <UserAvatar user={user} />
-                </AvatarWrapper>
-              </a>
-            </Link>
-          ) : (
-            <>
-              <TopLink>
-                <Link
-                  href="/login"
-                  passHref
-                  onClick={() => {
-                    logEvent('Link', 'Login', 'Top Nav');
-                  }}
-                >
-                  <A data-cy="header-login">Login</A>
-                </Link>
-              </TopLink>
-              <TopLink>
-                <Link
-                  href="/register"
-                  passHref
-                  onClick={() => {
-                    logEvent('Link', 'Register', 'Top Nav');
-                  }}
-                >
-                  <A data-cy="header-register">
-                    <strong>Join Us</strong>
-                  </A>
-                </Link>
-              </TopLink>
-            </>
-          )}
-        </RightLinks>
-      </ContentWrapper>
-    </Wrapper>
+            ) : (
+              <>
+                <TopLink>
+                  <Link
+                    href="/login"
+                    passHref
+                    onClick={() => {
+                      logEvent('Link', 'Login', 'Top Nav');
+                    }}
+                  >
+                    <A>Login</A>
+                  </Link>
+                </TopLink>
+                <TopLink>
+                  <Link
+                    href="/register"
+                    passHref
+                    onClick={() => {
+                      logEvent('Link', 'Register', 'Top Nav');
+                    }}
+                  >
+                    <A>
+                      <strong>Join Us</strong>
+                    </A>
+                  </Link>
+                </TopLink>
+              </>
+            )}
+            {user?.isAdmin && (
+              <>
+                <AdminMenu />
+                {candidateRoute && <AdminMenu candidateMode id={id} />}
+              </>
+            )}
+          </RightLinks>
+        </ContentWrapper>
+      </Wrapper>
+      <Padder />
+    </>
   );
 };
 

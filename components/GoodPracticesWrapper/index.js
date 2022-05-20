@@ -145,7 +145,7 @@ function GoodPracticesWrapper({ content, candidates }) {
           </Wrapper>
         </HeaderWrapper>
         <Wrapper>
-          <Link to="launch" duration={350} smooth>
+          <Link to="launch" duration={350} smooth offset={-90}>
             <Box>
               <Grid container spacing={2} alignItems="center">
                 <Grid item xs={6}>
@@ -160,7 +160,7 @@ function GoodPracticesWrapper({ content, candidates }) {
               </Grid>
             </Box>
           </Link>
-          <Link to="grow" duration={350} smooth>
+          <Link to="grow" duration={350} smooth offset={-90}>
             <Box>
               <Grid container spacing={2} alignItems="center">
                 <Grid item xs={6}>
@@ -173,7 +173,7 @@ function GoodPracticesWrapper({ content, candidates }) {
               </Grid>
             </Box>
           </Link>
-          <Link to="win" duration={350} smooth>
+          <Link to="win" duration={350} smooth offset={-90}>
             <Box>
               <Grid container spacing={2} alignItems="center">
                 <Grid item xs={6}>

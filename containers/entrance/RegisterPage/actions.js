@@ -1,6 +1,6 @@
 import types from './constants';
 
-function registerAction(name, email, phone, zip, callback) {
+function registerAction(name, email, phone, zip, callback, source = false) {
   return {
     type: types.REGISTER,
     name,
@@ -8,10 +8,11 @@ function registerAction(name, email, phone, zip, callback) {
     phone,
     zip,
     callback,
+    source,
   };
 }
 
-const socialRegisterAction = socialUser => ({
+const socialRegisterAction = (socialUser) => ({
   type: types.SOCIAL_REGISTER,
   socialUser,
 });

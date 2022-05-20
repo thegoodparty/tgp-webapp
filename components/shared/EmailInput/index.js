@@ -32,12 +32,18 @@ const Input = styled(TextField)`
   }
 `;
 
-export const isValidEmail = mail => {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const isValidEmail = (mail) => {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(mail).toLowerCase());
 };
 
-function EmailInput({ value, onChangeCallback, onBlurCallback }) {
+function EmailInput({
+  value,
+  onChangeCallback,
+  onBlurCallback,
+  hideIcon = false,
+}) {
   return (
     <Input
       value={value}
@@ -50,15 +56,19 @@ function EmailInput({ value, onChangeCallback, onBlurCallback }) {
       onChange={onChangeCallback}
       onBlur={onBlurCallback}
       variant="outlined"
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton>
-              <EmailIcon />
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
+      InputProps={
+        hideIcon
+          ? {}
+          : {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton>
+                    <EmailIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }
+      }
     />
   );
 }

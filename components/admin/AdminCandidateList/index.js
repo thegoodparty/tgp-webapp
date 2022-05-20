@@ -11,34 +11,20 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { CSVLink } from 'react-csv/lib';
 import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { BiLogInCircle } from 'react-icons/bi';
 import Link from 'next/link';
 import moment from 'moment';
 import { candidateRoute, partyResolver } from '/helpers/electionsHelper';
-import { H3 } from '/components/shared/typogrophy';
 import AlertDialog from '../../shared/AlertDialog';
-import AdminPageWrapper from '../AdminWrapper/AdminPageWrapper';
-import { PurpleButton } from '../../shared/buttons';
+import AdminPageWrapper from '../shared/AdminPageWrapper';
+import AdminPanel from '../shared/AdminPanel';
 
-const Wrapper = styled.div`
-  padding: 16px;
-  overflow-x: auto;
-`;
-
-const Title = styled(H3)`
+const Title = styled.div`
   margin-bottom: 12px;
   text-align: center;
   position: relative;
-`;
-const LogAs = styled.div`
-  font-size: 14px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.primary};
-  text-decoration: underline;
-  cursor: pointer;
+  height: 40px;
 `;
 
 const CSVLinkWrapper = styled.div`
@@ -121,26 +107,17 @@ function Index({ candidates, deleteCandidateCallback }) {
       filterMethod: customFilter,
       Cell: (row) => {
         const route = candidateRoute(row.original);
-        const editRoute = `/admin/add-candidate/${row.original.id}`;
         return (
-          <>
-            <Link href={editRoute} target="_blank" passHref>
-              <a>
-                <EditIcon />
-              </a>
-            </Link>
-            &nbsp;&nbsp;&nbsp;
-            <a
-              href={route}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                textDecoration: row.original.isHidden ? 'line-through' : '',
-              }}
-            >
-              {row.original.firstName}
-            </a>
-          </>
+          <a
+            href={route}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            style={{
+              textDecoration: row.original.isHidden ? 'line-through' : '',
+            }}
+          >
+            {row.original.firstName}
+          </a>
         );
       },
     },
@@ -155,13 +132,6 @@ function Index({ candidates, deleteCandidateCallback }) {
       accessor: 'party',
       filterMethod: customFilter,
       headerStyle,
-    },
-    {
-      Header: 'Chamber',
-      accessor: 'chamber',
-      filterMethod: customFilter,
-      headerStyle,
-      maxWidth: 120,
     },
     {
       Header: 'Office',
@@ -208,30 +178,9 @@ function Index({ candidates, deleteCandidateCallback }) {
         return (
           <div className="text-center">
             <Link href={route}>
-              <a>Candidate Portal</a>
+              <a className="underline">Candidate Portal</a>
             </Link>
           </div>
-        );
-      },
-    },
-    {
-      Header: 'Top Issues',
-      accessor: 'topIssues',
-      headerStyle,
-      filterMethod: customFilter,
-      Cell: (row) => {
-        const editRoute = `/admin/top-issues/${row.original.id}`;
-        return (
-          <>
-            <Link
-              href={editRoute}
-              style={{
-                textDecoration: row.original.isHidden ? 'line-through' : '',
-              }}
-            >
-              <a>Edit Top Issues</a>
-            </Link>
-          </>
         );
       },
     },
@@ -243,10 +192,10 @@ function Index({ candidates, deleteCandidateCallback }) {
   }));
 
   return (
-    <AdminPageWrapper>
-      <Wrapper>
+    <AdminPageWrapper title="candidate list">
+      <AdminPanel>
         <Title>
-          candidate list
+          &nbsp;
           <CSVLinkWrapper>
             <Button variant="contained" color="primary">
               <CSVLink
@@ -282,7 +231,7 @@ function Index({ candidates, deleteCandidateCallback }) {
           handleClose={() => setDeleteCandidate(false)}
           handleProceed={handleProceedDelete}
         />
-      </Wrapper>
+      </AdminPanel>
     </AdminPageWrapper>
   );
 }

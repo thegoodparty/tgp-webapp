@@ -75,7 +75,7 @@ function StaffCard({ candidate, role }) {
   const { id, firstName, lastName, image, race, party, otherParty } = candidate;
   return (
     <Link href={`/candidate-portal/${id}`} passHref style={{ height: '100%' }}>
-      <a style={{ height: '100%' }} data-cy="staff-link">
+      <a style={{ height: '100%' }} className="no-underline" data-cy="staff-link">
         <Role data-cy="staff-role">
           <strong>Your Role: </strong>Campaign {role}
         </Role>

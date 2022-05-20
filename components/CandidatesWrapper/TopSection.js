@@ -47,6 +47,10 @@ const ButtonWrapper = styled.div`
     display: inline-block;
     margin: 0 10px;
   }
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 function TopSection() {
@@ -62,7 +66,7 @@ function TopSection() {
       <GoodCertifiedPoints />
       <Why>
         <Link href={`${router.asPath}?article=FqZOWMEEYfcXbASjaRkMU`} passHref>
-          <a data-cy="candidates-article-link">
+          <a className="no-underline" data-cy="candidates-article-link">
             <ButtonWrapper>
               <BlackOutlinedButton active data-cy="candidates-article-link-label">
                 Why is this important?
@@ -72,11 +76,7 @@ function TopSection() {
         </Link>
         <Link href="/run" passHref>
           <a data-cy="candidates-run-link">
-            <ButtonWrapper>
-              <BlackOutlinedButton active data-cy="candidates-run-link-label">
-                Want to Run for Office?
-              </BlackOutlinedButton>
-            </ButtonWrapper>
+            <ButtonWrapper data-cy="candidates-run-link-label">Want to Run for Office?</ButtonWrapper>
           </a>
         </Link>
       </Why>

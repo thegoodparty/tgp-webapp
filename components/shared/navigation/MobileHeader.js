@@ -15,23 +15,16 @@ import UserAvatar from '../UserAvatar';
 import { Body9, Body14 } from '../typogrophy';
 import { PurpleButton } from '../buttons';
 import BlackButton from '../buttons/BlackButton';
+import AdminMenu from '../../admin/AdminMenu';
 
 const Wrapper = styled.div`
-  padding: 0 20px;
+  padding: 0 24px;
   height: 80px;
   display: flex;
   align-items: center;
-  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   justify-content: space-between;
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding: 0 24px;
-  }
-  @media only screen and (max-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
-    padding: 0 18px;
-  }
 `;
 
 const Logo = styled.img`
@@ -182,32 +175,13 @@ function MobileHeader({ user }) {
           </Grid>
           <PushMenuLink>
             <Link href="/about" passHref>
-              <a>About Good Party</a>
-            </Link>
-          </PushMenuLink>
-
-          <PushMenuLink>
-            <Link
-              href={`${router.asPath}?article=1ic6T6fhH0jZLNvX5aZkDe`}
-              passHref
-            >
-              <a>How crowd-voting works</a>
+              <a>About</a>
             </Link>
           </PushMenuLink>
 
           <PushMenuLink>
             <Link href="/candidates" passHref>
-              <a>Meet the candidates</a>
-            </Link>
-          </PushMenuLink>
-          <PushMenuLink>
-            <Link href="/faqs" passHref>
-              <a>FAQs</a>
-            </Link>
-          </PushMenuLink>
-          <PushMenuLink>
-            <Link href="/run" passHref>
-              <a>How To Run</a>
+              <a>Campaigns</a>
             </Link>
           </PushMenuLink>
 
@@ -246,6 +220,15 @@ function MobileHeader({ user }) {
               </Grid>
             )}
           </AuthButtonWrapper>
+          {user?.isAdmin && (
+            <div className={!user?.name && 'auth-button'}>
+              <PushAvatarWrapper>
+                <Link href="/admin" className="text-center" passHref>
+                  <a style={{ width: '100%', padding: '10px 0' }}>Admin</a>
+                </Link>
+              </PushAvatarWrapper>
+            </div>
+          )}
         </PushMenuWrapper>
       </MenuItemWrapper>
 

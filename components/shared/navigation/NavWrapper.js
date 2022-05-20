@@ -19,14 +19,11 @@ const NavWrapper = ({ pathname, user, trackShareCallback, purpleNav }) => (
         purpleNav={purpleNav}
       />
       <RegisterBannerContainer />
+      <FeedbackContainer />
     </Hidden>
     <Hidden mdUp>
       <MobileHeader user={user} purpleNav={purpleNav} />
     </Hidden>
-
-    {user?.isAdmin && <AdminMenu />}
-    {user?.isAdmin === false && user?.candidate && <AdminMenu candidateMode />}
-    {user && <FeedbackContainer />}
   </>
 );
 

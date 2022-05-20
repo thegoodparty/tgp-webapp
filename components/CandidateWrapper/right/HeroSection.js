@@ -17,6 +17,14 @@ const Wrapper = styled.section`
   position: relative;
 `;
 
+const Relative = styled.div`
+  min-height: 80px;
+
+  &.active {
+    position: relative;
+  }
+`;
+
 const DaysUntil = styled.div`
   display: none;
 
@@ -32,6 +40,10 @@ const DaysUntil = styled.div`
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 12px 18px;
+
+    &.with-video {
+      top: -50px;
+    }
   }
 `;
 
@@ -56,31 +68,36 @@ function HeroSection() {
 
   return (
     <Wrapper>
-      {raceDate && (
-        <DaysUntil style={{ backgroundColor: brightColor }}>
-          {days >= 0 ? (
-            <>
-              <Days data-cy="hero-days">{days}</Days>
-              Day{days !== 1}s until
-              <br />
-              election
-            </>
-          ) : (
-            <div className="text-center">
-              <Days data-cy="hero-year">{new Date(raceDate).getFullYear()}</Days>
-              <br />
-              <strong>Archived</strong>
-            </div>
-          )}
-        </DaysUntil>
-      )}
       <StyledFontH2>
         <span role="img" aria-label="Megaphone">
           📣
         </span>{' '}
         {headline}
       </StyledFontH2>
-      <YouTubeLazyPlayer id={heroVideo} />
+      <Relative className={heroVideo && 'active'}>
+        {raceDate && (
+          <DaysUntil
+            style={{ backgroundColor: brightColor }}
+            className={heroVideo && 'with-video'}
+          >
+            {days >= 0 ? (
+              <>
+                <Days>{days}</Days>
+                Day{days !== 1}s until
+                <br />
+                election
+              </>
+            ) : (
+              <div className="text-center">
+                <Days>{new Date(raceDate).getFullYear()}</Days>
+                <br />
+                <strong>Archived</strong>
+              </div>
+            )}
+          </DaysUntil>
+        )}
+        <YouTubeLazyPlayer id={heroVideo} />
+      </Relative>
     </Wrapper>
   );
 }
