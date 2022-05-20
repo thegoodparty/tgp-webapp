@@ -6,13 +6,17 @@ import Image from 'next/image';
 import { logEvent } from '../../services/AnalyticsService';
 
 const Wrapper = styled.div`
-  padding: 36px;
+  padding: 24px;
   background-color: #fff;
   border-radius: 4px;
   width: 60vw;
   max-width: 600px;
   min-width: 300px;
   font-size: 24px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    padding: 36px;
+  }
 `;
 
 const CloseWrapper = styled.div`
@@ -24,7 +28,13 @@ const CloseWrapper = styled.div`
 const Title = styled.div`
   font-size: 33px;
   font-weight: 900;
-  margin-bottom: 90px;
+  margin-bottom: 30px;
+  text-align: center;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin-bottom: 90px;
+    text-align: left;
+  }
 `;
 
 const Icon = styled.div`
@@ -33,8 +43,12 @@ const Icon = styled.div`
 `;
 
 const BottomWrapper = styled.div`
-  margin-top: 90px;
   text-align: center;
+  margin-top: 30px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin-top: 90px;
+  }
 `;
 
 const Free = styled.div`
@@ -80,7 +94,7 @@ const ShareModal = ({ closeModalCallback }) => {
       </Title>
       <Grid container>
         {icons.map((icon, index) => (
-          <Grid xs={6} lg={3} className="text-center" key={icon.label}>
+          <Grid item xs={6} lg={3} className="text-center" key={icon.label}>
             <a
               href={icon.link}
               target="_blank"
