@@ -27,7 +27,10 @@ const Title = styled.div`
   margin-bottom: 90px;
 `;
 
-const Icon = styled.div``;
+const Icon = styled.div`
+  margin-bottom: 16px;
+  font-size: 15px;
+`;
 
 const BottomWrapper = styled.div`
   margin-top: 90px;
@@ -88,6 +91,7 @@ const ModalInner = ({ closeModalCallback }) => {
             >
               <Icon className={index === icons.length - 1 && 'last'}>
                 <Image src={icon.img} height={90} width={90}></Image>
+                <div style={{ marginTop: '12px' }}>{icon.label}</div>
               </Icon>
             </a>
           </Grid>
