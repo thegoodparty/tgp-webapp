@@ -44,6 +44,12 @@ const sad = (
 );
 
 // text2
+const voteIt = (
+  <>
+    Vote <It /> out!
+  </>
+);
+
 const fuckIt = (
   <>
     Fuck <It />!
@@ -153,11 +159,7 @@ const doForget = {
 
 const doVote = {
   text1: doAbout,
-  text2: (
-    <>
-      Vote <It /> out
-    </>
-  ),
+  text2: voteIt,
   text3: withGP,
 };
 
@@ -183,7 +185,7 @@ const doResist = {
 
 const defaultMsg = {
   text1: divided,
-  text2: fuckIt,
+  text2: voteIt,
   text3: withGP,
 };
 

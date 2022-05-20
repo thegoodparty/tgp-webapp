@@ -7,7 +7,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import Hidden from '@material-ui/core/Hidden';
 
 import Row from '../shared/Row';
-import BlackButton from '../shared/buttons/BlackButton';
+import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Emoji from '../shared/Emoji';
 
 const Wrapper = styled.section`
@@ -15,15 +15,7 @@ const Wrapper = styled.section`
 `;
 
 const TopRow = styled.div`
-  display: block;
-  margin-bottom: 30px;
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
+  margin: 30px 0;
 `;
 
 const Stat = styled.div`
@@ -35,6 +27,7 @@ const Stat = styled.div`
     margin-bottom: 24px;
   }
 `;
+
 const Icon = styled.div`
   font-size: 40px;
   margin-right: 16px;
@@ -42,7 +35,6 @@ const Icon = styled.div`
 const Count = styled.div`
   font-size: 30px;
   font-weight: 900;
-  text-decoration: underline;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.xl}) {
     font-size: 48px;
@@ -86,33 +78,6 @@ const ClickableSmall = styled.div`
   cursor: pointer;
 `;
 
-const Coming = styled.span`
-  display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    color: #8f8f8f;
-    font-size: 19px;
-    margin-left: 8px;
-    display: inline-block;
-    text-decoration: underline;
-    font-weight: 400;
-    cursor: pointer;
-  }
-`;
-
-const ComingMobile = styled.div`
-  color: #8f8f8f;
-  font-size: 16px;
-  text-decoration: underline;
-  font-weight: 400;
-  cursor: pointer;
-  margin-bottom: 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    display: none;
-  }
-`;
-
 const Heart = styled.div`
   margin-right: 12px;
   padding-top: 12px;
@@ -149,47 +114,63 @@ const WhiteButton = styled(BlackButton)`
   }
 `;
 
+const Accomplish = styled.div`
+  margin-top: 16px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    text-align: right;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 24px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    margin-top: 0;
+  }
+`;
+
 const SocialSection = ({ openModalCallback }) => {
   return (
     <Wrapper>
       <TopRow>
-        <Row style={{ alignItems: 'initial' }}>
-          <a
-            href="https://www.tiktok.com/tag/goodparty?lang=en"
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            className="no-underline"
-          >
-            <Stat style={{ marginRight: '70px', display: 'flex' }}>
-              <Icon>
-                <Emoji symbol="🎉" label="Party Popper" />
-              </Icon>
-              <div>
-                <Count>85,174</Count>
-                <Label>#goodparty posts</Label>
-              </div>
-            </Stat>{' '}
-          </a>
+        <Grid container spacing={2}>
+          <Grid xs={12} md={8}>
+            <Row style={{ alignItems: 'initial' }}>
+              <Stat style={{ marginRight: '70px' }}>
+                <Icon>
+                  <Emoji symbol="🎉" label="Party Popper" />
+                </Icon>
+                <div>
+                  <Count>85,174</Count>
+                  <Label>#goodparty posts</Label>
+                </div>
+              </Stat>
 
-          <Stat style={{ display: 'flex' }}>
-            <Heart>
-              <img src="/images/heart.svg" width="42" height="34" alt="" />
-            </Heart>
-            <div>
-              <Count>
-                8,668
-                {/*<Coming onClick={openModalCallback}>Coming Soon</Coming>*/}
-              </Count>
-              <Label>@goodparty people</Label>
-              {/*<ComingMobile onClick={openModalCallback}>*/}
-              {/*  Coming Soon*/}
-              {/*</ComingMobile>*/}
-            </div>
-          </Stat>
-        </Row>
-        <Link to="accomplish" duration={350} smooth offset={-90}>
-          <LinkScroll>What does partying accomplish?</LinkScroll>
-        </Link>
+              <Stat>
+                <Heart>
+                  <img src="/images/heart.svg" width="42" height="34" alt="" />
+                </Heart>
+                <div>
+                  <Count>8,668</Count>
+                  <Label>@goodparty people</Label>
+                </div>
+              </Stat>
+            </Row>
+          </Grid>
+          <Grid xs={12} md={4}>
+            <ButtonWrapper>
+              <BlackButton fullWidth onClick={openModalCallback}>
+                Count Me In
+              </BlackButton>
+            </ButtonWrapper>
+            <Accomplish>
+              <Link to="accomplish" duration={350} smooth offset={-90}>
+                <LinkScroll>What does partying accomplish?</LinkScroll>
+              </Link>
+            </Accomplish>
+          </Grid>
+        </Grid>
       </TopRow>
       <Grid container spacing={2} className="text-center">
         <Hidden mdDown>
@@ -246,7 +227,7 @@ const SocialSection = ({ openModalCallback }) => {
               </ScrollLink>
               .
               <WhiteButton fullWidth onClick={openModalCallback}>
-                Host a #goodparty
+                Count Me In
               </WhiteButton>
               <Small>
                 What is{' '}

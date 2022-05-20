@@ -12,12 +12,12 @@ const H1 = styled.h1`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.xl}) {
     margin: 70px 0;
-    font-size: 56px;
+    font-size: 45px;
   }
 
   .smaller {
     font-style: italic;
-    font-size: 36px;
+    font-size: 30px;
 
     @media only screen and (min-width: ${({ theme }) =>
         theme.breakpointsPixels.xl}) {
@@ -26,7 +26,7 @@ const H1 = styled.h1`
   }
 
   .large {
-    font-size: 70px;
+    font-size: 60px;
     display: inline-block;
     position: relative;
     z-index: 10;
@@ -40,7 +40,7 @@ const H1 = styled.h1`
     position: absolute;
     height: 28px;
     width: calc(100% + 10px);
-    bottom: 14px;
+    bottom: 3px;
     left: -5px;
     background-color: #ffe600;
     z-index: -1;
@@ -50,7 +50,7 @@ const H1 = styled.h1`
 const MobileBr = styled.span`
   display: block;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.md}) {
     display: inline;
   }
 `;
