@@ -28,15 +28,34 @@ const Banner = styled.div`
 
   background-size: auto 50%;
   background-repeat: no-repeat;
-  background-position: bottom center;
+  background-position: right bottom;
+
   margin-bottom: 15px;
+  position: relative;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    background-position: right bottom;
     padding: 72px;
     background-size: auto 100%;
     font-size: 30px;
+  }
+`;
+
+const GrayGradient = styled.div`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(241, 241, 241, 1) 50%,
+      rgba(241, 241, 241, 0) 100%
+    );
   }
 `;
 
@@ -68,7 +87,15 @@ const Inner = styled.div`
   }
 `;
 
-const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
+const Relative = styled.div`
+  position: relative;
+`;
+
+const SoFIt = ({
+  noTitle = false,
+  openModalCallback = () => {},
+  openShareModalCallback = () => {},
+}) => {
   return (
     <Wrapper>
       {!noTitle && (
@@ -92,28 +119,35 @@ const SoFIt = ({ noTitle = false, openModalCallback = () => {} }) => {
       <Banner
         style={{ backgroundImage: 'url(/images/homepage/banner-bg2.png)' }}
       >
-        <Title> Post a #goodparty</Title>
-        Tag a #goodparty to join us and unlock good times!
-        <br />
-        <BlackButton style={{ marginTop: '40px' }} onClick={openModalCallback}>
-          <Inner>
-            Post a #goodparty{' '}
-            <Row>
-              <Icon>
-                <FaTwitter />
-              </Icon>
-              <Icon>
-                <FaTiktok />
-              </Icon>
-              <Icon>
-                <FaInstagram />
-              </Icon>
-              <Icon>
-                <FaFacebook />
-              </Icon>
-            </Row>
-          </Inner>
-        </BlackButton>
+        {' '}
+        <GrayGradient />
+        <Relative>
+          <Title> Follow @goodparty</Title>
+          Follow @goodparty to stay in the loop and unlock good times!
+          <br />
+          <BlackButton
+            style={{ marginTop: '40px' }}
+            onClick={openShareModalCallback}
+          >
+            <Inner>
+              Post a #goodparty{' '}
+              <Row>
+                <Icon>
+                  <FaTiktok />
+                </Icon>
+                <Icon>
+                  <FaInstagram />
+                </Icon>
+                <Icon>
+                  <FaFacebook />
+                </Icon>
+                <Icon>
+                  <FaTwitter />
+                </Icon>
+              </Row>
+            </Inner>
+          </BlackButton>
+        </Relative>
       </Banner>
     </Wrapper>
   );
