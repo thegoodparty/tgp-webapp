@@ -77,7 +77,7 @@ const ModalInner = ({ closeModalCallback }) => {
       </Title>
       <Grid container>
         {icons.map((icon, index) => (
-          <Grid xs={6} lg={3} className="text-center">
+          <Grid xs={6} lg={3} className="text-center" key={icon.label}>
             <a
               href={icon.link}
               target="_blank"

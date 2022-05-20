@@ -51,9 +51,6 @@ export function HomePage({
   // }, []);
 
   const { user } = userState;
-  console.log('utm_content', utmContent);
-  console.log('utm_source', utmSource);
-  console.log('utmExperiment', utmExperiment);
   const childProps = {
     registerCallback,
     showFeedbackCallback,
