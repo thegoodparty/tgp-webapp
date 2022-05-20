@@ -17,44 +17,8 @@ import { isValidEmail } from '../../shared/EmailInput';
 import PhoneInput from '../../shared/PhoneInput';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import Row from '../../shared/Row';
+import { USER_SETTING_FIELDS } from '../../../utils/constants';
 
-const fields = [
-  {
-    key: 'name',
-    label: 'Name',
-    initialValue: '',
-    maxLength: 20,
-    required: true,
-  },
-  {
-    key: 'email',
-    label: 'Email',
-    initialValue: '',
-    maxLength: 20,
-    type: 'email',
-  },
-  {
-    key: 'phone',
-    label: 'Mobile Number',
-    initialValue: '',
-    maxLength: 12,
-    type: 'phone',
-  },
-  {
-    key: 'zip',
-    label: 'Zip Code',
-    initialValue: '',
-    maxLength: 5,
-    required: true,
-  },
-  {
-    key: 'displayName',
-    label: 'Display Name',
-    initialValue: '',
-    maxLength: 16,
-  },
-  // { key: 'pronouns', label: 'Preferred Pronouns', initialValue: '' },
-];
 
 const Section = styled.section`
   .MuiInputBase-input {
@@ -81,7 +45,8 @@ const Cancel = styled.div`
 function PersonalSection() {
   const { user, updateUserCallback } = useContext(ProfileSettingsPageContext);
   const initialState = {};
-  fields.forEach((field) => {
+  
+  USER_SETTING_FIELDS.forEach((field) => {
     initialState[field.key] = field.initialValue;
   });
   const [state, setState] = useState(initialState);
@@ -90,7 +55,7 @@ function PersonalSection() {
   useEffect(() => {
     if (user) {
       const updatedState = {};
-      fields.forEach((field) => {
+      USER_SETTING_FIELDS.forEach((field) => {
         updatedState[field.key] = user[field.key] || field.initialValue;
       });
       setState(updatedState);
@@ -106,7 +71,7 @@ function PersonalSection() {
 
   const cancel = () => {
     const updatedState = {};
-    fields.forEach((field) => {
+    USER_SETTING_FIELDS.forEach((field) => {
       updatedState[field.key] = user[field.key] || field.initialValue;
     });
     setState(updatedState);
@@ -145,11 +110,11 @@ function PersonalSection() {
   return (
     <Section>
       <PortalPanel color="#EE6C3B">
-        <FontH3 style={{ margin: '0 0 70px' }}>Settings</FontH3>
+        <FontH3 style={{ margin: '0 0 70px' }} data-cy="settings-title">Settings</FontH3>
         <form noValidate onSubmit={(e) => e.preventDefault()}>
           <Grid container spacing={3}>
             <Grid xs={12} lg={6}>
-              {fields.map((field) => (
+              {USER_SETTING_FIELDS.map((field) => (
                 <>
                   {field.type === 'phone' ? (
                     <PhoneInput

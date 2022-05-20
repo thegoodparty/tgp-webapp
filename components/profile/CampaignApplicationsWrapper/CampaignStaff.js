@@ -24,10 +24,10 @@ function CampaignStaff() {
 
   return (
     <PortalPanel color="#EE6C3B">
-      <FontH3 style={{ margin: '0 0 70px' }}>Campaigns</FontH3>
+      <FontH3 style={{ margin: '0 0 70px' }} data-cy="campaign-staff-title">Campaigns</FontH3>
       <Grid container spacing={3}>
         {staff.map((candidateStaff) => (
-          <Grid item xs={12} md={6} lg={4} key={candidateStaff.id}>
+          <Grid item xs={12} md={6} lg={4} key={candidateStaff.id} data-cy="campaign-staff-wrapper">
             <StaffCard
               candidate={candidateStaff.candidate}
               role={candidateStaff.role}

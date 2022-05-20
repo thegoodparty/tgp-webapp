@@ -23,7 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-import { api, base } from '../../constants';
+import { api, base, TOKEN } from '../../constants';
 import promisify from 'cypress-promise';
 
 Cypress.Commands.add(
@@ -50,23 +50,66 @@ Cypress.Commands.add(
     },
   );
 Cypress.Commands.add('getFaqArticles', () => {
-  cy.sendRequest(api.contentByKey.method, `${api.contentByKey.url}?key=articleCategories`);
+  cy.sendRequest(
+    api.contentByKey.method, 
+    `${api.contentByKey.url}?key=articleCategories`
+  );
 });
 Cypress.Commands.add('getPrivacyPageContent', () => {
-  cy.sendRequest(api.contentByKey.method, `${api.contentByKey.url}?key=privacyPage`);
+  cy.sendRequest(
+    api.contentByKey.method, 
+    `${api.contentByKey.url}?key=privacyPage`
+  );
 });
 Cypress.Commands.add('getHomepageCandidates', () => {
-    cy.sendRequest(api.homepageCandidates.method, api.homepageCandidates.url);
+  cy.sendRequest(
+    api.homepageCandidates.method, 
+    api.homepageCandidates.url
+  );
 });
 Cypress.Commands.add('getCandidateList', () => {
-  cy.sendRequest(api.newCandidate.list.method, api.newCandidate.list.url);
+  cy.sendRequest(
+    api.newCandidate.list.method, 
+    api.newCandidate.list.url
+  );
 });
 Cypress.Commands.add('getCandidate', (candidateId) => {
-  cy.sendRequest(api.newCandidate.find.method, `${api.newCandidate.find.url}?id=${candidateId}&allFields=true`);
+  cy.sendRequest(
+    api.newCandidate.find.method,
+    `${api.newCandidate.find.url}?id=${candidateId}&allFields=true`
+  );
 });
-
+Cypress.Commands.add('getApplications', () => {
+  cy.sendRequest(
+    api.candidateApplication.list.method, 
+    api.candidateApplication.list.url,
+    null,
+    api.candidateApplication.list.withAuth && TOKEN,
+  );
+});
+Cypress.Commands.add('getStaff', () => {
+  cy.sendRequest(
+    api.campaign.staff.userStaff.method, 
+    api.campaign.staff.userStaff.url,
+    null,
+    api.campaign.staff.userStaff.withAuth && TOKEN,
+  );
+});
+Cypress.Commands.add('getUserSupports', () => {
+  cy.sendRequest(
+    api.supportCandidate.userSupports.method,
+    api.supportCandidate.userSupports.url,
+    {
+      withCandidates: true,
+    },
+    api.supportCandidate.userSupports.withAuth && TOKEN,
+  );
+});
 Cypress.Commands.add('getCandidateSupports', (candidateId) => {
-  cy.sendRequest(api.supportCandidate.candidateSupports.method, `${api.supportCandidate.candidateSupports.url}?candidateId=${candidateId}`);
+  cy.sendRequest(
+    api.supportCandidate.candidateSupports.method, 
+    `${api.supportCandidate.candidateSupports.url}?candidateId=${candidateId}`
+  );
 });
 
 Cypress.Commands.add('getCandidatePageData', async (candidateId) => {

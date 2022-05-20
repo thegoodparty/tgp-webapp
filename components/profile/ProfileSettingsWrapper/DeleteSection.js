@@ -37,7 +37,7 @@ function DeleteSection() {
   return (
     <section>
       <PortalPanel color="red">
-        <FontH3 style={{ margin: '0 0 70px' }}>
+        <FontH3 style={{ margin: '0 0 70px' }} data-cy="delete-account-title">
           Danger Zone - Delete your account
         </FontH3>
         <RedButton onClick={() => setShowConfirmDelete(true)}>

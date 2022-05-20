@@ -328,3 +328,41 @@ export const REGISTER_FIELDS = [
     isUpdatable: true,
   },
 ];
+
+export const USER_SETTING_FIELDS = [
+  {
+    key: 'name',
+    label: 'Name',
+    initialValue: '',
+    maxLength: 20,
+    required: true,
+  },
+  {
+    key: 'email',
+    label: 'Email',
+    initialValue: '',
+    maxLength: 20,
+    type: 'email',
+  },
+  {
+    key: 'phone',
+    label: 'Mobile Number',
+    initialValue: '',
+    maxLength: 12,
+    type: 'phone',
+  },
+  {
+    key: 'zip',
+    label: 'Zip Code',
+    initialValue: '',
+    maxLength: 5,
+    required: true,
+  },
+  {
+    key: 'displayName',
+    label: 'Display Name',
+    initialValue: '',
+    maxLength: 16,
+  },
+  // { key: 'pronouns', label: 'Preferred Pronouns', initialValue: '' },
+];
