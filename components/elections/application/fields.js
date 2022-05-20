@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import {
@@ -11,7 +12,7 @@ import {
   FaGlobeAmericas,
   FaVideo,
 } from 'react-icons/fa';
-import { flatStates } from '/helpers/statesHelper';
+import { flatStates } from '../../../helpers/statesHelper';
 
 const IconWrapper = styled.span`
   color: #000;
@@ -511,4 +512,14 @@ export const step3Socials = [
       </IconWrapper>
     ),
   },
+];
+
+export const leftLinks = [
+  { step: 1, label: '1. Good Party Pledge' },
+  { step: 2, label: '2. Candidate Details' },
+  { step: 3, label: '3. Campaign Details' },
+  { step: 4, label: '4. Social Media' },
+  { step: 5, label: '5. Top Issues' },
+  { step: 6, label: '6. Key Endorsements' },
+  { step: 7, label: '7. Application Checklist' },
 ];

@@ -53,7 +53,7 @@ function ApplicationSection() {
       <PortalPanel color="#EE6C3B">
         <Row style={{ justifyContent: 'space-between' }}>
           <FontH3 style={{ margin: '0 0 70px' }} data-cy="applications-title">Applications</FontH3>
-          <BlackOutlinedButton onClick={createApplicationCallback}>
+          <BlackOutlinedButton onClick={createApplicationCallback} data-cy="start-application">
             Start a new application
           </BlackOutlinedButton>
         </Row>

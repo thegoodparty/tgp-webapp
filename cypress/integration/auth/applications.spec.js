@@ -46,6 +46,5 @@ describe('Campaign Applications Page', () => {
             cy.testApplicationPreview($el, applications[index]);
           });
       }
-        
     });
 });

@@ -93,11 +93,11 @@ function ApplicationStep4({
       id={application.id}
       reviewMode={reviewMode}
     >
-      <Title>Step 4: Add Social Media</Title>
+      <Title data-cy="step-title">Step 4: Add Social Media</Title>
       <form noValidate onSubmit={handleSubmitForm}>
         <Label>Official campaign social media links</Label>
         {step3Socials.map((field) => (
-          <SocialFieldWrapper key={field.key}>
+          <SocialFieldWrapper key={field.key} data-cy="social-step-3-wrapper">
             <TextField
               key={field.key}
               name={field.key}
@@ -123,14 +123,15 @@ function ApplicationStep4({
               onBlur={(e) => {
                 onBlurField(field.key, e);
               }}
+              data-cy="social-step-3"
             />
           </SocialFieldWrapper>
         ))}
         <br />
         <br />
-        <Label>Personal social media links for the candidate</Label>
+        <Label data-cy="step-subtitle">Personal social media links for the candidate</Label>
         {step2Socials.map((field) => (
-          <SocialFieldWrapper key={field.key}>
+          <SocialFieldWrapper key={field.key} data-cy="social-step-2-wrapper">
             <TextField
               key={field.key}
               name={field.key}
@@ -156,6 +157,7 @@ function ApplicationStep4({
               onBlur={(e) => {
                 onBlurField(field.key, e);
               }}
+              data-cy="social-step-2"
             />
           </SocialFieldWrapper>
         ))}

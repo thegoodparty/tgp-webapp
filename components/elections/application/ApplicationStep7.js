@@ -177,7 +177,7 @@ function ApplicationStep7({
       submitApplicationCallback={submitApplicationCallback}
       reviewMode={reviewMode}
     >
-      <Title>Step 7: Review Application Checklist</Title>
+      <Title data-cy="step-title">Step 7: Review Application Checklist</Title>
       {state.map((section, index) => (
         <SectionWrapper key={index}>
           <Link

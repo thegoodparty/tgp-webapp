@@ -8,7 +8,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PageWrapper from '../shared/PageWrapper';
 import { AboutPageContext } from '../../containers/AboutPage';
-import FeaturedCampaigns from '../HomePageWrapper/FeaturedCampaigns';
+import FeaturedCampaigns from './FeaturedCampaigns';
 import { CROWD_VOTING_POINTS } from '../../utils/constants';
 
 const H1 = styled.h1`
@@ -92,7 +92,6 @@ function AboutWrapper() {
         </Point>
       ))}
       <FeaturedCampaigns featuredCandidates={featuredCandidates} removePadding />
-
     </PageWrapper>
   );
 }
