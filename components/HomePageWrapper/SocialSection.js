@@ -170,7 +170,7 @@ const SocialSection = ({ openModalCallback }) => {
           <Grid xs={12} md={4}>
             <ButtonWrapper>
               <BlackButton fullWidth onClick={openModalCallback}>
-                Count Me In
+                Count Me In!
               </BlackButton>
             </ButtonWrapper>
             <Accomplish>

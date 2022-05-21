@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 const Wrapper = styled.section`
   padding: 80px 0;
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     padding: 130px 0;
   }
 `;
@@ -48,7 +48,7 @@ const Anatomy = () => {
         <Grid item xs={12} lg={4}>
           <Content>
             <Icons>💃🏽 🕺 🎸</Icons>
-            <Title>THE PURPOSE IS TO HAVE FUN</Title>
+            <Title>GET TOGETHER</Title>
             <div>
               A #goodparty is whatever you want it to be: a sewing circle, a
               dinner party or a full-on rager!
@@ -72,8 +72,8 @@ const Anatomy = () => {
             <Icons>🗓️ 🎉 🤳</Icons>
             <Title>EVERY TUESDAY</Title>
             <div>
-              Do it so you can do it again. Pitch in, clean up, and help host,
-              so #goodparty Tuesdays can become a thing!
+              Do it so you can do it again. Pitch in, clean up and help host, so
+              #goodparty Tuesdays can become a thing!
             </div>
           </Content>
         </Grid>

@@ -64,7 +64,7 @@ const GrayParty = ({ openModalCallback }) => {
       <H2>
         We party on{' '}
         <Relative>
-          <Up>Tuesday.</Up>
+          <Up>Tuesdays.</Up>
           <Yellow />
         </Relative>
         <br />

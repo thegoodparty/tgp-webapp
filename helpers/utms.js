@@ -46,7 +46,7 @@ const sad = (
 // text2
 const voteIt = (
   <>
-    Vote <It /> out!
+    Vote <It /> Out!
   </>
 );
 
@@ -170,7 +170,7 @@ const waitHost = {
     </>
   ),
   text2: <>Host</>,
-  text3: 'a #goodparty on Tuesday',
+  text3: 'a #goodparty on Tuesdays',
 };
 
 const doResist = {
