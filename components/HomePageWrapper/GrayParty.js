@@ -26,31 +26,56 @@ const H2 = styled.h2`
 const Relative = styled.div`
   display: inline-block;
   position: relative;
+`;
+
+const Up = styled.span`
   z-index: 10;
+  position: relative;
 `;
 
 const Yellow = styled.div`
   position: absolute;
-  height: 28px;
+  height: 20px;
   width: calc(100% + 10px);
-  bottom: 10px;
+  bottom: 0;
   left: -5px;
   background-color: #ffe600;
-  z-index: -1;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    bottom: 10px;
+    height: 28px;
+  }
+`;
+
+const LinkScroll = styled.div`
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 900;
+`;
+
+const Accomplish = styled.div`
+  margin-top: 20px;
+  text-align: center;
 `;
 
 const GrayParty = ({ openModalCallback }) => {
   return (
     <Wrapper>
       <H2>
-        We party every{' '}
+        We party on{' '}
         <Relative>
-          Tuesday.
+          <Up>Tuesday.</Up>
           <Yellow />
         </Relative>
         <br />
         Because{' '}
-        <ScrollLink className="pointer" to="what-is-it" duration={350} smooth  offset={-90}>
+        <ScrollLink
+          className="pointer"
+          to="what-is-it"
+          duration={350}
+          smooth
+          offset={-90}
+        >
           <u>
             <i>It</i>
           </u>
@@ -62,6 +87,11 @@ const GrayParty = ({ openModalCallback }) => {
           Host a #goodparty
         </InnerButton>
       </BlackButton>
+      <Accomplish>
+        <ScrollLink to="accomplish" duration={350} smooth offset={-90}>
+          <LinkScroll>What does partying accomplish?</LinkScroll>
+        </ScrollLink>
+      </Accomplish>
     </Wrapper>
   );
 };

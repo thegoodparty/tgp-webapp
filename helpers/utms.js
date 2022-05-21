@@ -4,7 +4,7 @@ import It from '../components/shared/It';
 //text1
 const divided = (
   <>
-    <It /> wants us divided and hopeless.
+    <It /> wants us divided &amp; hopeless.
   </>
 );
 const systemDivided = 'The system wants us divided and hopeless.';

@@ -37,7 +37,7 @@ function ManifestoWrapper() {
         <br />
         <br />
         <strong>
-          First tell us, what is{' '}
+          What is{' '}
           <u>
             <i>It</i>
           </u>
@@ -112,7 +112,7 @@ function ManifestoWrapper() {
         <br />
         <br />
         <strong>
-          Let&apos;s do it... to{' '}{' '}
+          Let&apos;s do it... to{' '}
           <u>
             <i>It</i>
           </u>
