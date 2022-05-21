@@ -12,6 +12,7 @@ import SoFIt from './SoFIt';
 import Modal from '../shared/Modal';
 import ModalInner from './ModalInner';
 import ShareModal from './ShareModal';
+import VideoSection from './VideoSection';
 
 const HomePageWrapper = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,6 +29,7 @@ const HomePageWrapper = () => {
       <MaxWidth style={{ padding: '0 24px' }}>
         <Hero />
         <SocialSection openModalCallback={handleOpenShareModal} />
+        <VideoSection />
       </MaxWidth>
       <GrayParty openModalCallback={handleOpenModal} />
       <MaxWidth style={{ padding: '0 24px' }}>
