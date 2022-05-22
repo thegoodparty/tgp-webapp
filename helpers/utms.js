@@ -52,7 +52,7 @@ const voteIt = (
 
 const fuckIt = (
   <>
-    Fuck <It />!
+    F*ck <It />!
   </>
 );
 
@@ -185,7 +185,7 @@ const doResist = {
 
 const defaultMsg = {
   text1: divided,
-  text2: voteIt,
+  text2: fuckIt,
   text3: withGP,
 };
 

@@ -13,7 +13,7 @@ const Wrapper = styled.section`
 const VideoSection = () => {
   return (
     <Wrapper>
-      <YouTubeLazyPlayer id="qYYlOQbozZ8"  />
+      <YouTubeLazyPlayer id="qYYlOQbozZ8" />
     </Wrapper>
   );
 };
