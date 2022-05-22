@@ -76,11 +76,11 @@ const Accomplish = ({ openModalCallback }) => {
                   <InnerButton
                     style={{ textTransform: 'none', padding: '0 80px' }}
                   >
-                    Vote{' '}
+                    VOTE{' '}
                     <u>
                       <i>It</i>
                     </u>{' '}
-                    &nbsp;Out!
+                    &nbsp;OUT!
                   </InnerButton>
                 </BlackButton>
               </a>
