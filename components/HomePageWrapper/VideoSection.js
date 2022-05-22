@@ -2,11 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import YouTubeLazyPlayer from '../shared/YouTubeLazyPlayer';
 
-const Wrapper = styled.section`
-  padding: 80px 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding: 130px 0;
+const Wrapper = styled.div`
+  .yt-lite {
+    background: #f3f3f3 url(https://assets.goodparty.org/tgp-party-poster.jpg)
+      center center no-repeat !important;
+    background-size: contain !important;
+    height: 50vh;
+    &::before {
+      display: none;
+    }
   }
 `;
 

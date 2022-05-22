@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import { Link as ScrollLink } from 'react-scroll';
+import Grid from '@material-ui/core/Grid';
+import MaxWidth from '../shared/MaxWidth';
+import VideoSection from './VideoSection';
 
 const Wrapper = styled.section`
   background-color: #f3f3f3;
@@ -61,37 +64,46 @@ const Accomplish = styled.div`
 const GrayParty = ({ openModalCallback }) => {
   return (
     <Wrapper>
-      <H2>
-        We party on{' '}
-        <Relative>
-          <Up>Tuesdays.</Up>
-          <Yellow />
-        </Relative>
-        <br />
-        Because{' '}
-        <ScrollLink
-          className="pointer"
-          to="what-is-it"
-          duration={350}
-          smooth
-          offset={-90}
-        >
-          <u>
-            <i>It</i>
-          </u>
-        </ScrollLink>{' '}
-        doesn’t want us to.
-      </H2>
-      <BlackButton onClick={openModalCallback}>
-        <InnerButton style={{ textTransform: 'none', padding: '0 80px' }}>
-          Host a #goodparty
-        </InnerButton>
-      </BlackButton>
-      <Accomplish>
-        <ScrollLink to="accomplish" duration={350} smooth offset={-90}>
-          <LinkScroll>What does partying accomplish?</LinkScroll>
-        </ScrollLink>
-      </Accomplish>
+      <MaxWidth>
+        <Grid container spacing={4}>
+          <Grid item xs={12} lg={6}>
+            <VideoSection />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <H2>
+              We party on{' '}
+              <Relative>
+                <Up>Tuesdays.</Up>
+                <Yellow />
+              </Relative>
+              <br />
+              Because{' '}
+              <ScrollLink
+                className="pointer"
+                to="what-is-it"
+                duration={350}
+                smooth
+                offset={-90}
+              >
+                <u>
+                  <i>It</i>
+                </u>
+              </ScrollLink>{' '}
+              doesn’t want us to.
+            </H2>
+            <BlackButton onClick={openModalCallback}>
+              <InnerButton style={{ textTransform: 'none', padding: '0 80px' }}>
+                Host a #goodparty
+              </InnerButton>
+            </BlackButton>
+            <Accomplish>
+              <ScrollLink to="accomplish" duration={350} smooth offset={-90}>
+                <LinkScroll>What does partying accomplish?</LinkScroll>
+              </ScrollLink>
+            </Accomplish>
+          </Grid>
+        </Grid>
+      </MaxWidth>
     </Wrapper>
   );
 };
