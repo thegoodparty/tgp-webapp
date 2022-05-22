@@ -31,7 +31,7 @@ const HomePageWrapper = () => {
         <SocialSection openModalCallback={handleOpenShareModal} />
         {/*<VideoSection />*/}
       </MaxWidth>
-      <GrayParty openModalCallback={handleOpenModal} />
+      <GrayParty openModalCallback={handleOpenShareModal} />
       <MaxWidth style={{ padding: '0 24px' }}>
         <WhatIsIt />
         <Accomplish openModalCallback={handleOpenModal} />

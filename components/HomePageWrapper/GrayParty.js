@@ -92,8 +92,8 @@ const GrayParty = ({ openModalCallback }) => {
               doesn’t want us to.
             </H2>
             <BlackButton onClick={openModalCallback}>
-              <InnerButton style={{ textTransform: 'none', padding: '0 80px' }}>
-                Host a #goodparty
+              <InnerButton style={{ padding: '0 80px' }}>
+                Count me in
               </InnerButton>
             </BlackButton>
             <Accomplish>
