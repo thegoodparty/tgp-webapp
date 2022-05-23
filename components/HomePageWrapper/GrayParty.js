@@ -93,7 +93,7 @@ const GrayParty = ({ openModalCallback }) => {
             </H2>
             <BlackButton onClick={openModalCallback}>
               <InnerButton style={{ padding: '0 80px' }}>
-                Count me in
+                Count me in!
               </InnerButton>
             </BlackButton>
             <Accomplish>
