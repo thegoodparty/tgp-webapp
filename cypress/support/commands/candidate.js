@@ -67,13 +67,10 @@ Cypress.Commands.add('testCandidateCard', ($el, candidate) => {
     cy.wrap($el)
       .find('[data-cy=position-title]')
       .contains("Top Issues for this candidate");
+    console.log(positions)
     cy.wrap($el)
       .find('[data-cy=position]')
-      .should('have.length', positions.length)
-      .each(($el1, index) => {
-        cy.wrap($el)
-          .contains(positions[index]);
-      });
+      .should('have.length', positions.length);
   }
 });
   

@@ -37,7 +37,13 @@ context('Candidate', async () => {
                     supportCount: total,
                 };
             });
-            it(`test ProfileCard`, async () => {
+            it(`test Endorse / Share`, () => {
+              
+              cy.get('[data-cy=profile-card-title]')
+                .contains('Meet the Candidate');
+              
+          });
+            it(`test ProfileCard`, () => {
                 const { firstName, lastName, party, race } = candidate.candidate;
                 cy.get('[data-cy=profile-card-title]')
                   .contains('Meet the Candidate');
@@ -47,7 +53,7 @@ context('Candidate', async () => {
                 cy.get('[data-cy=profile-card-party]')
                   .contains(partyResolver(party));
             });
-            it(`test EndorseSection`, async () => {
+            it(`test EndorseSection`, () => {
                 const supportCount = total;
                 const achievements = achievementsNextStepHelper(supportCount).nextStep;
                 cy.get('[data-cy=endorse-supportcount-wrapper]')
@@ -56,7 +62,7 @@ context('Candidate', async () => {
                   .contains(supportCount);
                 cy.testSupportersProgressBar(supportCount, achievements.nextStep, null, false, '', '')
             });
-            it(`test Stats`, async () => {
+            it(`test Stats`, () => {
                 const { likelyVoters, votesNeeded, unrepVoters } = candidate.candidate;
                 cy.get('[data-cy=stats-title]')
                   .contains('Voting Stats');
@@ -76,7 +82,7 @@ context('Candidate', async () => {
                       .contains('Voters so far');
                 }
             });
-            it(`test RecentlyJoined`, async () => {
+            it(`test RecentlyJoined`, () => {
                 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
 
                 cy.get('[data-cy=supporter-item]')
@@ -94,7 +100,7 @@ context('Candidate', async () => {
                       .contains(candidateSupports[index].type);
                 });
             });
-            it(`test Updates`, async () => {
+            it(`test Updates`, () => {
                 const { updatesList } = candidate.candidate;
                 console.log(updatesList);
                 const deepLink = (update) => {
@@ -116,7 +122,7 @@ context('Candidate', async () => {
                       .contains(updatesList[index].timeAgo);
                 });
             });
-            it(`test Follow`, async () => {
+            it(`test Follow`, () => {
                 const {
                     firstName,
                     lastName,
@@ -157,7 +163,7 @@ context('Candidate', async () => {
                       .should('have.attr', 'href', channels[index].link);
                 });
             });
-            it(`test Endorsements`, async () => {
+            it(`test Endorsements`, () => {
                 const { endorsements } = candidate.candidate;
                 cy.get('[data-cy=endorsement-title]')
                   .contains('Featured Endorsements');
@@ -180,7 +186,7 @@ context('Candidate', async () => {
                           .contains(endorsements[index].summary);
                 });
             });
-            it(`test SimliarCampaigns`, async () => {
+            it(`test SimliarCampaigns`, () => {
                 const { similarCampaigns } = candidate.candidate;
                 if(similarCampaigns && similarCampaigns.length > 0) {
                   cy.get('[data-cy=similar-campaigns-title]')
@@ -209,8 +215,8 @@ context('Candidate', async () => {
                 }
                 
             });
-            it(`test HeroSection`, async () => {
-                const { headline, heroVideo, raceDate } = candidate.candidate;
+            it(`test HeroSection`, () => {
+                const { raceDate } = candidate.candidate;
                 const days = daysTill(raceDate);
                 if(days >= 0) {
                     cy.get('[data-cy=hero-days]')
@@ -221,7 +227,7 @@ context('Candidate', async () => {
                       .contains(new Date(raceDate).getFullYear());
                 }
             });
-            it(`test TopIssues`, async () => {
+            it(`test TopIssues`, () => {
                 const { candidatePositions } = candidate.candidate;
                 if(candidatePositions && candidatePositions.length > 0) {
                   cy.get('[data-cy=top-issues-title]')
@@ -240,11 +246,11 @@ context('Candidate', async () => {
                 }
                 
             });
-            it(`test Summary`, async () => {
+            it(`test Summary`, () => {
                 cy.get('[data-cy=summary-title]')
                   .contains('Campaign Summary');
             });
-            it(`test SupportButton`, async () => {
+            it(`test SupportButton`, () => {
                 const HeartIconWhite = '/images/white-heart.svg';
                 cy.get('[data-cy=support-icon]')
                   .contains(HeartIconWhite);

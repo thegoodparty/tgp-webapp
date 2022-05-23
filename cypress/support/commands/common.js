@@ -1,5 +1,5 @@
-import { HEADER_LINKS } from "../../../utils/constants";
-import { TEST_ACCOUNT_EMAIL, TEST_ACCOUNT_PWD, TOKEN, USER_COOKIE } from "../../constants";
+import { HEADER_LINKS, FOOTER_COLUMNS } from "../../../utils/constants";
+import { TEST_ACCOUNT_EMAIL, TEST_ACCOUNT_PWD, TOKEN, USER_COOKIE,  } from "../../constants";
 
 Cypress.Commands.add('testLoginFlow', () => {
   cy.visit('/login');
@@ -69,6 +69,31 @@ Cypress.Commands.add('testSiteHeader', () => {
       .contains('Join Us');
 });
 Cypress.Commands.add('testSiteFooter', () => {
+  cy.get('[data-cy=footer-column]')
+    .should('have.length', FOOTER_COLUMNS.length)
+    .each(($el, index) => {
+      cy.wrap($el)
+        .find('[data-cy=footer-column-title]')
+        .contains(FOOTER_COLUMNS[index].title);
+      cy.wrap($el)
+        .find('[data-cy=footer-link-wrapper]')
+        .should('have.length', FOOTER_COLUMNS[index].links.length)
+        .each(($el1, index1) => {
+          cy.wrap($el1)
+            .find('[data-cy=footer-link]')
+            .should('have.attr', 'href', FOOTER_COLUMNS[index].links[index1].link)
+            .contains(FOOTER_COLUMNS[index].links[index1].label);
+        });
+    });
+    cy.get('[data-cy=footer-join-us')
+      .contains('Not a political party. We’re building free tools to change')
+    cy.get('[data-cy=footer-join-us-link')
+      .should('have.attr', 'href', "/register");
+    const year = new Date().getFullYear();
+    cy.get('[data-cy=footer-copyright')
+      .contains(`${year} Good Party. All rights reserved.`)
+    cy.get('[data-cy=footer-privacy-link')
+      .should('have.attr', 'href', "/privacy");
 });
 
 Cypress.Commands.add('signInWithDefaultUser', () => {

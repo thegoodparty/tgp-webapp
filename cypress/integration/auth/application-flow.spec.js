@@ -107,7 +107,7 @@ describe('Application Flows', () => {
         cy.get('[data-cy=step-title]')
           .should('exist')
           .contains('Step 6: Highlight Key Endorsements');
-        cy.get('[data-cy=step-subtitle]')
+        cy.get('[data-cy=step-description]')
           .should('exist')
           .contains(`Use this page to add any institutional endorsements you may have`);
     });

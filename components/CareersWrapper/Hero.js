@@ -22,14 +22,14 @@ function Hero() {
   return (
     <Grid container spacing={4} style={{ marginTop: '100px' }}>
       <Grid item xs={12} lg={6}>
-        <FontH1 style={{ marginTop: 0 }}>
+        <FontH1 style={{ marginTop: 0 }} data-cy="wwu-title">
           Want to work on something Good?
           <br />
           <br />
           Join the party!
         </FontH1>
       </Grid>
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12} lg={6} data-cy="waw-content">
         <Side>
           Good Party is a fully-funded startup organized as a Public Benefit
           Corporation (people and impact over revenues or profit). Our team is

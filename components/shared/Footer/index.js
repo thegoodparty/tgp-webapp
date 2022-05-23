@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import FeedbackContainer from '/containers/shared/FeedbackContainer';
 
 import MaxWidth from '../MaxWidth';
-import { CONTACT_EMAIL } from '../../../utils/constants';
+import { CONTACT_EMAIL, FOOTER_COLUMNS } from '../../../utils/constants';
 
 const Wrapper = styled.div`
   margin-top: 400px;
@@ -76,62 +76,11 @@ const SecondRow = styled.div`
   }
 `;
 
-const columns = [
-  {
-    title: 'ORGANIZATION',
-    links: [
-      { label: 'About Us', link: '/about' },
-      { label: 'Meet the Team', link: '/team' },
-      { label: 'Careers', link: '/work-with-us' },
-    ],
-  },
-  {
-    title: 'SUPPORT',
-    links: [
-      {
-        label: 'Contact Us',
-        link: '/contact',
-      },
-    ],
-  },
-  {
-    title: 'CAMPAIGNS',
-    links: [
-      { label: 'Meet the Candidates', link: '/candidates' },
-      { label: 'FAQs', link: '/faqs' },
-      { label: 'How To Run', link: '/run' },
-    ],
-  },
-  {
-    title: 'CONNECT',
-    links: [
-      {
-        label: 'Twitter',
-        link: 'https://twitter.com/goodpartyorg',
-        isExternal: true,
-      },
-      {
-        label: 'Facebook',
-        link: 'https://www.facebook.com/goodpartyorg',
-        isExternal: true,
-      },
-      {
-        label: 'Instagram',
-        link: 'https://www.instagram.com/goodpartyorg/',
-        isExternal: true,
-      },
-      {
-        label: 'TikTok',
-        link: 'https://www.tiktok.com/@goodparty',
-        isExternal: true,
-      },
-    ],
-  },
-];
 
 const year = new Date().getFullYear();
 
 function Footer() {
+  
   return (
     <Wrapper>
       <MaxWidth>
@@ -139,24 +88,25 @@ function Footer() {
           <FeedbackContainer mode="mobile" />
         </Aligner>
         <Grid container spacing={2}>
-          {columns.map((column) => (
-            <Grid item xs={12} lg={2} key={column.title}>
+          {FOOTER_COLUMNS.map((column) => (
+            <Grid item xs={12} lg={2} key={column.title} data-cy="footer-column">
               <Aligner>
-                <Title>{column.title}</Title>
+                <Title data-cy="footer-column-title">{column.title}</Title>
                 {column.links.map((link) => (
-                  <FooterLink key={link.label}>
+                  <FooterLink key={link.label} data-cy="footer-link-wrapper">
                     {link.isExternal ? (
                       <a
                         href={link.link}
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                         title={link.label}
+                        data-cy="footer-link"
                       >
                         {link.label}
                       </a>
                     ) : (
                       <Link href={link.link} passHref>
-                        <a>{link.label}</a>
+                        <a data-cy="footer-link">{link.label}</a>
                       </Link>
                     )}
                   </FooterLink>
@@ -174,20 +124,20 @@ function Footer() {
               style={{ matginBottom: '30px' }}
             />
             <br />
-            <Italic>
+            <Italic data-cy="footer-join-us">
               Not a political party. We’re building free tools to change the
               rules, so good independent candidates can run and win!{' '}
               <Link href="/register" passHref>
-                <a>Join us!</a>
+                <a data-cy="footer-join-us-link">Join us!</a>
               </Link>
             </Italic>
           </Grid>
         </Grid>
-        <SecondRow className="footer-row">
+        <SecondRow className="footer-row" data-cy="footer-copyright">
           <Aligner>
             &copy; {year} Good Party. All rights reserved. &nbsp;
             <Link href="/privacy" passHref>
-              <a>Privacy Policy</a>
+              <a data-cy="footer-privacy-link">Privacy Policy</a>
             </Link>
           </Aligner>
         </SecondRow>

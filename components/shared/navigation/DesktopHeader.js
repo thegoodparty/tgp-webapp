@@ -141,7 +141,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               </ScrollLink>
             )}
             {HEADER_LINKS.map((link) => (
-              <TopLink key={link.href}>
+              <TopLink key={link.href} data-cy="header-link">
                 <Link
                   href={link.href}
                   passHref
@@ -149,7 +149,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                     logEvent('Link', link.label, 'Top Nav');
                   }}
                 >
-                  <A>{link.label}</A>
+                  <A data-cy="header-link-label">{link.label}</A>
                 </Link>
               </TopLink>
             ))}
@@ -177,7 +177,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                       logEvent('Link', 'Login', 'Top Nav');
                     }}
                   >
-                    <A>Login</A>
+                    <A data-cy="header-login">Login</A>
                   </Link>
                 </TopLink>
                 <TopLink>
@@ -188,7 +188,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                       logEvent('Link', 'Register', 'Top Nav');
                     }}
                   >
-                    <A>
+                    <A data-cy="header-register">
                       <strong>Join Us</strong>
                     </A>
                   </Link>

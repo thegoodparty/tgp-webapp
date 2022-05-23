@@ -28,7 +28,7 @@ describe('CandidatesPage', () => {
         cy.get('[data-cy=candidates-top-section-subtitle]')
         .contains('FROM ACROSS THE POLITICAL SPECTRUM');
         cy.get('[data-cy=candidates-article-link]')
-        .should('have.attr', 'href', '?article=FqZOWMEEYfcXbASjaRkMU');
+        .should('have.attr', 'href', '/candidates?article=FqZOWMEEYfcXbASjaRkMU');
         cy.get('[data-cy=candidates-article-link-label]')
         .contains('Why is this important?');
         cy.get('[data-cy=candidates-run-link]')

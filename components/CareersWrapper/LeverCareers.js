@@ -69,7 +69,7 @@ function LeverCareers() {
           Fill out this form
         </a>
       </Interested>
-      <Text>
+      <Text data-cy="opening-content">
         Good Party reflects what we want for our democracy and country: a place
         where all people are welcome and authentically valued. So, we actively
         seek people from different backgrounds and beliefs. We know that we are
