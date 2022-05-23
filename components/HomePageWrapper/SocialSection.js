@@ -175,7 +175,9 @@ const SocialSection = ({ openModalCallback }) => {
             </ButtonWrapper>
             <Accomplish>
               <Link to="what-is-it" duration={350} smooth offset={-90}>
-                <LinkScroll>What is it?</LinkScroll>
+                <LinkScroll>
+                  What is <i>It</i>?
+                </LinkScroll>
               </Link>
             </Accomplish>
           </Grid>
