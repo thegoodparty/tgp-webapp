@@ -25,10 +25,5 @@ Cypress.Commands.add(
           .and('contain', peopleSoFar === 1 ? 'person ' : 'people ')
           .and('contain', prefixText);
         }
-        cy.get('@supporter')
-          .find('[data-cy=votes-needed]')
-          .should('contain', numberFormatter(votesNeeded))
-          .and('contain', userState ? `IN ${userState.toUpperCase()}` : '')
-          .and('contain', suffixText);
     }
 );

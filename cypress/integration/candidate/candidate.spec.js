@@ -57,31 +57,31 @@ context('Candidate', async () => {
                 const supportCount = total;
                 const achievements = achievementsNextStepHelper(supportCount).nextStep;
                 cy.get('[data-cy=endorse-supportcount-wrapper]')
-                  .contains(numberFormatter(achievements));
+                  .contains(numberFormatter(supportCount));
                 cy.get('[data-cy=endorse-supportcount]')
                   .contains(supportCount);
                 cy.testSupportersProgressBar(supportCount, achievements.nextStep, null, false, '', '')
             });
-            it(`test Stats`, () => {
-                const { likelyVoters, votesNeeded, unrepVoters } = candidate.candidate;
-                cy.get('[data-cy=stats-title]')
-                  .contains('Voting Stats');
-                if(unrepVoters) {
-                    cy.get('[data-cy=stats-unrepvoters]')
-                      .contains(numberFormatter(unrepVoters))
-                      .contains('Unrepresented Voters in this race');
-                }
-                if(votesNeeded) {
-                    cy.get('[data-cy=stats-votesneeded]')
-                      .contains(numberFormatter(votesNeeded))
-                      .contains('Needed to win');
-                }
-                if(likelyVoters) {
-                    cy.get('[data-cy=stats-likelyvoters]')
-                      .contains(numberFormatter(likelyVoters))
-                      .contains('Voters so far');
-                }
-            });
+            // it(`test Stats`, () => {
+            //     const { likelyVoters, votesNeeded, unrepVoters } = candidate.candidate;
+            //     cy.get('[data-cy=stats-title]')
+            //       .contains('Voting Stats');
+            //     if(unrepVoters) {
+            //         cy.get('[data-cy=stats-unrepvoters]')
+            //           .contains(numberFormatter(unrepVoters))
+            //           .contains('Unrepresented Voters in this race');
+            //     }
+            //     if(votesNeeded) {
+            //         cy.get('[data-cy=stats-votesneeded]')
+            //           .contains(numberFormatter(votesNeeded))
+            //           .contains('Needed to win');
+            //     }
+            //     if(likelyVoters) {
+            //         cy.get('[data-cy=stats-likelyvoters]')
+            //           .contains(numberFormatter(likelyVoters))
+            //           .contains('Voters so far');
+            //     }
+            // });
             it(`test RecentlyJoined`, () => {
                 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
 
@@ -114,9 +114,12 @@ context('Candidate', async () => {
                     cy.wrap($el)
                       .find('[data-cy=updates-link]')
                       .should('have.attr', 'href', deepLink(updatesList[index]));
-                    cy.wrap($el)
-                      .find('[data-cy=updates-link]')
-                      .contains(updatesList[index].title);
+                    if(updatesList[index].title) {
+                      cy.wrap($el)
+                        .find('[data-cy=updates-link]')
+                        .contains(updatesList[index].title);
+                    }
+                      
                     cy.wrap($el)
                       .find('[data-cy=updates-time]')
                       .contains(updatesList[index].timeAgo);
@@ -127,6 +130,7 @@ context('Candidate', async () => {
                     firstName,
                     lastName,
                     facebook,
+                    linkedin,
                     twitter,
                     tiktok,
                     snap,
@@ -141,6 +145,7 @@ context('Candidate', async () => {
                     { link: validateLink(twitter) },
                     { link: validateLink(tiktok) },
                     { link: validateLink(snap) },
+                    { link: validateLink(linkedin) },
                     {
                       link: validateLink(instagram),
                     },
@@ -152,39 +157,36 @@ context('Candidate', async () => {
                     { link: validateLink(website) },
                 ];
                 cy.get('[data-cy=follow-title]')
-                  .contains('Follow')
                   .contains(firstName)
                   .contains(lastName);
                 cy.get('[data-cy=follow-item]')
-                  .should('have.length', channels.length)
-                  .each(($el, index) => {
-                    cy.wrap($el)
-                      .find('[data-cy=follow-item-link]')
-                      .should('have.attr', 'href', channels[index].link);
-                });
+                  .should('have.length', channels.length);
             });
             it(`test Endorsements`, () => {
                 const { endorsements } = candidate.candidate;
-                cy.get('[data-cy=endorsement-title]')
-                  .contains('Featured Endorsements');
-                cy.get('[data-cy=endorsement-item]')
-                  .should('have.length', endorsements.length)
-                  .each(($el, index) => {
-                        if(endorsements[index].link) {
-                            cy.wrap($el)
-                              .find('[data-cy=endorsement-item-link]')
-                              .should('have.attr', 'href', endorsements[index].link);
-                            cy.wrap($el)
-                              .find('[data-cy=endorsement-item-link]')
-                              .contains('Show More');
-                        }
-                        cy.wrap($el)
-                          .find('[data-cy=endorsement-item-title]')
-                          .contains(endorsements[index].title);
-                        cy.wrap($el)
-                          .find('[data-cy=endorsement-item-summary]')
-                          .contains(endorsements[index].summary);
-                });
+                if(endorsements && endorsements.length > 0) {
+
+                  cy.get('[data-cy=endorsement-title]')
+                    .contains('Featured Endorsements');
+                  cy.get('[data-cy=endorsement-item]')
+                    .should('have.length', endorsements.length)
+                    .each(($el, index) => {
+                          if(endorsements[index].link) {
+                              cy.wrap($el)
+                                .find('[data-cy=endorsement-item-link]')
+                                .should('have.attr', 'href', endorsements[index].link);
+                              cy.wrap($el)
+                                .find('[data-cy=endorsement-item-link]')
+                                .contains('Show More');
+                          }
+                          cy.wrap($el)
+                            .find('[data-cy=endorsement-item-title]')
+                            .contains(endorsements[index].title);
+                          cy.wrap($el)
+                            .find('[data-cy=endorsement-item-summary]')
+                            .contains(endorsements[index].summary);
+                  });
+                }
             });
             it(`test SimliarCampaigns`, () => {
                 const { similarCampaigns } = candidate.candidate;
@@ -218,14 +220,17 @@ context('Candidate', async () => {
             it(`test HeroSection`, () => {
                 const { raceDate } = candidate.candidate;
                 const days = daysTill(raceDate);
-                if(days >= 0) {
+                if(raceDate) {
+                  if(days >= 0) {
                     cy.get('[data-cy=hero-days]')
                       .contains(days);
+                  }
+                  else {
+                      cy.get('[data-cy=hero-year]')
+                        .contains(new Date(raceDate).getFullYear());
+                  }
                 }
-                else {
-                    cy.get('[data-cy=hero-year]')
-                      .contains(new Date(raceDate).getFullYear());
-                }
+                
             });
             it(`test TopIssues`, () => {
                 const { candidatePositions } = candidate.candidate;
@@ -250,13 +255,13 @@ context('Candidate', async () => {
                 cy.get('[data-cy=summary-title]')
                   .contains('Campaign Summary');
             });
-            it(`test SupportButton`, () => {
-                const HeartIconWhite = '/images/white-heart.svg';
-                cy.get('[data-cy=support-icon]')
-                  .contains(HeartIconWhite);
-                cy.get('[data-cy=support-button]')
-                  .contains('ENDORSE CANDIDATE');
-            });
+            // it(`test SupportButton`, () => {
+            //     const HeartIconWhite = '/images/white-heart.svg';
+            //     cy.get('[data-cy=support-icon]')
+            //       .contains(HeartIconWhite);
+            //     cy.get('[data-cy=support-button]')
+            //       .contains('ENDORSE CANDIDATE');
+            // });
         });
     });
 });

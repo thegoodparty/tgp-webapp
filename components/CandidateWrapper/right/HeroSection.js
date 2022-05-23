@@ -82,14 +82,14 @@ function HeroSection() {
           >
             {days >= 0 ? (
               <>
-                <Days>{days}</Days>
+                <Days data-cy="hero-days">{days}</Days>
                 Day{days !== 1}s until
                 <br />
                 election
               </>
             ) : (
               <div className="text-center">
-                <Days>{new Date(raceDate).getFullYear()}</Days>
+                <Days data-cy="hero-year">{new Date(raceDate).getFullYear()}</Days>
                 <br />
                 <strong>Archived</strong>
               </div>

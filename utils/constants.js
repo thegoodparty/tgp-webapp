@@ -534,3 +534,4 @@ export const FOOTER_COLUMNS = [
     ],
   },
 ];
+
