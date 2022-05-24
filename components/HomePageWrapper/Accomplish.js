@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Element } from 'react-scroll';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
+import It from '../shared/It';
 
 const Wrapper = styled.section`
   padding: 80px 0;
@@ -49,7 +50,7 @@ const Accomplish = ({ openModalCallback }) => {
   return (
     <Wrapper>
       <Grid container spacing={8}>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} style={{ padding: 0 }}>
           <Image src="/images/homepage/party.jpg" height={779} width={624} />
         </Grid>
         <Grid item xs={12} lg={6}>
@@ -57,15 +58,15 @@ const Accomplish = ({ openModalCallback }) => {
             <H2>What does partying accomplish?</H2>
           </Element>
           <div>
-            <Title>FUN with FRIENDS</Title>
-            Partying brings us together with friends for fun! Isn’t that the
-            purpose of life?
-            <Title>LIFE, LIBERTY & PURSUIT OF HAPPINESS</Title>
-            Partying flexes and grows our most basic right of assembly in
-            funnest way possible.
-            <Title>#GOODPARTY is the PURPOSE</Title>
-            Partying together, everywhere shows and grows our power to unite
-            around something positive.
+            <Title>COMING TOGETHER</Title>
+            Getting together with people we like is a powerful human act that
+            everyone enjoys.
+            <Title>LIFE, LIBERTY & HAPPINESS</Title>
+            Partying flexes our fundamental right of assembly, around the basic
+            pursuit of happiness.
+            <Title>GROWING OUR NUMBERS</Title>
+            #goodparty posts and @goodparty follows grow our numbers to
+            coordinate against <It />.
           </div>
           <WeCan>TOGETHER, WE CAN...</WeCan>
           <div style={{ display: 'inline-block' }}>
@@ -75,11 +76,11 @@ const Accomplish = ({ openModalCallback }) => {
                   <InnerButton
                     style={{ textTransform: 'none', padding: '0 80px' }}
                   >
-                    Vote{' '}
+                    VOTE{' '}
                     <u>
                       <i>It</i>
                     </u>{' '}
-                    &nbsp;Out!
+                    &nbsp;OUT!
                   </InnerButton>
                 </BlackButton>
               </a>

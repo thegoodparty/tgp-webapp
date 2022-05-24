@@ -4,7 +4,7 @@ import It from '../components/shared/It';
 //text1
 const divided = (
   <>
-    <It /> wants us divided and hopeless.
+    <It /> wants us divided &amp; hopeless.
   </>
 );
 const systemDivided = 'The system wants us divided and hopeless.';
@@ -46,13 +46,13 @@ const sad = (
 // text2
 const voteIt = (
   <>
-    Vote <It /> out!
+    Vote <It /> Out!
   </>
 );
 
 const fuckIt = (
   <>
-    Fuck <It />!
+    F*ck <It />!
   </>
 );
 
@@ -170,7 +170,7 @@ const waitHost = {
     </>
   ),
   text2: <>Host</>,
-  text3: 'a #goodparty on Tuesday',
+  text3: 'a #goodparty on Tuesdays',
 };
 
 const doResist = {
@@ -185,7 +185,7 @@ const doResist = {
 
 const defaultMsg = {
   text1: divided,
-  text2: voteIt,
+  text2: fuckIt,
   text3: withGP,
 };
 

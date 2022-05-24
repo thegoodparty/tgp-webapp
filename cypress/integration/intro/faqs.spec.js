@@ -22,6 +22,7 @@ describe('FAQs page', () => {
         cy.wrap($el)
           .find('[data-cy=faq-category-title]')
           .contains(content[index].fields.name);
+        cy.wait(3000);
         cy.wrap($el)
           .find('[data-cy=faq-article]')
           .should('have.length', content[index].articles.length)

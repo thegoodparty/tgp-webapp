@@ -18,6 +18,7 @@ const H1 = styled.h1`
   .smaller {
     font-style: italic;
     font-size: 30px;
+    color: #8e8e8e;
 
     @media only screen and (min-width: ${({ theme }) =>
         theme.breakpointsPixels.xl}) {
@@ -43,8 +44,12 @@ const H1 = styled.h1`
     bottom: 3px;
     left: -5px;
     background-color: #ffe600;
-    z-index: -1;
   }
+`;
+
+const Up = styled.span`
+  z-index: 10;
+  position: relative;
 `;
 
 const MobileBr = styled.span`
@@ -65,7 +70,7 @@ const Hero = () => {
       {utmExperiment.text2 !== '' && (
         <span className="large">
           <span className="yellow" />
-          {utmExperiment.text2}
+          <Up>{utmExperiment.text2}</Up>
         </span>
       )}{' '}
       <MobileBr />

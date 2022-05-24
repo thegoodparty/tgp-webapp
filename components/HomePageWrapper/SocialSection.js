@@ -11,7 +11,7 @@ import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Emoji from '../shared/Emoji';
 
 const Wrapper = styled.section`
-  padding-bottom: 130px;
+  //padding-bottom: 130px;
 `;
 
 const TopRow = styled.div`
@@ -22,9 +22,18 @@ const Stat = styled.div`
   display: flex;
   align-items: flex-start;
   color: #000;
+
+  &.first {
+    margin-right: 16px;
+  }
+
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.xl}) {
     margin-bottom: 24px;
+
+    &.first {
+      margin-right: 70px;
+    }
   }
 `;
 
@@ -137,23 +146,23 @@ const SocialSection = ({ openModalCallback }) => {
         <Grid container spacing={2}>
           <Grid xs={12} md={8}>
             <Row style={{ alignItems: 'initial' }}>
-              <Stat style={{ marginRight: '70px' }}>
+              <Stat className="first">
                 <Icon>
                   <Emoji symbol="🎉" label="Party Popper" />
                 </Icon>
                 <div>
-                  <Count>85,174</Count>
-                  <Label>#goodparty posts</Label>
+                  <Count data-cy="post-count">85,174</Count>
+                  <Label data-cy="post-count-label">#goodparty posts</Label>
                 </div>
               </Stat>
 
               <Stat>
                 <Heart>
-                  <img src="/images/heart.svg" width="42" height="34" alt="" />
+                  <img src="/images/heart.svg" width="42" height="34" alt="" data-cy="heart-icon" />
                 </Heart>
                 <div>
-                  <Count>8,668</Count>
-                  <Label>@goodparty people</Label>
+                  <Count data-cy="people-count">8,668</Count>
+                  <Label data-cy="people-count-label">@goodparty people</Label>
                 </div>
               </Stat>
             </Row>
@@ -161,94 +170,96 @@ const SocialSection = ({ openModalCallback }) => {
           <Grid xs={12} md={4}>
             <ButtonWrapper>
               <BlackButton fullWidth onClick={openModalCallback}>
-                Count Me In
+                Count Me In!
               </BlackButton>
             </ButtonWrapper>
             <Accomplish>
-              <Link to="accomplish" duration={350} smooth offset={-90}>
-                <LinkScroll>What does partying accomplish?</LinkScroll>
+              <Link to="what-is-it" duration={350} smooth offset={-90}>
+                <LinkScroll>
+                  What is <i>It</i>?
+                </LinkScroll>
               </Link>
             </Accomplish>
           </Grid>
         </Grid>
       </TopRow>
-      <Grid container spacing={2} className="text-center">
-        <Hidden mdDown>
-          <Grid item xs={12} lg={4}>
-            <Relative>
-              <Image
-                src="/images/homepage/social1.jpg"
-                height={615}
-                width={369}
-              />
-              <Clickable onClick={openModalCallback} />
-            </Relative>
-          </Grid>
-          <Grid item xs={12} lg={4}>
-            <Relative>
-              <Image
-                src="/images/homepage/social2.jpg"
-                height={615}
-                width={369}
-              />
-              <Clickable onClick={openModalCallback} />
-            </Relative>
-          </Grid>
-        </Hidden>
-        <Grid item xs={12} lg={4}>
-          <Relative>
-            <Image
-              src="/images/homepage/social3.jpg"
-              height={298}
-              width={369}
-            />
-            <a
-              href="https://www.tiktok.com/tag/goodparty?lang=en"
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-            >
-              <ClickableSmall />
-            </a>
-            <BlackBox>
-              Just do it...
-              <br />
-              to{' '}
-              <ScrollLink
-                className="pointer"
-                to="what-is-it"
-                duration={350}
-                smooth
-                offset={-90}
-                style={{ color: '#fff' }}
-              >
-                <u>
-                  <i>It</i>
-                </u>
-              </ScrollLink>
-              .
-              <WhiteButton fullWidth onClick={openModalCallback}>
-                Count Me In
-              </WhiteButton>
-              <Small>
-                What is{' '}
-                <ScrollLink
-                  className="pointer"
-                  to="what-is-it"
-                  duration={350}
-                  smooth
-                  offset={-90}
-                  style={{ color: '#fff' }}
-                >
-                  <u>
-                    <i>It</i>
-                  </u>
-                </ScrollLink>
-                ?
-              </Small>
-            </BlackBox>
-          </Relative>
-        </Grid>
-      </Grid>
+      {/*<Grid container spacing={2} className="text-center">*/}
+      {/*  <Hidden mdDown>*/}
+      {/*    <Grid item xs={12} lg={4}>*/}
+      {/*      <Relative>*/}
+      {/*        <Image*/}
+      {/*          src="/images/homepage/social1.jpg"*/}
+      {/*          height={615}*/}
+      {/*          width={369}*/}
+      {/*        />*/}
+      {/*        <Clickable onClick={openModalCallback} />*/}
+      {/*      </Relative>*/}
+      {/*    </Grid>*/}
+      {/*    <Grid item xs={12} lg={4}>*/}
+      {/*      <Relative>*/}
+      {/*        <Image*/}
+      {/*          src="/images/homepage/social2.jpg"*/}
+      {/*          height={615}*/}
+      {/*          width={369}*/}
+      {/*        />*/}
+      {/*        <Clickable onClick={openModalCallback} />*/}
+      {/*      </Relative>*/}
+      {/*    </Grid>*/}
+      {/*  </Hidden>*/}
+      {/*  <Grid item xs={12} lg={4}>*/}
+      {/*    <Relative>*/}
+      {/*      <Image*/}
+      {/*        src="/images/homepage/social3.jpg"*/}
+      {/*        height={298}*/}
+      {/*        width={369}*/}
+      {/*      />*/}
+      {/*      <a*/}
+      {/*        href="https://www.tiktok.com/tag/goodparty?lang=en"*/}
+      {/*        target="_blank"*/}
+      {/*        rel="noopener noreferrer nofollow"*/}
+      {/*      >*/}
+      {/*        <ClickableSmall />*/}
+      {/*      </a>*/}
+      {/*      <BlackBox>*/}
+      {/*        Just do it...*/}
+      {/*        <br />*/}
+      {/*        to{' '}*/}
+      {/*        <ScrollLink*/}
+      {/*          className="pointer"*/}
+      {/*          to="what-is-it"*/}
+      {/*          duration={350}*/}
+      {/*          smooth*/}
+      {/*          offset={-90}*/}
+      {/*          style={{ color: '#fff' }}*/}
+      {/*        >*/}
+      {/*          <u>*/}
+      {/*            <i>It</i>*/}
+      {/*          </u>*/}
+      {/*        </ScrollLink>*/}
+      {/*        .*/}
+      {/*        <WhiteButton fullWidth onClick={openModalCallback}>*/}
+      {/*          Count Me In*/}
+      {/*        </WhiteButton>*/}
+      {/*        <Small>*/}
+      {/*          What is{' '}*/}
+      {/*          <ScrollLink*/}
+      {/*            className="pointer"*/}
+      {/*            to="what-is-it"*/}
+      {/*            duration={350}*/}
+      {/*            smooth*/}
+      {/*            offset={-90}*/}
+      {/*            style={{ color: '#fff' }}*/}
+      {/*          >*/}
+      {/*            <u>*/}
+      {/*              <i>It</i>*/}
+      {/*            </u>*/}
+      {/*          </ScrollLink>*/}
+      {/*          ?*/}
+      {/*        </Small>*/}
+      {/*      </BlackBox>*/}
+      {/*    </Relative>*/}
+      {/*  </Grid>*/}
+      {/*</Grid>*/}
     </Wrapper>
   );
 };
