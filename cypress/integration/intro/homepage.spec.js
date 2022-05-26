@@ -1,15 +1,6 @@
-import promisify from 'cypress-promise';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import { TESTIMONIALS, GOOD_CERTIFIED } from '../../../utils/constants';
-
-let engagements, homepageCandidates;
 describe('HomePage', () => {
-  it('load Homepage Candidates', async () => {
+  it('load Homepage Candidates', () => {
     cy.visit('/');
-    const content = await promisify(
-      cy.getHomepageCandidates().then(response => response.body),
-    );
-    ({engagements, homepageCandidates} = content);
   });
   it('test Site Header', () => {
     cy.testSiteHeader();

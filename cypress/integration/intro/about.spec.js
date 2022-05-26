@@ -1,5 +1,5 @@
 import promisify from 'cypress-promise';
-import { CROWD_VOTING_POINTS } from '../../../components/AboutWrapper'
+import { CROWD_VOTING_POINTS } from '../../../components/AboutWrapper/constants'
 
 let homepageCandidates;
 describe('About Page', () => {

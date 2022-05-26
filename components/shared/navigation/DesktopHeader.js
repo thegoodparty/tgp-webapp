@@ -11,6 +11,7 @@ import { logEvent } from '/services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
 
 import AdminMenu from '../../admin/AdminMenu';
+import { HEADER_LINKS } from './constants';
 
 const Wrapper = styled.header`
   height: 80px;
@@ -65,13 +66,6 @@ const TopLink = styled.div`
     color: #000;
   }
 `;
-
-
-
-export const HEADER_LINKS = [
-  { label: 'About', href: '/about' },
-  { label: 'Candidates', href: '/candidates' },
-];
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = React.useState(false);

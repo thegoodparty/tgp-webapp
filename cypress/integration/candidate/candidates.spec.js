@@ -1,8 +1,6 @@
 import promisify from 'cypress-promise';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import { TESTIMONIALS, GOOD_CERTIFIED } from '../../../utils/constants';
 
-let candidates, positions, positionsByTopIssues, states;
+let candidates;
 describe('CandidatesPage', () => {
     beforeEach(() => {
         cy.visit('/candidates');
@@ -17,7 +15,7 @@ describe('CandidatesPage', () => {
         const content = await promisify(
         cy.getCandidateList().then(response => response.body),
         );
-        ({candidates, positions, positionsByTopIssues, states} = content);
+        ({candidates} = content);
         console.log(content);
     });
     it('test Top Section', () => {

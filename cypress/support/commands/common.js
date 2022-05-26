@@ -1,5 +1,5 @@
-import { HEADER_LINKS } from "../../../components/shared/navigation/DesktopHeader";
-import { FOOTER_COLUMNS } from "../../../components/shared/Footer";
+import { HEADER_LINKS } from "../../../components/shared/navigation/constants";
+import { FOOTER_COLUMNS } from "../../../components/shared/Footer/constants";
 import { TEST_ACCOUNT_EMAIL, TEST_ACCOUNT_PWD, TOKEN, USER_COOKIE,  } from "../../constants";
 
 Cypress.Commands.add('testLoginFlow', () => {
