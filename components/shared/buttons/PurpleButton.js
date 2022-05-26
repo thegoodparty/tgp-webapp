@@ -54,7 +54,7 @@ const PurpleButton = ({
     style={style}
     className={className}
     type={type}
-    data-cy="black-button"
+    data-cy="custom-button"
   >
     {children}
   </StyledButton>

@@ -8,7 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { Body, H2 } from '../shared/typogrophy';
-import { VOLUNTEERS, JOIN_FORM_LINK, CONTACT_EMAIL } from '../../utils/constants';
+import { JOIN_FORM_LINK, CONTACT_EMAIL } from '../../utils/constants';
 
 const Content = styled.div`
   padding: 48px 8px;
@@ -26,6 +26,43 @@ const Volunteer = styled(Body)`
   font-size: 18px;
 `;
 
+export const VOLUNTEERS = [
+  {
+    name: 'Navid Aslani',
+    link: 'https://www.linkedin.com/in/navidaslani/',
+    role: 'Operations',
+  },
+  {
+    name: 'Kai Gradert',
+    link: 'https://www.linkedin.com/in/kaigradert/',
+    role: 'Product / Design',
+  },
+  {
+    name: 'Jeehye Jung',
+    link: 'https://www.linkedin.com/in/jeehye-jung-6b4b0361',
+    role: 'Social Media / Instagram',
+  },
+  {
+    name: 'Kam Kafi',
+    link: 'https://www.linkedin.com/in/kamkafi/',
+    role: 'Creator Relations',
+  },
+  {
+    name: " Brian O'Neil",
+    link: 'https://www.linkedin.com/in/brian-o-neil-a8b5283/',
+    role: ' HR / FEC / Finance',
+  },
+  {
+    name: 'Gobi Rahimi',
+    link: 'https://www.linkedin.com/in/gobi-m-rahimi-3725721/',
+    role: 'Creator',
+  },
+  {
+    name: 'Jean Rousseau',
+    link: 'https://www.linkedin.com/in/jeanrousseau/',
+    role: 'Field Operations',
+  },
+];
 
 function VolunteersSection() {
 

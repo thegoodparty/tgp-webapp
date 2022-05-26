@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 
 import { FontH3 } from '../shared/typogrophy';
-import { GOOD_CERTIFIED } from '../../utils/constants';
 
 const Row = styled.div`
   display: flex;
@@ -31,7 +30,43 @@ const Point = styled.div`
   }
 `;
 
+const Icon = styled.span`
+  font-size: 20px;
+  margin-right: 8px;
+`;
 
+export const GOOD_CERTIFIED = [
+  {
+    icon: (
+      <Icon role="img" aria-label="honest">
+        😇
+      </Icon>
+    ),
+    title: 'Honest',
+    content:
+      'Good Certified candidates are committed to serving with utmost integrity, and using technology to be open, transparent and responsive representatives of the people.',
+  },
+  {
+    icon: (
+      <Icon role="img" aria-label="Independent">
+        🗽
+      </Icon>
+    ),
+    title: 'Independent',
+    content:
+      'Good Certified candidates are not Republican or Democratic politicians. They are independent-minded people from across the political spectrum, dedicated to advancing the priorities of their constituents.',
+  },
+  {
+    icon: (
+      <Icon role="img" aria-label="People-Powered">
+        🙌🏼
+      </Icon>
+    ),
+    title: 'People-Powered',
+    content:
+      'Good Certified candidates run to serve people, not corporations, unions, political action committees or special interests. They run  grass-roots campaigns that depend on being connected to and promoted by the people that they’ll be serving.',
+  },
+];
 
 function GoodCertifiedPoints({ homepageMode = false }) {
   return (

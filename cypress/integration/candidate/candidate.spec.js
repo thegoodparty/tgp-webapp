@@ -11,7 +11,7 @@ context('Candidate', async () => {
     sampleCandidateList.forEach(candidateId => {
         describe(`check candidate page - ${candidateId}`, () => {
             it(`loads candidate data`, async () => {
-                cy.visit(`/candidate/test-test/${candidateId}`);
+                cy.visit(candidateRoute({id: candidateId, firstName: 'test', lastName: 'test'}));
                 candidate = await promisify(
                     cy.getCandidate(candidateId).then(response => response.body),
                 );
@@ -62,26 +62,6 @@ context('Candidate', async () => {
                   .contains(supportCount);
                 cy.testSupportersProgressBar(supportCount, achievements.nextStep, null, false, '', '')
             });
-            // it(`test Stats`, () => {
-            //     const { likelyVoters, votesNeeded, unrepVoters } = candidate.candidate;
-            //     cy.get('[data-cy=stats-title]')
-            //       .contains('Voting Stats');
-            //     if(unrepVoters) {
-            //         cy.get('[data-cy=stats-unrepvoters]')
-            //           .contains(numberFormatter(unrepVoters))
-            //           .contains('Unrepresented Voters in this race');
-            //     }
-            //     if(votesNeeded) {
-            //         cy.get('[data-cy=stats-votesneeded]')
-            //           .contains(numberFormatter(votesNeeded))
-            //           .contains('Needed to win');
-            //     }
-            //     if(likelyVoters) {
-            //         cy.get('[data-cy=stats-likelyvoters]')
-            //           .contains(numberFormatter(likelyVoters))
-            //           .contains('Voters so far');
-            //     }
-            // });
             it(`test RecentlyJoined`, () => {
                 const AnonymousIconPurple = '/images/anonymous-icon-purple.svg';
 
@@ -255,13 +235,6 @@ context('Candidate', async () => {
                 cy.get('[data-cy=summary-title]')
                   .contains('Campaign Summary');
             });
-            // it(`test SupportButton`, () => {
-            //     const HeartIconWhite = '/images/white-heart.svg';
-            //     cy.get('[data-cy=support-icon]')
-            //       .contains(HeartIconWhite);
-            //     cy.get('[data-cy=support-button]')
-            //       .contains('ENDORSE CANDIDATE');
-            // });
         });
     });
 });

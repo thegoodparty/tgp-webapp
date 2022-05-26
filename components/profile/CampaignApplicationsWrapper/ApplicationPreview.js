@@ -13,7 +13,7 @@ import { FaTrash } from 'react-icons/fa';
 import { dateUsHelper } from '/helpers/dateHelper';
 
 import { Body, Body13, Body11 } from '../../shared/typogrophy';
-import { candidateName, candidatePhoto, runningFor } from '../../../helpers/candidatesHelper';
+import { candidateName, candidatePhoto, runningFor } from '../../../helpers/applicationHelper';
 
 const ApplicationWrapper = styled.div`
   padding: 20px;

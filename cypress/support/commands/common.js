@@ -1,4 +1,5 @@
-import { HEADER_LINKS, FOOTER_COLUMNS } from "../../../utils/constants";
+import { HEADER_LINKS } from "../../../components/shared/navigation/DesktopHeader";
+import { FOOTER_COLUMNS } from "../../../components/shared/Footer";
 import { TEST_ACCOUNT_EMAIL, TEST_ACCOUNT_PWD, TOKEN, USER_COOKIE,  } from "../../constants";
 
 Cypress.Commands.add('testLoginFlow', () => {
@@ -22,7 +23,7 @@ Cypress.Commands.add('testLoginFlow', () => {
   cy.get('[data-cy=id-input]')
     .should('exist')
     .type(TEST_ACCOUNT_EMAIL);
-  cy.get('[data-cy=black-button]')
+  cy.get('[data-cy=custom-button]')
     .should('exist')
     .click();
 
@@ -46,7 +47,7 @@ Cypress.Commands.add('testLoginFlow', () => {
   cy.get('[data-cy=password]')
     .should('exist')
     .type(TEST_ACCOUNT_PWD);
-  cy.get('[data-cy=black-button]')
+  cy.get('[data-cy=custom-button]')
     .should('exist')
     .click();
   cy.wait(5000);

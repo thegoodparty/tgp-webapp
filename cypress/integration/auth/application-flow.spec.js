@@ -1,6 +1,6 @@
 
 import promisify from 'cypress-promise';
-import { APPLICATION_CARDS_1 } from '../../../utils/constants';
+import { APPLICATION_CARDS_1 } from '../../../components/elections/application/ApplicationStep1';
 import { USER_COOKIE } from '../../constants';
 import { parseCookie } from '../../support/utils';
 import { step3Socials, step2Socials, leftLinks } from '../../../components/elections/application/fields';
@@ -18,15 +18,6 @@ describe('Application Flows', () => {
     });
     it('test Application Page 1', () => {
         cy.signInWithDefaultUser();
-        // cy.visit('/profile/campaigns');
-        // cy.get('[data-cy=start-application]')
-        //   .should('exist')
-        //   .click();
-        // cy.wait(1000);
-        // cy.location().should((location) => {
-        //     console.log(location.pathname.split('/'))
-        //     applicationId=location.pathname.split('/')[2]
-        // });
         cy.visit(`/campaign-application/1/1`);
         cy.get('[data-cy=step-title]')
           .should('exist')

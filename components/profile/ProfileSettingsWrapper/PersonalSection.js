@@ -17,7 +17,6 @@ import { isValidEmail } from '../../shared/EmailInput';
 import PhoneInput from '../../shared/PhoneInput';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import Row from '../../shared/Row';
-import { USER_SETTING_FIELDS } from '../../../utils/constants';
 
 
 const Section = styled.section`
@@ -41,6 +40,44 @@ const Cancel = styled.div`
   text-decoration: underline;
   cursor: pointer;
 `;
+
+export const USER_SETTING_FIELDS = [
+  {
+    key: 'name',
+    label: 'Name',
+    initialValue: '',
+    maxLength: 20,
+    required: true,
+  },
+  {
+    key: 'email',
+    label: 'Email',
+    initialValue: '',
+    maxLength: 20,
+    type: 'email',
+  },
+  {
+    key: 'phone',
+    label: 'Mobile Number',
+    initialValue: '',
+    maxLength: 12,
+    type: 'phone',
+  },
+  {
+    key: 'zip',
+    label: 'Zip Code',
+    initialValue: '',
+    maxLength: 5,
+    required: true,
+  },
+  {
+    key: 'displayName',
+    label: 'Display Name',
+    initialValue: '',
+    maxLength: 16,
+  },
+  // { key: 'pronouns', label: 'Preferred Pronouns', initialValue: '' },
+];
 
 function PersonalSection() {
   const { user, updateUserCallback } = useContext(ProfileSettingsPageContext);

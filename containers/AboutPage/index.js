@@ -7,12 +7,12 @@
 import React, { memo, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TgpHelmet from '/components/shared/TgpHelmet';
+import TgpHelmet from '../../components/shared/TgpHelmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { useInjectSaga } from '/utils/injectSaga';
-import { useInjectReducer } from '/utils/injectReducer';
+import { useInjectSaga } from '../../utils/injectSaga';
+import { useInjectReducer } from '../../utils/injectReducer';
 import makeSelectAboutPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';

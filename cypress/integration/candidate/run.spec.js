@@ -1,4 +1,4 @@
-import { HOW_WORKS_SECTIONS } from '../../../utils/constants';
+import { HOW_WORKS_SECTIONS } from '../../../components/RunWrapper/HowWorksSection';
 
 describe('Run Page', () => {
   it('test Top Section', () => {

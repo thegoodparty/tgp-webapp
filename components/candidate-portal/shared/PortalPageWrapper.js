@@ -7,7 +7,7 @@ import Nav from '/containers/shared/Nav';
 
 import PortalLeftMenu from './PortalLeftMenu';
 import LoadingAnimation from '../../shared/LoadingAnimation';
-import MaxWidth from '/components/shared/MaxWidth';
+import MaxWidth from '../../shared/MaxWidth';
 import PortalPageTitle from './PortalPageTitle';
 import Footer from '../../shared/Footer';
 

@@ -1,5 +1,5 @@
 import promisify from 'cypress-promise';
-import { candidateName, candidatePhoto, runningFor } from '../../../helpers/candidatesHelper';
+import { candidateName, candidatePhoto, runningFor } from '../../../helpers/applicationHelper';
 import { candidateRoute, partyResolver } from '../../../helpers/electionsHelper';
 import { numberFormatter } from '../../../helpers/numberHelper';
 import { dateUsHelper } from '../../../helpers/dateHelper';

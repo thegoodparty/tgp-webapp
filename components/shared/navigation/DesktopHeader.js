@@ -9,7 +9,6 @@ import styled from 'styled-components';
 
 import { logEvent } from '/services/AnalyticsService';
 import UserAvatar from '../UserAvatar';
-import { HEADER_LINKS } from '../../../utils/constants';
 
 import AdminMenu from '../../admin/AdminMenu';
 
@@ -67,6 +66,12 @@ const TopLink = styled.div`
   }
 `;
 
+
+
+export const HEADER_LINKS = [
+  { label: 'About', href: '/about' },
+  { label: 'Candidates', href: '/candidates' },
+];
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = React.useState(false);

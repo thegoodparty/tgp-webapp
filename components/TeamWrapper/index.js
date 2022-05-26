@@ -10,7 +10,7 @@ import PageWrapper from '../shared/PageWrapper';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
-import MaxWidth from '/components/shared/MaxWidth';
+import MaxWidth from '../shared/MaxWidth';
 
 import { H1, H2 } from '../shared/typogrophy';
 import TeamSection from './TeamSection';

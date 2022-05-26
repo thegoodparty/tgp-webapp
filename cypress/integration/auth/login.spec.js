@@ -23,7 +23,7 @@ describe('Login Page', () => {
     cy.get('[data-cy=id-input]')
       .should('exist')
       .type(TEST_ACCOUNT_EMAIL);
-    cy.get('[data-cy=black-button]')
+    cy.get('[data-cy=custom-button]')
       .should('exist')
       .click();
   });
@@ -48,7 +48,7 @@ describe('Login Page', () => {
     cy.get('[data-cy=password]')
       .should('exist')
       .type(TEST_ACCOUNT_PWD);
-    cy.get('[data-cy=black-button]')
+    cy.get('[data-cy=custom-button]')
       .should('exist')
       .click();
   });

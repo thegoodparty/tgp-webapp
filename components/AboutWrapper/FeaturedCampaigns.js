@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import CandidateCard from '../shared/CandidateCard';
 import BlackButton from '../shared/buttons/BlackButton';
-import MaxWidth from '/components/shared/MaxWidth';
+import MaxWidth from '../shared/MaxWidth';
 
 const Section = styled.section`
   padding: 60px 24px 0;

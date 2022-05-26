@@ -12,7 +12,6 @@ import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
 import globals from '/globals';
 import TwitterButton from '/components/shared/TwitterButton';
 import BlackButton from '../../shared/buttons/BlackButton';
-import { REGISTER_FIELDS } from '../../../utils/constants';
 
 const SocialButton = dynamic(
   () => import('/components/you/SocialRegisterWrapper/SocialButton'),
@@ -88,6 +87,33 @@ const Input = styled(TextField)`
   }
 `;
 
+export const REGISTER_FIELDS = [
+  {
+    label: 'Full Name',
+    key: 'name',
+    type: 'text',
+    required: true,
+    isUpdatable: false,
+    helperText: '100 characters maximum',
+  },
+  {
+    label: 'Email Address',
+    key: 'email',
+    type: 'email',
+    required: false,
+    isUpdatable: false,
+  },
+  {
+    type: 'tel',
+  },
+  {
+    label: 'Zip Code',
+    key: 'zipcode',
+    type: 'text',
+    required: true,
+    isUpdatable: true,
+  },
+];
 
 const RegisterWrapper = ({
   user,
