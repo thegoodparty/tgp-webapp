@@ -43,6 +43,7 @@ function BlackCheckbox({
   value = false,
   onChange = () => {},
   disabled = false,
+  ...props
 }) {
   return (
     <Checkbox
@@ -50,6 +51,7 @@ function BlackCheckbox({
       checked={value}
       onClick={onChange}
       disabled={disabled}
+      {...props}
     />
   );
 }

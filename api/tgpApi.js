@@ -1,6 +1,6 @@
 import apiHelper from '../helpers/apiHelper';
 const base = apiHelper.apiBase;
-const api = {
+export const generateApi = (base) => ({
   base,
   //
   // DISTRICT
@@ -719,5 +719,6 @@ const api = {
       withAuth: true,
     },
   },
-};
+});
+const api = generateApi(base);
 export default api;

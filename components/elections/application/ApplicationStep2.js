@@ -25,16 +25,6 @@ import PhoneInput, { isValidPhone } from '../../shared/PhoneInput';
 const FieldWrapper = styled.div`
   margin-bottom: 32px;
 `;
-const SocialFieldWrapper = styled.div`
-  margin-bottom: 12px;
-  .MuiInputAdornment-positionStart {
-    margin-right: 0;
-  }
-  .MuiTypography-colorTextSecondary {
-    color: #000;
-    font-weight: 500;
-  }
-`;
 
 const Label = styled(Body)`
   margin-bottom: 8px;
@@ -320,10 +310,10 @@ function ApplicationStep2({
       id={application.id}
       reviewMode={reviewMode}
     >
-      <Title>Step 2: Add Candidate Details</Title>
+      <Title data-cy="step-title">Step 2: Add Candidate Details</Title>
       <form noValidate onSubmit={handleSubmitForm}>
         {step2fields.map((field) => (
-          <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>
+          <React.Fragment key={field.key} data-cy="step-field">{renderField(field)}</React.Fragment>
         ))}
       </form>
     </ApplicationWrapper>

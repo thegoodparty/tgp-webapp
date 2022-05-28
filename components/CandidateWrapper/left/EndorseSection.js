@@ -58,12 +58,11 @@ function EndorseSection() {
         </div>
       </ChartStats>
       <div>
-        <div>
-          <strong>
+        <div data-cy="endorse-supportcount-wrapper">
+          <strong data-cy="endorse-supportcount">
             {supportCount} endorsement{supportCount === 1 ? '' : 's'} so far.
           </strong>
         </div>
-
         <SupportersProgressBar
           showSupporters={false}
           votesNeeded={achievements.nextStep}

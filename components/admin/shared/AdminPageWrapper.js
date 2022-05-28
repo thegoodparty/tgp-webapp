@@ -6,7 +6,6 @@ import Nav from '/containers/shared/Nav';
 
 import AdminLeftMenu from './AdminLeftMenu';
 import LoadingAnimation from '../../shared/LoadingAnimation';
-import MaxWidth from '/components/shared/MaxWidth';
 import AdminPageTitle from './AdminPageTitle';
 import Footer from '../../shared/Footer';
 

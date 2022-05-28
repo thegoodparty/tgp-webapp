@@ -87,7 +87,7 @@ const Input = styled(TextField)`
   }
 `;
 
-const fields = [
+export const REGISTER_FIELDS = [
   {
     label: 'Full Name',
     key: 'name',
@@ -189,14 +189,14 @@ const RegisterWrapper = ({
           className="text-center"
           style={{ marginBottom: '32px', paddingTop: '32px' }}
         >
-          <H1 data-cy="title">Sign up for Good Party</H1>
+          <H1 data-cy="register-title">Sign up for Good Party</H1>
         </div>
         <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-          Already have an account? <Link href="/login">login</Link>
+          Already have an account? <Link href="/login"><a data-cy="redirect-to-login">login</a></Link>
         </Body13>
         <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-          {fields.map((field) => (
-            <>
+          {REGISTER_FIELDS.map((field) => (
+            <div data-cy="register-field" key={field.key}>
               {field.type === 'tel' ? (
                 <PhoneWrapper>
                   <PhoneInput
@@ -230,7 +230,7 @@ const RegisterWrapper = ({
                   helperText={field.helperText}
                 />
               )}
-            </>
+            </div>
           ))}
 
           <div>
@@ -265,9 +265,11 @@ const RegisterWrapper = ({
               </SocialButton>
             </div>
             <br />
-            <TwitterButton clickCallback={twitterButtonCallback}>
-              Continue with Twitter
-            </TwitterButton>
+            <div  data-cy="twitter-login">
+              <TwitterButton clickCallback={twitterButtonCallback}>
+                Continue with Twitter
+              </TwitterButton>
+            </div>
             <br />
             <br />
             <div data-cy="google-login">

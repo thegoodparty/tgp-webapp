@@ -35,7 +35,7 @@ const Icon = styled.span`
   margin-right: 8px;
 `;
 
-const points = [
+export const GOOD_CERTIFIED = [
   {
     icon: (
       <Icon role="img" aria-label="honest">
@@ -71,14 +71,15 @@ const points = [
 function GoodCertifiedPoints({ homepageMode = false }) {
   return (
     <Grid container spacing={3}>
-      {points.map((point) => (
-        <Grid item xs={12} lg={4} key={point.title}>
+      {GOOD_CERTIFIED.map((point) => (
+        <Grid item xs={12} lg={4} key={point.title} data-cy="gc-item">
           <Point className={homepageMode && 'homepage-mode'}>
             <Row className="row">
               {!homepageMode && <>{point.icon}</>}
-              <FontH3>{point.title}</FontH3>
+              <FontH3 data-cy="gc-item-title">{point.title}</FontH3>
+
             </Row>
-            <div>{point.content}</div>
+            <div data-cy="gc-item-content">{point.content}</div>
           </Point>
         </Grid>
       ))}

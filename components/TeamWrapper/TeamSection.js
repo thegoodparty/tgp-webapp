@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import { Body19, Font18 } from '../shared/typogrophy';
-import MaxWidth from '../shared/MaxWidth';
 
 const Wrapper = styled.section`
 
@@ -106,7 +105,7 @@ const Name = styled(Body)`
   font-size: 24px;
 `;
 
-const team = [
+export const TEAM_MEMBERS = [
   {
     name: 'Tomer Almog',
     role: 'Chief Technology Officer',
@@ -211,7 +210,6 @@ const team = [
       'Trying to make a Good place for my kids with Good choices. ',
   },
 ];
-
 function TeamSection() {
   const [selected, setSelected] = useState({});
   const [flipAll, setFlipAll] = useState(false);
@@ -225,7 +223,7 @@ function TeamSection() {
 
   const handleFlipAll = () => {
     const all = {};
-    team.forEach((member, index) => {
+    TEAM_MEMBERS.forEach((member, index) => {
       all[index] = !flipAll;
     });
     setSelected(all);
@@ -233,13 +231,13 @@ function TeamSection() {
   };
   return (
     <Wrapper>
-      <Tap onClick={handleFlipAll}>
+      <Tap onClick={handleFlipAll} data-cy="team-section-tap">
         Tap to see our {flipAll ? 'Good' : 'Party'} side!
       </Tap>
       <Members className={flipAll && 'flipped'}>
         <Grid spacing={2} container>
-          {team.map((member, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+          {TEAM_MEMBERS.map((member, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index} data-cy="team-member">
               <Member
                 onClick={() => handleSelected(index)}
                 className={selected[index] ? 'selected' : 'not-selected'}
@@ -252,9 +250,10 @@ function TeamSection() {
                       alt={member.name}
                       width={500}
                       height={500}
+                      data-cy="member-avatar"
                     />
-                    <Name>{member.name}</Name>
-                    <Font18>
+                    <Name data-cy="member-name">{member.name}</Name>
+                    <Font18 data-cy="member-role">
                       {member.role}
                     </Font18>
                     {/*<Body13 style={{ marginTop: '8px' }}>{member.good}</Body13>*/}
@@ -269,9 +268,10 @@ function TeamSection() {
                       alt={member.name}
                       width={500}
                       height={500}
+                      data-cy="member-flip-avatar"
                     />
                     <Name>{member.name}</Name>
-                    <Font18>
+                    <Font18 data-cy="member-party-role">
                       {member.partyRole}
                     </Font18>
                     {/*<Body13 style={{ marginTop: '8px' }}>{member.party}</Body13>*/}

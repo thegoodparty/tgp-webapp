@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Nav from '/containers/shared/Nav';
 
 import ProfileLeftMenu from './ProfileLeftMenu';
-import MaxWidth from '/components/shared/MaxWidth';
+import MaxWidth from '../../shared/MaxWidth';
 import Footer from '../../shared/Footer';
 
 const Wrapper = styled(MaxWidth)`

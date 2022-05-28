@@ -41,8 +41,8 @@ function RunWrapper() {
   return (
     <PageWrapper>
       <Wrapper>
-        <FontH1>Run as an Indie or 3rd Party.</FontH1>
-        <Font18>
+        <FontH1 data-cy="run-title">Run as an Indie or 3rd Party.</FontH1>
+        <Font18 data-cy="run-description">
           We’ve made it simple and free like democracy{' '}
           <strong>
             <i>should be.</i>
@@ -51,7 +51,7 @@ function RunWrapper() {
         <Free>we’re always free</Free>
         <StartCampaignButton />
         <Link to="questions" duration={500} smooth offset={-90}>
-          <Questions>Have more questions?</Questions>
+          <Questions data-cy="run-questions">Have more questions?</Questions>
         </Link>
         <BadgeWrapper>
           <CertifiedBadge />

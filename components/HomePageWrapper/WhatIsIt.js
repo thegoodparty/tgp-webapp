@@ -45,7 +45,7 @@ const WhatIsIt = () => {
   return (
     <Wrapper>
       <Element name="what-is-it">
-        <H2>
+        <H2 data-cy="wii-title">
           What is{' '}
           <u>
             <i>It</i>
@@ -53,7 +53,7 @@ const WhatIsIt = () => {
           ?
         </H2>
       </Element>
-      <Grid container spacing={8}>
+      <Grid container spacing={8} data-cy='wii-definition'>
         <Grid item xs={12} lg={4}>
           <H3>
             <u>
@@ -83,7 +83,7 @@ const WhatIsIt = () => {
         </Grid>
       </Grid>
       <Link href="/manifesto" passHref>
-        <a>
+        <a data-cy="mainfesto-link">
           <Manifesto>Read our Manifesto</Manifesto>
         </a>
       </Link>

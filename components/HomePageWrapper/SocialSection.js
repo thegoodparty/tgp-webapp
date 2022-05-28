@@ -151,18 +151,18 @@ const SocialSection = ({ openModalCallback }) => {
                   <Emoji symbol="🎉" label="Party Popper" />
                 </Icon>
                 <div>
-                  <Count>85,174</Count>
-                  <Label>#goodparty posts</Label>
+                  <Count data-cy="post-count">85,174</Count>
+                  <Label data-cy="post-count-label">#goodparty posts</Label>
                 </div>
               </Stat>
 
               <Stat>
                 <Heart>
-                  <img src="/images/heart.svg" width="42" height="34" alt="" />
+                  <img src="/images/heart.svg" width="42" height="34" alt="" data-cy="heart-icon" />
                 </Heart>
                 <div>
-                  <Count>8,668</Count>
-                  <Label>@goodparty people</Label>
+                  <Count data-cy="people-count">8,668</Count>
+                  <Label data-cy="people-count-label">@goodparty people</Label>
                 </div>
               </Stat>
             </Row>

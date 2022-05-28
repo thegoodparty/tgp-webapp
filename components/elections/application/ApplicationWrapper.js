@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import PageWrapper from '../../shared/PageWrapper';
 import { Body13 } from '../../shared/typogrophy';
 import BlackButton from '../../shared/buttons/BlackButton';
+import { leftLinks } from './fields';
 
 const Wrapper = styled.div`
   padding: 16px 0 140px;
@@ -134,16 +135,6 @@ const ButtonWrapper = styled.div`
   display: inline-block;
 `;
 
-const leftLinks = [
-  { step: 1, label: '1. Good Party Pledge' },
-  { step: 2, label: '2. Candidate Details' },
-  { step: 3, label: '3. Campaign Details' },
-  { step: 4, label: '4. Social Media' },
-  { step: 5, label: '5. Top Issues' },
-  { step: 6, label: '6. Key Endorsements' },
-  { step: 7, label: '7. Application Checklist' },
-];
-
 const topLinks = {};
 leftLinks.forEach((link) => {
   topLinks[link.step] = link;
@@ -197,8 +188,9 @@ function ApplicationWrapper({
                   href={`/campaign-application/${id}/${link.step}`}
                   passHref
                   key={link.step}
+                  data-cy="sidebar-link-wrapper"
                 >
-                  <a>
+                  <a data-cy="sidebar-link">
                     <LeftLink className={step === link.step && 'active'}>
                       {link.label}
                     </LeftLink>

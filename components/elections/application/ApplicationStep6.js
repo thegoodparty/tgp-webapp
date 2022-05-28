@@ -239,9 +239,9 @@ function ApplicationStep6({
       withWhiteBg={false}
       reviewMode={reviewMode}
     >
-      <Title>Step 6: Highlight Key Endorsements </Title>
+      <Title data-cy="step-title">Step 6: Highlight Key Endorsements </Title>
       <form noValidate onSubmit={handleSubmitForm}>
-        <Body>
+        <Body data-cy="step-description">
           Use this page to add any institutional endorsements you may have
           received and want to highlight to voters. For example, your local
           rotary club, labor union, chamber of commerce, etc. Add endorsements

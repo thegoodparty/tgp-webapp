@@ -13,6 +13,7 @@ function* loadUserSupported() {
       withCandidates: true,
     };
     const { supports } = yield call(requestHelper, api, payload);
+    console.log('Supported Users:', supports);
     yield put(actions.loadUserSupportedActionSuccess(supports));
   } catch (error) {
     console.log('crew error', JSON.stringify(error));

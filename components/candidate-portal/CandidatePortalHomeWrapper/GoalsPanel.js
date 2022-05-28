@@ -17,6 +17,7 @@ import { Font16, FontH3 } from '../../shared/typogrophy';
 import GoalsChart from './GoalsChart';
 import { numberFormatter } from '../../../helpers/numberHelper';
 import { dateUsHelper } from '../../../helpers/dateHelper';
+import { CONTACT_EMAIL } from '../../../utils/constants';
 
 const Title = styled(Font16)`
   font-weight: 700;
@@ -105,7 +106,7 @@ function GoalsPanel() {
             <div>
               Have a question?
               <br />
-              <GrayLink href="mailto:ask@goodparty.org">Ask us</GrayLink>
+              <GrayLink href={`mailto:${CONTACT_EMAIL}`}>Ask us</GrayLink>
             </div>
           </ResponsiveAlign>
         </Grid>

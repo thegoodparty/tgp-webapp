@@ -116,22 +116,24 @@ const FaqListWrapper = ({ content }) => {
         </StyledH1>
         {content &&
           content.map(category => (
-            <Category key={category.id}>
-              <CategoryName>{category.fields.name}</CategoryName>
+            <Category key={category.id} data-cy="faq-category">
+              <CategoryName data-cy="faq-category-title">{category.fields.name}</CategoryName>
               {category.articles &&
                 category.articles.map(article => (
-                  <Link
-                    href={`?article=${article.id}`}
-                    key={article.id}
-                    data-cy="faq"
-                    passHref
-                  >
-                    <ArticleWrapper>
-                      <Body className="article-title" data-cy="faq-title">
-                        {article.title}
-                      </Body>
-                    </ArticleWrapper>
-                  </Link>
+                  <div data-cy="faq-article" key={article.id}>
+                    <Link
+                      href={`?article=${article.id}`}
+                      passHref
+                    >
+                      <a data-cy="faq-article-link">
+                        <ArticleWrapper>
+                          <Body className="article-title" data-cy="faq-article-title">
+                            {article.title}
+                          </Body>
+                        </ArticleWrapper>
+                      </a>
+                    </Link>
+                  </div>
                 ))}
             </Category>
           ))}

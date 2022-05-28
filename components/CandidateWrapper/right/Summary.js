@@ -18,7 +18,7 @@ function Summary() {
 
   return (
     <Wrapper>
-      <FontH3 style={{margin: '0 0 24px'}}>Campaign Summary</FontH3>
+      <FontH3 style={{margin: '0 0 24px'}} data-cy="summary-title">Campaign Summary</FontH3>
       <div dangerouslySetInnerHTML={{ __html: about }} />
     </Wrapper>
   );

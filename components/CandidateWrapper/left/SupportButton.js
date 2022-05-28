@@ -275,7 +275,7 @@ function SupportButton() {
               type="submit"
             >
               <InnerButton>
-                <span>ENDORSE NOW</span>
+                <span data-cy="support-button">ENDORSE NOW</span>
               </InnerButton>
             </BlackButton>
           </form>

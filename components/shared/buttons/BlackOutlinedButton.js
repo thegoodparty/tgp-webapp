@@ -37,6 +37,7 @@ const BlackOutlinedButton = ({
   onClick,
   style = {},
   type = 'button',
+  ...props
 }) => {
   return (
     <StyledButton
@@ -47,6 +48,7 @@ const BlackOutlinedButton = ({
       disabled={disabled}
       style={style}
       type={type}
+      {...props}
     >
       <Inner>{children}</Inner>
     </StyledButton>

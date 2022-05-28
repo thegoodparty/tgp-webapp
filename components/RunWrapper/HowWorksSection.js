@@ -69,7 +69,7 @@ const PointTitle = styled.div`
   }
 `;
 
-const boxes = [
+export const HOW_WORKS_SECTIONS = [
   {
     title: 'Step 1: Pre-Launch',
     icon: '🚀',
@@ -149,7 +149,6 @@ const boxes = [
     ],
   },
 ];
-
 function HowWorksSection() {
   const [expanded, setExpanded] = useState([false, false, false]);
   const expand = (index) => {
@@ -160,14 +159,14 @@ function HowWorksSection() {
   return (
     <Section>
       <Element name="questions">
-        <FontH2 id="how">
+        <FontH2 id="how" data-cy="howworks-title">
           How it works
           <Line />
         </FontH2>
       </Element>
       <Grid container spacing={6}>
-        {boxes.map((box, index) => (
-          <Grid item xs={12} key={box.title}>
+        {HOW_WORKS_SECTIONS.map((box, index) => (
+          <Grid item xs={12} key={box.title} data-cy="howworks-box">
             <Box
               onClick={() => {
                 expand(index);
@@ -175,14 +174,14 @@ function HowWorksSection() {
               className={expanded[index] && 'expanded'}
             >
               <Icon>{box.icon}</Icon>
-              <Title>{box.title}</Title>
+              <Title data-cy="howworks-box-title">{box.title}</Title>
 
               {box.points.map((point) => (
-                <Point key={point.title}>
-                  <PointTitle className={expanded[index] && 'expanded'}>
+                <Point key={point.title} data-cy="howworks-box-point">
+                  <PointTitle className={expanded[index] && 'expanded'} data-cy="howworks-box-point-title">
                     {point.title}
                   </PointTitle>
-                  <div className="content">{point.content}</div>
+                  <div className="content" data-cy="howworks-box-point-content">{point.content}</div>
                 </Point>
               ))}
             </Box>

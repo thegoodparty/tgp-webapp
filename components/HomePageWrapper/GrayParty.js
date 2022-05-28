@@ -70,7 +70,7 @@ const GrayParty = ({ openModalCallback }) => {
             <VideoSection />
           </Grid>
           <Grid item xs={12} lg={6}>
-            <H2>
+            <H2 data-cy="party-on">
               We party on{' '}
               <Relative>
                 <Up>Tuesdays.</Up>
@@ -98,7 +98,7 @@ const GrayParty = ({ openModalCallback }) => {
             </BlackButton>
             <Accomplish>
               <ScrollLink to="accomplish" duration={350} smooth offset={-90}>
-                <LinkScroll>What does partying accomplish?</LinkScroll>
+                <LinkScroll data-cy="accomplish-label">What does partying accomplish?</LinkScroll>
               </ScrollLink>
             </Accomplish>
           </Grid>

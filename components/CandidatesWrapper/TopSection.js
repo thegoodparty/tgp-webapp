@@ -60,23 +60,23 @@ function TopSection() {
       <Row>
         <CertifiedBadge height={50} />
         &nbsp;&nbsp;
-        <FontH1>Good Certified Candidates are...</FontH1>
+        <FontH1 data-cy="candidates-top-section-title">Good Certified Candidates are...</FontH1>
       </Row>
-      <Subtitle>FROM ACROSS THE POLITICAL SPECTRUM</Subtitle>
+      <Subtitle data-cy="candidates-top-section-subtitle">FROM ACROSS THE POLITICAL SPECTRUM</Subtitle>
       <GoodCertifiedPoints />
       <Why>
         <Link href={`${router.asPath}?article=FqZOWMEEYfcXbASjaRkMU`} passHref>
-          <a className="no-underline">
+          <a className="no-underline" data-cy="candidates-article-link">
             <ButtonWrapper>
-              <BlackOutlinedButton active>
+              <BlackOutlinedButton active data-cy="candidates-article-link-label">
                 Why is this important?
               </BlackOutlinedButton>
             </ButtonWrapper>
           </a>
         </Link>
         <Link href="/run" passHref>
-          <a>
-            <ButtonWrapper>Want to Run for Office?</ButtonWrapper>
+          <a data-cy="candidates-run-link">
+            <ButtonWrapper data-cy="candidates-run-link-label">Want to Run for Office?</ButtonWrapper>
           </a>
         </Link>
       </Why>

@@ -52,13 +52,13 @@ function ProfileCard() {
           </Grid>
         )}
         <Grid item xs={candidate.image ? 7 : 12}>
-          <Font16>Meet the Candidate</Font16>
-          <FontH1 style={{ margin: '10px 0', lineHeight: '36px' }}>
+          <Font16  data-cy="profile-card-title">Meet the Candidate</Font16>
+          <FontH1 style={{ margin: '10px 0', lineHeight: '36px' }} data-cy="profile-card-name">
             {firstName}
             <br />
             {lastName}
           </FontH1>
-          <Font16>
+          <Font16 data-cy="profile-card-party">
             {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
             Candidate <br />
             for <strong>{race}</strong>

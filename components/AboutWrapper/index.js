@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import PageWrapper from '../shared/PageWrapper';
 import { AboutPageContext } from '../../containers/AboutPage';
 import FeaturedCampaigns from './FeaturedCampaigns';
+import { CROWD_VOTING_POINTS } from './constants';
 
 const H1 = styled.h1`
   margin: 80px 0 40px;
@@ -39,32 +40,14 @@ const Color = styled.div`
   width: 10px;
   margin-right: 36px;
 `;
-const points = [
-  {
-    color: '#29ADE6',
-    title: 'Launch',
-    content:
-      'We provide a platform for you to discover independent, grassroots candidates, and for those good candidates to run free campaigns. No more big-dollar donations are necessary.',
-  },
-  {
-    color: '#CA2CCD',
-    title: 'Grow',
-    content:
-      'You can make a difference in getting good candidates elected by simply clicking “endorse” and sharing with friends. We will never ask you for a donation. Just spread the word.',
-  },
-  {
-    color: '#F6821F',
-    title: 'Win',
-    content:
-      'With your help, our free and open technology can create more choices and competition in U.S. elections so non-corrupt, indie candidates can run and win without relying on big donations.',
-  },
-];
+
+
 function AboutWrapper() {
   const featuredCandidates = useContext(AboutPageContext).featuredCandidates;
   return (
     <PageWrapper>
-      <H1>What does Good Party do?</H1>
-      <Intro>
+      <H1 data-cy="about-title">What does Good Party do?</H1>
+      <Intro data-cy="about-description">
         Our democracy has been <strong>corrupted by a two-party system</strong>{' '}
         that serves moneyed interests. It leaves people apathetic, or having to
         choose between the lesser of two evils. Neither of which truly serve
@@ -99,11 +82,11 @@ function AboutWrapper() {
         <strong>a real chance of running and winning elections</strong>, for the
         first time in modern history!
       </Intro>
-      <H2>How Crowd Voting Works:</H2>
-      {points.map((point) => (
-        <Point key={point.title}>
-          <Color style={{ backgroundColor: point.color }}></Color>
-          <div>
+      <H2 data-cy="crowd-voting-title">How Crowd Voting Works:</H2>
+      {CROWD_VOTING_POINTS.map((point) => (
+        <Point key={point.title} data-cy="crowd-voting-point">
+          <Color style={{ backgroundColor: point.color }} data-cy="crowd-voting-point-color"></Color>
+          <div data-cy="crowd-voting-point-content">
             <strong>{point.title}</strong>
             <br />
             {point.content}
@@ -111,7 +94,6 @@ function AboutWrapper() {
         </Point>
       ))}
       <FeaturedCampaigns featuredCandidates={featuredCandidates} removePadding />
-
     </PageWrapper>
   );
 }

@@ -52,21 +52,21 @@ function ApplicationSection() {
     <section>
       <PortalPanel color="#EE6C3B">
         <Row style={{ justifyContent: 'space-between' }}>
-          <FontH3 style={{ margin: '0 0 70px' }}>Applications</FontH3>
-          <BlackOutlinedButton onClick={createApplicationCallback}>
+          <FontH3 style={{ margin: '0 0 70px' }} data-cy="applications-title">Applications</FontH3>
+          <BlackOutlinedButton onClick={createApplicationCallback} data-cy="start-application">
             Start a new application
           </BlackOutlinedButton>
         </Row>
 
         {(applications || []).length === 0 ? (
-          <H3>
+          <H3 data-cy="no-applications">
             <br />
             No Applications found
           </H3>
         ) : (
           <Grid container spacing={3}>
             {applications.map((app) => (
-              <Grid item xs={12} md={6} lg={4} key={app.id}>
+              <Grid item xs={12} md={6} lg={4} key={app.id} data-cy="application-wrapper">
                 <ApplicationPreview
                   app={app}
                   deleteApplicationCallback={handleDelete}

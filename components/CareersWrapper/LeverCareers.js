@@ -5,8 +5,6 @@
  */
 
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FontH2, H2 } from '../shared/typogrophy';
 
@@ -58,7 +56,7 @@ const Text = styled.div`
 function LeverCareers() {
   return (
     <Wrapper>
-      <FontH2>Openings</FontH2>
+      <FontH2 data-cy="opening-title">Openings</FontH2>
       <div id="lever-jobs-container" />
       <Interested>
         Interested in <strong>volunteering</strong> at Good Party?
@@ -71,7 +69,7 @@ function LeverCareers() {
           Fill out this form
         </a>
       </Interested>
-      <Text>
+      <Text data-cy="opening-content">
         Good Party reflects what we want for our democracy and country: a place
         where all people are welcome and authentically valued. So, we actively
         seek people from different backgrounds and beliefs. We know that we are

@@ -29,18 +29,18 @@ const H3Strong = styled.span`
 function BecomingSection() {
   return (
     <section>
-      <Font18>BECOMING</Font18>
-      <H2>Good Certified</H2>
-      <Font18 style={{ marginBottom: '50px' }}>GETS YOU ACCESS TO:</Font18>
+      <Font18 data-cy="becoming-title">BECOMING</Font18>
+      <H2 data-cy="becoming-good-certified">Good Certified</H2>
+      <Font18 style={{ marginBottom: '50px' }} data-cy="becoming-access">GETS YOU ACCESS TO:</Font18>
       <Grid container spacing={6}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4}  data-cy="becoming-section-1">
           <Font20>
             <strong>Free Tools and Tech</strong>
           </Font20>
           to help you run your campaigns.
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} data-cy="becoming-section-2">
           <Font20>
             <strong>Access to Strategic Guidance</strong>
           </Font20>
@@ -48,7 +48,7 @@ function BecomingSection() {
           running to winning.
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} data-cy="becoming-section-3">
           <Font20>
             <strong>A Community of Creators</strong>
           </Font20>

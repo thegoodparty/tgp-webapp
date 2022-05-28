@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import { Font16 } from '/components/shared/typogrophy';
 import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
 import { getUserCookie } from '/helpers/cookieHelper';
+import { CONTACT_EMAIL } from '../../../utils/constants';
 
 const LeftPanel = styled.div`
   padding: 0 10px 20px 10px;
@@ -72,7 +73,7 @@ export const leftMenuItemsBottom = [
   },
   {
     label: 'Need Help?',
-    link: 'mailto:ask@goodparty.org',
+    link: `mailto:${CONTACT_EMAIL}`,
   },
 ];
 

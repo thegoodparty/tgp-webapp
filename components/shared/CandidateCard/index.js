@@ -126,7 +126,7 @@ function CandidateCard({ candidate }) {
       passHref
       style={{ height: '100%' }}
     >
-      <a style={{ height: '100%' }} className="no-underline">
+      <a style={{ height: '100%' }} className="no-underline" data-cy="candidate-link">
         <Wrapper>
           <ImageWrapper>
             {image && (
@@ -134,14 +134,15 @@ function CandidateCard({ candidate }) {
                 src={image}
                 layout="fill"
                 alt={`${firstName} ${lastName}`}
+                data-cy="candidate-img"
               />
             )}
           </ImageWrapper>
           <Content>
-            <Name>
+            <Name data-cy="candidate-name">
               {firstName} {lastName}
             </Name>
-            <Gray>
+            <Gray data-cy="candidate-party">
               {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
               Candidate <br />
               for <strong>{race}</strong>
@@ -166,11 +167,11 @@ function CandidateCard({ candidate }) {
             <Quote>{headline}</Quote>
             {topPositions && topPositions.length > 0 && (
               <Positions>
-                <div style={{ marginBottom: '12px' }}>
+                <div style={{ marginBottom: '12px' }} data-cy="position-title">
                   Top Issues for this candidate
                 </div>
                 {topPositions.map((position) => (
-                  <Position key={position.id}>{position.name}</Position>
+                  <Position key={position.id} data-cy="position">{position.name}</Position>
                 ))}
               </Positions>
             )}
@@ -183,6 +184,7 @@ function CandidateCard({ candidate }) {
                   backgroundColor: brightColor,
                   borderColor: brightColor,
                 }}
+                data-cy="candidate-view"
               >
                 View Campaign
               </BlackButton>

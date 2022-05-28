@@ -34,7 +34,7 @@ const PrivacyWrapper = ({ content }) => {
       {content && (
         <>
           <TitleWrapper>
-            <H1 data-cy="title">{content.title}</H1>
+            <H1 data-cy="privacy-title">{content.title}</H1>
           </TitleWrapper>
           <RevisionWrapper>
             <Body11 data-cy="last-revisioin-label">Last Revision</Body11>

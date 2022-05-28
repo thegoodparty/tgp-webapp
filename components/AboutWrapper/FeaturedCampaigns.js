@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import CandidateCard from '../shared/CandidateCard';
 import BlackButton from '../shared/buttons/BlackButton';
-import MaxWidth from '/components/shared/MaxWidth';
+import MaxWidth from '../shared/MaxWidth';
 
 const Section = styled.section`
   padding: 60px 24px 0;
@@ -39,10 +39,10 @@ const FeaturedCampaigns = ({ featuredCandidates, removePadding = false }) => {
   return (
     <Section className={removePadding && 'no-padding'}>
       <MaxWidth>
-        <H3>Featured Campaigns</H3>
+        <H3 data-cy="campaigns-title">Featured Campaigns</H3>
         <Grid container spacing={3}>
           {candidates.map((candidate) => (
-            <Grid item xs={12} md={6} lg={4} key={candidate.id}>
+            <Grid item xs={12} md={6} lg={4} key={candidate.id} data-cy="campaign-card">
               <CandidateCard candidate={candidate} />
             </Grid>
           ))}
@@ -50,7 +50,7 @@ const FeaturedCampaigns = ({ featuredCandidates, removePadding = false }) => {
         <br />
         <SeeMoreWrapper>
           <Link href="/candidates" passHref>
-            <a className="no-underline">
+            <a className="no-underline" data-cy="campaigns-more-link">
               <BlackButton fullWidth className="outlined pill">
                 See More
               </BlackButton>

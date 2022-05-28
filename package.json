@@ -18,7 +18,16 @@
     "build": "next build",
     "generate": "plop --plopfile internals/generators/index.js",
     "start": "next build && next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000  CYPRESS_API_BASE=http://localhost:1337/api/v1/ ./node_modules/.bin/cypress open",
+    "cypress:local-dev": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api-dev.goodparty.org/api/v1/ ./node_modules/.bin/cypress open --config defaultCommandTimeout=100000",
+    "cypress:local-prod": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api.goodparty.org/api/v1/ ./node_modules/.bin/cypress open",
+    "cypress:dev": "cross-env CYPRESS_BASE_URL=https://dev.goodparty.org ./node_modules/.bin/cypress open",
+    "cypress:prod": "cross-env CYPRESS_BASE_URL=https://goodparty.org ./node_modules/.bin/cypress open",
+    "cypress:run:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress run",
+    "cypress:run:dev": "cross-env CYPRESS_BASE_URL=https://dev.goodparty.org ./node_modules/.bin/cypress run",
+    "cypress:run:prod": "cross-env CYPRESS_BASE_URL=https://goodparty.org ./node_modules/.bin/cypress run",
+    "cypress:run:test": "cross-env CYPRESS_BASE_URL=https://test.goodparty.org ./node_modules/.bin/cypress run"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.11.1",
@@ -38,6 +47,7 @@
     "jodit-react": "^1.1.21",
     "eslint-config-next": "12.0.10",
     "libphonenumber-js": "1.9.48",
+    "cypress-promise": "^1.1.0",
     "markdown-to-jsx": "^7.0.0",
     "material-ui-color-picker": "^3.5.1",
     "moment": "^2.29.1",
@@ -61,6 +71,7 @@
     "react-player": "^2.9.0",
     "react-redux": "^7.2.6",
     "react-router": "^6.2.1",
+    "cypress": "4.10.0",
     "react-scroll": "^1.8.4",
     "react-slick": "^0.28.1",
     "react-social-login": "^3.4.15",

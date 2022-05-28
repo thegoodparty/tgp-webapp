@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { getPartyImage } from '../../../helpers/candidatesHelper';
 
 const ChallengerAvatarWrapper = styled.div`
   width: 58px;
@@ -115,27 +116,7 @@ const CandidateAvatar = ({
   partyBadge = false,
   hideBadge = false,
 }) => {
-  let PartyImg;
-  if (partyBadge) {
-    PartyImg = '/images/icons/certification-badge.svg';
-  } else if (party === 'D') {
-    PartyImg = '/images/icons/democrat.png';
-  } else if (party === 'R') {
-    PartyImg = '/images/icons/republican.png';
-  } else if (party === 'I') {
-    PartyImg = '/images/icons/certification-badge.svg';
-  } else if (party === 'L') {
-    PartyImg = '/images/icons/libertarian.png';
-  } else if (party === 'LI') {
-    PartyImg = '/images/icons/liberation.png';
-  } else if (party === 'P') {
-    PartyImg = '/images/icons/progressive.png';
-  } else if (party === 'G' || party === 'GP') {
-    PartyImg = '/images/icons/green-party.png';
-  }
-  if (hideBadge) {
-    PartyImg = false;
-  }
+  let PartyImg = getPartyImage(partyBadge, party, hideBadge);
   return (
     <ChallengerAvatarWrapper
       className={size}

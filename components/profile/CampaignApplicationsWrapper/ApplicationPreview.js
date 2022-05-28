@@ -13,6 +13,7 @@ import { FaTrash } from 'react-icons/fa';
 import { dateUsHelper } from '/helpers/dateHelper';
 
 import { Body, Body13, Body11 } from '../../shared/typogrophy';
+import { candidateName, candidatePhoto, runningFor } from '../../../helpers/applicationHelper';
 
 const ApplicationWrapper = styled.div`
   padding: 20px;
@@ -44,43 +45,11 @@ const Photo = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 `;
-
-function candidateName(app) {
-  let name = 'n/a';
-  let { data } = app;
-  if (data && typeof data === 'string') {
-    data = JSON.parse(data);
-  }
-  if (data.candidate) {
-    name = `${data.candidate.firstName} ${data.candidate.lastName}`;
-  }
-  return name;
-}
-
-function candidatePhoto(app) {
-  let { data } = app;
-  if (data && typeof data === 'string') {
-    data = JSON.parse(data);
-  }
-  return data?.campaign?.headshotPhoto || false;
-}
-
-function runningFor(app) {
-  let { data } = app;
-  if (data && typeof data === 'string') {
-    data = JSON.parse(data);
-  }
-  if (data?.campaign && data.campaign['running for']) {
-    return `Running for ${data.campaign['running for']}`;
-  }
-  return 'No office specified';
-}
-
 function ApplicationPreview({ app, deleteApplicationCallback }) {
   const photo = candidatePhoto(app);
   return (
     <Link href={`/campaign-application/${app.id}/1`} passHref>
-      <a className="no-underline">
+      <a className="no-underline" data-cy="application-link">
         <ApplicationWrapper>
           {app.status === 'incomplete' ? (
             <div className="text-right trash">
@@ -101,16 +70,16 @@ function ApplicationPreview({ app, deleteApplicationCallback }) {
               }}
             />
           </PhotoWrapper>
-          <Body>
+          <Body data-cy="application-name">
             <strong>{candidateName(app)}</strong>
           </Body>
-          <Body13>{runningFor(app)}</Body13>
+          <Body13 data-cy="application-runfor">{runningFor(app)}</Body13>
           <br />
-          <Body className="bold500">
+          <Body className="bold500" data-cy="application-status">
             <i>Status: {app.status}</i>
           </Body>
           <br />
-          <Body11>
+          <Body11 data-cy="application-date">
             Created At: {dateUsHelper(app.createdAt)}
             <br />
             Last Update: {dateUsHelper(app.updatedAt)}

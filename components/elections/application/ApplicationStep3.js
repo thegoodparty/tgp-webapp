@@ -385,7 +385,7 @@ function ApplicationStep3({
       id={application.id}
       reviewMode={reviewMode}
     >
-      <Title>Step 3: Add Campaign Details</Title>
+      <Title data-cy="step-title">Step 3: Add Campaign Details</Title>
       <form noValidate onSubmit={handleSubmitForm}>
         {step3Fields.map((field) => (
           <React.Fragment key={field.key}>{renderField(field)}</React.Fragment>

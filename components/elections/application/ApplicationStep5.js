@@ -85,8 +85,8 @@ function ApplicationStep5({
       canContinue={canSubmit()}
       id={application.id}
     >
-      <Title>Step 5: Select Top Issues</Title>
-      <SubTitle>
+      <Title data-cy="step-title">Step 5: Select Top Issues</Title>
+      <SubTitle data-cy="step-subtitle">
         Please select up to top five (5) issue you are aligned with to help
         supporters distinguish your campaign.
       </SubTitle>

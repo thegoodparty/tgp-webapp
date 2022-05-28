@@ -18,7 +18,30 @@ import PhoneInput from '../../shared/PhoneInput';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import Row from '../../shared/Row';
 
-const fields = [
+
+const Section = styled.section`
+  .MuiInputBase-input {
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.md}) {
+      font-size: 16px !important;
+      line-height: 22px !important;
+    }
+  }
+`;
+
+const StyledTextField = styled(TextField)`
+  && {
+    margin-bottom: 16px;
+  }
+`;
+
+const Cancel = styled.div`
+  margin-left: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+export const USER_SETTING_FIELDS = [
   {
     key: 'name',
     label: 'Name',
@@ -56,32 +79,11 @@ const fields = [
   // { key: 'pronouns', label: 'Preferred Pronouns', initialValue: '' },
 ];
 
-const Section = styled.section`
-  .MuiInputBase-input {
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 16px !important;
-      line-height: 22px !important;
-    }
-  }
-`;
-
-const StyledTextField = styled(TextField)`
-  && {
-    margin-bottom: 16px;
-  }
-`;
-
-const Cancel = styled.div`
-  margin-left: 20px;
-  text-decoration: underline;
-  cursor: pointer;
-`;
-
 function PersonalSection() {
   const { user, updateUserCallback } = useContext(ProfileSettingsPageContext);
   const initialState = {};
-  fields.forEach((field) => {
+  
+  USER_SETTING_FIELDS.forEach((field) => {
     initialState[field.key] = field.initialValue;
   });
   const [state, setState] = useState(initialState);
@@ -90,7 +92,7 @@ function PersonalSection() {
   useEffect(() => {
     if (user) {
       const updatedState = {};
-      fields.forEach((field) => {
+      USER_SETTING_FIELDS.forEach((field) => {
         updatedState[field.key] = user[field.key] || field.initialValue;
       });
       setState(updatedState);
@@ -106,7 +108,7 @@ function PersonalSection() {
 
   const cancel = () => {
     const updatedState = {};
-    fields.forEach((field) => {
+    USER_SETTING_FIELDS.forEach((field) => {
       updatedState[field.key] = user[field.key] || field.initialValue;
     });
     setState(updatedState);
@@ -145,11 +147,11 @@ function PersonalSection() {
   return (
     <Section>
       <PortalPanel color="#EE6C3B">
-        <FontH3 style={{ margin: '0 0 70px' }}>Settings</FontH3>
+        <FontH3 style={{ margin: '0 0 70px' }} data-cy="settings-title">Settings</FontH3>
         <form noValidate onSubmit={(e) => e.preventDefault()}>
           <Grid container spacing={3}>
             <Grid xs={12} lg={6}>
-              {fields.map((field) => (
+              {USER_SETTING_FIELDS.map((field) => (
                 <>
                   {field.type === 'phone' ? (
                     <PhoneInput

@@ -81,7 +81,7 @@ function PasswordSection() {
     <section>
       <PortalPanel color="#CA2CCD">
         <form noValidate onSubmit={(e) => e.preventDefault()}>
-          <FontH3 style={{ margin: '0 0 70px' }}>
+          <FontH3 style={{ margin: '0 0 70px' }} data-cy="setting-password-title">
             {user.hasPassword ? 'Change' : 'Create'} your password
           </FontH3>
           <Grid container spacing={3}>

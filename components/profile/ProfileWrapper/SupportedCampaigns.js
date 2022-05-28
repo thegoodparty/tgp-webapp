@@ -23,9 +23,9 @@ function SupportedCampaigns() {
   return (
     <PortalPanel color="#CA2CCD">
       <Row style={{ justifyContent: 'space-between' }}>
-        <FontH3 style={{ margin: 0 }}>Campaigns you’re supporting</FontH3>
+        <FontH3 style={{ margin: 0 }} data-cy="profile-support-title">Campaigns you’re supporting</FontH3>
         <Link passHref href="/candidates">
-          <a>
+          <a data-cy="profile-support-search-link">
             <BlackOutlinedButton>Search Campaigns</BlackOutlinedButton>
           </a>
         </Link>
@@ -33,14 +33,14 @@ function SupportedCampaigns() {
       <Grid container spacing={3} style={{ marginTop: '70px' }}>
         {!userSupported || userSupported.length === 0 ? (
           <div className="text-center">
-            <FontH3>
+            <FontH3 data-cy="profile-support-no-title">
               You haven&apos;t endorsed any campaign yet. Find a campaign and let&apos;s
               get the party started
             </FontH3>
             <br />
             <br />
             <Link passHref href="/candidates">
-              <a>
+              <a data-cy="profile-support-no-link">
                 <BlackOutlinedButton>Search Campaigns</BlackOutlinedButton>
               </a>
             </Link>
@@ -48,7 +48,7 @@ function SupportedCampaigns() {
         ) : (
           <>
             {(userSupported || []).map((candidate) => (
-              <Grid item xs={12} md={6} key={candidate.id}>
+              <Grid item xs={12} md={6} key={candidate.id} data-cy="supported-campaign">
                 <CandidateCard candidate={candidate} />{' '}
               </Grid>
             ))}

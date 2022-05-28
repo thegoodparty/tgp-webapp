@@ -44,16 +44,16 @@ function ProfileWrapper() {
             <Row>
               <UserAvatar user={user} size="large" />
               <Name>
-                <FontH3 style={{ margin: '0 0 8px' }}>{user.name}</FontH3>
+                <FontH3 style={{ margin: '0 0 8px' }} data-cy="profile-username">{user.name}</FontH3>
                 <Link href="/profile/settings" passHref>
-                  <A>Edit</A>
+                  <A data-cy="profile-edit-link">Edit</A>
                 </Link>
               </Name>
             </Row>
           </Grid>
           <Grid item xs={3}>
             <div className="text-right">
-              <A href="#" onClick={signoutCallback}>
+              <A href="#" onClick={signoutCallback} data-cy="profile-logout-link">
                 Sign Out
               </A>
             </div>

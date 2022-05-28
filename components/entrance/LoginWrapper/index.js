@@ -73,23 +73,26 @@ const LoginWrapper = ({
   return (
     <PageWrapper>
       <Wrapper>
-        <H1 data-cy="title" style={{ marginBottom: '24px' }}>
+        <H1 data-cy="login-title" style={{ marginBottom: '24px' }}>
           Log into your account
         </H1>
         <Body13 style={{ margin: '48px 0' }} data-cy="register-label">
           Don&apos;t have an account?{' '}
-          <Link href="/register" data-cy="register">
-            Create one
+          <Link href="/register" >
+            <a data-cy="register">
+              Create one
+            </a>
           </Link>
         </Body13>
         <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-          <PhoneOrEmailInput onChangeCallback={onChangeValue} />
+          <PhoneOrEmailInput onChangeCallback={onChangeValue} data-cy="email-input" />
           <div data-cy="login">
             <BlackButton
               fullWidth
               disabled={!isValid}
               onClick={handleSubmit}
               type="submit"
+              data-cy="id-submit-button"
             >
               NEXT
             </BlackButton>
@@ -114,9 +117,11 @@ const LoginWrapper = ({
           </SocialButton>
         </div>
         <br />
-        <TwitterButton clickCallback={twitterButtonCallback}>
-          Continue with Twitter
-        </TwitterButton>
+        <div data-cy="twitter-login">
+          <TwitterButton clickCallback={twitterButtonCallback}>
+            Continue with Twitter
+          </TwitterButton>
+        </div>
         <br />
         <GoogleBtnWrapper data-cy="google-login">
           <SocialButton

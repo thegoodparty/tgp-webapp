@@ -137,22 +137,24 @@ function Follow() {
           : {}
       }
     >
-      <Title>
+      <Title data-cy="follow-title">
         <strong>Follow</strong> {firstName} {lastName}!
       </Title>
       <div>
         {channels.map((channel) => (
           <React.Fragment key={channel.label}>
-            {channel.link && (
-              <SocialLink
-                href={channel.link}
-                target="_blank"
-                rel="nofollow"
-                onClick={() => trackSocial(channel.label)}
-              >
-                {channel.icon}
-              </SocialLink>
-            )}
+            <span data-cy="follow-item">
+              {channel.link && (
+                <SocialLink
+                  href={channel.link}
+                  target="_blank"
+                  rel="nofollow"
+                  onClick={() => trackSocial(channel.label)}
+                >
+                  {channel.icon}
+                </SocialLink>
+              )}
+            </span>
           </React.Fragment>
         ))}
       </div>

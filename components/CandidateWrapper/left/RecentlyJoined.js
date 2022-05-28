@@ -111,11 +111,11 @@ function RecentlyJoined() {
     <div style={{ marginTop: '72px' }}>
       <FontH3>Latest People Endorsing</FontH3>
       {displaySupporters.map((supporter) => (
-        <RecentJoin key={supporter.id}>
-          <Img src={AnonymousIconPurple} alt="share" />
+        <RecentJoin key={supporter.id} data-cy="supporter-item">
+          <Img src={AnonymousIconPurple} alt="share" data-cy="supporter-item-icon"/>
           <JoinWrapper>
-            <JoinName>{supporter.user}</JoinName>
-            <JoinTime>
+            <JoinName data-cy="supporter-item-name">{supporter.user}</JoinName>
+            <JoinTime data-cy="supporter-item-time">
               {supporter.type}d {supporter.timeAgo}
             </JoinTime>
             {supporter.message && (

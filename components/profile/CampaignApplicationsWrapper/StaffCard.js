@@ -75,8 +75,8 @@ function StaffCard({ candidate, role }) {
   const { id, firstName, lastName, image, race, party, otherParty } = candidate;
   return (
     <Link href={`/candidate-portal/${id}`} passHref style={{ height: '100%' }}>
-      <a style={{ height: '100%' }} className="no-underline">
-        <Role>
+      <a style={{ height: '100%' }} className="no-underline" data-cy="staff-link">
+        <Role data-cy="staff-role">
           <strong>Your Role: </strong>Campaign {role}
         </Role>
         <Wrapper>
@@ -90,10 +90,10 @@ function StaffCard({ candidate, role }) {
             )}
           </ImageWrapper>
           <Content>
-            <Name>
+            <Name data-cy="staff-name">
               {firstName} {lastName}
             </Name>
-            <Gray>
+            <Gray data-cy="staff-race">
               {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
               Candidate <br />
               for <strong>{race}</strong>
