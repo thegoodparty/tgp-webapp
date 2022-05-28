@@ -54,6 +54,7 @@ class CustomDocument extends NextDocument {
           <meta property="twitter:card" content="summary_large_image" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="fb:app_id" content="241239336921963" />
+          <link rel="icon" type="image/png" href="https://assets.goodparty.org/favicon.png" sizes="512x512" />
           {/*<meta*/}
           {/*  name="google-signin-client_id"*/}
           {/*  content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"*/}

@@ -19,6 +19,11 @@ const Wrapper = styled.div`
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
   }
+
+  &.rounded-top {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
 `;
 
 function DateBox({ showPast }) {
@@ -31,7 +36,7 @@ function DateBox({ showPast }) {
   const { certifiedDate, ballotDate, earlyVotingDate, raceDate } = candidate;
 
   return (
-    <Wrapper className={showPast && 'rounded'}>
+    <Wrapper className={showPast ? 'rounded' : 'rounded-top'}>
       <VoteDate
         title="Good Certified"
         date={certifiedDate}
