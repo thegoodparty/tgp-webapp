@@ -52,8 +52,11 @@ function ProfileCard() {
           </Grid>
         )}
         <Grid item xs={candidate.image ? 7 : 12}>
-          <Font16  data-cy="profile-card-title">Meet the Candidate</Font16>
-          <FontH1 style={{ margin: '10px 0', lineHeight: '36px' }} data-cy="profile-card-name">
+          <Font16 data-cy="profile-card-title">Meet the Candidate</Font16>
+          <FontH1
+            style={{ margin: '10px 0', lineHeight: '36px' }}
+            data-cy="profile-card-name"
+          >
             {firstName}
             <br />
             {lastName}
