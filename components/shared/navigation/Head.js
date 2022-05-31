@@ -5,7 +5,6 @@ import Head from 'next/head';
 const TgpHead = ({ title, description }) => (
   <Head>
     <title>{title}</title>
-    <link rel="icon" href="/favicon.ico" />
     <meta property="og:site_name" content="Good Party" />
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
@@ -54,7 +53,7 @@ const TgpHead = ({ title, description }) => (
       rel="icon"
       type="image/png"
       sizes="512x1512"
-      href="https://assets.goodparty.org/favicon/favicon-512x1512.png"
+      href="https://assets.goodparty.org/favicon/favicon-512x512.png"
     />
 
     <link rel="manifest" href="/manifest.json" />
