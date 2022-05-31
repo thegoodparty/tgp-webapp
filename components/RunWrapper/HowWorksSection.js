@@ -89,7 +89,7 @@ export const HOW_WORKS_SECTIONS = [
           'Once you know your people, you need to know the rules. The political establishment has stacked the deck against you, but it’s not impossible. But you have to know the rules of what makes you eligible to run and serve. Age and residency requirements, signatures to get on the ballot and fees.',
       },
       {
-        title: 'Voter deep dive',
+        title: 'Voter Deep Dive',
         content:
           'The two major parties purposely claim Independents or Third Parties can’t win. They don’t want voters to have other choices. But they get elected by less than a majority of their district. That means many millions of people are not represented and don’t have choices. Your job is to know how many of them there are and find them!',
       },
