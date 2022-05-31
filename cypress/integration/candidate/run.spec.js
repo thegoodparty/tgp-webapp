@@ -15,7 +15,7 @@ describe('Run Page', () => {
     cy.get('[data-cy=campaign-start-button-label]').contains(
       'Start your Campaign',
     );
-    cy.get('[data-cy=run-questions]').contains('Have more questions?');
+    cy.get('[data-cy=run-questions]').contains('How does a campaign work?');
   });
   it('test Site Header', () => {
     cy.testSiteHeader();
@@ -33,7 +33,7 @@ describe('Run Page', () => {
   });
   it('test HowWorks Section', () => {
     HOW_WORKS_SECTIONS;
-    cy.get('[data-cy=howworks-title]').contains('How it works');
+    cy.get('[data-cy=howworks-title]').contains('How a campaign works');
     cy.get('[data-cy=howworks-box]')
       .should('have.length', HOW_WORKS_SECTIONS.length)
       .each(($el, index) => {

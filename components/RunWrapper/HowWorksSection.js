@@ -30,7 +30,6 @@ const Box = styled.div`
   margin: 0 auto;
   cursor: pointer;
   &.expanded {
-    cursor: initial;
     .content {
       display: block;
     }
@@ -75,12 +74,17 @@ export const HOW_WORKS_SECTIONS = [
     icon: '🚀',
     points: [
       {
-        title: 'District info',
+        title: 'Launch Social Media',
+        content:
+          'Newsflash: the town square has moved online. To represent people, you have to meet them where they are. As a candidate, you have to get your story out to the community. Social media is the community. But you don’t have to wait until you launch a campaign to share your vision and engage with others. Don’t worry about mastering them all. Just pick a platform that works for you and get started! Then you can repurpose content across other platforms.',
+      },
+      {
+        title: 'Know Your District Information',
         content:
           'Know your people! If you’re going to represent others, you need to know (and care) about them. We already have elected officials who don’t. Know what district you want to represent; what cities and towns are included; who lives there; what matters to them. Do they vote? How many? Who are you running against? If you don’t care, this isn’t for you.',
       },
       {
-        title: 'Candidate requirements',
+        title: 'Candidate Filing Requirements',
         content:
           'Once you know your people, you need to know the rules. The political establishment has stacked the deck against you, but it’s not impossible. But you have to know the rules of what makes you eligible to run and serve. Age and residency requirements, signatures to get on the ballot and fees.',
       },
@@ -90,14 +94,9 @@ export const HOW_WORKS_SECTIONS = [
           'The two major parties purposely claim Independents or Third Parties can’t win. They don’t want voters to have other choices. But they get elected by less than a majority of their district. That means many millions of people are not represented and don’t have choices. Your job is to know how many of them there are and find them!',
       },
       {
-        title: 'Campaign Plan',
+        title: 'Develop a Campaign Plan',
         content:
           'Once you’ve done the above work, it’s time to create a plan. The most successful campaigns find their key message, stick to it and relentlessly pursue their key objectives. We can help you with that!',
-      },
-      {
-        title: 'Launch Social Media',
-        content:
-          'Newsflash: the town square has moved online. To represent people, you have to meet them where they are. As a candidate, you have to get your story out to the community. Social media is the community. But you don’t have to wait until you launch a campaign to share your vision and engage with others. Don’t worry about mastering them all. Just pick a platform that works for you and get started! Then you can repurpose content across other platforms.',
       },
     ],
   },
@@ -106,17 +105,17 @@ export const HOW_WORKS_SECTIONS = [
     icon: '🏃',
     points: [
       {
-        title: 'Launch Campaign (Announcement/Event)',
+        title: 'Announce Your Campaign With A Launch Event',
         content:
           'Ready for launch! Launches come in many forms but the goal is the same: Make an attention-grabbing statement from the start. This is your first chance to put it all together - early supporters, event planning, local press, social media - and get people excited. If you don’t tell them about you, they’ll never know.',
       },
       {
-        title: 'Collect Endorsements / Supporters',
+        title: 'Grow Your Following',
         content:
-          'To defeat the two-party duopoly credibility is key. People need evidence that your campaign is viable. That’s why Good Party allows you to show and share progress toward key goals. Start early supporters on their journey to becoming volunteers and voters by asking for their endorsement of your Good party campaign page!',
+          'To defeat the two-party duopoly credibility is key. People need evidence that your campaign is viable. That’s why Good Party allows you to show and share progress toward key campaign goals. Social media lets you grow awareness for free. Activate your early supporters and volunteers to use Good Party to spread the word and grow your following!',
       },
       {
-        title: 'Secure Ballot Access',
+        title: 'Get Your Name On The Ballot',
         content:
           'People can’t vote for you if you aren’t on the ballot. This is where your early research about your district, voters, and the rules are key. It’s also a great first opportunity for volunteers to get involved and help you gather signatures. Every state has different requirements and deadlines, so find out about yours ASAP!',
       },
@@ -151,16 +150,17 @@ export const HOW_WORKS_SECTIONS = [
 ];
 function HowWorksSection() {
   const [expanded, setExpanded] = useState([false, false, false]);
-  const expand = (index) => {
+  const expandCollapse = (index) => {
     const updated = [...expanded];
-    updated[index] = true;
+    updated[index] = !expanded[index];
     setExpanded(updated);
   };
+
   return (
     <Section>
       <Element name="questions">
         <FontH2 id="how" data-cy="howworks-title">
-          How it works
+          How a campaign works
           <Line />
         </FontH2>
       </Element>
@@ -169,7 +169,7 @@ function HowWorksSection() {
           <Grid item xs={12} key={box.title} data-cy="howworks-box">
             <Box
               onClick={() => {
-                expand(index);
+                expandCollapse(index);
               }}
               className={expanded[index] && 'expanded'}
             >
@@ -178,10 +178,15 @@ function HowWorksSection() {
 
               {box.points.map((point) => (
                 <Point key={point.title} data-cy="howworks-box-point">
-                  <PointTitle className={expanded[index] && 'expanded'} data-cy="howworks-box-point-title">
+                  <PointTitle
+                    className={expanded[index] && 'expanded'}
+                    data-cy="howworks-box-point-title"
+                  >
                     {point.title}
                   </PointTitle>
-                  <div className="content" data-cy="howworks-box-point-content">{point.content}</div>
+                  <div className="content" data-cy="howworks-box-point-content">
+                    {point.content}
+                  </div>
                 </Point>
               ))}
             </Box>

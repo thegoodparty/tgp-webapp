@@ -51,7 +51,7 @@ function RunWrapper() {
         <Free>we’re always free</Free>
         <StartCampaignButton />
         <Link to="questions" duration={500} smooth offset={-90}>
-          <Questions data-cy="run-questions">Have more questions?</Questions>
+          <Questions data-cy="run-questions">How does a campaign work?</Questions>
         </Link>
         <BadgeWrapper>
           <CertifiedBadge />
