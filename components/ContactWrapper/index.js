@@ -12,8 +12,11 @@ import { FontH1 } from '../shared/typogrophy';
 
 const Inner = styled.div`
   margin: 0 auto;
-  width: 80%;
-  min-width: ${1280 * 0.8}px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    width: 80%;
+    min-width: ${1280 * 0.8}px;
+  }
 `;
 
 const Sub = styled.div`
