@@ -48,16 +48,10 @@ function ManifestoWrapper() {
             <i>It</i> is the system that tears away our hopes.
           </li>
           <li>
-            <i>It</i> is the political duopoly that fights to keep us divided.
+            <i>It</i> is the money that corrupts our government.
           </li>
           <li>
-            <i>It</i> is the rat race that consumes our lives.
-          </li>
-          <li>
-            <i>It</i> is the chemicals that poison our bodies.
-          </li>
-          <li>
-            <i>It</i> is the consumerism that infests our minds.
+            <i>It</i> is the media that degrades our minds.
           </li>
           <li>
             <i>It</i> is the manufactured doom loop that darkens our souls.
@@ -112,52 +106,51 @@ function ManifestoWrapper() {
         <br />
         <br />
         <strong>
-          Let&apos;s do it... to{' '}
+          Let&apos;s do it, to{' '}
           <u>
             <i>It</i>
           </u>
           ! (with a #goodparty)
         </strong>
         <ul>
-          <li>We party to have fun and create hope. </li>
-          <li>We party to get together with our friends.</li>
-          <li>We party to enjoy our lives.</li>
-          <li>We party to inspire our minds.</li>
+          <li>We party to have fun.</li>
+          <li>We party to get together with friends.</li>
+          <li>We party to lighten our minds.</li>
           <li>We party to brighten our souls.</li>
           <li>We party to lift each other up.</li>
-          <li>We party to enjoy being together again!</li>
           <li>We party to be human.</li>
         </ul>
         <br />
         <br />
         <p>
           Humans need community. A #goodparty is the simplest form of community.
-          When we get together for a #goodparty, we’re exercising our freedom of
-          assembly in the most basic, fun and human way possible. A #goodparty
+          When we get together for a #goodparty, we’re exercising our basic
+          right of assembly in the most fun and human way possible. A #goodparty
           is our fundamental right to life, liberty and the pursuit of
           happiness. At a #goodparty, we eat, we drink, we dance. We laugh, we
           love, we talk. We share our ideas, our values and our culture. We
           create a space for all to feel good, welcome and empowered. At a
           #goodparty together, we find that we are all we really need. And, we
-          find that we have more in common than{' '}
+          find that we have more in common among us than{' '}
           <u>
             <i>It</i>
           </u>{' '}
           wants us to believe.
           <br />
           <br />
-          And, in a democracy when enough people come together - all at once and
-          everywhere - we gain real power. With that power, we gain the energy
-          to inspire each other. We create hope. We realize that if we can party
-          together, then we can unite together to do much more. Before you know
-          it, we’ll have enough support to vote{' '}
+          Most importantly, in a democracy, when enough of us come together we
+          gain real power, because we can coordinate together and inspire each
+          other. We can create hope. We realize that if we can party together,
+          then we can unite together to do much more. Soon, because time flies
+          when we’re having fun, we’ll notice that we have enough #goodparty
+          people to vote{' '}
           <u>
             <i>It</i>
           </u>{' '}
           out, and the good among us, in!
           <br />
           <br />
-          It’s that simple, and it’s that fun! So let’s get this party started!
+          It’s time to get this #goodparty started!
         </p>
         <SoFIt noTitle />
       </Wrapper>
