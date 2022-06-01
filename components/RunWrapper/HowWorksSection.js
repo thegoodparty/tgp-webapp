@@ -74,7 +74,7 @@ export const HOW_WORKS_SECTIONS = [
     icon: '🚀',
     points: [
       {
-        title: 'Launch Social Media',
+        title: 'Launch Your Social Media',
         content:
           'Newsflash: the town square has moved online. To represent people, you have to meet them where they are. As a candidate, you have to get your story out to the community. Social media is the community. But you don’t have to wait until you launch a campaign to share your vision and engage with others. Don’t worry about mastering them all. Just pick a platform that works for you and get started! Then you can repurpose content across other platforms.',
       },
