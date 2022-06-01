@@ -95,7 +95,6 @@ const Relative = styled.div`
 const SoFIt = ({
   noTitle = false,
   openModalCallback = () => {},
-  openShareModalCallback = () => {},
 }) => {
   return (
     <Wrapper>
@@ -125,7 +124,7 @@ const SoFIt = ({
           <br />
           <BlackButton
             style={{ marginTop: '40px' }}
-            onClick={openShareModalCallback}
+            onClick={openModalCallback}
           >
             <Inner>
               Post a #goodparty{' '}
