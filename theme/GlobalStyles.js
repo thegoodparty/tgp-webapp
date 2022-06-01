@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.3;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
+    padding-right: 0 !important; // for the tooltip issue
   }
 
 

@@ -5,6 +5,7 @@ import { FaTwitter, FaTiktok, FaInstagram, FaFacebook } from 'react-icons/fa';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Row from '../shared/Row';
 import { HomePageContext } from '../../containers/HomePage';
+import It from '../shared/It';
 
 const Wrapper = styled.section`
   padding: 60px 0 0;
@@ -100,10 +101,7 @@ const SoFIt = ({
     <Wrapper>
       {!noTitle && (
         <H2>
-          So, let&apos;s do it... to{' '}
-          <u>
-            <i>It</i>
-          </u>
+          So, let&apos;s do it... to <It />
         </H2>
       )}
       <Banner
