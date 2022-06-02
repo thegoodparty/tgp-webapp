@@ -72,6 +72,10 @@ const MenuWrapper = styled.div`
 
 const TopLink = styled.div`
   margin-top: 28px;
+
+  &.active {
+    font-weight: 900;
+  }
 `;
 
 const PushAvatarWrapper = styled.div`
@@ -79,15 +83,15 @@ const PushAvatarWrapper = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+  &.active {
+    font-weight: 900;
+  }
 `;
 
 function MobileHeader({ user }) {
   const [open, setOpen] = useState(false);
-  // const router = useRouter();
-  // const handleShare = () => {
-  //   router.query.share = 'true';
-  //   router.push(router);
-  // };
+  const router = useRouter();
+  const path = router.pathname;
 
   return (
     <Hidden mdUp>
@@ -104,7 +108,7 @@ function MobileHeader({ user }) {
             />
           </a>
         </Link>
-        <TopLink>
+        <TopLink className={path === '/' && 'active'}>
           <Link
             href="/"
             passHref
@@ -116,7 +120,7 @@ function MobileHeader({ user }) {
           </Link>
         </TopLink>
         {HEADER_LINKS.map((link) => (
-          <TopLink key={link.href}>
+          <TopLink key={link.href} className={path === link.href && 'active'}>
             <Link
               href={link.href}
               passHref
@@ -131,23 +135,29 @@ function MobileHeader({ user }) {
         {user?.name ? (
           <Link href="/profile" passHref>
             <a style={{ width: '100%' }}>
-              <PushAvatarWrapper>
+              <PushAvatarWrapper className={path === '/profile' && 'active'}>
                 <UserAvatar user={user} />
-                <div style={{ marginLeft: 6 }} className="menu-items">
-                  {user.name}
-                </div>
+                <div style={{ marginLeft: 6 }}>{user.name}</div>
               </PushAvatarWrapper>
             </a>
           </Link>
         ) : (
           <>
             <TopLink>
-              <Link href="/register" passHref>
+              <Link
+                href="/register"
+                passHref
+                className={path === '/register' && 'active'}
+              >
                 <a>Sign Up</a>
               </Link>
             </TopLink>
             <TopLink>
-              <Link href="/login" passHref>
+              <Link
+                href="/login"
+                passHref
+                className={path === '/login' && 'active'}
+              >
                 <a>Log In</a>
               </Link>
             </TopLink>
