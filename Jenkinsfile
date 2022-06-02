@@ -47,7 +47,6 @@ pipeline {
       }
     }
     
-    
     //   steps {
     //       script {
     //         if(env.BRANCH_NAME == PROD_BRANCH) {
