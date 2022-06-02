@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Link from 'next/link';
 
 import Tooltip from './Tooltip';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
@@ -56,11 +57,15 @@ const It = () => {
           ))}
         </Grid>
         <div className="text-center" style={{ marginTop: '24px' }}>
-          <BlackButton>
-            <InnerButton>
-              <Small>Read our Manifesto</Small>
-            </InnerButton>
-          </BlackButton>
+          <Link href="/manifesto" passHref>
+            <a>
+              <BlackButton>
+                <InnerButton>
+                  <Small>Read our Manifesto</Small>
+                </InnerButton>
+              </BlackButton>
+            </a>
+          </Link>
         </div>
       </InnerTooltip>
     </Tooltip>
