@@ -38,6 +38,7 @@ const HomePageWrapper = () => {
         <Anatomy />
         <SoFIt
           openModalCallback={handleOpenModal}
+          openShareModalCallback={handleOpenShareModal}
         />
       </MaxWidth>
       <Modal
