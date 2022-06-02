@@ -2,23 +2,17 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import Image from 'next/image';
 import { Spin as Hamburger } from 'hamburger-react';
-import Grid from '@material-ui/core/Grid';
+import { GrClose } from 'react-icons/gr';
 import Hidden from '@material-ui/core/Hidden';
-import Drawer from '@material-ui/core/Drawer';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
 import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
-import UserAvatar from '../UserAvatar';
+import { logEvent } from '/services/AnalyticsService';
 
-import { Body9, Body14 } from '../typogrophy';
-import { PurpleButton } from '../buttons';
-import BlackButton, { InnerButton } from '../buttons/BlackButton';
-import AdminMenu from '../../admin/AdminMenu';
+import UserAvatar from '../UserAvatar';
 import { HEADER_LINKS } from './constants';
-import { logEvent } from '../../../services/AnalyticsService';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -96,7 +90,24 @@ function MobileHeader({ user }) {
   return (
     <Hidden mdUp>
       <Wrapper>
-        <Hamburger toggled={open} toggle={setOpen} size={24} />
+        {open ? (
+          <GrClose
+            size={28}
+            onClick={() => {
+              setOpen(false);
+            }}
+          />
+        ) : (
+          <Image
+            src="/images/heart.svg"
+            width={36}
+            height={30}
+            onClick={() => {
+              setOpen(true);
+            }}
+          />
+        )}
+        {/*<Hamburger toggled={open} toggle={setOpen} size={24} />*/}
       </Wrapper>
       <MenuWrapper className={open && 'open'}>
         <Link href="/" className="text-center" passHref>
