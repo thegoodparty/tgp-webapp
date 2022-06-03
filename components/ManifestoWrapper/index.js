@@ -22,6 +22,11 @@ const H2 = styled.h2`
   color: #666;
   font-style: italic;
   font-weight: 900;
+  font-size: 26px;
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.md}) {
+    font-size: 32px;
+  }
 `;
 
 function ManifestoWrapper() {
@@ -54,7 +59,7 @@ function ManifestoWrapper() {
             <i>It</i> is the media that degrades our minds.
           </li>
           <li>
-            <i>It</i> is the manufactured doom loop that darkens our souls.
+            <i>It</i> is the doom loop that darkens our souls.
           </li>
           <li>
             <i>It</i> is{' '}

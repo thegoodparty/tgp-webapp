@@ -9,6 +9,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Row from '../shared/Row';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Emoji from '../shared/Emoji';
+import It from '../shared/It';
 
 const Wrapper = styled.section`
   //padding-bottom: 130px;
@@ -181,11 +182,7 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
               </BlackButton>
             </ButtonWrapper>
             <Accomplish>
-              <Link to="what-is-it" duration={350} smooth offset={-90}>
-                <LinkScroll>
-                  What is <i>It</i>?
-                </LinkScroll>
-              </Link>
+              What is <It />?
             </Accomplish>
           </Grid>
         </Grid>

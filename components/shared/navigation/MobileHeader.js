@@ -53,7 +53,7 @@ const MenuWrapper = styled.div`
   padding: 30px;
   background-color: #fff;
   text-align: center;
-  z-index: 100;
+  z-index: 2000;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   perspective: 1000px;
   display: none;
@@ -85,7 +85,7 @@ const PushAvatarWrapper = styled.div`
 function MobileHeader({ user }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const path = router.pathname;
+  const path = router.asPath;
 
   return (
     <Hidden mdUp>
