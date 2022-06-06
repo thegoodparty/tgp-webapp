@@ -28,10 +28,10 @@ const HomePageWrapper = () => {
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '0 24px' }}>
         <Hero />
-        <SocialSection openModalCallback={handleOpenShareModal} />
+        <SocialSection openModalCallback={handleOpenShareModal} registerModalCallback={handleOpenModal} />
         {/*<VideoSection />*/}
       </MaxWidth>
-      <GrayParty openModalCallback={handleOpenShareModal} />
+      <GrayParty openModalCallback={handleOpenModal} />
       <MaxWidth style={{ padding: '0 24px' }}>
         <WhatIsIt />
         <Accomplish openModalCallback={handleOpenModal} />

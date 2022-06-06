@@ -2,29 +2,43 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
+import Image from 'next/image';
+import { Spin as Hamburger } from 'hamburger-react';
+import { GrClose } from 'react-icons/gr';
 import Hidden from '@material-ui/core/Hidden';
-import Drawer from '@material-ui/core/Drawer';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
 import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
-import UserAvatar from '../UserAvatar';
+import { logEvent } from '/services/AnalyticsService';
 
-import { Body9, Body14 } from '../typogrophy';
-import { PurpleButton } from '../buttons';
-import BlackButton from '../buttons/BlackButton';
-import AdminMenu from '../../admin/AdminMenu';
+import UserAvatar from '../UserAvatar';
+import { HEADER_LINKS } from './constants';
 
 const Wrapper = styled.div`
-  padding: 0 24px;
-  height: 80px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 64px;
+  height: 64px;
+  z-index: 100;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  justify-content: space-between;
+  justify-content: center;
+
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
 `;
 
 const Logo = styled.img`
@@ -32,97 +46,70 @@ const Logo = styled.img`
   align-self: center;
   justify-self: center;
 `;
+const MenuWrapper = styled.div`
+  position: fixed;
+  bottom: 110px;
+  right: 30px;
+  padding: 30px;
+  background-color: #fff;
+  text-align: center;
+  z-index: 2000;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  perspective: 1000px;
+  display: none;
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: bottom center;
+  &.open {
+    display: block;
+  }
+`;
 
-const AuthButtonWrapper = styled.div`
-  display: flex;
-  padding: 18px 0px;
-  margin-top: 18px;
-  border-top: solid 1px rgba(12, 11, 49, 0.16);
-  align-items: center;
-  justify-content: space-between;
-`;
-const MenuIconButton = styled(MenuIcon)`
-  && {
-    color: #000;
-    font-size: 2rem;
+const TopLink = styled.div`
+  margin-top: 28px;
+
+  &.active {
+    font-weight: 900;
   }
-`;
-const CloseIconButton = styled(CloseIcon)`
-  && {
-    color: #000;
-    font-size: 2rem;
-  }
-`;
-const MenuItemWrapper = styled(Drawer)`
-  && {
-    .MuiDrawer-paper {
-      height: 100%;
-      width: 100%;
-    }
-  }
-`;
-const PushMenuWrapper = styled.div`
-  padding: 24px 18px 18px;
-`;
-const AvatarWrapper = styled.div`
-  height: 80px;
-  cursor: pointer;
-  display: flex;
 `;
 
 const PushAvatarWrapper = styled.div`
+  margin-top: 14px;
   cursor: pointer;
   display: flex;
-  font-size: 16px;
-  line-height: 20px;
   align-items: center;
-  text-transform: uppercase;
-  border-bottom: solid 1px rgba(12, 11, 49, 0.16);
-  padding-bottom: 18px;
-`;
-
-const ShareWrapper = styled.div`
-  width: 40px;
-  text-align: right;
-`;
-
-const Share = styled.img`
-  height: 18px;
-  cursor: pointer;
-`;
-
-const LinkContainer = styled.div`
-  display: flex;
-  width: 40px;
-`;
-
-const PushMenuLink = styled.div`
-  padding: 12px 0;
-  line-height: 22px;
-  font-size: 16px;
-`;
-
-const ButtonInner = styled.div`
-  padding: 6px 0;
-  line-height: 20px;
-  font-size: 16px;
-  font-weight: 600;
+  &.active {
+    font-weight: 900;
+  }
 `;
 
 function MobileHeader({ user }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const handleShare = () => {
-    router.query.share = 'true';
-    router.push(router);
-  };
+  const path = router.asPath;
 
   return (
     <Hidden mdUp>
       <Wrapper>
-        <LinkContainer>
-          <MenuIconButton onClick={() => setOpen(true)} />
-        </LinkContainer>
+        {open ? (
+          <GrClose
+            size={28}
+            onClick={() => {
+              setOpen(false);
+            }}
+          />
+        ) : (
+          <Image
+            src="/images/heart.svg"
+            width={36}
+            height={30}
+            onClick={() => {
+              setOpen(true);
+            }}
+          />
+        )}
+        {/*<Hamburger toggled={open} toggle={setOpen} size={24} />*/}
+      </Wrapper>
+      <MenuWrapper className={open && 'open'}>
         <Link href="/" className="text-center" passHref>
           <a>
             <Logo
@@ -132,105 +119,69 @@ function MobileHeader({ user }) {
             />
           </a>
         </Link>
+        <TopLink className={path === '/' && 'active'}>
+          <Link
+            href="/"
+            passHref
+            onClick={() => {
+              logEvent('Link', 'Home', 'Top Nav');
+            }}
+          >
+            <a>Home</a>
+          </Link>
+        </TopLink>
+        {HEADER_LINKS.map((link) => (
+          <TopLink key={link.href} className={path === link.href && 'active'}>
+            <Link
+              href={link.href}
+              passHref
+              onClick={() => {
+                logEvent('Link', link.label, 'Top Nav');
+              }}
+            >
+              <a>{link.label}</a>
+            </Link>
+          </TopLink>
+        ))}
         {user?.name ? (
           <Link href="/profile" passHref>
-            <a>
-              <AvatarWrapper>
+            <a style={{ width: '100%' }}>
+              <PushAvatarWrapper className={path === '/profile' && 'active'}>
                 <UserAvatar user={user} />
-              </AvatarWrapper>
+                <div style={{ marginLeft: 6 }}>{user.name}</div>
+              </PushAvatarWrapper>
             </a>
           </Link>
         ) : (
-          <ShareWrapper>
-            <Share
-              src="/images/icons/share-icon.svg"
-              alt="Share"
-              onClick={handleShare}
-            />
-          </ShareWrapper>
-        )}
-      </Wrapper>
-      <MenuItemWrapper anchor="left" open={open} onClose={() => setOpen(false)}>
-        <PushMenuWrapper>
-          <Grid container spacing={1} alignItems="center">
-            <Grid item xs={3}>
-              <CloseIconButton onClick={() => setOpen(false)} />
-            </Grid>
-            <Grid item xs={6}>
-              <div className="text-center">
-                <Link href="/" className="text-center" passHref>
-                  <a>
-                    <Logo
-                      src="/images/black-logo.svg"
-                      alt="The Good Party"
-                      data-cy="logo"
-                    />
-                  </a>
-                </Link>
-              </div>
-            </Grid>
-            <Grid item xs={3}>
-              &nbsp;
-            </Grid>
-          </Grid>
-          <PushMenuLink>
-            <Link href="/about" passHref>
-              <a>About</a>
-            </Link>
-          </PushMenuLink>
-
-          <PushMenuLink>
-            <Link href="/candidates" passHref>
-              <a>Campaigns</a>
-            </Link>
-          </PushMenuLink>
-
-          <AuthButtonWrapper className={!user?.name && 'auth-button'}>
-            {user?.name ? (
-              <Link href="/profile" className="text-center" passHref>
-                <a style={{ width: '100%' }}>
-                  <PushAvatarWrapper>
-                    <UserAvatar user={user} />
-                    <div style={{ marginLeft: 6 }} className="menu-items">
-                      {user.name}
-                    </div>
-                  </PushAvatarWrapper>
-                </a>
+          <>
+            <TopLink>
+              <Link
+                href="/register"
+                passHref
+                className={path === '/register' && 'active'}
+              >
+                <a>Sign Up</a>
               </Link>
-            ) : (
-              <Grid container spacing={3} alignItems="center">
-                <Grid item xs={6}>
-                  <PushMenuLink className="text-center">
-                    <Link href="/register" passHref>
-                      <a>
-                        <BlackButton fullWidth>
-                          <ButtonInner>SIGN UP</ButtonInner>
-                        </BlackButton>
-                      </a>
-                    </Link>
-                  </PushMenuLink>
-                </Grid>
-                <Grid item xs={6}>
-                  <PushMenuLink className="text-center">
-                    <Link href="/login" className="text-center" passHref>
-                      <a>LOG IN</a>
-                    </Link>
-                  </PushMenuLink>
-                </Grid>
-              </Grid>
-            )}
-          </AuthButtonWrapper>
-          {user?.isAdmin && (
-            <div className={!user?.name && 'auth-button'}>
-              <PushAvatarWrapper>
-                <Link href="/admin" className="text-center" passHref>
-                  <a style={{ width: '100%', padding: '10px 0' }}>Admin</a>
-                </Link>
-              </PushAvatarWrapper>
-            </div>
-          )}
-        </PushMenuWrapper>
-      </MenuItemWrapper>
+            </TopLink>
+            <TopLink>
+              <Link
+                href="/login"
+                passHref
+                className={path === '/login' && 'active'}
+              >
+                <a>Log In</a>
+              </Link>
+            </TopLink>
+          </>
+        )}
+        {user?.isAdmin && (
+          <div style={{ marginTop: '12px' }}>
+            <Link href="/admin" className="text-center" passHref>
+              <a>Admin</a>
+            </Link>
+          </div>
+        )}
+      </MenuWrapper>
 
       <RegisterBannerContainer />
     </Hidden>

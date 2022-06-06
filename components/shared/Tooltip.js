@@ -3,24 +3,19 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Popover from '@material-ui/core/Popover';
 
+const Wrapper = styled.span``;
+
 const Inner = styled.div`
   padding: 20px;
   position: relative;
   max-width: 320px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    min-width: 580px;
+    max-width: 700px;
+  }
 `;
 
-const ArrowShadow = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-
-  border-bottom: 12px solid #ccc;
-  position: absolute;
-  top: -12px;
-  left: calc(50% - 12px);
-  filter: blur(6px);
-`;
 const Arrow = styled.div`
   width: 0;
   height: 0;
@@ -47,10 +42,15 @@ const Tooltip = ({ children, triggerEl }) => {
   const id = open ? 'simple-popover' : undefined;
 
   return (
-    <div>
-      <div onClick={handleClick} aria-describedby={id}>
+    <Wrapper>
+      <span
+        onClick={handleClick}
+        onMouseEnter={handleClick}
+        aria-describedby={id}
+        style={{ display: 'inline-block' }}
+      >
         {triggerEl}
-      </div>
+      </span>
       <Popover
         id={id}
         open={open}
@@ -65,14 +65,15 @@ const Tooltip = ({ children, triggerEl }) => {
           horizontal: 'center',
         }}
         style={{ marginTop: '20px' }}
+        PaperProps={{ style: { borderRadius: '12px' } }}
       >
         <Inner>
-          <ArrowShadow />
+          {/*<ArrowShadow />*/}
           <Arrow />
           {children}
         </Inner>
       </Popover>
-    </div>
+    </Wrapper>
   );
 };
 

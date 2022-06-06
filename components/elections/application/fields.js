@@ -308,6 +308,7 @@ export const step3Fields = [
     multiline: true,
     shortLabel: 'Summary',
     required: true,
+    maxLength: 5000,
   },
   {
     label: 'Campaign video (YouTube)',

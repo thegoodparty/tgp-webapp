@@ -115,11 +115,9 @@ function CandidateCard({ candidate }) {
   const brightColor = color?.color ? color.color : '#000';
   let topPositions = positions;
 
-  console.log('tt before');
   if (positions && positions.length > MAX_POSITIONS) {
     topPositions = positions.slice(0, MAX_POSITIONS);
   }
-  console.log('tt after', positions);
   return (
     <Link
       href={`/candidate/${firstName}-${lastName}/${id}`}

@@ -29,31 +29,31 @@ const H3Strong = styled.span`
 function BecomingSection() {
   return (
     <section>
-      <Font18 data-cy="becoming-title">BECOMING</Font18>
-      <H2 data-cy="becoming-good-certified">Good Certified</H2>
-      <Font18 style={{ marginBottom: '50px' }} data-cy="becoming-access">GETS YOU ACCESS TO:</Font18>
+      <H2 style={{ marginBottom: '50px' }} data-cy="becoming-good-certified">
+        Good Party Free Tools Provide:
+      </H2>
       <Grid container spacing={6}>
-        <Grid item xs={12} md={4}  data-cy="becoming-section-1">
+        <Grid item xs={12} md={4} data-cy="becoming-section-1">
           <Font20>
-            <strong>Free Tools and Tech</strong>
+            <strong>Viability</strong>
           </Font20>
-          to help you run your campaigns.
+          Show supporters that it’s possible to win and your campaign is not a
+          wasted vote.
         </Grid>
 
         <Grid item xs={12} md={4} data-cy="becoming-section-2">
           <Font20>
-            <strong>Access to Strategic Guidance</strong>
+            <strong>Insights</strong>
           </Font20>
-          from experienced politicos to walk you through the whole process, from
-          running to winning.
+          Actionable insights about how to grow awareness for your campaign.
         </Grid>
 
         <Grid item xs={12} md={4} data-cy="becoming-section-3">
           <Font20>
-            <strong>A Community of Creators</strong>
+            <strong>People</strong>
           </Font20>
-          volunteers, organizers and influencers, gathered to help indie
-          candidates like you run and win.
+          Online and grassroots influencers, organizers, and volunteers to help
+          your campaign win.
         </Grid>
       </Grid>
 

@@ -76,7 +76,6 @@ const Whats = styled.div`
 `;
 
 function EndorsePanel() {
-
   return (
     <PortalPanel color="#CA2CCD">
       <Row>
@@ -128,13 +127,15 @@ function EndorsePanel() {
                   your endorse button.
                 </Started>
                 <EndorseButtonModal />
-                <Tooltip triggerEl={<Whats>What’s this?</Whats>}>
-                  <strong>What’s the endorse button?</strong>
-                  <br />
-                  <br />A way for you to promote your campaign across other
-                  platforms, grow your supporter base in one place and prove
-                  your campaign is viable.
-                </Tooltip>
+                <div>
+                  <Tooltip triggerEl={<Whats>What’s this?</Whats>}>
+                    <strong>What’s the endorse button?</strong>
+                    <br />
+                    <br />A way for you to promote your campaign across other
+                    platforms, grow your supporter base in one place and prove
+                    your campaign is viable.
+                  </Tooltip>
+                </div>
               </div>
             </Overlay>
           </Relative>

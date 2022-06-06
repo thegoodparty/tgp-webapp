@@ -5,6 +5,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import Grid from '@material-ui/core/Grid';
 import MaxWidth from '../shared/MaxWidth';
 import VideoSection from './VideoSection';
+import It from '../shared/It';
 
 const Wrapper = styled.section`
   background-color: #f3f3f3;
@@ -78,17 +79,7 @@ const GrayParty = ({ openModalCallback }) => {
               </Relative>
               <br />
               Because{' '}
-              <ScrollLink
-                className="pointer"
-                to="what-is-it"
-                duration={350}
-                smooth
-                offset={-90}
-              >
-                <u>
-                  <i>It</i>
-                </u>
-              </ScrollLink>{' '}
+              <It />{' '}
               doesn’t want us to.
             </H2>
             <BlackButton onClick={openModalCallback}>

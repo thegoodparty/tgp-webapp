@@ -43,6 +43,7 @@
     "dotenv": "^16.0.0",
     "eslint-config-next": "12.0.10",
     "ga-4-react": "^0.1.281",
+    "hamburger-react": "^2.5.0",
     "html-to-image": "^1.9.0",
     "immer": "^9.0.12",
     "invariant": "^2.2.4",

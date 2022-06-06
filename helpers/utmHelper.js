@@ -4,7 +4,6 @@ import utms from './utms';
 
 export const getUtmExperiment = (utmContent, utmSource) => {
   const cookieUtm = getCookie('gp-utm');
-  console.log('cookieUtm:', cookieUtm, utmContent, utms['default']);
   if (!utmContent && !cookieUtm) {
     return utms['default'];
   }
