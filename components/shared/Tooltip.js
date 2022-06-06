@@ -45,7 +45,6 @@ const Tooltip = ({ children, triggerEl }) => {
     <Wrapper>
       <span
         onClick={handleClick}
-        onMouseEnter={handleClick}
         aria-describedby={id}
         style={{ display: 'inline-block' }}
       >

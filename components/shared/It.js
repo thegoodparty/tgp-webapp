@@ -26,13 +26,17 @@ const points = [
   { title: 'is the rat race', content: 'that consumes our lives' },
 ];
 
-const It = () => {
+const It = ({ text }) => {
   return (
     <Tooltip
       triggerEl={
-        <u>
-          <i className="pointer">It</i>
-        </u>
+        text ? (
+          <>{text}</>
+        ) : (
+          <u>
+            <i className="pointer">It</i>
+          </u>
+        )
       }
     >
       <InnerTooltip>

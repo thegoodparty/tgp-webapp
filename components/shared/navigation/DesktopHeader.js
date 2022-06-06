@@ -83,7 +83,6 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   }, [open]);
 
   const candidateRoute = router.pathname === '/candidate/[...NameId]';
-  const isHomePage = router.pathname === '/';
   let id = false;
   if (
     candidateRoute &&
@@ -128,17 +127,6 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
             </a>
           </Link>
           <RightLinks>
-            {isHomePage && (
-              <ScrollLink to="what-is-it" duration={350} smooth offset={-90}>
-                <TopLink>
-                  What is{' '}
-                  <u>
-                    <i>It</i>
-                  </u>{' '}
-                  ?
-                </TopLink>
-              </ScrollLink>
-            )}
             {HEADER_LINKS.map((link) => (
               <TopLink key={link.href} data-cy="header-link">
                 <Link

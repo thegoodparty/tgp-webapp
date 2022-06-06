@@ -182,7 +182,17 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
               </BlackButton>
             </ButtonWrapper>
             <Accomplish>
-              What is <It />?
+              <It
+                text={
+                  <div className="pointer">
+                    What is{' '}
+                    <i>
+                      <u>It</u>
+                    </i>
+                    ?
+                  </div>
+                }
+              />
             </Accomplish>
           </Grid>
         </Grid>

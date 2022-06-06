@@ -60,7 +60,7 @@ const MobileBr = styled.span`
   }
 `;
 
-const Hero = () => {
+const Hero = ({ openModalCallback }) => {
   const { utmExperiment } = useContext(HomePageContext);
 
   return (
@@ -74,7 +74,9 @@ const Hero = () => {
         </span>
       )}{' '}
       <MobileBr />
-      <span className="smaller">{utmExperiment.text3}</span>
+      <span className="smaller pointer" onClick={openModalCallback}>
+        {utmExperiment.text3}
+      </span>
     </H1>
   );
 };
