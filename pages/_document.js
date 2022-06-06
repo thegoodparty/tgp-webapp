@@ -54,7 +54,12 @@ class CustomDocument extends NextDocument {
           <meta property="twitter:card" content="summary_large_image" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="fb:app_id" content="241239336921963" />
-          <link rel="icon" type="image/png" href="https://assets.goodparty.org/favicon/favicon-512x512.png" sizes="512x512" />
+          <link
+            rel="icon"
+            type="image/png"
+            href="https://assets.goodparty.org/favicon/favicon-512x512.png"
+            sizes="512x512"
+          />
           {/*<meta*/}
           {/*  name="google-signin-client_id"*/}
           {/*  content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"*/}
@@ -97,6 +102,14 @@ class CustomDocument extends NextDocument {
           if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
           g._v='1.2.0';
         })(window,document,window['_fs_namespace'],'script','user');
+        
+        // twitter pixel
+        !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+        },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+        a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+        // Insert Twitter Pixel ID and Standard Event data below
+        twq('init','o8pqb');
+        twq('track','PageView');
         }
         `,
             }}
