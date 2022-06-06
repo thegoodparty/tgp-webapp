@@ -76,7 +76,7 @@ const renderCustomizedLabel = (props) => {
       <g>
         <foreignObject x={x - 10} y={y - 10} width={20} height={20}>
           {/*{index === 0 ? <Icon>🎉️</Icon> : <Icon>🗳</Icon>}*/}
-          {index === 1 &&  <Icon>🗳</Icon>}
+          {index === 1 && <Icon>🗳</Icon>}
         </foreignObject>
       </g>
     </>
@@ -96,9 +96,10 @@ function hexToRgb(hex) {
 
 function GoalsChart({ candidate }) {
   const { likelyVoters, votesNeeded, color } = candidate;
+  const cappedLikely = likelyVoters > votesNeeded ? votesNeeded : likelyVoters;
   const data = [
-    { name: 'To Win', value: votesNeeded - likelyVoters },
-    { name: 'So Far', value: likelyVoters },
+    { name: 'To Win', value: votesNeeded - cappedLikely },
+    { name: 'So Far', value: cappedLikely },
   ];
   const perc = parseInt((likelyVoters * 100) / votesNeeded, 10);
   const brightColor = color?.color ? color.color : '#000000';
