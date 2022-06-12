@@ -38,6 +38,7 @@ export function HomePage({
   ssrState,
 }) {
   const { utmContent, utmSource } = ssrState;
+  const router = useRouter();
 
   useInjectSaga({ key: 'registerPage', saga: registerSaga });
 
@@ -50,12 +51,17 @@ export function HomePage({
   //   });
   // }, []);
 
+  console.log('router.query.host', router.query.host)
+  console.log('router', router)
+  const showInitModal = router.query.host === 'true';
+
   const { user } = userState;
   const childProps = {
     registerCallback,
     showFeedbackCallback,
     user,
     utmExperiment,
+    showInitModal
   };
   return (
     <HomePageContext.Provider value={childProps}>

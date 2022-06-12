@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 // import styled from 'styled-components';
+import { HomePageContext } from '/containers/HomePage';
 import PageWrapper from '/components/shared/PageWrapper';
+
 import Hero from './Hero';
 import MaxWidth from '../shared/MaxWidth';
 import SocialSection from './SocialSection';
@@ -15,7 +17,9 @@ import ShareModal from './ShareModal';
 // import VideoSection from './VideoSection';
 
 const HomePageWrapper = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const { showInitModal } = useContext(HomePageContext);
+  console.log('showInit', showInitModal)
+  const [modalOpen, setModalOpen] = useState(showInitModal || false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const handleOpenModal = () => {
     setModalOpen(true);

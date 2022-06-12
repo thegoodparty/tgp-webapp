@@ -4,12 +4,16 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+
 import PageWrapper from '../shared/PageWrapper';
 import { FontH1, FontH2 } from '../shared/typogrophy';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SoFIt from '../HomePageWrapper/SoFIt';
+import ShareModal from '../HomePageWrapper/ShareModal';
+import Modal from '../shared/Modal';
 
 const Wrapper = styled.div`
   margin-top: 60px;
@@ -24,12 +28,24 @@ const H2 = styled.h2`
   font-weight: 900;
   font-size: 26px;
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.md}) {
     font-size: 32px;
   }
 `;
 
 function ManifestoWrapper() {
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+
+  const router = useRouter();
+
+  const handleOpenShareModal = () => {
+    setShareModalOpen(true);
+  };
+
+  const linkToHomePage = () => {
+    router.push('/?host=true');
+  };
+
   return (
     <PageWrapper>
       <Wrapper>
@@ -157,7 +173,18 @@ function ManifestoWrapper() {
           <br />
           It’s time to get this #goodparty started!
         </p>
-        <SoFIt noTitle />
+        <SoFIt
+          noTitle
+          openShareModalCallback={handleOpenShareModal}
+          openModalCallback={linkToHomePage}
+        />
+        <Modal
+          open={shareModalOpen}
+          showCloseButton={false}
+          closeModalCallback={() => setShareModalOpen(false)}
+        >
+          <ShareModal closeModalCallback={() => setShareModalOpen(false)} />
+        </Modal>
       </Wrapper>
     </PageWrapper>
   );

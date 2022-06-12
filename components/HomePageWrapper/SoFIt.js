@@ -98,7 +98,7 @@ const SoFIt = ({
   openShareModalCallback = () => {},
 }) => {
   return (
-    <Wrapper>
+    <Wrapper id="host">
       {!noTitle && (
         <H2>
           So, let&apos;s do it... to <It />
