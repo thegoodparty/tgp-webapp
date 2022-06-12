@@ -49,12 +49,7 @@ function* loadApplications() {
     const { applications } = yield call(requestHelper, api, null);
     yield put(actions.loadApplicationsActionSuccess(applications));
   } catch (error) {
-    yield put(
-      snackbarActions.showSnakbarAction(
-        'Error creating your application',
-        'error',
-      ),
-    );
+
   }
 }
 

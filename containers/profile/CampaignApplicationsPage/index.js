@@ -7,13 +7,15 @@
 import React, { memo, useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import { useRouter } from 'next/router';
+
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import TgpHelmet from '/components/shared/TgpHelmet';
 import CampaignApplicationsWrapper from '/components/profile/CampaignApplicationsWrapper';
 import { getApplicationStorage } from '/helpers/localstorageHelper';
+import { getUserCookie } from '/helpers/cookieHelper';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -23,7 +25,6 @@ import saga from './saga';
 import actions from './actions';
 import passCreationActions from '../../entrance/PasswordCreationPage/actions';
 import passCreationSaga from '../../entrance/PasswordCreationPage/saga';
-import { getUserCookie } from '../../../helpers/cookieHelper';
 
 export const CampaignApplicationsPageContext = createContext();
 
@@ -33,13 +34,13 @@ export function CampaignApplicationsPage({
   dispatch,
   deleteApplicationCallback,
 }) {
+  const router = useRouter();
   useInjectReducer({ key: 'campaignApplicationsPage', reducer });
   useInjectSaga({ key: 'campaignApplicationsPage', saga });
 
   useInjectSaga({ key: 'passwordCreationPage', saga: passCreationSaga });
   const user = getUserCookie(true);
   const { applications, loading, staff } = campaignApplicationsPage;
-
   useEffect(() => {
     dispatch(actions.loadApplicationsAction());
     const application = getApplicationStorage();
@@ -48,6 +49,9 @@ export function CampaignApplicationsPage({
     }
     if (!staff) {
       dispatch(actions.loadStaffAction());
+    }
+    if (typeof window !== 'undefined' && !user) {
+      router.push('/login');
     }
   }, []);
 
