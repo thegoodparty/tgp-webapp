@@ -153,7 +153,7 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
                   <Emoji symbol="🎉" label="Party Popper" />
                 </Icon>
                 <div>
-                  <Count data-cy="post-count">85,174</Count>
+                  <Count data-cy="post-count">89,852</Count>
                   <Label data-cy="post-count-label">#goodparty posts</Label>
                 </div>
               </Stat>
@@ -169,7 +169,7 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
                   />
                 </Heart>
                 <div>
-                  <Count data-cy="people-count">8,668</Count>
+                  <Count data-cy="people-count">29,349</Count>
                   <Label data-cy="people-count-label">@goodparty people</Label>
                 </div>
               </Stat>
