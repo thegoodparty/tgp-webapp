@@ -124,7 +124,7 @@ function SupportButton() {
   });
 
   const handleSupport = () => {
-    logEvent('Endorse Candidate', 'Candidate endorse button', 'Endorsements');
+
     if (user) {
       userSupportCallback(candidate.id);
     } else {

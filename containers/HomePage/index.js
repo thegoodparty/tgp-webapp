@@ -94,7 +94,6 @@ function mapDispatchToProps(dispatch) {
       dispatch(feedbackActions.toggleModalAction(true));
     },
     registerCallback: (name, email, phone, zip) => {
-      logEvent('signup', 'homepage-modal-form');
       dispatch(
         actions.registerAction(name, email, phone, zip, false, 'homepageModal'),
       );

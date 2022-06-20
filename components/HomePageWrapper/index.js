@@ -18,7 +18,6 @@ import ShareModal from './ShareModal';
 
 const HomePageWrapper = () => {
   const { showInitModal } = useContext(HomePageContext);
-  console.log('showInit', showInitModal)
   const [modalOpen, setModalOpen] = useState(showInitModal || false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const handleOpenModal = () => {

@@ -39,6 +39,7 @@ function* register({ name, email, phone, zip, callback, source }) {
     const { user, token } = yield call(requestHelper, api, payload);
     setUserCookie(user);
     setCookie('token', token);
+    logEvent('signup', 'homepage-modal-form');
     yield call(setupCrew);
     if (callback) {
       callback();

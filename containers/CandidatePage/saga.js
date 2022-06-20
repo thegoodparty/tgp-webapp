@@ -7,6 +7,7 @@ import tgpApi from '/api/tgpApi';
 import types from './constants';
 import actions from './actions';
 import { getCookie } from '/helpers/cookieHelper';
+import { logEvent } from '../../services/AnalyticsService';
 
 function* support({ candidateId }) {
   try {
@@ -18,6 +19,7 @@ function* support({ candidateId }) {
     yield call(requestHelper, api, payload);
     yield put(actions.userSupportsAction());
     yield put(actions.candidateSupportsAction(candidateId));
+    logEvent('Endorse Candidate', 'Candidate endorse button', 'Endorsements');
     yield put(push(`${window.location.pathname}?share=true`));
   } catch (error) {
     console.log(error);
