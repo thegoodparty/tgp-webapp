@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Image from 'next/image';
-import { Link } from 'react-scroll';
-import { Link as ScrollLink } from 'react-scroll';
-import Hidden from '@material-ui/core/Hidden';
+// import Image from 'next/image';
+// import { Link } from 'react-scroll';
+// import { Link as ScrollLink } from 'react-scroll';
+// import Hidden from '@material-ui/core/Hidden';
 
+import { HomePageContext } from '/containers/HomePage';
 import Row from '../shared/Row';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Emoji from '../shared/Emoji';
 import It from '../shared/It';
+import { numberFormatter } from '../../helpers/numberHelper';
 
 const Wrapper = styled.section`
   //padding-bottom: 130px;
@@ -142,6 +144,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const SocialSection = ({ openModalCallback, registerModalCallback }) => {
+  const { totalFollowers } = useContext(HomePageContext);
   return (
     <Wrapper>
       <TopRow>
@@ -169,7 +172,9 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
                   />
                 </Heart>
                 <div>
-                  <Count data-cy="people-count">29,349</Count>
+                  <Count data-cy="people-count">
+                    {numberFormatter(totalFollowers)}
+                  </Count>
                   <Label data-cy="people-count-label">@goodparty people</Label>
                 </div>
               </Stat>

@@ -30,11 +30,23 @@ export default function Home({ ssrState }) {
 export async function getServerSideProps(context) {
   const utmContent = context.query.utm_content || '';
   const utmSource = context.query.utm_source || '';
+
+  const api = tgpApi.followers;
+
+  let totalFollowers;
+  try {
+    const res = await fetch(api.url);
+    const response = await res.json();
+    totalFollowers = response.total;
+  } catch (e) {
+    totalFollowers = 31858;
+  }
   return {
     props: {
       ssrState: {
         utmContent,
         utmSource,
+        totalFollowers,
       },
     },
   };
