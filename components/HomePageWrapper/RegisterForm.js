@@ -110,7 +110,7 @@ function RegisterForm({ submitCallback }) {
   };
 
   return (
-    <form noValidate onSubmit={handleSubmitForm}>
+    <form noValidate onSubmit={handleSubmitForm} id="homepage-register-form">
       <div>
         {fields.map((field, index) => (
           <React.Fragment key={field.key}>

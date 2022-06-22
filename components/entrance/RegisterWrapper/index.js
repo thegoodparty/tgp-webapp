@@ -194,7 +194,7 @@ const RegisterWrapper = ({
         <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
           Already have an account? <Link href="/login"><a data-cy="redirect-to-login">login</a></Link>
         </Body13>
-        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
+        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form" id="register-page-form">
           {REGISTER_FIELDS.map((field) => (
             <div data-cy="register-field" key={field.key}>
               {field.type === 'tel' ? (

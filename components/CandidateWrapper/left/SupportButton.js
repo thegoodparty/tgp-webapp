@@ -124,7 +124,6 @@ function SupportButton() {
   });
 
   const handleSupport = () => {
-
     if (user) {
       userSupportCallback(candidate.id);
     } else {
@@ -241,7 +240,11 @@ function SupportButton() {
         </>
       ) : (
         <>
-          <form noValidate onSubmit={handleSubmitForm}>
+          <form
+            noValidate
+            onSubmit={handleSubmitForm}
+            id="candidate-register-form"
+          >
             {!user && (
               <div>
                 {fields.map((field, index) => (
