@@ -26,14 +26,14 @@ const Num = styled.span`
   }
 `;
 
-const randomNum = () => Math.random() * 5000 + 1500;
+const randomNum = () => Math.random() * 15000 + 1500;
+const randomIncrement = () => Math.floor(Math.random() * 3 + 1);
 
 let timeout1;
 let timeout2;
 
 const REDUCED_COUNT = 100;
 const COOKIE_NAME = 'ticker';
-
 
 const Ticker = () => {
   const [transition, setTransition] = useState(false);
@@ -61,12 +61,13 @@ const Ticker = () => {
     clearTimeout(timeout1);
     timeout1 = setTimeout(() => {
       const rnd = randomNum();
-      setFollowers(totalFollowers - tickReduce - 1);
-      setReduced(tickReduce - 1);
-      setCookie(COOKIE_NAME, tickReduce - 1, 0.24);
+      const increment = randomIncrement();
+      setFollowers(totalFollowers - tickReduce - increment);
+      setReduced(tickReduce - increment);
+      setCookie(COOKIE_NAME, tickReduce - increment, 0.03);
       clearTimeout(timeout2);
       timeout2 = setTimeout(() => {
-        tick(tickReduce - 1);
+        tick(tickReduce - increment);
       }, rnd);
       setTransition(false);
     }, 250);
