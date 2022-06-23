@@ -27,18 +27,21 @@ const Num = styled.span`
 `;
 
 const randomNum = () => Math.random() * 5000 + 1500;
-const cookieName = 'ticker';
 
 let timeout1;
 let timeout2;
 
+const REDUCED_COUNT = 100;
+const COOKIE_NAME = 'ticker';
+
+
 const Ticker = () => {
   const [transition, setTransition] = useState(false);
-  const [reduced, setReduced] = useState(10);
+  const [reduced, setReduced] = useState(REDUCED_COUNT);
   const { totalFollowers } = useContext(HomePageContext);
   const [followers, setFollowers] = useState(totalFollowers - reduced);
   useEffect(() => {
-    let cookieValue = getCookie(cookieName);
+    let cookieValue = getCookie(COOKIE_NAME);
 
     if (cookieValue) {
       cookieValue = parseInt(cookieValue, 10);
@@ -60,7 +63,7 @@ const Ticker = () => {
       const rnd = randomNum();
       setFollowers(totalFollowers - tickReduce - 1);
       setReduced(tickReduce - 1);
-      setCookie(cookieName, tickReduce - 1, 0.24);
+      setCookie(COOKIE_NAME, tickReduce - 1, 0.24);
       clearTimeout(timeout2);
       timeout2 = setTimeout(() => {
         tick(tickReduce - 1);
