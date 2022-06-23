@@ -8,7 +8,11 @@ import { getCookie, setCookie } from '../../helpers/cookieHelper';
 const Wrapper = styled.div`
   position: relative;
   display: inline-block;
+  height: 30px;
+  @media only screen and (min-width: ${({ theme }) =>
+  theme.breakpointsPixels.md}) {
   height: 50px;
+  }
 `;
 
 const Num = styled.span`
