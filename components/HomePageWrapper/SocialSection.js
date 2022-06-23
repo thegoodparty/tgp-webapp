@@ -12,6 +12,7 @@ import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Emoji from '../shared/Emoji';
 import It from '../shared/It';
 import { numberFormatter } from '../../helpers/numberHelper';
+import Ticker from './Ticker';
 
 const Wrapper = styled.section`
   //padding-bottom: 130px;
@@ -149,7 +150,7 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
     <Wrapper>
       <TopRow>
         <Grid container spacing={2}>
-          <Grid xs={12} md={8}>
+          <Grid item xs={12} md={8}>
             <Row style={{ alignItems: 'initial' }}>
               <Stat className="first" onClick={openModalCallback}>
                 <Icon>
@@ -173,14 +174,14 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
                 </Heart>
                 <div>
                   <Count data-cy="people-count">
-                    {numberFormatter(totalFollowers)}
+                    <Ticker />
                   </Count>
                   <Label data-cy="people-count-label">@goodparty people</Label>
                 </div>
               </Stat>
             </Row>
           </Grid>
-          <Grid xs={12} md={4}>
+          <Grid item xs={12} md={4}>
             <ButtonWrapper>
               <BlackButton fullWidth onClick={registerModalCallback}>
                 Count Me In!
