@@ -5,20 +5,7 @@ import { HomePageContext } from '/containers/HomePage';
 import { numberFormatter } from '../../helpers/numberHelper';
 import { getCookie, setCookie } from '../../helpers/cookieHelper';
 
-const Wrapper = styled.div`
-  position: relative;
-  display: inline-block;
-  height: 30px;
-  @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.md}) {
-  height: 50px;
-  }
-`;
-
 const Num = styled.span`
-  position: absolute;
-  top: 0;
-  left: 0;
   transition: opacity 0.1s ease-in;
 
   &.active {
@@ -78,11 +65,9 @@ const Ticker = () => {
   };
 
   return (
-    <Wrapper>
-      <Num className={transition ? 'not-active' : 'active'}>
-        {numberFormatter(followers)}
-      </Num>
-    </Wrapper>
+    <Num className={transition ? 'not-active' : 'active'}>
+      {numberFormatter(followers)}
+    </Num>
   );
 };
 
