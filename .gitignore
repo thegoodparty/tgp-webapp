@@ -42,3 +42,6 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+
+/cypress/videos
+/cypress/screenshots
