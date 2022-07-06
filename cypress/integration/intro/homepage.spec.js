@@ -9,14 +9,10 @@ describe('HomePage', () => {
     cy.testSiteFooter();
   });
   it('test Social section', () => {
-    cy.get('[data-cy=post-count]')
-      .contains('85,174');
     cy.get('[data-cy=post-count-label]')
       .contains('#goodparty posts');
     cy.get('[data-cy=heart-icon]')
       .should('have.attr', 'src', '/images/heart.svg');
-    cy.get('[data-cy=people-count]')
-      .contains('8,668');
     cy.get('[data-cy=people-count-label]')
       .contains('@goodparty people');
   });

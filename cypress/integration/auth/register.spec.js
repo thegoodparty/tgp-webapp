@@ -26,4 +26,14 @@ describe('Register Page', () => {
   it('test Site Footer', () => {
     cy.testSiteFooter();
   });
+
+  it('Register Modal', () => {
+    cy.visit('/?host=true');
+    cy.get('[data-cy=gp-coming]')
+      .should('exist')
+      .contains('#goodparty Tuesdays are coming soon');
+    cy.get('[data-cy=gp-signup]')
+      .should('exist')
+      .contains('Sign up to be the first to know!');
+  });
 });
