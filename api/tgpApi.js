@@ -16,6 +16,11 @@ export const generateApi = (base) => ({
     method: 'GET',
   },
 
+  feed: {
+    url: `${base}listening/search-results`,
+    method: 'GET',
+  },
+
   findCandidate: {
     url: `${base}candidates/find`,
     method: 'GET',

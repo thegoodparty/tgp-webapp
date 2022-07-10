@@ -4,12 +4,12 @@ import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import { Link as ScrollLink } from 'react-scroll';
 import Grid from '@material-ui/core/Grid';
 import MaxWidth from '../shared/MaxWidth';
-import VideoSection from './VideoSection';
 import It from '../shared/It';
+import Feed from './Feed';
 
 const Wrapper = styled.section`
   background-color: #f3f3f3;
-  padding: 80px 24px;
+  padding: 80px 0;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
@@ -67,10 +67,10 @@ const GrayParty = ({ openModalCallback }) => {
     <Wrapper>
       <MaxWidth>
         <Grid container spacing={4}>
-          <Grid item xs={12} lg={6}>
-            <VideoSection />
+          <Grid item xs={12} lg={7}>
+            <Feed />
           </Grid>
-          <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={5}>
             <H2 data-cy="party-on">
               We party on{' '}
               <Relative>
@@ -78,9 +78,7 @@ const GrayParty = ({ openModalCallback }) => {
                 <Yellow />
               </Relative>
               <br />
-              Because{' '}
-              <It />{' '}
-              doesn’t want us to.
+              Because <It /> doesn’t want us to.
             </H2>
             <BlackButton onClick={openModalCallback}>
               <InnerButton style={{ padding: '0 80px' }}>
@@ -89,7 +87,9 @@ const GrayParty = ({ openModalCallback }) => {
             </BlackButton>
             <Accomplish>
               <ScrollLink to="accomplish" duration={350} smooth offset={-90}>
-                <LinkScroll data-cy="accomplish-label">What does partying accomplish?</LinkScroll>
+                <LinkScroll data-cy="accomplish-label">
+                  What does partying accomplish?
+                </LinkScroll>
               </ScrollLink>
             </Accomplish>
           </Grid>

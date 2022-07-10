@@ -37,7 +37,7 @@ export function HomePage({
   userState,
   ssrState,
 }) {
-  const { utmContent, utmSource, totalFollowers } = ssrState;
+  const { utmContent, utmSource, totalFollowers, feed } = ssrState;
   const router = useRouter();
 
   useInjectSaga({ key: 'registerPage', saga: registerSaga });
@@ -51,8 +51,6 @@ export function HomePage({
   //   });
   // }, []);
 
-  console.log('router.query.host', router.query.host);
-  console.log('router', router);
   const showInitModal = router.query.host === 'true';
 
   const { user } = userState;
@@ -63,7 +61,9 @@ export function HomePage({
     utmExperiment,
     showInitModal,
     totalFollowers,
+    feed,
   };
+
   return (
     <HomePageContext.Provider value={childProps}>
       <TgpHelmet
