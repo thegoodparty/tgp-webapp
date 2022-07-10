@@ -62,13 +62,13 @@ const Accomplish = styled.div`
   text-align: center;
 `;
 
-const GrayParty = ({ openModalCallback }) => {
+const GrayParty = ({ openModalCallback, openShareModalCallback }) => {
   return (
     <Wrapper>
       <MaxWidth>
         <Grid container spacing={4}>
           <Grid item xs={12} lg={7}>
-            <Feed />
+            <Feed openShareModalCallback={openShareModalCallback} />
           </Grid>
           <Grid item xs={12} lg={5}>
             <H2 data-cy="party-on">

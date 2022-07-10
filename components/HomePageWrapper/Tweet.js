@@ -78,46 +78,77 @@ const Retweet = styled.div`
   }
 `;
 
-const Tweet = ({ tweet }) => {
+const Tweet = ({ tweet, openShareModalCallback }) => {
   if (!tweet || !tweet.content) {
     return <></>;
   }
 
-  const { userName, userScreenName, images, publishedAt, content, engagement } =
-    tweet;
+  const {
+    userName,
+    userScreenName,
+    images,
+    publishedAt,
+    content,
+    engagement,
+    url,
+  } = tweet;
   const hasImage = images.length > 0;
 
   const contentWithLinks = content.replace(
     /\bhttps?:\/\/\S+/gi,
-    '<a href="$&" target="_blank" rel="nofollow">$&</a>',
+    '<a href="$&" target="_blank" rel="noopener noreferrer nofollow">$&</a>',
   );
-  return (
-    <Post>
-      <Icon>
-        <FaTwitter />
-      </Icon>
-      <Title>
-        <UserName>{userName}</UserName>
-        <Handle>@{userScreenName}</Handle>
-      </Title>
-      <Date>{dateUsHelper(publishedAt)}</Date>
 
-      <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
-      <Bottom>
-        <Retweet>
+  const handleShare = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    openShareModalCallback();
+  };
+  return (
+    <a
+      className="no-underline"
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+    >
+      <Post>
+        <Icon>
+          <FaTwitter />
+        </Icon>
+        <Title>
+          <UserName>
+            <a
+              href={`https://twitter.com/${userScreenName}`}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              {userName}
+            </a>
+          </UserName>
+          <Handle>@{userScreenName}</Handle>
+        </Title>
+        <Date>{dateUsHelper(publishedAt)}</Date>
+
+        <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
+        <Bottom>
+          <Retweet>
+            <div>
+              <FaRetweet />
+            </div>
+            <span>{engagement}</span>
+          </Retweet>
           <div>
-            <FaRetweet />
+            <PinkButton
+              style={{ textTransform: 'none', padding: '8px 12px' }}
+              onClick={handleShare}
+            >
+              Reshare &nbsp; <FaShare />
+            </PinkButton>
           </div>
-          <span>{engagement}</span>
-        </Retweet>
-        <div>
-          <PinkButton style={{ textTransform: 'none', padding:'8px 12px' }}>
-            Reshare &nbsp; <FaShare />
-          </PinkButton>
-        </div>
-      </Bottom>
-      {hasImage && <Img src={tweet.images[0].url} />}
-    </Post>
+        </Bottom>
+        {hasImage && <Img src={tweet.images[0].url} />}
+      </Post>
+    </a>
   );
 };
 

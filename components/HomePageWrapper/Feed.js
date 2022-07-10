@@ -25,7 +25,7 @@ const Img = styled.img`
   margin-bottom: 12px;
 `;
 
-const Feed = () => {
+const Feed = ({ openShareModalCallback }) => {
   const { feed } = useContext(HomePageContext);
   let posts = [];
   if (feed && feed.results) {
@@ -42,7 +42,10 @@ const Feed = () => {
       <Grid container spacing={2}>
         {posts.map((post) => (
           <Grid item xs={12} lg={6} key={post.url}>
-            <Tweet tweet={post} />
+            <Tweet
+              tweet={post}
+              openShareModalCallback={openShareModalCallback}
+            />
           </Grid>
         ))}
       </Grid>
