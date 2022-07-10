@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
   const api = tgpApi.followers;
 
   let totalFollowers = 41858;
-  console.log('api.url', api.url)
+  console.log('api.url', api.url);
   try {
     const res = await fetch(api.url);
     const response = await res.json();
@@ -48,7 +48,7 @@ export async function getServerSideProps(context) {
   let feed;
   try {
     const res2 = await fetch(
-      `${api2.url}?searchId=2bade780970fd5134f8bd216b568bc8e&limit=4`,
+      `${api2.url}?searchId=2bade780970fd5134f8bd216b568bc8e&limit=4&useCache=true&save=true`,
     );
     const response2 = await res2.json();
     feed = response2;

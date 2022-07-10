@@ -40,8 +40,29 @@ function* subscribeEmail(action) {
   }
 }
 
+function* loadFeed() {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Loading more posts'));
+    const api = tgpApi.feed;
+    const payload = {
+      searchId: '2bade780970fd5134f8bd216b568bc8e',
+      limit: 30,
+      useCache: true,
+      save: true,
+    };
+    const fullFeed = yield call(requestHelper, api, payload);
+    yield put(actions.loadFeedActionSuccess(fullFeed));
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error loading more posts', 'error'),
+    );
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.LOAD_HOMEPAGE_CANDIDATES, loadHomepageCandidates);
   yield takeLatest(types.SUBSCRIBE_EMAIL, subscribeEmail);
+  yield takeLatest(types.LOAD_FEED, loadFeed);
 }

@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import { HomePageContext } from '../../containers/HomePage';
 import Tweet from './Tweet';
+import BlackButton from '../shared/buttons/BlackButton';
+import LoadingAnimation from '../shared/LoadingAnimation';
 
 const Wrapper = styled.div``;
 
@@ -26,13 +30,13 @@ const Img = styled.img`
 `;
 
 const Feed = ({ openShareModalCallback }) => {
-  const { feed } = useContext(HomePageContext);
+  const { feed, loadFeedCallback, fullFeed, loading } =
+    useContext(HomePageContext);
   let posts = [];
-  if (feed && feed.results) {
+  if (fullFeed) {
+    posts = fullFeed.results;
+  } else if (feed && feed.results) {
     posts = feed.results;
-    if (posts.length > 4) {
-      posts = posts.splice(0, 4);
-    }
   }
   return (
     <Wrapper>
@@ -49,6 +53,14 @@ const Feed = ({ openShareModalCallback }) => {
           </Grid>
         ))}
       </Grid>
+      <br />
+      <br />
+      {!fullFeed && !loading && (
+        <BlackButton className="outlined" fullWidth onClick={loadFeedCallback}>
+          Load More Posts
+        </BlackButton>
+      )}
+      {loading && <CircularProgress />}
     </Wrapper>
   );
 };

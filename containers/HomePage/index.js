@@ -16,18 +16,19 @@ import { useRouter } from 'next/router';
 import HomePageWrapper from '/components/HomePageWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 //
-// import reducer from './reducer';
-// import saga from './saga';
-// import makeSelectHomePage from './selectors';
-// import actions from './actions';
+import reducer from './reducer';
+import saga from './saga';
+import makeSelectHomePage from './selectors';
+import actions from './actions';
 import feedbackActions from '/containers/shared/FeedbackContainer/actions';
 // import { getExperiment } from '/helpers/optimizeHelper';
-import actions from '../entrance/RegisterPage/actions';
+import registerActions from '../entrance/RegisterPage/actions';
 import { useInjectSaga } from '../../utils/injectSaga';
 import registerSaga from '../entrance/RegisterPage/saga';
 import { logEvent } from '../../services/AnalyticsService';
 import makeSelectUser from '../you/YouPage/selectors';
 import { getUtmExperiment } from '../../helpers/utmHelper';
+import { useInjectReducer } from '../../utils/injectReducer';
 
 export const HomePageContext = createContext();
 
@@ -36,10 +37,17 @@ export function HomePage({
   registerCallback,
   userState,
   ssrState,
+  homeState,
+  loadFeedCallback,
 }) {
   const { utmContent, utmSource, totalFollowers, feed } = ssrState;
+  const { fullFeed, loading } = homeState;
   const router = useRouter();
 
+  console.log('fullFeed, loading', fullFeed, loading);
+
+  useInjectReducer({ key: 'homePage', reducer });
+  useInjectSaga({ key: 'homePage', saga });
   useInjectSaga({ key: 'registerPage', saga: registerSaga });
 
   const utmExperiment = getUtmExperiment(utmContent, utmSource);
@@ -62,6 +70,9 @@ export function HomePage({
     showInitModal,
     totalFollowers,
     feed,
+    fullFeed,
+    loading,
+    loadFeedCallback,
   };
 
   return (
@@ -79,11 +90,13 @@ HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   showFeedbackCallback: PropTypes.func,
   registerCallback: PropTypes.func,
+  loadFeedCallback: PropTypes.func,
   userState: PropTypes.object,
+  homeState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  // homeState: makeSelectHomePage(),
+  homeState: makeSelectHomePage(),
   userState: makeSelectUser(),
 });
 
@@ -95,8 +108,18 @@ function mapDispatchToProps(dispatch) {
     },
     registerCallback: (name, email, phone, zip) => {
       dispatch(
-        actions.registerAction(name, email, phone, zip, false, 'homepageModal'),
+        registerActions.registerAction(
+          name,
+          email,
+          phone,
+          zip,
+          false,
+          'homepageModal',
+        ),
       );
+    },
+    loadFeedCallback: () => {
+      dispatch(actions.loadFeedAction());
     },
   };
 }
