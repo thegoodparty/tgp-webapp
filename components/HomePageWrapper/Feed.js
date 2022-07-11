@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { HomePageContext } from '../../containers/HomePage';
 import Tweet from './Tweet';
-import BlackButton from '../shared/buttons/BlackButton';
+import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import LoadingAnimation from '../shared/LoadingAnimation';
 
 const Wrapper = styled.div``;
@@ -13,20 +13,6 @@ const Wrapper = styled.div``;
 const Top = styled.div`
   font-size: 24px;
   margin-bottom: 40px;
-`;
-
-const Post = styled.div`
-  padding: 40px 30px;
-  margin: 5px 0;
-  background-color: #fff;
-`;
-
-const Content = styled.div``;
-
-const Img = styled.img`
-  width: 100%;
-  height: auto;
-  margin-bottom: 12px;
 `;
 
 const Feed = ({ openShareModalCallback }) => {
@@ -56,8 +42,8 @@ const Feed = ({ openShareModalCallback }) => {
       <br />
       <br />
       {!fullFeed && !loading && (
-        <BlackButton className="outlined" fullWidth onClick={loadFeedCallback}>
-          Load More Posts
+        <BlackButton className="outlined" onClick={loadFeedCallback}>
+          <div style={{ padding: '0 48px' }}>Load More Posts</div>
         </BlackButton>
       )}
       {loading && <CircularProgress />}

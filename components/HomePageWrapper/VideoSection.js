@@ -7,8 +7,9 @@ const Wrapper = styled.div`
     //background: #fff url(https://assets.goodparty.org/tgp-party-poster.jpg)
     //  center center no-repeat !important;
     //background-size: contain !important;
-    height: 50vh;
+    height: 40vh;
     margin-top: 16px;
+    margin-bottom: 24px;
     &::before {
       display: none;
     }

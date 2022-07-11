@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { dateUsHelper } from '../../helpers/dateHelper';
-import { FaTwitter, FaRetweet, FaShare } from 'react-icons/fa';
+import { FaTwitter, FaRetweet, FaHeart } from 'react-icons/fa';
 import PinkButton from '../shared/buttons/PinkButton';
+import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
 const Post = styled.div`
   padding: 60px 15px 70px;
@@ -67,9 +68,10 @@ const Bottom = styled.div`
 `;
 
 const Retweet = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   font-size: 18px;
+  margin-right: 24px;
   span {
     display: inline-block;
     font-size: 14px;
@@ -91,6 +93,7 @@ const Tweet = ({ tweet, openShareModalCallback }) => {
     content,
     engagement,
     url,
+    likesCount,
   } = tweet;
   const hasImage = images.length > 0;
 
@@ -131,19 +134,27 @@ const Tweet = ({ tweet, openShareModalCallback }) => {
 
         <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
         <Bottom>
-          <Retweet>
-            <div>
-              <FaRetweet />
-            </div>
-            <span>{engagement}</span>
-          </Retweet>
           <div>
-            <PinkButton
-              style={{ textTransform: 'none', padding: '8px 12px' }}
+            <Retweet>
+              <div>
+                <FaHeart />
+              </div>
+              <span>{likesCount}</span>
+            </Retweet>
+            <Retweet>
+              <div>
+                <FaRetweet />
+              </div>
+              <span>{engagement}</span>
+            </Retweet>
+          </div>
+          <div>
+            <BlackButton
+              style={{ textTransform: 'none', padding: '4px 12px' }}
               onClick={handleShare}
             >
-              Reshare &nbsp; <FaShare />
-            </PinkButton>
+              <InnerButton>Share</InnerButton>
+            </BlackButton>
           </div>
         </Bottom>
         {hasImage && <Img src={tweet.images[0].url} />}

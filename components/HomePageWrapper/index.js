@@ -34,7 +34,7 @@ const HomePageWrapper = () => {
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '0 24px' }}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={7} lg={8}>
             <Hero openModalCallback={handleOpenModal} />
             <Hidden mdUp>
               <SmVideoSection />
@@ -44,7 +44,7 @@ const HomePageWrapper = () => {
               registerModalCallback={handleOpenModal}
             />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={5} lg={4}>
             <Hidden smDown>
               <VideoSection />
             </Hidden>

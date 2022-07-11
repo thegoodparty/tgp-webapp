@@ -66,7 +66,7 @@ const GrayParty = ({ openModalCallback, openShareModalCallback }) => {
   return (
     <Wrapper>
       <MaxWidth>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} lg={7}>
             <Feed openShareModalCallback={openShareModalCallback} />
           </Grid>
@@ -80,11 +80,6 @@ const GrayParty = ({ openModalCallback, openShareModalCallback }) => {
               <br />
               Because <It /> doesn’t want us to.
             </H2>
-            <BlackButton onClick={openModalCallback}>
-              <InnerButton style={{ padding: '0 80px' }}>
-                Count me in!
-              </InnerButton>
-            </BlackButton>
             <Accomplish>
               <ScrollLink to="accomplish" duration={350} smooth offset={-90}>
                 <LinkScroll data-cy="accomplish-label">
