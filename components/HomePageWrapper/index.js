@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 // import styled from 'styled-components';
 import { HomePageContext } from '/containers/HomePage';
 import PageWrapper from '/components/shared/PageWrapper';
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 
 import Hero from './Hero';
 import MaxWidth from '../shared/MaxWidth';
@@ -14,7 +16,8 @@ import SoFIt from './SoFIt';
 import Modal from '../shared/Modal';
 import ModalInner from './ModalInner';
 import ShareModal from './ShareModal';
-// import VideoSection from './VideoSection';
+import VideoSection from './VideoSection';
+import SmVideoSection from './SmVideoSection';
 
 const HomePageWrapper = () => {
   const { showInitModal } = useContext(HomePageContext);
@@ -30,12 +33,23 @@ const HomePageWrapper = () => {
   return (
     <PageWrapper isFullWidth>
       <MaxWidth style={{ padding: '0 24px' }}>
-        <Hero openModalCallback={handleOpenModal} />
-        <SocialSection
-          openModalCallback={handleOpenShareModal}
-          registerModalCallback={handleOpenModal}
-        />
-        {/*<VideoSection />*/}
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={8}>
+            <Hero openModalCallback={handleOpenModal} />
+            <Hidden mdUp>
+              <SmVideoSection />
+            </Hidden>
+            <SocialSection
+              openModalCallback={handleOpenShareModal}
+              registerModalCallback={handleOpenModal}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Hidden smDown>
+              <VideoSection />
+            </Hidden>
+          </Grid>
+        </Grid>
       </MaxWidth>
       <GrayParty
         openModalCallback={handleOpenModal}

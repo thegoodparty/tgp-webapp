@@ -44,7 +44,7 @@ const Feed = ({ openShareModalCallback }) => {
         Posts from <strong>#goodparty</strong> Tuesdays
       </Top>
       <Grid container spacing={2}>
-        {posts.map((post) => (
+        {(posts || []).map((post) => (
           <Grid item xs={12} lg={6} key={post.url}>
             <Tweet
               tweet={post}

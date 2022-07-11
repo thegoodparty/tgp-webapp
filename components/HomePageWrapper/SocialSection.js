@@ -13,6 +13,8 @@ import Emoji from '../shared/Emoji';
 import It from '../shared/It';
 import { numberFormatter } from '../../helpers/numberHelper';
 import Ticker from './Ticker';
+import VideoSection from './VideoSection';
+import MaxWidth from '../shared/MaxWidth';
 
 const Wrapper = styled.section`
   //padding-bottom: 130px;
@@ -136,6 +138,10 @@ const Accomplish = styled.div`
   }
 `;
 
+const InlineBlock = styled.div`
+  display: inline-block;
+`;
+
 const ButtonWrapper = styled.div`
   margin-top: 24px;
   @media only screen and (min-width: ${({ theme }) =>
@@ -149,59 +155,55 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
   return (
     <Wrapper>
       <TopRow>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={8}>
-            <Row style={{ alignItems: 'initial' }}>
-              <Stat className="first" onClick={openModalCallback}>
-                <Icon>
-                  <Emoji symbol="🎉" label="Party Popper" />
-                </Icon>
-                <div>
-                  <Count data-cy="post-count">89,852</Count>
-                  <Label data-cy="post-count-label">#goodparty posts</Label>
-                </div>
-              </Stat>
+        <InlineBlock>
+          <Row style={{ alignItems: 'initial' }}>
+            <Stat className="first" onClick={openModalCallback}>
+              <Icon>
+                <Emoji symbol="🎉" label="Party Popper" />
+              </Icon>
+              <div>
+                <Count data-cy="post-count">89,852</Count>
+                <Label data-cy="post-count-label">#goodparty posts</Label>
+              </div>
+            </Stat>
 
-              <Stat onClick={openModalCallback}>
-                <Heart>
-                  <img
-                    src="/images/heart.svg"
-                    width="42"
-                    height="34"
-                    alt=""
-                    data-cy="heart-icon"
-                  />
-                </Heart>
-                <div>
-                  <Count data-cy="people-count">
-                    <Ticker />
-                  </Count>
-                  <Label data-cy="people-count-label">@goodparty people</Label>
+            <Stat onClick={openModalCallback}>
+              <Heart>
+                <img
+                  src="/images/heart.svg"
+                  width="42"
+                  height="34"
+                  alt=""
+                  data-cy="heart-icon"
+                />
+              </Heart>
+              <div>
+                <Count data-cy="people-count">
+                  <Ticker />
+                </Count>
+                <Label data-cy="people-count-label">@goodparty people</Label>
+              </div>
+            </Stat>
+          </Row>
+          <ButtonWrapper>
+            <BlackButton fullWidth onClick={registerModalCallback}>
+              <InnerButton>Count Me In!</InnerButton>
+            </BlackButton>
+          </ButtonWrapper>
+          <Accomplish>
+            <It
+              text={
+                <div className="pointer">
+                  What is{' '}
+                  <i>
+                    <u>It</u>
+                  </i>
+                  ?
                 </div>
-              </Stat>
-            </Row>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <ButtonWrapper>
-              <BlackButton fullWidth onClick={registerModalCallback}>
-                Count Me In!
-              </BlackButton>
-            </ButtonWrapper>
-            <Accomplish>
-              <It
-                text={
-                  <div className="pointer">
-                    What is{' '}
-                    <i>
-                      <u>It</u>
-                    </i>
-                    ?
-                  </div>
-                }
-              />
-            </Accomplish>
-          </Grid>
-        </Grid>
+              }
+            />
+          </Accomplish>
+        </InlineBlock>
       </TopRow>
       {/*<Grid container spacing={2} className="text-center">*/}
       {/*  <Hidden mdDown>*/}
