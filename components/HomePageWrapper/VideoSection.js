@@ -4,9 +4,9 @@ import YouTubeLazyPlayer from '../shared/YouTubeLazyPlayer';
 
 const Wrapper = styled.div`
   .yt-lite {
-    background: #fff url(https://assets.goodparty.org/tgp-party-poster.jpg)
-      center center no-repeat !important;
-    background-size: contain !important;
+    //background: #fff url(https://assets.goodparty.org/tgp-party-poster.jpg)
+    //  center center no-repeat !important;
+    //background-size: contain !important;
     height: 50vh;
     margin-top: 16px;
     &::before {
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 const VideoSection = () => {
   return (
     <Wrapper>
-      <YouTubeLazyPlayer id="qYYlOQbozZ8" />
+      <YouTubeLazyPlayer id="ssU2S8clVPo" />
     </Wrapper>
   );
 };

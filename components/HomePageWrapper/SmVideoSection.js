@@ -33,7 +33,7 @@ const Play = styled.div`
   color: #fff;
 `;
 
-const YOUTUBE_ID = 'qYYlOQbozZ8';
+const YOUTUBE_ID = 'ssU2S8clVPo';
 
 const SmVideoSection = () => {
   const [showVideo, setShowVideo] = useState(false);
