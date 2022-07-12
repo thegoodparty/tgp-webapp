@@ -16,6 +16,10 @@ const Wrapper = styled.div`
   max-width: 400px;
   min-width: 300px;
   font-size: 16px;
+
+  .MuiInputBase-input {
+    font-size: 14px !important;
+  }
 `;
 
 const CloseWrapper = styled.div`
@@ -33,11 +37,13 @@ const Title = styled.div`
 const SubTitle = styled.div`
   font-weight: 900;
   margin-bottom: 4px;
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 const P = styled.div`
   margin-bottom: 16px;
 `;
+
+const Button = styled(BlackButton)``;
 
 const InvolvedModalInner = ({
   closeModalCallback,
@@ -75,7 +81,7 @@ const InvolvedModalInner = ({
         friends.
       </P>
 
-      <BlackButton onClick={handleHost}>
+      <BlackButton onClick={handleHost} style={{ padding: '5px' }}>
         <InnerButton>Learn more</InnerButton>
       </BlackButton>
 
@@ -86,7 +92,7 @@ const InvolvedModalInner = ({
       </P>
       <Link href="/candidates" passHref>
         <a className="no-underline">
-          <BlackButton>
+          <BlackButton style={{ padding: '5px' }}>
             <InnerButton>Find Candidates</InnerButton>
           </BlackButton>
         </a>
@@ -98,7 +104,11 @@ const InvolvedModalInner = ({
         more!
       </P>
       <EmailInput hideIcon onChangeCallback={handleEmailChange} value={email} />
-      <BlackButton disabled={!canSubmit()} onClick={submitEmail}>
+      <BlackButton
+        disabled={!canSubmit()}
+        onClick={submitEmail}
+        style={{ padding: '5px' }}
+      >
         <InnerButton>Submit</InnerButton>
       </BlackButton>
     </Wrapper>
