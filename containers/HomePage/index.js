@@ -44,8 +44,6 @@ export function HomePage({
   const { fullFeed, loading } = homeState;
   const router = useRouter();
 
-  console.log('fullFeed, loading', fullFeed, loading);
-
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
   useInjectSaga({ key: 'registerPage', saga: registerSaga });

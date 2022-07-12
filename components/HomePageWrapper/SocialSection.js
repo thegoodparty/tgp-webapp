@@ -1,24 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-// import Image from 'next/image';
-// import { Link } from 'react-scroll';
-// import { Link as ScrollLink } from 'react-scroll';
-// import Hidden from '@material-ui/core/Hidden';
 
-import { HomePageContext } from '/containers/HomePage';
 import Row from '../shared/Row';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Emoji from '../shared/Emoji';
-import It from '../shared/It';
-import { numberFormatter } from '../../helpers/numberHelper';
 import Ticker from './Ticker';
-import VideoSection from './VideoSection';
-import MaxWidth from '../shared/MaxWidth';
 
-const Wrapper = styled.section`
-  //padding-bottom: 130px;
-`;
+const Wrapper = styled.section``;
 
 const TopRow = styled.div`
   margin: 30px 0;
@@ -65,77 +53,9 @@ const Label = styled.div`
   }
 `;
 
-const LinkScroll = styled.div`
-  text-decoration: underline;
-  cursor: pointer;
-  font-weight: 900;
-`;
-//
-// const Relative = styled.div`
-//   position: relative;
-//   display: inline-block;
-// `;
-//
-// const Clickable = styled.div`
-//   position: absolute;
-//   bottom: 0;
-//   height: 50px;
-//   left: 0;
-//   width: 100%;
-//   cursor: pointer;
-// `;
-//
-// const ClickableSmall = styled.div`
-//   position: absolute;
-//   top: 11%;
-//   height: 50px;
-//   right: 0;
-//   width: 30%;
-//   cursor: pointer;
-// `;
-
 const Heart = styled.div`
   margin-right: 12px;
   padding-top: 12px;
-`;
-//
-// const BlackBox = styled.div`
-//   background-color: #000;
-//   padding: 36px;
-//   color: #fff;
-//   border-radius: 35px;
-//   margin-top: 20px;
-//   font-size: 40px;
-//   line-height: 46px;
-//   font-weight: 900;
-// `;
-//
-// const Small = styled.div`
-//   font-size: 20px;
-//   line-height: 24px;
-//   font-weight: 400;
-//   margin-top: 22px;
-// `;
-//
-// const WhiteButton = styled(BlackButton)`
-//   && {
-//     margin-top: 30px;
-//     background-color: #fff;
-//     color: #000;
-//
-//     &:hover {
-//       background-color: #eee;
-//       color: #000;
-//     }
-//   }
-// `;
-
-const Accomplish = styled.div`
-  margin-top: 16px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    text-align: right;
-  }
 `;
 
 const InlineBlock = styled.div`
@@ -151,7 +71,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const SocialSection = ({ openModalCallback, registerModalCallback }) => {
-  const { totalFollowers } = useContext(HomePageContext);
   return (
     <Wrapper>
       <TopRow>
@@ -190,98 +109,8 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
               <InnerButton>Count Me In!</InnerButton>
             </BlackButton>
           </ButtonWrapper>
-          <Accomplish>
-            <It
-              text={
-                <div className="pointer">
-                  What is{' '}
-                  <i>
-                    <u>It</u>
-                  </i>
-                  ?
-                </div>
-              }
-            />
-          </Accomplish>
         </InlineBlock>
       </TopRow>
-      {/*<Grid container spacing={2} className="text-center">*/}
-      {/*  <Hidden mdDown>*/}
-      {/*    <Grid item xs={12} lg={4}>*/}
-      {/*      <Relative>*/}
-      {/*        <Image*/}
-      {/*          src="/images/homepage/social1.jpg"*/}
-      {/*          height={615}*/}
-      {/*          width={369}*/}
-      {/*        />*/}
-      {/*        <Clickable onClick={openModalCallback} />*/}
-      {/*      </Relative>*/}
-      {/*    </Grid>*/}
-      {/*    <Grid item xs={12} lg={4}>*/}
-      {/*      <Relative>*/}
-      {/*        <Image*/}
-      {/*          src="/images/homepage/social2.jpg"*/}
-      {/*          height={615}*/}
-      {/*          width={369}*/}
-      {/*        />*/}
-      {/*        <Clickable onClick={openModalCallback} />*/}
-      {/*      </Relative>*/}
-      {/*    </Grid>*/}
-      {/*  </Hidden>*/}
-      {/*  <Grid item xs={12} lg={4}>*/}
-      {/*    <Relative>*/}
-      {/*      <Image*/}
-      {/*        src="/images/homepage/social3.jpg"*/}
-      {/*        height={298}*/}
-      {/*        width={369}*/}
-      {/*      />*/}
-      {/*      <a*/}
-      {/*        href="https://www.tiktok.com/tag/goodparty?lang=en"*/}
-      {/*        target="_blank"*/}
-      {/*        rel="noopener noreferrer nofollow"*/}
-      {/*      >*/}
-      {/*        <ClickableSmall />*/}
-      {/*      </a>*/}
-      {/*      <BlackBox>*/}
-      {/*        Just do it...*/}
-      {/*        <br />*/}
-      {/*        to{' '}*/}
-      {/*        <ScrollLink*/}
-      {/*          className="pointer"*/}
-      {/*          to="what-is-it"*/}
-      {/*          duration={350}*/}
-      {/*          smooth*/}
-      {/*          offset={-90}*/}
-      {/*          style={{ color: '#fff' }}*/}
-      {/*        >*/}
-      {/*          <u>*/}
-      {/*            <i>It</i>*/}
-      {/*          </u>*/}
-      {/*        </ScrollLink>*/}
-      {/*        .*/}
-      {/*        <WhiteButton fullWidth onClick={openModalCallback}>*/}
-      {/*          Count Me In*/}
-      {/*        </WhiteButton>*/}
-      {/*        <Small>*/}
-      {/*          What is{' '}*/}
-      {/*          <ScrollLink*/}
-      {/*            className="pointer"*/}
-      {/*            to="what-is-it"*/}
-      {/*            duration={350}*/}
-      {/*            smooth*/}
-      {/*            offset={-90}*/}
-      {/*            style={{ color: '#fff' }}*/}
-      {/*          >*/}
-      {/*            <u>*/}
-      {/*              <i>It</i>*/}
-      {/*            </u>*/}
-      {/*          </ScrollLink>*/}
-      {/*          ?*/}
-      {/*        </Small>*/}
-      {/*      </BlackBox>*/}
-      {/*    </Relative>*/}
-      {/*  </Grid>*/}
-      {/*</Grid>*/}
     </Wrapper>
   );
 };
