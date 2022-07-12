@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import { Element } from 'react-scroll';
 
 const Wrapper = styled.section`
   padding: 80px 0;
@@ -43,7 +44,9 @@ const Title = styled.div`
 const Anatomy = () => {
   return (
     <Wrapper>
-      <H2 data-cy="anatomy-title">Anatomy of a #goodparty</H2>
+      <Element name="anatomy">
+        <H2 data-cy="anatomy-title">Anatomy of a #goodparty</H2>
+      </Element>
       <Grid container spacing={8}>
         <Grid item xs={12} lg={4}>
           <Content>
@@ -59,7 +62,9 @@ const Anatomy = () => {
         <Grid item xs={12} lg={4}>
           <Content>
             <Icons>🏠 🍕 🍻</Icons>
-            <Title data-cy="anatomy-part-title-2">WITH FRIENDS AND FAMILY</Title>
+            <Title data-cy="anatomy-part-title-2">
+              WITH FRIENDS AND FAMILY
+            </Title>
             <div data-cy="anatomy-part-desc-2">
               Come together, share food and music, make memories - be together
               and enjoy life!

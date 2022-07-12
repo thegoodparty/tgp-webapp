@@ -81,7 +81,7 @@ const GrayParty = ({ openModalCallback, openShareModalCallback }) => {
               Because <It /> doesn’t want us to.
             </H2>
             <Accomplish>
-              <ScrollLink to="accomplish" duration={350} smooth offset={-90}>
+              <ScrollLink to="anatomy" duration={350} smooth offset={-90}>
                 <LinkScroll data-cy="accomplish-label">
                   What does partying accomplish?
                 </LinkScroll>
