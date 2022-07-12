@@ -119,15 +119,7 @@ const Tweet = ({ tweet, openShareModalCallback }) => {
           <FaTwitter />
         </Icon>
         <Title>
-          <UserName>
-            <a
-              href={`https://twitter.com/${userScreenName}`}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-            >
-              {userName}
-            </a>
-          </UserName>
+          <UserName>{userName}</UserName>
           <Handle>@{userScreenName}</Handle>
         </Title>
         <Date>{dateUsHelper(publishedAt)}</Date>
