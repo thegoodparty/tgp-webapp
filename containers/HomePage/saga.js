@@ -1,7 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import requestHelper from '/helpers/requestHelper';
-import { validateEmail } from '/helpers/emailHelper';
 import tgpApi from '/api/tgpApi';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
@@ -18,22 +17,20 @@ function* loadHomepageCandidates() {
   }
 }
 
-function* subscribeEmail(action) {
+function* subscribeEmail({ email }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Subscribing Your Email'));
-    const { email } = action;
-    if (validateEmail(email)) {
-      const api = tgpApi.subscribeEmail;
-      const payload = { email: encodeURIComponent(email) };
-      yield call(requestHelper, api, payload);
-      yield put(
-        snackbarActions.showSnakbarAction(
-          'You have subscribed to our mailing list successfully',
-        ),
-      );
-    } else {
-      yield put(snackbarActions.showSnakbarAction('Invalid Email', 'error'));
-    }
+    const api = tgpApi.subscribeEmail;
+    const payload = {
+      email: encodeURIComponent(email),
+      uri: window.location.href,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'You have subscribed to our mailing list successfully',
+      ),
+    );
   } catch (error) {
     console.log(error);
     yield put(snackbarActions.showSnakbarAction(error.message, 'error'));

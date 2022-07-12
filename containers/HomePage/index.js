@@ -39,6 +39,7 @@ export function HomePage({
   ssrState,
   homeState,
   loadFeedCallback,
+  subscribeEmailCallback,
 }) {
   const { utmContent, utmSource, totalFollowers, feed } = ssrState;
   const { fullFeed, loading } = homeState;
@@ -71,6 +72,7 @@ export function HomePage({
     fullFeed,
     loading,
     loadFeedCallback,
+    subscribeEmailCallback,
   };
 
   return (
@@ -89,6 +91,7 @@ HomePage.propTypes = {
   showFeedbackCallback: PropTypes.func,
   registerCallback: PropTypes.func,
   loadFeedCallback: PropTypes.func,
+  subscribeEmailCallback: PropTypes.func,
   userState: PropTypes.object,
   homeState: PropTypes.object,
 };
@@ -118,6 +121,9 @@ function mapDispatchToProps(dispatch) {
     },
     loadFeedCallback: () => {
       dispatch(actions.loadFeedAction());
+    },
+    subscribeEmailCallback: (email) => {
+      dispatch(actions.subscribeEmailAction(email));
     },
   };
 }

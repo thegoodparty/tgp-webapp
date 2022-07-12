@@ -70,7 +70,7 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const SocialSection = ({ openModalCallback, registerModalCallback }) => {
+const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
   return (
     <Wrapper>
       <TopRow>
@@ -105,8 +105,8 @@ const SocialSection = ({ openModalCallback, registerModalCallback }) => {
             </Stat>
           </Row>
           <ButtonWrapper>
-            <BlackButton fullWidth onClick={registerModalCallback}>
-              <InnerButton>Count Me In!</InnerButton>
+            <BlackButton fullWidth onClick={openInvolvedModalCallback}>
+              <InnerButton>GET INVOLVED</InnerButton>
             </BlackButton>
           </ButtonWrapper>
         </InlineBlock>

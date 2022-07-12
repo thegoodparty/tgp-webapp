@@ -9,8 +9,6 @@ import Hero from './Hero';
 import MaxWidth from '../shared/MaxWidth';
 import SocialSection from './SocialSection';
 import GrayParty from './GrayParty';
-import WhatIsIt from './WhatIsIt';
-import Accomplish from './Accomplish';
 import Anatomy from './Anatomy';
 import SoFIt from './SoFIt';
 import Modal from '../shared/Modal';
@@ -18,11 +16,18 @@ import ModalInner from './ModalInner';
 import ShareModal from './ShareModal';
 import VideoSection from './VideoSection';
 import SmVideoSection from './SmVideoSection';
+import InvolvedModalInner from './InvolvedModalInner';
 
 const HomePageWrapper = () => {
   const { showInitModal } = useContext(HomePageContext);
   const [modalOpen, setModalOpen] = useState(showInitModal || false);
+  const [involvedModalOpen, setInvolvedModalOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+
+  const handleOpenInvolvedModal = () => {
+    setInvolvedModalOpen(true);
+  };
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -35,13 +40,13 @@ const HomePageWrapper = () => {
       <MaxWidth style={{ padding: '0 24px' }}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={7} lg={8}>
-            <Hero openModalCallback={handleOpenModal} />
+            <Hero openModalCallback={handleOpenInvolvedModal} />
             <Hidden mdUp>
               <SmVideoSection />
             </Hidden>
             <SocialSection
               openModalCallback={handleOpenShareModal}
-              registerModalCallback={handleOpenModal}
+              openInvolvedModalCallback={handleOpenInvolvedModal}
             />
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
@@ -56,14 +61,11 @@ const HomePageWrapper = () => {
         openShareModalCallback={handleOpenShareModal}
       />
       <MaxWidth style={{ padding: '0 24px' }}>
-        <WhatIsIt />
-        <Accomplish openModalCallback={handleOpenModal} />
         <Anatomy />
-        <SoFIt
-          openModalCallback={handleOpenModal}
-          openShareModalCallback={handleOpenShareModal}
-        />
       </MaxWidth>
+      <SoFIt
+        openModalCallback={handleOpenInvolvedModal}
+      />
       <Modal
         open={modalOpen}
         showCloseButton={false}
@@ -77,6 +79,16 @@ const HomePageWrapper = () => {
         closeModalCallback={() => setShareModalOpen(false)}
       >
         <ShareModal closeModalCallback={() => setShareModalOpen(false)} />
+      </Modal>
+      <Modal
+        open={involvedModalOpen}
+        showCloseButton={false}
+        closeModalCallback={() => setInvolvedModalOpen(false)}
+      >
+        <InvolvedModalInner
+          closeModalCallback={() => setInvolvedModalOpen(false)}
+          openRegisterModalCallback={handleOpenModal}
+        />
       </Modal>
     </PageWrapper>
   );
