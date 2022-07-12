@@ -65,7 +65,7 @@ const InlineBlock = styled.div`
 const ButtonWrapper = styled.div`
   margin-top: 24px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+      theme.breakpointsPixels.xl}) {
     margin-top: 0;
   }
 `;
