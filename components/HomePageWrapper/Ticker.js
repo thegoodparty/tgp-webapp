@@ -5,7 +5,9 @@ import { HomePageContext } from '/containers/HomePage';
 import { numberFormatter } from '../../helpers/numberHelper';
 import { getCookie, setCookie } from '../../helpers/cookieHelper';
 
-const Num = styled.span`
+const Num = styled.span``;
+
+const Digit = styled.span`
   transition: opacity 0.1s ease-in;
 
   &.active {
@@ -31,6 +33,7 @@ const Ticker = () => {
   const [reduced, setReduced] = useState(REDUCED_COUNT);
   const { totalFollowers } = useContext(HomePageContext);
   const [followers, setFollowers] = useState(totalFollowers - reduced);
+  const [prevFollowers, setPrevFollowers] = useState(totalFollowers - reduced);
   useEffect(() => {
     let cookieValue = getCookie(COOKIE_NAME);
 
@@ -53,6 +56,7 @@ const Ticker = () => {
     timeout1 = setTimeout(() => {
       const rnd = randomNum();
       const increment = randomIncrement();
+      setPrevFollowers(totalFollowers - tickReduce);
       setFollowers(totalFollowers - tickReduce - increment);
       setReduced(tickReduce - increment);
       setCookie(COOKIE_NAME, tickReduce - increment, 0.03);
@@ -63,10 +67,25 @@ const Ticker = () => {
       setTransition(false);
     }, 250);
   };
+  const num = numberFormatter(followers);
+  const digits = num.split('');
 
+  const prev = numberFormatter(prevFollowers);
+  const prevDigits = prev.split('');
+  console.log('dig', digits);
+  console.log('prev', prevDigits);
   return (
-    <Num className={transition ? 'not-active' : 'active'}>
-      {numberFormatter(followers)}
+    <Num>
+      {digits.map((digit, index) => (
+        <Digit
+          key={index}
+          className={
+            transition && digit !== prevDigits[index] ? 'not-active' : 'active'
+          }
+        >
+          {digit}
+        </Digit>
+      ))}
     </Num>
   );
 };
