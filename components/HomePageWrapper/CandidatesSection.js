@@ -13,11 +13,11 @@ const Wrapper = styled.section`
 const H2 = styled.h2`
   font-size: 35px;
   font-weight: 900;
-  margin: 0 0 48px;
+  margin: 0 0 18px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     font-size: 64px;
-    margin: 0 0 72px;
+    margin: 0 0 30px;
   }
 `;
 
@@ -52,7 +52,11 @@ const CandidatesSection = () => {
         people who will serve us, instead of <It />.
         <br />
         <br />
-        Meet some Good Certified candidates:
+        Meet some{' '}
+        <Link href="/candidates" passHref>
+          <a id="good-certified" className="underline">Good Certified</a>
+        </Link>{' '}
+        candidates:
       </Content>
       <Grid container spacing={4}>
         {(homepageCandidates || []).map((candidate) => (
