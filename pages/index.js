@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
   let feed;
   try {
     const res2 = await fetch(
-      `${api2.url}?searchId=2bade780970fd5134f8bd216b568bc8e&limit=4&useCache=true&save=true`,
+      `${api2.url}?searchId=cb1f0987d03d4efaa767eb9f49054914&limit=4&useCache=true&save=true`,
     );
     const response2 = await res2.json();
     feed = response2;
