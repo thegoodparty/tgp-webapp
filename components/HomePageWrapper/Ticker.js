@@ -72,8 +72,6 @@ const Ticker = () => {
 
   const prev = numberFormatter(prevFollowers);
   const prevDigits = prev.split('');
-  console.log('dig', digits);
-  console.log('prev', prevDigits);
   return (
     <Num>
       {digits.map((digit, index) => (
