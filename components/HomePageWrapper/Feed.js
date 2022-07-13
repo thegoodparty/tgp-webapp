@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { HomePageContext } from '../../containers/HomePage';
-import Tweet from './Tweet';
+import SocialPost from './SocialPost';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import LoadingAnimation from '../shared/LoadingAnimation';
 
@@ -24,6 +24,8 @@ const Feed = ({ openShareModalCallback }) => {
   } else if (feed && feed.results) {
     posts = feed.results;
   }
+
+  console.log('pp', posts)
   return (
     <Wrapper>
       <Top>
@@ -32,8 +34,8 @@ const Feed = ({ openShareModalCallback }) => {
       <Grid container spacing={2}>
         {(posts || []).map((post) => (
           <Grid item xs={12} lg={6} key={post.url}>
-            <Tweet
-              tweet={post}
+            <SocialPost
+              post={post}
               openShareModalCallback={openShareModalCallback}
             />
           </Grid>
