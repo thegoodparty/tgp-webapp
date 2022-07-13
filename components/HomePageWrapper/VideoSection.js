@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 
 const VideoSection = () => {
   return (
-    <Wrapper>
+    <Wrapper id="homepage-video-desktop">
       <YouTubeLazyPlayer id="ssU2S8clVPo" />
     </Wrapper>
   );

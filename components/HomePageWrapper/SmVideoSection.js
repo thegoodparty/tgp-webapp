@@ -39,7 +39,7 @@ const SmVideoSection = () => {
   const [showVideo, setShowVideo] = useState(false);
   return (
     <>
-      <Wrapper onClick={() => setShowVideo(true)}>
+      <Wrapper onClick={() => setShowVideo(true)} id="homepage-video-mobile">
         <Grid container spacing={0} alignItems="center" justify="center">
           <Grid item xs={3}>
             <Relative>

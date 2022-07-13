@@ -81,7 +81,7 @@ const InvolvedModalInner = ({
         friends.
       </P>
 
-      <BlackButton onClick={handleHost} style={{ padding: '5px' }}>
+      <BlackButton onClick={handleHost} style={{ padding: '5px' }} id="involved-modal-learn-more">
         <InnerButton>Learn more</InnerButton>
       </BlackButton>
 
@@ -92,7 +92,7 @@ const InvolvedModalInner = ({
       </P>
       <Link href="/candidates" passHref>
         <a className="no-underline">
-          <BlackButton style={{ padding: '5px' }}>
+          <BlackButton style={{ padding: '5px' }} id="involved-modal-find-candidates">
             <InnerButton>Find Candidates</InnerButton>
           </BlackButton>
         </a>
@@ -108,6 +108,7 @@ const InvolvedModalInner = ({
         disabled={!canSubmit()}
         onClick={submitEmail}
         style={{ padding: '5px' }}
+        id="involved-modal-submit-email"
       >
         <InnerButton>Submit</InnerButton>
       </BlackButton>

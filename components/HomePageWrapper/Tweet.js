@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { dateUsHelper } from '../../helpers/dateHelper';
+import Link from 'next/link';
 import { FaTwitter, FaRetweet, FaHeart } from 'react-icons/fa';
-import PinkButton from '../shared/buttons/PinkButton';
+import { useRouter } from 'next/router';
+
+import { dateUsHelper } from '../../helpers/dateHelper';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
 const Post = styled.div`
@@ -80,7 +82,7 @@ const Retweet = styled.div`
   }
 `;
 
-const Tweet = ({ tweet, openShareModalCallback }) => {
+const Tweet = ({ tweet }) => {
   if (!tweet || !tweet.content) {
     return <></>;
   }
@@ -95,6 +97,7 @@ const Tweet = ({ tweet, openShareModalCallback }) => {
     url,
     likesCount,
   } = tweet;
+  const router = useRouter();
   const hasImage = images.length > 0;
 
   const contentWithLinks = content.replace(
@@ -105,7 +108,7 @@ const Tweet = ({ tweet, openShareModalCallback }) => {
   const handleShare = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    openShareModalCallback();
+    // openShareModalCallback();
   };
   return (
     <a
@@ -113,6 +116,7 @@ const Tweet = ({ tweet, openShareModalCallback }) => {
       href={url}
       target="_blank"
       rel="noopener noreferrer nofollow"
+      id={`feed-tweet-${url}`}
     >
       <Post>
         <Icon>
@@ -141,12 +145,18 @@ const Tweet = ({ tweet, openShareModalCallback }) => {
             </Retweet>
           </div>
           <div>
-            <BlackButton
-              style={{ textTransform: 'none', padding: '4px 12px' }}
-              onClick={handleShare}
+            <Link
+              href={`${router.asPath}?share=true`}
+              passHref
             >
-              <InnerButton>Share</InnerButton>
-            </BlackButton>
+              <a id={`feed-tweet-share-${url}`}>
+                <BlackButton
+                  style={{ textTransform: 'none', padding: '4px 12px' }}
+                >
+                  <InnerButton>Share</InnerButton>
+                </BlackButton>
+              </a>
+            </Link>
           </div>
         </Bottom>
         {hasImage && <Img src={tweet.images[0].url} />}

@@ -5,7 +5,6 @@ import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import MaxWidth from '../shared/MaxWidth';
 
 const Wrapper = styled.section`
-  padding: 60px 0 0;
   background-color: #f1f1f1;
 `;
 
@@ -45,6 +44,7 @@ const SoFIt = ({ openModalCallback = () => {} }) => {
           <BlackButton
             style={{ marginTop: '40px' }}
             onClick={openModalCallback}
+            id="what-do-i-do-button"
           >
             <InnerButton>Get Involved</InnerButton>
           </BlackButton>

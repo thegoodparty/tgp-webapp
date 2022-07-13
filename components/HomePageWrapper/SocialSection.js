@@ -76,7 +76,7 @@ const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
       <TopRow>
         <InlineBlock>
           <Row style={{ alignItems: 'initial' }}>
-            <Stat className="first" onClick={openModalCallback}>
+            <Stat className="first" onClick={openModalCallback} id="homepage-goodparty-posts">
               <Icon>
                 <Emoji symbol="🎉" label="Party Popper" />
               </Icon>
@@ -86,7 +86,7 @@ const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
               </div>
             </Stat>
 
-            <Stat onClick={openModalCallback}>
+            <Stat onClick={openModalCallback} id="homepage-goodparty-people">
               <Heart>
                 <img
                   src="/images/heart.svg"
@@ -105,7 +105,7 @@ const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
             </Stat>
           </Row>
           <ButtonWrapper>
-            <BlackButton fullWidth onClick={openInvolvedModalCallback}>
+            <BlackButton fullWidth onClick={openInvolvedModalCallback} id="get-involved-button-top">
               <InnerButton>GET INVOLVED</InnerButton>
             </BlackButton>
           </ButtonWrapper>
