@@ -41,7 +41,8 @@ export function HomePage({
   loadFeedCallback,
   subscribeEmailCallback,
 }) {
-  const { utmContent, utmSource, totalFollowers, feed } = ssrState;
+  const { utmContent, utmSource, totalFollowers, feed, homepageCandidates } =
+    ssrState;
   const { fullFeed, loading } = homeState;
   const router = useRouter();
 
@@ -73,6 +74,7 @@ export function HomePage({
     loading,
     loadFeedCallback,
     subscribeEmailCallback,
+    homepageCandidates,
   };
 
   return (

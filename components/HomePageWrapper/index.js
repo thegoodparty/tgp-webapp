@@ -17,6 +17,7 @@ import ShareModal from './ShareModal';
 import VideoSection from './VideoSection';
 import SmVideoSection from './SmVideoSection';
 import InvolvedModalInner from './InvolvedModalInner';
+import CandidatesSection from './CandidatesSection';
 
 const HomePageWrapper = () => {
   const { showInitModal } = useContext(HomePageContext);
@@ -62,10 +63,9 @@ const HomePageWrapper = () => {
       />
       <MaxWidth style={{ padding: '0 24px' }}>
         <Anatomy />
+        <CandidatesSection />
       </MaxWidth>
-      <SoFIt
-        openModalCallback={handleOpenInvolvedModal}
-      />
+      <SoFIt openModalCallback={handleOpenInvolvedModal} />
       <Modal
         open={modalOpen}
         showCloseButton={false}
