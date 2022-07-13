@@ -62,7 +62,11 @@ function CandidatesRoundPreview({ candidate }) {
 
   return (
     <Link href={candidateRoute(candidate)} passHref>
-      <a className="no-underline" data-cy="candidate-link">
+      <a
+        className="no-underline"
+        data-cy="candidate-link"
+        id={`candidate-preview-${firstName}-${lastName}`}
+      >
         <Wrapper>
           <ImageWrapper>
             {image && (

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import { HomePageContext } from '/containers/HomePage';
 import It from '../shared/It';
@@ -29,6 +30,17 @@ const Content = styled.div`
   }
 `;
 
+const More = styled.div`
+  margin-top: 48px;
+  font-size: 24px;
+  font-weight: 900;
+  text-decoration: underline;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin-top: 134px;
+  }
+`;
+
 const CandidatesSection = () => {
   const { homepageCandidates } = useContext(HomePageContext);
   return (
@@ -49,6 +61,11 @@ const CandidatesSection = () => {
           </Grid>
         ))}
       </Grid>
+      <More className="text-center">
+        <Link href="/candidates" passHref>
+          <a id="see-more-candidates">See More Candidates</a>
+        </Link>
+      </More>
     </Wrapper>
   );
 };
