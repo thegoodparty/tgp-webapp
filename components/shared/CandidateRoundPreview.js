@@ -32,7 +32,7 @@ const ImageWrapper = styled.div`
 
   img {
     object-fit: cover;
-    object-position: center center;
+    object-position: top center;
     border-radius: 50%;
   }
 `;
