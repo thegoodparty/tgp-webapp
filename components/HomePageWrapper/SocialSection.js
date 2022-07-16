@@ -5,6 +5,7 @@ import Row from '../shared/Row';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Emoji from '../shared/Emoji';
 import Ticker from './Ticker';
+import { HomePageContext } from '../../containers/HomePage';
 
 const Wrapper = styled.section``;
 
@@ -71,17 +72,28 @@ const ButtonWrapper = styled.div`
 `;
 
 const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
+  const { totalFollowers, feed } = useContext(HomePageContext);
+  let totalPosts = feed ? feed.total : 0;
+  console.log('totla', totalPosts)
+  totalPosts += 89852;
+  console.log('totl2', totalPosts)
   return (
     <Wrapper>
       <TopRow>
         <InlineBlock>
           <Row style={{ alignItems: 'initial' }}>
-            <Stat className="first" onClick={openModalCallback} id="homepage-goodparty-posts">
+            <Stat
+              className="first"
+              onClick={openModalCallback}
+              id="homepage-goodparty-posts"
+            >
               <Icon>
                 <Emoji symbol="🎉" label="Party Popper" />
               </Icon>
               <div>
-                <Count data-cy="post-count">89,852</Count>
+                <Count data-cy="post-count">
+                  <Ticker initTotal={totalPosts} cookieName="ticker-posts" />
+                </Count>
                 <Label data-cy="post-count-label">#goodparty posts</Label>
               </div>
             </Stat>
@@ -98,14 +110,21 @@ const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
               </Heart>
               <div>
                 <Count data-cy="people-count">
-                  <Ticker />
+                  <Ticker
+                    initTotal={totalFollowers}
+                    cookieName="ticker-people"
+                  />
                 </Count>
                 <Label data-cy="people-count-label">@goodparty people</Label>
               </div>
             </Stat>
           </Row>
           <ButtonWrapper>
-            <BlackButton fullWidth onClick={openInvolvedModalCallback} id="get-involved-button-top">
+            <BlackButton
+              fullWidth
+              onClick={openInvolvedModalCallback}
+              id="get-involved-button-top"
+            >
               <InnerButton>GET INVOLVED</InnerButton>
             </BlackButton>
           </ButtonWrapper>

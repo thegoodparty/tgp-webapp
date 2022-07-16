@@ -142,8 +142,6 @@ const SocialPost = ({ post }) => {
     icon = <FaFacebookF />;
   }
 
-  console.log('commentsCount', commentsCount, typeof commentsCount);
-
   return (
     <a
       className="no-underline"
