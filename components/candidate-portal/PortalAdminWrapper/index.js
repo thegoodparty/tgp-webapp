@@ -42,6 +42,7 @@ const fields = [
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
   { label: 'hubspot company id', key: 'hubspotId', initialValue: '' },
+  { label: 'Pulsar Search ID', key: 'pulsarSearchId', initialValue: '' },
 ];
 
 function PortalAdminWrapper() {
