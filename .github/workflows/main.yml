@@ -39,12 +39,19 @@ jobs:
 
       # - name: 'UI Tests - Chrome'
       #   run: yarn run dev-test
-      - name: 'Run Dev Server'
-        run: yarn run dev-dev-pm2
-      - name: Cypress install
+      - name: Cypress Install
         uses: cypress-io/github-action@v4
         with:
           # we have already installed all dependencies above
+          runTests: false
+
+      - name: 'Run Dev Server'
+        run: yarn run dev-dev-pm2
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4
+        with:
+          # we have already installed all dependencies above
+          install: false
           start: yarn run dev-test
           wait-on: 'http://localhost:4000'
           wait-on-timeout: 120
