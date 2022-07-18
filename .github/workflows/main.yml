@@ -30,6 +30,5 @@ jobs:
         with:
           # we have already installed all dependencies above
           runTests: false
-          start: yarn run dev
-          test: yarn run cypress:local-dev
+          start: yarn run dev-test
           browser: chrome
