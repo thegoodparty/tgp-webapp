@@ -48,7 +48,7 @@ pipeline {
           } else if(env.BRANCH_NAME == DEV_BRANCH) {
             sh '/var/lib/jenkins/eb deploy $EB_DEV'
           } else {
-            sh '/var/lib/jenkins/eb deploy $EB_DEV'
+            // sh '/var/lib/jenkins/eb deploy $EB_DEV'
           }
         }
       }
