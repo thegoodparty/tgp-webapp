@@ -23,12 +23,13 @@ pipeline {
     //     }
     //   }
     // }
-    // stage('setup cypress') {
-    //   steps {
-    //     sh 'npm install cypress'
-    //     sh 'npm install cross-env'
-    //   }
-    // }
+    stage('setup cypress') {
+      steps {
+        sh 'npm install'
+        sh 'npm install cypress'
+        sh 'npm install cross-env'
+      }
+    }
 
 
     stage('deploy to EBS') {
@@ -47,18 +48,21 @@ pipeline {
       }
     }
     
-    //   steps {
-    //       script {
-    //         if(env.BRANCH_NAME == PROD_BRANCH) {
-    //         sh 'npm run cypress:run:prod'
-    //       } else if(env.BRANCH_NAME == DEV_BRANCH) {
-    //         sh 'npm run cypress:run:dev'
-    //       } else {
-    //         sh 'npm run cypress:run:test'
-    //       }
-    //     }
-    //   }
-    // }
+    steps {
+        script {
+          // if(env.BRANCH_NAME == PROD_BRANCH) {
+          //   sh 'npm run cypress:run:prod'
+          // } else if(env.BRANCH_NAME == DEV_BRANCH) {
+          //   sh 'npm run cypress:run:dev'
+          // } else {
+          //   sh 'npm run cypress:run:test'
+          // }
+            // sh 'npm run dev-dev-pm2'
+            sh 'npm run dev-dev-pm2'
+            sh 'npm run dev-test'
+        }
+      }
+    }
   }
   post {
     failure {
