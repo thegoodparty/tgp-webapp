@@ -29,5 +29,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           # we have already installed all dependencies above
-          start: yarn run dev-test
+          runTests: false
+          start: yarn run dev
+          test: yarn run cypress:local-dev
           browser: chrome
