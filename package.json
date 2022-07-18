@@ -19,7 +19,7 @@
     "deploy-prod": "git checkout master  && eb deploy",
     "build": "next build",
     "generate": "plop --plopfile internals/generators/index.js",
-    "start": "next start",
+    "start": "next build && next start",
     "lint": "next lint",
     "cypress": "./node_modules/.bin/cypress run",
     "cypress:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000  CYPRESS_API_BASE=http://localhost:1337/api/v1/ ./node_modules/.bin/cypress open",
