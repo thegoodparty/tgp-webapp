@@ -61,7 +61,7 @@ pipeline {
             sh 'npm run dev-dev-pm2'
             sh 'npm run dev-test'
         }
-      }
+      // }
     }
   }
   post {

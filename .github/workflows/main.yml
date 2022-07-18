@@ -29,13 +29,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      # - name: Cypress install
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     # Disable running of tests within install job
+      #     runTests: false
+      # - name: 'Run Dev Server'
+      #   run: yarn run dev-dev-pm2
+
+      # - name: 'UI Tests - Chrome'
+      #   run: yarn run dev-test
+      - name: 'Run Dev Server'
+        run: yarn run dev-dev-pm2
       - name: Cypress install
         uses: cypress-io/github-action@v4
         with:
-          # Disable running of tests within install job
-          runTests: false
-      - name: 'Run Dev Server'
-        run: yarn run dev-dev-pm2
-
-      - name: 'UI Tests - Chrome'
-        run: yarn run dev-test
+          # we have already installed all dependencies above
+          start: yarn run dev-test
+          wait-on: 'http://localhost:4000'
+          wait-on-timeout: 120
+          browser: chrome
+          record: true
+          parallel: true
+          group: 'UI - Chrome'
+        env:
+          CYPRESS_RECORD_KEY: 'fad4fb6b-1318-4ba0-883b-8606925d150d'
+          # Recommended: pass the GitHub token lets this action correctly
+          # determine the unique run id necessary to re-run the checks
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# fad4fb6b-1318-4ba0-883b-8606925d150d
