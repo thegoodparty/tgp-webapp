@@ -37,8 +37,8 @@ jobs:
       - name: 'Run Dev Server'
         run: yarn run dev-dev-pm2
 
-      # - name: 'UI Tests - Chrome'
-      #   run: yarn run dev-test
+      - name: 'UI Tests - Chrome'
+        run: yarn run dev-test
       # - name: Cypress Install
       #   uses: cypress-io/github-action@v4
       #   with:
