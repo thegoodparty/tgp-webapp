@@ -47,23 +47,29 @@ pipeline {
       }
     }
     
-    steps {
-      sh 'npm run dev-dev-pm2'
-      sh 'npm run dev-test'
-      //   script {
-      //     // if(env.BRANCH_NAME == PROD_BRANCH) {
-      //     //   sh 'npm run cypress:run:prod'
-      //     // } else if(env.BRANCH_NAME == DEV_BRANCH) {
-      //     //   sh 'npm run cypress:run:dev'
-      //     // } else {
-      //     //   sh 'npm run cypress:run:test'
-      //     // }
-      //       // sh 'npm run dev-dev-pm2'
-      //       sh 'npm run dev-dev-pm2'
-      //       sh 'npm run dev-test'
-      //   }
-      // }
+    stage('run cypress tests') {
+      steps {
+        sh 'npm run dev-dev-pm2'
+        sh 'npm run dev-test'
+      }
     }
+    // steps {
+    //   sh 'npm run dev-dev-pm2'
+    //   sh 'npm run dev-test'
+    //   //   script {
+    //   //     // if(env.BRANCH_NAME == PROD_BRANCH) {
+    //   //     //   sh 'npm run cypress:run:prod'
+    //   //     // } else if(env.BRANCH_NAME == DEV_BRANCH) {
+    //   //     //   sh 'npm run cypress:run:dev'
+    //   //     // } else {
+    //   //     //   sh 'npm run cypress:run:test'
+    //   //     // }
+    //   //       // sh 'npm run dev-dev-pm2'
+    //   //       sh 'npm run dev-dev-pm2'
+    //   //       sh 'npm run dev-test'
+    //   //   }
+    //   // }
+    // }
   }
   post {
     failure {
