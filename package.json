@@ -12,7 +12,7 @@
     "dev": "API_ENV=local next dev -p 4000",
     "dev-dev": "API_ENV=development next dev -p 4000",
     "dev-dev-pm2": "pm2 start 'npm run dev-dev'",
-    "dev-test": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api-dev.goodparty.org/api/v1/ ./node_modules/.bin/cypress run",
+    "dev-test": "cross-env CYPRESS_BASE_URL=https://dev.goodparty.org CYPRESS_API_BASE=https://api-dev.goodparty.org/api/v1/ ./node_modules/.bin/cypress run",
     "dev-prod": "API_ENV=prod next dev -p 4000",
     "deploy-dev": "git checkout develop && eb deploy",
     "deploy-qa": "git checkout qa && eb deploy",
