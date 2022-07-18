@@ -23,19 +23,19 @@ pipeline {
     //     }
     //   }
     // }
-    stage('setup cypress') {
-      steps {
-        sh 'npm install'
-        sh 'npm install cypress'
-        sh 'npm install cross-env'
-      }
-    }
-    stage('run cypress tests') {
-      steps {
-        sh 'npm run dev-dev-pm2'
-        sh 'npm run dev-test'
-      }
-    }
+    // stage('setup cypress') {
+    //   steps {
+    //     sh 'npm install'
+    //     sh 'npm install cypress'
+    //     sh 'npm install cross-env'
+    //   }
+    // }
+    // stage('run cypress tests') {
+    //   steps {
+    //     sh 'npm run dev-dev-pm2'
+    //     sh 'npm run dev-test'
+    //   }
+    // }
 
 
     stage('deploy to EBS') {
