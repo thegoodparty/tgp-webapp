@@ -33,7 +33,4 @@ jobs:
           browser: chrome
 
       - name: 'UI Tests - Chrome'
-        with:
-          # we have already installed all dependencies above
-          # runTests: false
-          start: yarn run dev-test
+        run: yarn run dev-test
