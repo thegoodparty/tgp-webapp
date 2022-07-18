@@ -34,9 +34,6 @@ jobs:
         with:
           # Disable running of tests within install job
           runTests: false
-      - name: 'Run Build'
-        run: npm run build
-
       - name: 'Run Server'
         run: npm run dev-dev-pm2
 
