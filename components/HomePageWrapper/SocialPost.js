@@ -21,6 +21,8 @@ const Post = styled.div`
   text-align: left;
   position: relative;
   height: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `;
 
 const Icon = styled.div`
