@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { HomePageContext } from '../../containers/HomePage';
 import SocialPost from './SocialPost';
-import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
-import LoadingAnimation from '../shared/LoadingAnimation';
+// import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
+// import LoadingAnimation from '../shared/LoadingAnimation';
 
 const Wrapper = styled.div``;
 
@@ -41,14 +41,14 @@ const Feed = ({ openShareModalCallback }) => {
           </Grid>
         ))}
       </Grid>
-      <br />
-      <br />
-      {!fullFeed && !loading && (
-        <BlackButton className="outlined" onClick={loadFeedCallback}>
-          <div style={{ padding: '0 48px' }}>Load More Posts</div>
-        </BlackButton>
-      )}
-      {loading && <CircularProgress />}
+      {/*<br />*/}
+      {/*<br />*/}
+      {/*{!fullFeed && !loading && (*/}
+      {/*  <BlackButton className="outlined" onClick={loadFeedCallback}>*/}
+      {/*    <div style={{ padding: '0 48px' }}>Load More Posts</div>*/}
+      {/*  </BlackButton>*/}
+      {/*)}*/}
+      {/*{loading && <CircularProgress />}*/}
     </Wrapper>
   );
 };

@@ -124,10 +124,16 @@ const SocialPost = ({ post }) => {
   const router = useRouter();
   const hasImage = images.length > 0;
 
-  const contentWithLinks = content.replace(
+  const shortContent = content.substring(0, 140);
+
+  let contentWithLinks = shortContent.replace(
     /\bhttps?:\/\/\S+/gi,
     '<a href="$&" target="_blank" rel="noopener noreferrer nofollow">$&</a>',
   );
+
+  if (content.length > 140) {
+    contentWithLinks += '...';
+  }
 
   const handleShare = (e) => {
     e.stopPropagation();
