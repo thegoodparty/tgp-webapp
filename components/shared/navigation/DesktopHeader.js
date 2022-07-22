@@ -86,10 +86,10 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   let id = false;
   if (
     candidateRoute &&
-    router.query['NameId'] &&
-    router.query['NameId'].length === 2
+    router.query['NameIdTab'] &&
+    router.query['NameIdTab'].length === 2
   ) {
-    id = router.query['NameId'][1];
+    id = router.query['NameIdTab'][1];
   }
 
   // const handleShare = () => {

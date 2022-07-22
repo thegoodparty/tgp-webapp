@@ -8,8 +8,9 @@ export default function Candidate({ ssrState }) {
 export async function getServerSideProps(context) {
   // x-real-ip
   // const ip = req.connection.remoteAddress
-  const { NameId } = context.params;
-  const id = NameId?.length > 1 ? NameId[1] : false;
+  const { NameIdTab } = context.params;
+  const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
+  const tab = NameIdTab?.length > 2 ? NameIdTab[2] : 'Feed';
   if (id && id !== 'undefined' && typeof id !== 'undefined') {
     const api = tgpApi.newCandidate.find;
     const url = `${api.url}?id=${id}&allFields=true`;
@@ -41,6 +42,7 @@ export async function getServerSideProps(context) {
           candidateSupports,
           supportCount: total,
           userAgent: context.req.headers['user-agent'],
+          tab,
         },
       }, // will be passed to the page component as props
     };

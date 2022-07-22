@@ -22,12 +22,22 @@ const ImageWrapper = styled.div`
   height: 82px;
   width: 82px;
   border-radius: 50%;
-  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.05);
+  border: solid 3px #000;
+
+  &.large {
+    height: 130px;
+    width: 130px;
+  }
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     height: 150px;
     width: 150px;
+
+    &.large {
+      height: 230px;
+      width: 230px;
+    }
   }
 
   img {
@@ -56,37 +66,93 @@ const Supporters = styled.div`
   margin: 12px 0;
   font-size: 16px;
 `;
-function CandidatesRoundPreview({ candidate }) {
+
+const Overlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 12px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  img {
+    margin-top: 12px;
+    display: inline-block;
+    object-fit: initial;
+    object-position: initial;
+    border-radius: unset;
+  }
+`;
+function CandidatesRoundPreview({
+  candidate,
+  imageOnly = false,
+  large = false,
+}) {
   const { id, firstName, lastName, image, color, supporters } = candidate;
   const brightColor = color?.color ? color.color : '#000';
 
+  const candidateImage = () => {
+    return (
+      <Wrapper>
+        <ImageWrapper
+          style={{ borderColor: brightColor }}
+          className={large && 'large'}
+        >
+          {image && (
+            <Image
+              src={image}
+              layout="fill"
+              alt={`${firstName} ${lastName}`}
+              data-cy="candidate-img"
+              style={{ borderColor: brightColor }}
+            />
+          )}
+          <Overlay>
+            <div style={{ marginBottom: '4px' }}>GOOD CERTIFIED</div>
+            <Image src="/images/heart.svg" width={26} height={20} alt="" />
+          </Overlay>
+        </ImageWrapper>
+      </Wrapper>
+    );
+  };
+
   return (
-    <Link href={candidateRoute(candidate)} passHref>
-      <a
-        className="no-underline"
-        data-cy="candidate-link"
-        id={`candidate-preview-${firstName}-${lastName}`}
-      >
-        <Wrapper>
-          <ImageWrapper>
-            {image && (
-              <Image
-                src={image}
-                layout="fill"
-                alt={`${firstName} ${lastName}`}
-                data-cy="candidate-img"
-              />
-            )}
-          </ImageWrapper>
-          <Name>
-            {firstName} {lastName}
-          </Name>
-          <Supporters>
-            {numberFormatter(supporters)} Supporters so far
-          </Supporters>
-        </Wrapper>
-      </a>
-    </Link>
+    <>
+      {imageOnly ? (
+        <>{candidateImage()}</>
+      ) : (
+        <Link href={candidateRoute(candidate)} passHref>
+          <a
+            className="no-underline"
+            data-cy="candidate-link"
+            id={`candidate-preview-${firstName}-${lastName}`}
+          >
+            <Wrapper>
+              {candidateImage()}
+              <Name>
+                {firstName} {lastName}
+              </Name>
+              <Supporters>
+                {numberFormatter(supporters)} Supporters so far
+              </Supporters>
+            </Wrapper>
+          </a>
+        </Link>
+      )}
+    </>
   );
 }
 

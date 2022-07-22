@@ -59,6 +59,7 @@ export function CandidatePage({
     supportCount,
     candidatePositions,
     userAgent,
+    tab,
   } = ssrState;
   const { userSupports } = candidatePage;
   const { firstName, lastName, party, otherParty, race, id } = candidate;
@@ -117,6 +118,7 @@ export function CandidatePage({
     supportCount: updatedSupportsCount,
     candidatePositions,
     similarCampaigns,
+    tab,
   };
 
   const is404 = !candidate || Object.keys(candidate).length === 0;
