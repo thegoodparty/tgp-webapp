@@ -55,7 +55,7 @@ const ButtonWrapper = styled.div`
 
 function SocialStats() {
   const { supportCount, candidate, followers } = useContext(CandidateContext);
-  const achievements = achievementsHelper(followers.thisWeek);
+  const achievements = achievementsHelper(followers?.thisWeek);
   const { color, raceDate } = candidate;
   const brightColor = color?.color ? color.color : '#000';
   const days = daysTill(raceDate);
@@ -88,7 +88,7 @@ function SocialStats() {
         <SupportersProgressBar
           showSupporters={false}
           votesNeeded={achievements.nextStep}
-          peopleSoFar={followers.thisWeek}
+          peopleSoFar={followers?.thisWeek}
           fullWidth
           showSuffix={false}
           withAchievement
