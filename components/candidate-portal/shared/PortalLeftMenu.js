@@ -63,11 +63,11 @@ export const leftMenuItems = [
     link: '/candidate-portal/campaign-manager',
     minAccessLevel: ACCESS_ENUM.MANAGER,
   },
-  {
-    label: 'Campaign Updates',
-    link: '/candidate-portal/campaign-updates',
-    minAccessLevel: ACCESS_ENUM.MANAGER,
-  },
+  // {
+  //   label: 'Campaign Updates',
+  //   link: '/candidate-portal/campaign-updates',
+  //   minAccessLevel: ACCESS_ENUM.MANAGER,
+  // },
   {
     label: 'Policy Issues',
     link: '/candidate-portal/top-issues',

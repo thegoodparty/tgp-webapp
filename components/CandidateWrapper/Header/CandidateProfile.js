@@ -15,6 +15,7 @@ import CandidatesRoundPreview from '../../shared/CandidateRoundPreview';
 import { partyResolver } from '../../../helpers/electionsHelper';
 import { Font16 } from '../../shared/typogrophy';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import { CandidateWrapperContext } from '../index';
 
 const Text = styled.div`
   margin-left: 30px;
@@ -40,7 +41,8 @@ const ButtonWrapper = styled.div`
 `;
 
 function CandidateProfile() {
-  const { candidate, candidatePositions } = useContext(CandidateContext);
+  const { candidate } = useContext(CandidateContext);
+  const { openFollowModalCallback } = useContext(CandidateWrapperContext);
   const { firstName, lastName, party, otherParty, race, color } = candidate;
   const brightColor = color?.color ? color.color : '#000';
 
@@ -65,6 +67,7 @@ function CandidateProfile() {
               borderColor: brightColor,
               marginTop: '12px',
             }}
+            onClick={openFollowModalCallback}
           >
             <InnerButton>FOLLOW</InnerButton>
           </BlackButton>

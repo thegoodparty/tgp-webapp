@@ -4,10 +4,8 @@
  *
  */
 
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
+import React, { useContext, useState, createContext } from 'react';
+// import styled from 'styled-components';
 
 import NotFound from '/containers/shared/NotFoundPage';
 import PageWrapper from '../shared/PageWrapper';
@@ -19,6 +17,8 @@ import MaxWidth, { Padder } from '../shared/MaxWidth';
 import Feed from './Feed';
 import Campaign from './Campaign';
 import Bio from './Bio';
+import Modal from '../shared/Modal';
+import FollowModal from './FollowModal';
 
 const tabs = [
   { route: 'Feed', component: <Feed /> },
@@ -26,30 +26,56 @@ const tabs = [
   { route: 'Bio', component: <Bio /> },
 ];
 
+export const CandidateWrapperContext = createContext();
+
 function CandidateWrapper() {
   const { candidate, tab } = useContext(CandidateContext);
+  const [followModalOpen, setFollowModalOpen] = useState(false);
+
   if (!candidate) {
     return <NotFound />;
   }
 
+  const openFollowModalCallback = () => {
+    setFollowModalOpen(true);
+  };
+
+  const closeFollowModalCallback = () => {
+    setFollowModalOpen(false);
+  };
+
+  const contextProps = {
+    openFollowModalCallback,
+    closeFollowModalCallback,
+  };
+
   return (
-    <PageWrapper isFullWidth>
-      <MaxWidth>
-        <Padder>
-          <Header />
-        </Padder>
-      </MaxWidth>
-      <Tabs />
-      <MaxWidth>
-        <Padder>
-          {tabs.map((tabContent) => (
-            <React.Fragment key={tabContent.route}>
-              {tabContent.route === tab && <>{tabContent.component}</>}
-            </React.Fragment>
-          ))}
-        </Padder>
-      </MaxWidth>
-    </PageWrapper>
+    <CandidateWrapperContext.Provider value={contextProps}>
+      <PageWrapper isFullWidth>
+        <MaxWidth>
+          <Padder>
+            <Header />
+          </Padder>
+        </MaxWidth>
+        <Tabs />
+        <MaxWidth>
+          <Padder>
+            {tabs.map((tabContent) => (
+              <React.Fragment key={tabContent.route}>
+                {tabContent.route === tab && <>{tabContent.component}</>}
+              </React.Fragment>
+            ))}
+          </Padder>
+        </MaxWidth>
+        <Modal
+          open={followModalOpen}
+          showCloseButton={false}
+          closeModalCallback={() => setFollowModalOpen(false)}
+        >
+          <FollowModal />
+        </Modal>
+      </PageWrapper>
+    </CandidateWrapperContext.Provider>
   );
 }
 
