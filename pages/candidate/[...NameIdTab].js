@@ -24,14 +24,6 @@ export async function getServerSideProps(context) {
       };
     }
 
-    const api3 = tgpApi.supportCandidate.candidateSupports;
-    const res3 = await fetch(`${api3.url}?candidateId=${id}`);
-    let candidateSupports = [];
-    let total = 0;
-    try {
-      ({ candidateSupports, total } = await res3.json());
-    } catch (e) {}
-
     return {
       props: {
         ssrState: {
@@ -39,8 +31,6 @@ export async function getServerSideProps(context) {
           candidatePositions: candidate.candidatePositions || [],
           similarCampaigns: candidate.similarCampaigns || [],
           id,
-          candidateSupports,
-          supportCount: total,
           userAgent: context.req.headers['user-agent'],
           tab,
           followers: candidate.followers,
