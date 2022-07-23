@@ -13,7 +13,7 @@ import {
 import { useRouter } from 'next/router';
 
 import { dateUsHelper } from '../../helpers/dateHelper';
-import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
+import BlackButton, { InnerButton } from './buttons/BlackButton';
 
 const Post = styled.div`
   padding: 60px 15px 70px;

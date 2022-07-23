@@ -357,7 +357,6 @@ export const generateApi = (base) => ({
     find: {
       url: `${base}new-candidate`,
       method: 'GET',
-      withAuth: true,
     },
     findInactive: {
       url: `${base}new-candidate-inactive`,

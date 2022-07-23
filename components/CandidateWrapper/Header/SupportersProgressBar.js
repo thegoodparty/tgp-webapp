@@ -33,13 +33,6 @@ const Bar = styled.div`
   position: absolute;
   height: 22px;
   border-radius: 22px;
-  font-size: 12px;
-  justify-content: flex-end;
-  display: flex;
-  align-items: center;
-  color: #fff;
-  font-weight: 700;
-  padding: 0 8px;
 
   background-color: #000;
   left: 0;
@@ -62,10 +55,10 @@ const AchievementWrapper = styled.div`
   justify-content: flex-start;
   text-align: left;
   width: 100%;
-  font-size: 13px;
+  font-size: 16px;
   color: ${({ theme }) => theme.colors.gray4};
   padding-left: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
 `;
 
 const Icon = styled.img`
@@ -119,9 +112,7 @@ const SupportersProgressBar = ({
         </BarBody11>
       )}
       <BarBg className={`bar-bg ${fullWidth && 'full-width'}`}>
-        <Bar style={{ width: `${progress}%`, backgroundColor: color }}>
-          {numberFormatter(peopleSoFar)}
-        </Bar>
+        <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
         <Total>{numberFormatter(votesNeeded)}</Total>
       </BarBg>
       {showSuffix && (

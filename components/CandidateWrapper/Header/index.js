@@ -4,14 +4,12 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
 
-import { CandidateContext } from '/containers/CandidatePage';
 import CandidateProfile from './CandidateProfile';
-import TopIssues from './TopIssues';
+import TopIssuesPills from './TopIssuesPills';
 import SocialStats from './SocialStats';
 
 const Wrapper = styled.header`
@@ -28,7 +26,7 @@ function Header() {
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12} lg={6}>
           <CandidateProfile />
-          <TopIssues />
+          <TopIssuesPills />
         </Grid>
         <Grid item xs={12} lg={6}>
           <SocialStats />

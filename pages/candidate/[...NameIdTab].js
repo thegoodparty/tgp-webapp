@@ -43,6 +43,8 @@ export async function getServerSideProps(context) {
           supportCount: total,
           userAgent: context.req.headers['user-agent'],
           tab,
+          followers: candidate.followers,
+          feed: candidate.feed,
         },
       }, // will be passed to the page component as props
     };

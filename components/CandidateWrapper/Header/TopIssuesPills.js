@@ -22,10 +22,11 @@ const IssueWrapper = styled.div`
   display: inline-block;
 `;
 
-const Issue = styled(Font16)`
+export const Pill = styled(Font16)`
+  display: inline-block;
   background-color: #ededed;
   border-radius: 5px;
-  padding: 3px 14px;
+  padding: 8px 14px;
   margin-top: 10px;
   margin-right: 10px;
   font-weight: 900;
@@ -37,7 +38,7 @@ const Issue = styled(Font16)`
   }
 `;
 
-function TopIssues() {
+function TopIssuesPills() {
   const { candidatePositions } = useContext(CandidateContext);
 
   if (candidatePositions?.length === 0) {
@@ -48,13 +49,13 @@ function TopIssues() {
     <Wrapper>
       {candidatePositions.map((candPosition) => (
         <IssueWrapper key={candPosition.id} data-cy="top-issue">
-          <Issue className="issue" data-cy="top-issue-position">
+          <Pill className="issue" data-cy="top-issue-position">
             {candPosition.position?.name}
-          </Issue>
+          </Pill>
         </IssueWrapper>
       ))}
     </Wrapper>
   );
 }
 
-export default TopIssues;
+export default TopIssuesPills;

@@ -16,9 +16,10 @@ import { CandidateContext } from '../../containers/CandidatePage';
 import Header from './Header';
 import Tabs from './Tabs';
 import MaxWidth, { Padder } from '../shared/MaxWidth';
+import Feed from './Feed';
 
 const tabs = [
-  { route: 'Feed', component: <div>Feed component</div> },
+  { route: 'Feed', component: <Feed /> },
   { route: 'Campaign', component: <div>Campaign component</div> },
   { route: 'Bio', component: <div>Bio component</div> },
 ];
@@ -38,11 +39,13 @@ function CandidateWrapper() {
       </MaxWidth>
       <Tabs />
       <MaxWidth>
-        {tabs.map((tabContent) => (
-          <React.Fragment key={tabContent.route}>
-            {tabContent.route === tab && <>{tabContent.component}</>}
-          </React.Fragment>
-        ))}
+        <Padder>
+          {tabs.map((tabContent) => (
+            <React.Fragment key={tabContent.route}>
+              {tabContent.route === tab && <>{tabContent.component}</>}
+            </React.Fragment>
+          ))}
+        </Padder>
       </MaxWidth>
     </PageWrapper>
   );
