@@ -17,10 +17,11 @@ import Header from './Header';
 import Tabs from './Tabs';
 import MaxWidth, { Padder } from '../shared/MaxWidth';
 import Feed from './Feed';
+import Campaign from './Campaign';
 
 const tabs = [
   { route: 'Feed', component: <Feed /> },
-  { route: 'Campaign', component: <div>Campaign component</div> },
+  { route: 'Campaign', component: <Campaign /> },
   { route: 'Bio', component: <div>Bio component</div> },
 ];
 
