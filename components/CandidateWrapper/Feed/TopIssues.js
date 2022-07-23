@@ -14,7 +14,17 @@ import { Pill } from '../Header/TopIssuesPills';
 import Row from '../../shared/Row';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  position: relative;
+`;
+
+const Line = styled.div`
+  position: absolute;
+  top: 0;
+  left: -20px;
+  height: 34px;
+  width: 3px;
+`;
 
 const IssueWrapper = styled.div`
   &.selected {
@@ -40,17 +50,26 @@ const Title = styled.h3`
   margin: 0 0 24px;
 `;
 
+const TopRow = styled(Row)`
+  justify-content: space-between;
+  align-items: baseline;
+`;
+
 function TopIssues() {
   const router = useRouter();
-  const { candidatePositions } = useContext(CandidateContext);
-
+  const { candidatePositions, candidate } = useContext(CandidateContext);
+  const { color } = candidate;
+  const brightColor = color?.color ? color.color : '#000';
   if (candidatePositions?.length === 0) {
     return <></>;
   }
 
   return (
     <Wrapper>
-      <Row style={{ justifyContent: 'space-between', alignItems: 'baseline' }}>
+      <Line style={{ backgroundColor: brightColor }} />
+      <TopRow
+        style={{ justifyContent: 'space-between', alignItems: 'baseline' }}
+      >
         <Title data-cy="top-issues-title">Top Issues</Title>
         <Link href={`${router.asPath}?share=true`} passHref>
           <a id="top-issues-share" className="no-underline">
@@ -59,7 +78,7 @@ function TopIssues() {
             </BlackButton>
           </a>
         </Link>
-      </Row>
+      </TopRow>
 
       {candidatePositions.map((candPosition) => (
         <IssueWrapper key={candPosition.id} data-cy="top-issue">

@@ -26,7 +26,6 @@ async function checkStatus(response) {
   console.log('ERROR at fetchHelper', JSON.stringify(response));
   const res = await response.json();
   const message = res ? res.message : 'Error occured';
-  console.log('message', message);
   const error = new Error(message);
   error.response = res;
   throw error;

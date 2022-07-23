@@ -105,6 +105,8 @@ const Retweet = styled.div`
 `;
 
 const SocialPost = ({ post }) => {
+  const router = useRouter();
+
   if (!post || !post.content) {
     return <></>;
   }
@@ -121,7 +123,6 @@ const SocialPost = ({ post }) => {
     source,
     commentsCount,
   } = post;
-  const router = useRouter();
   const hasImage = images.length > 0;
 
   const shortContent = content.substring(0, 140);

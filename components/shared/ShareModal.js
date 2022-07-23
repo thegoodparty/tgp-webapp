@@ -270,7 +270,6 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
   const emailBody = `${messageNoUrl}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
   const handleCopy = () => {
-    console.log('copy');
     setCopied(true);
 
     trackShare('Copy to Clipboard');

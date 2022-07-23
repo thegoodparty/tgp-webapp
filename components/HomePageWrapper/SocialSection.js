@@ -74,9 +74,7 @@ const ButtonWrapper = styled.div`
 const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
   const { totalFollowers, feed } = useContext(HomePageContext);
   let totalPosts = feed ? feed.total : 0;
-  console.log('totla', totalPosts)
   totalPosts += 89852;
-  console.log('totl2', totalPosts)
   return (
     <Wrapper>
       <TopRow>
