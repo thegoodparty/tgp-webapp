@@ -82,12 +82,12 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
     prevOpen.current = open;
   }, [open]);
 
-  const candidateRoute = router.pathname === '/candidate/[...NameId]';
+  const candidateRoute = router.pathname === '/candidate/[...NameIdTab]';
   let id = false;
   if (
     candidateRoute &&
     router.query['NameIdTab'] &&
-    router.query['NameIdTab'].length === 2
+    router.query['NameIdTab'].length === 3
   ) {
     id = router.query['NameIdTab'][1];
   }

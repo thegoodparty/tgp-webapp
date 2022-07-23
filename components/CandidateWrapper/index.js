@@ -18,11 +18,12 @@ import Tabs from './Tabs';
 import MaxWidth, { Padder } from '../shared/MaxWidth';
 import Feed from './Feed';
 import Campaign from './Campaign';
+import Bio from './Bio';
 
 const tabs = [
   { route: 'Feed', component: <Feed /> },
   { route: 'Campaign', component: <Campaign /> },
-  { route: 'Bio', component: <div>Bio component</div> },
+  { route: 'Bio', component: <Bio /> },
 ];
 
 function CandidateWrapper() {

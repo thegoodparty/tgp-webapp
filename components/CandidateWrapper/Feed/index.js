@@ -38,7 +38,7 @@ const SubTitle = styled.div`
 function Feed() {
   return (
     <Wrapper>
-      <Grid container spacing={4}>
+      <Grid container spacing={8}>
         <Grid item xs={12} lg={9}>
           <Title>Get ‘em trending</Title>
           <SubTitle>
