@@ -6,9 +6,12 @@
 
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import { Font16 } from '../../shared/typogrophy';
+import { candidateRoute } from '../../../helpers/electionsHelper';
+import { removeWhiteSpaces } from '../../../helpers/stringHelper';
 
 const Wrapper = styled.article`
   margin-top: 14px;
@@ -16,10 +19,6 @@ const Wrapper = styled.article`
       theme.breakpointsPixels.lg}) {
     display: none;
   }
-`;
-
-const IssueWrapper = styled.div`
-  display: inline-block;
 `;
 
 export const Pill = styled(Font16)`
@@ -39,7 +38,7 @@ export const Pill = styled(Font16)`
 `;
 
 function TopIssuesPills() {
-  const { candidatePositions } = useContext(CandidateContext);
+  const { candidatePositions, candidate } = useContext(CandidateContext);
 
   if (candidatePositions?.length === 0) {
     return <></>;
@@ -48,11 +47,16 @@ function TopIssuesPills() {
   return (
     <Wrapper>
       {candidatePositions.map((candPosition) => (
-        <IssueWrapper key={candPosition.id} data-cy="top-issue">
+        <Link
+          key={candPosition.id}
+          href={`${candidateRoute(candidate)}/Bio#${removeWhiteSpaces(
+            candPosition.position?.name,
+          )}`}
+        >
           <Pill className="issue" data-cy="top-issue-position">
             {candPosition.position?.name}
           </Pill>
-        </IssueWrapper>
+        </Link>
       ))}
     </Wrapper>
   );

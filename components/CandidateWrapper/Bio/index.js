@@ -55,10 +55,8 @@ function Bio() {
             </a>
           )}
         </Grid>
-        <Grid item xs={0} lg={3}>
-          <Hidden mdDown>
-            <TopIssues />
-          </Hidden>
+        <Grid item xs={12} lg={3}>
+          <TopIssues />
         </Grid>
       </Grid>
     </Wrapper>
