@@ -74,14 +74,14 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  padding: 12px;
+  padding: 4px;
   background: linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.8) 0%,
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 100%
   );
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 900;
   color: #fff;
   display: flex;
@@ -94,6 +94,12 @@ const Overlay = styled.div`
     object-fit: initial;
     object-position: initial;
     border-radius: unset;
+  }
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding: 12px;
+    font-size: 14px;
   }
 `;
 function CandidatesRoundPreview({
