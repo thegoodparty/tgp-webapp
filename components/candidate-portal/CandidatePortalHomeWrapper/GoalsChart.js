@@ -94,14 +94,20 @@ function hexToRgb(hex) {
     : null;
 }
 
-function GoalsChart({ candidate }) {
+function GoalsChart({ candidate, followers }) {
   const { likelyVoters, votesNeeded, color } = candidate;
-  const cappedLikely = likelyVoters > votesNeeded ? votesNeeded : likelyVoters;
+  let voters = likelyVoters;
+  if (followers?.thisWeek > likelyVoters) {
+    voters = followers.thisWeek;
+  }
+  const cappedLikely = voters > votesNeeded ? votesNeeded : voters;
+
+
   const data = [
     { name: 'To Win', value: votesNeeded - cappedLikely },
     { name: 'So Far', value: cappedLikely },
   ];
-  const perc = parseInt((likelyVoters * 100) / votesNeeded, 10);
+  const perc = parseInt((voters * 100) / votesNeeded, 10);
   const brightColor = color?.color ? color.color : '#000000';
   const rgb = hexToRgb(brightColor);
   const COLORS = [`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`, brightColor];

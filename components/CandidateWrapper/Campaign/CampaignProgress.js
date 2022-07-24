@@ -51,8 +51,12 @@ const This = styled.div`
 
 function CampaignProgress() {
   const router = useRouter();
-  const { supportCount, candidate } = useContext(CandidateContext);
-  const { color, likelyVoters, votesNeeded } = candidate;
+  const { supportCount, candidate, followers } = useContext(CandidateContext);
+  const { likelyVoters, votesNeeded } = candidate;
+  let voters = likelyVoters;
+  if (followers?.thisWeek > likelyVoters) {
+    voters = followers.thisWeek;
+  }
   return (
     <Wrapper>
       <Row style={{ justifyContent: 'space-between', marginBottom: '48px' }}>
@@ -63,25 +67,19 @@ function CampaignProgress() {
           </a>
         </Link>
       </Row>
-      <GoalsChart candidate={candidate} />
+      <GoalsChart candidate={candidate} followers={followers} />
       <ChartStats>
         <div className="text-right">
-          🗳 {kFormatter(likelyVoters)}
+          🗳 {kFormatter(voters)}
           <Sub>Likely Voters</Sub>
         </div>
         <Space />
         <div>
           {kFormatter(votesNeeded)} 🎉
-          <Sub>needed to win</Sub>
+          <Sub>needed to win </Sub>
         </div>
       </ChartStats>
-      <div>
-        <div data-cy="endorse-supportcount-wrapper">
-          <strong data-cy="endorse-supportcount">
-            {supportCount} endorsement{supportCount === 1 ? '' : 's'} so far.
-          </strong>
-        </div>
-      </div>
+
     </Wrapper>
   );
 }
