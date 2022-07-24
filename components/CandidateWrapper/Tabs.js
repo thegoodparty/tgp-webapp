@@ -65,7 +65,11 @@ function Tabs() {
       <MaxWidth>
         <TabsWrapper>
           {tabs.map((tab) => (
-            <Link key={tab.label} href={`${route}/${tab.label}`} passHref>
+            <Link
+              key={tab.label}
+              href={tab.label === 'Feed' ? route : `${route}/${tab.label}`}
+              passHref
+            >
               <a className="no-underline">
                 <Tab
                   className={activeTab === tab.label && 'active'}
