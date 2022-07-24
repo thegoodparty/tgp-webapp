@@ -52,9 +52,7 @@ const This = styled.div`
 function CampaignProgress() {
   const router = useRouter();
   const { supportCount, candidate } = useContext(CandidateContext);
-  const achievements = achievementsHelper(supportCount);
   const { color, likelyVoters, votesNeeded } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
   return (
     <Wrapper>
       <Row style={{ justifyContent: 'space-between', marginBottom: '48px' }}>

@@ -1,4 +1,22 @@
-export const achievementsHelper = count => {
+export const achievementsHelper = (count) => {
+  if (count >= 500000) {
+    return {
+      nextStep: 1000000,
+      text: '',
+    };
+  }
+  if (count >= 200000) {
+    return {
+      nextStep: 500000,
+      text: '',
+    };
+  }
+  if (count >= 50000) {
+    return {
+      nextStep: 200000,
+      text: '',
+    };
+  }
   if (count >= 10000) {
     return {
       nextStep: 50000,
@@ -124,8 +142,8 @@ export const achievementsHelper = count => {
       nextStep: 10,
       text: (
         <span>
-          <strong>At 10 endorsements,</strong> this campaign is starting to
-          pick up some steam!
+          <strong>At 10 endorsements,</strong> this campaign is starting to pick
+          up some steam!
         </span>
       ),
     };
@@ -140,7 +158,7 @@ export const achievementsHelper = count => {
   };
 };
 
-export const achievementsNextStepHelper = count => {
+export const achievementsNextStepHelper = (count) => {
   if (count >= 10000) {
     return {
       nextStep: 50000,
@@ -209,4 +227,4 @@ export const achievementsNextStepHelper = count => {
   return {
     nextStep: 10,
   };
-}
+};
