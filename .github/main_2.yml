@@ -18,9 +18,14 @@ on: pull_request
 #           # cypress: npm run cypress:run:dev
 
 jobs:
-  install:
+  ui-chrome-tests:
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.19.0-chrome100-ff99-edge
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     # run copies of the current job in parallel
+    #     containers: [1, 2, 3, 4, 5]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,19 +39,8 @@ jobs:
       - name: 'Run Dev Server'
         run: yarn run dev-dev-pm2
 
-  ui-chrome-tests:
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node14.19.0-chrome100-ff99-edge
-    needs: install
-    strategy:
-      fail-fast: false
-      matrix:
-        # run copies of the current job in parallel
-        containers: [1, 2, 3, 4, 5]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
+      # - name: 'UI Tests - Chrome'
+      # run: yarn run dev-test
       - name: UI Tests - Chrome
         uses: cypress-io/github-action@v4
         with:
@@ -54,10 +48,7 @@ jobs:
           # runTests: false
           install: false
           record: true
-          browser: chrome
-          record: true
-          parallel: true
-          group: 'UI - Chrome'
+
         env:
           CYPRESS_RECORD_KEY: 'fad4fb6b-1318-4ba0-883b-8606925d150d'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
