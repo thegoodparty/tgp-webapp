@@ -69,7 +69,7 @@ function HeroSection() {
   return (
     <Wrapper>
       <StyledFontH2>
-        <span role="img" aria-label="Megaphone">
+        `<span role="img" aria-label="Megaphone">`
           📣
         </span>{' '}
         {headline}

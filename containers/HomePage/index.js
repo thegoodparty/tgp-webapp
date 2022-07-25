@@ -16,18 +16,19 @@ import { useRouter } from 'next/router';
 import HomePageWrapper from '/components/HomePageWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 //
-// import reducer from './reducer';
-// import saga from './saga';
-// import makeSelectHomePage from './selectors';
-// import actions from './actions';
+import reducer from './reducer';
+import saga from './saga';
+import makeSelectHomePage from './selectors';
+import actions from './actions';
 import feedbackActions from '/containers/shared/FeedbackContainer/actions';
 // import { getExperiment } from '/helpers/optimizeHelper';
-import actions from '../entrance/RegisterPage/actions';
+import registerActions from '../entrance/RegisterPage/actions';
 import { useInjectSaga } from '../../utils/injectSaga';
 import registerSaga from '../entrance/RegisterPage/saga';
 import { logEvent } from '../../services/AnalyticsService';
 import makeSelectUser from '../you/YouPage/selectors';
 import { getUtmExperiment } from '../../helpers/utmHelper';
+import { useInjectReducer } from '../../utils/injectReducer';
 
 export const HomePageContext = createContext();
 
@@ -36,13 +37,20 @@ export function HomePage({
   registerCallback,
   userState,
   ssrState,
+  homeState,
+  loadFeedCallback,
+  subscribeEmailCallback,
 }) {
-  const { utmContent, utmSource, totalFollowers } = ssrState;
+  const { utmContent, utmSource, totalFollowers, feed, homepageCandidates } =
+    ssrState;
+  const { fullFeed, loading } = homeState;
   const router = useRouter();
 
+  useInjectReducer({ key: 'homePage', reducer });
+  useInjectSaga({ key: 'homePage', saga });
   useInjectSaga({ key: 'registerPage', saga: registerSaga });
 
-  const utmExperiment = getUtmExperiment(utmContent, utmSource);
+  // const utmExperiment = getUtmExperiment(utmContent, utmSource);
 
   // const [experimentVariant, setExperimentVariant] = useState('0');
   // useEffect(() => {
@@ -51,8 +59,6 @@ export function HomePage({
   //   });
   // }, []);
 
-  console.log('router.query.host', router.query.host);
-  console.log('router', router);
   const showInitModal = router.query.host === 'true';
 
   const { user } = userState;
@@ -60,10 +66,17 @@ export function HomePage({
     registerCallback,
     showFeedbackCallback,
     user,
-    utmExperiment,
+    // utmExperiment,
     showInitModal,
     totalFollowers,
+    feed,
+    fullFeed,
+    loading,
+    loadFeedCallback,
+    subscribeEmailCallback,
+    homepageCandidates,
   };
+
   return (
     <HomePageContext.Provider value={childProps}>
       <TgpHelmet
@@ -79,11 +92,14 @@ HomePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   showFeedbackCallback: PropTypes.func,
   registerCallback: PropTypes.func,
+  loadFeedCallback: PropTypes.func,
+  subscribeEmailCallback: PropTypes.func,
   userState: PropTypes.object,
+  homeState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  // homeState: makeSelectHomePage(),
+  homeState: makeSelectHomePage(),
   userState: makeSelectUser(),
 });
 
@@ -95,8 +111,21 @@ function mapDispatchToProps(dispatch) {
     },
     registerCallback: (name, email, phone, zip) => {
       dispatch(
-        actions.registerAction(name, email, phone, zip, false, 'homepageModal'),
+        registerActions.registerAction(
+          name,
+          email,
+          phone,
+          zip,
+          false,
+          'homepageModal',
+        ),
       );
+    },
+    loadFeedCallback: () => {
+      dispatch(actions.loadFeedAction());
+    },
+    subscribeEmailCallback: (email) => {
+      dispatch(actions.subscribeEmailAction(email));
     },
   };
 }

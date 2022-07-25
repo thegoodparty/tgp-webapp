@@ -62,7 +62,7 @@ const It = ({ text }) => {
         </Grid>
         <div className="text-center" style={{ marginTop: '24px' }}>
           <Link href="/manifesto" passHref>
-            <a>
+            <a id="it-tooltip-manifesto-button">
               <BlackButton>
                 <InnerButton>
                   <Small>Read our Manifesto</Small>

@@ -82,14 +82,14 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
     prevOpen.current = open;
   }, [open]);
 
-  const candidateRoute = router.pathname === '/candidate/[...NameId]';
+  const candidateRoute = router.pathname === '/candidate/[...NameIdTab]';
   let id = false;
   if (
     candidateRoute &&
-    router.query['NameId'] &&
-    router.query['NameId'].length === 2
+    router.query['NameIdTab'] &&
+    router.query['NameIdTab'].length === 3
   ) {
-    id = router.query['NameId'][1];
+    id = router.query['NameIdTab'][1];
   }
 
   // const handleShare = () => {
@@ -116,7 +116,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               logEvent('Link', 'Logo', 'Top Nav');
             }}
           >
-            <a>
+            <a id="desktop-nav-logo">
               <Image
                 src="/images/black-logo.svg"
                 data-cy="logo"
@@ -136,7 +136,12 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                     logEvent('Link', link.label, 'Top Nav');
                   }}
                 >
-                  <A data-cy="header-link-label">{link.label}</A>
+                  <A
+                    data-cy="header-link-label"
+                    id={`desktop-nav-${link.label}`}
+                  >
+                    {link.label}
+                  </A>
                 </Link>
               </TopLink>
             ))}
@@ -148,7 +153,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                   logEvent('Link', 'Profile', 'Top Nav');
                 }}
               >
-                <a>
+                <a id="desktop-nav-profile">
                   <AvatarWrapper>
                     <UserAvatar user={user} />
                   </AvatarWrapper>
@@ -164,7 +169,9 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                       logEvent('Link', 'Login', 'Top Nav');
                     }}
                   >
-                    <A data-cy="header-login">Login</A>
+                    <A data-cy="header-login" id="desktop-nav-login">
+                      Login
+                    </A>
                   </Link>
                 </TopLink>
                 <TopLink>
@@ -175,7 +182,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                       logEvent('Link', 'Register', 'Top Nav');
                     }}
                   >
-                    <A data-cy="header-register">
+                    <A data-cy="header-register" id="desktop-nav-register">
                       <strong>Join Us</strong>
                     </A>
                   </Link>

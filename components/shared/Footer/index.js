@@ -78,7 +78,7 @@ const SecondRow = styled.div`
 const year = new Date().getFullYear();
 
 function Footer() {
-  
+
   return (
     <Wrapper>
       <MaxWidth>
@@ -87,7 +87,13 @@ function Footer() {
         </Aligner>
         <Grid container spacing={2}>
           {FOOTER_COLUMNS.map((column) => (
-            <Grid item xs={12} lg={2} key={column.title} data-cy="footer-column">
+            <Grid
+              item
+              xs={12}
+              lg={2}
+              key={column.title}
+              data-cy="footer-column"
+            >
               <Aligner>
                 <Title data-cy="footer-column-title">{column.title}</Title>
                 {column.links.map((link) => (
@@ -119,7 +125,6 @@ function Footer() {
               width={174}
               height={20}
               alt="GOOD PARTY"
-              style={{ matginBottom: '30px' }}
             />
             <br />
             <Italic data-cy="footer-join-us">

@@ -33,9 +33,25 @@ function subscribeEmailAction(email) {
   };
 }
 
+function loadFeedAction() {
+  return {
+    type: types.LOAD_FEED,
+  };
+}
+
+function loadFeedActionSuccess(fullFeed) {
+  return {
+    type: types.LOAD_FEED_SUCCESS,
+    fullFeed,
+  };
+}
+
 export default {
   loadHomepageCandidatesAction,
   loadHomepageCandidatesActionSuccess,
   loadHomepageCandidatesActionError,
   subscribeEmailAction,
+
+  loadFeedAction,
+  loadFeedActionSuccess,
 };

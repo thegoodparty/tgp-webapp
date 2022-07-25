@@ -63,7 +63,11 @@ function FeedbackWrapper({
 }) {
   return (
     <>
-      <SideButton onClick={() => toggleModalCallback(true)} className={mode}>
+      <SideButton
+        onClick={() => toggleModalCallback(true)}
+        className={mode}
+        id="feedback-side-button"
+      >
         Feedback
       </SideButton>
       {isOpen && (
