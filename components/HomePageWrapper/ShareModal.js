@@ -102,6 +102,7 @@ const ShareModal = ({ closeModalCallback }) => {
               onClick={() => {
                 logEvent('Share', icon.label, 'Homepage Share Modal');
               }}
+              id={`share-modal-${icon.label}`}
             >
               <Icon className={index === icons.length - 1 && 'last'}>
                 <Image src={icon.img} height={90} width={90}></Image>

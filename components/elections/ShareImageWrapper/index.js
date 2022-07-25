@@ -4,14 +4,14 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
 import Box from '@material-ui/core/Box';
 import { partyResolver } from '/helpers/electionsHelper';
 import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
-import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
+import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import { achievementsHelper } from '/helpers/achievementsHelper';
@@ -116,22 +116,30 @@ function ShareImage({
       return;
     }
     htmlToImage
-    .toJpeg(document.getElementById(suffix), { quality: 1, pixelRatio: 1, style: {fontFamily: `'Lato',sans-serif`}})
-    .then(async function (dataUrl) {
-      shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
-      const img = new Image();
-      img.src = dataUrl;
-      document.body.appendChild(img);
-    })
-    .catch(function (error) {
-      console.error('oops, something went wrong!', error);
-    });
+      .toJpeg(document.getElementById(suffix), {
+        quality: 1,
+        pixelRatio: 1,
+        style: { fontFamily: `'Lato',sans-serif` },
+      })
+      .then(async function (dataUrl) {
+        shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
+        const img = new Image();
+        img.src = dataUrl;
+        document.body.appendChild(img);
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
   };
   const longName = firstName.length + lastName.length > 14;
   const achievements = achievementsHelper(supportCount);
   return (
     <>
-      <ShareImageWrapper id="support" className={!withRender && 'no-bg'} style={{fontFamily: "'Lato',sans-serif"}}>
+      <ShareImageWrapper
+        id="support"
+        className={!withRender && 'no-bg'}
+        style={{ fontFamily: "'Lato',sans-serif" }}
+      >
         <WrapperTitle>
           Hey, {fromShareLink ? 'Check out' : 'I’m endorsing'}...
         </WrapperTitle>
@@ -187,7 +195,11 @@ function ShareImage({
         )}
       </ShareImageWrapper>
       {withRender && (
-        <ShareImageWrapper id="share" className={!withRender && 'no-bg'} style={{fontFamily: "'Lato',sans-serif"}}>
+        <ShareImageWrapper
+          id="share"
+          className={!withRender && 'no-bg'}
+          style={{ fontFamily: "'Lato',sans-serif" }}
+        >
           <WrapperTitle>Hey, check out...</WrapperTitle>
           <AvatarWrapper>
             <CandidateAvatar

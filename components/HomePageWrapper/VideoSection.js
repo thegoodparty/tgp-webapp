@@ -4,20 +4,26 @@ import YouTubeLazyPlayer from '../shared/YouTubeLazyPlayer';
 
 const Wrapper = styled.div`
   .yt-lite {
-    background: #f3f3f3 url(https://assets.goodparty.org/tgp-party-poster.jpg)
-      center center no-repeat !important;
-    background-size: contain !important;
-    height: 50vh;
+    //background: #fff url(https://assets.goodparty.org/tgp-party-poster.jpg)
+    //  center center no-repeat !important;
+    //background-size: contain !important;
+    height: 40vh;
+    margin-top: 16px;
+    margin-bottom: 24px;
     &::before {
       display: none;
+    }
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.xl}) {
+      margin-top: 70px;
     }
   }
 `;
 
 const VideoSection = () => {
   return (
-    <Wrapper>
-      <YouTubeLazyPlayer id="qYYlOQbozZ8" />
+    <Wrapper id="homepage-video-desktop">
+      <YouTubeLazyPlayer id="ssU2S8clVPo" />
     </Wrapper>
   );
 };

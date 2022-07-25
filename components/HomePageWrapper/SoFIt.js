@@ -1,25 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { FaTwitter, FaTiktok, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
-import Row from '../shared/Row';
-import { HomePageContext } from '../../containers/HomePage';
-import It from '../shared/It';
+import MaxWidth from '../shared/MaxWidth';
 
 const Wrapper = styled.section`
-  padding: 60px 0 0;
-`;
-
-const H2 = styled.h2`
-  font-size: 48px;
-  font-weight: 900;
-  margin: 0 0 40px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    font-size: 64px;
-    margin: 0 0 60px;
-  }
+  background-color: #f1f1f1;
 `;
 
 const Banner = styled.div`
@@ -42,111 +28,28 @@ const Banner = styled.div`
   }
 `;
 
-const GrayGradient = styled.div`
-  display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(241, 241, 241, 1) 50%,
-      rgba(241, 241, 241, 0) 100%
-    );
-  }
-`;
-
 const Title = styled.div`
   font-size: 40px;
   font-weight: 900;
-  margin-bottom: 15px;
 `;
 
-const Icon = styled.span`
-  display: inline-block;
-  margin: 8px 14px 0;
-  font-size: 28px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    margin: 0 14px;
-  }
-`;
-
-const Inner = styled.div`
-  padding: 0 12px;
-  text-align: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    display: flex;
-    padding: 0 24px;
-    align-items: center;
-    text-align: left;
-  }
-`;
-
-const Relative = styled.div`
-  position: relative;
-`;
-
-const SoFIt = ({
-  noTitle = false,
-  openModalCallback = () => {},
-  openShareModalCallback = () => {},
-}) => {
+const SoFIt = ({ openModalCallback = () => {} }) => {
   return (
     <Wrapper id="host">
-      {!noTitle && (
-        <H2>
-          So, let&apos;s do it... to <It />
-        </H2>
-      )}
-      <Banner
-        style={{ backgroundImage: 'url(/images/homepage/banner-bg-1.png)' }}
-      >
-        <Title>Host a #goodparty</Title>
-        We’ll send you #goodparty stickers and more!
-        <br />
-        <BlackButton style={{ marginTop: '40px' }} onClick={openModalCallback}>
-          <InnerButton>Host a #goodparty</InnerButton>
-        </BlackButton>
-      </Banner>
-      <Banner
-        style={{ backgroundImage: 'url(/images/homepage/banner-bg2.png)' }}
-      >
-        {' '}
-        <GrayGradient />
-        <Relative>
-          <Title> Follow @goodparty</Title>
-          Follow @goodparty to stay in the loop and unlock good times!
-          <br />
+      <MaxWidth>
+        <Banner
+          style={{ backgroundImage: 'url(/images/homepage/banner-bg-1.png)' }}
+        >
+          <Title>So what’s next?</Title>
           <BlackButton
             style={{ marginTop: '40px' }}
-            onClick={openShareModalCallback}
+            onClick={openModalCallback}
+            id="what-do-i-do-button"
           >
-            <Inner>
-              Post a #goodparty{' '}
-              <Row>
-                <Icon>
-                  <FaTiktok />
-                </Icon>
-                <Icon>
-                  <FaInstagram />
-                </Icon>
-                <Icon>
-                  <FaFacebook />
-                </Icon>
-                <Icon>
-                  <FaTwitter />
-                </Icon>
-              </Row>
-            </Inner>
+            <InnerButton>Get Involved</InnerButton>
           </BlackButton>
-        </Relative>
-      </Banner>
+        </Banner>
+      </MaxWidth>
     </Wrapper>
   );
 };

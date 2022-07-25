@@ -8,8 +8,9 @@ export default function Candidate({ ssrState }) {
 export async function getServerSideProps(context) {
   // x-real-ip
   // const ip = req.connection.remoteAddress
-  const { NameId } = context.params;
-  const id = NameId?.length > 1 ? NameId[1] : false;
+  const { NameIdTab } = context.params;
+  const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
+  const tab = NameIdTab?.length > 2 ? NameIdTab[2] : 'Feed';
   if (id && id !== 'undefined' && typeof id !== 'undefined') {
     const api = tgpApi.newCandidate.find;
     const url = `${api.url}?id=${id}&allFields=true`;
@@ -23,14 +24,6 @@ export async function getServerSideProps(context) {
       };
     }
 
-    const api3 = tgpApi.supportCandidate.candidateSupports;
-    const res3 = await fetch(`${api3.url}?candidateId=${id}`);
-    let candidateSupports = [];
-    let total = 0;
-    try {
-      ({ candidateSupports, total } = await res3.json());
-    } catch (e) {}
-
     return {
       props: {
         ssrState: {
@@ -38,9 +31,10 @@ export async function getServerSideProps(context) {
           candidatePositions: candidate.candidatePositions || [],
           similarCampaigns: candidate.similarCampaigns || [],
           id,
-          candidateSupports,
-          supportCount: total,
           userAgent: context.req.headers['user-agent'],
+          tab,
+          followers: candidate.followers,
+          feed: candidate.feed,
         },
       }, // will be passed to the page component as props
     };

@@ -16,6 +16,11 @@ export const generateApi = (base) => ({
     method: 'GET',
   },
 
+  feed: {
+    url: `${base}listening/search-results`,
+    method: 'GET',
+  },
+
   findCandidate: {
     url: `${base}candidates/find`,
     method: 'GET',
@@ -352,7 +357,6 @@ export const generateApi = (base) => ({
     find: {
       url: `${base}new-candidate`,
       method: 'GET',
-      withAuth: true,
     },
     findInactive: {
       url: `${base}new-candidate-inactive`,

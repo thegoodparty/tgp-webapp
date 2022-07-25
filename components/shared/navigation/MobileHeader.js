@@ -111,7 +111,7 @@ function MobileHeader({ user }) {
       </Wrapper>
       <MenuWrapper className={open && 'open'}>
         <Link href="/" className="text-center" passHref>
-          <a>
+          <a id="mobile-nav-logo">
             <Logo
               src="/images/black-logo.svg"
               alt="The Good Party"
@@ -127,7 +127,7 @@ function MobileHeader({ user }) {
               logEvent('Link', 'Home', 'Top Nav');
             }}
           >
-            <a>Home</a>
+            <a id="mobile-nav-home">Home</a>
           </Link>
         </TopLink>
         {HEADER_LINKS.map((link) => (
@@ -139,13 +139,13 @@ function MobileHeader({ user }) {
                 logEvent('Link', link.label, 'Top Nav');
               }}
             >
-              <a>{link.label}</a>
+              <a id={`mobile-nav-${link.label}`}>{link.label}</a>
             </Link>
           </TopLink>
         ))}
         {user?.name ? (
           <Link href="/profile" passHref>
-            <a style={{ width: '100%' }}>
+            <a style={{ width: '100%' }} id="mobile-nav-profile">
               <PushAvatarWrapper className={path === '/profile' && 'active'}>
                 <UserAvatar user={user} />
                 <div style={{ marginLeft: 6 }}>{user.name}</div>
@@ -160,7 +160,7 @@ function MobileHeader({ user }) {
                 passHref
                 className={path === '/register' && 'active'}
               >
-                <a>Sign Up</a>
+                <a id="mobile-nav-register">Sign Up</a>
               </Link>
             </TopLink>
             <TopLink>
@@ -169,7 +169,7 @@ function MobileHeader({ user }) {
                 passHref
                 className={path === '/login' && 'active'}
               >
-                <a>Log In</a>
+                <a id="mobile-nav-login">Log In</a>
               </Link>
             </TopLink>
           </>

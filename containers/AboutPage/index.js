@@ -26,7 +26,6 @@ export function AboutPage({ ssrState }) {
   const featuredCandidates = ssrState.candidates;
 
   const childProps = { featuredCandidates };
-  console.log('featuredCandidates', featuredCandidates)
 
   return (
     <AboutPageContext.Provider value={childProps}>
