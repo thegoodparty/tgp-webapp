@@ -40,7 +40,7 @@ const SoFIt = ({ openModalCallback = () => {} }) => {
         <Banner
           style={{ backgroundImage: 'url(/images/homepage/banner-bg-1.png)' }}
         >
-          <Title>What do I do now?</Title>
+          <Title>So what’s next?</Title>
           <BlackButton
             style={{ marginTop: '40px' }}
             onClick={openModalCallback}

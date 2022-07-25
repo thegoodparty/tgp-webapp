@@ -8,15 +8,19 @@ import CandidatesRoundPreview from '../shared/CandidateRoundPreview';
 
 const Wrapper = styled.section`
   padding: 20px 0 60px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    padding-top: 60px;
+  }
 `;
 
 const H2 = styled.h2`
-  font-size: 35px;
+  font-size: 21px;
   font-weight: 900;
   margin: 0 0 18px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    font-size: 64px;
+    font-size: 42px;
     margin: 0 0 30px;
   }
 `;
@@ -27,6 +31,7 @@ const Content = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     margin-bottom: 50px;
+    font-size: 22px;
   }
 `;
 
@@ -46,17 +51,20 @@ const CandidatesSection = () => {
   return (
     <Wrapper>
       {' '}
-      <H2>What does partying accomplish?</H2>
+      <H2>
+        We meme to beat <span className="red">Red</span> and{' '}
+        <span className="blue">Blue</span>{' '}
+        <span role="img" aria-label="Money Bag">
+          💰
+        </span>
+      </H2>
       <Content>
-        When we get enough @goodparty people, we’ll be able to elect some good
-        people who will serve us, instead of <It />.
-        <br />
-        <br />
-        Meet some{' '}
+        Grow the movement to get good indies elected by following{' '}
         <Link href="/candidates" passHref>
-          <a id="good-certified" className="underline">Good Certified</a>
-        </Link>{' '}
-        candidates:
+          <a id="good-certified" className="underline">
+            Good Certified candidates
+          </a>
+        </Link>
       </Content>
       <Grid container spacing={4}>
         {(homepageCandidates || []).map((candidate) => (

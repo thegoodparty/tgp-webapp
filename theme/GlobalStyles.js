@@ -107,6 +107,17 @@ const GlobalStyles = createGlobalStyle`
   .MuiPopover-paper.MuiPaper-root {
     overflow: visible !important;
   }
+  
+  .relative {
+    position:relative;
+  }
+  
+  .red {
+    color: #bf0020;
+  }
+  .blue {
+    color: #0027dc;
+  }
 `;
 
 export default GlobalStyles;

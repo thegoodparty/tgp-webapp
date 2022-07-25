@@ -9,7 +9,6 @@ import Hero from './Hero';
 import MaxWidth from '../shared/MaxWidth';
 import SocialSection from './SocialSection';
 import GrayParty from './GrayParty';
-import Anatomy from './Anatomy';
 import SoFIt from './SoFIt';
 import Modal from '../shared/Modal';
 import ModalInner from './ModalInner';
@@ -62,7 +61,6 @@ const HomePageWrapper = () => {
         openShareModalCallback={handleOpenShareModal}
       />
       <MaxWidth style={{ padding: '0 24px' }}>
-        <Anatomy />
         <CandidatesSection />
       </MaxWidth>
       <SoFIt openModalCallback={handleOpenInvolvedModal} />

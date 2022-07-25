@@ -50,7 +50,7 @@ export function HomePage({
   useInjectSaga({ key: 'homePage', saga });
   useInjectSaga({ key: 'registerPage', saga: registerSaga });
 
-  const utmExperiment = getUtmExperiment(utmContent, utmSource);
+  // const utmExperiment = getUtmExperiment(utmContent, utmSource);
 
   // const [experimentVariant, setExperimentVariant] = useState('0');
   // useEffect(() => {
@@ -66,7 +66,7 @@ export function HomePage({
     registerCallback,
     showFeedbackCallback,
     user,
-    utmExperiment,
+    // utmExperiment,
     showInitModal,
     totalFollowers,
     feed,

@@ -22,7 +22,7 @@ const Feed = () => {
   return (
     <Wrapper>
       <Top>
-        Posts from <strong>#goodparty</strong> Tuesdays
+        Posts from <strong>#goodparty</strong> movement
       </Top>
       <Grid container spacing={2}>
         {(posts || []).map((post) => (

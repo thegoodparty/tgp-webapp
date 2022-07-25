@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
-import { Link as ScrollLink } from 'react-scroll';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Grid from '@material-ui/core/Grid';
 import MaxWidth from '../shared/MaxWidth';
-import It from '../shared/It';
 import Feed from './Feed';
 
 const Wrapper = styled.section`
@@ -19,11 +19,15 @@ const Wrapper = styled.section`
 
 const H2 = styled.h2`
   margin: 0 0 40px;
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 900;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    font-size: 64px;
+    font-size: 42px;
+  }
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.xl}) {
+    font-size: 48px;
   }
 `;
 
@@ -46,15 +50,9 @@ const Yellow = styled.div`
   background-color: #ffe600;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    bottom: 10px;
-    height: 28px;
+    bottom: 4px;
+    height: 20px;
   }
-`;
-
-const LinkScroll = styled.div`
-  text-decoration: underline;
-  cursor: pointer;
-  font-weight: 900;
 `;
 
 const Accomplish = styled.div`
@@ -62,7 +60,8 @@ const Accomplish = styled.div`
   text-align: center;
 `;
 
-const GrayParty = ({ openModalCallback, openShareModalCallback }) => {
+const GrayParty = ({ openShareModalCallback }) => {
+  const router = useRouter();
   return (
     <Wrapper>
       <MaxWidth>
@@ -72,20 +71,24 @@ const GrayParty = ({ openModalCallback, openShareModalCallback }) => {
           </Grid>
           <Grid item xs={12} lg={5}>
             <H2 data-cy="party-on">
-              We party on{' '}
+              We tag #goodparty{' '}
               <Relative>
-                <Up>Tuesdays.</Up>
+                <Up> on Tuesdays</Up>
                 <Yellow />
-              </Relative>
-              <br />
-              Because <It /> doesn’t want us to.
+              </Relative>{' '}
+              to grow the movement
             </H2>
             <Accomplish>
-              <ScrollLink to="anatomy" duration={350} smooth offset={-90}>
-                <LinkScroll data-cy="accomplish-label">
-                  What does partying accomplish?
-                </LinkScroll>
-              </ScrollLink>
+              <Link
+                href={`${router.asPath}?article=30a4bjTYmsAtXR5vgXLRLJ`}
+                passHref
+              >
+                <a className="no-underline">
+                  <BlackButton className="outlined">
+                    <InnerButton>Why Tuesdays?</InnerButton>
+                  </BlackButton>
+                </a>
+              </Link>
             </Accomplish>
           </Grid>
         </Grid>
