@@ -81,7 +81,7 @@ const Overlay = styled.div`
     rgba(255, 255, 255, 0) 40%,
     rgba(255, 255, 255, 0) 100%
   );
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 900;
   color: #fff;
   display: flex;
