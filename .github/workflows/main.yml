@@ -5,10 +5,10 @@ jobs:
   ui-chrome-tests:
     runs-on: ubuntu-latest
     container: cypress/browsers:node14.19.0-chrome100-ff99-edge
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3, 4, 5]
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     containers: [1, 2, 3, 4, 5]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,8 +27,8 @@ jobs:
           install: false
           record: true
           browser: chrome
-          parallel: true
-          group: 'UI - Chrome'
+          # parallel: true
+          # group: 'UI - Chrome'
         env:
           CYPRESS_RECORD_KEY: 'fad4fb6b-1318-4ba0-883b-8606925d150d'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
