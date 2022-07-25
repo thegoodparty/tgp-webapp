@@ -30,16 +30,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Cypress install
+        uses: cypress-io/github-action@v4
+        with:
+          # Disable running of tests within install job
+          runTests: false
+
       - name: 'Run Dev Server'
         run: yarn run dev-dev-pm2
 
       # - name: 'UI Tests - Chrome'
       # run: yarn run dev-test
-      - name: Cypress install
+      - name: UI Tests - Chrome
         uses: cypress-io/github-action@v4
         with:
           # Disable running of tests within install job
           # runTests: false
+          install: false
           record: true
 
         env:
