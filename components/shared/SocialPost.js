@@ -202,7 +202,7 @@ const SocialPost = ({ post }) => {
                 <span>{commentsCount}</span>
               </Retweet>
             )}
-            {engagement !== null && (
+            {engagement !== null && engagement !== 0 && (
               <Retweet>
                 <div>
                   <FaRetweet />
