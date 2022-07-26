@@ -26,10 +26,11 @@ function loadHomepageCandidatesActionError(error) {
   };
 }
 
-function subscribeEmailAction(email) {
+function subscribeEmailAction(email, name) {
   return {
     type: types.SUBSCRIBE_EMAIL,
     email,
+    name,
   };
 }
 
