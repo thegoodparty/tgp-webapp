@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import TextField from '@material-ui/core/TextField';
 import Link from 'next/link';
 
 import { MdClose } from 'react-icons/md';
@@ -10,108 +11,120 @@ import EmailInput, { isValidEmail } from '../shared/EmailInput';
 import { getUserCookie } from '../../helpers/cookieHelper';
 
 const Wrapper = styled.div`
-  padding: 36px;
+  padding: 36px 0;
   background-color: #fff;
-  border-radius: 4px;
-  max-width: 400px;
+  border-radius: 12px;
+  max-width: 600px;
   min-width: 300px;
   font-size: 16px;
+  position: relative;
 
   .MuiInputBase-input {
     font-size: 14px !important;
   }
 `;
 
+const Padder = styled.div`
+  padding: 0 36px;
+`;
+
 const CloseWrapper = styled.div`
   display: inline-block;
-  padding: 0 0 12px 12px;
+  padding: 16px;
   cursor: pointer;
   color: #d3d3d3;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 const Title = styled.div`
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 900;
 `;
 
 const SubTitle = styled.div`
   font-weight: 900;
-  margin-bottom: 4px;
-  margin-top: 30px;
-`;
-const P = styled.div`
-  margin-bottom: 16px;
+  padding-bottom: 35px;
+  margin-top: 20px;
+  font-size: 18px;
 `;
 
-const Button = styled(BlackButton)``;
+const Line = styled.div`
+  margin-bottom: 35px;
+  border-top: solid 1px #ececec;
+`;
 
-const InvolvedModalInner = ({
-  closeModalCallback,
-  openRegisterModalCallback,
-}) => {
+const InvolvedModalInner = ({ closeModalCallback }) => {
   const user = getUserCookie(true);
+  const [name, setName] = useState(user ? `${user.name}` : '');
   const [email, setEmail] = useState(user ? user.email : '');
   const { subscribeEmailCallback } = useContext(HomePageContext);
-  const handleHost = () => {
-    closeModalCallback();
-    openRegisterModalCallback();
-  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const canSubmit = () => isValidEmail(email);
+  const canSubmit = () => isValidEmail(email) && name !== '' && name.length > 2;
 
-  const submitEmail = () => {
-    if (isValidEmail(email)) {
-      subscribeEmailCallback(email);
+  const submitForm = () => {
+    if (canSubmit()) {
+      subscribeEmailCallback(email, name);
     }
   };
   return (
     <Wrapper>
-      <div className="text-right">
-        <CloseWrapper onClick={closeModalCallback}>
-          <MdClose />
-        </CloseWrapper>
-      </div>
-      <Title>Get Involved</Title>
-      <SubTitle>Host a #goodparty:</SubTitle>
-      <P>
-        Use your freedom of assembly when you host and post a party with your
-        friends.
-      </P>
-
-      <BlackButton onClick={handleHost} style={{ padding: '5px' }} id="involved-modal-learn-more">
-        <InnerButton>Learn more</InnerButton>
-      </BlackButton>
-
-      <SubTitle>Follow Good Candidates:</SubTitle>
-      <P>
-        Discover indie and third party candidates fighting for issues you care
-        about
-      </P>
-      <Link href="/candidates" passHref>
-        <a className="no-underline">
-          <BlackButton style={{ padding: '5px' }} id="involved-modal-find-candidates">
-            <InnerButton>Find Candidates</InnerButton>
+      <CloseWrapper onClick={closeModalCallback}>
+        <MdClose />
+      </CloseWrapper>
+      <Padder>
+        <Title>Get Involved</Title>
+        <SubTitle>
+          Subscribe to get our updates!{' '}
+          <span role="img" aria-label="heart" style={{ color: 'red' }}>
+            ❤
+          </span>{' '}
+          <span role="img" aria-label="Party">
+            🎉️
+          </span>
+        </SubTitle>
+      </Padder>
+      <Line />
+      <Padder>
+        <form noValidate onSubmit={(e) => e.preventDefault()}>
+          <TextField
+            fullWidth
+            primary
+            label="Name"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            error={name != '' && name.length < 2}
+          />
+          <br />
+          <br />
+          <EmailInput
+            hideIcon
+            onChangeCallback={handleEmailChange}
+            value={email}
+          />
+          <BlackButton
+            disabled={!canSubmit()}
+            onClick={submitForm}
+            id="involved-modal-submit-email"
+            type="submit"
+            fullWidth
+          >
+            <InnerButton>Submit</InnerButton>
           </BlackButton>
-        </a>
-      </Link>
-
-      <SubTitle>Stay in the know:</SubTitle>
-      <P>
-        Subscribe to stay in the loop about the movement, campaign progress, and
-        more!
-      </P>
-      <EmailInput hideIcon onChangeCallback={handleEmailChange} value={email} />
-      <BlackButton
-        disabled={!canSubmit()}
-        onClick={submitEmail}
-        style={{ padding: '5px' }}
-        id="involved-modal-submit-email"
-      >
-        <InnerButton>Submit</InnerButton>
-      </BlackButton>
+        </form>
+        <br />
+        <br />
+        <div className="text-center">
+          <Link href="/candidates" passHref>
+            <a>Find Good Candidates</a>
+          </Link>
+        </div>
+      </Padder>
     </Wrapper>
   );
 };

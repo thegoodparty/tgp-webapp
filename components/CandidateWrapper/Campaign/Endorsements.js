@@ -32,8 +32,8 @@ const Truncated = styled.div`
   display: block;
   display: -webkit-box;
   max-width: 100%;
-  height: 43px;
-  -webkit-line-clamp: 2;
+  height: 64px;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -56,9 +56,9 @@ function Endorsements() {
   return (
     <Wrapper>
       <Title data-cy="endorsement-title">Featured Endorsements</Title>
-      <Grid container spacing={8}>
+      <Grid container spacing={2}>
         {endorsements.map((item) => (
-          <Grid item xs={12} md={6} key={item.id} data-cy="endorsement-item">
+          <Grid item xs={12}  key={item.id} data-cy="endorsement-item">
             <EndorsementWrapper>
               {item.image && (
                 <div>

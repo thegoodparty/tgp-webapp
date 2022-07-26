@@ -124,8 +124,8 @@ function mapDispatchToProps(dispatch) {
     loadFeedCallback: () => {
       dispatch(actions.loadFeedAction());
     },
-    subscribeEmailCallback: (email) => {
-      dispatch(actions.subscribeEmailAction(email));
+    subscribeEmailCallback: (email, name) => {
+      dispatch(actions.subscribeEmailAction(email, name));
     },
   };
 }

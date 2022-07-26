@@ -115,14 +115,18 @@ const CandidateAvatar = ({
   centered = false,
   partyBadge = false,
   hideBadge = false,
+  candidate,
 }) => {
   let PartyImg = getPartyImage(partyBadge, party, hideBadge);
+  const { color } = candidate;
+  const brightColor = color?.color ? color.color : '#000';
+
   return (
     <ChallengerAvatarWrapper
       className={size}
       style={centered ? { margin: '0 auto' } : {}}
     >
-      <ImageWrapper>
+      <ImageWrapper style={{ borderColor: brightColor }}>
         {size === 'small' ? (
           <LazyLoadImage
             src={avatar || 'https://assets.goodparty.org/gray-heart.png'}
@@ -136,8 +140,9 @@ const CandidateAvatar = ({
           <Img
             className={size}
             style={{
-              backgroundImage: `url(${avatar ||
-                'https://assets.goodparty.org/gray-heart.png'})`,
+              backgroundImage: `url(${
+                avatar || 'https://assets.goodparty.org/gray-heart.png'
+              })`,
             }}
           />
         )}
@@ -145,8 +150,9 @@ const CandidateAvatar = ({
       {PartyImg && (
         <PartyIcon
           src={PartyImg}
-          className={`full-image ${size} party-${party} ${partyBadge &&
-            'no-bg'}`}
+          className={`full-image ${size} party-${party} ${
+            partyBadge && 'no-bg'
+          }`}
           alt="badge"
         />
       )}

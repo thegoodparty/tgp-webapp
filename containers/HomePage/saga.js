@@ -17,13 +17,14 @@ function* loadHomepageCandidates() {
   }
 }
 
-function* subscribeEmail({ email }) {
+function* subscribeEmail({ email, name }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Subscribing Your Email'));
     const api = tgpApi.subscribeEmail;
     const payload = {
       email: encodeURIComponent(email),
       uri: window.location.href,
+      name,
     };
     yield call(requestHelper, api, payload);
     yield put(

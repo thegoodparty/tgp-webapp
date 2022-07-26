@@ -87,7 +87,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   if (
     candidateRoute &&
     router.query['NameIdTab'] &&
-    router.query['NameIdTab'].length === 3
+    router.query['NameIdTab'].length >= 2
   ) {
     id = router.query['NameIdTab'][1];
   }

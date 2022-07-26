@@ -31,9 +31,11 @@ export function ShareImageContainer({
   let imageAsBase64;
   let candidateSupports;
   let total;
+  let followers;
 
   if (ssrState) {
-    ({ candidate, imageAsBase64, candidateSupports, total } = ssrState);
+    ({ candidate, imageAsBase64, candidateSupports, total, followers } =
+      ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
 
@@ -43,6 +45,7 @@ export function ShareImageContainer({
     imageAsBase64,
     candidateSupports,
     total,
+    followers,
   };
   return (
     <div>
@@ -66,15 +69,12 @@ const mapStateToProps = createStructuredSelector({});
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    shareImageCallback: candidate => {
+    shareImageCallback: (candidate) => {
       dispatch(actions.shareImageAction(candidate));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(ShareImageContainer);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import {
@@ -23,6 +23,9 @@ const Post = styled.div`
   height: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 5px 5px #f2f2f2;
 `;
 
 const Icon = styled.div`
@@ -43,6 +46,10 @@ const Icon = styled.div`
 
   &.INSTAGRAM {
     color: #833ab4;
+  }
+
+  &.ONLINE_NEWS {
+    display: none;
   }
 `;
 
@@ -106,6 +113,11 @@ const Retweet = styled.div`
 
 const SocialPost = ({ post }) => {
   const router = useRouter();
+  const [hasImage, setHasImage] = useState(
+    post && post.images && post.images.length > 0,
+  );
+
+  // console.log('hasImage', hasImage, post.images, post && post.images && post.images.length > 0)
 
   if (!post || !post.content) {
     return <></>;
@@ -123,7 +135,6 @@ const SocialPost = ({ post }) => {
     source,
     commentsCount,
   } = post;
-  const hasImage = images.length > 0;
 
   const shortContent = content.substring(0, 140);
 
@@ -151,6 +162,9 @@ const SocialPost = ({ post }) => {
     icon = <FaFacebookF />;
   }
 
+  const handleError = (a, b, c) => {
+    setHasImage(false);
+  };
   return (
     <a
       className="no-underline"
@@ -209,7 +223,7 @@ const SocialPost = ({ post }) => {
             </Link>
           </div>
         </Bottom>
-        {hasImage && <Img src={post.images[0].url} />}
+        {hasImage && <Img src={images[0].url} onError={handleError} />}
       </Post>
     </a>
   );
