@@ -80,7 +80,7 @@ function SocialStats() {
           </Grid>
           <Grid item xs={4}>
             <Number>
-              {numberFormatter(days)} day{days !== 1}
+              {numberFormatter(days)} day{days !== 1 ? 's' : ''}
             </Number>
             until election
           </Grid>

@@ -23,6 +23,9 @@ const Post = styled.div`
   height: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  box-shadow: 5px 5px #f2f2f2;
 `;
 
 const Icon = styled.div`
@@ -43,6 +46,10 @@ const Icon = styled.div`
 
   &.INSTAGRAM {
     color: #833ab4;
+  }
+
+  &.ONLINE_NEWS {
+    display: none;
   }
 `;
 
