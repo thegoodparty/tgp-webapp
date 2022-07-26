@@ -37,13 +37,14 @@ const CandidateName = styled(Body19)`
 `;
 
 const PartyName = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray7};
+  color: #000;
   text-transform: uppercase;
   margin-top: 3px;
   margin-bottom: 3px;
   text-align: left;
-  font-size: 11px;
-  line-height: 15px;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0;
 `;
 
 const InnerButton = styled.div`
@@ -63,15 +64,20 @@ const NameWrapper = styled.div`
 `;
 
 const Endorsed = styled(Body13)`
-  color: ${({ theme }) => theme.colors.gray4};
+  color: #000;
   text-align: left;
   padding-left: 5px;
+  letter-spacing: 0;
+`;
+
+const Bold = styled.span`
+  font-weight: 900;
 `;
 
 const WrapperTitle = styled(Body19)`
   && {
     font-style: normal;
-    font-weight: 800;
+    font-weight: 900;
     line-height: 30px;
     color: #292936;
     margin-bottom: 15px;
@@ -85,17 +91,8 @@ function ShareImage({
   withRender = true,
   followers,
 }) {
-  const {
-    firstName,
-    lastName,
-    race,
-    party,
-    otherParty,
-    isDraft,
-    draftOffice,
-    color,
-    votesNeeded,
-  } = candidate;
+  const { firstName, lastName, race, party, otherParty, color, votesNeeded } =
+    candidate;
   const brightColor = color?.color ? color.color : '#000';
 
   let thisWeek = 0;
@@ -151,17 +148,14 @@ function ShareImage({
               <CandidateName className={longName && 'long-name'}>
                 {firstName} {lastName}
               </CandidateName>
-              {isDraft && draftOffice !== '' ? (
-                draftOffice
-              ) : (
-                <>
-                  <PartyName>
-                    {partyResolver(party, otherParty)}{' '}
-                    {party !== 'I' ? 'Party' : ''} Candidate for
-                  </PartyName>
-                  <PartyName>{race}</PartyName>
-                </>
-              )}
+
+              <PartyName>
+                {partyResolver(party, otherParty)}{' '}
+                {party !== 'I' ? 'Party' : ''} Candidate for
+              </PartyName>
+              <PartyName>
+                <Bold>{race}</Bold>
+              </PartyName>
             </NameWrapper>
           </AvatarWrapper>
           <Endorsed>
