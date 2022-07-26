@@ -1,13 +1,30 @@
 name: Cypress Tests
 
 on: pull_request
+
+# jobs:
+#   cypress-run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       # Install NPM dependencies, cache them correctly
+#       # and run all Cypress tests
+#       - name: Cypress run
+#         uses: cypress-io/github-action@v4
+#         with:
+#           # build: npm run build
+#           start: npm start
+#           # cypress: npm run cypress:run:dev
+
 jobs:
   ui-chrome-tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container: cypress/browsers:node14.19.0-chrome100-ff99-edge
     # strategy:
     #   fail-fast: false
     #   matrix:
+    #     # run copies of the current job in parallel
     #     containers: [1, 2, 3, 4, 5]
     steps:
       - name: Checkout
@@ -16,21 +33,50 @@ jobs:
       - name: Cypress install
         uses: cypress-io/github-action@v4
         with:
+          # Disable running of tests within install job
           runTests: false
 
       - name: 'Run Dev Server'
         run: yarn run dev-dev-pm2
 
+      # - name: 'UI Tests - Chrome'
+      # run: yarn run dev-test
       - name: UI Tests - Chrome
         uses: cypress-io/github-action@v4
         with:
+          # Disable running of tests within install job
+          # runTests: false
           install: false
           record: true
-          browser: chrome
-          # parallel: true
-          # group: 'UI - Chrome'
+
         env:
           CYPRESS_RECORD_KEY: 'fad4fb6b-1318-4ba0-883b-8606925d150d'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_BASE_URL: http://localhost:4000
           CYPRESS_API_BASE: https://api-dev.goodparty.org/api/v1/
+      # - name: Cypress Install
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     # we have already installed all dependencies above
+      #     runTests: false
+
+      # - name: 'Run Dev Server'
+      #   run: yarn run dev-dev-pm2
+      # - name: Run Cypress
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     # we have already installed all dependencies above
+      #     install: false
+      #     start: yarn run dev-test
+      #     wait-on: 'http://localhost:4000'
+      #     wait-on-timeout: 120
+      #     browser: chrome
+      #     record: true
+      #     parallel: true
+      #     group: 'UI - Chrome'
+      #   env:
+      #     CYPRESS_RECORD_KEY: 'fad4fb6b-1318-4ba0-883b-8606925d150d'
+      # Recommended: pass the GitHub token lets this action correctly
+      # determine the unique run id necessary to re-run the checks
+      # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# fad4fb6b-1318-4ba0-883b-8606925d150d
