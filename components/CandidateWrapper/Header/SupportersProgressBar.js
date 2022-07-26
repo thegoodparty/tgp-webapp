@@ -18,15 +18,11 @@ const ProgressBarWrapper = styled.div`
 
 const BarBg = styled.div`
   margin: 10px 0;
-  width: 80%;
   position: relative;
   height: 22px;
   background-color: #f0f0f0;
   border-radius: 22px;
-
-  &.full-width {
-    width: 100%;
-  }
+  width: 100%;
 `;
 
 const Bar = styled.div`
@@ -38,10 +34,6 @@ const Bar = styled.div`
   left: 0;
   width: 3%;
   transition: width 0.5s;
-`;
-
-const BarBody11 = styled(Body11)`
-  color: ${({ theme }) => theme.colors.gray7};
 `;
 
 const BarBody9 = styled(Body9)`
@@ -83,57 +75,46 @@ const Total = styled.div`
 const SupportersProgressBar = ({
   peopleSoFar,
   votesNeeded,
-  userState,
+  peopleThisPeriod,
+  days,
   color = '#000',
-  showSupporters = true,
-  alignLeft = false,
-  suffixText,
-  prefixText = 'likely voters for top candidate',
-  showSuffix = true,
-  fullWidth = false,
-  withAchievement = false,
+  withAchievement = true,
 }) => {
-  let progress = 0;
-  if (peopleSoFar && votesNeeded) {
-    progress = (peopleSoFar * 100) / votesNeeded;
+  const weeksToElection = Math.floor(days / 7);
+  console.log('weeksToElection', weeksToElection);
+  const neededToWin = votesNeeded - peopleSoFar;
+  console.log('neededToWin', neededToWin);
+  let neededPerWeek;
+  if (weeksToElection && weeksToElection !== 0) {
+    neededPerWeek = Math.floor(neededToWin / weeksToElection);
+  }
+  console.log('neededPerWeek', neededPerWeek);
+  console.log('peopleThisPeriod', peopleThisPeriod);
+  let neededThisWeek = neededPerWeek - peopleThisPeriod;
+
+  let progress;
+  if (neededThisWeek <= 0) {
+    progress = 100;
+  } else {
+    progress = (peopleThisPeriod * 100) / neededThisWeek;
   }
   if (progress > 100) {
     progress = 100;
   }
-  const achievements = achievementsHelper(peopleSoFar);
   return (
-    <ProgressBarWrapper
-      className={alignLeft ? 'left' : ''}
-      data-cy="supporter-progress"
-    >
-      {showSupporters && (
-        <BarBody11 data-cy="people-so-far">
-          {numberFormatter(peopleSoFar)} {prefixText}
-        </BarBody11>
-      )}
-      <BarBg className={`bar-bg ${fullWidth && 'full-width'}`}>
+    <ProgressBarWrapper data-cy="supporter-progress">
+      <BarBg>
         <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
-        <Total>{numberFormatter(votesNeeded)}</Total>
+        <Total>{numberFormatter(neededPerWeek)}</Total>
       </BarBg>
-      {showSuffix && (
-        <BarBody9 data-cy="votes-needed">
-          {`${progress.toFixed(2)}% of `}
-          <strong>{numberFormatter(votesNeeded)}</strong> votes needed to win
-          {userState && <> IN {userState.toUpperCase()}</>}
-          {suffixText}
-        </BarBody9>
-      )}
-      {withAchievement && (
-        <AchievementWrapper>
-          <Icon src="/images/icons/achievement.svg" alt="achievement" />
-          <div>
-            Let’s get to{' '}
-            <strong>{numberFormatter(achievements.nextStep)} followers</strong>,
-            so this campaign has more followers than{' '}
-            <strong>all the competitors combined.</strong>
-          </div>
-        </AchievementWrapper>
-      )}
+      <AchievementWrapper>
+        <Icon src="/images/icons/achievement.svg" alt="achievement" />
+        <div>
+          If we can get to{' '}
+          <strong>{numberFormatter(neededPerWeek)} followers this week</strong>,
+          we’ll be on track to win on election day!
+        </div>
+      </AchievementWrapper>
     </ProgressBarWrapper>
   );
 };

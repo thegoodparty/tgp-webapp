@@ -10,7 +10,6 @@ import Grid from '@material-ui/core/Grid';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import SupportersProgressBar from './SupportersProgressBar';
-import { achievementsHelper } from '../../../helpers/achievementsHelper';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { numberFormatter } from '../../../helpers/numberHelper';
 import { daysTill } from '../../../helpers/dateHelper';
@@ -54,20 +53,25 @@ const ButtonWrapper = styled.div`
 `;
 
 function SocialStats() {
-  const { supportCount, candidate, followers } = useContext(CandidateContext);
-  const achievements = achievementsHelper(followers?.thisWeek);
-  const { color, raceDate } = candidate;
+  const { candidate, followers } = useContext(CandidateContext);
+  let thisWeek = 0;
+  let lastWeek = 0;
+  if (followers) {
+    thisWeek = followers.thisWeek;
+    lastWeek = followers.lastWeek;
+  }
+  const { color, raceDate, votesNeeded } = candidate;
   const brightColor = color?.color ? color.color : '#000';
   const days = daysTill(raceDate);
 
-  const diff = followers?.thisWeek - followers?.lastWeek;
+  const diff = thisWeek - lastWeek;
 
   return (
     <Wrapper>
       <Inner>
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <Number>{numberFormatter(followers?.thisWeek)}</Number>
+            <Number>{numberFormatter(thisWeek)}</Number>
             total followers
           </Grid>
           <Grid item xs={4}>
@@ -86,13 +90,11 @@ function SocialStats() {
           </Grid>
         </Grid>
         <SupportersProgressBar
-          showSupporters={false}
-          votesNeeded={achievements.nextStep}
-          peopleSoFar={followers?.thisWeek}
-          fullWidth
-          showSuffix={false}
-          withAchievement
+          votesNeeded={votesNeeded}
+          peopleSoFar={thisWeek}
+          peopleThisPeriod={diff}
           color={brightColor}
+          days={days}
         />
 
         <ButtonWrapper>
