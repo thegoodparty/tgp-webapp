@@ -142,32 +142,32 @@ context('Candidate', async () => {
           //       cy.get('[data-cy=follow-item]')
           //         .should('have.length', channels.length);
           //   });
-            it(`test Endorsements`, () => {
-                const { endorsements } = candidate.candidate;
-                if(endorsements && endorsements.length > 0) {
+            // it(`test Endorsements`, () => {
+            //     const { endorsements } = candidate.candidate;
+            //     if(endorsements && endorsements.length > 0) {
 
-                  cy.get('[data-cy=endorsement-title]')
-                    .contains('Featured Endorsements');
-                  cy.get('[data-cy=endorsement-item]')
-                    .should('have.length', endorsements.length)
-                    .each(($el, index) => {
-                          if(endorsements[index].link) {
-                              cy.wrap($el)
-                                .find('[data-cy=endorsement-item-link]')
-                                .should('have.attr', 'href', endorsements[index].link);
-                              cy.wrap($el)
-                                .find('[data-cy=endorsement-item-link]')
-                                .contains('Show More');
-                          }
-                          cy.wrap($el)
-                            .find('[data-cy=endorsement-item-title]')
-                            .contains(endorsements[index].title);
-                          cy.wrap($el)
-                            .find('[data-cy=endorsement-item-summary]')
-                            .contains(endorsements[index].summary);
-                  });
-                }
-            });
+            //       cy.get('[data-cy=endorsement-title]')
+            //         .contains('Featured Endorsements');
+            //       cy.get('[data-cy=endorsement-item]')
+            //         .should('have.length', endorsements.length)
+            //         .each(($el, index) => {
+            //               if(endorsements[index].link) {
+            //                   cy.wrap($el)
+            //                     .find('[data-cy=endorsement-item-link]')
+            //                     .should('have.attr', 'href', endorsements[index].link);
+            //                   cy.wrap($el)
+            //                     .find('[data-cy=endorsement-item-link]')
+            //                     .contains('Show More');
+            //               }
+            //               cy.wrap($el)
+            //                 .find('[data-cy=endorsement-item-title]')
+            //                 .contains(endorsements[index].title);
+            //               cy.wrap($el)
+            //                 .find('[data-cy=endorsement-item-summary]')
+            //                 .contains(endorsements[index].summary);
+            //       });
+            //     }
+            // });
             it(`test SimliarCampaigns`, () => {
                 const { similarCampaigns } = candidate.candidate;
                 if(similarCampaigns && similarCampaigns.length > 0) {
