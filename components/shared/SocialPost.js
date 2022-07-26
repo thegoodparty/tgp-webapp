@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import {
@@ -113,6 +113,9 @@ const Retweet = styled.div`
 
 const SocialPost = ({ post }) => {
   const router = useRouter();
+  const [hasImage, setHasImage] = useState(
+    post && post.image && post.images.length > 0,
+  );
 
   if (!post || !post.content) {
     return <></>;
@@ -130,7 +133,6 @@ const SocialPost = ({ post }) => {
     source,
     commentsCount,
   } = post;
-  const hasImage = images.length > 0;
 
   const shortContent = content.substring(0, 140);
 
@@ -216,7 +218,7 @@ const SocialPost = ({ post }) => {
             </Link>
           </div>
         </Bottom>
-        {hasImage && <Img src={post.images[0].url} />}
+        {hasImage && <Img src={images[0].url} onerror={setHasImage(false)} />}
       </Post>
     </a>
   );
