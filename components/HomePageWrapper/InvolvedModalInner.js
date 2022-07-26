@@ -69,6 +69,7 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
   const submitForm = () => {
     if (canSubmit()) {
       subscribeEmailCallback(email, name);
+      closeModalCallback();
     }
   };
   return (
