@@ -10,11 +10,10 @@ import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
 import Box from '@material-ui/core/Box';
 import { partyResolver } from '/helpers/electionsHelper';
-import { Body9, Body11, Body19, Body13 } from '../../shared/typogrophy';
+import { Body9, Body11, Body19, Body13, Font16 } from '../../shared/typogrophy';
 import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgressBar';
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
-import { achievementsHelper } from '/helpers/achievementsHelper';
 import BlackButton from '../../shared/buttons/BlackButton';
 
 const ShareImageWrapper = styled.div`
@@ -23,9 +22,6 @@ const ShareImageWrapper = styled.div`
   text-align: left;
   box-shadow: none;
   width: 340px;
-  &.no-bg {
-    background-color: transparent;
-  }
 `;
 
 const CandidateName = styled(Body19)`
@@ -50,14 +46,6 @@ const PartyName = styled(Body11)`
   line-height: 15px;
 `;
 
-const LikelyVoters = styled(Body9)`
-  color: ${({ theme }) => theme.colors.gray7};
-  span {
-    color: ${({ theme }) => theme.colors.gray3};
-    font-size: 16px;
-    font-weight: 600;
-  }
-`;
 const InnerButton = styled.div`
   font-size: 14px;
   width: 100%;
@@ -72,16 +60,6 @@ const NameWrapper = styled.div`
   padding-left: 15px;
   z-index: 1000;
   max-width: 215px;
-`;
-const HelperText = styled(Body11)`
-  && {
-    font-style: normal;
-    font-weight: 600;
-    line-height: 18px;
-    color: ${({ theme }) => theme.colors.gray7};
-    margin-bottom: 15px;
-    text-align: left;
-  }
 `;
 
 const Endorsed = styled(Body13)`
@@ -105,12 +83,20 @@ function ShareImage({
   shareImageCallback,
   imageAsBase64,
   withRender = true,
-  fromShareLink = false,
-  total,
+  followers,
 }) {
-  const supportCount = total;
-  const { firstName, lastName, race, party, otherParty, isDraft, draftOffice } =
-    candidate;
+  const {
+    firstName,
+    lastName,
+    race,
+    party,
+    otherParty,
+    isDraft,
+    draftOffice,
+    color,
+    votesNeeded,
+  } = candidate;
+  const brightColor = color?.color ? color.color : '#000';
   const afterLoad = async (suffix) => {
     if (!withRender) {
       return;
@@ -118,7 +104,7 @@ function ShareImage({
     htmlToImage
       .toJpeg(document.getElementById(suffix), {
         quality: 1,
-        pixelRatio: 1,
+        pixelRatio: 2,
         style: { fontFamily: `'Lato',sans-serif` },
       })
       .then(async function (dataUrl) {
@@ -132,68 +118,8 @@ function ShareImage({
       });
   };
   const longName = firstName.length + lastName.length > 14;
-  const achievements = achievementsHelper(supportCount);
   return (
     <>
-      <ShareImageWrapper
-        id="support"
-        className={!withRender && 'no-bg'}
-        style={{ fontFamily: "'Lato',sans-serif" }}
-      >
-        <WrapperTitle>
-          Hey, {fromShareLink ? 'Check out' : 'I’m endorsing'}...
-        </WrapperTitle>
-        <AvatarWrapper>
-          <CandidateAvatar
-            avatar={
-              imageAsBase64
-                ? `data:image/jpeg;base64, ${imageAsBase64}`
-                : candidate.image
-            }
-            party={party}
-            size="small"
-            afterLoad={() => afterLoad('support')}
-            hideBadge={isDraft}
-          />
-          <NameWrapper>
-            <CandidateName className={longName && 'long-name'}>
-              {firstName} {lastName}
-            </CandidateName>
-            {isDraft && draftOffice !== '' ? (
-              draftOffice
-            ) : (
-              <>
-                <PartyName>{partyResolver(party)} for</PartyName>
-                <PartyName>{race}</PartyName>
-              </>
-            )}
-          </NameWrapper>
-        </AvatarWrapper>
-        <Endorsed>
-          <div style={{ paddingLeft: '8px' }}>
-            <strong>
-              {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
-              endorsed.
-            </strong>{' '}
-            Let&apos;s get to {numberFormatter(achievements.nextStep)}!
-          </div>
-        </Endorsed>
-        <SupportersProgressBar
-          showSupporters={false}
-          votesNeeded={achievements.nextStep}
-          peopleSoFar={supportCount}
-          fullWidth
-          showSuffix={false}
-          withAchievement
-        />
-        {withRender && (
-          <Box style={{ marginTop: 20, textAlign: 'center' }}>
-            <BlackButton style={{ width: '50%' }}>
-              <InnerButton>Join Me</InnerButton>
-            </BlackButton>
-          </Box>
-        )}
-      </ShareImageWrapper>
       {withRender && (
         <ShareImageWrapper
           id="share"
@@ -212,7 +138,8 @@ function ShareImage({
               size="small"
               afterLoad={() => afterLoad('share')}
               style={{ margin: '0 5px' }}
-              hideBadge={isDraft}
+              hideBadge
+              candidate={candidate}
             />
             <NameWrapper>
               <CandidateName className={longName && 'long-name'}>
@@ -222,7 +149,10 @@ function ShareImage({
                 draftOffice
               ) : (
                 <>
-                  <PartyName>{partyResolver(party, otherParty)} for</PartyName>
+                  <PartyName>
+                    {partyResolver(party, otherParty)}{' '}
+                    {party !== 'I' ? 'Party' : ''} Candidate for
+                  </PartyName>
                   <PartyName>{race}</PartyName>
                 </>
               )}
@@ -231,24 +161,32 @@ function ShareImage({
           <Endorsed>
             <div style={{ paddingLeft: '8px' }}>
               <strong>
-                {supportCount} {supportCount === 1 ? 'person' : 'people'}{' '}
-                endorsed.
+                {numberFormatter(followers)}{' '}
+                {followers === 1 ? 'person' : 'people'}{' '}
               </strong>{' '}
-              Let&apos;s get to {numberFormatter(achievements.nextStep)}!
+              follow {firstName} {lastName}.<br />
+              Let&apos;s get to {kFormatter(votesNeeded)}!
             </div>
           </Endorsed>
           <SupportersProgressBar
             showSupporters={false}
-            votesNeeded={achievements.nextStep}
-            peopleSoFar={supportCount}
-            fullWidth
-            showSuffix={false}
-            withAchievement
+            votesNeeded={votesNeeded}
+            peopleSoFar={followers}
+            withAchievement={false}
+            color={brightColor}
           />
           {withRender && (
             <Box style={{ marginTop: 20, textAlign: 'center' }}>
-              <BlackButton style={{ width: '70%' }}>
-                <InnerButton>See Campaign</InnerButton>
+              <BlackButton
+                style={{
+                  width: '70%',
+                  backgroundColor: brightColor,
+                  borderColor: brightColor,
+                }}
+              >
+                <InnerButton>
+                  <strong>See Campaign</strong>
+                </InnerButton>
               </BlackButton>
             </Box>
           )}
@@ -264,7 +202,6 @@ ShareImage.propTypes = {
   imageAsBase64: PropTypes.string,
   total: PropTypes.number,
   withRender: PropTypes.bool,
-  fromShareLink: PropTypes.bool,
 };
 
 export default ShareImage;

@@ -81,18 +81,20 @@ const SupportersProgressBar = ({
   withAchievement = true,
 }) => {
   const weeksToElection = Math.floor(days / 7);
-  console.log('weeksToElection', weeksToElection);
   const neededToWin = votesNeeded - peopleSoFar;
-  console.log('neededToWin', neededToWin);
   let neededPerWeek;
-  if (weeksToElection && weeksToElection !== 0) {
-    neededPerWeek = Math.floor(neededToWin / weeksToElection);
-  }
-  console.log('neededPerWeek', neededPerWeek);
-  console.log('peopleThisPeriod', peopleThisPeriod);
-  let neededThisWeek = neededPerWeek - peopleThisPeriod;
-
+  let neededThisWeek;
   let progress;
+  if (days) {
+    if (weeksToElection && weeksToElection !== 0) {
+      neededPerWeek = Math.floor(neededToWin / weeksToElection);
+    }
+    neededThisWeek = neededPerWeek - peopleThisPeriod;
+  } else {
+    neededPerWeek = votesNeeded;
+    neededThisWeek = votesNeeded;
+    peopleThisPeriod = peopleSoFar;
+  }
   if (neededThisWeek <= 0) {
     progress = 100;
   } else {
@@ -107,14 +109,18 @@ const SupportersProgressBar = ({
         <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
         <Total>{numberFormatter(neededPerWeek)}</Total>
       </BarBg>
-      <AchievementWrapper>
-        <Icon src="/images/icons/achievement.svg" alt="achievement" />
-        <div>
-          If we can get to{' '}
-          <strong>{numberFormatter(neededPerWeek)} followers this week</strong>,
-          we’ll be on track to win on election day!
-        </div>
-      </AchievementWrapper>
+      {withAchievement && (
+        <AchievementWrapper>
+          <Icon src="/images/icons/achievement.svg" alt="achievement" />
+          <div>
+            If we can get to{' '}
+            <strong>
+              {numberFormatter(neededPerWeek)} followers this week
+            </strong>
+            , we’ll be on track to win on election day!
+          </div>
+        </AchievementWrapper>
+      )}
     </ProgressBarWrapper>
   );
 };

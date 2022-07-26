@@ -12,7 +12,7 @@ export async function getServerSideProps(context) {
     let candidate;
     try {
       const api = tgpApi.newCandidate.find;
-      const url = `${api.url}?id=${id}&withImage=true`;
+      const url = `${api.url}?id=${id}&withImage=true&allFields=true`;
       const res = await fetch(url);
       candidate = await res.json();
 
@@ -34,6 +34,7 @@ export async function getServerSideProps(context) {
             : null,
           candidateSupports,
           total,
+          followers: candidate.followers,
         },
       }, // will be passed to the page component as props
     };
