@@ -49,10 +49,10 @@ function ManifestoWrapper() {
   return (
     <PageWrapper>
       <Wrapper>
-        <FontH1 style={{ marginBottom: '16px' }}>
+        <FontH1 style={{ marginBottom: '16px' }} data-cy="manifesto-title">
           The #goodparty Manifesto
         </FontH1>
-        <H2>
+        <H2 data-cy="manifesto-subtitle">
           for the love of us over <u>It</u>!
         </H2>
         <br />
@@ -65,31 +65,32 @@ function ManifestoWrapper() {
           ?
         </strong>
         <ul>
-          <li>
+          <li data-cy="manifesto-item-01">
             <i>It</i> is the system that tears away our hopes.
           </li>
-          <li>
+          <li data-cy="manifesto-item-02">
             <i>It</i> is the money that corrupts our government.
           </li>
-          <li>
+          <li data-cy="manifesto-item-03">
             <i>It</i> is the media that degrades our minds.
           </li>
-          <li>
+          <li data-cy="manifesto-item-04">
             <i>It</i> is the doom loop that darkens our souls.
           </li>
-          <li>
+          <li data-cy="manifesto-item-05">
             <i>It</i> is{' '}
             <a
               href="https://mindlevelup.wordpress.com/2016/10/23/canaanite-gods-explained/"
               rel="noopener noreferrer nofollow"
               target="_blank"
               className="underline"
+              data-cy="molock-link"
             >
               Moloch
             </a>
             , the dark force of downward spirals.
           </li>
-          <li>
+          <li data-cy="manifesto-item-06">
             <i>It</i> is what wants us divided and hopeless.
           </li>
         </ul>
@@ -104,22 +105,22 @@ function ManifestoWrapper() {
           define us!
         </strong>
         <ul>
-          <li>
+          <li data-cy="manifesto-item-11">
             <i>It</i> doesn’t live.
           </li>
-          <li>
+          <li data-cy="manifesto-item-12">
             <i>It</i> doesn’t love.
           </li>
-          <li>
+          <li data-cy="manifesto-item-13">
             <i>It</i> has no friends.
           </li>
-          <li>
+          <li data-cy="manifesto-item-14">
             <i>It</i> has no family.
           </li>
-          <li>
+          <li data-cy="manifesto-item-15">
             <i>It</i> has no dreams.
           </li>
-          <li>
+          <li data-cy="manifesto-item-16">
             <i>It</i> has no consciousness.
           </li>
         </ul>
@@ -134,12 +135,12 @@ function ManifestoWrapper() {
           ! (with a #goodparty)
         </strong>
         <ul>
-          <li>We party to have fun.</li>
-          <li>We party to get together with friends.</li>
-          <li>We party to lighten our minds.</li>
-          <li>We party to brighten our souls.</li>
-          <li>We party to lift each other up.</li>
-          <li>We party to be human.</li>
+          <li data-cy="manifesto-item-21">We party to have fun.</li>
+          <li data-cy="manifesto-item-22">We party to get together with friends.</li>
+          <li data-cy="manifesto-item-23">We party to lighten our minds.</li>
+          <li data-cy="manifesto-item-24">We party to brighten our souls.</li>
+          <li data-cy="manifesto-item-25">We party to lift each other up.</li>
+          <li data-cy="manifesto-item-26">We party to be human.</li>
         </ul>
         <br />
         <br />

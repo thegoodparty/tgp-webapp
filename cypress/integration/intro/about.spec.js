@@ -32,7 +32,7 @@ describe('About Page', () => {
       });
   });
 
-  it('test FeaturedCampaigns section', () => {
-    cy.testFeaturedCampaignsComponent(homepageCandidates);
-  });
+  // it('test FeaturedCampaigns section', () => {
+  //   cy.testFeaturedCampaignsComponent(homepageCandidates);
+  // });
 });

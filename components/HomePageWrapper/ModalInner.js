@@ -44,10 +44,10 @@ const ModalInner = ({ closeModalCallback }) => {
           <CloseIcon />
         </CloseWrapper>
       </div>
-      <strong>#goodparty Tuesdays are coming soon...</strong>
+      <strong data-cy="gp-coming">#goodparty Tuesdays are coming soon...</strong>
       <br />
       <br />
-      Sign up to be the first to know! ❤️ 🎉
+      <span data-cy="gp-signup">Sign up to be the first to know! ❤️ 🎉</span>
       <br />
       <br />
       <RegisterForm submitCallback={closeModalCallback} />
