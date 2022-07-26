@@ -97,6 +97,12 @@ function ShareImage({
     votesNeeded,
   } = candidate;
   const brightColor = color?.color ? color.color : '#000';
+
+  let thisWeek = 0;
+  if (followers) {
+    thisWeek = followers.thisWeek;
+  }
+
   const afterLoad = async (suffix) => {
     if (!withRender) {
       return;
@@ -161,8 +167,8 @@ function ShareImage({
           <Endorsed>
             <div style={{ paddingLeft: '8px' }}>
               <strong>
-                {numberFormatter(followers)}{' '}
-                {followers === 1 ? 'person' : 'people'}{' '}
+                {numberFormatter(thisWeek)}{' '}
+                {thisWeek === 1 ? 'person' : 'people'}{' '}
               </strong>{' '}
               follow {firstName} {lastName}.<br />
               Let&apos;s get to {kFormatter(votesNeeded)}!
@@ -171,7 +177,7 @@ function ShareImage({
           <SupportersProgressBar
             showSupporters={false}
             votesNeeded={votesNeeded}
-            peopleSoFar={followers}
+            peopleSoFar={thisWeek}
             withAchievement={false}
             color={brightColor}
           />
