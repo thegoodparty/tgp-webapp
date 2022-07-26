@@ -114,8 +114,10 @@ const Retweet = styled.div`
 const SocialPost = ({ post }) => {
   const router = useRouter();
   const [hasImage, setHasImage] = useState(
-    post && post.image && post.images.length > 0,
+    post && post.images && post.images.length > 0,
   );
+
+  // console.log('hasImage', hasImage, post.images, post && post.images && post.images.length > 0)
 
   if (!post || !post.content) {
     return <></>;
@@ -160,6 +162,9 @@ const SocialPost = ({ post }) => {
     icon = <FaFacebookF />;
   }
 
+  const handleError = (a, b, c) => {
+    setHasImage(false);
+  };
   return (
     <a
       className="no-underline"
@@ -218,7 +223,7 @@ const SocialPost = ({ post }) => {
             </Link>
           </div>
         </Bottom>
-        {hasImage && <Img src={images[0].url} onerror={setHasImage(false)} />}
+        {hasImage && <Img src={images[0].url} onError={handleError} />}
       </Post>
     </a>
   );
