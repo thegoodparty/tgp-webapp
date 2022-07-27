@@ -16,7 +16,7 @@ import { dateUsHelper } from '../../helpers/dateHelper';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
 
 const Post = styled.div`
-  padding: 60px 15px 70px;
+  padding: 50px 15px 70px;
   background-color: #fff;
   text-align: left;
   position: relative;
@@ -124,6 +124,7 @@ const SocialPost = ({ post }) => {
   }
 
   const {
+    title,
     userName,
     userScreenName,
     images,
@@ -165,6 +166,17 @@ const SocialPost = ({ post }) => {
   const handleError = (a, b, c) => {
     setHasImage(false);
   };
+
+  let showContent = true;
+  if (
+    source === 'FACEBOOK' ||
+    source === 'FACEBOOK_PUBLIC' ||
+    source === 'INSTAGRAM'
+  ) {
+    if (hasImage) {
+      showContent = false;
+    }
+  }
   return (
     <a
       className="no-underline"
@@ -175,14 +187,19 @@ const SocialPost = ({ post }) => {
     >
       <Post>
         <Icon className={source}>{icon}</Icon>
+        {title && <UserName style={{ marginBottom: '14px' }}>{title}</UserName>}
         {(userName || userScreenName) && (
-          <Title>
-            {userName && <UserName>{userName}</UserName>}
-            {userScreenName && <Handle>@{userScreenName}</Handle>}
-          </Title>
+          <div>
+            <Title>
+              {userName && <UserName>{userName}</UserName>}
+              {userScreenName && <Handle>@{userScreenName}</Handle>}
+            </Title>
+          </div>
         )}
         {publishedAt && <Date>{dateUsHelper(publishedAt)}</Date>}
-        <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
+        {showContent && (
+          <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
+        )}
         <Bottom>
           <div>
             {likesCount !== null && (
