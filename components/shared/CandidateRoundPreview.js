@@ -101,6 +101,14 @@ const Overlay = styled.div`
     padding: 12px;
     font-size: 14px;
   }
+
+  .hide-small {
+    display: none;
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.lg}) {
+      display: block;
+    }
+  }
 `;
 function CandidatesRoundPreview({
   candidate,
@@ -127,7 +135,12 @@ function CandidatesRoundPreview({
             />
           )}
           <Overlay>
-            <div style={{ marginBottom: '4px' }}>GOOD CERTIFIED</div>
+            <div
+              style={{ marginBottom: '4px' }}
+              className={!large && 'hide-small'}
+            >
+              GOOD CERTIFIED
+            </div>
             <Image src="/images/heart.svg" width={26} height={20} alt="" />
           </Overlay>
         </ImageWrapper>

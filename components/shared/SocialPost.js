@@ -191,7 +191,11 @@ const SocialPost = ({ post }) => {
         {(userName || userScreenName) && (
           <div>
             <Title>
-              {userName && <UserName>{userName}</UserName>}
+              {userName && (
+                <UserName style={title ? { textDecoration: 'none' } : {}}>
+                  {userName}
+                </UserName>
+              )}
               {userScreenName && <Handle>@{userScreenName}</Handle>}
             </Title>
           </div>
