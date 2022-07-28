@@ -1,6 +1,6 @@
 /**
  *
- * CandidatesRoundPreview
+ * CandidateRoundAvatar
  *
  */
 
@@ -22,7 +22,7 @@ const ImageWrapper = styled.div`
   height: 82px;
   width: 82px;
   border-radius: 50%;
-  border: solid 3px #000;
+  border: solid 5px #000;
 
   &.large {
     height: 130px;
@@ -110,73 +110,44 @@ const Overlay = styled.div`
     }
   }
 `;
-function CandidatesRoundPreview({
+function CandidateRoundAvatar({
   candidate,
-  imageOnly = false,
   large = false,
 }) {
-  const { id, firstName, lastName, image, color, supporters } = candidate;
+  const { firstName, lastName, image, color } = candidate;
   const brightColor = color?.color ? color.color : '#000';
 
-  const candidateImage = () => {
-    return (
-      <Wrapper>
-        <ImageWrapper
-          style={{ borderColor: brightColor }}
-          className={large && 'large'}
-        >
-          {image && (
-            <Image
-              src={image}
-              layout="fill"
-              alt={`${firstName} ${lastName}`}
-              data-cy="candidate-img"
-              style={{ borderColor: brightColor }}
-            />
-          )}
-          <Overlay>
-            <div
-              style={{ marginBottom: '4px' }}
-              className={!large && 'hide-small'}
-            >
-              GOOD CERTIFIED
-            </div>
-            <Image src="/images/heart.svg" width={26} height={20} alt="" />
-          </Overlay>
-        </ImageWrapper>
-      </Wrapper>
-    );
-  };
-
   return (
-    <>
-      {imageOnly ? (
-        <>{candidateImage()}</>
-      ) : (
-        <Link href={candidateRoute(candidate)} passHref>
-          <a
-            className="no-underline"
-            data-cy="candidate-link"
-            id={`candidate-preview-${firstName}-${lastName}`}
+    <Wrapper>
+      <ImageWrapper
+        style={{ borderColor: brightColor }}
+        className={large && 'large'}
+      >
+        {image && (
+          <Image
+            src={image}
+            layout="fill"
+            alt={`${firstName} ${lastName}`}
+            data-cy="candidate-img"
+            style={{ borderColor: brightColor }}
+          />
+        )}
+        <Overlay>
+          <div
+            style={{ marginBottom: '4px' }}
+            className={!large && 'hide-small'}
           >
-            <Wrapper>
-              {candidateImage()}
-              <Name>
-                {firstName} {lastName}
-              </Name>
-              <Supporters>
-                {numberFormatter(supporters)} Supporters so far
-              </Supporters>
-            </Wrapper>
-          </a>
-        </Link>
-      )}
-    </>
+            GOOD CERTIFIED
+          </div>
+          <Image src="/images/heart.svg" width={26} height={20} alt="" />
+        </Overlay>
+      </ImageWrapper>
+    </Wrapper>
   );
 }
 
-CandidatesRoundPreview.propTypes = {
+CandidateRoundAvatar.propTypes = {
   candidate: PropTypes.object,
 };
 
-export default CandidatesRoundPreview;
+export default CandidateRoundAvatar;

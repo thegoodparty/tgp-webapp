@@ -81,7 +81,10 @@ const SupportersProgressBar = ({
   withAchievement = true,
 }) => {
   const weeksToElection = Math.floor(days / 7);
-  const neededToWin = votesNeeded - peopleSoFar;
+  let neededToWin = votesNeeded - peopleSoFar;
+  if (neededToWin < 0) {
+    neededToWin = 0;
+  }
   let neededPerWeek;
   let neededThisWeek;
   let progress;
@@ -95,6 +98,7 @@ const SupportersProgressBar = ({
     neededThisWeek = votesNeeded;
     peopleThisPeriod = peopleSoFar;
   }
+
   if (neededThisWeek <= 0) {
     progress = 100;
   } else {
@@ -107,7 +111,7 @@ const SupportersProgressBar = ({
     <ProgressBarWrapper data-cy="supporter-progress">
       <BarBg>
         <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
-        <Total>{numberFormatter(neededPerWeek)}</Total>
+        {neededPerWeek !== 0 && <Total>{numberFormatter(neededPerWeek)}</Total>}
       </BarBg>
       {withAchievement && (
         <AchievementWrapper>

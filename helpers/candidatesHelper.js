@@ -1,4 +1,6 @@
+import React from 'react';
 import { toPrecision } from './numberHelper';
+import { partyResolver } from './electionsHelper';
 export const getVotesNeededState = (chamberName, district, state) => {
   let votesNeededState;
   if (chamberName === 'presidential') {
@@ -11,7 +13,7 @@ export const getVotesNeededState = (chamberName, district, state) => {
   return votesNeededState;
 };
 
-export const convertURI = url => {
+export const convertURI = (url) => {
   let converted;
   try {
     converted = url ? decodeURI(url) : null;
@@ -41,7 +43,7 @@ export const getComparedIncumbent = (totalRaised, incumbent) => {
   return comparedIncumbent;
 };
 
-export const getFakeIncumbentOrIncumbentLabel = isFakeIncumbent =>
+export const getFakeIncumbentOrIncumbentLabel = (isFakeIncumbent) =>
   isFakeIncumbent ? 'top funded candidate' : 'incumbent';
 
 export const getCombinedReportDate = (
@@ -67,7 +69,7 @@ export const getOpenSecretLink = (chamber, candidate) => {
   return openSecretLink;
 };
 
-export const countCandidates = chamber => {
+export const countCandidates = (chamber) => {
   let count = 0;
   if (chamber && typeof chamber.good !== 'undefined') {
     count =
@@ -76,7 +78,7 @@ export const countCandidates = chamber => {
   return count;
 };
 
-export const getCandidateTitle = chamber => {
+export const getCandidateTitle = (chamber) => {
   if (!chamber) {
     return '';
   }
@@ -89,7 +91,7 @@ export const getCandidateTitle = chamber => {
   return chamberTitle;
 };
 
-export const getCandidateChamberDistrict = candidate => {
+export const getCandidateChamberDistrict = (candidate) => {
   const { chamber } = candidate;
   let chamberTitle = 'President';
   if (chamber?.toLowerCase() === 'senate') {
@@ -102,7 +104,7 @@ export const getCandidateChamberDistrict = candidate => {
   return chamberTitle;
 };
 
-export const getCandidateChamberDistrictOnly = candidate => {
+export const getCandidateChamberDistrictOnly = (candidate) => {
   if (!candidate) {
     return '';
   }
@@ -139,6 +141,15 @@ export const getPartyImage = (partyBadge, party, hideBadge) => {
     PartyImg = false;
   }
   return PartyImg;
-}
+};
 
-
+export const partyRace = (candidate, withBreak=true) => {
+  const { party, otherParty, race } = candidate;
+  return (
+    <>
+      {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
+      Candidate <br />
+      for <strong>{race}</strong>
+    </>
+  );
+};

@@ -11,11 +11,12 @@ import Hidden from '@material-ui/core/Hidden';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import Row from '../../shared/Row';
-import CandidatesRoundPreview from '../../shared/CandidateRoundPreview';
+import CandidateRoundAvatar from '../../shared/CandidateRoundAvatar';
 import { partyResolver } from '../../../helpers/electionsHelper';
 import { Font16 } from '../../shared/typogrophy';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { CandidateWrapperContext } from '../index';
+import { partyRace } from '../../../helpers/candidatesHelper';
 
 const Text = styled.div`
   margin-left: 30px;
@@ -48,18 +49,14 @@ function CandidateProfile() {
 
   return (
     <Row>
-      <CandidatesRoundPreview candidate={candidate} large imageOnly />
+      <CandidateRoundAvatar candidate={candidate} large imageOnly />
       <Text>
         <Name>
           {firstName}
           <br />
           {lastName}
         </Name>
-        <Font16>
-          {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
-          Candidate <br />
-          for <strong>{race}</strong>
-        </Font16>
+        <Font16>{partyRace(candidate)}</Font16>
         <ButtonWrapper>
           <BlackButton
             style={{
