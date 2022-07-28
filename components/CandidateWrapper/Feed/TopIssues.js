@@ -13,7 +13,7 @@ import { CandidateContext } from '/containers/CandidatePage';
 import { Pill } from '../Header/TopIssuesPills';
 import Row from '../../shared/Row';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { removeWhiteSpaces } from '../../../helpers/stringHelper';
+import { removeWhiteSpaces } from '/helpers/stringHelper';
 
 const Wrapper = styled.article`
   position: relative;

@@ -16,7 +16,7 @@ import { Font16, FontH3 } from '../../shared/typogrophy';
 import RangeSelector from '../shared/RangeSelector';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import CampaignChart from './CampaignChart';
-import { numberFormatter } from '../../../helpers/numberHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 import AddCampaignUpdateModal from '../shared/AddCampaignUpdateModal';
 
 const Row = styled.div`

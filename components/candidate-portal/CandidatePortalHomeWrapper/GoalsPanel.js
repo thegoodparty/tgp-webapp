@@ -15,8 +15,8 @@ import { CandidatePortalHomePageContext } from '/containers/candidate-portal/Can
 import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
 import GoalsChart from './GoalsChart';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import { dateUsHelper } from '../../../helpers/dateHelper';
+import { numberFormatter } from '/helpers/numberHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 import { CONTACT_EMAIL } from '../../../utils/constants';
 
 const Title = styled(Font16)`

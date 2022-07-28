@@ -1,8 +1,8 @@
 import promisify from 'cypress-promise';
-import { candidateName, candidatePhoto, runningFor } from '../../../helpers/applicationHelper';
-import { candidateRoute, partyResolver } from '../../../helpers/electionsHelper';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import { dateUsHelper } from '../../../helpers/dateHelper';
+import { candidateName, candidatePhoto, runningFor } from '/helpers/applicationHelper';
+import { candidateRoute, partyResolver } from '/helpers/electionsHelper';
+import { numberFormatter } from '/helpers/numberHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 
 Cypress.Commands.add('testCandidateMiniCard', ($el, candidate) => {
   const {
@@ -73,7 +73,7 @@ Cypress.Commands.add('testCandidateCard', ($el, candidate) => {
       .should('have.length', positions.length);
   }
 });
-  
+
 Cypress.Commands.add('testFeaturedCampaignsComponent', (homepageCandidates) => {
   cy.get('[data-cy=campaigns-title]')
     .contains("Featured Campaigns");

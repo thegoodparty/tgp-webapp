@@ -12,7 +12,7 @@ import {
   FaGlobeAmericas,
   FaVideo,
 } from 'react-icons/fa';
-import { flatStates } from '../../../helpers/statesHelper';
+import { flatStates } from '/helpers/statesHelper';
 
 const IconWrapper = styled.span`
   color: #000;

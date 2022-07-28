@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { achievementsHelper } from '../../../helpers/achievementsHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
 
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import { CandidateContext } from '/containers/CandidatePage';

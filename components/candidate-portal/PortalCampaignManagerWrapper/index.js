@@ -22,7 +22,7 @@ import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 import PortalPanel from '../shared/PortalPanel';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { isValidUrl } from '../../../helpers/linkHelper';
+import { isValidUrl } from '/helpers/linkHelper';
 import PhoneInput from '../../shared/PhoneInput';
 import CampaignColorPicker from './CampaignColorPicker';
 

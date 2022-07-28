@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import { Font16 } from '../../shared/typogrophy';
-import { removeWhiteSpaces } from '../../../helpers/stringHelper';
+import { removeWhiteSpaces } from '/helpers/stringHelper';
 
 const Wrapper = styled.article``;
 

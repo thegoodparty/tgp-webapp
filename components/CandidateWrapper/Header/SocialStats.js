@@ -11,8 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import { CandidateContext } from '/containers/CandidatePage';
 import SupportersProgressBar from './SupportersProgressBar';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import { daysTill } from '../../../helpers/dateHelper';
+import { numberFormatter } from '/helpers/numberHelper';
+import { daysTill } from '/helpers/dateHelper';
 
 const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>

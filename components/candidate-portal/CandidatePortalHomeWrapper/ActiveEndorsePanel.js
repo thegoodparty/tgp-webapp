@@ -16,7 +16,7 @@ import { progressPerc } from './CampaignPanel';
 import CandidateButton from './CandidateButton';
 import EndorseButtonModal from './EdorseButtonModal';
 import EndorseChart from './EndorseChart';
-import { numberFormatter } from '../../../helpers/numberHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 import RangeSelector from '../shared/RangeSelector';
 
 const Row = styled.div`

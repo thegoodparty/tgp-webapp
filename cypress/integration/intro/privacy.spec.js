@@ -1,5 +1,5 @@
 import promisify from 'cypress-promise';
-import { dateUsHelper } from '../../../helpers/dateHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 
 describe('Privacy page', () => {
   let content;

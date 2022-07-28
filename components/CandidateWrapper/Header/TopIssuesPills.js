@@ -10,8 +10,8 @@ import Link from 'next/link';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import { Font16 } from '../../shared/typogrophy';
-import { candidateRoute } from '../../../helpers/electionsHelper';
-import { removeWhiteSpaces } from '../../../helpers/stringHelper';
+import { candidateRoute } from '/helpers/electionsHelper';
+import { removeWhiteSpaces } from '/helpers/stringHelper';
 
 const Wrapper = styled.article`
   margin-top: 14px;

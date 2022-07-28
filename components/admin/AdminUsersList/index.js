@@ -18,7 +18,7 @@ import ENV from '/api/ENV';
 import UserAvatar from '../../shared/UserAvatar';
 import AdminPageWrapper from '../shared/AdminPageWrapper';
 import AdminPanel from '../shared/AdminPanel';
-import { formatToPhone } from '../../../helpers/phoneHelper';
+import { formatToPhone } from '/helpers/phoneHelper';
 
 const Wrapper = styled.div`
   padding: 16px;

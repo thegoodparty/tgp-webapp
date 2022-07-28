@@ -1,4 +1,4 @@
-import { numberFormatter } from '../../../helpers/numberHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 Cypress.Commands.add(
 'testSupportersProgressBar',
 (

@@ -12,11 +12,11 @@ import Hidden from '@material-ui/core/Hidden';
 import { CandidateContext } from '/containers/CandidatePage';
 import Row from '../../shared/Row';
 import CandidateRoundAvatar from '../../shared/CandidateRoundAvatar';
-import { partyResolver } from '../../../helpers/electionsHelper';
+import { partyResolver } from '/helpers/electionsHelper';
 import { Font16 } from '../../shared/typogrophy';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { CandidateWrapperContext } from '../index';
-import { partyRace } from '../../../helpers/candidatesHelper';
+import { partyRace } from '/helpers/candidatesHelper';
 
 const Text = styled.div`
   margin-left: 30px;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getPartyImage } from '../../../helpers/candidatesHelper';
+import { getPartyImage } from '/helpers/candidatesHelper';
 
 const ChallengerAvatarWrapper = styled.div`
   width: 58px;

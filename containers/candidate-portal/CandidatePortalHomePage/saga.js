@@ -6,7 +6,7 @@ import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import types from './constants';
 import actions from './actions';
 import portalHomeActions from './actions';
-import { candidateRoute } from '../../../helpers/electionsHelper';
+import { candidateRoute } from '/helpers/electionsHelper';
 
 function* findCandidate({ id }) {
   try {

@@ -14,8 +14,8 @@ import Link from 'next/link';
 import { Font16, FontH3 } from '../typogrophy';
 import BlackButton from '../buttons/BlackButton';
 import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgressBar';
-import { achievementsHelper } from '../../../helpers/achievementsHelper';
-import { numberFormatter } from '../../../helpers/numberHelper';
+import { achievementsHelper } from '/helpers/achievementsHelper';
+import { numberFormatter } from '/helpers/numberHelper';
 
 const Wrapper = styled.div`
   border-radius: 16px;

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { CandidateContext } from '/containers/CandidatePage';
 import { FontH2 } from '../../shared/typogrophy';
 import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
-import { dateUsHelper, daysTill } from '../../../helpers/dateHelper';
+import { dateUsHelper, daysTill } from '/helpers/dateHelper';
 
 const Wrapper = styled.section`
   margin: 48px 0;

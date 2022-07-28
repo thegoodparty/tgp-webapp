@@ -1,9 +1,9 @@
 import promisify from 'cypress-promise';
-import { candidateRoute, partyResolver } from '../../../helpers/electionsHelper';
-import { achievementsNextStepHelper } from '../../../helpers/achievementsHelper';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import { daysTill } from '../../../helpers/dateHelper';
-import { validateLink } from '../../../helpers/linkHelper';
+import { candidateRoute, partyResolver } from '/helpers/electionsHelper';
+import { achievementsNextStepHelper } from '/helpers/achievementsHelper';
+import { numberFormatter } from '/helpers/numberHelper';
+import { daysTill } from '/helpers/dateHelper';
+import { validateLink } from '/helpers/linkHelper';
 
 const sampleCandidateList = [26, 29, 43];
 context('Candidate', async () => {
@@ -38,10 +38,10 @@ context('Candidate', async () => {
                 };
             });
             it(`test Endorse / Share`, () => {
-              
+
               cy.get('[data-cy=profile-card-title]')
                 .contains('Meet the Candidate');
-              
+
           });
             it(`test ProfileCard`, () => {
                 const { firstName, lastName, party, race } = candidate.candidate;
@@ -99,7 +99,7 @@ context('Candidate', async () => {
                         .find('[data-cy=updates-link]')
                         .contains(updatesList[index].title);
                     }
-                      
+
                     cy.wrap($el)
                       .find('[data-cy=updates-time]')
                       .contains(updatesList[index].timeAgo);
@@ -195,7 +195,7 @@ context('Candidate', async () => {
                             });
                   });
                 }
-                
+
             });
             it(`test HeroSection`, () => {
                 const { raceDate } = candidate.candidate;
@@ -210,7 +210,7 @@ context('Candidate', async () => {
                         .contains(new Date(raceDate).getFullYear());
                   }
                 }
-                
+
             });
             it(`test TopIssues`, () => {
                 const { candidatePositions } = candidate.candidate;
@@ -229,7 +229,7 @@ context('Candidate', async () => {
                         .contains(candidatePositions[index].description);
                   });
                 }
-                
+
             });
             it(`test Summary`, () => {
                 cy.get('[data-cy=summary-title]')
