@@ -28,11 +28,10 @@ const H2 = styled.h2`
 `;
 
 const Content = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin-bottom: 50px;
     font-size: 22px;
   }
 `;

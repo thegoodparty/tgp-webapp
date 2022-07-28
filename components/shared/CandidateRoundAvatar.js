@@ -19,8 +19,8 @@ const Wrapper = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
-  height: 82px;
-  width: 82px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
   border: solid 5px #000;
 
@@ -31,9 +31,6 @@ const ImageWrapper = styled.div`
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    height: 150px;
-    width: 150px;
-
     &.large {
       height: 230px;
       width: 230px;
@@ -45,26 +42,6 @@ const ImageWrapper = styled.div`
     object-position: top center;
     border-radius: 50%;
   }
-`;
-
-const Name = styled.div`
-  margin-top: 11px;
-  font-size: 16px;
-  font-weight: 900;
-  text-decoration: underline;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    font-size: 30px;
-    margin-top: 20px;
-  }
-`;
-
-const Supporters = styled.div`
-  margin: 12px 0;
-  font-size: 16px;
 `;
 
 const Overlay = styled.div`
@@ -101,19 +78,8 @@ const Overlay = styled.div`
     padding: 12px;
     font-size: 14px;
   }
-
-  .hide-small {
-    display: none;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
-      display: block;
-    }
-  }
 `;
-function CandidateRoundAvatar({
-  candidate,
-  large = false,
-}) {
+function CandidateRoundAvatar({ candidate, large = false }) {
   const { firstName, lastName, image, color } = candidate;
   const brightColor = color?.color ? color.color : '#000';
 
@@ -133,12 +99,7 @@ function CandidateRoundAvatar({
           />
         )}
         <Overlay>
-          <div
-            style={{ marginBottom: '4px' }}
-            className={!large && 'hide-small'}
-          >
-            GOOD CERTIFIED
-          </div>
+          <div style={{ marginBottom: '4px' }}>GOOD CERTIFIED</div>
           <Image src="/images/heart.svg" width={26} height={20} alt="" />
         </Overlay>
       </ImageWrapper>

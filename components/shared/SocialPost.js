@@ -16,7 +16,7 @@ import { dateUsHelper } from '../../helpers/dateHelper';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
 
 const Post = styled.div`
-  padding: 50px 15px 70px;
+  padding: 28px 15px 70px;
   background-color: #fff;
   text-align: left;
   position: relative;
@@ -30,7 +30,7 @@ const Post = styled.div`
 
 const Icon = styled.div`
   position: absolute;
-  top: 20px;
+  top: 24px;
   right: 15px;
   font-size: 26px;
   color: #33ccff;
@@ -51,6 +51,9 @@ const Icon = styled.div`
   &.ONLINE_NEWS {
     display: none;
   }
+`;
+const TitlePadder = styled.div`
+  padding-right: 30px;
 `;
 
 const Title = styled.div`
@@ -187,19 +190,23 @@ const SocialPost = ({ post }) => {
     >
       <Post>
         <Icon className={source}>{icon}</Icon>
-        {title && <UserName style={{ marginBottom: '14px' }}>{title}</UserName>}
-        {(userName || userScreenName) && (
-          <div>
-            <Title>
-              {userName && (
-                <UserName style={title ? { textDecoration: 'none' } : {}}>
-                  {userName}
-                </UserName>
-              )}
-              {userScreenName && <Handle>@{userScreenName}</Handle>}
-            </Title>
-          </div>
-        )}
+        <TitlePadder>
+          {title && (
+            <UserName style={{ marginBottom: '14px' }}>{title}</UserName>
+          )}
+          {(userName || userScreenName) && (
+            <div>
+              <Title>
+                {userName && (
+                  <UserName style={title ? { textDecoration: 'none' } : {}}>
+                    {userName}
+                  </UserName>
+                )}
+                {userScreenName && <Handle>@{userScreenName}</Handle>}
+              </Title>
+            </div>
+          )}
+        </TitlePadder>
         {publishedAt && <Date>{dateUsHelper(publishedAt)}</Date>}
         {showContent && (
           <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
