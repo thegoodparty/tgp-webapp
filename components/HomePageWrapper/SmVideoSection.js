@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   cursor: pointer;
   img {
     border-radius: 12px;
+    object-fit: cover;
+    object-position: center center;
+    height: 100%;
+    width: 100%;
   }
 `;
 
@@ -47,6 +51,7 @@ const SmVideoSection = () => {
                 src="/images/homepage/tiktok-preview-sm.jpg"
                 height={100}
                 width={100}
+                className="video-img"
               />
               <Play className="flex-center">
                 <FaPlay />
