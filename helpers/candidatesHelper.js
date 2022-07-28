@@ -143,7 +143,7 @@ export const getPartyImage = (partyBadge, party, hideBadge) => {
   return PartyImg;
 };
 
-export const partyRace = (candidate, withBreak=true) => {
+export const partyRace = (candidate) => {
   const { party, otherParty, race } = candidate;
   return (
     <>

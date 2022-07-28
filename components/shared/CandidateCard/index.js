@@ -16,10 +16,13 @@ import BlackButton from '../buttons/BlackButton';
 import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgressBar';
 import { achievementsHelper } from '/helpers/achievementsHelper';
 import { numberFormatter } from '/helpers/numberHelper';
+import CandidateRoundAvatar from '../CandidateRoundAvatar';
+import { partyRace } from '../../../helpers/candidatesHelper';
+import { daysTill } from '../../../helpers/dateHelper';
 
 const Wrapper = styled.div`
   border-radius: 16px;
-  padding: 16px 16px 100px;
+  padding: 26px 26px 100px;
   border: 2px solid #ededed;
   color: #000;
   height: 100%;
@@ -28,19 +31,12 @@ const Wrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  position: relative;
-  height: 375px;
-
-  img {
-    object-fit: contain;
-    object-position: center center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
+  display: flex;
+  justify-content: center;
 `;
 
 const Content = styled.div`
-  padding: 24px 8px 8px;
+  margin-top: 24px;
 `;
 
 const Name = styled(FontH3)`
@@ -74,7 +70,7 @@ const Quote = styled.div`
 `;
 
 const Positions = styled.div`
-  margin-top: 24px;
+  margin-top: 14px;
   font-weight: 600;
   font-size: 14px;
 `;
@@ -84,7 +80,7 @@ const Position = styled.div`
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 11px;
-  background-color: #e1e1e1;
+  background-color: #f3f3f3;
   margin: 4px 4px 0 0;
 `;
 
@@ -95,21 +91,33 @@ const ButtonWrapper = styled.div`
   width: calc(100% - 48px);
 `;
 
-const MAX_POSITIONS = 3;
+const Number = styled.div`
+  font-size: 14px;
+  font-weight: 900;
+
+  &.positive {
+    color: #0c9a00;
+  }
+`;
+
+const NumberTitle = styled.div`
+  font-size: 12px;
+`;
+
+const MAX_POSITIONS = 6;
 
 function CandidateCard({ candidate }) {
   const {
     id,
     firstName,
     lastName,
-    image,
-    race,
     supporters,
-    party,
-    otherParty,
     headline,
     positions,
     color,
+    followers,
+    raceDate,
+    votesNeeded,
   } = candidate;
   const achievements = achievementsHelper(supporters);
   const brightColor = color?.color ? color.color : '#000';
@@ -118,61 +126,75 @@ function CandidateCard({ candidate }) {
   if (positions && positions.length > MAX_POSITIONS) {
     topPositions = positions.slice(0, MAX_POSITIONS);
   }
+
+  let thisWeek = 0;
+  let lastWeek = 0;
+  if (followers) {
+    thisWeek = followers.thisWeek;
+    lastWeek = followers.lastWeek;
+  }
+
+  const days = daysTill(raceDate);
+  const diff = thisWeek - lastWeek;
   return (
     <Link
       href={`/candidate/${firstName}-${lastName}/${id}`}
       passHref
       style={{ height: '100%' }}
     >
-      <a style={{ height: '100%' }} className="no-underline" data-cy="candidate-link">
+      <a
+        style={{ height: '100%' }}
+        className="no-underline"
+        data-cy="candidate-link"
+      >
         <Wrapper>
           <ImageWrapper>
-            {image && (
-              <Image
-                src={image}
-                layout="fill"
-                alt={`${firstName} ${lastName}`}
-                data-cy="candidate-img"
-              />
-            )}
+            <CandidateRoundAvatar candidate={candidate} large />
           </ImageWrapper>
           <Content>
             <Name data-cy="candidate-name">
               {firstName} {lastName}
             </Name>
-            <Gray data-cy="candidate-party">
-              {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
-              Candidate <br />
-              for <strong>{race}</strong>
-            </Gray>
-            <SoFar>
-              <strong>
-                {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
-              </strong>
-              <div>
-                Let&apos;s get to {numberFormatter(achievements.nextStep)}!
-              </div>
-            </SoFar>
-            <SupportersProgressBar
-              showSupporters={false}
-              votesNeeded={achievements.nextStep}
-              peopleSoFar={supporters}
-              fullWidth
-              showSuffix={false}
-              color={brightColor}
-              // withAchievement
-            />
-            <Quote>{headline}</Quote>
+            <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
+
             {topPositions && topPositions.length > 0 && (
               <Positions>
-                <div style={{ marginBottom: '12px' }} data-cy="position-title">
-                  Top Issues for this candidate
-                </div>
                 {topPositions.map((position) => (
-                  <Position key={position.id} data-cy="position">{position.name}</Position>
+                  <Position key={position.id} data-cy="position">
+                    {position.name}
+                  </Position>
                 ))}
               </Positions>
             )}
+
+            <Grid container spacing={3} style={{ margin: '32px 0 4px' }}>
+              <Grid item xs={4}>
+                <Number>{numberFormatter(thisWeek)}</Number>
+                <NumberTitle>total followers</NumberTitle>
+              </Grid>
+              <Grid item xs={4}>
+                <Number className={diff > 0 && 'positive'}>
+                  {diff > 0 && '+'}
+                  {numberFormatter(diff)}
+                </Number>
+                <NumberTitle>from last week</NumberTitle>
+              </Grid>
+              <Grid item xs={4}>
+                <Number>
+                  {numberFormatter(days)} day{days !== 1 ? 's' : ''}
+                </Number>
+                <NumberTitle>until election</NumberTitle>
+              </Grid>
+            </Grid>
+
+            <SupportersProgressBar
+              votesNeeded={votesNeeded}
+              peopleSoFar={thisWeek}
+              peopleThisPeriod={diff}
+              color={brightColor}
+              days={days}
+            />
+
             <ButtonWrapper>
               <BlackButton
                 fullWidth

@@ -65,7 +65,7 @@ class CustomDocument extends NextDocument {
           {/*  content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"*/}
           {/*/>*/}
           <link
-            href="https://fonts.googleapis.com/css2?family=Lato:wght@300;600;900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;900&display=swap"
             rel="stylesheet"
           />
           <link rel="manifest" href="/manifest.json" />

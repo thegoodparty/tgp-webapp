@@ -40,7 +40,6 @@ const CandidateMiniCard = ({ candidate }) => {
   const { firstName, lastName, followers, raceDate, votesNeeded, color } =
     candidate;
 
-  console.log('ddd', candidate);
 
   let thisWeek = 0;
   let lastWeek = 0;
@@ -75,7 +74,6 @@ const CandidateMiniCard = ({ candidate }) => {
             <Grid item xs={4}>
               <Number className={diff > 0 && 'positive'}>
                 {diff > 0 && '+'}
-                {diff < 0 && '-'}
                 {numberFormatter(diff)}
               </Number>
               from last week

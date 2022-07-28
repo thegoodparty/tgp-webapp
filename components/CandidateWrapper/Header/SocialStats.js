@@ -77,7 +77,6 @@ function SocialStats() {
           <Grid item xs={4}>
             <Number className={diff > 0 && 'positive'}>
               {diff > 0 && '+'}
-              {diff < 0 && '-'}
               {numberFormatter(diff)}
             </Number>
             from last week
