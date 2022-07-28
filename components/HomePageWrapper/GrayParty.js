@@ -9,7 +9,7 @@ import Feed from './Feed';
 
 const Wrapper = styled.section`
   background-color: #f3f3f3;
-  padding: 80px 0;
+  padding: 80px 0 40px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
