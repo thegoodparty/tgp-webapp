@@ -17,7 +17,7 @@ import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgr
 import { achievementsHelper } from '/helpers/achievementsHelper';
 import { numberFormatter } from '/helpers/numberHelper';
 import CandidateRoundAvatar from '../CandidateRoundAvatar';
-import { partyRace } from '../../../helpers/candidatesHelper';
+import { candidateColor, partyRace } from '../../../helpers/candidatesHelper';
 import { daysTill } from '../../../helpers/dateHelper';
 
 const Wrapper = styled.div`
@@ -111,16 +111,12 @@ function CandidateCard({ candidate }) {
     id,
     firstName,
     lastName,
-    supporters,
-    headline,
     positions,
-    color,
     followers,
     raceDate,
     votesNeeded,
   } = candidate;
-  const achievements = achievementsHelper(supporters);
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
   let topPositions = positions;
 
   if (positions && positions.length > MAX_POSITIONS) {

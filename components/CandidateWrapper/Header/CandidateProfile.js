@@ -16,7 +16,7 @@ import { partyResolver } from '/helpers/electionsHelper';
 import { Font16 } from '../../shared/typogrophy';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { CandidateWrapperContext } from '../index';
-import { partyRace } from '/helpers/candidatesHelper';
+import { candidateColor, partyRace } from '/helpers/candidatesHelper';
 
 const Text = styled.div`
   margin-left: 30px;
@@ -44,8 +44,8 @@ const ButtonWrapper = styled.div`
 function CandidateProfile() {
   const { candidate } = useContext(CandidateContext);
   const { openFollowModalCallback } = useContext(CandidateWrapperContext);
-  const { firstName, lastName, party, otherParty, race, color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const { firstName, lastName } = candidate;
+  const brightColor = candidateColor(candidate);
 
   return (
     <Row>

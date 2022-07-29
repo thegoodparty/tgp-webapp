@@ -11,6 +11,7 @@ import { CandidateContext } from '/containers/CandidatePage';
 import { FontH2 } from '../../shared/typogrophy';
 import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
 import { dateUsHelper, daysTill } from '/helpers/dateHelper';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.section`
   margin: 48px 0;
@@ -61,10 +62,10 @@ const Days = styled.div`
 
 function HeroSection() {
   const { candidate } = useContext(CandidateContext);
-  const { headline, heroVideo, raceDate, color } = candidate;
+  const { headline, heroVideo, raceDate } = candidate;
   const days = daysTill(raceDate);
 
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
 
   return (
     <Wrapper>

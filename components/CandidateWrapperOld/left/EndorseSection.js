@@ -18,6 +18,7 @@ import SupportersProgressBar from './SupportersProgressBar';
 import GoalsChart from '../../candidate-portal/CandidatePortalHomeWrapper/GoalsChart';
 import SupportButton from './SupportButton';
 import Row from '../../shared/Row';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.section`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
@@ -55,8 +56,8 @@ function EndorseSection() {
   const router = useRouter();
   const { supportCount, candidate } = useContext(CandidateContext);
   const achievements = achievementsHelper(supportCount);
-  const { color, likelyVoters, votesNeeded } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const { likelyVoters, votesNeeded } = candidate;
+  const brightColor = candidateColor(candidate);
   return (
     <Wrapper>
       <Row style={{ justifyContent: 'space-between', marginBottom: '48px' }}>

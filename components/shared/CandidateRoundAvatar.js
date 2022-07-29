@@ -11,6 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { candidateRoute } from '../../helpers/electionsHelper';
 import { numberFormatter } from '../../helpers/numberHelper';
+import { candidateColor } from '../../helpers/candidatesHelper';
 
 const Wrapper = styled.div`
   position: relative;
@@ -84,8 +85,8 @@ const Overlay = styled.div`
   }
 `;
 function CandidateRoundAvatar({ candidate, large = false }) {
-  const { firstName, lastName, image, color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const { firstName, lastName, image } = candidate;
+  const brightColor = candidateColor(candidate);
 
   return (
     <Wrapper>

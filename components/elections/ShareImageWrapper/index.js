@@ -15,6 +15,7 @@ import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgr
 import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import BlackButton from '../../shared/buttons/BlackButton';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
@@ -91,9 +92,10 @@ function ShareImage({
   withRender = true,
   followers,
 }) {
-  const { firstName, lastName, race, party, otherParty, color, votesNeeded } =
+  const { firstName, lastName, race, party, otherParty, votesNeeded } =
     candidate;
-  const brightColor = color?.color ? color.color : '#000';
+
+  const brightColor = candidateColor(candidate);
 
   let thisWeek = 0;
   if (followers) {

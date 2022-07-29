@@ -153,3 +153,8 @@ export const partyRace = (candidate, withLineBreak = true) => {
     </>
   );
 };
+
+export const candidateColor = (candidate) => {
+  const { color } = candidate;
+  return color?.color ? color.color : '#000';
+};

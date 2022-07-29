@@ -17,6 +17,7 @@ import { logEvent } from '/services/AnalyticsService';
 import { Font16 } from '/components/shared/typogrophy';
 import { CandidateContext } from '/containers/CandidatePage';
 import BlackButton from '../../shared/buttons/BlackButton';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const HeartIconWhite = '/images/white-heart.svg';
 
@@ -207,8 +208,7 @@ function SupportButton() {
     e.preventDefault();
   };
 
-  const { color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
 
   return (
     <>

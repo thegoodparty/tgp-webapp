@@ -13,6 +13,7 @@ import SupportersProgressBar from './SupportersProgressBar';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { numberFormatter } from '/helpers/numberHelper';
 import { daysTill } from '/helpers/dateHelper';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
@@ -61,7 +62,7 @@ function SocialStats() {
     lastWeek = followers.lastWeek;
   }
   const { color, raceDate, votesNeeded } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
   const days = daysTill(raceDate);
 
   const diff = thisWeek - lastWeek;

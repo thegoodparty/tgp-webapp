@@ -14,6 +14,7 @@ import { Pill } from '../Header/TopIssuesPills';
 import Row from '../../shared/Row';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { removeWhiteSpaces } from '/helpers/stringHelper';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.article`
   position: relative;
@@ -60,7 +61,7 @@ function TopIssues() {
   const router = useRouter();
   const { candidatePositions, candidate } = useContext(CandidateContext);
   const { color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
   if (candidatePositions?.length === 0) {
     return <></>;
   }

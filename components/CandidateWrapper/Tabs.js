@@ -13,6 +13,7 @@ import { candidateRoute } from '/helpers/electionsHelper';
 
 import MaxWidth from '../shared/MaxWidth';
 import Row from '../shared/Row';
+import { candidateColor } from '../../helpers/candidatesHelper';
 
 const Wrapper = styled.div`
   position: relative;
@@ -57,8 +58,7 @@ const tabs = [{ label: 'Feed' }, { label: 'Campaign' }, { label: 'Bio' }];
 function Tabs() {
   const { candidate, tab } = useContext(CandidateContext);
   const activeTab = tab;
-  const { color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
   const route = candidateRoute(candidate);
   return (
     <Wrapper>

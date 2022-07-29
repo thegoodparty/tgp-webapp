@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 
 import CandidateRoundAvatar from '../shared/CandidateRoundAvatar';
 import { candidateRoute } from '../../helpers/electionsHelper';
-import { partyRace } from '../../helpers/candidatesHelper';
+import { candidateColor, partyRace } from '../../helpers/candidatesHelper';
 import { daysTill } from '../../helpers/dateHelper';
 import SupportersProgressBar from '../CandidateWrapper/Header/SupportersProgressBar';
 import { numberFormatter } from '../../helpers/numberHelper';
@@ -61,7 +61,7 @@ const CandidateMiniCard = ({ candidate }) => {
 
   const diff = thisWeek - lastWeek;
 
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
   return (
     <Wrapper>
       <Link href={candidateRoute(candidate)} passHref>
