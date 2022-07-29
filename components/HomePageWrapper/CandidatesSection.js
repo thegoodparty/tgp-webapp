@@ -67,7 +67,7 @@ const CandidatesSection = () => {
           </a>
         </Link>
       </Content>
-      <Grid container spacing={8}>
+      <Grid container spacing={8}  alignItems="stretch">
         {(homepageCandidates || []).map((candidate) => (
           <Grid item xs={12} md={6} lg={4} key={candidate.id}>
             <CandidateMiniCard candidate={candidate} />

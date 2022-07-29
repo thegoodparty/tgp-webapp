@@ -11,7 +11,12 @@ import SupportersProgressBar from '../CandidateWrapper/Header/SupportersProgress
 import { numberFormatter } from '../../helpers/numberHelper';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  height: 100%;
+  padding-bottom: 90px;
+  position: relative;
+`;
+
 const Name = styled.div`
   font-weight: 900;
   font-size: 26px;
@@ -33,6 +38,12 @@ const Number = styled.div`
   &.positive {
     color: #0c9a00;
   }
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
 const CandidateMiniCard = ({ candidate }) => {
@@ -87,16 +98,18 @@ const CandidateMiniCard = ({ candidate }) => {
             days={days}
             withAchievement={false}
           />
-          <BlackButton
-            fullWidth
-            style={{
-              backgroundColor: brightColor,
-              borderColor: brightColor,
-              marginTop: '30px',
-            }}
-          >
-            <InnerButton>View Campaign</InnerButton>
-          </BlackButton>
+          <ButtonWrapper>
+            <BlackButton
+              fullWidth
+              style={{
+                backgroundColor: brightColor,
+                borderColor: brightColor,
+                marginTop: '30px',
+              }}
+            >
+              <InnerButton>View Campaign</InnerButton>
+            </BlackButton>
+          </ButtonWrapper>
         </a>
       </Link>
     </Wrapper>
