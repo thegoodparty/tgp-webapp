@@ -11,15 +11,14 @@ import SupportersProgressBar from '../CandidateWrapper/Header/SupportersProgress
 import { numberFormatter } from '../../helpers/numberHelper';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div``;
 const Name = styled.div`
   font-weight: 900;
   font-size: 26px;
-  margin: 20px 0 6px;
+  margin: 12px 0 6px;
 `;
 const Party = styled.div`
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 35px;
 `;
 
@@ -40,7 +39,6 @@ const CandidateMiniCard = ({ candidate }) => {
   const { firstName, lastName, followers, raceDate, votesNeeded, color } =
     candidate;
 
-
   let thisWeek = 0;
   let lastWeek = 0;
   if (followers) {
@@ -51,6 +49,7 @@ const CandidateMiniCard = ({ candidate }) => {
   const days = daysTill(raceDate);
 
   const diff = thisWeek - lastWeek;
+
   const brightColor = color?.color ? color.color : '#000';
   return (
     <Wrapper>
@@ -64,7 +63,7 @@ const CandidateMiniCard = ({ candidate }) => {
           <Name>
             {firstName} {lastName}
           </Name>
-          <Party>{partyRace(candidate)}</Party>
+          <Party>{partyRace(candidate, false)}</Party>
 
           <Grid container spacing={3} style={{ marginBottom: '6px' }}>
             <Grid item xs={4}>

@@ -143,12 +143,12 @@ export const getPartyImage = (partyBadge, party, hideBadge) => {
   return PartyImg;
 };
 
-export const partyRace = (candidate) => {
+export const partyRace = (candidate, withLineBreak = true) => {
   const { party, otherParty, race } = candidate;
   return (
     <>
       {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
-      Candidate <br />
+      Candidate {withLineBreak && <br />}
       for <strong>{race}</strong>
     </>
   );

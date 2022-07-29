@@ -179,12 +179,14 @@ function CandidateCard({ candidate }) {
                 </Number>
                 <NumberTitle>from last week</NumberTitle>
               </Grid>
-              <Grid item xs={4}>
-                <Number>
-                  {numberFormatter(days)} day{days !== 1 ? 's' : ''}
-                </Number>
-                <NumberTitle>until election</NumberTitle>
-              </Grid>
+              {days > 0 && (
+                <Grid item xs={4}>
+                  <Number>
+                    {numberFormatter(days)} day{days !== 1 ? 's' : ''}
+                  </Number>
+                  <NumberTitle>until election</NumberTitle>
+                </Grid>
+              )}
             </Grid>
 
             <SupportersProgressBar

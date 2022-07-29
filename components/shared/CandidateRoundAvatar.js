@@ -27,6 +27,10 @@ const ImageWrapper = styled.div`
   &.large {
     height: 130px;
     width: 130px;
+
+    .overlay {
+      font-size: 14px;
+    }
   }
 
   @media only screen and (min-width: ${({ theme }) =>
@@ -76,7 +80,7 @@ const Overlay = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     padding: 12px;
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 function CandidateRoundAvatar({ candidate, large = false }) {
@@ -98,7 +102,7 @@ function CandidateRoundAvatar({ candidate, large = false }) {
             style={{ borderColor: brightColor }}
           />
         )}
-        <Overlay>
+        <Overlay className="overlay">
           <div style={{ marginBottom: '4px' }}>GOOD CERTIFIED</div>
           <Image src="/images/heart.svg" width={26} height={20} alt="" />
         </Overlay>
