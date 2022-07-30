@@ -155,6 +155,12 @@ export const partyRace = (candidate, withLineBreak = true) => {
 };
 
 export const candidateColor = (candidate) => {
-  const { color } = candidate;
-  return color?.color ? color.color : '#000';
+  const { color, isClaimed } = candidate;
+  if (color?.color) {
+    return color.color;
+  }
+  if (!isClaimed) {
+    return '#868686';
+  }
+  return '#000';
 };

@@ -85,7 +85,7 @@ const Overlay = styled.div`
   }
 `;
 function CandidateRoundAvatar({ candidate, large = false }) {
-  const { firstName, lastName, image } = candidate;
+  const { firstName, lastName, image, isClaimed } = candidate;
   const brightColor = candidateColor(candidate);
 
   return (
@@ -103,10 +103,12 @@ function CandidateRoundAvatar({ candidate, large = false }) {
             style={{ borderColor: brightColor }}
           />
         )}
-        <Overlay className="overlay">
-          <div style={{ marginBottom: '4px' }}>GOOD CERTIFIED</div>
-          <Image src="/images/heart.svg" width={26} height={20} alt="" />
-        </Overlay>
+        {isClaimed && (
+          <Overlay className="overlay">
+            <div style={{ marginBottom: '4px' }}>GOOD CERTIFIED</div>
+            <Image src="/images/heart.svg" width={26} height={20} alt="" />
+          </Overlay>
+        )}
       </ImageWrapper>
     </Wrapper>
   );

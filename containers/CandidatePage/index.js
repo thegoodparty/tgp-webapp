@@ -46,6 +46,7 @@ export function CandidatePage({
   userSupportCallback,
   guestSupportCallback,
   removeSupportCallback,
+  claimCampaignCallback,
 }) {
   useInjectReducer({ key: 'candidatePage', reducer });
   useInjectSaga({ key: 'candidatePage', saga });
@@ -115,6 +116,7 @@ export function CandidatePage({
     userSupportCallback,
     guestSupportCallback,
     removeSupportCallback,
+    claimCampaignCallback,
     user,
     candidateSupports: updatedSupports,
     supportCount: updatedSupportsCount,
@@ -151,6 +153,7 @@ CandidatePage.propTypes = {
   userSupportCallback: PropTypes.func,
   guestSupportCallback: PropTypes.func,
   removeSupportCallback: PropTypes.func,
+  claimCampaignCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -182,6 +185,9 @@ function mapDispatchToProps(dispatch) {
     },
     removeSupportCallback: (candidateId) => {
       dispatch(actions.removeSupportAction(candidateId));
+    },
+    claimCampaignCallback: (name, email, phone) => {
+      console.log(name, email, phone);
     },
   };
 }

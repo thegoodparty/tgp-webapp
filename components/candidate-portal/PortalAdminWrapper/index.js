@@ -43,6 +43,12 @@ const fields = [
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
   { label: 'hubspot company id', key: 'hubspotId', initialValue: '' },
   { label: 'Pulsar Search ID', key: 'pulsarSearchId', initialValue: '' },
+  {
+    label: 'Is Claimed',
+    key: 'isClaimed',
+    initialValue: false,
+    isCheckbox: true,
+  },
 ];
 
 function PortalAdminWrapper() {
