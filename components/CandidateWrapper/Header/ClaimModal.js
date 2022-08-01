@@ -81,6 +81,12 @@ const Gray = styled.div`
   margin-top: 2px;
 `;
 
+const Line = styled.div`
+  height: 1px;
+  margin: 26px 0 48px;
+  background-color: #ececec;
+`;
+
 function ClaimModal({ closeModalCallback }) {
   const { candidate, claimCampaignCallback } = useContext(CandidateContext);
   const user = getUserCookie(true);
@@ -132,8 +138,7 @@ function ClaimModal({ closeModalCallback }) {
           <Gray>{partyRace(candidate, false)}</Gray>
         </div>
       </Row>
-      <br />
-      <br />
+      <Line />
       <form noValidate onSubmit={(e) => e.preventDefault()}>
         <TextField
           fullWidth
