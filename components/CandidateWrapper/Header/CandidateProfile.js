@@ -44,7 +44,7 @@ const ButtonWrapper = styled.div`
 function CandidateProfile() {
   const { candidate } = useContext(CandidateContext);
   const { openFollowModalCallback } = useContext(CandidateWrapperContext);
-  const { firstName, lastName, party, otherParty, race, color } = candidate;
+  const { firstName, lastName,  color } = candidate;
   const brightColor = color?.color ? color.color : '#000';
 
   return (
