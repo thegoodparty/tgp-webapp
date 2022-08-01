@@ -64,7 +64,7 @@ export function CandidatePage({
     followers,
     feed,
   } = ssrState;
-  const { userSupports } = candidatePage;
+  const { userSupports, claiming } = candidatePage;
   const { firstName, lastName, party, otherParty, race, id } = candidate;
 
   // the reducer will be updated if the user took an action on the page.
@@ -125,6 +125,7 @@ export function CandidatePage({
     tab,
     followers,
     feed,
+    claiming,
   };
 
   const is404 = !candidate || Object.keys(candidate).length === 0;
@@ -187,7 +188,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(actions.removeSupportAction(candidateId));
     },
     claimCampaignCallback: (name, email, phone) => {
-      console.log(name, email, phone);
+      dispatch(actions.claimAction(name, email, phone));
     },
   };
 }

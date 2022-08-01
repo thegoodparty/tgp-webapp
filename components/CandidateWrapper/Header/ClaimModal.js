@@ -88,12 +88,14 @@ const Line = styled.div`
 `;
 
 function ClaimModal({ closeModalCallback }) {
-  const { candidate, claimCampaignCallback } = useContext(CandidateContext);
+  const { candidate, claimCampaignCallback, claiming } =
+    useContext(CandidateContext);
   const user = getUserCookie(true);
   const [state, setState] = useState({
     name: user ? user.name : '',
     email: user ? user.email : '',
     phone: user ? user.phone : '',
+    formSent: false,
   });
   const { image, firstName, lastName } = candidate;
 
@@ -108,16 +110,21 @@ function ClaimModal({ closeModalCallback }) {
     return (
       isValidEmail(state.email) &&
       state.name.length > 2 &&
-      isValidPhone(state.phone)
+      (state.phone === '' || isValidPhone(state.phone))
     );
   };
 
   const submitForm = () => {
     if (canSubmit()) {
       claimCampaignCallback(state.name, state.email, state.phone);
-      closeModalCallback();
+      setState({
+        ...state,
+        formSent: true,
+      });
     }
   };
+
+  const showSuccess = claiming===false && state.formSent;
   return (
     <Wrapper>
       <CloseWrapper onClick={closeModalCallback}>
@@ -139,43 +146,47 @@ function ClaimModal({ closeModalCallback }) {
         </div>
       </Row>
       <Line />
-      <form noValidate onSubmit={(e) => e.preventDefault()}>
-        <TextField
-          fullWidth
-          primary
-          label="Name"
-          variant="outlined"
-          value={state.name}
-          onChange={(e) => onChangeField(e, 'name')}
-          error={state.name != '' && state.name.length < 2}
-        />
-        <br />
-        <br />
-        <br />
-        <EmailInput
-          hideIcon
-          onChangeCallback={(e) => onChangeField(e, 'email')}
-          value={state.email}
-        />
-        <br />
-        <br />
-        <br />
-        <PhoneInput
-          hideIcon
-          onChangeCallback={(value) =>
-            onChangeField({ target: { value } }, 'phone')
-          }
-          value={state.phone}
-        />
-        <BlackButton
-          disabled={!canSubmit()}
-          onClick={submitForm}
-          id="claim-campaign-modal"
-          type="submit"
-        >
-          <InnerButton>Submit</InnerButton>
-        </BlackButton>
-      </form>
+      {showSuccess ? (
+        <div>Success</div>
+      ) : (
+        <form noValidate onSubmit={(e) => e.preventDefault()}>
+          <TextField
+            fullWidth
+            primary
+            label="Name"
+            variant="outlined"
+            value={state.name}
+            onChange={(e) => onChangeField(e, 'name')}
+            error={state.name != '' && state.name.length < 2}
+          />
+          <br />
+          <br />
+          <br />
+          <EmailInput
+            hideIcon
+            onChangeCallback={(e) => onChangeField(e, 'email')}
+            value={state.email}
+          />
+          <br />
+          <br />
+          <br />
+          <PhoneInput
+            hideIcon
+            onChangeCallback={(value) =>
+              onChangeField({ target: { value } }, 'phone')
+            }
+            value={state.phone}
+          />
+          <BlackButton
+            disabled={!canSubmit()}
+            onClick={submitForm}
+            id="claim-campaign-modal"
+            type="submit"
+          >
+            <InnerButton>Submit</InnerButton>
+          </BlackButton>
+        </form>
+      )}
     </Wrapper>
   );
 }

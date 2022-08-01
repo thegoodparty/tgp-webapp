@@ -25,7 +25,7 @@ import types from './constants';
 //   error,
 // });
 
-const supportAction = candidateId => ({
+const supportAction = (candidateId) => ({
   type: types.SUPPORT,
   candidateId,
 });
@@ -34,12 +34,12 @@ const supportActionSuccess = () => ({
   type: types.SUPPORT_SUCCESS,
 });
 
-const supportActionError = error => ({
+const supportActionError = (error) => ({
   type: types.SUPPORT_ERROR,
   error,
 });
 
-const candidateSupportsAction = candidateId => ({
+const candidateSupportsAction = (candidateId) => ({
   type: types.CANDIDATE_SUPPORTS,
   candidateId,
 });
@@ -50,7 +50,7 @@ const candidateSupportsActionSuccess = (candidateSupports, supportCount) => ({
   supportCount,
 });
 
-const candidateSupportsActionError = error => ({
+const candidateSupportsActionError = (error) => ({
   type: types.CANDIDATE_SUPPORTS_ERROR,
   error,
 });
@@ -59,17 +59,17 @@ const userSupportsAction = () => ({
   type: types.USER_SUPPORTS,
 });
 
-const userSupportsActionSuccess = userSupports => ({
+const userSupportsActionSuccess = (userSupports) => ({
   type: types.USER_SUPPORTS_SUCCESS,
   userSupports,
 });
 
-const userSupportsActionError = error => ({
+const userSupportsActionError = (error) => ({
   type: types.USER_SUPPORTS_ERROR,
   error,
 });
 
-const removeSupportAction = candidateId => ({
+const removeSupportAction = (candidateId) => ({
   type: types.REMOVE_SUPPORT,
   candidateId,
 });
@@ -86,7 +86,7 @@ const removeSupportAction = candidateId => ({
 //   candidateId,
 // });
 //
-const trackShare = candidateId => ({
+const trackShare = (candidateId) => ({
   type: types.TRACK_SHARE,
   candidateId,
 });
@@ -105,9 +105,18 @@ const trackVisitAction = (url, data) => ({
   data,
 });
 
+const claimAction = (name, email, phone) => ({
+  type: types.CLAIM,
+  name,
+  email,
+  phone,
+});
+
+const claimActionSuccess = () => ({
+  type: types.CLAIM_SUCCESS,
+});
+
 export default {
-
-
   supportAction,
   supportActionSuccess,
   supportActionError,
@@ -125,4 +134,7 @@ export default {
   // sendTopicFeedbackAction,
   //
   trackVisitAction,
+
+  claimAction,
+  claimActionSuccess,
 };

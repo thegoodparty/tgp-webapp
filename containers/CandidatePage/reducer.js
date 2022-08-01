@@ -11,6 +11,7 @@ export const initialState = {
   userSupports: false,
   candidateSupports: false,
   supportCount: false,
+  claiming: undefined,
 };
 
 const candidatePageReducer = (state = initialState, action) =>
@@ -39,6 +40,14 @@ const candidatePageReducer = (state = initialState, action) =>
 
       case types.CANDIDATE_SUPPORTS_ERROR:
         draft.candidateSupports = false;
+        break;
+
+      case types.CLAIM:
+        draft.claiming = true;
+        break;
+
+      case types.CLAIM_SUCCESS:
+        draft.claiming = false;
         break;
     }
   });

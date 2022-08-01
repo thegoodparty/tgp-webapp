@@ -159,8 +159,5 @@ export const candidateColor = (candidate) => {
   if (color?.color) {
     return color.color;
   }
-  if (!isClaimed) {
-    return '#868686';
-  }
   return '#000';
 };

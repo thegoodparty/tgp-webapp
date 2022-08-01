@@ -430,6 +430,10 @@ export const generateApi = (base) => ({
         method: 'GET',
       },
     },
+    claim: {
+      url: `${base}new-candidate/claim`,
+      method: 'POST',
+    },
   },
   trackVisit: {
     url: `${base}visit`,
@@ -624,6 +628,7 @@ export const generateApi = (base) => ({
         withAuth: true,
       },
     },
+
   },
   candidateUser: {
     issue: {

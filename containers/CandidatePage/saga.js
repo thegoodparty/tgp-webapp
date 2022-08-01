@@ -114,6 +114,26 @@ function* trackVisit({ url, data }) {
   }
 }
 
+function* claim({ name, email, phone }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Sending your request'));
+    const api = tgpApi.newCandidate.claim;
+    const payload = {
+      name,
+      email,
+      phone,
+      uri: window.location.href,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(actions.claimActionSuccess());
+  } catch (error) {
+    yield put(
+      snackbarActions.showSnakbarAction('Error claiming campaign', 'error'),
+    );
+    console.log(error);
+  }
+}
+
 export default function* saga() {
   yield all([
     takeLatest(types.SUPPORT, support),
@@ -122,5 +142,6 @@ export default function* saga() {
     takeLatest(types.CANDIDATE_SUPPORTS, candidateSupports),
     takeLatest(types.TRACK_SHARE, trackShare),
     takeLatest(types.TRACK_VISIT, trackVisit),
+    takeLatest(types.CLAIM, claim),
   ]);
 }
