@@ -55,8 +55,8 @@ const ClaimLink = styled.span`
 function CandidateProfile() {
   const { candidate } = useContext(CandidateContext);
   const { openFollowModalCallback } = useContext(CandidateWrapperContext);
+  const { firstName, lastName,  color, isClaimed } = candidate;
   const [showModal, setShowModal] = useState(false);
-  const { firstName, lastName, isClaimed } = candidate;
   const brightColor = candidateColor(candidate);
 
   return (

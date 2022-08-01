@@ -14,6 +14,7 @@ import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { numberFormatter } from '/helpers/numberHelper';
 import { daysTill } from '/helpers/dateHelper';
 import { candidateColor } from '../../../helpers/candidatesHelper';
+import { CandidateWrapperContext } from '../index';
 
 const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
@@ -55,6 +56,7 @@ const ButtonWrapper = styled.div`
 
 function SocialStats() {
   const { candidate, followers } = useContext(CandidateContext);
+  const { openFollowModalCallback } = useContext(CandidateWrapperContext);
   let thisWeek = 0;
   let lastWeek = 0;
   if (followers) {
@@ -104,6 +106,7 @@ function SocialStats() {
               backgroundColor: brightColor,
               borderColor: brightColor,
             }}
+            onClick={openFollowModalCallback}
           >
             <InnerButton>FOLLOW</InnerButton>
           </BlackButton>
