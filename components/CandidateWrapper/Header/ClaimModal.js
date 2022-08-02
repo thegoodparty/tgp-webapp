@@ -129,7 +129,7 @@ function ClaimModal({ closeModalCallback }) {
     }
   };
 
-  const showSuccess = true; //claiming===false && state.formSent;
+  const showSuccess = claiming===false && state.formSent;
   return (
     <Wrapper>
       <CloseWrapper onClick={closeModalCallback}>
