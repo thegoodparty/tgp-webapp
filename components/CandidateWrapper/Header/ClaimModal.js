@@ -87,6 +87,11 @@ const Line = styled.div`
   background-color: #ececec;
 `;
 
+const Back = styled.div`
+  margin-top: 48px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
 function ClaimModal({ closeModalCallback }) {
   const { candidate, claimCampaignCallback, claiming } =
     useContext(CandidateContext);
@@ -124,7 +129,7 @@ function ClaimModal({ closeModalCallback }) {
     }
   };
 
-  const showSuccess = claiming===false && state.formSent;
+  const showSuccess = true; //claiming===false && state.formSent;
   return (
     <Wrapper>
       <CloseWrapper onClick={closeModalCallback}>
@@ -147,7 +152,19 @@ function ClaimModal({ closeModalCallback }) {
       </Row>
       <Line />
       {showSuccess ? (
-        <div>Success</div>
+        <div className="text-center">
+          <span role="img" aria-label="Party" style={{ fontSize: '33px' }}>
+            🎉
+          </span>
+          <Title style={{ marginBottom: '22px' }}>Thank you!</Title>
+          <div>
+            Someone will be reaching out to
+            <br />
+            you from our team shortly.
+          </div>
+
+          <Back onClick={closeModalCallback}>Back to campaign</Back>
+        </div>
       ) : (
         <form noValidate onSubmit={(e) => e.preventDefault()}>
           <TextField
