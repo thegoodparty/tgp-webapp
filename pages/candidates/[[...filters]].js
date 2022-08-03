@@ -36,10 +36,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       ssrState: {
-        candidates,
-        positions,
-        positionsByTopIssues,
-        states,
+        candidates: candidates || [],
+        positions: positions || [],
+        positionsByTopIssues: positionsByTopIssues || {},
+        states: states || [],
         routePosition: position || '',
         routeState: state || '',
       },
