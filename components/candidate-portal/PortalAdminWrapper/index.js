@@ -13,7 +13,9 @@ import { PortalAdminPageContext } from '/containers/candidate-portal/PortalAdmin
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { FontH1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
-import BlackButton from '../../shared/buttons/BlackButton';
+import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import Row from '../../shared/Row';
+import EmailInput, { isValidEmail } from '../../shared/EmailInput';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 120px);
@@ -44,7 +46,7 @@ const fields = [
   { label: 'hubspot company id', key: 'hubspotId', initialValue: '' },
   { label: 'Pulsar Search ID', key: 'pulsarSearchId', initialValue: '' },
   {
-    label: 'Is Claimed',
+    label: 'This campaign is claimed',
     key: 'isClaimed',
     initialValue: false,
     isCheckbox: true,
@@ -52,7 +54,11 @@ const fields = [
 ];
 
 function PortalAdminWrapper() {
-  const { candidate, saveCallback } = useContext(PortalAdminPageContext);
+  const { candidate, saveCallback, approveClaimCallback } = useContext(
+    PortalAdminPageContext,
+  );
+
+  const [claimEmail, setClaimEmail] = useState('');
 
   const initialState = {};
   fields.forEach((field) => {
@@ -86,6 +92,10 @@ function PortalAdminWrapper() {
       state.likelyVoters >= 0 &&
       state.votesNeeded >= 0
     );
+  };
+
+  const approveClaim = () => {
+    approveClaimCallback(claimEmail, candidate.id);
   };
 
   return (
@@ -124,6 +134,34 @@ function PortalAdminWrapper() {
             )}
           </FieldWrapper>
         ))}
+        <br />
+        {!candidate.isClaimed && (
+          <div>
+            <form noValidate onSubmit={(e) => e.preventDefault()}>
+              <Row style={{ alignItems: 'center' }}>
+                <EmailInput
+                  hideIcon
+                  value={claimEmail}
+                  onChangeCallback={(e) => {
+                    setClaimEmail(e.target.value);
+                  }}
+                />
+                <BlackButton
+                  disabled={!isValidEmail(claimEmail)}
+                  onClick={approveClaim}
+                  type="submit"
+                  style={{
+                    marginLeft: '20px',
+                    marginBottom: '18px',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <InnerButton>Approve Claim</InnerButton>
+                </BlackButton>
+              </Row>
+            </form>
+          </div>
+        )}
         <br />
         <br />
         <BlackButton

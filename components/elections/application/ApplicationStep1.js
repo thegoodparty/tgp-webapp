@@ -52,7 +52,6 @@ const CardSubtitle = styled(Body13)`
   margin-bottom: 28px;
 `;
 
-
 const Icon = styled.img`
   margin-right: 16px;
 `;
@@ -63,12 +62,13 @@ const CheckboxWrapper = styled(Body13)`
   margin-bottom: 16px;
 `;
 
-
 function ApplicationStep1({
   step,
   application,
   updateApplicationCallback,
   reviewMode,
+  standAlone,
+  standAloneCanSubmitCallback = () => {},
 }) {
   const [state, setState] = useState({
     disAffiliate: false,
@@ -116,8 +116,9 @@ function ApplicationStep1({
         isCompleted,
       },
     });
+    standAloneCanSubmitCallback(isCompleted);
   };
-  
+
   const canSubmit = () =>
     state.disAffiliate &&
     state.notJoin &&
@@ -128,14 +129,29 @@ function ApplicationStep1({
     state.honest &&
     state.transparent &&
     state.choices;
+
+  const WrapperElement = ({ children }) => {
+    if (standAlone) {
+      return <div>{children}</div>;
+    } else {
+      return (
+        <ApplicationWrapper
+          step={step}
+          canContinue={canSubmit()}
+          id={application.id}
+          reviewMode={reviewMode}
+          standAlone={standAlone}
+        >
+          {children}
+        </ApplicationWrapper>
+      );
+    }
+  };
   return (
-    <ApplicationWrapper
-      step={step}
-      canContinue={canSubmit()}
-      id={application.id}
-      reviewMode={reviewMode}
-    >
-      <Title data-cy="step-title">Step 1: Take the Good Party Pledge to get started</Title>
+    <WrapperElement>
+      <Title data-cy="step-title">
+        {!standAlone && 'Step 1: '}Take the Good Party Pledge to get started
+      </Title>
       <SubTitle data-cy="step-subtitle">
         Good Party candidates take a pledge to be{' '}
         <strong>Honest, Independent and People-Powered</strong>.
@@ -146,7 +162,9 @@ function ApplicationStep1({
             {card.icon}
             {card.title}
           </CardTitle>
-          <CardSubtitle data-cy="step-card-subtitle">{card.subtitle}</CardSubtitle>
+          <CardSubtitle data-cy="step-card-subtitle">
+            {card.subtitle}
+          </CardSubtitle>
           {card.checkboxes.map((item) => (
             <CheckboxWrapper key={item.id} data-cy="card-checkbox">
               <BlackCheckbox
@@ -160,7 +178,7 @@ function ApplicationStep1({
           ))}
         </Card>
       ))}
-    </ApplicationWrapper>
+    </WrapperElement>
   );
 }
 

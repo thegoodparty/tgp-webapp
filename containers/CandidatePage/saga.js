@@ -114,15 +114,16 @@ function* trackVisit({ url, data }) {
   }
 }
 
-function* claim({ name, email, phone }) {
+function* claim({ name, email, phone, candidateId }) {
   try {
     yield put(snackbarActions.showSnakbarAction('Sending your request'));
-    const api = tgpApi.newCandidate.claim;
+    const api = tgpApi.campaign.claim;
     const payload = {
       name,
       email,
       phone,
       uri: window.location.href,
+      candidateId,
     };
     yield call(requestHelper, api, payload);
     yield put(actions.claimActionSuccess());

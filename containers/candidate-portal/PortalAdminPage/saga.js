@@ -26,7 +26,31 @@ function* updateCandidate({ fields }) {
   }
 }
 
+function* approveClaim({ email, candidateId }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
+    const api = tgpApi.campaign.approveClaim;
+
+    const payload = { email, candidateId };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Saved'));
+    yield put(portalHomeActions.findCandidate(candidateId));
+  } catch (error) {
+    console.log(error);
+    if (error.response && error.response.noUser) {
+      yield put(
+        snackbarActions.showSnakbarAction(error.response.message, 'error'),
+      );
+    } else {
+      yield put(
+        snackbarActions.showSnakbarAction('Error approving claim', 'error'),
+      );
+    }
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.UPDATE_CANDIDATE, updateCandidate);
+  yield takeLatest(types.APPROVE_CLAIM, approveClaim);
 }

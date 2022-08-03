@@ -105,11 +105,12 @@ const trackVisitAction = (url, data) => ({
   data,
 });
 
-const claimAction = (name, email, phone) => ({
+const claimAction = (name, email, phone, candidateId) => ({
   type: types.CLAIM,
   name,
   email,
   phone,
+  candidateId,
 });
 
 const claimActionSuccess = () => ({

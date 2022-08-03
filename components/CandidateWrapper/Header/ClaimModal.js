@@ -121,7 +121,7 @@ function ClaimModal({ closeModalCallback }) {
 
   const submitForm = () => {
     if (canSubmit()) {
-      claimCampaignCallback(state.name, state.email, state.phone);
+      claimCampaignCallback(state.name, state.email, state.phone, candidate.id);
       setState({
         ...state,
         formSent: true,
@@ -129,7 +129,7 @@ function ClaimModal({ closeModalCallback }) {
     }
   };
 
-  const showSuccess = claiming===false && state.formSent;
+  const showSuccess = claiming === false && state.formSent;
   return (
     <Wrapper>
       <CloseWrapper onClick={closeModalCallback}>

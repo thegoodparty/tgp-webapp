@@ -34,6 +34,7 @@ export function PortalAdminPage({
   candidatePortalHomePage,
   userState,
   saveCallback,
+  approveClaimCallback,
 }) {
   useInjectReducer({ key: 'portalAdminPage', reducer });
   useInjectSaga({ key: 'portalAdminPage', saga });
@@ -59,7 +60,7 @@ export function PortalAdminPage({
     user = getUserCookie(true);
   }
 
-  const childProps = { candidate, saveCallback };
+  const childProps = { candidate, saveCallback, approveClaimCallback };
 
   return (
     <PortalAdminPageContext.Provider value={childProps}>
@@ -74,6 +75,7 @@ PortalAdminPage.propTypes = {
   userState: PropTypes.object,
   candidatePortalHomePage: PropTypes.object,
   saveCallback: PropTypes.func,
+  approveClaimCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -87,6 +89,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     saveCallback: (fields) => {
       dispatch(actions.updateCandidateAction(fields));
+    },
+    approveClaimCallback: (email, candidadeId) => {
+      dispatch(actions.approveClaimAction(email, candidadeId));
     },
   };
 }

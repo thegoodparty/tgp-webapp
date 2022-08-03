@@ -430,10 +430,7 @@ export const generateApi = (base) => ({
         method: 'GET',
       },
     },
-    claim: {
-      url: `${base}new-candidate/claim`,
-      method: 'POST',
-    },
+
   },
   trackVisit: {
     url: `${base}visit`,
@@ -628,7 +625,20 @@ export const generateApi = (base) => ({
         withAuth: true,
       },
     },
-
+    claim: {
+      url: `${base}campaign/claim`,
+      method: 'POST',
+    },
+    approveClaim: {
+      url: `${base}campaign/approve-claim`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    pledge: {
+      url: `${base}campaign/pledge`,
+      method: 'POST',
+      withAuth: true,
+    },
   },
   candidateUser: {
     issue: {
@@ -733,6 +743,7 @@ export const generateApi = (base) => ({
       withAuth: true,
     },
   },
+
 });
 const api = generateApi(base);
 export default api;

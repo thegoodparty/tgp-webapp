@@ -187,8 +187,8 @@ function mapDispatchToProps(dispatch) {
     removeSupportCallback: (candidateId) => {
       dispatch(actions.removeSupportAction(candidateId));
     },
-    claimCampaignCallback: (name, email, phone) => {
-      dispatch(actions.claimAction(name, email, phone));
+    claimCampaignCallback: (name, email, phone, candidateId) => {
+      dispatch(actions.claimAction(name, email, phone, candidateId));
     },
   };
 }
