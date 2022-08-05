@@ -73,13 +73,15 @@ const Total = styled.div`
 `;
 
 const SupportersProgressBar = ({
-  peopleSoFar,
+  // peopleSoFar,
   votesNeeded,
   peopleThisPeriod,
   days,
   color = '#000',
   withAchievement = true,
 }) => {
+  const peopleSoFar = 60000;
+
   const weeksToElection = Math.floor(days / 7);
   let neededToWin = votesNeeded - peopleSoFar;
   if (neededToWin < 0) {
@@ -122,13 +124,20 @@ const SupportersProgressBar = ({
       {withAchievement && days > 0 && (
         <AchievementWrapper>
           <Icon src="/images/icons/achievement.svg" alt="achievement" />
-          <div>
-            If we can get to{' '}
-            <strong>
-              {numberFormatter(neededPerWeek)} followers this week
-            </strong>
-            , we’ll be on track to win on election day!
-          </div>
+          {neededPerWeek > 0 ? (
+            <div>
+              If we can get to{' '}
+              <strong>
+                {numberFormatter(neededPerWeek)} followers this week
+              </strong>
+              , we’ll be on track to win on election day!
+            </div>
+          ) : (
+            <div>
+              This candidate has a good chance of <strong>winning</strong>. Keep
+              the momentum going!
+            </div>
+          )}
         </AchievementWrapper>
       )}
     </ProgressBarWrapper>
