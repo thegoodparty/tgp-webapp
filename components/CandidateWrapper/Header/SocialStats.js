@@ -85,10 +85,16 @@ function SocialStats() {
             from last week
           </Grid>
           <Grid item xs={4}>
-            <Number>
-              {numberFormatter(days)} day{days !== 1 ? 's' : ''}
-            </Number>
-            until election
+            {days >= 0 ? (
+              <>
+                <Number>
+                  {numberFormatter(days)} day{days !== 1 ? 's' : ''}
+                </Number>
+                until election
+              </>
+            ) : (
+              <Number>Election ended</Number>
+            )}
           </Grid>
         </Grid>
         <SupportersProgressBar

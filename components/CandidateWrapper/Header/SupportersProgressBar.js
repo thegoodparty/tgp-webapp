@@ -104,16 +104,22 @@ const SupportersProgressBar = ({
   } else {
     progress = (peopleThisPeriod * 100) / neededThisWeek;
   }
+  if (days < 0) {
+    neededPerWeek = votesNeeded;
+    progress = (peopleSoFar * 100) / votesNeeded;
+  }
+
   if (progress > 100) {
     progress = 100;
   }
+
   return (
     <ProgressBarWrapper data-cy="supporter-progress">
       <BarBg>
         <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
         {neededPerWeek !== 0 && <Total>{numberFormatter(neededPerWeek)}</Total>}
       </BarBg>
-      {withAchievement && (
+      {withAchievement && days > 0 && (
         <AchievementWrapper>
           <Icon src="/images/icons/achievement.svg" alt="achievement" />
           <div>
