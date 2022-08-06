@@ -79,31 +79,7 @@ function* updatePreferences({ id, preferences }) {
   }
 }
 
-function* createUpdate({ candidate, update }) {
-  try {
-    yield put(snackbarActions.showSnakbarAction('Creating Update...'));
-    const api = tgpApi.campaign.updates.create;
-    const payload = { update, candidateId: candidate.id };
-    const { updateId } = yield call(requestHelper, api, payload);
-    const link = `${candidateRoute(candidate)}#candidate-update-${updateId}`;
-    yield put(actions.findCandidate(candidate.id));
-    yield put(
-      snackbarActions.showSnakbarAction(
-        <span>
-          Update {update.title} Created{' '}
-          <a href={link} target="_blank" style={{ color: '#FFF' }}>
-            <strong>View Update</strong>
-          </a>
-        </span>,
-      ),
-    );
-  } catch (error) {
-    console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error saving update', 'error'),
-    );
-  }
-}
+
 
 // Individual exports for testing
 export default function* saga() {
@@ -111,5 +87,4 @@ export default function* saga() {
   yield takeLatest(types.LOAD_STATS, loadStats);
   yield takeLatest(types.LOAD_ROLE, loadRole);
   yield takeLatest(types.UPDATE_PREFERENCES, updatePreferences);
-  yield takeLatest(types.CREATE_UPDATE, createUpdate);
 }

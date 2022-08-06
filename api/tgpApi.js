@@ -404,26 +404,7 @@ export const generateApi = (base) => ({
       method: 'PUT',
       withAuth: true,
     },
-    createCampaignUpdate: {
-      url: `${base}new-candidate/campaign-update`,
-      method: 'POST',
-      withAuth: true,
-    },
-    saveCampaignUpdate: {
-      url: `${base}new-candidate/campaign-update`,
-      method: 'PUT',
-      withAuth: true,
-    },
-    deleteCampaignUpdate: {
-      url: `${base}new-candidate/campaign-update`,
-      method: 'DELETE',
-      withAuth: true,
-    },
-    approveUpdate: {
-      url: `${base}new-candidate/approve-update`, // admin
-      method: 'PUT',
-      withAuth: true,
-    },
+
     endorseButton: {
       click: {
         url: `${base}button/click`,
