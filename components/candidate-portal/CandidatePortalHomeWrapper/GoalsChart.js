@@ -102,12 +102,11 @@ function GoalsChart({ candidate, followers }) {
   }
   const cappedLikely = voters > votesNeeded ? votesNeeded : voters;
 
-
   const data = [
     { name: 'To Win', value: votesNeeded - cappedLikely },
     { name: 'So Far', value: cappedLikely },
   ];
-  const perc = parseInt((voters * 100) / votesNeeded, 10);
+  const perc = votesNeeded !== 0 ? parseInt((voters * 100) / votesNeeded, 10) : 0;
   const brightColor = color?.color ? color.color : '#000000';
   const rgb = hexToRgb(brightColor);
   const COLORS = [`rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`, brightColor];

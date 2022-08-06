@@ -10,10 +10,8 @@ import { CandidatePortalHomePageContext } from '/containers/candidate-portal/Can
 
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 
-import EndorsePanel from './EndorsePanel';
 import CampaignPanel from './CampaignPanel';
 import GoalsPanel from './GoalsPanel';
-import ActiveEndorsePanel from './ActiveEndorsePanel';
 
 function CandidatePortalHomeWrapper() {
   const { role, candidate, stats, loadStatsCallback } = useContext(
@@ -29,11 +27,6 @@ function CandidatePortalHomeWrapper() {
       role={role}
       title={`Analytics Dashboard for ${candidate.firstName} ${candidate.lastName}`}
     >
-      {stats?.totals?.impressions > 0 ? (
-        <ActiveEndorsePanel range={range} onChangeRange={handleChangeRange} />
-      ) : (
-        <EndorsePanel />
-      )}
       <CampaignPanel range={range} onChangeRange={handleChangeRange} />
       <GoalsPanel />
     </PortalPageWrapper>

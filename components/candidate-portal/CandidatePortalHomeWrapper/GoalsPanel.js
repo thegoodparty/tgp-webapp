@@ -75,11 +75,11 @@ function GoalsPanel() {
           <Grid container spacing={2}>
             <Grid item xs={12} lg={6}>
               <Title>VOTES NEEDED TO WIN 🎉</Title>
-              <Stat>{numberFormatter(votesNeeded)}</Stat>
+              <Stat>{numberFormatter(votesNeeded || 0)}</Stat>
             </Grid>
             <Grid item xs={12} lg={6}>
               <Title>LIKELY VOTES SO FAR 🗳</Title>
-              <Stat>{numberFormatter(likelyVoters)}</Stat>
+              <Stat>{numberFormatter(likelyVoters || 0)}</Stat>
             </Grid>
           </Grid>
         </Grid>
