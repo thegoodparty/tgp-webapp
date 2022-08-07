@@ -563,18 +563,6 @@ export const generateApi = (base) => ({
       },
     },
 
-    notification: {
-      find: {
-        url: `${base}campaign/notification`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}campaign/notification`,
-        method: 'PUT',
-        withAuth: true,
-      },
-    },
     claim: {
       url: `${base}campaign/claim`,
       method: 'POST',
@@ -632,12 +620,7 @@ export const generateApi = (base) => ({
       },
     },
   },
-  jobUpdates: {
-    create: {
-      url: `${base}updates`,
-      method: 'POST',
-    },
-  },
+
 
   candidateApplication: {
     create: {
