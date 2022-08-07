@@ -43,9 +43,6 @@ export function CandidatePage({
   dispatch,
   ssrState,
   candidatePage,
-  userSupportCallback,
-  guestSupportCallback,
-  removeSupportCallback,
   claimCampaignCallback,
 }) {
   useInjectReducer({ key: 'candidatePage', reducer });
@@ -55,27 +52,16 @@ export function CandidatePage({
 
   const {
     candidate,
-    candidateSupports,
-    similarCampaigns,
-    supportCount,
     candidatePositions,
     userAgent,
     tab,
     followers,
     feed,
   } = ssrState;
-  const { userSupports, claiming } = candidatePage;
+  const {  claiming } = candidatePage;
   const { firstName, lastName, party, otherParty, race, id } = candidate;
 
-  // the reducer will be updated if the user took an action on the page.
-  const updatedSupports = candidatePage.candidateSupports
-    ? candidatePage.candidateSupports
-    : candidateSupports;
 
-  const updatedSupportsCount =
-    candidatePage.supportCount !== false
-      ? candidatePage.supportCount
-      : supportCount;
 
   const user = getUserCookie(true);
 
@@ -95,11 +81,6 @@ export function CandidatePage({
     );
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      dispatch(actions.userSupportsAction());
-    }
-  }, [id]);
 
   const title = `${firstName} ${lastName} ${partyResolver(party, otherParty)} ${
     party !== 'I' ? 'Party ' : ''
@@ -112,16 +93,9 @@ export function CandidatePage({
 
   const childProps = {
     candidate,
-    isUserSupportCandidate: userSupports && userSupports[id],
-    userSupportCallback,
-    guestSupportCallback,
-    removeSupportCallback,
     claimCampaignCallback,
     user,
-    candidateSupports: updatedSupports,
-    supportCount: updatedSupportsCount,
     candidatePositions,
-    similarCampaigns,
     tab,
     followers,
     feed,
@@ -151,9 +125,6 @@ export function CandidatePage({
 CandidatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   candidatePage: PropTypes.object,
-  userSupportCallback: PropTypes.func,
-  guestSupportCallback: PropTypes.func,
-  removeSupportCallback: PropTypes.func,
   claimCampaignCallback: PropTypes.func,
 };
 
@@ -165,28 +136,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
 
-    userSupportCallback: (candidateId) => {
-      dispatch(actions.supportAction(candidateId));
-    },
-    guestSupportCallback: (candidateId, newUser) => {
-      setSignupRedirectCookie(`${window.location.pathname}?share=true`);
-      const callback = () => {
-        dispatch(actions.supportAction(candidateId));
-      };
-      dispatch(
-        registerActions.registerAction(
-          newUser.name,
-          newUser.email,
-          newUser.phone,
-          newUser.zip,
-          callback,
-          'candidatePage',
-        ),
-      );
-    },
-    removeSupportCallback: (candidateId) => {
-      dispatch(actions.removeSupportAction(candidateId));
-    },
     claimCampaignCallback: (name, email, phone, candidateId) => {
       dispatch(actions.claimAction(name, email, phone, candidateId));
     },

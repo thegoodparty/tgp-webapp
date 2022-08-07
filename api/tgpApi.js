@@ -432,38 +432,7 @@ export const generateApi = (base) => ({
     withAuth: true,
   },
 
-  supportCandidate: {
-    support: {
-      url: `${base}support`,
-      method: 'POST',
-      withAuth: true,
-    },
-    removeSupport: {
-      url: `${base}support`,
-      method: 'DELETE',
-      withAuth: true,
-    },
-    adminDeleteSupport: {
-      url: `${base}admin-support`,
-      method: 'DELETE',
-      withAuth: true,
-    },
-    updateSupport: {
-      url: `${base}support`,
-      method: 'PUT',
-      withAuth: true,
-    },
-    userSupports: {
-      url: `${base}supports`,
-      method: 'GET',
-      withAuth: true,
-    },
 
-    candidateSupports: {
-      url: `${base}candidate-supports`,
-      method: 'GET',
-    },
-  },
   campaign: {
     find: {
       url: `${base}campaign`,

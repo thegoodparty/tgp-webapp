@@ -15,7 +15,6 @@ import ProfilePageWrapper from '../shared/ProfilePageWrapper';
 import UserAvatar from '../../shared/UserAvatar';
 import Row from '../../shared/Row';
 import { FontH3 } from '../../shared/typogrophy';
-import SupportedCampaigns from './SupportedCampaigns';
 
 const Name = styled.div`
   margin-left: 24px;
@@ -61,7 +60,6 @@ function ProfileWrapper() {
         </Grid>
       </SmallPadder>
 
-      <SupportedCampaigns />
     </ProfilePageWrapper>
   );
 }

@@ -82,8 +82,6 @@ function CampaignPanel({ range, onChangeRange }) {
   const shares = stats?.stats?.shares;
   const followers = stats?.stats?.followers;
 
-  console.log('stats?.stats', stats?.stats);
-
   const fields = [
     { label: 'VIEWS', data: visitors || {} },
     { label: 'SHARES', data: shares || {} },

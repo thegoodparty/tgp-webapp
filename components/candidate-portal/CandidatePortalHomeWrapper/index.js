@@ -14,7 +14,7 @@ import CampaignPanel from './CampaignPanel';
 import GoalsPanel from './GoalsPanel';
 
 function CandidatePortalHomeWrapper() {
-  const { role, candidate, stats, loadStatsCallback } = useContext(
+  const { role, candidate, loadStatsCallback } = useContext(
     CandidatePortalHomePageContext,
   );
   const [range, setRange] = useState(7);

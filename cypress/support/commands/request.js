@@ -51,25 +51,25 @@ Cypress.Commands.add(
   );
 Cypress.Commands.add('getFaqArticles', () => {
   cy.sendRequest(
-    api.contentByKey.method, 
+    api.contentByKey.method,
     `${api.contentByKey.url}?key=articleCategories`
   );
 });
 Cypress.Commands.add('getPrivacyPageContent', () => {
   cy.sendRequest(
-    api.contentByKey.method, 
+    api.contentByKey.method,
     `${api.contentByKey.url}?key=privacyPage`
   );
 });
 Cypress.Commands.add('getHomepageCandidates', () => {
   cy.sendRequest(
-    api.homepageCandidates.method, 
+    api.homepageCandidates.method,
     api.homepageCandidates.url
   );
 });
 Cypress.Commands.add('getCandidateList', () => {
   cy.sendRequest(
-    api.newCandidate.list.method, 
+    api.newCandidate.list.method,
     api.newCandidate.list.url
   );
 });
@@ -81,7 +81,7 @@ Cypress.Commands.add('getCandidate', (candidateId) => {
 });
 Cypress.Commands.add('getApplications', () => {
   cy.sendRequest(
-    api.candidateApplication.list.method, 
+    api.candidateApplication.list.method,
     api.candidateApplication.list.url,
     null,
     api.candidateApplication.list.withAuth && TOKEN,
@@ -89,43 +89,24 @@ Cypress.Commands.add('getApplications', () => {
 });
 Cypress.Commands.add('getStaff', () => {
   cy.sendRequest(
-    api.campaign.staff.userStaff.method, 
+    api.campaign.staff.userStaff.method,
     api.campaign.staff.userStaff.url,
     null,
     api.campaign.staff.userStaff.withAuth && TOKEN,
   );
 });
-Cypress.Commands.add('getUserSupports', () => {
-  cy.sendRequest(
-    api.supportCandidate.userSupports.method,
-    api.supportCandidate.userSupports.url,
-    {
-      withCandidates: true,
-    },
-    api.supportCandidate.userSupports.withAuth && TOKEN,
-  );
-});
-Cypress.Commands.add('getCandidateSupports', (candidateId) => {
-  cy.sendRequest(
-    api.supportCandidate.candidateSupports.method, 
-    `${api.supportCandidate.candidateSupports.url}?candidateId=${candidateId}`
-  );
-});
+
 
 Cypress.Commands.add('getCandidatePageData', async (candidateId) => {
   const candidate = await promisify(
     cy.getCandidate().then(response => response.body),
   );
-  const { candidateSupports, total } = await promisify(
-    cy.getCandidateSupports().then(response => response.body),
-  );
+
   return {
     candidate: candidate.candidate,
     candidatePositions: candidate.candidatePositions || [],
     similarCampaigns: candidate.similarCampaigns || [],
     id: candidateId,
-    candidateSupports,
-    supportCount: total,
   }
 });
 

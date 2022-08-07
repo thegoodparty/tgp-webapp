@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 function CampaignChart() {
   const { stats } = useContext(CandidatePortalHomePageContext);
   const data = stats.chart;
-  console.log('cart', stats.chart)
   return (
     <Wrapper>
       <ResponsiveContainer width="100%" height="100%">
