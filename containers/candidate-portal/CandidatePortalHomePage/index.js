@@ -52,7 +52,7 @@ export function CandidatePortalHomePage({
   }, [id]);
 
   useEffect(() => {
-    if (!candidate && id) {
+    if (!candidate || `${candidate.id}` !== id) {
       dispatch(actions.findCandidate(id));
     }
   }, [id, candidate]);
@@ -96,7 +96,6 @@ function mapDispatchToProps(dispatch) {
     savePreferencesCallback: (id, preferences) => {
       dispatch(actions.updatePreferencesAction(id, preferences));
     },
-
   };
 }
 

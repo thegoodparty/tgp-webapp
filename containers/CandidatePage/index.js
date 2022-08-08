@@ -50,18 +50,10 @@ export function CandidatePage({
   useInjectReducer({ key: 'registerUpdatePage', reducer: registerReducer });
   useInjectSaga({ key: 'registerUpdatePage', saga: registerSaga });
 
-  const {
-    candidate,
-    candidatePositions,
-    userAgent,
-    tab,
-    followers,
-    feed,
-  } = ssrState;
-  const {  claiming } = candidatePage;
+  const { candidate, candidatePositions, userAgent, tab, followers, feed } =
+    ssrState;
+  const { claiming } = candidatePage;
   const { firstName, lastName, party, otherParty, race, id } = candidate;
-
-
 
   const user = getUserCookie(true);
 
@@ -80,7 +72,6 @@ export function CandidatePage({
       ),
     );
   }, []);
-
 
   const title = `${firstName} ${lastName} ${partyResolver(party, otherParty)} ${
     party !== 'I' ? 'Party ' : ''
