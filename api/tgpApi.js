@@ -283,28 +283,7 @@ export const generateApi = (base) => ({
       method: 'POST',
       withAuth: true,
     },
-    topics: {
-      create: {
-        url: `${base}compare-topic`,
-        method: 'POST',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}compare-topic`,
-        method: 'PUT',
-        withAuth: true,
-      },
-      delete: {
-        url: `${base}compare-topic`,
-        method: 'DELETE',
-        withAuth: true,
-      },
-      list: {
-        url: `${base}compare-topics`,
-        method: 'GET',
-        withAuth: true,
-      },
-    },
+
     topIssues: {
       create: {
         url: `${base}top-issue`,

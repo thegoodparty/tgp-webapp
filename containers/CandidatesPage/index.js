@@ -18,21 +18,7 @@ import { slugify } from '../../helpers/articlesHelper';
 
 export const CandidatesContext = createContext();
 
-const filtertopics = (candidates, topics) => {
-  const candidateTopics = {};
-  candidates.forEach((candidate) => {
-    candidate.topics.forEach((topic) => {
-      candidateTopics[topic.id] = true;
-    });
-  });
-  const filtered = [];
-  topics.forEach((topic) => {
-    if (candidateTopics[topic.id]) {
-      filtered.push(topic);
-    }
-  });
-  return filtered;
-};
+
 
 export function CandidatesPage({
   ssrState,
