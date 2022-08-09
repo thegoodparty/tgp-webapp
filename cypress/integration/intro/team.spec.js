@@ -1,6 +1,6 @@
 import { CONTACT_EMAIL, JOIN_FORM_LINK } from '../../../utils/constants';
-import { TEAM_MEMBERS } from '../../../components/TeamWrapper/TeamSection';
-import { VOLUNTEERS } from '../../../components/TeamWrapper/VolunteersSection';
+import { TEAM_MEMBERS } from '../../../components/company/TeamWrapper/TeamSection';
+import { VOLUNTEERS } from '../../../components/company/TeamWrapper/VolunteersSection';
 describe('Team Page', () => {
   it('load Page', () => {
     cy.visit('/team');
