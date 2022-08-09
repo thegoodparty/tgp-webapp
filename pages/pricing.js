@@ -1,4 +1,4 @@
-import Page from '/containers/RunPage';
+import Page from '/containers/company/PricingPage';
 export default function LP() {
   return <Page />;
 }
