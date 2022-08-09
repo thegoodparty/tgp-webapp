@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import { FaPlay } from 'react-icons/fa';
 import YouTubeVideoModal from '../shared/YouTubeVideoModal';
+import Row from '../shared/Row';
 
 const Wrapper = styled.div`
   background-color: #f3f3f3;
@@ -17,8 +18,8 @@ const Wrapper = styled.div`
     border-radius: 12px;
     object-fit: cover;
     object-position: center center;
-    height: 100%;
     width: 100%;
+    height: 100px;
   }
 `;
 
@@ -37,6 +38,11 @@ const Play = styled.div`
   color: #fff;
 `;
 
+const PlayWrapper = styled.div`
+  text-align: center;
+  flex: 1;
+`;
+
 const YOUTUBE_ID = 'ssU2S8clVPo';
 
 const SmVideoSection = () => {
@@ -44,24 +50,22 @@ const SmVideoSection = () => {
   return (
     <>
       <Wrapper onClick={() => setShowVideo(true)} id="homepage-video-mobile">
-        <Grid container spacing={0} alignItems="center" justify="center">
-          <Grid item xs={3}>
-            <Relative>
-              <Image
-                src="/images/homepage/tiktok-preview-sm.jpg"
-                height={100}
-                width={100}
-                className="video-img"
-              />
-              <Play className="flex-center">
-                <FaPlay />
-              </Play>
-            </Relative>
-          </Grid>
-          <Grid item xs={9} className="flex-center">
+        <Row>
+          <Relative>
+            <Image
+              src="/images/homepage/tiktok-preview-sm.jpg"
+              height={100}
+              width={100}
+              className="video-img"
+            />
+            <Play className="flex-center">
+              <FaPlay />
+            </Play>
+          </Relative>
+          <PlayWrapper>
             <FaPlay /> &nbsp; Watch Video
-          </Grid>
-        </Grid>
+          </PlayWrapper>
+        </Row>
       </Wrapper>
       {showVideo && (
         <YouTubeVideoModal
