@@ -91,7 +91,7 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
       </Padder>
       <Line />
       <Padder>
-        <form noValidate onSubmit={(e) => e.preventDefault()}>
+        <form noValidate onSubmit={(e) => e.preventDefault()} id="homepage-involved-form">
           <TextField
             fullWidth
             primary
