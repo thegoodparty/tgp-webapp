@@ -70,7 +70,7 @@ function TopSection() {
       <GoodCertifiedPoints />
       <Why>
         <Link href={`${router.asPath}?article=FqZOWMEEYfcXbASjaRkMU`} passHref>
-          <a className="no-underline" data-cy="candidates-article-link">
+          <a className="no-underline" data-cy="candidates-article-link" id="important-link">
             <ButtonWrapper>
               <BlackOutlinedButton
                 active
@@ -82,7 +82,7 @@ function TopSection() {
           </a>
         </Link>
         <Link href="/run" passHref>
-          <a data-cy="candidates-run-link">
+          <a data-cy="candidates-run-link" id="run-link">
             <ButtonWrapper data-cy="candidates-run-link-label">
               Want to Run for Office?
             </ButtonWrapper>

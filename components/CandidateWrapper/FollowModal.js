@@ -179,6 +179,7 @@ function FollowModal() {
                       ? { backgroundColor: brightColor }
                       : {}
                   }
+                  id={`${channel.label}-follow`}
                 >
                   {channel.icon}
                 </SocialLink>

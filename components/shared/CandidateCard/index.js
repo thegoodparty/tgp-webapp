@@ -140,8 +140,9 @@ function CandidateCard({ candidate }) {
     >
       <a
         style={{ height: '100%' }}
-        className="no-underline"
+        className="no-underline candidate-card"
         data-cy="candidate-link"
+        id={`candidate-card-${firstName}-${lastName}`}
       >
         <Wrapper>
           <ImageWrapper>

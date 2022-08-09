@@ -46,6 +46,7 @@ function Bio() {
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="no-underline"
+              id="candidate-website"
             >
               <BlackButton
                 className="outlined"
