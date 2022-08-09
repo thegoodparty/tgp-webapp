@@ -240,7 +240,12 @@ const SocialPost = ({ post }) => {
             )}
           </div>
           <div>
-            <Link href={`${router.asPath}?share=true`} passHref>
+            <Link
+              href={`${router.asPath}?share=true&url=${encodeURIComponent(
+                url,
+              )}`}
+              passHref
+            >
               <a id={`feed-post-share-${url}`}>
                 <BlackButton
                   style={{ textTransform: 'none', padding: '4px 12px' }}

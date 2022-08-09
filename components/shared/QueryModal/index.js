@@ -91,67 +91,29 @@ function QueryModal({
   closeModalCallback,
   children,
   modalStyles = {},
-  mode,
   hideClose = false,
-  closeTitle,
-  closeContent,
-  closeBack,
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(
     `(max-width: ${theme.breakpointsPixels.md}px)`,
   );
-  const [close, setClose] = useState(false);
-  const router = useRouter();
-  const isCandidatePage = router.route === '/candidate/[...NameIdTab]';
 
-  useEffect(() => {
-    if (close && (!closeTitle || !isCandidatePage)) {
-      closeModalCallback();
-    }
-  }, [close]);
   return (
     <TgpDialog
-      onClose={() => setClose(true)}
+      onClose={closeModalCallback}
       open
       fullScreen={fullScreen}
-      className={`${close && isCandidatePage && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
       {!hideClose && (
         <TopWrapper className="top-wrapper">
           <TopClose
-            onClick={() => setClose(true)}
+            onClick={closeModalCallback}
             style={modalStyles.closeButton}
-            className={!(closeTitle && close) && mode}
           />
         </TopWrapper>
       )}
-      {(!closeTitle || !close || !isCandidatePage) && children}
-      {closeTitle && close && isCandidatePage && (
-        <>
-          <H2 style={{ color: '#292936' }}>{closeTitle}</H2>
-          <Body13 style={{ color: '#11111F', marginTop: 8 }}>
-            {closeContent}
-          </Body13>
-          <Grid container spacing={2} style={{ marginTop: 18 }}>
-            <Grid item xs={6}>
-              <BlackButton
-                fullWidth
-                className="outline"
-                onClick={closeModalCallback}
-              >
-                YES, EXIT
-              </BlackButton>
-            </Grid>
-            <Grid item xs={6}>
-              <BlackButton fullWidth onClick={() => setClose(false)}>
-                {closeBack}
-              </BlackButton>
-            </Grid>
-          </Grid>
-        </>
-      )}
+      {children}
     </TgpDialog>
   );
 }
