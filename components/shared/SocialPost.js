@@ -20,7 +20,6 @@ const Post = styled.div`
   background-color: #fff;
   text-align: left;
   position: relative;
-  height: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
   border: 1px solid #e5e5e5;
