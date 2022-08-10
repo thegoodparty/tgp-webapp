@@ -4,9 +4,11 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import Link from 'next/link';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 
 const basicFeatures = [
@@ -83,13 +85,18 @@ const plans = [
 const Plan = styled.div`
   padding: 32px;
   border-radius: 24px;
+  display: none;
+  &.mobile-active {
+    display: block;
+  }
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     padding: 44px;
-  }
-
-  &.active {
-    background-color: #f3f3f3;
+    display: block;
+    margin: 0 12px;
+    &.gray {
+      background-color: #f3f3f3;
+    }
   }
 `;
 
@@ -97,7 +104,7 @@ const H3 = styled.h3`
   font-weight: 900;
   font-size: 45px;
   letter-spacing: 0.2px;
-  margin: 38px 0 40px;
+  margin: 0 0 40px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     margin-top: 60px;
@@ -122,33 +129,86 @@ const Feature = styled.div`
     display: block;
   }
 `;
+
+const Tabs = styled.div`
+  background-color: #d3d3d3;
+  margin-bottom: 40px;
+  font-size: 15px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Tab = styled.div`
+  padding: 12px 19px;
+  border-radius: 32px;
+  text-transform: uppercase;
+  cursor: pointer;
+  &.active {
+    color: #fff;
+    background-color: #000;
+    cursor: initial;
+  }
+`;
+
 function Plans() {
+  const [active, setActive] = useState('Starter');
   return (
-    <Grid container spacing={6}>
-      {plans.map((plan) => (
-        <Grid item xs={12} lg={4}>
-          <Plan className={plan.name === 'Starter' && 'active'}>
-            <BlackButton className="pill">{plan.name}</BlackButton>
-            <H3>{plan.price}</H3>
-            <SubTitle>{plan.subtitle}</SubTitle>
-            <BlackButton
-              fullWidth
-              className={plan.name !== 'Starter' && 'outline'}
+    <>
+      <Hidden mdUp>
+        <Tabs>
+          {plans.map((plan) => (
+            <React.Fragment key={plan.name}>
+              <Tab
+                className={active === plan.name && 'active'}
+                onClick={() => setActive(plan.name)}
+              >
+                {plan.name}
+              </Tab>
+            </React.Fragment>
+          ))}
+        </Tabs>
+      </Hidden>
+      <Grid container spacing={0}>
+        {plans.map((plan) => (
+          <Grid item xs={12} lg={4} key={plan.name}>
+            <Plan
+              className={`${plan.name === 'Starter' && 'gray'} ${
+                active === plan.name && 'mobile-active'
+              }`}
             >
-              GET STARTED
-            </BlackButton>
-            <br />
-            <br />
-            {plan.features.map((feature) => (
-              <Feature>
-                <strong>{feature.title}</strong>
-                {feature.description}
-              </Feature>
-            ))}
-          </Plan>
-        </Grid>
-      ))}
-    </Grid>
+              <Hidden lgDown>
+                <BlackButton className="pill black-disabled" disabled>
+                  {plan.name}
+                </BlackButton>
+              </Hidden>
+              <H3>{plan.price}</H3>
+              <SubTitle>{plan.subtitle}</SubTitle>
+              {plan.name === 'Starter' ? (
+                <Link href="/run" passHref>
+                  <a id="free-get-started">
+                    <BlackButton fullWidth>GET STARTED</BlackButton>
+                  </a>
+                </Link>
+              ) : (
+                <BlackButton fullWidth className="outline" disabled>
+                  GET STARTED
+                </BlackButton>
+              )}
+              <br />
+              <br />
+              {plan.features.map((feature) => (
+                <Feature>
+                  <strong>{feature.title}</strong>
+                  {feature.description}
+                </Feature>
+              ))}
+            </Plan>
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 }
 

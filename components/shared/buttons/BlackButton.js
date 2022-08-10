@@ -34,6 +34,11 @@ const BlackButton = styled(PurpleButton)`
       border-radius: 30px;
       padding: 16px 40px;
     }
+    &.black-disabled {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
   }
 `;
 

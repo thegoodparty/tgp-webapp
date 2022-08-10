@@ -5,6 +5,7 @@ export const FOOTER_COLUMNS = [
       { label: 'About Us', link: '/about' },
       { label: 'Meet the Team', link: '/team' },
       { label: 'Manifesto', link: '/manifesto' },
+      { label: 'Pricing', link: '/pricing' },
       { label: 'Careers', link: '/work-with-us' },
     ],
   },
