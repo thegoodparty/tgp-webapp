@@ -34,7 +34,7 @@ const Member = styled.div`
     margin-bottom: 24px;
   }
 
-  .hidden {
+  .hide {
     opacity: 0;
     pointer-events: none;
   }
@@ -280,7 +280,7 @@ function TeamSection() {
                     {/*</Body11>*/}
                   </Back>
                 </MemberInner>
-                <div className="hidden">
+                <div className="hide">
                   <Img
                     src={member.img}
                     className="full-image"
