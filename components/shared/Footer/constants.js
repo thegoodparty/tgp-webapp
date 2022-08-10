@@ -5,7 +5,6 @@ export const FOOTER_COLUMNS = [
       { label: 'About Us', link: '/about' },
       { label: 'Meet the Team', link: '/team' },
       { label: 'Manifesto', link: '/manifesto' },
-      { label: 'Pricing', link: '/pricing' },
       { label: 'Careers', link: '/work-with-us' },
     ],
   },
@@ -23,6 +22,7 @@ export const FOOTER_COLUMNS = [
     links: [
       { label: 'Meet the Candidates', link: '/candidates' },
       { label: 'FAQs', link: '/faqs' },
+      { label: 'Pricing', link: '/pricing' },
       { label: 'How To Run', link: '/run' },
     ],
   },
