@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { partyResolver } from '/helpers/electionsHelper';
 import { Body9, Body11, Body19, Body13, Font16 } from '../../shared/typogrophy';
@@ -16,6 +17,7 @@ import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
 import { kFormatter, numberFormatter } from '/helpers/numberHelper';
 import BlackButton from '../../shared/buttons/BlackButton';
 import { candidateColor } from '../../../helpers/candidatesHelper';
+import { daysTill } from '../../../helpers/dateHelper';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
@@ -31,21 +33,19 @@ const CandidateName = styled(Body19)`
   margin-top: 0;
   margin-bottom: 0;
   text-align: left;
-  font-size: 16px;
+  font-size: 22px;
   &.long-name {
-    font-size: 19px;
+    font-size: 18px;
   }
 `;
 
 const PartyName = styled(Body11)`
   color: #000;
-  text-transform: uppercase;
   margin-top: 3px;
   margin-bottom: 3px;
   text-align: left;
-  font-size: 10px;
-  line-height: 14px;
-  letter-spacing: 0;
+  font-size: 14px;
+  line-height: 16px;
 `;
 
 const InnerButton = styled.div`
@@ -61,15 +61,10 @@ const AvatarWrapper = styled.div`
 const NameWrapper = styled.div`
   padding-left: 15px;
   z-index: 1000;
-  max-width: 215px;
+  flex: 1;
 `;
 
-const Endorsed = styled(Body13)`
-  color: #000;
-  text-align: left;
-  padding-left: 5px;
-  letter-spacing: 0;
-`;
+
 
 const Bold = styled.span`
   font-weight: 900;
@@ -85,6 +80,20 @@ const WrapperTitle = styled(Body19)`
     padding-left: 8px;
   }
 `;
+
+const Number = styled.div`
+  font-size: 16px;
+  font-weight: 900;
+
+  &.positive {
+    color: #0c9a00;
+  }
+`;
+
+const Smaller = styled.div`
+  font-size: 12px;
+`;
+
 function ShareImage({
   candidate,
   shareImageCallback,
@@ -92,15 +101,26 @@ function ShareImage({
   withRender = true,
   followers,
 }) {
-  const { firstName, lastName, race, party, otherParty, votesNeeded } =
-    candidate;
-
-  const brightColor = candidateColor(candidate);
+  const {
+    firstName,
+    lastName,
+    race,
+    party,
+    otherParty,
+    raceDate,
+    votesNeeded,
+  } = candidate;
 
   let thisWeek = 0;
+  let lastWeek = 0;
   if (followers) {
     thisWeek = followers.thisWeek;
+    lastWeek = followers.lastWeek;
   }
+  const brightColor = candidateColor(candidate);
+  const days = daysTill(raceDate);
+
+  const diff = thisWeek - lastWeek;
 
   const afterLoad = async (suffix) => {
     if (!withRender) {
@@ -109,7 +129,7 @@ function ShareImage({
     htmlToImage
       .toJpeg(document.getElementById(suffix), {
         quality: 1,
-        pixelRatio: 2,
+        pixelRatio: 1.5,
         style: { fontFamily: `'Lato',sans-serif` },
       })
       .then(async function (dataUrl) {
@@ -160,35 +180,49 @@ function ShareImage({
               </PartyName>
             </NameWrapper>
           </AvatarWrapper>
-          <Endorsed>
-            <div style={{ paddingLeft: '8px' }}>
-              <strong>
-                {numberFormatter(thisWeek)}{' '}
-                {thisWeek === 1 ? 'person' : 'people'}{' '}
-              </strong>{' '}
-              follow {firstName} {lastName}.<br />
-              Let&apos;s get to {kFormatter(votesNeeded)}!
-            </div>
-          </Endorsed>
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <Number>{numberFormatter(thisWeek)}</Number>
+              <Smaller>total followers</Smaller>
+            </Grid>
+            <Grid item xs={4}>
+              <Number className={diff > 0 && 'positive'}>
+                {diff > 0 && '+'}
+                {numberFormatter(diff)}
+              </Number>
+              <Smaller>from last week</Smaller>
+            </Grid>
+            <Grid item xs={4}>
+              {days >= 0 ? (
+                <>
+                  <Number>
+                    {numberFormatter(days)} day{days !== 1 ? 's' : ''}
+                  </Number>
+                  <Smaller>until election</Smaller>
+                </>
+              ) : (
+                <Number>Election ended</Number>
+              )}
+            </Grid>
+          </Grid>
+
           <SupportersProgressBar
-            showSupporters={false}
             votesNeeded={votesNeeded}
             peopleSoFar={thisWeek}
-            withAchievement={false}
+            peopleThisPeriod={diff}
             color={brightColor}
+            days={days}
           />
           {withRender && (
             <Box style={{ marginTop: 20, textAlign: 'center' }}>
               <BlackButton
+                fullWidth
                 style={{
-                  width: '70%',
                   backgroundColor: brightColor,
                   borderColor: brightColor,
                 }}
               >
-                <InnerButton>
-                  <strong>See Campaign</strong>
-                </InnerButton>
+                <strong style={{width: '100%'}}>See Campaign</strong>
               </BlackButton>
             </Box>
           )}
