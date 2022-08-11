@@ -181,7 +181,7 @@ const SocialPost = ({ post }) => {
   }
   return (
     <a
-      className="no-underline"
+      className="no-underline feed-post"
       href={url}
       target="_blank"
       rel="noopener noreferrer nofollow"

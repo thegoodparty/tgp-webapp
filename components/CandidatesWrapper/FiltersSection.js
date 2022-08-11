@@ -160,6 +160,7 @@ function FiltersSection() {
               onChange={(e) => {
                 onChangeField('position', e.target.value);
               }}
+              id="issue-filter"
             >
               <option value="">All Issues</option>
               {positionsByTopIssues && (
@@ -185,6 +186,7 @@ function FiltersSection() {
               onChange={(e) => {
                 onChangeField('state', e.target.value);
               }}
+              id="state-filter"
             >
               <option value="">All States</option>
               {(states || []).map((state, index) => (

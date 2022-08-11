@@ -262,6 +262,7 @@ const ShareModal = ({ isCandidate }) => {
                 }}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
+                id={`${channel.label}-share`}
               >
                 <IconItem>
                   <IconWrapper className={channel.className}>
@@ -280,7 +281,10 @@ const ShareModal = ({ isCandidate }) => {
           <Tooltip
             triggerEl={
               <CopyToClipboard text={url} onCopy={handleCopy}>
-                <BlackButton style={{ marginLeft: '12px' }}>
+                <BlackButton
+                  style={{ marginLeft: '12px' }}
+                  id="copy-link-share"
+                >
                   <InnerButton>Copy</InnerButton>
                 </BlackButton>
               </CopyToClipboard>
