@@ -40,7 +40,7 @@ const fields = [
     initialValue: true,
     isCheckbox: true,
   },
-  { label: 'Unrepresented voters', key: 'unrepVoters', initialValue: 0 },
+  { label: 'Followers Offset', key: 'followersOffset', initialValue: 0 },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
   { label: 'hubspot company id', key: 'hubspotId', initialValue: '' },
@@ -88,7 +88,6 @@ function PortalAdminWrapper() {
 
   const canSubmit = () => {
     return (
-      state.unrepVoters >= 0 &&
       state.likelyVoters >= 0 &&
       state.votesNeeded >= 0
     );
