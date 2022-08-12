@@ -16,6 +16,7 @@ import { PurpleButton } from '../../shared/buttons';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import Row from '../../shared/Row';
 import EmailInput, { isValidEmail } from '../../shared/EmailInput';
+import PinkButton from '../../shared/buttons/PinkButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 120px);
@@ -54,9 +55,12 @@ const fields = [
 ];
 
 function PortalAdminWrapper() {
-  const { candidate, saveCallback, approveClaimCallback } = useContext(
-    PortalAdminPageContext,
-  );
+  const {
+    candidate,
+    saveCallback,
+    approveClaimCallback,
+    fillFollowersCallback,
+  } = useContext(PortalAdminPageContext);
 
   const [claimEmail, setClaimEmail] = useState('');
 
@@ -87,10 +91,7 @@ function PortalAdminWrapper() {
   };
 
   const canSubmit = () => {
-    return (
-      state.likelyVoters >= 0 &&
-      state.votesNeeded >= 0
-    );
+    return state.likelyVoters >= 0 && state.votesNeeded >= 0;
   };
 
   const approveClaim = () => {
@@ -172,6 +173,17 @@ function PortalAdminWrapper() {
         >
           Save
         </BlackButton>
+        <br />
+        <br />
+        <br />
+        <br />
+        <PinkButton
+          onClick={() => {
+            fillFollowersCallback(candidate.id);
+          }}
+        >
+          <InnerButton>Fill Followers for the last week</InnerButton>
+        </PinkButton>
       </Wrapper>
     </PortalPageWrapper>
   );

@@ -390,7 +390,6 @@ export const generateApi = (base) => ({
         method: 'GET',
       },
     },
-
   },
   trackVisit: {
     url: `${base}visit`,
@@ -410,7 +409,6 @@ export const generateApi = (base) => ({
     method: 'GET',
     withAuth: true,
   },
-
 
   campaign: {
     find: {
@@ -556,6 +554,11 @@ export const generateApi = (base) => ({
       method: 'POST',
       withAuth: true,
     },
+    followersFiller: {
+      url: `${base}listening/followers-filler`,
+      method: 'GET',
+      withAuth: true,
+    },
   },
   candidateUser: {
     issue: {
@@ -599,7 +602,6 @@ export const generateApi = (base) => ({
       },
     },
   },
-
 
   candidateApplication: {
     create: {
@@ -655,7 +657,6 @@ export const generateApi = (base) => ({
       withAuth: true,
     },
   },
-
 });
 const api = generateApi(base);
 export default api;

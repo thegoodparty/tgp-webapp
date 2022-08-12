@@ -49,8 +49,31 @@ function* approveClaim({ email, candidateId }) {
   }
 }
 
+function* fillFollowers({ candidateId }) {
+  try {
+    yield put(snackbarActions.showSnakbarAction('Saving...'));
+    const api = tgpApi.campaign.followersFiller;
+
+    const payload = { candidateId };
+    yield call(requestHelper, api, payload);
+    yield put(snackbarActions.showSnakbarAction('Saved'));
+  } catch (error) {
+    console.log(error);
+    if (error.response && error.response.error) {
+      yield put(
+        snackbarActions.showSnakbarAction(error.response.message, 'error'),
+      );
+    } else {
+      yield put(
+        snackbarActions.showSnakbarAction('Error filling followers', 'error'),
+      );
+    }
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.UPDATE_CANDIDATE, updateCandidate);
   yield takeLatest(types.APPROVE_CLAIM, approveClaim);
+  yield takeLatest(types.FILL_FOLLOWERS, fillFollowers);
 }
