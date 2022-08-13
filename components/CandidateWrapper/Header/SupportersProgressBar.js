@@ -73,15 +73,13 @@ const Total = styled.div`
 `;
 
 const SupportersProgressBar = ({
-  // peopleSoFar,
+  peopleSoFar,
   votesNeeded,
   peopleThisPeriod,
   days,
   color = '#000',
   withAchievement = true,
 }) => {
-  const peopleSoFar = 60000;
-
   const weeksToElection = Math.floor(days / 7);
   let neededToWin = votesNeeded - peopleSoFar;
   if (neededToWin < 0) {
@@ -104,7 +102,7 @@ const SupportersProgressBar = ({
   if (neededThisWeek <= 0) {
     progress = 100;
   } else {
-    progress = (peopleThisPeriod * 100) / neededThisWeek;
+    progress = (peopleThisPeriod * 100) / neededPerWeek;
   }
   if (days < 0) {
     neededPerWeek = votesNeeded;
@@ -124,7 +122,7 @@ const SupportersProgressBar = ({
       {withAchievement && days > 0 && (
         <AchievementWrapper>
           <Icon src="/images/icons/achievement.svg" alt="achievement" />
-          {neededPerWeek > 0 ? (
+          {progress < 100 ? (
             <div>
               If we can get to{' '}
               <strong>
