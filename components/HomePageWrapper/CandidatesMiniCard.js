@@ -25,6 +25,7 @@ const Name = styled.div`
 const Party = styled.div`
   font-size: 16px;
   margin-bottom: 35px;
+  min-height: 42px;
 `;
 
 const Number = styled.div`
