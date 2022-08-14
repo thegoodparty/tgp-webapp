@@ -33,6 +33,9 @@ const Tooltip = ({ children, triggerEl }) => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setTimeout(() => {
+      handleClose();
+    }, 3000);
   };
 
   const handleClose = () => {
