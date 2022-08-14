@@ -47,7 +47,7 @@ function Feed() {
           </SubTitle>
           <CandidateFeed />
         </Grid>
-        <Grid item xs={0} lg={3}>
+        <Grid item xs={false} lg={3}>
           <Hidden mdDown>
             <TopIssues />
           </Hidden>

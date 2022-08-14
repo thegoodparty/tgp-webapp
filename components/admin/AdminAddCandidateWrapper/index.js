@@ -21,8 +21,6 @@ import JoditEditorWrapper from '../shared/JoditEditor';
 import AdminPageWrapper from '../shared/AdminPageWrapper';
 import AdminPanel from '../shared/AdminPanel';
 
-
-
 const Input = styled(TextField)`
   && {
     margin-top: 2rem;
@@ -34,8 +32,6 @@ const Label = styled(Body)`
 `;
 
 const partyOptions = [
-  { key: 'D', value: 'Democrat' },
-  { key: 'R', value: 'Republican' },
   { key: 'GP', value: 'Green Party' },
   { key: 'L', value: 'Libertarian' },
   { key: 'LI', value: 'Liberation' },
@@ -44,24 +40,12 @@ const partyOptions = [
   { key: 'S', value: 'SAM' },
 ];
 
-const chmaberOptions = [
-  { key: 'local', value: 'Local' },
-  { key: 'state', value: 'State' },
-  { key: 'federal', value: 'Federal' },
-];
-
 const statesOptions = states.map((state) => ({
   key: state.abbreviation,
   value: state.name,
 }));
 
 const fields = [
-  // {
-  //   label: 'Show on Homepage?',
-  //   key: 'isOnHomepage',
-  //   initialValue: false,
-  //   isCheckbox: true,
-  // },
   {
     label: 'Is Active',
     key: 'isActive',
@@ -72,13 +56,7 @@ const fields = [
   { label: 'Last Name', key: 'lastName', initialValue: '' },
   { label: 'Hero Video (YouTube id)', key: 'heroVideo', initialValue: '' },
   { label: 'Headline', key: 'headline', initialValue: '' },
-  // {
-  //   label: 'Chamber',
-  //   key: 'chamber',
-  //   initialValue: 'local',
-  //   isSelect: true,
-  //   options: chmaberOptions,
-  // },
+
   { label: 'Race (Office Seeking)', key: 'race', initialValue: '' },
   {
     label: 'State',
@@ -109,12 +87,7 @@ const fields = [
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
 ];
 
-function AdminAddCandidateWrapper({
-  createCandidateCallback,
-  editCandidateCallback,
-  candidate,
-  mode,
-}) {
+function AdminAddCandidateWrapper({ createCandidateCallback, candidate }) {
   const initialState = {};
   fields.forEach((field) => {
     initialState[field.key] = field.initialValue;
@@ -149,20 +122,11 @@ function AdminAddCandidateWrapper({
   };
 
   const createCandidate = () => {
-    // if (mode === 'add') {
     createCandidateCallback({
       ...candidate,
       ...formState,
       about,
     });
-    // } else {
-    //   editCandidateCallback({
-    //     ...candidate,
-    //     ...formState,
-    //     about,
-    //     id: candidate.id,
-    //   });
-    // }
   };
 
   return (

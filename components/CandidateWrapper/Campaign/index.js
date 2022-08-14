@@ -27,7 +27,7 @@ function Campaign() {
         <Grid item xs={12} lg={4}>
           <Endorsements />
         </Grid>
-        <Grid item xs={0} lg={4}>
+        <Grid item xs={false} lg={4}>
           <Hidden mdDown>
             <TopIssues />
           </Hidden>
