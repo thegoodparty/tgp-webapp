@@ -73,7 +73,7 @@ function TopIssues() {
         style={{ justifyContent: 'space-between', alignItems: 'baseline' }}
       >
         <Title data-cy="ssues-title">Top Issues</Title>
-        <Link href={`${router.asPath}?share=true`} passHref>
+        <Link href={`${router.asPath}?share=true`} passHref scroll={false}>
           <a id="top-issues-share" className="no-underline">
             <BlackButton style={{ padding: '4px 3px' }}>
               <InnerButton>Share</InnerButton>

@@ -244,6 +244,7 @@ const SocialPost = ({ post }) => {
                 url,
               )}`}
               passHref
+              scroll={false}
             >
               <a id={`feed-post-share-${url}`} className="feed-post-share">
                 <BlackButton
