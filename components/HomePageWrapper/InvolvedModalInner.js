@@ -100,6 +100,7 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             error={name != '' && name.length < 2}
+            autoFocus
           />
           <br />
           <br />
