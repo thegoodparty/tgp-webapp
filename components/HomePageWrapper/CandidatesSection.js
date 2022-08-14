@@ -43,7 +43,7 @@ const More = styled.div`
   text-decoration: underline;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin-top: 134px;
+    margin-top: 85px;
   }
 `;
 
