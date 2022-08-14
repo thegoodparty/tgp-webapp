@@ -25,6 +25,10 @@ const Post = styled.div`
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   box-shadow: 5px 5px #f2f2f2;
+  transition: background-color 0.4s;
+  &:hover {
+    background-color: #efefef;
+  }
 `;
 
 const Icon = styled.div`
