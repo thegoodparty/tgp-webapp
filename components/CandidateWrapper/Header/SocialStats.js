@@ -42,7 +42,7 @@ const Number = styled.div`
   }
 
   &.positive {
-    color: #0c9a00;
+    color: ${({ theme }) => theme.colors.green};
   }
 `;
 

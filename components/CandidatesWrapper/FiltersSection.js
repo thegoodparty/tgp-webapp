@@ -1,63 +1,67 @@
 /**
  *
- * FiltersSection
+ * TopSection
  *
  */
 
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Sticky from 'react-sticky-el';
 import Select from '@material-ui/core/Select';
+import Hidden from '@material-ui/core/Hidden';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
+import Row from '../shared/Row';
 
-import { FontH3 } from '../shared/typogrophy';
-import BlackButton from '../shared/buttons/BlackButton';
-import { removeWhiteSpaces } from '../../helpers/stringHelper';
+const Wrapper = styled.section``;
 
-const Section = styled.section`
-  padding: 16px 28px;
-  background-color: #fafafa;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-`;
-
-const ShareWrapper = styled.div`
-  text-align: center;
+const H2 = styled.h2`
+  font-size: 21px;
+  font-weight: 900;
+  margin: 30px 0 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    text-align: right;
+    margin: 0 0 40px;
+  }
+`;
+const Pill = styled.div`
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #f3f3f3;
+  margin: 15px 17px 0 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #dddddd;
   }
 `;
 
-const InnerButton = styled.div`
-  padding: 0 24px;
-  font-size: 12px;
+const Relative = styled.div`
+  position: relative;
 `;
 
-const FilterBy = styled.div`
-  padding: 16px 28px;
-  border-top: solid 1px #e6e6e6;
-  background-color: #fafafa;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+const PositionsWrapper = styled.div`
+  height: 110px;
+  overflow: hidden;
 `;
 
-const StickyWrapper = styled.div`
-  .sticky {
-    z-index: 10;
-  }
-  .sticky .sticky-el {
-    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
+const More = styled.div`
+  background-color: #fff;
+  margin-top: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    position: absolute;
+    bottom: 6px;
+    right: 0;
+    padding: 8px 0 8px 15px;
   }
 `;
 
 function FiltersSection() {
   const {
-    candidates,
     positions,
     positionsByTopIssues,
     states,
@@ -66,12 +70,14 @@ function FiltersSection() {
     routeState,
   } = useContext(CandidatesContext);
 
-  const router = useRouter();
   const [state, setState] = useState({
     position: '',
     state: '',
   });
+
   const [positionsById, setPositionsById] = useState({});
+
+  const [showMoreIssues, setShowMoreIssues] = useState(false);
 
   useEffect(() => {
     const byId = {};
@@ -95,6 +101,7 @@ function FiltersSection() {
         position,
         state,
       });
+      setShowMoreIssues(false);
     }
   }, [routePosition, routeState, positionsById]);
 
@@ -111,48 +118,65 @@ function FiltersSection() {
   };
 
   return (
-    <>
-      <Section>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12} lg={9}>
-            <FontH3 style={{ margin: 0 }}>
-              {candidates.length} Good Certified Candidate
-              {candidates.length !== 1 ? 's ' : ' '}
-              {state.position !== '' && state.position !== -1 ? (
-                <>
-                  who care about{' '}
-                  <span>
-                    #{removeWhiteSpaces(positionsById[state.position]?.name)}
-                  </span>
-                </>
-              ) : (
-                <>who people should know about</>
+    <Wrapper>
+      <Row style={{ justifyContent: 'space-between' }}>
+        <H2>Filter by Top Issues</H2>
+        <Hidden mdDown>
+          <div style={{ minWidth: '200px' }}>
+            <Autocomplete
+              options={states}
+              value={states[state.state]}
+              fullWidth
+              variant="outlined"
+              autoSelect
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Filter by state"
+                  variant="outlined"
+                  value={state.state}
+                />
               )}
-              {state.state !== '' && state.state !== -1 && (
-                <>
-                  &nbsp;in <span>{states[state.state]}</span>
-                </>
-              )}
-            </FontH3>
-          </Grid>
-          <Grid item xs={12} lg={3}>
-            <ShareWrapper>
-              Spread the word! &nbsp;{' '}
-              <Link href={`${router.asPath}?share=true`} passHref>
-                <a>
-                  <BlackButton style={{ marginLeft: '24px' }}>
-                    <InnerButton>Share</InnerButton>
-                  </BlackButton>
-                </a>
-              </Link>
-            </ShareWrapper>
-          </Grid>
-        </Grid>
-      </Section>
-      <StickyWrapper>
-        <Sticky>
-          <FilterBy className="sticky-el">
-            <strong>Filter By</strong> &nbsp; &nbsp;
+              onChange={(event, item) => {
+                onChangeField('state', states.indexOf(item));
+              }}
+            />
+            {/*<Select*/}
+            {/*  variant="outlined"*/}
+            {/*  native*/}
+            {/*  value={state.state}*/}
+            {/*  onChange={(e) => {*/}
+            {/*    onChangeField('state', e.target.value);*/}
+            {/*  }}*/}
+            {/*  id="state-filter"*/}
+            {/*>*/}
+            {/*  <option value="">Filter by state</option>*/}
+            {/*  {(states || []).map((state, index) => (*/}
+            {/*    <option value={index} key={state}>*/}
+            {/*      {state}*/}
+            {/*    </option>*/}
+            {/*  ))}*/}
+            {/*</Select>*/}
+          </div>
+        </Hidden>
+      </Row>
+      <Relative>
+        <PositionsWrapper>
+          {positions.map((position) => (
+            <Pill
+              key={position.id}
+              onClick={() => {
+                onChangeField('position', position.id);
+              }}
+            >
+              {position.name} ({position.candidates?.length})
+            </Pill>
+          ))}
+        </PositionsWrapper>
+        <More>
+          {!showMoreIssues ? (
+            <div onClick={() => setShowMoreIssues(true)}>See all issues</div>
+          ) : (
             <Select
               variant="outlined"
               native
@@ -178,31 +202,10 @@ function FiltersSection() {
                 </>
               )}
             </Select>
-            &nbsp; &nbsp;
-            <Select
-              variant="outlined"
-              native
-              value={state.state}
-              onChange={(e) => {
-                onChangeField('state', e.target.value);
-              }}
-              id="state-filter"
-            >
-              <option value="">All States</option>
-              {(states || []).map((state, index) => (
-                <option value={index} key={state}>
-                  {state}
-                </option>
-              ))}
-            </Select>
-            {/*{positionNames && positionNames.length > 0 && <Border>|</Border>}*/}
-            {/*{(positionNames || []).map((position) => (*/}
-            {/*  <PositionPill key={position}>{position}</PositionPill>*/}
-            {/*))}*/}
-          </FilterBy>
-        </Sticky>
-      </StickyWrapper>
-    </>
+          )}
+        </More>
+      </Relative>
+    </Wrapper>
   );
 }
 

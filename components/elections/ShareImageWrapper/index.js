@@ -86,7 +86,7 @@ const Number = styled.div`
   font-weight: 900;
 
   &.positive {
-    color: #0c9a00;
+    color: ${({ theme }) => theme.colors.green};
   }
 `;
 

@@ -47,7 +47,7 @@ const Yellow = styled.div`
   width: calc(100% + 10px);
   bottom: 0;
   left: -5px;
-  background-color: #ffe600;
+  background-color: ${({ theme }) => theme.colors.yellow};
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     bottom: 4px;
