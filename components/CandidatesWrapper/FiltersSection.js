@@ -105,6 +105,14 @@ function FiltersSection() {
     );
   };
 
+  const handlePillClick = (id) => {
+    if (id === state.position) {
+      onChangeField('position', '');
+    } else {
+      onChangeField('position', id);
+    }
+  };
+
   return (
     <Wrapper>
       <H2>Filter by Top Issues</H2>
@@ -114,7 +122,7 @@ function FiltersSection() {
           <Pill
             key={position.id}
             onClick={() => {
-              onChangeField('position', position.id);
+              handlePillClick(position.id);
             }}
             className={position.id === state.position && 'selected'}
           >
@@ -124,15 +132,14 @@ function FiltersSection() {
       </PositionsWrapper>
       <Grid container spacing={3}>
         <Grid item xs={8} lg={3}>
-
           <Autocomplete
             options={positions}
             groupBy={(option) => {
-              console.log('option', option);
               return option.topIssue?.name;
             }}
             getOptionLabel={(option) => option.name}
             fullWidth
+            value={positionsById[state.position]}
             variant="outlined"
             renderInput={(params) => (
               <TextField

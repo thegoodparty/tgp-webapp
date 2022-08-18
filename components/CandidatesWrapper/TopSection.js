@@ -155,6 +155,7 @@ function TopSection() {
                   <BlackOutlinedButton
                     active
                     data-cy="candidates-article-link-label"
+                    style={{ textTransform: 'unset' }}
                   >
                     Why is this important?
                   </BlackOutlinedButton>
