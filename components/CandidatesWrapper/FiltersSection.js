@@ -124,37 +124,12 @@ function FiltersSection() {
       </PositionsWrapper>
       <Grid container spacing={3}>
         <Grid item xs={8} lg={3}>
-          {/*<Select*/}
-          {/*  variant="outlined"*/}
-          {/*  native*/}
-          {/*  fullWidth*/}
-          {/*  value={state.position}*/}
-          {/*  onChange={(e) => {*/}
-          {/*    onChangeField('position', e.target.value);*/}
-          {/*  }}*/}
-          {/*  id="issue-filter"*/}
-          {/*>*/}
-          {/*  <option value="">Search All Issues</option>*/}
-          {/*  {positionsByTopIssues && (*/}
-          {/*    <>*/}
-          {/*      {(Object.keys(positionsByTopIssues) || []).map((issue) => (*/}
-          {/*        <>*/}
-          {/*          <optgroup label={issue}>{issue}</optgroup>*/}
-          {/*          {positionsByTopIssues[issue].map((position) => (*/}
-          {/*            <option value={position.id} key={position.id}>*/}
-          {/*              &nbsp; {position.name}*/}
-          {/*            </option>*/}
-          {/*          ))}*/}
-          {/*        </>*/}
-          {/*      ))}*/}
-          {/*    </>*/}
-          {/*  )}*/}
-          {/*</Select>*/}
+
           <Autocomplete
             options={positions}
             groupBy={(option) => {
               console.log('option', option);
-              return option.topIssue?.id;
+              return option.topIssue?.name;
             }}
             getOptionLabel={(option) => option.name}
             fullWidth
