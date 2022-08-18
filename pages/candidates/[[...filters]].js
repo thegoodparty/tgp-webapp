@@ -21,15 +21,13 @@ export async function getServerSideProps(context) {
 
   let candidates;
   let positions;
-  let positionsByTopIssues;
+
   let states;
   try {
-    ({ candidates, positions, positionsByTopIssues, states } =
-      await res.json());
+    ({ candidates, positions, states } = await res.json());
   } catch (e) {
     candidates = [];
     positions = [];
-    positionsByTopIssues = {};
     states = [];
   }
 
@@ -38,7 +36,6 @@ export async function getServerSideProps(context) {
       ssrState: {
         candidates: candidates || [],
         positions: positions || [],
-        positionsByTopIssues: positionsByTopIssues || {},
         states: states || [],
         routePosition: position || '',
         routeState: state || '',

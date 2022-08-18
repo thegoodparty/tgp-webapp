@@ -28,7 +28,6 @@ export function CandidatesPage({
   const {
     candidates,
     positions,
-    positionsByTopIssues,
     states,
     routePosition,
     routeState,
@@ -44,7 +43,6 @@ export function CandidatesPage({
   const childProps = {
     candidates,
     positions,
-    positionsByTopIssues,
     states,
     user,
     filterCandidatesCallback,
