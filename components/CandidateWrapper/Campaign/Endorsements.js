@@ -7,11 +7,13 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import { CandidateContext } from '/containers/CandidatePage';
-import { FontH3 } from '../../shared/typogrophy';
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  margin-bottom: 36px;
+`;
 
 const EndorsementWrapper = styled.div`
   display: flex;
@@ -25,17 +27,6 @@ const Img = styled.div`
   background-repeat: no-repeat;
   border-radius: 50%;
   margin-right: 24px;
-`;
-
-const Truncated = styled.div`
-  display: block;
-  display: -webkit-box;
-  max-width: 100%;
-  height: 64px;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const Title = styled.h3`
@@ -79,18 +70,17 @@ function Endorsements() {
                 >
                   <strong>{item.title}</strong>
                 </div>
-                <Truncated data-cy="endorsement-item-summary">
-                  {item.summary}
-                </Truncated>
+                <div data-cy="endorsement-item-summary">{item.summary}</div>
                 {item.link && (
-                  <div className="text-right">
+                  <div className="text-right" style={{marginTop: '8px'}}>
                     <a
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
                       data-cy="endorsement-item-link"
+
                     >
-                      Show More
+                      Learn More <FaExternalLinkAlt size={12} />
                     </a>
                   </div>
                 )}
