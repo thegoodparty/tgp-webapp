@@ -32,7 +32,7 @@ describe('CandidatesPage', () => {
         cy.get('[data-cy=candidates-run-link]')
         .should('have.attr', 'href', '/run');
         cy.get('[data-cy=candidates-run-link-label]')
-        .contains('Want to Run for Office?');
+        .contains('Want to run for office?');
     });
     it('test Candidates Section', () => {
         cy.get('[data-cy=candidate-card]')

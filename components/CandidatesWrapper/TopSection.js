@@ -169,7 +169,7 @@ function TopSection() {
                 className="underline"
               >
                 <ButtonWrapper data-cy="candidates-run-link-label">
-                  Want to Run for Office?
+                  Want to run for office?
                 </ButtonWrapper>
               </a>
             </Link>
