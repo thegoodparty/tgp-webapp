@@ -45,6 +45,8 @@ const IssueWrapper = styled.div`
 const Position = styled.div`
   font-weight: 300;
   margin: 8px 0 18px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `;
 
 const Title = styled.h3`

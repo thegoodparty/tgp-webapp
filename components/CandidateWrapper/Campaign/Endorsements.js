@@ -39,6 +39,11 @@ const Title = styled.h3`
   }
 `;
 
+const Summary = styled.div`
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+`;
+
 function Endorsements() {
   const { candidate } = useContext(CandidateContext);
   const { endorsements } = candidate;
@@ -70,15 +75,16 @@ function Endorsements() {
                 >
                   <strong>{item.title}</strong>
                 </div>
-                <div data-cy="endorsement-item-summary">{item.summary}</div>
+                <Summary data-cy="endorsement-item-summary">
+                  {item.summary}
+                </Summary>
                 {item.link && (
-                  <div className="text-right" style={{marginTop: '8px'}}>
+                  <div className="text-right" style={{ marginTop: '8px' }}>
                     <a
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
                       data-cy="endorsement-item-link"
-
                     >
                       Learn More <FaExternalLinkAlt size={12} />
                     </a>
