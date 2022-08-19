@@ -11,8 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { CandidateContext } from '/containers/CandidatePage';
 import { FontH3 } from '../../shared/typogrophy';
 
-const Wrapper = styled.article`
-`;
+const Wrapper = styled.article``;
 
 const EndorsementWrapper = styled.div`
   display: flex;
@@ -52,13 +51,16 @@ const Title = styled.h3`
 function Endorsements() {
   const { candidate } = useContext(CandidateContext);
   const { endorsements } = candidate;
+  if (endorsements?.length === 0) {
+    return <></>;
+  }
 
   return (
     <Wrapper>
       <Title data-cy="endorsement-title">Featured Endorsements</Title>
       <Grid container spacing={2}>
         {endorsements.map((item) => (
-          <Grid item xs={12}  key={item.id} data-cy="endorsement-item">
+          <Grid item xs={12} key={item.id} data-cy="endorsement-item">
             <EndorsementWrapper>
               {item.image && (
                 <div>
