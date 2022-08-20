@@ -33,15 +33,18 @@ function DateBox({ showPast }) {
     return <></>;
   }
 
-  const { certifiedDate, ballotDate, earlyVotingDate, raceDate } = candidate;
+  const { certifiedDate, ballotDate, earlyVotingDate, raceDate, isClaimed } =
+    candidate;
 
   return (
     <Wrapper className={showPast ? 'rounded' : 'rounded-top'}>
-      <VoteDate
-        title="Good Certified"
-        date={certifiedDate}
-        showPast={showPast}
-      />
+      {isClaimed && (
+        <VoteDate
+          title="Good Certified"
+          date={certifiedDate}
+          showPast={showPast}
+        />
+      )}
       <VoteDate
         title="Made it On the Ballot"
         date={ballotDate}
