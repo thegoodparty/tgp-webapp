@@ -199,7 +199,7 @@ function Plans() {
               <br />
               <br />
               {plan.features.map((feature) => (
-                <Feature>
+                <Feature key={feature.title}>
                   <strong>{feature.title}</strong>
                   {feature.description}
                 </Feature>

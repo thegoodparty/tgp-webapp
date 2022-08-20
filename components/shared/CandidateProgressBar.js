@@ -136,6 +136,9 @@ const CandidateProgressBar = ({
   }
 
   progress = progress / 2 + 50;
+  if (!progress) {
+    progress = 50;
+  }
   useEffect(() => {
     if (withAnimation) {
       setTimeout(() => {
