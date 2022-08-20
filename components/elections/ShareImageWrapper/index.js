@@ -8,16 +8,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as htmlToImage from 'html-to-image';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { partyResolver } from '/helpers/electionsHelper';
-import { Body9, Body11, Body19, Body13, Font16 } from '../../shared/typogrophy';
-import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgressBar';
-import CandidateAvatar from '../../shared/CandidateCard/CandidateAvatar';
-import { kFormatter, numberFormatter } from '/helpers/numberHelper';
-import BlackButton from '../../shared/buttons/BlackButton';
-import { candidateColor } from '../../../helpers/candidatesHelper';
-import { daysTill } from '../../../helpers/dateHelper';
+import { Body11, Body19 } from '/components/shared/typogrophy';
+import CandidateAvatar from '/components/shared/CandidateCard/CandidateAvatar';
+import BlackButton from '/components/shared/buttons/BlackButton';
+import { candidateColor } from '/helpers/candidatesHelper';
+import { daysTill } from '/helpers/dateHelper';
+import CandidateProgressBar from '/components/shared/CandidateProgressBar';
 
 const ShareImageWrapper = styled.div`
   background: #ffffff;
@@ -64,8 +62,6 @@ const NameWrapper = styled.div`
   flex: 1;
 `;
 
-
-
 const Bold = styled.span`
   font-weight: 900;
 `;
@@ -79,19 +75,6 @@ const WrapperTitle = styled(Body19)`
     margin-bottom: 15px;
     padding-left: 8px;
   }
-`;
-
-const Number = styled.div`
-  font-size: 16px;
-  font-weight: 900;
-
-  &.positive {
-    color: ${({ theme }) => theme.colors.green};
-  }
-`;
-
-const Smaller = styled.div`
-  font-size: 12px;
 `;
 
 function ShareImage({
@@ -180,39 +163,16 @@ function ShareImage({
               </PartyName>
             </NameWrapper>
           </AvatarWrapper>
-          <Grid container spacing={3}>
-            <Grid item xs={4}>
-              <Number>{numberFormatter(thisWeek)}</Number>
-              <Smaller>total followers</Smaller>
-            </Grid>
-            <Grid item xs={4}>
-              <Number className={diff > 0 && 'positive'}>
-                {diff > 0 && '+'}
-                {numberFormatter(diff)}
-              </Number>
-              <Smaller>from last week</Smaller>
-            </Grid>
-            <Grid item xs={4}>
-              {days >= 0 ? (
-                <>
-                  <Number>
-                    {numberFormatter(days)} day{days !== 1 ? 's' : ''}
-                  </Number>
-                  <Smaller>until election</Smaller>
-                </>
-              ) : (
-                <Number>Election ended</Number>
-              )}
-            </Grid>
-          </Grid>
 
-          <SupportersProgressBar
+          <CandidateProgressBar
             votesNeeded={votesNeeded}
             peopleSoFar={thisWeek}
             peopleThisPeriod={diff}
             color={brightColor}
             days={days}
+            withAnimation={false}
           />
+
           {withRender && (
             <Box style={{ marginTop: 20, textAlign: 'center' }}>
               <BlackButton
@@ -222,7 +182,7 @@ function ShareImage({
                   borderColor: brightColor,
                 }}
               >
-                <strong style={{width: '100%'}}>See Campaign</strong>
+                <strong style={{ width: '100%' }}>See Campaign</strong>
               </BlackButton>
             </Box>
           )}

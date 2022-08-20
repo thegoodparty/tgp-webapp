@@ -6,14 +6,14 @@
 
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
 
 import { CandidateContext } from '/containers/CandidatePage';
-import SupportersProgressBar from './SupportersProgressBar';
-import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { numberFormatter } from '/helpers/numberHelper';
+import BlackButton, {
+  InnerButton,
+} from '/components/shared/buttons/BlackButton';
 import { daysTill } from '/helpers/dateHelper';
-import { candidateColor } from '../../../helpers/candidatesHelper';
+import { candidateColor } from '/helpers/candidatesHelper';
+import CandidateProgressBar from '/components/shared/CandidateProgressBar';
 import { CandidateWrapperContext } from '../index';
 
 const Wrapper = styled.div`
@@ -30,19 +30,6 @@ const Inner = styled.div`
       theme.breakpointsPixels.lg}) {
     width: 500px;
     font-size: 20px;
-  }
-`;
-
-const Number = styled.div`
-  font-size: 17px;
-  font-weight: 900;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    font-size: 20px;
-  }
-
-  &.positive {
-    color: ${({ theme }) => theme.colors.green};
   }
 `;
 
@@ -63,43 +50,18 @@ function SocialStats() {
     thisWeek = followers.thisWeek;
     lastWeek = followers.lastWeek;
   }
-  const { color, raceDate, votesNeeded } = candidate;
+  const { raceDate, votesNeeded } = candidate;
   const brightColor = candidateColor(candidate);
   const days = daysTill(raceDate);
 
-  const diff = thisWeek - lastWeek;
+  const diff = thisWeek - lastWeek || 0;
 
   return (
     <Wrapper>
       <Inner>
-        <Grid container spacing={3}>
-          <Grid item xs={4}>
-            <Number>{numberFormatter(thisWeek)}</Number>
-            total followers
-          </Grid>
-          <Grid item xs={4}>
-            <Number className={diff > 0 && 'positive'}>
-              {diff > 0 && '+'}
-              {numberFormatter(diff)}
-            </Number>
-            from last week
-          </Grid>
-          <Grid item xs={4}>
-            {days >= 0 ? (
-              <>
-                <Number>
-                  {numberFormatter(days)} day{days !== 1 ? 's' : ''}
-                </Number>
-                until election
-              </>
-            ) : (
-              <Number>Election ended</Number>
-            )}
-          </Grid>
-        </Grid>
-        <SupportersProgressBar
+        <CandidateProgressBar
           votesNeeded={votesNeeded}
-          peopleSoFar={thisWeek}
+          peopleSoFar={thisWeek || 0}
           peopleThisPeriod={diff}
           color={brightColor}
           days={days}

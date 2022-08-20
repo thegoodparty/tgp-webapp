@@ -19,6 +19,7 @@ import { numberFormatter } from '/helpers/numberHelper';
 import CandidateRoundAvatar from '../CandidateRoundAvatar';
 import { candidateColor, partyRace } from '../../../helpers/candidatesHelper';
 import { daysTill } from '../../../helpers/dateHelper';
+import CandidateProgressBar from '../CandidateProgressBar';
 
 const Wrapper = styled.div`
   border-radius: 16px;
@@ -164,35 +165,16 @@ function CandidateCard({ candidate }) {
               </Positions>
             )}
 
-            <Grid container spacing={3} style={{ margin: '32px 0 4px' }}>
-              <Grid item xs={4}>
-                <Number>{numberFormatter(thisWeek)}</Number>
-                <NumberTitle>total followers</NumberTitle>
-              </Grid>
-              <Grid item xs={4}>
-                <Number className={diff > 0 && 'positive'}>
-                  {diff > 0 && '+'}
-                  {numberFormatter(diff)}
-                </Number>
-                <NumberTitle>from last week</NumberTitle>
-              </Grid>
-              {days > 0 && (
-                <Grid item xs={4}>
-                  <Number>
-                    {numberFormatter(days)} day{days !== 1 ? 's' : ''}
-                  </Number>
-                  <NumberTitle>until election</NumberTitle>
-                </Grid>
-              )}
-            </Grid>
-
-            <SupportersProgressBar
-              votesNeeded={votesNeeded}
-              peopleSoFar={thisWeek}
-              peopleThisPeriod={diff}
-              color={brightColor}
-              days={days}
-            />
+            <div style={{ margin: '32px 0 4px' }}>
+              <CandidateProgressBar
+                votesNeeded={votesNeeded}
+                peopleSoFar={thisWeek}
+                peopleThisPeriod={diff}
+                color={brightColor}
+                days={days}
+                withAnimation={false}
+              />
+            </div>
 
             <ButtonWrapper>
               <BlackButton
