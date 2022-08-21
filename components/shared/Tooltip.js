@@ -11,7 +11,6 @@ const Inner = styled.div`
   max-width: 320px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    min-width: 580px;
     max-width: 700px;
   }
 `;
@@ -28,7 +27,7 @@ const Arrow = styled.div`
   left: calc(50% - 10px);
 `;
 
-const Tooltip = ({ children, triggerEl }) => {
+const Tooltip = ({ children, triggerEl, triggerWrapperStyle = {} }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -49,7 +48,7 @@ const Tooltip = ({ children, triggerEl }) => {
       <span
         onClick={handleClick}
         aria-describedby={id}
-        style={{ display: 'inline-block' }}
+        style={{ display: 'inline-block', ...triggerWrapperStyle }}
       >
         {triggerEl}
       </span>
@@ -66,7 +65,7 @@ const Tooltip = ({ children, triggerEl }) => {
           vertical: 'top',
           horizontal: 'center',
         }}
-        style={{ marginTop: '20px' }}
+        style={{ marginTop: '20px', zIndex: 3000 }}
         PaperProps={{ style: { borderRadius: '12px' } }}
       >
         <Inner>

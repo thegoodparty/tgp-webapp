@@ -15,10 +15,11 @@ import {
   FaInstagram,
   FaYoutube,
   FaTwitch,
-  FaRedditAlien,
   FaLinkedinIn,
 } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
+import { BiLinkAlt } from 'react-icons/bi';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import { CandidateWrapperContext } from './index';
@@ -26,6 +27,9 @@ import { validateLink } from '../../helpers/linkHelper';
 import { logEvent } from '../../services/AnalyticsService';
 import { FontH3 } from '../shared/typogrophy';
 import Row from '../shared/Row';
+import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
+import Tooltip from '../shared/Tooltip';
+
 const Wrapper = styled.div`
   padding: 24px;
   background-color: #fff;
@@ -36,7 +40,7 @@ const Wrapper = styled.div`
   font-size: 24px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    padding: 36px;
+    padding: 15px 34px;
   }
 `;
 
@@ -46,8 +50,7 @@ const CloseWrapper = styled.div`
   cursor: pointer;
   color: #d3d3d3;
 `;
-const SocialLink = styled.a`
-  margin: 20px;
+const SocialLink = styled.div`
   font-size: 26px;
   background-color: #000;
   width: 50px;
@@ -106,10 +109,57 @@ const SocialLink = styled.a`
   
 `;
 
+const SocialWrapper = styled.div`
+  padding: 15px 0;
+  border-top: solid 1px #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Label = styled.div`
+  font-size: 15px;
+  margin-left: 15px;
+`;
+
+const Smaller = styled.div`
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: initial;
+`;
+
+const Copied = styled.div`
+  z-index: 3000;
+`;
+
+const CopyWrapper = styled.div`
+  padding: 15px 0;
+  border-top: solid 1px #ececec;
+  display: flex;
+  align-items: center;
+`;
+
+const CopyIcon = styled.div`
+  font-size: 26px;
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: solid 2px #000;
+`;
+
 function FollowModal() {
   const { candidate } = useContext(CandidateContext);
   const { closeFollowModalCallback } = useContext(CandidateWrapperContext);
 
+  let url = '';
+  if (typeof window !== 'undefined') {
+    const path = window.location.href;
+  }
   const {
     facebook,
     twitter,
@@ -156,38 +206,63 @@ function FollowModal() {
   return (
     <Wrapper>
       <Row style={{ justifyContent: 'space-between' }}>
-        <FontH3>Follow</FontH3>
+        <FontH3>Follow on</FontH3>
         <div className="text-right">
           <CloseWrapper onClick={closeFollowModalCallback}>
             <IoMdClose />
           </CloseWrapper>
         </div>
       </Row>
-      <div className="text-center">
-        {channels.map((channel) => (
-          <React.Fragment key={channel.label}>
-            <span data-cy="follow-item">
-              {channel.link && (
+      {channels.map((channel) => (
+        <React.Fragment key={channel.label}>
+          {channel.link && (
+            <SocialWrapper data-cy="follow-item">
+              <div className="flex-center">
                 <SocialLink
-                  href={channel.link}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  onClick={() => trackSocial(channel.label)}
                   className={channel.label}
                   style={
                     channel.label === 'Website'
                       ? { backgroundColor: brightColor }
                       : {}
                   }
-                  id={`${channel.label}-follow`}
                 >
                   {channel.icon}
                 </SocialLink>
-              )}
-            </span>
-          </React.Fragment>
-        ))}
-      </div>
+                <Label>{channel.label}</Label>
+              </div>
+              <a
+                href={channel.link}
+                onClick={() => trackSocial(channel.label)}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="follow-button"
+                id={`${channel.label}-follow`}
+              >
+                <BlackButton>
+                  <InnerButton>
+                    <Smaller>Follow</Smaller>
+                  </InnerButton>
+                </BlackButton>
+              </a>
+            </SocialWrapper>
+          )}
+        </React.Fragment>
+      ))}
+      <Tooltip
+        triggerEl={
+          <CopyToClipboard text={url}>
+            <CopyWrapper id="follow-copy-link">
+              <CopyIcon>
+                <BiLinkAlt />
+              </CopyIcon>
+              <Label>Copy link</Label>
+            </CopyWrapper>
+          </CopyToClipboard>
+        }
+        triggerWrapperStyle={{ display: 'block' }}
+      >
+        <Copied>Link Copied!</Copied>
+      </Tooltip>
     </Wrapper>
   );
 }
