@@ -139,10 +139,7 @@ const CandidateProgressBar = ({
   if (!progress) {
     progress = 50;
   }
-  if (!withAnimation) {
-    setBarWidth(progress);
-    setPeopleThisWeek(peopleThisPeriod);
-  }
+
   useEffect(() => {
     if (withAnimation) {
       setTimeout(() => {
