@@ -109,21 +109,23 @@ function ShareImage({
     if (!withRender) {
       return;
     }
-    htmlToImage
-      .toJpeg(document.getElementById(suffix), {
-        quality: 1,
-        pixelRatio: 1.5,
-        style: { fontFamily: `'Lato',sans-serif` },
-      })
-      .then(async function (dataUrl) {
-        shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
-        const img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
+    setTimeout(() => {
+      htmlToImage
+        .toJpeg(document.getElementById(suffix), {
+          quality: 1,
+          pixelRatio: 1.5,
+          style: { fontFamily: `'Lato',sans-serif` },
+        })
+        .then(async function (dataUrl) {
+          shareImageCallback({ ...candidate, imageBase64: dataUrl, suffix });
+          const img = new Image();
+          img.src = dataUrl;
+          document.body.appendChild(img);
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+        });
+    }, 5000);
   };
   const longName = firstName.length + lastName.length > 14;
   return (
