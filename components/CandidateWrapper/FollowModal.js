@@ -158,7 +158,7 @@ function FollowModal() {
 
   let url = '';
   if (typeof window !== 'undefined') {
-    const path = window.location.href;
+    url = window.location.href;
   }
   const {
     facebook,

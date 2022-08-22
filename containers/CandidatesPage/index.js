@@ -4,12 +4,14 @@
  *
  */
 
-import React, { memo, createContext, useEffect } from 'react';
+import React, { memo, createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
+import { sanitizeUrl } from '@braintree/sanitize-url';
 
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
@@ -18,30 +20,54 @@ import { slugify } from '../../helpers/articlesHelper';
 
 export const CandidatesContext = createContext();
 
-
-
 export function CandidatesPage({
   ssrState,
   dispatch,
   filterCandidatesCallback,
 }) {
-  const {
-    candidates,
-    positions,
-    states,
-    routePosition,
-    routeState,
-  } = ssrState;
+  const [pinnedCandidates, setPinnedCandidates] = useState([]);
+  const { candidates, positions, states, routePosition, routeState } = ssrState;
+  const router = useRouter();
+  let { pinned } = router.query;
+
+  if (typeof window !== 'undefined') {
+    const url = window.location.href;
+    if (sanitizeUrl(url) === 'about:blank') {
+      pinned = false;
+    }
+  }
 
   useEffect(() => {
     if (states.length === 0 && routeState) {
       dispatch(push(`/candidates/${routePosition}`));
     }
   }, [states, routeState]);
+  useEffect(() => {
+    if (pinned) {
+      try {
+        const ids = JSON.parse(pinned);
+        if (Array.isArray(ids)) {
+          // create two arrays - pinned and candidates, removing the ids from candidates and adding them to pinned
+          const pinnedCandidates = [];
+          const rest = [];
+          candidates.forEach((candidate) => {
+            if (ids.includes(candidate.id)) {
+              pinnedCandidates.push(candidate);
+            } else {
+              rest.push(candidate);
+            }
+          });
+          setPinnedCandidates([...pinnedCandidates, ...rest]);
+        }
+      } catch (e) {
+        setPinnedCandidates(candidates);
+      }
+    }
+  }, [pinned]);
 
   const user = getUserCookie(true);
   const childProps = {
-    candidates,
+    candidates: pinnedCandidates,
     positions,
     states,
     user,
