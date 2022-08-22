@@ -63,8 +63,10 @@ export function CandidatesPage({
       } catch (e) {
         setPinnedCandidates(candidates);
       }
+    } else {
+      setPinnedCandidates(candidates);
     }
-  }, [pinned]);
+  }, [pinned, candidates]);
 
   const user = getUserCookie(true);
   const childProps = {

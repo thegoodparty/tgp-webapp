@@ -139,6 +139,9 @@ const CandidateProgressBar = ({
   if (!progress) {
     progress = 50;
   }
+  if (progress < 0) {
+    progress = 0;
+  }
 
   useEffect(() => {
     if (withAnimation) {
