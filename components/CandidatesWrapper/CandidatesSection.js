@@ -46,6 +46,9 @@ const Icon = styled(Image)`
 function CandidatesSection() {
   const { candidates } = useContext(CandidatesContext);
   const router = useRouter();
+  const { query } = router;
+  const { pinned } = query || {};
+  const pinnedQuery = pinned ? `?pinned=${pinned}` : '';
   return (
     <Section>
       <Grid container spacing={1}>
@@ -85,7 +88,7 @@ function CandidatesSection() {
         <div className="text-center">
           <FontH3>No Results match your filters</FontH3>
           <br />
-          <Link href="/candidates">Remove all filters</Link>
+          <Link href={`/candidates${pinnedQuery}`}>Remove all filters</Link>
         </div>
       )}
     </Section>

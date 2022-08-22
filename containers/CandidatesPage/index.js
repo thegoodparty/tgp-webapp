@@ -17,6 +17,7 @@ import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import { getUserCookie } from '/helpers/cookieHelper';
 import { slugify } from '../../helpers/articlesHelper';
+import queryHelper from '../../helpers/queryHelper';
 
 export const CandidatesContext = createContext();
 
@@ -25,8 +26,8 @@ export function CandidatesPage({
   dispatch,
   filterCandidatesCallback,
 }) {
-  const [pinnedCandidates, setPinnedCandidates] = useState([]);
   const { candidates, positions, states, routePosition, routeState } = ssrState;
+  const [pinnedCandidates, setPinnedCandidates] = useState(candidates);
   const router = useRouter();
   let { pinned } = router.query;
 
@@ -103,6 +104,8 @@ function mapDispatchToProps(dispatch) {
     dispatch,
 
     filterCandidatesCallback: (position, state) => {
+      const pinned = queryHelper(window.location.search, 'pinned');
+      const query = pinned ? `?pinned=${pinned}` : '';
       let positionRoute = 'all';
       if (position && position !== '') {
         positionRoute = `${slugify(position.name)}|${position.id}`;
@@ -112,9 +115,9 @@ function mapDispatchToProps(dispatch) {
         stateRoute = slugify(state);
       }
       if (positionRoute === 'all' && stateRoute === '') {
-        dispatch(push('/candidates/'));
+        dispatch(push(`/candidates${query}`));
       } else {
-        dispatch(push(`/candidates/${positionRoute}/${stateRoute}`));
+        dispatch(push(`/candidates/${positionRoute}/${stateRoute}${query}`));
       }
     },
   };
