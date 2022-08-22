@@ -44,12 +44,14 @@ const plans = [
   {
     name: 'Starter',
     price: 'Free',
+    link: '/run',
     subtitle: 'Free tools to grow awareness and show viability',
     features: basicFeatures,
   },
   {
     name: 'Pro',
     price: 'Coming Soon',
+    link: '/run',
     subtitle: 'Helping you stay connected and serve supporters while you serve',
     features: [
       ...basicFeatures,
@@ -76,6 +78,7 @@ const plans = [
   {
     name: 'Enterprise',
     price: 'Contact Us',
+    link: '/contact',
     subtitle:
       'All-inclusive tools and built to scale national, grassroots movements for large organizations doing Good! Includes strategy and consulting services.',
     features: [],
@@ -185,17 +188,12 @@ function Plans() {
               </Hidden>
               <H3>{plan.price}</H3>
               <SubTitle>{plan.subtitle}</SubTitle>
-              {plan.name === 'Starter' ? (
-                <Link href="/run" passHref>
-                  <a id="free-get-started">
-                    <BlackButton fullWidth>GET STARTED</BlackButton>
-                  </a>
-                </Link>
-              ) : (
-                <BlackButton fullWidth className="outline" disabled>
-                  GET STARTED
-                </BlackButton>
-              )}
+              <Link href={plan.link} passHref>
+                <a id={`pricing-get-started-${plan.name}`}>
+                  <BlackButton fullWidth>GET STARTED</BlackButton>
+                </a>
+              </Link>
+
               <br />
               <br />
               {plan.features.map((feature) => (
