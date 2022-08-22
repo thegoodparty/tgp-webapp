@@ -74,6 +74,8 @@ const Positions = styled.div`
   margin-top: 14px;
   font-weight: 600;
   font-size: 14px;
+  height: 56px;
+  overflow: hidden;
 `;
 
 const Position = styled.div`
@@ -90,19 +92,6 @@ const ButtonWrapper = styled.div`
   left: 24px;
   bottom: 24px;
   width: calc(100% - 48px);
-`;
-
-const Number = styled.div`
-  font-size: 14px;
-  font-weight: 900;
-
-  &.positive {
-    color: ${({ theme }) => theme.colors.green};
-  }
-`;
-
-const NumberTitle = styled.div`
-  font-size: 12px;
 `;
 
 const MAX_POSITIONS = 6;
@@ -154,16 +143,13 @@ function CandidateCard({ candidate }) {
               {firstName} {lastName}
             </Name>
             <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
-
-            {topPositions && topPositions.length > 0 && (
-              <Positions>
-                {topPositions.map((position) => (
-                  <Position key={position.id} data-cy="position">
-                    {position.name}
-                  </Position>
-                ))}
-              </Positions>
-            )}
+            <Positions>
+              {(topPositions || []).map((position) => (
+                <Position key={position.id} data-cy="position">
+                  {position.name}
+                </Position>
+              ))}
+            </Positions>
 
             <div style={{ margin: '32px 0 4px' }}>
               <CandidateProgressBar
