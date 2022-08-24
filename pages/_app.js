@@ -37,19 +37,19 @@ function MyApp({ Component, pageProps }) {
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
-    const user = getUserCookie(true);
-    if (user) {
-      try {
-        if (user.email) {
-          const domain = user.email.split('@')[1];
-          if (domain === 'goodparty.org') {
-            setCookie('gtm_internal_user', 'internal');
-          }
-        }
-      } catch (e) {
-        console.log('internal email error', e);
-      }
-    }
+    // const user = getUserCookie(true);
+    // if (user) {
+    //   try {
+    //     if (user.email) {
+    //       const domain = user.email.split('@')[1];
+    //       if (domain === 'goodparty.org') {
+    //         setCookie('gtm_internal_user', 'internal');
+    //       }
+    //     }
+    //   } catch (e) {
+    //     console.log('internal email error', e);
+    //   }
+    // }
   }, []);
 
   return (
