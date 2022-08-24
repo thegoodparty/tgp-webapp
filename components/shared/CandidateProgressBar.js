@@ -152,14 +152,19 @@ const CandidateProgressBar = ({
       setTimeout(() => {
         setBarWidth(progress);
         if (peopleThisPeriod > 0) {
-          const interval = 1000 / peopleThisPeriod;
+          let interval = 1000 / peopleThisPeriod;
+          let increment = 1;
+          if (peopleThisPeriod > 1000) {
+            interval = 10;
+            increment = peopleThisPeriod / 100;
+          }
           let newValue = 0;
           const intervalId = setInterval(() => {
             if (newValue >= peopleThisPeriod) {
               setPeopleThisWeek(peopleThisPeriod);
               clearInterval(intervalId);
             } else {
-              newValue = newValue + 1;
+              newValue = newValue + increment;
               setPeopleThisWeek(newValue);
             }
           }, interval);
