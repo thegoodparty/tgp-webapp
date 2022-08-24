@@ -54,6 +54,7 @@ class CustomDocument extends NextDocument {
           <meta property="twitter:card" content="summary_large_image" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="fb:app_id" content="241239336921963" />
+          <meta name="facebook-domain-verification" content="i5q7j6fwuhlvi1o263gskurwzqqzbb" />
           <link
             rel="icon"
             type="image/png"
