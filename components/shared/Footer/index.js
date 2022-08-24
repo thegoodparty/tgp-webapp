@@ -15,7 +15,6 @@ import MaxWidth from '../MaxWidth';
 import { FOOTER_COLUMNS } from './constants';
 
 const Wrapper = styled.div`
-  margin-top: 400px;
   padding: 40px 32px;
   border-top: solid 1px #e1e2e9;
   background-color: #fff;
