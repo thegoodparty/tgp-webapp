@@ -118,6 +118,11 @@ const GlobalStyles = createGlobalStyle`
   .blue {
     color: #0027dc;
   }
+  
+  .break-word {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
 `;
 
 export default GlobalStyles;

@@ -16,8 +16,6 @@ import NewEndorsementForm from './NewEndorsementForm';
 const Wrapper = styled.div`
   padding: 30px 0;
   border-bottom: 1px solid #e8e8e8;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   &.no-border {
     border-bottom: none;
   }
@@ -62,7 +60,7 @@ function Endorsement({ endorsement, last, deleteCallback }) {
   };
 
   return (
-    <Wrapper key={id} className={last && 'no-border'}>
+    <Wrapper key={id} className={`break-word ${last && 'no-border'}`}>
       <DeleteWrapper>
         {showEdit ? (
           <Delete onClick={() => setShowEdit(false)}>Cancel</Delete>

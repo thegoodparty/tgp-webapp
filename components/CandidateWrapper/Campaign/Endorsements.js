@@ -39,10 +39,7 @@ const Title = styled.h3`
   }
 `;
 
-const Summary = styled.div`
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-`;
+const Summary = styled.div``;
 
 function Endorsements() {
   const { candidate } = useContext(CandidateContext);
@@ -75,7 +72,10 @@ function Endorsements() {
                 >
                   <strong>{item.title}</strong>
                 </div>
-                <Summary data-cy="endorsement-item-summary">
+                <Summary
+                  data-cy="endorsement-item-summary"
+                  className="break-word"
+                >
                   {item.summary}
                 </Summary>
                 {item.link && (

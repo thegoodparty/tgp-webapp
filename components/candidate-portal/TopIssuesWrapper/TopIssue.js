@@ -39,18 +39,19 @@ function TopIssue({ index, candidatePosition }) {
       <Grid item xs={1}>
         <span>{index + 1}.</span>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} className="break-word">
         {candidatePosition.topIssue?.name}
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} className="break-word">
         {candidatePosition.position?.name}
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} className="break-word">
         {candidatePosition.description}
       </Grid>
 
       <Grid item xs={2}>
-        <FaEdit className="pointer" onClick={() => setEditMode(true)} /> &nbsp; &nbsp; &nbsp;{' '}
+        <FaEdit className="pointer" onClick={() => setEditMode(true)} /> &nbsp;
+        &nbsp; &nbsp;{' '}
         <FaTrash className="pointer" onClick={() => setShowDeleteAlert(true)} />
       </Grid>
       <AlertDialog

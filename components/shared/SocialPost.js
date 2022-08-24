@@ -20,8 +20,6 @@ const Post = styled.div`
   background-color: #fff;
   text-align: left;
   position: relative;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   box-shadow: 5px 5px #f2f2f2;
@@ -191,7 +189,7 @@ const SocialPost = ({ post }) => {
       rel="noopener noreferrer nofollow"
       id={`feed-post-${url}`}
     >
-      <Post>
+      <Post className="break-word">
         <Icon className={source}>{icon}</Icon>
         <TitlePadder>
           {title && (
