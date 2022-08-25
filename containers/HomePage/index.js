@@ -54,8 +54,8 @@ export function HomePage({
   const [experimentVariant, setExperimentVariant] = useState('0');
   useEffect(() => {
     getExperiment(
-      'Aug 2022 Homepage order',
-      'lNVc0IPKRjiTOVkaMUf2kQ',
+      'Aug 2022 Homepage order updated',
+      'xP2-vukvS3697k43zU8nnw',
       (type) => {
         setExperimentVariant(type);
       },
