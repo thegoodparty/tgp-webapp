@@ -14,7 +14,6 @@ import { FaFacebookF, FaFacebookMessenger, FaTwitter } from 'react-icons/fa';
 import { BiLinkAlt } from 'react-icons/bi';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { getUserCookie } from '/helpers/cookieHelper';
-import Font16 from './typogrophy/Font16';
 import Row from './Row';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
 import Tooltip from './Tooltip';
@@ -44,12 +43,6 @@ const SocialLink = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: box-shadow 0.3s;
-
-  &:hover {
-    color: #fff;
-    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
-  }
 
   &.sms {
     background-color: #0ca78a;
@@ -70,47 +63,9 @@ const SocialLink = styled.div`
     background-color: #1ea1f3;
   }
 
-  &.reddit {
-    background-color: #fe4006;
-  }
-
-  &.instagram {
-    background-color: #000;
-  }
-
-  &.tiktok {
-    background-color: #000;
-  }
-
-  &.snapchat {
-    background-color: #fffc00;
-  }
-
   &.facebook {
     background-color: #507cc0;
   }
-`;
-
-const Icon = styled.div`
-  font-size: 40px;
-`;
-
-const IconLabel = styled(Font16)`
-  text-align: center;
-`;
-
-const TipWrapper = styled.div`
-  text-align: center;
-  background-color: #f6f8fb;
-  padding: 14px;
-  font-size: 15px;
-  cursor: pointer;
-`;
-
-const TipIcon = styled.span`
-  display: inline-block;
-  margin: 0 12px;
-  font-size: 24px;
 `;
 
 const SocialWrapper = styled.div`
@@ -156,7 +111,7 @@ const CopyIcon = styled.div`
   border: solid 2px #000;
 `;
 
-const ShareModal = ({ isCandidate }) => {
+const ShareModal = () => {
   const user = getUserCookie(true);
   const messageNoUrl = 'Vote different';
 
@@ -166,22 +121,6 @@ const ShareModal = ({ isCandidate }) => {
     queryUrl = sanitizeUrl(queryUrl);
   }
 
-  useEffect(() => {
-    const sharebtns = document.getElementsByClassName('st-btn');
-    for (let i = 0; i < sharebtns.length; i++) {
-      sharebtns[i].onclick = () => {
-        let label = '';
-        if (i === 0) {
-          label = 'Email';
-        } else if (i === 1) {
-          label = 'Facebook';
-        } else if (i === 2) {
-          label = 'Twitter';
-        }
-        trackShare(label);
-      };
-    }
-  });
 
   let url = '';
   if (typeof window !== 'undefined') {
