@@ -204,7 +204,9 @@ function TopIssuesList() {
         handleClose={() => setShowIssueDeleteAlert(false)}
         title={'Delete Issue?'}
         ariaLabel={'Delete Issue?'}
-        description={'Are you sure you want to delete this issue?'}
+        description={
+          'This will delete all the positions and candidate positions related to this issue'
+        }
         handleProceed={handleDeleteIssue}
       />
     </div>
