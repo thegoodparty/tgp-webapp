@@ -10,11 +10,8 @@ import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/HighlightOff';
 import Dialog from '@material-ui/core/Dialog';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
-import { useRouter } from 'next/router';
-import { Body13, H2 } from '/components/shared/typogrophy';
-import BlackButton from '../buttons/BlackButton';
+import { IoMdClose } from 'react-icons/io';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -39,6 +36,12 @@ const TgpDialog = styled(Dialog)`
           theme.breakpointsPixels.md}) {
         background: rgba(0, 0, 0, 0.85);
       }
+    }
+
+    .MuiDialog-paperWidthSm {
+      width: 60vw;
+      max-width: 500px;
+      min-width: 300px;
     }
 
     &.close-dialog {
@@ -78,10 +81,10 @@ const TopWrapper = styled.div`
   z-index: 1000;
 `;
 
-const TopClose = styled(CloseIcon)`
+const TopClose = styled.div`
   font-size: 24px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.primary};
+  color: #d3d3d3;
   &.purple {
     color: #fff;
   }
@@ -110,7 +113,9 @@ function QueryModal({
           <TopClose
             onClick={closeModalCallback}
             style={modalStyles.closeButton}
-          />
+          >
+            <IoMdClose />
+          </TopClose>
         </TopWrapper>
       )}
       {children}
