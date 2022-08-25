@@ -138,7 +138,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                 >
                   <A
                     data-cy="header-link-label"
-                    id={`desktop-nav-${link.label}`}
+                    id={`desktop-nav-${link.label.replace(' ', '-')}`}
                   >
                     {link.label}
                   </A>

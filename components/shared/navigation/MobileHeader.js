@@ -139,7 +139,9 @@ function MobileHeader({ user }) {
                 logEvent('Link', link.label, 'Top Nav');
               }}
             >
-              <a id={`mobile-nav-${link.label}`}>{link.label}</a>
+              <a id={`mobile-nav-${link.label.replace(' ', '-')}`}>
+                {link.label}
+              </a>
             </Link>
           </TopLink>
         ))}
