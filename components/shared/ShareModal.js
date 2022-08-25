@@ -219,7 +219,7 @@ const ShareModal = () => {
                 >
                   <BlackButton>
                     <InnerButton>
-                      <Smaller>Follow</Smaller>
+                      <Smaller>Share</Smaller>
                     </InnerButton>
                   </BlackButton>
                 </a>
