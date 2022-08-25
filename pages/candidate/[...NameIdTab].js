@@ -1,5 +1,6 @@
 import CandidatePage from '/containers/CandidatePage';
 import tgpApi from '/api/tgpApi';
+import { candidateRoute } from '../../helpers/electionsHelper';
 
 export default function Candidate({ ssrState }) {
   return <CandidatePage ssrState={ssrState} />;
@@ -9,6 +10,7 @@ export async function getServerSideProps(context) {
   // x-real-ip
   // const ip = req.connection.remoteAddress
   const { NameIdTab } = context.params;
+  const name = NameIdTab?.length > 0 ? NameIdTab[0] : false;
   const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
   const tab = NameIdTab?.length > 2 ? NameIdTab[2] : 'Feed';
   if (id && id !== 'undefined' && typeof id !== 'undefined') {
@@ -21,6 +23,20 @@ export async function getServerSideProps(context) {
     } catch (e) {
       candidate = {
         candidate: {},
+      };
+    }
+
+    // check if the route and id match
+    if (!candidate || !candidate.candidate) {
+      return { notFound: true };
+    }
+    if (candidateRoute(candidate.candidate) !== `/candidate/${name}/${id}`) {
+      const { res } = context;
+      res.setHeader('Location', candidateRoute(candidate.candidate));
+      res.statusCode = 301;
+      res.end();
+      return {
+        props: {},
       };
     }
 
