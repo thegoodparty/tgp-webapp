@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Link as ScrollLink } from 'react-scroll';
 
 import styled from 'styled-components';
 
@@ -68,19 +67,19 @@ const TopLink = styled.div`
 `;
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
   const router = useRouter();
 
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
+  // // return focus to the button when we transitioned from !open -> open
+  // const prevOpen = React.useRef(open);
+  // React.useEffect(() => {
+  //   if (prevOpen.current === true && open === false) {
+  //     anchorRef.current.focus();
+  //   }
+  //
+  //   prevOpen.current = open;
+  // }, [open]);
 
   const candidateRoute = router.pathname === '/candidate/[...NameIdTab]';
   let id = false;
@@ -92,19 +91,6 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
     id = router.query['NameIdTab'][1];
   }
 
-  // const handleShare = () => {
-  //   // if we are on the candidate page, track the share
-  //   if (router.pathname === '/candidate/[...NameIdTab]') {
-  //     trackShareCallback(
-  //       router.components['/candidate/[...NameIdTab]']?.props?.pageProps
-  //         ?.ssrState?.id,
-  //     );
-  //   }
-  //   router.query.share = 'true';
-  //   router.push(router);
-  //
-  //   logEvent('Share', 'top_nav_share', 'Top Nav');
-  // };
   return (
     <>
       <Wrapper>
