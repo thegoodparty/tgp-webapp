@@ -258,7 +258,13 @@ const SocialPost = ({ post }) => {
             </Link>
           </div>
         </Bottom>
-        {hasImage && <Img src={images[0].url} onError={handleError} />}
+        {hasImage && (
+          <Img
+            src={images[0].url}
+            onError={handleError}
+            alt={title || `${source} social post`}
+          />
+        )}
       </Post>
     </a>
   );
