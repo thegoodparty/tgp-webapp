@@ -1,5 +1,6 @@
 import React from 'react';
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
+import Script from 'next/script'
 import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
 
@@ -72,12 +73,13 @@ class CustomDocument extends NextDocument {
           <link rel="manifest" href="/manifest.json" />
           {this.props.styles}
 
-          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST" />
+          <Script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST" />
         </Head>
         <body>
           <Main />
           <NextScript />
-          <script
+          <Script
+            strategy="afterInteractive"
             type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `
@@ -115,7 +117,8 @@ class CustomDocument extends NextDocument {
         `,
             }}
           />
-          <script
+          <Script
+            strategy="afterInteractive"
             type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `
@@ -148,14 +151,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         `,
             }}
           />
-          <script
+          <Script
             type="text/javascript"
             id="hs-script-loader"
             async
             defer
             src="//js.hs-scripts.com/21589597.js"
           />
-          <script
+          <Script
+            strategy="afterInteractive"
             type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `
