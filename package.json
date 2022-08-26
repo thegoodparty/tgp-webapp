@@ -80,6 +80,7 @@
     "react-redux": "^7.2.6",
     "react-responsive-masonry": "^2.1.5",
     "react-router": "^6.2.1",
+    "react-schemaorg": "^2.0.0",
     "react-scroll": "^1.8.4",
     "react-slick": "^0.28.1",
     "react-social-login": "^3.4.15",

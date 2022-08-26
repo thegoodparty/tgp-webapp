@@ -25,6 +25,7 @@ import actions from './actions';
 import registerActions from '../entrance/RegisterPage/actions';
 import registerReducer from '../entrance/RegisterPage/reducer';
 import registerSaga from '../entrance/RegisterPage/saga';
+import CandidateSchema from './CandidateSchema';
 
 const shareImageUrl = (candidate) => {
   const { firstName, lastName, id } = candidate;
@@ -107,6 +108,7 @@ export function CandidatePage({
             image={shareImageUrl(candidate)}
           />
           <CandidateWrapper />
+          <CandidateSchema />
         </>
       )}
     </CandidateContext.Provider>

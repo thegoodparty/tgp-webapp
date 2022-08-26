@@ -4,10 +4,9 @@ import api from '/api/tgpApi';
 import tgpApi from '../../api/tgpApi';
 
 const { default: Axios } = require('axios');
-const moment = require('moment');
-const path = require('path');
-const fs = require('fs');
-const currentDate = moment().format('YYYY-MM-DD');
+
+let yourDate = new Date();
+const currentDate = yourDate.toISOString().split('T')[0];
 const { base } = apiHelper;
 
 const staticUrls = [
@@ -30,10 +29,8 @@ export default async function sitemap(req, res) {
   try {
     let response = await Axios.get(api.content.url);
     const { faqArticles } = response.data;
-    console.log(faqArticles);
     response = await Axios.get(tgpApi.newCandidate.list.url);
     const candidates = response.data?.candidates || [];
-    console.log(candidates);
 
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -81,10 +78,6 @@ export default async function sitemap(req, res) {
       `;
     });
     xmlString += '</urlset>';
-    // fs.writeFileSync('sitemaps/sitemap.xml', xmlString, {
-    //   encoding: 'utf8',
-    //   flag: 'w',
-    // });
 
     res.writeHead(200, {
       'Content-Type': 'application/xml',
