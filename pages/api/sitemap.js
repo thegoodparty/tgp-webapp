@@ -1,6 +1,7 @@
 import { candidateRoute } from '/helpers/electionsHelper';
 import apiHelper from '/helpers/apiHelper';
 import api from '/api/tgpApi';
+import tgpApi from '../../api/tgpApi';
 
 const { default: Axios } = require('axios');
 const moment = require('moment');
@@ -11,35 +12,33 @@ const { base } = apiHelper;
 
 const staticUrls = [
   '/',
-  '/home',
-  '/intro/splash',
-  '/intro/zip-finder',
-  '/you/register-email',
+  '/about',
+  '/run',
+  '/team',
+  '/candidates',
   '/login',
-  '/party',
+  '/register',
   '/faqs',
-  '/party/events',
+  '/manifesto',
   '/privacy',
-  '/creators',
+  '/work-with-us',
+  '/contact',
+  '/pricing',
 ];
 
-const generateSiteMapXML = async () => {
+export default async function sitemap(req, res) {
   try {
     let response = await Axios.get(api.content.url);
     const { faqArticles } = response.data;
-    console.log(faqArticles)
-    response = await Axios.get(api.directory.allCandidates.url);
-    const candidates = response.data;
-    console.log(candidates)
-    let allCandidates = [];
-    Object.keys(candidates).forEach(key => {
-      allCandidates = [...allCandidates, ...candidates[key]];
-    });
+    console.log(faqArticles);
+    response = await Axios.get(tgpApi.newCandidate.list.url);
+    const candidates = response.data?.candidates || [];
+    console.log(candidates);
 
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     `;
-    staticUrls.forEach(link => {
+    staticUrls.forEach((link) => {
       xmlString += `
         <url>
           <loc>${base}${link}</loc>
@@ -48,7 +47,7 @@ const generateSiteMapXML = async () => {
         </url>
       `;
     });
-    faqArticles.forEach(article => {
+    faqArticles.forEach((article) => {
       xmlString += `
         <url>
           <loc>${base}/faqs?article=${article.id}</loc>
@@ -57,38 +56,42 @@ const generateSiteMapXML = async () => {
         </url>
       `;
     });
-    allCandidates.forEach(candidate => {
+    candidates.forEach((candidate) => {
       xmlString += `
         <url>
           <loc>${base}${candidateRoute(candidate)}</loc>
           <lastmod>${currentDate}</lastmod>
-          <changefreq>weekly</changefreq>
+          <changefreq>daily</changefreq>
         </url>
       `;
-      if (candidate.campaignUpdates && candidate.campaignUpdates.length > 0) {
-        xmlString += `
+
+      xmlString += `
         <url>
-          <loc>${base}${candidateRoute(candidate)}/info</loc>
+          <loc>${base}${candidateRoute(candidate)}/Campaign</loc>
           <lastmod>${currentDate}</lastmod>
-          <changefreq>weekly</changefreq>
+          <changefreq>daily</changefreq>
+        </url>`;
+
+      xmlString += `
+        <url>
+          <loc>${base}${candidateRoute(candidate)}/Bio</loc>
+          <lastmod>${currentDate}</lastmod>
+          <changefreq>daily</changefreq>
         </url>
       `;
-      }
     });
     xmlString += '</urlset>';
-    fs.writeFileSync('sitemaps/sitemap.xml', xmlString, {
-      encoding: 'utf8',
-      flag: 'w',
-    });
+    // fs.writeFileSync('sitemaps/sitemap.xml', xmlString, {
+    //   encoding: 'utf8',
+    //   flag: 'w',
+    // });
 
-    return xmlString;
+    res.writeHead(200, {
+      'Content-Type': 'application/xml',
+    });
+    return res.end(xmlString);
   } catch (e) {
     console.log('error at generateSiteMapXML', e);
     return '';
   }
-};
-
-export default async (req, res) => {
-  const xmlString = await generateSiteMapXML();
-  res.send(xmlString);
-};
+}
