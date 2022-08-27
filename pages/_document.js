@@ -62,6 +62,7 @@ class CustomDocument extends NextDocument {
             href="https://assets.goodparty.org/favicon/favicon-512x512.png"
             sizes="512x512"
           />
+          <link rel="apple-touch-icon" href="https://assets.goodparty.org/favicon/android-icon-192x192.png" />
           {/*<meta*/}
           {/*  name="google-signin-client_id"*/}
           {/*  content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"*/}

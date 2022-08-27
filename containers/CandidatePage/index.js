@@ -54,7 +54,7 @@ export function CandidatePage({
   const { candidate, candidatePositions, userAgent, tab, followers, feed } =
     ssrState;
   const { claiming } = candidatePage;
-  const { firstName, lastName, party, otherParty, race, id } = candidate;
+  const { firstName, lastName, party, otherParty, race, headline } = candidate;
 
   const user = getUserCookie(true);
 
@@ -76,12 +76,12 @@ export function CandidatePage({
 
   const title = `${firstName} ${lastName} ${partyResolver(party, otherParty)} ${
     party !== 'I' ? 'Party ' : ''
-  }candidate for ${race} | Crowd-voting on GOOD PARTY`;
+  }candidate for ${race}`;
 
   const description = `Join the crowd-voting campaign for ${firstName} ${lastName}, ${partyResolver(
     party,
     otherParty,
-  ).toLowerCase()} for ${race}.`;
+  ).toLowerCase()} for ${race} | ${headline}  | Crowd-voting on GOOD PARTY`;
 
   const childProps = {
     candidate,
