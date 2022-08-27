@@ -11,7 +11,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { useRouter } from 'next/router';
 
-import FaqListWrapper from '/components/party/FaqListWrapper';
+import FaqListWrapper from '/components/faqs/FaqListWrapper';
 import globalActions from '/containers/App/actions';
 import TgpHelmet from '/components/shared/TgpHelmet';
 

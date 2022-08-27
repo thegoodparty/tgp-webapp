@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import FaqArticlePage from '/containers/party/FaqArticlePage';
+import FaqArticleModal from '/containers/faqs/FaqArticleModal';
 
 import queryHelper from '/helpers/queryHelper';
 import { setCookie } from '/helpers/cookieHelper';
@@ -56,7 +56,7 @@ function QueryRoutes({ locationState, dispatch }) {
 
   return (
     <>
-      <FaqArticlePage />
+      <FaqArticleModal />
       {showShare && <ShareModal isCandidate={isCandidatePage} />}
     </>
   );

@@ -1,6 +1,6 @@
 /**
  *
- * FaqArticlePage
+ * FaqArticleModal
  *
  */
 
@@ -16,19 +16,19 @@ import queryHelper from '/helpers/queryHelper';
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
 import { makeSelectLocation } from '/containers/App/selectors';
-import FaqArticleWrapper from '/components/party/FaqArticleWrapper';
+import FaqArticleModalWrapper from '/components/faqs/FaqArticleModalWrapper';
 
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
 
-import makeSelectFaqArticlePage from './selectors';
+import makeSelectFaqArticleModal from './selectors';
 
-export function FaqArticlePage({
+export function FaqArticleModal({
   dispatch,
   helpfulCallback,
   locationState,
-  faqArticlePage,
+  FaqArticleModal,
 }) {
   useInjectReducer({ key: 'faqArticle', reducer });
   useInjectSaga({ key: 'faqArticle', saga });
@@ -41,7 +41,7 @@ export function FaqArticlePage({
     }
   }, [id]);
 
-  const { article } = faqArticlePage;
+  const { article } = FaqArticleModal;
 
   if (!id || !article) {
     return <></>;
@@ -58,17 +58,17 @@ export function FaqArticlePage({
         <title data-cy="page-title">FAQ Article</title>
         <meta name="description" content="FAQ Article" />
       </Head>
-      <FaqArticleWrapper {...childProps} />
+      <FaqArticleModalWrapper {...childProps} />
     </div>
   );
 }
 
-FaqArticlePage.propTypes = {
+FaqArticleModal.propTypes = {
   dispatch: PropTypes.func.isRequired,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   helpfulCallback: PropTypes.func,
   locationState: PropTypes.object,
-  faqArticlePage: PropTypes.object,
+  FaqArticleModal: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -84,7 +84,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   locationState: makeSelectLocation(),
-  faqArticlePage: makeSelectFaqArticlePage(),
+  FaqArticleModal: makeSelectFaqArticleModal(),
 });
 
 const withConnect = connect(
@@ -95,4 +95,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(FaqArticlePage);
+)(FaqArticleModal);

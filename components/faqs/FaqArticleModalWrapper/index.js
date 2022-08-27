@@ -91,7 +91,7 @@ const HELPFUL_STATES = {
   notHelpful: 2,
 };
 
-const FaqArticleWrapper = ({
+const FaqArticleModalWrapper = ({
   article,
   closeModalCallback,
   helpfulCallback,
@@ -209,11 +209,11 @@ const FaqArticleWrapper = ({
   );
 };
 
-FaqArticleWrapper.propTypes = {
+FaqArticleModalWrapper.propTypes = {
   article: PropTypes.object,
   backButtonCallback: PropTypes.func,
   closeModalCallback: PropTypes.func,
   helpfulCallback: PropTypes.func,
 };
 
-export default FaqArticleWrapper;
+export default FaqArticleModalWrapper;

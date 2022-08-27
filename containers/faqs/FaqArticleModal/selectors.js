@@ -15,11 +15,11 @@ const selectFaqArticleDomain = state => state.faqArticle || initialState;
  * Default selector used by CreatorsPage
  */
 
-const makeSelectFaqArticlePage = () =>
+const makeSelectFaqArticleModal = () =>
   createSelector(
     selectFaqArticleDomain,
     substate => substate,
   );
 
-export default makeSelectFaqArticlePage;
+export default makeSelectFaqArticleModal;
 export { selectFaqArticleDomain };

@@ -2,6 +2,7 @@ import { candidateRoute } from '/helpers/electionsHelper';
 import apiHelper from '/helpers/apiHelper';
 import api from '/api/tgpApi';
 import tgpApi from '../../api/tgpApi';
+import { faqArticleRoute } from '../../helpers/faqHelper';
 
 const { default: Axios } = require('axios');
 
@@ -47,7 +48,7 @@ export default async function sitemap(req, res) {
     faqArticles.forEach((article) => {
       xmlString += `
         <url>
-          <loc>${base}/faqs?article=${article.id}</loc>
+          <loc>${base}${faqArticleRoute(article)}</loc>
           <lastmod>${currentDate}</lastmod>
           <changefreq>monthly</changefreq>
         </url>

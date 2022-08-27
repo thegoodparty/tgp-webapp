@@ -1,5 +1,5 @@
-import FaqListPage from '/containers/party/FaqListPage';
-import tgpApi from '../api/tgpApi';
+import FaqListPage from '/containers/faqs/FaqListPage';
+import tgpApi from '/api/tgpApi';
 export default function FaqList({ ssrState }) {
   return <FaqListPage ssrState={ssrState} />;
 }
