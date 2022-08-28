@@ -18,6 +18,7 @@ import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectFaqArticlePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import FaqArticleSchema from './FaqArticleSchema';
 
 export const FaqArticlePageContext = createContext();
 
@@ -37,6 +38,7 @@ export function FaqArticlePage({ ssrState }) {
         description={`${title} | ${article.category?.fields?.name} | Frequently Asked Questions | GOOD PARTY`}
       />
       <FaqArticleWrapper />
+      <FaqArticleSchema />
     </FaqArticlePageContext.Provider>
   );
 }
