@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   FaTwitter,
   FaRetweet,
@@ -85,10 +86,14 @@ const Content = styled.div`
   margin-bottom: 18px;
 `;
 
-const Img = styled.img`
+const Img = styled(Image)`
   width: 100%;
   height: auto;
   margin-bottom: 12px;
+  img {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const Bottom = styled.div`
@@ -115,11 +120,17 @@ const Retweet = styled.div`
   }
 `;
 
+const imgLoader = ({ src }) => src;
+
 const SocialPost = ({ post }) => {
   const router = useRouter();
   const [hasImage, setHasImage] = useState(
     post && post.images && post.images.length > 0,
   );
+  const [imageSize, setImageSize] = useState({
+    width: 1,
+    height: 1,
+  });
 
   // console.log('hasImage', hasImage, post.images, post && post.images && post.images.length > 0)
 
@@ -152,11 +163,6 @@ const SocialPost = ({ post }) => {
     contentWithLinks += '...';
   }
 
-  const handleShare = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    // openShareModalCallback();
-  };
 
   let icon = <FaTwitter />;
   if (source === 'INSTAGRAM') {
@@ -167,7 +173,7 @@ const SocialPost = ({ post }) => {
     icon = <FaFacebookF />;
   }
 
-  const handleError = (a, b, c) => {
+  const handleError = () => {
     setHasImage(false);
   };
 
@@ -263,6 +269,17 @@ const SocialPost = ({ post }) => {
             src={images[0].url}
             onError={handleError}
             alt={title || `${source} social post`}
+            layout="responsive"
+            loader={imgLoader}
+            objectFit="contain"
+            onLoadingComplete={(target) => {
+              setImageSize({
+                width: target.naturalWidth,
+                height: target.naturalHeight,
+              });
+            }}
+            width={imageSize.width}
+            height={imageSize.height}
           />
         )}
       </Post>
