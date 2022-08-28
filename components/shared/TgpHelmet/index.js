@@ -15,7 +15,17 @@ const { base } = apiHelper;
 
 function TgpHelmet({ title, ogTitle, description, image }) {
   const router = useRouter();
+  const { query } = router;
   const url = `${base}${router.asPath}`;
+  let canonical = url;
+  if (query) {
+    let queryString = '?';
+    const keys = Object.keys(query);
+    keys.forEach((key) => {
+      queryString += `${key}=${query[key]}`;
+    });
+    canonical = url.replace(queryString, '');
+  }
   return (
     <Head>
       {title && <title data-cy="page-title">{title}</title>}
@@ -24,7 +34,7 @@ function TgpHelmet({ title, ogTitle, description, image }) {
       {base !== 'https://goodparty.org' && (
         <meta name="robots" content="noindex" />
       )}
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={canonical} />
       {description && (
         <meta
           name="description"
