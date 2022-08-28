@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Body, Body19, H1 } from '/components/shared/typogrophy';
 import PageWrapper from '/components/shared/PageWrapper';
 import Breadcrumbs from '../../shared/Breadcrumbs';
+import { faqArticleRoute } from '../../../helpers/faqHelper';
 
 const ArticleWrapper = styled.a`
   .article-title {
@@ -122,7 +123,7 @@ const FaqListWrapper = ({ content }) => {
                 category.articles.map(article => (
                   <div data-cy="faq-article" key={article.id}>
                     <Link
-                      href={`?article=${article.id}`}
+                      href={faqArticleRoute(article)}
                       passHref
                     >
                       <a data-cy="faq-article-link">
