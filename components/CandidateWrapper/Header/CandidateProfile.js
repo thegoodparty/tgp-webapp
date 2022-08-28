@@ -67,7 +67,7 @@ function CandidateProfile() {
 
   return (
     <Row>
-      <CandidateRoundAvatar candidate={candidate} large imageOnly />
+      <CandidateRoundAvatar candidate={candidate} large imageOnly priority />
       <Text>
         <Name>
           {firstName}

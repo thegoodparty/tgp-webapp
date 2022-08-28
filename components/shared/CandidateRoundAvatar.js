@@ -84,7 +84,7 @@ const Overlay = styled.div`
     font-size: 12px;
   }
 `;
-function CandidateRoundAvatar({ candidate, large = false }) {
+function CandidateRoundAvatar({ candidate, large = false, priority = false }) {
   const { firstName, lastName, image, isClaimed } = candidate;
   const brightColor = candidateColor(candidate);
 
@@ -101,6 +101,7 @@ function CandidateRoundAvatar({ candidate, large = false }) {
             alt={`${firstName} ${lastName}`}
             data-cy="candidate-img"
             style={{ borderColor: brightColor }}
+            priority={priority}
           />
         )}
         {isClaimed && (

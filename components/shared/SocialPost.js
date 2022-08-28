@@ -10,6 +10,7 @@ import {
   FaInstagram,
   FaRedditAlien,
   FaCommentAlt,
+  FaTiktok,
 } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 
@@ -27,6 +28,11 @@ const Post = styled.div`
   transition: background-color 0.4s;
   &:hover {
     background-color: #efefef;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
   }
 `;
 
@@ -52,6 +58,10 @@ const Icon = styled.div`
 
   &.ONLINE_NEWS {
     display: none;
+  }
+
+  &.TIKTOK {
+    color: #ff0050;
   }
 `;
 const TitlePadder = styled.div`
@@ -132,6 +142,8 @@ const SocialPost = ({ post }) => {
     height: 1,
   });
 
+  const hasVideo = post.video;
+
   // console.log('hasImage', hasImage, post.images, post && post.images && post.images.length > 0)
 
   if (!post || !post.content) {
@@ -163,10 +175,11 @@ const SocialPost = ({ post }) => {
     contentWithLinks += '...';
   }
 
-
   let icon = <FaTwitter />;
   if (source === 'INSTAGRAM') {
     icon = <FaInstagram />;
+  } else if (source === 'TIKTOK') {
+    icon = <FaTiktok />;
   } else if (source === 'REDDIT') {
     icon = <FaRedditAlien />;
   } else if (source === 'FACEBOOK' || source === 'FACEBOOK_PUBLIC') {
@@ -187,14 +200,28 @@ const SocialPost = ({ post }) => {
       showContent = false;
     }
   }
+  if (source === 'TIKTOK' && hasVideo) {
+    showContent = false;
+  }
+  const WrapperElement = ({ children }) => {
+    if (hasVideo) {
+      return <div>{children}</div>;
+    } else {
+      return (
+        <a
+          className="no-underline feed-post"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          id={`feed-post-${url}`}
+        >
+          {children}
+        </a>
+      );
+    }
+  };
   return (
-    <a
-      className="no-underline feed-post"
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer nofollow"
-      id={`feed-post-${url}`}
-    >
+    <WrapperElement>
       <Post className="break-word">
         <Icon className={source}>{icon}</Icon>
         <TitlePadder>
@@ -282,8 +309,24 @@ const SocialPost = ({ post }) => {
             height={imageSize.height}
           />
         )}
+        {hasVideo && (
+          <div>
+            <video src={post.video} controls />
+            <br />
+            <br />
+            <a
+              className="feed-post"
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              id={`feed-post-${url}`}
+            >
+              View on TikTok
+            </a>
+          </div>
+        )}
       </Post>
-    </a>
+    </WrapperElement>
   );
 };
 
