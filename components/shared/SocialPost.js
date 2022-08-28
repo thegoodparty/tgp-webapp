@@ -142,7 +142,7 @@ const SocialPost = ({ post }) => {
     height: 1,
   });
 
-  const hasVideo = post.video;
+  const hasVideo = post.video && post.video.src;
 
   // console.log('hasImage', hasImage, post.images, post && post.images && post.images.length > 0)
 
@@ -311,7 +311,7 @@ const SocialPost = ({ post }) => {
         )}
         {hasVideo && (
           <div>
-            <video src={post.video} controls />
+            <video src={post.video.src} poster={post.video.poster} controls preload="none" />
             <br />
             <br />
             <a
