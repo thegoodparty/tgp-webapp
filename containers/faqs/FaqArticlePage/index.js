@@ -19,6 +19,7 @@ import makeSelectFaqArticlePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import FaqArticleSchema from './FaqArticleSchema';
+import { cmsToPlainText } from '../../../helpers/contentfulHelper';
 
 export const FaqArticlePageContext = createContext();
 
@@ -27,15 +28,17 @@ export function FaqArticlePage({ ssrState }) {
   useInjectSaga({ key: 'faqArticlePage', saga });
 
   const { article } = ssrState;
-  const { title } = article;
+  const { title, articleBody, category } = article;
+
+  console.log('cmsToPlainText(articleBody)', cmsToPlainText(articleBody))
 
   const childProps = { article };
 
   return (
     <FaqArticlePageContext.Provider value={childProps}>
       <TgpHelmet
-        title={`${title} | ${article.category?.fields?.name} | FAQs`}
-        description={`${title} | ${article.category?.fields?.name} | Frequently Asked Questions | GOOD PARTY`}
+        title={`${title} | ${category?.fields?.name} | FAQs`}
+        description={cmsToPlainText(articleBody,  300)}
       />
       <FaqArticleWrapper />
       <FaqArticleSchema />

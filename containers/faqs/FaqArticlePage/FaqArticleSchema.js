@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { JsonLd } from 'react-schemaorg';
 
-import contentfulHelper from '/helpers/contentfulHelper';
+import { cmsToPlainText } from '/helpers/contentfulHelper';
 import { FaqArticlePageContext } from './index';
 
 export default function FaqArticleSchema() {
@@ -19,7 +19,7 @@ export default function FaqArticleSchema() {
             name: title,
             acceptedAnswer: {
               '@type': 'Answer',
-              text: contentfulHelper(articleBody),
+              text: cmsToPlainText(articleBody),
             },
           },
         ],
