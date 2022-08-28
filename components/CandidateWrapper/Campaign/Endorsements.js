@@ -71,6 +71,7 @@ function Endorsements() {
                     <Img
                       style={{ backgroundImage: `url(${item.image})` }}
                       data-cy="endorsement-item-img"
+                      alt="Endorsement"
                     />
                   }
                 </div>
