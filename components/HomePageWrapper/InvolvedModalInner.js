@@ -69,6 +69,7 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
   const submitForm = () => {
     if (canSubmit()) {
       subscribeEmailCallback(email, name);
+      closeModalCallback();
     }
   };
   return (
@@ -90,7 +91,7 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
       </Padder>
       <Line />
       <Padder>
-        <form noValidate onSubmit={(e) => e.preventDefault()}>
+        <form noValidate onSubmit={(e) => e.preventDefault()} id="homepage-involved-form">
           <TextField
             fullWidth
             primary
@@ -99,6 +100,7 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             error={name != '' && name.length < 2}
+            autoFocus
           />
           <br />
           <br />

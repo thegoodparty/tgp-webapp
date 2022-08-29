@@ -70,6 +70,7 @@ function PhoneInput({
 
   const formatDisplay = (val) => {
     if (!val) {
+      setDisplayValue('');
       return '';
     }
     const formatted = new AsYouType('US').input(val);

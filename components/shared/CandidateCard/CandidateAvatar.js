@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getPartyImage } from '../../../helpers/candidatesHelper';
+import { candidateColor, getPartyImage } from '/helpers/candidatesHelper';
 
 const ChallengerAvatarWrapper = styled.div`
   width: 58px;
@@ -118,8 +118,7 @@ const CandidateAvatar = ({
   candidate,
 }) => {
   let PartyImg = getPartyImage(partyBadge, party, hideBadge);
-  const { color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
 
   return (
     <ChallengerAvatarWrapper

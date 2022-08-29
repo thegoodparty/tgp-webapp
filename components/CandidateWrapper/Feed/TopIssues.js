@@ -13,7 +13,8 @@ import { CandidateContext } from '/containers/CandidatePage';
 import { Pill } from '../Header/TopIssuesPills';
 import Row from '../../shared/Row';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { removeWhiteSpaces } from '../../../helpers/stringHelper';
+import { removeWhiteSpaces } from '/helpers/stringHelper';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.article`
   position: relative;
@@ -44,6 +45,8 @@ const IssueWrapper = styled.div`
 const Position = styled.div`
   font-weight: 300;
   margin: 8px 0 18px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `;
 
 const Title = styled.h3`
@@ -60,7 +63,7 @@ function TopIssues() {
   const router = useRouter();
   const { candidatePositions, candidate } = useContext(CandidateContext);
   const { color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
   if (candidatePositions?.length === 0) {
     return <></>;
   }
@@ -71,8 +74,8 @@ function TopIssues() {
       <TopRow
         style={{ justifyContent: 'space-between', alignItems: 'baseline' }}
       >
-        <Title data-cy="top-issues-title">Top Issues</Title>
-        <Link href={`${router.asPath}?share=true`} passHref>
+        <Title data-cy="ssues-title">Top Issues</Title>
+        <Link href={`${router.asPath}?share=true`} passHref scroll={false}>
           <a id="top-issues-share" className="no-underline">
             <BlackButton style={{ padding: '4px 3px' }}>
               <InnerButton>Share</InnerButton>

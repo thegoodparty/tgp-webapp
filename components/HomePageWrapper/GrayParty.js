@@ -9,7 +9,7 @@ import Feed from './Feed';
 
 const Wrapper = styled.section`
   background-color: #f3f3f3;
-  padding: 80px 0;
+  padding: 80px 16px 40px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
@@ -47,7 +47,7 @@ const Yellow = styled.div`
   width: calc(100% + 10px);
   bottom: 0;
   left: -5px;
-  background-color: #ffe600;
+  background-color: ${({ theme }) => theme.colors.yellow};
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     bottom: 4px;

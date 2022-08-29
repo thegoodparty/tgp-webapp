@@ -14,10 +14,8 @@ import { CandidatePortalHomePageContext } from '/containers/candidate-portal/Can
 import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
 import RangeSelector from '../shared/RangeSelector';
-import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import CampaignChart from './CampaignChart';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import AddCampaignUpdateModal from '../shared/AddCampaignUpdateModal';
+import { numberFormatter } from '/helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -82,12 +80,12 @@ function CampaignPanel({ range, onChangeRange }) {
   const { stats } = useContext(CandidatePortalHomePageContext);
   const visitors = stats?.stats?.visitors;
   const shares = stats?.stats?.shares;
-  const endorsers = stats?.stats?.endorsers;
+  const followers = stats?.stats?.followers;
 
   const fields = [
     { label: 'VIEWS', data: visitors || {} },
     { label: 'SHARES', data: shares || {} },
-    { label: 'ENDORSEMENTS', data: endorsers || {} },
+    { label: 'FOLLOWERS', data: followers || {} },
   ];
   return (
     <PortalPanel color="#2CCDB0">
@@ -107,13 +105,6 @@ function CampaignPanel({ range, onChangeRange }) {
                 </Stat>
               </Grid>
             ))}
-          </Grid>
-          <Grid item xs={12}>
-            <div style={{ marginTop: '40px' }}>
-              <AddCampaignUpdateModal
-                context={CandidatePortalHomePageContext}
-              />
-            </div>
           </Grid>
         </Grid>
         <Grid item xs={12} lg={5} style={{ height: '100%' }}>

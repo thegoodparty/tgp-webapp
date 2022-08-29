@@ -4,61 +4,72 @@
  *
  */
 
-import React, { memo, createContext, useEffect } from 'react';
+import React, { memo, createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
+import { useRouter } from 'next/router';
+import { sanitizeUrl } from '@braintree/sanitize-url';
 
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import { getUserCookie } from '/helpers/cookieHelper';
 import { slugify } from '../../helpers/articlesHelper';
+import queryHelper from '../../helpers/queryHelper';
 
 export const CandidatesContext = createContext();
-
-const filtertopics = (candidates, topics) => {
-  const candidateTopics = {};
-  candidates.forEach((candidate) => {
-    candidate.topics.forEach((topic) => {
-      candidateTopics[topic.id] = true;
-    });
-  });
-  const filtered = [];
-  topics.forEach((topic) => {
-    if (candidateTopics[topic.id]) {
-      filtered.push(topic);
-    }
-  });
-  return filtered;
-};
 
 export function CandidatesPage({
   ssrState,
   dispatch,
   filterCandidatesCallback,
 }) {
-  const {
-    candidates,
-    positions,
-    positionsByTopIssues,
-    states,
-    routePosition,
-    routeState,
-  } = ssrState;
+  const { candidates, positions, states, routePosition, routeState } = ssrState;
+  const [pinnedCandidates, setPinnedCandidates] = useState(candidates);
+  const router = useRouter();
+  let { pinned } = router.query;
+
+  if (typeof window !== 'undefined') {
+    const url = window.location.href;
+    if (sanitizeUrl(url) === 'about:blank') {
+      pinned = false;
+    }
+  }
 
   useEffect(() => {
     if (states.length === 0 && routeState) {
       dispatch(push(`/candidates/${routePosition}`));
     }
   }, [states, routeState]);
+  useEffect(() => {
+    if (pinned) {
+      try {
+        const ids = JSON.parse(pinned);
+        if (Array.isArray(ids)) {
+          // create two arrays - pinned and candidates, removing the ids from candidates and adding them to pinned
+          const pinnedCandidates = [];
+          const rest = [];
+          candidates.forEach((candidate) => {
+            if (ids.includes(candidate.id)) {
+              pinnedCandidates.push(candidate);
+            } else {
+              rest.push(candidate);
+            }
+          });
+          setPinnedCandidates([...pinnedCandidates, ...rest]);
+        }
+      } catch (e) {
+        setPinnedCandidates(candidates);
+      }
+    }
+  }, [pinned]);
 
   const user = getUserCookie(true);
   const childProps = {
-    candidates,
+    candidates: pinnedCandidates,
     positions,
-    positionsByTopIssues,
     states,
     user,
     filterCandidatesCallback,
@@ -93,6 +104,8 @@ function mapDispatchToProps(dispatch) {
     dispatch,
 
     filterCandidatesCallback: (position, state) => {
+      const pinned = queryHelper(window.location.search, 'pinned');
+      const query = pinned ? `?pinned=${pinned}` : '';
       let positionRoute = 'all';
       if (position && position !== '') {
         positionRoute = `${slugify(position.name)}|${position.id}`;
@@ -102,9 +115,9 @@ function mapDispatchToProps(dispatch) {
         stateRoute = slugify(state);
       }
       if (positionRoute === 'all' && stateRoute === '') {
-        dispatch(push('/candidates/'));
+        dispatch(push(`/candidates${query}`));
       } else {
-        dispatch(push(`/candidates/${positionRoute}/${stateRoute}`));
+        dispatch(push(`/candidates/${positionRoute}/${stateRoute}${query}`));
       }
     },
   };

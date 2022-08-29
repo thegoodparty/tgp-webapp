@@ -7,11 +7,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
 import { CandidateContext } from '/containers/CandidatePage';
-import { FontH3 } from '../../shared/typogrophy';
 
 const Wrapper = styled.article`
+  margin-bottom: 36px;
 `;
 
 const EndorsementWrapper = styled.div`
@@ -28,17 +29,6 @@ const Img = styled.div`
   margin-right: 24px;
 `;
 
-const Truncated = styled.div`
-  display: block;
-  display: -webkit-box;
-  max-width: 100%;
-  height: 64px;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
 const Title = styled.h3`
   font-size: 16px;
   margin: 0 0 15px;
@@ -49,16 +39,24 @@ const Title = styled.h3`
   }
 `;
 
+const Summary = styled.div`
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+`;
+
 function Endorsements() {
   const { candidate } = useContext(CandidateContext);
   const { endorsements } = candidate;
+  if (endorsements?.length === 0) {
+    return <></>;
+  }
 
   return (
     <Wrapper>
       <Title data-cy="endorsement-title">Featured Endorsements</Title>
       <Grid container spacing={2}>
         {endorsements.map((item) => (
-          <Grid item xs={12}  key={item.id} data-cy="endorsement-item">
+          <Grid item xs={12} key={item.id} data-cy="endorsement-item">
             <EndorsementWrapper>
               {item.image && (
                 <div>
@@ -77,18 +75,18 @@ function Endorsements() {
                 >
                   <strong>{item.title}</strong>
                 </div>
-                <Truncated data-cy="endorsement-item-summary">
+                <Summary data-cy="endorsement-item-summary">
                   {item.summary}
-                </Truncated>
+                </Summary>
                 {item.link && (
-                  <div className="text-right">
+                  <div className="text-right" style={{ marginTop: '8px' }}>
                     <a
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
                       data-cy="endorsement-item-link"
                     >
-                      Show More
+                      Learn More <FaExternalLinkAlt size={12} />
                     </a>
                   </div>
                 )}

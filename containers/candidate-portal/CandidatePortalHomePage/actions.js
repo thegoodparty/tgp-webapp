@@ -57,13 +57,6 @@ function updatePreferencesAction(id, preferences) {
   };
 }
 
-function createUpdateAction(candidate, update) {
-  return {
-    type: types.CREATE_UPDATE,
-    candidate,
-    update,
-  };
-}
 
 export default {
   findCandidate,
@@ -77,5 +70,4 @@ export default {
 
   updatePreferencesAction,
 
-  createUpdateAction,
 };

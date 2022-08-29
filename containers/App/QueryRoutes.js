@@ -39,7 +39,7 @@ function QueryRoutes({ locationState, dispatch }) {
       setCookie('referrer', uuid);
     }
   }, []);
-  const isCandidatePage = router.pathname === '/candidate/[...NameId]';
+  const isCandidatePage = router.pathname === '/candidate/[...NameIdTab]';
   useEffect(() => {
     const modalArticleId = queryHelper(search, 'article');
 

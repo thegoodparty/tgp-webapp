@@ -16,21 +16,24 @@ import { dateUsHelper } from '../../helpers/dateHelper';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
 
 const Post = styled.div`
-  padding: 60px 15px 70px;
+  padding: 28px 15px 70px;
   background-color: #fff;
   text-align: left;
   position: relative;
-  height: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   box-shadow: 5px 5px #f2f2f2;
+  transition: background-color 0.4s;
+  &:hover {
+    background-color: #efefef;
+  }
 `;
 
 const Icon = styled.div`
   position: absolute;
-  top: 20px;
+  top: 24px;
   right: 15px;
   font-size: 26px;
   color: #33ccff;
@@ -51,6 +54,9 @@ const Icon = styled.div`
   &.ONLINE_NEWS {
     display: none;
   }
+`;
+const TitlePadder = styled.div`
+  padding-right: 30px;
 `;
 
 const Title = styled.div`
@@ -124,6 +130,7 @@ const SocialPost = ({ post }) => {
   }
 
   const {
+    title,
     userName,
     userScreenName,
     images,
@@ -165,9 +172,20 @@ const SocialPost = ({ post }) => {
   const handleError = (a, b, c) => {
     setHasImage(false);
   };
+
+  let showContent = true;
+  if (
+    source === 'FACEBOOK' ||
+    source === 'FACEBOOK_PUBLIC' ||
+    source === 'INSTAGRAM'
+  ) {
+    if (hasImage) {
+      showContent = false;
+    }
+  }
   return (
     <a
-      className="no-underline"
+      className="no-underline feed-post"
       href={url}
       target="_blank"
       rel="noopener noreferrer nofollow"
@@ -175,14 +193,27 @@ const SocialPost = ({ post }) => {
     >
       <Post>
         <Icon className={source}>{icon}</Icon>
-        {(userName || userScreenName) && (
-          <Title>
-            {userName && <UserName>{userName}</UserName>}
-            {userScreenName && <Handle>@{userScreenName}</Handle>}
-          </Title>
-        )}
+        <TitlePadder>
+          {title && (
+            <UserName style={{ marginBottom: '14px' }}>{title}</UserName>
+          )}
+          {(userName || userScreenName) && (
+            <div>
+              <Title>
+                {userName && (
+                  <UserName style={title ? { textDecoration: 'none' } : {}}>
+                    {userName}
+                  </UserName>
+                )}
+                {userScreenName && <Handle>@{userScreenName}</Handle>}
+              </Title>
+            </div>
+          )}
+        </TitlePadder>
         {publishedAt && <Date>{dateUsHelper(publishedAt)}</Date>}
-        <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
+        {showContent && (
+          <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
+        )}
         <Bottom>
           <div>
             {likesCount !== null && (
@@ -202,7 +233,7 @@ const SocialPost = ({ post }) => {
                 <span>{commentsCount}</span>
               </Retweet>
             )}
-            {engagement !== null && (
+            {engagement !== null && engagement !== 0 && (
               <Retweet>
                 <div>
                   <FaRetweet />
@@ -212,8 +243,14 @@ const SocialPost = ({ post }) => {
             )}
           </div>
           <div>
-            <Link href={`${router.asPath}?share=true`} passHref>
-              <a id={`feed-post-share-${url}`}>
+            <Link
+              href={`${router.asPath}?share=true&url=${encodeURIComponent(
+                url,
+              )}`}
+              passHref
+              scroll={false}
+            >
+              <a id={`feed-post-share-${url}`} className="feed-post-share">
                 <BlackButton
                   style={{ textTransform: 'none', padding: '4px 12px' }}
                 >

@@ -4,7 +4,9 @@ import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import { HomePageContext } from '/containers/HomePage';
 import It from '../shared/It';
-import CandidatesRoundPreview from '../shared/CandidateRoundPreview';
+import CandidateRoundAvatar from '../shared/CandidateRoundAvatar';
+import { candidateRoute } from '../../helpers/electionsHelper';
+import CandidateMiniCard from './CandidatesMiniCard';
 
 const Wrapper = styled.section`
   padding: 20px 0 60px;
@@ -26,11 +28,10 @@ const H2 = styled.h2`
 `;
 
 const Content = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin-bottom: 50px;
     font-size: 22px;
   }
 `;
@@ -42,7 +43,7 @@ const More = styled.div`
   text-decoration: underline;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin-top: 134px;
+    margin-top: 85px;
   }
 `;
 
@@ -66,10 +67,10 @@ const CandidatesSection = () => {
           </a>
         </Link>
       </Content>
-      <Grid container spacing={4}>
+      <Grid container spacing={8}  alignItems="stretch">
         {(homepageCandidates || []).map((candidate) => (
-          <Grid item xs={6} lg={4} key={candidate.id}>
-            <CandidatesRoundPreview candidate={candidate} />
+          <Grid item xs={12} md={6} lg={4} key={candidate.id}>
+            <CandidateMiniCard candidate={candidate} />
           </Grid>
         ))}
       </Grid>

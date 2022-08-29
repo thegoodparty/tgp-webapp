@@ -15,53 +15,29 @@ import { deleteCookies, getUserCookie } from '/helpers/cookieHelper';
 import ProfileWrapper from '/components/profile/ProfileWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 
-import { useInjectSaga } from '/utils/injectSaga';
-import { useInjectReducer } from '/utils/injectReducer';
-import makeSelectProfilePage from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import userActions from './actions';
-import actions from './actions';
+// import { useInjectSaga } from '/utils/injectSaga';
+// import { useInjectReducer } from '/utils/injectReducer';
+// import makeSelectProfilePage from './selectors';
+// import reducer from './reducer';
+// import saga from './saga';
 
 export const ProfilePageContext = createContext();
 
-export function ProfilePage({ dispatch, profilePage, signoutCallback }) {
-  const [supported, setSupported] = useState(false);
+export function ProfilePage({ dispatch, signoutCallback }) {
   const router = useRouter();
-  useInjectReducer({ key: 'profilePage', reducer });
-  useInjectSaga({ key: 'profilePage', saga });
+  // useInjectReducer({ key: 'profilePage', reducer });
+  // useInjectSaga({ key: 'profilePage', saga });
 
-  const { loading, userSupported } = profilePage;
   const user = getUserCookie(true);
 
   useEffect(() => {
-    if (user && !userSupported) {
-      dispatch(actions.loadUserSupportedAction());
-    }
-
     if (typeof window !== 'undefined' && !user) {
       router.push('login');
     }
   }, []);
 
-  useEffect(() => {
-    if (userSupported) {
-      const tempSupported = [];
-      userSupported.forEach((support) => {
-        if (support.candidate?.data) {
-          const parsed = JSON.parse(support.candidate.data);
-          parsed.supporters = support.candidate.supporters;
-          tempSupported.push(parsed);
-        }
-      });
-      setSupported(tempSupported);
-    }
-  }, [userSupported]);
-
   const childProps = {
     user,
-    loading,
-    userSupported: supported,
     signoutCallback,
   };
 
@@ -83,7 +59,7 @@ ProfilePage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  profilePage: makeSelectProfilePage(),
+  // profilePage: makeSelectProfilePage(),
 });
 
 function mapDispatchToProps(dispatch) {

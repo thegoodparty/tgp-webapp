@@ -13,6 +13,7 @@ import { CandidateContext } from '/containers/CandidatePage';
 import TopIssues from '../Feed/TopIssues';
 import YouTubeLazyPlayer from '../../shared/YouTubeLazyPlayer';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import { candidateColor } from '../../../helpers/candidatesHelper';
 
 const Wrapper = styled.section``;
 
@@ -29,7 +30,7 @@ const Title = styled.h3`
 function Bio() {
   const { candidate } = useContext(CandidateContext);
   const { headline, heroVideo, about, color, website } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const brightColor = candidateColor(candidate);
   return (
     <Wrapper>
       <Grid container spacing={8}>
@@ -45,6 +46,7 @@ function Bio() {
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="no-underline"
+              id="candidate-website"
             >
               <BlackButton
                 className="outlined"

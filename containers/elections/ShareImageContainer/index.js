@@ -29,12 +29,10 @@ export function ShareImageContainer({
 
   let candidate;
   let imageAsBase64;
-  let candidateSupports;
-  let total;
   let followers;
 
   if (ssrState) {
-    ({ candidate, imageAsBase64, candidateSupports, total, followers } =
+    ({ candidate, imageAsBase64, followers } =
       ssrState);
     dispatch(actions.loadCandidateActionSuccess(candidate));
   }
@@ -43,8 +41,6 @@ export function ShareImageContainer({
     candidate,
     shareImageCallback,
     imageAsBase64,
-    candidateSupports,
-    total,
     followers,
   };
   return (

@@ -81,7 +81,10 @@ const SupportersProgressBar = ({
   withAchievement = true,
 }) => {
   const weeksToElection = Math.floor(days / 7);
-  const neededToWin = votesNeeded - peopleSoFar;
+  let neededToWin = votesNeeded - peopleSoFar;
+  if (neededToWin < 0) {
+    neededToWin = 0;
+  }
   let neededPerWeek;
   let neededThisWeek;
   let progress;
@@ -95,30 +98,44 @@ const SupportersProgressBar = ({
     neededThisWeek = votesNeeded;
     peopleThisPeriod = peopleSoFar;
   }
+
   if (neededThisWeek <= 0) {
     progress = 100;
   } else {
-    progress = (peopleThisPeriod * 100) / neededThisWeek;
+    progress = (peopleThisPeriod * 100) / neededPerWeek;
   }
+  if (days < 0) {
+    neededPerWeek = votesNeeded;
+    progress = (peopleSoFar * 100) / votesNeeded;
+  }
+
   if (progress > 100) {
     progress = 100;
   }
+
   return (
     <ProgressBarWrapper data-cy="supporter-progress">
       <BarBg>
         <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
-        <Total>{numberFormatter(neededPerWeek)}</Total>
+        {neededPerWeek !== 0 && <Total>{numberFormatter(neededPerWeek)}</Total>}
       </BarBg>
-      {withAchievement && (
+      {withAchievement && days > 0 && (
         <AchievementWrapper>
           <Icon src="/images/icons/achievement.svg" alt="achievement" />
-          <div>
-            If we can get to{' '}
-            <strong>
-              {numberFormatter(neededPerWeek)} followers this week
-            </strong>
-            , we’ll be on track to win on election day!
-          </div>
+          {progress < 100 ? (
+            <div>
+              If we can get to{' '}
+              <strong>
+                {numberFormatter(neededPerWeek)} followers this week
+              </strong>
+              , we’ll be on track to win on election day!
+            </div>
+          ) : (
+            <div>
+              This candidate has a good chance of <strong>winning</strong>. Keep
+              the momentum going!
+            </div>
+          )}
         </AchievementWrapper>
       )}
     </ProgressBarWrapper>

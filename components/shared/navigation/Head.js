@@ -17,11 +17,6 @@ const TgpHead = ({ title, description }) => (
     <meta property="og:url" content="https://goodparty.org" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#ffffff" />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=PT+Serif:400,700&display=swap"
-      rel="stylesheet"
-    />
     <link
       rel="icon"
       type="image/png"

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import { Body, H2 } from '../../shared/typogrophy';
 import PortalPageWrapper from '../shared/PortalPageWrapper';
-import CopyCodeSection from '../../GoodPracticesWrapper/CopyCodeSection';
+import CopyCodeSection from '../../company/GoodPracticesWrapper/CopyCodeSection';
 import contentfulHelper, { CmsContentWrapper } from '/helpers/contentfulHelper';
 
 const Wrapper = styled.div`

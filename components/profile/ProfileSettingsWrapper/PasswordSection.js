@@ -15,7 +15,7 @@ import PortalPanel from '../../candidate-portal/shared/PortalPanel';
 import { FontH3 } from '../../shared/typogrophy';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import Row from '../../shared/Row';
-import { passwordRegex } from '../../../helpers/userHelper';
+import { passwordRegex } from '/helpers/userHelper';
 
 const StyledTextField = styled(TextField)`
   && {

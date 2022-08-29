@@ -1,4 +1,3 @@
-
 import promisify from 'cypress-promise';
 import { USER_COOKIE } from '../../constants';
 import { parseCookie } from '../../support/utils';

@@ -1,4 +1,4 @@
-import { TEST_ACCOUNT_EMAIL, TEST_ACCOUNT_PWD } from '../../constants';
+import { TEST_ACCOUNT_EMAIL } from '../../constants';
 
 describe('Login Page', () => {
   it('Page Content', () => {

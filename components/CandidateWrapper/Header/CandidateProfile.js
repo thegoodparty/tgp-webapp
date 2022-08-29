@@ -4,18 +4,19 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import Row from '../../shared/Row';
-import CandidatesRoundPreview from '../../shared/CandidateRoundPreview';
-import { partyResolver } from '../../../helpers/electionsHelper';
+import CandidateRoundAvatar from '../../shared/CandidateRoundAvatar';
 import { Font16 } from '../../shared/typogrophy';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { CandidateWrapperContext } from '../index';
+import { candidateColor, partyRace } from '/helpers/candidatesHelper';
+import Modal from '../../shared/Modal';
+import ClaimModal from './ClaimModal';
 
 const Text = styled.div`
   margin-left: 30px;
@@ -40,26 +41,34 @@ const ButtonWrapper = styled.div`
   }
 `;
 
+const Claim = styled.div`
+  margin-top: 12px;
+  color: #868686;
+`;
+
+const ClaimLink = styled.span`
+  color: #000;
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
 function CandidateProfile() {
   const { candidate } = useContext(CandidateContext);
   const { openFollowModalCallback } = useContext(CandidateWrapperContext);
-  const { firstName, lastName, party, otherParty, race, color } = candidate;
-  const brightColor = color?.color ? color.color : '#000';
+  const { firstName, lastName, color, isClaimed } = candidate;
+  const [showModal, setShowModal] = useState(false);
+  const brightColor = candidateColor(candidate);
 
   return (
     <Row>
-      <CandidatesRoundPreview candidate={candidate} large imageOnly />
+      <CandidateRoundAvatar candidate={candidate} large imageOnly />
       <Text>
         <Name>
           {firstName}
           <br />
           {lastName}
         </Name>
-        <Font16>
-          {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
-          Candidate <br />
-          for <strong>{race}</strong>
-        </Font16>
+        <Font16>{partyRace(candidate)}</Font16>
         <ButtonWrapper>
           <BlackButton
             style={{
@@ -68,11 +77,23 @@ function CandidateProfile() {
               marginTop: '12px',
             }}
             onClick={openFollowModalCallback}
+            id="candidate-follow-button"
           >
             <InnerButton>FOLLOW</InnerButton>
           </BlackButton>
         </ButtonWrapper>
+        {!isClaimed && (
+          <Claim>
+            Is this you?{' '}
+            <ClaimLink onClick={() => setShowModal(true)}>
+              Claim this page
+            </ClaimLink>
+          </Claim>
+        )}
       </Text>
+      <Modal closeModalCallback={() => setShowModal(false)} open={showModal}>
+        <ClaimModal closeModalCallback={() => setShowModal(false)} />
+      </Modal>
     </Row>
   );
 }

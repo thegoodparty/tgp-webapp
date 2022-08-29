@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { sanitizeUrl } from '@braintree/sanitize-url';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Body11 } from '/components/shared/typogrophy';
 import { uuidUrl } from '/helpers/userHelper';
 import { logEvent } from '/services/AnalyticsService';
 import QueryModalContainer from '/containers/shared/QueryModalContainer';
@@ -21,18 +22,11 @@ import {
 } from 'react-icons/fa';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { getUserCookie } from '/helpers/cookieHelper';
-import { candidateRoute } from '/helpers/electionsHelper';
 import FontH2 from './typogrophy/FontH2';
 import Font16 from './typogrophy/Font16';
 import Row from './Row';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
 import Tooltip from './Tooltip';
-// import { SiTiktok } from 'react-icons/si';
-//
-// const CopyPasteIcon = '/images/icons/copy-paste.svg';
-// const LinkIcon = '/images/icons/link-icon.svg';
-// const SmsIcon = '/images/icons/sms-icon.svg';
-// const ShareIcon = '/images/icons/share-icon.svg';
 
 const Wrapper = styled.div`
   border-radius: 8px;
@@ -44,7 +38,6 @@ const Wrapper = styled.div`
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    //padding: 24px 24px 32px;
     width: 85vw;
   }
 `;
@@ -132,27 +125,6 @@ const IconLabel = styled(Font16)`
   text-align: center;
 `;
 
-const CopiedWrapper = styled.div`
-  margin-top: 24px;
-  text-align: center;
-  padding: 10px;
-  border: solid 1px #fff;
-  border-radius: 6px;
-`;
-//
-// const StyledTextField = styled(TextField)`
-//   && {
-//     margin: 20px 0;
-//     .MuiInputBase-multiline {
-//       background-color: #fff;
-//       box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.25);
-//     }
-//     .MuiOutlinedInput-notchedOutline {
-//       border-color: ${(props) => props.theme.colors.purple};
-//     }
-//   }
-// `;
-
 const TipWrapper = styled.div`
   text-align: center;
   background-color: #f6f8fb;
@@ -166,60 +138,19 @@ const TipIcon = styled.span`
   margin: 0 12px;
   font-size: 24px;
 `;
-const candidateMessage = (candidate, user) => {
-  if (!candidate) {
-    if (typeof window !== 'undefined') {
-      if (user?.uuid) {
-        let url = window.location.pathname;
-        url = uuidUrl(user, window.location.origin + url, '');
-        return `Vote different. ${url}`;
-      }
-      return `Vote different. ${window.location.href}`;
-    }
-    return 'Vote different. https://goodparty.org';
-  }
 
-  return `INDIE POWER!🗽💪 I just endorsed ${candidate.firstName} ${
-    candidate.lastName
-  }, the first people-powered candidate for ${
-    candidate.race
-  }! Follow their crowd-voting campaign here: https://goodparty.org${candidateRoute(
-    candidate,
-  )}`;
-};
-
-const candidateMessageNoUrl = (candidate, user) => {
-  if (!candidate) {
-    return 'Vote different';
-  }
-
-  return `INDIE POWER!🗽💪 I just endorsed ${candidate.firstName} ${candidate.lastName}, the first people-powered candidate for ${candidate.race}!`;
-};
-
-const ShareModal = ({ candidate, supportLink, isCandidate }) => {
+const ShareModal = ({ isCandidate }) => {
   const user = getUserCookie(true);
-  const defaultMessage = candidateMessage(candidate, user);
-  const defaultMessageNoUrl = candidateMessageNoUrl(candidate, user);
+  const messageNoUrl = 'Vote different';
 
-  const [message, setMessage] = useState(defaultMessage);
-  const [messageNoUrl, setMessageNoUrl] = useState(defaultMessageNoUrl);
   const [copied, setCopied] = useState(false);
 
-  const onChangeField = (e) => {
-    setMessage(e.target.value);
-  };
+  const router = useRouter();
+  let queryUrl = router.query?.url;
+  if (queryUrl) {
+    queryUrl = sanitizeUrl(queryUrl);
+  }
 
-  useEffect(() => {
-    setMessage(candidateMessage(candidate, user));
-    setMessageNoUrl(candidateMessageNoUrl(candidate, user));
-    if (candidate) {
-      logEvent(
-        'Sharing',
-        'Open Share Modal',
-        `${candidate?.firstName} ${candidate?.lastName}`,
-      );
-    }
-  }, [candidate]);
   useEffect(() => {
     const sharebtns = document.getElementsByClassName('st-btn');
     for (let i = 0; i < sharebtns.length; i++) {
@@ -237,15 +168,14 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
     }
   });
 
-  const { firstName, lastName } = candidate || {};
   let url = '';
   if (typeof window !== 'undefined') {
-    url = window.location.pathname;
-    url = uuidUrl(
-      user,
-      window.location.origin + url,
-      supportLink ? 'support=true' : '',
-    );
+    if (queryUrl) {
+      url = queryUrl;
+    } else {
+      const path = window.location.pathname;
+      url = uuidUrl(user, window.location.origin + path);
+    }
   }
 
   const encodedUrl = encodeURIComponent(url);
@@ -253,19 +183,7 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
 
   const textMessageBody = `${url} ${'\n %0a'} ${'\n %0a'}${messageNoUrl}`;
 
-  let emailSubject;
-  if (candidate) {
-    if (supportLink) {
-      emailSubject = `I'm endorsing ${firstName} ${lastName} for ${candidate.race}`;
-      if (candidate.isDraft) {
-        emailSubject = `Let's get ${firstName} ${lastName} to run as an Independent for ${candidate.race}`;
-      }
-    } else {
-      emailSubject = `Check out ${firstName} ${lastName} for ${candidate.race}`;
-    }
-  } else {
-    emailSubject = 'Check this out';
-  }
+  const emailSubject = 'Check this out';
 
   const emailBody = `${messageNoUrl}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
@@ -316,32 +234,6 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
       className: 'email',
       link: `mailto:?body=${emailBody}&subject=${emailSubject}`,
     },
-
-    // {
-    //   label: 'Snapchat',
-    //   icon: <FaSnapchatGhost />,
-    //   className: 'snapchat',
-    //   link: ``,
-    // },
-    //
-    // {
-    //   label: 'Reddit',
-    //   icon: <IoLogoReddit />,
-    //   className: 'reddit',
-    //   link: `https://www.reddit.com/submit?url=${encodedUrl}&text=${messageNoUrl}&title=${emailSubject}`,
-    // },
-    // {
-    //   label: 'Instagram',
-    //   icon: <IoLogoInstagram />,
-    //   className: 'instagram',
-    //   link: ``,
-    // },
-    // {
-    //   label: 'TikTok',
-    //   icon: <SiTiktok />,
-    //   className: 'tiktok',
-    //   link: ``,
-    // },
   ];
 
   return (
@@ -360,15 +252,6 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
           </Font16>
         )}
         <Border />
-        {/*<StyledTextField*/}
-        {/*  fullWidth*/}
-        {/*  variant="outlined"*/}
-        {/*  multiline*/}
-        {/*  rows={4}*/}
-        {/*  onChange={(e) => onChangeField(e)}*/}
-        {/*  value={message}*/}
-        {/*/>*/}
-        {/*<br />*/}
         <Grid container spacing={3}>
           {channels.map((channel, index) => (
             <Grid item xs={6} md={4} key={index}>
@@ -379,6 +262,7 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
                 }}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
+                id={`${channel.label}-share`}
               >
                 <IconItem>
                   <IconWrapper className={channel.className}>
@@ -397,7 +281,10 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
           <Tooltip
             triggerEl={
               <CopyToClipboard text={url} onCopy={handleCopy}>
-                <BlackButton style={{ marginLeft: '12px' }}>
+                <BlackButton
+                  style={{ marginLeft: '12px' }}
+                  id="copy-link-share"
+                >
                   <InnerButton>Copy</InnerButton>
                 </BlackButton>
               </CopyToClipboard>
@@ -447,8 +334,7 @@ const ShareModal = ({ candidate, supportLink, isCandidate }) => {
 };
 
 ShareModal.propTypes = {
-  candidate: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  supportLink: PropTypes.bool,
+  isCandidate: PropTypes.bool,
 };
 
 export default ShareModal;

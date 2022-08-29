@@ -1,4 +1,4 @@
-import Page from '/containers/TeamPage';
+import Page from '/containers/company/TeamPage';
 import tgpApi from '../api/tgpApi';
 export default function LP() {
   return <Page />;

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import { HomePageContext } from '../../containers/HomePage';
 import SocialPost from '../shared/SocialPost';
@@ -24,13 +24,15 @@ const Feed = () => {
       <Top>
         Posts from <strong>#goodparty</strong> movement
       </Top>
-      <Grid container spacing={2}>
-        {(posts || []).map((post) => (
-          <Grid item xs={12} lg={6} key={post.url}>
-            <SocialPost post={post} />
-          </Grid>
-        ))}
-      </Grid>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 1024: 2 }}>
+        <Masonry gutter="16px">
+          {(posts || []).map((post) => (
+            <React.Fragment key={post.url}>
+              <SocialPost post={post} />
+            </React.Fragment>
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
     </Wrapper>
   );
 };

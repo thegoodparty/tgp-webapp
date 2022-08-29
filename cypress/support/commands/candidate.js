@@ -73,7 +73,7 @@ Cypress.Commands.add('testCandidateCard', ($el, candidate) => {
       .should('have.length', positions.length);
   }
 });
-  
+
 Cypress.Commands.add('testFeaturedCampaignsComponent', (homepageCandidates) => {
   cy.get('[data-cy=campaigns-title]')
     .contains("Featured Campaigns");

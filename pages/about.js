@@ -1,4 +1,4 @@
-import Page from '/containers/AboutPage';
+import Page from '/containers/company/AboutPage';
 import tgpApi from '/api/tgpApi';
 
 export default function Party({ ssrState }) {

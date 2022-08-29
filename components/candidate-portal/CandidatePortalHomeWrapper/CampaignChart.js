@@ -35,7 +35,7 @@ function CampaignChart() {
               <stop offset="5%" stopColor="#2CCDB0" stopOpacity={0.3} />
               <stop offset="95%" stopColor="#2CCDB0" stopOpacity={0} />
             </linearGradient>
-            <linearGradient id="colorEndorsements" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="colorFollowers" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#8884d8" stopOpacity={0.3} />
               <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
             </linearGradient>
@@ -55,10 +55,10 @@ function CampaignChart() {
           />
           <Area
             type="monotone"
-            dataKey="endorsements"
+            dataKey="followers"
             stroke="#8884d8"
             fillOpacity={1}
-            fill="url(#colorEndorsements)"
+            fill="url(#colorFollowers)"
           />
           <Area
             type="monotone"

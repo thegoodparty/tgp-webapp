@@ -19,7 +19,7 @@ const colors = {
   blue: '#0027DC',
   lightBlue: '#21A8DD',
   lighterBlue: '#E1F3F8',
-  green: '#00A91C',
+  green: '#0c9a00',
   purple: '#5c00c7',
   purple2: '#6E26DB',
   purple3: '#F0ECF3',
@@ -28,6 +28,7 @@ const colors = {
   purpleBg: '#F9F7FA',
   pink: '#CA2CCD',
   primary: '#000',
+  yellow: '#FFE600'
 };
 
 export default colors;

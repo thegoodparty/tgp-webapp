@@ -37,6 +37,7 @@ function CandidateWrapper() {
   }
 
   const openFollowModalCallback = () => {
+    console.log('callback')
     setFollowModalOpen(true);
   };
 

@@ -4,12 +4,13 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { push } from 'connected-next-router';
 
 import AdminAddCandidateWrapper from '/components/admin/AdminAddCandidateWrapper';
 
@@ -19,14 +20,24 @@ import makeSelectAdminAddCandidatePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import { getUserCookie } from '../../../helpers/cookieHelper';
+import adminUsersActions from '../AdminUsersPage/actions';
 
 export function AdminAddCandidatePage({
+  dispatch,
   createCandidateCallback,
   editCandidateCallback,
   ssrState,
 }) {
   useInjectReducer({ key: 'adminAddCandidatePage', reducer });
   useInjectSaga({ key: 'adminAddCandidatePage', saga });
+  const user = getUserCookie(true);
+
+  useEffect(() => {
+    if (!user || !user.isAdmin) {
+      dispatch(push('/'));
+    }
+  }, []);
 
   const { candidate } = ssrState || {};
   const mode = candidate ? 'edit' : 'add';
@@ -62,21 +73,15 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    createCandidateCallback: candidate => {
+    createCandidateCallback: (candidate) => {
       dispatch(actions.createCandidateAction(candidate));
     },
-    editCandidateCallback: candidate => {
+    editCandidateCallback: (candidate) => {
       dispatch(actions.editCandidateAction(candidate));
     },
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(AdminAddCandidatePage);
+export default compose(withConnect, memo)(AdminAddCandidatePage);

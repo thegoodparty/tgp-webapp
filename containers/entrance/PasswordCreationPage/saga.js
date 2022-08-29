@@ -14,7 +14,7 @@ import types from './constants';
 import {
   deleteApplicationStorage,
   getApplicationStorage,
-} from '../../../helpers/localstorageHelper';
+} from '/helpers/localstorageHelper';
 import actions from './actions';
 
 function* setPassword({ password }) {
