@@ -102,7 +102,7 @@ const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
                   src="/images/heart.svg"
                   width="42"
                   height="34"
-                  alt=""
+                  alt="good party"
                   data-cy="heart-icon"
                 />
               </Heart>

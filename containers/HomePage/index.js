@@ -4,7 +4,7 @@
  *
  */
 
-import React, { createContext, memo } from 'react';
+import React, { createContext, memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -21,13 +21,13 @@ import saga from './saga';
 import makeSelectHomePage from './selectors';
 import actions from './actions';
 import feedbackActions from '/containers/shared/FeedbackContainer/actions';
-// import { getExperiment } from '/helpers/optimizeHelper';
+import { getExperiment } from '/helpers/optimizeHelper';
 import registerActions from '../entrance/RegisterPage/actions';
 import { useInjectSaga } from '../../utils/injectSaga';
 import registerSaga from '../entrance/RegisterPage/saga';
-import { logEvent } from '../../services/AnalyticsService';
+// import { logEvent } from '../../services/AnalyticsService';
 import makeSelectUser from '../you/YouPage/selectors';
-import { getUtmExperiment } from '../../helpers/utmHelper';
+// import { getUtmExperiment } from '../../helpers/utmHelper';
 import { useInjectReducer } from '../../utils/injectReducer';
 
 export const HomePageContext = createContext();
@@ -41,8 +41,7 @@ export function HomePage({
   loadFeedCallback,
   subscribeEmailCallback,
 }) {
-  const { utmContent, utmSource, totalFollowers, feed, homepageCandidates } =
-    ssrState;
+  const { totalFollowers, feed, homepageCandidates } = ssrState;
   const { fullFeed, loading } = homeState;
   const router = useRouter();
 
@@ -52,12 +51,17 @@ export function HomePage({
 
   // const utmExperiment = getUtmExperiment(utmContent, utmSource);
 
-  // const [experimentVariant, setExperimentVariant] = useState('0');
-  // useEffect(() => {
-  //   getExperiment('homepage-language', '5H5-CrICR-qVMSCUUTp7MQ', (type) => {
-  //     setExperimentVariant(type);
-  //   });
-  // }, []);
+  const [experimentVariant, setExperimentVariant] = useState('0');
+  useEffect(() => {
+    getExperiment(
+      'Aug 2022 Homepage order updated',
+      'xP2-vukvS3697k43zU8nnw',
+      (type) => {
+        setExperimentVariant(type);
+      },
+    );
+  }, []);
+  console.log('experimentVariant', experimentVariant);
 
   const showInitModal = router.query.host === 'true';
 
@@ -66,7 +70,7 @@ export function HomePage({
     registerCallback,
     showFeedbackCallback,
     user,
-    // utmExperiment,
+    experimentVariant,
     showInitModal,
     totalFollowers,
     feed,

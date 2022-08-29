@@ -40,8 +40,15 @@ const Title = styled.h3`
 `;
 
 const Summary = styled.div`
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  max-width: calc(100vw - 48px);
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    max-width: 382px;
+
+    .with-image {
+      max-width: 278px;
+    }
+  }
 `;
 
 function Endorsements() {
@@ -64,18 +71,23 @@ function Endorsements() {
                     <Img
                       style={{ backgroundImage: `url(${item.image})` }}
                       data-cy="endorsement-item-img"
+                      alt="Endorsement"
                     />
                   }
                 </div>
               )}
               <div style={{ flex: 1 }}>
-                <div
+                <Summary
                   style={{ marginBottom: '12px' }}
                   data-cy="endorsement-item-title"
+                  className={`break-word ${item.image && 'with-image'}`}
                 >
                   <strong>{item.title}</strong>
-                </div>
-                <Summary data-cy="endorsement-item-summary">
+                </Summary>
+                <Summary
+                  data-cy="endorsement-item-summary"
+                  className={`break-word ${item.image && 'with-image'}`}
+                >
                   {item.summary}
                 </Summary>
                 {item.link && (

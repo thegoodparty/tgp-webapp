@@ -17,7 +17,6 @@ const Banner = styled.div`
   background-repeat: no-repeat;
   background-position: right bottom;
 
-  margin-bottom: 15px;
   position: relative;
 
   @media only screen and (min-width: ${({ theme }) =>

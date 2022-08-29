@@ -11,16 +11,20 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 
 import { TopIssuesPageContext } from '/containers/candidate-portal/TopIssuesPage';
 import EditableTopIssue from './EditableTopIssue';
-
+import AlertDialog from '../../shared/AlertDialog';
 
 function TopIssue({ index, candidatePosition }) {
   const [editMode, setEditMode] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const { deleteCandidatePositionCallback, candidate } =
     useContext(TopIssuesPageContext);
 
   const deleteIssue = () => {
     deleteCandidatePositionCallback(candidatePosition.id, candidate.id);
   };
+
+  const handleCloseAlert = () => setShowDeleteAlert(false);
+
   if (editMode) {
     return (
       <EditableTopIssue
@@ -35,20 +39,29 @@ function TopIssue({ index, candidatePosition }) {
       <Grid item xs={1}>
         <span>{index + 1}.</span>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} className="break-word">
         {candidatePosition.topIssue?.name}
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} className="break-word">
         {candidatePosition.position?.name}
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} className="break-word">
         {candidatePosition.description}
       </Grid>
 
       <Grid item xs={2}>
-        <FaEdit onClick={() => setEditMode(true)} /> &nbsp; &nbsp; &nbsp;{' '}
-        <FaTrash onClick={deleteIssue} />
+        <FaEdit className="pointer" onClick={() => setEditMode(true)} /> &nbsp;
+        &nbsp; &nbsp;{' '}
+        <FaTrash className="pointer" onClick={() => setShowDeleteAlert(true)} />
       </Grid>
+      <AlertDialog
+        open={showDeleteAlert}
+        handleClose={handleCloseAlert}
+        title={'Delete Policy Issue?'}
+        ariaLabel={'Delete Policy Issue?'}
+        description={'Are you sure you want to delete this issue?'}
+        handleProceed={deleteIssue}
+      />
     </React.Fragment>
   );
 }

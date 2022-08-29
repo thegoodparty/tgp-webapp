@@ -26,11 +26,17 @@ const Text = styled.div`
   }
 `;
 
-const Name = styled.div`
+const Name = styled.h1`
   font-size: 36px;
   font-weight: 900;
   line-height: 32px;
-  margin-bottom: 12px;
+  margin: 0 0 12px;
+`;
+
+const H2 = styled.h2`
+  font-size: 16px;
+  margin: 0;
+  font-weight: 400;
 `;
 
 const ButtonWrapper = styled.div`
@@ -61,14 +67,14 @@ function CandidateProfile() {
 
   return (
     <Row>
-      <CandidateRoundAvatar candidate={candidate} large imageOnly />
+      <CandidateRoundAvatar candidate={candidate} large imageOnly priority />
       <Text>
         <Name>
           {firstName}
           <br />
           {lastName}
         </Name>
-        <Font16>{partyRace(candidate)}</Font16>
+        <H2>{partyRace(candidate)}</H2>
         <ButtonWrapper>
           <BlackButton
             style={{

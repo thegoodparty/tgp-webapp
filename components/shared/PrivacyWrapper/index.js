@@ -10,6 +10,7 @@ import { H1, Body11 } from '../typogrophy';
 
 const TitleWrapper = styled.div`
   text-align: center;
+  margin-top: 24px;
 `;
 
 const RevisionWrapper = styled.div`

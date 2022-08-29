@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 
@@ -12,138 +9,111 @@ import { uuidUrl } from '/helpers/userHelper';
 import { logEvent } from '/services/AnalyticsService';
 import QueryModalContainer from '/containers/shared/QueryModalContainer';
 
-import { IoIosText, IoLogoTwitter, IoLogoWhatsapp } from 'react-icons/io';
-import {
-  FaFacebook,
-  FaFacebookMessenger,
-  FaYoutube,
-  FaDiscord,
-  FaReddit,
-} from 'react-icons/fa';
+import { IoIosText, IoLogoWhatsapp } from 'react-icons/io';
+import { FaFacebookF, FaFacebookMessenger, FaTwitter } from 'react-icons/fa';
+import { BiLinkAlt } from 'react-icons/bi';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { getUserCookie } from '/helpers/cookieHelper';
-import FontH2 from './typogrophy/FontH2';
-import Font16 from './typogrophy/Font16';
 import Row from './Row';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
 import Tooltip from './Tooltip';
+import { FontH3 } from './typogrophy';
 
 const Wrapper = styled.div`
-  border-radius: 8px;
-  position: relative;
-  width: calc(100% - 12px);
-  margin: 0 auto;
-  max-width: 500px;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  width: 60vw;
+  max-width: 450px;
   min-width: 300px;
-
+  font-size: 24px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.md}) {
-    width: 85vw;
+    padding: 15px 34px;
   }
 `;
 
-const Border = styled.div`
-  height: 1px;
-  background-color: #ececec;
-  margin: 30px 0;
-`;
-
-const IconItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 14px;
-  justify-content: center;
-`;
-
-const IconWrapper = styled.div`
-  height: 40px;
-  width: 40px;
-  display: flex;
+const SocialLink = styled.div`
+  font-size: 26px;
+  background-color: #000;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  border-radius: 50%;
 
   &.sms {
-    color: #0ca78a;
-  }
-
-  &.copy {
-    background: linear-gradient(
-        103.63deg,
-        rgba(255, 15, 19, 0.15) -3.51%,
-        rgba(191, 0, 32, 0) 94.72%
-      ),
-      linear-gradient(
-        257.82deg,
-        rgba(67, 0, 211, 0.25) -11.17%,
-        rgba(67, 0, 211, 0) 96.34%
-      ),
-      #5c00c7;
+    background-color: #0ca78a;
   }
 
   &.email {
-    color: #2aabee;
+    background-color: #2aabee;
   }
 
   &.messenger {
-    color: #006bff;
+    background-color: #006bff;
   }
   &.whatsapp {
-    color: #25d366;
+    background-color: #25d366;
   }
 
   &.twitter {
-    color: #1ea1f3;
-  }
-
-  &.reddit {
-    color: #fe4006;
-  }
-
-  &.instagram {
-    color: #000;
-  }
-
-  &.tiktok {
-    color: #000;
-  }
-
-  &.snapchat {
-    color: #fffc00;
+    background-color: #1ea1f3;
   }
 
   &.facebook {
-    color: #507cc0;
+    background-color: #507cc0;
   }
 `;
 
-const Icon = styled.div`
-  font-size: 40px;
+const SocialWrapper = styled.div`
+  padding: 15px 0;
+  border-top: solid 1px #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-const IconLabel = styled(Font16)`
-  text-align: center;
-`;
-
-const TipWrapper = styled.div`
-  text-align: center;
-  background-color: #f6f8fb;
-  padding: 14px;
+const Label = styled.div`
   font-size: 15px;
-  cursor: pointer;
+  margin-left: 15px;
 `;
 
-const TipIcon = styled.span`
-  display: inline-block;
-  margin: 0 12px;
-  font-size: 24px;
+const Smaller = styled.div`
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: initial;
 `;
 
-const ShareModal = ({ isCandidate }) => {
+const Copied = styled.div`
+  z-index: 3000;
+`;
+
+const CopyWrapper = styled.div`
+  padding: 15px 0;
+  border-top: solid 1px #ececec;
+  display: flex;
+  align-items: center;
+`;
+
+const CopyIcon = styled.div`
+  font-size: 26px;
+  background-color: #fff;
+  width: 50px;
+  height: 50px;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: solid 2px #000;
+`;
+
+const ShareModal = () => {
   const user = getUserCookie(true);
   const messageNoUrl = 'Vote different';
-
-  const [copied, setCopied] = useState(false);
 
   const router = useRouter();
   let queryUrl = router.query?.url;
@@ -151,22 +121,6 @@ const ShareModal = ({ isCandidate }) => {
     queryUrl = sanitizeUrl(queryUrl);
   }
 
-  useEffect(() => {
-    const sharebtns = document.getElementsByClassName('st-btn');
-    for (let i = 0; i < sharebtns.length; i++) {
-      sharebtns[i].onclick = () => {
-        let label = '';
-        if (i === 0) {
-          label = 'Email';
-        } else if (i === 1) {
-          label = 'Facebook';
-        } else if (i === 2) {
-          label = 'Twitter';
-        }
-        trackShare(label);
-      };
-    }
-  });
 
   let url = '';
   if (typeof window !== 'undefined') {
@@ -187,11 +141,6 @@ const ShareModal = ({ isCandidate }) => {
 
   const emailBody = `${messageNoUrl}%0D%0A%0D%0A${encodedUrl}%0D%0A%0D%0A GOOD PARTY%0D%0AFree software for free elections`;
 
-  const handleCopy = () => {
-    setCopied(true);
-
-    trackShare('Copy to Clipboard');
-  };
   const trackShare = (shareType = '') => {
     logEvent('Sharing', 'Click Share Method', shareType);
     // trackShareCallback(candidate);
@@ -200,13 +149,13 @@ const ShareModal = ({ isCandidate }) => {
   const channels = [
     {
       label: 'Twitter',
-      icon: <IoLogoTwitter />,
+      icon: <FaTwitter />,
       className: 'twitter',
       link: `https://twitter.com/share?url=${encodedUrl}&text=${messageNoUrl}`,
     },
     {
       label: 'Facebook',
-      icon: <FaFacebook />,
+      icon: <FaFacebookF />,
       className: 'facebook',
       link: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     },
@@ -237,97 +186,68 @@ const ShareModal = ({ isCandidate }) => {
   ];
 
   return (
-    <QueryModalContainer
-      closeTitle={"Are you sure you don't want to share?"}
-      closeContent={
-        'Sharing a personal endorsement is the most powerful way to grow a grassroots campaign.'
-      }
-      closeBack={'BACK TO SHARE'}
-    >
+    <QueryModalContainer>
       <Wrapper>
-        <FontH2 style={{ marginBottom: '22px' }}>Share</FontH2>
-        {isCandidate && (
-          <Font16>
-            Candidates shared on social networks get more support.
-          </Font16>
-        )}
-        <Border />
-        <Grid container spacing={3}>
-          {channels.map((channel, index) => (
-            <Grid item xs={6} md={4} key={index}>
-              <a
-                href={channel.link}
-                onClick={() => {
-                  trackShare(channel.label);
-                }}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                id={`${channel.label}-share`}
-              >
-                <IconItem>
-                  <IconWrapper className={channel.className}>
-                    <Icon>{channel.icon}</Icon>
-                  </IconWrapper>
-                </IconItem>
-                <IconLabel>{channel.label}</IconLabel>
-              </a>
-            </Grid>
-          ))}
-        </Grid>
-        <Border />
-        Page Link
-        <Row style={{ margin: '16px 0' }}>
-          <TextField disabled value={url} fullWidth variant="outlined" />
-          <Tooltip
-            triggerEl={
-              <CopyToClipboard text={url} onCopy={handleCopy}>
-                <BlackButton
-                  style={{ marginLeft: '12px' }}
-                  id="copy-link-share"
-                >
-                  <InnerButton>Copy</InnerButton>
-                </BlackButton>
-              </CopyToClipboard>
-            }
-          >
-            Link Copied!
-          </Tooltip>
+        <Row style={{ justifyContent: 'space-between' }}>
+          <FontH3>Share on</FontH3>
         </Row>
+        {channels.map((channel, index) => (
+          <React.Fragment key={channel.label}>
+            {channel.link && (
+              <SocialWrapper data-cy="share-item">
+                <div className="flex-center">
+                  <SocialLink
+                    className={channel.className}
+                    style={
+                      channel.label === 'Website'
+                        ? { backgroundColor: brightColor }
+                        : {}
+                    }
+                  >
+                    {channel.icon}
+                  </SocialLink>
+                  <Label>{channel.label}</Label>
+                </div>
+                <a
+                  href={channel.link}
+                  onClick={() => {
+                    trackShare(channel.label);
+                  }}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  id={`${channel.label}-share`}
+                >
+                  <BlackButton>
+                    <InnerButton>
+                      <Smaller>Share</Smaller>
+                    </InnerButton>
+                  </BlackButton>
+                </a>
+              </SocialWrapper>
+            )}
+          </React.Fragment>
+        ))}
+        <Tooltip
+          triggerEl={
+            <CopyToClipboard text={url}>
+              <CopyWrapper id="share-copy-link">
+                <CopyIcon>
+                  <BiLinkAlt />
+                </CopyIcon>
+                <Label>Copy link</Label>
+              </CopyWrapper>
+            </CopyToClipboard>
+          }
+          triggerWrapperStyle={{ display: 'block' }}
+        >
+          <Copied>Link Copied!</Copied>
+        </Tooltip>
+
         <div
           className="fb-send-to-messenger"
           messenger_app_id="1530862867115121"
           color="blue"
         />
-        <Tooltip
-          triggerEl={
-            <CopyToClipboard text={url} onCopy={handleCopy}>
-              <TipWrapper>
-                <strong>Tip:</strong> Paste this {isCandidate && 'candidate '}
-                link anywhere.
-                <div style={{ marginTop: '12px' }}>
-                  <TipIcon>
-                    <Image
-                      src="/images/icons/slack-logo.svg"
-                      width={20}
-                      height={20}
-                    />
-                  </TipIcon>
-                  <TipIcon>
-                    <FaYoutube style={{ color: '#FF0302' }} />
-                  </TipIcon>
-                  <TipIcon>
-                    <FaDiscord style={{ color: '#5865F2' }} />
-                  </TipIcon>
-                  <TipIcon>
-                    <FaReddit style={{ color: '#FF4500' }} />
-                  </TipIcon>
-                </div>
-              </TipWrapper>
-            </CopyToClipboard>
-          }
-        >
-          Link Copied!
-        </Tooltip>
       </Wrapper>
     </QueryModalContainer>
   );

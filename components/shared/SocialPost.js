@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   FaTwitter,
   FaRetweet,
@@ -9,6 +10,7 @@ import {
   FaInstagram,
   FaRedditAlien,
   FaCommentAlt,
+  FaTiktok,
 } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 
@@ -20,14 +22,17 @@ const Post = styled.div`
   background-color: #fff;
   text-align: left;
   position: relative;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   box-shadow: 5px 5px #f2f2f2;
   transition: background-color 0.4s;
   &:hover {
     background-color: #efefef;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
   }
 `;
 
@@ -53,6 +58,10 @@ const Icon = styled.div`
 
   &.ONLINE_NEWS {
     display: none;
+  }
+
+  &.TIKTOK {
+    color: #ff0050;
   }
 `;
 const TitlePadder = styled.div`
@@ -87,10 +96,14 @@ const Content = styled.div`
   margin-bottom: 18px;
 `;
 
-const Img = styled.img`
+const Img = styled(Image)`
   width: 100%;
   height: auto;
   margin-bottom: 12px;
+  img {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const Bottom = styled.div`
@@ -117,11 +130,19 @@ const Retweet = styled.div`
   }
 `;
 
+const imgLoader = ({ src }) => src;
+
 const SocialPost = ({ post }) => {
   const router = useRouter();
   const [hasImage, setHasImage] = useState(
     post && post.images && post.images.length > 0,
   );
+  const [imageSize, setImageSize] = useState({
+    width: 1,
+    height: 1,
+  });
+
+  const hasVideo = post.video && post.video.src;
 
   // console.log('hasImage', hasImage, post.images, post && post.images && post.images.length > 0)
 
@@ -154,22 +175,18 @@ const SocialPost = ({ post }) => {
     contentWithLinks += '...';
   }
 
-  const handleShare = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    // openShareModalCallback();
-  };
-
   let icon = <FaTwitter />;
   if (source === 'INSTAGRAM') {
     icon = <FaInstagram />;
+  } else if (source === 'TIKTOK') {
+    icon = <FaTiktok />;
   } else if (source === 'REDDIT') {
     icon = <FaRedditAlien />;
   } else if (source === 'FACEBOOK' || source === 'FACEBOOK_PUBLIC') {
     icon = <FaFacebookF />;
   }
 
-  const handleError = (a, b, c) => {
+  const handleError = () => {
     setHasImage(false);
   };
 
@@ -183,15 +200,29 @@ const SocialPost = ({ post }) => {
       showContent = false;
     }
   }
+  if (source === 'TIKTOK' && hasVideo) {
+    showContent = false;
+  }
+  const WrapperElement = ({ children }) => {
+    if (hasVideo) {
+      return <div>{children}</div>;
+    } else {
+      return (
+        <a
+          className="no-underline feed-post"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          id={`feed-post-${url}`}
+        >
+          {children}
+        </a>
+      );
+    }
+  };
   return (
-    <a
-      className="no-underline feed-post"
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer nofollow"
-      id={`feed-post-${url}`}
-    >
-      <Post>
+    <WrapperElement>
+      <Post className="break-word">
         <Icon className={source}>{icon}</Icon>
         <TitlePadder>
           {title && (
@@ -260,9 +291,42 @@ const SocialPost = ({ post }) => {
             </Link>
           </div>
         </Bottom>
-        {hasImage && <Img src={images[0].url} onError={handleError} />}
+        {hasImage && (
+          <Img
+            src={images[0].url}
+            onError={handleError}
+            alt={title || `${source} social post`}
+            layout="responsive"
+            loader={imgLoader}
+            objectFit="contain"
+            onLoadingComplete={(target) => {
+              setImageSize({
+                width: target.naturalWidth,
+                height: target.naturalHeight,
+              });
+            }}
+            width={imageSize.width}
+            height={imageSize.height}
+          />
+        )}
+        {hasVideo && (
+          <div>
+            <video src={post.video.src} poster={post.video.poster} controls preload="none" />
+            <br />
+            <br />
+            <a
+              className="feed-post"
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              id={`feed-post-${url}`}
+            >
+              View on TikTok
+            </a>
+          </div>
+        )}
       </Post>
-    </a>
+    </WrapperElement>
   );
 };
 

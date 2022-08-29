@@ -9,10 +9,25 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 import WarningIcon from '@material-ui/icons/Warning';
+import BlackButton, { InnerButton } from './buttons/BlackButton';
 
 const AlertWrapper = styled.div`
-  border: solid 1px red;
+  padding: 32px;
 `;
+
+const Title = styled.div`
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+`;
+
+const Summary = styled.div`
+  font-size: 17px;
+  margin: 32px 0;
+`;
+
+const Buttons = styled.div``;
 function AlertDialog({
   handleClose,
   handleProceed,
@@ -24,22 +39,27 @@ function AlertDialog({
   return (
     <Dialog onClose={handleClose} aria-labelledby={ariaLabel} open={open}>
       <AlertWrapper>
-        <DialogTitle id="alert-dialog-title">
-          <WarningIcon /> {title}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {description}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleProceed} color="primary" autoFocus>
-            Proceed
-          </Button>
-        </DialogActions>
+        <Title id="alert-dialog-title">
+          <WarningIcon /> &nbsp; {title}
+        </Title>
+        <Summary id="alert-dialog-description">{description}</Summary>
+        <Buttons className="flex-center">
+          <BlackButton
+            className="outlined"
+            onClick={handleClose}
+            color="primary"
+            style={{ marginRight: '26px' }}
+          >
+            <InnerButton style={{ fontSize: '11px', fontWeight: 900 }}>
+              Cancel
+            </InnerButton>
+          </BlackButton>
+          <BlackButton onClick={handleProceed} color="primary" autoFocus>
+            <InnerButton style={{ fontSize: '11px', fontWeight: 900 }}>
+              Proceed
+            </InnerButton>
+          </BlackButton>
+        </Buttons>
       </AlertWrapper>
     </Dialog>
   );

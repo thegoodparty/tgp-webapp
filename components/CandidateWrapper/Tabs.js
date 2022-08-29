@@ -35,7 +35,7 @@ const Tab = styled.div`
 
 const Line = styled.div`
   height: 3px;
-  background-color: #d3d3d3;
+  background-color: #eeeeee;
 `;
 const SmLine = styled.div`
   height: 3px;
