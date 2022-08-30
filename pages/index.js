@@ -33,10 +33,7 @@ export async function getServerSideProps(context) {
     feed = response2;
   } catch (e) {
     feed = {
-      results: {
-        total: 89852,
-        results: [],
-      },
+      results: [],
     };
   }
 

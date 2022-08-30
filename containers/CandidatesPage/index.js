@@ -26,7 +26,15 @@ export function CandidatesPage({
   dispatch,
   filterCandidatesCallback,
 }) {
-  const { candidates, positions, states, routePosition, routeState } = ssrState;
+  const {
+    candidates,
+    positions,
+    states,
+    routePosition,
+    routeState,
+    totalFollowers,
+    totalFromLastWeek,
+  } = ssrState;
   const [pinnedCandidates, setPinnedCandidates] = useState(candidates);
   const router = useRouter();
   let { pinned } = router.query;
@@ -78,6 +86,8 @@ export function CandidatesPage({
     allCandidates: candidates,
     routePosition,
     routeState,
+    totalFollowers,
+    totalFromLastWeek,
   };
 
   return (

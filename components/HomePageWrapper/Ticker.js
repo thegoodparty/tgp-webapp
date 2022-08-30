@@ -68,10 +68,10 @@ const Ticker = ({ initTotal, cookieName = 'ticker' }) => {
     setTimeout1(timeout1Id);
   };
   const num = numberFormatter(followers);
-  const digits = num.split('');
+  const digits = num ? num.split('') : [];
 
   const prev = numberFormatter(prevFollowers);
-  const prevDigits = prev.split('');
+  const prevDigits = prev ? prev.split('') : [];
   return (
     <Num>
       {digits.map((digit, index) => (
