@@ -38,7 +38,7 @@ export default function GoodCertifiedButton() {
     <TealButton fullWidth>
       <Inner>
         <Heart>
-          <Image src="/images/white-heart.svg" width={18} height={15} />
+          <Image src="/images/white-heart.svg" width={18} height={15} alt="GP" />
         </Heart>
         GOOD CERTIFIED
       </Inner>

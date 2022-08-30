@@ -63,7 +63,7 @@ function CandidatesSection() {
             >
               <a>
                 What is{' '}
-                <Icon src="/images/heart.svg" alt="" width={14} height={11} />{' '}
+                <Icon src="/images/heart.svg" alt="GP" width={14} height={11} />{' '}
                 GOOD CERTIFIED?
               </a>
             </Link>
