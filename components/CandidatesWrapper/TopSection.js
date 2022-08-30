@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
@@ -16,6 +16,7 @@ import Row from '../shared/Row';
 import BlackOutlinedButton from '../shared/buttons/BlackOutlinedButton';
 import YellowButton from '../shared/buttons/YellowButton';
 import { InnerButton } from '../shared/buttons/BlackButton';
+import { CandidatesContext } from '../../containers/CandidatesPage';
 
 const H1 = styled.h1`
   margin: 24px 0;
@@ -125,6 +126,7 @@ const AlignRow = styled(Row)`
 `;
 
 function TopSection() {
+  const { totalFollowers, totalFromLastWeek } = useContext(CandidatesContext);
   const router = useRouter();
   return (
     <>
@@ -178,7 +180,7 @@ function TopSection() {
         <Grid item xs={12} lg={4}>
           <Grid container spacing={3}>
             <AlignGrid item xs={6}>
-              <LargeNumber>{numberFormatter(836452)}</LargeNumber>
+              <LargeNumber>{numberFormatter(totalFollowers)}</LargeNumber>
               <UnderNumber>
                 Following
                 <br />
@@ -194,7 +196,7 @@ function TopSection() {
                   height={38}
                 />
                 <LargeNumber className="green">
-                  {numberFormatter(347)}
+                  {numberFormatter(totalFromLastWeek)}
                 </LargeNumber>
               </AlignRow>
               <UnderNumber>
