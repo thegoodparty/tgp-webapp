@@ -29,7 +29,7 @@ export default function NotFound() {
       <Wrapper>
         <Img
           src="https://assets.goodparty.org/heart.svg"
-          alt="The Good Party"
+          alt="Good Party"
         />
         <h1>404</h1>
         <h2>The Party is Good.</h2>

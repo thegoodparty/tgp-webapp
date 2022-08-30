@@ -189,7 +189,7 @@ function TopSection() {
               <AlignRow>
                 <Icon
                   src="/images/icons/achievement.svg"
-                  alt=""
+                  alt="achievement"
                   width={38}
                   height={38}
                 />

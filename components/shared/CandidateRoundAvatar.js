@@ -107,7 +107,7 @@ function CandidateRoundAvatar({ candidate, large = false, priority = false }) {
         {isClaimed && (
           <Overlay className="overlay">
             <div style={{ marginBottom: '4px' }}>GOOD CERTIFIED</div>
-            <Image src="/images/heart.svg" width={26} height={20} alt="" />
+            <Image src="/images/heart.svg" width={26} height={20} alt="GP" />
           </Overlay>
         )}
       </ImageWrapper>
