@@ -21,11 +21,19 @@ import queryHelper from '../../helpers/queryHelper';
 
 export const CandidatesContext = createContext();
 
+const channels = {
+  TikTok: [],
+  Twitter: [],
+  Facebook: [],
+  Instagram: [],
+};
+
 export function CandidatesPage({
   ssrState,
   dispatch,
   filterCandidatesCallback,
 }) {
+  const [candidatesByChannel, setCandidatesByChannel] = useState(channels);
   const {
     candidates,
     positions,
@@ -76,6 +84,26 @@ export function CandidatesPage({
     }
   }, [pinned, candidates]);
 
+  useEffect(() => {
+    const updated = { ...channels };
+    candidates.forEach((candidate) => {
+      const { facebook, twitter, instagram, tiktok } = candidate;
+      if (facebook) {
+        updated.Facebook.push(candidate);
+      }
+      if (twitter) {
+        updated.Twitter.push(candidate);
+      }
+      if (instagram) {
+        updated.Instagram.push(candidate);
+      }
+      if (tiktok) {
+        updated.TikTok.push(candidate);
+      }
+      setCandidatesByChannel(updated);
+    });
+  }, [candidates]);
+
   const user = getUserCookie(true);
   const childProps = {
     candidates: pinnedCandidates,
@@ -88,6 +116,7 @@ export function CandidatesPage({
     routeState,
     totalFollowers,
     totalFromLastWeek,
+    candidatesByChannel,
   };
 
   return (

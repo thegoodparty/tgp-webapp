@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-// import styled from 'styled-components';
 import { HomePageContext } from '/containers/HomePage';
+// import styled from 'styled-components';
 import PageWrapper from '/components/shared/PageWrapper';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -17,6 +17,9 @@ import VideoSection from './VideoSection';
 import SmVideoSection from './SmVideoSection';
 import InvolvedModalInner from './InvolvedModalInner';
 import CandidatesSection from './CandidatesSection';
+import { MdUpOnly, SmOnly } from '../shared/navigation/NavWrapper';
+
+
 
 const HomePageWrapper = () => {
   const { showInitModal, experimentVariant } = useContext(HomePageContext);
@@ -41,18 +44,18 @@ const HomePageWrapper = () => {
         <Grid container spacing={3}>
           <Grid item xs={12} md={7} lg={8}>
             <Hero openModalCallback={handleOpenInvolvedModal} />
-            <Hidden mdUp>
+            <SmOnly>
               <SmVideoSection />
-            </Hidden>
+            </SmOnly>
             <SocialSection
               openModalCallback={handleOpenShareModal}
               openInvolvedModalCallback={handleOpenInvolvedModal}
             />
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
-            <Hidden smDown>
+            <MdUpOnly>
               <VideoSection />
-            </Hidden>
+            </MdUpOnly>
           </Grid>
         </Grid>
       </MaxWidth>

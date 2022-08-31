@@ -3,9 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
-import { Spin as Hamburger } from 'hamburger-react';
 import { GrClose } from 'react-icons/gr';
-import Hidden from '@material-ui/core/Hidden';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
@@ -13,6 +11,7 @@ import { logEvent } from '/services/AnalyticsService';
 
 import UserAvatar from '../UserAvatar';
 import { HEADER_LINKS } from './constants';
+import { SmOnly } from './NavWrapper';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -88,7 +87,7 @@ function MobileHeader({ user }) {
   const path = router.asPath;
 
   return (
-    <Hidden mdUp>
+    <SmOnly>
       <Wrapper>
         {open ? (
           <GrClose
@@ -187,7 +186,7 @@ function MobileHeader({ user }) {
       </MenuWrapper>
 
       <RegisterBannerContainer />
-    </Hidden>
+    </SmOnly>
   );
 }
 

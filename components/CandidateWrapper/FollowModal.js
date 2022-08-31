@@ -106,7 +106,7 @@ const SocialLink = styled.div`
 
   &.LinkedIn {
     background-color: #0077b5;
-  
+  }
 `;
 
 const SocialWrapper = styled.div`
