@@ -105,6 +105,7 @@ function MobileHeader({ user }) {
             onClick={() => {
               setOpen(true);
             }}
+            alt="GP"
           />
         )}
         {/*<Hamburger toggled={open} toggle={setOpen} size={24} />*/}

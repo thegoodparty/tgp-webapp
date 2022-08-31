@@ -24,15 +24,17 @@ const Feed = () => {
       <Top data-cy="home-feed-title">
         Posts from <strong>#goodparty</strong> movement
       </Top>
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 1024: 2 }}>
-        <Masonry gutter="16px">
-          {(posts || []).map((post) => (
-            <React.Fragment key={post.url}>
-              <SocialPost post={post} />
-            </React.Fragment>
-          ))}
-        </Masonry>
-      </ResponsiveMasonry>
+      {posts && (
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 1024: 2 }}>
+          <Masonry gutter="16px">
+            {posts.map((post) => (
+              <React.Fragment key={post.url}>
+                <SocialPost post={post} />
+              </React.Fragment>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      )}
     </Wrapper>
   );
 };

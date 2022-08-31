@@ -1,7 +1,7 @@
 import promisify from 'cypress-promise';
 import { numberFormatter } from '../../../helpers/numberHelper';
 
-let candidates, positions, states;
+let candidates, positions, states, totalFollowers, totalFromLastWeek;
 describe('CandidatesPage', () => {
     beforeEach(() => {
         cy.visit('/candidates');
@@ -16,7 +16,7 @@ describe('CandidatesPage', () => {
         const content = await promisify(
             cy.getCandidateList().then(response => response.body),
         );
-        ({candidates, positions, states} = content);
+        ({candidates, positions, states, totalFollowers, totalFromLastWeek} = content);
         console.log(content);
     });
     it('test Filter Section', () => {
@@ -42,12 +42,12 @@ describe('CandidatesPage', () => {
           .should('have.attr', 'href', '/run')
           .contains('Want to run for office?');
         cy.get('[data-cy=following-number]')
-          .contains(numberFormatter(836452));
+          .contains(numberFormatter(totalFollowers));
         cy.get('[data-cy=following-label]')
           .contains('Following')
           .contains('indie candidates');
         cy.get('[data-cy=follower-number]')
-          .contains(numberFormatter(347));
+          .contains(numberFormatter(totalFromLastWeek));
         cy.get('[data-cy=follower-label]')
           .contains('Followers')
           .contains('from last week');

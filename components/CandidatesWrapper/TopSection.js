@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
@@ -16,6 +16,7 @@ import Row from '../shared/Row';
 import BlackOutlinedButton from '../shared/buttons/BlackOutlinedButton';
 import YellowButton from '../shared/buttons/YellowButton';
 import { InnerButton } from '../shared/buttons/BlackButton';
+import { CandidatesContext } from '../../containers/CandidatesPage';
 
 const H1 = styled.h1`
   margin: 24px 0;
@@ -125,6 +126,7 @@ const AlignRow = styled(Row)`
 `;
 
 function TopSection() {
+  const { totalFollowers, totalFromLastWeek } = useContext(CandidatesContext);
   const router = useRouter();
   return (
     <>
@@ -178,7 +180,7 @@ function TopSection() {
         <Grid item xs={12} lg={4}>
           <Grid container spacing={3}>
             <AlignGrid item xs={6}>
-              <LargeNumber data-cy="following-number">{numberFormatter(836452)}</LargeNumber>
+              <LargeNumber  data-cy="following-number">{numberFormatter(totalFollowers)}</LargeNumber>
               <UnderNumber data-cy="following-label">
                 Following
                 <br />
@@ -189,12 +191,12 @@ function TopSection() {
               <AlignRow>
                 <Icon
                   src="/images/icons/achievement.svg"
-                  alt=""
+                  alt="achievement"
                   width={38}
                   height={38}
                 />
-                <LargeNumber className="green" data-cy="follower-number">
-                  {numberFormatter(347)}
+                <LargeNumber className="green" data-cy="follower-number"> 
+                  {numberFormatter(totalFromLastWeek)}
                 </LargeNumber>
               </AlignRow>
               <UnderNumber data-cy="follower-label">
