@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
@@ -17,6 +17,8 @@ import BlackOutlinedButton from '../shared/buttons/BlackOutlinedButton';
 import YellowButton from '../shared/buttons/YellowButton';
 import { InnerButton } from '../shared/buttons/BlackButton';
 import { CandidatesContext } from '../../containers/CandidatesPage';
+import Modal from '../shared/Modal';
+import FollowCandidatesModal from './FollowCandidatesModal';
 
 const H1 = styled.h1`
   margin: 24px 0;
@@ -127,6 +129,7 @@ const AlignRow = styled(Row)`
 
 function TopSection() {
   const { totalFollowers, totalFromLastWeek } = useContext(CandidatesContext);
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   return (
     <>
@@ -206,15 +209,26 @@ function TopSection() {
               </UnderNumber>
             </AlignGrid>
           </Grid>
-          {/*<YellowButtonWrapper>*/}
-          {/*  <YellowButton>*/}
-          {/*    <InnerButton>Follow Candidates</InnerButton>*/}
-          {/*  </YellowButton>*/}
-          {/*  <div className="smaller">*/}
-          {/*    Follow indie candidates to increase their social capital and help*/}
-          {/*    them build momentum!*/}
-          {/*  </div>*/}
-          {/*</YellowButtonWrapper>*/}
+          <YellowButtonWrapper>
+            <YellowButton onClick={() => setShowModal(true)}>
+              <InnerButton>Follow Candidates</InnerButton>
+            </YellowButton>
+            <div className="smaller">
+              Follow indie candidates to increase their social capital and help
+              them build momentum!
+            </div>
+          </YellowButtonWrapper>
+          <Modal
+            open={showModal}
+            closeModalCallback={() => setShowModal(false)}
+            showCloseButton={false}
+          >
+            <FollowCandidatesModal
+              closeModalCallback={() => setShowModal(false)}
+            >
+              Tomer
+            </FollowCandidatesModal>
+          </Modal>
         </Grid>
       </Grid>
     </>
