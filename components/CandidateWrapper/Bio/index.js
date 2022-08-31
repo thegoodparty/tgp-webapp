@@ -35,9 +35,9 @@ function Bio() {
     <Wrapper>
       <Grid container spacing={8}>
         <Grid item xs={12} lg={9}>
-          <Title>{headline}</Title>
+          <Title data-cy="bio-title">{headline}</Title>
           <YouTubeLazyPlayer id={heroVideo} />
-          <Title style={{ margin: '36px 0 12px' }}>About the candidate</Title>
+          <Title style={{ margin: '36px 0 12px' }}  data-cy="bio-about">About the candidate</Title>
           <div dangerouslySetInnerHTML={{ __html: about }} />
           <br />
           {website && (
@@ -47,6 +47,7 @@ function Bio() {
               rel="noopener noreferrer nofollow"
               className="no-underline"
               id="candidate-website"
+              data-cy="bio-website"
             >
               <BlackButton
                 className="outlined"

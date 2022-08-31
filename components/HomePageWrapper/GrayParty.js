@@ -88,7 +88,7 @@ const GrayParty = ({ openShareModalCallback, whiteBg }) => {
                 href={`${router.asPath}?article=30a4bjTYmsAtXR5vgXLRLJ`}
                 passHref
               >
-                <a className="no-underline">
+                <a className="no-underline" data-cy="why-tuesday-link">
                   <BlackButton className="outlined">
                     <InnerButton>Why Tuesdays?</InnerButton>
                   </BlackButton>

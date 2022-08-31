@@ -1,5 +1,3 @@
-import promisify from 'cypress-promise';
-
 describe('Manifesto page', () => {
   it('Page Content', () => {
     cy.visit('/manifesto');

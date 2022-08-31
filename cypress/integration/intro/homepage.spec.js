@@ -1,3 +1,6 @@
+import promisify from 'cypress-promise';
+
+let homepageCandidates, feed;
 describe('HomePage', () => {
   it('load Homepage Candidates', () => {
     cy.visit('/');
@@ -15,6 +18,55 @@ describe('HomePage', () => {
       .should('have.attr', 'src', '/images/heart.svg');
     cy.get('[data-cy=people-count-label]')
       .contains('@goodparty people');
+  });
+  it('load Candidates', async () => {
+    const content = await promisify(
+        cy.getHomepageCandidates().then(response => response.body),
+    );
+    ({homepageCandidates} = content);
+    console.log(content);
+  });
+  it('load Feed', async () => {
+    const content = await promisify(
+        cy.getHomepageFeed().then(response => response.body),
+    );
+    feed = content;
+    console.log(content);
+  });
+  it('test GrayParty section', () => {
+    cy.get('[data-cy=party-on]')
+      .contains("We tag #goodparty");
+    cy.get('[data-cy=why-tuesday-link]')
+      .contains("Why Tuesdays?");
+    cy.get('[data-cy=home-feed-title]')
+      .contains("Posts from")
+      .contains("#goodparty");
+    let posts = [];
+    if (feed && feed.results) {
+      posts = feed.results;
+    }
+    cy.get('[data-cy=post-item]')
+      .should('have.length', posts.length)
+      .each(($el, index) => {
+        cy.testSocialPost($el, posts[index]);
+    });
+  });
+  it('test Candidates section', () => {
+    cy.get('[data-cy=home-candidates-title]')
+      .contains("We meme to beat");
+    cy.get('[data-cy=home-candidates-description]')
+      .contains("Grow the movement to get good indies elected by following");
+    cy.get('[data-cy=good-cert-link]')
+      .should('have.attr', 'href', "/candidates")
+      .contains("Good Certified candidates");
+    cy.get('[data-cy=see-more-link]')
+      .should('have.attr', 'href', "/candidates")
+      .contains("See More Candidates");
+    cy.get('[data-cy=candidate-mini-card]')
+      .should('have.length', homepageCandidates.length)
+      .each(($el, index) => {
+        cy.testCandidateMiniCard($el, homepageCandidates[index]);
+    });
   });
   // it('test Goodparty section', () => {
   //   cy.get('[data-cy=party-on]')

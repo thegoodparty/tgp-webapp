@@ -52,17 +52,17 @@ const CandidatesSection = () => {
   return (
     <Wrapper>
       {' '}
-      <H2>
+      <H2 data-cy="home-candidates-title">
         We meme to beat <span className="red">Red</span> and{' '}
         <span className="blue">Blue</span>{' '}
         <span role="img" aria-label="Money Bag">
           💰
         </span>
       </H2>
-      <Content>
+      <Content data-cy="home-candidates-description">
         Grow the movement to get good indies elected by following{' '}
         <Link href="/candidates" passHref>
-          <a id="good-certified" className="underline">
+          <a id="good-certified" className="underline" data-cy="good-cert-link">
             Good Certified candidates
           </a>
         </Link>
@@ -76,7 +76,7 @@ const CandidatesSection = () => {
       </Grid>
       <More className="text-center">
         <Link href="/candidates" passHref>
-          <a id="see-more-candidates">See More Candidates</a>
+          <a id="see-more-candidates" data-cy="see-more-link">See More Candidates</a>
         </Link>
       </More>
     </Wrapper>

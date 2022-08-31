@@ -1,4 +1,5 @@
 import promisify from 'cypress-promise';
+import { faqArticleRoute } from '../../../helpers/faqHelper';
 
 describe('FAQs page', () => {
   let content;
@@ -14,24 +15,23 @@ describe('FAQs page', () => {
   it('test Site Footer', () => {
     cy.testSiteFooter();
   });
-  // it('FAQS article section', () => {
-  //   cy.get('[data-cy=faqs-page-title]').contains('Frequently Asked Questions');
-  //   cy.get('[data-cy=faq-category]')
-  //     .should('have.length', content.length)
-  //     .each(($el, index) => {
-  //       cy.wrap($el)
-  //         .find('[data-cy=faq-category-title]')
-  //         .contains(content[index].fields.name);
-  //       cy.wait(3000);
-  //       cy.wrap($el)
-  //         .find('[data-cy=faq-article]')
-  //         .should('have.length', content[index].articles.length)
-  //         .each(($el1, index1) => {
-  //           cy.wrap($el1)
-  //             .find('[data-cy=faq-article-title]')
-  //             .contains(content[index].articles[index1].title);
-  //           cy.testFAQArticle($el1, index1, content[index].articles[index1]);
-  //         });
-  //     });
-  // });
+  it('FAQS article section', () => {
+    cy.get('[data-cy=faqs-page-title]').contains('Frequently Asked Questions');
+    cy.get('[data-cy=faq-category]')
+      .should('have.length', content.length)
+      .each(($el, index) => {
+        cy.wrap($el)
+          .find('[data-cy=faq-category-title]')
+          .contains(content[index].fields.name);
+        cy.wrap($el)
+          .find('[data-cy=faq-article]')
+          .should('have.length', content[index].articles.length)
+          .each(($el1, index1) => {
+            cy.wrap($el1)
+              .find('[data-cy=faq-article-link]')
+              .should('have.attr', 'href', faqArticleRoute(content[index].articles[index1]))
+              .contains(content[index].articles[index1].title);
+          });
+      });
+  });
 });

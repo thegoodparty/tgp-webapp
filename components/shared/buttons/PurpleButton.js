@@ -44,6 +44,7 @@ const PurpleButton = ({
   style = {},
   className,
   type = 'button',
+  dataCy = "",
   id
 }) => (
   <StyledButton
@@ -55,7 +56,7 @@ const PurpleButton = ({
     style={style}
     className={className}
     type={type}
-    data-cy="custom-button"
+    data-cy={dataCy}
     id={id}
   >
     {children}

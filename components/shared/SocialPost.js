@@ -222,26 +222,26 @@ const SocialPost = ({ post }) => {
   };
   return (
     <WrapperElement>
-      <Post className="break-word">
+      <Post className="break-word" data-cy="post-item">
         <Icon className={source}>{icon}</Icon>
         <TitlePadder>
           {title && (
-            <UserName style={{ marginBottom: '14px' }}>{title}</UserName>
+            <UserName style={{ marginBottom: '14px' }} data-cy="post-title">{title}</UserName>
           )}
           {(userName || userScreenName) && (
             <div>
               <Title>
                 {userName && (
-                  <UserName style={title ? { textDecoration: 'none' } : {}}>
+                  <UserName  data-cy="post-username" style={title ? { textDecoration: 'none' } : {}}>
                     {userName}
                   </UserName>
                 )}
-                {userScreenName && <Handle>@{userScreenName}</Handle>}
+                {userScreenName && <Handle  data-cy="post-screenname">@{userScreenName}</Handle>}
               </Title>
             </div>
           )}
         </TitlePadder>
-        {publishedAt && <Date>{dateUsHelper(publishedAt)}</Date>}
+        {publishedAt && <Date  data-cy="post-published-at">{dateUsHelper(publishedAt)}</Date>}
         {showContent && (
           <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
         )}
@@ -252,7 +252,7 @@ const SocialPost = ({ post }) => {
                 <div>
                   <FaHeart />
                 </div>
-                <span>{likesCount}</span>
+                <span data-cy="post-likes">{likesCount}</span>
               </Retweet>
             )}
 
@@ -261,7 +261,7 @@ const SocialPost = ({ post }) => {
                 <div>
                   <FaCommentAlt />
                 </div>
-                <span>{commentsCount}</span>
+                <span data-cy="post-comments">{commentsCount}</span>
               </Retweet>
             )}
             {engagement !== null && engagement !== 0 && (
@@ -269,7 +269,7 @@ const SocialPost = ({ post }) => {
                 <div>
                   <FaRetweet />
                 </div>
-                <span>{engagement}</span>
+                <span data-cy="post-engagement">{engagement}</span>
               </Retweet>
             )}
           </div>
@@ -281,7 +281,7 @@ const SocialPost = ({ post }) => {
               passHref
               scroll={false}
             >
-              <a id={`feed-post-share-${url}`} className="feed-post-share">
+              <a id={`feed-post-share-${url}`} className="feed-post-share" data-cy="post-share">
                 <BlackButton
                   style={{ textTransform: 'none', padding: '4px 12px' }}
                 >
@@ -320,6 +320,7 @@ const SocialPost = ({ post }) => {
               target="_blank"
               rel="noopener noreferrer nofollow"
               id={`feed-post-${url}`}
+              data-cy="post-view-tiktok"
             >
               View on TikTok
             </a>

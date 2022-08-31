@@ -1,5 +1,6 @@
 import { HEADER_LINKS } from "../../../components/shared/navigation/constants";
 import { FOOTER_COLUMNS } from "../../../components/shared/Footer/constants";
+import { dateUsHelper } from '../../../helpers/dateHelper';
 import { TEST_ACCOUNT_EMAIL, TEST_ACCOUNT_PWD, TOKEN, USER_COOKIE,  } from "../../constants";
 
 Cypress.Commands.add('testLoginFlow', () => {
@@ -23,7 +24,7 @@ Cypress.Commands.add('testLoginFlow', () => {
   cy.get('[data-cy=id-input]')
     .should('exist')
     .type(TEST_ACCOUNT_EMAIL);
-  cy.get('[data-cy=custom-button]')
+  cy.get('[data-cy=id-submit-button]')
     .should('exist')
     .click();
 
@@ -47,7 +48,7 @@ Cypress.Commands.add('testLoginFlow', () => {
   cy.get('[data-cy=password]')
     .should('exist')
     .type(TEST_ACCOUNT_PWD);
-  cy.get('[data-cy=custom-button]')
+  cy.get('[data-cy=id-submit-button]')
     .should('exist')
     .click();
   cy.wait(5000);
@@ -101,4 +102,58 @@ Cypress.Commands.add('signInWithDefaultUser', () => {
   cy.setCookie('user', USER_COOKIE);
   cy.setCookie('token', TOKEN);
   cy.reload();
+});
+
+Cypress.Commands.add('testSocialPost', ($el, post) => {
+  const {
+    title,
+    userName,
+    userScreenName,
+    images,
+    publishedAt,
+    content,
+    engagement,
+    url,
+    likesCount,
+    source,
+    commentsCount,
+  } = post;
+  if(title) {
+    cy.wrap($el)
+      .find('[data-cy=post-title]')
+      .contains(title);
+  }
+  if(userName) {
+    cy.wrap($el)
+      .find('[data-cy=post-username]')
+      .contains(userName);
+  }
+  if(userScreenName) {
+    cy.wrap($el)
+      .find('[data-cy=post-screenname]')
+      .contains(userScreenName);
+  }
+  if(publishedAt) {
+    cy.wrap($el)
+      .find('[data-cy=post-published-at]')
+      .contains(dateUsHelper(publishedAt));
+  }
+  if(likesCount !== null) {
+    cy.wrap($el)
+      .find('[data-cy=post-likes]')
+      .contains(likesCount);
+  }
+  if(commentsCount !== null) {
+    cy.wrap($el)
+      .find('[data-cy=post-comments]')
+      .contains(commentsCount);
+  }
+  if(engagement !== null && engagement !== 0) {
+    cy.wrap($el)
+      .find('[data-cy=post-engagement]')
+      .contains(engagement);
+  }
+  cy.wrap($el)
+    .find('[data-cy=post-share]')
+    .contains('Share');
 });

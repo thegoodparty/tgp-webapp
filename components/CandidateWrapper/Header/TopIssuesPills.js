@@ -53,9 +53,11 @@ function TopIssuesPills() {
             candPosition.position?.name,
           )}`}
         >
-          <Pill className="issue" data-cy="top-issue-position">
-            {candPosition.position?.name}
-          </Pill>
+          <a data-cy="top-issue">
+            <Pill className="issue" data-cy="top-issue-position">
+              {candPosition.position?.name}
+            </Pill>
+          </a>
         </Link>
       ))}
     </Wrapper>

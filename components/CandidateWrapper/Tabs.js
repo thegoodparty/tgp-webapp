@@ -70,7 +70,7 @@ function Tabs() {
               href={tab.label === 'Feed' ? route : `${route}/${tab.label}`}
               passHref
             >
-              <a className="no-underline" id={`${tab.label}-tab`}>
+              <a className="no-underline" id={`${tab.label}-tab`} data-cy={`tab-link-${tab.label}`}>
                 <Tab
                   className={activeTab === tab.label && 'active'}
                   style={activeTab === tab.label ? { color: brightColor } : {}}

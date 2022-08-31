@@ -23,7 +23,7 @@ describe('Login Page', () => {
     cy.get('[data-cy=id-input]')
       .should('exist')
       .type(TEST_ACCOUNT_EMAIL);
-    cy.get('[data-cy=custom-button]')
+    cy.get('[data-cy=id-submit-button]')
       .should('exist')
       .click();
   });
