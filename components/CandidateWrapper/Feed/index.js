@@ -13,6 +13,7 @@ import { CandidateContext } from '/containers/CandidatePage';
 import SocialPost from '../../shared/SocialPost';
 import CandidateFeed from './CandidateFeed';
 import TopIssues from './TopIssues';
+import { MdUpOnly } from '../../shared/navigation/NavWrapper';
 
 const Wrapper = styled.section``;
 
@@ -48,9 +49,9 @@ function Feed() {
           <CandidateFeed />
         </Grid>
         <Grid item xs={false} lg={3}>
-          <Hidden mdDown>
+          <MdUpOnly>
             <TopIssues />
-          </Hidden>
+          </MdUpOnly>
         </Grid>
       </Grid>
     </Wrapper>

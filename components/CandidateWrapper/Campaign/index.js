@@ -7,7 +7,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
 
 import { CandidateContext } from '/containers/CandidatePage';
 
@@ -15,6 +14,7 @@ import TopIssues from '../Feed/TopIssues';
 import DateBox from './DateBox';
 import CampaignProgress from './CampaignProgress';
 import Endorsements from './Endorsements';
+import { MdUpOnly } from '../../shared/navigation/NavWrapper';
 
 const Wrapper = styled.section``;
 
@@ -45,9 +45,9 @@ function Campaign() {
           style={!showSecondColumn ? { display: 'none' } : {}}
         >
           <Endorsements />
-          <Hidden mdDown>
+          <MdUpOnly>
             <TopIssues />
-          </Hidden>
+          </MdUpOnly>
         </Grid>
       </Grid>
     </Wrapper>
