@@ -36,16 +36,16 @@ function TopIssue({ index, candidatePosition }) {
   }
   return (
     <React.Fragment key={candidatePosition.id}>
-      <Grid item xs={1}>
+      <Grid item xs={1} data-cy="position-index">
         <span>{index + 1}.</span>
       </Grid>
-      <Grid item xs={3} className="break-word">
+      <Grid item xs={3} className="break-word" data-cy="position-issue-name">
         {candidatePosition.topIssue?.name}
       </Grid>
-      <Grid item xs={3} className="break-word">
+      <Grid item xs={3} className="break-word" data-cy="position-pos-name">
         {candidatePosition.position?.name}
       </Grid>
-      <Grid item xs={3} className="break-word">
+      <Grid item xs={3} className="break-word" data-cy="position-description">
         {candidatePosition.description}
       </Grid>
 

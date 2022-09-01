@@ -37,6 +37,7 @@ function RangeSelector({ range, onChange }) {
             onChange(7);
           }
         }}
+        data-cy="week-range"
       >
         WEEK
       </Range>
@@ -47,6 +48,7 @@ function RangeSelector({ range, onChange }) {
             onChange(30);
           }
         }}
+        data-cy="month-range"
       >
         LAST 30 DAYS
       </Range>

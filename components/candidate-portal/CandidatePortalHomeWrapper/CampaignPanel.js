@@ -90,17 +90,17 @@ function CampaignPanel({ range, onChangeRange }) {
   return (
     <PortalPanel color="#2CCDB0">
       <Row>
-        <FontH3 style={{ margin: 0 }}>Campaign Page</FontH3>
+        <FontH3 style={{ margin: 0 }} data-cy="campaign-panel-title">Campaign Page</FontH3>
         <RangeSelector range={range} onChange={onChangeRange} />
       </Row>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>
           <Grid container spacing={2}>
             {fields.map((field) => (
-              <Grid item xs={12} lg={4} key={field.label}>
-                <Title>{field.label}</Title>
-                <Stat>{numberFormatter(field.data.total)}</Stat>
-                <Stat>
+              <Grid item xs={12} lg={4} key={field.label} data-cy="campaign-stat-field">
+                <Title data-cy="stat-label">{field.label}</Title>
+                <Stat data-cy="stat-total">{numberFormatter(field.data.total)}</Stat>
+                <Stat data-cy="stat-perc">
                   {progressPerc(field.data.total, field.data.lastPeriod)}
                 </Stat>
               </Grid>

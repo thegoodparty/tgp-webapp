@@ -154,3 +154,58 @@ Cypress.Commands.add('getCandidatesPageData', async (candidateId) => {
     states,
   }
 });
+Cypress.Commands.add('getCampaignStats', (range, id) => {
+  cy.sendRequest(
+    api.campaign.stats.method, 
+    api.campaign.stats.url,
+    {
+      range,
+      id
+    },
+    api.campaign.stats.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getCampaignCandidate', (id) => {
+  cy.sendRequest(
+    api.campaign.find.method, 
+    api.campaign.find.url,
+    {
+      id
+    },
+    api.campaign.find.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getCampaignCandidatePositions', (id) => {
+  cy.sendRequest(
+    api.campaign.candidatePosition.list.method, 
+    api.campaign.candidatePosition.list.url,
+    {
+      id
+    },
+    api.campaign.candidatePosition.list.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getEndorsements', (id) => {
+  cy.sendRequest(
+    api.campaign.endorsement.list.method, 
+    api.campaign.endorsement.list.url,
+    {
+      candidateId: id
+    },
+    api.campaign.endorsement.list.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getCampaignStaff', (id) => {
+  cy.sendRequest(
+    api.campaign.staff.list.method, 
+    api.campaign.staff.list.url,
+    {
+      id
+    },
+    api.campaign.staff.list.withAuth && TOKEN,
+  );
+});
