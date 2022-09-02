@@ -30,6 +30,7 @@ jobs:
 
       - name: Cypress install
         uses: cypress-io/github-action@v4
+        options: --ipc=host
         with:
           runTests: false
 
