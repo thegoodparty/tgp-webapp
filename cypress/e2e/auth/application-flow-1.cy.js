@@ -2,8 +2,6 @@ import { APPLICATION_CARDS_1, leftLinks } from '../../../components/elections/ap
 
 describe('Application Flows 1', () => {
     it('test Application Page Wrapper', () => {
-        cy.signInWithDefaultUser();
-        cy.visit(`/campaign-application/1/1`);
         const topLinks = {};
         leftLinks.forEach((link) => {
             topLinks[link.step] = link;
