@@ -19,7 +19,9 @@ on: pull_request
 jobs:
   ui-chrome-tests:
     runs-on: self-hosted
-    container: cypress/browsers:node14.19.0-chrome100-ff99-edge
+    container: 
+      image: cypress/browsers:node14.19.0-chrome100-ff99-edge
+      options: --ipc=host
     # strategy:
     #   fail-fast: false
     #   matrix:
@@ -30,9 +32,7 @@ jobs:
 
       - name: Cypress install
         # run: docker run --ipc=host cypress-io/github-action@v4
-        uses: 
-          image: cypress-io/github-action@v4
-          options: --ipc=host
+        uses: cypress-io/github-action@v4
         with:
           runTests: false
 
