@@ -30,7 +30,9 @@ jobs:
 
       - name: Cypress install
         # run: docker run --ipc=host cypress-io/github-action@v4
-        uses: cypress-io/github-action@v4
+        uses: 
+          image: cypress-io/github-action@v4
+          options: --ipc=host
         with:
           runTests: false
 
