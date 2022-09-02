@@ -93,6 +93,7 @@ context('Candidate', async () => {
               cy.get('[data-cy=tab-link-Campaign]')
                 .should('exist')
                 .click(); 
+              cy.wait(2000);
               cy.get('[data-cy=campaign-progrsss-title]')
                 .contains('Campaign Progress');
               cy.get('[data-cy=campaign-progress-ref]')
@@ -102,7 +103,7 @@ context('Candidate', async () => {
               cy.get('[data-cy=tab-link-Bio]')
                 .should('exist')
                 .click(); 
-
+              cy.wait(2000);
               const { headline, heroVideo, about, color, website } = candidate.candidate;
               cy.get('[data-cy=bio-title]')
                 .contains(headline);
