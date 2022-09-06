@@ -6,6 +6,7 @@
 
 import React, { useContext, useState, createContext } from 'react';
 // import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 
 import NotFound from '/containers/shared/NotFoundPage';
 import PageWrapper from '../shared/PageWrapper';
@@ -14,9 +15,12 @@ import { CandidateContext } from '../../containers/CandidatePage';
 import Header from './Header';
 import Tabs from './Tabs';
 import MaxWidth, { Padder } from '../shared/MaxWidth';
-import Feed from './Feed';
-import Campaign from './Campaign';
-import Bio from './Bio';
+
+const Feed = dynamic(() => import('./Feed'), { loading: () => <>Loading</> });
+const Campaign = dynamic(() => import('./Campaign'), {
+  loading: () => <>Loading</>,
+});
+const Bio = dynamic(() => import('./Bio'), { loading: () => <>Loading</> });
 import Modal from '../shared/Modal';
 import FollowModal from './FollowModal';
 
@@ -37,7 +41,7 @@ function CandidateWrapper() {
   }
 
   const openFollowModalCallback = () => {
-    console.log('callback')
+    console.log('callback');
     setFollowModalOpen(true);
   };
 
