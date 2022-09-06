@@ -198,7 +198,7 @@ function TopSection() {
                   width={38}
                   height={38}
                 />
-                <LargeNumber className="green" data-cy="follower-number"> 
+                <LargeNumber className="green" data-cy="follower-number">
                   {numberFormatter(totalFromLastWeek)}
                 </LargeNumber>
               </AlignRow>
@@ -209,26 +209,26 @@ function TopSection() {
               </UnderNumber>
             </AlignGrid>
           </Grid>
-          <YellowButtonWrapper>
-            <YellowButton onClick={() => setShowModal(true)}>
-              <InnerButton>Follow Candidates</InnerButton>
-            </YellowButton>
-            <div className="smaller">
-              Follow indie candidates to increase their social capital and help
-              them build momentum!
-            </div>
-          </YellowButtonWrapper>
-          <Modal
-            open={showModal}
-            closeModalCallback={() => setShowModal(false)}
-            showCloseButton={false}
-          >
-            <FollowCandidatesModal
-              closeModalCallback={() => setShowModal(false)}
-            >
-              Tomer
-            </FollowCandidatesModal>
-          </Modal>
+          {/*<YellowButtonWrapper>*/}
+          {/*  <YellowButton onClick={() => setShowModal(true)}>*/}
+          {/*    <InnerButton>Follow Candidates</InnerButton>*/}
+          {/*  </YellowButton>*/}
+          {/*  <div className="smaller">*/}
+          {/*    Follow indie candidates to increase their social capital and help*/}
+          {/*    them build momentum!*/}
+          {/*  </div>*/}
+          {/*</YellowButtonWrapper>*/}
+          {/*<Modal*/}
+          {/*  open={showModal}*/}
+          {/*  closeModalCallback={() => setShowModal(false)}*/}
+          {/*  showCloseButton={false}*/}
+          {/*>*/}
+          {/*  <FollowCandidatesModal*/}
+          {/*    closeModalCallback={() => setShowModal(false)}*/}
+          {/*  >*/}
+          {/*    Tomer*/}
+          {/*  </FollowCandidatesModal>*/}
+          {/*</Modal>*/}
         </Grid>
       </Grid>
     </>
