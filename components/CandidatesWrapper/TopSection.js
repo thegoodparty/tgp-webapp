@@ -183,7 +183,9 @@ function TopSection() {
         <Grid item xs={12} lg={4}>
           <Grid container spacing={3}>
             <AlignGrid item xs={6}>
-              <LargeNumber  data-cy="following-number">{numberFormatter(totalFollowers)}</LargeNumber>
+              <LargeNumber data-cy="following-number">
+                {numberFormatter(totalFollowers)}
+              </LargeNumber>
               <UnderNumber data-cy="following-label">
                 Following
                 <br />
