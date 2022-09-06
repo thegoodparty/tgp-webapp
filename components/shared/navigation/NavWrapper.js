@@ -1,17 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Hidden from '@material-ui/core/Hidden';
+import styled from 'styled-components';
 
 import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
-import AdminMenu from '/components/admin/AdminMenu';
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 import FeedbackContainer from '/containers/shared/FeedbackContainer';
 
+export const SmOnly = styled.div`
+  display: block;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: none;
+  }
+`;
+
+export const MdUpOnly = styled.div`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    display: block;
+  }
+`;
+
 const NavWrapper = ({ pathname, user, trackShareCallback, purpleNav }) => (
   <>
-    <Hidden smDown>
+    <MdUpOnly>
       <DesktopHeader
         user={user}
         pathname={pathname}
@@ -20,10 +35,10 @@ const NavWrapper = ({ pathname, user, trackShareCallback, purpleNav }) => (
       />
       <RegisterBannerContainer />
       <FeedbackContainer />
-    </Hidden>
-    <Hidden mdUp>
+    </MdUpOnly>
+    <SmOnly>
       <MobileHeader user={user} purpleNav={purpleNav} />
-    </Hidden>
+    </SmOnly>
   </>
 );
 

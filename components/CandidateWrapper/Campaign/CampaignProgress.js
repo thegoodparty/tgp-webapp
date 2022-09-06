@@ -60,7 +60,7 @@ function CampaignProgress() {
   return (
     <Wrapper>
       <Row style={{ justifyContent: 'space-between', marginBottom: '48px' }}>
-        <Progress data-cy="campaign-progrsss-title">Campaign Progress</Progress>
+        <Progress data-cy="campaign-progrsss-title">Victory Meter</Progress>
         <Link href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`} passHref>
           <a className="no-underline" data-cy="campaign-progress-ref">
             <This>What`s this?</This>

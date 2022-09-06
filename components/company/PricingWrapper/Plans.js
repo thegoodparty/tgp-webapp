@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
-import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import BlackButton from '../../shared/buttons/BlackButton';
 
 const basicFeatures = [
   { title: 'Campaign Page', description: 'Introduce yourself to users' },

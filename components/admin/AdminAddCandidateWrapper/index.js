@@ -38,6 +38,7 @@ const partyOptions = [
   { key: 'I', value: 'Independent' },
   { key: 'W', value: 'Working Families Party' },
   { key: 'S', value: 'SAM' },
+  { key: 'U', value: 'Unity' },
 ];
 
 const statesOptions = states.map((state) => ({
