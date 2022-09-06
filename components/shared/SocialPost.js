@@ -96,14 +96,24 @@ const Content = styled.div`
   margin-bottom: 18px;
 `;
 
+const ImgWrapper = styled.div`
+  position: relative;
+  min-height: 250px;
+  span {
+    position: static !important;
+    min-height: 250px;
+  }
+  img {
+    width: 100%;
+    height: 250px !important;
+    position: static !important;
+  }
+`;
+
 const Img = styled(Image)`
   width: 100%;
   height: auto;
   margin-bottom: 12px;
-  img {
-    width: 100%;
-    height: auto;
-  }
 `;
 
 const Bottom = styled.div`
@@ -130,6 +140,7 @@ const Retweet = styled.div`
   }
 `;
 
+const imgLoader = ({ src }) => src;
 
 const SocialPost = ({ post }) => {
   const router = useRouter();
@@ -138,7 +149,6 @@ const SocialPost = ({ post }) => {
   );
 
   const hasVideo = post.video && post.video.src;
-
 
   if (!post || !post.content) {
     return <></>;
@@ -299,30 +309,25 @@ const SocialPost = ({ post }) => {
           </div>
         </Bottom>
         {hasImage && (
-          <img
-            src={images[0].url}
-            onError={handleError}
-            alt={title || `${source} social post`}
-            // width={imageSize.width}
-            // height={imageSize.height}
-            className="full-image"
-          />
-          // <Img
+          // <img
           //   src={images[0].url}
           //   onError={handleError}
           //   alt={title || `${source} social post`}
-          //   layout="responsive"
-          //   loader={imgLoader}
-          //   objectFit="contain"
-          //   onLoadingComplete={(target) => {
-          //     setImageSize({
-          //       width: target.naturalWidth,
-          //       height: target.naturalHeight,
-          //     });
-          //   }}
-          //   width={imageSize.width}
-          //   height={imageSize.height}
+          //   // width={imageSize.width}
+          //   // height={imageSize.height}
+          //   className="full-image"
           // />
+          <ImgWrapper>
+            <Img
+              src={images[0].url}
+              onError={handleError}
+              alt={title || `${source} social post`}
+              layout="fill"
+              loader={imgLoader}
+              objectFit="contain"
+              height={250}
+            />
+          </ImgWrapper>
         )}
         {hasVideo && (
           <div>

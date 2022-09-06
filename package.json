@@ -71,7 +71,6 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
     "react-image-crop": "^9.1.1",
-    "react-lazy-load-image-component": "^1.5.1",
     "react-lite-youtube-embed": "^2.2.0",
     "react-modal-video": "^1.2.9",
     "react-number-format": "^4.4.1",

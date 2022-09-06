@@ -54,26 +54,29 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <ConnectedRouter>
-      <UiThemeProvider theme={theme}>
-        <GlobalStyles />
-        <ThemeProvider theme={theme}>
-          <QueryRoutes />
-        </ThemeProvider>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-        <SnackbarContainer />
-        <Script
-          src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"
-          id="gtm"
-        />
-        <Script
-          strategy="afterInteractive"
-          type="text/javascript"
-          id="fs"
-          dangerouslySetInnerHTML={{
-            __html: `
+    <>
+      <ConnectedRouter>
+        <UiThemeProvider theme={theme}>
+          <GlobalStyles />
+          <ThemeProvider theme={theme}>
+            <QueryRoutes />
+          </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+          <SnackbarContainer />
+        </UiThemeProvider>
+      </ConnectedRouter>
+      <Script
+        src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"
+        id="gtm"
+      />
+      <Script
+        strategy="afterInteractive"
+        type="text/javascript"
+        id="fs"
+        dangerouslySetInnerHTML={{
+          __html: `
           if(window.location.hostname === 'goodparty.org'){
           window['_fs_debug'] = false;
           window['_fs_host'] = 'fullstory.com';
@@ -106,14 +109,14 @@ function MyApp({ Component, pageProps }) {
         twq('track','PageView');
         }
         `,
-          }}
-        />
-        <Script
-          strategy="afterInteractive"
-          type="text/javascript"
-          id="fb"
-          dangerouslySetInnerHTML={{
-            __html: `
+        }}
+      />
+      <Script
+        strategy="afterInteractive"
+        type="text/javascript"
+        id="fb"
+        dangerouslySetInnerHTML={{
+          __html: `
           window.fbAsyncInit = function() {
           FB.init({
             appId: '241239336921963',
@@ -141,28 +144,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-M53W2ZV');
         `,
-          }}
-        />
-        <Script
-          type="text/javascript"
-          id="hs-script-loader"
-          async
-          defer
-          src="//js.hs-scripts.com/21589597.js"
-        />
-        <Script
-          strategy="afterInteractive"
-          type="text/javascript"
-          id="hsq"
-          dangerouslySetInnerHTML={{
-            __html: `
+        }}
+      />
+      <Script
+        type="text/javascript"
+        id="hs-script-loader"
+        async
+        defer
+        src="//js.hs-scripts.com/21589597.js"
+      />
+      <Script
+        strategy="afterInteractive"
+        type="text/javascript"
+        id="hsq"
+        dangerouslySetInnerHTML={{
+          __html: `
               var _hsq = window._hsq = window._hsq || [];
               _hsq.push(['setContentType', 'standard-page']);
            `,
-          }}
-        />
-      </UiThemeProvider>
-    </ConnectedRouter>
+        }}
+      />
+    </>
   );
 }
 
