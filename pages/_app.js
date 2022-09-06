@@ -9,7 +9,7 @@ import SnackbarContainer from '/containers/shared/SnackbarContainer';
 import GlobalStyles from '/theme/GlobalStyles';
 import store from '/redux/store';
 import QueryRoutes from '/containers/App/QueryRoutes';
-import { initGA4 } from '/services/AnalyticsService';
+// import { initGA4 } from '/services/AnalyticsService';
 
 import theme from '/theme';
 import { getUserCookie, setCookie } from '../helpers/cookieHelper';
@@ -33,7 +33,7 @@ if (typeof window !== 'undefined' && navigator && navigator.serviceWorker) {
 // empty
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    initGA4();
+    // initGA4();
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
