@@ -99,7 +99,7 @@
   },
   "devDependencies": {
     "concurrently": "^7.2.2",
-    "cypress": "4.10.0",
+    "cypress": "^10.7.0",
     "cypress-promise": "^1.1.0",
     "eslint": "8.8.0",
     "node-plop": "0.18.0",

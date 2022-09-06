@@ -117,13 +117,13 @@ const SupportersProgressBar = ({
     <ProgressBarWrapper data-cy="supporter-progress">
       <BarBg>
         <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
-        {neededPerWeek !== 0 && <Total>{numberFormatter(neededPerWeek)}</Total>}
+        {neededPerWeek !== 0 && <Total data-cy="supporter-total">{numberFormatter(neededPerWeek)}</Total>}
       </BarBg>
       {withAchievement && days > 0 && (
         <AchievementWrapper>
           <Icon src="/images/icons/achievement.svg" alt="achievement" />
           {progress < 100 ? (
-            <div>
+            <div data-cy="supporter-description">
               If we can get to{' '}
               <strong>
                 {numberFormatter(neededPerWeek)} followers this week
@@ -131,7 +131,7 @@ const SupportersProgressBar = ({
               , we’ll be on track to win on election day!
             </div>
           ) : (
-            <div>
+            <div data-cy="supporter-description">
               This candidate has a good chance of <strong>winning</strong>. Keep
               the momentum going!
             </div>

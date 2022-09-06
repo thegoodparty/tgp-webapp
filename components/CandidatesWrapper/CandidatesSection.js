@@ -53,7 +53,7 @@ function CandidatesSection() {
     <Section>
       <Grid container spacing={1}>
         <Grid item xs={12} md={6}>
-          <H2>Top Trending Candidates</H2>
+          <H2 data-cy="candidates-section-title">Top Trending Candidates</H2>
         </Grid>
         <Grid item xs={12} md={6}>
           <What>
@@ -61,7 +61,7 @@ function CandidatesSection() {
               href={`${router.asPath}?article=5zIbKVU0wCIAszTOyogGAB`}
               passHref
             >
-              <a>
+              <a data-cy="good-certified-link">
                 What is{' '}
                 <Icon src="/images/heart.svg" alt="GP" width={14} height={11} />{' '}
                 GOOD CERTIFIED?

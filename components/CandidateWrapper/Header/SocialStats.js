@@ -75,6 +75,7 @@ function SocialStats() {
               borderColor: brightColor,
             }}
             onClick={openFollowModalCallback}
+            dataCy="candidate-follow-btn"
           >
             <InnerButton>FOLLOW</InnerButton>
           </BlackButton>

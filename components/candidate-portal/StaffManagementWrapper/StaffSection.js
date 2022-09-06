@@ -40,32 +40,32 @@ function StaffSection() {
 
   return (
     <>
-      <FontH3 style={{ margin: '0 0 45px 0' }}>Team Members</FontH3>
+      <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="staff-section-title">Team Members</FontH3>
       <Grid container spacing={3} alignItems="center">
         <Grid item xs={12} lg={3}>
-          <strong>Name</strong>
+          <strong data-cy="member-col-name">Name</strong>
         </Grid>
         <Grid item xs={12} lg={3}>
-          <strong>Email</strong>
+          <strong data-cy="member-col-email">Email</strong>
         </Grid>
         <Grid item xs={12} lg={2}>
-          <strong>Role</strong>
+          <strong data-cy="member-col-role">Role</strong>
         </Grid>
         <Grid item xs={12} lg={2}>
-          <strong>Status</strong>
+          <strong data-cy="member-col-status">Status</strong>
         </Grid>
         <Grid item xs={12} lg={2}>
           <div className="text-center">
-            <strong>Action</strong>
+            <strong data-cy="member-col-action">Action</strong>
           </div>
         </Grid>
         {staff &&
           staff.map((member) => (
             <React.Fragment key={member.id}>
-              <Grid item xs={12} lg={3}>
+              <Grid item xs={12} lg={3} data-cy="member-info-name">
                 {member.user?.name}
               </Grid>
-              <Grid item xs={12} lg={3}>
+              <Grid item xs={12} lg={3} data-cy="member-info-email">
                 {member.user?.email}
               </Grid>
               <Grid item xs={12} lg={2}>
@@ -83,7 +83,7 @@ function StaffSection() {
                   ))}
                 </Select>
               </Grid>
-              <Grid item xs={12} lg={2}>
+              <Grid item xs={12} lg={2} data-cy="member-info-status">
                 <Green>Accepted</Green>
               </Grid>
               <Grid item xs={12} lg={2}>

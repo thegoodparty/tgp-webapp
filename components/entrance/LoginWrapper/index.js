@@ -92,7 +92,7 @@ const LoginWrapper = ({
               disabled={!isValid}
               onClick={handleSubmit}
               type="submit"
-              data-cy="id-submit-button"
+              dataCy="id-submit-button"
             >
               NEXT
             </BlackButton>

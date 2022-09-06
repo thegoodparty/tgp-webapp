@@ -115,7 +115,7 @@ function FiltersSection() {
 
   return (
     <Wrapper>
-      <H2>Filter by Top Issues</H2>
+      <H2 data-cy="filter-section-title">Filter by Top Issues</H2>
 
       <PositionsWrapper>
         {positions.map((position) => (
@@ -125,6 +125,7 @@ function FiltersSection() {
               handlePillClick(position.id);
             }}
             className={position.id === state.position && 'selected'}
+            data-cy="position-pill"
           >
             {position.name} ({position.candidates?.length})
           </Pill>

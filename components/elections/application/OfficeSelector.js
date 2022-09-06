@@ -11,8 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import { FaTrash } from 'react-icons/fa';
-
-import { states } from '/helpers/statesHelper';
+import { states } from '../../../helpers/statesHelper';
 
 const Wrapper = styled.div`
   background-color: #f7f7f7;

@@ -21,7 +21,7 @@ const Feed = () => {
 
   return (
     <Wrapper>
-      <Top>
+      <Top data-cy="home-feed-title">
         Posts from <strong>#goodparty</strong> movement
       </Top>
       {posts && (

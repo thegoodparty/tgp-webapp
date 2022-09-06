@@ -1,5 +1,5 @@
 import promisify from 'cypress-promise';
-import { dateUsHelper } from '/helpers/dateHelper';
+import { dateUsHelper } from '../../../helpers/dateHelper';
 
 describe('Privacy page', () => {
   let content;
@@ -23,11 +23,4 @@ describe('Privacy page', () => {
     cy.get('[data-cy=last-revisioin-date]')
       .contains(dateUsHelper(content.lastModified));
   });
-//   it('finds faq article', () => {
-//     cy.get('[data-cy=faq]')
-//       .should('have.length', content.faqArticles.length)
-//       .each(($el, index) => {
-//         cy.testFAQArticle($el, index, content.faqArticles[index]);
-//       });
-//   });
 });

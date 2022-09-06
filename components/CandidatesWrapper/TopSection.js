@@ -133,7 +133,7 @@ function TopSection() {
   const router = useRouter();
   return (
     <>
-      <H1>
+      <H1 data-cy="candidates-top-title">
         Claim your{' '}
         <Relative>
           <Up> Independents!</Up>
@@ -142,7 +142,7 @@ function TopSection() {
       </H1>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={8}>
-          <H2>
+          <H2 data-cy="candidates-top-subtitle">
             Follow Honest, Independent, People-powered candidates to reclaim our
             democracy from the corrupt two-party system.{' '}
           </H2>
@@ -183,8 +183,8 @@ function TopSection() {
         <Grid item xs={12} lg={4}>
           <Grid container spacing={3}>
             <AlignGrid item xs={6}>
-              <LargeNumber>{numberFormatter(totalFollowers)}</LargeNumber>
-              <UnderNumber>
+              <LargeNumber  data-cy="following-number">{numberFormatter(totalFollowers)}</LargeNumber>
+              <UnderNumber data-cy="following-label">
                 Following
                 <br />
                 indie candidates
@@ -198,11 +198,11 @@ function TopSection() {
                   width={38}
                   height={38}
                 />
-                <LargeNumber className="green">
+                <LargeNumber className="green" data-cy="follower-number"> 
                   {numberFormatter(totalFromLastWeek)}
                 </LargeNumber>
               </AlignRow>
-              <UnderNumber>
+              <UnderNumber data-cy="follower-label">
                 Followers
                 <br />
                 from last week
