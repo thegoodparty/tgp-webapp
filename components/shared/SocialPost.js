@@ -130,21 +130,15 @@ const Retweet = styled.div`
   }
 `;
 
-const imgLoader = ({ src }) => src;
 
 const SocialPost = ({ post }) => {
   const router = useRouter();
   const [hasImage, setHasImage] = useState(
     post && post.images && post.images.length > 0,
   );
-  const [imageSize, setImageSize] = useState({
-    width: 1,
-    height: 1,
-  });
 
   const hasVideo = post.video && post.video.src;
 
-  // console.log('hasImage', hasImage, post.images, post && post.images && post.images.length > 0)
 
   if (!post || !post.content) {
     return <></>;
@@ -226,22 +220,31 @@ const SocialPost = ({ post }) => {
         <Icon className={source}>{icon}</Icon>
         <TitlePadder>
           {title && (
-            <UserName style={{ marginBottom: '14px' }} data-cy="post-title">{title}</UserName>
+            <UserName style={{ marginBottom: '14px' }} data-cy="post-title">
+              {title}
+            </UserName>
           )}
           {(userName || userScreenName) && (
             <div>
               <Title>
                 {userName && (
-                  <UserName  data-cy="post-username" style={title ? { textDecoration: 'none' } : {}}>
+                  <UserName
+                    data-cy="post-username"
+                    style={title ? { textDecoration: 'none' } : {}}
+                  >
                     {userName}
                   </UserName>
                 )}
-                {userScreenName && <Handle  data-cy="post-screenname">@{userScreenName}</Handle>}
+                {userScreenName && (
+                  <Handle data-cy="post-screenname">@{userScreenName}</Handle>
+                )}
               </Title>
             </div>
           )}
         </TitlePadder>
-        {publishedAt && <Date  data-cy="post-published-at">{dateUsHelper(publishedAt)}</Date>}
+        {publishedAt && (
+          <Date data-cy="post-published-at">{dateUsHelper(publishedAt)}</Date>
+        )}
         {showContent && (
           <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
         )}
@@ -281,7 +284,11 @@ const SocialPost = ({ post }) => {
               passHref
               scroll={false}
             >
-              <a id={`feed-post-share-${url}`} className="feed-post-share" data-cy="post-share">
+              <a
+                id={`feed-post-share-${url}`}
+                className="feed-post-share"
+                data-cy="post-share"
+              >
                 <BlackButton
                   style={{ textTransform: 'none', padding: '4px 12px' }}
                 >
@@ -292,26 +299,39 @@ const SocialPost = ({ post }) => {
           </div>
         </Bottom>
         {hasImage && (
-          <Img
+          <img
             src={images[0].url}
             onError={handleError}
             alt={title || `${source} social post`}
-            layout="responsive"
-            loader={imgLoader}
-            objectFit="contain"
-            onLoadingComplete={(target) => {
-              setImageSize({
-                width: target.naturalWidth,
-                height: target.naturalHeight,
-              });
-            }}
-            width={imageSize.width}
-            height={imageSize.height}
+            // width={imageSize.width}
+            // height={imageSize.height}
+            className="full-image"
           />
+          // <Img
+          //   src={images[0].url}
+          //   onError={handleError}
+          //   alt={title || `${source} social post`}
+          //   layout="responsive"
+          //   loader={imgLoader}
+          //   objectFit="contain"
+          //   onLoadingComplete={(target) => {
+          //     setImageSize({
+          //       width: target.naturalWidth,
+          //       height: target.naturalHeight,
+          //     });
+          //   }}
+          //   width={imageSize.width}
+          //   height={imageSize.height}
+          // />
         )}
         {hasVideo && (
           <div>
-            <video src={post.video.src} poster={post.video.poster} controls preload="none" />
+            <video
+              src={post.video.src}
+              poster={post.video.poster}
+              controls
+              preload="none"
+            />
             <br />
             <br />
             <a
