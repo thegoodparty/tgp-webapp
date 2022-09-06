@@ -69,12 +69,12 @@ function CandidateProfile() {
     <Row>
       <CandidateRoundAvatar candidate={candidate} large imageOnly priority />
       <Text>
-        <Name>
+        <Name data-cy="candidate-name">
           {firstName}
           <br />
           {lastName}
         </Name>
-        <H2>{partyRace(candidate)}</H2>
+        <H2 data-cy="candidate-race">{partyRace(candidate)}</H2>
         <ButtonWrapper>
           <BlackButton
             style={{
@@ -82,16 +82,18 @@ function CandidateProfile() {
               borderColor: brightColor,
               marginTop: '12px',
             }}
+            type="submit"
             onClick={openFollowModalCallback}
             id="candidate-follow-button"
+            dataCy="candidate-follow-btn"
           >
             <InnerButton>FOLLOW</InnerButton>
           </BlackButton>
         </ButtonWrapper>
         {!isClaimed && (
-          <Claim>
+          <Claim data-cy="candidate-claimed">
             Is this you?{' '}
-            <ClaimLink onClick={() => setShowModal(true)}>
+            <ClaimLink onClick={() => setShowModal(true)} data-cy="candidate-claim-page">
               Claim this page
             </ClaimLink>
           </Claim>

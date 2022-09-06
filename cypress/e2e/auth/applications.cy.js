@@ -1,4 +1,3 @@
-
 import promisify from 'cypress-promise';
 
 describe('Campaign Applications Page', () => {

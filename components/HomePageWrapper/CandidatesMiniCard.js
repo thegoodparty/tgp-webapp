@@ -49,7 +49,7 @@ const CandidateMiniCard = ({ candidate }) => {
 
   const brightColor = candidateColor(candidate);
   return (
-    <Wrapper>
+    <Wrapper data-cy="candidate-mini-card">
       <Link href={candidateRoute(candidate)} passHref>
         <a
           className="no-underline"
@@ -57,10 +57,10 @@ const CandidateMiniCard = ({ candidate }) => {
           id={`candidate-preview-${firstName}-${lastName}`}
         >
           <CandidateRoundAvatar candidate={candidate} />
-          <Name>
+          <Name data-cy="candidate-name">
             {firstName} {lastName}
           </Name>
-          <Party>{partyRace(candidate, false)}</Party>
+          <Party data-cy="candidate-party">{partyRace(candidate, false)}</Party>
 
           <CandidateProgressBar
             votesNeeded={votesNeeded}
@@ -79,6 +79,7 @@ const CandidateMiniCard = ({ candidate }) => {
                 borderColor: brightColor,
                 marginTop: '30px',
               }}
+              dataCy="candidate-view"
             >
               <InnerButton>View Campaign</InnerButton>
             </BlackButton>

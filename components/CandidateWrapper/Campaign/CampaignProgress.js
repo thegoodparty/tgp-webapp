@@ -60,21 +60,21 @@ function CampaignProgress() {
   return (
     <Wrapper>
       <Row style={{ justifyContent: 'space-between', marginBottom: '48px' }}>
-        <Progress>Victory Meter</Progress>
+        <Progress data-cy="campaign-progrsss-title">Victory Meter</Progress>
         <Link href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`} passHref>
-          <a className="no-underline">
+          <a className="no-underline" data-cy="campaign-progress-ref">
             <This>What`s this?</This>
           </a>
         </Link>
       </Row>
       <GoalsChart candidate={candidate} followers={followers} />
       <ChartStats>
-        <div className="text-right">
+        <div className="text-right" data-cy="campaign-likely-voters">
           🗳 {kFormatter(voters)}
           <Sub>Likely Voters</Sub>
         </div>
         <Space />
-        <div>
+        <div  data-cy="campaign-needed-votes">
           {kFormatter(votesNeeded)} 🎉
           <Sub>needed to win </Sub>
         </div>

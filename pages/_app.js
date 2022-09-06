@@ -9,7 +9,7 @@ import SnackbarContainer from '/containers/shared/SnackbarContainer';
 import GlobalStyles from '/theme/GlobalStyles';
 import store from '/redux/store';
 import QueryRoutes from '/containers/App/QueryRoutes';
-import { initGA4 } from '/services/AnalyticsService';
+// import { initGA4 } from '/services/AnalyticsService';
 
 import theme from '/theme';
 import { getUserCookie, setCookie } from '../helpers/cookieHelper';
@@ -33,7 +33,7 @@ if (typeof window !== 'undefined' && navigator && navigator.serviceWorker) {
 // empty
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    initGA4();
+    // initGA4();
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
@@ -126,13 +126,13 @@ function MyApp({ Component, pageProps }) {
 
         };
 
-          (function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = 'https://connect.facebook.net/en_US/sdk.js';
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        //   (function(d, s, id){
+        //   var js, fjs = d.getElementsByTagName(s)[0];
+        //   if (d.getElementById(id)) {return;}
+        //   js = d.createElement(s); js.id = id;
+        //   js.src = 'https://connect.facebook.net/en_US/sdk.js';
+        //   fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
         
         // GTM
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

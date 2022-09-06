@@ -46,7 +46,7 @@ function InviteUser() {
   };
   return (
     <form noValidate onSubmit={handleSubmitForm}>
-      <FontH3 style={{ margin: '0 0 45px 0' }}>Invite Team Member</FontH3>
+      <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="invite-section-title">Invite Team Member</FontH3>
       <Grid container spacing={3}>
         <Grid item xs={12} lg={4}>
           <TextField
@@ -89,6 +89,7 @@ function InviteUser() {
             onClick={handleInviteUser}
             fullWidth
             disabled={!canSubmit()}
+            dataCy="invite-btn"
           >
             Invite
           </BlackButton>

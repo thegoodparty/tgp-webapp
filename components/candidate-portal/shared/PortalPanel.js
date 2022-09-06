@@ -21,9 +21,9 @@ const Color = styled.div`
   width: 7px;
 `;
 
-const PortalPanel = ({ children, color }) => {
+const PortalPanel = ({ children, color, ...props }) => {
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       {color && <Color style={{ backgroundColor: color }} />}
       {children}
     </Wrapper>

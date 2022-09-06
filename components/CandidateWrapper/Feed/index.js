@@ -40,9 +40,9 @@ function Feed() {
   return (
     <Wrapper>
       <Grid container spacing={8}>
-        <Grid item xs={12} lg={9}>
-          <Title>Get ‘em trending</Title>
-          <SubTitle>
+        <Grid item xs={12} lg={9} data-cy="post-list">
+          <Title data-cy="feed-title">Get ‘em trending</Title>
+          <SubTitle data-cy="feed-subtitle">
             Indie candidates need help growing their movements! Like, follow,
             and share posts to amplify this campaign:
           </SubTitle>

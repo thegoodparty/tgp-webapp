@@ -41,8 +41,8 @@ function PortalEndorsementsWrapper() {
     <PortalPageWrapper role={role} key="Edit Key Endorsers">
       <PortalPanel color="#FF00DA">
         <Row>
-          <FontH3 style={{ margin: '0 0 45px 0' }}>Endorsements</FontH3>
-          <BlackButton onClick={() => setShowAdd(true)}>
+          <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="endorsements-title">Endorsements</FontH3>
+          <BlackButton onClick={() => setShowAdd(true)} dataCy="add-endorsement">
             <InnerButton>Add Endorsement</InnerButton>
           </BlackButton>
         </Row>
