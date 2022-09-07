@@ -9,10 +9,8 @@ import SnackbarContainer from '/containers/shared/SnackbarContainer';
 import GlobalStyles from '/theme/GlobalStyles';
 import store from '/redux/store';
 import QueryRoutes from '/containers/App/QueryRoutes';
-// import { initGA4 } from '/services/AnalyticsService';
 
 import theme from '/theme';
-import { getUserCookie, setCookie } from '../helpers/cookieHelper';
 
 /**
  * @param {object} initialState The store's initial state (on the client side, the state of the server-side store is passed here)
@@ -68,11 +66,12 @@ function MyApp({ Component, pageProps }) {
         </UiThemeProvider>
       </ConnectedRouter>
       <Script
+        strategy="afterInteractive"
         src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"
         id="gtm"
       />
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         type="text/javascript"
         id="fs"
         dangerouslySetInnerHTML={{
@@ -117,6 +116,23 @@ function MyApp({ Component, pageProps }) {
         id="fb"
         dangerouslySetInnerHTML={{
           __html: `
+        // GTM
+         if(window.location.hostname === 'goodparty.org'){
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M53W2ZV');
+          }
+        `,
+        }}
+      />
+      <Script
+        strategy="lazyOnload"
+        type="text/javascript"
+        id="fb"
+        dangerouslySetInnerHTML={{
+          __html: `
           window.fbAsyncInit = function() {
           FB.init({
             appId: '241239336921963',
@@ -128,33 +144,17 @@ function MyApp({ Component, pageProps }) {
           FB.AppEvents.logPageView();
 
         };
-
-        //   (function(d, s, id){
-        //   var js, fjs = d.getElementsByTagName(s)[0];
-        //   if (d.getElementById(id)) {return;}
-        //   js = d.createElement(s); js.id = id;
-        //   js.src = 'https://connect.facebook.net/en_US/sdk.js';
-        //   fjs.parentNode.insertBefore(js, fjs);
-        // }(document, 'script', 'facebook-jssdk'));
-        
-        // GTM
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M53W2ZV');
         `,
         }}
       />
       <Script
         type="text/javascript"
         id="hs-script-loader"
-        async
-        defer
+        strategy="lazyOnload"
         src="//js.hs-scripts.com/21589597.js"
       />
       <Script
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         type="text/javascript"
         id="hsq"
         dangerouslySetInnerHTML={{
