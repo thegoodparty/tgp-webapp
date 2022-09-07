@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
 import { numberFormatter } from '/helpers/numberHelper';
 import Row from '../shared/Row';
@@ -18,7 +19,9 @@ import YellowButton from '../shared/buttons/YellowButton';
 import { InnerButton } from '../shared/buttons/BlackButton';
 import { CandidatesContext } from '../../containers/CandidatesPage';
 import Modal from '../shared/Modal';
-import FollowCandidatesModal from './FollowCandidatesModal';
+const FollowCandidatesModal = dynamic(() => import('./FollowCandidatesModal'), {
+  loading: () => <>Loading</>,
+});
 
 const H1 = styled.h1`
   margin: 24px 0;
@@ -225,11 +228,13 @@ function TopSection() {
             closeModalCallback={() => setShowModal(false)}
             showCloseButton={false}
           >
-            <FollowCandidatesModal
-              closeModalCallback={() => setShowModal(false)}
-            >
-              Tomer
-            </FollowCandidatesModal>
+            {showModal && (
+              <FollowCandidatesModal
+                closeModalCallback={() => setShowModal(false)}
+              >
+                Tomer
+              </FollowCandidatesModal>
+            )}
           </Modal>
         </Grid>
       </Grid>
