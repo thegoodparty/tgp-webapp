@@ -19,10 +19,8 @@ import InvolvedModalInner from './InvolvedModalInner';
 import CandidatesSection from './CandidatesSection';
 import { MdUpOnly, SmOnly } from '../shared/navigation/NavWrapper';
 
-
-
 const HomePageWrapper = () => {
-  const { showInitModal, experimentVariant } = useContext(HomePageContext);
+  const { showInitModal } = useContext(HomePageContext);
   const [modalOpen, setModalOpen] = useState(showInitModal || false);
   const [involvedModalOpen, setInvolvedModalOpen] = useState(false);
   const [shareModalOpen, setShareModalOpen] = useState(false);
@@ -59,21 +57,14 @@ const HomePageWrapper = () => {
           </Grid>
         </Grid>
       </MaxWidth>
-      {experimentVariant === '1' && (
-        <MaxWidth style={{ padding: '0 24px' }}>
-          <CandidatesSection />
-        </MaxWidth>
-      )}
+      <MaxWidth style={{ padding: '0 24px' }}>
+        <CandidatesSection />
+      </MaxWidth>
       <GrayParty
         openModalCallback={handleOpenModal}
         openShareModalCallback={handleOpenShareModal}
-        whiteBg={experimentVariant === '1'}
       />
-      {experimentVariant !== '1' && (
-        <MaxWidth style={{ padding: '0 24px' }}>
-          <CandidatesSection />
-        </MaxWidth>
-      )}
+
       <SoFIt openModalCallback={handleOpenInvolvedModal} />
       <Modal
         open={modalOpen}

@@ -65,11 +65,11 @@ function MyApp({ Component, pageProps }) {
           <SnackbarContainer />
         </UiThemeProvider>
       </ConnectedRouter>
-      <Script
-        strategy="afterInteractive"
-        src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"
-        id="gtm"
-      />
+      {/*<Script*/}
+      {/*  strategy="afterInteractive"*/}
+      {/*  src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"*/}
+      {/*  id="gtm"*/}
+      {/*/>*/}
       <Script
         strategy="lazyOnload"
         type="text/javascript"
