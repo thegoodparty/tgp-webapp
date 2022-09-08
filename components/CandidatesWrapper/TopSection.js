@@ -231,9 +231,7 @@ function TopSection() {
             {showModal && (
               <FollowCandidatesModal
                 closeModalCallback={() => setShowModal(false)}
-              >
-                Tomer
-              </FollowCandidatesModal>
+              />
             )}
           </Modal>
         </Grid>
