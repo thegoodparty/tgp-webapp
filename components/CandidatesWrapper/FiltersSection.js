@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
+import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 
 const Wrapper = styled.section``;
 
@@ -49,6 +50,14 @@ const PositionsWrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     margin-bottom: 24px;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  font-size: 14px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    text-align: right;
   }
 `;
 
@@ -175,6 +184,13 @@ function FiltersSection() {
             }}
           />
         </Grid>
+        {/*<Grid item xs={12} lg={6}>*/}
+        {/*  <ButtonWrapper>*/}
+        {/*    <BlackButton>*/}
+        {/*      <InnerButton>Check My Voter Registration</InnerButton>*/}
+        {/*    </BlackButton>*/}
+        {/*  </ButtonWrapper>*/}
+        {/*</Grid>*/}
       </Grid>
     </Wrapper>
   );

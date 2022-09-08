@@ -22,11 +22,18 @@ import TwitterFollowButton from './TwitterFollowButton';
 const Wrapper = styled.div`
   background-color: #fff;
   border-radius: 4px;
-  width: 60vw;
   max-width: 450px;
   min-width: 300px;
   font-size: 16px;
-  padding: 30px 0;
+  padding: 20px 0;
+  max-height: 80vh;
+  overflow-x: hidden;
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    width: 60vw;
+    max-height: 70vh;
+  }
 `;
 
 const Padder = styled.div`
@@ -238,9 +245,7 @@ function FollowCandidatesModal({ closeModalCallback }) {
                           </Handle>
                         </Left>
                         {channel === 'Twitter' ? (
-                          <TwitterFollowButton
-                            candidateId={candidate.id}
-                          />
+                          <TwitterFollowButton candidateId={candidate.id} />
                         ) : (
                           <a
                             href={candidate[channel.toLowerCase()]}
