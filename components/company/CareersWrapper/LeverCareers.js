@@ -61,7 +61,7 @@ function LeverCareers() {
       <Interested>
         Interested in <strong>volunteering</strong> at Good Party?
         <a
-          href="https://forms.gle/TJmpYw6UwfWYS4GQA"
+          href="https://share.hsforms.com/1eDnwYypEREK3-He1FHeE7Acuqn1"
           target="_blank"
           rel="noopener noreferrer nofollow"
         >

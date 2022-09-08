@@ -21,7 +21,7 @@ import saga from './saga';
 import makeSelectHomePage from './selectors';
 import actions from './actions';
 import feedbackActions from '/containers/shared/FeedbackContainer/actions';
-import { getExperiment } from '/helpers/optimizeHelper';
+// import { getExperiment } from '/helpers/optimizeHelper';
 import registerActions from '../entrance/RegisterPage/actions';
 import { useInjectSaga } from '../../utils/injectSaga';
 import registerSaga from '../entrance/RegisterPage/saga';
@@ -51,17 +51,17 @@ export function HomePage({
 
   // const utmExperiment = getUtmExperiment(utmContent, utmSource);
 
-  const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment(
-      'Aug 2022 Homepage order updated',
-      'xP2-vukvS3697k43zU8nnw',
-      (type) => {
-        setExperimentVariant(type);
-      },
-    );
-  }, []);
-  console.log('experimentVariant', experimentVariant);
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment(
+  //     'Aug 2022 Homepage order updated',
+  //     'xP2-vukvS3697k43zU8nnw',
+  //     (type) => {
+  //       setExperimentVariant(type);
+  //     },
+  //   );
+  // }, []);
+  // console.log('experimentVariant', experimentVariant);
 
   const showInitModal = router.query.host === 'true';
 
@@ -70,7 +70,7 @@ export function HomePage({
     registerCallback,
     showFeedbackCallback,
     user,
-    experimentVariant,
+    // experimentVariant,
     showInitModal,
     totalFollowers,
     feed,

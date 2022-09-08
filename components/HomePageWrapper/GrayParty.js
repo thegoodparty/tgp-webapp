@@ -8,17 +8,13 @@ import MaxWidth from '../shared/MaxWidth';
 import Feed from './Feed';
 
 const Wrapper = styled.section`
-  background-color: #f3f3f3;
+  background-color: #fff;
+  border-top: solid 2px #f3f3f3;
   padding: 80px 16px 40px;
   text-align: center;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     padding: 116px 24px;
-  }
-
-  &.white-bg {
-    background-color: #fff;
-    border-top: solid 2px #f3f3f3;
   }
 `;
 
@@ -65,10 +61,10 @@ const Accomplish = styled.div`
   text-align: center;
 `;
 
-const GrayParty = ({ openShareModalCallback, whiteBg }) => {
+const GrayParty = ({ openShareModalCallback }) => {
   const router = useRouter();
   return (
-    <Wrapper className={whiteBg && 'white-bg'}>
+    <Wrapper>
       <MaxWidth>
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} lg={7}>

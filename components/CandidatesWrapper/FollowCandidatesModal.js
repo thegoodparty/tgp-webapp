@@ -17,6 +17,7 @@ import { CandidatesContext } from '/containers/CandidatesPage';
 
 import { FontH3 } from '../shared/typogrophy';
 import Row from '../shared/Row';
+import TwitterFollowButton from './TwitterFollowButton';
 
 const Wrapper = styled.div`
   background-color: #fff;
@@ -114,6 +115,8 @@ const Follow = styled.div`
   font-size: 9px;
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
+  min-width: 80px;
+  text-align: center;
 
   &:hover {
     background-color: #000;
@@ -234,13 +237,19 @@ function FollowCandidatesModal({ closeModalCallback }) {
                             )}
                           </Handle>
                         </Left>
-                        <a
-                          href={candidate[channel.toLowerCase()]}
-                          target="_blank"
-                          rel="noopener noreferrer nofollow"
-                        >
-                          <Follow>FOLLOW</Follow>
-                        </a>
+                        {channel === 'Twitter' ? (
+                          <TwitterFollowButton
+                            candidateId={candidate.id}
+                          />
+                        ) : (
+                          <a
+                            href={candidate[channel.toLowerCase()]}
+                            target="_blank"
+                            rel="noopener noreferrer nofollow"
+                          >
+                            <Follow>FOLLOW</Follow>
+                          </a>
+                        )}
                       </CandidateRow>
                     )}
                   </React.Fragment>

@@ -15,9 +15,10 @@ import { sanitizeUrl } from '@braintree/sanitize-url';
 
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
-import { getUserCookie } from '/helpers/cookieHelper';
+import { getCookie, getUserCookie, setCookie } from '/helpers/cookieHelper';
 import { slugify } from '../../helpers/articlesHelper';
 import queryHelper from '../../helpers/queryHelper';
+import userActions from '../you/YouPage/actions';
 
 export const CandidatesContext = createContext();
 
@@ -32,6 +33,7 @@ export function CandidatesPage({
   ssrState,
   dispatch,
   filterCandidatesCallback,
+  twitterFollowCallback,
 }) {
   const [candidatesByChannel, setCandidatesByChannel] = useState(channels);
   const {
@@ -117,6 +119,7 @@ export function CandidatesPage({
     totalFollowers,
     totalFromLastWeek,
     candidatesByChannel,
+    twitterFollowCallback,
   };
 
   return (
@@ -136,6 +139,7 @@ CandidatesPage.propTypes = {
   ssrState: PropTypes.object,
 
   filterCandidatesCallback: PropTypes.func,
+  twitterFollowCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({});
@@ -160,6 +164,19 @@ function mapDispatchToProps(dispatch) {
       } else {
         dispatch(push(`/candidates/${positionRoute}/${stateRoute}${query}`));
       }
+    },
+    twitterFollowCallback: (candidateId) => {
+      setCookie('twitter-follow', `${candidateId}`);
+      let followed = getCookie('twitter-followed');
+      if (followed) {
+        followed = JSON.parse(followed);
+      } else {
+        followed = [];
+      }
+      followed.push(candidateId);
+      setCookie('twitter-followed', JSON.stringify(followed), 7);
+
+      dispatch(userActions.twitterLoginAction());
     },
   };
 }
