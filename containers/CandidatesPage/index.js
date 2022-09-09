@@ -56,6 +56,8 @@ export function CandidatesPage({
     }
   }
 
+
+
   useEffect(() => {
     if (states.length === 0 && routeState) {
       dispatch(push(`/candidates/${routePosition}`));

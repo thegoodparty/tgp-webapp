@@ -6,13 +6,27 @@
 
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import dynamic from 'next/dynamic';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
+import Modal from '../shared/Modal';
+import LoadingAnimation from '../shared/LoadingAnimation';
+import CheckVoteRegistration from './CheckVoteRegistration';
+
+const VerifyVotePage = dynamic(
+  () => import('/containers/voterize/VerifyVotePage'),
+  {
+    loading: () => (
+      <div style={{ padding: '60px' }}>
+        <LoadingAnimation fullPage={false} />
+      </div>
+    ),
+  },
+);
 
 const Wrapper = styled.section``;
 
@@ -76,6 +90,7 @@ function FiltersSection() {
   });
 
   const [positionsById, setPositionsById] = useState({});
+  const [showVoteModal, setShowVoteModal] = useState(false);
 
   useEffect(() => {
     const byId = {};
@@ -184,14 +199,22 @@ function FiltersSection() {
             }}
           />
         </Grid>
-        {/*<Grid item xs={12} lg={6}>*/}
-        {/*  <ButtonWrapper>*/}
-        {/*    <BlackButton>*/}
-        {/*      <InnerButton>Check My Voter Registration</InnerButton>*/}
-        {/*    </BlackButton>*/}
-        {/*  </ButtonWrapper>*/}
-        {/*</Grid>*/}
+        <Grid item xs={12} lg={6}>
+          {routeState === 'ME' && (
+            <ButtonWrapper>
+              <BlackButton onClick={() => setShowVoteModal(true)}>
+                <InnerButton>Check My Voter Registration</InnerButton>
+              </BlackButton>
+            </ButtonWrapper>
+          )}
+        </Grid>
       </Grid>
+      <Modal
+        open={showVoteModal}
+        closeModalCallback={() => setShowVoteModal(false)}
+      >
+        <CheckVoteRegistration />
+      </Modal>
     </Wrapper>
   );
 }
