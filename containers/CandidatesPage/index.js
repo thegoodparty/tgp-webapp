@@ -176,7 +176,7 @@ function mapDispatchToProps(dispatch) {
         followed = [];
       }
       followed.push(candidateId);
-      setCookie('twitter-followed', JSON.stringify(followed), 7);
+      setCookie('twitter-followed', JSON.stringify(followed), 365);
 
       dispatch(userActions.twitterLoginAction());
     },

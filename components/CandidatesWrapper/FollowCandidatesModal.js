@@ -22,7 +22,7 @@ import TwitterFollowButton from './TwitterFollowButton';
 const Wrapper = styled.div`
   background-color: #fff;
   border-radius: 4px;
-  max-width: 450px;
+  max-width: 500px;
   min-width: 300px;
   font-size: 16px;
   padding: 20px 0;
