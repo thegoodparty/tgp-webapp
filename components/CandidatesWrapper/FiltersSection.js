@@ -200,7 +200,7 @@ function FiltersSection() {
           />
         </Grid>
         <Grid item xs={12} lg={6}>
-          {routeState === 'AZ' && (
+          {routeState === 'ME' && (
             <ButtonWrapper>
               <BlackButton onClick={() => setShowVoteModal(true)}>
                 <InnerButton>Check My Voter Registration</InnerButton>
