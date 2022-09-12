@@ -200,7 +200,7 @@ function FiltersSection() {
           />
         </Grid>
         <Grid item xs={12} lg={6}>
-          {routeState === 'ME' && (
+          {routeState === 'AZ' && (
             <ButtonWrapper>
               <BlackButton onClick={() => setShowVoteModal(true)}>
                 <InnerButton>Check My Voter Registration</InnerButton>
@@ -212,8 +212,11 @@ function FiltersSection() {
       <Modal
         open={showVoteModal}
         closeModalCallback={() => setShowVoteModal(false)}
+        showCloseButton={false}
       >
-        <CheckVoteRegistration />
+        <CheckVoteRegistration
+          closeModalCallback={() => setShowVoteModal(false)}
+        />
       </Modal>
     </Wrapper>
   );

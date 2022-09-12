@@ -6,6 +6,7 @@
 
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { IoMdClose } from 'react-icons/io';
 
 const Wrapper = styled.section`
   //min-width: 60vw;
@@ -30,7 +31,12 @@ const Wrapper = styled.section`
   }
 `;
 
-function CheckVoteRegistration() {
+const CloseWrapper = styled.div`
+  text-align: right;
+  font-size: 20px;
+`;
+
+function CheckVoteRegistration({ closeModalCallback }) {
   useEffect(() => {
     // adding vote america script
     const existing = document.getElementById('voteAmericaScript');
@@ -50,6 +56,9 @@ function CheckVoteRegistration() {
   }, []);
   return (
     <Wrapper>
+      <CloseWrapper>
+        <IoMdClose onClick={closeModalCallback} className="pointer" />
+      </CloseWrapper>
       <div
         className="voteamerica-embed"
         data-subscriber="thegoodparty"
