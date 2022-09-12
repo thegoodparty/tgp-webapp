@@ -56,7 +56,7 @@ export function CandidatesPage({
     }
   }
 
-
+  console.log('candidates', candidates);
 
   useEffect(() => {
     if (states.length === 0 && routeState) {
@@ -89,7 +89,7 @@ export function CandidatesPage({
   }, [pinned, candidates]);
 
   useEffect(() => {
-    const updated = { ...channels };
+    const updated = JSON.parse(JSON.stringify(channels));
     candidates.forEach((candidate) => {
       const { facebook, twitter, instagram, tiktok } = candidate;
       if (facebook) {
@@ -106,7 +106,7 @@ export function CandidatesPage({
       }
       setCandidatesByChannel(updated);
     });
-  }, [candidates]);
+  }, [candidates, routePosition, routeState]);
 
   const user = getUserCookie(true);
   const childProps = {
