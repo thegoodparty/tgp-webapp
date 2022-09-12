@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
   let feed;
   try {
     const res2 = await fetch(
-      `${api2.url}?searchId=${PULSAR_SEARCH_ID}&limit=4&useCache=true&save=true`,
+      `${api2.url}?searchId=${PULSAR_SEARCH_ID}&limit=6&useCache=true&save=true`,
     );
     const response2 = await res2.json();
     feed = response2;
