@@ -10,10 +10,12 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { FaFilter } from 'react-icons/fa';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
 import CandidateCard from '../shared/CandidateCard';
 import { FontH3 } from '../shared/typogrophy';
+import Row from '../shared/Row';
 
 const Section = styled.section`
   margin-top: 80px;
@@ -43,7 +45,22 @@ const Icon = styled(Image)`
   display: inline-block;
 `;
 
-function CandidatesSection() {
+const Filters = styled.div`
+  display: inline-block;
+  background-color: #f3f3f3;
+  padding: 12px 12px 6px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  margin-left: 20px;
+  cursor: pointer;
+
+  &.active {
+    background-color: #000;
+    color: #fff;
+  }
+`;
+
+function CandidatesSection({ toggleFiltersCallback, showFilters }) {
   const { candidates } = useContext(CandidatesContext);
   const router = useRouter();
   const { query } = router;
@@ -53,7 +70,15 @@ function CandidatesSection() {
     <Section>
       <Grid container spacing={1}>
         <Grid item xs={12} md={6}>
-          <H2 data-cy="candidates-section-title">Top Trending Candidates</H2>
+          <Row>
+            <H2 data-cy="candidates-section-title">Top Trending Candidates </H2>
+            <Filters
+              onClick={toggleFiltersCallback}
+              className={showFilters && 'active'}
+            >
+              <FaFilter />
+            </Filters>
+          </Row>
         </Grid>
         <Grid item xs={12} md={6}>
           <What>
