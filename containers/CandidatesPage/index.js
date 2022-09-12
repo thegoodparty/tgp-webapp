@@ -169,14 +169,7 @@ function mapDispatchToProps(dispatch) {
     },
     twitterFollowCallback: (candidateId) => {
       setCookie('twitter-follow', `${candidateId}`);
-      let followed = getCookie('twitter-followed');
-      if (followed) {
-        followed = JSON.parse(followed);
-      } else {
-        followed = [];
-      }
-      followed.push(candidateId);
-      setCookie('twitter-followed', JSON.stringify(followed), 365);
+
 
       dispatch(userActions.twitterLoginAction());
     },

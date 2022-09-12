@@ -83,10 +83,9 @@ function FiltersSection() {
     routePosition,
     routeState,
   } = useContext(CandidatesContext);
-
   const [state, setState] = useState({
     position: '',
-    state: '',
+    state: routeState || '',
   });
 
   const [positionsById, setPositionsById] = useState({});
@@ -101,20 +100,20 @@ function FiltersSection() {
   }, [positions]);
 
   useEffect(() => {
+    let position = '';
+    let state = '';
     if (Object.keys(positionsById).length > 0) {
-      let position = '';
-      let state = '';
       if (routePosition && routePosition !== 'all') {
         position = parseInt(routePosition.split('|')[1], 10);
       }
-      if (routeState) {
-        state = states.findIndex((item) => item === routeState);
-      }
-      setState({
-        position,
-        state,
-      });
     }
+    if (routeState) {
+      state = states.findIndex((item) => item === routeState);
+    }
+    setState({
+      position,
+      state,
+    });
   }, [routePosition, routeState, positionsById]);
 
   const onChangeField = (key, val) => {
@@ -191,7 +190,7 @@ function FiltersSection() {
                 {...params}
                 label="Filter by state"
                 variant="outlined"
-                value={state.state}
+                value={states[state.state]}
               />
             )}
             onChange={(event, item) => {
