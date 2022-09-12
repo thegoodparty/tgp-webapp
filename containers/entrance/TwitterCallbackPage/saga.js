@@ -50,7 +50,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
       } else {
         followed = [];
       }
-      followed.push(followCookie); // the candidate id
+      followed.push(parseInt(followCookie, 10)); // the candidate id
       setCookie('twitter-followed', JSON.stringify(followed), 365);
       deleteCookie('twitter-follow');
     } else {

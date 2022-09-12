@@ -21,11 +21,11 @@ const Follow = styled.div`
   min-width: 80px;
   text-align: center;
 
-  &:hover, &.active {
+  &:hover,
+  &.active {
     background-color: #000;
     color: #fff;
   }
-  
 `;
 
 function TwitterFollowButton({ candidateId }) {
