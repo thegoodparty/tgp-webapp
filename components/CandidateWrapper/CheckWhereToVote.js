@@ -36,7 +36,7 @@ const CloseWrapper = styled.div`
   color: #d3d3d3;
 `;
 
-function CheckVoteRegistration({ closeModalCallback }) {
+function CheckWhereToVote({ closeModalCallback }) {
   useEffect(() => {
     // adding vote america script
     const existing = document.getElementById('voteAmericaScript');
@@ -62,10 +62,10 @@ function CheckVoteRegistration({ closeModalCallback }) {
       <div
         className="voteamerica-embed"
         data-subscriber="thegoodparty"
-        data-tool="verify"
+        data-tool="locate"
       ></div>
     </Wrapper>
   );
 }
 
-export default CheckVoteRegistration;
+export default CheckWhereToVote;
