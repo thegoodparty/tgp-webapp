@@ -56,6 +56,8 @@ export function CandidatesPage({
     }
   }
 
+  console.log('candidates', candidates);
+
   useEffect(() => {
     if (states.length === 0 && routeState) {
       dispatch(push(`/candidates/${routePosition}`));
@@ -87,7 +89,7 @@ export function CandidatesPage({
   }, [pinned, candidates]);
 
   useEffect(() => {
-    const updated = { ...channels };
+    const updated = JSON.parse(JSON.stringify(channels));
     candidates.forEach((candidate) => {
       const { facebook, twitter, instagram, tiktok } = candidate;
       if (facebook) {
@@ -104,7 +106,7 @@ export function CandidatesPage({
       }
       setCandidatesByChannel(updated);
     });
-  }, [candidates]);
+  }, [candidates, routePosition, routeState]);
 
   const user = getUserCookie(true);
   const childProps = {
@@ -167,14 +169,7 @@ function mapDispatchToProps(dispatch) {
     },
     twitterFollowCallback: (candidateId) => {
       setCookie('twitter-follow', `${candidateId}`);
-      let followed = getCookie('twitter-followed');
-      if (followed) {
-        followed = JSON.parse(followed);
-      } else {
-        followed = [];
-      }
-      followed.push(candidateId);
-      setCookie('twitter-followed', JSON.stringify(followed), 7);
+
 
       dispatch(userActions.twitterLoginAction());
     },

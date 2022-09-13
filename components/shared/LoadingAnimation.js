@@ -8,13 +8,17 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 75px - 4rem);
+
   width: 100%;
   flex-direction: column;
+
+  &.full-page {
+    height: calc(100vh - 75px - 4rem);
+  }
 `;
 
-const LoadingAnimation = ({ label,  }) => (
-  <Wrapper>
+const LoadingAnimation = ({ label, fullPage = true }) => (
+  <Wrapper className={fullPage && '.full-page'}>
     {label && (
       <H3>
         {label}

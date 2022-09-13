@@ -1,7 +1,7 @@
 import HomePage from '/containers/HomePage';
 import tgpApi from '/api/tgpApi';
 
-const PULSAR_SEARCH_ID = 'f1caf890fc8ae8afa145e5b21c1eec34'
+const PULSAR_SEARCH_ID = '86f3d427847eb953d2cbba3ba681a372'
 
 export default function Home({ ssrState }) {
   return <HomePage ssrState={ssrState} />;
@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
   let feed;
   try {
     const res2 = await fetch(
-      `${api2.url}?searchId=${PULSAR_SEARCH_ID}&limit=4&useCache=true&save=true`,
+      `${api2.url}?searchId=${PULSAR_SEARCH_ID}&limit=6&useCache=true&save=true`,
     );
     const response2 = await res2.json();
     feed = response2;

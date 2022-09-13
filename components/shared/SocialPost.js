@@ -161,7 +161,6 @@ const SocialPost = ({ post }) => {
     images,
     publishedAt,
     content,
-    engagement,
     url,
     likesCount,
     source,
@@ -224,6 +223,7 @@ const SocialPost = ({ post }) => {
       );
     }
   };
+
   return (
     <WrapperElement>
       <Post className="break-word" data-cy="post-item">
@@ -275,14 +275,6 @@ const SocialPost = ({ post }) => {
                   <FaCommentAlt />
                 </div>
                 <span data-cy="post-comments">{commentsCount}</span>
-              </Retweet>
-            )}
-            {engagement !== null && engagement !== 0 && (
-              <Retweet>
-                <div>
-                  <FaRetweet />
-                </div>
-                <span data-cy="post-engagement">{engagement}</span>
               </Retweet>
             )}
           </div>

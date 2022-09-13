@@ -12,11 +12,16 @@ const Top = styled.div`
   margin-bottom: 40px;
 `;
 
-const Feed = () => {
+const Feed = ({ columns = 2 }) => {
   const { feed } = useContext(HomePageContext);
   let posts = [];
   if (feed && feed.results) {
     posts = feed.results;
+  }
+
+  let breakpoints = { 350: 1, 1024: 2 };
+  if (columns === 3) {
+    breakpoints = { 350: 1, 640: 2, 1024: 3 };
   }
 
   return (
@@ -25,7 +30,7 @@ const Feed = () => {
         Posts from <strong>#goodparty</strong> movement
       </Top>
       {posts && (
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 1024: 2 }}>
+        <ResponsiveMasonry columnsCountBreakPoints={breakpoints}>
           <Masonry gutter="16px">
             {posts.map((post) => (
               <React.Fragment key={post.url}>

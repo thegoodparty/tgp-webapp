@@ -44,6 +44,14 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
           'Thank you for supporting indie candidates!',
         ),
       );
+      let followed = getCookie('twitter-followed');
+      if (followed) {
+        followed = JSON.parse(followed);
+      } else {
+        followed = [];
+      }
+      followed.push(parseInt(followCookie, 10)); // the candidate id
+      setCookie('twitter-followed', JSON.stringify(followed), 365);
       deleteCookie('twitter-follow');
     } else {
       setUserCookie(user);
