@@ -138,22 +138,26 @@ function FiltersSection() {
 
   return (
     <Wrapper>
-      <H2 data-cy="filter-section-title">Filter by Top Issues</H2>
+      {positions.length > 0 && (
+        <>
+          <H2 data-cy="filter-section-title">Filter by Top Issues</H2>
 
-      <PositionsWrapper>
-        {positions.map((position) => (
-          <Pill
-            key={position.id}
-            onClick={() => {
-              handlePillClick(position.id);
-            }}
-            className={position.id === state.position && 'selected'}
-            data-cy="position-pill"
-          >
-            {position.name} ({position.candidates?.length})
-          </Pill>
-        ))}
-      </PositionsWrapper>
+          <PositionsWrapper>
+            {positions.map((position) => (
+              <Pill
+                key={position.id}
+                onClick={() => {
+                  handlePillClick(position.id);
+                }}
+                className={position.id === state.position && 'selected'}
+                data-cy="position-pill"
+              >
+                {position.name} ({position.candidates?.length})
+              </Pill>
+            ))}
+          </PositionsWrapper>
+        </>
+      )}
       <Grid container spacing={3}>
         <Grid item xs={8} lg={3}>
           <Autocomplete
