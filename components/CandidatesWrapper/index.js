@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import dynamic from 'next/dynamic';
 
@@ -12,6 +12,7 @@ import PageWrapper from '../shared/PageWrapper';
 import TopSection from './TopSection';
 import MaxWidth, { Padder } from '../shared/MaxWidth';
 import CandidatesSection from './CandidatesSection';
+import { CandidatesContext } from '../../containers/CandidatesPage';
 const FiltersSection = dynamic(() => import('./FiltersSection'), {
   loading: () => <>Loading</>,
 });
@@ -28,7 +29,8 @@ const Line = styled.div`
 `;
 
 function CandidatesWrapper() {
-  const [showFilters, setShowFilters] = useState(false);
+  const { routePosition, routeState } = useContext(CandidatesContext);
+  const [showFilters, setShowFilters] = useState(routePosition || routeState);
   return (
     <PageWrapper isFullWidth>
       <MaxWidth>

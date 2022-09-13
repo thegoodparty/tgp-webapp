@@ -110,6 +110,7 @@ function FiltersSection() {
     if (routeState) {
       state = states.findIndex((item) => item === routeState);
     }
+
     setState({
       position,
       state,
@@ -163,14 +164,14 @@ function FiltersSection() {
             }}
             getOptionLabel={(option) => option.name}
             fullWidth
-            value={positionsById[state.position]}
+            value={positionsById[state.position] || null}
             variant="outlined"
             renderInput={(params) => (
               <TextField
                 {...params}
                 label="Search all Issues"
                 variant="outlined"
-                value={state.position}
+                // value={state.position}
               />
             )}
             onChange={(event, item) => {
@@ -181,7 +182,7 @@ function FiltersSection() {
         <Grid item xs={8} lg={3}>
           <Autocomplete
             options={states}
-            value={states[state.state]}
+            value={states[state.state] || null}
             fullWidth
             variant="outlined"
             autoSelect
@@ -190,7 +191,8 @@ function FiltersSection() {
                 {...params}
                 label="Filter by state"
                 variant="outlined"
-                value={states[state.state]}
+                // value={states[state.state]}
+                // value="tomer"
               />
             )}
             onChange={(event, item) => {

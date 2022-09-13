@@ -56,8 +56,6 @@ export function CandidatesPage({
     }
   }
 
-  console.log('candidates', candidates);
-
   useEffect(() => {
     if (states.length === 0 && routeState) {
       dispatch(push(`/candidates/${routePosition}`));
@@ -169,7 +167,6 @@ function mapDispatchToProps(dispatch) {
     },
     twitterFollowCallback: (candidateId) => {
       setCookie('twitter-follow', `${candidateId}`);
-
 
       dispatch(userActions.twitterLoginAction());
     },
