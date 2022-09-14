@@ -61,9 +61,9 @@ const SocialLink = styled.div`
   justify-content: center;
   border-radius: 50%;
   transition: box-shadow 0.3s;
-  
+
   &:hover {
-    color: #FFF;
+    color: #fff;
     box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
   }
 
@@ -97,7 +97,7 @@ const SocialLink = styled.div`
   }
 
   &.Twitch {
-    background-color:  #9146FF;
+    background-color: #9146ff;
   }
 
   &.Tiktok {
@@ -152,9 +152,13 @@ const CopyIcon = styled.div`
   border: solid 2px #000;
 `;
 
-function FollowModal() {
-  const { candidate } = useContext(CandidateContext);
-  const { closeFollowModalCallback } = useContext(CandidateWrapperContext);
+function FollowModal({ inputCandidate, closeModalCallback }) {
+  const candContext = useContext(CandidateContext);
+  const candidate = candContext ? candContext.candidate : inputCandidate;
+  const wrapperContext = useContext(CandidateWrapperContext);
+  const closeFollowModalCallback = wrapperContext
+    ? wrapperContext.closeFollowModalCallback
+    : closeModalCallback;
 
   let url = '';
   if (typeof window !== 'undefined') {

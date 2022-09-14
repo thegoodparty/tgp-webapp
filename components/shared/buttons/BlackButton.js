@@ -20,9 +20,9 @@ const BlackButton = styled(PurpleButton)`
       color: #000;
       border-color: #000;
       &:hover {
-        background: #999;
+        background: #eee;
         color: #fff;
-        border-color: #999;
+        border-color: #eee;
       }
     }
     &.Mui-disabled {

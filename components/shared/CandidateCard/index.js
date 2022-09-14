@@ -4,22 +4,32 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Image from 'next/image';
-import Grid from '@material-ui/core/Grid';
-import { partyResolver } from '/helpers/electionsHelper';
 import Link from 'next/link';
-import { Font16, FontH3 } from '../typogrophy';
+import Grid from '@material-ui/core/Grid';
+import dynamic from 'next/dynamic';
+
+import { candidateColor, partyRace } from '/helpers/candidatesHelper';
+import { daysTill } from '/helpers/dateHelper';
+
+import { FontH3 } from '../typogrophy';
 import BlackButton from '../buttons/BlackButton';
-import SupportersProgressBar from '../../CandidateWrapper/Header/SupportersProgressBar';
-import { achievementsHelper } from '/helpers/achievementsHelper';
-import { numberFormatter } from '/helpers/numberHelper';
 import CandidateRoundAvatar from '../CandidateRoundAvatar';
-import { candidateColor, partyRace } from '../../../helpers/candidatesHelper';
-import { daysTill } from '../../../helpers/dateHelper';
 import CandidateProgressBar from '../CandidateProgressBar';
+import Modal from '../Modal';
+import LoadingAnimation from '../LoadingAnimation';
+const FollowModal = dynamic(
+  () => import('../../CandidateWrapper/FollowModal'),
+  {
+    loading: () => (
+      <>
+        <LoadingAnimation fullPage={false} />
+      </>
+    ),
+  },
+);
 
 const Wrapper = styled.div`
   border-radius: 16px;
@@ -50,26 +60,6 @@ const Gray = styled.div`
   color: #4d4d4d;
 `;
 
-const SoFar = styled.div`
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Quote = styled.div`
-  border-left: solid 2px #e6e6e6;
-  margin: 24px 0;
-  padding-left: 16px;
-  font-weight: 600;
-  font-size: 14px;
-  font-style: italic;
-  min-height: 36px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
-
 const Positions = styled.div`
   margin-top: 14px;
   font-weight: 600;
@@ -96,7 +86,7 @@ const ButtonWrapper = styled.div`
 
 const MAX_POSITIONS = 6;
 
-function CandidateCard({ candidate }) {
+function CandidateCard({ candidate, doubleButton = false }) {
   const {
     id,
     firstName,
@@ -106,6 +96,17 @@ function CandidateCard({ candidate }) {
     raceDate,
     votesNeeded,
   } = candidate;
+
+  // optimize code
+  const [showModal, setShowModal] = useState(false);
+  const handleFollow = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowModal(true);
+  };
+
+  // end optimize code
+
   const brightColor = candidateColor(candidate);
   let topPositions = positions;
 
@@ -123,63 +124,118 @@ function CandidateCard({ candidate }) {
   const days = daysTill(raceDate);
   const diff = thisWeek - lastWeek;
   return (
-    <Link
-      href={`/candidate/${firstName}-${lastName}/${id}`}
-      passHref
-      style={{ height: '100%' }}
-    >
-      <a
+    <>
+      <Link
+        href={`/candidate/${firstName}-${lastName}/${id}`}
+        passHref
         style={{ height: '100%' }}
-        className="no-underline candidate-card"
-        data-cy="candidate-link"
-        id={`candidate-card-${firstName}-${lastName}`}
       >
-        <Wrapper>
-          <ImageWrapper>
-            <CandidateRoundAvatar candidate={candidate} large />
-          </ImageWrapper>
-          <Content>
-            <Name data-cy="candidate-name">
-              {firstName} {lastName}
-            </Name>
-            <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
-            <Positions>
-              {(topPositions || []).map((position) => (
-                <Position key={position.id} data-cy="position">
-                  {position.name}
-                </Position>
-              ))}
-            </Positions>
+        <a
+          style={{ height: '100%' }}
+          className="no-underline candidate-card"
+          data-cy="candidate-link"
+          id={`candidate-card-${firstName}-${lastName}`}
+        >
+          <Wrapper>
+            <ImageWrapper>
+              <CandidateRoundAvatar candidate={candidate} large />
+            </ImageWrapper>
+            <Content>
+              <Name data-cy="candidate-name">
+                {firstName} {lastName}
+              </Name>
+              <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
+              <Positions>
+                {(topPositions || []).map((position) => (
+                  <Position key={position.id} data-cy="position">
+                    {position.name}
+                  </Position>
+                ))}
+              </Positions>
 
-            <div style={{ margin: '32px 0 4px' }}>
-              <CandidateProgressBar
-                votesNeeded={votesNeeded}
-                peopleSoFar={thisWeek}
-                peopleThisPeriod={diff}
-                color={brightColor}
-                days={days}
-                withAnimation={false}
-              />
-            </div>
+              <div style={{ margin: '32px 0 4px' }}>
+                <CandidateProgressBar
+                  votesNeeded={votesNeeded}
+                  peopleSoFar={thisWeek}
+                  peopleThisPeriod={diff}
+                  color={brightColor}
+                  days={days}
+                  withAnimation={false}
+                />
+              </div>
 
-            <ButtonWrapper>
-              <BlackButton
-                fullWidth
-                style={{
-                  textTransform: 'none',
-                  marginTop: '32px',
-                  backgroundColor: brightColor,
-                  borderColor: brightColor,
-                }}
-                data-cy="candidate-view"
-              >
-                View Campaign
-              </BlackButton>
-            </ButtonWrapper>
-          </Content>
-        </Wrapper>
-      </a>
-    </Link>
+              <ButtonWrapper>
+                <Grid container spacing={2}>
+                  {doubleButton && (
+                    <Grid item xs={6}>
+                      <BlackButton
+                        fullWidth
+                        style={{
+                          textTransform: 'none',
+                          marginTop: '32px',
+                          backgroundColor: brightColor,
+                          borderColor: brightColor,
+                        }}
+                        data-cy="candidate-view"
+                        onClick={handleFollow}
+                        className="follow-button-card"
+                      >
+                        Follow
+                      </BlackButton>
+                    </Grid>
+                  )}
+                  {doubleButton ? (
+                    <Grid item xs={6}>
+                      <BlackButton
+                        fullWidth
+                        className="outlined view-button-card"
+                        style={{
+                          textTransform: 'none',
+                          marginTop: '32px',
+                          color: brightColor,
+                          borderColor: brightColor,
+                        }}
+                        data-cy="candidate-view"
+                      >
+                        View
+                      </BlackButton>
+                    </Grid>
+                  ) : (
+                    <Grid item xs={12}>
+                      <BlackButton
+                        fullWidth
+                        className="view-button-card"
+                        style={{
+                          textTransform: 'none',
+                          marginTop: '32px',
+                          backgroundColor: brightColor,
+                          borderColor: brightColor,
+                        }}
+                        data-cy="candidate-view"
+                      >
+                        View
+                      </BlackButton>
+                    </Grid>
+                  )}
+                </Grid>
+              </ButtonWrapper>
+            </Content>
+          </Wrapper>
+        </a>
+      </Link>
+      {showModal && (
+        <Modal
+          open={showModal}
+          showCloseButton={false}
+          closeModalCallback={() => setShowModal(false)}
+        >
+          <FollowModal
+            inputCandidate={candidate}
+            closeModalCallback={() => setShowModal(false)}
+          />
+        </Modal>
+      )}
+    </>
   );
 }
 

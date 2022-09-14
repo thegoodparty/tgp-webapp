@@ -12,6 +12,7 @@ import { compose } from 'redux';
 import { push } from 'connected-next-router';
 import { useRouter } from 'next/router';
 import { sanitizeUrl } from '@braintree/sanitize-url';
+import { getExperiment } from '/helpers/optimizeHelper';
 
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
@@ -47,6 +48,18 @@ export function CandidatesPage({
   } = ssrState;
   const [pinnedCandidates, setPinnedCandidates] = useState(candidates);
   const router = useRouter();
+
+  const [experimentVariant, setExperimentVariant] = useState('0');
+  useEffect(() => {
+    getExperiment(
+      'Follow an View buttons',
+      '3HGV7kfeSwObMqU1lQ_WqA',
+      (type) => {
+        setExperimentVariant(type);
+      },
+    );
+  }, []);
+
   let { pinned } = router.query;
 
   if (typeof window !== 'undefined') {
@@ -55,8 +68,6 @@ export function CandidatesPage({
       pinned = false;
     }
   }
-
-  console.log('candidates', candidates);
 
   useEffect(() => {
     if (states.length === 0 && routeState) {
@@ -122,6 +133,7 @@ export function CandidatesPage({
     totalFromLastWeek,
     candidatesByChannel,
     twitterFollowCallback,
+    experimentVariant,
   };
 
   return (
@@ -169,7 +181,6 @@ function mapDispatchToProps(dispatch) {
     },
     twitterFollowCallback: (candidateId) => {
       setCookie('twitter-follow', `${candidateId}`);
-
 
       dispatch(userActions.twitterLoginAction());
     },
