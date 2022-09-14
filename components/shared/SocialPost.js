@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 
 import { dateUsHelper } from '../../helpers/dateHelper';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
+import ShareModal from './ShareModal';
 
 const Post = styled.div`
   padding: 28px 15px 70px;
@@ -143,10 +144,10 @@ const Retweet = styled.div`
 const imgLoader = ({ src }) => src;
 
 const SocialPost = ({ post }) => {
-  const router = useRouter();
   const [hasImage, setHasImage] = useState(
     post && post.images && post.images.length > 0,
   );
+  const [showShare, setShowShare] = useState(false);
 
   const hasVideo = post.video && post.video.src;
 
@@ -224,6 +225,12 @@ const SocialPost = ({ post }) => {
     }
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowShare(true);
+  };
+
   return (
     <WrapperElement>
       <Post className="break-word" data-cy="post-item">
@@ -279,25 +286,14 @@ const SocialPost = ({ post }) => {
             )}
           </div>
           <div>
-            <Link
-              href={`${router.asPath}?share=true&url=${encodeURIComponent(
-                url,
-              )}`}
-              passHref
-              scroll={false}
+            <BlackButton
+              style={{ textTransform: 'none', padding: '4px 12px' }}
+              onClick={handleClick}
+              id={`feed-post-share-${url}`}
+              className="feed-post-share"
             >
-              <a
-                id={`feed-post-share-${url}`}
-                className="feed-post-share"
-                data-cy="post-share"
-              >
-                <BlackButton
-                  style={{ textTransform: 'none', padding: '4px 12px' }}
-                >
-                  <InnerButton>Share</InnerButton>
-                </BlackButton>
-              </a>
-            </Link>
+              <InnerButton>Share</InnerButton>
+            </BlackButton>
           </div>
         </Bottom>
         {hasImage && (
@@ -344,6 +340,9 @@ const SocialPost = ({ post }) => {
           </div>
         )}
       </Post>
+      {showShare && (
+        <ShareModal shareUrl={url} closeCallback={() => setShowShare(false)} />
+      )}
     </WrapperElement>
   );
 };

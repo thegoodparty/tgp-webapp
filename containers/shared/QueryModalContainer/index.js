@@ -15,9 +15,10 @@ export function QueryModalContainer({
   closeModalCallback,
   modalStyles = {},
   children,
+  closeModalCallbackOverride,
 }) {
   const childProps = {
-    closeModalCallback,
+    closeModalCallback: closeModalCallbackOverride || closeModalCallback,
     modalStyles,
   };
   return <QueryModal {...childProps}>{children}</QueryModal>;
@@ -25,6 +26,7 @@ export function QueryModalContainer({
 
 QueryModalContainer.propTypes = {
   closeModalCallback: PropTypes.func,
+  closeModalCallbackOverride: PropTypes.func,
   modalStyles: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   zIndex: PropTypes.number,

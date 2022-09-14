@@ -15,6 +15,7 @@ import Row from '../../shared/Row';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { removeWhiteSpaces } from '/helpers/stringHelper';
 import { candidateColor } from '../../../helpers/candidatesHelper';
+import ShareModal from '../../shared/ShareModal';
 
 const Wrapper = styled.article`
   position: relative;
@@ -58,6 +59,7 @@ const TopRow = styled(Row)`
 `;
 
 function TopIssues() {
+  const [showShare, setShowShare] = useState(false);
   const router = useRouter();
   const { candidatePositions, candidate } = useContext(CandidateContext);
   const { color } = candidate;
@@ -73,13 +75,15 @@ function TopIssues() {
         style={{ justifyContent: 'space-between', alignItems: 'baseline' }}
       >
         <Title data-cy="top-issues-title">Top Issues</Title>
-        <Link href={`${router.asPath}?share=true`} passHref scroll={false}>
-          <a id="top-issues-share" className="no-underline" data-cy="top-issue-share">
-            <BlackButton style={{ padding: '4px 3px' }}>
-              <InnerButton>Share</InnerButton>
-            </BlackButton>
-          </a>
-        </Link>
+
+        <BlackButton
+          style={{ padding: '4px 3px' }}
+          onClick={() => {
+            setShowShare(true);
+          }}
+        >
+          <InnerButton>Share</InnerButton>
+        </BlackButton>
       </TopRow>
 
       {candidatePositions.map((candPosition) => (
@@ -95,6 +99,12 @@ function TopIssues() {
           </Position>
         </IssueWrapper>
       ))}
+
+      {showShare && (
+        <ShareModal
+          closeCallback={() => setShowShare(false)}
+        />
+      )}
     </Wrapper>
   );
 }
