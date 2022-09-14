@@ -30,8 +30,6 @@ function QueryRoutes({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
   const { search } = locationState;
-  const router = useRouter();
-  const [showShare, setShowShare] = useState(false);
 
   useEffect(() => {
     const uuid = queryHelper(search, 'u');
@@ -39,7 +37,6 @@ function QueryRoutes({ locationState, dispatch }) {
       setCookie('referrer', uuid);
     }
   }, []);
-  const isCandidatePage = router.pathname === '/candidate/[...NameIdTab]';
   useEffect(() => {
     const modalArticleId = queryHelper(search, 'article');
 
@@ -48,16 +45,11 @@ function QueryRoutes({ locationState, dispatch }) {
     } else {
       dispatch(globalActions.clearArticleModalAction());
     }
-
-    const queryShare = queryHelper(search, 'share');
-
-    setShowShare(queryShare === 'true');
   }, [search]);
 
   return (
     <>
       <FaqArticleModal />
-      {showShare && <ShareModal isCandidate={isCandidatePage} />}
     </>
   );
 }

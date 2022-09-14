@@ -57,16 +57,7 @@ function* register(action) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      const queryCandidate = queryHelper(window?.location.search, 'candidate');
-      if (queryCandidate) {
-        yield put(push(`${window.location.pathname}?share=true`));
-        // need to support here
-        yield put(
-          candidateActions.supportAction(Router?.router?.query?.NameIdTab[1]),
-        );
-      } else {
-        yield put(push(window.location.pathname));
-      }
+      yield put(push(window.location.pathname));
     }
 
     logEvent('Signup', 'Complete Account Signup', 'Email');
@@ -151,12 +142,7 @@ function* socialRegister(action) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
-      const queryCandidate = queryHelper(window?.location.search, 'candidate');
-      if (queryCandidate) {
-        yield put(push(`${window.location.pathname}?share=true`));
-      } else {
-        yield put(push(window.location.pathname));
-      }
+      yield put(push(window.location.pathname));
     }
 
     setUserCookie(responseUser);

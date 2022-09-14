@@ -111,16 +111,14 @@ const CopyIcon = styled.div`
   border: solid 2px #000;
 `;
 
-const ShareModal = () => {
+const ShareModal = ({ shareUrl, closeCallback = () => {} }) => {
   const user = getUserCookie(true);
   const messageNoUrl = 'Vote different';
 
-  const router = useRouter();
-  let queryUrl = router.query?.url;
+  let queryUrl = shareUrl;
   if (queryUrl) {
     queryUrl = sanitizeUrl(queryUrl);
   }
-
 
   let url = '';
   if (typeof window !== 'undefined') {
@@ -186,7 +184,7 @@ const ShareModal = () => {
   ];
 
   return (
-    <QueryModalContainer>
+    <QueryModalContainer closeModalCallbackOverride={closeCallback}>
       <Wrapper>
         <Row style={{ justifyContent: 'space-between' }}>
           <FontH3>Share on</FontH3>
