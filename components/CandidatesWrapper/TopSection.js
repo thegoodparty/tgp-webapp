@@ -215,7 +215,10 @@ function TopSection() {
             </AlignGrid>
           </Grid>
           <YellowButtonWrapper>
-            <YellowButton onClick={() => setShowModal(true)}>
+            <YellowButton
+              onClick={() => setShowModal(true)}
+              id="follow-candidates"
+            >
               <InnerButton>Follow Candidates</InnerButton>
             </YellowButton>
             <div className="smaller">

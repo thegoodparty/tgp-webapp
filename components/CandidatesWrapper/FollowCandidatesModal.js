@@ -251,6 +251,10 @@ function FollowCandidatesModal({ closeModalCallback }) {
                             href={candidate[channel.toLowerCase()]}
                             target="_blank"
                             rel="noopener noreferrer nofollow"
+                            className={`modal-follow-${channel.toLowerCase()}`}
+                            id={`modal-follow-${channel.toLowerCase()}-candidate-${
+                              candidate.id
+                            }`}
                           >
                             <Follow>FOLLOW</Follow>
                           </a>

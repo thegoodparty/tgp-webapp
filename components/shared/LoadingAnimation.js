@@ -8,12 +8,14 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 30px;
 
   width: 100%;
   flex-direction: column;
 
   &.full-page {
     height: calc(100vh - 75px - 4rem);
+    padding: 0;
   }
 `;
 
