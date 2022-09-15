@@ -10,21 +10,21 @@ function youtubeParser(url) {
   return match && match[7].length == 11 ? match[7] : false;
 }
 
-const YouTubeInput = ({ onChangeCallback, initalId }) => {
+const YouTubeInput = ({ onChangeCallback, initialId }) => {
   const [state, setState] = useState({
     url: '',
     youtubeId: false,
   });
   useEffect(() => {
-    if (initalId) {
-      const url = `https://www.youtube.com/watch?v=${initalId}`;
+    if (initialId) {
+      const url = `https://www.youtube.com/watch?v=${initialId}`;
       const id = youtubeParser(url);
       setState({
         url,
         youtubeId: id,
       });
     }
-  }, []);
+  }, [initialId]);
 
   const onChangeField = (value) => {
     const id = youtubeParser(value);
@@ -55,7 +55,7 @@ const YouTubeInput = ({ onChangeCallback, initalId }) => {
 
 YouTubeInput.propTypes = {
   onChangeCallback: PropTypes.func,
-  initalId: PropTypes.string,
+  initialId: PropTypes.string,
 };
 
 export default YouTubeInput;
