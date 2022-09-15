@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
-import { GrClose } from 'react-icons/gr';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
 import { logEvent } from '/services/AnalyticsService';
+import Hamburger from 'hamburger-react';
 
 import UserAvatar from '../UserAvatar';
 import { HEADER_LINKS } from './constants';
@@ -89,25 +88,7 @@ function MobileHeader({ user }) {
   return (
     <SmOnly>
       <Wrapper>
-        {open ? (
-          <GrClose
-            size={28}
-            onClick={() => {
-              setOpen(false);
-            }}
-          />
-        ) : (
-          <Image
-            src="/images/heart.svg"
-            width={36}
-            height={30}
-            onClick={() => {
-              setOpen(true);
-            }}
-            alt="GP"
-          />
-        )}
-        {/*<Hamburger toggled={open} toggle={setOpen} size={24} />*/}
+        <Hamburger toggled={open} toggle={setOpen} size={26} color="#747779" rounded label="Show menu"  />
       </Wrapper>
       <MenuWrapper className={open && 'open'}>
         <Link href="/" className="text-center" passHref>
