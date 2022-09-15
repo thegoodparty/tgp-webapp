@@ -60,6 +60,8 @@ export function CandidatesPage({
     );
   }, []);
 
+  console.log('experimentVariant', experimentVariant);
+
   let { pinned } = router.query;
 
   if (typeof window !== 'undefined') {

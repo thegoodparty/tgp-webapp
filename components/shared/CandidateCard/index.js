@@ -20,6 +20,7 @@ import CandidateRoundAvatar from '../CandidateRoundAvatar';
 import CandidateProgressBar from '../CandidateProgressBar';
 import Modal from '../Modal';
 import LoadingAnimation from '../LoadingAnimation';
+// optimze
 const FollowModal = dynamic(
   () => import('../../CandidateWrapper/FollowModal'),
   {
