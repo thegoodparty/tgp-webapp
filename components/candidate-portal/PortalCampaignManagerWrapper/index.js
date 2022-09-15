@@ -25,6 +25,7 @@ import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import { isValidUrl } from '/helpers/linkHelper';
 import PhoneInput from '../../shared/PhoneInput';
 import CampaignColorPicker from './CampaignColorPicker';
+import YouTubeInput from '../../shared/YouTubeInput';
 
 const Inner = styled.div`
   width: 100%;
@@ -119,7 +120,11 @@ export const fields2 = [
   { label: 'Headline', key: 'headline', required: true },
   { label: 'Summary', key: 'about', isRichText: true, required: true },
   { label: 'Committee name', key: 'committeeName' },
-  { label: 'Campaign Video (YouTube Id)', key: 'heroVideo' },
+  {
+    label: 'Campaign Video (YouTube Id)',
+    key: 'heroVideo',
+    type: 'youtubeInput',
+  },
 ];
 
 export const fields3 = [
@@ -239,14 +244,25 @@ function PortalCampaignManagerWrapper() {
     <PortalPageWrapper role={role} title="Edit Campaign Page">
       <CampaignColorPicker />
       {panels.map((panel, index) => (
-        <PortalPanel color="#EE6C3B" key={panel.label} data-cy="campaign-manage-panel">
+        <PortalPanel
+          color="#EE6C3B"
+          key={panel.label}
+          data-cy="campaign-manage-panel"
+        >
           <Inner>
-            <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="panel-title">{panel.label}</FontH3>
+            <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="panel-title">
+              {panel.label}
+            </FontH3>
             <Grid container spacing={2}>
               {panel.fields.map((field) => (
                 <React.Fragment key={field.key}>
                   {(!field.isHidden || showHidden) && (
-                    <Grid item xs={12} lg={field.columns ? field.columns : 12} data-cy="panel-field">
+                    <Grid
+                      item
+                      xs={12}
+                      lg={field.columns ? field.columns : 12}
+                      data-cy="panel-field"
+                    >
                       {field.isRichText && (
                         <>
                           {field.label}
@@ -289,8 +305,19 @@ function PortalCampaignManagerWrapper() {
                           {errors[field.key] && <Err>{errors[field.key]}</Err>}
                         </>
                       )}
+                      {field.type === 'youtubeInput' && (
+                        <YouTubeInput
+                          initialId={state[field.key] || ''}
+                          onChangeCallback={(value, id) => {
+                            console.log('value', value);
+                            console.log('id', id);
+                            onChangeField(field.key, id);
+                          }}
+                        />
+                      )}
                       {field.type !== 'select' &&
                         !field.isRichText &&
+                        field.type !== 'youtubeInput' &&
                         field.type !== 'phone' && (
                           <TextField
                             fullWidth
