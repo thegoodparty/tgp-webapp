@@ -146,34 +146,19 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                 </a>
               </Link>
             ) : (
-              <>
-                <TopLink>
-                  <Link
-                    href="/login"
-                    passHref
-                    onClick={() => {
-                      logEvent('Link', 'Login', 'Top Nav');
-                    }}
-                  >
-                    <A data-cy="header-login" id="desktop-nav-login">
-                      Login
-                    </A>
-                  </Link>
-                </TopLink>
-                <TopLink>
-                  <Link
-                    href="/register"
-                    passHref
-                    onClick={() => {
-                      logEvent('Link', 'Register', 'Top Nav');
-                    }}
-                  >
-                    <A data-cy="header-register" id="desktop-nav-register">
-                      <strong>Join Us</strong>
-                    </A>
-                  </Link>
-                </TopLink>
-              </>
+              <TopLink>
+                <Link
+                  href="/register"
+                  passHref
+                  onClick={() => {
+                    logEvent('Link', 'Register', 'Top Nav');
+                  }}
+                >
+                  <A data-cy="header-register" id="desktop-nav-register">
+                    <strong>Join Us</strong>
+                  </A>
+                </Link>
+              </TopLink>
             )}
             {user?.isAdmin && (
               <>

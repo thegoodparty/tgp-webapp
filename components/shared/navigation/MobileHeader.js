@@ -88,7 +88,14 @@ function MobileHeader({ user }) {
   return (
     <SmOnly>
       <Wrapper>
-        <Hamburger toggled={open} toggle={setOpen} size={26} color="#747779" rounded label="Show menu"  />
+        <Hamburger
+          toggled={open}
+          toggle={setOpen}
+          size={26}
+          color="#747779"
+          rounded
+          label="Show menu"
+        />
       </Wrapper>
       <MenuWrapper className={open && 'open'}>
         <Link href="/" className="text-center" passHref>
@@ -136,26 +143,15 @@ function MobileHeader({ user }) {
             </a>
           </Link>
         ) : (
-          <>
-            <TopLink>
-              <Link
-                href="/register"
-                passHref
-                className={path === '/register' && 'active'}
-              >
-                <a id="mobile-nav-register">Sign Up</a>
-              </Link>
-            </TopLink>
-            <TopLink>
-              <Link
-                href="/login"
-                passHref
-                className={path === '/login' && 'active'}
-              >
-                <a id="mobile-nav-login">Log In</a>
-              </Link>
-            </TopLink>
-          </>
+          <TopLink>
+            <Link
+              href="/register"
+              passHref
+              className={path === '/register' && 'active'}
+            >
+              <a id="mobile-nav-register">Sign Up</a>
+            </Link>
+          </TopLink>
         )}
         {user?.isAdmin && (
           <div style={{ marginTop: '12px' }}>
