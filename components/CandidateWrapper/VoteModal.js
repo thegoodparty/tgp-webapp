@@ -37,6 +37,14 @@ const ButtonText = styled.div`
   text-transform: initial;
 `;
 
+const Where = styled.div`
+  font-size: 15px;
+  text-align: center;
+  margin-top: 18px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 function VoteModal({
   closeModalCallback,
   checkRegisterVoteCallback,
@@ -54,13 +62,7 @@ function VoteModal({
           <ButtonText>Check to see if you’re registered to vote</ButtonText>
         </BlackButton>
 
-        <BlackButton
-          fullWidth
-          style={{ marginTop: '25px' }}
-          onClick={whereToVoteCallback}
-        >
-          <ButtonText>Find out where to vote</ButtonText>
-        </BlackButton>
+        <Where onClick={whereToVoteCallback}>See where to vote</Where>
       </ButtonsWrapper>
     </Wrapper>
   );

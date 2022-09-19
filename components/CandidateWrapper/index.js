@@ -79,9 +79,10 @@ function CandidateWrapper() {
   const [whereVoteOpen, setWhereVoteOpen] = useState(false);
 
   useEffect(() => {
-    console.log('ca', candidate.state);
-    if (candidate?.state === 'ME') {
-      setVoteModalOpen(true);
+    if (candidate?.state === 'ME' && tab === 'Feed') {
+      setTimeout(() => {
+        setVoteModalOpen(true);
+      }, 10000);
     }
   }, [candidate]);
 
