@@ -30,7 +30,11 @@ const SeeMoreWrapper = styled.div`
   margin: 24px auto 0;
 `;
 
-const FeaturedCampaigns = ({ featuredCandidates, removePadding = false }) => {
+const FeaturedCampaigns = ({
+  featuredCandidates,
+  removePadding = false,
+  title = 'Featured Campaigns',
+}) => {
   let candidates = featuredCandidates;
   if (!candidates || candidates.length === 0) {
     return <></>;
@@ -39,10 +43,17 @@ const FeaturedCampaigns = ({ featuredCandidates, removePadding = false }) => {
   return (
     <Section className={removePadding && 'no-padding'}>
       <MaxWidth>
-        <H3 data-cy="campaigns-title">Featured Campaigns</H3>
+        <H3 data-cy="campaigns-title">{title}</H3>
         <Grid container spacing={3}>
           {candidates.map((candidate) => (
-            <Grid item xs={12} md={6} lg={4} key={candidate.id} data-cy="campaign-card">
+            <Grid
+              item
+              xs={12}
+              md={6}
+              lg={4}
+              key={candidate.id}
+              data-cy="campaign-card"
+            >
               <CandidateCard candidate={candidate} />
             </Grid>
           ))}
