@@ -19,6 +19,7 @@ function* followCandidate({ candidateId }) {
         'Thank you for following indie candidates.',
       ),
     );
+    yield put(actions.loadUserFollowsAction());
   } catch (error) {
     console.log(error);
     yield put(
