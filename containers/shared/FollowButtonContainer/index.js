@@ -11,6 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import FollowButtonWrapper from '/components/shared/FollowButtonWrapper';
+import { getUserCookie } from '/helpers/cookieHelper';
 
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -30,11 +31,11 @@ export function FollowButtonContainer({
   useInjectReducer({ key: 'followButtonContainer', reducer });
   useInjectSaga({ key: 'followButtonContainer', saga });
   const { supports } = followButtonContainer;
-  console.log('container', supports);
-  console.log('followButtonContainer', followButtonContainer);
+
+  const user = getUserCookie()
 
   useEffect(() => {
-    if (!supports) {
+    if (user && !supports) {
       dispatch(actions.loadUserFollowsAction());
     }
   }, []);
