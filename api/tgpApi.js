@@ -185,6 +185,19 @@ export const generateApi = (base) => ({
     withAuth: true,
   },
 
+  follow: {
+    create: {
+      url: `${base}support`,
+      method: 'POST',
+      withAuth: true,
+    },
+    list: {
+      url: `${base}supports`,
+      method: 'GET',
+      withAuth: true,
+    },
+  },
+
   // General
   sendAma: {
     url: `${base}notifications/email-ama`,
@@ -560,6 +573,7 @@ export const generateApi = (base) => ({
       withAuth: true,
     },
   },
+
   candidateUser: {
     issue: {
       find: {

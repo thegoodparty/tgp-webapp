@@ -81,7 +81,9 @@ export function CandidatePage({
   const description = `Join the crowd-voting campaign for ${firstName} ${lastName}, ${partyResolver(
     party,
     otherParty,
-  ).toLowerCase()} for ${race} | ${headline ? ` ${headline} | ` : ' '}Crowd-voting on GOOD PARTY`;
+  ).toLowerCase()} for ${race} | ${
+    headline ? ` ${headline} | ` : ' '
+  }Crowd-voting on GOOD PARTY`;
 
   const childProps = {
     candidate,

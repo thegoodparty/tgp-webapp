@@ -9,12 +9,11 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
 import { CandidateContext } from '/containers/CandidatePage';
+import FollowButtonContainer from '/containers/shared/FollowButtonContainer';
+
 import Row from '../../shared/Row';
 import CandidateRoundAvatar from '../../shared/CandidateRoundAvatar';
-import { Font16 } from '../../shared/typogrophy';
-import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { CandidateWrapperContext } from '../index';
-import { candidateColor, partyRace } from '/helpers/candidatesHelper';
+import { partyRace } from '/helpers/candidatesHelper';
 import Modal from '../../shared/Modal';
 import ClaimModal from './ClaimModal';
 
@@ -60,10 +59,8 @@ const ClaimLink = styled.span`
 
 function CandidateProfile() {
   const { candidate } = useContext(CandidateContext);
-  const { openFollowModalCallback } = useContext(CandidateWrapperContext);
-  const { firstName, lastName, color, isClaimed } = candidate;
+  const { firstName, lastName, isClaimed } = candidate;
   const [showModal, setShowModal] = useState(false);
-  const brightColor = candidateColor(candidate);
 
   return (
     <Row>
@@ -76,24 +73,15 @@ function CandidateProfile() {
         </Name>
         <H2 data-cy="candidate-race">{partyRace(candidate)}</H2>
         <ButtonWrapper>
-          <BlackButton
-            style={{
-              backgroundColor: brightColor,
-              borderColor: brightColor,
-              marginTop: '12px',
-            }}
-            type="submit"
-            onClick={openFollowModalCallback}
-            id="candidate-follow-button"
-            dataCy="candidate-follow-btn"
-          >
-            <InnerButton>FOLLOW</InnerButton>
-          </BlackButton>
+          <FollowButtonContainer candidate={candidate} />
         </ButtonWrapper>
         {!isClaimed && (
           <Claim data-cy="candidate-claimed">
             Is this you?{' '}
-            <ClaimLink onClick={() => setShowModal(true)} data-cy="candidate-claim-page">
+            <ClaimLink
+              onClick={() => setShowModal(true)}
+              data-cy="candidate-claim-page"
+            >
               Claim this page
             </ClaimLink>
           </Claim>
