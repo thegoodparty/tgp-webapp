@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ImCheckmark } from 'react-icons/im';
 
 import { FollowButtonContainerContext } from '/containers/shared/FollowButtonContainer';
@@ -16,12 +16,11 @@ import { getUserCookie } from '/helpers/cookieHelper';
 
 import styled from 'styled-components';
 import Row from '../Row';
+import AlertDialog from '../AlertDialog';
 
-const Wrapper = styled.div`
-  padding: 20px 0;
-  font-weight: 900;
-`;
 function FollowButtonWrapper() {
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+
   const user = getUserCookie();
   const {
     candidate,
@@ -48,6 +47,7 @@ function FollowButtonWrapper() {
     if (user) {
       deleteFollowCandidateCallback(candidate.id);
     }
+    setShowDeleteAlert(false);
   };
   return (
     <>
@@ -58,7 +58,7 @@ function FollowButtonWrapper() {
             borderColor: brightColor,
             marginTop: '12px',
           }}
-          onClick={handleDelete}
+          onClick={() => setShowDeleteAlert(true)}
           id="candidate-follow-button"
           dataCy="candidate-follow-btn"
           className="outlined"
@@ -83,6 +83,14 @@ function FollowButtonWrapper() {
           <InnerButton>FOLLOW</InnerButton>
         </BlackButton>
       )}
+      <AlertDialog
+        open={showDeleteAlert}
+        handleClose={() => setShowDeleteAlert(false)}
+        title={'Unfollow?'}
+        ariaLabel={'Unfollow?'}
+        description={'Are you sure you want to unfollow this candidate?'}
+        handleProceed={handleDelete}
+      />
     </>
   );
 }
