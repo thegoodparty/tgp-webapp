@@ -27,6 +27,7 @@ const Campaign = dynamic(() => import('./Campaign'), {
 const Bio = dynamic(() => import('./Bio'), { loading: () => <>Loading</> });
 import Modal from '../shared/Modal';
 import LoadingAnimation from '../shared/LoadingAnimation';
+import { getCookie, setCookie } from '../../helpers/cookieHelper';
 
 const CheckVoteRegistration = dynamic(
   () => import('../CandidatesWrapper/CheckVoteRegistration'),
@@ -80,9 +81,13 @@ function CandidateWrapper() {
 
   useEffect(() => {
     if (candidate?.state === 'ME' && tab === 'Feed') {
-      setTimeout(() => {
-        setVoteModalOpen(true);
-      }, 10000);
+      const cookie = getCookie('voter-modal-seen');
+      if (cookie !== 'true') {
+        setTimeout(() => {
+          setVoteModalOpen(true);
+          setCookie('voter-modal-seen', 'true');
+        }, 10000);
+      }
     }
   }, [candidate]);
 
