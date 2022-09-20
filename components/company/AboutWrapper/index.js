@@ -32,7 +32,7 @@ function AboutWrapper() {
   const featuredCandidates = useContext(AboutPageContext).featuredCandidates;
   return (
     <PageWrapper>
-      <H1 data-cy="about-title">What does Good Party do?</H1>
+      <H1 data-cy="about-title">What is Good Party?</H1>
       <Intro data-cy="about-description">
         Good Party is <strong>not a political party</strong>. We’re building
         tools to change the rules and a movement of people to disrupt the
