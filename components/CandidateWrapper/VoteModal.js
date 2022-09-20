@@ -55,11 +55,11 @@ function VoteModal({
       <CloseWrapper>
         <IoMdClose onClick={closeModalCallback} className="pointer" />
       </CloseWrapper>
-      <Title>The election is coming up, get ready!</Title>
+      <Title>Elections are coming!  Make Sure You’re Ready!</Title>
 
       <ButtonsWrapper>
         <BlackButton fullWidth onClick={checkRegisterVoteCallback}>
-          <ButtonText>Check to see if you’re registered to vote</ButtonText>
+          <ButtonText>Check Registration</ButtonText>
         </BlackButton>
 
         <Where onClick={whereToVoteCallback}>See where to vote</Where>
