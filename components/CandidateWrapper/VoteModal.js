@@ -59,7 +59,7 @@ function VoteModal({
 
       <ButtonsWrapper>
         <BlackButton fullWidth onClick={checkRegisterVoteCallback}>
-          <ButtonText>Check to see if you’re registered to vote</ButtonText>
+          <ButtonText>Check Registration</ButtonText>
         </BlackButton>
 
         <Where onClick={whereToVoteCallback}>See where to vote</Where>
