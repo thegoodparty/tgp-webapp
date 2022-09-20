@@ -27,6 +27,26 @@ function* followCandidate({ candidateId }) {
     );
   }
 }
+function* deleteFollowCandidate({ candidateId }) {
+  try {
+    let api = tgpApi.follow.delete;
+    const payload = {
+      candidateId,
+    };
+    yield call(requestHelper, api, payload);
+    yield put(
+      snackbarActions.showSnakbarAction(
+        'You are no longer following this candidate.',
+      ),
+    );
+    yield put(actions.loadUserFollowsAction());
+  } catch (error) {
+    console.log(error);
+    yield put(
+      snackbarActions.showSnakbarAction('Error saving your action.', 'error'),
+    );
+  }
+}
 
 function* loadUserFollows() {
   try {
@@ -46,5 +66,6 @@ function* loadUserFollows() {
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.FOLLOW_CANDIDATE, followCandidate);
+  yield takeLatest(types.DELETE_FOLLOW_CANDIDATE, deleteFollowCandidate);
   yield takeLatest(types.LOAD_USER_FOLLOWS, loadUserFollows);
 }

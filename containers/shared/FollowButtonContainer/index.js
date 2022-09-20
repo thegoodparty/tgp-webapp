@@ -25,6 +25,7 @@ export const FollowButtonContainerContext = createContext();
 export function FollowButtonContainer({
   candidate,
   followCandidateCallback,
+  deleteFollowCandidateCallback,
   dispatch,
   followButtonContainer,
 }) {
@@ -32,7 +33,7 @@ export function FollowButtonContainer({
   useInjectSaga({ key: 'followButtonContainer', saga });
   const { supports } = followButtonContainer;
 
-  const user = getUserCookie()
+  const user = getUserCookie();
 
   useEffect(() => {
     if (user && !supports) {
@@ -40,7 +41,12 @@ export function FollowButtonContainer({
     }
   }, []);
 
-  const childProps = { candidate, followCandidateCallback, supports };
+  const childProps = {
+    candidate,
+    followCandidateCallback,
+    deleteFollowCandidateCallback,
+    supports,
+  };
 
   return (
     <FollowButtonContainerContext.Provider value={childProps}>
@@ -53,6 +59,7 @@ FollowButtonContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   candidate: PropTypes.object,
   followCandidateCallback: PropTypes.func,
+  deleteFollowCandidateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -64,6 +71,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     followCandidateCallback: (candidateId) => {
       dispatch(actions.followCandidateAction(candidateId));
+    },
+    deleteFollowCandidateCallback: (candidateId) => {
+      dispatch(actions.deleteFollowCandidateAction(candidateId));
     },
   };
 }

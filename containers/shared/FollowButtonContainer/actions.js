@@ -13,6 +13,13 @@ function followCandidateAction(candidateId) {
   };
 }
 
+function deleteFollowCandidateAction(candidateId) {
+  return {
+    type: types.DELETE_FOLLOW_CANDIDATE,
+    candidateId,
+  };
+}
+
 function loadUserFollowsAction() {
   return {
     type: types.LOAD_USER_FOLLOWS,
@@ -28,6 +35,7 @@ function loadUserFollowsActionSuccess(supports) {
 
 export default {
   followCandidateAction,
+  deleteFollowCandidateAction,
   loadUserFollowsAction,
   loadUserFollowsActionSuccess,
 };

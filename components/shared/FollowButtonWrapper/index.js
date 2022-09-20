@@ -5,6 +5,8 @@
  */
 
 import React, { useContext } from 'react';
+import { ImCheckmark } from 'react-icons/im';
+
 import { FollowButtonContainerContext } from '/containers/shared/FollowButtonContainer';
 import { candidateColor } from '/helpers/candidatesHelper';
 import BlackButton, {
@@ -13,6 +15,7 @@ import BlackButton, {
 import { getUserCookie } from '/helpers/cookieHelper';
 
 import styled from 'styled-components';
+import Row from '../Row';
 
 const Wrapper = styled.div`
   padding: 20px 0;
@@ -20,9 +23,12 @@ const Wrapper = styled.div`
 `;
 function FollowButtonWrapper() {
   const user = getUserCookie();
-  const { candidate, followCandidateCallback, supports } = useContext(
-    FollowButtonContainerContext,
-  );
+  const {
+    candidate,
+    followCandidateCallback,
+    deleteFollowCandidateCallback,
+    supports,
+  } = useContext(FollowButtonContainerContext);
   if (!candidate) {
     return <></>;
   }
@@ -37,10 +43,32 @@ function FollowButtonWrapper() {
       alert('register here');
     }
   };
+
+  const handleDelete = () => {
+    if (user) {
+      deleteFollowCandidateCallback(candidate.id);
+    }
+  };
   return (
     <>
       {isSupported ? (
-        <Wrapper style={{ color: brightColor }}>FOLLOWING</Wrapper>
+        <BlackButton
+          style={{
+            color: brightColor,
+            borderColor: brightColor,
+            marginTop: '12px',
+          }}
+          onClick={handleDelete}
+          id="candidate-follow-button"
+          dataCy="candidate-follow-btn"
+          className="outlined"
+        >
+          <InnerButton>
+            <Row>
+              <ImCheckmark /> <div>&nbsp; FOLLOWING</div>
+            </Row>
+          </InnerButton>
+        </BlackButton>
       ) : (
         <BlackButton
           style={{

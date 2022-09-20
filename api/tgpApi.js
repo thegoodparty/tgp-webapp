@@ -191,6 +191,11 @@ export const generateApi = (base) => ({
       method: 'POST',
       withAuth: true,
     },
+    delete: {
+      url: `${base}support`,
+      method: 'DELETE',
+      withAuth: true,
+    },
     list: {
       url: `${base}supports`,
       method: 'GET',
