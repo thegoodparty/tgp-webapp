@@ -133,14 +133,6 @@ export const TEAM_MEMBERS = [
     partyRole: 'Safari-er',
   },
   {
-    name: 'Chris Goodnight',
-    role: 'Head of Marketing',
-    img: 'https://assets.goodparty.org/team/chris-good.jpg',
-    flipImg: 'https://assets.goodparty.org/team/chris-party.jpg',
-    partyRole: 'Power Chords & Marketing Ballads',
-  },
-
-  {
     name: 'Colton Hess ',
     role: 'Creator Community Lead',
     img: 'https://assets.goodparty.org/team/colton-good.jpg',
@@ -164,7 +156,7 @@ export const TEAM_MEMBERS = [
 
   {
     name: 'Jack Nagel',
-    role: 'Growth Marketer',
+    role: 'Marketing Manager',
     img: 'https://assets.goodparty.org/team/jack-good.png',
     flipImg: 'https://assets.goodparty.org/team/jack-party.png',
     partyRole: 'Curious Plant Dad',
