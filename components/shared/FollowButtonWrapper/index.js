@@ -6,6 +6,7 @@
 
 import React, { useContext, useState } from 'react';
 import { ImCheckmark } from 'react-icons/im';
+//import styled from 'styled-components';
 
 import { FollowButtonContainerContext } from '/containers/shared/FollowButtonContainer';
 import { candidateColor } from '/helpers/candidatesHelper';
@@ -13,13 +14,15 @@ import BlackButton, {
   InnerButton,
 } from '/components/shared/buttons/BlackButton';
 import { getUserCookie } from '/helpers/cookieHelper';
+import RegisterComboContainer from '/containers/shared/RegisterComboContainer';
 
-import styled from 'styled-components';
 import Row from '../Row';
 import AlertDialog from '../AlertDialog';
+import Modal from '../Modal';
 
 function FollowButtonWrapper() {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const user = getUserCookie();
   const {
@@ -39,7 +42,7 @@ function FollowButtonWrapper() {
     if (user) {
       followCandidateCallback(candidate.id);
     } else {
-      alert('register here');
+      setShowRegisterModal(true);
     }
   };
 
@@ -91,6 +94,12 @@ function FollowButtonWrapper() {
         description={'Are you sure you want to unfollow this candidate?'}
         handleProceed={handleDelete}
       />
+      <Modal
+        closeModalCallback={() => setShowRegisterModal(false)}
+        open={showRegisterModal}
+      >
+        <RegisterComboContainer />
+      </Modal>
     </>
   );
 }
