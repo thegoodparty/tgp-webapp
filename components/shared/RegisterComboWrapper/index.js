@@ -39,6 +39,10 @@ const Wrapper = styled.div`
     border-radius: 4px 4px 0 0;
     border-bottom: none;
   }
+  
+  #register-name {
+    border-radius: 0;
+  }
 
   #register-zip {
     border-radius: 0 0 4px 4px;
