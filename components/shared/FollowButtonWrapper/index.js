@@ -101,7 +101,12 @@ function FollowButtonWrapper() {
         closeModalCallback={() => setShowRegisterModal(false)}
         open={showRegisterModal}
       >
-        <RegisterComboContainer />
+        <RegisterComboContainer
+          afterRegisterCallback={() => {
+            followCandidateCallback(candidate.id);
+            setShowRegisterModal(false);
+          }}
+        />
       </Modal>
     </>
   );

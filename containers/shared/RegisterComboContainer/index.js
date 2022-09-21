@@ -17,14 +17,19 @@ import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectRegisterComboContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import actions from '../FollowButtonContainer/actions';
+import registerActions from '../../entrance/RegisterPage/actions';
 
 export const RegisterComboContainerContext = createContext();
 
-export function RegisterComboContainer() {
+export function RegisterComboContainer({
+  registerCallback,
+  afterRegisterCallback,
+}) {
   useInjectReducer({ key: 'registerComboContainer', reducer });
   useInjectSaga({ key: 'registerComboContainer', saga });
 
-  const childProps = {};
+  const childProps = { registerCallback, afterRegisterCallback };
 
   return (
     <RegisterComboContainerContext.Provider value={childProps}>
@@ -35,6 +40,8 @@ export function RegisterComboContainer() {
 
 RegisterComboContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  registerCallback: PropTypes.func,
+  afterRegisterCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -44,6 +51,18 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    registerCallback: (email, name, zip, afterRegisterCallback = () => {}) => {
+      dispatch(
+        registerActions.registerAction(
+          name,
+          email,
+          undefined,
+          zip,
+          afterRegisterCallback,
+          'voteModal',
+        ),
+      );
+    },
   };
 }
 

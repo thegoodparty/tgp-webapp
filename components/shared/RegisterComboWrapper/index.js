@@ -4,13 +4,15 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import BlackButton, { InnerButton } from '../buttons/BlackButton';
+import { isValidEmail } from '../EmailInput';
+import { RegisterComboContainerContext } from '../../../containers/shared/RegisterComboContainer';
 
 const Wrapper = styled.div`
   padding: 32px;
@@ -148,8 +150,51 @@ const LogoWrapper = styled.div`
   }
 `;
 
+const fields = [
+  {
+    name: 'email',
+    type: 'email',
+    placeholder: 'Email',
+  },
+  {
+    name: 'name',
+    type: 'text',
+    placeholder: 'Name',
+  },
+  {
+    name: 'zip',
+    type: 'text',
+    placeholder: 'Zip',
+  },
+];
+
 function RegisterComboWrapper() {
+  const { registerCallback, afterRegisterCallback } = useContext(
+    RegisterComboContainerContext,
+  );
   const [isActive, setIsActive] = useState(false);
+  const [state, setState] = useState({
+    email: '',
+    name: '',
+    zip: '',
+  });
+
+  const onChangeField = (key, val) => {
+    const newState = {
+      ...state,
+      [key]: val,
+    };
+    setState(newState);
+  };
+
+  const canSubmit = () =>
+    isValidEmail(state.email) &&
+    state.name.length > 1 &&
+    state.zip.length === 5;
+
+  const submitForm = () => {
+    registerCallback(state.email, state.name, state.zip, afterRegisterCallback);
+  };
   return (
     <Wrapper>
       <Title>Sign Up</Title>
@@ -161,43 +206,30 @@ function RegisterComboWrapper() {
           <Overflow>
             <Inner className={isActive && 'active'}>
               <Grid container spacing={0}>
-                <Grid xs={12} lg={4}>
-                  <input
-                    name="email"
-                    type="email"
-                    id="register-email"
-                    placeholder="Email"
-                    onBlur={() => setIsActive(false)}
-                    onFocus={() => setIsActive(true)}
-                  />
-                </Grid>
-                <Grid xs={12} lg={4}>
-                  <input
-                    name="name"
-                    type="text"
-                    id="register-name"
-                    placeholder="Name"
-                    onBlur={() => setIsActive(false)}
-                    onFocus={() => setIsActive(true)}
-                  />
-                </Grid>
-                <Grid xs={12} lg={4}>
-                  <input
-                    name="zip"
-                    type="text"
-                    id="register-zip"
-                    placeholder="Zip"
-                    onBlur={() => setIsActive(false)}
-                    onFocus={() => setIsActive(true)}
-                  />
-                </Grid>
+                {fields.map((field) => (
+                  <Grid xs={12} lg={4} map={field.name}>
+                    <input
+                      name={field.name}
+                      type={field.type}
+                      id={`register-${field.name}`}
+                      placeholder={field.placeholder}
+                      value={state[field.name]}
+                      onBlur={() => setIsActive(false)}
+                      onFocus={() => setIsActive(true)}
+                      onChange={(e) =>
+                        onChangeField(field.name, e.target.value)
+                      }
+                    />
+                  </Grid>
+                ))}
               </Grid>
             </Inner>
           </Overflow>
           <ButtonWrapper>
             <BlackButton
               type="submit"
-              style={{ backgroundColor: '#868686', border: '#868686' }}
+              disabled={!canSubmit()}
+              onClick={submitForm}
             >
               <InnerButton style={{ whiteSpace: 'nowrap' }}>
                 JOIN US

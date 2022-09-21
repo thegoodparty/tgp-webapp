@@ -49,7 +49,7 @@ function* register({ name, email, phone, zip, callback, source }) {
       yield put(push(redirectCookie.route));
       deleteSignupRedirectCookie();
     } else {
-      if (source === 'homepageModal') {
+      if (source === 'homepageModal' || source === 'voteModal' ) {
         yield put(
           snackbarActions.showSnakbarAction('Thank you for signing up!'),
         );
