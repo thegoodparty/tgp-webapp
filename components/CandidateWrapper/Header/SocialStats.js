@@ -44,11 +44,13 @@ const ButtonWrapper = styled.div`
 
 function SocialStats() {
   const { candidate, followers } = useContext(CandidateContext);
-  const { openFollowModalCallback } = useContext(CandidateWrapperContext);
-  let thisWeek = 0;
+  const { offsetFollow } = useContext(CandidateWrapperContext);
+
+  console.log('offsetFollow',offsetFollow)
+  let thisWeek = offsetFollow;
   let lastWeek = 0;
   if (followers) {
-    thisWeek = followers.thisWeek;
+    thisWeek = followers.thisWeek + offsetFollow;
     lastWeek = followers.lastWeek;
   }
   const { raceDate, votesNeeded } = candidate;
@@ -56,6 +58,7 @@ function SocialStats() {
   const days = daysTill(raceDate);
 
   const diff = thisWeek - lastWeek || 0;
+  console.log('diff', diff)
 
   return (
     <Wrapper>

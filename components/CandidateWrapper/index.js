@@ -78,6 +78,7 @@ function CandidateWrapper() {
   const [voteModalOpen, setVoteModalOpen] = useState(false);
   const [registerVoteOpen, setRegisterVoteOpen] = useState(false);
   const [whereVoteOpen, setWhereVoteOpen] = useState(false);
+  const [offsetFollow, setOffsetFollow] = useState(0);
 
   useEffect(() => {
     if (candidate?.state === 'ME' && tab === 'Feed') {
@@ -95,6 +96,15 @@ function CandidateWrapper() {
     return <NotFound />;
   }
 
+  const afterFollowCallback = () => {
+    console.log('after cb')
+    setOffsetFollow(offsetFollow + 1);
+  };
+
+  const afterUnfollowCallback = () => {
+    setOffsetFollow(offsetFollow - 1);
+  };
+
   const openFollowModalCallback = () => {
     setFollowModalOpen(true);
   };
@@ -106,6 +116,9 @@ function CandidateWrapper() {
   const contextProps = {
     openFollowModalCallback,
     closeFollowModalCallback,
+    offsetFollow,
+    afterFollowCallback,
+    afterUnfollowCallback,
   };
 
   const checkRegisterVote = () => {

@@ -16,6 +16,7 @@ import CandidateRoundAvatar from '../../shared/CandidateRoundAvatar';
 import { partyRace } from '/helpers/candidatesHelper';
 import Modal from '../../shared/Modal';
 import ClaimModal from './ClaimModal';
+import { CandidateWrapperContext } from '../index';
 
 const Text = styled.div`
   margin-left: 30px;
@@ -59,6 +60,11 @@ const ClaimLink = styled.span`
 
 function CandidateProfile() {
   const { candidate } = useContext(CandidateContext);
+
+  const { afterFollowCallback, afterUnfollowCallback } = useContext(
+    CandidateWrapperContext,
+  );
+
   const { firstName, lastName, isClaimed } = candidate;
   const [showModal, setShowModal] = useState(false);
 
@@ -73,7 +79,11 @@ function CandidateProfile() {
         </Name>
         <H2 data-cy="candidate-race">{partyRace(candidate)}</H2>
         <ButtonWrapper>
-          <FollowButtonContainer candidate={candidate} />
+          <FollowButtonContainer
+            candidate={candidate}
+            afterFollowCallback={afterFollowCallback}
+            afterUnfollowCallback={afterUnfollowCallback}
+          />
         </ButtonWrapper>
         {!isClaimed && (
           <Claim data-cy="candidate-claimed">

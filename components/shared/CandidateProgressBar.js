@@ -102,6 +102,7 @@ const CandidateProgressBar = ({
 }) => {
   const [barWidth, setBarWidth] = useState(0);
   const [peopleThisWeek, setPeopleThisWeek] = useState(0);
+  const [isRendered, setIsRendered] = useState(false);
   const weeksToElection = Math.ceil(days / 7);
   let neededToWin = votesNeeded - peopleSoFar;
   if (neededToWin < 0) {
@@ -144,7 +145,7 @@ const CandidateProgressBar = ({
   }
 
   useEffect(() => {
-    if (withAnimation) {
+    if (withAnimation && !isRendered) {
       setTimeout(() => {
         setBarWidth(50);
       }, 100);
@@ -176,7 +177,8 @@ const CandidateProgressBar = ({
       setBarWidth(progress);
       setPeopleThisWeek(peopleThisPeriod);
     }
-  }, []);
+    setIsRendered(true);
+  }, [peopleThisPeriod]);
 
   return (
     <div>

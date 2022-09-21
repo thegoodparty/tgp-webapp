@@ -31,7 +31,10 @@ function FollowButtonWrapper() {
     deleteFollowCandidateCallback,
     supports,
     fullWidth = false,
+    afterFollowCallback,
+    afterUnfollowCallback,
   } = useContext(FollowButtonContainerContext);
+
   if (!candidate) {
     return <></>;
   }
@@ -42,6 +45,10 @@ function FollowButtonWrapper() {
   const handleClick = () => {
     if (user) {
       followCandidateCallback(candidate.id);
+      console.log('calling after follow', afterFollowCallback);
+      if (afterFollowCallback) {
+        afterFollowCallback();
+      }
     } else {
       setShowRegisterModal(true);
     }
@@ -50,6 +57,9 @@ function FollowButtonWrapper() {
   const handleDelete = () => {
     if (user) {
       deleteFollowCandidateCallback(candidate.id);
+      if (afterUnfollowCallback) {
+        afterUnfollowCallback();
+      }
     }
     setShowDeleteAlert(false);
   };
