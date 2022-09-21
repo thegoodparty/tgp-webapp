@@ -15,6 +15,7 @@ import { daysTill } from '/helpers/dateHelper';
 import { candidateColor } from '/helpers/candidatesHelper';
 import CandidateProgressBar from '/components/shared/CandidateProgressBar';
 import { CandidateWrapperContext } from '../index';
+import FollowButtonContainer from '../../../containers/shared/FollowButtonContainer';
 
 const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
@@ -68,17 +69,7 @@ function SocialStats() {
         />
 
         <ButtonWrapper>
-          <BlackButton
-            fullWidth
-            style={{
-              backgroundColor: brightColor,
-              borderColor: brightColor,
-            }}
-            onClick={openFollowModalCallback}
-            dataCy="candidate-follow-btn"
-          >
-            <InnerButton>FOLLOW</InnerButton>
-          </BlackButton>
+          <FollowButtonContainer candidate={candidate} fullWidth />
         </ButtonWrapper>
       </Inner>
     </Wrapper>

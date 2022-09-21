@@ -30,6 +30,7 @@ function FollowButtonWrapper() {
     followCandidateCallback,
     deleteFollowCandidateCallback,
     supports,
+    fullWidth = false,
   } = useContext(FollowButtonContainerContext);
   if (!candidate) {
     return <></>;
@@ -65,6 +66,7 @@ function FollowButtonWrapper() {
           id="candidate-follow-button"
           dataCy="candidate-follow-btn"
           className="outlined"
+          fullWidth={fullWidth}
         >
           <InnerButton>
             <Row>
@@ -82,6 +84,7 @@ function FollowButtonWrapper() {
           onClick={handleClick}
           id="candidate-follow-button"
           dataCy="candidate-follow-btn"
+          fullWidth={fullWidth}
         >
           <InnerButton>FOLLOW</InnerButton>
         </BlackButton>

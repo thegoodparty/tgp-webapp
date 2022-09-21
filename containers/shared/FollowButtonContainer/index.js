@@ -28,6 +28,7 @@ export function FollowButtonContainer({
   deleteFollowCandidateCallback,
   dispatch,
   followButtonContainer,
+  fullWidth,
 }) {
   useInjectReducer({ key: 'followButtonContainer', reducer });
   useInjectSaga({ key: 'followButtonContainer', saga });
@@ -46,6 +47,7 @@ export function FollowButtonContainer({
     followCandidateCallback,
     deleteFollowCandidateCallback,
     supports,
+    fullWidth,
   };
 
   return (
@@ -60,6 +62,7 @@ FollowButtonContainer.propTypes = {
   candidate: PropTypes.object,
   followCandidateCallback: PropTypes.func,
   deleteFollowCandidateCallback: PropTypes.func,
+  fullWidth: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
