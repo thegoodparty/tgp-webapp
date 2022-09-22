@@ -30,38 +30,18 @@ const Wrapper = styled.div`
     border: 1px solid #c2c2c2;
     width: 100%;
     outline: none;
+    border-radius: 4px;
+    margin-bottom: 8px;
 
     &:focus {
       border: 1px solid #000;
     }
   }
-  #register-email {
-    border-radius: 4px 4px 0 0;
-  }
-
-  #register-name {
-    border-radius: 0;
-    border-bottom: none;
-    border-top: none;
-  }
-
-  #register-zip {
-    border-radius: 0 0 4px 4px;
-  }
 
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     input {
-      border-radius: 4px;
-    }
-    #register-email {
-      border: 1px solid #c2c2c2;
-      border-radius: 4px;
-    }
-
-    #register-zip {
-      border: 1px solid #c2c2c2;
-      border-radius: 4px;
+      margin-bottom: 0;
     }
   }
 `;
