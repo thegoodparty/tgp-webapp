@@ -37,16 +37,16 @@ const Wrapper = styled.div`
   }
   #register-email {
     border-radius: 4px 4px 0 0;
-    border-bottom: none;
   }
-  
+
   #register-name {
     border-radius: 0;
+    border-bottom: none;
+    border-top: none;
   }
 
   #register-zip {
     border-radius: 0 0 4px 4px;
-    border-top: none;
   }
 
   @media only screen and (min-width: ${({ theme }) =>
