@@ -119,8 +119,8 @@ function CandidateCard({ candidate, doubleButton = false }) {
   let thisWeek = 0;
   let lastWeek = 0;
   if (followers) {
-    thisWeek = followers.thisWeek + support.thisWeek;
-    lastWeek = followers.lastWeek + support.lastWeek;
+    thisWeek = followers.thisWeek + support ? support.thisWeek : 0;
+    lastWeek = followers.lastWeek + support ? support.lastWeek : 0;
   }
 
   const days = daysTill(raceDate);

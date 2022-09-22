@@ -33,14 +33,14 @@ const ButtonWrapper = styled.div`
 `;
 
 const CandidateMiniCard = ({ candidate }) => {
-  const { firstName, lastName, followers, raceDate, votesNeeded, color } =
+  const { firstName, lastName, followers, raceDate, votesNeeded, support } =
     candidate;
 
   let thisWeek = 0;
   let lastWeek = 0;
   if (followers) {
-    thisWeek = followers.thisWeek;
-    lastWeek = followers.lastWeek;
+    thisWeek = followers.thisWeek + support ? support.thisWeek : 0;
+    lastWeek = followers.lastWeek + support ? support.lastWeek : 0;
   }
 
   const days = daysTill(raceDate);
