@@ -185,7 +185,11 @@ function RegisterComboWrapper() {
       <SubTitle>
         Get Good Party updates and track indie campaigns near you!
       </SubTitle>
-      <form noValidate onSubmit={(e) => e.preventDefault()}>
+      <form
+        noValidate
+        onSubmit={(e) => e.preventDefault()}
+        id="register-combo-form"
+      >
         <ResponsiveRow>
           <Overflow>
             <Inner className={isActive && 'active'}>
