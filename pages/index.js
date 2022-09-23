@@ -46,6 +46,7 @@ export async function getServerSideProps(context) {
   } catch (e) {
     homepageCandidates = [];
   }
+
   return {
     props: {
       ssrState: {

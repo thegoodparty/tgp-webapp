@@ -97,7 +97,6 @@ function CandidateWrapper() {
   }
 
   const afterFollowCallback = () => {
-    console.log('after cb')
     setOffsetFollow(offsetFollow + 1);
   };
 

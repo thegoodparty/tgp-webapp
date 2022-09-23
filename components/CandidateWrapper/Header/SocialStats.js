@@ -46,7 +46,6 @@ function SocialStats() {
   const { candidate, followers } = useContext(CandidateContext);
   const { offsetFollow } = useContext(CandidateWrapperContext);
 
-  console.log('offsetFollow',offsetFollow)
   let thisWeek = offsetFollow;
   let lastWeek = 0;
   if (followers) {
@@ -58,7 +57,6 @@ function SocialStats() {
   const days = daysTill(raceDate);
 
   const diff = thisWeek - lastWeek || 0;
-  console.log('diff', diff)
 
   return (
     <Wrapper>
