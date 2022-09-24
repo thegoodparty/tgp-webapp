@@ -19,6 +19,7 @@ import RegisterComboContainer from '/containers/shared/RegisterComboContainer';
 import Row from '../Row';
 import AlertDialog from '../AlertDialog';
 import Modal from '../Modal';
+import { candidateRoute } from '../../../helpers/electionsHelper';
 
 function FollowButtonWrapper() {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
@@ -116,6 +117,7 @@ function FollowButtonWrapper() {
             followCandidateCallback(candidate.id);
             setShowRegisterModal(false);
           }}
+          afterLoginRoute={candidateRoute(candidate)}
         />
       </Modal>
     </>

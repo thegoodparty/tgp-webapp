@@ -13,6 +13,8 @@ import Image from 'next/image';
 import BlackButton, { InnerButton } from '../buttons/BlackButton';
 import { isValidEmail } from '../EmailInput';
 import { RegisterComboContainerContext } from '../../../containers/shared/RegisterComboContainer';
+import { setCookie } from '../../../helpers/cookieHelper';
+import { candidateRoute } from '../../../helpers/electionsHelper';
 
 const Wrapper = styled.div`
   padding: 32px;
@@ -153,9 +155,8 @@ const fields = [
 ];
 
 function RegisterComboWrapper() {
-  const { registerCallback, afterRegisterCallback } = useContext(
-    RegisterComboContainerContext,
-  );
+  const { registerCallback, afterRegisterCallback, afterLoginRoute } =
+    useContext(RegisterComboContainerContext);
   const [isActive, setIsActive] = useState(false);
   const [state, setState] = useState({
     email: '',
@@ -178,6 +179,12 @@ function RegisterComboWrapper() {
 
   const submitForm = () => {
     registerCallback(state.email, state.name, state.zip, afterRegisterCallback);
+  };
+
+  const setReturnCookie = () => {
+    if (afterLoginRoute) {
+      setCookie('returnUrlLogin', afterLoginRoute);
+    }
   };
   return (
     <Wrapper>
@@ -230,7 +237,7 @@ function RegisterComboWrapper() {
         <div>
           Already signed up?{' '}
           <Link href="/login" passHref>
-            <a className="underline">
+            <a className="underline" onClick={setReturnCookie}>
               <strong>Login</strong>
             </a>
           </Link>

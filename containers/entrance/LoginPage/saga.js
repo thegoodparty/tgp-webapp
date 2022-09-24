@@ -8,6 +8,7 @@ import {
   setUserCookie,
   getSignupRedirectCookie,
   deleteSignupRedirectCookie,
+  getCookie,
 } from '/helpers/cookieHelper';
 
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
@@ -83,18 +84,21 @@ function* socialLogin({ user }) {
     const response = yield call(requestHelper, api, payload);
     const accessToken = response.token;
     const responseUser = response.user;
+    setUserCookie(responseUser);
+    setCookie('token', accessToken);
+
     // yield put(actions.confirmEmailActionSuccess(responseUser, accessToken));
     const cookieRedirect = getSignupRedirectCookie();
-
-    if (cookieRedirect) {
+    const returnCookie = getCookie('returnUrlLogin');
+    if (returnCookie) {
+      deleteCookie('returnUrlLogin');
+      yield put(push(returnCookie));
+    } else if (cookieRedirect) {
       yield put(push(cookieRedirect.route));
       deleteSignupRedirectCookie();
     } else {
       yield put(push('/'));
     }
-
-    setUserCookie(responseUser);
-    setCookie('token', accessToken);
 
     yield put(
       snackbarActions.showSnakbarAction(`Welcome back ${responseUser.name}`),

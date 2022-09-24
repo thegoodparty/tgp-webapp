@@ -7,6 +7,7 @@ import candidateActions from '/containers/CandidatePage/actions';
 import snackbarActions from '/containers/shared/SnackbarContainer/actions';
 import {
   deleteCookie,
+  getCookie,
   getSignupRedirectCookie,
   getUserCookie,
   setCookie,
@@ -45,9 +46,13 @@ function* confirmCode({ code, value, valueType }) {
       setCookie('token', token);
     }
     const returnUrl = queryHelper(window.location.search, 'returnUrl');
+    const returnCookie = getCookie('returnUrlLogin');
     yield put(globalActions.refreshTokenAction());
     if (returnUrl) {
       yield put(push(returnUrl));
+    } else if (returnCookie) {
+      deleteCookie('returnUrlLogin');
+      yield put(push(returnCookie));
     } else {
       if (!user.hasPassword) {
         yield put(push('/register/password-creation'));

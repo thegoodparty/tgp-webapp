@@ -25,11 +25,16 @@ export const RegisterComboContainerContext = createContext();
 export function RegisterComboContainer({
   registerCallback,
   afterRegisterCallback,
+  afterLoginRoute,
 }) {
   useInjectReducer({ key: 'registerComboContainer', reducer });
   useInjectSaga({ key: 'registerComboContainer', saga });
 
-  const childProps = { registerCallback, afterRegisterCallback };
+  const childProps = {
+    registerCallback,
+    afterRegisterCallback,
+    afterLoginRoute,
+  };
 
   return (
     <RegisterComboContainerContext.Provider value={childProps}>
@@ -42,6 +47,7 @@ RegisterComboContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   registerCallback: PropTypes.func,
   afterRegisterCallback: PropTypes.func,
+  afterLoginRoute: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
