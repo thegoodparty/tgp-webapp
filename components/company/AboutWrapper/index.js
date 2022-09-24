@@ -91,7 +91,7 @@ function AboutWrapper() {
       <FeaturedCampaigns
         featuredCandidates={featuredCandidates}
         removePadding
-        title="Meet some Good Certified Candidates"
+        title="Meet some Good Party Certified Candidates"
       />
     </PageWrapper>
   );

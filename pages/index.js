@@ -1,7 +1,7 @@
 import HomePage from '/containers/HomePage';
 import tgpApi from '/api/tgpApi';
 
-const PULSAR_SEARCH_ID = '86f3d427847eb953d2cbba3ba681a372'
+const PULSAR_SEARCH_ID = '86f3d427847eb953d2cbba3ba681a372';
 
 export default function Home({ ssrState }) {
   return <HomePage ssrState={ssrState} />;
