@@ -52,7 +52,7 @@ function AboutWrapper() {
         across the political spectrum have{' '}
         <strong>a real chance of running and winning elections</strong>, for the
         first time in modern history!{' '}
-        <Link href="/team" passHref>
+        <Link href="/register" passHref>
           <a className="underline">Join Us</a>
         </Link>
       </Intro>
