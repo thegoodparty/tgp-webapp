@@ -90,7 +90,7 @@ Original Readme below
     <img src="https://opencollective.com/react-boilerplate/sponsors/badge.svg" alt="Sponsors" />
   </a>
   <a href="http://thinkmill.com.au/?utm_source=github&utm_medium=badge&utm_campaign=react-boilerplate">
-    <img alt="Supported by Thinkmill" src="https://thinkmill.github.io/badge/heart.svg" />
+    <img alt="GP" src="https://thinkmill.github.io/badge/heart.svg" />
   </a>
 </div>
 

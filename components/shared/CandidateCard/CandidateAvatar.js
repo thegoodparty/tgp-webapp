@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getPartyImage } from '../../../helpers/candidatesHelper';
+import { candidateColor, getPartyImage } from '/helpers/candidatesHelper';
 
 const ChallengerAvatarWrapper = styled.div`
   width: 58px;
@@ -115,14 +115,17 @@ const CandidateAvatar = ({
   centered = false,
   partyBadge = false,
   hideBadge = false,
+  candidate,
 }) => {
   let PartyImg = getPartyImage(partyBadge, party, hideBadge);
+  const brightColor = candidateColor(candidate);
+
   return (
     <ChallengerAvatarWrapper
       className={size}
       style={centered ? { margin: '0 auto' } : {}}
     >
-      <ImageWrapper>
+      <ImageWrapper style={{ borderColor: brightColor }}>
         {size === 'small' ? (
           <LazyLoadImage
             src={avatar || 'https://assets.goodparty.org/gray-heart.png'}
@@ -136,8 +139,9 @@ const CandidateAvatar = ({
           <Img
             className={size}
             style={{
-              backgroundImage: `url(${avatar ||
-                'https://assets.goodparty.org/gray-heart.png'})`,
+              backgroundImage: `url(${
+                avatar || 'https://assets.goodparty.org/gray-heart.png'
+              })`,
             }}
           />
         )}
@@ -145,8 +149,9 @@ const CandidateAvatar = ({
       {PartyImg && (
         <PartyIcon
           src={PartyImg}
-          className={`full-image ${size} party-${party} ${partyBadge &&
-            'no-bg'}`}
+          className={`full-image ${size} party-${party} ${
+            partyBadge && 'no-bg'
+          }`}
           alt="badge"
         />
       )}

@@ -4,22 +4,37 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Image from 'next/image';
-import Grid from '@material-ui/core/Grid';
-import { partyResolver } from '/helpers/electionsHelper';
 import Link from 'next/link';
-import { Font16, FontH3 } from '../typogrophy';
+import Grid from '@material-ui/core/Grid';
+import dynamic from 'next/dynamic';
+
+import { candidateColor, partyRace } from '/helpers/candidatesHelper';
+import { daysTill } from '/helpers/dateHelper';
+
+import { FontH3 } from '../typogrophy';
 import BlackButton from '../buttons/BlackButton';
-import SupportersProgressBar from '../../CandidateWrapper/left/SupportersProgressBar';
-import { achievementsHelper } from '../../../helpers/achievementsHelper';
-import { numberFormatter } from '../../../helpers/numberHelper';
+import CandidateRoundAvatar from '../CandidateRoundAvatar';
+import CandidateProgressBar from '../CandidateProgressBar';
+import Modal from '../Modal';
+import LoadingAnimation from '../LoadingAnimation';
+// optimze
+const FollowModal = dynamic(
+  () => import('../../CandidateWrapper/FollowModal'),
+  {
+    loading: () => (
+      <>
+        <LoadingAnimation fullPage={false} />
+      </>
+    ),
+  },
+);
 
 const Wrapper = styled.div`
   border-radius: 16px;
-  padding: 16px 16px 100px;
+  padding: 26px 26px 100px;
   border: 2px solid #ededed;
   color: #000;
   height: 100%;
@@ -28,19 +43,12 @@ const Wrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  position: relative;
-  height: 375px;
-
-  img {
-    object-fit: contain;
-    object-position: center center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
+  display: flex;
+  justify-content: center;
 `;
 
 const Content = styled.div`
-  padding: 24px 8px 8px;
+  margin-top: 24px;
 `;
 
 const Name = styled(FontH3)`
@@ -53,30 +61,12 @@ const Gray = styled.div`
   color: #4d4d4d;
 `;
 
-const SoFar = styled.div`
-  margin-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const Quote = styled.div`
-  border-left: solid 2px #e6e6e6;
-  margin: 24px 0;
-  padding-left: 16px;
-  font-weight: 600;
-  font-size: 14px;
-  font-style: italic;
-  min-height: 36px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
-
 const Positions = styled.div`
-  margin-top: 24px;
+  margin-top: 14px;
   font-weight: 600;
   font-size: 14px;
+  height: 56px;
+  overflow: hidden;
 `;
 
 const Position = styled.div`
@@ -84,7 +74,7 @@ const Position = styled.div`
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 11px;
-  background-color: #e1e1e1;
+  background-color: #f3f3f3;
   margin: 4px 4px 0 0;
 `;
 
@@ -95,102 +85,159 @@ const ButtonWrapper = styled.div`
   width: calc(100% - 48px);
 `;
 
-const MAX_POSITIONS = 3;
+const MAX_POSITIONS = 6;
 
-function CandidateCard({ candidate }) {
+function CandidateCard({ candidate, doubleButton = false }) {
   const {
     id,
     firstName,
     lastName,
-    image,
-    race,
-    supporters,
-    party,
-    otherParty,
-    headline,
     positions,
-    color,
+    followers,
+    raceDate,
+    votesNeeded,
+    support,
   } = candidate;
-  const achievements = achievementsHelper(supporters);
-  const brightColor = color?.color ? color.color : '#000';
+
+  // optimize code
+  const [showModal, setShowModal] = useState(false);
+  const handleFollow = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowModal(true);
+  };
+
+  // end optimize code
+
+  const brightColor = candidateColor(candidate);
   let topPositions = positions;
 
   if (positions && positions.length > MAX_POSITIONS) {
     topPositions = positions.slice(0, MAX_POSITIONS);
   }
+
+  let thisWeek = 0;
+  let lastWeek = 0;
+  if (followers) {
+    thisWeek = followers.thisWeek + (support ? support.thisWeek : 0);
+    lastWeek = followers.lastWeek + (support ? support.lastWeek : 0);
+  }
+
+  const days = daysTill(raceDate);
+  const diff = thisWeek - lastWeek;
   return (
-    <Link
-      href={`/candidate/${firstName}-${lastName}/${id}`}
-      passHref
-      style={{ height: '100%' }}
-    >
-      <a style={{ height: '100%' }} className="no-underline" data-cy="candidate-link">
-        <Wrapper>
-          <ImageWrapper>
-            {image && (
-              <Image
-                src={image}
-                layout="fill"
-                alt={`${firstName} ${lastName}`}
-                data-cy="candidate-img"
-              />
-            )}
-          </ImageWrapper>
-          <Content>
-            <Name data-cy="candidate-name">
-              {firstName} {lastName}
-            </Name>
-            <Gray data-cy="candidate-party">
-              {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
-              Candidate <br />
-              for <strong>{race}</strong>
-            </Gray>
-            <SoFar>
-              <strong>
-                {supporters} {supporters === 1 ? 'person' : 'people'} endorsed.
-              </strong>
-              <div>
-                Let&apos;s get to {numberFormatter(achievements.nextStep)}!
-              </div>
-            </SoFar>
-            <SupportersProgressBar
-              showSupporters={false}
-              votesNeeded={achievements.nextStep}
-              peopleSoFar={supporters}
-              fullWidth
-              showSuffix={false}
-              color={brightColor}
-              // withAchievement
-            />
-            <Quote>{headline}</Quote>
-            {topPositions && topPositions.length > 0 && (
+    <>
+      <Link
+        href={`/candidate/${firstName}-${lastName}/${id}`}
+        passHref
+        style={{ height: '100%' }}
+      >
+        <a
+          style={{ height: '100%' }}
+          className="no-underline candidate-card"
+          data-cy="candidate-link"
+          id={`candidate-card-${firstName}-${lastName}`}
+        >
+          <Wrapper>
+            <ImageWrapper>
+              <CandidateRoundAvatar candidate={candidate} large />
+            </ImageWrapper>
+            <Content>
+              <Name data-cy="candidate-name">
+                {firstName} {lastName}
+              </Name>
+              <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
               <Positions>
-                <div style={{ marginBottom: '12px' }} data-cy="position-title">
-                  Top Issues for this candidate
-                </div>
-                {topPositions.map((position) => (
-                  <Position key={position.id} data-cy="position">{position.name}</Position>
+                {(topPositions || []).map((position) => (
+                  <Position key={position.id} data-cy="position">
+                    {position.name}
+                  </Position>
                 ))}
               </Positions>
-            )}
-            <ButtonWrapper>
-              <BlackButton
-                fullWidth
-                style={{
-                  textTransform: 'none',
-                  marginTop: '32px',
-                  backgroundColor: brightColor,
-                  borderColor: brightColor,
-                }}
-                data-cy="candidate-view"
-              >
-                View Campaign
-              </BlackButton>
-            </ButtonWrapper>
-          </Content>
-        </Wrapper>
-      </a>
-    </Link>
+
+              <div style={{ margin: '32px 0 4px' }}>
+                <CandidateProgressBar
+                  votesNeeded={votesNeeded}
+                  peopleSoFar={thisWeek}
+                  peopleThisPeriod={diff}
+                  color={brightColor}
+                  days={days}
+                  withAnimation={false}
+                />
+              </div>
+
+              <ButtonWrapper>
+                <Grid container spacing={2}>
+                  {doubleButton && (
+                    <Grid item xs={6}>
+                      <BlackButton
+                        fullWidth
+                        style={{
+                          textTransform: 'none',
+                          marginTop: '32px',
+                          backgroundColor: brightColor,
+                          borderColor: brightColor,
+                        }}
+                        data-cy="candidate-view"
+                        onClick={handleFollow}
+                        className="follow-button-card"
+                      >
+                        Follow
+                      </BlackButton>
+                    </Grid>
+                  )}
+                  {doubleButton ? (
+                    <Grid item xs={6}>
+                      <BlackButton
+                        fullWidth
+                        className="outlined view-button-card"
+                        style={{
+                          textTransform: 'none',
+                          marginTop: '32px',
+                          color: brightColor,
+                          borderColor: brightColor,
+                        }}
+                        data-cy="candidate-view"
+                      >
+                        View
+                      </BlackButton>
+                    </Grid>
+                  ) : (
+                    <Grid item xs={12}>
+                      <BlackButton
+                        fullWidth
+                        className="view-button-card"
+                        style={{
+                          textTransform: 'none',
+                          marginTop: '32px',
+                          backgroundColor: brightColor,
+                          borderColor: brightColor,
+                        }}
+                        data-cy="candidate-view"
+                      >
+                        View
+                      </BlackButton>
+                    </Grid>
+                  )}
+                </Grid>
+              </ButtonWrapper>
+            </Content>
+          </Wrapper>
+        </a>
+      </Link>
+      {showModal && (
+        <Modal
+          open={showModal}
+          showCloseButton={false}
+          closeModalCallback={() => setShowModal(false)}
+        >
+          <FollowModal
+            inputCandidate={candidate}
+            closeModalCallback={() => setShowModal(false)}
+          />
+        </Modal>
+      )}
+    </>
   );
 }
 

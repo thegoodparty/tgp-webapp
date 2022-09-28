@@ -25,27 +25,32 @@ import adminUsersSaga from '../AdminUsersPage/saga';
 import adminUsersActions from '../AdminUsersPage/actions';
 import makeSelectAdminUsersPage from '../AdminUsersPage/selectors';
 import actions from '../AdminUsersPage/actions';
+import { getUserCookie } from '../../../helpers/cookieHelper';
 
 export const AdminPageContext = createContext();
 
-export function AdminPage({ userState, dispatch, adminUsersPage, loadUsersCallback }) {
+export function AdminPage({
+  userState,
+  dispatch,
+  adminUsersPage,
+  loadUsersCallback,
+}) {
   useInjectReducer({ key: 'adminPage', reducer });
   useInjectSaga({ key: 'adminPage', saga });
   useInjectReducer({ key: 'adminUsersPage', reducer: adminUsersReducer });
   useInjectSaga({ key: 'adminUsersPage', saga: adminUsersSaga });
 
-  const { user } = userState;
   const { users } = adminUsersPage;
+  const user = getUserCookie(true);
+
+
 
   useEffect(() => {
     dispatch(adminUsersActions.loadAllUsers('All time'));
-  }, []);
-
-  useEffect(() => {
-    if (user && !user.isAdmin) {
+    if (!user || !user.isAdmin) {
       dispatch(push('/'));
     }
-  }, [user]);
+  }, []);
 
   const childProps = {
     users,

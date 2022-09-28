@@ -31,16 +31,39 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
       payload.guestUuid = guestUuid;
     }
 
+    const followCookie = getCookie('twitter-follow');
+    if (followCookie) {
+      payload.candidateFollow = parseInt(followCookie, 10);
+    }
+
     const { user, token } = yield call(requestHelper, api, payload);
-    setUserCookie(user);
-    setCookie('token', token);
-    if (user.zip && user.hasPassword) {
-      yield put(push('/'));
-    } else if (!user.hasPassword) {
-      yield put(push('/register/password-creation'));
-      yield call(setupCrew);
+    if (followCookie) {
+      yield put(push('/candidates'));
+      yield put(
+        snackbarActions.showSnakbarAction(
+          'Thank you for supporting indie candidates!',
+        ),
+      );
+      let followed = getCookie('twitter-followed');
+      if (followed) {
+        followed = JSON.parse(followed);
+      } else {
+        followed = [];
+      }
+      followed.push(parseInt(followCookie, 10)); // the candidate id
+      setCookie('twitter-followed', JSON.stringify(followed), 365);
+      deleteCookie('twitter-follow');
     } else {
-      yield put(push('/register/set-zipcode'));
+      setUserCookie(user);
+      setCookie('token', token);
+      if (user.zip && user.hasPassword) {
+        yield put(push('/'));
+      } else if (!user.hasPassword) {
+        yield put(push('/register/password-creation'));
+        yield call(setupCrew);
+      } else {
+        yield put(push('/register/set-zipcode'));
+      }
     }
   } catch (error) {
     if (error.response?.exists) {

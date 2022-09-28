@@ -4,6 +4,7 @@ import { push } from 'connected-next-router';
 import requestHelper from '/helpers/requestHelper';
 import {
   deleteCookie,
+  getCookie,
   setCookie,
   setUserCookie,
 } from '/helpers/cookieHelper';
@@ -26,7 +27,11 @@ function* login({ value, password, valueType }) {
     setCookie('token', token);
     deleteCookie('login-value');
     deleteCookie('login-value-type');
-    if (user.zip) {
+    const returnCookie = getCookie('returnUrlLogin');
+    if (returnCookie) {
+      deleteCookie('returnUrlLogin');
+      yield put(push(returnCookie));
+    } else if (user.zip) {
       if (user.candidate) {
         yield put(push('/candidate-portal'));
       } else {

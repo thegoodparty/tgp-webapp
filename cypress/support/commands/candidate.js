@@ -1,55 +1,34 @@
-import promisify from 'cypress-promise';
-import { candidateName, candidatePhoto, runningFor } from '../../../helpers/applicationHelper';
+import { candidateName, runningFor } from '../../../helpers/applicationHelper';
 import { candidateRoute, partyResolver } from '../../../helpers/electionsHelper';
 import { numberFormatter } from '../../../helpers/numberHelper';
 import { dateUsHelper } from '../../../helpers/dateHelper';
+
+Cypress.Commands.add('testCandidatePartyRace', (id, candidate) => {
+  const { party, otherParty, race } = candidate;
+  cy.get(`[data-cy=${id}]`)
+    .contains(partyResolver(party, otherParty))
+    .contains(race);
+});
 
 Cypress.Commands.add('testCandidateMiniCard', ($el, candidate) => {
   const {
     firstName,
     lastName,
-    race,
-    party,
-    supporters,
-    headline,
   } = candidate;
   cy.wrap($el)
-    .find('[data-cy=mini-name]')
+    .find('[data-cy=candidate-name]')
     .contains(firstName)
     .contains(lastName);
   cy.wrap($el)
-    .find('[data-cy=mini-race]')
-    .contains(race);
+    .find('[data-cy=candidate-view]')
+    .contains("View Campaign");
   cy.wrap($el)
-    .find('[data-cy=mini-party-icon]')
-    .should('have.attr', 'src', '/images/homepage/party-icon.svg');
-  cy.wrap($el)
-    .find('[data-cy=mini-party]')
-    .contains(partyResolver(party));
-  cy.wrap($el)
-    .find('[data-cy=mini-bubble-icon]')
-    .should('have.attr', 'src', '/images/homepage/talk-bubble-icon.svg');
-  cy.wrap($el)
-    .find('[data-cy=mini-headline]')
-    .contains(headline);
-  cy.wrap($el)
-    .find('[data-cy=mini-endorsements]')
-    .contains(`${numberFormatter(supporters)} endorsements`);
-  cy.wrap($el)
-    .find('[data-cy=mini-more]')
+    .find('[data-cy=candidate-link]')
     .should('have.attr', 'href', candidateRoute(candidate));
-  cy.wrap($el)
-    .find('[data-cy=mini-more]')
-    .contains(`See Campaign`);
-  // cy.wrap($el)
-  //   .find('[data-cy=candidate-role]')
-  //   .should('contain', partyResolver(candidate.party))
-  //   .and('contain', candidate.isIncumbent ? 'INCUMBENT' : '');
 });
 
 Cypress.Commands.add('testCandidateCard', ($el, candidate) => {
   const {
-    id,
     firstName,
     lastName,
     party,
@@ -65,15 +44,11 @@ Cypress.Commands.add('testCandidateCard', ($el, candidate) => {
     .contains(partyResolver(party, otherParty));
   if(positions && positions.length > 0) {
     cy.wrap($el)
-      .find('[data-cy=position-title]')
-      .contains("Top Issues for this candidate");
-    console.log(positions)
-    cy.wrap($el)
       .find('[data-cy=position]')
       .should('have.length', positions.length);
   }
 });
-  
+
 Cypress.Commands.add('testFeaturedCampaignsComponent', (homepageCandidates) => {
   cy.get('[data-cy=campaigns-title]')
     .contains("Featured Campaigns");
@@ -92,7 +67,7 @@ Cypress.Commands.add('testFeaturedCampaignsComponent', (homepageCandidates) => {
 Cypress.Commands.add('testStaffCard', ($el, staff) => {
   const { candidate, role } = staff;
   if(candidate) {
-    const { id, firstName, lastName, image, race, party, otherParty } = candidate;
+    const { id, firstName, lastName, party, otherParty } = candidate;
     cy.wrap($el)
       .find('[data-cy=staff-link]')
       .should('have.attr', 'href', `/candidate-portal/${id}`);

@@ -25,6 +25,7 @@ import actions from './actions';
 import registerActions from '../entrance/RegisterPage/actions';
 import registerReducer from '../entrance/RegisterPage/reducer';
 import registerSaga from '../entrance/RegisterPage/saga';
+import CandidateSchema from './CandidateSchema';
 
 const shareImageUrl = (candidate) => {
   const { firstName, lastName, id } = candidate;
@@ -43,35 +44,17 @@ export function CandidatePage({
   dispatch,
   ssrState,
   candidatePage,
-  userSupportCallback,
-  guestSupportCallback,
-  removeSupportCallback,
+  claimCampaignCallback,
 }) {
   useInjectReducer({ key: 'candidatePage', reducer });
   useInjectSaga({ key: 'candidatePage', saga });
   useInjectReducer({ key: 'registerUpdatePage', reducer: registerReducer });
   useInjectSaga({ key: 'registerUpdatePage', saga: registerSaga });
 
-  const {
-    candidate,
-    candidateSupports,
-    similarCampaigns,
-    supportCount,
-    candidatePositions,
-    userAgent,
-  } = ssrState;
-  const { userSupports } = candidatePage;
-  const { firstName, lastName, party, otherParty, race, id } = candidate;
-
-  // the reducer will be updated if the user took an action on the page.
-  const updatedSupports = candidatePage.candidateSupports
-    ? candidatePage.candidateSupports
-    : candidateSupports;
-
-  const updatedSupportsCount =
-    candidatePage.supportCount !== false
-      ? candidatePage.supportCount
-      : supportCount;
+  const { candidate, candidatePositions, userAgent, tab, followers, feed } =
+    ssrState;
+  const { claiming } = candidatePage;
+  const { firstName, lastName, party, otherParty, race, headline } = candidate;
 
   const user = getUserCookie(true);
 
@@ -91,32 +74,26 @@ export function CandidatePage({
     );
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      dispatch(actions.userSupportsAction());
-    }
-  }, [id]);
-
   const title = `${firstName} ${lastName} ${partyResolver(party, otherParty)} ${
     party !== 'I' ? 'Party ' : ''
-  }candidate for ${race} | Crowd-voting on GOOD PARTY`;
+  }candidate for ${race}`;
 
   const description = `Join the crowd-voting campaign for ${firstName} ${lastName}, ${partyResolver(
     party,
     otherParty,
-  ).toLowerCase()} for ${race}.`;
+  ).toLowerCase()} for ${race} | ${
+    headline ? ` ${headline} | ` : ' '
+  }Crowd-voting on GOOD PARTY`;
 
   const childProps = {
     candidate,
-    isUserSupportCandidate: userSupports && userSupports[id],
-    userSupportCallback,
-    guestSupportCallback,
-    removeSupportCallback,
+    claimCampaignCallback,
     user,
-    candidateSupports: updatedSupports,
-    supportCount: updatedSupportsCount,
     candidatePositions,
-    similarCampaigns,
+    tab,
+    followers,
+    feed,
+    claiming,
   };
 
   const is404 = !candidate || Object.keys(candidate).length === 0;
@@ -133,6 +110,7 @@ export function CandidatePage({
             image={shareImageUrl(candidate)}
           />
           <CandidateWrapper />
+          <CandidateSchema />
         </>
       )}
     </CandidateContext.Provider>
@@ -142,9 +120,7 @@ export function CandidatePage({
 CandidatePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   candidatePage: PropTypes.object,
-  userSupportCallback: PropTypes.func,
-  guestSupportCallback: PropTypes.func,
-  removeSupportCallback: PropTypes.func,
+  claimCampaignCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -155,27 +131,8 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatch,
 
-    userSupportCallback: (candidateId) => {
-      dispatch(actions.supportAction(candidateId));
-    },
-    guestSupportCallback: (candidateId, newUser) => {
-      setSignupRedirectCookie(`${window.location.pathname}?share=true`);
-      const callback = () => {
-        dispatch(actions.supportAction(candidateId));
-      };
-      dispatch(
-        registerActions.registerAction(
-          newUser.name,
-          newUser.email,
-          newUser.phone,
-          newUser.zip,
-          callback,
-          'candidatePage',
-        ),
-      );
-    },
-    removeSupportCallback: (candidateId) => {
-      dispatch(actions.removeSupportAction(candidateId));
+    claimCampaignCallback: (name, email, phone, candidateId) => {
+      dispatch(actions.claimAction(name, email, phone, candidateId));
     },
   };
 }

@@ -55,7 +55,7 @@ const TwitterButton = ({ clickCallback, children }) => (
     data-cy="twitter-social-login"
   >
     <div>
-      <Icon src={TwitterIcon} alt="" />
+      <Icon src={TwitterIcon} alt="twitter" />
       <StyledBody11>{children}</StyledBody11>
     </div>
   </StyledButton>

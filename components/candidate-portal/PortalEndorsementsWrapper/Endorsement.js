@@ -16,7 +16,6 @@ import NewEndorsementForm from './NewEndorsementForm';
 const Wrapper = styled.div`
   padding: 30px 0;
   border-bottom: 1px solid #e8e8e8;
-
   &.no-border {
     border-bottom: none;
   }
@@ -61,14 +60,14 @@ function Endorsement({ endorsement, last, deleteCallback }) {
   };
 
   return (
-    <Wrapper key={id} className={last && 'no-border'}>
+    <Wrapper key={id} className={`break-word ${last && 'no-border'}`} data-cy="endorsement-item">
       <DeleteWrapper>
         {showEdit ? (
-          <Delete onClick={() => setShowEdit(false)}>Cancel</Delete>
+          <Delete onClick={() => setShowEdit(false)} data-cy="endorsement-edit-cancel">Cancel</Delete>
         ) : (
           <>
-            <Delete onClick={() => deleteCallback(endorsement)}>Delete</Delete>
-            <Delete onClick={() => setShowEdit(true)}>Edit</Delete>
+            <Delete onClick={() => deleteCallback(endorsement)} data-cy="endorsement-edit-delete">Delete</Delete>
+            <Delete onClick={() => setShowEdit(true)} data-cy="endorsement-edit">Edit</Delete>
           </>
         )}
       </DeleteWrapper>
@@ -80,7 +79,7 @@ function Endorsement({ endorsement, last, deleteCallback }) {
             </ImageWrapper>
           </Grid>
         )}
-        <Grid item xs={12} md={image ? 8 : 12}>
+        <Grid item xs={12} md={image ? 8 : 12} data-cy="endorsement-info">
           <Title>{title}</Title>
           {summary}
           <br />

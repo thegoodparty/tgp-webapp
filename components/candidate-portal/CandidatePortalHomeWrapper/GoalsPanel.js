@@ -15,8 +15,8 @@ import { CandidatePortalHomePageContext } from '/containers/candidate-portal/Can
 import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
 import GoalsChart from './GoalsChart';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import { dateUsHelper } from '../../../helpers/dateHelper';
+import { numberFormatter } from '/helpers/numberHelper';
+import { dateUsHelper } from '/helpers/dateHelper';
 import { CONTACT_EMAIL } from '../../../utils/constants';
 
 const Title = styled(Font16)`
@@ -63,7 +63,7 @@ function GoalsPanel() {
   const today = new Date();
   return (
     <PortalPanel color="#422CCD">
-      <FontH3 style={{ margin: '0 0 45px 0' }}>
+      <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="goals-title">
         Voter Projections{' '}
         <AsOf>
           (as of {dateUsHelper(today)}{' '}
@@ -74,19 +74,19 @@ function GoalsPanel() {
         <Grid item xs={12} lg={7}>
           <Grid container spacing={2}>
             <Grid item xs={12} lg={6}>
-              <Title>VOTES NEEDED TO WIN 🎉</Title>
-              <Stat>{numberFormatter(votesNeeded)}</Stat>
+              <Title data-cy="votes-need-win">VOTES NEEDED TO WIN 🎉</Title>
+              <Stat data-cy="votes-need-win-val">{numberFormatter(votesNeeded || 0)}</Stat>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <Title>LIKELY VOTES SO FAR 🗳</Title>
-              <Stat>{numberFormatter(likelyVoters)}</Stat>
+              <Title data-cy="votes-so-far">LIKELY VOTES SO FAR 🗳</Title>
+              <Stat data-cy="votes-so-far-val">{numberFormatter(likelyVoters || 0)}</Stat>
             </Grid>
           </Grid>
         </Grid>
         <Grid item xs={12} lg={5} style={{ height: '100%' }}>
           <GoalsChart candidate={candidate} />
         </Grid>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} data-cy="goals-description">
           Good Party projects <strong>{numberFormatter(unrepVoters)}</strong>{' '}
           voters are not going to vote Red or Blue in this race. That means{' '}
           <strong>{votersX}x</strong> the number of votes needed to win are
@@ -98,12 +98,12 @@ function GoalsPanel() {
         </Grid>
         <Grid item xs={12} lg={6}>
           <Link href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`}>
-            <GrayLink>Methodology</GrayLink>
+            <GrayLink data-cy="methodology-link">Methodology</GrayLink>
           </Link>
         </Grid>
         <Grid item xs={12} lg={6}>
           <ResponsiveAlign>
-            <div>
+            <div data-cy="have-question">
               Have a question?
               <br />
               <GrayLink href={`mailto:${CONTACT_EMAIL}`}>Ask us</GrayLink>

@@ -20,9 +20,9 @@ const BlackButton = styled(PurpleButton)`
       color: #000;
       border-color: #000;
       &:hover {
-        background: #999;
+        background: #fff;
         color: #fff;
-        border-color: #999;
+        border-color: #000;
       }
     }
     &.Mui-disabled {
@@ -33,6 +33,11 @@ const BlackButton = styled(PurpleButton)`
     &.pill {
       border-radius: 30px;
       padding: 16px 40px;
+    }
+    &.black-disabled {
+      background: #000;
+      color: #fff;
+      border-color: #000;
     }
   }
 `;

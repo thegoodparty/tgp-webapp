@@ -13,7 +13,11 @@ import { FaTrash } from 'react-icons/fa';
 import { dateUsHelper } from '/helpers/dateHelper';
 
 import { Body, Body13, Body11 } from '../../shared/typogrophy';
-import { candidateName, candidatePhoto, runningFor } from '../../../helpers/applicationHelper';
+import {
+  candidateName,
+  candidatePhoto,
+  runningFor,
+} from '/helpers/applicationHelper';
 
 const ApplicationWrapper = styled.div`
   padding: 20px;
@@ -21,7 +25,6 @@ const ApplicationWrapper = styled.div`
   border-top: 3px solid #000;
   border-radius: 6px;
   cursor: pointer;
-  overflow-wrap: break-word;
   box-shadow: 0 20px 20px -10px #a3a5ae;
   text-align: center;
   margin-bottom: 10px;
@@ -50,7 +53,7 @@ function ApplicationPreview({ app, deleteApplicationCallback }) {
   return (
     <Link href={`/campaign-application/${app.id}/1`} passHref>
       <a className="no-underline" data-cy="application-link">
-        <ApplicationWrapper>
+        <ApplicationWrapper className="break-word">
           {app.status === 'incomplete' ? (
             <div className="text-right trash">
               <FaTrash

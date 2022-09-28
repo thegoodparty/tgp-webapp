@@ -10,11 +10,8 @@ import styled from 'styled-components';
 import CloseIcon from '@material-ui/icons/HighlightOff';
 import Dialog from '@material-ui/core/Dialog';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core/styles';
-import { useRouter } from 'next/router';
-import { Body13, H2 } from '/components/shared/typogrophy';
-import BlackButton from '../buttons/BlackButton';
+import { IoMdClose } from 'react-icons/io';
 
 const TgpDialog = styled(Dialog)`
   && {
@@ -39,6 +36,12 @@ const TgpDialog = styled(Dialog)`
           theme.breakpointsPixels.md}) {
         background: rgba(0, 0, 0, 0.85);
       }
+    }
+
+    .MuiDialog-paperWidthSm {
+      width: 60vw;
+      max-width: 500px;
+      min-width: 300px;
     }
 
     &.close-dialog {
@@ -78,10 +81,10 @@ const TopWrapper = styled.div`
   z-index: 1000;
 `;
 
-const TopClose = styled(CloseIcon)`
+const TopClose = styled.div`
   font-size: 24px;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.primary};
+  color: #d3d3d3;
   &.purple {
     color: #fff;
   }
@@ -91,67 +94,31 @@ function QueryModal({
   closeModalCallback,
   children,
   modalStyles = {},
-  mode,
   hideClose = false,
-  closeTitle,
-  closeContent,
-  closeBack,
 }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(
     `(max-width: ${theme.breakpointsPixels.md}px)`,
   );
-  const [close, setClose] = useState(false);
-  const router = useRouter();
-  const isCandidatePage = router.route === '/candidate/[...NameIdTab]';
 
-  useEffect(() => {
-    if (close && (!closeTitle || !isCandidatePage)) {
-      closeModalCallback();
-    }
-  }, [close]);
   return (
     <TgpDialog
-      onClose={() => setClose(true)}
+      onClose={closeModalCallback}
       open
       fullScreen={fullScreen}
-      className={`${close && isCandidatePage && 'close-dialog'} ${mode} `}
       style={modalStyles.dialog}
     >
       {!hideClose && (
         <TopWrapper className="top-wrapper">
           <TopClose
-            onClick={() => setClose(true)}
+            onClick={closeModalCallback}
             style={modalStyles.closeButton}
-            className={!(closeTitle && close) && mode}
-          />
+          >
+            <IoMdClose />
+          </TopClose>
         </TopWrapper>
       )}
-      {(!closeTitle || !close || !isCandidatePage) && children}
-      {closeTitle && close && isCandidatePage && (
-        <>
-          <H2 style={{ color: '#292936' }}>{closeTitle}</H2>
-          <Body13 style={{ color: '#11111F', marginTop: 8 }}>
-            {closeContent}
-          </Body13>
-          <Grid container spacing={2} style={{ marginTop: 18 }}>
-            <Grid item xs={6}>
-              <BlackButton
-                fullWidth
-                className="outline"
-                onClick={closeModalCallback}
-              >
-                YES, EXIT
-              </BlackButton>
-            </Grid>
-            <Grid item xs={6}>
-              <BlackButton fullWidth onClick={() => setClose(false)}>
-                {closeBack}
-              </BlackButton>
-            </Grid>
-          </Grid>
-        </>
-      )}
+      {children}
     </TgpDialog>
   );
 }

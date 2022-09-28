@@ -28,7 +28,6 @@ import makeSelectApplicationPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
-import { getUserCookie } from '../../../../helpers/cookieHelper';
 
 export function ApplicationPage({
   applicationPage,

@@ -35,16 +35,16 @@ function InvitationsSection() {
       {staffInvitations &&
         staffInvitations.map((invitation) => (
           <React.Fragment key={invitation.id}>
-            <Grid item xs={12} lg={3}>
+            <Grid item xs={12} lg={3} data-cy="invitation-row-name">
               {invitation.name}
             </Grid>
-            <Grid item xs={12} lg={3}>
+            <Grid item xs={12} lg={3} data-cy="invitation-row-email">
               {invitation.email}
             </Grid>
-            <Grid item xs={12} lg={2}>
+            <Grid item xs={12} lg={2} data-cy="invitation-row-role">
               <Height>{invitation.role}</Height>
             </Grid>
-            <Grid item xs={12} lg={2}>
+            <Grid item xs={12} lg={2} data-cy="invitation-row-status">
               <Orange>Pending</Orange>
             </Grid>
             <Grid item xs={12} lg={2}>

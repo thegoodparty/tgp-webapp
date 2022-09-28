@@ -29,7 +29,7 @@ function TopIssuesWrapper() {
   return (
     <PortalPageWrapper role={role} title="Edit Campaign Issues">
       <PortalPanel color="#14C285">
-        <FontH3 style={{ margin: '0 0 45px 0' }}>Issues</FontH3>
+        <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="top-issue-title">Issues</FontH3>
         <Grid container spacing={3} alignItems="center">
           {candidatePositions.map((candidatePosition, index) => (
             <TopIssue

@@ -11,9 +11,9 @@ import PropTypes from 'prop-types';
 
 import MenuItem from '@material-ui/core/MenuItem';
 
-import { Font16 } from '/components/shared/typogrophy';
-import { ACCESS_ENUM, accessLevel } from '/helpers/staffHelper';
-import { getUserCookie } from '/helpers/cookieHelper';
+import { Font16 } from '../../shared/typogrophy';
+import { ACCESS_ENUM, accessLevel } from '../../../helpers/staffHelper';
+import { getUserCookie } from '../../../helpers/cookieHelper';
 
 const LeftPanel = styled.div`
   padding: 0 10px 20px 10px;
@@ -63,11 +63,11 @@ export const leftMenuItems = [
     link: '/candidate-portal/campaign-manager',
     minAccessLevel: ACCESS_ENUM.MANAGER,
   },
-  {
-    label: 'Campaign Updates',
-    link: '/candidate-portal/campaign-updates',
-    minAccessLevel: ACCESS_ENUM.MANAGER,
-  },
+  // {
+  //   label: 'Campaign Updates',
+  //   link: '/candidate-portal/campaign-updates',
+  //   minAccessLevel: ACCESS_ENUM.MANAGER,
+  // },
   {
     label: 'Policy Issues',
     link: '/candidate-portal/top-issues',
@@ -130,7 +130,7 @@ function PortalLeftMenu({ id, role }) {
         <React.Fragment key={item.label}>
           {access >= item.minAccessLevel && (
             <Link href={link(item.link)} passHref>
-              <a>
+              <a data-cy="portal-left-menu-item">
                 <Label
                   className={pathname === link(item.link) ? 'selected' : ''}
                 >
@@ -145,7 +145,7 @@ function PortalLeftMenu({ id, role }) {
         <div style={{ height: '90px' }}>&nbsp;</div>
         {leftMenuItemsBottom.map((item) => (
           <Link href={item.link} passHref key={item.label}>
-            <a>
+            <a  data-cy="portal-left-bottom-item">
               <Label className={pathname === link(item.link) ? 'selected' : ''}>
                 {item.label}
               </Label>

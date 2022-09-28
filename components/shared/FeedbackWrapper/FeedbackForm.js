@@ -164,6 +164,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               style={{ marginLeft: '18px' }}
               disabled={!canSubmit()}
               onClick={submitForm}
+              id="submit-feedback-form"
             >
               <InnerButton>Send</InnerButton>
             </BlackButton>

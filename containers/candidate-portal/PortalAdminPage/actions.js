@@ -13,6 +13,23 @@ function updateCandidateAction(fields) {
   };
 }
 
+function approveClaimAction(email, candidateId) {
+  return {
+    type: types.APPROVE_CLAIM,
+    email,
+    candidateId,
+  };
+}
+
+function fillFollowersAction(candidateId) {
+  return {
+    type: types.FILL_FOLLOWERS,
+    candidateId,
+  };
+}
+
 export default {
   updateCandidateAction,
+  approveClaimAction,
+  fillFollowersAction,
 };

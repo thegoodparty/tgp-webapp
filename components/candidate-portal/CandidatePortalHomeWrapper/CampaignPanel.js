@@ -14,10 +14,8 @@ import { CandidatePortalHomePageContext } from '/containers/candidate-portal/Can
 import PortalPanel from '../shared/PortalPanel';
 import { Font16, FontH3 } from '../../shared/typogrophy';
 import RangeSelector from '../shared/RangeSelector';
-import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 import CampaignChart from './CampaignChart';
-import { numberFormatter } from '../../../helpers/numberHelper';
-import AddCampaignUpdateModal from '../shared/AddCampaignUpdateModal';
+import { numberFormatter } from '/helpers/numberHelper';
 
 const Row = styled.div`
   display: flex;
@@ -82,38 +80,31 @@ function CampaignPanel({ range, onChangeRange }) {
   const { stats } = useContext(CandidatePortalHomePageContext);
   const visitors = stats?.stats?.visitors;
   const shares = stats?.stats?.shares;
-  const endorsers = stats?.stats?.endorsers;
+  const followers = stats?.stats?.followers;
 
   const fields = [
     { label: 'VIEWS', data: visitors || {} },
     { label: 'SHARES', data: shares || {} },
-    { label: 'ENDORSEMENTS', data: endorsers || {} },
+    { label: 'FOLLOWERS', data: followers || {} },
   ];
   return (
     <PortalPanel color="#2CCDB0">
       <Row>
-        <FontH3 style={{ margin: 0 }}>Campaign Page</FontH3>
+        <FontH3 style={{ margin: 0 }} data-cy="campaign-panel-title">Campaign Page</FontH3>
         <RangeSelector range={range} onChange={onChangeRange} />
       </Row>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={7}>
           <Grid container spacing={2}>
             {fields.map((field) => (
-              <Grid item xs={12} lg={4} key={field.label}>
-                <Title>{field.label}</Title>
-                <Stat>{numberFormatter(field.data.total)}</Stat>
-                <Stat>
+              <Grid item xs={12} lg={4} key={field.label} data-cy="campaign-stat-field">
+                <Title data-cy="stat-label">{field.label}</Title>
+                <Stat data-cy="stat-total">{numberFormatter(field.data.total)}</Stat>
+                <Stat data-cy="stat-perc">
                   {progressPerc(field.data.total, field.data.lastPeriod)}
                 </Stat>
               </Grid>
             ))}
-          </Grid>
-          <Grid item xs={12}>
-            <div style={{ marginTop: '40px' }}>
-              <AddCampaignUpdateModal
-                context={CandidatePortalHomePageContext}
-              />
-            </div>
           </Grid>
         </Grid>
         <Grid item xs={12} lg={5} style={{ height: '100%' }}>

@@ -76,15 +76,7 @@ export function VerifyVotePage({
     loading,
   };
 
-  return (
-    <div>
-      <Head>
-        <title>Verify Your Vote | The Good Party</title>
-        <meta name="description" content="Verify Your Vote | The Good Party" />
-      </Head>
-      <VerifyVoteWrapper {...childProps} />
-    </div>
-  );
+  return <VerifyVoteWrapper {...childProps} />;
 }
 
 VerifyVotePage.propTypes = {
@@ -112,14 +104,11 @@ function mapDispatchToProps(dispatch) {
         dispatch(push('/register'));
       }
     },
-    registerToVoteCallback: voter =>
+    registerToVoteCallback: (voter) =>
       dispatch(actions.registerVoterAction(voter)),
   };
 }
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(VerifyVotePage);

@@ -15,31 +15,21 @@ export function QueryModalContainer({
   closeModalCallback,
   modalStyles = {},
   children,
-  mode = 'white',
-  closeTitle,
-  closeContent,
-  closeBack,
+  closeModalCallbackOverride,
 }) {
   const childProps = {
-    closeModalCallback,
+    closeModalCallback: closeModalCallbackOverride || closeModalCallback,
     modalStyles,
-    mode,
-    closeTitle,
-    closeContent,
-    closeBack,
   };
   return <QueryModal {...childProps}>{children}</QueryModal>;
 }
 
 QueryModalContainer.propTypes = {
   closeModalCallback: PropTypes.func,
+  closeModalCallbackOverride: PropTypes.func,
   modalStyles: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  mode: PropTypes.string,
   zIndex: PropTypes.number,
-  closeTitle: PropTypes.string,
-  closeContent: PropTypes.string,
-  closeBack: PropTypes.string,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -50,9 +40,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(
-  null,
-  mapDispatchToProps,
-);
+const withConnect = connect(null, mapDispatchToProps);
 
 export default compose(withConnect)(QueryModalContainer);

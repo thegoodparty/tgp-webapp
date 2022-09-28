@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Link as ScrollLink } from 'react-scroll';
 
 import styled from 'styled-components';
 
@@ -68,43 +67,30 @@ const TopLink = styled.div`
 `;
 
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
   const router = useRouter();
 
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
+  // // return focus to the button when we transitioned from !open -> open
+  // const prevOpen = React.useRef(open);
+  // React.useEffect(() => {
+  //   if (prevOpen.current === true && open === false) {
+  //     anchorRef.current.focus();
+  //   }
+  //
+  //   prevOpen.current = open;
+  // }, [open]);
 
-    prevOpen.current = open;
-  }, [open]);
-
-  const candidateRoute = router.pathname === '/candidate/[...NameId]';
+  const candidateRoute = router.pathname === '/candidate/[...NameIdTab]';
   let id = false;
   if (
     candidateRoute &&
-    router.query['NameId'] &&
-    router.query['NameId'].length === 2
+    router.query['NameIdTab'] &&
+    router.query['NameIdTab'].length >= 2
   ) {
-    id = router.query['NameId'][1];
+    id = router.query['NameIdTab'][1];
   }
 
-  // const handleShare = () => {
-  //   // if we are on the candidate page, track the share
-  //   if (router.pathname === '/candidate/[...NameIdTab]') {
-  //     trackShareCallback(
-  //       router.components['/candidate/[...NameIdTab]']?.props?.pageProps
-  //         ?.ssrState?.id,
-  //     );
-  //   }
-  //   router.query.share = 'true';
-  //   router.push(router);
-  //
-  //   logEvent('Share', 'top_nav_share', 'Top Nav');
-  // };
   return (
     <>
       <Wrapper>
@@ -116,7 +102,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               logEvent('Link', 'Logo', 'Top Nav');
             }}
           >
-            <a>
+            <a id="desktop-nav-logo">
               <Image
                 src="/images/black-logo.svg"
                 data-cy="logo"
@@ -136,7 +122,12 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                     logEvent('Link', link.label, 'Top Nav');
                   }}
                 >
-                  <A data-cy="header-link-label">{link.label}</A>
+                  <A
+                    data-cy="header-link-label"
+                    id={`desktop-nav-${link.label.replace(' ', '-')}`}
+                  >
+                    {link.label}
+                  </A>
                 </Link>
               </TopLink>
             ))}
@@ -148,39 +139,26 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
                   logEvent('Link', 'Profile', 'Top Nav');
                 }}
               >
-                <a>
+                <a id="desktop-nav-profile">
                   <AvatarWrapper>
                     <UserAvatar user={user} />
                   </AvatarWrapper>
                 </a>
               </Link>
             ) : (
-              <>
-                <TopLink>
-                  <Link
-                    href="/login"
-                    passHref
-                    onClick={() => {
-                      logEvent('Link', 'Login', 'Top Nav');
-                    }}
-                  >
-                    <A data-cy="header-login">Login</A>
-                  </Link>
-                </TopLink>
-                <TopLink>
-                  <Link
-                    href="/register"
-                    passHref
-                    onClick={() => {
-                      logEvent('Link', 'Register', 'Top Nav');
-                    }}
-                  >
-                    <A data-cy="header-register">
-                      <strong>Join Us</strong>
-                    </A>
-                  </Link>
-                </TopLink>
-              </>
+              <TopLink>
+                <Link
+                  href="/register"
+                  passHref
+                  onClick={() => {
+                    logEvent('Link', 'Register', 'Top Nav');
+                  }}
+                >
+                  <A data-cy="header-register" id="desktop-nav-register">
+                    <strong>Join Us</strong>
+                  </A>
+                </Link>
+              </TopLink>
             )}
             {user?.isAdmin && (
               <>

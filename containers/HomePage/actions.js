@@ -26,10 +26,24 @@ function loadHomepageCandidatesActionError(error) {
   };
 }
 
-function subscribeEmailAction(email) {
+function subscribeEmailAction(email, name) {
   return {
     type: types.SUBSCRIBE_EMAIL,
     email,
+    name,
+  };
+}
+
+function loadFeedAction() {
+  return {
+    type: types.LOAD_FEED,
+  };
+}
+
+function loadFeedActionSuccess(fullFeed) {
+  return {
+    type: types.LOAD_FEED_SUCCESS,
+    fullFeed,
   };
 }
 
@@ -38,4 +52,7 @@ export default {
   loadHomepageCandidatesActionSuccess,
   loadHomepageCandidatesActionError,
   subscribeEmailAction,
+
+  loadFeedAction,
+  loadFeedActionSuccess,
 };

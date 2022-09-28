@@ -28,7 +28,7 @@ import EditProfilePage from '/containers/you/EditProfilePage/Loadable';
 import ResetPasswordPage from '/containers/entrance/ResetPasswordPage/Loadable';
 
 import PartyPage from '/containers/party/PartyPage/Loadable';
-import FaqListPage from '/containers/party/FaqListPage/Loadable';
+import FaqListPage from '/containers/faqs/FaqListPage/Loadable';
 import EventsPage from '/containers/party/EventsPage/Loadable';
 
 import IncumbentsToScrape from '/containers/scraping/IncumbentsToScrape/Loadable';

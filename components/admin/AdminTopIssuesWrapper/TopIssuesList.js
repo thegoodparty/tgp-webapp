@@ -14,6 +14,7 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 import { AdminTopIssuesPageContext } from '/containers/admin/AdminTopIssuesPage';
 
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import AlertDialog from '../../shared/AlertDialog';
 
 const Issue = styled.div`
   padding: 12px 0;
@@ -66,6 +67,8 @@ function TopIssuesList() {
   const [addNewPosition, setAddNewPosition] = useState(false);
   const [editPosition, setEditPosition] = useState(false);
   const [positionName, setPositionName] = useState('');
+  const [showPositionDeleteAlert, setShowPositionDeleteAlert] = useState(false);
+  const [showIssueDeleteAlert, setShowIssueDeleteAlert] = useState(false);
 
   const savePosition = (id) => {
     createPositionCallback(positionName, id);
@@ -76,6 +79,16 @@ function TopIssuesList() {
   const saveEdit = () => {
     editPositionCallback(editPosition.id, editPosition.name);
     setEditPosition(false);
+  };
+
+  const handleDeletePosition = () => {
+    deletePositionCallback(showPositionDeleteAlert);
+    setShowPositionDeleteAlert(false);
+  };
+
+  const handleDeleteIssue = () => {
+    deleteTopIssueCallback(showIssueDeleteAlert);
+    setShowIssueDeleteAlert(false);
   };
   return (
     <div>
@@ -97,7 +110,7 @@ function TopIssuesList() {
               </BlackButton>{' '}
               <Delete
                 onClick={() => {
-                  deleteTopIssueCallback(issue.id);
+                  setShowIssueDeleteAlert(issue.id);
                 }}
               >
                 <FaTrash />
@@ -160,7 +173,7 @@ function TopIssuesList() {
                   {position.name}
                   <SmallDelete
                     onClick={() => {
-                      deletePositionCallback(position.id);
+                      setShowPositionDeleteAlert(position.id);
                     }}
                   >
                     <FaTrash />
@@ -178,6 +191,24 @@ function TopIssuesList() {
           ))}
         </Issue>
       ))}
+      <AlertDialog
+        open={showPositionDeleteAlert}
+        handleClose={() => setShowPositionDeleteAlert(false)}
+        title={'Delete Position?'}
+        ariaLabel={'Delete Position?'}
+        description={'Are you sure you want to delete this position?'}
+        handleProceed={handleDeletePosition}
+      />
+      <AlertDialog
+        open={showIssueDeleteAlert}
+        handleClose={() => setShowIssueDeleteAlert(false)}
+        title={'Delete Issue?'}
+        ariaLabel={'Delete Issue?'}
+        description={
+          'This will delete all the positions and candidate positions related to this issue'
+        }
+        handleProceed={handleDeleteIssue}
+      />
     </div>
   );
 }

@@ -51,26 +51,44 @@ Cypress.Commands.add(
   );
 Cypress.Commands.add('getFaqArticles', () => {
   cy.sendRequest(
-    api.contentByKey.method, 
+    api.contentByKey.method,
     `${api.contentByKey.url}?key=articleCategories`
   );
 });
 Cypress.Commands.add('getPrivacyPageContent', () => {
   cy.sendRequest(
-    api.contentByKey.method, 
+    api.contentByKey.method,
     `${api.contentByKey.url}?key=privacyPage`
   );
 });
 Cypress.Commands.add('getHomepageCandidates', () => {
   cy.sendRequest(
-    api.homepageCandidates.method, 
+    api.homepageCandidates.method,
     api.homepageCandidates.url
   );
 });
 Cypress.Commands.add('getCandidateList', () => {
   cy.sendRequest(
-    api.newCandidate.list.method, 
+    api.newCandidate.list.method,
     api.newCandidate.list.url
+  );
+});
+Cypress.Commands.add('getHomepageFeed', () => {
+  cy.sendRequest(
+    api.feed.method,
+    `${api.feed.url}?searchId=2bade780970fd5134f8bd216b568bc8e&limit=4&useCache=true&save=true`
+  );
+});
+Cypress.Commands.add('getHomepageFollwers', () => {
+  cy.sendRequest(
+    api.followers.method,
+    api.followers.url
+  );
+});
+Cypress.Commands.add('getHomepageCandidates', () => {
+  cy.sendRequest(
+    api.homepageCandidates.method,
+    api.homepageCandidates.url
   );
 });
 Cypress.Commands.add('getCandidate', (candidateId) => {
@@ -81,7 +99,7 @@ Cypress.Commands.add('getCandidate', (candidateId) => {
 });
 Cypress.Commands.add('getApplications', () => {
   cy.sendRequest(
-    api.candidateApplication.list.method, 
+    api.candidateApplication.list.method,
     api.candidateApplication.list.url,
     null,
     api.candidateApplication.list.withAuth && TOKEN,
@@ -89,7 +107,7 @@ Cypress.Commands.add('getApplications', () => {
 });
 Cypress.Commands.add('getStaff', () => {
   cy.sendRequest(
-    api.campaign.staff.userStaff.method, 
+    api.campaign.staff.userStaff.method,
     api.campaign.staff.userStaff.url,
     null,
     api.campaign.staff.userStaff.withAuth && TOKEN,
@@ -116,16 +134,12 @@ Cypress.Commands.add('getCandidatePageData', async (candidateId) => {
   const candidate = await promisify(
     cy.getCandidate().then(response => response.body),
   );
-  const { candidateSupports, total } = await promisify(
-    cy.getCandidateSupports().then(response => response.body),
-  );
+
   return {
     candidate: candidate.candidate,
     candidatePositions: candidate.candidatePositions || [],
     similarCampaigns: candidate.similarCampaigns || [],
     id: candidateId,
-    candidateSupports,
-    supportCount: total,
   }
 });
 
@@ -139,4 +153,59 @@ Cypress.Commands.add('getCandidatesPageData', async (candidateId) => {
     positionsByTopIssues,
     states,
   }
+});
+Cypress.Commands.add('getCampaignStats', (range, id) => {
+  cy.sendRequest(
+    api.campaign.stats.method, 
+    api.campaign.stats.url,
+    {
+      range,
+      id
+    },
+    api.campaign.stats.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getCampaignCandidate', (id) => {
+  cy.sendRequest(
+    api.campaign.find.method, 
+    api.campaign.find.url,
+    {
+      id
+    },
+    api.campaign.find.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getCampaignCandidatePositions', (id) => {
+  cy.sendRequest(
+    api.campaign.candidatePosition.list.method, 
+    api.campaign.candidatePosition.list.url,
+    {
+      id
+    },
+    api.campaign.candidatePosition.list.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getEndorsements', (id) => {
+  cy.sendRequest(
+    api.campaign.endorsement.list.method, 
+    api.campaign.endorsement.list.url,
+    {
+      candidateId: id
+    },
+    api.campaign.endorsement.list.withAuth && TOKEN,
+  );
+});
+
+Cypress.Commands.add('getCampaignStaff', (id) => {
+  cy.sendRequest(
+    api.campaign.staff.list.method, 
+    api.campaign.staff.list.url,
+    {
+      id
+    },
+    api.campaign.staff.list.withAuth && TOKEN,
+  );
 });

@@ -45,7 +45,7 @@ const PortalPageWrapper = ({ children, role, loading, title }) => {
           <LoadingAnimation />
         ) : (
           <MainPanel>
-            {title && <PortalPageTitle>{title}</PortalPageTitle>}
+            {title && <PortalPageTitle data-cy="pate-title">{title}</PortalPageTitle>}
             {children}
           </MainPanel>
         )}

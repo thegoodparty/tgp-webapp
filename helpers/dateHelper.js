@@ -1,4 +1,4 @@
-import moment from 'moment';
+// import moment from 'moment';
 
 const ONE_HOUR = 60 * 60 * 1000;
 
@@ -33,10 +33,10 @@ export const parseDob = (dob) => {
       2,
       2,
     )}`;
-    const dobObj = moment(dobString, 'YYYY-MM-DD');
-    if (!dobObj.isValid() || dobObj.year() < 1900 || dobObj.year() >= 2100) {
-      return false;
-    }
+    // const dobObj = moment(dobString, 'YYYY-MM-DD');
+    // if (!dobObj.isValid() || dobObj.year() < 1900 || dobObj.year() >= 2100) {
+    //   return false;
+    // }
     return dobString;
   }
   return false;
@@ -52,15 +52,29 @@ export const parseDobUS = (dob) => {
 export const daysTill = (date) => {
   if (!date) return '0';
 
-  const now = new moment();
-  const till = new moment(date);
-  const duration = moment.duration(till.diff(now));
-  return parseInt(duration.as('days'), 10);
+  // const now = new moment();
+  // const till = new moment(date);
+  // const duration = moment.duration(till.diff(now));
+  // return parseInt(duration.as('days'), 10);
+  const now = new Date();
+  const inputDate = new Date(date);
+
+  // To calculate the time difference of two dates
+  const timeDiff = inputDate.getTime() - now.getTime();
+
+  // To calculate the no. of days between two dates
+  const daysDiff = timeDiff / (1000 * 3600 * 24);
+  return Math.ceil(daysDiff);
 };
 
 export const dateWithMonthName = (date) => {
   if (!date) {
     return '';
   }
-  return moment(date).format('MMMM D, YYYY');
+  const dateObj = new Date(date);
+  const month = dateObj.toLocaleString('default', { month: 'long' });
+  const year = dateObj.getFullYear();
+  const day = dateObj.getDate().toString();
+  return `${month} ${day}, ${year}`;
+  // return moment(date).format('MMMM D, YYYY');
 };

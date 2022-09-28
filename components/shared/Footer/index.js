@@ -5,21 +5,22 @@
  */
 
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
+import { useRouter } from 'next/router';
+
 import FeedbackContainer from '/containers/shared/FeedbackContainer';
 import MaxWidth from '../MaxWidth';
 import { FOOTER_COLUMNS } from './constants';
 
 const Wrapper = styled.div`
-  margin-top: 400px;
   padding: 40px 32px;
   border-top: solid 1px #e1e2e9;
   background-color: #fff;
   position: relative;
+  margin-top: 24px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     padding: 40px 24px;
@@ -27,6 +28,10 @@ const Wrapper = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.sm}) {
     padding: 40px 18px;
+  }
+
+  &.no-margin {
+    margin-top: 0;
   }
 `;
 
@@ -78,16 +83,23 @@ const SecondRow = styled.div`
 const year = new Date().getFullYear();
 
 function Footer() {
-  
+  const router = useRouter();
+  const isHome = router.pathname === '/';
   return (
-    <Wrapper>
+    <Wrapper className={isHome && 'no-margin'}>
       <MaxWidth>
         <Aligner>
           <FeedbackContainer mode="mobile" />
         </Aligner>
         <Grid container spacing={2}>
           {FOOTER_COLUMNS.map((column) => (
-            <Grid item xs={12} lg={2} key={column.title} data-cy="footer-column">
+            <Grid
+              item
+              xs={12}
+              lg={2}
+              key={column.title}
+              data-cy="footer-column"
+            >
               <Aligner>
                 <Title data-cy="footer-column-title">{column.title}</Title>
                 {column.links.map((link) => (
@@ -119,7 +131,6 @@ function Footer() {
               width={174}
               height={20}
               alt="GOOD PARTY"
-              style={{ matginBottom: '30px' }}
             />
             <br />
             <Italic data-cy="footer-join-us">

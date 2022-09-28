@@ -16,6 +16,11 @@ export const generateApi = (base) => ({
     method: 'GET',
   },
 
+  feed: {
+    url: `${base}listening/search-results`,
+    method: 'GET',
+  },
+
   findCandidate: {
     url: `${base}candidates/find`,
     method: 'GET',
@@ -180,6 +185,24 @@ export const generateApi = (base) => ({
     withAuth: true,
   },
 
+  follow: {
+    create: {
+      url: `${base}support`,
+      method: 'POST',
+      withAuth: true,
+    },
+    delete: {
+      url: `${base}support`,
+      method: 'DELETE',
+      withAuth: true,
+    },
+    list: {
+      url: `${base}supports`,
+      method: 'GET',
+      withAuth: true,
+    },
+  },
+
   // General
   sendAma: {
     url: `${base}notifications/email-ama`,
@@ -278,28 +301,7 @@ export const generateApi = (base) => ({
       method: 'POST',
       withAuth: true,
     },
-    topics: {
-      create: {
-        url: `${base}compare-topic`,
-        method: 'POST',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}compare-topic`,
-        method: 'PUT',
-        withAuth: true,
-      },
-      delete: {
-        url: `${base}compare-topic`,
-        method: 'DELETE',
-        withAuth: true,
-      },
-      list: {
-        url: `${base}compare-topics`,
-        method: 'GET',
-        withAuth: true,
-      },
-    },
+
     topIssues: {
       create: {
         url: `${base}top-issue`,
@@ -352,7 +354,6 @@ export const generateApi = (base) => ({
     find: {
       url: `${base}new-candidate`,
       method: 'GET',
-      withAuth: true,
     },
     findInactive: {
       url: `${base}new-candidate-inactive`,
@@ -400,26 +401,7 @@ export const generateApi = (base) => ({
       method: 'PUT',
       withAuth: true,
     },
-    createCampaignUpdate: {
-      url: `${base}new-candidate/campaign-update`,
-      method: 'POST',
-      withAuth: true,
-    },
-    saveCampaignUpdate: {
-      url: `${base}new-candidate/campaign-update`,
-      method: 'PUT',
-      withAuth: true,
-    },
-    deleteCampaignUpdate: {
-      url: `${base}new-candidate/campaign-update`,
-      method: 'DELETE',
-      withAuth: true,
-    },
-    approveUpdate: {
-      url: `${base}new-candidate/approve-update`, // admin
-      method: 'PUT',
-      withAuth: true,
-    },
+
     endorseButton: {
       click: {
         url: `${base}button/click`,
@@ -446,38 +428,6 @@ export const generateApi = (base) => ({
     withAuth: true,
   },
 
-  supportCandidate: {
-    support: {
-      url: `${base}support`,
-      method: 'POST',
-      withAuth: true,
-    },
-    removeSupport: {
-      url: `${base}support`,
-      method: 'DELETE',
-      withAuth: true,
-    },
-    adminDeleteSupport: {
-      url: `${base}admin-support`,
-      method: 'DELETE',
-      withAuth: true,
-    },
-    updateSupport: {
-      url: `${base}support`,
-      method: 'PUT',
-      withAuth: true,
-    },
-    userSupports: {
-      url: `${base}supports`,
-      method: 'GET',
-      withAuth: true,
-    },
-
-    candidateSupports: {
-      url: `${base}candidate-supports`,
-      method: 'GET',
-    },
-  },
   campaign: {
     find: {
       url: `${base}campaign`,
@@ -608,19 +558,27 @@ export const generateApi = (base) => ({
       },
     },
 
-    notification: {
-      find: {
-        url: `${base}campaign/notification`,
-        method: 'GET',
-        withAuth: true,
-      },
-      update: {
-        url: `${base}campaign/notification`,
-        method: 'PUT',
-        withAuth: true,
-      },
+    claim: {
+      url: `${base}campaign/claim`,
+      method: 'POST',
+    },
+    approveClaim: {
+      url: `${base}campaign/approve-claim`,
+      method: 'PUT',
+      withAuth: true,
+    },
+    pledge: {
+      url: `${base}campaign/pledge`,
+      method: 'POST',
+      withAuth: true,
+    },
+    followersFiller: {
+      url: `${base}listening/followers-filler`,
+      method: 'GET',
+      withAuth: true,
     },
   },
+
   candidateUser: {
     issue: {
       find: {
@@ -661,12 +619,6 @@ export const generateApi = (base) => ({
         method: 'POST',
         withAuth: true,
       },
-    },
-  },
-  jobUpdates: {
-    create: {
-      url: `${base}updates`,
-      method: 'POST',
     },
   },
 

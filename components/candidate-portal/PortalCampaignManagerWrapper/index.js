@@ -22,9 +22,10 @@ import ImageUploadContainer from '/containers/shared/ImageUploadContainer';
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 import PortalPanel from '../shared/PortalPanel';
 import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
-import { isValidUrl } from '../../../helpers/linkHelper';
+import { isValidUrl } from '/helpers/linkHelper';
 import PhoneInput from '../../shared/PhoneInput';
 import CampaignColorPicker from './CampaignColorPicker';
+import YouTubeInput from '../../shared/YouTubeInput';
 
 const Inner = styled.div`
   width: 100%;
@@ -62,7 +63,7 @@ const StickyWrapper = styled.div`
   }
 `;
 
-const fields = [
+export const fields = [
   { label: 'First Name', key: 'firstName', required: true },
   { label: 'Last Name', key: 'lastName', required: true },
   { label: 'Zip Code', key: 'zip' },
@@ -70,7 +71,7 @@ const fields = [
     label: 'Political party affiliation',
     key: 'party',
     type: 'select',
-    options: ['I', 'GP', 'L', 'W', 'F', 'Other'],
+    options: ['I', 'GP', 'L', 'W', 'F', 'U', 'Other'],
     required: true,
   },
 
@@ -86,7 +87,7 @@ const fields = [
   { label: 'Website', key: 'website', isUrl: true },
 ];
 
-const fields2 = [
+export const fields2 = [
   { label: 'Office being sought ', key: 'race', required: true },
   {
     label: 'Date of election ',
@@ -119,17 +120,21 @@ const fields2 = [
   { label: 'Headline', key: 'headline', required: true },
   { label: 'Summary', key: 'about', isRichText: true, required: true },
   { label: 'Committee name', key: 'committeeName' },
-  { label: 'Campaign Video (YouTube Id)', key: 'heroVideo' },
+  {
+    label: 'Campaign Video (YouTube Id)',
+    key: 'heroVideo',
+    type: 'youtubeInput',
+  },
 ];
 
-const fields3 = [
+export const fields3 = [
   { label: 'First Name ', key: 'contactFirstName' },
   { label: 'Last Name ', key: 'contactLastName' },
   { label: 'Email ', key: 'contactEmail', type: 'email' },
   { label: 'Phone ', key: 'contactPhone', type: 'phone' },
 ];
 
-const panels = [
+export const panels = [
   { fields, label: 'Candidate Information' },
   { fields: fields2, label: 'Campaign Information' },
   { fields: fields3, label: 'Contact Information' },
@@ -239,14 +244,25 @@ function PortalCampaignManagerWrapper() {
     <PortalPageWrapper role={role} title="Edit Campaign Page">
       <CampaignColorPicker />
       {panels.map((panel, index) => (
-        <PortalPanel color="#EE6C3B" key={panel.label}>
+        <PortalPanel
+          color="#EE6C3B"
+          key={panel.label}
+          data-cy="campaign-manage-panel"
+        >
           <Inner>
-            <FontH3 style={{ margin: '0 0 45px 0' }}>{panel.label}</FontH3>
+            <FontH3 style={{ margin: '0 0 45px 0' }} data-cy="panel-title">
+              {panel.label}
+            </FontH3>
             <Grid container spacing={2}>
               {panel.fields.map((field) => (
                 <React.Fragment key={field.key}>
                   {(!field.isHidden || showHidden) && (
-                    <Grid item xs={12} lg={field.columns ? field.columns : 12}>
+                    <Grid
+                      item
+                      xs={12}
+                      lg={field.columns ? field.columns : 12}
+                      data-cy="panel-field"
+                    >
                       {field.isRichText && (
                         <>
                           {field.label}
@@ -289,8 +305,19 @@ function PortalCampaignManagerWrapper() {
                           {errors[field.key] && <Err>{errors[field.key]}</Err>}
                         </>
                       )}
+                      {field.type === 'youtubeInput' && (
+                        <YouTubeInput
+                          initialId={state[field.key] || ''}
+                          onChangeCallback={(value, id) => {
+                            console.log('value', value);
+                            console.log('id', id);
+                            onChangeField(field.key, id);
+                          }}
+                        />
+                      )}
                       {field.type !== 'select' &&
                         !field.isRichText &&
+                        field.type !== 'youtubeInput' &&
                         field.type !== 'phone' && (
                           <TextField
                             fullWidth

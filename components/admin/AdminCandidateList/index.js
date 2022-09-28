@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Link from 'next/link';
-import moment from 'moment';
 import { candidateRoute, partyResolver } from '/helpers/electionsHelper';
 import AlertDialog from '../../shared/AlertDialog';
 import AdminPageWrapper from '../shared/AdminPageWrapper';
@@ -191,6 +190,9 @@ function Index({ candidates, deleteCandidateCallback }) {
     key: column.accessor,
   }));
 
+  let date = new Date();
+  date = date.toISOString().split('T')[0];
+
   return (
     <AdminPageWrapper title="candidate list">
       <AdminPanel>
@@ -200,7 +202,7 @@ function Index({ candidates, deleteCandidateCallback }) {
             <Button variant="contained" color="primary">
               <CSVLink
                 data={tableData}
-                filename={`candidates_${moment().format('YYYY_MM_DD')}.csv`}
+                filename={`candidates_${date}.csv`}
                 headers={csvHeader}
                 target="_blank"
               >

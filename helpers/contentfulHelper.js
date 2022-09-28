@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 
 const dtrOptions = {
   renderNode: {
-    [BLOCKS.EMBEDDED_ASSET]: node => (
+    [BLOCKS.EMBEDDED_ASSET]: (node) => (
       <img
         src={node.data?.target?.fields?.file?.url}
         alt={node.data?.target?.fields?.title}
@@ -16,7 +17,7 @@ const dtrOptions = {
 };
 
 // returns only articles that match the page.
-const contentfulHelper = rawRichTextField => {
+const contentfulHelper = (rawRichTextField) => {
   try {
     let doc = rawRichTextField;
     if (typeof doc === 'string') {
@@ -102,3 +103,14 @@ export const CmsContentWrapper = styled.div`
 `;
 
 export default contentfulHelper;
+
+export const cmsToPlainText = (content, limit) => {
+  if (!content) {
+    return '';
+  }
+  let text = documentToPlainTextString(content);
+  if (limit) {
+    return text.substring(0, limit -3) + '...';
+  }
+  return text;
+};

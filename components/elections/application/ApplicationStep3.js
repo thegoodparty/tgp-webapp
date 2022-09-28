@@ -371,7 +371,7 @@ function ApplicationStep3({
 
         {field.type === 'youtube' && (
           <YouTubeInput
-            initalId={state[field.key]}
+            initialId={state[field.key]}
             onChangeCallback={onChangeYoutube}
           />
         )}

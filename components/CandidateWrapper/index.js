@@ -4,75 +4,188 @@
  *
  */
 
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
+import React, { useContext, useState, createContext, useEffect } from 'react';
+// import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 
 import NotFound from '/containers/shared/NotFoundPage';
+import { CandidateContext } from '/containers/CandidatePage';
 import PageWrapper from '../shared/PageWrapper';
 
-import ProfileCard from './left/ProfileCard';
-import EndorseSection from './left/EndorseSection';
-import { CandidateContext } from '../../containers/CandidatePage';
-import SupportButton from './left/SupportButton';
-import RecentlyJoined from './left/RecentlyJoined';
-import HeroSection from './right/HeroSection';
-import Summary from './right/Summary';
-import TopIssues from './right/TopIssues';
-import Follow from './right/Follow';
-import Updates from './right/Updates';
-import Endorsements from './right/Endorsements';
-import DateBox from './left/DateBox';
+import Header from './Header';
+import Tabs from './Tabs';
+import MaxWidth, { Padder } from '../shared/MaxWidth';
 
-const InnerWrapper = styled.div`
-  padding-top: 36px;
-`;
+const Feed = dynamic(() => import('./Feed'), { loading: () => <>Loading</> });
+const Campaign = dynamic(() => import('./Campaign'), {
+  loading: () => (
+    <>
+      <LoadingAnimation fullPage={false} />
+    </>
+  ),
+});
+const Bio = dynamic(() => import('./Bio'), { loading: () => <>Loading</> });
+import Modal from '../shared/Modal';
+import LoadingAnimation from '../shared/LoadingAnimation';
+import { getCookie, setCookie } from '../../helpers/cookieHelper';
+
+const CheckVoteRegistration = dynamic(
+  () => import('../CandidatesWrapper/CheckVoteRegistration'),
+  {
+    loading: () => (
+      <>
+        <LoadingAnimation fullPage={false} />
+      </>
+    ),
+  },
+);
+
+const FollowModal = dynamic(() => import('./FollowModal'), {
+  loading: () => (
+    <>
+      <LoadingAnimation fullPage={false} />
+    </>
+  ),
+});
+
+const VoteModal = dynamic(() => import('./VoteModal'), {
+  loading: () => (
+    <>
+      <LoadingAnimation fullPage={false} />
+    </>
+  ),
+});
+
+const CheckWhereToVoteModal = dynamic(() => import('./CheckWhereToVote'), {
+  loading: () => (
+    <>
+      <LoadingAnimation fullPage={false} />
+    </>
+  ),
+});
+
+const tabs = [
+  { route: 'Feed', component: <Feed /> },
+  { route: 'Campaign', component: <Campaign /> },
+  { route: 'Bio', component: <Bio /> },
+];
+
+export const CandidateWrapperContext = createContext();
 
 function CandidateWrapper() {
-  const { candidate, candidatePositions } = useContext(CandidateContext);
+  const { candidate, tab } = useContext(CandidateContext);
+  const [followModalOpen, setFollowModalOpen] = useState(false);
+  const [voteModalOpen, setVoteModalOpen] = useState(false);
+  const [registerVoteOpen, setRegisterVoteOpen] = useState(false);
+  const [whereVoteOpen, setWhereVoteOpen] = useState(false);
+  const [offsetFollow, setOffsetFollow] = useState(0);
+
+  useEffect(() => {
+    if (candidate?.state === 'ME' && tab === 'Feed') {
+      const cookie = getCookie('voter-modal-seen');
+      if (cookie !== 'true') {
+        setTimeout(() => {
+          setVoteModalOpen(true);
+          setCookie('voter-modal-seen', 'true');
+        }, 10000);
+      }
+    }
+  }, [candidate]);
+
   if (!candidate) {
     return <NotFound />;
   }
-  const withTopIssues = candidatePositions?.length > 0;
+
+  const afterFollowCallback = () => {
+    setOffsetFollow(offsetFollow + 1);
+  };
+
+  const afterUnfollowCallback = () => {
+    setOffsetFollow(offsetFollow - 1);
+  };
+
+  const openFollowModalCallback = () => {
+    setFollowModalOpen(true);
+  };
+
+  const closeFollowModalCallback = () => {
+    setFollowModalOpen(false);
+  };
+
+  const contextProps = {
+    openFollowModalCallback,
+    closeFollowModalCallback,
+    offsetFollow,
+    afterFollowCallback,
+    afterUnfollowCallback,
+  };
+
+  const checkRegisterVote = () => {
+    setVoteModalOpen(false);
+    setRegisterVoteOpen(true);
+  };
+
+  const whereToVote = () => {
+    setVoteModalOpen(false);
+    setWhereVoteOpen(true);
+  };
+
   return (
-    <PageWrapper>
-      <InnerWrapper>
-        <Grid container spacing={8}>
-          <Grid item xs={12} md={4}>
-            <ProfileCard />
-            <DateBox showPast={false} />
-            <EndorseSection />
-
-            <DateBox showPast />
-            <RecentlyJoined />
-
-            {/*<Hidden mdDown>*/}
-            {/*  <SimilarCampaigns />*/}
-            {/*</Hidden>*/}
-          </Grid>
-          <Grid item xs={12} md={8}>
-            <HeroSection />
-            <Grid container spacing={4}>
-              <Grid item xs={12} md={withTopIssues ? 7 : 12}>
-                <Summary />
-              </Grid>
-              {withTopIssues && (
-                <Grid item xs={12} md={5}>
-                  <TopIssues />
-                </Grid>
-              )}
-            </Grid>
-            {/*<Hidden lgUp>*/}
-            {/*  <SimilarCampaigns />*/}
-            {/*</Hidden>*/}
-            <Endorsements />
-            <Follow />
-            <Updates />
-          </Grid>
-        </Grid>
-      </InnerWrapper>
-    </PageWrapper>
+    <CandidateWrapperContext.Provider value={contextProps}>
+      <PageWrapper isFullWidth>
+        <MaxWidth>
+          <Padder>
+            <Header />
+          </Padder>
+        </MaxWidth>
+        <Tabs />
+        <MaxWidth>
+          <Padder>
+            {tabs.map((tabContent) => (
+              <React.Fragment key={tabContent.route}>
+                {tabContent.route === tab && <>{tabContent.component}</>}
+              </React.Fragment>
+            ))}
+          </Padder>
+        </MaxWidth>
+        <Modal
+          open={followModalOpen}
+          showCloseButton={false}
+          closeModalCallback={() => setFollowModalOpen(false)}
+        >
+          <FollowModal />
+        </Modal>
+        <Modal
+          open={voteModalOpen}
+          showCloseButton={false}
+          closeModalCallback={() => setVoteModalOpen(false)}
+        >
+          <VoteModal
+            closeModalCallback={() => setVoteModalOpen(false)}
+            checkRegisterVoteCallback={checkRegisterVote}
+            whereToVoteCallback={whereToVote}
+          />
+        </Modal>
+        <Modal
+          open={registerVoteOpen}
+          showCloseButton={false}
+          closeModalCallback={() => setRegisterVoteOpen(false)}
+        >
+          <CheckVoteRegistration
+            closeModalCallback={() => setRegisterVoteOpen(false)}
+          />
+        </Modal>
+        <Modal
+          open={whereVoteOpen}
+          showCloseButton={false}
+          closeModalCallback={() => setWhereVoteOpen(false)}
+        >
+          <CheckWhereToVoteModal
+            closeModalCallback={() => setWhereVoteOpen(false)}
+          />
+        </Modal>
+      </PageWrapper>
+    </CandidateWrapperContext.Provider>
   );
 }
 

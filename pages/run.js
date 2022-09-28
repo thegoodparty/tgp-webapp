@@ -1,4 +1,4 @@
 import Page from '/containers/RunPage';
-export default function LP({ ssrState }) {
+export default function LP() {
   return <Page />;
 }

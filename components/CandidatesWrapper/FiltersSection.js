@@ -1,77 +1,95 @@
 /**
  *
- * FiltersSection
+ * TopSection
  *
  */
 
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Sticky from 'react-sticky-el';
-import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import dynamic from 'next/dynamic';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
+import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
+import Modal from '../shared/Modal';
+import LoadingAnimation from '../shared/LoadingAnimation';
+import CheckVoteRegistration from './CheckVoteRegistration';
 
-import { FontH3 } from '../shared/typogrophy';
-import BlackButton from '../shared/buttons/BlackButton';
-import { removeWhiteSpaces } from '../../helpers/stringHelper';
+const VerifyVotePage = dynamic(
+  () => import('/containers/voterize/VerifyVotePage'),
+  {
+    loading: () => (
+      <div style={{ padding: '60px' }}>
+        <LoadingAnimation fullPage={false} />
+      </div>
+    ),
+  },
+);
 
-const Section = styled.section`
-  padding: 16px 28px;
-  background-color: #fafafa;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+const Wrapper = styled.section``;
+
+const H2 = styled.h2`
+  font-size: 21px;
+  font-weight: 900;
+  margin: 30px 0 0;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin: 0 0 40px;
+  }
+`;
+const Pill = styled.div`
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #f3f3f3;
+  margin: 15px 17px 0 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 7px;
+  &:hover {
+    background-color: #dddddd;
+  }
+
+  &.selected {
+    background-color: #000;
+    color: #fff;
+  }
 `;
 
-const ShareWrapper = styled.div`
-  text-align: center;
+const PositionsWrapper = styled.div`
+  height: 110px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin-bottom: 24px;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  font-size: 14px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     text-align: right;
   }
 `;
 
-const InnerButton = styled.div`
-  padding: 0 24px;
-  font-size: 12px;
-`;
-
-const FilterBy = styled.div`
-  padding: 16px 28px;
-  border-top: solid 1px #e6e6e6;
-  background-color: #fafafa;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-`;
-
-const StickyWrapper = styled.div`
-  .sticky {
-    z-index: 10;
-  }
-  .sticky .sticky-el {
-    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
-  }
-`;
-
 function FiltersSection() {
   const {
-    candidates,
     positions,
-    positionsByTopIssues,
     states,
     filterCandidatesCallback,
     routePosition,
     routeState,
   } = useContext(CandidatesContext);
-
-  const router = useRouter();
   const [state, setState] = useState({
     position: '',
-    state: '',
+    state: routeState || '',
   });
+
   const [positionsById, setPositionsById] = useState({});
+  const [showVoteModal, setShowVoteModal] = useState(false);
 
   useEffect(() => {
     const byId = {};
@@ -82,20 +100,21 @@ function FiltersSection() {
   }, [positions]);
 
   useEffect(() => {
+    let position = '';
+    let state = '';
     if (Object.keys(positionsById).length > 0) {
-      let position = '';
-      let state = '';
       if (routePosition && routePosition !== 'all') {
         position = parseInt(routePosition.split('|')[1], 10);
       }
-      if (routeState) {
-        state = states.findIndex((item) => item === routeState);
-      }
-      setState({
-        position,
-        state,
-      });
     }
+    if (routeState) {
+      state = states.findIndex((item) => item === routeState);
+    }
+
+    setState({
+      position,
+      state,
+    });
   }, [routePosition, routeState, positionsById]);
 
   const onChangeField = (key, val) => {
@@ -110,97 +129,101 @@ function FiltersSection() {
     );
   };
 
+  const handlePillClick = (id) => {
+    if (id === state.position) {
+      onChangeField('position', '');
+    } else {
+      onChangeField('position', id);
+    }
+  };
+
   return (
-    <>
-      <Section>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12} lg={9}>
-            <FontH3 style={{ margin: 0 }}>
-              {candidates.length} Good Certified Candidate
-              {candidates.length !== 1 ? 's ' : ' '}
-              {state.position !== '' && state.position !== -1 ? (
-                <>
-                  who care about{' '}
-                  <span>
-                    #{removeWhiteSpaces(positionsById[state.position]?.name)}
-                  </span>
-                </>
-              ) : (
-                <>who people should know about</>
-              )}
-              {state.state !== '' && state.state !== -1 && (
-                <>
-                  &nbsp;in <span>{states[state.state]}</span>
-                </>
-              )}
-            </FontH3>
-          </Grid>
-          <Grid item xs={12} lg={3}>
-            <ShareWrapper>
-              Spread the word! &nbsp;{' '}
-              <Link href={`${router.asPath}?share=true`} passHref>
-                <a>
-                  <BlackButton style={{ marginLeft: '24px' }}>
-                    <InnerButton>Share</InnerButton>
-                  </BlackButton>
-                </a>
-              </Link>
-            </ShareWrapper>
-          </Grid>
+    <Wrapper>
+      {positions.length > 0 && (
+        <>
+          <H2 data-cy="filter-section-title">Filter by Top Issues</H2>
+
+          <PositionsWrapper>
+            {positions.map((position) => (
+              <Pill
+                key={position.id}
+                onClick={() => {
+                  handlePillClick(position.id);
+                }}
+                className={position.id === state.position && 'selected'}
+                data-cy="position-pill"
+              >
+                {position.name} ({position.candidates?.length})
+              </Pill>
+            ))}
+          </PositionsWrapper>
+        </>
+      )}
+      <Grid container spacing={3}>
+        <Grid item xs={8} lg={3}>
+          <Autocomplete
+            options={positions}
+            groupBy={(option) => {
+              return option.topIssue?.name;
+            }}
+            getOptionLabel={(option) => option.name}
+            fullWidth
+            value={positionsById[state.position] || null}
+            variant="outlined"
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search all Issues"
+                variant="outlined"
+                // value={state.position}
+              />
+            )}
+            onChange={(event, item) => {
+              onChangeField('position', item?.id);
+            }}
+          />
         </Grid>
-      </Section>
-      <StickyWrapper>
-        <Sticky>
-          <FilterBy className="sticky-el">
-            <strong>Filter By</strong> &nbsp; &nbsp;
-            <Select
-              variant="outlined"
-              native
-              value={state.position}
-              onChange={(e) => {
-                onChangeField('position', e.target.value);
-              }}
-            >
-              <option value="">All Issues</option>
-              {positionsByTopIssues && (
-                <>
-                  {(Object.keys(positionsByTopIssues) || []).map((issue) => (
-                    <>
-                      <optgroup label={issue}>{issue}</optgroup>
-                      {positionsByTopIssues[issue].map((position) => (
-                        <option value={position.id} key={position.id}>
-                          &nbsp; {position.name}
-                        </option>
-                      ))}
-                    </>
-                  ))}
-                </>
-              )}
-            </Select>
-            &nbsp; &nbsp;
-            <Select
-              variant="outlined"
-              native
-              value={state.state}
-              onChange={(e) => {
-                onChangeField('state', e.target.value);
-              }}
-            >
-              <option value="">All States</option>
-              {(states || []).map((state, index) => (
-                <option value={index} key={state}>
-                  {state}
-                </option>
-              ))}
-            </Select>
-            {/*{positionNames && positionNames.length > 0 && <Border>|</Border>}*/}
-            {/*{(positionNames || []).map((position) => (*/}
-            {/*  <PositionPill key={position}>{position}</PositionPill>*/}
-            {/*))}*/}
-          </FilterBy>
-        </Sticky>
-      </StickyWrapper>
-    </>
+        <Grid item xs={8} lg={3}>
+          <Autocomplete
+            options={states}
+            value={states[state.state] || null}
+            fullWidth
+            variant="outlined"
+            autoSelect
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Filter by state"
+                variant="outlined"
+                // value={states[state.state]}
+                // value="tomer"
+              />
+            )}
+            onChange={(event, item) => {
+              onChangeField('state', states.indexOf(item));
+            }}
+          />
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          {routeState === 'ME' && (
+            <ButtonWrapper>
+              <BlackButton onClick={() => setShowVoteModal(true)}>
+                <InnerButton>Check My Voter Registration</InnerButton>
+              </BlackButton>
+            </ButtonWrapper>
+          )}
+        </Grid>
+      </Grid>
+      <Modal
+        open={showVoteModal}
+        closeModalCallback={() => setShowVoteModal(false)}
+        showCloseButton={false}
+      >
+        <CheckVoteRegistration
+          closeModalCallback={() => setShowVoteModal(false)}
+        />
+      </Modal>
+    </Wrapper>
   );
 }
 

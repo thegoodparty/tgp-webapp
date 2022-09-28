@@ -41,6 +41,7 @@ function EndorseIframe() {
           style={{
             marginRight: '8px',
           }}
+          alt="GP"
         />{' '}
         ENDORSE
       </BlackButton>

@@ -5,79 +5,77 @@ import { Link as ScrollLink } from 'react-scroll';
 import { HomePageContext } from '/containers/HomePage';
 
 const H1 = styled.h1`
-  font-size: 48px;
-  margin: 16px 0 20px;
+  margin: 16px 0 12px;
   font-weight: 900;
-
+  font-size: 46px;
+  line-height: 60px;
+  display: inline-block;
+  position: relative;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    font-size: 70px;
+    line-height: 80px;
+  }
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.xl}) {
-    margin: 70px 0;
-    font-size: 45px;
-  }
-
-  .smaller {
-    font-style: italic;
-    font-size: 30px;
-    color: #8e8e8e;
-
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.xl}) {
-      font-size: 48px;
-    }
-  }
-
-  .large {
-    font-size: 60px;
-    display: inline-block;
-    position: relative;
-    z-index: 10;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.xl}) {
-      font-size: 90px;
-    }
+    font-size: 90px;
+    margin: 70px 0 24px;
+    line-height: 100px;
   }
 
   .yellow {
     position: absolute;
-    height: 28px;
-    width: calc(100% + 10px);
-    bottom: 3px;
-    left: -5px;
-    background-color: #ffe600;
+    height: 25px;
+    width: 100%;
+    bottom: 0;
+    left: -3px;
+    background-color: ${({ theme }) => theme.colors.yellow};
+    @media only screen and (min-width: ${({ theme }) =>
+        theme.breakpointsPixels.lg}) {
+      height: 40px;
+      left: -7px;
+    }
+  }
+
+  
+
+  .top {
+    position: relative;
+    z-index: 10;
   }
 `;
 
-const Up = styled.span`
-  z-index: 10;
-  position: relative;
-`;
-
-const MobileBr = styled.span`
-  display: block;
+const H3 = styled.h3`
+  margin: 0 0 35px;
+  font-size: 19px;
+  font-weight: 400;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    display: inline;
+      theme.breakpointsPixels.lg}) {
+    font-size: 28px;
+    margin: 0 0 70px;
+  }
+
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.xl}) {
+    font-size: 36px;
   }
 `;
 
 const Hero = ({ openModalCallback }) => {
-  const { utmExperiment } = useContext(HomePageContext);
-
   return (
-    <H1>
-      {utmExperiment.text1}
-      <br />
-      {utmExperiment.text2 !== '' && (
-        <span className="large">
-          <span className="yellow" />
-          <Up>{utmExperiment.text2}</Up>
-        </span>
-      )}{' '}
-      <MobileBr />
-      <span className="smaller pointer" onClick={openModalCallback}>
-        {utmExperiment.text3}
-      </span>
-    </H1>
+    <>
+      <H1>
+        <span className="relative">
+          <span className="top">Break free</span> <span className="yellow" />
+        </span>{' '}
+        from <br />
+        <span className="red">politics</span> as{' '}
+        <span className="blue">usual</span>
+      </H1>
+      <H3 onClick={openModalCallback}>
+        Declare independence with a <strong>#goodparty</strong>
+      </H3>
+    </>
   );
 };
 

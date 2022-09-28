@@ -13,7 +13,10 @@ import { PortalAdminPageContext } from '/containers/candidate-portal/PortalAdmin
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { FontH1 } from '../../shared/typogrophy';
 import { PurpleButton } from '../../shared/buttons';
-import BlackButton from '../../shared/buttons/BlackButton';
+import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
+import Row from '../../shared/Row';
+import EmailInput, { isValidEmail } from '../../shared/EmailInput';
+import PinkButton from '../../shared/buttons/PinkButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 120px);
@@ -38,14 +41,28 @@ const fields = [
     initialValue: true,
     isCheckbox: true,
   },
-  { label: 'Unrepresented voters', key: 'unrepVoters', initialValue: 0 },
+  { label: 'Followers Offset', key: 'followersOffset', initialValue: 0 },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
   { label: 'hubspot company id', key: 'hubspotId', initialValue: '' },
+  { label: 'Pulsar Search ID', key: 'pulsarSearchId', initialValue: '' },
+  {
+    label: 'This campaign is claimed',
+    key: 'isClaimed',
+    initialValue: false,
+    isCheckbox: true,
+  },
 ];
 
 function PortalAdminWrapper() {
-  const { candidate, saveCallback } = useContext(PortalAdminPageContext);
+  const {
+    candidate,
+    saveCallback,
+    approveClaimCallback,
+    fillFollowersCallback,
+  } = useContext(PortalAdminPageContext);
+
+  const [claimEmail, setClaimEmail] = useState('');
 
   const initialState = {};
   fields.forEach((field) => {
@@ -74,11 +91,11 @@ function PortalAdminWrapper() {
   };
 
   const canSubmit = () => {
-    return (
-      state.unrepVoters >= 0 &&
-      state.likelyVoters >= 0 &&
-      state.votesNeeded >= 0
-    );
+    return state.likelyVoters >= 0 && state.votesNeeded >= 0;
+  };
+
+  const approveClaim = () => {
+    approveClaimCallback(claimEmail, candidate.id);
   };
 
   return (
@@ -118,6 +135,34 @@ function PortalAdminWrapper() {
           </FieldWrapper>
         ))}
         <br />
+        {!candidate.isClaimed && (
+          <div>
+            <form noValidate onSubmit={(e) => e.preventDefault()}>
+              <Row style={{ alignItems: 'center' }}>
+                <EmailInput
+                  hideIcon
+                  value={claimEmail}
+                  onChangeCallback={(e) => {
+                    setClaimEmail(e.target.value);
+                  }}
+                />
+                <BlackButton
+                  disabled={!isValidEmail(claimEmail)}
+                  onClick={approveClaim}
+                  type="submit"
+                  style={{
+                    marginLeft: '20px',
+                    marginBottom: '18px',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  <InnerButton>Approve Claim</InnerButton>
+                </BlackButton>
+              </Row>
+            </form>
+          </div>
+        )}
+        <br />
         <br />
         <BlackButton
           fullWidth
@@ -128,6 +173,17 @@ function PortalAdminWrapper() {
         >
           Save
         </BlackButton>
+        <br />
+        <br />
+        <br />
+        <br />
+        <PinkButton
+          onClick={() => {
+            fillFollowersCallback(candidate.id);
+          }}
+        >
+          <InnerButton>Fill Followers for the last week</InnerButton>
+        </PinkButton>
       </Wrapper>
     </PortalPageWrapper>
   );

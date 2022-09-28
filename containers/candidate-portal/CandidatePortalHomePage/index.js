@@ -31,7 +31,6 @@ export function CandidatePortalHomePage({
   candidatePortalHomePage,
   loadStatsCallback,
   savePreferencesCallback,
-  newUpdateCallback,
 }) {
   useInjectReducer({ key: 'candidatePortalHomePage', reducer });
   useInjectSaga({ key: 'candidatePortalHomePage', saga });
@@ -53,7 +52,7 @@ export function CandidatePortalHomePage({
   }, [id]);
 
   useEffect(() => {
-    if (!candidate && id) {
+    if (!candidate || `${candidate.id}` !== id) {
       dispatch(actions.findCandidate(id));
     }
   }, [id, candidate]);
@@ -65,7 +64,6 @@ export function CandidatePortalHomePage({
     loadStatsCallback,
     savePreferencesCallback,
     role,
-    newUpdateCallback,
   };
 
   return (
@@ -82,7 +80,6 @@ CandidatePortalHomePage.propTypes = {
   candidatePortalHomePage: PropTypes.object,
   loadStatsCallback: PropTypes.func,
   savePreferencesCallback: PropTypes.func,
-  newUpdateCallback: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -98,9 +95,6 @@ function mapDispatchToProps(dispatch) {
     },
     savePreferencesCallback: (id, preferences) => {
       dispatch(actions.updatePreferencesAction(id, preferences));
-    },
-    newUpdateCallback: (candidate, update) => {
-      dispatch(actions.createUpdateAction(candidate, update));
     },
   };
 }

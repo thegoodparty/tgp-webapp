@@ -8,6 +8,8 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { JsonLd } from 'react-schemaorg';
+import { useRouter } from 'next/router';
 
 import MuiBreadcrumbs from '@material-ui/core/Breadcrumbs';
 import { Body11 } from '../typogrophy';
@@ -34,8 +36,28 @@ const GrayBody11 = styled(Body11)`
 `;
 
 function Breadcrumbs({ links }) {
+  const router = useRouter();
+  const schema = [];
+  links.forEach((link, index) => {
+    schema.push({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@id': link.href || router.asPath,
+        name: link.label,
+      },
+    });
+  });
+
   return (
     <Wrapper>
+      <JsonLd
+        item={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: schema,
+        }}
+      />
       <StyledBreadCrumbs aria-label="breadcrumb">
         {links.map((link, index) => (
           <span key={link.label}>

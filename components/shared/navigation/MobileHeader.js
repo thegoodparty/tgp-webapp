@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
-import { Spin as Hamburger } from 'hamburger-react';
-import { GrClose } from 'react-icons/gr';
-import Hidden from '@material-ui/core/Hidden';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import RegisterBannerContainer from '/containers/shared/RegisterBannerContainer';
 import { logEvent } from '/services/AnalyticsService';
+import Hamburger from 'hamburger-react';
 
 import UserAvatar from '../UserAvatar';
 import { HEADER_LINKS } from './constants';
+import { SmOnly } from './NavWrapper';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -88,30 +86,20 @@ function MobileHeader({ user }) {
   const path = router.asPath;
 
   return (
-    <Hidden mdUp>
+    <SmOnly>
       <Wrapper>
-        {open ? (
-          <GrClose
-            size={28}
-            onClick={() => {
-              setOpen(false);
-            }}
-          />
-        ) : (
-          <Image
-            src="/images/heart.svg"
-            width={36}
-            height={30}
-            onClick={() => {
-              setOpen(true);
-            }}
-          />
-        )}
-        {/*<Hamburger toggled={open} toggle={setOpen} size={24} />*/}
+        <Hamburger
+          toggled={open}
+          toggle={setOpen}
+          size={26}
+          color="#747779"
+          rounded
+          label="Show menu"
+        />
       </Wrapper>
       <MenuWrapper className={open && 'open'}>
         <Link href="/" className="text-center" passHref>
-          <a>
+          <a id="mobile-nav-logo">
             <Logo
               src="/images/black-logo.svg"
               alt="The Good Party"
@@ -127,7 +115,7 @@ function MobileHeader({ user }) {
               logEvent('Link', 'Home', 'Top Nav');
             }}
           >
-            <a>Home</a>
+            <a id="mobile-nav-home">Home</a>
           </Link>
         </TopLink>
         {HEADER_LINKS.map((link) => (
@@ -139,13 +127,15 @@ function MobileHeader({ user }) {
                 logEvent('Link', link.label, 'Top Nav');
               }}
             >
-              <a>{link.label}</a>
+              <a id={`mobile-nav-${link.label.replace(' ', '-')}`}>
+                {link.label}
+              </a>
             </Link>
           </TopLink>
         ))}
         {user?.name ? (
           <Link href="/profile" passHref>
-            <a style={{ width: '100%' }}>
+            <a style={{ width: '100%' }} id="mobile-nav-profile">
               <PushAvatarWrapper className={path === '/profile' && 'active'}>
                 <UserAvatar user={user} />
                 <div style={{ marginLeft: 6 }}>{user.name}</div>
@@ -153,26 +143,15 @@ function MobileHeader({ user }) {
             </a>
           </Link>
         ) : (
-          <>
-            <TopLink>
-              <Link
-                href="/register"
-                passHref
-                className={path === '/register' && 'active'}
-              >
-                <a>Sign Up</a>
-              </Link>
-            </TopLink>
-            <TopLink>
-              <Link
-                href="/login"
-                passHref
-                className={path === '/login' && 'active'}
-              >
-                <a>Log In</a>
-              </Link>
-            </TopLink>
-          </>
+          <TopLink>
+            <Link
+              href="/register"
+              passHref
+              className={path === '/register' && 'active'}
+            >
+              <a id="mobile-nav-register">Sign Up</a>
+            </Link>
+          </TopLink>
         )}
         {user?.isAdmin && (
           <div style={{ marginTop: '12px' }}>
@@ -184,7 +163,7 @@ function MobileHeader({ user }) {
       </MenuWrapper>
 
       <RegisterBannerContainer />
-    </Hidden>
+    </SmOnly>
   );
 }
 

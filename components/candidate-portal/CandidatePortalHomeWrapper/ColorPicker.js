@@ -45,11 +45,7 @@ function ColorPicker({ onColorPick, initialColor = '#000', mode }) {
   };
   return (
     <Wrapper className={mode ?? ''}>
-      <ChromePicker
-        color={color}
-        onChange={handleColorChange}
-        disableAlpha
-      />
+      <ChromePicker color={color} onChange={handleColorChange} disableAlpha />
     </Wrapper>
   );
 }
