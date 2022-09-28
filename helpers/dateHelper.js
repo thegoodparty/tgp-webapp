@@ -71,7 +71,7 @@ export const dateWithMonthName = (date) => {
   if (!date) {
     return '';
   }
-  const dateObj = new Date(date);
+  const dateObj = new Date(date.replace(/-/g, '/'));
   const month = dateObj.toLocaleString('default', { month: 'long' });
   const year = dateObj.getFullYear();
   const day = dateObj.getDate().toString();
