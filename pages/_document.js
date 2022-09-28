@@ -47,7 +47,11 @@ class CustomDocument extends NextDocument {
           <meta charSet="utf-8" />
           <meta name="mobile-web-app-capable" content="yes" />
           <link rel="preconnect" href="https://connect.facebook.net" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
 
           <meta property="og:site_name" content="GOOD PARTY" />
           <meta property="og:type" content="website" />
@@ -55,14 +59,20 @@ class CustomDocument extends NextDocument {
           <meta property="twitter:card" content="summary_large_image" />
           <meta name="theme-color" content="#ffffff" />
           <meta property="fb:app_id" content="241239336921963" />
-          <meta name="facebook-domain-verification" content="i5q7j6fwuhlvi1o263gskurwzqqzbb" />
+          <meta
+            name="facebook-domain-verification"
+            content="i5q7j6fwuhlvi1o263gskurwzqqzbb"
+          />
           <link
             rel="icon"
             type="image/png"
             href="https://assets.goodparty.org/favicon/favicon-512x512.png"
             sizes="512x512"
           />
-          <link rel="apple-touch-icon" href="https://assets.goodparty.org/favicon/android-icon-192x192.png" />
+          <link
+            rel="apple-touch-icon"
+            href="https://assets.goodparty.org/favicon/android-icon-192x192.png"
+          />
           {/*<meta*/}
           {/*  name="google-signin-client_id"*/}
           {/*  content="28351607421-c9m6ig3vmto6hpke4g96ukgfl3vvko7g.apps.googleusercontent.com"*/}
@@ -73,7 +83,7 @@ class CustomDocument extends NextDocument {
           />
           <link rel="manifest" href="/manifest.json" />
           {this.props.styles}
-          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"></script>
+          {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"></script>*/}
         </Head>
         <body>
           <Main />

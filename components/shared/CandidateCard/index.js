@@ -87,7 +87,7 @@ const ButtonWrapper = styled.div`
 
 const MAX_POSITIONS = 6;
 
-function CandidateCard({ candidate, doubleButton = false }) {
+function CandidateCard({ candidate }) {
   const {
     id,
     firstName,
@@ -168,57 +168,21 @@ function CandidateCard({ candidate, doubleButton = false }) {
 
               <ButtonWrapper>
                 <Grid container spacing={2}>
-                  {doubleButton && (
-                    <Grid item xs={6}>
-                      <BlackButton
-                        fullWidth
-                        style={{
-                          textTransform: 'none',
-                          marginTop: '32px',
-                          backgroundColor: brightColor,
-                          borderColor: brightColor,
-                        }}
-                        data-cy="candidate-view"
-                        onClick={handleFollow}
-                        className="follow-button-card"
-                      >
-                        Follow
-                      </BlackButton>
-                    </Grid>
-                  )}
-                  {doubleButton ? (
-                    <Grid item xs={6}>
-                      <BlackButton
-                        fullWidth
-                        className="outlined view-button-card"
-                        style={{
-                          textTransform: 'none',
-                          marginTop: '32px',
-                          color: brightColor,
-                          borderColor: brightColor,
-                        }}
-                        data-cy="candidate-view"
-                      >
-                        View
-                      </BlackButton>
-                    </Grid>
-                  ) : (
-                    <Grid item xs={12}>
-                      <BlackButton
-                        fullWidth
-                        className="view-button-card"
-                        style={{
-                          textTransform: 'none',
-                          marginTop: '32px',
-                          backgroundColor: brightColor,
-                          borderColor: brightColor,
-                        }}
-                        data-cy="candidate-view"
-                      >
-                        View
-                      </BlackButton>
-                    </Grid>
-                  )}
+                  <Grid item xs={12}>
+                    <BlackButton
+                      fullWidth
+                      className="view-button-card"
+                      style={{
+                        textTransform: 'none',
+                        marginTop: '32px',
+                        backgroundColor: brightColor,
+                        borderColor: brightColor,
+                      }}
+                      data-cy="candidate-view"
+                    >
+                      View
+                    </BlackButton>
+                  </Grid>
                 </Grid>
               </ButtonWrapper>
             </Content>
