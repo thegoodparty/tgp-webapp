@@ -153,12 +153,17 @@ function CandidateCard({ candidate, withFollowButton = false }) {
             {firstName} {lastName}
           </Name>
           <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
+
           <Positions>
-            {(topPositions || []).map((position) => (
-              <Position key={position.id} data-cy="position">
-                {position.name}
-              </Position>
-            ))}
+            {topPositions && topPositions.length > 0 && (
+              <>
+                {topPositions.map((position) => (
+                  <Position key={position.id} data-cy="position">
+                    {position.name}
+                  </Position>
+                ))}
+              </>
+            )}
           </Positions>
 
           <div style={{ margin: '32px 0 4px' }}>
