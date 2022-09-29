@@ -1,18 +1,9 @@
 import promisify from 'cypress-promise';
-import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
-import { ThemeProvider } from 'styled-components';
 import CandidateCard from '../../../components/shared/CandidateCard';
-import theme from '../../../theme';
+import TestComponent from '../TestComponent';
 
 const sampleCandidateList = [36, 30, 43];
 
-const Component = (props) => (
-    <UiThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <CandidateCard {...props} />
-      </ThemeProvider>
-    </UiThemeProvider>
-)
 context('CandidateCard.cy.js', () => {
   let candidate;
   sampleCandidateList.forEach(candidateId => {
@@ -25,7 +16,8 @@ context('CandidateCard.cy.js', () => {
       });
       it(`should render card without follow button`, () => {
         cy.mount(
-          <Component 
+          <TestComponent 
+            Component={CandidateCard}
             candidate={candidate}
           />
         );

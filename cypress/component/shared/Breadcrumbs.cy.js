@@ -1,17 +1,5 @@
-import { ConnectedRouter } from 'connected-next-router';
-import { mount } from 'cypress/react'
-import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
-import { ThemeProvider } from 'styled-components';
-import Breadcrumbs from '../../../components/shared/Breadcrumbs';
-import theme from '../../../theme';
+import TestComponent from '../TestComponent';
 
-const Component = (props) => (
-    <UiThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <Breadcrumbs {...props} />
-      </ThemeProvider>
-    </UiThemeProvider>
-)
 describe('Breadcrumbs.cy.js', () => {
   it('Should render component', () => {
     const breadcrumbsLinks = [
@@ -22,7 +10,7 @@ describe('Breadcrumbs.cy.js', () => {
       },
     ];
     cy.mount(
-      <Component links={breadcrumbsLinks} />
+      <TestComponent Component={BreadCrumbs} links={breadcrumbsLinks} />
     );
     cy.get('[data-cy=breadcrumb-link]')
       .should('have.length', breadcrumbsLinks.length - 1) 

@@ -1,19 +1,10 @@
 import promisify from 'cypress-promise';
-import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
-import { ThemeProvider } from 'styled-components';
 import CandidateAvatar from '../../../components/shared/CandidateCard/CandidateAvatar';
-import theme from '../../../theme';
 import { candidateColor, getPartyImage } from '../../../helpers/candidatesHelper';
+import TestComponent from '../TestComponent';
 
 const sampleCandidateList = [36, 30, 43];
 
-const Component = (props) => (
-    <UiThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <CandidateAvatar {...props} />
-      </ThemeProvider>
-    </UiThemeProvider>
-)
 context('CandidateAvatar.cy.js', () => {
   let candidate, partyImg, brightColor, hideBadge, partyBadge, size, party, image;
   sampleCandidateList.forEach(candidateId => {
@@ -30,7 +21,8 @@ context('CandidateAvatar.cy.js', () => {
         partyBadge = false;
         size = "small";
         cy.mount(
-          <Component 
+          <TestComponent 
+            Component={CandidateAvatar} 
             avatar={image}
             party={party}
             size={size}
@@ -52,7 +44,8 @@ context('CandidateAvatar.cy.js', () => {
         partyBadge = true;
         size = "large";
         cy.mount(
-          <Component 
+          <TestComponent 
+            Component={CandidateAvatar} 
             avatar={image}
             party={party}
             size={size}
