@@ -158,9 +158,13 @@ function CandidateCard({ candidate, withFollowButton = false }) {
             {topPositions && topPositions.length > 0 && (
               <>
                 {topPositions.map((position) => (
-                  <Position key={position.id} data-cy="position">
-                    {position.name}
-                  </Position>
+                  <>
+                    {position && (
+                      <Position key={position.id} data-cy="position">
+                        {position.name}
+                      </Position>
+                    )}
+                  </>
                 ))}
               </>
             )}
