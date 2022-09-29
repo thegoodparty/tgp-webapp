@@ -63,7 +63,7 @@ function AboutWrapper() {
         and we need to do all that we can to save it. We are self-funded,
         putting our own time and money to this important cause, and stay
         independent of any political parties or associations. Meet our team{' '}
-        <Link href="/register" passHref>
+        <Link href="/team" passHref>
           <a className="underline">here</a>
         </Link>
         .
