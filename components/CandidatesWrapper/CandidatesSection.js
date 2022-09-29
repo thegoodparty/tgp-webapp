@@ -61,7 +61,7 @@ const Filters = styled.div`
 `;
 
 function CandidatesSection({ toggleFiltersCallback, showFilters }) {
-  const { candidates, experimentVariant } = useContext(CandidatesContext);
+  const { candidates } = useContext(CandidatesContext);
   const router = useRouter();
   const { query } = router;
   const { pinned } = query || {};
@@ -106,10 +106,7 @@ function CandidatesSection({ toggleFiltersCallback, showFilters }) {
             key={candidate.id}
             data-cy="candidate-card"
           >
-            <CandidateCard
-              candidate={candidate}
-              doubleButton={experimentVariant === '1'}
-            />
+            <CandidateCard candidate={candidate} />
           </Grid>
         ))}
       </Grid>

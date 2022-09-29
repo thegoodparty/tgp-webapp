@@ -46,7 +46,6 @@ function FollowButtonWrapper() {
   const handleClick = () => {
     if (user) {
       followCandidateCallback(candidate.id);
-      console.log('calling after follow', afterFollowCallback);
       if (afterFollowCallback) {
         afterFollowCallback();
       }
@@ -86,19 +85,26 @@ function FollowButtonWrapper() {
           </InnerButton>
         </BlackButton>
       ) : (
-        <BlackButton
-          style={{
-            backgroundColor: brightColor,
-            borderColor: brightColor,
-            marginTop: '12px',
-          }}
-          onClick={handleClick}
-          id="candidate-follow-button"
-          dataCy="candidate-follow-btn"
-          fullWidth={fullWidth}
+        <form
+          id="user-follow-form"
+          noValidate
+          onSubmit={(e) => e.preventDefault()}
         >
-          <InnerButton>FOLLOW</InnerButton>
-        </BlackButton>
+          <BlackButton
+            style={{
+              backgroundColor: brightColor,
+              borderColor: brightColor,
+              marginTop: '12px',
+            }}
+            onClick={handleClick}
+            id="candidate-follow-button"
+            dataCy="candidate-follow-btn"
+            fullWidth={fullWidth}
+            type="submit"
+          >
+            <InnerButton>FOLLOW</InnerButton>
+          </BlackButton>
+        </form>
       )}
       <AlertDialog
         open={showDeleteAlert}

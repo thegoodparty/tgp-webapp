@@ -15,18 +15,19 @@ import { deleteCookies, getUserCookie } from '/helpers/cookieHelper';
 import ProfileWrapper from '/components/profile/ProfileWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 
-// import { useInjectSaga } from '/utils/injectSaga';
-// import { useInjectReducer } from '/utils/injectReducer';
-// import makeSelectProfilePage from './selectors';
-// import reducer from './reducer';
-// import saga from './saga';
+import { useInjectSaga } from '/utils/injectSaga';
+import { useInjectReducer } from '/utils/injectReducer';
+import makeSelectProfilePage from './selectors';
+import reducer from './reducer';
+import saga from './saga';
+import actions from './actions';
 
 export const ProfilePageContext = createContext();
 
-export function ProfilePage({ dispatch, signoutCallback }) {
+export function ProfilePage({ dispatch, signoutCallback, profilePage }) {
   const router = useRouter();
-  // useInjectReducer({ key: 'profilePage', reducer });
-  // useInjectSaga({ key: 'profilePage', saga });
+  useInjectReducer({ key: 'profilePage', reducer });
+  useInjectSaga({ key: 'profilePage', saga });
 
   const user = getUserCookie(true);
 
@@ -34,12 +35,19 @@ export function ProfilePage({ dispatch, signoutCallback }) {
     if (typeof window !== 'undefined' && !user) {
       router.push('login');
     }
+    dispatch(actions.loadCandidatesAction());
   }, []);
+
+  const { candidates, loading } = profilePage;
 
   const childProps = {
     user,
     signoutCallback,
+    loading,
+    candidates,
   };
+
+  console.log('candidates', candidates);
 
   return (
     <ProfilePageContext.Provider value={childProps}>
@@ -59,7 +67,7 @@ ProfilePage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  // profilePage: makeSelectProfilePage(),
+  profilePage: makeSelectProfilePage(),
 });
 
 function mapDispatchToProps(dispatch) {
