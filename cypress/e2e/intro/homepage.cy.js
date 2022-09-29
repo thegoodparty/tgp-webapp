@@ -34,10 +34,10 @@ describe('HomePage', () => {
     console.log(content);
   });
   it('test GrayParty section', () => {
-    cy.get('[data-cy=party-on]')
-      .contains("We tag #goodparty");
-    cy.get('[data-cy=why-tuesday-link]')
-      .contains("Why Tuesdays?");
+    // cy.get('[data-cy=party-on]')
+    //   .contains("We tag #goodparty");
+    // cy.get('[data-cy=why-tuesday-link]')
+    //   .contains("Why Tuesdays?");
     cy.get('[data-cy=home-feed-title]')
       .contains("Posts from")
       .contains("#goodparty");

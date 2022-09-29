@@ -20,15 +20,19 @@ describe('CandidatesPage', () => {
         console.log(content);
     });
     it('test Filter Section', () => {
-        cy.get('[data-cy=filter-section-title]')
+        cy.get('[data-cy=toggle-filter]').click();
+        if(positions.length) {
+          cy.get('[data-cy=filter-section-title]')
           .contains('Filter by Top Issues');
-        cy.get('[data-cy=position-pill]')
-          .should('have.length', positions.length)
-          .each(($el, index) => {
-                cy.wrap($el)
-                  .contains(positions[index].name)
-                  .contains(positions[index].candidates?.length);
-          });
+          cy.get('[data-cy=position-pill]')
+            .should('have.length', positions.length)
+            .each(($el, index) => {
+                  cy.wrap($el)
+                    .contains(positions[index].name)
+                    .contains(positions[index].candidates?.length);
+            });
+        }
+        
     });
     it('test Top Section', () => {
         cy.get('[data-cy=candidates-top-title]')

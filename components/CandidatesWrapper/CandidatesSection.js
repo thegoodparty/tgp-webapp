@@ -75,6 +75,7 @@ function CandidatesSection({ toggleFiltersCallback, showFilters }) {
             <Filters
               onClick={toggleFiltersCallback}
               className={showFilters && 'active'}
+              data-cy="toggle-filter"
             >
               <FaFilter />
             </Filters>

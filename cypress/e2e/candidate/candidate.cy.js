@@ -4,7 +4,7 @@ import { daysTill } from '../../../helpers/dateHelper';
 
 const sampleCandidateList = [36, 30, 43];
 context('Candidate', async () => {
-    let candidatePageData = {}, candidate, candidateSupports, total;
+    let candidate;
     sampleCandidateList.forEach(candidateId => {
         describe(`check candidate page - ${candidateId}`, () => {
             it(`loads candidate data`, async () => {
@@ -21,7 +21,7 @@ context('Candidate', async () => {
             });
             
             it(`test CandidateProfile`, () => {
-              const { firstName, lastName, color, isClaimed } = candidate.candidate;
+              const { firstName, lastName } = candidate.candidate;
               cy.get('[data-cy=candidate-name]')
                 .contains(firstName)
                 .contains(lastName);
@@ -95,7 +95,7 @@ context('Candidate', async () => {
                 .click(); 
               cy.wait(2000);
               cy.get('[data-cy=campaign-progrsss-title]')
-                .contains('Campaign Progress');
+                .contains('Victory Meter');
               cy.get('[data-cy=campaign-progress-ref]')
                 .contains('What`s this?');
             });
@@ -104,7 +104,7 @@ context('Candidate', async () => {
                 .should('exist')
                 .click(); 
               cy.wait(2000);
-              const { headline, heroVideo, about, color, website } = candidate.candidate;
+              const { headline, website } = candidate.candidate;
               cy.get('[data-cy=bio-title]')
                 .contains(headline);
               cy.get('[data-cy=bio-about]')
