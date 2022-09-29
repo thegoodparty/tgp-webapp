@@ -49,18 +49,18 @@ export function CandidatesPage({
   const [pinnedCandidates, setPinnedCandidates] = useState(candidates);
   const router = useRouter();
 
-  const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment(
-      'Follow an View buttons',
-      '3HGV7kfeSwObMqU1lQ_WqA',
-      (type) => {
-        setExperimentVariant(type);
-      },
-    );
-  }, []);
-
-  console.log('experimentVariant', experimentVariant);
+  // const [experimentVariant, setExperimentVariant] = useState('0');
+  // useEffect(() => {
+  //   getExperiment(
+  //     'Follow an View buttons',
+  //     '3HGV7kfeSwObMqU1lQ_WqA',
+  //     (type) => {
+  //       setExperimentVariant(type);
+  //     },
+  //   );
+  // }, []);
+  //
+  // console.log('experimentVariant', experimentVariant);
 
   let { pinned } = router.query;
 
@@ -135,7 +135,6 @@ export function CandidatesPage({
     totalFromLastWeek,
     candidatesByChannel,
     twitterFollowCallback,
-    experimentVariant,
   };
 
   return (

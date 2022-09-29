@@ -55,10 +55,7 @@ function* loadUserFollows() {
     const { supports } = yield call(requestHelper, api, null);
     yield put(actions.loadUserFollowsActionSuccess(supports));
   } catch (error) {
-    console.log(error);
-    yield put(
-      snackbarActions.showSnakbarAction('Error saving your action.', 'error'),
-    );
+    console.log('error at loadUserFollows ', error);
   }
 }
 
