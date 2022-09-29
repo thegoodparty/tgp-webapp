@@ -103,15 +103,15 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
 
   return (
     <Modal open closeModalCallback={closeCallback} showCloseButton={false}>
-      <FormWrapper>
-        <H3>
+      <FormWrapper data-cy="feedback-form-wrapper">
+        <H3 data-cy="feedback-subtitle">
           <strong>Please let us know your thoughts about Good Party</strong>
         </H3>
         <br />
         <br />
         <Grid container spacing={3}>
           <Grid item xs={9}>
-            <Body>
+            <Body data-cy="feedback-description">
               How do you feel about plans to:
               <br />
               <strong>
@@ -129,12 +129,14 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               <Thumb
                 className={`red ${formState.thumbs === 'down' && 'active'}`}
                 onClick={() => onThumbClick('down')}
+                data-cy="feedback-thumbs-down"
               >
                 <FaThumbsDown />
               </Thumb>
               <Thumb
                 className={`green ${formState.thumbs === 'up' && 'active'}`}
                 onClick={() => onThumbClick('up')}
+                data-cy="feedback-thumbs-up"
               >
                 <FaThumbsUp />
               </Thumb>
@@ -154,10 +156,11 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
                 maxlength: CHARACTER_LIMIT,
               }}
               helperText={`${formState.suggestion.length}/${CHARACTER_LIMIT}`}
+              data-cy="feedback-form-field"
             />
           </Grid>
           <Grid item xs={12} className="text-right">
-            <BlackButton className="outlined" onClick={closeCallback}>
+            <BlackButton className="outlined" onClick={closeCallback} dataCy="feedback-cancel">
               <InnerButton>Cancel</InnerButton>
             </BlackButton>
             <BlackButton
@@ -165,6 +168,7 @@ function FeedbackForm({ closeCallback, sendFeedbackCallback }) {
               disabled={!canSubmit()}
               onClick={submitForm}
               id="submit-feedback-form"
+              dataCy="feedback-submit"
             >
               <InnerButton>Send</InnerButton>
             </BlackButton>

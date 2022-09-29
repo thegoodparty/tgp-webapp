@@ -187,7 +187,7 @@ function CandidateCard({ candidate, withFollowButton = false }) {
                       backgroundColor: brightColor,
                       borderColor: brightColor,
                     }}
-                    data-cy="candidate-view"
+                    dataCy="candidate-view"
                   >
                     View
                   </BlackButton>
