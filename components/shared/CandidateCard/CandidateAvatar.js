@@ -125,12 +125,13 @@ const CandidateAvatar = ({
       className={size}
       style={centered ? { margin: '0 auto' } : {}}
     >
-      <ImageWrapper style={{ borderColor: brightColor }}>
+      <ImageWrapper style={{ borderColor: brightColor }} data-cy="candidate-avatar-wrapper">
         {size === 'small' ? (
           <LazyLoadImage
             src={avatar || 'https://assets.goodparty.org/gray-heart.png'}
             alt=""
             width="100%"
+            data-cy="candidate-avatar-img"
             height="100%"
             afterLoad={afterLoad}
             style={{ width: '58px' }}
@@ -138,6 +139,7 @@ const CandidateAvatar = ({
         ) : (
           <Img
             className={size}
+            data-cy="candidate-avatar-img"
             style={{
               backgroundImage: `url(${
                 avatar || 'https://assets.goodparty.org/gray-heart.png'
@@ -149,6 +151,7 @@ const CandidateAvatar = ({
       {PartyImg && (
         <PartyIcon
           src={PartyImg}
+          data-cy="party-icon"
           className={`full-image ${size} party-${party} ${
             partyBadge && 'no-bg'
           }`}
