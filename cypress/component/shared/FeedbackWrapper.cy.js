@@ -1,19 +1,11 @@
-import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
-import { ThemeProvider } from 'styled-components';
 import FeedbackWrapper from '../../../components/shared/FeedbackWrapper';
-import theme from '../../../theme';
+import TestComponent from '../TestComponent';
 
-const Component = (props) => (
-    <UiThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <FeedbackWrapper {...props} />
-      </ThemeProvider>
-    </UiThemeProvider>
-)
 describe('FeedbackWrapper.cy.js', () => {
   it('Should render component with isOpen=false', () => {
     cy.mount(
-        <Component 
+        <TestComponent
+            Component={FeedbackWrapper} 
             sendFeedbackCallback={() => {}} 
             toggleModalCallback={() => {}} 
             isOpen={false} 
@@ -27,7 +19,8 @@ describe('FeedbackWrapper.cy.js', () => {
   })
   it('Should render component with isOpen=true', () => {
     cy.mount(
-        <Component 
+        <TestComponent
+            Component={FeedbackWrapper}  
             sendFeedbackCallback={() => {}} 
             toggleModalCallback={() => {}} 
             isOpen={true} 
