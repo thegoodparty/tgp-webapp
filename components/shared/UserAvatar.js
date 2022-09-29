@@ -82,7 +82,7 @@ const UserInitials = styled(Body14)`
     }
   }
 `;
-
+// {"id":90,"phone":"","email":"blueshark0811@gmail.com","uuid":"zpzeclooe0","name":"Peter Asaro","feedback":"The Good Party","socialId":null,"socialProvider":null,"displayAddress":"","addressComponents":"","zip":"95001","isPhoneVerified":false,"isEmailVerified":true,"avatar":"https://assets.goodparty.org/uploads/user-htzxz8.jpeg","hasPassword":true,"voteStatus":"","guestReferrer":null,"crewCount":1,"isAdmin":true,"metaData":null,"address":"asdf","city":"Aptos","displayName":"","pronouns":"","referrer":null}
 const UserAvatar = ({ user, size = 'small' }) => (
   <>
     {user && (

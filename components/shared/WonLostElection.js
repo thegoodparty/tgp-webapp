@@ -32,7 +32,7 @@ const WonLostElection = ({ candidate, style = {} }) => {
 
   return (
     <Wrapper style={style}>
-      <Pill>
+      <Pill data-cy="won-lost-election">
         {resultStatus === 'pending' && <>RESULTS PENDING 🗳</>}
         {resultStatus === 'won' && <>WON ELECTION 🎉</>}
         {resultStatus === 'lost' && <>LOST ELECTION 👎</>}
