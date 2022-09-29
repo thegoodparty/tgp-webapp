@@ -16,6 +16,7 @@ const Avatar = styled.div`
   border-radius: 50%;
   background-position: center;
   background-size: cover;
+  box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.2);
 
   &.medium {
     height: 50px;

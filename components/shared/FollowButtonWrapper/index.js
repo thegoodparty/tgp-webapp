@@ -46,7 +46,6 @@ function FollowButtonWrapper() {
   const handleClick = () => {
     if (user) {
       followCandidateCallback(candidate.id);
-      console.log('calling after follow', afterFollowCallback);
       if (afterFollowCallback) {
         afterFollowCallback();
       }

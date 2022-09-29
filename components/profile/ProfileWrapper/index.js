@@ -15,6 +15,7 @@ import ProfilePageWrapper from '../shared/ProfilePageWrapper';
 import UserAvatar from '../../shared/UserAvatar';
 import Row from '../../shared/Row';
 import { FontH3 } from '../../shared/typogrophy';
+import CandidatesSection from './CandidatesSection';
 
 const Name = styled.div`
   margin-left: 24px;
@@ -43,7 +44,12 @@ function ProfileWrapper() {
             <Row>
               <UserAvatar user={user} size="large" />
               <Name>
-                <FontH3 style={{ margin: '0 0 8px' }} data-cy="profile-username">{user.name}</FontH3>
+                <FontH3
+                  style={{ margin: '0 0 8px' }}
+                  data-cy="profile-username"
+                >
+                  {user.name}
+                </FontH3>
                 <Link href="/profile/settings" passHref>
                   <A data-cy="profile-edit-link">Edit</A>
                 </Link>
@@ -52,14 +58,18 @@ function ProfileWrapper() {
           </Grid>
           <Grid item xs={3}>
             <div className="text-right">
-              <A href="#" onClick={signoutCallback} data-cy="profile-logout-link">
+              <A
+                href="#"
+                onClick={signoutCallback}
+                data-cy="profile-logout-link"
+              >
                 Sign Out
               </A>
             </div>
           </Grid>
         </Grid>
       </SmallPadder>
-
+      <CandidatesSection />
     </ProfilePageWrapper>
   );
 }
