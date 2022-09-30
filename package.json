@@ -88,7 +88,7 @@
     "react-sticky-el": "^2.0.9",
     "react-table": "^6.11.5",
     "react-truncate": "^2.4.0",
-    "recharts": "^2.1.8",
+    "recharts": "^2.1.14",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-saga": "^1.1.3",
