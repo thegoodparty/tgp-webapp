@@ -11,12 +11,12 @@ const StyledButton = styled(Button)`
     font-weight: 600;
     font-family: ${tgpTheme.typography.fontFamily};
     letter-spacing: 0.2px;
-    border: 2px solid ${({ theme }) => theme.colors.primary};
+    border: 2px solid ${({ theme }) => theme.colors?.primary};
     font-size: 1rem;
     &.outline {
       background: #fff;
-      border: 2px solid ${({ theme }) => theme.colors.primary};
-      color: ${({ theme }) => theme.colors.primary};
+      border: 2px solid ${({ theme }) => theme.colors?.primary};
+      color: ${({ theme }) => theme.colors?.primary};
       box-shadow: none;
     }
     &.center {
@@ -26,10 +26,6 @@ const StyledButton = styled(Button)`
     color: #fff;
     box-shadow: none;
 
-    // &.Mui-disabled {
-    //   background: ${({ theme }) => theme.colors.purple3};
-    //   border: solid 2px #999;
-    // }
     &.submit {
       padding: 12px 22px;
     }
@@ -44,8 +40,8 @@ const PurpleButton = ({
   style = {},
   className,
   type = 'button',
-  dataCy = "",
-  id
+  dataCy = '',
+  id,
 }) => (
   <StyledButton
     color="primary"

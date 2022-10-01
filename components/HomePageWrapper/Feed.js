@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import lazyHydrate from 'next-lazy-hydrate';
 
 import { HomePageContext } from '../../containers/HomePage';
-import SocialPost from '../shared/SocialPost';
+// import SocialPost from '../shared/SocialPost';
+const SocialPost = lazyHydrate(() =>
+  import('../shared/SocialPost', { compatibleMode: true }),
+);
 
 const Wrapper = styled.div``;
 

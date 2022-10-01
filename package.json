@@ -59,6 +59,7 @@
     "material-ui-color-picker": "^3.5.1",
     "next": "12.2",
     "next-compose-plugins": "^2.2.1",
+    "next-lazy-hydrate": "^1.1.0",
     "next-pwa": "^5.4.4",
     "next-redux-wrapper": "^7.0.5",
     "node-fetch": "^3.2.0",
