@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Suspense } from 'react';
 import { HomePageContext } from '/containers/HomePage';
 import PageWrapper from '/components/shared/PageWrapper';
 import Grid from '@material-ui/core/Grid';
@@ -19,15 +19,15 @@ import InvolvedModalInner from './InvolvedModalInner';
 import { MdUpOnly, SmOnly } from '../shared/navigation/NavWrapper';
 
 const CandidatesSection = dynamic(() => import('./CandidatesSection'), {
-  loading: () => <></>,
+  suspense: true,
 });
 
 const GrayParty = dynamic(() => import('./GrayParty'), {
-  loading: () => <></>,
+  suspense: true,
 });
 
 const SoFIt = dynamic(() => import('./SoFIt'), {
-  loading: () => <></>,
+  suspense: true,
 });
 
 const HomePageWrapper = () => {
@@ -69,14 +69,19 @@ const HomePageWrapper = () => {
         </Grid>
       </MaxWidth>
       <MaxWidth style={{ padding: '0 24px' }}>
-        <CandidatesSection />
+        <Suspense fallback={`Loading...`}>
+          <CandidatesSection />
+        </Suspense>
       </MaxWidth>
-      <GrayParty
-        openModalCallback={handleOpenModal}
-        openShareModalCallback={handleOpenShareModal}
-      />
-
-      <SoFIt openModalCallback={handleOpenInvolvedModal} />
+      <Suspense fallback={`Loading...`}>
+        <GrayParty
+          openModalCallback={handleOpenModal}
+          openShareModalCallback={handleOpenShareModal}
+        />
+      </Suspense>
+      <Suspense fallback={`Loading...`}>
+        <SoFIt openModalCallback={handleOpenInvolvedModal} />
+      </Suspense>
       <Modal
         open={modalOpen}
         showCloseButton={false}

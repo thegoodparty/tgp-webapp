@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import dynamic from 'next/dynamic';
@@ -14,7 +14,7 @@ import Wrapper from '/components/shared/Wrapper';
 // import Footer from '/components/shared/Footer';
 
 const Footer = dynamic(() => import('/components/shared/Footer'), {
-  loading: () => <></>,
+  suspense: true,
 });
 
 const MainWrapper = styled.div`
@@ -72,7 +72,11 @@ function PageWrapper({
         {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
         {children}
       </WrapperComp>
-      {!hideFooter && <Footer />}
+      {!hideFooter && (
+        <Suspense fallback={`Loading...`}>
+          <Footer />
+        </Suspense>
+      )}
     </MainWrapper>
   );
 }
