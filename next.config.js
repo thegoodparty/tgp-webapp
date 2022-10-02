@@ -39,13 +39,17 @@ module.exports = withPlugins([
       images: {
         domains: ['assets.goodparty.org'],
       },
+      experimental: {
+        // Enables the styled-components SWC transform
+        styledComponents: true,
+      },
       async rewrites() {
         return [
           {
             source: '/sitemap.xml',
             destination: '/api/sitemap',
           },
-        ]
+        ];
       },
     },
   ],
