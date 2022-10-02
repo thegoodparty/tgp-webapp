@@ -4,13 +4,9 @@
  *
  */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Hidden from '@material-ui/core/Hidden';
-
-import { CandidateContext } from '/containers/CandidatePage';
-import SocialPost from '../../shared/SocialPost';
 import CandidateFeed from './CandidateFeed';
 import TopIssues from './TopIssues';
 import { MdUpOnly } from '../../shared/navigation/NavWrapper';

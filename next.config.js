@@ -43,6 +43,9 @@ module.exports = withPlugins([
         // Enables the styled-components SWC transform
         styledComponents: true,
       },
+      compiler: {
+        styledComponents: true,
+      },
       async rewrites() {
         return [
           {

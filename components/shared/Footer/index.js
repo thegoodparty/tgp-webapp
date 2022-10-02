@@ -7,7 +7,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import Image from 'next/image';
 import Grid from '@material-ui/core/Grid';
 import { useRouter } from 'next/router';
 
@@ -125,7 +124,7 @@ function Footer() {
             </Grid>
           ))}
           <Grid item xs={12} lg={4} className="text-center">
-            <Image
+            <img
               src="/images/black-logo.svg"
               data-cy="logo"
               width={174}
