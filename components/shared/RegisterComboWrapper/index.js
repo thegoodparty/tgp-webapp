@@ -202,7 +202,7 @@ function RegisterComboWrapper() {
             <Inner className={isActive && 'active'}>
               <Grid container spacing={0}>
                 {fields.map((field) => (
-                  <Grid xs={12} lg={4} map={field.name}>
+                  <Grid xs={12} lg={4} key={field.name}>
                     <input
                       name={field.name}
                       type={field.type}
