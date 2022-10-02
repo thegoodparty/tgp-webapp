@@ -1,35 +1,22 @@
 import React, { useState, useContext } from 'react';
 import { HomePageContext } from '/containers/HomePage';
-import lazyHydrate from 'next-lazy-hydrate';
+import PageWrapper from '/components/shared/PageWrapper';
 import Grid from '@material-ui/core/Grid';
 
-import PageWrapper from '/components/shared/PageWrapper';
 
 import Hero from './Hero';
 import MaxWidth from '../shared/MaxWidth';
 import SocialSection from './SocialSection';
 import GrayParty from './GrayParty';
-// import SoFIt from './SoFIt';
+import SoFIt from './SoFIt';
 import Modal from '../shared/Modal';
 import ModalInner from './ModalInner';
 import ShareModal from './ShareModal';
 import VideoSection from './VideoSection';
 import SmVideoSection from './SmVideoSection';
 import InvolvedModalInner from './InvolvedModalInner';
-// import CandidatesSection from './CandidatesSection';
+import CandidatesSection from './CandidatesSection';
 import { MdUpOnly, SmOnly } from '../shared/navigation/NavWrapper';
-
-const CandidatesSection = lazyHydrate(() =>
-  import('./CandidatesSection', { compatibleMode: true }),
-);
-
-// const GrayParty = lazyHydrate(() =>
-//   import('./GrayParty', { compatibleMode: true }),
-// );
-
-const SoFIt = lazyHydrate(() =>
-  import('./SoFIt', { compatibleMode: true }),
-);
 
 const HomePageWrapper = () => {
   const { showInitModal } = useContext(HomePageContext);
