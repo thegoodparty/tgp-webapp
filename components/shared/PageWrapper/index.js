@@ -7,10 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 
 import Nav from '/containers/shared/Nav';
 import Wrapper from '/components/shared/Wrapper';
-import Footer from '/components/shared/Footer';
+// import Footer from '/components/shared/Footer';
+
+const Footer = dynamic(() => import('/components/shared/Footer'), {
+  loading: () => <></>,
+});
 
 const MainWrapper = styled.div`
   &.purple {

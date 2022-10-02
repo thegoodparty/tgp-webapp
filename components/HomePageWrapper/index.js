@@ -2,21 +2,33 @@ import React, { useState, useContext } from 'react';
 import { HomePageContext } from '/containers/HomePage';
 import PageWrapper from '/components/shared/PageWrapper';
 import Grid from '@material-ui/core/Grid';
-
+import dynamic from 'next/dynamic';
 
 import Hero from './Hero';
 import MaxWidth from '../shared/MaxWidth';
 import SocialSection from './SocialSection';
-import GrayParty from './GrayParty';
-import SoFIt from './SoFIt';
+// import GrayParty from './GrayParty';
+// import SoFIt from './SoFIt';
 import Modal from '../shared/Modal';
 import ModalInner from './ModalInner';
 import ShareModal from './ShareModal';
 import VideoSection from './VideoSection';
 import SmVideoSection from './SmVideoSection';
 import InvolvedModalInner from './InvolvedModalInner';
-import CandidatesSection from './CandidatesSection';
+// import CandidatesSection from './CandidatesSection';
 import { MdUpOnly, SmOnly } from '../shared/navigation/NavWrapper';
+
+const CandidatesSection = dynamic(() => import('./CandidatesSection'), {
+  loading: () => <></>,
+});
+
+const GrayParty = dynamic(() => import('./GrayParty'), {
+  loading: () => <></>,
+});
+
+const SoFIt = dynamic(() => import('./SoFIt'), {
+  loading: () => <></>,
+});
 
 const HomePageWrapper = () => {
   const { showInitModal } = useContext(HomePageContext);

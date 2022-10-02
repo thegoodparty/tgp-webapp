@@ -57,6 +57,7 @@ const SmVideoSection = () => {
               height={100}
               width={100}
               className="video-img"
+              priority
             />
             <Play className="flex-center">
               <FaPlay />
