@@ -31,7 +31,7 @@ import { H1, Body11 } from '../typogrophy';
 
 const PrivacyWrapper = ({ content }) => {
   return (
-    <PageWrapper white>
+    <div white>
       {content && (
         <>
           {/*<TitleWrapper>*/}
@@ -49,12 +49,13 @@ const PrivacyWrapper = ({ content }) => {
           {/*</CmsContentWrapper>*/}
         </>
       )}
-    </PageWrapper>
+    </div>
   );
 };
 
 PrivacyWrapper.propTypes = {
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
+
 
 export default PrivacyWrapper;

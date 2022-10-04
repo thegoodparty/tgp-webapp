@@ -4,7 +4,7 @@ pipeline {
     nodejs "node 12"
   }
   environment {
-    DEV_BRANCH            = "develop"
+    DEV_BRANCH            = "no-styled"
     QA_BRANCH            = "qa"
     PROD_BRANCH           = "master"
     EB_DEV                = "gp-app-dev"
@@ -53,7 +53,7 @@ pipeline {
         }
       }
     }
-    
+
     // steps {
     //   sh 'npm run dev-dev-pm2'
     //   sh 'npm run dev-test'

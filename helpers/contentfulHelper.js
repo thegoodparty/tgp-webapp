@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
@@ -30,77 +30,78 @@ const contentfulHelper = (rawRichTextField) => {
     return '';
   }
 };
-
-export const CmsContentWrapper = styled.div`
-  margin-top: 28px;
-  color: ${({ theme }) => theme.colors.gray2};
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.1px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  h1 {
-    color: ${({ theme }) => theme.colors.gray2};
-    font-size: 27px;
-    line-height: 35px;
-    margin: 0;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 36px;
-      line-height: 42px;
-    }
-  }
-
-  h2 {
-    color: ${({ theme }) => theme.colors.gray2};
-    font-size: 23px;
-    line-height: 30px;
-    margin: 0;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 28px;
-      line-height: 36px;
-    }
-  }
-
-  h3 {
-    color: ${({ theme }) => theme.colors.gray2};
-    font-size: 19px;
-    line-height: 25px;
-    font-weight: 600;
-    margin: 0;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 26px;
-      line-height: 32px;
-    }
-  }
-  p {
-    color: ${({ theme }) => theme.colors.gray4};
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.1px;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 16px;
-      line-height: 20px;
-    }
-  }
-  ul {
-    list-style-type: none;
-    li {
-      margin: 10px 0;
-    }
-    p {
-      margin-block-start: 10px;
-      margin-block-end: 10px;
-    }
-  }
-`;
+//
+// export const CmsContentWrapper = styled.div`
+//   margin-top: 28px;
+//   color: ${({ theme }) => theme.colors.gray2};
+//   font-size: 14px;
+//   line-height: 20px;
+//   letter-spacing: 0.1px;
+//   @media only screen and (min-width: ${({ theme }) =>
+//       theme.breakpointsPixels.md}) {
+//     font-size: 16px;
+//     line-height: 20px;
+//   }
+//
+//   h1 {
+//     color: ${({ theme }) => theme.colors.gray2};
+//     font-size: 27px;
+//     line-height: 35px;
+//     margin: 0;
+//     @media only screen and (min-width: ${({ theme }) =>
+//         theme.breakpointsPixels.md}) {
+//       font-size: 36px;
+//       line-height: 42px;
+//     }
+//   }
+//
+//   h2 {
+//     color: ${({ theme }) => theme.colors.gray2};
+//     font-size: 23px;
+//     line-height: 30px;
+//     margin: 0;
+//     @media only screen and (min-width: ${({ theme }) =>
+//         theme.breakpointsPixels.md}) {
+//       font-size: 28px;
+//       line-height: 36px;
+//     }
+//   }
+//
+//   h3 {
+//     color: ${({ theme }) => theme.colors.gray2};
+//     font-size: 19px;
+//     line-height: 25px;
+//     font-weight: 600;
+//     margin: 0;
+//     @media only screen and (min-width: ${({ theme }) =>
+//         theme.breakpointsPixels.md}) {
+//       font-size: 26px;
+//       line-height: 32px;
+//     }
+//   }
+//   p {
+//     color: ${({ theme }) => theme.colors.gray4};
+//     font-size: 14px;
+//     line-height: 20px;
+//     letter-spacing: 0.1px;
+//     @media only screen and (min-width: ${({ theme }) =>
+//         theme.breakpointsPixels.md}) {
+//       font-size: 16px;
+//       line-height: 20px;
+//     }
+//   }
+//   ul {
+//     list-style-type: none;
+//     li {
+//       margin: 10px 0;
+//     }
+//     p {
+//       margin-block-start: 10px;
+//       margin-block-end: 10px;
+//     }
+//   }
+// `;
+export const CmsContentWrapper = ({ children }) => <div>{children}</div>;
 
 export default contentfulHelper;
 
