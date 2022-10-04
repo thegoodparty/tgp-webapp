@@ -4,7 +4,7 @@ pipeline {
     nodejs "node 12"
   }
   environment {
-    DEV_BRANCH            = "no-styled"
+    DEV_BRANCH            = "develop"
     QA_BRANCH            = "qa"
     PROD_BRANCH           = "master"
     EB_DEV                = "gp-app-dev"
