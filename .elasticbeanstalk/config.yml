@@ -5,6 +5,8 @@ branch-defaults:
     environment: gp-app-qa
   develop:
     environment: gp-app-dev
+  WEB-256:
+    environment: gp-app-dev
 environment-defaults:
   tgp-api-test:
     branch: null
