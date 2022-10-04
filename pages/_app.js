@@ -32,10 +32,10 @@ if (typeof window !== 'undefined' && navigator && navigator.serviceWorker) {
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     // initGA4();
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
+    // const jssStyles = document.querySelector('#jss-server-side');
+    // if (jssStyles && jssStyles.parentNode) {
+    //   jssStyles.parentNode.removeChild(jssStyles);
+    // }
     // const user = getUserCookie(true);
     // if (user) {
     //   try {

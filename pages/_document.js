@@ -4,6 +4,10 @@ import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
 
+const CleanCSS = require('clean-css');
+/* eslint-enable global-require */
+const cleanCSS = new CleanCSS();
+
 class CustomDocument extends NextDocument {
   static async getInitialProps(ctx) {
     const styledComponentSheet = new StyledComponentSheets();
@@ -18,16 +22,57 @@ class CustomDocument extends NextDocument {
             ),
         });
       const initialProps = await NextDocument.getInitialProps(ctx);
+      console.log('styledComponentSheet', styledComponentSheet);
+      console.log(
+        'styledComponentSheet.getStyleTags()',
+        styledComponentSheet.getStyleTags(),
+      );
+      // console.log('styledComponentSheet.toString()', styledComponentSheet.getStyleTags())
+      let css = styledComponentSheet
+        .getStyleTags()
+        .replace('<style data-styled="true" data-styled-version="5.3.3">', '')
+        .replace('</style>', '');
+      let css2 = materialUiSheets.toString();
+      let finalCSS = `${css} ${css2}`;
+      // console.log('before', finalCSS)
+      if (finalCSS) {
+        finalCSS = cleanCSS.minify(finalCSS).styles;
+      }
+      // console.log('css afer', finalCSS)
+
+      // return {
+      //   ...initialProps,
+      //   styles: [
+      //     ...React.Children.toArray(initialProps.styles),
+      //     <style id="jss-server-side" key="jss-server-side">
+      //       {css}
+      //     </style>,
+      //   ],
+      // };
+
       return {
         ...initialProps,
         styles: [
           <React.Fragment key="styles">
             {initialProps.styles}
-            {materialUiSheets.getStyleElement()}
-            {styledComponentSheet.getStyleElement()}
+            <style id="jss-server-side" key="jss-server-side">
+              {finalCSS}
+            </style>
+            ,
           </React.Fragment>,
         ],
       };
+
+      // return {
+      //   ...initialProps,
+      //   styles: [
+      //     <React.Fragment key="styles">
+      //       {initialProps.styles}
+      //       {materialUiSheets.getStyleElement()}
+      //       {styledComponentSheet.getStyleElement()}
+      //     </React.Fragment>,
+      //   ],
+      // };
     } finally {
       styledComponentSheet.seal();
     }
