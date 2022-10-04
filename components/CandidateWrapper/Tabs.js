@@ -47,8 +47,7 @@ const SmLine = styled.div`
 
 const TabsWrapper = styled(Row)`
   justify-content: space-between;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     justify-content: initial;
   }
 `;

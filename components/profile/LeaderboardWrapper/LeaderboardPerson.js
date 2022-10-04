@@ -35,14 +35,14 @@ const LeftColumn = styled.div`
 const Index = styled.div`
   font-size: 11px;
   margin-right: 8px;
-  color: ${({ theme }) => theme.colors.gray4};
+  color: #484848;
 `;
 
 const Name = styled.div`
   font-size: 16px;
   margin-left: 8px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.gray2};
+  color: #262626;
 `;
 
 const CrewCountWrapper = styled.div`
@@ -51,9 +51,9 @@ const CrewCountWrapper = styled.div`
   font-size: 11px;
   line-height: 15px;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.gray4};
+  color: #484848;
   margin-top: 6px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-top: 0;
   }
 `;

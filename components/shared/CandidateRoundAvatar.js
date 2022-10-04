@@ -34,8 +34,7 @@ const ImageWrapper = styled.div`
     }
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     &.large {
       height: 230px;
       width: 230px;
@@ -78,8 +77,7 @@ const Overlay = styled.div`
     border-radius: unset;
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 12px;
     font-size: 12px;
   }

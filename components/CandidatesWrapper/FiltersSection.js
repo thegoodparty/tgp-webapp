@@ -34,8 +34,7 @@ const H2 = styled.h2`
   font-size: 21px;
   font-weight: 900;
   margin: 30px 0 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin: 0 0 40px;
   }
 `;
@@ -61,16 +60,14 @@ const PositionsWrapper = styled.div`
   height: 110px;
   overflow: hidden;
   margin-bottom: 14px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin-bottom: 24px;
   }
 `;
 
 const ButtonWrapper = styled.div`
   font-size: 14px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     text-align: right;
   }
 `;

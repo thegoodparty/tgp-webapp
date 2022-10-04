@@ -29,8 +29,7 @@ const Wrapper = styled.div`
   max-height: 80vh;
   overflow-x: hidden;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 60vw;
     max-height: 70vh;
   }

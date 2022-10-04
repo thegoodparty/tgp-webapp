@@ -14,8 +14,7 @@ const Wrapper = styled.section`
   padding: 20px;
   max-width: 1000px !important;
   overflow-x: hidden;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 1000px;
     padding: 40px;
   }
@@ -23,8 +22,7 @@ const Wrapper = styled.section`
   iframe {
     width: auto !important;
     max-width: 1060px !important;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
+    @media only screen and (min-width: 1024px) {
       width: 920px;
     }
   }

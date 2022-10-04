@@ -44,8 +44,7 @@ const ResponsiveAlign = styled.div`
   display: flex;
   justify-content: initial;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     justify-content: flex-end;
   }
 `;

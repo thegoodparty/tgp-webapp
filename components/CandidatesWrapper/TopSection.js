@@ -27,8 +27,7 @@ const H1 = styled.h1`
   margin: 24px 0;
   font-size: 40px;
   font-weight: 900;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin: 64px 0 24px;
     font-size: 64px;
   }
@@ -50,9 +49,8 @@ const Yellow = styled.div`
   width: calc(100% + 10px);
   bottom: 0;
   left: -5px;
-  background-color: ${({ theme }) => theme.colors.yellow};
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  background-color: #FFE600;
+  @media only screen and (min-width: 1024px) {
     bottom: 4px;
     height: 30px;
   }
@@ -63,8 +61,7 @@ const H2 = styled.h2`
   font-weight: 300;
   font-size: 15px;
   line-height: 22px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 24px;
     line-height: 38px;
   }
@@ -76,7 +73,7 @@ const LargeNumber = styled.div`
   line-height: 38px;
 
   &.green {
-    color: ${({ theme }) => theme.colors.green};
+    color: #0c9a00;
     margin-left: 20px;
   }
 `;
@@ -99,8 +96,7 @@ const ButtonWrapper = styled.div`
 
 const Why = styled(Row)`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: flex;
   }
 `;
@@ -117,15 +113,13 @@ const YellowButtonWrapper = styled.div`
 `;
 
 const AlignGrid = styled(Grid)`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     text-align: right;
   }
 `;
 
 const AlignRow = styled(Row)`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     justify-content: flex-end;
   }
 `;

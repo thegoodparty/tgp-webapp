@@ -25,8 +25,7 @@ const H2 = styled.h2`
   font-size: 21px;
   font-weight: 900;
   margin: 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin: 0 0 20px;
   }
 `;
@@ -34,8 +33,7 @@ const H2 = styled.h2`
 const What = styled.div`
   text-decoration: underline;
   margin-bottom: 25px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     text-align: right;
   }
 `;

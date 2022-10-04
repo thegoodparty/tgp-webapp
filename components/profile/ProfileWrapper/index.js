@@ -27,8 +27,7 @@ const A = styled.a`
 
 const SmallPadder = styled.div`
   padding: 0 16px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 0;
   }
 `;

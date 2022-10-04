@@ -3,9 +3,9 @@ import BlackButton from './BlackButton';
 
 const YellowButton = styled(BlackButton)`
   && {
-    background: ${({ theme }) => theme.colors.yellow};
+    background: #FFE600;
     color: #000 !important;
-    border: 2px solid ${({ theme }) => theme.colors.yellow};
+    border: 2px solid #FFE600;
 
     &:hover {
       background: #d4c742;

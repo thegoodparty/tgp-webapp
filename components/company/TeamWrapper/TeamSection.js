@@ -27,8 +27,7 @@ const Member = styled.div`
     }
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin-bottom: 24px;
   }
 

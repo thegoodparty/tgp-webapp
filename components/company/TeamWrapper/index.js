@@ -32,8 +32,7 @@ const Hero = styled.div`
   background: url('images/team/mobile-shadow.svg') center top no-repeat;
   background-size: 100% 100%;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     background: url('images/team/desktop-shadow.svg') right center no-repeat;
     background-size: contain;
     padding: 70px 35px;
@@ -45,8 +44,7 @@ const StyledH1 = styled(H1)`
   font-size: 40px;
   line-height: 52px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     font-size: 66px;
     line-height: 82px;
   }
@@ -54,19 +52,17 @@ const StyledH1 = styled(H1)`
 
 const Content = styled(MaxWidth)`
   padding: 48px 12px;
-  color: ${({ theme }) => theme.colors.gray2};
+  color: #262626;
   font-size: 16px;
   line-height: 25px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     font-size: 18px;
   }
 `;
 
 const ReverseGrid = styled(Grid)`
   flex-direction: row;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     flex-direction: row-reverse;
     align-items: center;
   }

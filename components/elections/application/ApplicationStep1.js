@@ -16,8 +16,7 @@ import { APPLICATION_CARDS_1 } from './fields';
 export const Title = styled.h1`
   font-size: 21px;
   margin: 0 0 32px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     font-size: 36px;
   }
 `;
@@ -25,8 +24,7 @@ export const Title = styled.h1`
 const SubTitle = styled(Body)`
   margin-bottom: 24px;
   color: #000;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-bottom: 36px;
   }
 `;

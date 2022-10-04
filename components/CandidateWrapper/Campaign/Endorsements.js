@@ -32,8 +32,7 @@ const Img = styled.div`
 const Title = styled.h3`
   font-size: 16px;
   margin: 0 0 15px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 24px;
     margin-bottom: 24px;
   }
@@ -41,8 +40,7 @@ const Title = styled.h3`
 
 const Summary = styled.div`
   max-width: calc(100vw - 48px);
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     max-width: 382px;
 
     .with-image {

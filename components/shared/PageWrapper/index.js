@@ -19,12 +19,11 @@ const Footer = dynamic(() => import('/components/shared/Footer'), {
 
 const MainWrapper = styled.div`
   &.purple {
-    background-color: ${({ theme }) => theme.colors.purpleBg};
+    background-color: #f9f7fa;
   }
 `;
 const TopBannerWrapper = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-top: 18px;
   }
 `;
@@ -32,8 +31,7 @@ const TopBannerWrapper = styled.div`
 const HomeWrapper = styled.div`
   width: 100%;
   padding: 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.contentMax}) {
+  @media only screen and (min-width: 1280px) {
     padding: 0;
   }
 

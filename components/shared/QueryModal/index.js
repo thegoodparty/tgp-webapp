@@ -23,8 +23,7 @@ const TgpDialog = styled(Dialog)`
       border-radius: 4px;
       box-shadow: none;
       margin: 12px;
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.md}) {
+      @media only screen and (min-width: 768px) {
         padding: 24px;
         margin: 32px;
       }
@@ -32,8 +31,7 @@ const TgpDialog = styled(Dialog)`
 
     .MuiBackdrop-root {
       background: rgb(240, 236, 243);
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.md}) {
+      @media only screen and (min-width: 768px) {
         background: rgba(0, 0, 0, 0.85);
       }
     }
@@ -46,7 +44,7 @@ const TgpDialog = styled(Dialog)`
 
     &.close-dialog {
       .MuiDialog-paper {
-        background-color: ${({ theme }) => theme.colors.grayBg} !important;
+        background-color: #FAFAFA !important;
       }
       max-width: 100% !important;
     }

@@ -19,7 +19,7 @@ import topIssuesPageReducer from '../../../containers/candidate-portal/TopIssues
 
 const Wrapper = styled.div`
   padding: 24px;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: 1280px;
   margin: 0 auto;
 `;
 

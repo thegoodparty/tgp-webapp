@@ -86,8 +86,7 @@ const PhotoWrapper = styled.div`
   text-align: center;
   width: 100%;
   display: inline-block;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     width: 33%;
   }
 `;

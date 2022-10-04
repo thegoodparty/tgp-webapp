@@ -51,8 +51,7 @@ const Input = styled(TextField)`
       letter-spacing: 0.1px;
       color: #fff;
 
-      @media only screen and (min-width: ${({ theme }) =>
-    theme.breakpointsPixels.md}) {
+      @media only screen and (min-width: 768px) {
         font-size: 20px;
         line-height: 26px;
       }
@@ -76,7 +75,7 @@ const ButtonsWrapper = styled.div`
   width: 100%;
 `;
 const ButtonsInnerWrapper = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: 1280px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -87,7 +86,7 @@ const ButtonsInnerWrapper = styled.div`
   }
 `;
 const ButtonsInnerWrapperExpired = styled.div`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 16px;
 `;

@@ -15,8 +15,7 @@ import { removeWhiteSpaces } from '/helpers/stringHelper';
 
 const Wrapper = styled.article`
   margin-top: 14px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: none;
   }
 `;

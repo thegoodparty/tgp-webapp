@@ -17,8 +17,7 @@ const H1 = styled.h1`
   font-family: ${({ theme }) => theme.typography.fontFamily};
   margin: 32px 0 18px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     font-size: 64px;
     line-height: 77px;
     margin: 50px 0 30px;
@@ -41,9 +40,8 @@ const Yellow = styled.div`
   width: calc(100% + 10px);
   bottom: 0;
   left: -5px;
-  background-color: ${({ theme }) => theme.colors.yellow};
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  background-color: #FFE600;
+  @media only screen and (min-width: 1024px) {
     bottom: 4px;
     height: 20px;
   }
@@ -58,8 +56,7 @@ const H2 = styled.h2`
   margin: 0 0 50px;
   max-width: 800px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin: 0 0 60px;
   }
 `;

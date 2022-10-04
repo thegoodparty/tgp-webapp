@@ -29,8 +29,7 @@ import YouTubeInput from '../../shared/YouTubeInput';
 
 const Inner = styled.div`
   width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 60%;
   }
 

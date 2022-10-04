@@ -14,8 +14,7 @@ const Wrapper = styled.div`
 
   margin: 0 auto;
   padding: 60px 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: flex;
     flex-direction: row;
   }
@@ -24,8 +23,7 @@ const Wrapper = styled.div`
 const MainPanel = styled.div`
   flex: 1;
   max-width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     max-width: calc(100% - 220px);
   }
 `;

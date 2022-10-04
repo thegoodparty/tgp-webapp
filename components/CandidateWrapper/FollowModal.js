@@ -38,8 +38,7 @@ const Wrapper = styled.div`
   max-width: 450px;
   min-width: 300px;
   font-size: 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 15px 34px;
   }
 `;

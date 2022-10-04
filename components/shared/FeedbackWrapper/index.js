@@ -13,8 +13,7 @@ const FeedbackForm = dynamic(() => import('./FeedbackForm'));
 
 const SideButton = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     display: block;
     position: fixed;
     bottom: 40px;
@@ -48,8 +47,7 @@ const SideButton = styled.div`
     font-weight: 600;
     cursor: pointer;
     margin-bottom: 48px;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+    @media only screen and (min-width: 768px) {
       display: none;
     }
   }

@@ -110,7 +110,7 @@ export const cmsToPlainText = (content, limit) => {
   }
   let text = documentToPlainTextString(content);
   if (limit) {
-    return text.substring(0, limit -3) + '...';
+    return text.substring(0, limit - 3) + '...';
   }
   return text;
 };

@@ -16,8 +16,7 @@ const InnerWrapper = styled.div`
   align-items: center;
   min-height: calc(100vh);
   min-height: calc(var(--vh, 1vh) * 100 - 150px);
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     justify-content: flex-start;
     min-height: auto;
   }
@@ -28,8 +27,7 @@ const Login = styled.div`
   color: ${({ theme }) => theme.colors.blue};
   cursor: pointer;
   text-align: right;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     position: static;
     text-align: right;
     width: 100%;

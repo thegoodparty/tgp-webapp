@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapper = styled(Body13)`
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: 1280px;
   margin: 0 auto;
   display: flex;
   align-items: center;

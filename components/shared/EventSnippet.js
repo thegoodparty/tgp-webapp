@@ -26,8 +26,7 @@ const Photo = styled.img`
   width: 55px;
   flex-basis: 55px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     height: 100px;
     width: 100px;
     flex-basis: 100px;

@@ -21,8 +21,7 @@ import { leftLinks } from './fields';
 const Wrapper = styled.div`
   padding: 16px 0 140px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 36px 0 140px;
     display: flex;
   }
@@ -37,8 +36,7 @@ const TopMobileNav = styled.div`
   line-height: 16px;
   font-weight: 600;
   color: #000;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     display: none;
   }
 `;
@@ -63,8 +61,7 @@ const TopLink = styled.div`
 
 const LeftNav = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     display: block;
     padding: 32px 16px 32px;
     width: 225px;
@@ -94,8 +91,7 @@ const LeftLink = styled(Body13)`
 const MainWrapper = styled.div`
   flex: 1;
   padding: 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 6px 0 0 32px;
   }
 `;
@@ -106,8 +102,7 @@ const Paper = styled.div`
     0 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
   padding: 16px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 24px;
   }
 

@@ -52,8 +52,7 @@ const PhoneWrapper = styled.div`
     line-height: 22px;
     font-size: 16px;
     padding-left: 16px;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+    @media only screen and (min-width: 768px) {
       font-size: 20px;
       line-height: 26px;
       ::placeholder {
@@ -78,8 +77,7 @@ const Input = styled(TextField)`
       background-color: #fff;
       border-radius: 4px;
 
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.md}) {
+      @media only screen and (min-width: 768px) {
         font-size: 20px;
         line-height: 26px;
       }

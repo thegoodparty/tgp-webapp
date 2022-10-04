@@ -17,8 +17,7 @@ const Title = styled.h3`
   font-size: 22px;
   font-weight: 900;
   margin: 0 0 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 32px;
   }
 `;
@@ -26,8 +25,7 @@ const Title = styled.h3`
 const SubTitle = styled.div`
   font-size: 14px;
   margin-bottom: 40px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 20px;
   }
 `;

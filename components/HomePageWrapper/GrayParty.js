@@ -12,8 +12,7 @@ const Wrapper = styled.section`
   border-top: solid 2px #f3f3f3;
   padding: 80px 16px 40px;
   text-align: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 116px 24px;
   }
 `;

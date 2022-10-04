@@ -43,8 +43,7 @@ const Title = styled.div`
   line-height: 25px;
   font-weight: 700;
   margin-bottom: 16px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-bottom: 20px;
   }
 `;
@@ -60,7 +59,7 @@ const Skip = styled(Body11)`
 
 const RedirectMsg = styled.div`
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.gray4};
+  color: #484848;
   margin-right: 8px;
 `;
 

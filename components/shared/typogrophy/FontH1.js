@@ -6,8 +6,7 @@ const FontH1 = styled.h1`
   font-weight: 900;
   font-family: ${({ theme }) => theme.typography.fontFamily};
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     font-size: 40px;
   }
 `;

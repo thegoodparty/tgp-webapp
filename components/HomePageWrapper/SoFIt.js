@@ -19,8 +19,7 @@ const Banner = styled.div`
 
   position: relative;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 72px;
     background-size: auto 100%;
     font-size: 30px;

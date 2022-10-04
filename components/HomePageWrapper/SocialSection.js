@@ -23,8 +23,7 @@ const Stat = styled.div`
     margin-right: 16px;
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
+  @media only screen and (min-width: $1200px) {
     margin-bottom: 24px;
 
     &.first {
@@ -40,16 +39,14 @@ const Icon = styled.div`
 const Count = styled.div`
   font-size: 30px;
   font-weight: 900;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
+  @media only screen and (min-width: $1200px) {
     font-size: 48px;
   }
 `;
 const Label = styled.div`
   font-size: 16px;
   font-weight: 900;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
+  @media only screen and (min-width: $1200px) {
     font-size: 19px;
   }
 `;
@@ -65,8 +62,7 @@ const InlineBlock = styled.div`
 
 const ButtonWrapper = styled.div`
   margin-top: 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
+  @media only screen and (min-width: $1200px) {
     margin-top: 0;
   }
 `;

@@ -7,8 +7,7 @@ const Wrapper = styled.div`
   padding: 24px;
   position: relative;
   margin-bottom: 10px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 36px 50px;
   }
 `;

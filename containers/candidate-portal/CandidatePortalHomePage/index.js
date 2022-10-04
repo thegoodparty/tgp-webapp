@@ -52,7 +52,7 @@ export function CandidatePortalHomePage({
   }, [id]);
 
   useEffect(() => {
-    if (!candidate || `${candidate.id}` !== id) {
+    if (id && (!candidate || `${candidate.id}` !== id)) {
       dispatch(actions.findCandidate(id));
     }
   }, [id, candidate]);

@@ -26,7 +26,7 @@ const ShareImageWrapper = styled.div`
 `;
 
 const CandidateName = styled(Body19)`
-  color: ${({ theme }) => theme.colors.gray2};
+  color: #262626;
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 0;

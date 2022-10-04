@@ -26,8 +26,7 @@ const Wrapper = styled.div`
   min-width: 300px;
   font-size: 16px;
   position: relative;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 60px;
   }
 
@@ -35,8 +34,7 @@ const Wrapper = styled.div`
     line-height: 22px;
     font-size: 16px;
 
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+    @media only screen and (min-width: 768px) {
       font-size: 20px;
       line-height: 26px;
     }
@@ -50,8 +48,7 @@ const CloseWrapper = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 24px;
   }
 `;

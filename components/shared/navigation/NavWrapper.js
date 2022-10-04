@@ -10,16 +10,14 @@ import FeedbackContainer from '/containers/shared/FeedbackContainer';
 
 export const SmOnly = styled.div`
   display: block;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     display: none;
   }
 `;
 
 export const MdUpOnly = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     display: block;
   }
 `;

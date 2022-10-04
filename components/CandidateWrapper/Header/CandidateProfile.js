@@ -20,8 +20,7 @@ import { CandidateWrapperContext } from '../index';
 
 const Text = styled.div`
   margin-left: 30px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin-left: 36px;
   }
 `;
@@ -41,8 +40,7 @@ const H2 = styled.h2`
 
 const ButtonWrapper = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: block;
   }
 `;

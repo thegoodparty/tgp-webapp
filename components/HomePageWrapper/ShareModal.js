@@ -13,8 +13,7 @@ const Wrapper = styled.div`
   max-width: 600px;
   min-width: 300px;
   font-size: 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 36px;
   }
 `;
@@ -30,8 +29,7 @@ const Title = styled.div`
   font-weight: 900;
   margin-bottom: 30px;
   text-align: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-bottom: 90px;
     text-align: left;
   }
@@ -45,8 +43,7 @@ const Icon = styled.div`
 const BottomWrapper = styled.div`
   text-align: center;
   margin-top: 30px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-top: 90px;
   }
 `;

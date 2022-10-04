@@ -20,7 +20,7 @@ import PinkButton from '../../shared/buttons/PinkButton';
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 120px);
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: 1280px;
   margin: 24px auto 0;
 `;
 

@@ -56,12 +56,12 @@ function MyApp({ Component, pageProps }) {
       <ConnectedRouter>
         <UiThemeProvider theme={theme}>
           <GlobalStyles />
-          <ThemeProvider theme={theme}>
+          {/*<ThemeProvider theme={theme}>*/}
             <QueryRoutes />
-          </ThemeProvider>
-          <ThemeProvider theme={theme}>
+          {/*</ThemeProvider>*/}
+          {/*<ThemeProvider theme={theme}>*/}
             <Component {...pageProps} />
-          </ThemeProvider>
+          {/*</ThemeProvider>*/}
           <SnackbarContainer />
         </UiThemeProvider>
       </ConnectedRouter>

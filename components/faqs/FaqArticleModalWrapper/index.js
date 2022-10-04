@@ -20,16 +20,14 @@ const TgpDialog = styled(Dialog)`
 
 const Wrapper = styled.div`
   padding: 12px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 24px;
   }
 `;
 
 const TopWrapper = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

@@ -16,7 +16,7 @@ import BlackButton, { InnerButton } from '../../shared/buttons/BlackButton';
 
 const Wrapper = styled.div`
   padding: 24px;
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: 1280px;
   margin: 0 auto;
 `;
 
@@ -41,8 +41,7 @@ const Upload = styled.div`
 
 const Inner = styled.div`
   width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 60%;
   }
 `;

@@ -13,8 +13,8 @@ const Wrapper = styled.div`
   max-height: 95vh;
   overflow-x: hidden;
   overflow-y: auto;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
-    width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  @media only screen and (min-width: 768px) {
+    width: 1280px;
   }
   transition: bottom 0.5s;
 
@@ -36,7 +36,7 @@ const CloseWrapper = styled.div`
   position: fixed;
   margin-top: 16px;
   right: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     right: auto;
     left: 50%;
     margin-left: 350px;

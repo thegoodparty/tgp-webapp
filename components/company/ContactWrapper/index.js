@@ -12,8 +12,7 @@ import { FontH1 } from '../../shared/typogrophy';
 
 const Inner = styled.div`
   margin: 0 auto;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 80%;
     min-width: ${1280 * 0.8}px;
   }
@@ -36,8 +35,7 @@ const H1 = styled.h1`
 const FormWrapper = styled.div`
   iframe {
     width: 80vw !important;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
+    @media only screen and (min-width: 1024px) {
       width: 100% !important;
     }
   }

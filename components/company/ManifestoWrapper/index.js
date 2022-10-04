@@ -27,8 +27,7 @@ const H2 = styled.h2`
   font-style: italic;
   font-weight: 900;
   font-size: 26px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     font-size: 32px;
   }
 `;

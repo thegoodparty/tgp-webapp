@@ -92,8 +92,7 @@ const Plan = styled.div`
   &.mobile-active {
     display: block;
   }
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 44px;
     display: block;
     margin: 0 12px;
@@ -108,8 +107,7 @@ const H3 = styled.h3`
   font-size: 45px;
   letter-spacing: 0.2px;
   margin: 0 0 40px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin-top: 60px;
   }
 `;

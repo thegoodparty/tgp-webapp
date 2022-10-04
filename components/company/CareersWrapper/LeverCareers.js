@@ -17,8 +17,7 @@ const Wrapper = styled.section`
       flex-grow: 0;
       flex-basis: 100%;
       width: 100%;
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.lg}) {
+      @media only screen and (min-width: 1024px) {
         flex-grow: 0;
         max-width: 50%;
         flex-basis: 50%;

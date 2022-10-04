@@ -24,8 +24,7 @@ import BlackButton from '../../shared/buttons/BlackButton';
 
 const StyledH1 = styled(H1)`
   margin: 18px 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin: 24px 0;
   }
 `;
@@ -65,7 +64,7 @@ const ButtonText = styled(Body)`
 `;
 
 const Error = styled(Body11)`
-  color: ${({ theme }) => theme.colors.red};
+  color: #970003;
   font-weight: 500;
   margin-bottom: 18px;
   margin-left: 16px;
@@ -87,8 +86,7 @@ const Input = styled(TextField)`
       background-color: #fff;
       box-shadow: 0px 2px 0px rgba(17, 17, 31, 0.25);
 
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.md}) {
+      @media only screen and (min-width: 768px) {
         font-size: 20px;
         line-height: 26px;
       }

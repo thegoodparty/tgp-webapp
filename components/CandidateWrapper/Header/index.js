@@ -14,8 +14,7 @@ import SocialStats from './SocialStats';
 
 const Wrapper = styled.header`
   padding: 35px 0 60px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 55px 0 70px;
   }
 `;

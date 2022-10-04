@@ -14,8 +14,7 @@ import { FaTrash } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   margin-bottom: 32px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-bottom: 16px;
   }
 `;

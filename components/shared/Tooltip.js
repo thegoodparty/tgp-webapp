@@ -9,8 +9,7 @@ const Inner = styled.div`
   padding: 20px;
   position: relative;
   max-width: 320px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     max-width: 700px;
   }
 `;

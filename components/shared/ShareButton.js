@@ -12,7 +12,7 @@ const StyledBody = styled(Body13)`
 
 const Copied = styled(Body13)`
   margin-top: 8px;
-  color: ${({ theme }) => theme.colors.red};
+  color: #970003;
 `;
 
 const ShareButton = ({

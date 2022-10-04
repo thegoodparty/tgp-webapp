@@ -10,8 +10,7 @@ import CandidateMiniCard from './CandidatesMiniCard';
 
 const Wrapper = styled.section`
   padding: 20px 0 60px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding-top: 60px;
   }
 `;
@@ -20,8 +19,7 @@ const H2 = styled.h2`
   font-size: 21px;
   font-weight: 900;
   margin: 0 0 18px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 42px;
     margin: 0 0 30px;
   }
@@ -30,8 +28,7 @@ const H2 = styled.h2`
 const Content = styled.div`
   margin-bottom: 50px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 22px;
   }
 `;
@@ -41,8 +38,7 @@ const More = styled.div`
   font-size: 24px;
   font-weight: 900;
   text-decoration: underline;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin-top: 85px;
   }
 `;

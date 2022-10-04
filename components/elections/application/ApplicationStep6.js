@@ -59,8 +59,7 @@ const EndorsementWrapper = styled.div`
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 24px;
   }
 `;

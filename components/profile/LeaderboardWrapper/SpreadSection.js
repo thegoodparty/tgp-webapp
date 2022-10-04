@@ -19,8 +19,7 @@ const Wrapper = styled.section`
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
   padding: 16px 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-top: 0;
   }
 `;
@@ -29,8 +28,7 @@ const UniqueLink = styled.div`
   margin-top: 8px;
   color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     margin-top: 12px;
   }
 `;

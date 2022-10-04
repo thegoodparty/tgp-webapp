@@ -11,13 +11,11 @@ const H1 = styled.h1`
   line-height: 60px;
   display: inline-block;
   position: relative;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 70px;
     line-height: 80px;
   }
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
+  @media only screen and (min-width: $1200px) {
     font-size: 90px;
     margin: 70px 0 24px;
     line-height: 100px;
@@ -29,9 +27,8 @@ const H1 = styled.h1`
     width: 100%;
     bottom: 0;
     left: -3px;
-    background-color: ${({ theme }) => theme.colors.yellow};
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
+    background-color: #FFE600;
+    @media only screen and (min-width: 1024px) {
       height: 40px;
       left: -7px;
     }
@@ -49,14 +46,12 @@ const H3 = styled.h3`
   margin: 0 0 35px;
   font-size: 19px;
   font-weight: 400;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 28px;
     margin: 0 0 70px;
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
+  @media only screen and (min-width: $1200px) {
     font-size: 36px;
   }
 `;

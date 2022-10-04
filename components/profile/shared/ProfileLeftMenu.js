@@ -17,8 +17,7 @@ import { CONTACT_EMAIL } from '../../../utils/constants';
 const LeftPanel = styled.div`
   padding: 0 10px 20px 10px;
   text-align: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 220px;
     overflow-x: hidden;
     padding: 60px 10px 0 10px;
@@ -35,8 +34,7 @@ const Label = styled(Font16)`
     font-weight: 900;
     color: #000;
   }
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: block;
     padding-bottom: 40px;
     padding-right: 0;
@@ -45,8 +43,7 @@ const Label = styled(Font16)`
 
 const Secondary = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: block;
   }
 `;

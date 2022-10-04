@@ -21,8 +21,7 @@ import Row from '../../shared/Row';
 
 const Section = styled.section`
   .MuiInputBase-input {
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
+    @media only screen and (min-width: 768px) {
       font-size: 16px !important;
       line-height: 22px !important;
     }
@@ -82,7 +81,7 @@ export const USER_SETTING_FIELDS = [
 function PersonalSection() {
   const { user, updateUserCallback } = useContext(ProfileSettingsPageContext);
   const initialState = {};
-  
+
   USER_SETTING_FIELDS.forEach((field) => {
     initialState[field.key] = field.initialValue;
   });

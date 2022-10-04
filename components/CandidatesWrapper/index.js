@@ -19,8 +19,7 @@ const FiltersSection = dynamic(() => import('./FiltersSection'), {
 
 const Line = styled.div`
   display: none;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: block;
     height: 1px;
     background-color: #f3f3f3;

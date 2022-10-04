@@ -20,8 +20,7 @@ const VerticalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     height: calc(100vh - 100px);
   }
 `;

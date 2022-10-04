@@ -30,7 +30,7 @@ const StyledBody13 = styled(Body13)`
   font-weight: 500;
 
   &.google {
-    color: ${({ theme }) => theme.colors.gray4};
+    color: #484848;
   }
 `;
 
@@ -40,7 +40,7 @@ const Icon = styled.img`
   position: absolute;
   left: 24px;
   top: 12px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     width: 12px;
     top: 14px;
   }

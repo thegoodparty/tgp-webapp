@@ -21,8 +21,7 @@ const Wrapper = styled.div`
   border-radius: 12px;
   min-width: 280px;
   width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     max-width: 800px;
     width: 80vw;
   }
@@ -40,8 +39,7 @@ const Wrapper = styled.div`
     }
   }
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     input {
       margin-bottom: 0;
     }
@@ -62,16 +60,14 @@ const SubTitle = styled.div`
 `;
 
 const Overflow = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 100%;
     overflow: hidden;
   }
 `;
 
 const Inner = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 300%;
     transition: width 0.4s, border 0.4s;
 
@@ -100,16 +96,14 @@ const Inner = styled.div`
 
 const ButtonWrapper = styled.div`
   margin-top: 13px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin-left: 16px;
     margin-top: 0;
   }
 `;
 
 const ResponsiveRow = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: flex;
     align-items: center;
   }
@@ -117,8 +111,7 @@ const ResponsiveRow = styled.div`
 
 const BottomRow = styled.div`
   margin-top: 30px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     margin-top: 68px;
     display: flex;
     align-items: center;
@@ -129,8 +122,7 @@ const BottomRow = styled.div`
 const LogoWrapper = styled.div`
   text-align: center;
   margin-top: 70px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     text-align: left;
     margin-top: 0;
   }

@@ -29,8 +29,7 @@ const StyledH1 = styled(H1)`
     font-size: 26px;
     line-height: 52px;
 
-    @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+    @media only screen and (min-width: 768px) {
       font-size: 36px;
       line-height: 82px;
     }

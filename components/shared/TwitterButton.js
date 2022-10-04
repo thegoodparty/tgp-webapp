@@ -27,12 +27,12 @@ const StyledBody11 = styled(Body11)`
   font-weight: 500;
   padding-left: 16px;
   font-size: 10px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     font-size: 14px;
   }
 
   &.google {
-    color: ${({ theme }) => theme.colors.gray4};
+    color: #484848;
   }
 `;
 
@@ -42,7 +42,7 @@ const Icon = styled.img`
   position: absolute;
   left: 10px;
   top: 16px;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     width: 20px;
     top: 16px;
   }

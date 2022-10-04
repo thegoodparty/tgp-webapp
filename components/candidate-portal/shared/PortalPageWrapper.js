@@ -14,11 +14,10 @@ import Footer from '../../shared/Footer';
 const Wrapper = styled(MaxWidth)`
   min-height: calc(100vh - 80px);
 
-  max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
+  max-width: 1280px;
   margin: 0 auto;
   padding: 60px 0;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: flex;
     flex-direction: row;
   }
@@ -27,8 +26,7 @@ const Wrapper = styled(MaxWidth)`
 const MainPanel = styled.div`
   flex: 1;
   max-width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     max-width: calc(100% - 220px);
   }
 `;

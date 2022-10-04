@@ -18,8 +18,7 @@ import { CandidateWrapperContext } from '../index';
 import FollowButtonContainer from '../../../containers/shared/FollowButtonContainer';
 
 const Wrapper = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: flex;
     justify-content: flex-end;
   }
@@ -27,8 +26,7 @@ const Wrapper = styled.div`
 
 const Inner = styled.div`
   font-size: 14px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     width: 500px;
     font-size: 20px;
   }
@@ -36,8 +34,7 @@ const Inner = styled.div`
 
 const ButtonWrapper = styled.div`
   margin-top: 30px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     display: none;
   }
 `;

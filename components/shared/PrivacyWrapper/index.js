@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import PageWrapper from '/components/shared/PageWrapper';
@@ -8,45 +8,45 @@ import { dateUsHelper } from '/helpers/dateHelper';
 
 import { H1, Body11 } from '../typogrophy';
 
-const TitleWrapper = styled.div`
-  text-align: center;
-  margin-top: 24px;
-`;
-
-const RevisionWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8px;
-`;
-
-const Divider = styled.span`
-  display: inline-block;
-  height: 12px;
-  width: 2px;
-  background-color: ${({ theme }) => theme.colors.red};
-  margin: 0 6px;
-`;
+// const TitleWrapper = styled.div`
+//   text-align: center;
+//   margin-top: 24px;
+// `;
+//
+// const RevisionWrapper = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 8px;
+// `;
+//
+// const Divider = styled.span`
+//   display: inline-block;
+//   height: 12px;
+//   width: 2px;
+//   background-color: #970003;
+//   margin: 0 6px;
+// `;
 
 const PrivacyWrapper = ({ content }) => {
   return (
     <PageWrapper white>
       {content && (
         <>
-          <TitleWrapper>
-            <H1 data-cy="privacy-title">{content.title}</H1>
-          </TitleWrapper>
-          <RevisionWrapper>
-            <Body11 data-cy="last-revisioin-label">Last Revision</Body11>
-            <Divider />
-            <Body11 data-cy="last-revisioin-date">
+          {/*<TitleWrapper>*/}
+            <h1 data-cy="privacy-title">{content.title}</h1>
+          {/*</TitleWrapper>*/}
+          {/*<RevisionWrapper>*/}
+            <div data-cy="last-revisioin-label">Last Revision</div>
+            {/*<Divider />*/}
+            {/*<Body11 data-cy="last-revisioin-date">*/}
               {dateUsHelper(content.lastModified)}
-            </Body11>
-          </RevisionWrapper>
-          <CmsContentWrapper>
+            {/*</Body11>*/}
+          {/*</RevisionWrapper>*/}
+          {/*<CmsContentWrapper>*/}
             {contentfulHelper(content.pageContent)}
-          </CmsContentWrapper>
+          {/*</CmsContentWrapper>*/}
         </>
       )}
     </PageWrapper>

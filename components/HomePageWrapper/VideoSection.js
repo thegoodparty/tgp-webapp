@@ -13,8 +13,7 @@ const Wrapper = styled.div`
     &::before {
       display: none;
     }
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.xl}) {
+    @media only screen and (min-width: $1200px) {
       margin-top: 70px;
     }
   }

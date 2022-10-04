@@ -19,21 +19,20 @@ const ContentWrpper = styled.div`
   max-width: 640px;
   margin: 0 auto;
   padding: 24px 0 48px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 40px 0 64px;
   }
 `;
 
 const StyledBody19 = styled(Body19)`
   margin: 6px 0 0;
-  color: ${({ theme }) => theme.colors.gray4};
+  color: #484848;
 `;
 
 const Title = styled.div`
   font-size: 19px;
   line-height: 25px;
-  color: ${({ theme }) => theme.colors.gray2};
+  color: #262626;
   font-weight: 700;
   margin: 32px 0 24px;
 `;

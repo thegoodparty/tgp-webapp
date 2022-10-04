@@ -14,13 +14,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     width: ${props => props.wrapperSizeLarge};
     height: ${props => props.wrapperSizeLarge};
   }
 
   &.green {
-    border: solid 1px ${({ theme }) => theme.colors.green};
+    border: solid 1px #0c9a00;
   }
 
   &.red {
@@ -40,7 +40,7 @@ const Avatar = styled.div`
   background-size: cover;
   border-radius: 50%;
   position: relative;
-  @media only screen and (min-width: ${({ theme }) => theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     width: ${props => props.avatarSizeLarge};
     height: ${props => props.avatarSizeLarge};
   }

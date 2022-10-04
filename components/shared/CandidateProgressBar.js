@@ -43,7 +43,7 @@ const AchievementWrapper = styled.div`
   text-align: left;
   width: 100%;
   font-size: 16px;
-  color: ${({ theme }) => theme.colors.gray4};
+  color: #484848;
   padding-left: 8px;
   margin-top: 12px;
 `;
@@ -64,13 +64,12 @@ const Total = styled.div`
 const Number = styled.div`
   font-size: 17px;
   font-weight: 900;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     font-size: 19px;
   }
 
   &.positive {
-    color: ${({ theme }) => theme.colors.green};
+    color: #0c9a00;
   }
 `;
 

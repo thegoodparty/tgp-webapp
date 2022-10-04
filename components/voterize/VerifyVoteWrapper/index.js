@@ -63,8 +63,7 @@ const StyledBody = styled(Body)`
 const Wrapper = styled.div`
   padding: 15px 20px;
 
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
+  @media only screen and (min-width: 768px) {
     padding: 40px 30px;
   }
 `;
@@ -84,8 +83,7 @@ const Input = styled(TextField)`
       font-size: 16px;
       letter-spacing: 0.1px;
 
-      @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.md}) {
+      @media only screen and (min-width: 768px) {
         font-size: 20px;
         line-height: 26px;
       }

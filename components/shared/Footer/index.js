@@ -20,12 +20,10 @@ const Wrapper = styled.div`
   background-color: #fff;
   position: relative;
   margin-top: 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     padding: 40px 24px;
   }
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
+  @media only screen and (min-width: 600px) {
     padding: 40px 18px;
   }
 
@@ -36,8 +34,7 @@ const Wrapper = styled.div`
 
 const Aligner = styled.div`
   text-align: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  @media only screen and (min-width: 1024px) {
     text-align: left;
   }
 `;
@@ -67,8 +64,7 @@ const SecondRow = styled.div`
   &.footer-row {
     margin-top: 48px;
     color: #777;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.lg}) {
+    @media only screen and (min-width: 1024px) {
       margin-top: 120px;
     }
 
