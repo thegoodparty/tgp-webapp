@@ -4,6 +4,10 @@ import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet as StyledComponentSheets } from 'styled-components';
 import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles';
 
+const CleanCSS = require('clean-css');
+/* eslint-enable global-require */
+const cleanCSS = new CleanCSS();
+
 class CustomDocument extends NextDocument {
   static async getInitialProps(ctx) {
     const styledComponentSheet = new StyledComponentSheets();
@@ -18,13 +22,27 @@ class CustomDocument extends NextDocument {
             ),
         });
       const initialProps = await NextDocument.getInitialProps(ctx);
+      let css = styledComponentSheet.getStyleTags();
+      if (css) {
+        css
+          .replace('<style data-styled="true" data-styled-version="5.3.3">', '')
+          .replace('</style>', '');
+      }
+      let css2 = materialUiSheets.toString();
+      let finalCSS = `${css} ${css2}`;
+      if (finalCSS) {
+        finalCSS = cleanCSS.minify(finalCSS).styles;
+      }
+
       return {
         ...initialProps,
         styles: [
           <React.Fragment key="styles">
             {initialProps.styles}
-            {materialUiSheets.getStyleElement()}
-            {styledComponentSheet.getStyleElement()}
+            <style id="jss-server-side" key="jss-server-side">
+              {finalCSS}
+            </style>
+            ,
           </React.Fragment>,
         ],
       };
@@ -33,13 +51,6 @@ class CustomDocument extends NextDocument {
     }
   }
 
-  // static async getInitialProps({ renderPage }) {
-  //   const sheet = new ServerStyleSheet();
-  //   const page = renderPage(App => props =>
-  //     sheet.collectStyles(<App {...props} />),
-  //   );
-  //   return { ...page, styles: sheet.getStyleElement() };
-  // }
   render() {
     return (
       <Html lang="en">
@@ -86,17 +97,17 @@ class CustomDocument extends NextDocument {
           {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"></script>*/}
         </Head>
         <body>
-          <Main />
-          <NextScript />
+        <Main />
+        <NextScript />
 
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-M53W2ZV"
-              height="0"
-              width="0"
-              style={{ display: 'none', visibility: 'hidden' }}
-            />
-          </noscript>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-M53W2ZV"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         </body>
       </Html>
     );
