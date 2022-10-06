@@ -52,8 +52,10 @@ export function CandidatePortalHomePage({
   }, [id]);
 
   useEffect(() => {
-    if (!candidate || `${candidate.id}` !== id) {
-      dispatch(actions.findCandidate(id));
+    if (id) {
+      if (!candidate || `${candidate.id}` !== id) {
+        dispatch(actions.findCandidate(id));
+      }
     }
   }, [id, candidate]);
 

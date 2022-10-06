@@ -42,8 +42,14 @@ const fields = [
     isCheckbox: true,
   },
   { label: 'Followers Offset', key: 'followersOffset', initialValue: 0 },
-  { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
+  { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
+  {
+    label: 'Should likely voters override social followers?',
+    key: 'overrideFollowers',
+    initialValue: false,
+    isCheckbox: true,
+  },
   { label: 'hubspot company id', key: 'hubspotId', initialValue: '' },
   { label: 'Pulsar Search ID', key: 'pulsarSearchId', initialValue: '' },
   {
