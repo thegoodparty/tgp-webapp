@@ -39,10 +39,6 @@ module.exports = withPlugins([
       images: {
         domains: ['assets.goodparty.org'],
       },
-      experimental: {
-        // Enables the styled-components SWC transform
-        styledComponents: true,
-      },
       compiler: {
         styledComponents: true,
       },

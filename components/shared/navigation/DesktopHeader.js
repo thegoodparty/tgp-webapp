@@ -19,7 +19,6 @@ const Wrapper = styled.header`
   background-color: #fff;
   z-index: 100;
   padding: 0 24px;
-  box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.1);
 
   position: fixed;
   top: 0;

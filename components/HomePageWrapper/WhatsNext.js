@@ -20,7 +20,7 @@ const Banner = styled.div`
   position: relative;
 
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.md}) {
     padding: 72px;
     background-size: auto 100%;
     font-size: 30px;
@@ -32,7 +32,7 @@ const Title = styled.div`
   font-weight: 900;
 `;
 
-const SoFIt = ({ openModalCallback = () => {} }) => {
+const WhatsNext = ({ openModalCallback = () => {} }) => {
   return (
     <Wrapper id="host">
       <MaxWidth>
@@ -53,4 +53,4 @@ const SoFIt = ({ openModalCallback = () => {} }) => {
   );
 };
 
-export default SoFIt;
+export default WhatsNext;

@@ -17,6 +17,10 @@ const YellowButton = styled(BlackButton)`
       background: #ccc;
       border-color: #aaa;
     }
+
+    &.custom-radius {
+      border-radius: 0 4px 4px 0;
+    }
   }
 `;
 

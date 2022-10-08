@@ -11,7 +11,7 @@ import PageWrapper from '../../shared/PageWrapper';
 import { FontH1, FontH2 } from '../../shared/typogrophy';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import SoFIt from '../../HomePageWrapper/SoFIt';
+import WhatsNext from '../../HomePageWrapper/SoFIt';
 import ShareModal from '../../HomePageWrapper/ShareModal';
 import Modal from '../../shared/Modal';
 
@@ -174,7 +174,7 @@ function ManifestoWrapper() {
           <br />
           It’s time to get this #goodparty started!
         </p>
-        <SoFIt
+        <WhatsNext
           noTitle
           openShareModalCallback={handleOpenShareModal}
           openModalCallback={linkToHomePage}

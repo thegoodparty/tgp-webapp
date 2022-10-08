@@ -7,26 +7,15 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
-import Link from 'next/link';
-import Image from 'next/image';
 
+import { RegisterComboContainerContext } from '/containers/shared/RegisterComboContainer';
 import BlackButton, { InnerButton } from '../buttons/BlackButton';
 import { isValidEmail } from '../EmailInput';
-import { RegisterComboContainerContext } from '../../../containers/shared/RegisterComboContainer';
-import { setCookie } from '../../../helpers/cookieHelper';
-import { candidateRoute } from '../../../helpers/electionsHelper';
+import YellowButton from '../buttons/YellowButton';
+// import { setCookie } from '../../../helpers/cookieHelper';
+// import { candidateRoute } from '../../../helpers/electionsHelper';
 
 const Wrapper = styled.div`
-  padding: 32px;
-  border-radius: 12px;
-  min-width: 280px;
-  width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    max-width: 800px;
-    width: 80vw;
-  }
-
   input {
     padding: 18px 10px;
     border: 1px solid #c2c2c2;
@@ -102,7 +91,6 @@ const ButtonWrapper = styled.div`
   margin-top: 13px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin-left: 16px;
     margin-top: 0;
   }
 `;
@@ -181,17 +169,13 @@ function RegisterComboWrapper() {
     registerCallback(state.email, state.name, state.zip, afterRegisterCallback);
   };
 
-  const setReturnCookie = () => {
-    if (afterLoginRoute) {
-      setCookie('returnUrlLogin', afterLoginRoute);
-    }
-  };
+  // const setReturnCookie = () => {
+  //   if (afterLoginRoute) {
+  //     setCookie('returnUrlLogin', afterLoginRoute);
+  //   }
+  // };
   return (
     <Wrapper>
-      <Title>Sign Up</Title>
-      <SubTitle>
-        Get Good Party updates and track indie campaigns near you!
-      </SubTitle>
       <form
         noValidate
         onSubmit={(e) => e.preventDefault()}
@@ -221,36 +205,19 @@ function RegisterComboWrapper() {
             </Inner>
           </Overflow>
           <ButtonWrapper>
-            <BlackButton
+            <YellowButton
               type="submit"
               disabled={!canSubmit()}
               onClick={submitForm}
+              className="custom-radius"
             >
               <InnerButton style={{ whiteSpace: 'nowrap' }}>
                 JOIN US
               </InnerButton>
-            </BlackButton>
+            </YellowButton>
           </ButtonWrapper>
         </ResponsiveRow>
       </form>
-      <BottomRow>
-        <div>
-          Already signed up?{' '}
-          <Link href="/login" passHref>
-            <a className="underline" onClick={setReturnCookie}>
-              <strong>Login</strong>
-            </a>
-          </Link>
-        </div>
-        <LogoWrapper>
-          <Image
-            src="/images/black-logo.svg"
-            width={151}
-            height={15}
-            alt="GOOD PARTY"
-          />
-        </LogoWrapper>
-      </BottomRow>
     </Wrapper>
   );
 }
