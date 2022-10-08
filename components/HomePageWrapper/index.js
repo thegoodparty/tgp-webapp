@@ -36,32 +36,32 @@ const HomePageWrapper = () => {
       <MaxWidth style={{ padding: '0 24px' }}>
         <Hero />
       </MaxWidth>
-      {/*<MaxWidth style={{ padding: '0 24px' }}>*/}
-      {/*  <Suspense fallback={`Loading...`}>*/}
-      {/*    <CandidatesSection />*/}
-      {/*  </Suspense>*/}
-      {/*</MaxWidth>*/}
-      {/*<Suspense fallback={`Loading...`}>*/}
-      {/*  <WhatsNext openModalCallback={handleOpenInvolvedModal} />*/}
-      {/*</Suspense>*/}
-      {/*<Modal*/}
-      {/*  open={modalOpen}*/}
-      {/*  showCloseButton={false}*/}
-      {/*  closeModalCallback={() => setModalOpen(false)}*/}
-      {/*>*/}
-      {/*  <ModalInner closeModalCallback={() => setModalOpen(false)} />*/}
-      {/*</Modal>*/}
+      <MaxWidth style={{ padding: '0 24px' }}>
+        <Suspense fallback={`Loading...`}>
+          <CandidatesSection />
+        </Suspense>
+      </MaxWidth>
+      <Suspense fallback={`Loading...`}>
+        <WhatsNext openModalCallback={handleOpenInvolvedModal} />
+      </Suspense>
+      <Modal
+        open={modalOpen}
+        showCloseButton={false}
+        closeModalCallback={() => setModalOpen(false)}
+      >
+        <ModalInner closeModalCallback={() => setModalOpen(false)} />
+      </Modal>
 
-      {/*<Modal*/}
-      {/*  open={involvedModalOpen}*/}
-      {/*  showCloseButton={false}*/}
-      {/*  closeModalCallback={() => setInvolvedModalOpen(false)}*/}
-      {/*>*/}
-      {/*  <InvolvedModalInner*/}
-      {/*    closeModalCallback={() => setInvolvedModalOpen(false)}*/}
-      {/*    openRegisterModalCallback={handleOpenModal}*/}
-      {/*  />*/}
-      {/*</Modal>*/}
+      <Modal
+        open={involvedModalOpen}
+        showCloseButton={false}
+        closeModalCallback={() => setInvolvedModalOpen(false)}
+      >
+        <InvolvedModalInner
+          closeModalCallback={() => setInvolvedModalOpen(false)}
+          openRegisterModalCallback={handleOpenModal}
+        />
+      </Modal>
     </PageWrapper>
   );
 };
