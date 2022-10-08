@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -110,10 +110,10 @@ const SmImageWrapper = styled.div`
     object-fit: cover;
     object-position: top center;
   }
-  
+
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.md}) {
-  height: 700px;
+      theme.breakpointsPixels.md}) {
+    height: 700px;
   }
 
   @media only screen and (min-width: ${({ theme }) =>
@@ -130,7 +130,13 @@ const RegisterWrapper = styled.div`
 `;
 
 const Hero = () => {
-  const user = getUserCookie();
+  const [showRegister, setShowRegister] = useState(true);
+  useEffect(() => {
+    const user = getUserCookie();
+    if (user) {
+      setShowRegister(false);
+    }
+  }, []);
   return (
     <Wrapper>
       <Grid container spacing={0}>
@@ -155,7 +161,7 @@ const Hero = () => {
             <LgUpOnly>
               <SocialSection />
             </LgUpOnly>
-            {!user && <RegisterComboContainer />}
+            {showRegister && <RegisterComboContainer />}
           </RegisterWrapper>
           <GrayBg>
             <FullWidthGray />

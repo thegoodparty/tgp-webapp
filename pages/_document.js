@@ -42,7 +42,6 @@ class CustomDocument extends NextDocument {
             <style id="jss-server-side" key="jss-server-side">
               {finalCSS}
             </style>
-            ,
           </React.Fragment>,
         ],
       };
@@ -97,17 +96,17 @@ class CustomDocument extends NextDocument {
           {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"></script>*/}
         </Head>
         <body>
-        <Main />
-        <NextScript />
+          <Main />
+          <NextScript />
 
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-M53W2ZV"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-M53W2ZV"
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
         </body>
       </Html>
     );
