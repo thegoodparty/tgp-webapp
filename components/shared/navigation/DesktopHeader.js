@@ -94,13 +94,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
     <>
       <Wrapper>
         <ContentWrapper>
-          <Link
-            href="/"
-            passHref
-            onClick={() => {
-              logEvent('Link', 'Logo', 'Top Nav');
-            }}
-          >
+          <Link href="/" passHref>
             <a id="desktop-nav-logo">
               <Image
                 src="/images/black-logo.svg"
@@ -114,13 +108,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
           <RightLinks>
             {HEADER_LINKS.map((link) => (
               <TopLink key={link.href} data-cy="header-link">
-                <Link
-                  href={link.href}
-                  passHref
-                  onClick={() => {
-                    logEvent('Link', link.label, 'Top Nav');
-                  }}
-                >
+                <Link href={link.href} passHref>
                   <A
                     data-cy="header-link-label"
                     id={`desktop-nav-${link.label.replace(' ', '-')}`}
@@ -131,13 +119,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               </TopLink>
             ))}
             {user?.name ? (
-              <Link
-                href="/profile"
-                passHref
-                onClick={() => {
-                  logEvent('Link', 'Profile', 'Top Nav');
-                }}
-              >
+              <Link href="/profile" passHref>
                 <a id="desktop-nav-profile">
                   <AvatarWrapper>
                     <UserAvatar user={user} />
@@ -146,13 +128,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               </Link>
             ) : (
               <TopLink>
-                <Link
-                  href="/register"
-                  passHref
-                  onClick={() => {
-                    logEvent('Link', 'Register', 'Top Nav');
-                  }}
-                >
+                <Link href="/register" passHref>
                   <A data-cy="header-register" id="desktop-nav-register">
                     <strong>Join Us</strong>
                   </A>
