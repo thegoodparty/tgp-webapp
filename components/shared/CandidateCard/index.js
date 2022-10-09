@@ -198,7 +198,7 @@ function CandidateCard({ candidate, withFollowButton = false }) {
                     }}
                     data-cy="candidate-view"
                   >
-                    View
+                    VIEW CAMPAIGN
                   </BlackButton>
                 )}
               </Grid>

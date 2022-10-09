@@ -22,7 +22,7 @@ function Why() {
     <Wrapper>
       <FontH2>Why you should join us</FontH2>
       <Grid container>
-        <Grid xs={12} lg={9}>
+        <Grid item xs={12} lg={9}>
           <Text>
             Be part of a mission to solve the biggest problem of our time –
             fixing our democracy, so all other problems can be solved.
