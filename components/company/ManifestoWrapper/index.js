@@ -11,7 +11,7 @@ import PageWrapper from '../../shared/PageWrapper';
 import { FontH1, FontH2 } from '../../shared/typogrophy';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import WhatsNext from '../../HomePageWrapper/SoFIt';
+import WhatsNext from '../../HomePageWrapper/WhatsNext';
 import ShareModal from '../../HomePageWrapper/ShareModal';
 import Modal from '../../shared/Modal';
 

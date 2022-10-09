@@ -139,7 +139,7 @@ function ClaimModal({ closeModalCallback }) {
       <Row>
         {image && (
           <ImageWrapper>
-            <Image src={image} layout="fill" />
+            <Image src={image} layout="fill" alt="Claim campaign" />
           </ImageWrapper>
         )}
         <div>

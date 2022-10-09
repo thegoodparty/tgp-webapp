@@ -230,6 +230,7 @@ function FollowCandidatesModal({ closeModalCallback }) {
                                 src={candidate.image}
                                 width={28}
                                 height={28}
+                                alt={`${candidate.firstName} ${candidate.lastName}`}
                               />
                             ) : (
                               <NoImage className="flex-center">

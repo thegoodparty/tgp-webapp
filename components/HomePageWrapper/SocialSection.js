@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 import Row from '../shared/Row';
 import Ticker from './Ticker';
@@ -8,12 +9,10 @@ import { HomePageContext } from '../../containers/HomePage';
 const Wrapper = styled.section`
   margin: 0 0 20px;
   @media only screen and (min-width: ${({ theme }) =>
-  theme.breakpointsPixels.lg}) {
-   margin: 100px 0 20px;
+      theme.breakpointsPixels.lg}) {
+    margin: 100px 0 20px;
   }
 `;
-
-
 
 const Count = styled.div`
   font-size: 30px;
@@ -35,7 +34,7 @@ const Label = styled.div`
 
 const Heart = styled.div`
   margin-right: 12px;
-  padding-top: 12px;
+  padding-top: 6px;
 `;
 
 const SocialSection = () => {
@@ -44,12 +43,13 @@ const SocialSection = () => {
     <Wrapper>
       <Row>
         <Heart>
-          <img
+          <Image
             src="/images/heart.svg"
             width="42"
             height="34"
             alt="good party"
             data-cy="heart-icon"
+            priority
           />
         </Heart>
         <Count data-cy="people-count">

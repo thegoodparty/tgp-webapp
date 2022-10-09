@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import SocialSection from './SocialSection';
 import RegisterComboContainer from '../../containers/shared/RegisterComboContainer';
 import { LgUpOnly, MdDownOnly } from '../shared/navigation/NavWrapper';
 import { getUserCookie } from '../../helpers/cookieHelper';
+import YellowButton from '../shared/buttons/YellowButton';
+import { InnerButton } from '../shared/buttons/BlackButton';
 
 const H1 = styled.h1`
   margin: 16px 0 12px;
@@ -71,7 +74,7 @@ const GrayBg = styled.div`
   margin-bottom: 40px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin-top: 80px;
+    margin-top: 56px;
     padding: 40px 0;
     margin-bottom: 0;
   }
@@ -129,6 +132,10 @@ const RegisterWrapper = styled.div`
   }
 `;
 
+const Candidates = styled.div`
+  font-size: 24px;
+`;
+
 const Hero = () => {
   const [showRegister, setShowRegister] = useState(true);
   useEffect(() => {
@@ -155,13 +162,27 @@ const Hero = () => {
             <Image
               src="/images/homepage/declare-independence.png"
               layout="fill"
+              alt="Declare independence"
             />
           </SmImageWrapper>
           <RegisterWrapper>
             <LgUpOnly>
               <SocialSection />
             </LgUpOnly>
-            {showRegister && <RegisterComboContainer />}
+            {showRegister ? (
+              <RegisterComboContainer />
+            ) : (
+              <Link href="/candidates" passHref>
+                <a
+                  className="no-underline"
+                  style={{ margin: '24px 0', display: 'block' }}
+                >
+                  <YellowButton>
+                    <InnerButton>Follow Candidates</InnerButton>
+                  </YellowButton>
+                </a>
+              </Link>
+            )}
           </RegisterWrapper>
           <GrayBg>
             <FullWidthGray />
