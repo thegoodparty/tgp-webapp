@@ -9,11 +9,8 @@ import { useRouter } from 'next/router';
 
 import PageWrapper from '../../shared/PageWrapper';
 import { FontH1, FontH2 } from '../../shared/typogrophy';
-// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import WhatsNext from '../../HomePageWrapper/WhatsNext';
-import ShareModal from '../../HomePageWrapper/ShareModal';
-import Modal from '../../shared/Modal';
 
 const Wrapper = styled.div`
   margin-top: 60px;
@@ -34,13 +31,7 @@ const H2 = styled.h2`
 `;
 
 function ManifestoWrapper() {
-  const [shareModalOpen, setShareModalOpen] = useState(false);
-
   const router = useRouter();
-
-  const handleOpenShareModal = () => {
-    setShareModalOpen(true);
-  };
 
   const linkToHomePage = () => {
     router.push('/?host=true');
@@ -136,7 +127,9 @@ function ManifestoWrapper() {
         </strong>
         <ul>
           <li data-cy="manifesto-item-21">We party to have fun.</li>
-          <li data-cy="manifesto-item-22">We party to get together with friends.</li>
+          <li data-cy="manifesto-item-22">
+            We party to get together with friends.
+          </li>
           <li data-cy="manifesto-item-23">We party to lighten our minds.</li>
           <li data-cy="manifesto-item-24">We party to brighten our souls.</li>
           <li data-cy="manifesto-item-25">We party to lift each other up.</li>
@@ -174,18 +167,7 @@ function ManifestoWrapper() {
           <br />
           It’s time to get this #goodparty started!
         </p>
-        <WhatsNext
-          noTitle
-          openShareModalCallback={handleOpenShareModal}
-          openModalCallback={linkToHomePage}
-        />
-        <Modal
-          open={shareModalOpen}
-          showCloseButton={false}
-          closeModalCallback={() => setShareModalOpen(false)}
-        >
-          <ShareModal closeModalCallback={() => setShareModalOpen(false)} />
-        </Modal>
+        <WhatsNext noTitle openModalCallback={linkToHomePage} />
       </Wrapper>
     </PageWrapper>
   );
