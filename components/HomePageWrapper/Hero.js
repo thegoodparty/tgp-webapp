@@ -72,6 +72,7 @@ const GrayBg = styled.div`
   padding: 20px 0;
   position: relative;
   margin-bottom: 40px;
+  margin-top: 36px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     margin-top: 56px;
