@@ -19,6 +19,7 @@ import BlackButton from '../buttons/BlackButton';
 import CandidateRoundAvatar from '../CandidateRoundAvatar';
 import CandidateProgressBar from '../CandidateProgressBar';
 import LoadingAnimation from '../LoadingAnimation';
+import { candidateRoute } from '../../../helpers/electionsHelper';
 const FollowButtonContainer = dynamic(
   () => import('/containers/shared/FollowButtonContainer'),
   {
@@ -127,7 +128,7 @@ function CandidateCard({ candidate, withFollowButton = false }) {
     }
     return (
       <Link
-        href={`/candidate/${firstName}-${lastName}/${id}`}
+        href={candidateRoute(candidate)}
         passHref
         style={{ height: '100%' }}
       >
