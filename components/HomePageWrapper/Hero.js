@@ -65,6 +65,10 @@ const ImgWrapper = styled.div`
     left: 67%;
     top: -40px;
     pointer-events: none;
+
+    &.back {
+      z-index: 10;
+    }
   }
 `;
 
@@ -146,6 +150,26 @@ const Hero = () => {
       setShowRegister(false);
     }
   }, []);
+
+  // const [scrolling, setScrolling] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      let currentPosition = window.pageYOffset; // or use document.documentElement.scrollTop;
+      // if (currentPosition > scrollTop) {
+      //   // downscroll code
+      //   setScrolling(false);
+      // } else {
+      //   // upscroll code
+      //   setScrolling(true);
+      // }
+      setIsScrolled(currentPosition <= 0 ? false : true);
+    }
+
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isScrolled]);
   return (
     <Wrapper>
       <Grid container spacing={0}>
@@ -201,7 +225,7 @@ const Hero = () => {
         <Grid item xs={12} lg={4}></Grid>
       </Grid>
 
-      <ImgWrapper />
+      <ImgWrapper className={isScrolled && 'back'} />
     </Wrapper>
   );
 };

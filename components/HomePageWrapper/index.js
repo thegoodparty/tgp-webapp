@@ -20,6 +20,7 @@ const HomePageWrapper = () => {
   const { showInitModal } = useContext(HomePageContext);
   const [involvedModalOpen, setInvolvedModalOpen] = useState(false);
 
+
   const handleOpenInvolvedModal = () => {
     setInvolvedModalOpen(true);
   };
