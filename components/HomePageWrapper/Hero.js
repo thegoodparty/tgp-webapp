@@ -64,6 +64,7 @@ const ImgWrapper = styled.div`
     width: 50%;
     left: 67%;
     top: -40px;
+    pointer-events: none;
   }
 `;
 

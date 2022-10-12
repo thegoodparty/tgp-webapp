@@ -8,8 +8,8 @@ export default function Home({ ssrState }) {
 }
 
 export async function getServerSideProps(context) {
-  const utmContent = context.query.utm_content || '';
-  const utmSource = context.query.utm_source || '';
+  // const utmContent = context.query.utm_content || '';
+  // const utmSource = context.query.utm_source || '';
 
   const api = tgpApi.followers;
 
@@ -24,18 +24,18 @@ export async function getServerSideProps(context) {
 
   const api2 = tgpApi.feed;
 
-  // let feed;
-  // try {
-  //   const res2 = await fetch(
-  //     `${api2.url}?searchId=${PULSAR_SEARCH_ID}&limit=6&useCache=true&save=true`,
-  //   );
-  //   const response2 = await res2.json();
-  //   feed = response2;
-  // } catch (e) {
-  //   feed = {
-  //     results: [],
-  //   };
-  // }
+  let feed;
+  try {
+    const res2 = await fetch(
+      `${api2.url}?searchId=${PULSAR_SEARCH_ID}&limit=6&useCache=true&save=true&onlyTotal=true`,
+    );
+    const response2 = await res2.json();
+    feed = response2;
+  } catch (e) {
+    feed = {
+      results: [],
+    };
+  }
 
   const api3 = tgpApi.homepageCandidates;
 
@@ -50,10 +50,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       ssrState: {
-        utmContent,
-        utmSource,
         totalFollowers,
-        // feed,
+        feed,
         homepageCandidates,
       },
     },

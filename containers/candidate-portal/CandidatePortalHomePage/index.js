@@ -34,6 +34,7 @@ export function CandidatePortalHomePage({
 }) {
   useInjectReducer({ key: 'candidatePortalHomePage', reducer });
   useInjectSaga({ key: 'candidatePortalHomePage', saga });
+
   const { candidate, stats, role } = candidatePortalHomePage;
   let { user } = userState;
   if (!user) {

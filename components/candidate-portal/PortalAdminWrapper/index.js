@@ -44,6 +44,7 @@ const fields = [
   { label: 'Followers Offset', key: 'followersOffset', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
+  { label: 'TikTok Followers', key: 'tiktokFollowers', initialValue: 0 },
   {
     label: 'Should likely voters override social followers?',
     key: 'overrideFollowers',
