@@ -26,7 +26,7 @@ const points = [
 function Why() {
   return (
     <section className={styles.wrapper}>
-      <h2 className={styles.h2}>Why you should join us</h2>
+      <h2 className={styles.h2}>Why apply?</h2>
       {points.map((point, index) => (
         <div className={styles.point} key={point}>
           <div className={styles.number}>{index + 1}</div>
