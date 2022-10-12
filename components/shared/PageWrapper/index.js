@@ -7,6 +7,7 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import styles from './PageWrapper.module.scss';
 import dynamic from 'next/dynamic';
 
 import Nav from '/containers/shared/Nav';
@@ -16,18 +17,6 @@ import Wrapper from '/components/shared/Wrapper';
 const Footer = dynamic(() => import('/components/shared/Footer'), {
   suspense: true,
 });
-
-const MainWrapper = styled.div`
-  &.purple {
-    background-color: ${({ theme }) => theme.colors.purpleBg};
-  }
-`;
-const TopBannerWrapper = styled.div`
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    margin-top: 18px;
-  }
-`;
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -43,41 +32,28 @@ const HomeWrapper = styled.div`
 `;
 function PageWrapper({
   children,
-  hideNav,
-  purple,
-  wrapperStyles = {},
   style = {},
   topBanner,
   isFullWidth = false,
-  purpleNav = false,
-  noPadding = false,
   hideFooter = false,
 }) {
-  const WrapperComp = isFullWidth ? HomeWrapper : Wrapper;
-  let className = '';
-  if (purple) {
-    className = 'purple';
-  }
+  const WrapperComp = ({ children }) =>
+    isFullWidth ? (
+      <div className={styles.fullWidth}>{children}</div>
+    ) : (
+      <div className={styles.wrapper}>{children}</div>
+    );
   return (
-    <MainWrapper className={className} style={style}>
-      {!hideNav && <Nav purpleNav={purpleNav} />}
-      {topBanner && <TopBannerWrapper>{topBanner}</TopBannerWrapper>}
-      <WrapperComp
-        purple={purple}
-        white
-        style={wrapperStyles}
-        noHeader={hideNav}
-        className={`${purpleNav && 'purple-nav'} ${noPadding && 'no-padding '}`}
-      >
-        {/* {!hideNav && <MobileHeader {...mobileHeaderProps} />} */}
-        {children}
-      </WrapperComp>
+    <div style={style}>
+      <Nav />
+      {topBanner && <div className={styles.topBanner}>{topBanner}</div>}
+      <WrapperComp>{children}</WrapperComp>
       {!hideFooter && (
         <Suspense fallback={`Loading...`}>
           <Footer />
         </Suspense>
       )}
-    </MainWrapper>
+    </div>
   );
 }
 

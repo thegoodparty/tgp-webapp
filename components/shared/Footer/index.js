@@ -11,57 +11,10 @@ import Grid from '@material-ui/core/Grid';
 import { useRouter } from 'next/router';
 
 import FeedbackContainer from '/containers/shared/FeedbackContainer';
+import styles from './Footer.module.scss';
+
 import MaxWidth from '../MaxWidth';
 import { FOOTER_COLUMNS } from './constants';
-
-const Wrapper = styled.div`
-  padding: 40px 32px;
-  border-top: solid 1px #e1e2e9;
-  background-color: #fff;
-  position: relative;
-  margin-top: 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    padding: 40px 24px;
-  }
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.sm}) {
-    padding: 40px 18px;
-  }
-
-  &.no-margin {
-    margin-top: 0;
-  }
-`;
-
-const Aligner = styled.div`
-  text-align: center;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    text-align: left;
-  }
-`;
-
-const Title = styled.div`
-  color: #888;
-  font-weight: 900;
-  margin-bottom: 20px;
-`;
-
-const FooterLink = styled.div`
-  font-weight: 600;
-  margin-bottom: 20px;
-  a {
-    color: #000;
-  }
-`;
-
-const Italic = styled.div`
-  font-style: italic;
-  line-height: 27px;
-  font-size: 17px;
-  padding: 20px;
-`;
 
 const SecondRow = styled.div`
   &.footer-row {
@@ -85,11 +38,11 @@ function Footer() {
   const router = useRouter();
   const isHome = router.pathname === '/';
   return (
-    <Wrapper className={isHome && 'no-margin'}>
+    <div className={`${styles.wrapper} ${isHome && 'no-margin'}`}>
       <MaxWidth>
-        <Aligner>
+        <div className={styles.aligner}>
           <FeedbackContainer mode="mobile" />
-        </Aligner>
+        </div>
         <Grid container spacing={2}>
           {FOOTER_COLUMNS.map((column) => (
             <Grid
@@ -99,10 +52,16 @@ function Footer() {
               key={column.title}
               data-cy="footer-column"
             >
-              <Aligner>
-                <Title data-cy="footer-column-title">{column.title}</Title>
+              <div className={styles.aligner}>
+                <div className={styles.title} data-cy="footer-column-title">
+                  {column.title}
+                </div>
                 {column.links.map((link) => (
-                  <FooterLink key={link.label} data-cy="footer-link-wrapper">
+                  <div
+                    className={styles.footerLink}
+                    key={link.label}
+                    data-cy="footer-link-wrapper"
+                  >
                     {link.isExternal ? (
                       <a
                         href={link.link}
@@ -118,9 +77,9 @@ function Footer() {
                         <a data-cy="footer-link">{link.label}</a>
                       </Link>
                     )}
-                  </FooterLink>
+                  </div>
                 ))}
-              </Aligner>
+              </div>
             </Grid>
           ))}
           <Grid item xs={12} lg={4} className="text-center">
@@ -132,25 +91,25 @@ function Footer() {
               alt="GOOD PARTY"
             />
             <br />
-            <Italic data-cy="footer-join-us">
+            <div className={styles.italic} data-cy="footer-join-us">
               Not a political party. We’re building free tools to change the
               rules, so good independent candidates can run and win!{' '}
               <Link href="/register" passHref>
                 <a data-cy="footer-join-us-link">Join us!</a>
               </Link>
-            </Italic>
+            </div>
           </Grid>
         </Grid>
-        <SecondRow className="footer-row" data-cy="footer-copyright">
-          <Aligner>
+        <div className={styles.footerRow} data-cy="footer-copyright">
+          <div className={styles.aligner}>
             &copy; {year} Good Party. All rights reserved. &nbsp;
             <Link href="/privacy" passHref>
               <a data-cy="footer-privacy-link">Privacy Policy</a>
             </Link>
-          </Aligner>
-        </SecondRow>
+          </div>
+        </div>
       </MaxWidth>
-    </Wrapper>
+    </div>
   );
 }
 
