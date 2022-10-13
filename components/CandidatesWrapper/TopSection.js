@@ -146,8 +146,8 @@ function TopSection() {
       <Grid container spacing={4}>
         <Grid item xs={12} lg={8}>
           <H2 data-cy="candidates-top-subtitle">
-            Follow Honest, Independent, People-powered candidates to reclaim our
-            democracy from the corrupt two-party system.{' '}
+            Follow Independent, People-powered and Anti-corruption candidates to
+            reclaim our democracy from the corrupt two-party system.{' '}
           </H2>
           <Why>
             <Link
