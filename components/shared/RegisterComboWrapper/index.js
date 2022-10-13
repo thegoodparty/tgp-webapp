@@ -9,11 +9,9 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 
 import { RegisterComboContainerContext } from '/containers/shared/RegisterComboContainer';
-import BlackButton, { InnerButton } from '../buttons/BlackButton';
+import { InnerButton } from '../buttons/BlackButton';
 import { isValidEmail } from '../EmailInput';
 import YellowButton from '../buttons/YellowButton';
-// import { setCookie } from '../../../helpers/cookieHelper';
-// import { candidateRoute } from '../../../helpers/electionsHelper';
 
 const Wrapper = styled.div`
   input {
@@ -37,19 +35,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = styled.h3`
-  font-size: 28px;
-  margin: 0 0 20px;
-  font-weight: 900;
-`;
-
-const SubTitle = styled.div`
-  padding-bottom: 35px;
-  margin-bottom: 35px;
-  font-size: 17px;
-  border-bottom: solid 1px #ececec;
-`;
-
 const Overflow = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
@@ -62,8 +47,7 @@ const Inner = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     width: 300%;
-    transition: width 0.4s, border 0.4s;
-
+    transition: width 0.4s;
     &.active {
       width: 100%;
       border: solid 2px #000;
@@ -100,27 +84,6 @@ const ResponsiveRow = styled.div`
       theme.breakpointsPixels.lg}) {
     display: flex;
     align-items: center;
-  }
-`;
-
-const BottomRow = styled.div`
-  margin-top: 30px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    margin-top: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
-
-const LogoWrapper = styled.div`
-  text-align: center;
-  margin-top: 70px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    text-align: left;
-    margin-top: 0;
   }
 `;
 
