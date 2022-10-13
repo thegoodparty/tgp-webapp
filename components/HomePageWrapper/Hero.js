@@ -25,15 +25,16 @@ const H1 = styled.h1`
 
   .yellow {
     position: absolute;
-    height: 25px;
-    width: 100%;
+    height: 18px;
+    width: calc(100% + 10px);
     bottom: 0;
-    left: -3px;
+    left: -5px;
     background-color: ${({ theme }) => theme.colors.yellow};
     @media only screen and (min-width: ${({ theme }) =>
         theme.breakpointsPixels.lg}) {
-      height: 40px;
-      left: -7px;
+      height: 30px;
+      width: calc(100% + 16px);
+      left: -8px;
     }
   }
 
