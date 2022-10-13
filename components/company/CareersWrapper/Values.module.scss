@@ -77,7 +77,7 @@
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
 }
 
 .cardTitle {
