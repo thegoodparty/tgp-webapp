@@ -57,8 +57,6 @@ const ImgWrapper = styled.div`
     display: block;
     position: absolute;
     height: calc(100% + 40px);
-    background: url(images/homepage/declare-independence.png) top left no-repeat;
-    background-size: cover;
     z-index: 100;
 
     width: 50%;
@@ -225,7 +223,15 @@ const Hero = () => {
         <Grid item xs={12} lg={4}></Grid>
       </Grid>
 
-      <ImgWrapper className={isScrolled && 'back'} />
+      <ImgWrapper className={isScrolled && 'back'}>
+        <Image
+          src={`/images/homepage/declare-independence.png`}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="-100% 0"
+          priority
+        />
+      </ImgWrapper>
     </Wrapper>
   );
 };
