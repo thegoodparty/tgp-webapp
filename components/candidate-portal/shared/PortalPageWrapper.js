@@ -11,7 +11,7 @@ import MaxWidth from '../../shared/MaxWidth';
 import PortalPageTitle from './PortalPageTitle';
 import Footer from '../../shared/Footer';
 
-const Wrapper = styled(MaxWidth)`
+const Wrapper = styled.div`
   min-height: calc(100vh - 80px);
 
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
