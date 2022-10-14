@@ -4,14 +4,8 @@
  *
  */
 
-import React, {
-  useContext,
-  useState,
-  createContext,
-  useEffect,
-  Suspense,
-} from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { useContext, useState, createContext, useEffect } from 'react';
+// import styled from 'styled-components';
 import dynamic from 'next/dynamic';
 
 import NotFound from '/containers/shared/NotFoundPage';
@@ -19,27 +13,21 @@ import { CandidateContext } from '/containers/CandidatePage';
 import PageWrapper from '../shared/PageWrapper';
 
 import Header from './Header';
+import Tabs from './Tabs';
 import MaxWidth, { Padder } from '../shared/MaxWidth';
 
+const Feed = dynamic(() => import('./Feed'), { loading: () => <>Loading</> });
+const Campaign = dynamic(() => import('./Campaign'), {
+  loading: () => (
+    <>
+      <LoadingAnimation fullPage={false} />
+    </>
+  ),
+});
+const Bio = dynamic(() => import('./Bio'), { loading: () => <>Loading</> });
 import Modal from '../shared/Modal';
 import LoadingAnimation from '../shared/LoadingAnimation';
 import { getCookie, setCookie } from '../../helpers/cookieHelper';
-import {
-  LgUpOnly,
-  MdDownOnly,
-  MdUpOnly,
-} from '../shared/navigation/NavWrapper';
-
-const TopIssues = dynamic(() => import('./TopIssues'), { suspense: true });
-const BioSection = dynamic(() => import('./BioSection'), { suspense: true });
-const Feed = dynamic(() => import('./CandidateFeed'), { suspense: true });
-const Endorsements = dynamic(() => import('./Endorsements'), {
-  suspense: true,
-});
-const DateBox = dynamic(() => import('./DateBox'), { suspense: true });
-const CampaignProgress = dynamic(() => import('./CampaignProgress'), {
-  suspense: true,
-});
 
 const CheckVoteRegistration = dynamic(
   () => import('../CandidatesWrapper/CheckVoteRegistration'),
@@ -75,6 +63,12 @@ const CheckWhereToVoteModal = dynamic(() => import('./CheckWhereToVote'), {
     </>
   ),
 });
+
+const tabs = [
+  { route: 'Feed', component: <Feed /> },
+  { route: 'Campaign', component: <Campaign /> },
+  { route: 'Bio', component: <Bio /> },
+];
 
 export const CandidateWrapperContext = createContext();
 
@@ -136,28 +130,6 @@ function CandidateWrapper() {
     setWhereVoteOpen(true);
   };
 
-  const RightSide = () => {
-    return (
-      <>
-        <Suspense>
-          <Endorsements />
-        </Suspense>
-        <Suspense>
-          <TopIssues />
-        </Suspense>
-        <Suspense>
-          <DateBox />
-        </Suspense>
-        <Suspense>
-          <CampaignProgress />
-        </Suspense>
-        <Suspense>
-          <DateBox showPast />
-        </Suspense>
-      </>
-    );
-  };
-
   return (
     <CandidateWrapperContext.Provider value={contextProps}>
       <PageWrapper isFullWidth>
@@ -166,26 +138,14 @@ function CandidateWrapper() {
             <Header />
           </Padder>
         </MaxWidth>
+        <Tabs />
         <MaxWidth>
           <Padder>
-            <Grid container spacing={8}>
-              <Grid item xs={12} lg={8}>
-                <Suspense>
-                  <BioSection />
-                </Suspense>
-                <MdDownOnly>
-                  <RightSide />
-                </MdDownOnly>
-                <Suspense>
-                  <Feed />
-                </Suspense>
-              </Grid>
-              <Grid item xs={12} lg={4}>
-                <LgUpOnly>
-                  <RightSide />
-                </LgUpOnly>
-              </Grid>
-            </Grid>
+            {tabs.map((tabContent) => (
+              <React.Fragment key={tabContent.route}>
+                {tabContent.route === tab && <>{tabContent.component}</>}
+              </React.Fragment>
+            ))}
           </Padder>
         </MaxWidth>
         <Modal
