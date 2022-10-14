@@ -66,6 +66,7 @@ function CandidatesSection({ toggleFiltersCallback, showFilters }) {
   const { query } = router;
   const { pinned } = query || {};
   const pinnedQuery = pinned ? `?pinned=${pinned}` : '';
+  const pathWithNoQuery = router.asPath.split('?')[0];
   return (
     <Section>
       <Grid container spacing={1}>
@@ -83,7 +84,7 @@ function CandidatesSection({ toggleFiltersCallback, showFilters }) {
         <Grid item xs={12} md={6}>
           <What>
             <Link
-              href={`${router.asPath}?article=5zIbKVU0wCIAszTOyogGAB`}
+              href={`${pathWithNoQuery}?article=5zIbKVU0wCIAszTOyogGAB`}
               passHref
             >
               <a data-cy="good-certified-link">

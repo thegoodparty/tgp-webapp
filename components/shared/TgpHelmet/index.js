@@ -16,7 +16,6 @@ const { base } = apiHelper;
 function TgpHelmet({ title, ogTitle, description, image }) {
   const router = useRouter();
   const { query, pathname } = router;
-  console.log('query', query);
   const url = `${base}${router.asPath}`;
   let canonical = url;
   if (query) {
