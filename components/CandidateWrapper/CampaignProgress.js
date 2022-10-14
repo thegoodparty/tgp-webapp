@@ -58,12 +58,13 @@ function CampaignProgress() {
   if (!overrideFollowers && followers?.thisWeek > likelyVoters) {
     voters = followers.thisWeek;
   }
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   return (
     <Wrapper>
       <Row style={{ justifyContent: 'space-between', marginBottom: '48px' }}>
         <Progress data-cy="campaign-progrsss-title">Victory Meter</Progress>
-        <Link href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`} passHref>
+        <Link href={`${pathWithNoQuery}?article=4KOzae6PB45c9GQY9Xi9UX`} passHref>
           <a className="no-underline" data-cy="campaign-progress-ref">
             <This>What`s this?</This>
           </a>

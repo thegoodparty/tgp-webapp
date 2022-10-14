@@ -134,6 +134,7 @@ function TopSection() {
   const { totalFollowers, totalFromLastWeek } = useContext(CandidatesContext);
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
   return (
     <>
       <H1 data-cy="candidates-top-title">
@@ -151,7 +152,7 @@ function TopSection() {
           </H2>
           <Why>
             <Link
-              href={`${router.asPath}?article=FqZOWMEEYfcXbASjaRkMU`}
+              href={`${pathWithNoQuery}?article=FqZOWMEEYfcXbASjaRkMU`}
               passHref
             >
               <a
