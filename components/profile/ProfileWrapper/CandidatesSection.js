@@ -35,7 +35,7 @@ function CandidatesSection() {
                   xs={12}
                   md={6}
                   lg={4}
-                  key={candidate.id}
+                  key={candidate?.id}
                   data-cy="candidate-card"
                 >
                   <CandidateCard candidate={candidate} withFollowButton />

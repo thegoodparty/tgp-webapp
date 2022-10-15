@@ -91,7 +91,6 @@ function CandidateCard({ candidate, withFollowButton = false }) {
     return <></>;
   }
   const {
-    id,
     firstName,
     lastName,
     positions,
