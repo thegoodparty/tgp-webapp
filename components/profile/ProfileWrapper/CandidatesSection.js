@@ -20,7 +20,6 @@ const Wrapper = styled.section`
 
 function CandidatesSection() {
   const { loading, candidates } = useContext(ProfilePageContext);
-  console.log('cand', candidates);
   return (
     <Wrapper>
       {loading ? (
