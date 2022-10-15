@@ -161,7 +161,7 @@ function CandidateCard({ candidate, withFollowButton = false }) {
             {topPositions && topPositions.length > 0 && (
               <>
                 {topPositions.map((position) => (
-                  <React.Fragment key={position.id}>
+                  <React.Fragment key={position?.id}>
                     {position && (
                       <Position key={position.id} data-cy="position">
                         {position.name}

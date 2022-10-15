@@ -30,20 +30,16 @@ function CandidatesSection() {
           {candidates && (
             <>
               {candidates.map((candidate) => (
-                <>
-                  {candidate && (
-                    <Grid
-                      item
-                      xs={12}
-                      md={6}
-                      lg={4}
-                      key={candidate?.id}
-                      data-cy="candidate-card"
-                    >
-                      <CandidateCard candidate={candidate} withFollowButton />
-                    </Grid>
-                  )}
-                </>
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  lg={4}
+                  key={candidate?.id}
+                  data-cy="candidate-card"
+                >
+                  <CandidateCard candidate={candidate} withFollowButton />
+                </Grid>
               ))}
             </>
           )}
