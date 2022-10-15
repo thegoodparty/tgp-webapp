@@ -87,6 +87,9 @@ const ButtonWrapper = styled.div`
 const MAX_POSITIONS = 6;
 
 function CandidateCard({ candidate, withFollowButton = false }) {
+  if (!candidate) {
+    return <></>;
+  }
   const {
     id,
     firstName,

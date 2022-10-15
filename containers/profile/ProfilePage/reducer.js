@@ -8,7 +8,7 @@ import types from './constants';
 
 export const initialState = {
   loading: false,
-  candidates: [],
+  candidates: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */

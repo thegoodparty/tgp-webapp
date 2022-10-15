@@ -9,6 +9,7 @@ import snackbarActions from '../../shared/SnackbarContainer/actions';
 
 function* loadCandidates() {
   try {
+    console.log('saga');
     const api = tgpApi.follow.list;
     const updatedApi = {
       ...api,
