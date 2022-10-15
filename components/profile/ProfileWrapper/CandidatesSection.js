@@ -20,7 +20,7 @@ const Wrapper = styled.section`
 
 function CandidatesSection() {
   const { loading, candidates } = useContext(ProfilePageContext);
-
+  console.log('cand', candidates);
   return (
     <Wrapper>
       {loading ? (
@@ -30,16 +30,20 @@ function CandidatesSection() {
           {candidates && (
             <>
               {candidates.map((candidate) => (
-                <Grid
-                  item
-                  xs={12}
-                  md={6}
-                  lg={4}
-                  key={candidate?.id}
-                  data-cy="candidate-card"
-                >
-                  <CandidateCard candidate={candidate} withFollowButton />
-                </Grid>
+                <>
+                  {candidate && (
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      lg={4}
+                      key={candidate?.id}
+                      data-cy="candidate-card"
+                    >
+                      <CandidateCard candidate={candidate} withFollowButton />
+                    </Grid>
+                  )}
+                </>
               ))}
             </>
           )}
