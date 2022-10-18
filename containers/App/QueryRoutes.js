@@ -52,9 +52,13 @@ function QueryRoutes({ locationState, dispatch }) {
     const register = queryHelper(search, 'register');
 
     if (register === 'true') {
-      setShowRegister(true);
+      if (!showRegister) {
+        setShowRegister(true);
+      }
     } else {
-      setShowRegister(false);
+      if (showRegister) {
+        setShowRegister(false);
+      }
     }
   }, [search]);
 
