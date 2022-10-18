@@ -123,6 +123,7 @@ const RegisterWrapper = ({
   twitterButtonCallback,
   isUpdate = false,
   queryEmail,
+  modalMode,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -182,8 +183,20 @@ const RegisterWrapper = ({
     });
   };
 
+  const Container = ({ children }) => {
+    return (
+      <>
+        {modalMode ? (
+          <div style={{padding: '36px'}}>{children}</div>
+        ) : (
+          <PageWrapper>{children}</PageWrapper>
+        )}
+      </>
+    );
+  };
+
   return (
-    <PageWrapper>
+    <Container>
       <Wrapper>
         <div
           className="text-center"
@@ -192,9 +205,17 @@ const RegisterWrapper = ({
           <H1 data-cy="register-title">Sign up for Good Party</H1>
         </div>
         <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-          Already have an account? <Link href="/login"><a data-cy="redirect-to-login">login</a></Link>
+          Already have an account?{' '}
+          <Link href="/login">
+            <a data-cy="redirect-to-login">login</a>
+          </Link>
         </Body13>
-        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form" id="register-page-form">
+        <form
+          noValidate
+          onSubmit={handleSubmitForm}
+          data-cy="email-form"
+          id="register-page-form"
+        >
           {REGISTER_FIELDS.map((field) => (
             <div data-cy="register-field" key={field.key}>
               {field.type === 'tel' ? (
@@ -265,7 +286,7 @@ const RegisterWrapper = ({
               </SocialButton>
             </div>
             <br />
-            <div  data-cy="twitter-login">
+            <div data-cy="twitter-login">
               <TwitterButton clickCallback={twitterButtonCallback}>
                 Continue with Twitter
               </TwitterButton>
@@ -286,7 +307,7 @@ const RegisterWrapper = ({
           </>
         )}
       </Wrapper>
-    </PageWrapper>
+    </Container>
   );
 };
 

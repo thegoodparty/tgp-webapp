@@ -25,10 +25,13 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectLocation } from './selectors';
+import RegisterPage from '../entrance/RegisterPage';
+import Modal from '../../components/shared/Modal';
 
 function QueryRoutes({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
+  const [showRegister, setShowRegister] = useState(false);
   const { search } = locationState;
 
   useEffect(() => {
@@ -45,11 +48,29 @@ function QueryRoutes({ locationState, dispatch }) {
     } else {
       dispatch(globalActions.clearArticleModalAction());
     }
+
+    const register = queryHelper(search, 'register');
+
+    if (register === 'true') {
+      setShowRegister(true);
+    } else {
+      setShowRegister(false);
+    }
   }, [search]);
 
   return (
     <>
       <FaqArticleModal />
+      {showRegister && (
+        <Modal
+          open
+          closeModalCallback={() => {
+            setShowRegister(false);
+          }}
+        >
+          <RegisterPage modalMode />
+        </Modal>
+      )}
     </>
   );
 }
