@@ -12,11 +12,11 @@ import dynamic from 'next/dynamic';
 
 import Nav from '/containers/shared/Nav';
 import Wrapper from '/components/shared/Wrapper';
-// import Footer from '/components/shared/Footer';
+import Footer from '/components/shared/Footer';
 
-const Footer = dynamic(() => import('/components/shared/Footer'), {
-  suspense: true,
-});
+// const Footer = dynamic(() => import('/components/shared/Footer'), {
+//   suspense: true,
+// });
 
 const HomeWrapper = styled.div`
   width: 100%;
@@ -36,22 +36,19 @@ function PageWrapper({
   topBanner,
   isFullWidth = false,
   hideFooter = false,
+  hideNav = false,
 }) {
-  const WrapperComp = ({ children }) =>
-    isFullWidth ? (
-      <div className={styles.fullWidth}>{children}</div>
-    ) : (
-      <div className={styles.wrapper}>{children}</div>
-    );
   return (
     <div style={style}>
-      <Nav />
+      {!hideNav && <Nav />}
       {topBanner && <div className={styles.topBanner}>{topBanner}</div>}
-      <WrapperComp>{children}</WrapperComp>
+      <div className={isFullWidth ? styles.fullWidth : styles.wrapper}>
+        {children}
+      </div>
       {!hideFooter && (
-        <Suspense fallback={`Loading...`}>
-          <Footer />
-        </Suspense>
+        // <Suspense fallback={`Loading...`}>
+        <Footer />
+        // </Suspense>
       )}
     </div>
   );

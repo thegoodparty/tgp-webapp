@@ -22,6 +22,9 @@ const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
   margin: 0 auto;
+  &.with-padding {
+    padding: 24px;
+  }
 `;
 
 const OrWrapper = styled.div`
@@ -183,21 +186,9 @@ const RegisterWrapper = ({
     });
   };
 
-  const Container = ({ children }) => {
-    return (
-      <>
-        {modalMode ? (
-          <div style={{padding: '36px'}}>{children}</div>
-        ) : (
-          <PageWrapper>{children}</PageWrapper>
-        )}
-      </>
-    );
-  };
-
   return (
-    <Container>
-      <Wrapper>
+    <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+      <Wrapper className={modalMode && 'with-padding'}>
         <div
           className="text-center"
           style={{ marginBottom: '32px', paddingTop: '32px' }}
@@ -307,7 +298,7 @@ const RegisterWrapper = ({
           </>
         )}
       </Wrapper>
-    </Container>
+    </PageWrapper>
   );
 };
 
