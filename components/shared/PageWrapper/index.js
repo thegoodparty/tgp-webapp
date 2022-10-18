@@ -37,17 +37,13 @@ function PageWrapper({
   isFullWidth = false,
   hideFooter = false,
 }) {
-  const WrapperComp = ({ children }) =>
-    isFullWidth ? (
-      <div className={styles.fullWidth}>{children}</div>
-    ) : (
-      <div className={styles.wrapper}>{children}</div>
-    );
   return (
     <div style={style}>
       <Nav />
       {topBanner && <div className={styles.topBanner}>{topBanner}</div>}
-      <WrapperComp>{children}</WrapperComp>
+      <div className={isFullWidth ? styles.fullWidth : styles.wrapper}>
+        {children}
+      </div>
       {!hideFooter && (
         <Suspense fallback={`Loading...`}>
           <Footer />
