@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
@@ -22,6 +23,9 @@ const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
   margin: 0 auto;
+  &.with-padding {
+    padding: 24px;
+  }
 `;
 
 const OrWrapper = styled.div`
@@ -123,6 +127,7 @@ const RegisterWrapper = ({
   twitterButtonCallback,
   isUpdate = false,
   queryEmail,
+  modalMode,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -138,6 +143,8 @@ const RegisterWrapper = ({
     phone: user?.phone || '',
     zipcode: user?.zip || '',
   });
+  const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   const enableSubmit = () => {
     return (
@@ -183,8 +190,8 @@ const RegisterWrapper = ({
   };
 
   return (
-    <PageWrapper>
-      <Wrapper>
+    <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+      <Wrapper className={modalMode && 'with-padding'}>
         <div
           className="text-center"
           style={{ marginBottom: '32px', paddingTop: '32px' }}
@@ -192,9 +199,17 @@ const RegisterWrapper = ({
           <H1 data-cy="register-title">Sign up for Good Party</H1>
         </div>
         <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-          Already have an account? <Link href="/login"><a data-cy="redirect-to-login">login</a></Link>
+          Already have an account?{' '}
+          <Link href={`${pathWithNoQuery}?login=true`}>
+            <a data-cy="redirect-to-login">login</a>
+          </Link>
         </Body13>
-        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form" id="register-page-form">
+        <form
+          noValidate
+          onSubmit={handleSubmitForm}
+          data-cy="email-form"
+          id="register-page-form"
+        >
           {REGISTER_FIELDS.map((field) => (
             <div data-cy="register-field" key={field.key}>
               {field.type === 'tel' ? (
@@ -265,7 +280,7 @@ const RegisterWrapper = ({
               </SocialButton>
             </div>
             <br />
-            <div  data-cy="twitter-login">
+            <div data-cy="twitter-login">
               <TwitterButton clickCallback={twitterButtonCallback}>
                 Continue with Twitter
               </TwitterButton>

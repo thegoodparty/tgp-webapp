@@ -25,10 +25,15 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectLocation } from './selectors';
+import RegisterPage from '../entrance/RegisterPage';
+import LoginPage from '../entrance/LoginPage';
+import Modal from '../../components/shared/Modal';
 
 function QueryRoutes({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const { search } = locationState;
 
   useEffect(() => {
@@ -45,11 +50,54 @@ function QueryRoutes({ locationState, dispatch }) {
     } else {
       dispatch(globalActions.clearArticleModalAction());
     }
+
+    const register = queryHelper(search, 'register');
+
+    if (register === 'true') {
+      if (!showRegister) {
+        setShowRegister(true);
+      }
+    } else {
+      if (showRegister) {
+        setShowRegister(false);
+      }
+    }
+    const login = queryHelper(search, 'login');
+
+    if (login === 'true') {
+      if (!showLogin) {
+        setShowLogin(true);
+      }
+    } else {
+      if (showLogin) {
+        setShowLogin(false);
+      }
+    }
   }, [search]);
 
   return (
     <>
       <FaqArticleModal />
+      {showRegister && (
+        <Modal
+          open
+          closeModalCallback={() => {
+            setShowRegister(false);
+          }}
+        >
+          <RegisterPage modalMode />
+        </Modal>
+      )}
+      {showLogin && (
+        <Modal
+          open
+          closeModalCallback={() => {
+            setShowLogin(false);
+          }}
+        >
+          <LoginPage modalMode />
+        </Modal>
+      )}
     </>
   );
 }

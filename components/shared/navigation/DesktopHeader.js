@@ -89,6 +89,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   ) {
     id = router.query['NameIdTab'][1];
   }
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   return (
     <>
@@ -128,7 +129,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
               </Link>
             ) : (
               <TopLink>
-                <Link href="/register" passHref>
+                <Link href={`${pathWithNoQuery}?register=true`} passHref>
                   <A data-cy="header-register" id="desktop-nav-register">
                     <strong>Join Us</strong>
                   </A>

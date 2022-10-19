@@ -49,13 +49,10 @@ function* register({ name, email, phone, zip, callback, source }) {
       yield put(push(redirectCookie.route));
       deleteSignupRedirectCookie();
     } else {
-      if (source === 'homepageModal' || source === 'voteModal' ) {
-        yield put(
-          snackbarActions.showSnakbarAction('Thank you for signing up!'),
-        );
-      } else {
-        yield put(push('/register/confirm'));
-      }
+      yield put(snackbarActions.showSnakbarAction('Thank you for signing up!'));
+      const pathWithNoQuery = window.location.pathname.split('?')[0];
+      yield put(push(pathWithNoQuery));
+      //   yield put(push('/register/confirm'));
     }
     yield put(globalActions.refreshTokenAction());
   } catch (error) {
@@ -147,7 +144,10 @@ function* socialRegister({ socialUser }) {
     setUserCookie(user);
     setCookie('token', token);
     logEvent('Signup', 'Complete Account Signup', provider);
-    yield put(push('/register/password-creation'));
+    // yield put(push('/register/password-creation'));
+    yield put(snackbarActions.showSnakbarAction('Thank you for signing up!'));
+    const pathWithNoQuery = window.location.pathname.split('?')[0];
+    yield put(push(pathWithNoQuery));
     yield call(setupCrew);
   } catch (error) {
     if (error.response?.exists) {

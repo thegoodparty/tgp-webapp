@@ -21,6 +21,7 @@ import makeSelectRegisterPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import actions from './actions';
+import Modal from '../../../components/shared/Modal';
 
 export function RegisterPage({
   dispatch,
@@ -28,6 +29,7 @@ export function RegisterPage({
   socialRegisterCallback,
   socialRegisterFailureCallback,
   twitterButtonCallback,
+  modalMode,
 }) {
   useInjectReducer({ key: 'registerPage', reducer });
   useInjectSaga({ key: 'registerPage', saga });
@@ -48,14 +50,17 @@ export function RegisterPage({
     socialRegisterFailureCallback,
     twitterButtonCallback,
     queryEmail,
+    modalMode,
   };
 
   return (
     <div>
-      <TgpHelmet
-        title="Register | GOOD PARTY"
-        description="Create an account on GOOD PARTY"
-      />
+      {!modalMode && (
+        <TgpHelmet
+          title="Register | GOOD PARTY"
+          description="Create an account on GOOD PARTY"
+        />
+      )}
       <RegisterWrapper {...childProps} />
     </div>
   );
@@ -67,6 +72,7 @@ RegisterPage.propTypes = {
   socialRegisterCallback: PropTypes.func,
   socialRegisterFailureCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
+  modalMode: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
