@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
@@ -142,6 +143,8 @@ const RegisterWrapper = ({
     phone: user?.phone || '',
     zipcode: user?.zip || '',
   });
+  const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   const enableSubmit = () => {
     return (
@@ -197,7 +200,7 @@ const RegisterWrapper = ({
         </div>
         <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
           Already have an account?{' '}
-          <Link href="/login">
+          <Link href={`${pathWithNoQuery}?login=true`}>
             <a data-cy="redirect-to-login">login</a>
           </Link>
         </Body13>

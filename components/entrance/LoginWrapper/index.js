@@ -18,6 +18,9 @@ const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
   margin: 0 auto;
+  &.with-padding {
+    padding: 24px;
+  }
 `;
 
 const OrWrapper = styled.div`
@@ -49,12 +52,13 @@ const LoginWrapper = ({
   socialLoginCallback,
   socialLoginFailureCallback,
   twitterButtonCallback,
+  modalMode,
 }) => {
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [valueType, setValueType] = useState(false);
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
@@ -71,21 +75,22 @@ const LoginWrapper = ({
   };
 
   return (
-    <PageWrapper>
-      <Wrapper>
+    <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+      <Wrapper className={modalMode && 'with-padding'}>
         <H1 data-cy="login-title" style={{ marginBottom: '24px' }}>
           Log into your account
         </H1>
         <Body13 style={{ margin: '48px 0' }} data-cy="register-label">
           Don&apos;t have an account?{' '}
-          <Link href="/register" >
-            <a data-cy="register">
-              Create one
-            </a>
+          <Link href="/register">
+            <a data-cy="register">Create one</a>
           </Link>
         </Body13>
         <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-          <PhoneOrEmailInput onChangeCallback={onChangeValue} data-cy="email-input" />
+          <PhoneOrEmailInput
+            onChangeCallback={onChangeValue}
+            data-cy="email-input"
+          />
           <div data-cy="login">
             <BlackButton
               fullWidth
