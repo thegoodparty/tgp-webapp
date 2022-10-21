@@ -15,10 +15,7 @@ const TgpDialog = styled(Dialog)`
     z-index: 2501 !important;
 
     .MuiDialog-paper {
-    //  background-color: rgba(255, 255, 255, 0.7);
-    //  display: flex;
-    //  align-items: center;
-    //  justify-content: center;
+      padding-top: 24px;
     }
   }
 `;

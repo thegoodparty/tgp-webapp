@@ -60,7 +60,7 @@ function* register({ name, email, phone, zip, callback, source }) {
       yield put(
         snackbarActions.showSnakbarAction(error.response.message, 'error'),
       );
-      yield put(push('/login'));
+      yield put(push('/?login=true'));
     } else {
       console.log(error);
       yield put(
@@ -154,7 +154,7 @@ function* socialRegister({ socialUser }) {
       yield put(
         snackbarActions.showSnakbarAction(error.response.message, 'error'),
       );
-      yield put(push('/login'));
+      yield put(push('/?login=true'));
     } else {
       console.log('error social login', error);
       logEvent('social-register', 'error');

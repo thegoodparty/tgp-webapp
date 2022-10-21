@@ -70,7 +70,7 @@ const YouWrapper = ({ articles }) => {
           <a>Sign-Up</a>
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link href="login" data-cy="log-in" passHref>
+        <Link href="/?login=true" data-cy="log-in" passHref>
           <a>Login</a>
         </Link>
       </Login>

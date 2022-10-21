@@ -70,7 +70,7 @@ function* confirmTwitterCallback({ oauthToken, oauthVerifier }) {
       yield put(
         snackbarActions.showSnakbarAction(error.response.message, 'error'),
       );
-      yield put(push('/login'));
+      yield put(push('/?login=true'));
     } else {
       console.log('error social login', error);
       logEvent('twitter-register', 'error');

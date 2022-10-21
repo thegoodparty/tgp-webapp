@@ -34,7 +34,7 @@ export function ProfilePage({ dispatch, signoutCallback, profilePage }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !user) {
-      router.push('login');
+      router.push('/?login=true');
     }
     dispatch(actions.loadCandidatesAction());
   }, []);

@@ -33,7 +33,7 @@ export function LoginConfirmPage({
   const { loginEmail } = userState;
   useEffect(() => {
     if (!loginEmail) {
-      dispatch(push('/login'));
+      dispatch(push('/?login=true'));
     }
   }, []);
 
