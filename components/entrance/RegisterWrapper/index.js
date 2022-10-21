@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
@@ -128,6 +129,7 @@ const RegisterWrapper = ({
   isUpdate = false,
   queryEmail,
   modalMode,
+  verifyRecaptchaCallback,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -187,6 +189,12 @@ const RegisterWrapper = ({
       ...formData,
       [key]: event.target.value,
     });
+  };
+
+  const handleVerify = (token) => {
+    if (token) {
+      verifyRecaptchaCallback(token);
+    }
   };
 
   return (
@@ -258,6 +266,7 @@ const RegisterWrapper = ({
               {user ? 'UPDATE' : 'Sign Up'}
             </BlackButton>
           </div>
+          <GoogleReCaptcha onVerify={handleVerify} />
         </form>
         {!user && (
           <>
