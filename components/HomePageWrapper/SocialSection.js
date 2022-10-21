@@ -38,9 +38,8 @@ const Heart = styled.div`
 `;
 
 const SocialSection = () => {
-  const { totalFollowers, feed } = useContext(HomePageContext);
-  let totalPosts = feed ? feed.total : 0;
-  totalPosts += 89852 + totalFollowers;
+  const { totalFollowers } = useContext(HomePageContext);
+  //89852 + totalFollowers
   return (
     <Wrapper>
       <Row>
@@ -55,7 +54,7 @@ const SocialSection = () => {
           />
         </Heart>
         <Count data-cy="people-count">
-          <Ticker initTotal={totalPosts} cookieName="ticker-people" />
+          <Ticker initTotal={totalFollowers} cookieName="ticker-people" />
         </Count>
         <Label data-cy="people-count-label">@goodparty people</Label>
       </Row>

@@ -7,19 +7,19 @@ import Hero from './Hero';
 import MaxWidth from '../shared/MaxWidth';
 import Modal from '../shared/Modal';
 import InvolvedModalInner from './InvolvedModalInner';
+import CandidatesSection from './CandidatesSection';
+import WhatsNext from './WhatsNext';
 
-const CandidatesSection = dynamic(() => import('./CandidatesSection'), {
-  suspense: true,
-});
-
-const WhatsNext = dynamic(() => import('./WhatsNext'), {
-  suspense: true,
-});
+// const CandidatesSection = dynamic(() => import('./CandidatesSection'), {
+//   suspense: true,
+// });
+//
+// const WhatsNext = dynamic(() => import('./WhatsNext'), {
+//   suspense: true,
+// });
 
 const HomePageWrapper = () => {
-  const { showInitModal } = useContext(HomePageContext);
   const [involvedModalOpen, setInvolvedModalOpen] = useState(false);
-
 
   const handleOpenInvolvedModal = () => {
     setInvolvedModalOpen(true);
@@ -31,13 +31,9 @@ const HomePageWrapper = () => {
         <Hero />
       </MaxWidth>
       <MaxWidth style={{ padding: '0 24px' }}>
-        <Suspense fallback={`Loading...`}>
-          <CandidatesSection />
-        </Suspense>
+        <CandidatesSection />
       </MaxWidth>
-      <Suspense fallback={`Loading...`}>
-        <WhatsNext openModalCallback={handleOpenInvolvedModal} />
-      </Suspense>
+      <WhatsNext openModalCallback={handleOpenInvolvedModal} />
 
       <Modal
         open={involvedModalOpen}

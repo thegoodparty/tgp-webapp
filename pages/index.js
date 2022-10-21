@@ -22,21 +22,6 @@ export async function getServerSideProps(context) {
     totalFollowers = 41858;
   }
 
-  const api2 = tgpApi.feed;
-
-  let feed;
-  try {
-    const res2 = await fetch(
-      `${api2.url}?searchId=${PULSAR_SEARCH_ID}&limit=6&useCache=true&save=true&onlyTotal=true`,
-    );
-    const response2 = await res2.json();
-    feed = response2;
-  } catch (e) {
-    feed = {
-      results: [],
-    };
-  }
-
   const api3 = tgpApi.homepageCandidates;
 
   let homepageCandidates;
@@ -51,7 +36,6 @@ export async function getServerSideProps(context) {
     props: {
       ssrState: {
         totalFollowers,
-        feed,
         homepageCandidates,
       },
     },

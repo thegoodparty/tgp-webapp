@@ -6,18 +6,10 @@
 
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import styles from './PageWrapper.module.scss';
-import dynamic from 'next/dynamic';
 
 import Nav from '/containers/shared/Nav';
-// import Wrapper from '/components/shared/Wrapper';
-// import Footer from '/components/shared/Footer';
-
-const Footer = dynamic(() => import('/components/shared/Footer'), {
-  suspense: true,
-});
-
+import Footer from '/components/shared/Footer';
 
 function PageWrapper({
   children,
@@ -34,11 +26,7 @@ function PageWrapper({
       <div className={isFullWidth ? styles.fullWidth : styles.wrapper}>
         {children}
       </div>
-      {!hideFooter && (
-        <Suspense fallback={`Loading...`}>
-        <Footer />
-         </Suspense>
-      )}
+      {!hideFooter && <Footer />}
     </div>
   );
 }
