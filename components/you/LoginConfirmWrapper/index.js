@@ -74,7 +74,7 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
           type="tel"
           onChange={onChangeCode}
         />
-        <Link href="/login" data-cy="return-link" passHref>
+        <Link href="/?login=true" data-cy="return-link" passHref>
           <a>
             <StyledBody13>Didn’t receive the code?</StyledBody13>
           </a>

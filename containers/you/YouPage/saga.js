@@ -69,7 +69,7 @@ function* register(action) {
           'error',
         ),
       );
-      yield put(push('/login'));
+      yield put(push('/?login=true'));
     } else {
       console.log(error);
       yield put(actions.registerActionError(error));
@@ -274,7 +274,7 @@ function* forgotPassword(action) {
       email,
     };
     yield call(requestHelper, api, payload);
-    yield put(push('/login'));
+    yield put(push('/?login=true'));
     yield put(
       snackbarActions.showSnakbarAction(
         `We sent an email to ${email}, which contains a link to reset your password.`,
@@ -303,7 +303,7 @@ function* resetPassword(action) {
       token,
     };
     yield call(requestHelper, api, payload);
-    yield put(push('/login'));
+    yield put(push('/?login=true'));
     yield put(
       snackbarActions.showSnakbarAction(`Your password has been reset`),
     );

@@ -4,7 +4,7 @@ import { dateUsHelper } from '../../../helpers/dateHelper';
 import { TEST_ACCOUNT_EMAIL, TEST_ACCOUNT_PWD, TOKEN, USER_COOKIE,  } from "../../constants";
 
 Cypress.Commands.add('testLoginFlow', () => {
-  cy.visit('/login');
+  cy.visit('/?login=true');
   cy.get('[data-cy=login-title]')
     .contains('Log into your account');
   cy.get('[data-cy=register-label]')
@@ -35,7 +35,7 @@ Cypress.Commands.add('testLoginFlow', () => {
     .should('exist')
     .contains(TEST_ACCOUNT_EMAIL);
   cy.get('[data-cy=redirect-to-login')
-    .should('have.attr', 'href', '/login')
+    .should('have.attr', 'href', '/?login=true')
     .contains('Change email');
   cy.get('[data-cy=forgot-link]')
     .should('exist')

@@ -34,7 +34,7 @@ export function LoginPasswordPage({
   const valueType = getCookie('login-value-type');
   useEffect(() => {
     if (!value) {
-      dispatch(push('/login'));
+      dispatch(push('/?login=true'));
     }
   }, []);
 
