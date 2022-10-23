@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -12,6 +12,7 @@ import { compose } from 'redux';
 import { useRouter } from 'next/router';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
+import { getExperiment } from '/helpers/optimizeHelper';
 import TgpHelmet from '/components/shared/TgpHelmet';
 import RegisterWrapper from '/components/entrance/RegisterWrapper';
 import { guestAccessOnly } from '/helpers/userHelper';
@@ -37,6 +38,14 @@ export function RegisterPage({
   useInjectReducer({ key: 'registerPage', reducer });
   useInjectSaga({ key: 'registerPage', saga });
 
+  const [experimentVariant, setExperimentVariant] = useState('0');
+  useEffect(() => {
+    getExperiment('Social login-register', 'hVOoMzyVTb2rqzKmWFwTNw', (type) => {
+      setExperimentVariant(type);
+    });
+  }, []);
+  console.log('experimentVariant', experimentVariant);
+
   const { score } = registerPage;
 
   useEffect(() => {
@@ -58,6 +67,7 @@ export function RegisterPage({
     modalMode,
     verifyRecaptchaCallback,
     score,
+    experimentVariant
   };
 
   return (

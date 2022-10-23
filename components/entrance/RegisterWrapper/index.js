@@ -132,6 +132,7 @@ const RegisterWrapper = ({
   modalMode,
   verifyRecaptchaCallback,
   score,
+  experimentVariant,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -290,7 +291,7 @@ const RegisterWrapper = ({
             <GoogleReCaptcha onVerify={handleVerify} action="REGISTER" />
           )}
         </form>
-        {!user && (
+        {experimentVariant === '1' && (
           <>
             <OrWrapper>
               <Border />

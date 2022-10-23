@@ -4,14 +4,14 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 import { createStructuredSelector } from 'reselect';
 
+import { getExperiment } from '/helpers/optimizeHelper';
 import userActions from '/containers/you/YouPage/actions';
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -37,6 +37,14 @@ export function LoginPage({
   useInjectReducer({ key: 'loginPage', reducer });
   useInjectSaga({ key: 'loginPage', saga });
 
+  const [experimentVariant, setExperimentVariant] = useState('0');
+  useEffect(() => {
+    getExperiment('Social login-register', 'hVOoMzyVTb2rqzKmWFwTNw', (type) => {
+      setExperimentVariant(type);
+    });
+  }, []);
+  console.log('experimentVariant', experimentVariant);
+
   useEffect(() => {
     const user = getUserCookie();
     if (user) {
@@ -50,6 +58,7 @@ export function LoginPage({
     socialLoginFailureCallback,
     twitterButtonCallback,
     modalMode,
+    experimentVariant,
   };
 
   return (

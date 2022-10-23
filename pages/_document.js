@@ -93,7 +93,7 @@ class CustomDocument extends NextDocument {
           />
           <link rel="manifest" href="/manifest.json" />
           {this.props.styles}
-          {/*<script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"></script>*/}
+          <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WLTK9ST"></script>
         </Head>
         <body>
           <Main />

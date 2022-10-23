@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1 } from '/components/shared/typogrophy';
 import globals from '/globals';
+
 import TwitterButton from '../../shared/TwitterButton';
 import PhoneOrEmailInput from '../../shared/PhoneOrEmailInput';
 import BlackButton from '../../shared/buttons/BlackButton';
@@ -53,6 +55,7 @@ const LoginWrapper = ({
   socialLoginFailureCallback,
   twitterButtonCallback,
   modalMode,
+  experimentVariant,
 }) => {
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -103,42 +106,46 @@ const LoginWrapper = ({
             </BlackButton>
           </div>
         </form>
-        <OrWrapper>
-          <Border />
-          <Or>
-            <Body13 style={{ color: '#767676' }}>Or</Body13>
-          </Or>
-        </OrWrapper>
-        <br />
-        <div data-cy="facebook-login">
-          <SocialButton
-            channel="facebook"
-            provider="facebook"
-            appId={globals.facebookAppId}
-            onLoginSuccess={socialLoginCallback}
-            onLoginFailure={socialLoginFailureCallback}
-          >
-            Continue with FACEBOOK
-          </SocialButton>
-        </div>
-        <br />
-        <div data-cy="twitter-login">
-          <TwitterButton clickCallback={twitterButtonCallback}>
-            Continue with Twitter
-          </TwitterButton>
-        </div>
-        <br />
-        <GoogleBtnWrapper data-cy="google-login">
-          <SocialButton
-            channel="google"
-            provider="google"
-            appId={globals.googleAppId}
-            onLoginSuccess={socialLoginCallback}
-            onLoginFailure={socialLoginFailureCallback}
-          >
-            Continue with GOOGLE
-          </SocialButton>
-        </GoogleBtnWrapper>
+        {experimentVariant === '1' && (
+          <>
+            <OrWrapper>
+              <Border />
+              <Or>
+                <Body13 style={{ color: '#767676' }}>Or</Body13>
+              </Or>
+            </OrWrapper>
+            <br />
+            <div data-cy="facebook-login">
+              <SocialButton
+                channel="facebook"
+                provider="facebook"
+                appId={globals.facebookAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with FACEBOOK
+              </SocialButton>
+            </div>
+            <br />
+            <div data-cy="twitter-login">
+              <TwitterButton clickCallback={twitterButtonCallback}>
+                Continue with Twitter
+              </TwitterButton>
+            </div>
+            <br />
+            <GoogleBtnWrapper data-cy="google-login">
+              <SocialButton
+                channel="google"
+                provider="google"
+                appId={globals.googleAppId}
+                onLoginSuccess={socialLoginCallback}
+                onLoginFailure={socialLoginFailureCallback}
+              >
+                Continue with GOOGLE
+              </SocialButton>
+            </GoogleBtnWrapper>
+          </>
+        )}
       </Wrapper>
     </PageWrapper>
   );

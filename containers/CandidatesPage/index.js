@@ -12,7 +12,7 @@ import { compose } from 'redux';
 import { push } from 'connected-next-router';
 import { useRouter } from 'next/router';
 import { sanitizeUrl } from '@braintree/sanitize-url';
-import { getExperiment } from '/helpers/optimizeHelper';
+// import { getExperiment } from '/helpers/optimizeHelper';
 
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
