@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { useRouter } from 'next/router';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import TgpHelmet from '/components/shared/TgpHelmet';
 import RegisterWrapper from '/components/entrance/RegisterWrapper';
@@ -30,9 +31,13 @@ export function RegisterPage({
   socialRegisterFailureCallback,
   twitterButtonCallback,
   modalMode,
+  verifyRecaptchaCallback,
+  registerPage,
 }) {
   useInjectReducer({ key: 'registerPage', reducer });
   useInjectSaga({ key: 'registerPage', saga });
+
+  const { score } = registerPage;
 
   useEffect(() => {
     guestAccessOnly(dispatch);
@@ -51,10 +56,26 @@ export function RegisterPage({
     twitterButtonCallback,
     queryEmail,
     modalMode,
+    verifyRecaptchaCallback,
+    score,
   };
 
   return (
-    <div>
+    <GoogleReCaptchaProvider
+      reCaptchaKey="6LefrpgiAAAAAKay43dREi6vvU3afzdoyEBQgZeN"
+      useEnterprise={true}
+      scriptProps={{
+        async: true,
+      }}
+      // container={{
+      //   // optional to render inside custom element
+      //   element: '[required_id_or_htmlelement]',
+      //   parameters: {
+      //     badge: '[inline|bottomright|bottomleft]', // optional, default undefined
+      //     theme: 'dark', // optional, default undefined
+      //   },
+      // }}
+    >
       {!modalMode && (
         <TgpHelmet
           title="Register | GOOD PARTY"
@@ -62,7 +83,7 @@ export function RegisterPage({
         />
       )}
       <RegisterWrapper {...childProps} />
-    </div>
+    </GoogleReCaptchaProvider>
   );
 }
 
@@ -96,6 +117,9 @@ function mapDispatchToProps(dispatch) {
     },
     twitterButtonCallback: () => {
       dispatch(actions.twitterRegisterAction());
+    },
+    verifyRecaptchaCallback: (token) => {
+      dispatch(actions.verifyRecaptchaAction(token));
     },
   };
 }

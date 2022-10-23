@@ -18,6 +18,7 @@ import { logEvent } from '/services/AnalyticsService';
 import globalActions from '/containers/App/actions';
 
 import types from './constants';
+import actions from './actions';
 
 function* register({ name, email, phone, zip, callback, source }) {
   try {
@@ -177,9 +178,25 @@ function* twitterLogin() {
   }
 }
 
+function* verifyRecaptcha({ token }) {
+  try {
+    const api = tgpApi.verifyRecaptcha;
+    const payload = {
+      token,
+    };
+
+    const { score } = yield call(requestHelper, api, payload);
+    yield put(actions.verifyRecaptchaActionSuccess(score));
+  } catch (error) {
+    console.log('verifyRecaptcha error', JSON.stringify(error));
+    yield put(actions.verifyRecaptchaActionError());
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.REGISTER, register);
   yield takeLatest(types.SOCIAL_REGISTER, socialRegister);
   yield takeLatest(types.TWITTER_REGISTER, twitterLogin);
+  yield takeLatest(types.VERIFY_RECAPTCHA, verifyRecaptcha);
 }

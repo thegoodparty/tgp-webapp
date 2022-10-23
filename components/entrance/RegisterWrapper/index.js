@@ -7,12 +7,14 @@ import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
 import globals from '/globals';
 import TwitterButton from '/components/shared/TwitterButton';
 import BlackButton from '../../shared/buttons/BlackButton';
+import H2 from '../../shared/typogrophy/H2';
 
 const SocialButton = dynamic(
   () => import('/components/you/SocialRegisterWrapper/SocialButton'),
@@ -128,6 +130,8 @@ const RegisterWrapper = ({
   isUpdate = false,
   queryEmail,
   modalMode,
+  verifyRecaptchaCallback,
+  score,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -188,6 +192,30 @@ const RegisterWrapper = ({
       [key]: event.target.value,
     });
   };
+
+  const handleVerify = (token) => {
+    if (token) {
+      verifyRecaptchaCallback(token);
+    }
+  };
+  if (score === 'bad') {
+    return (
+      <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+        <Wrapper className={modalMode && 'with-padding'}>
+          <div
+            className="text-center"
+            style={{ marginBottom: '32px', paddingTop: '32px' }}
+          >
+            <H1 data-cy="register-title">Sign up for Good Party</H1>
+
+            <br />
+            <br />
+            <div>Sorry, we can't create an account for you at the moment.</div>
+          </div>
+        </Wrapper>
+      </PageWrapper>
+    );
+  }
 
   return (
     <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
@@ -258,6 +286,9 @@ const RegisterWrapper = ({
               {user ? 'UPDATE' : 'Sign Up'}
             </BlackButton>
           </div>
+          {!score && (
+            <GoogleReCaptcha onVerify={handleVerify} action="REGISTER" />
+          )}
         </form>
         {!user && (
           <>

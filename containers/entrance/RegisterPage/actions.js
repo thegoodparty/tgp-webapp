@@ -21,8 +21,25 @@ const twitterRegisterAction = () => ({
   type: types.TWITTER_REGISTER,
 });
 
+const verifyRecaptchaAction = (token) => ({
+  type: types.VERIFY_RECAPTCHA,
+  token,
+});
+
+const verifyRecaptchaActionSuccess = (score) => ({
+  type: types.VERIFY_RECAPTCHA_SUCCESS,
+  score,
+});
+
+const verifyRecaptchaActionError = () => ({
+  type: types.VERIFY_RECAPTCHA_ERROR,
+});
+
 export default {
   registerAction,
   socialRegisterAction,
   twitterRegisterAction,
+  verifyRecaptchaAction,
+  verifyRecaptchaActionSuccess,
+  verifyRecaptchaActionError,
 };
