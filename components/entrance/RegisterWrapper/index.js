@@ -14,6 +14,7 @@ import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
 import globals from '/globals';
 import TwitterButton from '/components/shared/TwitterButton';
 import BlackButton from '../../shared/buttons/BlackButton';
+import H2 from '../../shared/typogrophy/H2';
 
 const SocialButton = dynamic(
   () => import('/components/you/SocialRegisterWrapper/SocialButton'),
@@ -130,6 +131,7 @@ const RegisterWrapper = ({
   queryEmail,
   modalMode,
   verifyRecaptchaCallback,
+  score,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -196,6 +198,24 @@ const RegisterWrapper = ({
       verifyRecaptchaCallback(token);
     }
   };
+  if (score === 'bad') {
+    return (
+      <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+        <Wrapper className={modalMode && 'with-padding'}>
+          <div
+            className="text-center"
+            style={{ marginBottom: '32px', paddingTop: '32px' }}
+          >
+            <H1 data-cy="register-title">Sign up for Good Party</H1>
+
+            <br />
+            <br />
+            <div>Sorry, we can't create an account for you at the moment.</div>
+          </div>
+        </Wrapper>
+      </PageWrapper>
+    );
+  }
 
   return (
     <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
@@ -266,7 +286,9 @@ const RegisterWrapper = ({
               {user ? 'UPDATE' : 'Sign Up'}
             </BlackButton>
           </div>
-          <GoogleReCaptcha onVerify={handleVerify} />
+          {!score && (
+            <GoogleReCaptcha onVerify={handleVerify} action="REGISTER" />
+          )}
         </form>
         {!user && (
           <>

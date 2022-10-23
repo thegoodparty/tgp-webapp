@@ -18,6 +18,7 @@ import { logEvent } from '/services/AnalyticsService';
 import globalActions from '/containers/App/actions';
 
 import types from './constants';
+import actions from './actions';
 
 function* register({ name, email, phone, zip, callback, source }) {
   try {
@@ -177,20 +178,18 @@ function* twitterLogin() {
   }
 }
 
-function* verifyRecaptcha({token}) {
+function* verifyRecaptcha({ token }) {
   try {
     const api = tgpApi.verifyRecaptcha;
     const payload = {
-      token
-    }
+      token,
+    };
 
     const { score } = yield call(requestHelper, api, payload);
-    console.log('score')
+    yield put(actions.verifyRecaptchaActionSuccess(score));
   } catch (error) {
     console.log('verifyRecaptcha error', JSON.stringify(error));
-    yield put(
-      snackbarActions.showSnakbarAction('Twitter Login Error', 'error'),
-    );
+    yield put(actions.verifyRecaptchaActionError());
   }
 }
 

@@ -1,19 +1,28 @@
 /*
  *
- * RegisterPage reducer
+ * HomePage reducer
  *
  */
 import produce from 'immer';
-// import { DEFAULT_ACTION } from './constants';
+import types from './constants';
 
-export const initialState = {};
+export const initialState = {
+  score: false,
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const registerPageReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, (draft) => {
     switch (action.type) {
-      // case DEFAULT_ACTION:
-      //   break;
+      case types.VERIFY_RECAPTCHA:
+        draft.score = false;
+        break;
+      case types.VERIFY_RECAPTCHA_SUCCESS:
+        draft.score = action.score;
+        break;
+      case types.VERIFY_RECAPTCHA_ERROR:
+        draft.score = 'bad';
+        break;
     }
   });
 

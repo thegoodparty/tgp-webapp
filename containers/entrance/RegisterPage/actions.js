@@ -26,9 +26,20 @@ const verifyRecaptchaAction = (token) => ({
   token,
 });
 
+const verifyRecaptchaActionSuccess = (score) => ({
+  type: types.VERIFY_RECAPTCHA_SUCCESS,
+  score,
+});
+
+const verifyRecaptchaActionError = () => ({
+  type: types.VERIFY_RECAPTCHA_ERROR,
+});
+
 export default {
   registerAction,
   socialRegisterAction,
   twitterRegisterAction,
   verifyRecaptchaAction,
+  verifyRecaptchaActionSuccess,
+  verifyRecaptchaActionError,
 };

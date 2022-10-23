@@ -32,9 +32,12 @@ export function RegisterPage({
   twitterButtonCallback,
   modalMode,
   verifyRecaptchaCallback,
+  registerPage,
 }) {
   useInjectReducer({ key: 'registerPage', reducer });
   useInjectSaga({ key: 'registerPage', saga });
+
+  const { score } = registerPage;
 
   useEffect(() => {
     guestAccessOnly(dispatch);
@@ -54,6 +57,7 @@ export function RegisterPage({
     queryEmail,
     modalMode,
     verifyRecaptchaCallback,
+    score,
   };
 
   return (
