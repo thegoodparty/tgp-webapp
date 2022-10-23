@@ -82,7 +82,7 @@ const LoginWrapper = ({
         </H1>
         <Body13 style={{ margin: '48px 0' }} data-cy="register-label">
           Don&apos;t have an account?{' '}
-          <Link href="/register">
+          <Link href="/?register=true">
             <a data-cy="register">Create one</a>
           </Link>
         </Body13>
