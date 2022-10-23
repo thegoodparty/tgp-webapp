@@ -23,6 +23,10 @@ const profilePageReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.candidates = action.candidates;
         break;
+      case types.LOAD_CANDIDATES_ERROR:
+        draft.loading = false;
+        draft.candidates = [];
+        break;
     }
   });
 

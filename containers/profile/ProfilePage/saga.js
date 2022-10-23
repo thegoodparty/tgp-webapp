@@ -17,7 +17,8 @@ function* loadCandidates() {
     const { candidates } = yield call(requestHelper, updatedApi, null);
     yield put(actions.loadCandidatesActionSuccess(candidates));
   } catch (error) {
-    console.log('staff error', JSON.stringify(error));
+    yield put(actions.loadCandidatesActionError());
+    console.log('load candidates error', JSON.stringify(error));
   }
 }
 
