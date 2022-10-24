@@ -105,6 +105,55 @@ export const fields2 = [
     required: true,
   },
   {
+    label: 'Office ',
+    key: 'office',
+    columns: 6,
+    type: 'select',
+    withGroups: true,
+    options: [
+      {
+        group: 'Federal',
+        options: ['President', 'US Senate', 'US House of Representatives'],
+      },
+      {
+        group: 'State',
+        options: [
+          'Governor',
+          'Lieutenant Governor',
+          'Attorney General',
+          'Comptroller',
+          'Treasurer',
+          'Secretary of State',
+          'State Supreme Court Justice',
+          'State Senate',
+          'State House of Representatives',
+        ],
+      },
+      {
+        group: 'Local',
+        options: [
+          'County Executive',
+          'Mayor',
+          'District Attorney',
+          'Sheriff',
+          'Clerk',
+          'Auditor',
+          'Public Administrator',
+          'Judge',
+          'County Commissioner',
+          'Council Member',
+          'School Board',
+        ],
+      },
+    ],
+    required: true,
+  },
+  {
+    label: 'District (if applicable)',
+    columns: 6,
+    key: 'district',
+  },
+  {
     label: 'Ballot filing deadline ',
     key: 'ballotDate',
     isDate: true,
@@ -116,7 +165,6 @@ export const fields2 = [
     isDate: true,
     columns: 6,
   },
-  { label: 'District (if applicable)', key: 'district' },
   { label: 'Headline', key: 'headline', required: true },
   { label: 'Summary', key: 'about', isRichText: true, required: true },
   { label: 'Committee name', key: 'committeeName' },
@@ -188,6 +236,20 @@ function PortalCampaignManagerWrapper() {
     }
     if (key === 'party' && value !== 'Other') {
       setShowHidden(false);
+    }
+    if (key === 'office') {
+      if (
+        value === 'US House of Representatives' ||
+        value === 'State Senate' ||
+        value === 'State House of Representatives' ||
+        value === 'County Commissioner ' ||
+        value === 'Council Member' ||
+        value === 'School Board'
+      ) {
+        fields2[4].required = true; // district
+      } else {
+        fields2[4].required = false; // district
+      }
     }
 
     let urlFailed = false;
@@ -295,12 +357,28 @@ function PortalCampaignManagerWrapper() {
                               )
                             }
                           >
-                            <option value="">Select</option>
-                            {field.options.map((op) => (
-                              <option value={op} key={op}>
-                                {partyResolver(op)}
-                              </option>
-                            ))}
+                            <option value="">Select {field.label}</option>
+                            {field.withGroups ? (
+                              <>
+                                {field.options.map((op) => (
+                                  <optgroup label={op.group} key={op}>
+                                    {op.options.map((sub) => (
+                                      <option value={sub} key={sub}>
+                                        {partyResolver(sub)}
+                                      </option>
+                                    ))}
+                                  </optgroup>
+                                ))}
+                              </>
+                            ) : (
+                              <>
+                                {field.options.map((op) => (
+                                  <option value={op} key={op}>
+                                    {partyResolver(op)}
+                                  </option>
+                                ))}
+                              </>
+                            )}
                           </Select>
                           {errors[field.key] && <Err>{errors[field.key]}</Err>}
                         </>
