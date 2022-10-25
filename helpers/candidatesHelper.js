@@ -161,3 +161,13 @@ export const candidateColor = (candidate) => {
   }
   return '#000';
 };
+
+export const candidateHash = (candidate) => {
+  if (!candidate) {
+    return '';
+  }
+  if (candidate.hashtag) {
+    return candidate.hashtag;
+  }
+  return `${candidate.firstName}${candidate.lastName}2022`;
+};

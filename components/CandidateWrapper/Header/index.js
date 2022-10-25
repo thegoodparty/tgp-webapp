@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
@@ -14,14 +14,9 @@ import CandidateProfile from './CandidateProfile';
 import TopIssuesPills from './TopIssuesPills';
 import SocialStats from './SocialStats';
 import LoadingAnimation from '../../shared/LoadingAnimation';
+import { CandidateWrapperContext } from '../index';
 
-const ShareModal = dynamic(() => import('../../shared/ShareModal'), {
-  loading: () => (
-    <>
-      <LoadingAnimation fullPage={false} />
-    </>
-  ),
-});
+
 
 const Wrapper = styled.header`
   padding: 35px 0 60px;
@@ -32,10 +27,7 @@ const Wrapper = styled.header`
 `;
 
 function Header() {
-  const [showShare, setShowShare] = useState(false);
-  const showShareModalCallback = () => {
-    setShowShare(true);
-  };
+  const { showShareModalCallback } = useContext(CandidateWrapperContext);
   return (
     <Wrapper>
       <Grid container spacing={3} alignItems="center">
@@ -47,7 +39,6 @@ function Header() {
           <SocialStats />
         </Grid>
       </Grid>
-      {showShare && <ShareModal closeCallback={() => setShowShare(false)} />}
     </Wrapper>
   );
 }

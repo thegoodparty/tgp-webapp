@@ -24,11 +24,7 @@ import MaxWidth, { Padder } from '../shared/MaxWidth';
 import Modal from '../shared/Modal';
 import LoadingAnimation from '../shared/LoadingAnimation';
 import { getCookie, setCookie } from '../../helpers/cookieHelper';
-import {
-  LgUpOnly,
-  MdDownOnly,
-  MdUpOnly,
-} from '../shared/navigation/NavWrapper';
+import { LgUpOnly, MdDownOnly } from '../shared/navigation/NavWrapper';
 
 const TopIssues = dynamic(() => import('./TopIssues'), { suspense: true });
 const BioSection = dynamic(() => import('./BioSection'), { suspense: true });
@@ -76,6 +72,22 @@ const CheckWhereToVoteModal = dynamic(() => import('./CheckWhereToVote'), {
   ),
 });
 
+const SocialLinks = dynamic(() => import('./SocialLinks'), {
+  loading: () => (
+    <>
+      <LoadingAnimation fullPage={false} />
+    </>
+  ),
+});
+
+const ShareModal = dynamic(() => import('components/shared/ShareModal'), {
+  loading: () => (
+    <>
+      <LoadingAnimation fullPage={false} />
+    </>
+  ),
+});
+
 export const CandidateWrapperContext = createContext();
 
 function CandidateWrapper() {
@@ -85,6 +97,10 @@ function CandidateWrapper() {
   const [registerVoteOpen, setRegisterVoteOpen] = useState(false);
   const [whereVoteOpen, setWhereVoteOpen] = useState(false);
   const [offsetFollow, setOffsetFollow] = useState(0);
+  const [showShare, setShowShare] = useState(false);
+  const showShareModalCallback = () => {
+    setShowShare(true);
+  };
 
   useEffect(() => {
     if (candidate?.state === 'ME' && tab === 'Feed') {
@@ -124,6 +140,7 @@ function CandidateWrapper() {
     offsetFollow,
     afterFollowCallback,
     afterUnfollowCallback,
+    showShareModalCallback,
   };
 
   const checkRegisterVote = () => {
@@ -172,6 +189,9 @@ function CandidateWrapper() {
               <Grid item xs={12} lg={8}>
                 <Suspense>
                   <BioSection />
+                </Suspense>
+                <Suspense>
+                  <SocialLinks />
                 </Suspense>
                 <MdDownOnly>
                   <RightSide />
@@ -224,6 +244,12 @@ function CandidateWrapper() {
             closeModalCallback={() => setWhereVoteOpen(false)}
           />
         </Modal>
+        {showShare && (
+          <ShareModal
+            closeCallback={() => setShowShare(false)}
+            candidate={candidate}
+          />
+        )}
       </PageWrapper>
     </CandidateWrapperContext.Provider>
   );
