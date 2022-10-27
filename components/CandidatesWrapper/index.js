@@ -6,16 +6,13 @@
 
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import dynamic from 'next/dynamic';
 
 import PageWrapper from '../shared/PageWrapper';
 import TopSection from './TopSection';
 import MaxWidth, { Padder } from '../shared/MaxWidth';
 import CandidatesSection from './CandidatesSection';
 import { CandidatesContext } from '../../containers/CandidatesPage';
-const FiltersSection = dynamic(() => import('./FiltersSection'), {
-  loading: () => <>Loading</>,
-});
+import FiltersSection from './FiltersSection';
 
 const Line = styled.div`
   display: none;
@@ -41,7 +38,7 @@ function CandidatesWrapper() {
       <Line />
       <MaxWidth>
         <Padder>
-          {showFilters && <FiltersSection />}
+          <FiltersSection />
           <CandidatesSection
             toggleFiltersCallback={() => setShowFilters(!showFilters)}
             showFilters={showFilters}

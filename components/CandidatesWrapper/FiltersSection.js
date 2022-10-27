@@ -36,14 +36,14 @@ const H2 = styled.h2`
   margin: 30px 0 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin: 0 0 40px;
+    margin: 0 0 28px;
   }
 `;
 const Pill = styled.div`
   display: inline-block;
   padding: 8px 15px;
   background-color: #f3f3f3;
-  margin: 15px 17px 0 0;
+  margin: 0 17px 15px 0;
   cursor: pointer;
   transition: background-color 0.3s;
   border-radius: 7px;
@@ -58,7 +58,7 @@ const Pill = styled.div`
 `;
 
 const PositionsWrapper = styled.div`
-  height: 110px;
+  height: 45px;
   overflow: hidden;
   margin-bottom: 14px;
   @media only screen and (min-width: ${({ theme }) =>
