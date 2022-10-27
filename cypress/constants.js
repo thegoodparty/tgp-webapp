@@ -17,3 +17,30 @@ export const TEST_ACCOUNT_EMAIL = 'blueshark0811@gmail.com';
 export const TEST_ACCOUNT_PWD = 'myFirst100!@#';
 export const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo5MCwiZW1haWwiOiJibHVlc2hhcmswODExQGdtYWlsLmNvbSJ9LCJpYXQiOjE2NTE1MjAyNTAsImV4cCI6MTY4MzA1NjI1MH0.YQNAh1oIsRefhXowKNWlkqqFe7wMPc2eqh920ENHW6Y';
 export const USER_COOKIE = '%7B%22id%22:90,%22phone%22:%22%22,%22email%22:%22blueshark0811@gmail.com%22,%22uuid%22:%22zpzeclooe0%22,%22name%22:%22Peter%20Asaro%22,%22feedback%22:%22The%20Good%20Party%22,%22socialId%22:null,%22socialProvider%22:null,%22displayAddress%22:%22%22,%22addressComponents%22:%22%22,%22zip%22:%2295001%22,%22isPhoneVerified%22:false,%22isEmailVerified%22:true,%22avatar%22:%22https://assets.goodparty.org/uploads/user-htzxz8.jpeg%22,%22hasPassword%22:true,%22voteStatus%22:%22%22,%22guestReferrer%22:null,%22crewCount%22:1,%22isAdmin%22:true,%22metaData%22:null,%22address%22:%22asdf%22,%22city%22:%22Aptos%22,%22displayName%22:%22%22,%22pronouns%22:%22%22,%22referrer%22:null%7D';
+export const TEST_USER =  {
+    id: 90,
+    phone: "",
+    email: "blueshark0811@gmail.com",
+    uuid: "zpzeclooe0",
+    name: "Peter Asaro",
+    feedback: "The Good Party",
+    socialId: null,
+    socialProvider: null,
+    displayAddress: "",
+    addressComponents: "",
+    zip: "95001",
+    isPhoneVerified: false,
+    isEmailVerified: true,
+    avatar: "https://assets.goodparty.org/uploads/user-htzxz8.jpeg",
+    hasPassword: true,
+    voteStatus: "",
+    guestReferrer: null,
+    crewCount: 1,
+    isAdmin: true,
+    metaData: null,
+    address: "asdf",
+    city: "Aptos",
+    displayName: "",
+    pronouns: "",
+    referrer: null
+};

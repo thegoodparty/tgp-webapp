@@ -88,7 +88,7 @@ function PortalLeftMenu() {
       {leftMenuItems.map((item) => (
         <React.Fragment key={item.label}>
           <Link href={item.link} passHref>
-            <a>
+            <a data-cy="portal-left-menu-item">
               <Label className={pathname === item.link ? 'selected' : ''}>
                 {item.label}
               </Label>
@@ -100,7 +100,7 @@ function PortalLeftMenu() {
         <div style={{ height: '90px' }}>&nbsp;</div>
         {leftMenuItemsBottom.map((item) => (
           <Link href={item.link} passHref key={item.label}>
-            <a>
+            <a data-cy="portal-left-menu-bottom-item">
               <Label className={pathname === item.link ? 'selected' : ''}>
                 {item.label}
               </Label>

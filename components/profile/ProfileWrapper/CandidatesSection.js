@@ -19,7 +19,7 @@ const Wrapper = styled.section`
 `;
 
 function CandidatesSection() {
-  const { loading, candidates } = useContext(ProfilePageContext);
+  const { loading, candidates } = useContext(ProfilePageContext) || {};
   return (
     <Wrapper>
       {loading ? (
@@ -44,7 +44,7 @@ function CandidatesSection() {
           )}
         </Grid>
       )}
-      {!loading && candidates.length === 0 && (
+      {!loading && candidates?.length === 0 && (
         <div className="text-center">
           <FontH3>You are not following any candidates yet.</FontH3>
           <br />

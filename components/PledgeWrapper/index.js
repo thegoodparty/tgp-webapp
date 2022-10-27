@@ -34,16 +34,16 @@ const Padder = styled.div`
   height: 200px;
 `;
 
-function PledgeWrapper() {
+function PledgeWrapper({ isTest = false }) {
   const [canSubmit, setCanSubmit] = useState(false);
-  const { pledgeCallback } = useContext(PledgePageContext);
+  const { pledgeCallback } = useContext(PledgePageContext) || {};
   const tempApplication = {};
   const update = () => {};
   const canSubmitCallback = (isComplete) => {
     setCanSubmit(isComplete);
   };
-  return (
-    <PageWrapper isFullWidth={false} hideFooter>
+  const Content = () => (
+    <>
       <ApplicationStep1
         updateApplicationCallback={update}
         application={tempApplication}
@@ -54,11 +54,20 @@ function PledgeWrapper() {
       <Padder />
       <BottomFixed>
         <ButtonWrapper>
-          <BlackButton fullWidth disabled={!canSubmit} onClick={pledgeCallback}>
+          <BlackButton fullWidth disabled={!canSubmit} onClick={pledgeCallback} dataCy="pledge-link">
             Take the Pledge
           </BlackButton>
         </ButtonWrapper>
       </BottomFixed>
+    </>
+  );
+
+  if(isTest) {
+    return <Content />;
+  }
+  return (
+    <PageWrapper isFullWidth={false} hideFooter>
+      <Content />
     </PageWrapper>
   );
 }
